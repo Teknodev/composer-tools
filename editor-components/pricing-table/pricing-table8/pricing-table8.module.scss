@@ -13,6 +13,7 @@
       position: relative;
       border-radius: var(--composer-border-radius-md);
       margin-top: calc(1.5 * var(--composer-gap-xl));
+      padding-top: 1px;
 
       .carousel {
         display: none;
@@ -24,6 +25,8 @@
         position: relative;
         margin-top: calc(-1 * var(--composer-gap-xl));
         width: 100%;
+        padding-top: 1px;
+        
         .card-item-count {
           width: 27%;
           height: 100% !important;
@@ -51,7 +54,7 @@
           &.animation3:hover{
             .pricing{
               .icon{
-                transform: rotate(360deg);
+                transform: translateX(-50%) translateY(50%) rotate(360deg);
               }
             }
           }
@@ -68,24 +71,31 @@
             border-radius: var(--composer-border-radius-md);
             box-shadow: var(--box-shadow-active);
             padding-top: var(--composer-gap-md);
+            padding-bottom: var(--composer-gap-md);
+            overflow: visible;
+            
             .title {
               font-size: 3rem;
               color: var(--composer-primary-color);
-              margin: calc(3 * var(--composer-gap-sm));
               text-align: center;
-              margin: var(--composer-gap-md);
+              margin: var(--composer-gap-md) 0;
+              margin-bottom: calc(2 * var(--composer-gap-lg));
             }
 
             .pricing-container {
               margin-top: var(--composer-gap-xl);
+              margin-bottom: var(--composer-gap-xl);
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
+              
               .price {
                 position: relative;
+                z-index: 2;
+                text-align: center;
                 font-size: 3rem;
                 font-weight: bold;
                 color: var(--composer-font-color-primary);
-                margin: calc(3 * var(--composer-gap-sm));
-                text-align: center;
-                margin: var(--composer-gap-md);
                 margin: 0;
                 transition: 0.8s;
               }
@@ -93,7 +103,6 @@
               .plan {
                 position: relative;
                 display: block;
-                margin: var(--composer-gap-lg);
                 color: var(--composer-font-color-primary);
                 text-align: center;
                 margin: 0;
@@ -102,25 +111,32 @@
 
             .price-big {
               position: absolute;
+              top: 35%;
               font-size: 10rem;
               font-weight: bold;
-              color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              top: 15%;
-              margin: var(--composer-gap-lg);
+              margin-top:  var(--composer-gap-lg);
+              margin-bottom:  var(--composer-gap-lg);
+              z-index: 0;
+              text-align: center;
+              pointer-events: none;
               transition: 0.8s;
+              color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             }
 
             .icon {
+              display: flex;
               position: absolute;
-              bottom: -35px;
+              bottom: 0;
+              left: 50%;
+              transform: translateX(-50%) translateY(50%) rotate(0deg);
+              transform-origin: center center;
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
-              font-size: 4.5rem;
-              left: 42%;
+              font-size: 3rem;
               border-radius: 50%;
               border: 2px solid var(--composer-secondary-color);
-              transform: rotate(0deg);
-              transition: all 0.8s ease;
+              z-index: 3;
+              transition: transform 0.8s ease;
             }
           }
           &.middle-card {
@@ -141,17 +157,21 @@
         justify-content: center;
         padding: 0 10%;
         gap: var(--composer-gap-lg);
-        .button{
-          content: "";
-        }
+        overflow: hidden;
+        
         .plan-desc {
           width: 50%;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
 
           .text {
             color: var(--composer-font-color-primary);
+            margin: 0;
           }
           .description-text {
             color: var(--composer-tertiary-color);
+            margin: 0;
           }
         }
 
@@ -161,11 +181,13 @@
           flex-wrap: wrap;
           justify-content: center;
           width: 50%;
+          padding-top: 1px;
+          
           .bar-row {
-            display: flex;
             flex-direction: column;
             width: 100%;
-            gap: calc(1.5 * var(--composer-gap-md));
+            gap: var(--composer-gap-sm);
+            
             .bar-desc {
               display: flex;
               flex-direction: row;
@@ -176,11 +198,12 @@
                 color: var(--composer-font-color-primary);
                 width: 60%;
                 text-align: right;
+                margin: 0;
               }
               .bar-percent {
                 position: relative;
                 width: 85%;
-                height: calc(1.5 * var(--composer-gap-md));
+                height: var(--composer-gap-md);
                 background-color: var(--composer-html-background);
                 border-radius: var(--composer-border-radius-lg);
                 transition: all 0.3s;
@@ -198,8 +221,6 @@
             }
           }
         }
-
-        
       }
 
       .button-position {
@@ -212,11 +233,9 @@
         margin: 0 auto;
         gap: var(--composer-gap-md);
 
-        
-          .button{
-            border-radius: var(--composer-gap-md);
-          }
-        
+        .button{
+          border-radius: var(--composer-gap-md);
+        }
       }
 
       .prev_icon {
@@ -235,6 +254,7 @@
     .max-content {
       .box {
         margin-top: 0;
+        
         .carousel {
           position: relative;
           display: flex !important;
@@ -251,10 +271,13 @@
               background-color: var(--composer-html-background);
               border: var(--composer-gap-xs) solid color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               border-radius: var(--composer-border-radius-md);
+              overflow: hidden;
+              padding-bottom: var(--composer-gap-md);
 
               .title {
                 color: var(--composer-primary-color);
                 margin: var(--composer-gap-md);
+                margin-bottom: calc(2.5 * var(--composer-gap-lg));
               }
 
               .price-big {
@@ -269,6 +292,8 @@
               .pricing-container {
                 position: relative;
                 text-align: center;
+                gap: 0;
+                
                 .price {
                   font-size: 3rem;
                   font-weight: bold;
@@ -280,12 +305,12 @@
                 .plan {
                   font-size: 1rem;
                   margin: 0;
-
                   color: var(--composer-font-color-primary);
                 }
               }
 
               .icon {
+                display: flex;
                 color: var(--composer-font-color-secondary);
                 background-color: var(--composer-secondary-color);
                 font-size: 4.5rem;
@@ -303,17 +328,19 @@
 
         .lower-container {
           flex-direction: column !important;
-          gap: 0 !important;
+          gap: var(--composer-gap-md) !important;
           padding: 0 !important;
           margin-top: calc(2 * var(--composer-gap-md)) !important;
 
           .plan-desc {
             margin-bottom: var(--composer-gap-sm);
             width: 78% !important;
+            gap: var(--composer-gap-xs);
           }
 
           .bar-rows {
             width: 78% !important;
+            
             .bar-row {
               .bar-desc {
                 .bar-title {
