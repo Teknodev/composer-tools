@@ -396,6 +396,9 @@
                 .right-card,
                 .right-card-no-left-card{
                     order: 2;
+                    .image-container{
+                        height: 600px;
+                    }
                 }
                 .right-card-no-left-card{
                     max-height: fit-content;

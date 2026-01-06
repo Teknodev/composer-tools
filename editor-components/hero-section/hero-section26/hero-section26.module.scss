@@ -5,6 +5,7 @@
   height: 100vh;
   overflow: hidden;
   position: relative;
+  background-color: var(--composer-html-background);
 
   .max-content {
     margin: 0 auto;
@@ -30,7 +31,7 @@
         align-items: stretch;
         height: 100%;
         position: relative;
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        background-color: var(--composer-html-background);
 
         .left-side {
           width: 100%;
@@ -157,7 +158,6 @@
       .sliders {
         .slider {
           .left-side {
-            padding: var(--composer-gap-md);
             justify-content: end;
 
             .left-side-content {

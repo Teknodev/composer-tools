@@ -51,7 +51,7 @@
   }
 
   .item {
-    height: 100%;
+    height: calc(100% + var(--composer-gap-xs));
     width: 100%;
     position: absolute;
     top: 0;
@@ -211,7 +211,7 @@
         align-items: center;
         justify-content: end;
         gap: var(--composer-gap-md);
-        padding-bottom: var(--composer-gap-xl);
+        padding-bottom: var(--composer-gap-md);
         top: 35%;
 
         .side-text {

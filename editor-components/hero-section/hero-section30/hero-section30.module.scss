@@ -84,6 +84,10 @@
         margin: 0;
       }
 
+      .first-title {
+        content: "";
+      }
+
 
       .second-title {
         color: #ffffff00;
@@ -197,10 +201,15 @@
           font-size: 4rem;
         }
 
+        .first-title {
+          margin-bottom: var(--composer-gap-sm);
+        }
+
         .title-with-image {
           flex-direction: column;
           align-items: start;
           width: 100%;
+          gap: var(--composer-gap-sm);
 
           .title-image {
               width: 300px !important;

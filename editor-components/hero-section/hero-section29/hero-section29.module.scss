@@ -207,6 +207,7 @@
       margin: auto;
 
       .wrapper {
+        gap: var(--composer-gap-md);
         .content {
           padding-top: 0;
           width: 100%;

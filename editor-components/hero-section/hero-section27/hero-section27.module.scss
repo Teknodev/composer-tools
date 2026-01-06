@@ -532,6 +532,8 @@
                   gap: var(--composer-gap-sm);
 
                   .image-wrapper {
+                    max-height: 5vw;
+                    
                     .middleImages {
                       max-height: 80px;
                       border-radius: 90px;
