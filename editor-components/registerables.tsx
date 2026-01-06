@@ -272,6 +272,7 @@ import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ECommerce5 from "./e-commerce/e-commerce5/e-commerce5";
 import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
 import ECommerce7 from "./e-commerce/e-commerce7/e-commerce7";
+import ECommerce8 from "./e-commerce/e-commerce8/e-commerce8";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "./social/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
@@ -588,6 +589,7 @@ function Registerables(composer: ComponentsRegistery) {
     ECommerce5,
     ECommerce6,
     ECommerce7,
+    ECommerce8,
     SocialComponent2,
     SocialComponent3,
     SocialComponent4,
