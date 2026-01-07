@@ -221,7 +221,6 @@ const getStyle = (direction: "up" | "down") => {
             <div 
               ref={this.imageRef}
               className={`${this.decorateCSS("image-container")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
-              style={imageAnm && getStyle("up")}
             >
               <Base.Media
                 className={this.decorateCSS("image-element")}

@@ -184,6 +184,16 @@
         .social-link {
           color: var(--composer-font-color-primary);
           transition: color 0.1s ease-out;
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+
+          .social-icon {
+            font-size: 1.25rem;
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+          }
 
           &:hover {
             color: var(--composer-primary-color);

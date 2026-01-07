@@ -3,6 +3,7 @@ import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ISliderData = {
   logo: TypeMediaInputValue;
@@ -10,6 +11,7 @@ type ISliderData = {
   image: TypeMediaInputValue;
   description: string;
   topWriting: string;
+  url: string;
 };
 interface IAnimationProps {
   animationState: string;
@@ -113,6 +115,12 @@ class HeroSection8 extends BaseHeroSection {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e9?alt=media&timestamp=1719483639150",
               },
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -161,6 +169,12 @@ class HeroSection8 extends BaseHeroSection {
               type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66618083bd2970002c6245e8?alt=media&timestamp=1719483639150",
               },
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -211,6 +225,12 @@ class HeroSection8 extends BaseHeroSection {
                 url: "https://eremia-react.vercel.app/img/project/project3/1.jpg",
               },
             },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
           ],
         },
         {
@@ -247,6 +267,12 @@ class HeroSection8 extends BaseHeroSection {
               type: "image",
                 url: "https://eremia-react.vercel.app/img/project/project4/1.jpg",
               },
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -369,53 +395,34 @@ class HeroSection8 extends BaseHeroSection {
         </ComposerSlider>
         <Base.Container className={`${this.decorateCSS("max-content")}`}>
           {this.getPropValue("slider").length > 0 && (
-            <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
-              {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("logo") && (
-                <Base.Media 
-                  value={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("logo")} 
-                  className={this.decorateCSS("logo")} 
-                />
-              )}
-              {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
-                <Base.H5
-                  className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
-                    ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
-                    : ""
-                    }`}
-                  onAnimationEnd={() => {
-                    if (this.getPropValue("text_animation")) {
-                      this.handleAnimationEnd({
-                        animationState: "titleAnimationClass",
-                        startingAnimation: "",
-                      });
-                    }
-                  }}
-                >
-                  {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
-                </Base.H5>
-              }
-              {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")) &&<Base.H1
-                className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
-                  ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
-                  : ""
-                  }`}
-                onAnimationEnd={() => {
-                  if (this.getPropValue("text_animation")) {
-                    this.handleAnimationEnd({
-                      animationState: "descriptionAnimationClass",
-                      startingAnimation: "",
-                    });
-                  }
-                }}
-              >
-                {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
-              </Base.H1>}
-
-
-              {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
-              {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
-                <Base.H5
-                  className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
+            <ComposerLink path={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("url")}>
+              <Base.MaxContent className={`${this.decorateCSS("info-box")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}>
+                {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("logo") && (
+                  <Base.Media 
+                    value={this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("logo")} 
+                    className={this.decorateCSS("logo")} 
+                  />
+                )}
+                {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")) &&
+                  <Base.H5
+                    className={`${this.decorateCSS("tag")} ${this.getPropValue("text_animation")
+                      ? `animate__animated ${this.getComponentState("titleAnimationClass")}`
+                      : ""
+                      }`}
+                    onAnimationEnd={() => {
+                      if (this.getPropValue("text_animation")) {
+                        this.handleAnimationEnd({
+                          animationState: "titleAnimationClass",
+                          startingAnimation: "",
+                        });
+                      }
+                    }}
+                  >
+                    {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("topWriting")}
+                  </Base.H5>
+                }
+                {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")) &&<Base.H1
+                  className={`${this.decorateCSS("title")} ${this.getPropValue("text_animation")
                     ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
                     : ""
                     }`}
@@ -428,10 +435,33 @@ class HeroSection8 extends BaseHeroSection {
                     }
                   }}
                 >
-                  {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
-                </Base.H5>
-              }
-              <div className={this.decorateCSS("arrow-wrapper")}>
+                  {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("title")}
+                </Base.H1>}
+
+
+                {this.getPropValue("line") ? <div className={this.decorateCSS("line")}></div> : <div></div>}
+                {this.castToString(this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")) &&
+                  <Base.H5
+                    className={`${this.decorateCSS("description")} ${this.getPropValue("text_animation")
+                      ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}`
+                      : ""
+                      }`}
+                    onAnimationEnd={() => {
+                      if (this.getPropValue("text_animation")) {
+                        this.handleAnimationEnd({
+                          animationState: "descriptionAnimationClass",
+                          startingAnimation: "",
+                        });
+                      }
+                    }}
+                  >
+                    {this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("description")}
+                  </Base.H5>
+                }
+              </Base.MaxContent>
+            </ComposerLink>
+          )}
+          <div className={this.decorateCSS("arrow-wrapper")}>
                 <div className={`${this.decorateCSS("arrow-prev-wrapper")} ${this.decorateCSS("prev")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`} onClick={() => {
                   sliderRef.current.slickPrev();
                 }}>
@@ -459,9 +489,7 @@ class HeroSection8 extends BaseHeroSection {
                     />
                   </div>
                 </div>
-              </div>
-            </Base.MaxContent>
-          )}
+          </div>
         </Base.Container>
       </Base.Container>
     );

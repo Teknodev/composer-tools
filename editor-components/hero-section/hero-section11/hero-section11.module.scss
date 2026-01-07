@@ -133,11 +133,11 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      left: -50px;
+      left: -40px;
       z-index: 2;
       .icon-wrapper{
-        width: 90px;
-        height: 90px;
+        width: 80px;
+        height: 80px;
         background-color: var(--composer-primary-color);
         border-radius: 100%;
         display: flex;
@@ -197,7 +197,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container{
     flex-direction: row;
-    height: 100vh;
+    height: fit-content;
 
     &.no-background-image {
       height: 100%;
@@ -222,11 +222,11 @@
       overflow: visible;
       .icon-box {
         top: 50%;
-        left: -50px;
+        left: -30px;
         transform: translateY(-50%);
         .icon-wrapper {
-          width: 80px;
-          height: 80px;
+          width: 60px;
+          height: 60px;
           .icon {
             width: 25px;
             height: 30px;
@@ -275,8 +275,6 @@
         left: 50%;
         transform: translate(-50%, -50%);
         .icon-wrapper{
-          width: 70px;
-          height: 70px;
           .icon {
             font-size: 2rem;
             .play-button {

@@ -387,6 +387,7 @@
           
           &.column-content {
             min-height: auto;
+            padding-top: var(--composer-gap-md);
           }
           .left {
             order: 1;
@@ -411,6 +412,10 @@
                 font-size: 2rem;
                 width: 100%;
                 max-width: 100%;
+
+                &.imagetitleWhite {
+                  color: var(--composer-font-color-primary);
+                }
               }
             }
             

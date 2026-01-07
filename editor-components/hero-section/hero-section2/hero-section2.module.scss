@@ -193,7 +193,7 @@
   }
 
   .customDots {
-    bottom: 0;
+    bottom: -5px;
     z-index: 20;
 
     li {
@@ -246,6 +246,7 @@
             object-fit: cover;
             flex-shrink: 0;
             order: -1;
+            border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md);
             
             video {
               width: 100%;
@@ -286,9 +287,6 @@
           }
           .title {
             @include textEllipsis(2, !important);
-          }
-          .button {
-            display: none !important;
           }
         }
       }

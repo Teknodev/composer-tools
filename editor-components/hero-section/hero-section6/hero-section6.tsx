@@ -186,9 +186,9 @@ class HeroSection6 extends BaseHeroSection {
                 </div>
               )}
               {isDescriptionExist && (
-                <Base.P className={`${this.decorateCSS("description")} ${!descriptionAnimation && this.decorateCSS("noanimation")}`}>
+                <Base.SectionDescription className={`${this.decorateCSS("description")} ${!descriptionAnimation && this.decorateCSS("noanimation")}`}>
                   {description}
-                </Base.P>
+                </Base.SectionDescription>
               )}
               {this.getPropValue("buttons").length > 0 && (
                 <div className={this.decorateCSS("button-container")}>

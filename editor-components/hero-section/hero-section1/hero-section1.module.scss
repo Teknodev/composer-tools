@@ -125,7 +125,7 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              height: calc(100vh - var(--composer-gap-lg));
+              height: calc(100vh - 100px);
               div {
                 width: 100%;
               }
@@ -216,6 +216,7 @@
               opacity: 0;
               scale: 0.8;
               transition: all 0.3s linear;
+              margin: -10px;
               @include textEllipsis(1);
 
               &.dark{
@@ -346,7 +347,7 @@
         top: 0px;
         list-style: none;
         right: var(--composer-gap-md);
-        height: 100%;
+        height: 100vh;
         display: flex !important;
         justify-content: center;
         align-items: center;
@@ -554,10 +555,11 @@
     display: flex !important;
     flex-direction: row !important;
     width: 100%;
+    height: 100vh;
     justify-content: center !important;
     align-items: flex-end !important;
     padding-bottom: var(--composer-gap-md) !important;
-    max-height: 950px !important;
+    max-height: 800px !important;
     top: 0px !important;
   }
   .dots :global(li.slick-active) button,

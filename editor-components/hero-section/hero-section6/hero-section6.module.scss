@@ -46,10 +46,7 @@
         }
 
         .subtitle {
-          transform: translateX(0);
-          &::before {
-            display: none;
-          }
+          content: "";
         }
       }
     }
@@ -95,7 +92,6 @@
       .subtitle {
         text-align: left;
         margin-left: 0;
-        color: var(--composer-font-color-primary);
       }
       .title-container {
         .title {

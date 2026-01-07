@@ -14,6 +14,7 @@ type ITab = {
 type ISocial = {
   socialLinkText: React.JSX.Element;
   socialUrl: string;
+  icon: TypeMediaInputValue;
 };
 
 class HeroSection9 extends BaseHeroSection {
@@ -37,6 +38,18 @@ class HeroSection9 extends BaseHeroSection {
               value: "Behance",
             },
             {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaBehance",
+              },
+            },
+            {
               type: "page",
               key: "socialUrl",
               displayer: "Navigate To",
@@ -56,6 +69,18 @@ class HeroSection9 extends BaseHeroSection {
               value: "Instagram",
             },
             {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
+            },
+            {
               type: "page",
               key: "socialUrl",
               displayer: "Navigate To",
@@ -73,6 +98,18 @@ class HeroSection9 extends BaseHeroSection {
               key: "socialLinkText",
               displayer: "Text",
               value: "Twitter",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: {
+                type: "icon",
+                name: "FaTwitter",
+              },
             },
             {
               type: "page",
@@ -478,7 +515,10 @@ class HeroSection9 extends BaseHeroSection {
                   >
                     <ComposerLink key={idx} path={tab.socialUrl}>
                       <Base.P className={this.decorateCSS("social-link")}>
-                        {tab.socialLinkText}
+                        {this.castToString(tab.socialLinkText) && <Base.P className={this.decorateCSS("social-link-text")}>{tab.socialLinkText}</Base.P>}
+                        {tab.icon && (
+                          <Base.Media value={tab.icon} className={this.decorateCSS("social-icon")} />
+                        )}
                       </Base.P>
                     </ComposerLink>
                   </div>
