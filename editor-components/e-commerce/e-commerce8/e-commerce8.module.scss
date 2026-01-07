@@ -2,6 +2,10 @@
 
 .container {
     .max-content {
+        display: flex;
+        gap: var(--composer-gap-md);
+        flex-direction: column;
+
         .top-header {
             .button-container {
                 float: right;
@@ -21,12 +25,12 @@
 
             .vertical-content {
                 .subtitle {
-                    content: "";
+                    margin-left: 0;
                 }
 
                 .title,
                 .description {
-                    content: "";
+                    text-align: left;
                 }
             }
         }
@@ -34,7 +38,6 @@
         .button-container-mobile {
             display: none;
             justify-content: center;
-            margin-top: var(--composer-gap-md);
             width: 100%;
 
             .button {
@@ -59,7 +62,7 @@
                     aspect-ratio: 0.5;
                     overflow: hidden;
                     position: relative;
-                    border-radius: var(--composer-border-radius-sm);
+                    border-radius: var(--composer-border-radius-md);
 
                     &.has-hover:hover {
                         .image-wrapper {
@@ -113,7 +116,7 @@
                             color: var(--composer-font-color-secondary);
                             padding: var(--composer-gap-xs) var(--composer-gap-sm);
                             background-color: var(--composer-primary-color);
-                            border-radius: var(--composer-border-radius-md);
+                            border-radius: var(--composer-border-radius-sm);
                         }
                     }
                 }

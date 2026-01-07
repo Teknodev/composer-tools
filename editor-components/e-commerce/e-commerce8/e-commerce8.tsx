@@ -742,12 +742,12 @@ class ECommerce8 extends BaseECommerce {
                                             {cost?.value && (
                                                 <div className={this.decorateCSS("price-row")}>
                                                     <div className={this.decorateCSS("price")}>
-                                                        <Base.H5 className={this.decorateCSS("currency-symbol")}>
+                                                        <Base.P className={this.decorateCSS("currency-symbol")}>
                                                             {getCurrencyInfo(cost.currency)?.symbol}
-                                                        </Base.H5>
-                                                        <Base.H5 className={this.decorateCSS("value")}>
+                                                        </Base.P>
+                                                        <Base.P className={this.decorateCSS("value")}>
                                                             {cost.value}
-                                                        </Base.H5>
+                                                        </Base.P>
                                                     </div>
                                                     {priceSuffix && (
                                                         <Base.P className={this.decorateCSS("price-suffix")}>
