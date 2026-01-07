@@ -288,58 +288,67 @@ class HeroSection34 extends BaseHeroSection {
               </div>
             </div>
 
-            <div className={this.decorateCSS("slider")}>
-              {slides[activeIndex].image &&
-                <Base.Media
-                  value={slides[activeIndex].image}
-                  className={this.decorateCSS("image")}
-                />}
+            <div className={this.decorateCSS("slider")}> 
+              {slides.map((slide, idx) => (
+                slide.image ? (
+                  <Base.Media
+                    key={idx}
+                    value={slide.image}
+                    className={
+                      `${this.decorateCSS("image")} ${activeIndex === idx ? this.decorateCSS("active") : ""}`
+                    }
+                    style={{ display: "block", opacity: activeIndex === idx ? 1 : 0 }}
+                  />
+                ) : null
+              ))}
             </div>
           </div>
           <div
             className={`${this.decorateCSS("contentContainer")} animate__animated ${this.getComponentState("contentAnimationClass")}`}
           >
-              <Base.MaxContent className={this.decorateCSS("content")}>
-                <Base.VerticalContent data-has-image={slides[overlayActiveIndex].image ? "true" : "false"} className={this.decorateCSS("text-content")}>
-                  {slides[overlayActiveIndex].logo && (
+            {slides.map((slide, idx) => (
+              <Base.MaxContent key={idx} className={this.decorateCSS("content")} style={{ display: overlayActiveIndex === idx ? "block" : "none" }}> 
+                <Base.VerticalContent data-has-image={slide.image ? "true" : "false"} className={this.decorateCSS("text-content")}> 
+                  {slide.logo && (
                     <Base.Media
-                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
-                      value={slides[overlayActiveIndex].logo}
+                      data-has-image={slide.image ? "true" : "false"}
+                      value={slide.logo}
                       className={this.decorateCSS("logo")}
                     />
                   )}
-                  {this.castToString(slides[overlayActiveIndex].subtitle) && (
+                  {this.castToString(slide.subtitle) && (
                     <Base.SectionSubTitle
-                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
-                      className={`${this.decorateCSS("subtitle")} ${slides[overlayActiveIndex].image && this.decorateCSS("subtitle-with-image")}`}>
-                      {slides[overlayActiveIndex].subtitle}
+                      data-has-image={slide.image ? "true" : "false"}
+                      className={`${this.decorateCSS("subtitle")} ${slide.image && this.decorateCSS("subtitle-with-image")}`}> 
+                      {slide.subtitle}
                     </Base.SectionSubTitle>
                   )}
-                  {this.castToString(slides[overlayActiveIndex].title) && (
+                  {this.castToString(slide.title) && (
                     <Base.SectionTitle
-                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
-                      className={`${this.decorateCSS("title")} ${slides[overlayActiveIndex].image && this.decorateCSS("title-with-image")}`}>
-                      {slides[overlayActiveIndex].title}
+                      data-has-image={slide.image ? "true" : "false"}
+                      className={`${this.decorateCSS("title")} ${slide.image && this.decorateCSS("title-with-image")}`}> 
+                      {slide.title}
                     </Base.SectionTitle>
                   )}
-                  {this.castToString(slides[overlayActiveIndex].description) && (
+                  {this.castToString(slide.description) && (
                     <Base.SectionDescription
-                      data-has-image={slides[overlayActiveIndex].image ? "true" : "false"}
-                      className={`${this.decorateCSS("description")} ${slides[overlayActiveIndex].image && this.decorateCSS("description-with-image")}`}>
-                      {slides[overlayActiveIndex].description}
+                      data-has-image={slide.image ? "true" : "false"}
+                      className={`${this.decorateCSS("description")} ${slide.image && this.decorateCSS("description-with-image")}`}> 
+                      {slide.description}
                     </Base.SectionDescription>
                   )}
-                  {this.castToString(slides[overlayActiveIndex].button.text) && (
-                    <div className={this.decorateCSS("button-container")}>
-                      <ComposerLink path={slides[overlayActiveIndex].button.url}>
-                        <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
-                          <Base.P className={this.decorateCSS("button-text")}>{slides[overlayActiveIndex].button.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    </div>
+                  {this.castToString(slide.button.text) && (
+                    <div className={this.decorateCSS("button-container")}> 
+                      <ComposerLink path={slide.button.url}> 
+                        <Base.Button className={this.decorateCSS("button")} buttonType={slide.button.type}> 
+                          <Base.P className={this.decorateCSS("button-text")}>{slide.button.text}</Base.P> 
+                        </Base.Button> 
+                      </ComposerLink> 
+                    </div> 
                   )}
-                </Base.VerticalContent>
+                </Base.VerticalContent> 
               </Base.MaxContent>
+            ))}
           </div>
 
           <div

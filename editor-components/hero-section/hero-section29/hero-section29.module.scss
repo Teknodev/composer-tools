@@ -257,9 +257,10 @@
           flex-direction: column-reverse;
         }
 
-        .content {
+          .content {
           width: 100%;
           align-items: center;
+          gap: var(--composer-gap-sm);
 
           .form {
             gap: var(--composer-gap-sm);
@@ -279,6 +280,7 @@
           }
 
           .service-card-list {
+            margin-top: var(--composer-gap-md) !important;
             .service-card {
               max-width: 100%;
               gap: var(--composer-gap-sm);

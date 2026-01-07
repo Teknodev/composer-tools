@@ -290,6 +290,12 @@
                     overflow: hidden;
                     transition: color 0.3s ease;
 
+                    .icon {
+                      font-size: 1rem;
+                      width: 14px;
+                      height: 14px;
+                    }
+
                     &.enable-before::before {
                       content: "";
                       position: absolute;

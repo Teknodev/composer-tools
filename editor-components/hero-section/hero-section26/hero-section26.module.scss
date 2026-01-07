@@ -38,7 +38,6 @@
           display: flex;
           justify-content: end;
           align-items: center;
-          margin: var(--composer-gap-md);
 
           &.no-image {
             .left-side-content {
@@ -214,6 +213,7 @@
             justify-content: flex-start;
             margin: var(--composer-gap-xl) var(--composer-gap-md) 0px var(--composer-gap-md);
             padding: 0;
+            width: auto;
 
             .left-side-content{
               width: 100%;
