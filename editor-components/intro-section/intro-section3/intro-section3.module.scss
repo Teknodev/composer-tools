@@ -1,0 +1,113 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .wrapper {
+            .vertical-content {
+
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
+                }
+
+                .button-group-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: var(--composer-content-alignment);
+                    gap: var(--composer-gap-md);
+                    flex-wrap: wrap;
+                    width: 100%;
+
+                    &[data-has-buttons="true"] {
+                        .label-group {
+                            align-items: flex-start;
+
+                            .label1,
+                            .label2 {
+                                align-items: flex-start;
+                                justify-content: flex-start;
+                            }
+                        }
+                    }
+
+                    .button-container {
+                        display: flex;
+                        gap: var(--composer-gap-sm);
+                        flex-wrap: wrap;
+
+                        .button {
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+
+                    .label-group {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--composer-gap-xs);
+                        align-items: var(--composer-content-alignment);
+
+                        .label1,
+                        .label2 {
+                            color: var(--composer-font-color-primary);
+                            display: flex;
+                            text-align: inherit;
+                        }
+
+                        .label1 {
+                            font-weight: 700;
+                        }
+                    }
+                }
+
+            }
+
+            .image-content {
+                .image-wrapper {
+                    position: relative;
+                    width: 100%;
+                    height: 700px;
+                    margin-top: var(--composer-gap-lg);
+                    align-self: flex-start;
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        object-fit: cover;
+                        position: absolute;
+                        inset: 0;
+                    }
+
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        border-radius: inherit;
+                        background-color: var(--composer-overlay-color);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .wrapper {
+                .image-content {
+                    .image-wrapper {
+                        height: 300px;
+                    }
+                }
+            }
+        }
+    }
+}
