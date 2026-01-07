@@ -15,7 +15,7 @@
       }
 
       .description {
-        color: var(--composer-tertiary-color);
+        color: var(--composer-font-color-primary);
       }
     }
 
@@ -65,8 +65,8 @@
           transition: var(--composer-transition-duration-normal);
           content-visibility: hidden;
           background-color: var(--composer-primary-color);
-          width: 3px;
-          height: 10px;
+          width: 2px;
+          height: 8px;
           border-radius: var(--composer-border-radius-xl);
           cursor: pointer;
         }
@@ -171,7 +171,7 @@
           }
           .card-description {
             content: "";
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
             text-align: left !important;
           }
         }
@@ -215,7 +215,8 @@
             left: calc(-0.5 * var(--composer-gap-lg));
             background-color: var(--composer-primary-color);
             z-index: -1;
-            border-radius: var(--composer-border-radius-sm);
+            border-bottom-left-radius: var(--composer-border-radius-lg);
+            border-bottom-right-radius: var(--composer-border-radius-lg);
 
         }
       }
@@ -311,6 +312,17 @@
       .image-container {
         width: 170px !important;
        }
+      }
+    }
+    .carousel {
+      .dots {
+        .dot-button {
+          width: 2px;
+          height: 5.7px;
+        }
+        :global(.slick-active) .dot-button {
+          transform: scale(1.2);
+        }
       }
     }
   }

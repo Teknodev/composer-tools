@@ -304,7 +304,7 @@
           padding: var(--composer-gap-xl) var(--composer-gap-lg);
           
           .card-content {
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-md);
           }
           .card-number {
             left: var(--composer-gap-lg);
@@ -345,7 +345,7 @@
         .card {
           padding: var(--composer-gap-lg) var(--composer-gap-md) !important;
           .card-content {
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-md);
             align-items: flex-start;
             text-align: left;
             .card-title { text-align: left; }
