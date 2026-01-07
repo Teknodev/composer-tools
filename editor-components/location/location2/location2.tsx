@@ -445,6 +445,24 @@ class Location2 extends Location {
         },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemsInRow",
+      displayer: "Item Count In A Row",
+      value: 4,
+    });
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "image",
+        url: "",
+      },
+    });
   }
 
   static getName(): string {
@@ -470,6 +488,7 @@ class Location2 extends Location {
     const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675acbf30655f8002ca64e33?alt=media";
 
     const alignmentValue = Base.getContentAlignment();
+    const logo = this.getPropValue("logo");
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
@@ -538,9 +557,9 @@ class Location2 extends Location {
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {logo && <Base.Media value={logo} className={this.decorateCSS("location-logo")} />}
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
-
                   <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
                   {socials.length > 0 && (
@@ -568,30 +587,34 @@ class Location2 extends Location {
 
         {this.castToObject<ContentItemType[]>("middle-content").length > 0 && (
           <div className={this.decorateCSS("middle-content")}>
-            <div className={this.decorateCSS("middle-content-container")}>
-              {this.castToObject<ContentItemType[]>("middle-content").map((item: ContentItemType) => {
+            <Base.ListGrid
+              className={this.decorateCSS("middle-grid")}
+              gridCount={{ pc: this.getPropValue("itemsInRow"), tablet: 3, phone: 1 }}
+            >
+              {this.castToObject<ContentItemType[]>("middle-content").map((item: ContentItemType, idx: number) => {
                 const isContTitleExist = this.castToString(item.contentTitle);
                 const isContIconExist = item.contentIcon;
                 const isDesExist = item.contentDescriptionArray.some((desc) => this.castToString(desc.text));
 
                 if (isContTitleExist || isContIconExist || isDesExist) {
                   return (
-                    <Base.VerticalContent className={this.decorateCSS("element-container")}>
+                    <div key={idx} className={this.decorateCSS("element-container")}>
                       {isContIconExist && <Base.Media value={item.contentIcon} className={this.decorateCSS("icon")} />}
                       {isContTitleExist && (
                         <div className={this.decorateCSS("content-title-container")}>
                           <Base.H3 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H3>
                         </div>
                       )}
-                      {item.contentDescriptionArray.map((item) => {
-                        const isDesExist = this.castToString(item.text);
-                        return isDesExist && <Base.P className={this.decorateCSS("content-description")}>{item.text}</Base.P>;
+                      {item.contentDescriptionArray.map((descItem: any, descIdx: number) => {
+                        const isDesExist = this.castToString(descItem.text);
+                        return isDesExist && <Base.P key={descIdx} className={this.decorateCSS("content-description")}>{descItem.text}</Base.P>;
                       })}
-                    </Base.VerticalContent>
+                    </div>
                   );
                 }
+                return null;
               })}
-            </div>
+            </Base.ListGrid>
           </div>
         )}
 

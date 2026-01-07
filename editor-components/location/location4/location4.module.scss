@@ -52,7 +52,6 @@
               display: inline-flex;
               align-items: center;
               justify-content: center;
-              line-height: 1;
               border-radius: 50%;
               overflow: hidden;
 
@@ -72,8 +71,6 @@
             text-align: center;
             margin-left: auto;
             margin-right: auto;
-            display: block;
-            width: auto;
           }
 
           .subtitle {
@@ -85,12 +82,57 @@
               display: none !important;
             }
           }
+
+          .title-with-icons {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: calc(var(--composer-gap-lg) / 2);
+            flex-wrap: nowrap;
+            white-space: nowrap;
+
+            .title-icon {
+              width: 100px;
+              max-height: 100px;
+              align-items: center;
+              justify-content: center;
+              color: var(--composer-font-color-primary);
+              font-size: 3rem;
+              flex-shrink: 0;
+            }
+          }
+
+          .title-icon-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+          }
         }
       }
     }
 
     .content-container {
       .max-content-no-image {
+        text-align: center;
+        .title-with-icons {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-wrap: nowrap;
+          white-space: nowrap;
+
+          .title-icon {
+            width: 100px;
+            max-height: 100px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--composer-font-color-primary);
+            font-size: 3rem;
+            flex-shrink: 0;
+          }
+        }
         .logo-container {
           display: flex;
           justify-content: center;
@@ -106,7 +148,6 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            line-height: 1;
             border-radius: 50%;
             overflow: hidden;
 
@@ -125,8 +166,6 @@
           text-align: center;
           margin-left: auto;
           margin-right: auto;
-          display: block;
-          width: fit-content;
         }
 
         .subtitle-no-image {
@@ -160,9 +199,9 @@
   width: 300px;
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  flex-direction: column;
   border-radius: var(--composer-border-radius-sm);
   box-shadow: var(--box-shadow-active);
 
@@ -191,10 +230,27 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .page {
-      .content {
-        min-height: 200px;
+  .container .page .content {
+    min-height: 200px;
+
+    .content-container {
+      .max-content {
+        .title-with-icons {
+          .title-icon {
+            width: 60px;
+            max-height: 60px;
+            font-size: 2rem;
+          }
+        }
+        .max-content-no-image {
+          .title-with-icons {
+            .title-icon {
+              width: 60px;
+              max-height: 60px;
+              font-size: 2rem;
+            }
+          }
+        }
       }
     }
   }
@@ -205,10 +261,16 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .page {
-      .content {
-        min-height: 200px;
+  .container .page .content {
+    min-height: 200px;
+
+    .title-with-icons {
+      gap: calc(var(--composer-gap-sm) / 3);
+
+      .title-icon {
+        width: 40px;
+        max-height: 40px;
+        font-size: 1.5rem;
       }
     }
   }

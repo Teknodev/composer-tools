@@ -66,6 +66,32 @@ class Location4 extends Location {
       displayer: "Description",
       value: "",
     });
+    
+    this.addProp({
+      type: "media",
+      key: "title-left-icon",
+      displayer: "Title Left Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cdea1f959f6002d7e1d79?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "title-right-icon",
+      displayer: "Title Right Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cde02f959f6002d7e1cea?alt=media",
+      },
+    });
 
     this.addProp({
       type: "media",
@@ -248,6 +274,10 @@ class Location4 extends Location {
     const descriptionExist = this.castToString(description);
     const logo = this.getPropValue("logo");
     const logoExist = (logo?.type === "icon" && !!logo?.name) || (logo?.type === "image" && !!logo?.url);
+    const titleLeftIcon = this.getPropValue("title-left-icon");
+    const titleRightIcon = this.getPropValue("title-right-icon");
+    const titleLeftIconExist = (titleLeftIcon?.type === "icon" && !!titleLeftIcon?.name) || (titleLeftIcon?.type === "image" && !!titleLeftIcon?.url);
+    const titleRightIconExist = (titleRightIcon?.type === "icon" && !!titleRightIcon?.name) || (titleRightIcon?.type === "image" && !!titleRightIcon?.url);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("page")}> 
@@ -257,6 +287,7 @@ class Location4 extends Location {
               {media && <Base.Media value={media} className={this.decorateCSS("image")} />}
               {titleExist && (
                 <Base.Container className={this.decorateCSS("content-container")}>
+                  <Base.VerticalContent>
                   <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {logoExist && (
                       <div className={this.decorateCSS("logo-container")}>
@@ -264,9 +295,24 @@ class Location4 extends Location {
                       </div>
                     )}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {titleExist && (
+                      <div className={this.decorateCSS("title-with-icons")}>
+                        {titleLeftIconExist && (
+                          <div className={this.decorateCSS("title-icon")}>
+                            <Base.Media value={titleLeftIcon} className={this.decorateCSS("title-icon-img")} />
+                          </div>
+                        )}
+                        <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+                        {titleRightIconExist && (
+                          <div className={this.decorateCSS("title-icon")}>
+                            <Base.Media value={titleRightIcon} className={this.decorateCSS("title-icon-img")} />
+                          </div>
+                        )}
+                      </div>
+                    )}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
                   </Base.MaxContent>
+                  </Base.VerticalContent>
                 </Base.Container>
               )}
 
@@ -274,6 +320,7 @@ class Location4 extends Location {
           ) : (
             (subtitleExist || titleExist) && (
               <Base.Container className={this.decorateCSS("content-container")}>
+              <Base.VerticalContent>
               <Base.MaxContent className={this.decorateCSS("max-content-no-image")}>
                 {logoExist && (
                   <div className={this.decorateCSS("logo-container")}>
@@ -281,9 +328,24 @@ class Location4 extends Location {
                   </div>
                 )}
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle-no-image")}>{subtitle}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {titleExist && (
+                  <div className={this.decorateCSS("title-with-icons")}>
+                    {titleLeftIconExist && (
+                      <div className={this.decorateCSS("title-icon")}>
+                        <Base.Media value={titleLeftIcon} className={this.decorateCSS("title-icon-img")} />
+                      </div>
+                    )}
+                    <Base.SectionTitle className={this.decorateCSS("title-no-image")}>{this.getPropValue("title")}</Base.SectionTitle>
+                    {titleRightIconExist && (
+                      <div className={this.decorateCSS("title-icon")}>
+                        <Base.Media value={titleRightIcon} className={this.decorateCSS("title-icon-img")} />
+                      </div>
+                    )}
+                  </div>
+                )}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description-no-image")}>{description}</Base.SectionDescription>}
                 </Base.MaxContent>
+                </Base.VerticalContent>
               </Base.Container>
             )
           )}

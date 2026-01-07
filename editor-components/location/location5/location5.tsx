@@ -24,6 +24,26 @@ class Location5 extends Location {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "image",
+        url: "",
+      },
+    });
+
+    this.addProp({
       type: "number",
       key: "centerZoom",
       displayer: "Center Zoom Value",
@@ -197,6 +217,9 @@ class Location5 extends Location {
     const selectedTheme = theme || "Theme-2";
 
     const mapStyle = this.selectTheme(selectedTheme);
+    const description = this.getPropValue("description");
+    const hasDescription = this.castToString(description);
+    const logo = this.getPropValue("logo");
 
     const createMarkers = (address: any) => {
       const locData = address.getPropValue("loc");
@@ -263,8 +286,10 @@ class Location5 extends Location {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("title-block")}>
+            {logo && <Base.Media value={logo} className={this.decorateCSS("location-logo")} />}
             {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
             {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+            {hasDescription && <Base.SectionDescription className={this.decorateCSS("location-description-header")}>{description}</Base.SectionDescription>}
           </Base.VerticalContent>
           <div className={this.decorateCSS("wrapper")}>
             <section className={this.decorateCSS("map-container")}>

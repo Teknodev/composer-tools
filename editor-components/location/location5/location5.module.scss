@@ -5,6 +5,18 @@
 
   .max-content {
     .title-block {
+      .location-logo {
+        width: 80px;
+        height: auto;
+        margin-bottom: var(--composer-gap-sm);
+        color: var(--composer-font-color-primary);
+        font-size: 4rem;
+      }
+
+      .location-description-header {
+        margin-top: 0;
+        margin-bottom: var(--composer-gap-lg);
+      }
       .subtitle,
       .title {
         content: "";
@@ -27,6 +39,8 @@
       .location-item {
         display: flex;
         text-align: left;
+        gap: var(--composer-gap-lg);
+
 
         .location-items {
           width: 40%;
@@ -66,6 +80,12 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .title-block {
+        .location-logo {
+          width: 40px;
+          font-size: 2.5rem;
+        }
+      }
       .wrapper {
         .map-container {
           .location-item {
