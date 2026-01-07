@@ -27,6 +27,11 @@
 
             .icon {
               font-size: 2rem;
+              width: 2rem;
+              height: 2rem;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
               color: var(--composer-font-color-primary);
             }
           }
@@ -38,7 +43,15 @@
 
           .button-container {
               .button {
-                .button-icon, .button-text {
+                .button-icon {
+                  font-size: 1rem;
+                  width: 1rem;
+                  height: 1rem;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+                .button-text {
                   content: "";
                 }
                 .image {

@@ -164,7 +164,12 @@
 
             .button {
               .icon{
-                content: "";
+                font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
               }
               .text{
                 content: "";

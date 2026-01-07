@@ -57,7 +57,12 @@
           .button-element {
             height: 50px;
             .button-icon {
-              content: "";
+              font-size: 1.2rem;
+              width: 1.2rem;
+              height: 1.2rem;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
             }
             .button-text {
               content: "";
@@ -84,6 +89,9 @@
               .icon {
                 width: var(--composer-gap-md);
                 height: var(--composer-gap-md);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
                 color: var(--composer-primary-color);
               }
             }
