@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about16.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -6,8 +7,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type VideoItemType = {
     video: TypeMediaInputValue;
-    description: string;
-    title: string;
+    subtitle: React.JSX.Element;
+    title: React.JSX.Element;
+    description: React.JSX.Element;
     icon: TypeMediaInputValue;
     navigateTo: string;
 }
@@ -59,15 +61,21 @@ class About16 extends BaseAbout {
                         },
                         {
                             type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Capturing moments that inspire and connect.",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "Creative Vision",
                         },
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Creative Vision",
+                            value: "Capturing moments that inspire and connect.",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -104,15 +112,21 @@ class About16 extends BaseAbout {
                         },
                         {
                             type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Capturing moments that inspire and connect.",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "Creative Vision",
                         },
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Creative Vision",
+                            value: "Capturing moments that inspire and connect.",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -152,6 +166,13 @@ class About16 extends BaseAbout {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "enableAnimation",
+            displayer: "Card Animation",
+            value: true,
+        });
+
+        this.addProp({
             type: "number",
             key: "itemCount",
             displayer: "Item Count in Row",
@@ -172,6 +193,7 @@ class About16 extends BaseAbout {
         const videos = this.castToObject<VideoItemType[]>("videos") || [];
         const itemCount = this.getPropValue("itemCount") || 2;
         const enableOverlay = this.getPropValue("enableOverlay");
+        const enableAnimation = this.getPropValue("enableAnimation");
         const hasContent = subtitle || title || description;
 
         return (
@@ -187,14 +209,14 @@ class About16 extends BaseAbout {
                     {videos.length > 0 && (
                         <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("list-container")}>
                             {videos.map((item, index) => {
+                                const cardSubtitle = this.castToString(item.subtitle);
                                 const cardTitle = this.castToString(item.title);
                                 const cardDescription = this.castToString(item.description);
-                                const hasTextDetails = cardTitle || cardDescription;
-
+                                const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
                                 return (
                                     <div key={index} className={this.decorateCSS("list-item")}>
                                         {item.video && (
-                                            <div className={this.decorateCSS("image-container")}>
+                                            <div className={`${this.decorateCSS("image-container")} ${enableAnimation ? this.decorateCSS("animated") : ""}`}>
                                                 <ComposerLink path={item.navigateTo} isFullWidth={true}>
                                                     {item.video?.type === "video" ? (
                                                         <video
@@ -219,10 +241,11 @@ class About16 extends BaseAbout {
                                                             </div>
                                                         )}
                                                         {hasTextDetails && (
-                                                            <div className={this.decorateCSS("text-details")}>
-                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
+                                                            <Base.VerticalContent className={this.decorateCSS("text-details")}>
+                                                                {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>)}
                                                                 {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>)}
-                                                            </div>
+                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
+                                                            </Base.VerticalContent>
                                                         )}
                                                     </div>
                                                 </ComposerLink>

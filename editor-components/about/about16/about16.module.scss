@@ -28,7 +28,7 @@
                 justify-content: center;
 
                 .image-container {
-                    &:hover {
+                    &.animated:hover {
                         .text-content .icon-wrapper {
                             max-width: 4rem;
                             margin-right: var(--composer-gap-sm);
@@ -99,6 +99,7 @@
                             flex: 1;
                             min-width: 0;
 
+                            .card-subtitle,
                             .card-title,
                             .card-description {
                                 text-align: left;
