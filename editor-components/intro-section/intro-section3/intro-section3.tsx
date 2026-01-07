@@ -8,7 +8,6 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 class IntroSection3 extends BaseIntroSection {
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
       type: "media",
       key: "image",
