@@ -468,7 +468,7 @@ class HeroSection8 extends BaseHeroSection {
                   <div className={this.decorateCSS("arrow-prev")}>
                     <Base.Media
                       value={this.getPropValue("previousArrow")}
-                      className={this.decorateCSS("icon")}
+                      className={`${this.decorateCSS("icon")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}
                     />
                   </div>
                 </div>
@@ -485,7 +485,7 @@ class HeroSection8 extends BaseHeroSection {
                   <div className={this.decorateCSS("arrow-next")}>
                     <Base.Media
                       value={this.getPropValue("nextArrow")}
-                      className={this.decorateCSS("icon")}
+                      className={`${this.decorateCSS("icon")} ${!this.getPropValue("slider")[(this.getComponentState("centerSlide"))].getPropValue("image") && this.decorateCSS("no-image")}`}
                     />
                   </div>
                 </div>

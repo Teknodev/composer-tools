@@ -196,6 +196,10 @@
           height: var(--composer-gap-md);
           width: var(--composer-gap-md);
           object-fit: contain;
+          color: white;
+          &.no-image{
+            color: var(--composer-font-color-primary);
+          }
         }
       }
       &::before {

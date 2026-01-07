@@ -278,7 +278,7 @@
         justify-content: center;
         flex-direction: row;
         gap: var(--composer-gap-xl);
-        min-height: 100vh;
+        min-height: 400px;
         height: auto;
         align-items: center;
         .left {
@@ -414,7 +414,7 @@
                 max-width: 100%;
 
                 &.imagetitleWhite {
-                  color: var(--composer-font-color-primary);
+                  color: var(--composer-font-color-primary) !important;
                 }
               }
             }
