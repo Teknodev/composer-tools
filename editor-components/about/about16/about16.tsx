@@ -63,13 +63,13 @@ class About16 extends BaseAbout {
                             type: "string",
                             key: "subtitle",
                             displayer: "Subtitle",
-                            value: "Creative Vision",
+                            value: "Supercars",
                         },
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Capturing moments that inspire and connect.",
+                            value: "Your Dream Drive Awaits!",
                         },
                         {
                             type: "string",
@@ -114,13 +114,13 @@ class About16 extends BaseAbout {
                             type: "string",
                             key: "subtitle",
                             displayer: "Subtitle",
-                            value: "Creative Vision",
+                            value: "SUV Cars",
                         },
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Capturing moments that inspire and connect.",
+                            value: "Conquer The Off-Road",
                         },
                         {
                             type: "string",
