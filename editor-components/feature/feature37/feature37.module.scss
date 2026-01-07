@@ -37,7 +37,7 @@
 
     .features-list {
         gap: var(--composer-gap-md);
-        flex: 1 1 0;
+        flex: 0 1 50%;  // Değişiklik: Sol tarafı %50 olarak ayarladım
         min-width: 0;
         align-self: stretch;
         align-items: start;
@@ -106,8 +106,7 @@
 
     .image-wrapper {
         position: relative;
-        flex: 0 1 45%;
-        max-width: 760px;
+        flex: 0 1 50%; 
         width: 100%;
         order: 2;
         border-radius: var(--composer-border-radius-sm);
