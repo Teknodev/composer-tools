@@ -214,7 +214,7 @@ class Download2 extends BaseDownload {
 
                     {platformExist && <Base.H2 className={this.decorateCSS("platform")}>{card.platform}</Base.H2>}
 
-                    {descriptionExist && <Base.H4 className={this.decorateCSS("card-description")}>{card.description}</Base.H4>}
+                    {descriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
 
                    {buttonExist && 
                     <div className={this.decorateCSS("button-container")}>
