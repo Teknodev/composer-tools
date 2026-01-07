@@ -548,44 +548,28 @@ class HeroSection25 extends BaseHeroSection {
 
           {sliderItemObject.map((sliderItem: SliderItem, index: number) => {
             const isActive = this.getComponentState("active-index") === index;
-            if (isActive && sliderItem) {
-              return (
-                <Base.Container className={this.decorateCSS("content-container")}>
-                  <Base.MaxContent
-                    className={`${this.decorateCSS("content-max-content")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
-                    key={index}
-                  >
-                    {(this.castToString(sliderItem.button.text) ||
-                      sliderItem.button.icon ||
-                      this.castToString(sliderItem.title) ||
-                      this.castToString(sliderItem.description)) &&
-                      <div className={`${this.decorateCSS("layout")} 
-                    ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("full-width-right-item")}`}>
-                        <Base.VerticalContent className={this.decorateCSS("content")}>
-                          {this.castToString(sliderItem.title) &&
-                            <React.Fragment>
-                              {sliderItem.logo && (
-                                <Base.Media
-                                  value={sliderItem.logo}
-                                  className={`${this.decorateCSS("logo")} animate__animated ${this.getComponentState("titleAnimationClass")}`}
-                                  onAnimationEnd={() => {
-                                    this.handleAnimationEnd({
-                                      animationState: "titleAnimationClass",
-                                      startingAnimation: "animate__fadeInRight",
-                                      endingAnimation: "animate__fadeOutDown",
-                                    });
-                                  }}
-                                />
-                              )}
-                              {this.castToString(sliderItem.subtitle) && (
-                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${sliderItem.image && this.decorateCSS("with-image")} ${sliderItem.image && this.decorateCSS("subtitle-has-image")} ${animation ? `animate__animated ${this.getComponentState("titleAnimationClass")}` : ""}`}>
-                                  {sliderItem.subtitle}
-                                </Base.SectionSubTitle>
-                              )}
-                              <Base.SectionTitle
-                                className={`
-                              ${this.decorateCSS("title")} ${sliderItem.image && this.decorateCSS("with-image")} ${animation ? `animate__animated ${this.getComponentState("titleAnimationClass")}` : ""}
-                              `}
+            return (
+              <Base.Container
+                className={this.decorateCSS("content-container")}
+                key={index}
+                style={{ display: !isActive && "none" }}
+              >
+                <Base.MaxContent
+                  className={`${this.decorateCSS("content-max-content")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
+                >
+                  {(this.castToString(sliderItem.button.text) ||
+                    sliderItem.button.icon ||
+                    this.castToString(sliderItem.title) ||
+                    this.castToString(sliderItem.description)) && (
+                    <div className={`${this.decorateCSS("layout")} 
+                      ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("full-width-right-item")}`}>
+                      <Base.VerticalContent className={this.decorateCSS("content")}> 
+                        {this.castToString(sliderItem.title) && (
+                          <React.Fragment>
+                            {sliderItem.logo && (
+                              <Base.Media
+                                value={sliderItem.logo}
+                                className={`${this.decorateCSS("logo")} animate__animated ${this.getComponentState("titleAnimationClass")}`}
                                 onAnimationEnd={() => {
                                   this.handleAnimationEnd({
                                     animationState: "titleAnimationClass",
@@ -593,55 +577,75 @@ class HeroSection25 extends BaseHeroSection {
                                     endingAnimation: "animate__fadeOutDown",
                                   });
                                 }}
-                              >
-                                {sliderItem.title}
-                              </Base.SectionTitle>
-                            </React.Fragment>}
-                          {this.castToString(sliderItem.description) &&
-                            <Base.SectionDescription
-                              className={`${this.decorateCSS("description")} ${sliderItem.image && this.decorateCSS("with-image")} ${animation ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}` : ""}`}
+                              />
+                            )}
+                            {this.castToString(sliderItem.subtitle) && (
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${sliderItem.image && this.decorateCSS("with-image")} ${sliderItem.image && this.decorateCSS("subtitle-has-image")} ${animation ? `animate__animated ${this.getComponentState("titleAnimationClass")}` : ""}`}>
+                                {sliderItem.subtitle}
+                              </Base.SectionSubTitle>
+                            )}
+                            <Base.SectionTitle
+                              className={`
+                                ${this.decorateCSS("title")} ${sliderItem.image && this.decorateCSS("with-image")} ${animation ? `animate__animated ${this.getComponentState("titleAnimationClass")}` : ""}
+                              `}
                               onAnimationEnd={() => {
                                 this.handleAnimationEnd({
-                                  animationState: "descriptionAnimationClass",
+                                  animationState: "titleAnimationClass",
+                                  startingAnimation: "animate__fadeInRight",
+                                  endingAnimation: "animate__fadeOutDown",
+                                });
+                              }}
+                            >
+                              {sliderItem.title}
+                            </Base.SectionTitle>
+                          </React.Fragment>
+                        )}
+                        {this.castToString(sliderItem.description) && (
+                          <Base.SectionDescription
+                            className={`${this.decorateCSS("description")} ${sliderItem.image && this.decorateCSS("with-image")} ${animation ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}` : ""}`}
+                            onAnimationEnd={() => {
+                              this.handleAnimationEnd({
+                                animationState: "descriptionAnimationClass",
+                                startingAnimation: "animate__fadeInUp",
+                                endingAnimation: "animate__fadeOutDown",
+                              });
+                            }}
+                          >
+                            {sliderItem.description}
+                          </Base.SectionDescription>
+                        )}
+                        {(this.castToString(sliderItem.button.text) || sliderItem.button.icon) && (
+                          <ComposerLink path={sliderItem.button.url}>
+                            <Base.Button
+                              buttonType={sliderItem.button.type}
+                              className={`${this.decorateCSS("button")} ${animation ? `animate__animated ${this.getComponentState("buttonAnimationClass")}` : ""}`}
+                              onAnimationEnd={() => {
+                                this.handleAnimationEnd({
+                                  animationState: "buttonAnimationClass",
                                   startingAnimation: "animate__fadeInUp",
                                   endingAnimation: "animate__fadeOutDown",
                                 });
                               }}
                             >
-                              {sliderItem.description}
-                            </Base.SectionDescription>}
-                          {(this.castToString(sliderItem.button.text) ||
-                            sliderItem.button.icon) &&
-                            <ComposerLink path={sliderItem.button.url}>
-                              <Base.Button buttonType={sliderItem.button.type}
-                                className={`${this.decorateCSS("button")} ${animation ? `animate__animated ${this.getComponentState(
-                                  "buttonAnimationClass"
-                                )}` : ""}`}
-                                onAnimationEnd={() => {
-                                  this.handleAnimationEnd({
-                                    animationState: "buttonAnimationClass",
-                                    startingAnimation: "animate__fadeInUp",
-                                    endingAnimation: "animate__fadeOutDown",
-                                  });
-                                }}
-                              >
-                                {this.castToString(sliderItem.button.text) && <Base.P className={this.decorateCSS("button-text")}>{sliderItem.button.text}</Base.P>}
-                                {sliderItem.button.icon &&
-                                  <Base.Media
-                                    value={sliderItem.button.icon}
-                                    className={this.decorateCSS("button-icon")}
-                                  />}
-                              </Base.Button>
-                            </ComposerLink>}
-                        </Base.VerticalContent>
-                      </div>}
-                  </Base.MaxContent>
-                </Base.Container>
-              );
-            }
-            return null;
-          }
-          )}
+                              {this.castToString(sliderItem.button.text) && (
+                                <Base.P className={this.decorateCSS("button-text")}>{sliderItem.button.text}</Base.P>
+                              )}
+                              {sliderItem.button.icon && (
+                                <Base.Media
+                                  value={sliderItem.button.icon}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  )}
+                </Base.MaxContent>
+              </Base.Container>
+            );
+          })}
         </div>
       </div >
     );
