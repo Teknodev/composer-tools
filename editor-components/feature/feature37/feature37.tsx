@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature37.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItem {
   title: React.JSX.Element;
@@ -33,6 +35,8 @@ class Feature37 extends BaseFeature {
       displayer: "Description",
       value: "",
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
 
     this.addProp({
       type: "boolean",
@@ -159,6 +163,7 @@ class Feature37 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const overlay = this.getPropValue("overlay");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const image = this.getPropValue("image");
@@ -206,6 +211,15 @@ class Feature37 extends BaseFeature {
                     {description}
                   </Base.SectionDescription>
                 )}
+
+                {this.castToString(button.text) && (
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    {<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                  </Base.Button>
+                </ComposerLink>
+              )}
+
               </Base.VerticalContent>
           )}
 

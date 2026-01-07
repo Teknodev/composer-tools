@@ -7,14 +7,40 @@
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-lg);
     }
 
     .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: var(--composer-gap-xl);
+        
         .subtitle,
-        .title,
+        .title,  
         .description {
-            content: "";
+            margin-bottom: var(--composer-gap-lg);
+        }
+        
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 160px;
+            max-width: 100%;
+            padding: 0.75rem 2rem;
+            white-space: nowrap;
+            
+            .button-text {
+                content: "";
+                font-weight: 600;
+                width: 100%;
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         }
     }
 
@@ -157,6 +183,23 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+        }
+        
+        .header {
+            margin-bottom: var(--composer-gap-lg);
+            
+            .description {
+                margin-bottom: var(--composer-gap-md);
+            }
+            
+            .button {
+                min-width: 140px;
+                padding: 0.625rem 1.5rem;
+            }
+        }
+
         .features-grid {
             gap: var(--composer-gap-xl);
         }
@@ -204,7 +247,35 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
+        }
+        
+        .header {
+            margin-bottom: var(--composer-gap-md);
+            align-items: stretch;
+            text-align: left;
+            
+            .subtitle,
+            .title,
+            .description {
+                text-align: left;
+            }
+            
+            .description {
+                margin-bottom: var(--composer-gap-sm);
+            }
+            
+            .button {
+                width: 100%;
+                min-width: unset;
+                white-space: normal;
+                text-align: center;
+                
+                .button-text {
+                    white-space: normal;
+                    word-break: break-word;
+                }
+            }
         }
 
         .features-grid {
@@ -222,6 +293,7 @@
             aspect-ratio: auto;
             line-height: 0;
             min-height: 250px;
+            order: 1;
 
             .image {
                 position: absolute;
