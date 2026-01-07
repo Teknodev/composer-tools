@@ -3,15 +3,14 @@
 .container {
     .max-content {
         .top-header {
-            display: block;
-            width: 100%;
-
             .button-container {
                 float: right;
                 display: flex;
                 gap: var(--composer-gap-sm);
                 margin-left: var(--composer-gap-md);
                 margin-bottom: var(--composer-gap-xs);
+                width: fit-content;
+                min-width: 100px;
 
                 .button {
                     .button-text {
@@ -21,13 +20,25 @@
             }
 
             .vertical-content {
-                display: block;
+                .subtitle {
+                    content: "";
+                }
 
-                .subtitle,
                 .title,
                 .description {
                     content: "";
                 }
+            }
+        }
+
+        .button-container-mobile {
+            display: none;
+            justify-content: center;
+            margin-top: var(--composer-gap-md);
+            width: 100%;
+
+            .button {
+                width: 100%;
             }
         }
 
@@ -50,7 +61,7 @@
                     position: relative;
                     border-radius: var(--composer-border-radius-sm);
 
-                    &:hover {
+                    &.has-hover:hover {
                         .image-wrapper {
                             .image {
                                 opacity: 0;
@@ -122,6 +133,7 @@
 
                     .product-title {
                         color: var(--composer-font-color-primary);
+                        text-align: left;
                     }
 
                     .labels-rating-row {
@@ -159,7 +171,8 @@
 
                                 .rating-icon {
                                     font-size: 1.25rem;
-                                    color: var(--composer-color-secondary);
+                                    line-height: 0;
+                                    color: var(--composer-secondary-color);
                                 }
 
                                 .rating-label {
@@ -184,7 +197,8 @@
                         }
 
                         .price-suffix {
-                            color: var(--composer-font-color-primary);
+                            color: var(--composer-tertiary-color);
+                            text-align: left;
                         }
                     }
                 }
@@ -226,6 +240,15 @@
                         max-height: 250px;
                     }
                 }
+            }
+
+            .button-container {
+                display: none !important;
+            }
+
+            .button-container-mobile {
+                display: flex;
+                justify-content: center;
             }
         }
     }

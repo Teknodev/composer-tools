@@ -612,27 +612,29 @@ class ECommerce8 extends BaseECommerce {
         const itemCount = this.getPropValue("itemCount");
         const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
+        const renderButtons = (isMobile: boolean) => (
+            <div className={this.decorateCSS(isMobile ? "button-container-mobile" : "button-container")}>
+                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                    const buttonTextExist = this.castToString(item.text);
+                    return (
+                        buttonTextExist && (
+                            <ComposerLink key={`button-${index}`} path={item.url}>
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                </Base.Button>
+                            </ComposerLink>
+                        )
+                    );
+                })}
+            </div>
+        );
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasContent && (
                         <div className={this.decorateCSS("top-header")}>
-                            {visibleButtons.length > 0 && (
-                                <div className={this.decorateCSS("button-container")}>
-                                    {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
-                                        const buttonTextExist = this.castToString(item.text);
-                                        return (
-                                            buttonTextExist && (
-                                                <ComposerLink key={`button-${index}`} path={item.url}>
-                                                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            )
-                                        );
-                                    })}
-                                </div>
-                            )}
+                            {visibleButtons.length > 0 && renderButtons(false)}
                             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
@@ -664,7 +666,7 @@ class ECommerce8 extends BaseECommerce {
                                 return (
                                     <div key={cardIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={navigateTo} isFullWidth={true}>
-                                            <div className={this.decorateCSS("image-container")}>
+                                            <div className={`${this.decorateCSS("image-container")} ${hoverImage ? this.decorateCSS("has-hover") : ""}`}>
                                                 {cardImage && (
                                                     <div className={this.decorateCSS("image-wrapper")}>
                                                         <Base.Media
@@ -733,9 +735,9 @@ class ECommerce8 extends BaseECommerce {
                                             )}
                                             {productCard.line && (<div className={this.decorateCSS("line")}></div>)}
                                             {productTitle && (
-                                                <Base.H4 className={this.decorateCSS("product-title")}>
+                                                <Base.H6 className={this.decorateCSS("product-title")}>
                                                     {productCard.productTitle}
-                                                </Base.H4>
+                                                </Base.H6>
                                             )}
                                             {cost?.value && (
                                                 <div className={this.decorateCSS("price-row")}>
@@ -748,9 +750,9 @@ class ECommerce8 extends BaseECommerce {
                                                         </Base.H5>
                                                     </div>
                                                     {priceSuffix && (
-                                                        <Base.H5 className={this.decorateCSS("price-suffix")}>
+                                                        <Base.P className={this.decorateCSS("price-suffix")}>
                                                             {productCard.priceSuffix}
-                                                        </Base.H5>
+                                                        </Base.P>
                                                     )}
                                                 </div>
                                             )}
@@ -760,6 +762,7 @@ class ECommerce8 extends BaseECommerce {
                             })}
                         </Base.ListGrid>
                     )}
+                    {visibleButtons.length > 0 && renderButtons(true)}
                 </Base.MaxContent>
             </Base.Container>
         );
