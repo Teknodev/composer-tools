@@ -54,7 +54,7 @@ class Download2 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -92,7 +92,7 @@ class Download2 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -130,7 +130,7 @@ class Download2 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",

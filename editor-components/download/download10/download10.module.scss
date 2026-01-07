@@ -19,6 +19,27 @@
           content: "";
         }
 
+        &.with-image {
+          align-items: flex-start;
+          text-align: left;
+
+          .subtitle, .title, .description {
+            text-align: left !important;
+            margin-left: 0 !important;
+          }
+
+          .button-group {
+            justify-content: flex-start;
+            align-items: flex-start;
+          }
+
+          .stats {
+            .down-description {
+              place-self: flex-start;
+            }
+          }
+        }
+
         .button-group {
           width: 100%;
           display: flex;

@@ -42,22 +42,29 @@
         .subtitle {
           content: "";
           transform: translateX(0);
+          place-self: center;         
           &::before{
             display: none;
           }
           &.with-image{
             color: white;
           }
+          &.no-badge{
+            background: transparent !important;
+          }
         }
         .title, .description {
+          text-align: center;
           content: "";
           &.with-image{
             color: white;
+            text-align: center;
           }
         }
 
 
         .buttons-container {
+          place-self: center;
           display: flex;
           flex-wrap: wrap;
           align-items: center;

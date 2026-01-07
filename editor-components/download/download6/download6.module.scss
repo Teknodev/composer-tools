@@ -38,6 +38,20 @@
       &.no-image{
         width: 100%;
       }
+      &.with-image {
+        align-items: flex-start;
+        text-align: left;
+
+        .title, .description, .subtitle {
+          text-align: left !important;
+          margin-left: 0 !important;
+        }
+
+        .buttons-container {
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
+      }
     }
 
     .right-column {

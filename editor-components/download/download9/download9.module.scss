@@ -1,8 +1,10 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0;
-  .page {
+  &.has-image {
+    padding: 0;
+  }
+.page {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -94,6 +96,9 @@
           }
           &.with-image{
             color: white;
+          }
+          &.no-badge{
+            background: transparent !important;
           }
         }
         .title, .description { 

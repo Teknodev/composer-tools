@@ -79,7 +79,7 @@ class Download8 extends BaseDownload {
               key: "itemIcon",
               displayer: "Item Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -104,7 +104,7 @@ class Download8 extends BaseDownload {
               key: "itemIcon",
               displayer: "Item Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",

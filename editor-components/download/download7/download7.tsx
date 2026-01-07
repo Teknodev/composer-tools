@@ -84,6 +84,8 @@ class Download7 extends BaseDownload {
 
     const backgroundImage = this.getPropValue("image");
     const backgroundImageUrl = backgroundImage && backgroundImage.url ? backgroundImage.url : null;
+    const subtitleType = Base.getSectionSubTitleType();
+    const hideBadge = backgroundImageUrl && subtitleType === "badge";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -93,7 +95,7 @@ class Download7 extends BaseDownload {
             {overlay && backgroundImageUrl && <div className={this.decorateCSS("overlay")}></div>}
 
             <Base.VerticalContent className={`${this.decorateCSS("content-container")} ${backgroundImageUrl && this.decorateCSS("image")}`}>
-              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageUrl && this.decorateCSS("with-image")} ${hideBadge ? this.decorateCSS("no-badge") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{title}</Base.SectionTitle>}
               {descExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{description}</Base.SectionDescription>}
               {buttons?.length > 0 && (

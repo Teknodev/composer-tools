@@ -18,7 +18,7 @@
         }  
         .card {
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-lg);
+          border-radius: var(--composer-border-radius-md);
           height: 100%;
           justify-content: center;
           padding: var(--composer-gap-md);
@@ -30,7 +30,7 @@
             height: 400px;
             margin: 0 auto;
             object-fit: cover;
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             &.no-full{
               margin-bottom: var(--composer-gap-lg);
             }
@@ -38,8 +38,17 @@
               height: 100%;
             }
           }
+          .title,
+          .description {
+            text-align: left !important;
+          }
+          .subtitle {
+            text-align: left !important;
+            margin-left: 0px !important;
+          }
           .button-wrapper {
-            .button-image {
+            place-self: flex-start;
+          .button-image {
               width: 200px;
               height: 40px;
               border-radius: var(--composer-border-radius-sm);
@@ -70,7 +79,7 @@
 
           .card {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            border-radius: var(--composer-border-radius-lg);
+            border-radius: var(--composer-border-radius-md);
             padding: var(--composer-gap-md);
             display: flex;
             align-items: center;
@@ -80,7 +89,16 @@
             width: 100%;
 
             .left {
+              .title,
+              .description {
+                text-align: left !important;
+              }
+              .subtitle {
+                text-align: left !important;
+                margin-left: 0px !important;
+              }
               .button-wrapper {
+                place-self: flex-start !important;
                 .button-image {
                   width: 200px;
                   height: 40px;
@@ -101,7 +119,7 @@
               width: 40%;
               min-height: 400px;
               object-fit: cover;
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               &.full {
                 width: 100%;
                 height: 300px;
@@ -116,7 +134,7 @@
 
           .card {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            border-radius: var(--composer-border-radius-lg);
+            border-radius: var(--composer-border-radius-md);
             padding: var(--composer-gap-md);
             display: flex;
             justify-content: space-between;
@@ -124,6 +142,10 @@
             box-shadow: var(--box-shadow-active);
             width: 100%;
             .button-wrapper {
+             display: flex;
+             flex: 0 0 auto;
+             align-items: center;
+             justify-content: flex-start !important;
               .button-image {
                 width: 200px;
                 height: 40px;
@@ -136,9 +158,9 @@
                 }
               }
             }
-
             .title {
-              width: fit-content;
+              width: 100%;
+              text-align: left !important;
             }
             &.center {
               flex-direction: column;
@@ -152,6 +174,30 @@
             }
           }
         }
+        .buttom-card {
+          .card.center {
+            display: flex;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: var(--composer-gap-md) !important;
+        
+            .left,
+            .title {
+              flex: 1 1 auto;
+              min-width: 0;
+              text-align: left !important;
+            }
+        
+            .button-wrapper {
+              flex: 0 0 auto;
+              align-self: center !important;
+              justify-content: flex-start !important;
+              margin-left: var(--composer-gap-md);
+            }
+          }
+        }
+        
       }
     }
   }
@@ -194,6 +240,16 @@
               }
             }
           }
+        .buttom-card {
+          .card.center {
+            flex-direction: row !important;
+            align-items: center !important;
+          }
+          .card.center .button-wrapper {
+            align-self: center !important;
+            justify-content: flex-start !important;
+          }
+        }
         }
       }
     }

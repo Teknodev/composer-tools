@@ -14,7 +14,7 @@
           gap: var(--composer-gap-md);
           padding: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-xl);
+          border-radius: var(--composer-border-radius-md);
           transition: 0.5s;
 
           .icon-container {

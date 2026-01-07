@@ -81,7 +81,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -100,7 +100,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -119,7 +119,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -138,7 +138,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -157,7 +157,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -198,9 +198,7 @@ class Download10 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div
-              className={`${this.decorateCSS("left-container")} 
-            ${(image && alignmentValue === "center") && this.decorateCSS("center")} 
-            ${!image && this.decorateCSS("no-image")}`}
+              className={`${this.decorateCSS("left-container")} ${image ? this.decorateCSS("with-image") : ""} ${(image && alignmentValue === "center") && this.decorateCSS("center")} ${!image && this.decorateCSS("no-image")}`}
             >
               <Base.VerticalContent>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
