@@ -424,7 +424,6 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection35,
     IntroSection1,
     IntroSection2,
-    IntroSection5,
     IntroSection4,
     IntroSection5,
     IntroSection6,
@@ -471,7 +470,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent18,
     FeatureComponent19,
     FeatureComponent20,
-  
+
     FeatureComponent21,
     FeatureComponent22,
     FeatureComponent25,

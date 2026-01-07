@@ -1,17 +1,47 @@
 import * as React from "react";
-import { BaseIntroSection, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section5.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { TypeMediaInputValue } from "composer-tools/editor-components/EditorComponent";
 
-type IntroSection5Button = Omit<INPUTS.CastedButton, "icon"> & { icon?: TypeMediaInputValue };
+interface ButtonItem {
+  text: React.JSX.Element;
+  icon: TypeMediaInputValue;
+  url: string;
+  buttonAnimation: boolean;
+  type: TypeButton;
+}
 
 class IntroSection5 extends BaseIntroSection {
-  constructor(props?: {}) {
+  constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
+    this.addProp({
+      type: "media",
+      key: "cover-image",
+      displayer: "Image",
+      value: {
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
+        type: "image",
+      },
+      additionalParams: { availableTypes: ["image", "video"] }
+    })
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -28,30 +58,12 @@ class IntroSection5 extends BaseIntroSection {
     });
 
     this.addProp({
-      type: "media",
-      key: "backgroundMedia",
-      displayer: "Media",
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
-      },
-      additionalParams: { availableTypes: ["image", "video"] },
-    });
-
-    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
-
-    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", "FaChevronDown", null, "Bare")],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "buttonsAnimation",
-      displayer: "Button Animation",
-      value: true,
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", "FaChevronDown", null, "Bare")
+      ],
     });
   }
 
@@ -60,62 +72,53 @@ class IntroSection5 extends BaseIntroSection {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const bgMedia = this.getPropValue("backgroundMedia") as TypeMediaInputValue;
-    const buttons = this.castToObject<IntroSection5Button[]>("buttons");
-
-    const hasSubtitle = !!this.castToString(subtitle);
-    const hasTitle = !!this.castToString(title);
-    const hasDescription = !!this.castToString(description);
-    const hasBgMedia = bgMedia && (bgMedia.type === "image" || bgMedia.type === "video") && !!bgMedia.url;
-    const hasOverlay = hasBgMedia && !!this.getPropValue("overlay");
-    const isAnimated = !!this.getPropValue("buttonsAnimation");
-
-    const validButtons = buttons.filter((btn) => {
-      const hasText = !!this.castToString(btn?.text);
-      const hasIcon = btn?.icon && (btn.icon.type === "icon" ? !!btn.icon.name : !!btn.icon.url);
-      return hasText || hasIcon;
-    });
-    const hasButtons = validButtons.length > 0;
-    const hasContent = hasSubtitle || hasTitle || hasDescription;
-
-    const containerClasses = `${this.decorateCSS("container")}${hasBgMedia ? ` ${this.decorateCSS("has-background")}` : ""}${hasOverlay ? ` ${this.decorateCSS("overlay-active")}` : ""}`;
-    const buttonClassName = `${this.decorateCSS("button")}${isAnimated ? ` ${this.decorateCSS("has-animation")}` : ""}`;
+    const coverImage = this.getPropValue("cover-image");
+    const buttons = this.castToObject<ButtonItem[]>("buttons");
+    const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
+    const title = this.castToString(this.getPropValue("title")) || "";
+    const description = this.castToString(this.getPropValue("description")) || "";
+    const hasMedia = !!coverImage?.url;
+    const enableOverlay = hasMedia && this.getPropValue("overlay");
+    const hasContent = subtitle || title || description || buttons.length > 0;
 
     return (
-      <Base.Container className={containerClasses}>
-        {hasBgMedia && <Base.Media value={bgMedia} className={this.decorateCSS("background-media")} />}
+      <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
+        {hasMedia && (
+          <div className={this.decorateCSS("background-container")}>
+            <Base.Media
+              value={coverImage}
+              className={this.decorateCSS("background-media")}
+            />
+            {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+          </div>
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("content")}>
-            {hasContent && (
-              <div className={this.decorateCSS("text-wrapper")}>
-                {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-              </div>
-            )}
-            {hasButtons && (
-              <div className={this.decorateCSS("buttons")}>
-                {validButtons.map((btn, i) => {
-                  const hasText = !!this.castToString(btn.text);
-                  const hasIcon = btn.icon && (btn.icon.type === "icon" ? !!btn.icon.name : !!btn.icon.url);
-                  return (
-                    <ComposerLink key={`btn-${i}`} path={btn.url || ""} className={this.decorateCSS("button-wrapper")}>
-                      <Base.Button buttonType={btn.type} className={buttonClassName}>
-                        {hasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
-                        {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-          </Base.VerticalContent>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+              {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+            </Base.VerticalContent>
+          )}
+          {buttons && (
+            <div className={this.decorateCSS("buttons")}>
+              {buttons.map((btn, i) => {
+                const hasIcon = btn.icon && (btn.icon.type === "icon" ? !!btn.icon.name : !!btn.icon.url);
+                const hasText = this.castToString(btn.text);
+                return (
+                  <ComposerLink key={`btn-${i}`} path={btn.url || ""} className={this.decorateCSS("button-wrapper")}>
+                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                      {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
+                      {hasText && <span className={this.decorateCSS("button-text")}>{btn.text}</span>}
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
-    );
+    )
   }
 }
 
