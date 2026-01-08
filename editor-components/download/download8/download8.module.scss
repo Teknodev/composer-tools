@@ -122,7 +122,6 @@
           }
           .card-subtitle {
             margin-left:var(--composer-gap-md);
-            margin-top:var(--composer-gap-md);
             &::before {
               display: block;
               color:white !important;           
@@ -194,7 +193,7 @@
     }
 
     .card-up .card-subtitle.center-badge {
-      margin: 0 auto !important;
+      margin: 0px 0px var(--composer-gap-sm) !important;
     }
 
     &:hover {
