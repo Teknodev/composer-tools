@@ -58,7 +58,7 @@
         z-index: 2; 
         width: 100%;
 
-        :global(.slick-dots) {
+        .customDots {
           position: absolute !important;
           bottom: calc(-1 * var(--composer-gap-xl));
           left: 50%;
@@ -377,7 +377,7 @@
     .content {
       .slider-parent {
         .carousel {
-          :global(.slick-dots) {
+          .customDots {
             bottom: calc(-1 * var(--composer-gap-lg)) !important;
           }
 
