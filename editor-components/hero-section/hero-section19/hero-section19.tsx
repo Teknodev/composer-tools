@@ -32,6 +32,12 @@ class HeroSection19 extends BaseHeroSection {
           value: "Porta Consectetur Imperdiet Frigilla",
         },
         {
+          type: "string",
+          displayer: "Description",
+          key: "description",
+          value: "",
+        },
+        {
           type: "media",
           displayer: "Media",
           key: "image",
@@ -75,6 +81,12 @@ class HeroSection19 extends BaseHeroSection {
           displayer: "Title",
           key: "title",
           value: "Feugiat Scelerisque Imperdiet",
+        },
+        {
+          type: "string",
+          displayer: "Description",
+          key: "description",
+          value: "",
         },
         {
           type: "media",
@@ -122,6 +134,12 @@ class HeroSection19 extends BaseHeroSection {
           value: "Adipiscing Sodales",
         },
         {
+          type: "string",
+          displayer: "Description",
+          key: "description",
+          value: "",
+        },
+        {
           type: "media",
           displayer: "Media",
           key: "image",
@@ -164,6 +182,12 @@ class HeroSection19 extends BaseHeroSection {
           type: "string",
           displayer: "Title",
           key: "title",
+          value: "",
+        },
+        {
+          type: "string",
+          displayer: "Description",
+          key: "description",
           value: "",
         },
         {
@@ -226,7 +250,7 @@ class HeroSection19 extends BaseHeroSection {
     let visibleContents: any = {};
 
     items.forEach(({ name, data, button }) => {
-      let isVisible = Boolean(this.castToString(data.subtitle) || this.castToString(data.title) || this.castToString(button.text));
+      let isVisible = Boolean(this.castToString(data.subtitle) || this.castToString(data.title) || this.castToString(data.description) || this.castToString(button.text));
       visibleContents[`isContentVisible${name}`] = isVisible;
     });
 
@@ -253,10 +277,11 @@ class HeroSection19 extends BaseHeroSection {
                   <div className={`${this.decorateCSS("content")} ${!itemLeft.image && this.decorateCSS("no-bg-img")}`}>
                     {this.castToString(itemLeft.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemLeft.subtitle}</div>}
                     {this.castToString(itemLeft.title) && <div className={this.decorateCSS("title")}>{itemLeft.title}</div>}
+                    {this.castToString(itemLeft.description) && <div className={this.decorateCSS("description")}>{itemLeft.description}</div>}
                     {this.castToString(buttonLeft.text) && (
                       <ComposerLink path={buttonLeft.url}>
                         <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
-                          {buttonLeft.text}
+                          <Base.P className={this.decorateCSS("button-text")}>{buttonLeft.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     )}
@@ -281,10 +306,11 @@ class HeroSection19 extends BaseHeroSection {
                       <div className={`${this.decorateCSS("content")} ${!itemRightTop.image && this.decorateCSS("no-bg-img")}`}>
                         {this.castToString(itemRightTop.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemRightTop.subtitle}</div>}
                         {this.castToString(itemRightTop.title) && <div className={this.decorateCSS("title")}>{itemRightTop.title}</div>}
+                        {this.castToString(itemRightTop.description) && <div className={this.decorateCSS("description")}>{itemRightTop.description}</div>}
                         {this.castToString(buttonRightTop.text) && (
                           <ComposerLink path={buttonRightTop.url}>
                             <Base.Button buttonType={buttonRightTop.type} className={this.decorateCSS("button")}>
-                              {buttonRightTop.text}
+                              <Base.P className={this.decorateCSS("button-text")}>{buttonRightTop.text}</Base.P>
                             </Base.Button>
                           </ComposerLink>
                         )}
@@ -308,10 +334,11 @@ class HeroSection19 extends BaseHeroSection {
                         <div className={`${this.decorateCSS("content")} ${!itemBottomLeft.image && this.decorateCSS("no-bg-img")}`}>
                           {this.castToString(itemBottomLeft.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomLeft.subtitle}</div>}
                           {this.castToString(itemBottomLeft.title) && <div className={this.decorateCSS("title")}>{itemBottomLeft.title}</div>}
+                          {this.castToString(itemBottomLeft.description) && <div className={this.decorateCSS("description")}>{itemBottomLeft.description}</div>}
                           {this.castToString(buttonBottomLeft.text) && (
                             <ComposerLink path={buttonBottomLeft.url}>
                               <Base.Button buttonType={buttonBottomLeft.type} className={this.decorateCSS("button")}>
-                                {buttonBottomLeft.text}
+                                <Base.P className={this.decorateCSS("button-text")}>{buttonBottomLeft.text}</Base.P>
                               </Base.Button>
                             </ComposerLink>
                           )}
@@ -331,6 +358,7 @@ class HeroSection19 extends BaseHeroSection {
                         <div className={`${this.decorateCSS("content")} ${!itemBottomRight.image && this.decorateCSS("no-bg-img")}`}>
                           {this.castToString(itemBottomRight.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomRight.subtitle}</div>}
                           {this.castToString(itemBottomRight.title) && <div className={this.decorateCSS("title")}>{itemBottomRight.title}</div>}
+                          {this.castToString(itemBottomRight.description) && <div className={this.decorateCSS("description")}>{itemBottomRight.description}</div>}
                           {this.castToString(buttonBottomRight.text) && (
                             <ComposerLink path={buttonBottomRight.url}>
                               <Base.Button buttonType={buttonBottomRight.type} className={this.decorateCSS("button")}>

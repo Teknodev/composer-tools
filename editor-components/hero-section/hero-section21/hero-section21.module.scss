@@ -43,7 +43,6 @@
           }
 
           .logo-wrapper {
-            margin-bottom: var(--composer-gap-md);
             width: auto;
             max-width: 200px;
 
@@ -156,8 +155,8 @@
           max-width: 40%;
         }
 
-        .right-box-desc, .right-box {
-          content: "";
+        .right-box-text, .right-box-description {
+          text-align: left;
         }
       }
     }
@@ -171,6 +170,27 @@
         }
       }
     }
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .close-icon {
+    font-size: 2rem;
+    color: var(--composer-font-color-primary);
+    width: 2rem;
+    height: 2rem;
+    pointer-events: none;
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {

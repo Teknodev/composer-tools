@@ -74,10 +74,10 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -98,7 +98,7 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Background Image",
+              displayer: "Background Media",
               key: "background_image",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -141,10 +141,10 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -165,7 +165,7 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Background Image",
+              displayer: "Background Media",
               key: "background_image",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -208,10 +208,10 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Image",
+              displayer: "Media",
               key: "image",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -232,7 +232,7 @@ class HeroSection24 extends BaseHeroSection {
             },
             {
               type: "media",
-              displayer: "Background Image",
+              displayer: "Background Media",
               key: "background_image",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -394,9 +394,15 @@ class HeroSection24 extends BaseHeroSection {
                         </div>
                       )}
                       {item.image && (
-                        <div className={this.decorateCSS("right")}>
-                          <div className={this.decorateCSS("image-wrapper")}>
-                            <Base.Media value={item.image} className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} />
+                        <div className={this.decorateCSS("right")}> 
+                          <div className={this.decorateCSS("image-wrapper")}> 
+                            <Base.Media 
+                              value={item.image.type === "video" ? {
+                                ...item.image,
+                                settings: { autoplay: true, loop: true, muted: true, controls: false }
+                              } : item.image}
+                              className={`${this.decorateCSS("image")} ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}`} 
+                            />
                           </div>
                         </div>
                       )}

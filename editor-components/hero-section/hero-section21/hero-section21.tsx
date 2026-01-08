@@ -110,10 +110,10 @@ class HeroSection21 extends BaseHeroSection {
     });
 
     this.addProp({
-    type: "object",
-    key: "right-box",
-    displayer: "Right Box",
-    value: [
+      type: "object",
+      key: "right-box",
+      displayer: "Right Box",
+      value: [
         {
           type: "string",
           key: "card_text",
@@ -127,6 +127,19 @@ class HeroSection21 extends BaseHeroSection {
           value: "Chair with armrests from $65",
         },
       ],
+    });
+
+    this.addProp({
+      type: "media",
+      key: "closeIcon",
+      displayer: "Close Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoMdClose",
+      },
     });
 
     this.setComponentState("is_video_visible", false);
@@ -210,8 +223,16 @@ class HeroSection21 extends BaseHeroSection {
           </div>
         </Base.MaxContent>
         {this.getComponentState("is_video_visible") && video && image && (
-          <Base.Overlay isVisible={true} className={this.decorateCSS("video")} onClick={() => this.setComponentState("is_video_visible", false)}>
+          <Base.Overlay isVisible={true} className={this.decorateCSS("video")}
+            onClick={() => this.setComponentState("is_video_visible", false)}>
             <div className={this.decorateCSS("player-container")} onClick={(event) => event.stopPropagation()}>
+              <button
+                className={this.decorateCSS("close-button")}
+                onClick={() => this.setComponentState("is_video_visible", false)}
+                aria-label="Close"
+              >
+                <Base.Media value={this.getPropValue("closeIcon")} className={this.decorateCSS("close-icon")} />
+              </button>
               <Base.Media
                 value={video}
                 className={this.decorateCSS("player")}

@@ -894,28 +894,29 @@ class HeroSection20 extends BaseHeroSection {
                     </div>
                     {slider.map((slide, index) => {
                       const isCurrent = index === currentSlide;
+                      const isImageless = !slide.image;
                       return (
                         <div key={`title-${index}`}>
                           {slide.link && isCurrent ? (
                             <ComposerLink path={slide.link} isFullWidth={true}>
-                              <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""}`}>
-                                <h2 className={this.decorateCSS("title-stroke")}>
+                              <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""} ${isCurrent && isImageless && this.decorateCSS("imageless-title")}`}>
+                                <h2 className={this.decorateCSS("title-stroke")}> 
                                   {slide.title}
                                   <span className={this.decorateCSS("number")}>{slide.number}</span>
                                 </h2>
-                                <h2 className={this.decorateCSS("title-solid")}>
+                                <h2 className={this.decorateCSS("title-solid")}> 
                                   {slide.title}
                                   <span className={this.decorateCSS("number")}>{slide.number}</span>
                                 </h2>
                               </div>
                             </ComposerLink>
                           ) : (
-                            <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent ? this.decorateCSS("current") : ""}`}>
-                              <h2 className={this.decorateCSS("title-stroke")}>
+                            <div className={`${this.decorateCSS("title-wrapper")} ${isCurrent && this.decorateCSS("current")} ${isCurrent && isImageless && this.decorateCSS("imageless-title")}`}>
+                              <h2 className={this.decorateCSS("title-stroke")}> 
                                 {slide.title}
                                 <span className={this.decorateCSS("number")}>{slide.number}</span>
                               </h2>
-                              <h2 className={this.decorateCSS("title-solid")}>
+                              <h2 className={this.decorateCSS("title-solid")}> 
                                 {slide.title}
                                 <span className={this.decorateCSS("number")}>{slide.number}</span>
                               </h2>

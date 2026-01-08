@@ -9,14 +9,14 @@
     .left {
       flex: 1;
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-      border-radius: var(--composer-border-radius-xs);
+      border-radius: var(--composer-border-radius-md);
 
       .item {
         align-items: flex-start;
         padding: var(--composer-gap-md);
 
         .background-image {
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-md);
         }
 
         .content {
@@ -31,6 +31,17 @@
           .title {
             font-size: 3rem;
             overflow: hidden;
+          }
+
+          .description {
+            font-size: 1rem;
+            overflow: hidden;
+          }
+
+          .button {
+            .button-text {
+              content: "";
+            }
           }
 
           &.no-bg-img {
@@ -49,15 +60,23 @@
       gap: var(--composer-gap-md);
       height: 100%;
 
+      .content {
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+
       .top {
         flex: 2;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         height: 50%;
-        border-radius: var(--composer-border-radius-xs);
+        border-radius: var(--composer-border-radius-md);
 
         .item {
           .background-image {
-            border-radius: var(--composer-border-radius-xs);
+            border-radius: var(--composer-border-radius-md);
           }
 
           .no-bg-img {
@@ -73,15 +92,15 @@
         gap: var(--composer-gap-md);
         flex: 2;
         height: 50%;
-        border-radius: var(--composer-border-radius-xs);
+        border-radius: var(--composer-border-radius-md);
 
         .item {
           flex: 1;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-md);
 
           .background-image {
-            border-radius: var(--composer-border-radius-xs);
+            border-radius: var(--composer-border-radius-md);
           }
 
           .no-bg-img {
@@ -140,6 +159,12 @@
         height: 100%;
         overflow: hidden;
 
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+
         :last-child {
           overflow: hidden;
         }
@@ -170,7 +195,7 @@
           .background-image {
             .image {
               transform: scale(1.1);
-              border-radius: var(--composer-border-radius-xs);
+              border-radius: var(--composer-border-radius-md);
             }
           }
         }

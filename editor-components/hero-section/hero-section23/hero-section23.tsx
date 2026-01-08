@@ -32,7 +32,7 @@ class HeroSection23 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Top Image",
+              displayer: "Top Media",
               key: "topImage",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -117,7 +117,7 @@ class HeroSection23 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Top Image",
+              displayer: "Top Media",
               key: "topImage",
               additionalParams: {
                 availableTypes: ["image"],
@@ -202,7 +202,7 @@ class HeroSection23 extends BaseHeroSection {
           value: [
             {
               type: "media",
-              displayer: "Top Image",
+              displayer: "Top Media",
               key: "topImage",
               additionalParams: {
                 availableTypes: ["image"],

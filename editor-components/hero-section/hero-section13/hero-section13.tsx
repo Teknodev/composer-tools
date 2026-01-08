@@ -2,7 +2,6 @@ import styles from "./hero-section13.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import { Base } from "../../../composer-base-components/base/base";
 
 type SliderItem = {
@@ -36,7 +35,7 @@ class HeroSection13 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -55,7 +54,7 @@ class HeroSection13 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -74,7 +73,7 @@ class HeroSection13 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -93,7 +92,7 @@ class HeroSection13 extends BaseHeroSection {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -388,7 +387,7 @@ class HeroSection13 extends BaseHeroSection {
                     {leftItems.map((item: LeftItem, index: number) => {
                       return (
                         <ComposerLink key={index} path={item.link}>
-                          <Base.H4 className={this.decorateCSS("text")}>{item.label}</Base.H4>
+                          <Base.H5 className={this.decorateCSS("text")}>{item.label}</Base.H5>
                         </ComposerLink>
                       );
                     })}

@@ -123,6 +123,14 @@
               clip-path: inset(0 0 0 0);
               transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
             }
+
+            &.imageless-title {
+              .title-stroke,
+              .title-solid {
+                color: black !important;
+                -webkit-text-stroke: none !important;
+              }
+            }
           }
 
           .title {
