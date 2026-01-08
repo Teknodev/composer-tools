@@ -93,6 +93,12 @@
         text-align: left;
         margin-left: 0;
       }
+      
+      &.without-images {
+        .subtitle {
+          margin: inherit;
+        }
+      }
       .title-container {
         .title {
           @include textEllipsis(2);
