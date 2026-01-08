@@ -589,7 +589,7 @@ class Location2 extends Location {
           <div className={this.decorateCSS("middle-content")}>
             <Base.ListGrid
               className={this.decorateCSS("middle-grid")}
-              gridCount={{ pc: this.getPropValue("itemsInRow"), tablet: 3, phone: 1 }}
+              gridCount={{ pc: this.getPropValue("itemsInRow"), tablet: 4, phone: 1 }}
             >
               {this.castToObject<ContentItemType[]>("middle-content").map((item: ContentItemType, idx: number) => {
                 const isContTitleExist = this.castToString(item.contentTitle);

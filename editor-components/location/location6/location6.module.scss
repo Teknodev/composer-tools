@@ -78,9 +78,9 @@
               }
 
               .icon {
-                width: calc(var(--composer-gap-md) + 4px);
-                height: calc(var(--composer-gap-md) + 4px);
-                font-size: 1.8rem;
+                width: calc(var(--composer-gap-md) + 2px);
+                height: calc(var(--composer-gap-md) + 2px);
+                font-size: 1.5rem;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
@@ -171,8 +171,8 @@
 
                 .button-element {
                   .icon {
-                    width: var(--composer-gap-md);
-                    height: var(--composer-gap-md);
+                    width: calc(var(--composer-gap-md) - 4px);
+                    height: calc(var(--composer-gap-md) - 4px);
                   }
                 }
               }

@@ -53,10 +53,14 @@
 
             .continent-name {
               color: var(--composer-primary-color);
+              text-align: justify !important;
+
             }
 
             .continent-count {
               color: var(--composer-font-color-primary);
+              text-align: justify !important;
+
             }
           }
         }
@@ -69,7 +73,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-bottom: var(--composer-gap-md);
 
     .map {
       width: 100%;
@@ -119,12 +122,10 @@
 
               .continent-name {
                 color: var(--composer-primary-color);
-                text-align: center !important;
               }
 
               .continent-count {
                 color: #ffffff;
-                text-align: center !important;
               }
             }
           }

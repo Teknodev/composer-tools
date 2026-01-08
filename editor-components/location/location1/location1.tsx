@@ -400,7 +400,7 @@ class Location1 extends Location {
     const line = this.getPropValue("line");
     const description = buttom.description;
     const phone = buttom.phoneNumber;
-    const headerDescription = this.castToString(this.getPropValue("headerDescription"));
+    const headerDescription = this.getPropValue("headerDescription");
 
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");

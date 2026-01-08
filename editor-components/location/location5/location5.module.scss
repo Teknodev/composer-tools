@@ -1,7 +1,6 @@
 @use "../../../../composer-tools/composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
   .max-content {
     .title-block {
@@ -47,6 +46,8 @@
 
           .location-index {
             color: var(--composer-font-color-primary);
+            margin-top: var(--composer-gap-md);
+            font-size: 2.75rem;
           }
 
           .location-city {
@@ -55,7 +56,7 @@
 
           .location-address,
           .location-description {
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
           }
         }
       }
