@@ -23,25 +23,21 @@
         }
     }
 
-      .title-block {
-        .subtitle,
-        .title {
-          content: "";
-        }
 
         .title {
           color: var(--composer-primary-color);
           text-align: center;
         }
         .description {
-          content: "";
+          text-align: center;
         }
       }
       
-      .title-row {
-        text-align: center;
-      }
-      .description-row {
+        .title {
+          text-align: center;
+        }
+      
+      .description {
         text-align: center;
         margin-bottom: var(--composer-gap-md);
       }
@@ -190,7 +186,7 @@
       }
     }
   }
-}
+
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
@@ -235,11 +231,10 @@
       .wrapper {
         gap: 0px;
 
-        .title-block {
           .title {
             text-align: center;
           }
-        }
+        
 
         .map-container {
           .custom-map {

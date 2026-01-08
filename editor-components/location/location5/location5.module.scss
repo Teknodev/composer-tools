@@ -68,7 +68,55 @@
         border-radius: var(--composer-border-radius-sm);
         overflow: hidden;
 
-        
+        .popup {
+          background-color: var(--composer-html-background);
+          width: 250px;
+          min-height: auto;
+          text-align: center;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+          margin: 0;
+          border-radius: var(--composer-border-radius-xs);
+          box-shadow: var(--box-shadow-active);
+
+          .popup-header {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            padding: var(--composer-gap-md);
+
+            .popup-title {
+              color: var(--composer-font-color-primary);
+              margin: 0;
+              text-align: center;
+              font-weight: 600;
+            }
+
+            .popup-content {
+              color: var(--composer-font-color-primary);
+              text-align: center;
+              margin: 0;
+            }
+          }
+
+          .popup-link {
+            z-index: 10;
+            cursor: pointer;
+            width: 100%;
+
+            .popup-button {
+              background-color: var(--composer-font-color-primary);
+              color: var(--composer-html-background);
+              cursor: pointer;
+              width: 100%;
+              padding: var(--composer-gap-md);
+              border-bottom-left-radius: var(--composer-border-radius-sm);
+              border-bottom-right-radius: var(--composer-border-radius-sm);
+            }
+          }
+        }
 
         &.full-width {
           width: 100%;

@@ -1,6 +1,8 @@
+import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location5.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -122,6 +124,30 @@ class Location5 extends Location {
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
                       },
                     },
+                    {
+                      type: "string",
+                      displayer: "Marker Popup",
+                      key: "popupTitle",
+                      value: "Lisbon Office",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Popup Description",
+                      key: "popupDescription",
+                      value: "Rua Fernando Palha, 47A, 1950-130",
+                    },
+                    {
+                      type: "string",
+                      key: "popupButtonText",
+                      displayer: "Popup Button Text",
+                      value: "View Map",
+                    },
+                    {
+                      type: "page",
+                      key: "popupButtonUrl",
+                      displayer: "Popup Button URL",
+                      value: "",
+                    },
                   ],
                 },
               ],
@@ -188,6 +214,30 @@ class Location5 extends Location {
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
                       },
                     },
+                    {
+                      type: "string",
+                      displayer: "Marker Popup",
+                      key: "popupTitle",
+                      value: "St. Petersburg Office",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Popup Description",
+                      key: "popupDescription",
+                      value: "Lermontovsky prospect, 35A",
+                    },
+                    {
+                      type: "string",
+                      key: "popupButtonText",
+                      displayer: "Popup Button Text",
+                      value: "View Map",
+                    },
+                    {
+                      type: "page",
+                      key: "popupButtonUrl",
+                      displayer: "Popup Button URL",
+                      value: "",
+                    },
                   ],
                 },
               ],
@@ -230,6 +280,10 @@ class Location5 extends Location {
         .map((loc: any) => {
           const coordinateData = loc.getPropValue("coordinate");
           const markerImage = loc.getPropValue("marker-image");
+          const popupTitle = this.castToString(loc.getPropValue("popupTitle"));
+          const popupDescription = this.castToString(loc.getPropValue("popupDescription"));
+          const popupButtonText = this.castToString(loc.getPropValue("popupButtonText"));
+          const popupButtonUrl = loc.getPropValue("popupButtonUrl");
 
           const lat = coordinateData?.lat;
           const lng = coordinateData?.lng;
@@ -266,7 +320,36 @@ class Location5 extends Location {
 
           if (lat !== undefined && lng !== undefined) {
             const finalIconUrl = iconUrl || defaultMarkerIcon;
+            const content =
+              (popupTitle || popupDescription || popupButtonText) ? (
+                <div className={this.decorateCSS("popup")}>
+                  {(popupTitle || popupDescription) && (
+                    <div className={this.decorateCSS("popup-header")}>
+                      {popupTitle && (
+                        <Base.P className={this.decorateCSS("popup-title")}>
+                          {typeof popupTitle === "string" ? popupTitle.charAt(0).toUpperCase() + popupTitle.slice(1) : popupTitle}
+                        </Base.P>
+                      )}
+                      {popupDescription && (
+                        <Base.P className={this.decorateCSS("popup-content")}>
+                          {typeof popupDescription === "string" ? popupDescription.charAt(0).toUpperCase() + popupDescription.slice(1) : popupDescription}
+                        </Base.P>
+                      )}
+                    </div>
+                  )}
+                  {popupButtonText && (
+                    <div className={this.decorateCSS("popup-link")}>
+                      <ComposerLink path={popupButtonUrl}>
+                        <div className={this.decorateCSS("popup-button")}>
+                          {typeof popupButtonText === "string" ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText}
+                        </div>
+                      </ComposerLink>
+                    </div>
+                  )}
+                </div>
+              ) : null;
             return {
+              content,
               lat,
               lng,
               icon: {

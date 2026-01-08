@@ -352,14 +352,10 @@ class Location7 extends Location {
               </div>
             )}
             {titleExist && (
-              <div className={this.decorateCSS("title-row")}> 
                 <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
-              </div>
             )}
             {descriptionExist && (
-              <div className={this.decorateCSS("description-row")}> 
                 <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
-              </div>
             )}
             <section className={this.decorateCSS("map-container")}> 
               <div

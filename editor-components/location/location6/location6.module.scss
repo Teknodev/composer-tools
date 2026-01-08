@@ -3,9 +3,15 @@
 .container {
   padding-right: 0px !important;
 
-  .max-content-header {
+  .max-content {
     max-width: var(--composer-content-width);
     margin: 0 auto;
+    .header {
+      .subtitle, .title {
+        text-align: left;
+        margin-left: 0;
+      }
+    }
   }
 
   .wrapper {
@@ -53,7 +59,7 @@
           .button {
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             color: var(--composer-font-color-primary);
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
+            padding: var(--composer-gap-md) var(--composer-gap-md);
             width: 100%;
             align-self: stretch;
             border-radius: var(--composer-border-radius-md);
@@ -75,6 +81,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                font-size: var(--composer-font-size-sm) !important;
               }
 
               .icon {
@@ -95,7 +102,6 @@
     .map-container {
       width: 100%;
       min-width: 0;
-      min-height: 550px;
 
       .map {
         width: 100%;
@@ -237,7 +243,8 @@
 
         .map {
           width: 100%;
-          min-height: 200px !important;
+          height: 320px !important;
+          min-height: 320px !important;
         }
       }
     }
