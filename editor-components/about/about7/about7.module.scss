@@ -22,6 +22,18 @@
         z-index: 0;
         pointer-events: none;
     }
+    
+    .background-media-element {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        display: block;
+        object-fit: cover;
+    }
+
     .max-content{
         display: flex;
         flex-direction: column;
@@ -140,6 +152,8 @@
                 } 
             }
             .right-container{
+                position: relative;
+                z-index: 3;
                 flex: 5;
                 width: 100%;
                 display: flex;

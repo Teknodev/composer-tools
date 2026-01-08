@@ -101,6 +101,15 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
     };
   }, [memoizedProps, restartSlider]);
 
+  useEffect(() => {
+    setSliderSettings({ ...memoizedProps, responsive: [] });
+    if (memoizedProps.autoplay) {
+      sliderRef.current?.slickPlay?.();
+    } else {
+      sliderRef.current?.slickPause?.();
+    }
+  }, [memoizedProps.autoplay]);
+
   return (
     <Slider ref={setRef} {...sliderSettings}>
       {memoizedProps.children}

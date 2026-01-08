@@ -82,9 +82,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -119,9 +119,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -156,9 +156,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -193,9 +193,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -230,9 +230,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -267,9 +267,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",

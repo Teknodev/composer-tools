@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-xl);
+
     .header {
       position: relative;
       display: flex;
@@ -224,7 +225,7 @@
               color: var(--composer-tertiary-color);
               width: 100%;
               margin: 0;
-              text-align: start;
+              text-align: left !important;
             }
 
             .user-info {
@@ -274,6 +275,7 @@
           .link-container {
             .link-text {
               padding-bottom: var(--composer-gap-xs);
+
               .right-side-icon {
                 width: var(--composer-gap-md);
                 height: var(--composer-gap-md);
@@ -300,6 +302,7 @@
   .container {
     .max-content {
       gap: var(--composer-gap-md);
+
       .header {
         .section-title {
           margin-bottom: 0;

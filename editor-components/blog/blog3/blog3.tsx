@@ -37,6 +37,13 @@ class Blog3 extends BaseBlog {
 
     this.addProp({
       type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "rightSideText",
       displayer: "Right Side Text",
       value: "Featured Posts",
@@ -112,9 +119,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -148,9 +155,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -191,9 +198,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -228,9 +235,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -271,9 +278,10 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image", 
+
+              displayer: "Media", 
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -308,9 +316,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -351,9 +359,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -388,9 +396,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -531,9 +539,9 @@ class Blog3 extends BaseBlog {
               </ComposerLink>
             )}
             {description && (
-              <Base.P className={this.decorateCSS("description")}>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {data.description}
-              </Base.P>
+              </Base.SectionDescription>
             )}
 
             {(data.profileImage || description || fullNameExist) && (
@@ -665,7 +673,7 @@ class Blog3 extends BaseBlog {
               )}
             </header>
           )}
-          <Base.ListGrid gridCount={{ pc: itemCountInARow , tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
+          <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
           {(rightSideTextExist || !!icons.rightSideIcon) && (
@@ -694,3 +702,4 @@ class Blog3 extends BaseBlog {
 }
 
 export default Blog3;
+

@@ -69,6 +69,8 @@
         .item-container {
           width: 100%;
           height: 100%;
+          position: relative;
+          overflow: hidden;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -78,6 +80,22 @@
           border-radius: var(--border-radius-sm);
           color: var(--composer-primary-color);
           transition: all 0.2s ease-in-out;
+ 
+          .background-media {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+
+            .background-media-element {
+              width: 100%;
+              height: 100%;
+              display: block;
+              object-fit: cover;
+            }
+          }
 
           .overlay-content {
             width: 100%;
@@ -90,6 +108,7 @@
             border-radius: var(--composer-border-radius-md);
             transition: background-color 0.2s ease-in-out;
             color: var(--composer-font-color-primary);
+            z-index: 2;
 
             .home-link {
               content: "";

@@ -24,6 +24,13 @@ class IntroSection1 extends BaseIntroSection {
     });
 
     this.addProp({
+      type: "string",
+      key: "descriptionText",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "description",
       displayer: "Descriptions",
@@ -78,7 +85,7 @@ class IntroSection1 extends BaseIntroSection {
           type: "media",
           key: "thumbnail",
           displayer: "Media Thumbnail",
-          additionalParams: { availableTypes: ["image"] },
+          additionalParams: { availableTypes: ["image","video"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690b2d873596a1002b1e6a4d?alt=media" }
         },
         {
@@ -134,13 +141,14 @@ class IntroSection1 extends BaseIntroSection {
   const buttons = this.castToObject<Array<any>>("buttons") || [];
   const isPlaying = this.getComponentState("isPlaying");
   const alignment = Base.getContentAlignment();
-
+  const descriptionText = this.getPropValue("descriptionText");
+  const descriptionExist = this.castToString(descriptionText);
   const isVideo = !!(video?.url);
   const hasRightContainer = !!(isVideo || thumbnail);
   const hasAnyDescription = Array.isArray(descriptions) && descriptions.some((d: any) => this.castToString(d?.title) || this.castToString(d?.text) || d?.icon);
   const hasAnyButton = Array.isArray(buttons) && buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
   const hasTitle = this.castToString(title);
-  const hasLeftContainer = !!(hasTitle || hasAnyDescription || hasAnyButton);
+  const hasLeftContainer = !!(hasTitle || descriptionExist || hasAnyDescription || hasAnyButton);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -247,3 +255,4 @@ class IntroSection1 extends BaseIntroSection {
 }
 
 export default IntroSection1;
+

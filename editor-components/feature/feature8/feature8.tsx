@@ -36,6 +36,13 @@ class Feature8 extends BaseFeature {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -420,6 +427,12 @@ class Feature8 extends BaseFeature {
             )}
           </Base.VerticalContent>
           )}
+          {descriptionExist && (
+            <Base.SectionDescription className={this.decorateCSS("description")}>
+              {description}
+            </Base.SectionDescription>
+          )}
+          </Base.VerticalContent>
           {cards?.length > 0 && (
             <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 , tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card) => {

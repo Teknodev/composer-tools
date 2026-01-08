@@ -2,10 +2,11 @@
 import React, { useState } from 'react'
 import styles from "./Accordion.module.scss";
 import { Base } from 'composer-tools/composer-base-components/base/base';
+import { TypeMediaInputValue } from 'composer-tools/editor-components/EditorComponent';
 interface AccordionProps {
     title: string;
     children: React.ReactNode;
-    icon?: string;
+    icon?: TypeMediaInputValue;
     headerClassName?: string;
     contentClassName?: string;
     openClassName?: string;
@@ -34,12 +35,12 @@ const Accordion = ({
     return (
         <div className={styles["accordion"]}>
             <div className={`${styles["accordionHeader"]} ${headerClassName || ''}`} onClick={handleToggle}>
-                <h3 className={`${styles["accordionTitle"]} ${titleClassName || ''}`}>{title}</h3>
-                {icon && <Base.Icon name={icon} propsIcon={{className: `${styles["accordionIcon"]} ${isOpen ? styles["open"] : ''} ${accordionIconClassName || ''}`}}/>}
+                <Base.P className={`${styles["accordionTitle"]} ${titleClassName || ''}`}>{title}</Base.P>
+                {icon && <Base.Media value={icon} className={`${styles["accordionIcon"]} ${isOpen ? styles["open"] : ''} ${accordionIconClassName || ''}`}/>}
             </div>
-            <div className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`} onClick={handleClose}>
+            <Base.P className={`${styles["accordionContent"]} ${isOpen ? styles[openClassName] : ''} ${contentClassName || ''}`} onClick={handleClose}>
                 {children}
-            </div>
+            </Base.P>
         </div>
     )
 }

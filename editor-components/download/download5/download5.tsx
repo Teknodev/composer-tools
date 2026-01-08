@@ -34,9 +34,9 @@ class Download5 extends BaseDownload {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",
@@ -84,7 +84,8 @@ class Download5 extends BaseDownload {
     const backgroundImageUrl = backgroundImage && backgroundImage.url ? backgroundImage.url : null;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`} style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}>
+        <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`}>
+        <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("page")} ${!backgroundImageUrl && this.decorateCSS("no-image")}`}>
             {(subtitleExist || titleExist || descExist) && 

@@ -22,9 +22,9 @@ class Comparison1 extends BaseComparison {
     this.addProp({
       type: "media",
       key: "cover-image",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",
@@ -92,9 +92,9 @@ class Comparison1 extends BaseComparison {
             {
               type: "media",
               key: "leftImage",
-              displayer: "Left Image",
+              displayer: "Left Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -110,9 +110,9 @@ class Comparison1 extends BaseComparison {
             {
               type: "media",
               key: "rightImage",
-              displayer: "Right Image",
+              displayer: "Right Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -170,12 +170,13 @@ class Comparison1 extends BaseComparison {
     const subtitle = this.getPropValue("subtitle");
     const isSubtitleExist = this.castToString(subtitle);
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: coverImage?.url && `url(${coverImage.url})`,
-        }}
-      >
+      <Base.Container className={this.decorateCSS("container")}>
+        {coverImage && (
+          <div className={this.decorateCSS("background-media")}>
+            <Base.Media value={coverImage} className={this.decorateCSS("background-media-element")} />
+          </div>
+        )}
+        {overlay && coverImage && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("up-page")}>
             {isSubtitleExist && (
