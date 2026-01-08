@@ -2,8 +2,8 @@ import * as React from "react";
 import styles from "./hero-section29.module.scss";
 import { BaseHeroSection } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { Form, Formik } from "formik";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import * as Yup from "yup";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
@@ -16,11 +16,27 @@ interface ServiceItem {
 class HeroSection29 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "" },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
     this.addProp({
       type: "string",
       key: "mainTitle",
       displayer: "Title",
-      value: "Real Estate Investments",
+      value: "Real <span style='color: var(--composer-secondary-color)'>Estate</span> Investments"
     });
     this.addProp({
       type: "string",
@@ -29,27 +45,40 @@ class HeroSection29 extends BaseHeroSection {
       value:
         "We offer a range of amenities that raise the standard of the property and thus potentially increase rental income",
     });
+
     this.addProp({
       type: "boolean",
       key: "reverser",
-      displayer: "Reverse direction",
-      value: true,
+      displayer: "Reverse Direction",
+      value: false,
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "CALL ME BACK", null, null, null, "Primary"));
 
     this.addProp({
       type: "string",
       key: "placeholder",
-      displayer: "Placeholder",
+      displayer: "Placeholder Text",
       value: "Your phone number",
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a253bd2970002c626aa7?alt=media&timestamp=1719483639151",
+      displayer: "Media",
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a253bd2970002c626aa7?alt=media&timestamp=1719483639151",
+      },
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -76,10 +105,16 @@ class HeroSection29 extends BaseHeroSection {
                 "You just buy an apartment, and a professional hotel operator will do the rest for you",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaUserGear",
+              value: {
+                type: "icon",
+                name: "FaUserGear",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
             },
           ],
         },
@@ -102,10 +137,16 @@ class HeroSection29 extends BaseHeroSection {
                 "Guaranteed monthly incom is prescribed in advance in the contract selection",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "AiFillDollarCircle",
+              value: {
+                type: "icon",
+                name: "AiFillDollarCircle",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
             },
           ],
         },
@@ -142,14 +183,16 @@ class HeroSection29 extends BaseHeroSection {
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const logo = this.getPropValue("logo");
     const titleExist = this.castToString(this.getPropValue("mainTitle"));
-
     const descriptionExist = this.castToString(this.getPropValue("mainDescription"));
+
     const serviceItems = this.castToObject<ServiceItem[]>("serviceItems");
     const image = this.getPropValue("image");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const buttonTextExist = this.castToString(button.text);
-    const showContent = titleExist || descriptionExist || serviceItems.length > 0;
+    const showContent = logo || subtitleExist || titleExist || descriptionExist || serviceItems.length > 0;
 
     const submitText = this.getPropValue("submitText");
 
@@ -159,31 +202,44 @@ class HeroSection29 extends BaseHeroSection {
           <div
             className={`${this.decorateCSS("wrapper")} ${this.getPropValue("reverser") &&
               this.decorateCSS("wrapper-reverse")
-              } ${!showContent || !image ? this.decorateCSS("center") : ""}`}
+              } ${!showContent || !image ? this.decorateCSS("center") : ""} ${image ? this.decorateCSS("with-image") : ""}`}
           >
             {showContent && (
               <Base.VerticalContent className={this.decorateCSS("content")}>
-                {(titleExist || descriptionExist) &&
+                {(titleExist || descriptionExist || subtitleExist || logo) &&
                   <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {this.getPropValue("logo") && (
+                      <Base.Media
+                        value={this.getPropValue("logo")}
+                        className={this.decorateCSS("logo")}
+                      />
+                    )}
+
+                    {this.castToString(this.getPropValue("subtitle")) && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
+                    )}
+
                     {titleExist && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("mainTitle")}
                       </Base.SectionTitle>
                     )}
                     {descriptionExist && (
-                      <Base.P className={this.decorateCSS("description")}>
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
                         {this.getPropValue("mainDescription")}
-                      </Base.P>
+                      </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>}
 
-                {placeholder && buttonTextExist && (
+                {buttonTextExist && (placeholder ? (
                   <Formik
                     initialValues={{ phone: "" }}
                     validationSchema={this.validationSchema}
                     onSubmit={(data, { resetForm }) => {
                       this.setComponentState("placeholderText", this.castToString(submitText));
-                      this.insertForm("Call Me Back", data);
+                      this.insertForm("HS9 - NewsletterForm", data);
                       setTimeout(() => {
                         const defaultPlaceholder = this.getPropValue("placeholder");
                         this.setComponentState(
@@ -226,20 +282,26 @@ class HeroSection29 extends BaseHeroSection {
 
                         {buttonTextExist && (
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         )}
                       </Form>
                     )}
                   </Formik>
-                )}
+                ) : (
+                  <ComposerLink path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                ))}
 
                 {serviceItems && (
                   <Base.ListGrid className={this.decorateCSS("service-card-list")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
                     {serviceItems.map((item: any, index: number) => (
                       <Base.VerticalContent className={this.decorateCSS("service-card")}>
                         <div className={this.decorateCSS("service-svg")}>
-                          <Base.Icon name={item.icon} />
+                          <Base.Media className={this.decorateCSS("icon")} value={item.icon} />
                         </div>
                         <Base.H4 className={this.decorateCSS("service-title")}>
                           {item.title}
@@ -255,7 +317,10 @@ class HeroSection29 extends BaseHeroSection {
             )}
             {image && (
               <div className={this.decorateCSS("image-container")}>
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} alt="" />
+                <Base.Media className={this.decorateCSS("image")} value={this.getPropValue("image")} />
+                {this.getPropValue("overlay") && (
+                  <div className={this.decorateCSS("image-overlay")} />
+                )}
               </div>
             )}
           </div>
