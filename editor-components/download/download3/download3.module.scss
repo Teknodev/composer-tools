@@ -3,6 +3,11 @@
 .container {
   &.has-image {
     padding: 0;
+    .page{  
+      .group-container, .group-container-center{
+        padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+      }
+    }
   }
   .image-container {
     width: 100%;
@@ -32,7 +37,7 @@
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: 0px !important;
         gap: var(--composer-gap-lg);
 
         .title {
@@ -112,6 +117,13 @@
         }
       }
     }
+  }
+}
+
+.container.has-image .max-content .page {
+  .group-container,
+  .group-container-center {
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
   }
 }
 
