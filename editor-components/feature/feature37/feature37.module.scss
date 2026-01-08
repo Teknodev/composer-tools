@@ -21,12 +21,19 @@
             content: "";
         }
         
-        .button {
-            display: inline-flex;
-            .button-text {
-                content: "";
-            }
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-md);
+          justify-content: flex-start;
+          .button {
+            content: "";
+          }
+          .button-text {
+            content: "";
+          }
         }
+      }
     }
 
     .features-grid {
@@ -45,7 +52,7 @@
         justify-content: center;
         min-height: 100vh;
     }
-    
+
     .features-grid:not(:has(.image-wrapper)) {
         .features-list {
             flex: 1 0 100%;
@@ -188,7 +195,7 @@
             object-fit: cover;
         }
     }
-}
+
 
 @container (max-width: #{$composer-tablet-width}) {
      .container {

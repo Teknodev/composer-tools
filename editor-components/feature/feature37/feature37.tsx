@@ -36,7 +36,14 @@ class Feature37 extends BaseFeature {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
+     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", null, "" , null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "boolean",
@@ -163,15 +170,15 @@ class Feature37 extends BaseFeature {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const overlay = this.getPropValue("overlay");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
     const image = this.getPropValue("image");
     const list = (this.castToObject<ListItem[]>("items") || []);
     const filteredList = list.filter((item) => {
-      const hasTitle = this.castToString(item.title);
-      const hasText = this.castToString(item.text);
-      const hasIcon =
+    const hasTitle = this.castToString(item.title);
+    const hasText = this.castToString(item.text);
+    const hasIcon =
         (item.icon?.type === "icon" && item.icon.name) ||
         ((item.icon?.type === "image" || item.icon?.type === "video") &&
           item.icon.url);
@@ -212,14 +219,30 @@ class Feature37 extends BaseFeature {
                   </Base.SectionDescription>
                 )}
 
-                {this.castToString(button.text) && (
-                <ComposerLink path={button.url}>
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                  </Base.Button>
-                </ComposerLink>
-              )}
-
+                 {Array.isArray(buttons) && (() => {
+                  const validButtons = buttons.filter((item) => {
+                    const text = this.castToString(item.text || "");
+                    return !!text;
+                  });
+                  if (validButtons.length === 0) return null;
+                  return (
+                    <Base.Row className={this.decorateCSS("button-container")}>
+                      {validButtons.map((item, index) => {
+                        const buttonText = this.castToString(item.text || "");
+                        const buttonUrl = item.url || "#";
+                        return (
+                          <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {buttonText && (
+                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </Base.Row>
+                  );
+                })()}
               </Base.VerticalContent>
           )}
 
