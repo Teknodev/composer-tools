@@ -54,14 +54,13 @@
             .icon {
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
-              color: var(--composer-primary-color);
+              color: var(--composer-font-color-primary);
               font-size: 1.8rem;
               position: relative;
               z-index: 1;
-
-              &:hover {
-                color: var(--composer-secondary-color);
-              }
+            }
+            .icon-wrapper:hover .icon {
+              color: var(--composer-font-color-secondary);
             }
             &[data-animation~="animate1"] {
               &::before {
@@ -75,12 +74,13 @@
                 border-radius: 50%;
                 background-color: var(--composer-font-color-primary);
                 z-index: 0;
-                transition: transform 0.25s ease, opacity 0.25s ease;
+                transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.2s ease;
                 opacity: 0;
               }
               &:hover::before {
                 transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
+                background-color: var(--composer-primary-color);
               }
             }
           }
@@ -93,7 +93,7 @@
           .divider {
             display: block;
             height: 1px;
-            background-color: var(--composer-primary-color);
+              background-color: var(--composer-font-color-primary);
             margin: 0 var(--composer-gap-sm);
             width: 200px !important;
             align-self: center;
@@ -164,7 +164,7 @@
           .phone {
             color: var(--composer-font-color-primary);
             width: fit-content;
-            border-bottom: solid 2px var(--composer-primary-color);
+            border-bottom: solid 2px var(--composer-font-color-primary);
             margin: 0;
             padding: 0;
             text-align: left;
