@@ -94,7 +94,7 @@ class Download7 extends BaseDownload {
           <div className={this.decorateCSS("wrapper")} style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}>
             {overlay && backgroundImageUrl && <div className={this.decorateCSS("overlay")}></div>}
 
-            <Base.VerticalContent className={`${this.decorateCSS("content-container")} ${backgroundImageUrl && this.decorateCSS("image")}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("content-container")} ${backgroundImageUrl && this.decorateCSS("image")} ${!backgroundImageUrl && alignmentValue === "left" ? this.decorateCSS("no-image-left") : ""} ${!backgroundImageUrl && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""}`}>
               {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageUrl && this.decorateCSS("with-image")} ${hideBadge ? this.decorateCSS("no-badge") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{title}</Base.SectionTitle>}
               {descExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{description}</Base.SectionDescription>}

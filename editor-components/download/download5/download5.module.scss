@@ -32,6 +32,20 @@ $min-height: 500px;
       &.no-image{
         width: 100%;
       }
+        &.image-center{
+          align-items: flex-start;
+          .header {
+            .title,
+            .description,
+            .subtitle {
+              text-align: left !important;
+              margin-left: 0 !important;
+            }
+          }
+          .buttons-container{
+            place-self: flex-start;
+          }
+        }
 
       .header {
         .title,
