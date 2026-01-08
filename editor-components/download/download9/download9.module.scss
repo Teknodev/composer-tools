@@ -18,7 +18,7 @@
       }
 
       &.no-image {
-        min-height: 250px;
+        min-height: fit-content;
       }
     .background-image {
       position: absolute;
@@ -72,6 +72,20 @@
       }
       .buttons-container {
         align-items: center;
+      }
+    }
+  }
+  &.no-image {
+    .max-content {
+      height: fit-content !important;
+      min-height: fit-content !important;
+      .middle-container,
+      .hover-container {
+        padding: 0 !important;
+      }
+      .middle-container {
+        min-height: fit-content !important;
+        height: fit-content !important;
       }
     }
   }

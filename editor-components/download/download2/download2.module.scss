@@ -11,6 +11,8 @@
         .card {
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
           gap: var(--composer-gap-md);
           padding: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -37,6 +39,7 @@
           }
 
           .device, .platform, .card-description {
+            text-align: left !important;
             color: var(--composer-font-color-primary);
             margin: 0;
           }

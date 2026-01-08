@@ -7,7 +7,7 @@
     gap: var(--composer-gap-lg);
 
     .header {
-      align-items: center;
+      align-items: flex-start;
       .subtitle {
         text-align: center;
         transform: translateX(0);
@@ -17,6 +17,7 @@
       }
       .title {
         text-align: center;
+        margin: 0 0 var(--composer-gap-xs) 0;
         &.title-variant{
           position: relative;
           margin-bottom: var(--composer-gap-lg);
@@ -31,6 +32,15 @@
             border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
           }
         }
+      }
+
+      .title-line {
+        width: 100px;
+        border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
+        margin: var(--composer-gap-xs) auto var(--composer-gap-lg);
+      }
+      .subtitle, .title, .description {
+        margin: 0;
       }
       .description {
         text-align: center;

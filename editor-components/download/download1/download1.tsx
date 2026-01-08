@@ -70,7 +70,8 @@ class Download1 extends BaseDownload {
           {(titleExist || subtitleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${line && this.decorateCSS("title-variant")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {line && <div className={this.decorateCSS("title-line")}></div>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
             </Base.VerticalContent>
           )}
