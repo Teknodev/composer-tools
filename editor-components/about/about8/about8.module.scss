@@ -8,11 +8,15 @@
     gap: var(--composer-gap-lg);
 
     .title-container {
-      .description {
-        content: "";
-      }
+      .description,
       .title {
-        content: "";
+        text-align: left !important;
+      }
+      &.with-image {
+        .title-container, .title,
+        .description {
+          text-align: left !important;
+        }
       }
     }
 

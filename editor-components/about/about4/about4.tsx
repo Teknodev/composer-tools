@@ -43,6 +43,8 @@ class About4 extends BaseAbout {
         const title = this.getPropValue("title");
         const leftText = this.getPropValue("leftText");
         const rightText = this.getPropValue("rightText");
+        const singleText = (this.castToString(leftText) && !this.castToString(rightText)) || (!this.castToString(leftText) && this.castToString(rightText));
+
 
         const showContent = this.castToString(subTitle) || this.castToString(title) || this.castToString(leftText) || this.castToString(rightText);
         const showTextContainer = this.castToString(leftText) || this.castToString(rightText);
@@ -63,7 +65,7 @@ class About4 extends BaseAbout {
                                 </Base.SectionTitle>
                             )}
                             {showTextContainer && (
-                                <div className={this.decorateCSS("text-container")}>
+                                <div className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
                                     {this.castToString(leftText) && (
                                         <Base.SectionDescription className={this.decorateCSS("left-text")}>
                                             {leftText}

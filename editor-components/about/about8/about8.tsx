@@ -137,7 +137,7 @@ class About8 extends BaseAbout {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(descriptionExist || hasTitle) && (
-            <Base.VerticalContent className={this.decorateCSS("title-container")}>
+            <Base.VerticalContent className={`${this.decorateCSS("title-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
               {hasTitle && (
             <Base.SectionTitle className={this.decorateCSS("title")}>
               {title}

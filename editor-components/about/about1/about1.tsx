@@ -34,9 +34,9 @@ class About1 extends BaseAbout {
     this.addProp({
       type: "media",
       key: "icon",
-      displayer: "Icon",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon","image"],
       },
       value: {
         type: "icon",
@@ -145,9 +145,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -170,9 +170,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -195,9 +195,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -220,9 +220,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",

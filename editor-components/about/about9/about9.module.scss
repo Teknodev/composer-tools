@@ -27,6 +27,11 @@
         display: flex;
         gap: var(--composer-gap-md);
         align-items: center;
+        &.with-image {
+          .title {
+            text-align: left !important;
+          }
+        }
         .title {
           flex: 1;
           width: 100%;

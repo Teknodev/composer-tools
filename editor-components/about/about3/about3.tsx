@@ -57,9 +57,9 @@ class About3 extends BaseAbout {
     this.addProp({
       type: "media",
       key: "phoneIcon",
-      displayer: "Icon",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon","image"],
       },
       value: {
         type: "icon",
@@ -229,18 +229,21 @@ class About3 extends BaseAbout {
                 className={`${this.decorateCSS("image-container")} ${(!isImage1Exist || !isImage2Exist) && this.decorateCSS("center-single-image")}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
-                <div className={this.decorateCSS("image-text")}>
-                  {isRightWeakTextExist && (
-                    <Base.P className={this.decorateCSS("upper-text")}>
-                      {this.getPropValue("rightWeakText")}
-                    </Base.P>
-                  )}
-                  {isRightBoldTextExist && (
-                    <Base.H2 className={this.decorateCSS("lower-text")}>
-                      {this.getPropValue("rightBoldText")}
-                    </Base.H2>
-                  )}
-                </div>
+              
+                {(isImage1Exist || isImage2Exist) && (isRightWeakTextExist || isRightBoldTextExist) && (
+                  <div className={this.decorateCSS("image-text")}>
+                    {isRightWeakTextExist && (
+                      <Base.P className={this.decorateCSS("upper-text")}>
+                        {this.getPropValue("rightWeakText")}
+                      </Base.P>
+                    )}
+                    {isRightBoldTextExist && (
+                      <Base.H2 className={this.decorateCSS("lower-text")}>
+                        {this.getPropValue("rightBoldText")}
+                      </Base.H2>
+                    )}
+                  </div>
+                )}
                 {isImage1Exist && (
                   <div className={`${this.decorateCSS("back-image")} ${!isImage2Exist ? this.decorateCSS("no-image") : ""}`}>
                     <Base.Media value={backMedia} className={this.decorateCSS("image")} />
