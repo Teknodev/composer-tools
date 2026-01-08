@@ -200,7 +200,7 @@ class About16 extends BaseAbout {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                        <Base.VerticalContent className={this.decorateCSS("header-content")}>
                             {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                             {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                             {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
@@ -234,7 +234,7 @@ class About16 extends BaseAbout {
                                                         />
                                                     )}
                                                     {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
-                                                    <div className={this.decorateCSS("text-content")}>
+                                                    <div className={this.decorateCSS("card-overlay-content")}>
                                                         {item.icon && (
                                                             <div className={this.decorateCSS("icon-wrapper")}>
                                                                 {item.icon && (<Base.Media value={item.icon} className={this.decorateCSS("icon")} />)}
