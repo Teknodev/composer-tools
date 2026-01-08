@@ -36,7 +36,7 @@ class Feature37 extends BaseFeature {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get In Tocuh!", "", null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "boolean",
