@@ -14,18 +14,18 @@ type Card = {
 class List9 extends BaseList {
     constructor(props?: any) {
         super(props, styles);
-        
+
         this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Smart solutions",
+            value: "",
         });
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "What we offer",
+            value: "",
         });
         this.addProp({
             type: "string",
@@ -253,7 +253,7 @@ class List9 extends BaseList {
         const subtitle = this.getPropValue("subtitle");
         const description = this.getPropValue("description");
         const imageOverlay = this.getPropValue("overlay");
-        
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -274,7 +274,7 @@ class List9 extends BaseList {
                             </Base.SectionDescription>
                         )}
                     </Base.VerticalContent>
-                    
+
                 </Base.MaxContent>
                 <Base.ListGrid
                     gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }}
@@ -313,9 +313,9 @@ class List9 extends BaseList {
                                             {card.title}
                                         </Base.H4>
                                     )}
-                                        <Base.SectionDescription className={this.decorateCSS("card-description")}>
-                                            {card.description}
-                                        </Base.SectionDescription>
+                                    <Base.SectionDescription className={this.decorateCSS("card-description")}>
+                                        {card.description}
+                                    </Base.SectionDescription>
                                 </Base.VerticalContent>
                             </div>
                         )

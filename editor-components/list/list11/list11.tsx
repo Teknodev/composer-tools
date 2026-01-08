@@ -67,7 +67,7 @@ class List11 extends BaseList {
                             type: "media",
                             key: "itemImage",
                             displayer: "Media",
-                            value: {    
+                            value: {
                                 type: "image",
                                 url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-01.svg"
                             },
@@ -260,7 +260,7 @@ class List11 extends BaseList {
                                     </Base.SectionTitle>
                                 )}
                             </Base.VerticalContent>
-                                {this.castToString(description) && (
+                            {this.castToString(description) && (
                                 <div className={this.decorateCSS("description-container")}>
                                     <Base.SectionDescription className={this.decorateCSS("section-description")}>
                                         {description}
@@ -268,7 +268,7 @@ class List11 extends BaseList {
                                 </div>
                             )}
                         </Base.VerticalContent>
-                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
+                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => (
                                 <div key={index} className={this.decorateCSS("card")}
                                     data-animation={this.getPropValue("hoverAnimation").join(" ")}>

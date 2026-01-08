@@ -1,17 +1,20 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
-  .max-content {    
+  .max-content {
     .header-section {
-      .subtitle, .title {
+
+      .subtitle,
+      .title {
         content: "";
       }
     }
-    
+
     .items-wrapper {
       .list-item {
         height: 100%;
+
         .item-content {
           height: 100%;
           border: var(--composer-border-width-xs) solid var(--composer-primary-color);
@@ -39,15 +42,13 @@
               inset: calc(-1 * var(--composer-border-width-sm));
               border-radius: var(--composer-border-radius-sm);
               padding: var(--composer-border-width-sm);
-              background: linear-gradient(
-                45deg,
-                transparent 0%,
-                transparent 40%,
-                var(--composer-primary-color) 45%,
-                var(--composer-primary-color) 55%,
-                transparent 60%,
-                transparent 100%
-              );
+              background: linear-gradient(45deg,
+                  transparent 0%,
+                  transparent 40%,
+                  var(--composer-primary-color) 45%,
+                  var(--composer-primary-color) 55%,
+                  transparent 60%,
+                  transparent 100%);
               background-size: 300% 300%;
               animation: rotatingBorder 2s linear 1 forwards;
               -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
@@ -70,13 +71,11 @@
               inset: calc(-1 * var(--composer-border-width-sm));
               border-radius: var(--composer-border-radius-sm);
               padding: var(--composer-border-width-sm);
-              background: conic-gradient(
-                from var(--angle),
-                rgba(var(--composer-primary-color-rgb), 1) 0deg 90deg,
-                rgba(var(--composer-primary-color-rgb), 0.3) 90deg 180deg,
-                rgba(var(--composer-primary-color-rgb), 1) 180deg 270deg,
-                rgba(var(--composer-primary-color-rgb), 0.3) 270deg 360deg
-              );
+              background: conic-gradient(from var(--angle),
+                  rgba(var(--composer-primary-color-rgb), 1) 0deg 90deg,
+                  rgba(var(--composer-primary-color-rgb), 0.3) 90deg 180deg,
+                  rgba(var(--composer-primary-color-rgb), 1) 180deg 270deg,
+                  rgba(var(--composer-primary-color-rgb), 0.3) 270deg 360deg);
               animation: rotate 3s linear infinite;
               -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
                 linear-gradient(var(--color-white) 0 0);
@@ -97,11 +96,25 @@
             color: var(--composer-primary-color);
             margin: 0;
           }
+
+          .item-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 2.5rem;
+            color: var(--composer-primary-color);
+          }
+
+          .item-subtitle {
+            content: "";
+            margin: 0;
+          }
+
           .item-title {
             content: "";
             color: var(--composer-font-color-primary);
             margin: 0;
           }
+
           .description {
             content: "";
             color: var(--composer-font-color-primary);
@@ -110,15 +123,18 @@
         }
       }
     }
+
     .button-wrapper {
       margin-top: var(--composer-gap-md);
       display: flex;
       justify-content: center;
+
       .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
       }
+
       .button-text {
         content: "";
       }
@@ -130,6 +146,7 @@
   0% {
     background-position: 0% 0%;
   }
+
   100% {
     background-position: 100% 0%;
   }
@@ -152,6 +169,7 @@
     .max-content {
       .items-wrapper {
         gap: var(--composer-gap-sm);
+
         .list-item {
           .item-content {
             padding: var(--composer-gap-md);
@@ -167,6 +185,7 @@
     .max-content {
       .items-wrapper {
         gap: var(--composer-gap-sm);
+
         .list-item {
           .item-content {
             padding: var(--composer-gap-sm);

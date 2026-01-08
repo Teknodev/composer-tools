@@ -20,7 +20,7 @@ class List10 extends BaseList {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Latest updates",
+            value: "Discover AI-Enhanced Visual Stories",
         });
         this.addProp({
             type: "string",
@@ -211,23 +211,25 @@ class List10 extends BaseList {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("header")}>
-                        {this.castToString(subtitle) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                {subtitle}
-                            </Base.SectionSubTitle>
-                        )}
-                        {this.castToString(title) && (
-                            <Base.SectionTitle className={this.decorateCSS("header-title")}>
-                                {title}
-                            </Base.SectionTitle>
-                        )}
-                        {this.castToString(description) && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {description}
-                            </Base.SectionDescription>
-                        )}
-                    </Base.VerticalContent>
+                    {(this.castToString(subtitle) || this.castToString(title)) && (
+                        <div className={`${this.decorateCSS("up-page")} ${styles[Base.getContentAlignment()]} ${styles[Base.getViewType()]}`}>
+                            {this.castToString(title) && (
+                                <Base.H1 className={this.decorateCSS("title")}>
+                                    {title}
+                                </Base.H1>
+                            )}
+                            {this.castToString(subtitle) && (
+                                <Base.H4 className={this.decorateCSS("subtitle")}>
+                                    {subtitle}
+                                </Base.H4>
+                            )}
+                        </div>
+                    )}
+                    {this.castToString(description) && (
+                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                            {description}
+                        </Base.SectionDescription>
+                    )}
                     <Base.ListGrid
                         gridCount={{ pc: this.getPropValue("itemCount"), tablet: Math.min(3, this.getPropValue("itemCount")) }}
                         className={this.decorateCSS("cards-grid")}

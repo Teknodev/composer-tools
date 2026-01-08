@@ -1,17 +1,51 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
-    
-    .header {
-      .subtitle {
-        content: "";
+    gap: var(--composer-gap-md);
+
+    .up-page {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-lg);
+
+      &.center {
+        flex-direction: column;
+        gap: 0px;
+
+        .title,
+        .subtitle {
+          text-align: center;
+          margin-bottom: var(--composer-gap-md);
+        }
+        .description {
+            content: "";
+        }
       }
-      .header-title {
-        content: "";
+
+      &.monochrome {
+
+        .subtitle,
+        .title {
+          color: var(--composer-font-color-primary);
+        }
+      }
+
+      .title {
+        margin-top: 0px;
+        width: 100%;
+        color: var(--composer-primary-color);
+        text-align: left;
+      }
+
+      .subtitle {
+        margin-top: 0px;
+        width: 100%;
+        color: var(--composer-primary-color);
+        text-align: right;
       }
     }
 
@@ -19,6 +53,8 @@
       width: 100%;
       grid-auto-rows: 1fr;
       align-items: stretch;
+      margin-top: var(--composer-gap-lg);
+
       .card {
         display: flex;
         flex-direction: column;
@@ -31,13 +67,12 @@
         opacity: 1;
         padding: var(--composer-gap-lg);
         border-radius: var(--composer-border-radius-md);
-        background: color-mix(
-          in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%
-        );
+        background: color-mix(in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%);
 
         &[data-animation=""]:hover {
+
           .description,
           .badge,
           .bottom-text {
@@ -51,11 +86,13 @@
 
         &[data-animation~="animate1"] {
           &:hover {
+
             .description,
             .badge,
             .bottom-text {
               color: white;
             }
+
             .image-container {
               mask-size: 300% 300%;
               mask-position: 50% 50%;
@@ -71,11 +108,9 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: linear-gradient(
-              355deg,
-              var(--composer-primary-color),
-              rgba(255, 160, 94, 0) 87.33%
-            );
+            background: linear-gradient(355deg,
+                var(--composer-primary-color),
+                rgba(255, 160, 94, 0) 87.33%);
             z-index: -1;
             opacity: 0;
             pointer-events: none;
@@ -138,6 +173,7 @@
         }
 
         &[data-animation="animate3"]:hover {
+
           .badge,
           .description,
           .bottom-text {
@@ -157,6 +193,7 @@
           align-self: flex-start;
           text-align: left;
           width: 100%;
+
           * {
             max-width: 100%;
             overflow: hidden;
@@ -195,10 +232,12 @@
             border-radius: inherit;
           }
         }
+
         .image-spacer {
           padding-top: 280px;
           flex: 0 0 auto;
         }
+
         .description {
           content: "";
           margin-top: 0px;
@@ -208,6 +247,7 @@
           color: var(--composer-font-color-primary);
           text-align: left;
         }
+
         .bottom-text {
           content: "";
           transition: all 0.3s ease;
@@ -217,15 +257,18 @@
         }
       }
     }
+
     .button-wrapper {
       display: flex;
       justify-content: center;
       margin-top: var(--composer-gap-md);
+
       .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
       }
+
       .button-text {
         content: "";
       }
@@ -238,6 +281,7 @@
     .max-content {
       .cards-grid {
         margin-top: var(--composer-gap-md);
+
         .card {
           width: 100% !important;
         }
@@ -250,9 +294,11 @@
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.02);
   }
+
   100% {
     transform: scale(1);
   }

@@ -1,4 +1,4 @@
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./list7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,6 +7,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 
 type listItem = {
+  icon: TypeMediaInputValue;
+  itemSubtitle: React.JSX.Element;
   text: React.JSX.Element;
   title: React.JSX.Element;
 }
@@ -50,26 +52,23 @@ class List7 extends BaseList {
           displayer: "List Items",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value:
-                "Contagious Energy",
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              key: "itemSubtitle",
+              displayer: "Item Subtitle",
+              value: "",
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "list-item",
-          displayer: "List Items",
-          value: [
             {
               type: "string",
               key: "title",
@@ -91,6 +90,63 @@ class List7 extends BaseList {
           key: "list-item",
           displayer: "List Items",
           value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+            },
+            {
+              type: "string",
+              key: "itemSubtitle",
+              displayer: "Item Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value:
+                "Contagious Energy",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "list-item",
+          displayer: "List Items",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+            },
+            {
+              type: "string",
+              key: "itemSubtitle",
+              displayer: "Item Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -161,33 +217,45 @@ class List7 extends BaseList {
             )}
           </Base.VerticalContent>
           {(ListItems.length > 0) && (
-            <Base.ListGrid className={this.decorateCSS("items-wrapper")} gridCount={{ pc: this.getPropValue("itemCount") }} >
+            <Base.ListGrid className={this.decorateCSS("items-wrapper")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} >
               {ListItems.map((item: any, index: number) => {
                 const hasTitle = this.castToString(item.title);
                 const hasText = this.castToString(item.text);
                 const showIndex = !!this.getPropValue("showIndex");
+                const itemSubtitleExist = !!String(this.castToString(item.itemSubtitle) || "").trim();
+                const iconValue = item.icon;
+                const iconExist = !!(
+                  iconValue &&
+                  ((iconValue.type === "icon" && (iconValue as any).name) || (iconValue.type === "image" && (iconValue as any).url))
+                );
                 if (!hasTitle && !hasText && !showIndex) return null;
                 return (
-                <div
-                  key={index}
-                  className={this.decorateCSS("list-item")}
-                >
-                  <Base.VerticalContent
-                    className={this.decorateCSS("item-content")}
-                    data-animation={this.getPropValue("hoverAnimation")}
+                  <div
+                    key={index}
+                    className={this.decorateCSS("list-item")}
                   >
-                    {showIndex && (
-                      <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
-                    )}
-                    {hasTitle && (
-                      <Base.H3 className={this.decorateCSS("item-title")}>{item.title}</Base.H3>
-                    )}
-                    {hasText && (
-                      <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
-                    )}
-                  </Base.VerticalContent>
-                </div>
-              );
+                    <Base.VerticalContent
+                      className={this.decorateCSS("item-content")}
+                      data-animation={this.getPropValue("hoverAnimation")}
+                    >
+                      {showIndex && (
+                        <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
+                      )}
+                      {iconExist && (
+                        <Base.Media value={item.icon} className={this.decorateCSS("item-icon")} />
+                      )}
+                      {itemSubtitleExist && (
+                        <Base.SectionSubTitle className={this.decorateCSS("item-subtitle")}>{item.itemSubtitle}</Base.SectionSubTitle>
+                      )}
+                      {hasTitle && (
+                        <Base.H3 className={this.decorateCSS("item-title")}>{item.title}</Base.H3>
+                      )}
+                      {hasText && (
+                        <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
+                      )}
+                    </Base.VerticalContent>
+                  </div>
+                );
               })}
             </Base.ListGrid>
           )}

@@ -239,7 +239,9 @@ class List6 extends BaseList {
           {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : this.decorateCSS("align-left")}`}>
               {this.castToString(subtitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle
+                  className={`${this.decorateCSS("subtitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                >
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
@@ -251,7 +253,9 @@ class List6 extends BaseList {
                 </Base.SectionTitle>
               )}
               {this.castToString(description) && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
+                <Base.SectionDescription
+                  className={`${this.decorateCSS("description")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                >
                   {description}
                 </Base.SectionDescription>
               )}

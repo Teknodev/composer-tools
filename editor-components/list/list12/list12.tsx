@@ -26,9 +26,24 @@ class List12 extends BaseList {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Simplifying Payments, Fast and Secure",
+    });
+
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -137,6 +152,8 @@ class List12 extends BaseList {
     const box1 = this.castToObject("box1");
     const box2 = this.castToObject("box2");
     const box3 = this.castToObject("box3");
+    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
     const box1IsIcon = box1?.item && box1.item.type === "icon";
     const box2IsIcon = box2?.item && box2.item.type === "icon";
     const box3IsIcon = box3?.item && box3.item.type === "icon";
@@ -177,10 +194,20 @@ class List12 extends BaseList {
               )}
             </div>
             <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {this.castToString(this.getPropValue("title")) && (
                 <Base.SectionTitle className={this.decorateCSS("section-wrapper")}>
                   <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia && this.decorateCSS("with-bg") }`}>{this.getPropValue("title")}</div>
                 </Base.SectionTitle>  
+              )}
+              {this.castToString(description) && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
               )}
               {box2.item && (
                 <div className={`${this.decorateCSS("circle")} ${box2IsIcon && this.decorateCSS("no-circle") } ${hasBackgroundMedia && this.decorateCSS("with-bg") } ${this.getPropValue("hoverAnimation").join(" ")}`}>

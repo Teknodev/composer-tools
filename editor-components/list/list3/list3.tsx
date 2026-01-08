@@ -202,7 +202,7 @@ class List3 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={this.decorateCSS("cards-grid") + " " + (alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center"))} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }}>
+          <Base.ListGrid className={this.decorateCSS("cards-grid") + " " + (alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center"))} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
             {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text) || iconExist) && (
               <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (

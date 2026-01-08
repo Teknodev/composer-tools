@@ -330,17 +330,17 @@ class List5 extends BaseList {
             {(ListItems.length > 0) && (
               <Base.ListGrid
                 className={`${this.decorateCSS("cards-grid")} ${isSingleColumn && this.decorateCSS("single-column")}`}
-                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3}}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
               >
                 {ListItems.map(
                   (listItem: any, index: number) => {
                     return (
                       <div key={index} className={this.decorateCSS("card-wrapper")}>
-                          <div
-                            className={this.decorateCSS("card")}
-                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                          >
-                           <ComposerLink path={listItem.url}>
+                        <div
+                          className={this.decorateCSS("card")}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                        >
+                          <ComposerLink path={listItem.url}>
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
                               <div className={this.decorateCSS("card-header")}>
                                 {listItem.uppericon && (
@@ -378,13 +378,13 @@ class List5 extends BaseList {
                               </Base.P>
                             )}
                             {listItem.lowericon && (
-                            <Base.Media
+                              <Base.Media
                                 value={listItem.lowericon}
                                 className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("media-el")}`}
                               />
                             )}
-                            </ComposerLink>
-                          </div>
+                          </ComposerLink>
+                        </div>
                       </div>
                     );
                   }
