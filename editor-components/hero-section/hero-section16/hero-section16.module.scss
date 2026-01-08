@@ -65,13 +65,13 @@
           z-index: 5;
           position: absolute;
           width: 90%;
-          display: flex;
-          flex-direction: column;
           align-items: center;
           top: 50%;
           left: 50%;
           text-align: center;
           color: white;
+          max-width: var(--composer-content-width);
+          margin: auto;
 
           &:not(.content-with-animation) {
             opacity: 1;
@@ -118,10 +118,10 @@
 
         .subtitle {
           font-size: 1.5rem !important;
-          margin: 0;
           color: white;
           text-align: center;
           width: fit-content;
+          line-height: normal;
 
           &.subtitle-no-image {
             color: var(--composer-font-color-primary);
@@ -130,7 +130,6 @@
 
         .title {
           font-size: 4rem !important;
-          margin: 0;
           color: white;
           text-align: center;
           width: fit-content;
@@ -142,10 +141,10 @@
         }
 
         .description{
-          margin: 0;
           color: white;
           width: fit-content;
           text-align: center;
+          line-height: normal;
 
           &.description-no-image {
             color: var(--composer-font-color-primary);

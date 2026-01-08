@@ -219,12 +219,19 @@
         color: var(--composer-font-color-primary);
         width: calc(100% - var(--composer-gap-lg) * 3);
         width: 85%;
-        .name {
+        .name, .social-icon {
           color: black;
 
           &.name-no-image {
             color: var(--composer-font-color-primary);
           }
+        }
+
+        .social-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 1.25rem;
+          object-fit: cover;
         }
       }
 

@@ -337,6 +337,13 @@ class HeroSection18 extends BaseHeroSection {
               displayer: "Text",
               value: "facebook",
             },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaFacebook" },
+            },
           ],
         },
         {
@@ -356,6 +363,13 @@ class HeroSection18 extends BaseHeroSection {
               displayer: "Text",
               value: "instagram",
             },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaInstagram" },
+            },
           ],
         },
         {
@@ -374,6 +388,13 @@ class HeroSection18 extends BaseHeroSection {
               key: "text",
               displayer: "Text",
               value: "dribbble",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaDribbble" },
             },
           ],
         },
@@ -435,7 +456,7 @@ class HeroSection18 extends BaseHeroSection {
     const sliderCount = slides?.length;
     const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
 
-    const socials = this.castToObject<Social[]>("socials");
+    const socials = this.castToObject<any[]>("socials");
 
     const prevIcon = this.getPropValue("prev_icon") as TypeMediaInputValue | undefined;
     const nextIcon = this.getPropValue("next_icon") as TypeMediaInputValue | undefined;
@@ -509,14 +530,15 @@ class HeroSection18 extends BaseHeroSection {
           {renderBottomPage && (
             <div className={this.decorateCSS("page-bottom")}>
               {socials?.length > 0 && (
-                <div className={this.decorateCSS("socials")}>
-                  {socials.map((item: Social, index: number) => (
+                <div className={this.decorateCSS("socials")}> 
+                  {socials.map((item: any, index: number) => (
                     <ComposerLink path={item.url} key={index}>
                       <Base.H5 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H5>
+                        {item.icon && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")}/>} 
                     </ComposerLink>
                   ))}
                 </div>
-              )}
+              )}pai
               {prevIconExist && slides.length > 1 && (
                 <div
                   className={`${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`}

@@ -309,7 +309,7 @@ class HeroSection16 extends BaseHeroSection {
                     </div>
                   )}
                   {contentExist && (
-                    <Base.MaxContent
+                    <Base.VerticalContent
                       className={`${this.decorateCSS("content")} 
               ${!imageExist && this.decorateCSS("image-no-content")} 
               ${animation && this.decorateCSS("content-with-animation")} 
@@ -330,7 +330,7 @@ class HeroSection16 extends BaseHeroSection {
                           </Base.Button>
                         </ComposerLink>
                       )}
-                    </Base.MaxContent>
+                    </Base.VerticalContent>
                   )}
                 </div>
               );
