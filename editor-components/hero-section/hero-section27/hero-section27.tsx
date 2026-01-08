@@ -452,6 +452,12 @@ class HeroSection27 extends BaseHeroSection {
       verticalSwap: sliderCount > 1,
       adaptiveHeight: true,
       dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+      customPaging: (i: any) => (
+        <div
+          className={`${this.decorateCSS("dot")} ${this.getComponentState("active-index") == i &&
+            this.decorateCSS("activeDot")
+          }`}></div>
+      ),
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex === newIndex) return;
         setTimeout(() => {

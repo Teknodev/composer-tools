@@ -66,6 +66,22 @@
           z-index: 10;
           margin: 0 !important;
           padding: 0 !important;
+
+          .dot, .activeDot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: black;
+            display: inline-block;
+          }
+
+          .dot {
+            opacity: 0.35;
+          }
+
+          .activeDot {
+            opacity: 1
+          }
         }
 
         .max-content {
