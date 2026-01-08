@@ -1,5 +1,4 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
-
 .container {
     width: 100%;
 
@@ -46,6 +45,24 @@
         justify-content: center;
         min-height: 100vh;
     }
+    
+    .features-grid:not(:has(.image-wrapper)) {
+        .features-list {
+            flex: 1 0 100%;
+            max-width: 100%;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--composer-gap-lg);
+        }
+        
+        .feature-card {
+            width: 100%;
+            height: 100%;
+            min-height: 150px;
+            .content {
+                flex: 1;
+            }
+        }
+    }
 
     .features-list {
         gap: var(--composer-gap-md);
@@ -61,7 +78,9 @@
 
     .features-list-full {
         width: 100%;
+        flex: 1 0 100%;
         gap: var(--composer-gap-md);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
 
     .feature-card {
@@ -73,10 +92,11 @@
         align-items: flex-start;
         text-align: left;
         margin-bottom: 0;
-        width: fit-content;
+        width: 100%;
         max-width: 100%;
         justify-self: start;
         min-width: 0;
+        box-sizing: border-box;
 
         .icon-container {
             flex-shrink: 0;
@@ -99,19 +119,22 @@
             align-items: flex-start;
             gap: var(--composer-gap-md);
             min-width: 0;
+            width: 100%;
 
             .item-title {
                 margin: 0;
-                text-align: justify;
+                text-align: left;
                 overflow-wrap: anywhere;
                 word-break: break-word;
+                width: 100%;
             }
 
             .item-description {
                 margin: 0;
-                text-align: justify;
+                text-align: left;
                 overflow-wrap: anywhere;
                 word-break: break-word;
+                width: 100%;
             }
         }
     }
@@ -168,7 +191,7 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container {
+     .container {
         .max-content {
             gap: var(--composer-gap-md);
         }
@@ -185,6 +208,7 @@
             gap: var(--composer-gap-sm);
             row-gap: var(--composer-gap-sm);
             column-gap: var(--composer-gap-sm);
+            flex: 0 1 50%;
         }
 
         .feature-card {
@@ -205,7 +229,7 @@
         .image-wrapper {
             width: 100%;
             max-width: 100%;
-            flex: 0 1 55%;
+            flex: 0 1 50%;
             aspect-ratio: auto;
 
             .image {
@@ -221,6 +245,7 @@
     }
 }
 
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
@@ -233,12 +258,13 @@
 
         .features-grid {
             flex-direction: column;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-lg);
             justify-content: center;
         }
 
         .features-list {
             gap: var(--composer-gap-xs);
+            flex: 1 0 100%;
         }
 
         .image-wrapper {
@@ -247,6 +273,8 @@
             line-height: 0;
             min-height: 250px;
             order: 1;
+            flex: 1 0 100%;
+            margin-top: var(--composer-gap-md);
 
             .image {
                 position: absolute;
