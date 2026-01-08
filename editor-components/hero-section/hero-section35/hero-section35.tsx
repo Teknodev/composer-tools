@@ -369,8 +369,26 @@ class HeroSection35 extends BaseHeroSection {
                                         </div>
                                     )}
                                     {customerBox && customerBox.visibility && Object.keys(customerBox).length > 1 && customerBoxExist && (
-                                        <div className={`${this.decorateCSS("box-area")} ${!rightCard.image ? this.decorateCSS("full-size") : ""}`}>
-                                            <div className={this.decorateCSS("customer-box")}>
+                                        <div className={this.decorateCSS("box-area") + (!rightCard.image ? ` ${this.decorateCSS("full-size")}` : "")}>
+                                            <svg className={this.decorateCSS("box-corner-left")}>
+                                                <defs>
+                                                    <mask id="cutout-topleft">
+                                                        <rect width="20" height="20" fill="white" />
+                                                        <path d="M0,0 L20,0 A20,20 0 0,1 0,20 Z" fill="black" />
+                                                    </mask>
+                                                </defs>
+                                                <rect width="20" height="20" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-topleft)" />
+                                            </svg>
+                                            <svg className={this.decorateCSS("box-corner-right")}>
+                                                <defs>
+                                                    <mask id="cutout-bottomright">
+                                                        <rect width="20" height="20" fill="white" />
+                                                        <path d="M20,0 A20,20 0 0,1 0,20 L0,0 Z" fill="black" />
+                                                    </mask>
+                                                </defs>
+                                                <rect width="20" height="20" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-bottomright)" />
+                                            </svg>
+                                            <div className={this.decorateCSS("customer-box")}> 
                                                 {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
                                                     {customerBox.customerImages && customerBox.customerImages.map((item: any, idx: number) => {
                                                         const mediaField = Array.isArray(item?.value) ? item.value.find((v: any) => v.type === 'media' || v.key === 'image') : item?.value;

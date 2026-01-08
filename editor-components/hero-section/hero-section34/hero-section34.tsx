@@ -16,6 +16,55 @@ interface Slider {
 }
 
 class HeroSection34 extends BaseHeroSection {
+    autoplayInterval?: ReturnType<typeof setInterval>;
+
+    componentDidMount() {
+      this.setComponentState("slideStatus", "idle");
+      this.setupAutoplay();
+    }
+
+    componentDidUpdate() {
+      this.setupAutoplay();
+    }
+
+    componentWillUnmount() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+      }
+    }
+
+    setupAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+      }
+      if (this.getPropValue("autoplay")) {
+        this.autoplayInterval = setInterval(() => {
+          if (this.getComponentState("slideStatus") === "idle") {
+            this.handleNextAutoplay();
+          }
+        }, 2000);
+      }
+    }
+
+    async handleNextAutoplay() {
+      const slides = this.castToObject<Slider[]>("slider");
+      const activeIndex = this.getComponentState("active-index");
+      const overlayActiveIndex = this.getComponentState("overlay-active-index");
+      const slideStatus = this.getComponentState("slideStatus");
+      if (slideStatus === "sliding") return;
+      this.setComponentState("contentAnimationClass", "animate__fadeOut");
+      await new Promise((r) => setTimeout(r, 500));
+      this.setComponentState("overlay-active-index", (overlayActiveIndex + 1) % slides.length);
+      this.setComponentState("slide-direction", "right");
+      await new Promise((r) => setTimeout(r, 10));
+      this.setComponentState("slideStatus", "sliding");
+      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
+      await new Promise((r) => setTimeout(r, 800));
+      this.setComponentState("active-index", (activeIndex + 1) % slides.length);
+      this.setComponentState("slideStatus", "ended");
+      await new Promise((r) => setTimeout(r, 1000));
+      this.setComponentState("slideStatus", "idle");
+    }
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
@@ -36,6 +85,14 @@ class HeroSection34 extends BaseHeroSection {
       },
       value: { type: "icon", name: "GrFormNext" },  
     });
+
+     this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "slider",
@@ -289,18 +346,12 @@ class HeroSection34 extends BaseHeroSection {
             </div>
 
             <div className={this.decorateCSS("slider")}> 
-              {slides.map((slide, idx) => (
-                slide.image ? (
-                  <Base.Media
-                    key={idx}
-                    value={slide.image}
-                    className={
-                      `${this.decorateCSS("image")} ${activeIndex === idx ? this.decorateCSS("active") : ""}`
-                    }
-                    style={{ display: "block", opacity: activeIndex === idx ? 1 : 0 }}
-                  />
-                ) : null
-              ))}
+              {activeSlide.image && (
+                <Base.Media
+                  value={activeSlide.image}
+                  className={`${this.decorateCSS("image")} ${this.decorateCSS("active")}`}
+                />
+              )}
             </div>
           </div>
           <div

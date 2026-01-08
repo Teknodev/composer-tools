@@ -37,6 +37,12 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
+          display: none;
+          opacity: 0;
+        }
+        .image.active {
+          display: block;
+          opacity: 1;
         }
       }
 
@@ -161,6 +167,7 @@
           width: 90%;
           &[data-has-image="true"] {
             align-items: center;
+            margin: 0 auto;
           }
         }
 
