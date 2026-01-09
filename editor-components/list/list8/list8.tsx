@@ -35,12 +35,6 @@ class List8 extends BaseList {
     });
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
-    });
-    this.addProp({
-      type: "string",
       key: "titledesc",
       displayer: "Description",
       value: "Aliquam sagittis consectetur ligulan aliquam turpis cursus at. In aliquet auguenec libero ultricies velit pellentesque.",
@@ -216,44 +210,45 @@ class List8 extends BaseList {
                   const hasNumber = this.castToString(item.number);
                   if (!hasTitle && !hasText && !hasIcon && !hasNumber) return null;
                   return (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("list-item")}
-                    data-animation={this.getPropValue("hoverAnimation")}
-                  >
-                    {this.castToString(item.number) && (
-                      <div className={this.decorateCSS("number-badge")}>
-                        <Base.H1 className={this.decorateCSS("index")}>
-                          {item.number}
-                        </Base.H1>
-                      </div>
-                    )}
-                    {item.icon && (
-                      <div className={this.decorateCSS("icon-wrapper")}>
-                        <div className={this.decorateCSS("icon-container")}>
-                          <Base.Media
-                            value={item.icon}
-                            className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
-                          />
+                    <div
+                      key={index}
+                      className={this.decorateCSS("list-item")}
+                      data-animation={this.getPropValue("hoverAnimation")}
+                    >
+                      {this.castToString(item.number) && (
+                        <div className={this.decorateCSS("number-badge")}>
+                          <Base.H1 className={this.decorateCSS("index")}>
+                            {item.number}
+                          </Base.H1>
                         </div>
-                      </div>
-                    )}
-                    {(this.castToString(item.title) || this.castToString(item.text)) && (
-                      <div className={this.decorateCSS("item-content")}>
-                        {this.castToString(item.title) && (
-                          <Base.H5 className={this.decorateCSS("item-title")}>
-                            {item.title}
-                          </Base.H5>
-                        )}
-                        {this.castToString(item.text) && (
-                          <Base.P className={this.decorateCSS("item-text")}>
-                            {item.text}
-                          </Base.P>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                )})}
+                      )}
+                      {item.icon && (
+                        <div className={this.decorateCSS("icon-wrapper")}>
+                          <div className={this.decorateCSS("icon-container")}>
+                            <Base.Media
+                              value={item.icon}
+                              className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      {(this.castToString(item.title) || this.castToString(item.text)) && (
+                        <div className={this.decorateCSS("item-content")}>
+                          {this.castToString(item.title) && (
+                            <Base.H5 className={this.decorateCSS("item-title")}>
+                              {item.title}
+                            </Base.H5>
+                          )}
+                          {this.castToString(item.text) && (
+                            <Base.P className={this.decorateCSS("item-text")}>
+                              {item.text}
+                            </Base.P>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </Base.ListGrid>
             )}
             {this.castToString(buttonType.text) && (

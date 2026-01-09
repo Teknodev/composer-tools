@@ -245,7 +245,7 @@ class List7 extends BaseList {
                         <Base.Media value={item.icon} className={this.decorateCSS("item-icon")} />
                       )}
                       {itemSubtitleExist && (
-                        <Base.SectionSubTitle className={this.decorateCSS("item-subtitle")}>{item.itemSubtitle}</Base.SectionSubTitle>
+                        <Base.H6 className={this.decorateCSS("item-subtitle")}>{item.itemSubtitle}</Base.H6>
                       )}
                       {hasTitle && (
                         <Base.H3 className={this.decorateCSS("item-title")}>{item.title}</Base.H3>

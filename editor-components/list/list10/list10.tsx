@@ -18,15 +18,15 @@ class List10 extends BaseList {
         super(props, styles);
         this.addProp({
             type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: "Discover AI-Enhanced Visual Stories",
-        });
-        this.addProp({
-            type: "string",
             key: "title",
             displayer: "Title",
             value: "The Latest Updates News & Blog",
+        });
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Text",
+            value: "Discover AI-Enhanced Visual Stories",
         });
         this.addProp({
             type: "string",
@@ -212,16 +212,16 @@ class List10 extends BaseList {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(this.castToString(subtitle) || this.castToString(title)) && (
-                        <div className={`${this.decorateCSS("up-page")} ${styles[Base.getContentAlignment()]} ${styles[Base.getViewType()]}`}>
+                        <div className={`${this.decorateCSS("up-page")} ${styles[Base.getViewType()]}`}>
                             {this.castToString(title) && (
                                 <Base.H1 className={this.decorateCSS("title")}>
                                     {title}
                                 </Base.H1>
                             )}
                             {this.castToString(subtitle) && (
-                                <Base.H4 className={this.decorateCSS("subtitle")}>
+                                <Base.H5 className={this.decorateCSS("subtitle")}>
                                     {subtitle}
-                                </Base.H4>
+                                </Base.H5>
                             )}
                         </div>
                     )}

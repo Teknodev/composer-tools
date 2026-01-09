@@ -21,8 +21,9 @@ as *;
           text-align: center;
           margin-bottom: var(--composer-gap-md);
         }
+
         .description {
-            content: "";
+          content: "";
         }
       }
 
@@ -284,6 +285,23 @@ as *;
 
         .card {
           width: 100% !important;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .up-page {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-md);
+
+        .title,
+        .subtitle {
+          text-align: center;
         }
       }
     }
