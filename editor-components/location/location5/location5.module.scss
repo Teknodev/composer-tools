@@ -16,9 +16,13 @@
         margin-top: 0;
         margin-bottom: var(--composer-gap-lg);
       }
+
       .subtitle,
-      .title {
-        content: "";
+      .title,
+      .location-description-header {
+        text-align: left !important;
+        align-items: flex-start !important;
+        margin-left: 0px;
       }
     }
   }
@@ -44,6 +48,13 @@
         .location-items {
           width: 40%;
 
+          .location-index,
+          .location-city,
+          .location-address,
+          .location-description {
+            text-align: left !important;
+          }
+
           .location-index {
             color: var(--composer-font-color-primary);
             margin-top: var(--composer-gap-md);
@@ -52,6 +63,7 @@
 
           .location-city {
             color: var(--composer-font-color-primary);
+            font-size: 1.5rem;
           }
 
           .location-address,
@@ -135,6 +147,7 @@
           font-size: 2.5rem;
         }
       }
+
       .wrapper {
         .map-container {
           .location-item {

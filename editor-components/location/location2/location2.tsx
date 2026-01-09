@@ -560,7 +560,7 @@ class Location2 extends Location {
                 {logo && <Base.Media value={logo} className={this.decorateCSS("location-logo")} />}
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
-                  <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
+                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
                   {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
                   {socials.length > 0 && (
                     <div className={this.decorateCSS("socials")}>
@@ -602,7 +602,7 @@ class Location2 extends Location {
                       {isContIconExist && <Base.Media value={item.contentIcon} className={this.decorateCSS("icon")} />}
                       {isContTitleExist && (
                         <div className={this.decorateCSS("content-title-container")}>
-                          <Base.H3 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H3>
+                          <Base.H4 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H4>
                         </div>
                       )}
                       {item.contentDescriptionArray.map((descItem: any, descIdx: number) => {

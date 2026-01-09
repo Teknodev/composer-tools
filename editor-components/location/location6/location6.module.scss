@@ -6,8 +6,11 @@
   .max-content {
     max-width: var(--composer-content-width);
     margin: 0 auto;
+
     .header {
-      .subtitle, .title {
+
+      .subtitle,
+      .title {
         text-align: left;
         margin-left: 0;
       }
@@ -63,7 +66,7 @@
             width: 100%;
             align-self: stretch;
             border-radius: var(--composer-border-radius-md);
-            min-height: 55px;
+            min-height: fit-content;
             box-sizing: border-box;
 
             .button-element {
@@ -82,6 +85,11 @@
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 font-size: var(--composer-font-size-sm) !important;
+
+                .info {
+                  font-size: var(--composer-font-size-xs);
+                  color: var(--composer-tertiary-color);
+                }
               }
 
               .icon {
@@ -147,6 +155,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     gap: 0;
+
     .wrapper {
       display: grid;
       grid-template-columns: 55% 45%;
@@ -207,6 +216,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
+
     .wrapper {
       display: flex;
       flex-direction: column;
@@ -229,6 +239,7 @@
                 .button-text {
                   content: "";
                 }
+
                 .icon {
                   content: "";
                 }

@@ -35,7 +35,7 @@
         .divider {
           width: 200px;
           height: 1px;
-          background-color: var(--composer-primary-color);
+          background-color: var(--composer-tertiary-color);
           margin: var(--composer-gap-sm) 0;
         }
 
@@ -59,9 +59,11 @@
               position: relative;
               z-index: 1;
             }
+
             .icon-wrapper:hover .icon {
               color: var(--composer-font-color-secondary);
             }
+
             &[data-animation~="animate1"] {
               &::before {
                 content: "";
@@ -77,6 +79,7 @@
                 transition: transform 0.25s ease, opacity 0.25s ease, background-color 0.2s ease;
                 opacity: 0;
               }
+
               &:hover::before {
                 transform: translate(-50%, -50%) scale(1);
                 opacity: 1;
@@ -85,43 +88,57 @@
             }
           }
         }
+
         .right-block {
           display: flex;
           align-items: center;
           margin-left: auto;
           gap: var(--composer-gap-sm);
+
           .divider {
             display: block;
             height: 1px;
-              background-color: var(--composer-font-color-primary);
+            background-color: var(--composer-tertiary-color);
             margin: 0 var(--composer-gap-sm);
             width: 200px !important;
             align-self: center;
           }
         }
+
         &.center {
           justify-content: center;
+
           .title-block {
             width: auto;
             text-align: center;
-            .title, .subtitle { text-align: left; }
+
+            .title,
+            .subtitle {
+              text-align: left;
+            }
           }
+
           .icon-container {
             margin-left: var(--composer-gap-md);
           }
+
           .divider {
             width: 200px;
           }
         }
+
         &.left {
           justify-content: flex-start;
+
           .title-block {
             width: auto;
             text-align: left;
           }
+
           .icon-container {
             margin-left: var(--composer-gap-xs);
           }
+
           .divider {
             width: 25%;
           }
@@ -161,6 +178,7 @@
           gap: var(--composer-gap-xs);
           display: inline-flex;
           width: auto;
+
           .phone {
             color: var(--composer-font-color-primary);
             width: fit-content;
@@ -174,17 +192,20 @@
         &.center {
           justify-content: center;
           gap: var(--composer-gap-md);
+
           .bottom-title {
             margin-right: var(--composer-gap-xs);
             max-width: 80%;
             padding: 0;
             text-align: center;
           }
+
           .phone-container {
             width: auto;
             display: flex;
             justify-content: center;
             gap: var(--composer-gap-xs);
+
             .phone {
               text-align: center;
             }
@@ -290,14 +311,21 @@
           gap: var(--composer-gap-sm);
 
           .title-block {
-            .subtitle { 
-              align-self: center !important; 
+            .subtitle {
+              align-self: center !important;
               transform: translateX(0) !important;
-              &::before { display: none !important; }
+
+              &::before {
+                display: none !important;
+              }
+
               width: 100%;
               text-align: center !important;
             }
-            .description { text-align: center !important; }
+
+            .description {
+              text-align: center !important;
+            }
           }
 
           .divider {
@@ -309,23 +337,35 @@
             justify-content: center;
             margin-top: var(--composer-gap-sm);
           }
-          
 
-            &.left {              
-              .right-block {
-                width: 100%;
-                .divider { display: none !important; }
-                .title, .description, .subtitle { text-align: center; }
-              } 
+
+          &.left {
+            .right-block {
+              width: 100%;
+
+              .divider {
+                display: none !important;
               }
-              .icon-container { justify-content: center; }
+
+              .title,
+              .description,
+              .subtitle {
+                text-align: center;
+              }
             }
+          }
+
+          .icon-container {
+            justify-content: center;
+          }
+        }
 
         .map-container {
           .map {
             height: 350px;
           }
         }
+
         .bottom-container {
           display: flex;
           flex-direction: column;

@@ -395,7 +395,7 @@ class Location5 extends Location {
                     {hasItemsExist && (
                       <Base.VerticalContent className={this.decorateCSS("location-items")}>
                         {locationIndex && <Base.H2 className={this.decorateCSS("location-index")}>{locationIndex}</Base.H2>}
-                        {hasCity && <Base.P className={this.decorateCSS("location-city")}>{city}</Base.P>}
+                        {hasCity && <Base.H6 className={this.decorateCSS("location-city")}>{city}</Base.H6>}
                         {hasAddress && <Base.P className={this.decorateCSS("location-address")}>{address}</Base.P>}
                         {hasDescription && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
                       </Base.VerticalContent>
