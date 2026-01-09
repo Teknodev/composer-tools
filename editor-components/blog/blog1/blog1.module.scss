@@ -128,6 +128,12 @@
       .subtitle {
         width: fit-content !important;
       }
+      .title,
+      .subtitle,
+      .description {
+        text-align: left !important;
+        margin-left: 0 !important;
+      }
     }
 
     .right-link {
