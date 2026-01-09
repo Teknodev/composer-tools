@@ -498,6 +498,12 @@
             .content-bg {
               width: calc(100% - 24vw);
             }
+            &.type-3 {
+              .content-bg {
+                width: 100% !important;
+                left: -50% !important; 
+              }
+            }
           }
 
           &.full-image {

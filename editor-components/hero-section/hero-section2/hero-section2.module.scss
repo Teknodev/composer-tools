@@ -206,6 +206,39 @@
 }
 
 
+.dots {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  z-index: 100;
+  pointer-events: auto;
+
+  li {
+    width: 20px !important;
+    height: 40px !important;
+  }
+
+    .dot {
+      width: 12px !important;
+      height: 12px !important;
+      border-radius: 50%;
+      background: var(--composer-font-color-primary);
+      opacity: 0.3;
+      margin: 0 10px;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      display: inline-block;
+      box-shadow: var(--box-shadow-active);
+      cursor: pointer;
+    }
+}
+
+
+.activeDot {
+  opacity: 1 !important;
+}
+
+
 
 @container (max-width : #{$composer-tablet-width}) {
   .container {

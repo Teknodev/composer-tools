@@ -4,7 +4,6 @@ import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
@@ -20,6 +19,10 @@ type SliderItemType = {
 };
 
 class HeroSection2 extends BaseHeroSection {
+    componentDidMount() {
+      // İlk açılışta activeDot'ın görünmesi için
+      this.setComponentState("activeTab", 0);
+    }
   constructor(props?: any) {
     super(props, styles);
 
@@ -261,7 +264,18 @@ class HeroSection2 extends BaseHeroSection {
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+      customPaging: (i: number) => {
+        const isActive = this.getComponentState("activeTab") === i;
+        return (
+          <div
+            className={`${this.decorateCSS("dot")}${isActive ? ' ' + this.decorateCSS("activeDot") : ''}`}
+          ></div>
+        );
+      },
+      dotsClass: `slick-dots ${this.decorateCSS("dots")}`,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("activeTab", next);
+      },
     };
 
     const sliderItems = this.castToObject<SliderItemType[]>("slider");
