@@ -11,7 +11,7 @@ class About2 extends BaseAbout {
     this.addProp({
       type: "media",
       key: "videoUrl",
-      displayer: "Video Url",
+      displayer: "Video",
       additionalParams: {
         availableTypes: ["video"],
       },

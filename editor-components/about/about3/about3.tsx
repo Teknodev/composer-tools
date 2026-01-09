@@ -169,10 +169,11 @@ class About3 extends BaseAbout {
       isDescriptionExist ||
       isButtonTextExist ||
       isPhoneExist;
+    const noImages = !isImage1Exist && !isImage2Exist;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${noImages ? this.decorateCSS("no-images") : ""}`}>
           {showLeftDiv && (
             <Base.VerticalContent
               className={this.decorateCSS("title-container")}

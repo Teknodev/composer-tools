@@ -5,6 +5,15 @@
         display: flex;
         gap: var(--composer-gap-md);
         align-items: stretch;
+        
+        &.no-images {
+            .right-page {
+                display: none;
+            }
+            .title-container {
+                flex: 1 1 100%;
+            }
+        }
 
         .title-container {
             flex: 1;

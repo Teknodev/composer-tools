@@ -11,6 +11,17 @@
       .subtitle, .title {
         content: "";
       }
+      .title {
+        text-align: center !important;
+      }
+      .subtitle {
+        text-align: center !important;
+        align-self: center !important;
+        transform: translateX(0) !important;
+        &::before {
+          display: none !important;
+        }
+      }
       .text-container {
         display: flex;
         gap: var(--composer-gap-md);
