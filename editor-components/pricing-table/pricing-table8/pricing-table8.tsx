@@ -18,6 +18,7 @@ type IIconBoxes = {
   priceBig: React.JSX.Element;
   plan: React.JSX.Element;
   icon?: TypeMediaInputValue;
+  background?: TypeMediaInputValue;
 };
 
 class PricingTable8 extends BasePricingTable {
@@ -77,6 +78,16 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "AiOutlinePlus" },
+            },
+            {
+              type: "media",
+              key: "background",
+              displayer: "Background",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695f6c57f959f6002d804798?alt=media",
+              },
             },
             {
               type: "array",
@@ -175,6 +186,16 @@ class PricingTable8 extends BasePricingTable {
               value: { type: "icon", name: "MdDoneAll" },
             },
             {
+              type: "media",
+              key: "background",
+              displayer: "Background",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695f6e70f959f6002d8050e9?alt=media",
+              },
+            },
+            {
               type: "array",
               key: "bars",
               displayer: "Bars",
@@ -271,6 +292,16 @@ class PricingTable8 extends BasePricingTable {
               value: { type: "icon", name: "AiOutlinePlus" },
             },
             {
+              type: "media",
+              key: "background",
+              displayer: "Background",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695f6c8af959f6002d8047f4?alt=media",
+              },
+            },
+            {
               type: "array",
               key: "bars",
               displayer: "Bars",
@@ -344,22 +375,6 @@ class PricingTable8 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "media",
-      key: "prevIcon",
-      displayer: "Prev icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "IoMdArrowDropleft" },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "nextIcon",
-      displayer: "Next icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "IoMdArrowDropright" },
-    });
-
-    this.addProp({
       type: "multiSelect",
       key: "animations",
       displayer: "Animations",
@@ -395,7 +410,6 @@ class PricingTable8 extends BasePricingTable {
     const priceBigExist = this.castToString(card.priceBig);
     const planExist = this.castToString(card.plan);
     const iconExist = this.hasMediaContent(card.icon);
-
     return !!(
       titleExist ||
       priceExist ||
@@ -435,7 +449,7 @@ class PricingTable8 extends BasePricingTable {
 
   render() {
     const settings = {
-      dots: false,
+      dots: true,
       infinite: true,
       speed: 1000,
       autoplay: true,
@@ -444,20 +458,16 @@ class PricingTable8 extends BasePricingTable {
       slidesToScroll: 1,
       focusOnSelect: true,
       arrows: false,
+      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
       afterChange: (index: any) =>
         this.setComponentState("currentIndex", index),
     };
 
     const cards = this.castToObject<IIconBoxes[]>("cards");
-    const prevIcon = this.getPropValue("prevIcon");
-    const nextIcon = this.getPropValue("nextIcon");
     const currentIndex = this.getComponentState("currentIndex");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const hasCardsWithContent = cards.some((card) => this.hasCardContent(card));
-
-    const hasPrevIcon = this.hasMediaContent(prevIcon);
-    const hasNextIcon = this.hasMediaContent(nextIcon);
 
     const hasButtonsWithContent = this.hasAnyButtonContent(buttons);
 
@@ -487,6 +497,10 @@ class PricingTable8 extends BasePricingTable {
                   const hasPricingContainer =
                     this.hasPricingContainerContent(card);
                   const iconExist = this.hasMediaContent(card.icon);
+                  const bgExist = this.hasMediaContent(card.background);
+                  const isIconImage = !!(
+                    iconExist && (card.icon as any)?.type === "image"
+                  );
 
                   return (
                     <div
@@ -496,37 +510,51 @@ class PricingTable8 extends BasePricingTable {
                       <Base.VerticalContent
                         className={this.decorateCSS("pricing")}
                       >
+                        {bgExist && (
+                          <Base.Media
+                            value={card.background}
+                            className={this.decorateCSS("card-bg")}
+                          />
+                        )}
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
                           </Base.H3>
                         )}
-                        {cardPriceBigExist && (
-                          <Base.H1 className={this.decorateCSS("price-big")}>
-                            {card.priceBig}
-                          </Base.H1>
-                        )}
-                        {hasPricingContainer && (
-                          <div
-                            className={this.decorateCSS("pricing-container")}
-                          >
-                            {this.castToString(card.price) && (
-                              <Base.H1 className={this.decorateCSS("price")}>
-                                {card.price}
-                              </Base.H1>
-                            )}
-                            {this.castToString(card.plan) && (
-                              <Base.P className={this.decorateCSS("plan")}>
-                                {card.plan}
-                              </Base.P>
-                            )}
-                          </div>
-                        )}
+                        <div className={this.decorateCSS("price-stack")}>
+                          {hasPricingContainer && (
+                            <div
+                              className={this.decorateCSS("pricing-container")}
+                            >
+                              
+                              {cardPriceBigExist && (
+                                <Base.H1
+                                  className={this.decorateCSS("price-big")}
+                                >
+                                  {card.priceBig}
+                                </Base.H1>
+                              )}
+                              {this.castToString(card.price) && (
+                                <Base.H1 className={this.decorateCSS("price")}>
+                                  {card.price}
+                                </Base.H1>
+                              )}
+                              
+                              {this.castToString(card.plan) && (
+                                <Base.P className={this.decorateCSS("plan")}>
+                                  {card.plan}
+                                </Base.P>
+                              )}
+                            </div>
+                          )}
+                        </div>
 
                         {iconExist && (
                           <Base.Media
                             value={card.icon}
-                            className={this.decorateCSS("icon")}
+                            className={`${this.decorateCSS("icon")} ${
+                              isIconImage ? this.decorateCSS("icon-image") : ""
+                            }`}
                           />
                         )}
                       </Base.VerticalContent>
@@ -534,29 +562,6 @@ class PricingTable8 extends BasePricingTable {
                   );
                 })}
               </ComposerSlider>
-            )}
-
-            {hasPrevIcon && (
-              <Base.Media
-                value={prevIcon}
-                className={this.decorateCSS("prev_icon")}
-                propsIcon={{
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current?.slickPrev();
-                  },
-                }}
-              />
-            )}
-            {hasNextIcon && (
-              <Base.Media
-                value={nextIcon}
-                className={this.decorateCSS("next_icon")}
-                propsIcon={{
-                  onClick: () => {
-                    this.getComponentState("slider-ref").current?.slickNext();
-                  },
-                }}
-              />
             )}
 
             {hasCardsWithContent && (
@@ -569,6 +574,10 @@ class PricingTable8 extends BasePricingTable {
                   const hasPricingContainer =
                     this.hasPricingContainerContent(card);
                   const iconExist = this.hasMediaContent(card.icon);
+                  const bgExist = this.hasMediaContent(card.background);
+                  const isIconImage = !!(
+                    iconExist && (card.icon as any)?.type === "image"
+                  );
 
                   return (
                     <div
@@ -577,50 +586,61 @@ class PricingTable8 extends BasePricingTable {
                           ? this.decorateCSS("middle-card")
                           : ""
                       }
-                  ${
-                    this.getPropValue("animations") &&
-                    this.getPropValue("animations")
-                      .map((animation: string) => this.decorateCSS(animation))
-                      .join(" ")
-                  }`}
+                   ${
+                     this.getPropValue("animations") &&
+                     this.getPropValue("animations")
+                       .map((animation: string) => this.decorateCSS(animation))
+                       .join(" ")
+                   }`}
                       key={index}
                       onClick={() => handleCardClick(index)}
                     >
                       <Base.VerticalContent
                         className={this.decorateCSS("pricing")}
                       >
+                        {bgExist && (
+                          <Base.Media
+                            value={card.background}
+                            className={this.decorateCSS("card-bg")}
+                          />
+                        )}
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
                           </Base.H3>
                         )}
-                        {cardPriceBigExist && (
-                          <Base.H1 className={this.decorateCSS("price-big")}>
-                            {card.priceBig}
-                          </Base.H1>
-                        )}
 
-                        {hasPricingContainer && (
-                          <div
-                            className={this.decorateCSS("pricing-container")}
-                          >
-                            {this.castToString(card.price) && (
-                              <Base.H1 className={this.decorateCSS("price")}>
-                                {card.price}
-                              </Base.H1>
-                            )}
-                            {this.castToString(card.plan) && (
-                              <Base.P className={this.decorateCSS("plan")}>
-                                {card.plan}
-                              </Base.P>
-                            )}
-                          </div>
-                        )}
+                        <div className={this.decorateCSS("price-stack")}>
+                          {cardPriceBigExist && (
+                            <Base.H1 className={this.decorateCSS("price-big")}>
+                              {card.priceBig}
+                            </Base.H1>
+                          )}
+
+                          {hasPricingContainer && (
+                            <div
+                              className={this.decorateCSS("pricing-container")}
+                            >
+                              {this.castToString(card.price) && (
+                                <Base.H1 className={this.decorateCSS("price")}>
+                                  {card.price}
+                                </Base.H1>
+                              )}
+                              {this.castToString(card.plan) && (
+                                <Base.P className={this.decorateCSS("plan")}>
+                                  {card.plan}
+                                </Base.P>
+                              )}
+                            </div>
+                          )}
+                        </div>
 
                         {iconExist && (
                           <Base.Media
                             value={card.icon}
-                            className={this.decorateCSS("icon")}
+                            className={`${this.decorateCSS("icon")} ${
+                              isIconImage ? this.decorateCSS("icon-image") : ""
+                            }`}
                           />
                         )}
                       </Base.VerticalContent>
