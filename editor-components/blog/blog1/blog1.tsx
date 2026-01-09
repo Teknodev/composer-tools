@@ -27,6 +27,27 @@ class Blog1 extends BaseBlog {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Blog",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Latest News",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "object",
       key: "rightText",
       displayer: "Right Text",
@@ -56,27 +77,6 @@ class Blog1 extends BaseBlog {
           },
         },
       ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Blog",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Latest News",
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "line",
-      displayer: "Line",
-      value: true,
     });
 
     this.addProp({
@@ -429,41 +429,43 @@ class Blog1 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(rightText.arrow || this.castToString(rightText.text)) && (
-            <div className={this.decorateCSS("right-link")}>
-              <ComposerLink path={rightText.textUrl}>
-                <div className={this.decorateCSS("inner-right-link")}>
-                  <Base.P
-                    className={
-                      `${this.decorateCSS("inner-div")} ${!disableAnimation ? this.decorateCSS("no-animation") : ""
-                      }`
-                    }>
-                    <Base.P className={this.decorateCSS("text")}>{rightText.text}</Base.P>
-                  </Base.P>
-                  <Base.Media
-                    value={rightText.arrow}
-                    className={`${this.decorateCSS("icon")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
-                  />
-                </div>
-              </ComposerLink>
-            </div>
-          )}
-          <Base.VerticalContent className={this.decorateCSS("header")}>
-            {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+          <div className={this.decorateCSS("header-wrapper")}>
+            <Base.VerticalContent className={this.decorateCSS("header-left")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+              )}
+              {isTitleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {line && <hr className={this.decorateCSS("line")} />}
+              {isDescriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+            {(rightText.arrow || this.castToString(rightText.text)) && (
+              <div className={this.decorateCSS("right-link")}>
+                <ComposerLink path={rightText.textUrl}>
+                  <div className={this.decorateCSS("inner-right-link")}>
+                    <Base.P
+                      className={
+                        `${this.decorateCSS("inner-div")} ${!disableAnimation ? this.decorateCSS("no-animation") : ""
+                        }`
+                      }>
+                      <Base.P className={this.decorateCSS("text")}>{rightText.text}</Base.P>
+                    </Base.P>
+                    <Base.Media
+                      value={rightText.arrow}
+                      className={`${this.decorateCSS("icon")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
+                    />
+                  </div>
+                </ComposerLink>
+              </div>
             )}
-            {isTitleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
-            )}
-            {line && <hr className={this.decorateCSS("line")} />}
-            {isDescriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
-            )}
-          </Base.VerticalContent>
+          </div>
 
           <main
             className={`${this.decorateCSS("wrapper")} ${items.length <= 3 ? this.decorateCSS("no-slider") : ""
@@ -528,7 +530,7 @@ class Blog1 extends BaseBlog {
                                 </Base.P>
                               )}
                               {this.castToString(item.imageTitle) && (
-                                <Base.H2
+                                <Base.H3
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${!disableAnimation
@@ -539,7 +541,7 @@ class Blog1 extends BaseBlog {
                                     }`}
                                 >
                                   {item.imageTitle}
-                                </Base.H2>
+                                </Base.H3>
                               )}
                             </Base.VerticalContent>
                           )}
