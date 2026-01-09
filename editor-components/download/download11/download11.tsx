@@ -10,6 +10,25 @@ class Download11 extends BaseDownload {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "object",
       displayer: "Left Card",
       key: "left",
@@ -129,6 +148,9 @@ class Download11 extends BaseDownload {
     const leftItems = this.castToObject<any>("left");
     const rightItems = this.castToObject<any>("right");
     const rightBottomItems = this.castToObject<any>("rightBottom");
+    const sectionSubtitle = this.getPropValue("subtitle");
+    const sectionTitle = this.getPropValue("title");
+    const sectionDescription = this.getPropValue("description");
     
     const buttonLeft = {
       text: this.getPropValue("text", { parent_object: leftItems.buttonLeft }),
@@ -178,6 +200,13 @@ class Download11 extends BaseDownload {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(this.castToString(sectionSubtitle) || this.castToString(sectionTitle) || this.castToString(sectionDescription)) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {this.castToString(sectionSubtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{sectionSubtitle}</Base.SectionSubTitle>}
+              {this.castToString(sectionTitle) && <Base.SectionTitle className={this.decorateCSS("title")}>{sectionTitle}</Base.SectionTitle>}
+              {this.castToString(sectionDescription) && <Base.SectionDescription className={this.decorateCSS("description")}>{sectionDescription}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
           <div className={this.decorateCSS("cards")}>
             {hasValidCard && (
               <div className={`${this.decorateCSS("left-card")} ${(hasValidRightCard || hasValidBottomRightCard) ? this.decorateCSS("no-full") : this.decorateCSS("full")}`}>
@@ -185,7 +214,7 @@ class Download11 extends BaseDownload {
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     {leftItems.image && <Base.Media value={leftItems.image} className={`${this.decorateCSS("image")} ${leftCardExist ? this.decorateCSS("no-full") : this.decorateCSS("full")}`} />}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItems.subtitle}</Base.SectionSubTitle>}
-                    {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{leftItems.title}</Base.SectionTitle>}
+                    {titleExist && <Base.H2 className={this.decorateCSS("title")}>{leftItems.title}</Base.H2>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{leftItems.description}</Base.SectionDescription>}
                     {buttonExist && (
                       <div className={this.decorateCSS("button-wrapper")}>
@@ -208,7 +237,7 @@ class Download11 extends BaseDownload {
                       {hasValidRightCardTexts && (
                         <Base.VerticalContent className={this.decorateCSS("left")}>
                           {rightSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rightItems.subtitle}</Base.SectionSubTitle>}
-                          {rightTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{rightItems.title}</Base.SectionTitle>}
+                          {rightTitleExist && <Base.H2 className={this.decorateCSS("title")}>{rightItems.title}</Base.H2>}
                           {rightDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{rightItems.description}</Base.SectionDescription>}
                           {rightButtonExist && (
                              <div className={this.decorateCSS("button-wrapper")}>
@@ -228,7 +257,7 @@ class Download11 extends BaseDownload {
                 {hasValidBottomRightCard && rightBottomItems.visibility && (
                   <div className={this.decorateCSS("buttom-card")}>
                     <div className={`${this.decorateCSS("card")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
-                      {this.castToString(rightBottomItems.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.SectionTitle>}
+                      {this.castToString(rightBottomItems.title) && <Base.H2 className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.H2>}
                       {rightBottomButtonExist && (
                         <div className={this.decorateCSS("button-wrapper")}>
                           <ComposerLink path={buttonRightBottom.url}>

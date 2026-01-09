@@ -8,6 +8,13 @@
 
     .header {
       align-items: flex-start;
+      .subtitle-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: var(--composer-gap-sm);
+      }
       .subtitle {
         text-align: center;
         transform: translateX(0);
@@ -36,8 +43,10 @@
 
       .title-line {
         width: 100px;
-        border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
-        margin: var(--composer-gap-xs) auto var(--composer-gap-lg);
+        border-bottom: var(--composer-gap-xs) solid;
+        margin: var(--composer-gap-xs) auto var(--composer-gap-md);
+        margin-top: var(--composer-gap-md);
+        color: var(--composer-primary-color);
       }
       .subtitle, .title, .description {
         margin: 0;

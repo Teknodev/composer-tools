@@ -8,6 +8,9 @@ $min-height: 500px;
   position: relative;
   min-height: $min-height;
 
+
+
+
   .background-image {
     position: absolute;
     top: 0;
@@ -24,6 +27,10 @@ $min-height: 500px;
     z-index: 2;
     min-height: $min-height;
 
+    &.single {
+      min-height: 0 !important;
+    }
+
     .page {
       display: flex;
       flex-direction: column;
@@ -31,6 +38,7 @@ $min-height: 500px;
       width: 58%;
       &.no-image{
         width: 100%;
+        min-height: 0 !important;
       }
         &.image-center{
           align-items: flex-start;
@@ -101,10 +109,15 @@ $min-height: 500px;
     background-color: var(--composer-overlay-color);
   }
   &.single{
+    min-height: 0 !important;
     height: auto;
     .max-content{
+      min-height: 0 !important;
       height: auto;
     }
+  }
+  &.single .max-content {
+    min-height: 0 !important;
   }
 }
 @container (max-width: #{$composer-tablet-width}) {

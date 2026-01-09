@@ -6,6 +6,7 @@
       display: flex;
       gap: var(--composer-gap-md);
       min-height: 100%;
+      margin-top: var(--composer-gap-sm);
 
       .left-card{
         &.no-full{
@@ -41,6 +42,9 @@
           .title,
           .description {
             text-align: left !important;
+          }
+          .title {
+            color: var(--composer-font-color-primary) !important;
           }
           .subtitle {
             text-align: left !important;
@@ -92,6 +96,7 @@
               .title,
               .description {
                 text-align: left !important;
+                color: var(--composer-font-color-primary) !important;
               }
               .subtitle {
                 text-align: left !important;
@@ -161,6 +166,7 @@
             .title {
               width: 100%;
               text-align: left !important;
+              color: var(--composer-font-color-primary) !important;
             }
             &.center {
               flex-direction: column;
