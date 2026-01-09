@@ -59,7 +59,7 @@ class Blog3 extends BaseBlog {
           key: "rightSideIcon",
           displayer: "Right Side Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -71,7 +71,7 @@ class Blog3 extends BaseBlog {
           key: "dateIcon",
           displayer: "Date Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -83,7 +83,7 @@ class Blog3 extends BaseBlog {
           key: "timeIcon",
           displayer: "Time Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -272,7 +272,7 @@ class Blog3 extends BaseBlog {
               type: "media",
               key: "image",
 
-              displayer: "Media", 
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
               },
@@ -626,6 +626,17 @@ class Blog3 extends BaseBlog {
       );
     };
 
+    const cardsList = this.castToObject<CardData[]>("cards");
+    const hasValidCards = cardsList.some((card) =>
+      this.castToString(card.title) ||
+      this.castToString(card.description) ||
+      this.castToString(card.date) ||
+      this.castToString(card.readTime) ||
+      this.castToString(card.fullname) ||
+      this.castToString(card.profileDescription) ||
+      card.image?.url
+    );
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -639,7 +650,7 @@ class Blog3 extends BaseBlog {
                 )}
                 {descriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
+                    {descriptionExist}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
@@ -664,9 +675,11 @@ class Blog3 extends BaseBlog {
               )}
             </header>
           )}
-          <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
-            <Blocks cards={this.castToObject<CardData[]>("cards")} />
-          </Base.ListGrid>
+          {hasValidCards && (
+            <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
+              <Blocks cards={cardsList} />
+            </Base.ListGrid>
+          )}
           {(rightSideTextExist || !!icons.rightSideIcon) && (
             <div className={this.decorateCSS("mobile-right-side")}>
               <ComposerLink path={rightSideUrl}>

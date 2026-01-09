@@ -34,7 +34,7 @@ class Blog1 extends BaseBlog {
         {
           type: "page",
           key: "textUrl",
-          displayer: "URL",
+          displayer: "Navigate To",
           value: "",
         },
         {
@@ -48,7 +48,7 @@ class Blog1 extends BaseBlog {
           key: "arrow",
           displayer: "Arrow",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -121,7 +121,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -158,7 +158,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -195,7 +195,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -232,7 +232,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -269,7 +269,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -305,7 +305,7 @@ class Blog1 extends BaseBlog {
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -317,7 +317,7 @@ class Blog1 extends BaseBlog {
       key: "next-button-icon",
       displayer: "Next Slide Button",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -491,15 +491,13 @@ class Blog1 extends BaseBlog {
                 >
                   {items.map((item: CardType, index: number) => (
                     <article
-                      className={`${this.decorateCSS("slider-item")} ${
-                        this.getComponentState("prevSlide") === index
-                        ? this.decorateCSS("prevSlide")
-                        : ""
-                      } ${
-                        this.getComponentState("nextSlide") === index
-                        ? this.decorateCSS("nextSlide")
-                        : ""
-                      }`}
+                      className={`${this.decorateCSS("slider-item")} ${this.getComponentState("prevSlide") === index
+                          ? this.decorateCSS("prevSlide")
+                          : ""
+                        } ${this.getComponentState("nextSlide") === index
+                          ? this.decorateCSS("nextSlide")
+                          : ""
+                        }`}
                       key={index}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >

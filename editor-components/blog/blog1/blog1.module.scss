@@ -1,6 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container{
+.container {
   @mixin item-title-after($visibility, $width, $transition) {
     content: '';
     position: absolute;
@@ -13,6 +13,7 @@
     transform-origin: left;
     transition: $transition;
   }
+
   .max-content {
     .right-link {
       display: flex;
@@ -33,9 +34,11 @@
 
         .inner-div {
           position: relative;
+
           .text {
             content: "";
           }
+
           &::after {
             content: '';
             position: absolute;
@@ -49,23 +52,25 @@
             transition: transform 0.6s ease-in-out;
             transform: scaleX(1);
           }
+
           &:hover {
             &::after {
               transform: scaleX(0);
             }
           }
 
-          .no-animation{
+          .no-animation {
             position: relative;
-            &:after{
+
+            &:after {
               transition-duration: 0s;
             }
           }
         }
 
         .icon {
-          width: 18px;
-          height: 18px;
+          width: 1.5rem;
+          height: 1.5rem;
           font-size: 1.5rem;
           transition: transform 0.3s ease-in-out;
         }
@@ -79,7 +84,10 @@
     }
 
     .header {
-      .title, .subtitle, .description{
+
+      .title,
+      .subtitle,
+      .description {
         content: "";
       }
 
@@ -95,10 +103,11 @@
       display: flex;
       justify-content: center;
 
-      &.no-slider{
+      &.no-slider {
         display: unset;
         justify-content: unset;
-        .slider-parent{
+
+        .slider-parent {
           transform: translateX(-10px);
           width: calc(100% + 18px);
 
@@ -136,7 +145,9 @@
       }
 
       .icon {
-        font-size: 20px;
+        font-size: 1.25rem;
+        width: 1.25rem;
+        height: 1.25rem;
       }
     }
 
@@ -156,11 +167,9 @@
               content: '';
               position: absolute;
               inset: 0;
-              background: linear-gradient(
-                45deg,
-                rgba(var(--composer-primary-color-rgb), 0.5),
-                var(--composer-overlay-color)
-              );
+              background: linear-gradient(45deg,
+                  rgba(var(--composer-primary-color-rgb), 0.5),
+                  var(--composer-overlay-color));
               opacity: 0;
               transition: opacity 0.3s ease;
               border-radius: var(--composer-border-radius-sm);
@@ -195,11 +204,9 @@
               content: '';
               position: absolute;
               inset: 225px 0 0 0;
-              background: linear-gradient(
-                45deg,
-                rgba(var(--composer-primary-color-rgb), 0.7),
-                rgba(0, 0, 0, 0.7)
-              );
+              background: linear-gradient(45deg,
+                  rgba(var(--composer-primary-color-rgb), 0.7),
+                  rgba(0, 0, 0, 0.7));
               opacity: 0;
               transition: opacity 0.3s ease;
               border-radius: 0 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm);
@@ -233,45 +240,48 @@
           transition: filter 0.5s;
         }
 
-          .media-wrapper {
+        .media-wrapper {
+          width: 100%;
+          overflow: hidden;
+          border-radius: var(--composer-border-radius-sm);
+          margin-bottom: var(--composer-gap-sm);
+          position: relative;
+
+          .media {
             width: 100%;
-            overflow: hidden;
-            border-radius: var(--composer-border-radius-sm);
-            margin-bottom: var(--composer-gap-sm);
-            position: relative;
-
-            .media {
-              width: 100%;
-              height: 225px;
-              object-fit: cover;
-              transition: transform 0.5s;
-            }
-
-            .overlay {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background: var(--composer-overlay-color);
-              z-index: 0;
-              pointer-events: none;
-            }
+            height: 225px;
+            object-fit: cover;
+            transition: transform 0.5s;
           }
 
-          .content {
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: var(--composer-gap-sm);
-            transition: color 0.3s ease;
+            height: 100%;
+            background: var(--composer-overlay-color);
+            z-index: 0;
+            pointer-events: none;
+          }
+        }
 
-            .card-subtitle,
-            .card-title {
+        .content {
+          width: 100%;
+          padding: var(--composer-gap-sm);
+          transition: color 0.3s ease;
+          text-align: left;
+
+          .card-subtitle,
+          .card-title {
             color: var(--composer-font-color-primary);
             word-break: break-word;
+            text-align: left;
+            margin-left: 0;
           }
 
           .card-subtitle {
-          content: "";
+            content: "";
           }
 
           .card-title {
@@ -343,13 +353,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
 
-  .container{
-    .max-content{
-      .wrapper{
+  .container {
+    .max-content {
+      .wrapper {
+
         .slider-button-right,
-        .slider-button-left{
+        .slider-button-left {
           height: 150px;
-        }      
+        }
       }
     }
   }
