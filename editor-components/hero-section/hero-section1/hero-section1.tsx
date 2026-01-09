@@ -357,6 +357,12 @@ class HeroSection1 extends BaseHeroSection {
       vertical: true,
       verticalSwiping: true,
       adaptiveHeight: true,
+      customPaging: (i: any) => (
+        <div
+          className={`${this.decorateCSS("dot")} ${this.getComponentState("activeTab") == i &&
+            this.decorateCSS("activeDot")
+          }`}></div>
+      ),
       dotsClass: `${this.decorateCSS("dots")} ${!this.getPropValue("background-layout") && this.decorateCSS("dark")}`,
       beforeChange: (current: number, next: number) => {
         this.setActiveTab(next);

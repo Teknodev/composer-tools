@@ -343,9 +343,26 @@
         }
       }
       .dots {
+            &.dark {
+              .dot {
+                background: var(--composer-font-color-primary);
+              }
+              :global(li.slick-active),
+              li:hover {
+                border: 1px solid var(--composer-font-color-primary) !important;
+              }
+            }
+                ul, li {
+                  list-style: none;
+                  margin: 0;
+                  padding: 0;
+                }
+                li::marker, ul::marker {
+                  content: none;
+                  display: none;
+                }
         position: absolute;
         top: 0px;
-        list-style: none;
         right: var(--composer-gap-md);
         height: 100vh;
         display: flex !important;
@@ -353,64 +370,48 @@
         align-items: center;
         flex-direction: column;
         gap: var(--composer-gap-xs);
-        &.dark{
-          li {
-            button {
-              &::before {
-                color: var(--composer-font-color-primary) !important;
-              }
-            }
-          }
-          :global(li.slick-active) button{
-            border: 1px solid var(--composer-font-color-primary) 
-          }
-        }
+
         li {
-          height: 30px;
+          border: none;
+        }
+        :global(li.slick-active),
+        li:hover {
+          border: 1px solid gray;
+          border-radius: 50%;
+        }
+
+        .dot {
+          width: 10px;
+          height: 10px;
+          margin: 10px;
+          border-radius: 50%;
+          background: white;
+          opacity: 0.5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           cursor: pointer;
-
-          &:hover {
-            * {
-              cursor: pointer;
-            }
-            button {
-              border: 1px solid white;
-              border-radius: 50%;
-            }
+          transition: border 0.3s, background 0.3s, opacity 0.3s;
+          opacity: 0.5;
+        }
+        .activeDot {
+          background: white;
+          border: 2px solid white;
+          opacity: 1;
+        }
+        &.dark {
+          .dot {
+            border: 2px solid var(--composer-font-color-primary) !important;
+            color: var(--composer-font-color-primary) !important;
           }
-
-          button {
-            color: transparent;
-            position: relative;
-            background: none;
-            border: 1px solid transparent;
-            border-radius: 50%;
-            box-sizing: border-box;
-            padding: var(--composer-gap-sm);
-            width: 20px;
-            height: 20px;
-
-            &::before {
-              content: "•";
-              color: white;
-              position: absolute;
-              transform: translate(-50%, -50%);
-              transition: 0.3s;
-              font-size: 2rem;
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              opacity: 0.5;
-            }
+          .activeDot {
+            background: var(--composer-font-color-primary);
+            border: 2px solid var(--composer-font-color-primary);
           }
         }
-      }
-      .dots :global(li.slick-active) button {
-        border-color: white;
-        border-radius: 50%;
-        &::before { opacity: 1; }
+        .dot:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
