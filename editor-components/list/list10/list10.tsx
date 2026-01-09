@@ -16,6 +16,14 @@ type Card = {
 class List10 extends BaseList {
     constructor(props?: any) {
         super(props, styles);
+       
+        this.addProp({
+            type: "string",
+            key: "section-subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+       
         this.addProp({
             type: "string",
             key: "title",
@@ -54,7 +62,7 @@ class List10 extends BaseList {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f2703b007002cc7f55e?alt=media",
                             },
                             additionalParams: {
-                                availableTypes: ["image", "video", "icon"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                         {
@@ -97,7 +105,7 @@ class List10 extends BaseList {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b34f6f03b007002cc7f56e?alt=media",
                             },
                             additionalParams: {
-                                availableTypes: ["image", "video", "icon"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                         {
@@ -140,7 +148,7 @@ class List10 extends BaseList {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b351ed03b007002cc7f6d9?alt=media",
                             },
                             additionalParams: {
-                                availableTypes: ["image", "video", "icon"],
+                                availableTypes: ["image", "video"],
                             },
                         },
                         {
@@ -202,6 +210,7 @@ class List10 extends BaseList {
     render() {
         const cards = this.castToObject<Card[]>("cards");
         const title = this.getPropValue("title");
+        const sectionSubtitle = this.getPropValue("section-subtitle");
         const subtitle = this.getPropValue("subtitle");
         const description = this.getPropValue("description");
         const imageOverlay = this.getPropValue("overlay");
@@ -211,24 +220,32 @@ class List10 extends BaseList {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(this.castToString(subtitle) || this.castToString(title)) && (
+                    {(this.castToString(sectionSubtitle) || this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
                         <div className={`${this.decorateCSS("up-page")} ${styles[Base.getViewType()]}`}>
-                            {this.castToString(title) && (
-                                <Base.H1 className={this.decorateCSS("title")}>
-                                    {title}
-                                </Base.H1>
+                            {this.castToString(sectionSubtitle) && (
+                                <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                                    {sectionSubtitle}
+                                </Base.SectionSubTitle>
                             )}
-                            {this.castToString(subtitle) && (
-                                <Base.H5 className={this.decorateCSS("subtitle")}>
-                                    {subtitle}
-                                </Base.H5>
+
+                            <div className={this.decorateCSS("title-row")}>
+                                {this.castToString(title) && (
+                                    <Base.H1 className={this.decorateCSS("title")}>
+                                        {title}
+                                    </Base.H1>
+                                )}
+                                {this.castToString(subtitle) && (
+                                    <Base.H5 className={this.decorateCSS("subtitle")}>
+                                        {subtitle}
+                                    </Base.H5>
+                                )}
+                            </div>
+                            {this.castToString(description) && (
+                                <Base.SectionDescription className={this.decorateCSS("up-description")}>
+                                    {description}
+                                </Base.SectionDescription>
                             )}
                         </div>
-                    )}
-                    {this.castToString(description) && (
-                        <Base.SectionDescription className={this.decorateCSS("description")}>
-                            {description}
-                        </Base.SectionDescription>
                     )}
                     <Base.ListGrid
                         gridCount={{ pc: this.getPropValue("itemCount"), tablet: Math.min(3, this.getPropValue("itemCount")) }}
