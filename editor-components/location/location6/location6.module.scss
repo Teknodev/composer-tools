@@ -51,7 +51,7 @@
         flex-direction: column;
         min-width: 0;
         width: 100%;
-        margin-top: calc(var(--composer-gap-xl) + var(--composer-gap-md));
+        margin-top: var(--composer-gap-xl);
 
         .button-container {
           width: 100%;

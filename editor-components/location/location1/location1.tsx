@@ -414,7 +414,11 @@ class Location1 extends Location {
             {(hasTitle || icons.length > 0) && (
               <div className={`${this.decorateCSS("header")} ${alignment === "center" ? this.decorateCSS("center") : ""} ${alignment === "left" ? this.decorateCSS("left") : ""}`}>
                 <Base.VerticalContent className={this.decorateCSS("title-block")}>
-                  {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                  {hasSubtitle && (
+                    <div className={this.decorateCSS("subtitle-wrapper")}>
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                    </div>
+                  )}
                   {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                   {headerDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{headerDescription}</Base.SectionDescription>}
                 </Base.VerticalContent>
