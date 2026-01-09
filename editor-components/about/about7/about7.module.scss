@@ -6,7 +6,7 @@
     text-align: center !important;
 }
 
-.container{
+.container {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -22,7 +22,7 @@
         z-index: 0;
         pointer-events: none;
     }
-    
+
     .background-media-element {
         position: absolute;
         top: 0;
@@ -34,27 +34,33 @@
         object-fit: cover;
     }
 
-    .max-content{
+    .max-content {
         display: flex;
         flex-direction: column;
-        .items-wrapper{
+
+        .items-wrapper {
             display: flex;
             gap: var(--composer-gap-md);
-            &.row-reverse{
+
+            &.row-reverse {
                 flex-direction: row-reverse;
             }
-            .left-container{
+
+            .left-container {
                 width: 100%;
                 flex: 5;
                 padding: var(--composer-gap-md) 0px;
-                .image-wrapper{
+
+                .image-wrapper {
                     width: 100%;
                     height: 100%;
                     position: relative;
-                    .image{
+
+                    .image {
                         width: 100%;
                         max-height: 700px;
                         object-fit: cover;
+                        border-radius: var(--composer-border-radius-sm);
                     }
 
                     .overlay {
@@ -69,11 +75,13 @@
                     }
                 }
             }
-            .middle-container{
+
+            .middle-container {
                 width: 100%;
                 flex: 2;
                 position: relative;
-                .line-wrapper{
+
+                .line-wrapper {
                     width: 100%;
                     align-items: center;
                     display: flex;
@@ -81,16 +89,19 @@
                     position: absolute;
                     top: 0px;
                     height: 100%;
-                    .line{
+
+                    .line {
                         height: 100%;
                         width: 2px;
                         background-color: rgba(0, 0, 0, 0.225);
-                        &.without-image{
+
+                        &.without-image {
                             background-color: var(--composer-tertiary-color);
                         }
-                    }  
+                    }
                 }
-                .dot-wrapper{
+
+                .dot-wrapper {
                     width: fit-content;
                     height: 100%;
                     display: flex;
@@ -101,17 +112,20 @@
                     left: 50%;
                     z-index: 2;
                     transform: translateX(-50%);
-                    .dot{
+
+                    .dot {
                         height: 10px;
                         width: 10px;
                         border-radius: 50%;
                         background-color: black;
-                        &.without-image{
+
+                        &.without-image {
                             background-color: var(--composer-font-color-primary);
                         }
                     }
                 }
-                .middle-line-and-year{
+
+                .middle-line-and-year {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
@@ -119,39 +133,48 @@
                     display: flex;
                     align-items: center;
                     justify-content: end;
-                    &.row-reverse{
+
+                    &.row-reverse {
                         justify-content: start;
                     }
-                    .line-and-year{
+
+                    .line-and-year {
                         width: 50%;
                         display: flex;
                         align-items: center;
                         gap: var(--composer-gap-sm);
-                        &.row-reverse{
+
+                        &.row-reverse {
                             flex-direction: row-reverse;
                         }
-                        .middle-line{
+
+                        .middle-line {
                             height: 2px;
                             width: 100%;
                             background-color: rgba(0, 0, 0, 0.225);
-                            &.without-image{
+
+                            &.without-image {
                                 background-color: var(--composer-tertiary-color);
                             }
                         }
-                        .year{
+
+                        .year {
                             height: fit-content;
                             color: black;
-                            &.without-image{
+
+                            &.without-image {
                                 color: var(--composer-font-color-primary);
                             }
-                            &.without-middle-line{
+
+                            &.without-middle-line {
                                 padding: 0px var(--composer-gap-sm);
                             }
                         }
                     }
-                } 
+                }
             }
-            .right-container{
+
+            .right-container {
                 position: relative;
                 z-index: 3;
                 flex: 5;
@@ -162,102 +185,138 @@
                 padding: var(--composer-gap-md) 0px;
                 justify-content: center;
                 align-items: start;
-                .subtitle, .description, .title{
-                    &.with-image{
+
+                .subtitle,
+                .description,
+                .title {
+                    &.with-image {
                         color: black;
                         background: transparent;
                         padding: 0;
                     }
                 }
-                .subtitle{
-                    &.with-image{
+
+                .subtitle {
+                    &.with-image {
                         transform: translateX(0);
-                        &::before{
+
+                        &::before {
                             display: none;
                         }
                     }
                 }
-                &.row-reverse{
+
+                &.row-reverse {
                     align-items: end;
-                    .subtitle{
-                        transform: none;                        
+
+                    .subtitle {
+                        transform: none;
                     }
-                    .subtitle,.description,.title{
+
+                    .subtitle,
+                    .description,
+                    .title {
                         text-align: end;
                     }
                 }
-                &.center-alignment.row-reverse{
+
+                &.center-alignment.row-reverse {
                     align-items: center !important;
-                    .subtitle{
+
+                    .subtitle {
                         transform: none !important;
                     }
-                    .subtitle,.description,.title{
+
+                    .subtitle,
+                    .description,
+                    .title {
                         text-align: center !important;
                     }
                 }
+
                 &.center-alignment.row-reverse .subtitle,
                 &.center-alignment.row-reverse .description,
-                &.center-alignment.row-reverse .title{
+                &.center-alignment.row-reverse .title {
                     text-align: center !important;
                 }
             }
         }
     }
 }
+
 @container (max-width: #{$composer-tablet-width}) {
-    .container{
-      .max-content{
-        gap: var(--composer-gap-md);
-        .items-wrapper{
-            flex-direction: column;
-            &.row-reverse{
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+
+            .items-wrapper {
                 flex-direction: column;
-            }
-            .left-container{
-                padding: 0px;
-                flex: 1;
-            }
-            .middle-container{
-                display: none;
-            }
-            .right-container{
-                padding: 0px;
-                flex: 1;
-                &.row-reverse{
-                    align-items: start;
-                    .subtitle{
-                        transform: none !important                      
-                    }
-                    .subtitle,.description,.title{
-                        text-align: start;
+
+                &.row-reverse {
+                    flex-direction: column;
+                }
+
+                .left-container {
+                    padding: 0px;
+                    flex: 1;
+                }
+
+                .middle-container {
+                    display: none;
+                }
+
+                .right-container {
+                    padding: 0px;
+                    flex: 1;
+
+                    &.row-reverse {
+                        align-items: start;
+
+                        .subtitle {
+                            transform: none !important
+                        }
+
+                        .subtitle,
+                        .description,
+                        .title {
+                            text-align: start;
+                        }
                     }
                 }
             }
         }
-      }
     }
 }
+
 @container (max-width: #{$composer-phone-width}) {
-    .container{
-        .max-content{
-            .items-wrapper{
-                .right-container{
+    .container {
+        .max-content {
+            .items-wrapper {
+                .right-container {
                     align-items: center;
-                    .subtitle{
+
+                    .subtitle {
                         transform: none;
-                        &::before{
+
+                        &::before {
                             display: none;
                         }
                     }
-                    .title{
+
+                    .title {
                         text-align: center;
                     }
-                    .description{
+
+                    .description {
                         text-align: center;
                     }
-                    &.row-reverse{
+
+                    &.row-reverse {
                         align-items: center;
-                        .subtitle,.description,.title{
+
+                        .subtitle,
+                        .description,
+                        .title {
                             text-align: center;
                         }
                     }

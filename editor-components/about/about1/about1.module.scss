@@ -8,9 +8,12 @@
 
         .heading {
             margin-bottom: var(--composer-gap-md);
-            .subtitle, .section-title {
+
+            .subtitle,
+            .section-title {
                 margin: inherit;
             }
+
             .icon {
                 color: var(--composer-primary-color);
                 font-size: 4rem;
@@ -22,11 +25,12 @@
         .content {
             width: 100%;
             align-items: stretch;
+
             .image-box {
                 position: relative;
                 min-height: 200px;
                 overflow: hidden;
-                border-radius: var(--composer-border-radius-md);
+                border-radius: var(--composer-border-radius-sm);
 
                 &.no-content {
                     aspect-ratio: 2;
@@ -49,11 +53,9 @@
                         content: '';
                         position: absolute;
                         inset: 0;
-                        background: linear-gradient(
-                            to top,
-                            var(--composer-primary-color) 0%,
-                            transparent 100%
-                        );
+                        background: linear-gradient(to top,
+                                var(--composer-primary-color) 0%,
+                                transparent 100%);
                         opacity: 0;
                         transform: translateY(100%);
                         transition: all 0.4s ease;
@@ -83,7 +85,7 @@
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    border-radius: var(--composer-border-radius-md);
+                    border-radius: var(--composer-border-radius-sm);
                 }
 
                 .overlay {
@@ -103,6 +105,7 @@
                 flex-direction: column;
                 justify-content: center;
                 gap: var(--composer-gap-md);
+
                 .item {
                     .title {
                         color: var(--composer-primary-color);
@@ -123,6 +126,7 @@
             gap: var(--composer-gap-sm);
             margin-top: var(--composer-gap-md);
             color: var(--composer-primary-color);
+
             .icon-item {
                 font-size: 1.5rem;
                 width: 1.5rem;
@@ -134,12 +138,13 @@
 
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container{
-        .max-content{
-            .content{
-                .image-box{
+    .container {
+        .max-content {
+            .content {
+                .image-box {
                     aspect-ratio: unset;
-                    .image{
+
+                    .image {
                         position: relative;
                         aspect-ratio: 1;
                     }
@@ -150,14 +155,17 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container{
-        .max-content{
+    .container {
+        .max-content {
             .heading {
                 align-items: baseline;
-                .subtitle, .section-title {
+
+                .subtitle,
+                .section-title {
                     text-align: left;
                 }
             }
+
             .content {
                 flex-direction: column;
             }

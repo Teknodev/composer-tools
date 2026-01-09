@@ -139,32 +139,30 @@ class About8 extends BaseAbout {
           {(descriptionExist || hasTitle) && (
             <Base.VerticalContent className={`${this.decorateCSS("title-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
               {hasTitle && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {title}
-            </Base.SectionTitle>
-          )}
-          {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
               )}
             </Base.VerticalContent>
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${
-              !hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
-            }`}
+            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
+              } ${hasImages ? this.decorateCSS("with-image") : ""}`}
           >
             {hasImages && (
               <div className={this.decorateCSS("images-section")}>
                 {hasImage1 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${
-                      this.getPropValue("overlay")
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
                         ? this.decorateCSS("overlay")
                         : ""
-                    }`}
+                      }`}
                   >
                     <Base.Media
                       value={image1}
@@ -174,11 +172,10 @@ class About8 extends BaseAbout {
                 )}
                 {hasImage2 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${
-                      this.getPropValue("overlay")
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
                         ? this.decorateCSS("overlay")
                         : ""
-                    }`}
+                      }`}
                   >
                     <Base.Media
                       value={image2}

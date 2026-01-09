@@ -1,5 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   .max-content {
@@ -8,12 +8,17 @@
     gap: var(--composer-gap-lg);
 
     .title-container {
+
+      .subtitle,
       .description,
       .title {
-        text-align: left !important;
+        content: "";
       }
+
       &.with-image {
-        .title-container, .title,
+
+        .subtitle,
+        .title,
         .description {
           text-align: left !important;
         }
@@ -53,18 +58,32 @@
           gap: var(--composer-gap-md);
 
           .text {
-            text-align: left;
+            content: "";
           }
         }
 
         .button-wrapper {
           display: flex;
-          justify-content: flex-start;
+          align-self: center;
 
           .button {
             .button-text {
               content: "";
             }
+          }
+        }
+      }
+
+      &.with-image {
+        .content-section {
+          .texts-wrapper {
+            .text {
+              text-align: left !important;
+            }
+          }
+
+          .button-wrapper {
+            align-self: flex-start !important;
           }
         }
       }
@@ -159,4 +178,3 @@
     }
   }
 }
-
