@@ -1,9 +1,8 @@
 import * as React from "react";
 import styles from "./hero-section18.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import { Base } from "../../../composer-base-components/base/base";
 
 type Slide = {
@@ -11,7 +10,8 @@ type Slide = {
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
   description_title: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
+  overlay: boolean;
 };
 
 type Social = {
@@ -24,10 +24,23 @@ class HeroSection18 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "cover",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7e?alt=media&timestamp=1719483639150",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
@@ -36,10 +49,17 @@ class HeroSection18 extends BaseHeroSection {
       displayer: "Show Pagination",
       value: true,
     });
+    
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
-      displayer: "Slider Items",
+      displayer: "Slider",
       key: "slider",
       value: [
         {
@@ -72,10 +92,22 @@ class HeroSection18 extends BaseHeroSection {
               value: "Painting is the application of pigments to a support surface that establishes an image, design or decoration.",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef2?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef2?alt=media&timestamp=1719483639150",
+              },
+            },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
             },
           ],
         },
@@ -111,10 +143,22 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed ligula eu ligula congue vestibulum.",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7f?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194c2bd2970002c625e7f?alt=media&timestamp=1719483639150",
+              },
+            },
+            {              
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
             },
           ],
         },
@@ -149,11 +193,23 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eu justo sed libero consectetur consequat.",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef1?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef1?alt=media&timestamp=1719483639150",
+              },
             },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            }
           ],
         },
         {
@@ -187,11 +243,23 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce gravida felis sed nisl consequat, nec ultricies velit commodo.",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef3?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef3?alt=media&timestamp=1719483639150",
+              },
             },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            }
           ],
         },
         {
@@ -225,11 +293,23 @@ class HeroSection18 extends BaseHeroSection {
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin auctor justo ac lorem tincidunt, at convallis tortor efficitur.",
             },
             {
-              type: "image",
-              displayer: "Image",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef4?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666194ffbd2970002c625ef4?alt=media&timestamp=1719483639150",
+              },
             },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            }
           ],
         },
       ],
@@ -248,7 +328,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -257,6 +337,13 @@ class HeroSection18 extends BaseHeroSection {
               displayer: "Text",
               value: "facebook",
             },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaFacebook" },
+            },
           ],
         },
         {
@@ -267,7 +354,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -276,6 +363,13 @@ class HeroSection18 extends BaseHeroSection {
               displayer: "Text",
               value: "instagram",
             },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaInstagram" },
+            },
           ],
         },
         {
@@ -286,7 +380,7 @@ class HeroSection18 extends BaseHeroSection {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -295,22 +389,41 @@ class HeroSection18 extends BaseHeroSection {
               displayer: "Text",
               value: "dribbble",
             },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "FaDribbble" },
+            },
           ],
         },
       ],
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev_icon",
-      displayer: "Prev icon",
-      value: "BsArrowLeft",
+      displayer: "Prev Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next_icon",
-      displayer: "Next icon",
-      value: "BsArrowRight",
+      displayer: "Next Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowRight",
+      },
     });
 
     this.setComponentState("slider-ref", React.createRef());
@@ -327,7 +440,7 @@ class HeroSection18 extends BaseHeroSection {
       infinite: true,
       arrows: false,
       speed: 2000,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -343,23 +456,27 @@ class HeroSection18 extends BaseHeroSection {
     const sliderCount = slides?.length;
     const progressPercentage = ((this.getComponentState("active-index") + 1) / sliderCount) * 100;
 
-    const socials = this.castToObject<Social[]>("socials");
+    const socials = this.castToObject<any[]>("socials");
 
-    const prevIcon = this.getPropValue("prev_icon");
-    const nextIcon = this.getPropValue("next_icon");
+    const prevIcon = this.getPropValue("prev_icon") as TypeMediaInputValue | undefined;
+    const nextIcon = this.getPropValue("next_icon") as TypeMediaInputValue | undefined;
 
     const prevIconExist = !!prevIcon;
     const nextIconExist = !!nextIcon;
 
     const renderBottomPage = socials?.length > 0 || prevIconExist || nextIconExist;
 
-    const cover = this.getPropValue("cover");
+    const coverValue = this.getPropValue("cover") as TypeMediaInputValue | undefined;
+    const cover = coverValue;
+    const overlay = !!this.getPropValue("overlay");
 
     const showPagination = !!this.getPropValue("showPagination");
     const sliderRef = this.getComponentState("slider-ref");
 
     return (
-      <Base.Container isFull={true} className={this.decorateCSS("container")} style={{ background: `url(${cover})` }}>
+      <Base.Container isFull={true} className={this.decorateCSS("container")}>
+        {cover && <Base.Media value={cover} className={this.decorateCSS("background-image")} autoPlay muted loop playsInline />}
+        {cover && overlay && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {slides?.length > 0 && (
             <ComposerSlider {...settings} ref={sliderRef} className={this.decorateCSS("slider")}>
@@ -392,7 +509,12 @@ class HeroSection18 extends BaseHeroSection {
                           )}
                         </div>
                       </div>
-                      {!!item.image && <img src={item.image} className={this.decorateCSS("image")} />}
+                      {!!item.image && (
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <Base.Media value={item.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                          {item.overlay && <div className={this.decorateCSS("slide-overlay")} />}
+                        </div>
+                      )}
                       {(descTitleExist || descExist) && (
                         <div className={`${this.decorateCSS("description-div")} ${!cover && this.decorateCSS("description-div-no-image")}`}>
                           {descTitleExist && <Base.H3 className={this.decorateCSS("description-title")}>{item.description_title}</Base.H3>}
@@ -408,32 +530,32 @@ class HeroSection18 extends BaseHeroSection {
           {renderBottomPage && (
             <div className={this.decorateCSS("page-bottom")}>
               {socials?.length > 0 && (
-                <div className={this.decorateCSS("socials")}>
-                  {socials.map((item: Social, index: number) => (
+                <div className={this.decorateCSS("socials")}> 
+                  {socials.map((item: any, index: number) => (
                     <ComposerLink path={item.url} key={index}>
-                      <Base.H5 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H5>
+                        <div className={this.decorateCSS("social-item")}>
+                          <Base.H6 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H6>
+                          {item.icon && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")}/>} 
+                        </div>
                     </ComposerLink>
                   ))}
                 </div>
-              )}
+              )}  
               {prevIconExist && slides.length > 1 && (
-                <Base.Icon
-                  name={this.getPropValue("prev_icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`,
-                    onClick: () => sliderRef.current.slickPrev(),
-                  }}
-                />
+                <div
+                  className={`${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`}
+                  onClick={() => sliderRef.current.slickPrev()}
+                >
+                  <Base.Media className={this.decorateCSS("icon")} value={prevIcon} />
+                </div>
               )}
               {nextIconExist && slides.length > 1 && (
-                <Base.Icon
-                  name={this.getPropValue("next_icon")}
-                  propsIcon={{
-                    className: `${this.decorateCSS("next-icon")} ${!cover && this.decorateCSS("next-icon-no-image")}`,
-
-                    onClick: () => sliderRef.current.slickNext(),
-                  }}
-                />
+                <div
+                  className={`${this.decorateCSS("next-icon")} ${!cover && this.decorateCSS("next-icon-no-image")}`}
+                  onClick={() => sliderRef.current.slickNext()}
+                >
+                  <Base.Media className={this.decorateCSS("icon")} value={nextIcon} />
+                </div>
               )}
             </div>
           )}

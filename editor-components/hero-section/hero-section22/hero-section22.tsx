@@ -1,20 +1,19 @@
 import * as React from "react";
 import styles from "./hero-section22.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderObject = {
   title: React.JSX.Element;
-  right_image: string;
-  left_image: string;
+  subtitle?: React.JSX.Element;
+  logo?: TypeMediaInputValue;
+  right_image: TypeMediaInputValue;
+  left_image: TypeMediaInputValue;
   button: INPUTS.CastedButton[];
 };
-
-
 
 class HeroSection22 extends BaseHeroSection {
   private sliderRef: React.RefObject<any>;
@@ -30,8 +29,26 @@ class HeroSection22 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -39,16 +56,28 @@ class HeroSection22 extends BaseHeroSection {
               value: "Multicoloured Tie-dye Sweater",
             },
             {
-              type: "image",
+              type: "media",
               key: "right_image",
-              displayer: "Right Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
+              displayer: "Right Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664e?alt=media&timestamp=1719483639150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "left_image",
-              displayer: "Left Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
+              displayer: "Left Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619d5dbd2970002c62664d?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "array",
@@ -61,8 +90,26 @@ class HeroSection22 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -70,16 +117,28 @@ class HeroSection22 extends BaseHeroSection {
               value: "Black Crew Cut Dress in Cut Style",
             },
             {
-              type: "image",
+              type: "media",
               key: "right_image",
-              displayer: "Right Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7d1cf1798002cc82f40?alt=media",
+              displayer: "Right Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7d1cf1798002cc82f40?alt=media",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "left_image",
-              displayer: "Left Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7a3cf1798002cc82f0f?alt=media",
+              displayer: "Left Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6703c7a3cf1798002cc82f0f?alt=media",
+              },
             },
             {
               type: "array",
@@ -92,8 +151,26 @@ class HeroSection22 extends BaseHeroSection {
         {
           type: "object",
           key: "sliderObject",
-          displayer: "Slider Object",
+          displayer: "Slider Item",
           value: [
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -101,16 +178,28 @@ class HeroSection22 extends BaseHeroSection {
               value: "The Shirt Is a Staple for Man`s",
             },
             {
-              type: "image",
+              type: "media",
               key: "right_image",
-              displayer: "Right Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526d9cf1798002cc89a4b?alt=media",
+              displayer: "Right Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526d9cf1798002cc89a4b?alt=media",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "left_image",
-              displayer: "Left Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526f8cf1798002cc89a6d?alt=media",
+              displayer: "Left Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/670526f8cf1798002cc89a6d?alt=media",
+              },
             },
             {
               type: "array",
@@ -122,22 +211,42 @@ class HeroSection22 extends BaseHeroSection {
         },
       ],
     });
+
     this.addProp({
-      type: "icon",
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
       key: "prev-button-icon",
-      displayer: "Previous Slide Button",
-      value: "HiArrowLongLeft",
+      displayer: "Previous Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "HiArrowLongLeft",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next-button-icon",
-      displayer: "Next Slide Button",
-      value: "HiArrowLongRight",
+      displayer: "Next Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "HiArrowLongRight",
+      },
     });
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Content Animation",
+      displayer: "Animation",
       value: true,
     });
     this.addProp({
@@ -191,7 +300,7 @@ class HeroSection22 extends BaseHeroSection {
       arrows: false,
       infinite: slider.length > 1,
       speed: 1500,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -229,7 +338,7 @@ class HeroSection22 extends BaseHeroSection {
                         <div className={this.decorateCSS("slider")}>
                           {leftImageExist && (
                             <div className={this.decorateCSS("left-content")}>
-                              <img className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `} src={item.left_image} alt="" />
+                              <Base.Media value={item.left_image} className={`${this.decorateCSS("left-image")} ${animation && isActive ? this.decorateCSS("left-animation") : ""}  `} />
                             </div>
                           )}
 
@@ -239,28 +348,38 @@ class HeroSection22 extends BaseHeroSection {
                             }  `}
                           >
                             <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                              {hasDivider && <div className={this.decorateCSS("divider")} />}
-                              {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
+                                {hasDivider && <div className={this.decorateCSS("divider")} />}
+                                {item.logo && (
+                                  <div className={this.decorateCSS("logo-wrapper")}>
+                                    <Base.Media value={item.logo} className={this.decorateCSS("logo")} />
+                                  </div>
+                                )}
+                                {this.castToString(item.subtitle) && (
+                                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {item.subtitle}
+                                  </Base.SectionSubTitle>
+                                )}
+                                {this.castToString(item.title) && <Base.SectionTitle className={this.decorateCSS("title")}>{item.title}</Base.SectionTitle>}
 
-                              {item.button.map((buttonItem: any, indexButton: number) => {
-                                const buttonText = this.castToString(buttonItem.text);
-                                if (buttonText) {
+                              <div className={this.decorateCSS("button-row")}>
+                                {item.button.map((buttonItem: any, indexButton: number) => {
+                                  const buttonText = this.castToString(buttonItem.text);
                                   return (
-                                    <div className={this.decorateCSS("link-button-container")}>
+                                    buttonText && (
                                       <ComposerLink key={`hdr-22-${indexButton}`} path={buttonItem.url}>
                                         <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
-                                          {buttonItem.text}
+                                          <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
                                         </Base.Button>
                                       </ComposerLink>
-                                    </div>
+                                    )
                                   );
-                                }
-                              })}
+                                })}
+                              </div>
                             </Base.VerticalContent>
                           </div>
                           {rightImageExist && (
                             <div className={`${this.decorateCSS("right-content")} ${animation && isActive ? this.decorateCSS("mid-right-animation") : ""}  `}>
-                              <img className={this.decorateCSS("right-image")} src={item.right_image} alt="" />
+                              <Base.Media value={item.right_image} className={this.decorateCSS("right-image")} />
                             </div>
                           )}
                         </div>
@@ -277,7 +396,7 @@ class HeroSection22 extends BaseHeroSection {
                       this.getComponentState("slider-ref").current.slickPrev();
                     }}
                   >
-                    <Base.Icon name={this.getPropValue("prev-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
+                    <Base.Media value={this.getPropValue("prev-button-icon") as TypeMediaInputValue} className={this.decorateCSS("icon")} />
                   </button>
 
                   <button
@@ -286,7 +405,7 @@ class HeroSection22 extends BaseHeroSection {
                       this.getComponentState("slider-ref").current.slickNext();
                     }}
                   >
-                    <Base.Icon name={this.getPropValue("next-button-icon")} propsIcon={{ className: `${this.decorateCSS("icon")}` }} />
+                    <Base.Media value={this.getPropValue("next-button-icon") as TypeMediaInputValue} className={this.decorateCSS("icon")} />
                   </button>
                 </div>
               )}
