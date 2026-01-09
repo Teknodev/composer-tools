@@ -337,10 +337,23 @@ as *;
   .container {
     .max-content {
       .up-page {
-        flex-direction: column;
+        flex-direction: column !important;
         align-items: center;
-        gap: var(--composer-gap-md);
 
+        .section-subtitle {
+          text-align: center !important;
+          margin-left: auto !important;
+        }
+
+        .title-row {
+          flex-direction: column !important;
+          align-items: center !important;
+          gap: var(--composer-gap-md);
+
+          .subtitle {
+            margin-right: auto !important;
+          }
+        }
         .title,
         .subtitle {
           text-align: center;
