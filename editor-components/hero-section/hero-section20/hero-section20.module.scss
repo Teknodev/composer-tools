@@ -286,6 +286,8 @@
 
               .icon-next-to-text {
                 font-size: 1rem;
+                width: 15px;
+                height: 15px;
                 min-width: 4%;
                 @include smooth-transition($delay: 0.05s);
               }

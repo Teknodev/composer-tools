@@ -533,12 +533,14 @@ class HeroSection18 extends BaseHeroSection {
                 <div className={this.decorateCSS("socials")}> 
                   {socials.map((item: any, index: number) => (
                     <ComposerLink path={item.url} key={index}>
-                      <Base.H5 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H5>
-                        {item.icon && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")}/>} 
+                        <div className={this.decorateCSS("social-item")}>
+                          <Base.H6 className={`${this.decorateCSS("name")} ${!cover && this.decorateCSS("name-no-image")}`}>{item.text}</Base.H6>
+                          {item.icon && <Base.Media value={item.icon} className={this.decorateCSS("social-icon")}/>} 
+                        </div>
                     </ComposerLink>
                   ))}
                 </div>
-              )}pai
+              )}  
               {prevIconExist && slides.length > 1 && (
                 <div
                   className={`${this.decorateCSS("prev-icon")} ${!cover && this.decorateCSS("prev-icon-no-image")}`}

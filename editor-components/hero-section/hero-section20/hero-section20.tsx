@@ -638,7 +638,7 @@ class HeroSection20 extends BaseHeroSection {
           key: "icon",
           displayer: "Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",

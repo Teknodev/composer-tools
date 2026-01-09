@@ -162,7 +162,7 @@
           .description-div {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-xs);
             background: black;
             color: white;
             width: 350px;
@@ -206,7 +206,6 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
       padding: var(--composer-gap-md) 0;
 
       .socials {
@@ -219,6 +218,13 @@
         color: var(--composer-font-color-primary);
         width: calc(100% - var(--composer-gap-lg) * 3);
         width: 85%;
+
+        .social-item {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+        }
+
         .name, .social-icon {
           color: black;
 
@@ -231,7 +237,7 @@
           width: 16px;
           height: 16px;
           font-size: 1.25rem;
-          object-fit: cover;
+          object-fit: covers;
         }
       }
 
