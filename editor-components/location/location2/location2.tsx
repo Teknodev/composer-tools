@@ -556,7 +556,7 @@ class Location2 extends Location {
         {headerExist && (
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
                 {logo && <Base.Media value={logo} className={this.decorateCSS("location-logo")} />}
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}

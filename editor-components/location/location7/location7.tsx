@@ -30,7 +30,7 @@ class Location7 extends Location {
 
     this.addProp({
       type: "media",
-      key: "icon",
+      key: "logo",
       displayer: "Logo",
       additionalParams: {
         availableTypes: ["image", "icon"],
@@ -315,8 +315,8 @@ class Location7 extends Location {
     const bgMedia = this.getPropValue("background-media");
     const showTooltipLine = this.getPropValue("showTooltipLine");
     const imageOverlay = this.getPropValue("overlay");
-    const icon = this.getPropValue("icon");
-    const iconExist = (icon?.type === "icon" && !!icon?.name) || (icon?.type === "image" && !!icon?.url);
+    const logo = this.getPropValue("logo");
+    const logoExist = (logo?.type === "icon" && !!logo?.name) || (logo?.type === "image" && !!logo?.url);
 
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
@@ -341,9 +341,9 @@ class Location7 extends Location {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {iconExist && (
-              <div className={this.decorateCSS("icon-row")}>
-                <Base.Media value={icon} className={this.decorateCSS("icon")} />
+            {logoExist && (
+              <div className={this.decorateCSS("logo-container")}>
+                <Base.Media value={logo} className={this.decorateCSS("logo")} />
               </div>
             )}
             {subtitleExist && (

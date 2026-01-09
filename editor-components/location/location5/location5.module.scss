@@ -10,6 +10,8 @@
         margin-bottom: var(--composer-gap-sm);
         color: var(--composer-font-color-primary);
         font-size: 4rem;
+        place-self: flex-start;
+        margin-left: 0;
       }
 
       .location-description-header {
@@ -20,9 +22,25 @@
       .subtitle,
       .title,
       .location-description-header {
-        text-align: left !important;
-        align-items: flex-start !important;
+        text-align: left;
+        align-items: flex-start;
         margin-left: 0px;
+      }
+
+      &.center {
+
+        .subtitle,
+        .title,
+        .location-description-header {
+          text-align: center;
+          align-items: center;
+        }
+
+        .location-logo {
+          place-self: center;
+          margin-left: auto;
+          margin-right: auto;
+        }
       }
     }
   }
@@ -38,6 +56,8 @@
       flex-direction: column;
       width: 100%;
       gap: var(--composer-gap-lg);
+      margin-top: var(--composer-gap-md);
+
 
       .location-item {
         display: flex;

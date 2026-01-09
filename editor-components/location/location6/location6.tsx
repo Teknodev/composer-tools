@@ -489,18 +489,18 @@ class Location6 extends Location {
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
 
-    
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("wrapper")}>
           <div className={this.decorateCSS("left-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-              {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-            </Base.VerticalContent>
-            <div className={this.decorateCSS("left-side")}>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              </Base.VerticalContent>
+              <div className={this.decorateCSS("left-side")}>
                 {buttons?.length > 0 && (
                   <Base.VerticalContent className={this.decorateCSS("button-container")}>
                     {buttons.map((button: any, index: number) => {
@@ -517,6 +517,7 @@ class Location6 extends Location {
                               <div className={this.decorateCSS("button-element")}>
                                 <div className={this.decorateCSS("button-text")}>
                                   {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
+                                  {buttonTextExist && buttonInfoExist && <div className={this.decorateCSS("separator")} />}
                                   {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                                 </div>
                                 {normalizedIcon && <Base.Media value={normalizedIcon} className={this.decorateCSS("icon")} />}
@@ -528,13 +529,13 @@ class Location6 extends Location {
                     })}
                   </Base.VerticalContent>
                 )}
-            </div>
-          </Base.MaxContent>
+              </div>
+            </Base.MaxContent>
           </div>
 
           <div className={this.decorateCSS("right-container")}>
-          <div className={this.decorateCSS("map-container")}>
-            <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+            <div className={this.decorateCSS("map-container")}>
+              <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
             </div>
           </div>
         </div>

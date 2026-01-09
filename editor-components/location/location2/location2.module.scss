@@ -14,7 +14,7 @@
           margin-bottom: var(--composer-gap-md);
           color: var(--composer-font-color-primary);
           font-size: 6rem;
-          margin-left: 0px !important;
+          margin-left: 0px;
           place-self: flex-start;
         }
 
@@ -25,12 +25,32 @@
 
         .subtitle,
         .title {
-          text-align: left !important;
+          text-align: left;
+          margin-left: 0px;
+        }
+
+        &.center {
+
+          .subtitle,
+          .title {
+            text-align: left;
+          }
+
+          .location-logo {
+            place-self: center;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .description-container .description-text {
+            text-align: left;
+          }
         }
 
         .description-container .description-text {
-          text-align: left !important;
+          text-align: left;
           color: var(--composer-tertiary-color);
+          margin-left: 0px;
         }
 
         .description-container {
