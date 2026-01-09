@@ -347,7 +347,7 @@ class HeroSection24 extends BaseHeroSection {
                               <Base.SectionSubTitle
                                 className={`${this.decorateCSS("subtitle")} ${!item.background_image && this.decorateCSS("subtitle-no-image")} ${item.background_image && this.decorateCSS("subtitle-has-bg")}
                               ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
-                              ${!item.image && this.decorateCSS("no-image")}
+                              ${!item.background_image && this.decorateCSS("no-image")}
                               `}
                               >
                                 {item.subtitle}
@@ -357,7 +357,7 @@ class HeroSection24 extends BaseHeroSection {
                               <Base.SectionTitle
                                 className={`${this.decorateCSS("title")} ${!item.background_image && this.decorateCSS("title-no-image")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
-                             ${!item.image && this.decorateCSS("no-image")}
+                             ${!item.background_image && this.decorateCSS("no-image")}
                             `}
                               >
                                 {item.title}
@@ -367,7 +367,7 @@ class HeroSection24 extends BaseHeroSection {
                               <div
                                 className={`${this.decorateCSS("description")} ${!item.background_image && this.decorateCSS("description-no-image")}
                             ${this.getComponentState("currentIndex") == index && this.decorateCSS("active")}
-                            ${!item.image && this.decorateCSS("no-image")}
+                            ${!item.background_image && this.decorateCSS("no-image")}
                             `}
                               >
                                 {item.description}

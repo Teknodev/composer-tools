@@ -153,10 +153,10 @@
           border-radius: var(--composer-border-radius-sm);
           text-align: left;
           max-width: 40%;
-        }
 
-        .right-box-text, .right-box-description {
-          text-align: left;
+          .right-box-text, .right-box-desc {
+            text-align: left !important;
+          }
         }
       }
     }
@@ -204,6 +204,7 @@
       .content {
         display: flex;
         flex-direction: column-reverse;
+        gap: var(--composer-gap-sm);
         position: relative;
         align-items: center;
         width: 100%;

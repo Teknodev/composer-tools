@@ -108,14 +108,12 @@
 
                   &.no-image {
                     padding: 0;
-                    width: 100%;
                   }
                 }
 
                 .subtitle {
                   @extend %text-animation;
                   font-size: 2rem;
-                  color: #93646a;
                   width: 60%;
                   transition-delay: 0.25s;
                   text-align: center;
@@ -126,13 +124,11 @@
                     display: none !important;
                   }
 
-                  &.subtitle-no-image {
-                    color: var(--composer-font-color-primary);
-                  }
 
                   &.subtitle-has-bg {
                     background: transparent;
                     padding: 0;
+                    color: #93646a;
                   }
 
                   &.active {
@@ -164,7 +160,6 @@
 
                   &.no-image {
                     padding: 0;
-                    width: 100%;
                   }
                 }
 

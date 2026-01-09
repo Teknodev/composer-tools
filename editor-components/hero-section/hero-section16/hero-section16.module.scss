@@ -17,11 +17,12 @@
       .item {
         .content.image-no-content.content-with-animation.active-no-image {
           opacity: 1 !important;
-          transform: translate(-50%, 50vh) translateY(-100px) !important;
+          transform: translate(-50%, -50%) !important;
           transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         position: relative;
         width: 100%;
+        min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -83,7 +84,7 @@
             transform: translate(-50%, -50%);
 
             &.image-no-content {
-              transform: translate(-50%, 40vh);
+              transform: translate(-50%, -50%);
             }
           }
 
@@ -93,7 +94,7 @@
             transform: translate(-50%, -50%) translateY(100px);
 
             &.image-no-content {
-              transform: translate(-50%, 50vh) translateY(100px);
+              transform: translate(-50%, -50%) translateY(100px);
             }
 
             &.active {
@@ -101,7 +102,7 @@
               transform: translate(-50%, -50%) translateY(0);
 
               &.image-no-content {
-                transform: translate(-50%, 40vh) translateY(0);
+                transform: translate(-50%, -50%);
               }
             }
           }
@@ -275,12 +276,12 @@
           }
 
           .image-no-content {
-            transform: translate(-50%, 100vh) translateY(100px);
+            transform: translate(-50%, -50%) translateY(100px);
           }
 
           .active-no-image {
             opacity: 1;
-            transform: translate(-50%, 45vh) translateY(0);
+            transform: translate(-50%, -50%);
           }
 
           .subtitle {
@@ -333,12 +334,12 @@
           }
 
           .image-no-content {
-            transform: translate(-50%, 100vh) translateY(100px);
+            transform: translate(-50%, -50%) translateY(100px);
           }
 
           .active-no-image {
             opacity: 1;
-            transform: translate(-50%, 40vh) translateY(0);
+            transform: translate(-50%, -50%);
           }
 
           .subtitle {
