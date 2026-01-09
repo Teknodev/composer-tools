@@ -40,14 +40,14 @@ class Location7 extends Location {
         name: "",
       },
     });
-    
+
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
       value: "",
     });
-    
+
     this.addProp({
       type: "string",
       key: "title",
@@ -55,7 +55,7 @@ class Location7 extends Location {
       value: "We Are <span style='color: var(--composer-primary-color)'>Worldwide</span>",
     });
 
-        
+
     this.addProp({
       type: "string",
       key: "description",
@@ -263,7 +263,7 @@ class Location7 extends Location {
       displayer: "Tooltip Line",
       value: true,
     });
-    
+
     this.addProp({
       type: "boolean",
       key: "overlay",
@@ -330,7 +330,7 @@ class Location7 extends Location {
           topPercent,
           popupTitle,
           description,
-          markerImage: "", 
+          markerImage: "",
           content: null,
         });
       }
@@ -338,36 +338,38 @@ class Location7 extends Location {
     }, []);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}> 
-        <Base.MaxContent className={this.decorateCSS("max-content")}> 
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {iconExist && (
-              <div className={this.decorateCSS("icon-row")}> 
-                <Base.Media value={icon} className={this.decorateCSS("icon")}/>
+              <div className={this.decorateCSS("icon-row")}>
+                <Base.Media value={icon} className={this.decorateCSS("icon")} />
               </div>
             )}
-            {subtitleExist && ( 
-              <div className={this.decorateCSS("subtitle-row")}> 
+            {subtitleExist && (
+              <div className={this.decorateCSS("subtitle-row")}>
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
               </div>
             )}
             {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
             )}
             {descriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
+              <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
             )}
-            <section className={this.decorateCSS("map-container")}> 
+            <section className={this.decorateCSS("map-container")}>
               <div
                 className={this.decorateCSS("custom-map")}>
                 {bgMedia && (
-                  <Base.Media value={bgMedia} className={this.decorateCSS("background-image")}/>
+                  <Base.Media value={bgMedia} className={this.decorateCSS("background-image")} />
                 )}
                 {imageOverlay && <div className={this.decorateCSS("overlay")} />}
                 {markers.map((marker, idx) => {
                   const popupTitle = marker.popupTitle;
                   const description = marker.description;
-                  const tooltipExist = popupTitle || description ;
+                  const tooltipExist = popupTitle || description;
 
                   return (
                     <React.Fragment key={idx}>
