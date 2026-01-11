@@ -37,12 +37,6 @@
 
         .button-container-mobile {
             display: none;
-            justify-content: center;
-            width: 100%;
-
-            .button {
-                width: 100%;
-            }
         }
 
         .card-wrapper {
@@ -252,6 +246,8 @@
             .button-container-mobile {
                 display: flex;
                 justify-content: center;
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
             }
         }
     }

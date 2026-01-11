@@ -616,14 +616,12 @@ class ECommerce8 extends BaseECommerce {
             <div className={this.decorateCSS(isMobile ? "button-container-mobile" : "button-container")}>
                 {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
                     const buttonTextExist = this.castToString(item.text);
-                    return (
-                        buttonTextExist && (
-                            <ComposerLink key={`button-${index}`} path={item.url}>
-                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                </Base.Button>
-                            </ComposerLink>
-                        )
+                    return buttonTextExist && (
+                        <ComposerLink key={`button-${index}`} path={item.url}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            </Base.Button>
+                        </ComposerLink>
                     );
                 })}
             </div>
@@ -651,6 +649,10 @@ class ECommerce8 extends BaseECommerce {
                                 const cardLeftText = this.castToString(productCard.cardLeftText);
                                 const cardImage = productCard.cardImage;
                                 const hoverImage = productCard.hoverImage;
+                                const hasCardImage = cardImage && "url" in cardImage && !!cardImage.url;
+                                const hasHoverImage = hoverImage && "url" in hoverImage && !!hoverImage.url;
+                                const displayImage = hasCardImage ? cardImage : (hasHoverImage ? hoverImage : null);
+                                const displayHoverImage = hasCardImage && hasHoverImage ? hoverImage : null;
                                 const bottomLabelsArray = productCard.BottomLabels || [];
                                 const ratingLabel = this.castToString(productCard.BottomRatingLabel);
                                 const ratingIcon = productCard.bottomIcon;
@@ -661,21 +663,21 @@ class ECommerce8 extends BaseECommerce {
                                 const hasBottomLabels = bottomLabelsArray.length > 0;
                                 const hasRating = ratingLabel || ratingIcon;
 
-                                if (!cardImage && !cardLeftText && !productTitle && !cost?.value) return null;
+                                if (!displayImage && !cardLeftText && !productTitle && !cost?.value) return null;
 
                                 return (
                                     <div key={cardIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={navigateTo} isFullWidth={true}>
-                                            <div className={`${this.decorateCSS("image-container")} ${hoverImage ? this.decorateCSS("has-hover") : ""}`}>
-                                                {cardImage && (
+                                            <div className={`${this.decorateCSS("image-container")} ${displayHoverImage ? this.decorateCSS("has-hover") : ""}`}>
+                                                {displayImage && (
                                                     <div className={this.decorateCSS("image-wrapper")}>
                                                         <Base.Media
-                                                            value={cardImage}
+                                                            value={displayImage}
                                                             className={this.decorateCSS("image")}
                                                         />
-                                                        {hoverImage && (
+                                                        {displayHoverImage && (
                                                             <Base.Media
-                                                                value={hoverImage}
+                                                                value={displayHoverImage}
                                                                 className={this.decorateCSS("hover-image")}
                                                             />
                                                         )}
@@ -702,13 +704,9 @@ class ECommerce8 extends BaseECommerce {
                                                                 return labelText && (
                                                                     <React.Fragment key={labelIndex}>
                                                                         <div className={this.decorateCSS("label-item")}>
-                                                                            <Base.P className={this.decorateCSS("label-text")}>
-                                                                                {labelItem.cardLabel}
-                                                                            </Base.P>
+                                                                            <Base.P className={this.decorateCSS("label-text")}>{labelItem.cardLabel}</Base.P>
                                                                         </div>
-                                                                        {productCard.line && !isLast && (
-                                                                            <span className={this.decorateCSS("label-separator")}>|</span>
-                                                                        )}
+                                                                        {productCard.line && !isLast && (<span className={this.decorateCSS("label-separator")}>|</span>)}
                                                                     </React.Fragment>
                                                                 );
                                                             })}
