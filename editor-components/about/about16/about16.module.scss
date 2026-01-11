@@ -4,18 +4,21 @@
     .max-content {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-md);
 
         .text-content {
 
             .subtitle,
-            .title {
+            .title,
+            .description {
                 content: "";
             }
+        }
 
-            .description {
-                margin-bottom: 0;
-            }
+        .cards-button-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
         }
 
         .list-container {
@@ -30,7 +33,7 @@
                 .image-container {
                     &.animated:hover {
                         .text-content .icon-wrapper {
-                            max-width: 4rem;
+                            max-width: 65px;
                             margin-right: var(--composer-gap-sm);
                         }
 
@@ -89,6 +92,12 @@
                                 opacity: 0;
                                 transform: translateX(-20px);
                                 transition: all 0.3s ease;
+
+                                &.is-image {
+                                    max-width: var(--composer-gap-xl);
+                                    max-height: var(--composer-gap-xl);
+                                    object-fit: contain;
+                                }
                             }
                         }
 
@@ -104,8 +113,6 @@
                             .card-description {
                                 text-align: left;
                                 color: var(--composer-font-color-primary);
-                                width: 100%;
-                                overflow-wrap: break-word;
                             }
                         }
                     }
@@ -114,7 +121,7 @@
         }
 
         .button-container {
-            justify-content: center !important;
+            justify-content: center;
             gap: var(--composer-gap-sm);
             flex-wrap: wrap;
 
@@ -137,6 +144,11 @@
                             .icon-wrapper {
                                 .icon {
                                     font-size: 2rem;
+
+                                    &.is-image {
+                                        max-width: var(--composer-gap-lg);
+                                        max-height: var(--composer-gap-lg);
+                                    }
                                 }
                             }
                         }

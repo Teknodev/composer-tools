@@ -81,7 +81,7 @@ class About16 extends BaseAbout {
                             type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            additionalParams: { availableTypes: ["icon"] },
+                            additionalParams: { availableTypes: ["icon", "image"] },
                             value: {
                                 type: "icon",
                                 name: "HiMiniArrowUpRight",
@@ -132,7 +132,7 @@ class About16 extends BaseAbout {
                             type: "media",
                             key: "icon",
                             displayer: "Icon",
-                            additionalParams: { availableTypes: ["icon"] },
+                            additionalParams: { availableTypes: ["icon", "image"] },
                             value: {
                                 type: "icon",
                                 name: "HiMiniArrowUpRight",
@@ -168,7 +168,7 @@ class About16 extends BaseAbout {
         this.addProp({
             type: "boolean",
             key: "enableAnimation",
-            displayer: "Card Animation",
+            displayer: "Animation",
             value: true,
         });
 
@@ -206,72 +206,69 @@ class About16 extends BaseAbout {
                             {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                         </Base.VerticalContent>
                     )}
-                    {videos.length > 0 && (
-                        <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("list-container")}>
-                            {videos.map((item, index) => {
-                                const cardSubtitle = this.castToString(item.subtitle);
-                                const cardTitle = this.castToString(item.title);
-                                const cardDescription = this.castToString(item.description);
-                                const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
-                                return (
-                                    <div key={index} className={this.decorateCSS("list-item")}>
-                                        {item.video && (
-                                            <div className={`${this.decorateCSS("image-container")} ${enableAnimation ? this.decorateCSS("animated") : ""}`}>
-                                                <ComposerLink path={item.navigateTo} isFullWidth={true}>
-                                                    {item.video?.type === "video" ? (
-                                                        <video
-                                                            src={item.video.url}
+                    <div className={this.decorateCSS("cards-button-wrapper")}>
+                        {videos.length > 0 && (
+                            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("list-container")}>
+                                {videos.map((item, index) => {
+                                    const cardSubtitle = this.castToString(item.subtitle);
+                                    const cardTitle = this.castToString(item.title);
+                                    const cardDescription = this.castToString(item.description);
+                                    const isImage = item.icon?.type === "image";
+                                    const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
+                                    return (
+                                        <div key={index} className={this.decorateCSS("list-item")}>
+                                            {item.video && (
+                                                <div className={`${this.decorateCSS("image-container")} ${enableAnimation && this.decorateCSS("animated")}`}>
+                                                    <ComposerLink path={item.navigateTo} isFullWidth={true}>
+                                                        <Base.Media
+                                                            value={item.video}
                                                             className={this.decorateCSS("image")}
                                                             autoPlay={true}
                                                             muted={true}
                                                             loop={true}
+                                                            controls={false}
                                                             playsInline
                                                         />
-                                                    ) : (
-                                                        <Base.Media
-                                                            value={item.video}
-                                                            className={this.decorateCSS("image")}
-                                                        />
-                                                    )}
-                                                    {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
-                                                    <div className={this.decorateCSS("text-content")}>
-                                                        {item.icon && (
-                                                            <div className={this.decorateCSS("icon-wrapper")}>
-                                                                {item.icon && (<Base.Media value={item.icon} className={this.decorateCSS("icon")} />)}
-                                                            </div>
-                                                        )}
-                                                        {hasTextDetails && (
-                                                            <Base.VerticalContent className={this.decorateCSS("text-details")}>
-                                                                {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>)}
-                                                                {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>)}
-                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
-                                                            </Base.VerticalContent>
-                                                        )}
-                                                    </div>
-                                                </ComposerLink>
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </Base.ListGrid>
-                    )}
-                    {textButtons.length > 0 && (
-                        <Base.Row className={this.decorateCSS("button-container")}>
-                            {buttons.map(
-                                (buttonObj, index: number) => {
-                                    const buttonText = this.castToString(buttonObj.text);
-                                    return buttonText && (
-                                        <ComposerLink key={index} path={buttonObj.url}>
-                                            <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
-                                                <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
+                                                        {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                                                        <div className={this.decorateCSS("text-content")}>
+                                                            {item.icon && (
+                                                                <div className={this.decorateCSS("icon-wrapper")}>
+                                                                    <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                                                </div>
+                                                            )}
+                                                            {hasTextDetails && (
+                                                                <Base.VerticalContent className={this.decorateCSS("text-details")}>
+                                                                    {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>)}
+                                                                    {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>)}
+                                                                    {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
+                                                                </Base.VerticalContent>
+                                                            )}
+                                                        </div>
+                                                    </ComposerLink>
+                                                </div>
+                                            )}
+                                        </div>
                                     );
-                                }
-                            )}
-                        </Base.Row>
-                    )}
+                                })}
+                            </Base.ListGrid>
+                        )}
+                        {textButtons.length > 0 && (
+                            <Base.Row className={this.decorateCSS("button-container")}>
+                                {buttons.map(
+                                    (buttonObj, index: number) => {
+                                        const buttonText = this.castToString(buttonObj.text);
+                                        return buttonText && (
+                                            <ComposerLink key={index} path={buttonObj.url}>
+                                                <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    }
+                                )}
+                            </Base.Row>
+                        )}
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         );
