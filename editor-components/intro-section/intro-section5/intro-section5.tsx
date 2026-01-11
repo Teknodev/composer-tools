@@ -65,6 +65,13 @@ class IntroSection5 extends BaseIntroSection {
         INPUTS.BUTTON("button", "Button", "", "", "FaChevronDown", null, "Bare")
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "buttonAnimation",
+      displayer: "Animation",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -84,6 +91,7 @@ class IntroSection5 extends BaseIntroSection {
     const description = this.castToString(this.getPropValue("description"));
     const hasMedia = !!coverImage?.url;
     const enableOverlay = hasMedia && this.getPropValue("overlay");
+    const buttonAnimation = this.getPropValue("buttonAnimation");
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
@@ -109,7 +117,7 @@ class IntroSection5 extends BaseIntroSection {
                 const hasText = this.castToString(btn.text);
                 return (hasIcon || hasText) && (
                   <ComposerLink path={btn.url || ""} key={`btn-${i}`}>
-                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                    <Base.Button buttonType={btn.type} className={`${this.decorateCSS("button")} ${buttonAnimation ? this.decorateCSS("animated") : ""}`}>
                       {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
                       {hasText && <span className={this.decorateCSS("button-text")}>{btn.text}</span>}
                     </Base.Button>

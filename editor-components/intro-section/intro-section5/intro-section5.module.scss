@@ -91,7 +91,9 @@
       gap: var(--composer-gap-sm);
 
       .button {
-        animation: bounce 2s infinite;
+        &.animated {
+          animation: bounce 2s infinite;
+        }
 
         .button-icon {
           font-size: 5rem;
