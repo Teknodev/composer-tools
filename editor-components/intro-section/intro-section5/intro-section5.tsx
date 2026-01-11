@@ -21,7 +21,7 @@ class IntroSection5 extends BaseIntroSection {
     this.addProp({
       type: "media",
       key: "cover-image",
-      displayer: "Image",
+      displayer: "Media",
       value: {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
         type: "image",
@@ -74,39 +74,41 @@ class IntroSection5 extends BaseIntroSection {
   render() {
     const coverImage = this.getPropValue("cover-image");
     const buttons = this.castToObject<ButtonItem[]>("buttons");
-    const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
-    const title = this.castToString(this.getPropValue("title")) || "";
-    const description = this.castToString(this.getPropValue("description")) || "";
+    const visibleButtons = buttons.filter(btn => {
+      const hasText = this.castToString(btn.text);
+      const hasIcon = btn.icon && (btn.icon.type === "icon" ? !!btn.icon.name : !!btn.icon.url);
+      return hasText || hasIcon;
+    });
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
     const hasMedia = !!coverImage?.url;
     const enableOverlay = hasMedia && this.getPropValue("overlay");
-    const hasContent = subtitle || title || description || buttons.length > 0;
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${hasMedia && this.decorateCSS("has-media")}`}>
         {hasMedia && (
           <div className={this.decorateCSS("background-container")}>
-            <Base.Media
-              value={coverImage}
-              className={this.decorateCSS("background-media")}
-            />
+            <Base.Media value={coverImage} className={this.decorateCSS("background-media")} />
             {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
           </div>
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
               {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
               {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
             </Base.VerticalContent>
           )}
-          {buttons && (
-            <div className={this.decorateCSS("buttons")}>
-              {buttons.map((btn, i) => {
+          {visibleButtons.length > 0 && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              {visibleButtons.map((btn, i) => {
                 const hasIcon = btn.icon && (btn.icon.type === "icon" ? !!btn.icon.name : !!btn.icon.url);
                 const hasText = this.castToString(btn.text);
-                return (
-                  <ComposerLink key={`btn-${i}`} path={btn.url || ""} className={this.decorateCSS("button-wrapper")}>
+                return (hasIcon || hasText) && (
+                  <ComposerLink path={btn.url || ""} key={`btn-${i}`}>
                     <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
                       {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
                       {hasText && <span className={this.decorateCSS("button-text")}>{btn.text}</span>}
