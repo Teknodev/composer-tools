@@ -52,7 +52,9 @@ class IntroSection3 extends BaseIntroSection {
             type: "array",
             key: "buttons",
             displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button 1", "Start Now", "", null, null, "Primary")],
+            value: [
+                INPUTS.BUTTON("button", "Button", "Start Now", "", null, null, "Primary")
+            ],
         });
 
         this.addProp({
@@ -86,54 +88,49 @@ class IntroSection3 extends BaseIntroSection {
         const label1 = this.castToString(this.getPropValue("label1"));
         const label2 = this.castToString(this.getPropValue("label2"));
         const hasTitleGroup = label1 || label2;
-        const hasContent = subtitle || title || description || buttons.length > 0 || hasTitleGroup;
+        const hasContent = subtitle || title || description || visibleButtons.length > 0 || hasTitleGroup;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("wrapper")}>
-                        {hasContent && (
-                            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                                {(visibleButtons.length > 0 || hasTitleGroup) && (
-                                    <div className={this.decorateCSS("button-group-container")} data-has-buttons={visibleButtons.length > 0}>
-                                        {visibleButtons.length > 0 && (
-                                            <Base.Row className={this.decorateCSS("button-container")}>
-                                                {buttons.map((item, index) => {
-                                                    const buttonText = this.castToString(item.text || "");
-                                                    const buttonUrl = item.url || "#";
-                                                    if (!buttonText) return null;
-                                                    return (
-                                                        <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
-                                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                                {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    );
-                                                })}
-                                            </Base.Row>
-                                        )}
-                                        {hasTitleGroup && (
-                                            <div className={this.decorateCSS("label-group")}>
-                                                {label1 && <Base.P className={this.decorateCSS("label1")}>{this.getPropValue("label1")}</Base.P>}
-                                                {label2 && <Base.P className={this.decorateCSS("label2")}>{this.getPropValue("label2")}</Base.P>}
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
-                            </Base.VerticalContent>
-                        )}
-                        {isImageExist && (
-                            <div className={this.decorateCSS("image-content")}>
-                                <div className={this.decorateCSS("image-wrapper")}>
-                                    <Base.Media value={image} className={this.decorateCSS("image")} />
-                                    {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                    {hasContent && (
+                        <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                            {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                            {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                            {(visibleButtons.length > 0 || hasTitleGroup) && (
+                                <div className={this.decorateCSS("button-group-container")} data-has-buttons={visibleButtons.length > 0}>
+                                    {visibleButtons.length > 0 && (
+                                        <Base.Row className={this.decorateCSS("button-container")}>
+                                            {buttons.map((item, index) => {
+                                                const buttonText = this.castToString(item.text || "");
+                                                const buttonUrl = item.url || "#";
+                                                return buttonText && (
+                                                    <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
+                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                );
+                                            })}
+                                        </Base.Row>
+                                    )}
+                                    {hasTitleGroup && (
+                                        <div className={this.decorateCSS("label-group")}>
+                                            {label1 && <Base.P className={this.decorateCSS("label1")}>{this.getPropValue("label1")}</Base.P>}
+                                            {label2 && <Base.P className={this.decorateCSS("label2")}>{this.getPropValue("label2")}</Base.P>}
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </Base.VerticalContent>
+                    )}
+                    {isImageExist && (
+                        <div className={this.decorateCSS("image-content")}>
+                            <Base.Media value={image} className={this.decorateCSS("image")} />
+                            {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                        </div>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         );
