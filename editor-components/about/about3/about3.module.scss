@@ -12,6 +12,9 @@
             }
             .title-container {
                 flex: 1 1 100%;
+                display: flex;  
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -65,7 +68,7 @@
         .right-page {
             flex: 1;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: flex-end;
 
             &.no-content {
@@ -85,6 +88,8 @@
                 position: relative;
                 display: flex;
                 justify-content: flex-end;
+                height: 100%;
+                align-items: stretch;
 
                 &.center-single-image {
                     justify-content: center;
@@ -202,16 +207,17 @@
 
                 .back-image {
                     max-width: 75%;
-                    height: 80%;
+                    height: 100%;
                     margin-bottom: var(--composer-gap-xl);
                 }
 
                 .front-image {
                     position: absolute;
                     left: 0px;
-                    bottom: 0px;
+                    bottom: calc(-2 * var(--composer-gap-sm));
                     max-width: 60%;
                     height: 70%;
+                    transform-origin: bottom left;
                 }
             }
         }

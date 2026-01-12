@@ -47,7 +47,7 @@ class About2 extends BaseAbout {
       key: "closeIcon",
       displayer: "Close Button Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon","image"],
       },
       value: {
         type: "icon",
@@ -73,7 +73,7 @@ class About2 extends BaseAbout {
   }
 
   render() {
-    const closeIcon: string = this.getPropValue("closeIcon");
+    const closeIcon = this.getPropValue("closeIcon");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const cover = this.getPropValue("cover-image");
     const rawVideo = this.getPropValue("videoUrl");
@@ -105,7 +105,7 @@ class About2 extends BaseAbout {
               {closeIcon && (
                 <div className={this.decorateCSS("close-icon-box")}>
                   <Base.Media
-                    value={this.getPropValue("closeIcon")}
+                    value={closeIcon}
                     className={this.decorateCSS("close-icon")}
                   />
                 </div>
