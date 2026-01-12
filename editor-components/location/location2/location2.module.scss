@@ -2,8 +2,9 @@
 
 .container {
   width: 100%;
+
   .content-container {
-      padding-bottom:var(--composer-gap-lg) !important;
+    padding-bottom: var(--composer-gap-lg) !important;
 
     .max-content {
       max-width: 100% !important;
@@ -28,6 +29,41 @@
         .title {
           text-align: left;
           margin-left: 0px;
+        }
+
+        .title-with-socials {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+
+          .title {
+            margin: 0;
+          }
+
+          .socials-inline {
+            display: flex;
+            gap: var(--composer-gap-sm);
+
+            .socials-container {
+              .social-button {
+                color: var(--composer-font-color-secondary);
+                width: var(--composer-gap-xl);
+                height: var(--composer-gap-xl);
+                padding: var(--composer-gap-sm);
+                background-color: var(--composer-primary-color);
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: var(--composer-border-radius-sm);
+                &:hover {
+                  background-color: var(--composer-html-background);
+                  color: var(--composer-font-color-primary);
+                }
+              }
+            }
+          }
         }
 
         &.center {
@@ -62,9 +98,9 @@
           .socials,
           &.center .socials,
           &.left .socials {
-            justify-content: flex-start !important;
-            width: auto !important;
-            align-self: flex-start !important;
+            justify-content: flex-start;
+            width: auto;
+            align-self: flex-start;
           }
 
           .description-text {
@@ -78,7 +114,7 @@
             justify-content: flex-start !important;
             width: auto !important;
 
-              .socials-container {
+            .socials-container {
               min-width: 5%;
 
               .social-button {
@@ -100,6 +136,15 @@
               }
             }
           }
+
+          &.no-description {
+            .socials {
+              width: 100%;
+              justify-content: center;
+              align-self: center;
+            }
+          }
+
 
           &.center {
             .socials {

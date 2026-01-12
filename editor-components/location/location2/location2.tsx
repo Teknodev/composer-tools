@@ -556,30 +556,55 @@ class Location2 extends Location {
         {headerExist && (
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""} ${!isDescriptionExist && isTitleExist ? this.decorateCSS("no-description-title") : ""} ${!isDescriptionExist && !isTitleExist ? this.decorateCSS("no-description-no-title") : ""}`}>
                 {logo && <Base.Media value={logo} className={this.decorateCSS("location-logo")} />}
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
-                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
-                  {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
-                  {socials.length > 0 && (
-                    <div className={this.decorateCSS("socials")}>
-                      {socials.map((item: any) => {
-                        return (
-                          item.getPropValue("icon") && (
-                            <Base.VerticalContent className={this.decorateCSS("socials-container")}>
-                              <ComposerLink path={item.getPropValue("path")}>
-                                <Base.Row className={this.decorateCSS("social-button")}>
-                                  <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
-                                </Base.Row>
-                              </ComposerLink>
-                            </Base.VerticalContent>
-                          )
-                        );
-                      })}
+                {!isDescriptionExist && isTitleExist ? (
+                  <div className={this.decorateCSS("title-with-socials")}>
+                    <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>
+                    {socials.length > 0 && (
+                      <div className={this.decorateCSS("socials-inline")}>
+                        {socials.map((item: any, idx: number) => {
+                          return (
+                            item.getPropValue("icon") && (
+                              <Base.VerticalContent key={idx} className={this.decorateCSS("socials-container")}>
+                                <ComposerLink path={item.getPropValue("path")}>
+                                  <Base.Row className={this.decorateCSS("social-button")}>
+                                    <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                                  </Base.Row>
+                                </ComposerLink>
+                              </Base.VerticalContent>
+                            )
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <>
+                    {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
+                    <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""} ${!isDescriptionExist && isTitleExist ? this.decorateCSS("no-description-right") : ""} ${!isDescriptionExist && !isTitleExist ? this.decorateCSS("no-description-left") : ""}`}>
+                      {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
+                      {socials.length > 0 && (
+                        <div className={this.decorateCSS("socials")}>
+                          {socials.map((item: any) => {
+                            return (
+                              item.getPropValue("icon") && (
+                                <Base.VerticalContent className={this.decorateCSS("socials-container")}>
+                                  <ComposerLink path={item.getPropValue("path")}>
+                                    <Base.Row className={this.decorateCSS("social-button")}>
+                                      <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                                    </Base.Row>
+                                  </ComposerLink>
+                                </Base.VerticalContent>
+                              )
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+                  </>
+                )}
               </Base.VerticalContent>
             </Base.MaxContent>
           </Base.Container>
