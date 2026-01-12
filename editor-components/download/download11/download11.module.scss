@@ -168,6 +168,11 @@
               text-align: left !important;
               color: var(--composer-font-color-primary) !important;
             }
+            .left {
+              .title {
+                margin-bottom: var(--composer-gap-sm);
+              }
+            }
             &.center {
               flex-direction: column;
               justify-content: center;
@@ -193,6 +198,7 @@
               flex: 1 1 auto;
               min-width: 0;
               text-align: left !important;
+              margin-bottom: var(--composer-gap-sm);
             }
         
             .button-wrapper {

@@ -192,7 +192,7 @@ class Download2 extends BaseDownload {
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("cards-container")}>
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards")}>
               {this.castToObject<any[]>("cards").map((card: Card, index: number) => {
                 const deviceExist = this.castToString(card.device);
                 const platformExist = this.castToString(card.platform);

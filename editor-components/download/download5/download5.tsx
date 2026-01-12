@@ -103,6 +103,7 @@ class Download5 extends BaseDownload {
                   const buttonExist = buttonTextExist || iconExist || imageExist;
                   return buttonExist && (
                     <div className={this.decorateCSS("button-wrapper")}>
+                      <div className={this.decorateCSS("button-full")}>
                       <ComposerLink key={index} path={item.url}>
                         {imageExist ? (
                           <Base.Media value={item.image as any} className={this.decorateCSS("button-image")} />
@@ -118,6 +119,7 @@ class Download5 extends BaseDownload {
                           </Base.Button>
                         )}
                       </ComposerLink>
+                    </div>
                     </div>
                   );
                 })}
