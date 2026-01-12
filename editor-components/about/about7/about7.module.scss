@@ -46,6 +46,20 @@
                 flex-direction: row-reverse;
             }
 
+            &.row-reverse {
+                .right-container {
+                    .subtitle {
+                        text-align: end !important;
+                        margin-right: 0px !important;
+                    }
+                    .description,
+                    .title {
+                        text-align: end !important;
+                        margin-right: 0px !important;
+                    }
+                }
+            }
+
             .left-container {
                 width: 100%;
                 flex: 5;
@@ -194,6 +208,8 @@
                         background: transparent;
                         padding: 0;
                     }
+                    text-align: start;
+                    margin-left: 0px !important;
                 }
 
                 .subtitle {
@@ -205,18 +221,29 @@
                         }
                     }
                 }
+                
+                &:has(.description) {
+                    .subtitle {
+                        &::before {
+                            display: none !important;
+                        }
+                    }
+                }
 
                 &.row-reverse {
                     align-items: end;
 
                     .subtitle {
                         transform: none;
+                        align-self: flex-end !important;
+                        text-align: end !important;
+                        margin-right: 0px !important;
                     }
 
-                    .subtitle,
                     .description,
                     .title {
-                        text-align: end;
+                        text-align: end !important;
+                        margin-right: 0px !important;
                     }
                 }
 
@@ -231,6 +258,14 @@
                     .description,
                     .title {
                         text-align: center !important;
+                    }
+                }
+
+                &.center-alignment {
+                    .subtitle {
+                        text-align: start !important;
+                        margin-left: 0px !important;
+                        align-self: flex-start !important;
                     }
                 }
 
@@ -273,13 +308,15 @@
                         align-items: start;
 
                         .subtitle {
-                            transform: none !important
+                            transform: none !important;
+                            align-self: flex-end !important;
+                            text-align: end !important;
                         }
 
                         .subtitle,
                         .description,
                         .title {
-                            text-align: start;
+                            text-align: end;
                         }
                     }
                 }
@@ -314,10 +351,16 @@
                     &.row-reverse {
                         align-items: center;
 
-                        .subtitle,
+                        .subtitle {
+                            align-self: flex-end !important;
+                            text-align: end !important;
+                            margin-right: 0px !important;
+                        }
+
                         .description,
                         .title {
-                            text-align: center;
+                            text-align: end;
+                            margin-right: 0px !important;
                         }
                     }
                 }
