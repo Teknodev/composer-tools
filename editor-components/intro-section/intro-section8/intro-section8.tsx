@@ -116,7 +116,7 @@ class IntroSection8 extends BaseIntroSection {
                 {hasBackground && <div className={this.decorateCSS("background")} />}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                        <Base.VerticalContent className={`${this.decorateCSS("text-content")} ${hasBackground && this.decorateCSS("has-background")}`}>
                             {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                             {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                             {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
@@ -140,7 +140,11 @@ class IntroSection8 extends BaseIntroSection {
                             {isVideo ? (
                                 !isPlaying ? (
                                     <div className={this.decorateCSS("thumbnail-container")} onClick={this.handlePlayVideo}>
-                                        {thumbnail?.url && <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />}
+                                        {thumbnail?.url ? (
+                                            <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />
+                                        ) : (
+                                            <Base.Media value={{ ...media, settings: { autoplay: false, controls: false, muted: true } }} className={this.decorateCSS("thumbnail-image")} />
+                                        )}
                                         {hasOverlay && <div className={this.decorateCSS("overlay")} />}
                                         {(playIcon?.name || playIcon?.url) && (
                                             <div className={this.decorateCSS("play-icon-wrapper")}>
