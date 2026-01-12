@@ -343,7 +343,10 @@ class Location7 extends Location {
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {logoExist && (
               <div className={this.decorateCSS("logo-container")}>
-                <Base.Media value={logo} className={this.decorateCSS("logo")} />
+                <Base.Media
+                  value={logo}
+                  className={`${this.decorateCSS("logo")} ${logo?.type === "image" && this.decorateCSS("logo-img")}`}
+                />
               </div>
             )}
             {subtitleExist && (

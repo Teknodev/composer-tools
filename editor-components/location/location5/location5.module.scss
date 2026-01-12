@@ -3,7 +3,7 @@
 .container {
 
   .max-content {
-    .title-block {
+      .title-block {
       .location-logo {
         width: 80px;
         height: auto;
@@ -12,6 +12,14 @@
         font-size: 4rem;
         place-self: flex-start;
         margin-left: 0;
+      }
+
+      .location-logo-img {
+        aspect-ratio: 3 / 1;
+        width: 80px;
+        height: auto !important;
+        object-fit: cover;
+        display: block;
       }
 
       .location-description-header {
@@ -77,7 +85,7 @@
           .location-index {
             color: var(--composer-font-color-primary);
             margin-top: var(--composer-gap-md);
-            font-size: 2.75rem;
+            font-size: 1.5rem;
           }
 
           .location-city {
@@ -164,6 +172,15 @@
         .location-logo {
           width: 40px;
           font-size: 2.5rem;
+        }
+ 
+        .location-logo {
+          width: 40px;
+          font-size: 2.5rem;
+        }
+
+        .location-logo-img {
+          width: 40px;
         }
       }
 

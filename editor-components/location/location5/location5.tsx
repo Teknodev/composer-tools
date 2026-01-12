@@ -370,7 +370,12 @@ class Location5 extends Location {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={`${this.decorateCSS("title-block")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
-            {logo && <Base.Media value={logo} className={this.decorateCSS("location-logo")} />}
+            {logo && (
+              <Base.Media
+                value={logo}
+                className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`}
+              />
+            )}
             {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
             {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
             {hasDescription && <Base.SectionDescription className={this.decorateCSS("location-description-header")}>{description}</Base.SectionDescription>}

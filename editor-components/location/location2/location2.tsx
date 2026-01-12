@@ -489,7 +489,11 @@ class Location2 extends Location {
 
     const alignmentValue = Base.getContentAlignment();
     const logo = this.getPropValue("logo");
-
+    const isLogoExist = Boolean(
+      (logo as any)?.url ||
+      (logo as any)?.name ||
+      (logo as any)?.icon
+    );
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const markerData = address.getPropValue("coordinate");
@@ -551,60 +555,55 @@ class Location2 extends Location {
     const headerExist = isTitleExist || isDescriptionExist || socials.length > 0;
     const subtitle = this.getPropValue("subtitle");
     const hasSubtitle = this.castToString(subtitle);
+    const socialNodes = socials.length > 0 ? (
+      <div className={this.decorateCSS("socials")}>
+        {socials.map((item: any, idx: number) => {
+          return (
+            item.getPropValue("icon") && (
+              <Base.VerticalContent key={idx} className={this.decorateCSS("socials-container")}>
+                <ComposerLink path={item.getPropValue("path")}>
+                  <Base.Row className={this.decorateCSS("social-button")}>
+                    <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                  </Base.Row>
+                </ComposerLink>
+              </Base.VerticalContent>
+            )
+          );
+        })}
+      </div>
+    ) : null;
+    const socialPlacement = isDescriptionExist ? "description" : isTitleExist ? "title" : hasSubtitle ? "subtitle" : null;
     return (
       <div className={this.decorateCSS("container")}>
         {headerExist && (
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""} ${!isDescriptionExist && isTitleExist ? this.decorateCSS("no-description-title") : ""} ${!isDescriptionExist && !isTitleExist ? this.decorateCSS("no-description-no-title") : ""}`}>
-                {logo && <Base.Media value={logo} className={this.decorateCSS("location-logo")} />}
-                {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                {!isDescriptionExist && isTitleExist ? (
+                {isLogoExist && (
+                  <Base.Media
+                    value={logo}
+                    className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`}
+                  />
+                )}
+
+                {hasSubtitle && (
+                  <div className={this.decorateCSS("subtitle-row")}>
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                    {socialPlacement === "subtitle" && socialNodes}
+                  </div>
+                )}
+
+                {isTitleExist && (
                   <div className={this.decorateCSS("title-with-socials")}>
                     <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>
-                    {socials.length > 0 && (
-                      <div className={this.decorateCSS("socials-inline")}>
-                        {socials.map((item: any, idx: number) => {
-                          return (
-                            item.getPropValue("icon") && (
-                              <Base.VerticalContent key={idx} className={this.decorateCSS("socials-container")}>
-                                <ComposerLink path={item.getPropValue("path")}>
-                                  <Base.Row className={this.decorateCSS("social-button")}>
-                                    <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
-                                  </Base.Row>
-                                </ComposerLink>
-                              </Base.VerticalContent>
-                            )
-                          );
-                        })}
-                      </div>
-                    )}
+                    {socialPlacement === "title" && socialNodes}
                   </div>
-                ) : (
-                  <>
-                    {isTitleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{headerTitle}</Base.SectionTitle>}
-                    <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""} ${!isDescriptionExist && isTitleExist ? this.decorateCSS("no-description-right") : ""} ${!isDescriptionExist && !isTitleExist ? this.decorateCSS("no-description-left") : ""}`}>
-                      {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
-                      {socials.length > 0 && (
-                        <div className={this.decorateCSS("socials")}>
-                          {socials.map((item: any) => {
-                            return (
-                              item.getPropValue("icon") && (
-                                <Base.VerticalContent className={this.decorateCSS("socials-container")}>
-                                  <ComposerLink path={item.getPropValue("path")}>
-                                    <Base.Row className={this.decorateCSS("social-button")}>
-                                      <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
-                                    </Base.Row>
-                                  </ComposerLink>
-                                </Base.VerticalContent>
-                              )
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  </>
                 )}
+
+                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""} ${!isDescriptionExist && isTitleExist ? this.decorateCSS("no-description-right") : ""} ${!isDescriptionExist && !isTitleExist ? this.decorateCSS("no-description-left") : ""}`}>
+                  {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
+                  {socialPlacement === "description" && socialNodes}
+                </div>
               </Base.VerticalContent>
             </Base.MaxContent>
           </Base.Container>

@@ -428,10 +428,12 @@ class Location1 extends Location {
                     {icons.length > 0 && (
                       <div className={this.decorateCSS("icon-container")}>
                         {icons.map((icon: any, index: number) => {
+                          const iconValue = icon.getPropValue && icon.getPropValue("icon");
+                          if (!iconValue) return null;
                           return (
                             <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               <ComposerLink path={icon.getPropValue("path")}>
-                                <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                                <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
                               </ComposerLink>
                             </div>
                           );
@@ -445,10 +447,12 @@ class Location1 extends Location {
                     {icons.length > 0 && (
                       <div className={this.decorateCSS("icon-container")}>
                         {icons.map((icon: any, index: number) => {
+                          const iconValue = icon.getPropValue && icon.getPropValue("icon");
+                          if (!iconValue) return null;
                           return (
                             <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               <ComposerLink path={icon.getPropValue("path")}>
-                                <Base.Media value={icon.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                                <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
                               </ComposerLink>
                             </div>
                           );

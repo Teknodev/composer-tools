@@ -10,6 +10,13 @@
       max-width: 100% !important;
 
       .header {
+        .title-with-socials .socials,
+        .subtitle-row .socials,
+        .description-container .socials {
+          display: flex !important;
+          width: auto !important;
+          justify-content: flex-start !important;
+        }
         .location-logo {
           width: 80px;
           height: auto;
@@ -18,6 +25,14 @@
           font-size: 6rem;
           margin-left: 0px;
           place-self: flex-start;
+        }
+
+        .location-logo-img {
+          aspect-ratio: 3 / 1;
+          width: 80px;
+          height: auto !important;
+          object-fit: cover;
+          display: block;
         }
 
         .subtitle,
@@ -31,6 +46,11 @@
           margin-left: 0px;
         }
 
+        .description-text {
+          margin-left: 0px !important;
+          text-align: left !important;
+        }
+
         .title-with-socials {
           display: flex;
           align-items: center;
@@ -41,9 +61,10 @@
             margin: 0;
           }
 
-          .socials-inline {
+          .socials {
             display: flex;
             gap: var(--composer-gap-sm);
+            align-items: flex-start !important;
 
             .socials-container {
               .social-button {
@@ -58,8 +79,77 @@
                 justify-content: center;
                 border-radius: var(--composer-border-radius-sm);
                 &:hover {
-                  background-color: var(--composer-html-background);
-                  color: var(--composer-font-color-primary);
+                  background-color: var(--composer-secondary-color);
+                  color: var(--composer-html-background);
+                }
+              }
+            }
+          }
+        }
+        .title-with-socials .socials,
+        .subtitle-row .socials,
+        .description-container .socials {
+          display: flex !important;
+        }
+        
+        .subtitle-row ~ .description-container .socials,
+        .title-with-socials ~ .description-container .socials {
+          display: none;
+        }
+
+        .subtitle-row {
+          .socials-inline {
+            .socials-container {
+              .social-button {
+                color: var(--composer-font-color-secondary);
+                width: var(--composer-gap-xl);
+                height: var(--composer-gap-xl);
+                padding: var(--composer-gap-sm);
+                background-color: var(--composer-primary-color);
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: var(--composer-border-radius-sm);
+                &:hover {
+                  background-color: var(--composer-secondary-color);
+                  color: var(--composer-html-background);
+                }
+              }
+            }
+          }
+        }
+
+        .subtitle-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          gap: var(--composer-gap-md);
+
+          .subtitle {
+            margin: 0;
+          }
+          .socials {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            align-items: center;
+
+            .socials-container {
+              .social-button {
+                color: var(--composer-font-color-secondary);
+                width: var(--composer-gap-xl);
+                height: var(--composer-gap-xl);
+                padding: var(--composer-gap-sm);
+                background-color: var(--composer-primary-color);
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: var(--composer-border-radius-sm);
+                &:hover {
+                  background-color: var(--composer-secondary-color);
+                  color: var(--composer-html-background);
                 }
               }
             }
@@ -85,8 +175,14 @@
         }
 
         .description-container .description-text {
-          text-align: left;
+          text-align: left !important;
           color: var(--composer-tertiary-color);
+          margin-left: 0px !important;
+        }
+
+        .description,
+        .description-text {
+          text-align: left !important;
           margin-left: 0px;
         }
 
@@ -94,6 +190,8 @@
           display: flex;
           align-items: center;
           gap: var(--composer-gap-md);
+          margin-left: 0px !important;
+          width: 100% !important;
 
           .socials,
           &.center .socials,
@@ -130,8 +228,8 @@
                 border-radius: var(--composer-border-radius-sm);
 
                 &:hover {
-                  background-color: var(--composer-html-background);
-                  color: var(--composer-font-color-primary);
+                  background-color: var(--composer-secondary-color);
+                  color: var(--composer-html-background);
                 }
               }
             }
@@ -141,7 +239,7 @@
             .socials {
               width: 100%;
               justify-content: center;
-              align-self: center;
+              align-self: flex-start;
             }
           }
 
@@ -150,7 +248,7 @@
             .socials {
               width: auto;
               justify-content: flex-start;
-              align-self: center;
+              align-self: flex-start;
             }
           }
 
@@ -158,7 +256,7 @@
             .socials {
               width: auto;
               justify-content: flex-start;
-              align-self: center;
+              align-self: flex-start;
             }
           }
         }
@@ -262,12 +360,35 @@
     .content-container {
       .max-content {
         .header {
-          .description-container {
-            flex-direction: column;
+          display: flex;
+          flex-direction: column !important;
+          align-items: flex-start !important;
 
-            .socials {
-              width: 100%;
-            }
+          .subtitle-row,
+          .title-with-socials,
+          .description-container {
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: var(--composer-gap-sm);
+          }
+
+          .socials {
+            width: 100% !important;
+            display: flex !important;
+            justify-content: flex-start !important;
+            gap: var(--composer-gap-sm) !important;
+            align-items: flex-start !important;
+          }
+
+          .location-logo {
+            width: 40px;
+            font-size: 3.5rem;
+          }
+
+          .location-logo-img {
+            width: 40px;
           }
         }
       }
