@@ -463,6 +463,13 @@ class Blog3 extends BaseBlog {
 
     const Card = ({ data, style }: { data: CardData, style?: object; }) => {
       const title = this.castToString(data.title);
+      const isMini = (() => {
+        if (typeof data.mini === "boolean") return data.mini;
+        if (!data.mini) return false;
+        if (typeof data.mini === "object" && "value" in data.mini) return Boolean((data.mini as any).value);
+        if (typeof data.mini === "string") return data.mini === "true";
+        return Boolean(data.mini);
+      })();
       const description = this.castToString(data.description);
 
       const profileDescriptionExist = !!this.castToString(data.profileDescription);
@@ -474,7 +481,7 @@ class Blog3 extends BaseBlog {
         <div
           className={`
               ${this.decorateCSS("card")}
-              ${this.decorateCSS(data.mini ? "mini" : "")}
+              ${this.decorateCSS(isMini ? "mini" : "")}
             `}
           style={style}
         >
@@ -565,6 +572,15 @@ class Blog3 extends BaseBlog {
       );
     };
 
+    const isCardMiniValue = (c: any) => {
+      const v = c?.mini;
+      if (typeof v === "boolean") return v;
+      if (!v) return false;
+      if (typeof v === "object" && "value" in v) return Boolean((v as any).value);
+      if (typeof v === "string") return v === "true";
+      return Boolean(v);
+    };
+
     const Blocks = ({ cards }: { cards: CardData[]; }) => {
       const blocks: React.JSX.Element[] = [];
       const data: any = [];
@@ -577,7 +593,8 @@ class Blog3 extends BaseBlog {
           this.castToString(cards[i].readTime) ||
           this.castToString(cards[i].fullname) ||
           this.castToString(cards[i].profileDescription) ||
-          cards[i].image?.url
+          cards[i].image?.url ||
+          isCardMiniValue(cards[i])
         )) {
           continue;
         }
@@ -592,7 +609,24 @@ class Blog3 extends BaseBlog {
           return <>{blocks}</>;
         }
 
-        if (cards[i].mini && cards[i + 1].mini) {
+        const cardIMini = (() => {
+          const v = cards[i].mini;
+          if (typeof v === "boolean") return v;
+          if (!v) return false;
+          if (typeof v === "object" && "value" in v) return Boolean((v as any).value);
+          if (typeof v === "string") return v === "true";
+          return Boolean(v);
+        })();
+        const cardI1Mini = (() => {
+          const v = cards[i + 1].mini;
+          if (typeof v === "boolean") return v;
+          if (!v) return false;
+          if (typeof v === "object" && "value" in v) return Boolean((v as any).value);
+          if (typeof v === "string") return v === "true";
+          return Boolean(v);
+        })();
+
+        if (cardIMini && cardI1Mini) {
           blocks.push(
             <Block><>
               <Card data={cards[i]} />

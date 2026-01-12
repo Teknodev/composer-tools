@@ -89,7 +89,6 @@
     }
 
     .header {
-
       .title,
       .subtitle,
       .description {
@@ -102,18 +101,15 @@
         text-align: left !important;
         margin-left: 0 !important;
       }
+    }
 
-      .line {
-        display: block;
-        width: 100%;
-        height: 1px;
-        border: 0;
-        background-color: var(--composer-font-color-primary);
-        appearance: none;
-        margin: 0 0 var(--composer-gap-lg) 0;
-        position: relative;
-        z-index: 9999;
-      }
+    .line {
+      display: block;
+      width: 100%;
+      height: 1px;
+      border-top: 1px solid var(--composer-font-color-primary) !important;
+      appearance: none;
+      position: relative;
     }
 
     .header-wrapper {
@@ -399,8 +395,12 @@
 
   .container {
     .max-content {
+      .right-link {
+        .inner-right-link {
+          padding-top: var(--composer-gap-md) !important;
+        }
+      }
       .wrapper {
-
         .slider-button-right,
         .slider-button-left {
           height: 150px;

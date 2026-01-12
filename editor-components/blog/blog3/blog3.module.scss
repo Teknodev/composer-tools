@@ -259,6 +259,7 @@
             .profile-image {
               width: var(--composer-gap-xl);
               height: var(--composer-gap-xl);
+              border-radius: var(--composer-border-radius-sm);
 
               &:hover {
                 filter: brightness(1.2);
