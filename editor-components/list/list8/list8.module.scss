@@ -164,7 +164,7 @@
         content: "";
         width: 100%;
         margin-top: var(--composer-gap-md);
-        > div {
+        .button-inner {
           width: 100% !important;
           display: flex;
           justify-content: center;

@@ -216,12 +216,16 @@ class List10 extends BaseList {
         const imageOverlay = this.getPropValue("overlay");
         const button = this.castToObject<any>("button");
         const buttonText = this.castToString(button?.text);
+        const isMonochrome = Base.getViewType() === "monochrome";
+        const isColorful = Base.getViewType() === "colorful";
+        const viewClass = (isMonochrome && styles.monochrome) || (isColorful && styles.colorful);
+      
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(this.castToString(sectionSubtitle) || this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-                        <div className={`${this.decorateCSS("up-page")} ${styles[Base.getViewType()]}`}>
+                        <div className={`${this.decorateCSS("up-page")} ${viewClass}`}>
                             {this.castToString(sectionSubtitle) && (
                                 <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                                     {sectionSubtitle}

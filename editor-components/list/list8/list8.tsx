@@ -253,13 +253,15 @@ class List8 extends BaseList {
             )}
             {this.castToString(buttonType.text) && (
               <div className={this.decorateCSS("button-wrapper")}>
-                <ComposerLink path={buttonType.url}>
-                  <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                    <Base.P className={this.decorateCSS("button-text")}>
-                      {buttonType.text}
-                    </Base.P>
-                  </Base.Button>
-                </ComposerLink>
+                <div className={this.decorateCSS("button-inner")}>
+                  <ComposerLink path={buttonType.url}>
+                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {buttonType.text}
+                      </Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                </div>
               </div>
             )}
           </div>
