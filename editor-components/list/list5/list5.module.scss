@@ -38,6 +38,18 @@ as *;
     flex-direction: column;
     position: relative;
     z-index: 2;
+    max-width: var(--composer-content-width);
+    margin: 0 auto;
+
+    .cards-grid {
+      grid-template-columns: repeat(var(--composer-grid-count), minmax(0, 1fr));
+      gap: var(--composer-gap-md);
+      width: fit-content;
+      max-width: var(--composer-content-width);
+      margin: 0 auto;
+      padding: 0;
+    }
+
 
     .header {
       margin-bottom: var(--composer-gap-md) !important;
@@ -80,7 +92,7 @@ as *;
     .cards-grid {
       .card-wrapper {
         height: 100%;
-        width: 100% !important;
+        width: auto !important;
         display: flex;
         align-items: stretch;
 
