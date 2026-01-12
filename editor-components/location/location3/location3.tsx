@@ -367,7 +367,10 @@ class Location3 extends Location {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.getPropValue("icon") && (
                   <div className={this.decorateCSS("icon-wrapper")}>
-                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                    <Base.Media
+                      value={this.getPropValue("icon")}
+                      className={`${this.decorateCSS("icon")} ${this.getPropValue("icon")?.type === "image" && this.decorateCSS("icon-img")}`}
+                    />
                   </div>
                 )}
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}

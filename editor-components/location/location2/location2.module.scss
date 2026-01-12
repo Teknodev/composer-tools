@@ -17,6 +17,35 @@
           width: auto !important;
           justify-content: flex-start !important;
         }
+        .socials {
+          display: flex !important;
+          gap: var(--composer-gap-sm);
+          align-items: flex-start !important;
+          justify-content: flex-start !important;
+
+          .socials-container {
+            .social-button {
+              background-color: var(--composer-primary-color) !important;
+              color: var(--composer-html-background) !important;
+              width: var(--composer-gap-xl);
+              height: var(--composer-gap-xl);
+              padding: var(--composer-gap-sm);
+              border: none;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: var(--composer-border-radius-sm);
+              &:hover {
+                background-color: var(--composer-secondary-color) !important;
+                color: var(--composer-html-background) !important;
+              }
+              .icon {
+                color: var(--composer-html-background) !important;
+              }
+
+            }
+          }
+        }
         .location-logo {
           width: 80px;
           height: auto;
@@ -319,7 +348,7 @@
       height: 600px;
     }
   }
-}
+ 
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
@@ -431,4 +460,5 @@
       }
     }
   }
+}
 }

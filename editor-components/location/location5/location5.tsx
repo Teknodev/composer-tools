@@ -270,6 +270,11 @@ class Location5 extends Location {
     const description = this.getPropValue("description");
     const hasDescription = this.castToString(description);
     const logo = this.getPropValue("logo");
+    const logoExist = Boolean(
+      (logo as any)?.url ||
+      (logo as any)?.name ||
+      (logo as any)?.icon
+    );
     const alignmentValue = Base.getContentAlignment();
 
     const createMarkers = (address: any) => {
@@ -369,8 +374,8 @@ class Location5 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("title-block")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${alignmentValue === "left" ? this.decorateCSS("left") : ""}`}>
-            {logo && (
+          <Base.VerticalContent className={`${this.decorateCSS("title-block")} ${alignmentValue === "center" && this.decorateCSS("center")} ${alignmentValue === "left" && this.decorateCSS("left")}`}>
+            {logoExist && (
               <Base.Media
                 value={logo}
                 className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`}

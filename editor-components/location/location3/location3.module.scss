@@ -19,6 +19,13 @@
             height: var(--composer-gap-xl);
             font-size: 2rem;
           }
+          .icon.icon-img {
+            aspect-ratio: 3 / 1;
+            width: calc(var(--composer-gap-xl) * 3) !important;
+            height: auto !important;
+            object-fit: cover;
+            display: block;
+          }
         }
 
         .subtitle,

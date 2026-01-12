@@ -291,7 +291,10 @@ class Location4 extends Location {
                   <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {logoExist && (
                       <div className={this.decorateCSS("logo-container")}>
-                        <Base.Media value={logo} className={`${this.decorateCSS("logo")} ${this.decorateCSS("logo-img")}`} />
+                        <Base.Media
+                          value={logo}
+                          className={`${this.decorateCSS("logo")} ${logo?.type === "image" && this.decorateCSS("logo-img")}`}
+                        />
                       </div>
                     )}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}

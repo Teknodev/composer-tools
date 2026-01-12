@@ -412,7 +412,7 @@ class Location1 extends Location {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {(hasTitle || icons.length > 0) && (
-              <div className={`${this.decorateCSS("header")} ${alignment === "center" ? this.decorateCSS("center") : ""} ${alignment === "left" ? this.decorateCSS("left") : ""}`}>
+              <div className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
                 <Base.VerticalContent className={this.decorateCSS("title-block")}>
                   {hasSubtitle && (
                     <div className={this.decorateCSS("subtitle-wrapper")}>
@@ -469,7 +469,7 @@ class Location1 extends Location {
             </section>
 
             {(description || phone) && (
-              <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" ? this.decorateCSS("center") : ""} ${alignment === "left" ? this.decorateCSS("left") : ""}`}>
+              <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
                 {description && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
                 {phone && (
                   <Base.VerticalContent className={this.decorateCSS("phone-container")}>
