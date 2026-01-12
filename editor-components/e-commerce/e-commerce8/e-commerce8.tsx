@@ -643,7 +643,7 @@ class ECommerce8 extends BaseECommerce {
                     {productCards.length > 0 && (
                         <Base.ListGrid
                             className={this.decorateCSS("card-wrapper")}
-                            gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
+                            gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                         >
                             {productCards.map((productCard: ProductCard, cardIndex: number) => {
                                 const cardLeftText = this.castToString(productCard.cardLeftText);
