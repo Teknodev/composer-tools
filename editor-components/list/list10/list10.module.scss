@@ -52,9 +52,9 @@ as *;
       .section-subtitle {
         margin-top: 0px;
         margin-left: 0 !important;
-        color: var(--composer-font-color-primary);
         text-align: left;
         margin-bottom: var(--composer-gap-sm);
+        width: fit-content;
       }
 
       .up-description {
