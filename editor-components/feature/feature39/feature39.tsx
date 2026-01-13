@@ -262,85 +262,100 @@ class Feature39 extends BaseFeature {
         const items = this.castToObject<ListItem[]>("items");
         const showDivider = this.getPropValue("showDivider");
         const activeIndex = this.getComponentState("activeIndex") || 0;
-        const activeItem = items[activeIndex] || null;
-        const hasContent = subtitleExist || titleExist || descriptionExist || items.some((item: ListItem) => this.castToString(item.title));
+        const hasItems = items.some((item: ListItem) => this.castToString(item.title));
+        const hasContent = subtitleExist || titleExist || descriptionExist || hasItems;
+        const hasRightContent = items.some((item: ListItem) =>
+            item.image ||
+            item.sections?.length > 0 ||
+            item.buttons?.some((btn) => this.castToString(btn.text))
+        );
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!showDivider && this.decorateCSS("no-show-divider")}`}>
                     {hasContent && (
-                        <div className={this.decorateCSS("left-content")}>
+                        <div className={`${this.decorateCSS("left-content")} ${!hasRightContent && this.decorateCSS("full-width")}`}>
                             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                                 {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                 {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                                 {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                             </Base.VerticalContent>
-                            <div className={this.decorateCSS("items-wrapper")}>
-                                {items.map((item: ListItem, index: number) => {
-                                    const itemTitle = item.title;
-                                    const itemTitleText = this.castToString(itemTitle);
-                                    const isActive = activeIndex === index;
-                                    return itemTitleText && (
-                                        <Base.H6
-                                            key={index}
-                                            className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
-                                            onClick={() => this.setComponentState("activeIndex", index)}
-                                        >
-                                            {itemTitle}
-                                        </Base.H6>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    )}
-                    {showDivider && (
-                        <div className={this.decorateCSS("dividerColumn")}>
-                            <div className={this.decorateCSS("dividerLine")} />
-                        </div>
-                    )}
-                    {activeItem && (
-                        <div className={`${this.decorateCSS("right-content")} ${activeItem && this.decorateCSS("visible")}`}>
-                            {activeItem.image && (
-                                <div className={this.decorateCSS("image-wrapper")}>
-                                    <Base.Media
-                                        value={activeItem.image}
-                                        className={this.decorateCSS("itemImage")}
-                                    />
-                                </div>
-                            )}
-                            {activeItem.sections.length > 0 && (
-                                <div className={this.decorateCSS("sectionsWrapper")}>
-                                    {activeItem.sections.map((section: Section, sectionIndex: number) => {
-                                        const sectionTitle = section.title;
-                                        const sectionText = section.text;
-                                        return (sectionTitle || sectionText) && (
-                                            <Base.P key={sectionIndex} className={this.decorateCSS("section")}>
-                                                {sectionTitle && (
-                                                    <span className={this.decorateCSS("sectionTitle")}>{sectionTitle}</span>
-                                                )}
-                                                {sectionText && (
-                                                    <span className={this.decorateCSS("sectionText")}>{sectionText}</span>
-                                                )}
-                                            </Base.P>
-
+                            {hasItems && (
+                                <div className={this.decorateCSS("items-wrapper")}>
+                                    {items.map((item: ListItem, index: number) => {
+                                        const itemTitle = item.title;
+                                        const isActive = activeIndex === index;
+                                        return this.castToString(itemTitle) && (
+                                            <Base.H6
+                                                key={index}
+                                                className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
+                                                onClick={() => this.setComponentState("activeIndex", index)}
+                                            >
+                                                {itemTitle}
+                                            </Base.H6>
                                         );
                                     })}
                                 </div>
                             )}
-                            {(() => {
-                                const validButtons = activeItem.buttons?.filter((btn) => this.castToString(btn.text)) || [];
-                                return validButtons.length > 0 && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {validButtons.map((item: ButtonTypeObj, index: number) => (
-                                            <ComposerLink key={`button-${index}`} path={item.url}>
-                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
-                                        ))}
+                        </div>
+                    )}
+                    {showDivider && hasContent && hasRightContent && (
+                        <div className={this.decorateCSS("dividerColumn")}>
+                            <div className={this.decorateCSS("dividerLine")} />
+                        </div>
+                    )}
+                    {hasRightContent && (
+                        <div className={this.decorateCSS("right-wrapper")}>
+                            {items.map((item: ListItem, index: number) => {
+                                const isActive = activeIndex === index;
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`${this.decorateCSS("right-content")} ${isActive && this.decorateCSS("active-item")}`}
+                                    >
+                                        {item.image && (
+                                            <div className={this.decorateCSS("image-wrapper")}>
+                                                <Base.Media
+                                                    value={item.image}
+                                                    className={this.decorateCSS("itemImage")}
+                                                />
+                                            </div>
+                                        )}
+                                        {item.sections.length > 0 && (
+                                            <div className={this.decorateCSS("sectionsWrapper")}>
+                                                {item.sections.map((section: Section, sectionIndex: number) => {
+                                                    const sectionTitle = section.title;
+                                                    const sectionText = section.text;
+                                                    return (sectionTitle || sectionText) && (
+                                                        <Base.P key={sectionIndex} className={this.decorateCSS("section")}>
+                                                            {sectionTitle && (
+                                                                <span className={this.decorateCSS("sectionTitle")}>{sectionTitle}</span>
+                                                            )}
+                                                            {sectionText && (
+                                                                <span className={this.decorateCSS("sectionText")}>{sectionText}</span>
+                                                            )}
+                                                        </Base.P>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
+                                        {(() => {
+                                            const validButtons = item.buttons?.filter((btn) => this.castToString(btn.text)) || [];
+                                            return validButtons.length > 0 && (
+                                                <div className={this.decorateCSS("button-container")}>
+                                                    {validButtons.map((buttonItem: ButtonTypeObj, buttonIndex: number) => (
+                                                        <ComposerLink key={`button-${buttonIndex}`} path={buttonItem.url}>
+                                                            <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
+                                                                <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    ))}
+                                                </div>
+                                            );
+                                        })()}
                                     </div>
                                 );
-                            })()}
+                            })}
                         </div>
                     )}
                 </Base.MaxContent>
