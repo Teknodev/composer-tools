@@ -247,7 +247,10 @@ const ComposerMap = memo(({ markers, className, defaultMarkerIcon, defaultZoom, 
   }, [customSelectedMarker]);
 
   return (
-    <Map id={uniqueMapId} className={className}>
+    <Map id={uniqueMapId} className={className} restriction={{
+      latLngBounds: { north: 85, south: -85, west: -180, east: 180 },
+      strictBounds: true,
+    }} minZoom={2}>
       {markers.map((marker, index) => (
         <Marker
           key={index}

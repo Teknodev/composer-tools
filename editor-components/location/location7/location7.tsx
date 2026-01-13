@@ -3,8 +3,6 @@ import { Location } from "../../EditorComponent";
 import styles from "./location7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-// Types
-
 type Address = {
   type: string;
   key: string;
@@ -29,12 +27,42 @@ type MarkerObject = {
 class Location7 extends Location {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "We Are Worldwide",
+      value: "We Are <span style='color: var(--composer-primary-color)'>Worldwide</span>",
     });
+
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp({
       type: "array",
       displayer: "addresses",
@@ -237,10 +265,23 @@ class Location7 extends Location {
     });
 
     this.addProp({
-      type: "image",
-      key: "background-image",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "media",
+      key: "background-media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
+      },
     });
     this.setComponentState("activeMarkerIndex", null);
   }
@@ -265,12 +306,19 @@ class Location7 extends Location {
   render() {
     const addresses: Address[] = this.getPropValue("addresses");
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
     const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+    const subtitleExist = this.castToString(subtitle);
     const activeMarkerIndex = this.getComponentState("activeMarkerIndex");
-    const bgImage = this.getPropValue("background-image");
+    const bgMedia = this.getPropValue("background-media");
     const showTooltipLine = this.getPropValue("showTooltipLine");
+    const imageOverlay = this.getPropValue("overlay");
+    const logo = this.getPropValue("logo");
+    const logoExist = (logo?.type === "icon" && !!logo?.name) || (logo?.type === "image" && !!logo?.url);
 
-    // Prepare markers
+
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const leftPercent = address.getPropValue("leftPercent");
@@ -282,7 +330,7 @@ class Location7 extends Location {
           topPercent,
           popupTitle,
           description,
-          markerImage: "", // not used
+          markerImage: "",
           content: null,
         });
       }
@@ -290,24 +338,41 @@ class Location7 extends Location {
     }, []);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}> 
-        <Base.MaxContent className={this.decorateCSS("max-content")}> 
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}> 
-            {titleExist && (
-              <div className={this.decorateCSS("title-row")}> 
-                <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+            {logoExist && (
+              <div className={this.decorateCSS("logo-container")}>
+                <Base.Media
+                  value={logo}
+                  className={`${this.decorateCSS("logo")} ${logo?.type === "image" && this.decorateCSS("logo-img")}`}
+                />
               </div>
             )}
-            <section className={this.decorateCSS("map-container")}> 
+            {subtitleExist && (
+              <div className={this.decorateCSS("subtitle-row")}>
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+              </div>
+            )}
+            {titleExist && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
+            )}
+            {descriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
+            )}
+            <section className={this.decorateCSS("map-container")}>
               <div
                 className={this.decorateCSS("custom-map")}>
-                {bgImage && (
-                  <img src={bgImage} alt="World Map" className={this.decorateCSS("background-image")}/>
+                {bgMedia && (
+                  <Base.Media value={bgMedia} className={this.decorateCSS("background-image")} />
                 )}
+                {imageOverlay && <div className={this.decorateCSS("overlay")} />}
                 {markers.map((marker, idx) => {
-                  const popupTitle = this.castToString(marker.popupTitle);
-                  const description = this.castToString(marker.description);
-                  const tooltipExist = popupTitle || description ;
+                  const popupTitle = marker.popupTitle;
+                  const description = marker.description;
+                  const tooltipExist = popupTitle || description;
 
                   return (
                     <React.Fragment key={idx}>

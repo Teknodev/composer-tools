@@ -5,6 +5,8 @@ import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -42,6 +44,13 @@ class Location6 extends Location {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Nearby places",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Nearby Places of the Property",
@@ -49,9 +58,9 @@ class Location6 extends Location {
 
     this.addProp({
       type: "string",
-      key: "badge",
-      displayer: "Badge",
-      value: "Nearby places",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -86,15 +95,21 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "1.8 KM",
             },
-            {
-              type: "icon",
+                {
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaArrowRight",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiArrowRight",
+              },
             },
           ],
         },
@@ -111,7 +126,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "1.6 KM",
             },
@@ -119,7 +134,7 @@ class Location6 extends Location {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaArrowRight",
+              value: "FiArrowRight",
             },
           ],
         },
@@ -136,7 +151,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "2.0 KM",
             },
@@ -144,7 +159,7 @@ class Location6 extends Location {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaArrowRight",
+              value: "FiArrowRight",
             },
           ],
         },
@@ -161,7 +176,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "0.96 KM",
             },
@@ -169,7 +184,7 @@ class Location6 extends Location {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaArrowRight",
+              value: "FiArrowRight",
             },
           ],
         },
@@ -186,7 +201,7 @@ class Location6 extends Location {
             },
             {
               type: "string",
-              displayer: "Info",
+              displayer: "Distance",
               key: "info",
               value: "1.6 KM",
             },
@@ -194,7 +209,7 @@ class Location6 extends Location {
               type: "icon",
               key: "icon",
               displayer: "Icon",
-              value: "FaArrowRight",
+              value: "FiArrowRight",
             },
           ],
         },
@@ -221,10 +236,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/1.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/1.svg",
+              },
             },
             {
               type: "string",
@@ -249,10 +270,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/2.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/2.svg",
+              },
             },
             {
               type: "string",
@@ -277,10 +304,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/3.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/3.svg",
+              },
             },
             {
               type: "string",
@@ -305,10 +338,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/4.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/4.svg",
+              },
             },
             {
               type: "string",
@@ -333,10 +372,16 @@ class Location6 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/5.svg",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "https://wpocean.com/html/tf/suqat-live/assets/images/nearby/5.svg",
+              },
             },
             {
               type: "string",
@@ -369,6 +414,8 @@ class Location6 extends Location {
 
     const mapStyle = this.selectTheme(selectedTheme);
 
+    const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1b5c0655f8002ca6cccb?alt=media";
+
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const markerData = address.getPropValue("coordinate");
@@ -379,22 +426,52 @@ class Location6 extends Location {
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
 
-        const description = this.castToString(address.getPropValue("description"));
+        let iconUrl: string | undefined =
+          markerImage && typeof markerImage === "object" && markerImage.type === "image"
+            ? markerImage.url
+            : markerImage;
+
+        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+          try {
+            const iconName = (markerImage as any).name;
+            let ElementIcon: any = null;
+            for (const lib of iconLibraries) {
+              if (ElementIcon) break;
+              for (const [name, Comp] of Object.entries(lib)) {
+                if (name === iconName) {
+                  ElementIcon = Comp;
+                  break;
+                }
+              }
+            }
+
+            if (ElementIcon) {
+              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+            }
+          } catch (e) {
+            iconUrl = undefined;
+          }
+        }
+
+        const description = address.getPropValue("description");
+        const hasDescription = this.castToString(description);
 
         if (lat !== undefined && lng !== undefined) {
-          const content = description ? (
+          const content = hasDescription ? (
             <div className={this.decorateCSS("popup")}>
-              {description && <p>{description}</p>}
+              {hasDescription && <Base.P className={this.decorateCSS("popup-content")}>{description}</Base.P>}
               <div className={this.decorateCSS("popup-balloon")} />
             </div>
           ) : null;
 
+          const finalIconUrl = iconUrl || defaultMarkerIcon;
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: markerImage,
+              url: finalIconUrl,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,
@@ -413,34 +490,35 @@ class Location6 extends Location {
       }
     };
 
-    const subtitle = this.getPropValue("badge");
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
+    const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
 
-    const headerExist = subtitleExist || titleExist;
+
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {headerExist && (
-          <Base.MaxContent className={this.decorateCSS("max-content-header")}>
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            </Base.VerticalContent>
-          </Base.MaxContent>
-        )}
         <div className={this.decorateCSS("wrapper")}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("left-side")}>
-              <div>
+          <div className={this.decorateCSS("left-container")}>
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+              </Base.VerticalContent>
+              <div className={this.decorateCSS("left-side")}>
                 {buttons?.length > 0 && (
                   <Base.VerticalContent className={this.decorateCSS("button-container")}>
                     {buttons.map((button: any, index: number) => {
                       const buttonTextExist = this.castToString(button?.text);
                       const buttonInfoExist = this.castToString(button?.info);
-                      const buttonExist = buttonTextExist || buttonInfoExist || button.icon;
+                      const rawIcon = button?.icon;
+                      const normalizedIcon: any = typeof rawIcon === "string" ? { type: "icon", name: rawIcon } : rawIcon;
+                      const buttonExist = buttonTextExist || buttonInfoExist || normalizedIcon;
 
                       return (
                         buttonExist && (
@@ -449,9 +527,10 @@ class Location6 extends Location {
                               <div className={this.decorateCSS("button-element")}>
                                 <div className={this.decorateCSS("button-text")}>
                                   {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
+                                  {buttonTextExist && buttonInfoExist && <div className={this.decorateCSS("separator")} />}
                                   {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                                 </div>
-                                {button.icon && <Base.Icon name={button.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
+                                {normalizedIcon && <Base.Media value={normalizedIcon} className={this.decorateCSS("icon")} />}
                               </div>
                             </ComposerLink>
                           </div>
@@ -461,11 +540,13 @@ class Location6 extends Location {
                   </Base.VerticalContent>
                 )}
               </div>
-            </div>
-          </Base.MaxContent>
+            </Base.MaxContent>
+          </div>
 
-          <div className={this.decorateCSS("map-container")}>
-            <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+          <div className={this.decorateCSS("right-container")}>
+            <div className={this.decorateCSS("map-container")}>
+              <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+            </div>
           </div>
         </div>
       </Base.Container>
