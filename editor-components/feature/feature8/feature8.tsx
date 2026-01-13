@@ -408,6 +408,8 @@ class Feature8 extends BaseFeature {
     const title = this.getPropValue("title");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const subtitle = this.getPropValue("subtitle");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const cards = this.castToObject<Card[]>("cards");
 
     return (
@@ -432,7 +434,6 @@ class Feature8 extends BaseFeature {
               {description}
             </Base.SectionDescription>
           )}
-          </Base.VerticalContent>
           {cards?.length > 0 && (
             <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 , tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card) => {
