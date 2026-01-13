@@ -320,6 +320,17 @@
                         }
                     }
                 }
+                /* Tablet: contain left images */
+                .left-container {
+                    .image-wrapper {
+                        .image {
+                            max-height: 480px;
+                            height: auto;
+                            object-fit: contain;
+                            width: 100%;
+                        }
+                    }
+                }
             }
         }
     }
@@ -332,35 +343,26 @@
                 .right-container {
                     align-items: center;
 
-                    .subtitle {
-                        transform: none;
-
-                        &::before {
-                            display: none;
-                        }
-                    }
-
-                    .title {
-                        text-align: center;
-                    }
-
+                    .subtitle,
+                    .title,
                     .description {
-                        text-align: center;
+                        text-align: center !important;
+                        margin-right: auto !important;
+                        align-self: center !important;
+                    }
+                    .subtitle {
+                        margin-left: auto !important;
                     }
 
                     &.row-reverse {
                         align-items: center;
 
-                        .subtitle {
-                            align-self: flex-end !important;
-                            text-align: end !important;
-                            margin-right: 0px !important;
-                        }
-
+                        .subtitle,
                         .description,
                         .title {
-                            text-align: end;
-                            margin-right: 0px !important;
+                            align-self: center !important;
+                            text-align: center !important;
+                            margin-right: auto !important;
                         }
                     }
                 }

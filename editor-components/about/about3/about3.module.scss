@@ -151,11 +151,10 @@
                 .image-text {
                     position: absolute;
                     z-index: 10;
-                    top: 10px;
-                    left: 25%;
-                    top: 90px;
-                    transform: translateX(-60%);
-                    max-width: 200px;
+                    top: 60px;
+                    left: 45%;
+                    transform: translateX(-50%);
+                    max-width: 160px;
                     display: flex;
                     flex-direction: column;
                     gap: var(--composer-gap-xs);
@@ -207,17 +206,27 @@
 
                 .back-image {
                     max-width: 75%;
+                    max-width: 70%;
                     height: 100%;
                     margin-bottom: var(--composer-gap-xl);
                 }
 
                 .front-image {
                     position: absolute;
-                    left: 0px;
-                    bottom: calc(-2 * var(--composer-gap-sm));
-                    max-width: 60%;
-                    height: 70%;
+                    left: 10%;
+                    bottom: calc(-1 * var(--composer-gap-sm));
+                    max-width: 55%;
+                    height: 75%;
                     transform-origin: bottom left;
+                }
+                /* Nudge image-text closer on container hover */
+                &:hover {
+                    .image-text {
+                        top: 50px;
+                        left: 40%;
+                        transform: translateX(-40%);
+                        transition: top 0.2s ease, left 0.2s ease, transform 0.2s ease;
+                    }
                 }
             }
         }
@@ -229,23 +238,19 @@
 
         .max-content {
             flex-direction: column;
-
-            .title-container {
-                .button-container {
+            .title-container{
+                .button-container{
                     width: 100%;
-
-                    .phone {
+                    .phone{
                         margin-top: 0px;
                         margin-bottom: 0px;
                     }
                 }
             }
-
-            .right-page {
-                .image-container {
+            .right-page{
+                .image-container{
                     width: 100%;
-
-                    &.center-single-image {
+                    &.center-single-image{
                         justify-content: center;
                     }
                 }
@@ -253,6 +258,7 @@
         }
     }
 }
+
 
 @keyframes squarePattern {
     0% {
