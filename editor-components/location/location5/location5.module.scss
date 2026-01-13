@@ -44,9 +44,9 @@
         }
 
         .location-logo {
-          place-self: center;
-          margin-left: auto;
-          margin-right: auto;
+          place-self: flex-start !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
         }
       }
     }

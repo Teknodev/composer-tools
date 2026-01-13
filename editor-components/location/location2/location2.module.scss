@@ -26,7 +26,7 @@
           .socials-container {
             .social-button {
               background-color: var(--composer-primary-color) !important;
-              color: var(--composer-html-background) !important;
+              color: var(--composer-font-color-secondary) !important;
               width: var(--composer-gap-xl);
               height: var(--composer-gap-xl);
               padding: var(--composer-gap-sm);
@@ -37,10 +37,10 @@
               border-radius: var(--composer-border-radius-sm);
               &:hover {
                 background-color: var(--composer-secondary-color) !important;
-                color: var(--composer-html-background) !important;
+                color: var(--composer-font-color-secondary) !important;
               }
               .icon {
-                color: var(--composer-html-background) !important;
+                color: var(--composer-font-color-secondary) !important;
               }
 
             }
