@@ -88,8 +88,16 @@
               z-index: 1;
             }
 
-            .icon-wrapper:hover .icon {
-              color: var(--composer-font-color-secondary);
+            .icon-wrapper:hover .icon,
+            .icon-wrapper:focus .icon,
+            .icon-wrapper:active .icon {
+              color: var(--composer-font-color-secondary) !important;
+            }
+
+            .icon-wrapper:hover,
+            .icon-wrapper:focus,
+            .icon-wrapper:active {
+              color: var(--composer-font-color-secondary) !important;
             }
 
             &[data-animation~="animate1"] {
