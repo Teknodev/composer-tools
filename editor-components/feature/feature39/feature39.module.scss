@@ -74,7 +74,7 @@
             display: flex;
             justify-content: center;
             align-self: stretch;
-            margin: 0 calc(var(--composer-gap-lg) * 2) 0 calc(var(--composer-gap-md) * 2);
+            margin: 0 calc(var(--composer-gap-lg) * 3) 0 calc(var(--composer-gap-md) * 3);
             flex-shrink: 0;
 
             .dividerLine {
@@ -169,6 +169,18 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .dividerColumn {
+                margin: 0 calc(var(--composer-gap-lg) * 2) 0 calc(var(--composer-gap-md) * 2);
+            }
+
+        }
+    }
+}
+
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
@@ -182,6 +194,7 @@
             .dividerColumn {
                 display: none;
             }
+
         }
     }
 }
