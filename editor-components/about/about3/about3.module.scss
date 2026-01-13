@@ -90,6 +90,10 @@
                 justify-content: flex-end;
                 height: 100%;
                 align-items: stretch;
+                width: 520px;
+                max-width: 50%;
+                min-width: 360px;
+                box-sizing: border-box;
 
                 &.center-single-image {
                     justify-content: center;
@@ -173,11 +177,17 @@
 
                 .back-image,
                 .front-image {
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
+                }
+
+                .back-image,
+                .front-image {
                     position: relative;
                     border-radius: var(--composer-border-radius-sm);
                     overflow: hidden;
 
-                    &.no-image {
+                    &.no-image{
                         position: relative;
                         width: 75%;
                     }
@@ -237,7 +247,7 @@
     .container {
 
         .max-content {
-            flex-direction: column;
+            flex-direction: row;
             .title-container{
                 .button-container{
                     width: 100%;
@@ -248,8 +258,10 @@
                 }
             }
             .right-page{
+                justify-content: flex-start !important;
                 .image-container{
                     width: 100%;
+                    max-width: 100% !important;
                     &.center-single-image{
                         justify-content: center;
                     }
@@ -258,6 +270,18 @@
         }
     }
 }
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .right-page {
+                align-items: stretch !important;
+                justify-content: flex-start !important;
+            }
+        }
+    }
+}
+
 
 
 @keyframes squarePattern {
