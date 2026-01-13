@@ -40,8 +40,6 @@
           text-align: center;
         }
         &.no-image-left{
-          min-height: 400px;
-          padding: var(--composer-gap-md) var(--composer-gap-md);
           align-items: flex-start;
           text-align: left;
           justify-content: center;
@@ -122,6 +120,11 @@
     .max-content {
       .wrapper {
         .content-container {
+          &.no-image-left,
+          &.no-image-center {
+            min-height: 0 !important;
+            padding: 0px !important;
+          }
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
         }
@@ -136,6 +139,11 @@
       .wrapper {
         .content-container {
           min-height: 600px;
+          &.no-image-left,
+          &.no-image-center {
+            min-height: 0 !important;
+            padding: 0px !important;
+          }
           padding: var(--composer-gap-sm) var(--composer-gap-md);
           .description{
             text-align: center;

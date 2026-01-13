@@ -10,7 +10,6 @@
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
     height: auto;
 
     .image-child {
@@ -40,7 +39,6 @@
     }
     .max-content{
       display: flex;
-      overflow: hidden;
       position: relative;
       z-index: 2;
       height: auto;

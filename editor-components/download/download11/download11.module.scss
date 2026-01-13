@@ -38,10 +38,20 @@
             &.full{
               height: 100%;
             }
+              &.image-img {
+                aspect-ratio: 3 / 1;
+                width: 100%;
+                height: auto !important;
+                object-fit: cover;
+                display: block;
+              }
           }
           .title,
           .description {
             text-align: left !important;
+          }
+          .subtitle {
+            margin-left: 0 !important;
           }
           .title {
             color: var(--composer-font-color-primary) !important;
@@ -93,10 +103,14 @@
             width: 100%;
 
             .left {
+              flex: 1 1 50%;
+              min-width: 0;
               .title,
               .description {
                 text-align: left !important;
                 color: var(--composer-font-color-primary) !important;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
               .subtitle {
                 text-align: left !important;
@@ -121,7 +135,7 @@
               }
             }
             .image {
-              width: 40%;
+              width: 50%;
               min-height: 400px;
               object-fit: cover;
               border-radius: var(--composer-border-radius-sm);
@@ -142,7 +156,7 @@
             border-radius: var(--composer-border-radius-md);
             padding: var(--composer-gap-md);
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             box-shadow: var(--box-shadow-active);
             width: 100%;
@@ -151,6 +165,8 @@
              flex: 0 0 auto;
              align-items: center;
              justify-content: flex-start !important;
+             margin-left: var(--composer-gap-md);
+             margin-right: var(--composer-gap-md);
               .button-image {
                 width: 200px;
                 height: 40px;
@@ -173,6 +189,20 @@
                 margin-bottom: var(--composer-gap-sm);
               }
             }
+            .image {
+              width: 200px;
+              height: 120px;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
+              margin-left: auto;
+            }
+            .image-bottom {
+              width: 200px !important;
+              height: 120px !important;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
+              place-self: center;
+            }
             &.center {
               flex-direction: column;
               justify-content: center;
@@ -194,11 +224,15 @@
             gap: var(--composer-gap-md) !important;
         
             .left,
+            .left .title,
+            .left .subtitle,
+            .left .description,
             .title {
               flex: 1 1 auto;
               min-width: 0;
               text-align: left !important;
               margin-bottom: var(--composer-gap-sm);
+              margin-left: 0 !important;
             }
         
             .button-wrapper {
@@ -230,6 +264,10 @@
             &.full {
               height: 200px;
             }
+            margin: 0;
+            margin-right: auto;
+            display: block;
+            width: 100% !important;
           }
         }
         .right-cards{
@@ -240,6 +278,27 @@
               .image{
                 width: 100%;
                 height: 200px;
+                margin: 0;
+                margin-right: auto;
+                display: block;
+                width: 100% !important;
+              }
+              &:not(.center) {
+                .left,
+                .left .title,
+                .left .description,
+                .left .subtitle {
+                  text-align: left !important;
+                  margin-left: 0 !important;
+                  width: 100%;
+                }
+                .left .button-wrapper {
+                  place-self: flex-start !important;
+                  align-self: flex-start !important;
+                  justify-content: flex-start !important;
+                  margin-left: 0 !important;
+                  margin-right: 0 !important;
+                }
               }
             }
           }
@@ -250,16 +309,52 @@
               .title{
                 margin: 0;
               }
+            &:not(.center) {
+              .left,
+              .title,
+              .description,
+              .subtitle {
+                text-align: left !important;
+                margin-left: 0 !important;
+                width: 100%;
+              }
+              .button-wrapper {
+                place-self: flex-start !important;
+                align-self: flex-start !important;
+                justify-content: flex-start !important;
+                margin-left: 0 !important;
+              }
+            }
+              .image,
+              .image-bottom {
+                margin: 0;
+                margin-right: auto;
+                display: block;
+                width: 100% !important;
+              }
             }
           }
         .buttom-card {
           .card.center {
-            flex-direction: row !important;
-            align-items: center !important;
-          }
-          .card.center .button-wrapper {
-            align-self: center !important;
-            justify-content: flex-start !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: var(--composer-gap-md) !important;
+
+            .left,
+            .title,
+            .description,
+            .subtitle {
+              text-align: left !important;
+              margin-left: 0 !important;
+              width: 100%;
+            }
+
+            .button-wrapper {
+              place-self: flex-start !important;
+              align-self: flex-start !important;
+              justify-content: flex-start !important;
+              margin-left: 0 !important;
+            }
           }
         }
         }

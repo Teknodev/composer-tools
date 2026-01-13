@@ -201,7 +201,8 @@ class Download11 extends BaseDownload {
     const buttonExist = buttonTextExist;
 
     const leftCardExist = subtitleExist || titleExist || descriptionExist || buttonTextExist;
-    const hasValidCard = (leftCardExist || leftItems.image) && leftItems.visibility;
+    const leftImageExist = leftItems.image && leftItems.image.url;
+    const hasValidCard = (leftCardExist || leftImageExist) && leftItems.visibility;
 
     const rightSubtitleExist = this.castToString(rightItems.subtitle);
     const rightTitleExist = this.castToString(rightItems.title);
@@ -210,12 +211,13 @@ class Download11 extends BaseDownload {
     const rightButtonExist = rightbuttonTextExist;
 
     const hasValidRightCardTexts = rightSubtitleExist || rightTitleExist || rightDescriptionExist || rightbuttonTextExist;
-    const hasValidRightCard = (hasValidRightCardTexts || rightItems.image) && rightItems.visibility;
+    const rightImageExist = rightItems.image && rightItems.image.url;
+    const hasValidRightCard = (hasValidRightCardTexts || rightImageExist) && rightItems.visibility;
 
     const rightBottomSubtitleExist = this.castToString(rightBottomItems.subtitle);
     const rightBottomTitleExist = this.castToString(rightBottomItems.title);
     const rightBottomDescriptionExist = this.castToString(rightBottomItems.description);
-    const rightBottomMediaExist = !!rightBottomItems.image;
+    const rightBottomMediaExist = rightBottomItems.image && rightBottomItems.image.url;
     const rightBottomButtonTextExist = this.castToString(buttonRightBottom.text);
     const rightBottomButtonExist = rightBottomButtonTextExist;
     const hasValidBottomRightCard =
@@ -245,7 +247,7 @@ class Download11 extends BaseDownload {
               <div className={`${this.decorateCSS("left-card")} ${(hasValidRightCard || hasValidBottomRightCard) ? this.decorateCSS("no-full") : this.decorateCSS("full")}`}>
                 {hasValidCard && (
                   <Base.VerticalContent className={this.decorateCSS("card")}>
-                    {leftItems.image && <Base.Media value={leftItems.image} className={`${this.decorateCSS("image")} ${leftCardExist ? this.decorateCSS("no-full") : this.decorateCSS("full")}`} />}
+                    {leftImageExist && <Base.Media value={leftItems.image} className={`${this.decorateCSS("image")} ${(leftItems.image && (leftItems.image as any).type === "image" ? this.decorateCSS("image-img") : "")} ${leftCardExist ? this.decorateCSS("no-full") : this.decorateCSS("full")}`} />}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItems.subtitle}</Base.SectionSubTitle>}
                     {titleExist && <Base.H2 className={this.decorateCSS("title")}>{leftItems.title}</Base.H2>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{leftItems.description}</Base.SectionDescription>}
@@ -281,7 +283,7 @@ class Download11 extends BaseDownload {
                           </div>
                         )}
                       </Base.VerticalContent>
-                      {rightItems.image && <Base.Media value={rightItems.image} className={`${this.decorateCSS("image")} ${!hasValidRightCardTexts && this.decorateCSS("full")}`} />}
+                      {rightImageExist && <Base.Media value={rightItems.image} className={`${this.decorateCSS("image")} ${(rightItems.image && (rightItems.image as any).type === "image" ? this.decorateCSS("image-img") : "")} ${!hasValidRightCardTexts && this.decorateCSS("full")}`} />}
                     </div>
                   </div>
                 )}
@@ -293,7 +295,6 @@ class Download11 extends BaseDownload {
                         {rightBottomTitleExist && <Base.H2 className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.H2>}
                         {rightBottomDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{rightBottomItems.description}</Base.SectionDescription>}
                       </Base.VerticalContent>
-                      {rightBottomMediaExist && <Base.Media value={rightBottomItems.image} className={this.decorateCSS("image")} />}
                       {rightBottomButtonExist && (
                         <div className={this.decorateCSS("button-wrapper")}>
                           <ComposerLink path={buttonRightBottom.url}>
@@ -303,6 +304,7 @@ class Download11 extends BaseDownload {
                           </ComposerLink>
                         </div>
                       )}
+                      {rightBottomMediaExist && <Base.Media value={rightBottomItems.image} className={`${this.decorateCSS("image")} ${(rightBottomItems.image && (rightBottomItems.image as any).type === "image" ? this.decorateCSS("image-img") : "")} ${this.decorateCSS("image-bottom")}`} />}
                     </div>
                   </div>
                 )}
