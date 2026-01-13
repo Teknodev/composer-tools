@@ -524,7 +524,9 @@ class Form4 extends BaseContacts {
                   onSubmit={(data, { resetForm }) => {
                     const formData = getFormDataWithConvertedKeys(data);
                     this.insertForm("Contact Me", formData);
-                    resetForm();
+                    resetForm({
+                      values: getInitialValue() 
+                    });
                   }}
                 >
                   {({ handleChange, values }) => (
