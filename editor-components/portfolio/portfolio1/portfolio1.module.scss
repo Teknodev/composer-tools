@@ -322,5 +322,14 @@
     .right .bottom {
       flex-direction: column;
     }
+
+    .item,
+    .item.inner-left,
+    .item.inner-right,
+    .item.left-edge,
+    .item.right-edge,
+    .item .background-media {
+      border-radius: 0 !important;
+    }
   }
 }
