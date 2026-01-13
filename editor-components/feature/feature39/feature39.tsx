@@ -286,13 +286,13 @@ class Feature39 extends BaseFeature {
                                         const itemTitle = item.title;
                                         const isActive = activeIndex === index;
                                         return this.castToString(itemTitle) && (
-                                            <Base.H5
+                                            <Base.H4
                                                 key={index}
                                                 className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
                                                 onClick={() => this.setComponentState("activeIndex", index)}
                                             >
                                                 {itemTitle}
-                                            </Base.H5>
+                                            </Base.H4>
                                         );
                                     })}
                                 </div>
