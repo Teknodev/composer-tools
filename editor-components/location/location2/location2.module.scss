@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
   width: 100%;
@@ -348,7 +348,7 @@
       height: 600px;
     }
   }
- 
+}
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
@@ -401,6 +401,10 @@
             flex-direction: column !important;
             align-items: flex-start !important;
             gap: var(--composer-gap-sm);
+          }
+
+          .description-container {
+            flex-direction: column !important;
           }
 
           .socials {
@@ -460,5 +464,4 @@
       }
     }
   }
-}
 }

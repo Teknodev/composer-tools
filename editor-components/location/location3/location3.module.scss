@@ -131,9 +131,13 @@
                 color: var(--composer-primary-color);
               }
 
-              .continent-count {
-                color: #ffffff;
-              }
+          .continent-count {
+            color: #ffffff;
+            text-align: center !important;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+          }
             }
           }
         }
