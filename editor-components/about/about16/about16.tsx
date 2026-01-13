@@ -215,11 +215,12 @@ class About16 extends BaseAbout {
                                     const cardDescription = this.castToString(item.description);
                                     const isImage = item.icon?.type === "image";
                                     const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
+                                    const hasMedia = item.video && "url" in item.video && item.video.url;
                                     return (
                                         <div key={index} className={this.decorateCSS("list-item")}>
-                                            {item.video && (
-                                                <div className={`${this.decorateCSS("image-container")} ${enableAnimation && this.decorateCSS("animated")}`}>
-                                                    <ComposerLink path={item.navigateTo} isFullWidth={true}>
+                                            <div className={`${this.decorateCSS("image-container")} ${enableAnimation && this.decorateCSS("animated")} ${!hasMedia && this.decorateCSS("no-media")}`}>
+                                                <ComposerLink path={item.navigateTo} isFullWidth={true}>
+                                                    {hasMedia && (
                                                         <Base.Media
                                                             value={item.video}
                                                             className={this.decorateCSS("image")}
@@ -229,24 +230,25 @@ class About16 extends BaseAbout {
                                                             controls={false}
                                                             playsInline
                                                         />
-                                                        {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
-                                                        <div className={this.decorateCSS("text-content")}>
-                                                            {item.icon && (
-                                                                <div className={this.decorateCSS("icon-wrapper")}>
-                                                                    <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                                                                </div>
-                                                            )}
-                                                            {hasTextDetails && (
-                                                                <Base.VerticalContent className={this.decorateCSS("text-details")}>
-                                                                    {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>)}
-                                                                    {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>)}
-                                                                    {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
-                                                                </Base.VerticalContent>
-                                                            )}
-                                                        </div>
-                                                    </ComposerLink>
-                                                </div>
-                                            )}
+                                                    )}
+                                                    {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                                                    <div className={this.decorateCSS("text-content")}>
+                                                        {item.icon && (
+                                                            <div className={this.decorateCSS("icon-wrapper")}>
+                                                                <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                                            </div>
+                                                        )}
+                                                        {hasTextDetails && (
+                                                            <Base.VerticalContent className={this.decorateCSS("text-details")}>
+                                                                {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>)}
+                                                                {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>)}
+                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
+                                                            </Base.VerticalContent>
+                                                        )}
+                                                    </div>
+                                                </ComposerLink>
+                                            </div>
+
                                         </div>
                                     );
                                 })}

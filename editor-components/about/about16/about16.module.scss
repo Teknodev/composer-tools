@@ -63,6 +63,10 @@
                         background-color: var(--composer-overlay-color);
                     }
 
+                    &.no-media {
+                        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    }
+
                     .text-content {
                         position: absolute;
                         bottom: 0;
