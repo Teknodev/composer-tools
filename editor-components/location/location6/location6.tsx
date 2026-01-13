@@ -57,6 +57,13 @@ class Location6 extends Location {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "number",
       key: "centerZoom",
       displayer: "Center Zoom Value",
@@ -485,9 +492,11 @@ class Location6 extends Location {
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
 
 
 
@@ -499,6 +508,7 @@ class Location6 extends Location {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
               </Base.VerticalContent>
               <div className={this.decorateCSS("left-side")}>
                 {buttons?.length > 0 && (
