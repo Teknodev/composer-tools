@@ -5,11 +5,11 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type Card = {
-  image: string;
+type SliderItem = {
+  media: any;
   text: React.JSX.Element;
   button: React.JSX.Element;
-  url: string;
+  path: string;
   number: React.JSX.Element;
 };
 
@@ -35,8 +35,8 @@ class Slider2 extends BaseSlider {
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Title Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -46,10 +46,16 @@ class Slider2 extends BaseSlider {
               value: "01",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d0c506a40002c318e40?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d0c506a40002c318e40?alt=media",
+              },
             },
             {
               type: "string",
@@ -72,8 +78,8 @@ class Slider2 extends BaseSlider {
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Title Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -83,10 +89,16 @@ class Slider2 extends BaseSlider {
               value: "02",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d3f506a40002c318e73?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d3f506a40002c318e73?alt=media",
+              },
             },
             {
               type: "string",
@@ -109,8 +121,8 @@ class Slider2 extends BaseSlider {
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Title Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -120,10 +132,16 @@ class Slider2 extends BaseSlider {
               value: "03",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675193c7506a40002c3192ef?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675193c7506a40002c3192ef?alt=media",
+              },
             },
             {
               type: "string",
@@ -146,8 +164,8 @@ class Slider2 extends BaseSlider {
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Title Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -157,10 +175,16 @@ class Slider2 extends BaseSlider {
               value: "04",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294e0?alt=media&timestamp=1719584962578",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294e0?alt=media&timestamp=1719584962578",
+              },
             },
             {
               type: "string",
@@ -184,8 +208,8 @@ class Slider2 extends BaseSlider {
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Title Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -195,10 +219,16 @@ class Slider2 extends BaseSlider {
               value: "05",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
+              },
             },
             {
               type: "string",
@@ -211,8 +241,15 @@ class Slider2 extends BaseSlider {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
     this.setComponentState("active_index", 0);
-    this.setComponentState("text", this.castToObject<Card[]>("slider")[0].text);
+    this.setComponentState("text", this.castToObject<SliderItem[]>("slider")[0].text);
     this.setComponentState("text_visibility", true);
   }
 
@@ -221,7 +258,8 @@ class Slider2 extends BaseSlider {
   }
 
   render() {
-    const slider = this.castToObject<Card[]>("slider");
+    const slider = this.castToObject<SliderItem[]>("slider");
+    const isOverlayActive = this.getPropValue("overlay");
     const settings = {
       arrows: false,
       autoplay: true,
@@ -250,7 +288,7 @@ class Slider2 extends BaseSlider {
         },
       ],
       beforeChange: (_: number, nextSlide: number) => {
-        const sliderData = this.castToObject<Card[]>("slider");
+        const sliderData = this.castToObject<SliderItem[]>("slider");
         const nextSlideData = sliderData[nextSlide];
 
         this.setComponentState("active_index", nextSlide);
@@ -266,14 +304,15 @@ class Slider2 extends BaseSlider {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("image-box")}>
+            {isOverlayActive && <div className={this.decorateCSS("image-overlay")}></div>}
             <div className={this.decorateCSS("overlay")}>
-              {this.castToObject<Card[]>("slider").map((slide, index) => {
+              {this.castToObject<SliderItem[]>("slider").map((slide, index) => {
                 const isActive = this.getComponentState("active_index") === index;
                 return (
-                  slide.image && (
-                    <img
+                  slide.media && (
+                    <Base.Media
                       key={index}
-                      src={slide.image}
+                      value={slide.media}
                       className={`
                       ${this.decorateCSS("image")} 
                       ${isActive && this.decorateCSS("active")}`}
@@ -285,6 +324,7 @@ class Slider2 extends BaseSlider {
           </div>
           {this.getComponentState("text") && (
             <div className={this.decorateCSS("text-box")}>
+              <div className={this.decorateCSS("decorator-line")}></div>
               <Base.P
                 className={`${this.decorateCSS("text")} 
               ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}
@@ -293,14 +333,15 @@ class Slider2 extends BaseSlider {
               </Base.P>
             </div>
           )}
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-            {this.castToObject<Card[]>("slider").map((item: Card, indexSlider: number) => {
+          <div className={this.decorateCSS("carousel-wrapper")}>
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+            {this.castToObject<SliderItem[]>("slider").map((item: SliderItem, indexSlider: number) => {
               const isActive = this.getComponentState("active_index") === indexSlider;
 
               return (
                 <div key={indexSlider} className={this.decorateCSS("card")}>
-                  <button
-                    className={this.decorateCSS("button")}
+                  <div
+                    className={this.decorateCSS("button-wrapper")}
                     onMouseOver={() => {
                       const isIndexSame = this.getComponentState("active_index") === indexSlider;
                       if (isIndexSame) return;
@@ -313,15 +354,18 @@ class Slider2 extends BaseSlider {
                       }, 200);
                     }}
                   >
-                    <ComposerLink key={indexSlider} path={item.url}>
-                      {this.castToString(item.number) && <p className={this.decorateCSS("number")}>{item.number}</p>}
-                      {this.castToString(item.button) && <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
+                    <ComposerLink key={indexSlider} path={item.path}>
+                      <div className={this.decorateCSS("link-wrapper")}>
+                        {this.castToString(item.number) && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
+                        {this.castToString(item.button) && <div className={`${this.decorateCSS("title-text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</div>}
+                      </div>
                     </ComposerLink>
-                  </button>
+                  </div>
                 </div>
               );
             })}
           </ComposerSlider>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

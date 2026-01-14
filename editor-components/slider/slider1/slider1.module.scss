@@ -1,8 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0;
-  min-height: 100vh;
+  padding: 0 !important;
+  min-height: 85vh;
   height: auto;
 
   .max-content {
@@ -15,28 +15,43 @@
       .carousel {
         background-color: var(--composer-html-background);
 
-        > div {
-          > div {
-            display: flex;
-            align-items: stretch;
+        :global(.slick-dots) {
+          display: none !important;
+        }
 
-            > div {
-              height: auto;
+        :global(.slick-prev),
+        :global(.slick-next) {
+          z-index: 10;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
 
-              > div {
-                height: 100%;
-              }
-            }
+          &:before {
+            font-size: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+            color: var(--composer-font-color-secondary);
+            opacity: 0.7;
           }
+
+          &:hover:before {
+            opacity: 1;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: var(--composer-gap-lg);
+        }
+
+        :global(.slick-next) {
+          right: var(--composer-gap-lg);
         }
 
         .slider-item {
           position: relative;
-          min-height: 100vh;
-          height: 100%;
+          min-height: 85vh;
+          height: 85vh;
           display: flex;
           flex-direction: column;
-          justify-content: flex-start;
+          justify-content: center;
+          align-items: center;
 
           .img-wrapper {
             width: 100%;
@@ -71,6 +86,7 @@
             flex: 1;
             display: flex;
             align-items: center;
+            justify-content: center;
             padding: var(--composer-gap-md) var(--composer-gap-xl);
             z-index: 1;
             height: 100%;
@@ -80,6 +96,7 @@
               width: 100%;
               display: flex;
               flex-direction: column;
+              justify-content: center;
               max-width: var(--composer-content-width);
               margin: auto;
               padding-bottom: calc(var(--composer-gap-lg) * 2);
@@ -89,17 +106,17 @@
                 gap: var(--composer-gap-sm);
 
                 .subtitle {
-                  font-size: 1.5rem;
                   margin-bottom: 0;
                 }
 
                 .title {
-                  font-size: 8rem;
                   margin-bottom: 0;
                 }
 
                 .with-img {
-                  color: #fff;
+                  color: var(--composer-font-color-secondary);
+                  background: transparent;
+                  padding: 0;
                 }
               }
 
@@ -111,7 +128,7 @@
 
             .with-img {
               &::before {
-                background-color: #fff;
+                background-color: var(--composer-font-color-secondary);
               }
             }
 
@@ -128,15 +145,13 @@
 
               .icon {
                 flex-shrink: 0;
-                width: 30px;
-                height: 30px;
-                color: #fff;
+                width: var(--composer-gap-xl);
+                height: var(--composer-gap-xl);
+                font-size: 2rem;
+                color: var(--composer-font-color-secondary);
                 cursor: pointer;
-                transition: transform 0.3s ease;
+                transition: transform var(--composer-transition-duration-normal) ease;
 
-                &:hover {
-                  transform: scale(1.2);
-                }
               }
 
               .no-img {
@@ -149,9 +164,9 @@
     }
 
     .dots,
-    .dots-2 {
+    .dots-no-image {
       position: absolute;
-      bottom: 50px;
+      bottom: var(--composer-gap-xl);
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -164,36 +179,38 @@
       right: 0;
       width: auto;
 
-      li {
+      .dot-item {
         margin: 0 var(--composer-gap-sm);
 
-        button {
+        .dot-button {
           color: transparent;
           position: relative;
-          width: 12px;
-          height: 12px;
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
           border: none;
-          border-radius: 50%;
-          background: #fff;
-          transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-          transform: scale(0.65);
+          border-radius: var(--composer-border-radius-full);
+          background: var(--composer-font-color-secondary);
+          transition: background var(--composer-transition-duration-normal) ease, transform var(--composer-transition-duration-normal) ease, box-shadow var(--composer-transition-duration-normal) ease;
+          transform: scale(0.8);
+          padding: 0;
+          min-width: unset;
 
           &::before {
             content: "";
           }
         }
-      }
 
-      .slick {
-        &.slick-active {
-          transform: scale(1.35);
+        &.dot-active {
+          .dot-button {
+            transform: scale(1.2);
+          }
         }
       }
     }
 
-    .dots-2 {
-      li {
-        button {
+    .dots-no-image {
+      .dot-item {
+        .dot-button {
           background: var(--composer-font-color-primary);
         }
       }
@@ -203,20 +220,31 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    min-height: auto;
+
     .max-content {
       .slider-parent {
         .carousel {
+          :global(.slick-prev),
+          :global(.slick-next) {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+
+            &:before {
+              font-size: var(--composer-gap-md);
+            }
+          }
+
           .slider-item {
+            min-height: 70vh;
+            height: 70vh;
+
             .content {
               padding: var(--composer-gap-md) var(--composer-gap-lg);
 
               .box-parent {
                 .box {
                   max-width: calc(100% - var(--composer-gap-lg));
-
-                  .title {
-                    font-size: 4rem;
-                  }
                 }
 
                 .center {
@@ -229,8 +257,9 @@
                 right: var(--composer-gap-lg);
 
                 .icon {
-                  width: 25px;
-                  height: 25px;
+                  width: var(--composer-gap-lg);
+                  height: var(--composer-gap-lg);
+                  font-size: 1.2rem;
                 }
               }
             }
@@ -239,20 +268,26 @@
       }
 
       .dots,
-      .dots-2 {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        text-align: center;
-        right: 0;
-        width: auto;
+      .dots-no-image {
+        bottom: calc(var(--composer-gap-lg) + var(--composer-gap-sm));
+
+        .dot-item {
+          margin: 0 var(--composer-gap-xs);
+
+          .dot-button {
+            width: var(--composer-gap-sm) !important;
+            height: var(--composer-gap-sm) !important;
+            transform: scale(0.6);
+            padding: 0 !important;
+            min-width: unset !important;
+          }
+
+          &.dot-active {
+            .dot-button {
+              transform: scale(1);
+            }
+          }
+        }
       }
     }
   }
@@ -260,13 +295,25 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    min-height: 50vh;
+    padding: 0 !important;
+    min-height: auto;
 
     .max-content {
       .slider-parent {
         .carousel {
+          :global(.slick-prev),
+          :global(.slick-next) {
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
+
+            &:before {
+              font-size: var(--composer-gap-sm);
+            }
+          }
+
           .slider-item {
             min-height: 50vh;
+            height: 50vh;
 
             .content {
               padding: var(--composer-gap-md);
@@ -284,10 +331,6 @@
 
                 .box {
                   max-width: 100%;
-
-                  .title {
-                    font-size: 2rem;
-                  }
                 }
 
                 .center {
@@ -316,8 +359,27 @@
       }
 
       .dots,
-      .dots-2 {
+      .dots-no-image {
         bottom: var(--composer-gap-md);
+
+        .dot-item {
+          margin: 0 var(--composer-gap-xs);
+
+          .dot-button {
+            width: calc(var(--composer-gap-xs) + 2px) !important;
+            height: calc(var(--composer-gap-xs) + 2px) !important;
+            transform: scale(0.8);
+            padding: 0 !important;
+            min-width: unset !important;
+            aspect-ratio: 1 / 1;
+          }
+
+          &.dot-active {
+            .dot-button {
+              transform: scale(1.2);
+            }
+          }
+        }
       }
     }
   }

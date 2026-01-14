@@ -3,22 +3,26 @@
 .container {
   height: 100%;
   position: relative;
-  padding: 0;
+  padding: 0 !important;
+  overflow: hidden;
 
   .max-content {
     max-width: unset;
     position: relative;
     background: black;
 
-    .carousel {
+    .carousel-wrapper {
+      position: relative;
+
+      .carousel {
       width: 100%;
       text-align: center;
       margin: 0 auto;
 
-      > div {
-        > div {
-          > div {
-            > div {
+      :global(.slick-list) {
+        :global(.slick-track) {
+          :global(.slick-slide) {
+            :global(.slick-slide) > div {
               padding: 0 var(--composer-gap-xl);
 
               @container (max-width: #{$composer-tablet-width}) {
@@ -38,9 +42,8 @@
         height: 100vh;
         position: relative;
 
-        .button {
+        .button-wrapper {
           font-size: 6rem;
-          border: 0px;
           background-color: transparent;
           color: transparent;
           position: relative;
@@ -50,7 +53,7 @@
           z-index: 2;
           -webkit-text-stroke: 1px white;
           text-transform: uppercase;
-          transition: 0.3s ease-out;
+          transition: var(--composer-transition-duration-normal) ease-out;
           display: flex;
           align-items: flex-start;
           justify-content: center;
@@ -70,7 +73,7 @@
             font-size: 2rem;
           }
 
-          > div {
+          .link-wrapper {
             width: 100%;
             display: flex;
             align-items: flex-start;
@@ -85,7 +88,7 @@
             margin-top: var(--composer-gap-xs);
           }
 
-          .text {
+          .title-text {
             white-space: nowrap;
 
             &.active {
@@ -93,6 +96,7 @@
             }
           }
         }
+      }
       }
     }
 
@@ -108,9 +112,8 @@
         width: 100%;
       }
 
-      &::after {
-        background-color: rgba(0, 0, 0, 0.25);
-        content: "";
+      .image-overlay {
+        background-color: var(--composer-overlay-color);
         width: 100%;
         height: 100%;
         position: absolute;
@@ -129,7 +132,7 @@
           height: 100%;
           width: 100%;
           object-fit: cover;
-          transition: 0.24s ease-in-out;
+          transition: var(--composer-transition-duration-normal) ease-in-out;
           opacity: 0;
           transform: scale(1.05);
 
@@ -162,9 +165,8 @@
         top: 55%;
       }
 
-      &::before {
+      .decorator-line {
         background-color: white;
-        content: "";
         width: 20px;
         height: 2px;
         position: absolute;
@@ -183,8 +185,7 @@
 
       .text {
         color: white;
-        font-size: 1rem;
-        transition: 0.3s;
+        transition: var(--composer-transition-duration-normal);
         opacity: 0;
         width: 100%;
         max-width: 35%;
@@ -209,5 +210,19 @@
         }
       }
     }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: 0 !important;
+    overflow: hidden;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: 0 !important;
+    overflow: hidden;
   }
 }
