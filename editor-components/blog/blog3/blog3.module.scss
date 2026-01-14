@@ -62,9 +62,9 @@
             color: var(--composer-font-color-primary);
 
             .right-side-icon {
-              font-size: 1.25rem;
-              width: 1.25rem;
-              height: 1.25rem;
+              font-size: 2rem;
+              width: 2rem;
+              height: 2rem;
               color: var(--composer-font-color-primary);
               flex-shrink: 0;
               transition: var(--composer-transition-duration-fast);
@@ -192,9 +192,9 @@
 
                 .date-icon {
                   flex-shrink: 0;
-                  font-size: 1.25rem;
-                  width: 1.25rem;
-                  height: 1.25rem;
+                  font-size: 2rem;
+                  width: 2rem;
+                  height: 2rem;
                 }
 
                 .date-text {
@@ -213,9 +213,9 @@
 
                 .time-icon {
                   flex-shrink: 0;
-                  font-size: 1.25rem;
-                  width: 1.25rem;
-                  height: 1.25rem;
+                  font-size: 2rem;
+                  width: 2rem;
+                  height: 2rem;
                 }
 
                 .time-text {
@@ -297,11 +297,6 @@
           .link-container {
             .link-text {
               padding-bottom: var(--composer-gap-xs);
-
-              .right-side-icon {
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
-              }
             }
           }
         }
@@ -358,9 +353,9 @@
             color: var(--composer-font-color-primary);
 
             .right-side-icon {
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
-              font-size: var(--composer-gap-md);
+              width: 2rem;
+              height: 2rem;
+              font-size: 2rem;
               color: var(--composer-font-color-primary);
               flex-shrink: 0;
               transition: var(--composer-transition-duration-fast);

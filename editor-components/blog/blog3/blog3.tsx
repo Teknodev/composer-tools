@@ -710,7 +710,7 @@ class Blog3 extends BaseBlog {
             </header>
           )}
           {hasValidCards && (
-            <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
+            <Base.ListGrid gridCount={{ pc: itemCountInARow, phone: 1 }} className={this.decorateCSS("cards-row")}>
               <Blocks cards={cardsList} />
             </Base.ListGrid>
           )}
