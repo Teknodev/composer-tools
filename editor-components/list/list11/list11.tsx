@@ -1,16 +1,16 @@
+import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list11.module.scss";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItems {
-    itemTitle: React.JSX.Element;
-    itemDescription: React.JSX.Element;
-    itemImage: TypeMediaInputValue;
-    url: string;
-    navigateToText: React.JSX.Element;
-    icon: TypeMediaInputValue;
+    itemTitle: React.ReactNode;
+    itemDescription: string;
+    itemImage: string;
+    navigateTo: string;
+    navigateToText: string;
+    icon: string;
 }
 
 class List11 extends BaseList {
@@ -37,10 +37,9 @@ class List11 extends BaseList {
         this.addProp({
             type: "string",
             key: "subTitle",
-            displayer: "Description",
+            displayer: "Sub Title",
             value: "We focus on helping you to make useful content more accessible with an utlimate goal for a good sharing profit as a content creator."
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
         this.addProp({
             type: "array",
             key: "listItems",
@@ -49,7 +48,7 @@ class List11 extends BaseList {
                 {
                     type: "object",
                     key: "listItem",
-                    displayer: "List Items",
+                    displayer: "List Item",
                     value: [
                         {
                             type: "string",
@@ -64,20 +63,14 @@ class List11 extends BaseList {
                             value: "This powerful tool eliminates the need to leave Salesforce to get things done as I can create a custom proposal with dynamic pricing tables. You can also customize your own dynamic versions."
                         },
                         {
-                            type: "media",
+                            type: "image",
                             key: "itemImage",
-                            displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-01.svg"
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
+                            displayer: "Image",
+                            value: "https://lexend-nextjs.vercel.app/assets/images/template/feature-01.svg"
                         },
                         {
                             type: "page",
-                            key: "url",
+                            key: "navigateTo",
                             displayer: "Navigate To",
                             value: ""
                         },
@@ -88,23 +81,17 @@ class List11 extends BaseList {
                             value: "See all integrations"
                         },
                         {
-                            type: "media",
+                            type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: {
-                                type: "icon",
-                                name: "FaArrowRight"
-                            },
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
+                            value: "FaArrowRight"
                         },
                     ]
                 },
                 {
                     type: "object",
                     key: "listItem",
-                    displayer: "List Items",
+                    displayer: "List Item",
                     value: [
                         {
                             type: "string",
@@ -119,20 +106,14 @@ class List11 extends BaseList {
                             value: "Keep data consistent, with native CRM integrations that streamline your entire Tool workflow."
                         },
                         {
-                            type: "media",
+                            type: "image",
                             key: "itemImage",
-                            displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-02.svg"
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
+                            displayer: "Image",
+                            value: "https://lexend-nextjs.vercel.app/assets/images/template/feature-02.svg"
                         },
                         {
                             type: "page",
-                            key: "url",
+                            key: "navigateTo",
                             displayer: "Navigate To",
                             value: ""
                         },
@@ -143,23 +124,17 @@ class List11 extends BaseList {
                             value: "See all integrations"
                         },
                         {
-                            type: "media",
+                            type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: {
-                                type: "icon",
-                                name: "FaArrowRight"
-                            },
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
+                            value: "FaArrowRight"
                         },
                     ]
                 },
                 {
                     type: "object",
                     key: "listItem",
-                    displayer: "List Items",
+                    displayer: "List Item",
                     value: [
                         {
                             type: "string",
@@ -174,20 +149,14 @@ class List11 extends BaseList {
                             value: "Improve security and trust with built-in legally binding e-Signatures. Create pre-approved templates, content blocks and lock all legal information to prevent costly mistakes."
                         },
                         {
-                            type: "media",
+                            type: "image",
                             key: "itemImage",
-                            displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://lexend-nextjs.vercel.app/assets/images/template/feature-03.svg"
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
+                            displayer: "Image",
+                            value: "https://lexend-nextjs.vercel.app/assets/images/template/feature-03.svg"
                         },
                         {
                             type: "page",
-                            key: "url",
+                            key: "navigateTo",
                             displayer: "Navigate To",
                             value: ""
                         },
@@ -198,16 +167,10 @@ class List11 extends BaseList {
                             value: "See all integrations"
                         },
                         {
-                            type: "media",
+                            type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: {
-                                type: "icon",
-                                name: "FaArrowRight"
-                            },
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
+                            value: "FaArrowRight"
                         },
                     ]
                 },
@@ -222,12 +185,6 @@ class List11 extends BaseList {
                 selectItems: ["animate1", "animate2", "animate3", "animate4"]
             }
         });
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
-        });
     }
 
     static getName(): string {
@@ -238,10 +195,7 @@ class List11 extends BaseList {
         const listItems = this.castToObject<ListItems[]>("listItems");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
-        const description = this.getPropValue("subTitle");
-        const imageOverlay = this.getPropValue("overlay");
-        const button = this.castToObject<any>("button");
-        const buttonText = this.castToString(button?.text);
+        const subTitle = this.getPropValue("subTitle");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -260,25 +214,22 @@ class List11 extends BaseList {
                                     </Base.SectionTitle>
                                 )}
                             </Base.VerticalContent>
-                            {this.castToString(description) && (
-                                <div className={this.decorateCSS("description-container")}>
-                                    <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                                        {description}
+                            {this.castToString(subTitle) && (
+                                <div className={this.decorateCSS("subTitle-container")}>
+                                    <Base.SectionDescription className={this.decorateCSS("subTitle")}>
+                                        {subTitle}
                                     </Base.SectionDescription>
                                 </div>
                             )}
                         </Base.VerticalContent>
-                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("grid")}>
+                        <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => (
                                 <div key={index} className={this.decorateCSS("card")}
                                     data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                                     <div className={this.decorateCSS("card-items")}>
                                         {item.itemImage && (
                                             <div className={this.decorateCSS("card-image-container")}>
-                                                <Base.Media className={`${this.decorateCSS("card-image")} ${this.decorateCSS("media-el")}`} value={item.itemImage} />
-                                                {imageOverlay && (
-                                                    <div className={this.decorateCSS("overlay")} />
-                                                )}
+                                                <img className={this.decorateCSS("card-image")} src={item.itemImage} alt={item.itemImage} />
                                             </div>
                                         )}
                                         <div className={this.decorateCSS("card-content")}>
@@ -288,12 +239,12 @@ class List11 extends BaseList {
                                                 </Base.H3>
                                             )}
                                             {this.castToString(item.itemDescription) && (
-                                                <Base.SectionDescription className={this.decorateCSS("card-description")}>
+                                                <Base.P className={this.decorateCSS("card-description")}>
                                                     {item.itemDescription}
-                                                </Base.SectionDescription>
+                                                </Base.P>
                                             )}
                                             {(this.castToString(item.navigateToText) || (item.icon)) && (
-                                                <ComposerLink path={item.url}>
+                                                <ComposerLink path={item.navigateTo}>
                                                     <div className={this.decorateCSS("navigate-container")}>
                                                         {this.castToString(item.navigateToText) && (
                                                             <Base.P className={this.decorateCSS("navigate-to")}>
@@ -301,9 +252,11 @@ class List11 extends BaseList {
                                                             </Base.P>
                                                         )}
                                                         {item.icon && (
-                                                            <Base.Media
-                                                                value={item.icon}
-                                                                className={`${this.decorateCSS("navigate-icon")} ${this.decorateCSS("media-el")}`}
+                                                            <Base.Icon
+                                                                name={item.icon}
+                                                                propsIcon={{
+                                                                    className: this.decorateCSS("navigate-icon"),
+                                                                }}
                                                             />
                                                         )}
                                                     </div>
@@ -314,15 +267,6 @@ class List11 extends BaseList {
                                 </div>
                             ))}
                         </Base.ListGrid>
-                        {buttonText && (
-                            <div className={this.decorateCSS("button-wrapper")}>
-                                <ComposerLink path={button?.url}>
-                                    <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
-                                        <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
-                                    </Base.Button>
-                                </ComposerLink>
-                            </div>
-                        )}
                     </div>
                 </Base.MaxContent >
             </Base.Container >

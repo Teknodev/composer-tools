@@ -65,7 +65,7 @@ export namespace INPUTS {
         key: "icon",
         displayer: "Icon",
         additionalParams: {
-          availableTypes: ["icon", "image"],
+          availableTypes: ["icon"],
         },
         value: {
           type: "icon",
@@ -89,7 +89,7 @@ export namespace INPUTS {
       });
     }
 
-    button["getPropValue"] = undefined;
+    button["getPropValue"] = null;
 
     return button;
   };

@@ -1,15 +1,16 @@
-import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
+import * as React from "react";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  url: string;
-  image?: TypeMediaInputValue;
-  count: React.JSX.Element;
-  label: React.JSX.Element;
-  text: React.JSX.Element;
+  page: string;
+  image: string;
+  count: number;
+  count_text: React.JSX.Element;
+  card_text: React.JSX.Element;
 };
 
 class List2 extends BaseList {
@@ -19,7 +20,7 @@ class List2 extends BaseList {
     this.addProp({
       type: "string",
       key: "subtitle",
-      displayer: "Subtitle",
+      displayer: "Subtitle", 
       value: "Explore",
     });
 
@@ -59,47 +60,42 @@ class List2 extends BaseList {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "List Items",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "page",
-              key: "url",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Navigate",
               value: "",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414e?alt=media&timestamp=1719483639150",
-              },
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414e?alt=media&timestamp=1719483639150",
             },
             {
-              type: "string",
+              type: "number",
               key: "count",
               displayer: "Count",
-              value: "18",
+              value: 18,
             },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "count_text",
+              displayer: "Count Text",
               value: "Listings",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "card_text",
+              displayer: "Card Text",
               value: "Nightlife",
             },
           ],
@@ -107,42 +103,37 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "page",
-              key: "url",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Navigate",
               value: "",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414f?alt=media&timestamp=1719483639150",
-              },
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414f?alt=media&timestamp=1719483639150",
             },
             {
-              type: "string",
+              type: "number",
               key: "count",
               displayer: "Count",
-              value: "24",
+              value: 24,
             },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "count_text",
+              displayer: "Count Text",
               value: "Listings",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "card_text",
+              displayer: "Card Text",
               value: "Shops",
             },
           ],
@@ -150,42 +141,37 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "page",
-              key: "url",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Navigate",
               value: "",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414d?alt=media&timestamp=1719483639150",
-              },
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414d?alt=media&timestamp=1719483639150",
             },
             {
-              type: "string",
+              type: "number",
               key: "count",
               displayer: "Count",
-              value: "19",
+              value: 19,
             },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "count_text",
+              displayer: "Count Text",
               value: "Listings",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "card_text",
+              displayer: "Card Text",
               value: "Restaurant",
             },
           ],
@@ -193,42 +179,37 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "page",
-              key: "url",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Navigate",
               value: "",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414b?alt=media&timestamp=1719483639150",
-              },
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414b?alt=media&timestamp=1719483639150",
             },
             {
-              type: "string",
+              type: "number",
               key: "count",
               displayer: "Count",
-              value: "35",
+              value: 35,
             },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "count_text",
+              displayer: "Count Text",
               value: "Listings",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "card_text",
+              displayer: "Card Text",
               value: "Outdoor Activities",
             },
           ],
@@ -236,42 +217,37 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "page",
-              key: "url",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Navigate",
               value: "",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617b82bd2970002c62410f?alt=media&timestamp=1719483639150",
-              },
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617b82bd2970002c62410f?alt=media&timestamp=1719483639150",
             },
             {
-              type: "string",
+              type: "number",
               key: "count",
               displayer: "Count",
-              value: "9",
+              value: 9,
             },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "count_text",
+              displayer: "Count Text",
               value: "Listings",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "card_text",
+              displayer: "Card Text",
               value: "Hotels",
             },
           ],
@@ -283,53 +259,40 @@ class List2 extends BaseList {
           value: [
             {
               type: "page",
-              key: "url",
-              displayer: "Navigate To",
+              key: "page",
+              displayer: "Navigate",
               value: "",
             },
             {
-              type: "media",
+              type: "image",
               key: "image",
-              displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414c?alt=media&timestamp=1719483639150",
-              },
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
+              displayer: "Image of Card",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617ba6bd2970002c62414c?alt=media&timestamp=1719483639150",
             },
             {
-              type: "string",
+              type: "number",
               key: "count",
               displayer: "Count",
-              value: "32",
+              value: 32,
             },
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
+              key: "count_text",
+              displayer: "Count Text",
               value: "Listings",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "card_text",
+              displayer: "Card Text",
               value: "New York",
             },
           ],
         },
       ],
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", null, null, null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", "", null, null, "Primary"));
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -351,24 +314,21 @@ class List2 extends BaseList {
   };
 
   render() {
-    const currentCount = this.getPropValue("imageCountInitial") + this.getComponentState("moreImages");
-    if (this.getComponentState("imageCount") !== currentCount) {
-      this.setComponentState("imageCount", currentCount);
-    }
+    if (this.getComponentState("imageCount") != this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
+      this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
 
     const cards = this.castToObject<CardItem[]>("cards");
-    const buttonType = this.castToObject<any>("button");
+    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
-    const imageOverlay = this.getPropValue("overlay");
 
     return (
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={this.decorateCSS("up-container")}>
                 {this.castToString(subtitle) && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitle}
@@ -391,68 +351,57 @@ class List2 extends BaseList {
                 className={this.decorateCSS("cards-box")}
                 gridCount={{
                   pc: this.getPropValue("itemCount"),
-                  tablet: 3,
+                  tablet: 2,
                   phone: 1,
                 }}
               >
-                {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
-                  const hasImage = !!item.image;
-                  const cardClasses = [this.decorateCSS("card")];
-                  if (!hasImage) {
-                    cardClasses.push(this.decorateCSS("card-no-image"));
-                  }
-                  return (
-                    <ComposerLink key={index} path={item.url}>
-                       <div className={this.decorateCSS("card-link")}>
-                      <div
-                        className={cardClasses.join(" ")}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                      >
-                        {hasImage && (
-                          <div className={this.decorateCSS("image-container")}>
-                            <Base.Media className={this.decorateCSS("card-image")} value={item.image} />
-                            {imageOverlay && (
-                              <div className={this.decorateCSS("overlay")} />
-                            )}
-                          </div>
-                        )}
-                        <div className={this.decorateCSS("overlay-gradient")}></div>
-                        <div className={this.decorateCSS("card-content")}>
-                          <div className={this.decorateCSS("stick")}></div>
-                          <div className={this.decorateCSS("category")}>
-                            {this.castToString(item.text) && (
-                              <Base.H4 className={this.decorateCSS("category-name")}>
-                                {item.text}
+                {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => (
+                  <ComposerLink key={index} path={item.page}>
+                    <div
+                      className={this.decorateCSS("card")}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    >
+                      {item.image && (
+                        <img className={this.decorateCSS("card-image")} src={item.image} alt={item.image} />
+                      )}
+                      <div className={this.decorateCSS("overlay")}></div>
+                      <div className={this.decorateCSS("overlay2")}></div>
+                      <div className={this.decorateCSS("card-content")}>
+                        <div className={this.decorateCSS("stick")}></div>
+                        {(this.castToString(item.card_text) || item.count || this.castToString(item.count_text)) && (
+                          <div className={this.decorateCSS("labels")}>
+                            {this.castToString(item.card_text) && (
+                              <Base.H4 className={this.decorateCSS("first")}>
+                                {item.card_text}
                               </Base.H4>
                             )}
-                            {(this.castToString(item.count) || this.castToString(item.label)) && (
-                              <div className={this.decorateCSS("count-badge")}>
-                                {this.castToString(item.count) && (
-                                  <Base.P className={this.decorateCSS("count-value")}>
+                            {(item.count || this.castToString(item.count_text)) && (
+                              <div className={this.decorateCSS("second")}>
+                                {item.count && (
+                                  <Base.H5 className={this.decorateCSS("second-text")}>
                                     {item.count}
-                                  </Base.P>
+                                  </Base.H5>
                                 )}
-                                {this.castToString(item.label) && (
-                                  <Base.P className={this.decorateCSS("count-label")}>
-                                    {item.label}
+                                {this.castToString(item.count_text) && (
+                                  <Base.P className={this.decorateCSS("second-count")}>
+                                    {item.count_text}
                                   </Base.P>
                                 )}
                               </div>
                             )}
                           </div>
-                        </div>
+                        )}
                       </div>
-                      </div>
-                    </ComposerLink>
-                  );
-                })}
+                    </div>
+                  </ComposerLink>
+                ))}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") < cards.length) && this.castToString(buttonType.text) && (
+            {((this.getComponentState("imageCount") < cards.length) && this.castToString(buttonType.text)) && (
               <ComposerLink path={buttonType.url}>
                 <div className={this.decorateCSS("button-wrapper")}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
+                    {buttonType.text}
                   </Base.Button>
                 </div>
               </ComposerLink>

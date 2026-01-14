@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import React from "react";
 import styles from "./list5.module.scss";
 
@@ -9,7 +9,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 type ListItem = {
   title: React.JSX.Element;
   uppericon: React.JSX.Element;
-  text: React.JSX.Element;
+  text: string;
   lowericon: React.JSX.Element;
   url: string;
 }
@@ -29,32 +29,15 @@ class List5 extends BaseList {
     this.addProp({
       type: "string",
       key: "header",
-      displayer: "Title",
+      displayer: "Header",
       value: "Bringing Your Vision to Life - AI Image Generation Service",
     });
     this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
-    });
-    this.addProp({
-      type: "media",
+      type: "image",
       key: "image",
-      displayer: "Background Media",
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
-      },
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      displayer: "Background Image",
+      value:
+        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
     });
     this.addProp({
       type: "array",
@@ -64,7 +47,7 @@ class List5 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -73,16 +56,10 @@ class List5 extends BaseList {
               value: "Customize & Refine",
             },
             {
-              type: "media",
+              type: "icon",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: {
-                type: "icon",
-                name: "VscSettings",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              value: "VscSettings",
             },
             {
               type: "string",
@@ -91,21 +68,15 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "lowericon",
               displayer: "Lower Icon",
-              value: {
-                type: "icon",
-                name: "FaLongArrowAltRight",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              value: "FaLongArrowAltRight",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -113,7 +84,7 @@ class List5 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -122,16 +93,10 @@ class List5 extends BaseList {
               value: "Lower Cost",
             },
             {
-              type: "media",
+              type: "icon",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: {
-                type: "icon",
-                name: "RiMoneyDollarCircleLine",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              value: "RiMoneyDollarCircleLine",
             },
             {
               type: "string",
@@ -140,21 +105,15 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "lowericon",
               displayer: "Lower Icon",
-              value: {
-                type: "icon",
-                name: "FaLongArrowAltRight",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              value: "FaLongArrowAltRight",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -162,7 +121,7 @@ class List5 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -171,16 +130,10 @@ class List5 extends BaseList {
               value: "Speed & Efficiency",
             },
             {
-              type: "media",
+              type: "icon",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: {
-                type: "icon",
-                name: "RiSpeedUpFill",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              value: "RiSpeedUpFill",
             },
             {
               type: "string",
@@ -189,21 +142,15 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "lowericon",
-              displayer: "Lower Icon",
-              value: {
-                type: "icon",
-                name: "FaLongArrowAltRight",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              displayer: "LowerIcon",
+              value: "FaLongArrowAltRight",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -211,7 +158,7 @@ class List5 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -220,16 +167,10 @@ class List5 extends BaseList {
               value: "Quality & Realism",
             },
             {
-              type: "media",
+              type: "icon",
               key: "uppericon",
               displayer: "Upper Icon",
-              value: {
-                type: "icon",
-                name: "FaRegImages",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              value: "FaRegImages",
             },
             {
               type: "string",
@@ -238,21 +179,15 @@ class List5 extends BaseList {
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "lowericon",
               displayer: "Lower Icon",
-              value: {
-                type: "icon",
-                name: "FaLongArrowAltRight",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              value: "FaLongArrowAltRight",
             },
             {
               type: "page",
               key: "url",
-              displayer: "Navigate To",
+              displayer: "Url",
               value: "",
             },
           ],
@@ -285,78 +220,64 @@ class List5 extends BaseList {
     const ListItems = this.castToObject<ListItem[]>("list-items");
     const subtitle = this.getPropValue("subtitle");
     const header = this.getPropValue("header");
-    const description = this.getPropValue("description");
-    const backgroundMedia = this.getPropValue("image") as TypeMediaInputValue | null;
-    const hasBackgroundMedia = !!backgroundMedia;
-    const imageOverlay = this.getPropValue("overlay");
-    const hasHeaderContent =
-      this.castToString(subtitle) ||
-      this.castToString(header) ||
-      this.castToString(description);
-    const isSingleColumn = this.getPropValue("itemCount") === 1;
+    const image = this.getPropValue("image");
 
     return (
       <>
-        <Base.Container className={this.decorateCSS("container")}>
-          {hasBackgroundMedia && (
-            <Base.Media
-              value={backgroundMedia as TypeMediaInputValue}
-              className={`${this.decorateCSS("background-media")} ${this.decorateCSS("media-el")}`}
-            />
-          )}
-          {imageOverlay && hasBackgroundMedia && (
-            <div className={this.decorateCSS("overlay")} />
-          )}
+        <Base.Container className={this.decorateCSS("container")}
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover"
+          }}
+        >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {hasHeaderContent && (
+            {(this.castToString(subtitle) || this.castToString(header)) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("dark")}`}>
                     {subtitle}
                   </Base.SectionSubTitle>
                 )}
                 {this.castToString(header) && (
-                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${image && this.decorateCSS("dark")}`}>
                     {header}
                   </Base.SectionTitle>
-                )}
-                {this.castToString(description) && (
-                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
-                    {description}
-                  </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
             )}
             {(ListItems.length > 0) && (
               <Base.ListGrid
-                className={`${this.decorateCSS("cards-grid")} ${isSingleColumn && this.decorateCSS("single-column")}`}
-                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
+                className={this.decorateCSS("grid")}
+                gridCount={{ pc: this.getPropValue("itemCount") }}
               >
                 {ListItems.map(
                   (listItem: any, index: number) => {
                     return (
-                      <div key={index} className={this.decorateCSS("card-wrapper")}>
-                        <div
-                          className={this.decorateCSS("card")}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                        >
-                          <ComposerLink path={listItem.url}>
+                      <div className={this.decorateCSS("item-box")}>
+                        <ComposerLink path={listItem.url}>
+                          <div
+                            key={index}
+                            className={this.decorateCSS("item-container")}
+                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                          >
                             {(listItem.uppericon || this.getPropValue("showIndex")) && (
-                              <div className={this.decorateCSS("card-header")}>
+                              <div className={this.decorateCSS("header-line")}>
                                 {listItem.uppericon && (
-                                  <div className={this.decorateCSS("icon-section")}>
-                                    <div className={this.decorateCSS("icon-badge")}>
+                                  <div className={this.decorateCSS("left")}>
+                                    <div className={this.decorateCSS("out-icon")}>
                                       <div className={this.decorateCSS("icon-wrapper")}>
-                                        <Base.Media
-                                          value={listItem.uppericon}
-                                          className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                                        <Base.Icon
+                                          name={listItem.uppericon}
+                                          propsIcon={{
+                                            className: this.decorateCSS("icon"),
+                                          }}
                                         />
                                       </div>
                                     </div>
                                   </div>
                                 )}
                                 {this.getPropValue("showIndex") && (
-                                  <div className={this.decorateCSS("index-section")}>
+                                  <div className={this.decorateCSS("right")}>
                                     <Base.H1 className={this.decorateCSS("item-index")}>
                                       {(index + 1).toLocaleString("en-US", {
                                         minimumIntegerDigits: 2,
@@ -368,23 +289,25 @@ class List5 extends BaseList {
                               </div>
                             )}
                             {this.castToString(listItem.title) && (
-                              <Base.H4 className={this.decorateCSS("card-title")}>
+                              <Base.H3 className={this.decorateCSS("list-item-title")}>
                                 {listItem.title}
-                              </Base.H4>
+                              </Base.H3>
                             )}
                             {this.castToString(listItem.text) && (
-                              <Base.P className={this.decorateCSS("card-description")}>
+                              <Base.P className={this.decorateCSS("list-item-text")}>
                                 {listItem.text}
                               </Base.P>
                             )}
                             {listItem.lowericon && (
-                              <Base.Media
-                                value={listItem.lowericon}
-                                className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("media-el")}`}
+                              <Base.Icon
+                                name={listItem.lowericon}
+                                propsIcon={{
+                                  className: this.decorateCSS("lower-icon"),
+                                }}
                               />
                             )}
-                          </ComposerLink>
-                        </div>
+                          </div>
+                        </ComposerLink>
                       </div>
                     );
                   }
