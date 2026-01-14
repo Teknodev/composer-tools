@@ -327,7 +327,7 @@ class Feature40 extends BaseFeature {
             type: "boolean",
             key: "iconBackground",
             displayer: "Icon Background",
-            value: true,
+            value: false,
         });
 
         this.addProp({
@@ -384,9 +384,7 @@ class Feature40 extends BaseFeature {
                                 const descExist = !!this.castToString(card.description);
                                 const isImage = card.icon?.type === "image";
 
-                                if (!titleExist && !descExist && !card.icon) return null;
-
-                                return (
+                                return (!titleExist && !descExist && !card.icon) && (
                                     <div key={index} className={this.decorateCSS("card-wrapper")}>
                                         {card.icon &&
                                             <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
