@@ -10,8 +10,7 @@ type Item = {
   texts: TextItem[];
 };
 type TextItem = {
-  topText: React.JSX.Element;
-  bottomText: React.JSX.Element;
+  itemText: React.JSX.Element;
 };
 
 class List3 extends BaseList {
@@ -29,17 +28,17 @@ class List3 extends BaseList {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "Title",
+      displayer: "title",
       value: "Event Schedule",
     });
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "Description",
+      displayer: "description",
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", "FaDownload", null, "Primary"));
+    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -49,7 +48,7 @@ class List3 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -60,33 +59,45 @@ class List3 extends BaseList {
             {
               type: "array",
               key: "texts",
-              displayer: "Text",
+              displayer: "Texts",
               value: [
                 {
                   type: "object",
                   key: "text",
                   displayer: "Text",
                   value: [
-                    { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
-                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Psychologist - John parker 10:00 AM to 12:30 PM",
+                    },
                   ]
                 },
                 {
                   type: "object",
-                  key: "text",
+                  key: "Text",
                   displayer: "Text",
                   value: [
-                    { type: "string", key: "topText", displayer: "Top Text", value: "Sociology - Herman Miller" },
-                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Sociology - Herman miller 02:00 PM to 04:30 PM",
+                    },
                   ]
                 },
                 {
                   type: "object",
-                  key: "text",
+                  key: "Text",
                   displayer: "Text",
                   value: [
-                    { type: "string", key: "topText", displayer: "Top Text", value: "Geologist - Jeremy Dupont" },
-                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Geologist - Jeremy dupont 05:00 PM to 07:30 PM",
+                    },
                   ]
                 },
               ]
@@ -96,7 +107,7 @@ class List3 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -109,18 +120,45 @@ class List3 extends BaseList {
               key: "texts",
               displayer: "Texts",
               value: [
-                { type: "object", key: "text", displayer: "Text", value: [
-                  { type: "string", key: "topText", displayer: "Top Text", value: "Economy - Michal Ruheen" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
-                ]},
-                { type: "object", key: "text", displayer: "Text", value: [
-                  { type: "string", key: "topText", displayer: "Top Text", value: "Engineer - Jessica Dover" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
-                ]},
-                { type: "object", key: "text", displayer: "Text", value: [
-                  { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
-                ]},
+                {
+                  type: "object",
+                  key: "text",
+                  displayer: "Text",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Economy - Michal ruheen 10:00 AM to 12:30 PM",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "Text",
+                  displayer: "Text",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Engineer - Jessica dover 02:00 PM to 04:30 PM",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "Text",
+                  displayer: "Text",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Psychologist - John parker 05:00 PM to 07:30 PM",
+                    },
+                  ]
+                },
               ]
             }
           ],
@@ -128,7 +166,7 @@ class List3 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -141,18 +179,45 @@ class List3 extends BaseList {
               key: "texts",
               displayer: "Texts",
               value: [
-                { type: "object", key: "text", displayer: "Text", value: [
-                  { type: "string", key: "topText", displayer: "Top Text", value: "Biologist - Saleena Fountain" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
-                ]},
-                { type: "object", key: "text", displayer: "Text", value: [
-                  { type: "string", key: "topText", displayer: "Top Text", value: "Secretary - Paulina Morris" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
-                ]},
-                { type: "object", key: "text", displayer: "Text", value: [
-                  { type: "string", key: "topText", displayer: "Top Text", value: "Politician - Wendaya Royin" },
-                  { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
-                ]},
+                {
+                  type: "object",
+                  key: "text",
+                  displayer: "Text",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Biologist- Saleena fountain 10:00 AM to 12:30 PM",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "Text",
+                  displayer: "Text",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Secretary- Paulina morris 02:00 PM to 04:30 PM",
+                    },
+                  ]
+                },
+                {
+                  type: "object",
+                  key: "Text",
+                  displayer: "Text",
+                  value: [
+                    {
+                      type: "string",
+                      key: "itemText",
+                      displayer: "Item Text",
+                      value: "Politician - Wendaya royin 05:00 PM to 07:30 PM",
+                    },
+                  ]
+                },
               ]
             }
           ],
@@ -181,12 +246,6 @@ class List3 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
     });
-    this.addProp({
-      type: "boolean",
-      key: "showLines",
-      displayer: "Show Lines",
-      value: true,
-    });
   }
 
   render() {
@@ -195,18 +254,15 @@ class List3 extends BaseList {
     const description = this.getPropValue("description");
     const listItems = this.castToObject<Item[]>("listItems");
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonIcon = this.getPropValue("button")?.icon;
-    const iconExist = buttonIcon && buttonIcon.name;
 
-    const alignment = Base.getContentAlignment();
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={this.decorateCSS("cards-grid") + " " + (alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center"))} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text) || iconExist) && (
-              <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+          <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
+            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text)) && (
+              <Base.VerticalContent className={this.decorateCSS("first")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-                  <Base.VerticalContent className={this.decorateCSS("intro-content")}>
+                  <Base.VerticalContent className={this.decorateCSS("first-inner")}>
                     {this.castToString(subtitle) && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                         {subtitle}
@@ -224,20 +280,18 @@ class List3 extends BaseList {
                     )}
                   </Base.VerticalContent>
                 )}
-                {(this.castToString(buttonType.text) || iconExist) && (
+                {this.castToString(buttonType.text) && (
                   <ComposerLink path={buttonType.url}>
                     <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      {this.castToString(buttonType.text) && (
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {buttonType.text}
-                        </Base.P>
-                      )}
-                      {iconExist && (
-                        <Base.Media
-                          value={buttonIcon}
-                          className={this.decorateCSS("button-icon")}
-                        />
-                      )}
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {buttonType.text}
+                      </Base.P>
+                      <Base.Icon
+                        name={"FaArrowRight"}
+                        propsIcon={{
+                          className: this.decorateCSS("button-icon"),
+                        }}
+                      />
                     </Base.Button>
                   </ComposerLink>
                 )}
@@ -252,26 +306,21 @@ class List3 extends BaseList {
                 >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
-                      <Base.H4 className={this.decorateCSS("card-title")}>
+                      <Base.H5 className={this.decorateCSS("itemTitle")}>
                         {listItem.itemTitle}
-                      </Base.H4>
+                      </Base.H5>
                     )}
-                    {listItem.texts.map((item: TextItem, tIndex: number) => (
-                      <Base.VerticalContent key={tIndex} className={this.decorateCSS("event-item")}>
-                        {this.getPropValue("showLines") && tIndex > 0 && (
-                          <div className={this.decorateCSS("divider")}></div>
-                        )}
-                        {this.castToString(item.topText) && (
-                          <Base.P className={this.decorateCSS("event-text-top")}>{item.topText}</Base.P>
-                        )}
-                        {this.castToString(item.bottomText) && (
-                          <Base.P className={this.decorateCSS("event-text-bottom")}>{item.bottomText}</Base.P>
-                        )}
+                    {listItem.texts.map((item: TextItem, index: number) => (
+                      <Base.VerticalContent className={this.decorateCSS("cardItem")}>
+                        <div className={this.decorateCSS("spanItem")}></div>
+                        <Base.P className={this.decorateCSS("itemText")}>
+                          {item.itemText}
+                        </Base.P>
                       </Base.VerticalContent>
                     ))}
                   </Base.VerticalContent>
                   {this.getPropValue("showCardNumber") && (
-                    <Base.H1 className={this.decorateCSS("card-number")}>
+                    <Base.H1 className={this.decorateCSS("index")}>
                       {index < 9 ? `0${index + 1}` : index + 1}
                     </Base.H1>
                   )}

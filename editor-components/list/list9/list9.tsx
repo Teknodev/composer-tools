@@ -1,12 +1,12 @@
 import * as React from "react";
-import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseList } from "../../EditorComponent";
 import styles from "./list9.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-    icon: TypeMediaInputValue;
-    image: TypeMediaInputValue;
+    icon: string;
+    image: string;
     title: React.JSX.Element;
     description: React.JSX.Element;
 };
@@ -14,7 +14,7 @@ type Card = {
 class List9 extends BaseList {
     constructor(props?: any) {
         super(props, styles);
-
+        
         this.addProp({
             type: "string",
             key: "subtitle",
@@ -25,13 +25,7 @@ class List9 extends BaseList {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
-        });
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "",
+            value: "What we offer",
         });
         this.addProp({
             type: "array",
@@ -44,16 +38,10 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "media",
+                            type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: {
-                                type: "icon",
-                                name: "LiaBicycleSolid",
-                            },
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
+                            value: "LiaBicycleSolid",
                         },
                         {
                             type: "string",
@@ -69,16 +57,11 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "media",
+                            type: "image",
                             key: "image",
-                            displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
+                            displayer: "Image",
+                            value:
+                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a5?alt=media&timestamp=1719561551671",
                         },
                     ],
                 },
@@ -88,16 +71,10 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "media",
+                            type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: {
-                                type: "icon",
-                                name: "FaDog",
-                            },
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
+                            value: "FaDog",
                         },
                         {
                             type: "string",
@@ -113,16 +90,11 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "media",
+                            type: "image",
                             key: "image",
-                            displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
+                            displayer: "Image",
+                            value:
+                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a4?alt=media&timestamp=1719561551671",
                         },
                     ],
                 },
@@ -132,16 +104,10 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "media",
+                            type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: {
-                                type: "icon",
-                                name: "FaHtml5",
-                            },
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
+                            value: "FaHtml5",
                         },
                         {
                             type: "string",
@@ -157,16 +123,11 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "media",
+                            type: "image",
                             key: "image",
-                            displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
+                            displayer: "Image",
+                            value:
+                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a3?alt=media&timestamp=1719561551671",
                         },
                     ],
                 },
@@ -176,16 +137,10 @@ class List9 extends BaseList {
                     displayer: "Card",
                     value: [
                         {
-                            type: "media",
+                            type: "icon",
                             key: "icon",
                             displayer: "Icon",
-                            value: {
-                                type: "icon",
-                                name: "RiPaintBrushFill",
-                            },
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
+                            value: "RiPaintBrushFill",
                         },
                         {
                             type: "string",
@@ -201,16 +156,11 @@ class List9 extends BaseList {
                                 "Creating a higher spacing for people through a unique campaigns.",
                         },
                         {
-                            type: "media",
+                            type: "image",
                             key: "image",
-                            displayer: "Media",
-                            value: {
-                                type: "image",
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",
-                            },
-                            additionalParams: {
-                                availableTypes: ["image", "video"],
-                            },
+                            displayer: "Image",
+                            value:
+                                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b814bd2970002c6285a6?alt=media&timestamp=1719561551671",
                         },
                     ],
                 },
@@ -220,16 +170,9 @@ class List9 extends BaseList {
         this.addProp({
             type: "number",
             key: "itemCount",
-            displayer: "Item Count in a Row",
+            displayer: "Item count in a row",
             value: 4,
             max: 4,
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
         });
 
         this.addProp({
@@ -251,71 +194,64 @@ class List9 extends BaseList {
         const cards = this.castToObject<Card[]>("cards");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
-        const description = this.getPropValue("description");
-        const imageOverlay = this.getPropValue("overlay");
-
+        
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("header")}>
+                    <Base.VerticalContent className={this.decorateCSS("card-titles")}>
                         {this.castToString(subtitle) && (
                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                 {subtitle}
                             </Base.SectionSubTitle>
                         )}
                         {this.castToString(title) && (
-                            <Base.SectionTitle className={this.decorateCSS("header-title")}>
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
                                 {title}
                             </Base.SectionTitle>
                         )}
-                        {this.castToString(description) && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {description}
-                            </Base.SectionDescription>
-                        )}
                     </Base.VerticalContent>
-
+                    
                 </Base.MaxContent>
                 <Base.ListGrid
-                    gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }}
-                    className={this.decorateCSS("grid-container")}
-                >
+                        gridCount={{ pc: this.getPropValue("itemCount") }}
+                        className={this.decorateCSS("grid-container")}
+                    >
                     {cards.map(
                         (card: Card, indexCard: number) => (
                             <div
                                 key={indexCard}
                                 className={this.decorateCSS("card")}
                                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                                tabIndex={0}
                             >
                                 <div className={this.decorateCSS("image-container")}>
                                     {card.image && (
-                                        <Base.Media
-                                            className={`${this.decorateCSS("image")} ${this.decorateCSS("media-el")}`}
-                                            value={card.image}
+                                        <img
+                                            className={this.decorateCSS("image")}
+                                            src={card.image}
+                                            alt={card.image}
                                         />
                                     )}
-                                    {imageOverlay && (
-                                        <div className={this.decorateCSS("overlay")} />
-                                    )}
+
                                 </div>
                                 <Base.VerticalContent
-                                    className={this.decorateCSS("card-content")}
+                                    className={this.decorateCSS("little-container")}
                                 >
                                     {card.icon && (
-                                        <Base.Media
-                                            value={card.icon}
-                                            className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                                        <Base.Icon
+                                            name={card.icon}
+                                            propsIcon={{ className: this.decorateCSS("icon") }}
                                         />
                                     )}
                                     {this.castToString(card.title) && (
-                                        <Base.H4 className={this.decorateCSS("card-title")}>
+                                        <Base.H3 className={this.decorateCSS("title")}>
                                             {card.title}
-                                        </Base.H4>
+                                        </Base.H3>
                                     )}
-                                    <Base.SectionDescription className={this.decorateCSS("card-description")}>
-                                        {card.description}
-                                    </Base.SectionDescription>
+                                    {this.castToString(card.description) && (
+                                        <Base.P className={this.decorateCSS("description")}>
+                                            {card.description}
+                                        </Base.P>
+                                    )}
                                 </Base.VerticalContent>
                             </div>
                         )

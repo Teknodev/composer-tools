@@ -2,17 +2,15 @@ import * as React from "react";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 
 type Card = {
-  description: React.JSX.Element;
+  description: string;
   icon: React.JSX.Element;
-  title: React.JSX.Element;
+  title: string;
 };
 
-class List4 extends BaseList {
+class list4 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
 
@@ -29,23 +27,16 @@ class List4 extends BaseList {
       displayer: "Title",
       value: "We are delivering beautiful digital products for you.",
     });
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
-    });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
       key: "content-card",
-      displayer: "List Items",
+      displayer: "Content Card",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -61,23 +52,17 @@ class List4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
-              displayer: "Media",
-              value: {
-                type: "icon",
-                name: "FaTooth",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              displayer: "Icon",
+              value: "FaTooth",
             },
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -93,23 +78,17 @@ class List4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
-              displayer: "Media",
-              value: {
-                type: "icon",
-                name: "FaPencilAlt",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              displayer: "Icon",
+              value: "FaPencilAlt",
             },
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "Card",
           value: [
             {
               type: "string",
@@ -125,16 +104,10 @@ class List4 extends BaseList {
                 "Web design encompasses many different skills and disciplines in the production of all web.",
             },
             {
-              type: "media",
+              type: "icon",
               key: "icon",
-              displayer: "Media",
-              value: {
-                type: "icon",
-                name: "FaSuitcaseRolling",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
+              displayer: "Icon",
+              value: "FaSuitcaseRolling",
             },
           ],
         },
@@ -144,7 +117,7 @@ class List4 extends BaseList {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item Count in a Row",
+      displayer: "Item count in a row",
       value: 3,
     });
     this.addProp({
@@ -166,90 +139,69 @@ class List4 extends BaseList {
   }
 
   static getName(): string {
-    return "List 4";
+    return "list 4";
   }
 
   render() {
-    const button = this.castToObject<any>("button");
-    const buttonText = this.castToString(button?.text);
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.castToString(this.getPropValue("subtitle")) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
-              )}
-              {this.castToString(this.getPropValue("title")) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {this.castToString(this.getPropValue("description")) && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
-          )}
-          <Base.ListGrid className={this.decorateCSS("services-grid")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
+          <Base.VerticalContent className={this.decorateCSS("header")}>
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {this.getPropValue("subtitle")}
+            </Base.SectionSubTitle>
+            <Base.SectionTitle className={this.decorateCSS("title")}>
+              {this.getPropValue("title")}
+            </Base.SectionTitle>
+          </Base.VerticalContent>
+          <Base.ListGrid className={this.decorateCSS("card-child")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}>
             {this.castToObject<Card[]>("content-card").map(
-              (card: any, index: number) => {
-                const hasTitle = this.castToString(card.title);
-                const hasDescription = this.castToString(card.description);
-                const hasIcon = !!card.icon;
-                const showIndex = !!this.getPropValue("showIndex");
-                if (!hasTitle && !hasDescription && !hasIcon) return null;
-                return (
+              (card: any, index: number) => (
                 <div
                   key={index}
-                  className={`${this.decorateCSS("service-item")} ${this.decorateCSS(showIndex ? "with-index" : "no-index")}`}
+                  className={this.decorateCSS("card-item-count")}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
-                  <div className={this.decorateCSS("border-frame")}>
-                    <div className={this.decorateCSS("border-left")}></div>
-                    <div className={this.decorateCSS("border-top")}></div>
-                    <div className={this.decorateCSS("border-right")}></div>
-                    <div className={this.decorateCSS("border-bottom")}></div>
+                  <div className={this.decorateCSS("line-box")}>
+                    <div className={this.decorateCSS("line-1")}></div>
+                    <div className={this.decorateCSS("line-2")}></div>
+                    <div className={this.decorateCSS("line-3")}></div>
+                    <div className={this.decorateCSS("line-4")}></div>
                   </div>
-                  {this.getPropValue("showIndex") && (
-                    <div
-                      className={`${this.decorateCSS("item-index")} ${this.decorateCSS("index")}`}
-                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                    >
-                      {(index + 1).toLocaleString("en-US", {
-                        minimumIntegerDigits: 2,
-                        useGrouping: false,
-                      })}
-                    </div>
-                  )}
+                  <div className={`${this.decorateCSS("card-title")} ${this.getPropValue("showIndex") && this.decorateCSS("index")}`}
+                    data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                    {(index + 1).toLocaleString("en-US", {
+                      minimumIntegerDigits: 2,
+                      useGrouping: false,
+                    })}
+                  </div>
                   <div
                     key={`cnt-4-card-${index}`}
-                    className={this.decorateCSS("card-content")}
+                    className={this.decorateCSS("card")}
                   >
                     <Base.VerticalContent
-                      className={this.decorateCSS("card-body")}
+                      className={this.decorateCSS("color-box")}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {card.icon && (
-                        <Base.Media
-                          value={card.icon}
-                          className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                        <Base.Icon
+                          name={card.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon")
+                          }}
                         />
                       )}
 
-                      <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
+                      <Base.VerticalContent className={this.decorateCSS("card-title-wrapper")}>
                         {this.castToString(card.title) && (
-                          <Base.H4
-                            className={this.decorateCSS("item-title")}
+                          <Base.H3
+                            className={this.decorateCSS("card-subtitle")}
                           >
                             {card.title}
-                          </Base.H4>
+                          </Base.H3>
                         )}
                         {this.castToString(card.description) && (
-                          <Base.P className={this.decorateCSS("item-description")}>
+                          <Base.P className={this.decorateCSS("card-description")}>
                             {card.description}
                           </Base.P>
                         )}
@@ -257,24 +209,13 @@ class List4 extends BaseList {
                     </Base.VerticalContent>
                   </div>
                 </div>
-              )}
+              )
             )}
           </Base.ListGrid>
-          {buttonText && (
-            <div className={this.decorateCSS("button-wrapper")}>
-              <ComposerLink path={button?.url}>
-                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
-                  <Base.P className={this.decorateCSS("button-text")}>
-                    {button?.text}
-                  </Base.P>
-                </Base.Button>
-              </ComposerLink>
-            </div>
-          )}
         </Base.MaxContent>
       </Base.Container >
     );
   }
 }
 
-export default List4;
+export default list4;
