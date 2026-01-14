@@ -1,15 +1,17 @@
 export type GuiQueries = {
   // TODO: Remove 'all' in future updates
   all: null;
-  desktop: string;
+  desktop: string | null;
   tablet: string;
   mobile: string;
 };
-
+// NOTE: "desktop" currently behaves as "all" (no container query).
+// This may revert to the original @container playground(min-width: 1280px) behavior in the future.
 export const GUI_QUERIES: GuiQueries = {
   // TODO: Remove 'all' in future updates
   all: null,
-  desktop: "@container playground (min-width: 1280px)",
+  desktop: null,
+   // desktop: "@container playground (min-width: 1280px)",
   tablet: "@container playground (min-width: 641px) and (max-width: 1279px)",
   mobile: "@container playground (max-width: 640px)"
 };
@@ -116,15 +118,11 @@ export function processBasePreferences(
       if (hasStyles(desktopStyles)) {
         processStyles(fullSelector, GUI_QUERIES.desktop, desktopStyles, textRef);
       }
-      
-      const tabletMerged = { ...desktopStyles, ...tabletStyles };
-      if (hasStyles(tabletMerged)) {
-        processStyles(fullSelector, GUI_QUERIES.tablet, tabletMerged, textRef);
+      if (hasStyles(tabletStyles)) {
+        processStyles(fullSelector, GUI_QUERIES.tablet, tabletStyles, textRef);
       }
-      
-      const mobileMerged = { ...desktopStyles, ...mobileStyles };
-      if (hasStyles(mobileMerged)) {
-        processStyles(fullSelector, GUI_QUERIES.mobile, mobileMerged, textRef);
+      if (hasStyles(mobileStyles)) {
+        processStyles(fullSelector, GUI_QUERIES.mobile, mobileStyles, textRef);
       }
     });
   } catch (error) {
