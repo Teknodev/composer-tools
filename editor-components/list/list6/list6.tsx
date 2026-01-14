@@ -1,13 +1,15 @@
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./list6.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type listItem = {
   itemIndex: React.JSX.Element;
   itemTitle: React.JSX.Element;
-  itemIcon: string;
+  itemIcon: TypeMediaInputValue;
   itemText: React.JSX.Element;
 };
 
@@ -26,15 +28,21 @@ class List6 extends BaseList {
     });
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
+      key: "title",
+      displayer: "Title",
       value:
         "It's so challenging to find a good team to do great things. But we can provide you the best one.",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "boolean",
       key: "descriptionAnimation",
-      displayer: "Description Animation",
+      displayer: "Title Animation",
       value: true,
     });
     this.addProp({
@@ -52,6 +60,7 @@ class List6 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -61,7 +70,7 @@ class List6 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -76,15 +85,21 @@ class List6 extends BaseList {
               value: "Design",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
-              value: "LuPenTool",
+              displayer: "Media",
+              value: {
+                type: "icon",
+                name: "LuPenTool",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
             },
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
@@ -93,7 +108,7 @@ class List6 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -108,15 +123,21 @@ class List6 extends BaseList {
               value: "Development",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
-              value: "BiCodeBlock",
+              displayer: "Media",
+              value: {
+                type: "icon",
+                name: "BiCodeBlock",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
             },
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
@@ -125,7 +146,7 @@ class List6 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -140,15 +161,21 @@ class List6 extends BaseList {
               value: "Marketing",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
-              value: "GoGoal",
+              displayer: "Media",
+              value: {
+                type: "icon",
+                name: "GoGoal",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
             },
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
@@ -157,7 +184,7 @@ class List6 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Item",
+          displayer: "List Items",
           value: [
             {
               type: "string",
@@ -172,15 +199,21 @@ class List6 extends BaseList {
               value: "Content writing",
             },
             {
-              type: "icon",
+              type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
-              value: "BiBookContent",
+              displayer: "Media",
+              value: {
+                type: "icon",
+                name: "BiBookContent",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
             },
             {
               type: "string",
               key: "itemText",
-              displayer: "Item Text",
+              displayer: "Text",
               value:
                 "We strive to develop real-world web solutions that are ideal for small to large projects with project requirements.",
             },
@@ -192,32 +225,47 @@ class List6 extends BaseList {
 
   render() {
     const listItems = this.castToObject<listItem[]>("listItems");
+    const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const subtitle = this.getPropValue("subtitle");
+    const alignment = Base.getContentAlignment();
+    const isCenterAlignment = alignment === "center";
+    const button = this.castToObject<any>("button");
+    const buttonText = this.castToString(button?.text);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || this.castToString(description)) && (
-            <Base.VerticalContent className={this.decorateCSS("header-section")}>
+          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
+            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : this.decorateCSS("align-left")}`}>
               {this.castToString(subtitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle
+                  className={`${this.decorateCSS("subtitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                >
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(description) && (
+              {this.castToString(title) && (
                 <Base.SectionTitle
                   className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
                 >
-                  {description}
+                  {title}
                 </Base.SectionTitle>
+              )}
+              {this.castToString(description) && (
+                <Base.SectionDescription
+                  className={`${this.decorateCSS("description")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                >
+                  {description}
+                </Base.SectionDescription>
               )}
             </Base.VerticalContent>
           )}
-          <div className={this.decorateCSS("list-item")}>
+          <div className={this.decorateCSS("items-wrapper")}>
             {listItems.map((listItem: listItem, index: number) => (
               <div
-                className={`${this.decorateCSS("item-container")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
+                key={index}
+                className={`${this.decorateCSS("list-item")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 {this.castToString(listItem.itemIndex) && (
@@ -225,17 +273,19 @@ class List6 extends BaseList {
                     {listItem.itemIndex}
                   </Base.H3>
                 )}
-                <div className={this.decorateCSS("cards")}>
+                <div className={this.decorateCSS("item-content")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (
-                      <div className={this.decorateCSS("icon-title-container")}>
+                      <div className={this.decorateCSS("item-header")}>
                         {listItem.itemIcon && (
-                          <Base.Icon
-                            name={listItem.itemIcon}
-                            propsIcon={{
-                              className: this.decorateCSS("icon")
-                            }}
-                          />
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <div className={this.decorateCSS("icon-container")}>
+                              <Base.Media
+                                value={listItem.itemIcon}
+                                className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                              />
+                            </div>
+                          </div>
                         )}
                         {this.castToString(listItem.itemTitle) && (
                           <Base.H4 className={this.decorateCSS("title")}>
@@ -254,6 +304,15 @@ class List6 extends BaseList {
               </div>
             ))}
           </div>
+          {buttonText && (
+            <div className={this.decorateCSS("button-wrapper")}>
+              <ComposerLink path={button?.url}>
+                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                  <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                </Base.Button>
+              </ComposerLink>
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
