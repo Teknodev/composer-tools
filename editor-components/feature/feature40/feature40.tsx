@@ -22,6 +22,24 @@ class Feature40 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
+            type: "media",
+            key: "cover-image",
+            displayer: "Image",
+            value: {
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
+                type: "image",
+            },
+            additionalParams: { availableTypes: ["image", "video"] }
+        })
+
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: true,
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -325,21 +343,32 @@ class Feature40 extends BaseFeature {
     }
 
     render() {
+        const coverImage = this.getPropValue("cover-image");
+        const hasMedia = !!coverImage?.url;
+        const enableOverlay = hasMedia && this.getPropValue("overlay");
         const cards = this.castToObject<Card[]>("cards");
         const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
-        const alignment = Base.getContentAlignment();
         const enableIconBackground = this.getPropValue("iconBackground");
         const hasContent = subtitle || title || description;
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} ${hasMedia && this.decorateCSS("has-media")}`}>
+                {hasMedia && (
+                    <div className={this.decorateCSS("background-container")}>
+                        <Base.Media
+                            value={coverImage}
+                            className={this.decorateCSS("background-media")}
+                        />
+                        {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                    </div>
+                )}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("text-content")} data-alignment={alignment}>
+                        <Base.VerticalContent className={this.decorateCSS("text-content")}>
                             {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                             {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                             {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
@@ -358,10 +387,7 @@ class Feature40 extends BaseFeature {
                                 if (!titleExist && !descExist && !card.icon) return null;
 
                                 return (
-                                    <div
-                                        key={index}
-                                        className={this.decorateCSS("card-wrapper")}
-                                    >
+                                    <div key={index} className={this.decorateCSS("card-wrapper")}>
                                         {card.icon &&
                                             <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
                                                 <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
@@ -369,7 +395,7 @@ class Feature40 extends BaseFeature {
                                         }
                                         {(titleExist || descExist) &&
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>}
+                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
                                                 {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                                             </Base.VerticalContent>
                                         }
@@ -381,15 +407,12 @@ class Feature40 extends BaseFeature {
                     {visibleButtons.length > 0 && (
                         <div className={this.decorateCSS("button-container")}>
                             {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                const buttonTextExist = this.castToString(item.text);
-                                return (
-                                    buttonTextExist && (
-                                        <ComposerLink key={`button-${index}`} path={item.url}>
-                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    )
+                                return this.castToString(item.text) && (
+                                    <ComposerLink key={`button-${index}`} path={item.url}>
+                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                        </Base.Button>
+                                    </ComposerLink>
                                 );
                             })}
                         </div>

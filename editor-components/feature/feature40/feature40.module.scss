@@ -1,6 +1,62 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+
+    &.has-media {
+        .max-content {
+            .text-content {
+
+                .subtitle,
+                .title,
+                .description {
+                    color: var(--color-white);
+                }
+            }
+
+            .card-container {
+                .card-wrapper {
+                    .card-content {
+
+                        .card-title,
+                        .card-description {
+                            color: var(--color-white);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .background-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+
+        .background-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+        }
+    }
+
     .max-content {
         display: flex;
         flex-direction: column;
@@ -32,7 +88,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background-color: var(--composer-primary-color);
+                    background-color: var(--composer-overlay-color);
                     border-radius: var(--composer-border-radius-full);
                     padding: var(--composer-gap-md);
                     height: 70px;
@@ -62,13 +118,9 @@
                     flex: 1;
                     align-items: flex-start;
 
-                    .card-title {
-                        color: var(--composer-font-color-primary);
-                        text-align: left;
-                    }
-
+                    .card-title,
                     .card-description {
-                        color: var(--composer-tertiary-color);
+                        color: var(--composer-font-color-primary);
                         text-align: left;
                     }
                 }
@@ -98,7 +150,7 @@
             gap: var(--composer-gap-lg);
 
             .card-container {
-                row-gap: var(--composer-gap-md);
+                gap: var(--composer-gap-md);
 
                 .card-wrapper {
                     .icon-box {
