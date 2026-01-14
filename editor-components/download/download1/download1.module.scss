@@ -8,6 +8,7 @@
 
     .header {
       align-items: flex-start;
+
       .subtitle-wrapper {
         width: 100%;
         display: flex;
@@ -15,20 +16,25 @@
         align-items: center;
         margin-bottom: var(--composer-gap-sm);
       }
+
       .subtitle {
         text-align: center;
         transform: translateX(0);
-        &::before{
+
+        &::before {
           display: none;
         }
       }
+
       .title {
         text-align: center;
         margin: 0 0 var(--composer-gap-xs) 0;
-        &.title-variant{
+
+        &.title-variant {
           position: relative;
           margin-bottom: var(--composer-gap-lg);
           text-align: center;
+
           &::after {
             content: "";
             position: absolute;
@@ -46,11 +52,16 @@
         border-bottom: var(--composer-gap-xs) solid;
         margin: var(--composer-gap-xs) auto var(--composer-gap-md);
         margin-top: var(--composer-gap-md);
+        margin-bottom: 0px;
         color: var(--composer-primary-color);
       }
-      .subtitle, .title, .description {
+
+      .subtitle,
+      .title,
+      .description {
         margin: 0;
       }
+
       .description {
         text-align: center;
         margin-top: var(--composer-gap-md);
@@ -74,13 +85,16 @@
             border-radius: var(--composer-border-radius-sm);
           }
         }
+
         .button {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
-          .button-text{
+
+          .button-text {
             content: "";
           }
-          .icon{
-            font-size:1.5rem;
+
+          .icon {
+            font-size: 1.5rem;
           }
         }
       }
@@ -93,12 +107,15 @@
     .max-content {
       .box {
         justify-content: space-between;
+
         .button-wrapper {
           .button {
             padding: var(--composer-gap-sm) var(--composer-gap-md);
-            .button-text {              
+
+            .button-text {
               content: "";
             }
+
             .icon {
               font-size: 1rem;
             }
@@ -113,12 +130,15 @@
   .container {
     .max-content {
       gap: var(--composer-gap-sm);
-      .header{
+
+      .header {
         align-items: center !important;
       }
+
       .box {
         flex-direction: column;
         justify-content: center;
+
         .button-wrapper {
           width: 100%;
           display: flex;

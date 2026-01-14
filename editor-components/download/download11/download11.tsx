@@ -43,7 +43,7 @@ class Download11 extends BaseDownload {
           type: "media",
           key: "image",
           additionalParams: {
-            availableTypes: ["image","video"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -105,7 +105,7 @@ class Download11 extends BaseDownload {
           type: "media",
           key: "image",
           additionalParams: {
-            availableTypes: ["image","video"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -117,51 +117,51 @@ class Download11 extends BaseDownload {
       ],
     });
 
-      this.addProp({
-        type: "object",
-        displayer: "Right Card Bottom",
-        key: "rightBottom",
-        value: [
-          {
-            type: "boolean",
-            key: "visibility",
-            displayer: "Visibility",
-            value: true,
+    this.addProp({
+      type: "object",
+      displayer: "Right Card Bottom",
+      key: "rightBottom",
+      value: [
+        {
+          type: "boolean",
+          key: "visibility",
+          displayer: "Visibility",
+          value: true,
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Best new app and updates*",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "",
+        },
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
           },
-          {
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Best new app and updates*",
+          value: {
+            type: "image",
+            url: "",
           },
-          {
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: "",
-          },
-          {
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "",
-          },
-          {
-            type: "media",
-            key: "image",
-            displayer: "Media",
-            additionalParams: {
-              availableTypes: ["image","video"],
-            },
-            value: {
-              type: "image",
-              url: "",
-            },
-          },
-          INPUTS.BUTTON("buttonRightBottom", "Button", "More", "", "", "", "Primary"),
+        },
+        INPUTS.BUTTON("buttonRightBottom", "Button", "More", "", "", "", "Primary"),
 
-        ],
-      });
+      ],
+    });
   }
 
   static getName(): string {
@@ -175,19 +175,19 @@ class Download11 extends BaseDownload {
     const sectionSubtitle = this.getPropValue("subtitle");
     const sectionTitle = this.getPropValue("title");
     const sectionDescription = this.getPropValue("description");
-    
+
     const buttonLeft = {
       text: this.getPropValue("text", { parent_object: leftItems.buttonLeft }),
       type: this.getPropValue("type", { parent_object: leftItems.buttonLeft }),
       url: this.getPropValue("url", { parent_object: leftItems.buttonLeft })
     };
-    
+
     const buttonRight = {
-      text: this.getPropValue("text", { parent_object: rightItems.buttonRight}),
+      text: this.getPropValue("text", { parent_object: rightItems.buttonRight }),
       type: this.getPropValue("type", { parent_object: rightItems.buttonRight }),
       url: this.getPropValue("url", { parent_object: rightItems.buttonRight })
     };
-    
+
     const buttonRightBottom = {
       text: this.getPropValue("text", { parent_object: rightBottomItems.buttonRightBottom }),
       type: this.getPropValue("type", { parent_object: rightBottomItems.buttonRightBottom }),
@@ -229,8 +229,6 @@ class Download11 extends BaseDownload {
       rightBottomItems.visibility;
 
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
-
-    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -289,21 +287,21 @@ class Download11 extends BaseDownload {
                 )}
                 {hasValidBottomRightCard && rightBottomItems.visibility && (
                   <div className={this.decorateCSS("buttom-card")}>
-                    <div className={`${this.decorateCSS("card")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
+                    <div className={this.decorateCSS("card")}>
                       <Base.VerticalContent className={this.decorateCSS("left")}>
                         {rightBottomSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rightBottomItems.subtitle}</Base.SectionSubTitle>}
                         {rightBottomTitleExist && <Base.H2 className={this.decorateCSS("title")}>{rightBottomItems.title}</Base.H2>}
                         {rightBottomDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{rightBottomItems.description}</Base.SectionDescription>}
+                        {rightBottomButtonExist && (
+                          <div className={this.decorateCSS("button-wrapper")}>
+                            <ComposerLink path={buttonRightBottom.url}>
+                              <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
+                                {rightBottomButtonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</Base.P>}
+                              </Base.Button>
+                            </ComposerLink>
+                          </div>
+                        )}
                       </Base.VerticalContent>
-                      {rightBottomButtonExist && (
-                        <div className={this.decorateCSS("button-wrapper")}>
-                          <ComposerLink path={buttonRightBottom.url}>
-                            <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
-                              {rightBottomButtonTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</Base.P>}
-                            </Base.Button>
-                          </ComposerLink>
-                        </div>
-                      )}
                       {rightBottomMediaExist && <Base.Media value={rightBottomItems.image} className={`${this.decorateCSS("image")} ${(rightBottomItems.image && (rightBottomItems.image as any).type === "image" ? this.decorateCSS("image-img") : "")} ${this.decorateCSS("image-bottom")}`} />}
                     </div>
                   </div>
