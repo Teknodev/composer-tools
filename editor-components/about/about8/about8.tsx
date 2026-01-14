@@ -13,6 +13,13 @@ class About8 extends BaseAbout {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Our Technologies Encircle the World",
@@ -128,26 +135,26 @@ class About8 extends BaseAbout {
     const hasImage2 = !!image2?.url;
     const hasImages = hasImage1 || hasImage2;
 
-    const description = this.getPropValue("description");
-    const descriptionExist = this.castToString(description);
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleText = this.castToString(subtitle);
 
     if (!hasTitle && !hasImages && !hasTexts && !hasButton) return null;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(descriptionExist || hasTitle) && (
-            <Base.VerticalContent className={this.decorateCSS("title-container")}>
+          {(subtitleText || hasTitle) && (
+            <Base.VerticalContent className={this.decorateCSS("subtitle-container")}>
+              {subtitleText && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+              )}
               {hasTitle && (
             <Base.SectionTitle className={this.decorateCSS("title")}>
               {title}
             </Base.SectionTitle>
           )}
-          {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
-              )}
             </Base.VerticalContent>
           )}
 

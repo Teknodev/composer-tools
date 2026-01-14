@@ -21,6 +21,13 @@ class Feature30 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "heading",
       displayer: "Title",
       value: "Unmatched security, privacy, and reliability",
@@ -181,6 +188,8 @@ class Feature30 extends BaseFeature {
 
   render() {
     const features = this.castToObject<Card[]>("features") || [];
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const heading = this.getPropValue("heading");
     const subheading = this.getPropValue("subheading");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
@@ -205,6 +214,11 @@ class Feature30 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(headingExist || subheadingExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && ( 
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {headingExist && (
                 <Base.SectionTitle className={this.decorateCSS("heading")}>
                   {heading}

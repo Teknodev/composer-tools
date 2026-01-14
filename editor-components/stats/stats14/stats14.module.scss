@@ -14,8 +14,13 @@
         flex-direction: column;
         align-items: flex-start;
 
-        .title, .description {
+        .title {
           text-align: left;
+        }
+  
+        .subtitle {
+          margin-left: 0px !important;
+          text-align: left !important;
         }
 
       }

@@ -31,12 +31,16 @@
         gap: var(--composer-gap-lg);
 
         .text-content-header {
-          .description {
-            text-align: left;
+          .subtitle {
+            content: "";
+            margin-left: 0px !important;
+            text-align: left !important;
           }
+
         .section-title {
           content: "";
           width: 100%;
+          margin-bottom: 0px !important;
         }
       }
         .features-list {

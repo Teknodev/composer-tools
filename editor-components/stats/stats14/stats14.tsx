@@ -17,6 +17,13 @@ class Stats14 extends BaseStats {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Super Simple & Quick Way",
@@ -100,6 +107,8 @@ class Stats14 extends BaseStats {
   render() {
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const FeaturesItem = this.castToObject<featuresItem[]>("features-item");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const image = this.getPropValue("image");
@@ -121,6 +130,11 @@ class Stats14 extends BaseStats {
           >
             {isLeftContainerExist && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
                 {isTitleExist && (
                   <Base.SectionTitle
                     className={`${this.decorateCSS("title")} ${

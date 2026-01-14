@@ -11,6 +11,13 @@ class IntroSection1 extends BaseIntroSection {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "The #1 Web Solution for Your Business"
@@ -123,6 +130,8 @@ class IntroSection1 extends BaseIntroSection {
 
   render() {
   const title = this.getPropValue("title");
+  const subtitle = this.getPropValue("subtitle");
+  const subtitleExist = this.castToString(subtitle);
   const descriptions = this.castToObject<Array<any>>("description") || [];
   const videoSection = this.castToObject<any>("videoSection") || {};
   const video = videoSection.video;
@@ -148,13 +157,13 @@ class IntroSection1 extends BaseIntroSection {
             {hasLeftContainer && (
             <div className={this.decorateCSS("text-content")}> 
             <Base.VerticalContent className={this.decorateCSS("text-content-header")}>
-              {hasTitle && (
-                <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
               )}
-              {descriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {descriptionText}
-                </Base.SectionDescription>
+                            {hasTitle && (
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>{title}</Base.SectionTitle>
               )}
               </Base.VerticalContent>
 
