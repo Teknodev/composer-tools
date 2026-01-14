@@ -72,7 +72,7 @@ class Download3 extends BaseDownload {
 
     const alignmentValue = Base.getContentAlignment();
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("has-image") : ""}`}>
         {imageExist && (
           <div className={this.decorateCSS("image-container")}>
             <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />

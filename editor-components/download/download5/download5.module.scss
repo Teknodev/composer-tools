@@ -8,6 +8,9 @@ $min-height: 500px;
   position: relative;
   min-height: $min-height;
 
+
+
+
   .background-image {
     position: absolute;
     top: 0;
@@ -24,14 +27,33 @@ $min-height: 500px;
     z-index: 2;
     min-height: $min-height;
 
+    &.single {
+      min-height: 0 !important;
+    }
+
     .page {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
       width: 58%;
       &.no-image{
-        width: 100%;
+        width: 100% !important;
+        min-height: 0 !important;
       }
+        &.image-center{
+          align-items: flex-start;
+          .header {
+            .title,
+            .description,
+            .subtitle {
+              text-align: left !important;
+              margin-left: 0 !important;
+            }
+          }
+          .buttons-container{
+            place-self: flex-start;
+          }
+        }
 
       .header {
         .title,
@@ -47,9 +69,7 @@ $min-height: 500px;
         align-items: center;
         gap: var(--composer-gap-sm);
         .button-wrapper {
-          width: 170px;
-          height: 50px;
-          >div, >a{
+          .button-full {
             width: 100% !important;
             height: 100%;
             display: flex;
@@ -87,10 +107,15 @@ $min-height: 500px;
     background-color: var(--composer-overlay-color);
   }
   &.single{
+    min-height: 0 !important;
     height: auto;
     .max-content{
+      min-height: 0 !important;
       height: auto;
     }
+  }
+  &.single .max-content {
+    min-height: 0 !important;
   }
 }
 @container (max-width: #{$composer-tablet-width}) {

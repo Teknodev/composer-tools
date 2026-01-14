@@ -73,7 +73,7 @@ class Download6 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isLeftColumnVisible && (
-            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!isRightColumnVisible && this.decorateCSS("no-image")}`} >
+            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${image ? this.decorateCSS("with-image") : ""} ${!isRightColumnVisible && this.decorateCSS("no-image")}`} >
               {this.castToString(subtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
               {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
