@@ -115,19 +115,17 @@ export function processBasePreferences(
       
       if (hasStyles(desktopStyles)) {
         processStyles(fullSelector, GUI_QUERIES.desktop, desktopStyles, textRef);
+        processStyles(fullSelector, GUI_QUERIES.tablet, desktopStyles, textRef);
+        processStyles(fullSelector, GUI_QUERIES.mobile, desktopStyles, textRef);
       }
       
-      const tabletMerged = hasStyles(tabletStyles) 
-        ? { ...desktopStyles, ...tabletStyles }
-        : desktopStyles;
-      if (hasStyles(tabletMerged)) {
+      if (hasStyles(tabletStyles)) {
+        const tabletMerged = { ...desktopStyles, ...tabletStyles };
         processStyles(fullSelector, GUI_QUERIES.tablet, tabletMerged, textRef);
       }
       
-      const mobileMerged = hasStyles(mobileStyles)
-        ? { ...tabletMerged, ...mobileStyles }
-        : tabletMerged;
-      if (hasStyles(mobileMerged)) {
+      if (hasStyles(mobileStyles)) {
+        const mobileMerged = { ...desktopStyles, ...mobileStyles };
         processStyles(fullSelector, GUI_QUERIES.mobile, mobileMerged, textRef);
       }
     });
