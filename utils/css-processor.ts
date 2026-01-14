@@ -1,18 +1,15 @@
 export type GuiQueries = {
   // TODO: Remove 'all' in future updates
   all: null;
-  desktop: string | null;
+  desktop: string;
   tablet: string;
   mobile: string;
 };
 
-// NOTE: "desktop" currently behaves as "all" (no container query).
-// This may revert to the original @container playground(min-width: 1280px) behavior in the future.
 export const GUI_QUERIES: GuiQueries = {
   // TODO: Remove 'all' in future updates
   all: null,
-  // desktop: "@container playground (min-width: 1280px)",
-  desktop: null,
+  desktop: "@container playground (min-width: 1280px)",
   tablet: "@container playground (min-width: 641px) and (max-width: 1279px)",
   mobile: "@container playground (max-width: 640px)"
 };
@@ -105,11 +102,33 @@ export function processBasePreferences(
 
     Object.entries(parsedPreferences).forEach(([elementType, styles]) => {
       const selector = baseElementSelectors[elementType as keyof typeof baseElementSelectors];
-      if (selector && styles) {
-        const fullSelector = playgroundSelector ? `${playgroundSelector} ${selector}` : selector;
-        processStyles(fullSelector, GUI_QUERIES.desktop, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.tablet, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.mobile, styles, textRef);
+      if (!selector || !styles) return;
+
+      const fullSelector = playgroundSelector ? `${playgroundSelector} ${selector}` : selector;
+      const stylesObj = styles as Record<string, any>;
+      
+      const desktopStyles = stylesObj.desktop || {};
+      const tabletStyles = stylesObj.tablet || {};
+      const mobileStyles = stylesObj.mobile || {};
+      
+      const hasStyles = (styleObj: Record<string, any>) => Object.keys(styleObj).length > 0;
+      
+      if (hasStyles(desktopStyles)) {
+        processStyles(fullSelector, GUI_QUERIES.desktop, desktopStyles, textRef);
+      }
+      
+      const tabletMerged = hasStyles(tabletStyles) 
+        ? { ...desktopStyles, ...tabletStyles }
+        : desktopStyles;
+      if (hasStyles(tabletMerged)) {
+        processStyles(fullSelector, GUI_QUERIES.tablet, tabletMerged, textRef);
+      }
+      
+      const mobileMerged = hasStyles(mobileStyles)
+        ? { ...tabletMerged, ...mobileStyles }
+        : tabletMerged;
+      if (hasStyles(mobileMerged)) {
+        processStyles(fullSelector, GUI_QUERIES.mobile, mobileMerged, textRef);
       }
     });
   } catch (error) {
