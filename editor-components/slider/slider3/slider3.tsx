@@ -6,11 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type Card = {
-  image: string;
+type SliderItem = {
+  media: any;
   header: React.JSX.Element;
   description: React.JSX.Element;
-  link: string;
+  path: string;
 };
 
 class Slider3 extends BaseSlider {
@@ -40,10 +40,16 @@ class Slider3 extends BaseSlider {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629525?alt=media&timestamp=1719584962578",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629525?alt=media&timestamp=1719584962578",
+              },
             },
             {
               type: "string",
@@ -59,8 +65,8 @@ class Slider3 extends BaseSlider {
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Card Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -71,10 +77,16 @@ class Slider3 extends BaseSlider {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629526?alt=media&timestamp=1719584962578",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629526?alt=media&timestamp=1719584962578",
+              },
             },
             {
               type: "string",
@@ -90,8 +102,8 @@ class Slider3 extends BaseSlider {
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Card Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -102,10 +114,16 @@ class Slider3 extends BaseSlider {
           displayer: "Slider Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629527?alt=media&timestamp=1719584962578",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629527?alt=media&timestamp=1719584962578",
+              },
             },
             {
               type: "string",
@@ -121,8 +139,8 @@ class Slider3 extends BaseSlider {
             },
             {
               type: "page",
-              key: "link",
-              displayer: "Card Link",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -141,6 +159,12 @@ class Slider3 extends BaseSlider {
       displayer: "Next Arrow Icon",
       value: "BsArrowRightCircle",
     });
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -150,9 +174,10 @@ class Slider3 extends BaseSlider {
     return "Slider 3";
   }
   render() {
-    const items = this.castToObject<Card[]>("slider").filter((item: Card) => item.image);
+    const items = this.castToObject<SliderItem[]>("slider").filter((item: SliderItem) => item.media);
 
     const isCardExist = items.length > 0;
+    const isOverlayActive = this.getPropValue("overlay");
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
     const cardNumber = String(3);
@@ -250,11 +275,12 @@ class Slider3 extends BaseSlider {
           <div className={this.decorateCSS("slider-parent")}>
             {isCardExist && (
               <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
-                {items.map((item: Card, index: number) => (
-                  <ComposerLink key={index} path={item.link}>
+                {items.map((item: SliderItem, index: number) => (
+                  <ComposerLink key={index} path={item.path}>
                     <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}`}>
                       <div className={this.decorateCSS("img-container")}>
-                        <img src={item.image} className={this.decorateCSS("img")} alt="" />
+                        <Base.Media value={item.media} className={this.decorateCSS("img")} />
+                        {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
                       </div>
                       {(this.castToString(item.header) || this.castToString(item.description)) && (
                         <Base.VerticalContent

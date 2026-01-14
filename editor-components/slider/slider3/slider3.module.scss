@@ -1,7 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 
   .max-content {
     display: flex;
@@ -93,12 +94,13 @@
       .carousel {
         width: 100%;
 
-        > div {
-          > div {
+        :global(.slick-list) {
+          :global(.slick-track) {
             display: flex;
             height: 100%;
+            gap: var(--composer-gap-md);
 
-            > div {
+            :global(.slick-slide) {
               height: auto;
               width: 800px;
 
@@ -122,16 +124,8 @@
           }
         }
 
-        > ul {
+        :global(.slick-dots) {
           bottom: 0;
-
-          > li {
-            > button {
-              &::before {
-                color: var(--composer-font-color-primary);
-              }
-            }
-          }
         }
 
         .card {
@@ -142,7 +136,7 @@
           flex-direction: column;
           justify-content: start;
           align-items: center;
-          transition: transform 0.3s;
+          transition: transform var(--composer-transition-duration-normal);
           transform: scale(0.8);
           z-index: 1;
           max-width: 900px;
@@ -159,6 +153,7 @@
             z-index: 1;
             height: 400px;
             border-radius: var(--composer-border-radius-sm);
+            position: relative;
 
             .img {
               width: 100%;
@@ -167,7 +162,7 @@
               transform: scale(1.1);
               transform-origin: center;
               z-index: 1;
-              transition: transform 0.5s ease, filter 0.5s ease;
+              transition: transform var(--composer-transition-duration-slow) ease, filter var(--composer-transition-duration-slow) ease;
 
               &:hover {
                 transform: scale(1);
@@ -179,11 +174,22 @@
                 filter: brightness(100%);
               }
             }
+
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: var(--composer-overlay-color);
+              z-index: 2;
+              border-radius: var(--composer-border-radius-sm);
+            }
           }
 
           .content-container {
             opacity: 0;
-            transition: opacity 0.5s ease;
+            transition: opacity var(--composer-transition-duration-slow) ease;
             padding-top: var(--composer-gap-xl);
             gap: var(--composer-gap-md);
             width: 100%;
@@ -211,7 +217,7 @@
 
         .centerSlide {
           transform: scale(1);
-          transition: transform 0.3s ease;
+          transition: transform var(--composer-transition-duration-normal) ease;
         }
       }
 

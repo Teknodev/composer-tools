@@ -7,27 +7,22 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 
-type Slider = {
+type SliderItem = {
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
-  image: string;
+  media: any;
 };
 
-type Social = {
-  icon: string;
-  url: string;
+type SocialItem = {
+  media: any;
+  path: string;
 };
 
 class Slider1 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
+
     this.addProp({
       type: "array",
       key: "slider",
@@ -51,10 +46,16 @@ class Slider1 extends BaseSlider {
               value: "Travelling",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516278506a40002c316b2b?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516278506a40002c316b2b?alt=media",
+              },
             },
           ],
         },
@@ -76,10 +77,16 @@ class Slider1 extends BaseSlider {
               value: "I LOVE IT",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516251506a40002c316acd?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67516251506a40002c316acd?alt=media",
+              },
             },
           ],
         },
@@ -96,15 +103,21 @@ class Slider1 extends BaseSlider {
           displayer: "Social",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              value: "FaInstagram",
-              displayer: "Icon",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Url",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -115,15 +128,21 @@ class Slider1 extends BaseSlider {
           displayer: "Social",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              value: "BiLogoFacebook",
-              displayer: "Icon",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BiLogoFacebook",
+              },
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Url",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -134,15 +153,21 @@ class Slider1 extends BaseSlider {
           displayer: "Social",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              value: "FaSquareXTwitter",
-              displayer: "Icon",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaSquareXTwitter",
+              },
             },
             {
               type: "page",
-              key: "url",
-              displayer: "Url",
+              key: "path",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -150,7 +175,12 @@ class Slider1 extends BaseSlider {
       ],
     });
 
-
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.setComponentState("slider-ref", React.createRef());
@@ -171,9 +201,9 @@ class Slider1 extends BaseSlider {
     };
 
     const isOverlayActive = this.getPropValue("overlay");
-    const icons = this.castToObject<Social[]>("socials");
-    const sliderItems = this.castToObject<Slider[]>("slider");
-    const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.image;
+    const icons = this.castToObject<SocialItem[]>("socials");
+    const sliderItems = this.castToObject<SliderItem[]>("slider");
+    const ImagesExist = sliderItems[this.getComponentState("activeSlide")]?.media;
 
     const alignmentValue = Base.getContentAlignment();
 
@@ -182,11 +212,11 @@ class Slider1 extends BaseSlider {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
-              {sliderItems.map((item: Slider, indexSlider: number) => (
+              {sliderItems.map((item: SliderItem, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("slider-item")}>
                   <div className={this.decorateCSS("img-wrapper")}>
-                    {item.image && <img alt="" src={item.image} className={this.decorateCSS("img")} />}
-                    {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
+                    {item.media && <Base.Media value={item.media} className={this.decorateCSS("img")} />}
+                    {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
 
                   <div className={this.decorateCSS("content")}>
@@ -195,34 +225,32 @@ class Slider1 extends BaseSlider {
                         <Base.VerticalContent
                           className={`
                         ${this.decorateCSS("box")} 
-                      ${item.image && this.decorateCSS("with-img")}
+                      ${item.media && this.decorateCSS("with-img")}
                       ${alignmentValue === "center" && this.decorateCSS("center")}`}
                         >
                           {this.castToString(item.subtitle) && (
                             <Base.SectionSubTitle
                               className={`
                         ${this.decorateCSS("subtitle")} 
-                        ${item.image && this.decorateCSS("with-img")}`}
+                        ${item.media && this.decorateCSS("with-img")}`}
                             >
                               {item.subtitle}
                             </Base.SectionSubTitle>
                           )}
-                          {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.image && this.decorateCSS("with-img")}`}>{item.title}</Base.SectionTitle>}
+                          {this.castToString(item.title) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${item.media && this.decorateCSS("with-img")}`}>{item.title}</Base.SectionTitle>}
                         </Base.VerticalContent>
                       )}
                     </div>
 
                     {icons.length > 0 && (
                       <div className={this.decorateCSS("socials")} id="slider1IconsHeight">
-                        {icons.map((social: Social, index: number) => {
+                        {icons.map((social: SocialItem, index: number) => {
                           return (
-                            social.icon && (
-                              <ComposerLink key={index} path={social.url}>
-                                <Base.Icon
-                                  name={social.icon}
-                                  propsIcon={{
-                                    className: `${this.decorateCSS("icon")} ${!item.image && this.decorateCSS("no-img")}`,
-                                  }}
+                            social.media && (
+                              <ComposerLink key={index} path={social.path}>
+                                <Base.Media
+                                  value={social.media}
+                                  className={`${this.decorateCSS("icon")} ${!item.media && this.decorateCSS("no-img")}`}
                                 />
                               </ComposerLink>
                             )
@@ -237,13 +265,13 @@ class Slider1 extends BaseSlider {
           </div>
 
           {sliderItems.length > 1 && !!settings.dots && (
-            <ul className={`${this.decorateCSS("dots")} ${!ImagesExist && this.decorateCSS("dots-2")}`}>
+            <div className={`${this.decorateCSS("dots")} ${!ImagesExist && this.decorateCSS("dots-no-image")}`}>
               {sliderItems.map((_, index) => (
-                <li key={`dot-${index}`} className={`${this.decorateCSS("slick")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
-                  <button />
-                </li>
+                <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("dot-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                  <Base.Button className={this.decorateCSS("dot-button")} />
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>
