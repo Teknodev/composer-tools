@@ -188,7 +188,12 @@
               flex: 1 1 50%;
               min-width: 0;
 
-              .title,
+              .title {
+                text-align: left !important;
+                color: var(--composer-font-color-primary) !important;
+                margin-bottom: var(--composer-gap-md);
+              }
+
               .description {
                 text-align: left !important;
                 color: var(--composer-font-color-primary) !important;
