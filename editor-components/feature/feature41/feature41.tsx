@@ -185,29 +185,26 @@ class Feature41 extends BaseFeature {
                     {cards?.length > 0 && (
                         <Base.ListGrid
                             className={this.decorateCSS("card-container")}
-                            gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
+                            gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }}
                         >
                             {cards.map((card: Card, index: number) => {
                                 const titleExist = !!this.castToString(card.title);
                                 const descExist = !!this.castToString(card.description);
                                 const isImage = card.icon?.type === "image";
-                                const isFirstInRow3 = index % 3 === 0;
-                                const isFirstInRow2 = index % 2 === 0;
-                                const isLast = index === cards.length - 1;
+                                const itemCount = this.getPropValue("itemCount") || 3;
+                                const isLastInRow = (index + 1) % itemCount === 0;
 
-                                if (!titleExist && !descExist && !card.icon) return null;
-
-                                return (
+                                return (!titleExist && !descExist && !card.icon) || (
                                     <div
                                         key={index}
-                                        className={`${this.decorateCSS("card-wrapper")} ${isFirstInRow3 ? this.decorateCSS("first-in-row-3") : ""} ${isFirstInRow2 ? this.decorateCSS("first-in-row-2") : ""} ${isLast ? this.decorateCSS("is-last") : ""}`}
+                                        className={`${this.decorateCSS("card-wrapper")} ${isLastInRow && this.decorateCSS("last-in-row")}`}
                                     >
                                         {card.icon &&
                                             <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
                                         }
                                         {(titleExist || descExist) &&
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>}
+                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
                                                 {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                                             </Base.VerticalContent>
                                         }
@@ -219,15 +216,12 @@ class Feature41 extends BaseFeature {
                     {visibleButtons.length > 0 && (
                         <div className={this.decorateCSS("button-container")}>
                             {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                const buttonTextExist = this.castToString(item.text);
-                                return (
-                                    buttonTextExist && (
-                                        <ComposerLink key={`button-${index}`} path={item.url}>
-                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    )
+                                return this.castToString(item.text) && (
+                                    <ComposerLink key={`button-${index}`} path={item.url}>
+                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                        </Base.Button>
+                                    </ComposerLink>
                                 );
                             })}
                         </div>
