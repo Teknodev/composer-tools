@@ -3,10 +3,11 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 
-type Card = {
-  icon: string;
+type SliderItem = {
+  media: any;
   header: React.JSX.Element;
   content: React.JSX.Element;
 };
@@ -61,10 +62,16 @@ class Slider4 extends BaseSlider {
           displayer: "Slider Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TfiWorld",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "TfiWorld",
+              },
             },
             {
               type: "string",
@@ -86,10 +93,16 @@ class Slider4 extends BaseSlider {
           displayer: "Slider Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "IoStatsChartSharp",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoStatsChartSharp",
+              },
             },
             {
               type: "string",
@@ -111,10 +124,16 @@ class Slider4 extends BaseSlider {
           displayer: "Slider Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdRateReview",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdRateReview",
+              },
             },
             {
               type: "string",
@@ -136,10 +155,16 @@ class Slider4 extends BaseSlider {
           displayer: "Slider Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TfiThumbUp",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "TfiThumbUp",
+              },
             },
             {
               type: "string",
@@ -161,10 +186,16 @@ class Slider4 extends BaseSlider {
           displayer: "Slider Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TfiDropbox",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "TfiDropbox",
+              },
             },
             {
               type: "string",
@@ -186,10 +217,16 @@ class Slider4 extends BaseSlider {
           displayer: "Slider Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "RiRocketFill",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "RiRocketFill",
+              },
             },
             {
               type: "string",
@@ -207,6 +244,8 @@ class Slider4 extends BaseSlider {
         },
       ],
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+
     this.setComponentState("slider-ref", React.createRef());
   }
 
@@ -214,17 +253,15 @@ class Slider4 extends BaseSlider {
     return "Slider 4";
   }
   render() {
-    const cards = this.castToObject<Card[]>("slider");
+    const cards = this.castToObject<SliderItem[]>("slider");
     const cardNumber = cards.length;
     const visibleItemCount = Math.min(cards.length, 3);
     const carouselClass = cardNumber === 1 ? "carousel--singleCard" : "carousel--multipleCards";
 
     const settings = {
-      arrows: false,
-      dots: false,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: true,
       speed: 500,
-      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: visibleItemCount,
       slidesToScroll: 1,
@@ -268,7 +305,7 @@ class Slider4 extends BaseSlider {
           <Base.ContainerGrid className={this.decorateCSS("down-page")}>
             {(this.castToString(controlTitle) || this.castToString(controlDescription) || previousArrow || nextArrow) && (
               <Base.VerticalContent className={this.decorateCSS("control-part")}>
-                {this.castToString(controlTitle) && <span className={this.decorateCSS("control-title")}>{controlTitle}</span>}
+                {this.castToString(controlTitle) && <Base.H3 className={this.decorateCSS("control-title")}>{controlTitle}</Base.H3>}
                 {this.castToString(controlDescription) && <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
                 {(previousArrow || nextArrow) && (
                   <div className={this.decorateCSS("arrows")}>
@@ -309,14 +346,14 @@ class Slider4 extends BaseSlider {
             ${!this.castToString(controlTitle) && !this.castToString(controlDescription) && !previousArrow && !nextArrow && this.decorateCSS("no-control-part")}`}
             >
               <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
-                {cards.map((item: Card, index: number) => (
+                {cards.map((item: SliderItem, index: number) => (
                   <Base.VerticalContent
                     className={`${this.decorateCSS("card")} 
                     ${carouselClass === "carousel--singleCard" && this.decorateCSS("for-single-card")}`}
                     key={index}
                   >
-                    <Base.Row>
-                      <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("play-icon") }} />
+                    <Base.Row className={this.decorateCSS("icon-row")}>
+                      <Base.Media value={item.media} className={this.decorateCSS("play-icon")} />
                     </Base.Row>
                     <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
                     <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>

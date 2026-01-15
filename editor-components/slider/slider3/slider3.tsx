@@ -5,6 +5,7 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
   media: any;
@@ -44,7 +45,7 @@ class Slider3 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -81,7 +82,7 @@ class Slider3 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -118,7 +119,7 @@ class Slider3 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -165,6 +166,7 @@ class Slider3 extends BaseSlider {
       displayer: "Overlay",
       value: false,
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -185,16 +187,14 @@ class Slider3 extends BaseSlider {
     const sliderRef = this.getComponentState("slider-ref");
 
     const settings = {
-      dots: false,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: true,
       speed: 1000,
-      autoplay: true,
       autoplaySpeed: 3000,
       slidesToShow: visibleItemCount,
       variableWidth: true,
       centerMode: true,
       slidesToScroll: 1,
-      arrows: false,
       beforeChange: (current: number, next: number) => {
         this.setComponentState("centerSlide", next);
       },
