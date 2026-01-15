@@ -215,7 +215,9 @@ class Slider1 extends BaseSlider {
               {sliderItems.map((item: SliderItem, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("slider-item")}>
                   <div className={this.decorateCSS("img-wrapper")}>
-                    {item.media && <Base.Media value={item.media} className={this.decorateCSS("img")} />}
+                    {item.media && (
+                      <Base.Media value={item.media} className={this.decorateCSS("img")} />
+                    )}
                     {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                   </div>
 

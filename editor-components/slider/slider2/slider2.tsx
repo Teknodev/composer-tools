@@ -313,9 +313,7 @@ class Slider2 extends BaseSlider {
                     <Base.Media
                       key={index}
                       value={slide.media}
-                      className={`
-                      ${this.decorateCSS("image")} 
-                      ${isActive && this.decorateCSS("active")}`}
+                      className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`}
                     />
                   )
                 );

@@ -353,7 +353,9 @@ class Slider4 extends BaseSlider {
                     key={index}
                   >
                     <Base.Row className={this.decorateCSS("icon-row")}>
-                      <Base.Media value={item.media} className={this.decorateCSS("play-icon")} />
+                      {item.media && (
+                        <Base.Media value={item.media} className={this.decorateCSS("play-icon")} />
+                      )}
                     </Base.Row>
                     <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
                     <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>
