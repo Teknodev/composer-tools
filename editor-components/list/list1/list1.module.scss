@@ -180,10 +180,6 @@ as *;
           transition: color var(--composer-transition-duration-normal) ease;
           cursor: pointer;
           text-align: left !important;
-
-          &:hover {
-            color: var(--composer-primary-color);
-          }
         }
 
         .card-description {
@@ -194,9 +190,9 @@ as *;
       }
 
       .button {
+        position: relative;
         
         .button-before {
-          content: "";
           position: absolute;
           bottom: 0;
           left: 0;
@@ -252,17 +248,19 @@ as *;
         }
       }
 
-      &[data-animation~="animate3"]:hover {
+      &[data-animation~="animate3"] {
         .button {
           .button-before {
-            width: 100%;
-            animation: slideIn var(--composer-transition-duration-slow) ease-in-out forwards;
+            transition: width var(--composer-transition-duration-slow) ease-in-out;
           }
+        }
 
-          &:not(:hover) .button-before {
-            width: 100%;
-            animation: slideOut var(--composer-transition-duration-slow) ease-in-out forwards;
-          }
+        &:hover .button .button-before {
+          width: 100%;
+        }
+
+        &:not(:hover) .button .button-before {
+          width: 0;
         }
       }
 
