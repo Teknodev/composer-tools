@@ -1,8 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-:global(.slick-vertical .slick-slide) {
-  border: none !important;
-}
 
 .container {
   margin: 0;
