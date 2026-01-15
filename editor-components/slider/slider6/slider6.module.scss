@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-md) 0;
+  padding: 80px 50px;
   width: 100%;
   background-color: var(--composer-html-background);
 
@@ -14,44 +14,46 @@
     margin: auto;
     width: 100%;
 
-    .header-container {
-      padding-top: 0;
-      padding-bottom: 0;
+    .header {
+      width: 100%;
 
-      .header-max-content {
-        .header {
-          width: 100%;
-
-          .no-title {
-            margin-bottom: var(--composer-gap-md);
-          }
-        }
+      .no-title {
+        margin-bottom: var(--composer-gap-md);
       }
     }
 
     .slider-parent {
-      width: 100%;
+      width: calc(100% + 100px);
       margin: auto;
       margin-bottom: var(--composer-gap-md);
+      margin-left: -50px;
+      margin-right: -50px;
+
+      @container (max-width: #{$composer-phone-width}) {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+      }
 
       .carousel {
         width: 100%;
 
-        > div {
-          > div {
+        :global(.slick-list) {
+          :global(.slick-track) {
             display: flex;
             align-items: stretch;
+            gap: var(--composer-gap-lg);
 
-            > div {
+            @container (max-width: #{$composer-phone-width}) {
+              gap: 0;
+            }
+
+            :global(.slick-slide) {
               height: auto;
-              padding: 0 var(--composer-gap-md);
-
-              > div {
-                height: 100%;
-              }
+              padding: 0;
 
               @container (max-width: #{$composer-tablet-width}) {
-                padding: 0 var(--composer-gap-md);
+                padding: 0;
               }
 
               @container (max-width: #{$composer-phone-width}) {
@@ -64,10 +66,12 @@
         .card {
           width: 100%;
           height: 100%;
+          display: flex;
+          flex-direction: column;
 
           .content-div {
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-            transition: transform 0.3s, filter 0.3s;
+            transition: transform var(--composer-transition-duration-normal), filter var(--composer-transition-duration-normal);
             min-height: 300px;
             height: 100%;
             gap: 0;
@@ -127,6 +131,16 @@
                   object-fit: cover;
                   object-position: center;
                 }
+
+                .overlay {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color: var(--composer-overlay-color);
+                  z-index: 1;
+                }
               }
             }
 
@@ -170,19 +184,50 @@
           }
         }
 
-        > ul {
-          bottom: calc(var(--composer-gap-lg) * -1);
+        :global(.slick-prev),
+        :global(.slick-next) {
+          @container (max-width: #{$composer-phone-width}) {
+            display: none !important;
+          }
+        }
 
-          > li {
+        :global(.slick-dots) {
+          position: relative;
+          display: flex !important;
+          justify-content: center;
+          align-items: center;
+          list-style: none;
+          padding: 0;
+          margin: var(--composer-gap-xs) 0 0 0;
+          width: 100%;
+
+          :global(li) {
             height: 10px;
+            margin: 0 var(--composer-gap-xs);
 
-            > button {
+            :global(button) {
               height: inherit;
+              width: 100%;
+              padding: 0;
+              border: none;
+              background: transparent;
+              font-size: 0;
 
               &::before {
                 content: "";
+                display: block;
                 background-color: var(--composer-font-color-primary);
                 height: 2px;
+                width: 100%;
+              }
+            }
+
+            &.slick-active {
+              :global(button) {
+                &::before {
+                  background-color: var(--composer-font-color-primary);
+                  opacity: 1;
+                }
               }
             }
           }
@@ -194,8 +239,8 @@
       }
 
       .single-item {
-        > div {
-          > div {
+        :global(.slick-list) {
+          :global(.slick-track) {
             margin-left: unset !important;
           }
         }
@@ -203,3 +248,4 @@
     }
   }
 }
+

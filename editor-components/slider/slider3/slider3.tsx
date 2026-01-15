@@ -279,8 +279,10 @@ class Slider3 extends BaseSlider {
                   <ComposerLink key={index} path={item.path}>
                     <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}`}>
                       <div className={this.decorateCSS("img-container")}>
-                        <Base.Media value={item.media} className={this.decorateCSS("img")} />
-                        {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
+                        {item.media && (
+                          <Base.Media value={item.media} className={this.decorateCSS("img")} />
+                        )}
+                        {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                       </div>
                       {(this.castToString(item.header) || this.castToString(item.description)) && (
                         <Base.VerticalContent

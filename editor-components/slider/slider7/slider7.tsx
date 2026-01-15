@@ -2,11 +2,11 @@ import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider7.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Card = {
-  image: string;
+type SliderItem = {
+  media: any;
 };
 
 class Slider7 extends BaseSlider {
@@ -24,11 +24,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-D7nSqgT-_GE-unsplash.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-D7nSqgT-_GE-unsplash.jpg",
+              },
             },
           ],
         },
@@ -38,11 +43,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/michael-demarco-oB0r-2a1QfE-unsplash-scaled.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/michael-demarco-oB0r-2a1QfE-unsplash-scaled.jpg",
+              },
             },
 
           ],
@@ -53,11 +63,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-xlGKy9UokjQ-unsplash-1.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-xlGKy9UokjQ-unsplash-1.jpg",
+              },
             },
           ],
         },
@@ -67,11 +82,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/messeplatz-cloudy-sky-basel-switzerland.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/messeplatz-cloudy-sky-basel-switzerland.jpg",
+              },
             },
           ],
         },
@@ -81,11 +101,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/metal-geometric-modern-building-scaled.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/metal-geometric-modern-building-scaled.jpg",
+              },
             },
           ],
         },
@@ -95,11 +120,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+              },
             },
           ],
         },
@@ -109,11 +139,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/vertical-shot-high-rise-exotic-skyscraper-blue-sky.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/vertical-shot-high-rise-exotic-skyscraper-blue-sky.jpg",
+              },
             },
           ],
         },
@@ -123,11 +158,16 @@ class Slider7 extends BaseSlider {
           displayer: "Header",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value:
-                "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/joel-filipe-PkE6yQwE-6Y-unsplash.jpg",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/joel-filipe-PkE6yQwE-6Y-unsplash.jpg",
+              },
             },
           ],
         },
@@ -148,6 +188,15 @@ class Slider7 extends BaseSlider {
       value: "BsArrowRight"
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
 
@@ -158,14 +207,15 @@ class Slider7 extends BaseSlider {
   }
 
   render() {
-
-    let items = this.castToObject<Card[]>("slider").filter(
-      (item: Card) => item.image
+    let items = this.castToObject<SliderItem[]>("slider").filter(
+      (item: SliderItem) => item.media
     );
     const isCardExist = items.length > 0;
+    const isOverlayActive = this.getPropValue("overlay");
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
     const sliderRef = this.getComponentState("slider-ref");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
     let slidesToShowNumber = 1;
 
     if (items.length === 2) {
@@ -174,11 +224,9 @@ class Slider7 extends BaseSlider {
     }
 
     const settings = {
-      dots: false,
-      arrows: true,
+      ...sliderSettings,
       infinite: true,
       speed: 500,
-      autoplay: true,
       centerMode: true,
       autoplaySpeed: 3000,
       slidesToShow: slidesToShowNumber,
@@ -190,15 +238,17 @@ class Slider7 extends BaseSlider {
           breakpoint: 1024,
           settings: {
             slidesToShow: 1,
+            dots: sliderSettings.dots,
+            arrows: sliderSettings.arrows,
           }
         },
         {
           breakpoint: 640,
           settings: {
-            dots: true,
-            arrows: false,
             variableWidth: false,
             slidesToShow: 1,
+            dots: sliderSettings.dots,
+            arrows: sliderSettings.arrows,
           }
         }
       ],
@@ -214,7 +264,7 @@ class Slider7 extends BaseSlider {
       ${items.length === 1 && this.decorateCSS("one-card")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
 
-          {previousArrow &&
+          {previousArrow && sliderSettings.arrows &&
             <div className={this.decorateCSS("prevArrow")}>
               <Base.Icon
                 name={this.getPropValue("previousArrow")}
@@ -226,7 +276,7 @@ class Slider7 extends BaseSlider {
               />
             </div>}
 
-          {nextArrow &&
+          {nextArrow && sliderSettings.arrows &&
             <div className={this.decorateCSS("nextArrow")}>
               <Base.Icon
                 name={this.getPropValue("nextArrow")}
@@ -239,27 +289,31 @@ class Slider7 extends BaseSlider {
             </div>}
 
           {isCardExist && (
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("carousel")}
-              ref={sliderRef}
-            >
-              {items.map((item: Card, index: number) => (
-                <div
-                  key={index}
-                  className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")
-                    }`}
-                >
-                  <div className={this.decorateCSS("imgContainer")}>
-                    <img
-                      src={item.image}
-                      className={this.decorateCSS("img")}
-                      alt=""
-                    />
+            <div className={this.decorateCSS("carousel-wrapper")}>
+              <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+                ref={sliderRef}
+              >
+                {items.map((item: SliderItem, index: number) => (
+                  <div
+                    key={index}
+                    className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")
+                      }`}
+                  >
+                    <div className={this.decorateCSS("imgContainer")}>
+                      {item.media && (
+                        <Base.Media
+                          value={item.media}
+                          className={this.decorateCSS("img")}
+                        />
+                      )}
+                      {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </ComposerSlider>
+                ))}
+              </ComposerSlider>
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>

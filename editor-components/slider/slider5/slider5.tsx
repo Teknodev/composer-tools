@@ -131,8 +131,10 @@ class Slider5 extends BaseSlider {
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {sliderItems.map((item: SliderItem, index: number) => (
                 <div key={index} className={this.decorateCSS("slider-item")}>
-                  <Base.Media value={item.media} className={this.decorateCSS("media")} />
-                  {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
+                  {item.media && (
+                    <Base.Media value={item.media} className={this.decorateCSS("media")} />
+                  )}
+                  {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                 </div>
               ))}
             </ComposerSlider>
