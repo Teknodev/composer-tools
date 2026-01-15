@@ -203,10 +203,10 @@ class Feature41 extends BaseFeature {
                                             <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
                                         }
                                         {(titleExist || descExist) &&
-                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                            <div className={this.decorateCSS("card-content")}>
                                                 {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
                                                 {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                                            </Base.VerticalContent>
+                                            </div>
                                         }
                                     </div>
                                 );
