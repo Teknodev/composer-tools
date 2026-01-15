@@ -24,7 +24,7 @@ class Feature40 extends BaseFeature {
         this.addProp({
             type: "media",
             key: "cover-image",
-            displayer: "Image",
+            displayer: "Media",
             value: {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69678d578ea13f002cf936cd?alt=media",
                 type: "image",
@@ -384,7 +384,7 @@ class Feature40 extends BaseFeature {
                                 const descExist = !!this.castToString(card.description);
                                 const isImage = card.icon?.type === "image";
 
-                                return (!titleExist && !descExist && !card.icon) && (
+                                return (!titleExist && !descExist && !card.icon) || (
                                     <div key={index} className={this.decorateCSS("card-wrapper")}>
                                         {card.icon &&
                                             <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
@@ -392,10 +392,10 @@ class Feature40 extends BaseFeature {
                                             </div>
                                         }
                                         {(titleExist || descExist) &&
-                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                            <div className={this.decorateCSS("card-content")}>
                                                 {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
                                                 {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                                            </Base.VerticalContent>
+                                            </div>
                                         }
                                     </div>
                                 );
