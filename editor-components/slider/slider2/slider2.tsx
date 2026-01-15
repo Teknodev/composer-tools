@@ -4,6 +4,7 @@ import styles from "./slider2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
   media: any;
@@ -247,6 +248,7 @@ class Slider2 extends BaseSlider {
       displayer: "Overlay",
       value: true,
     });
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.setComponentState("active_index", 0);
     this.setComponentState("text", this.castToObject<SliderItem[]>("slider")[0].text);
@@ -261,9 +263,7 @@ class Slider2 extends BaseSlider {
     const slider = this.castToObject<SliderItem[]>("slider");
     const isOverlayActive = this.getPropValue("overlay");
     const settings = {
-      arrows: false,
-      autoplay: true,
-      dots: false,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: slider.length > 2,
       speed: 1000,
       variableWidth: true,

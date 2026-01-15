@@ -16,17 +16,8 @@
       position: relative;
       flex: 1;
       flex-wrap: nowrap;
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
       width: 100%;
       display: flex;
-
-      @container (max-width: #{$composer-tablet-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
-      }
 
       .header-content {
         flex: 1;
@@ -37,6 +28,10 @@
         @container (max-width: #{$composer-phone-width}) {
           margin-bottom: 0;
         }
+       
+        .subtitle {
+          content: "";
+        }     
 
         .title {
           word-break: break-word;
@@ -125,7 +120,7 @@
         }
 
         :global(.slick-dots) {
-          bottom: 0;
+          bottom: calc(-1 * var(--composer-gap-lg));
         }
 
         .card {
