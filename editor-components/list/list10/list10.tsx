@@ -32,7 +32,7 @@ class List10 extends BaseList {
         });
         this.addProp({
             type: "string",
-            key: "subtitle",
+            key: "sideText",
             displayer: "Text",
             value: "Discover AI-Enhanced Visual Stories",
         });
@@ -211,21 +211,17 @@ class List10 extends BaseList {
         const cards = this.castToObject<Card[]>("cards");
         const title = this.getPropValue("title");
         const sectionSubtitle = this.getPropValue("section-subtitle");
-        const subtitle = this.getPropValue("subtitle");
+        const subtitle = this.getPropValue("sideText");
         const description = this.getPropValue("description");
         const imageOverlay = this.getPropValue("overlay");
         const button = this.castToObject<any>("button");
         const buttonText = this.castToString(button?.text);
-        const isMonochrome = Base.getViewType() === "monochrome";
-        const isColorful = Base.getViewType() === "colorful";
-        const viewClass = (isMonochrome && styles.monochrome) || (isColorful && styles.colorful);
-      
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(this.castToString(sectionSubtitle) || this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-                        <div className={`${this.decorateCSS("up-page")} ${viewClass}`}>
+                        <div className={this.decorateCSS("up-page")}>
                             {this.castToString(sectionSubtitle) && (
                                 <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                                     {sectionSubtitle}
@@ -234,9 +230,9 @@ class List10 extends BaseList {
 
                             <div className={this.decorateCSS("title-row")}>
                                 {this.castToString(title) && (
-                                    <Base.H1 className={this.decorateCSS("title")}>
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
                                         {title}
-                                    </Base.H1>
+                                    </Base.SectionTitle>
                                 )}
                                 {this.castToString(subtitle) && (
                                     <Base.H5 className={this.decorateCSS("subtitle")}>

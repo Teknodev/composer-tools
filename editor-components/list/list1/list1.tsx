@@ -43,7 +43,7 @@ class List1 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "media",
@@ -285,12 +285,7 @@ class List1 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: false,
-    });
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.setComponentState("active-index", 1);
   }
@@ -312,16 +307,11 @@ class List1 extends BaseList {
     const dotsClassName = backgroundColor
       ? `${this.decorateCSS("dots")} ${this.decorateCSS("dots-colored")}`
       : this.decorateCSS("dots");
-    const autoplay = this.getPropValue("autoplay");
     const settings = {
-      dots: true,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: sliderItems.length > 1,
-      autoplay: autoplay,
-      autoplaySpeed: 3000,
       slidesToShow: Math.min(3, sliderItems.length),
-      slidesToScroll: 1,
       initialSlide: 1,
-      arrows: false,
       centerMode: true,
       dotsClass: dotsClassName,
       customPaging: (_i: number) => <button className={this.decorateCSS("dot-button")} />,
@@ -381,6 +371,9 @@ class List1 extends BaseList {
                     className={`${this.decorateCSS("card")} ${(backgroundColor && this.getComponentState("active-index") === indexSlider) && this.decorateCSS("active")}`}
                     data-animation={this.getPropValue("hoverAnimation").join(" ")}
                   >
+                    {(backgroundColor && this.getComponentState("active-index") === indexSlider) && (
+                      <div className={this.decorateCSS("active-after")} />
+                    )}
                     {item.image && (
                       <Base.Row className={`${this.decorateCSS("image-container")} ${isIcon && this.decorateCSS("no-round")}`}>
                         <Base.Media
@@ -407,13 +400,16 @@ class List1 extends BaseList {
                       </Base.VerticalContent>
                     )}
 
-                    {this.castToString(item.button.text) && (
+                    {(this.castToString(item.button.text) || item.button.icon) && (
                       <div className={this.decorateCSS("button")}>
+                        <div className={this.decorateCSS("button-before")} />
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} >
+                            {this.castToString(item.button.text) && (
                             <Base.P className={this.decorateCSS("button-text")}>
                               {item.button.text}
                             </Base.P>
+                            )}
                             {item.button.icon && (
                               <Base.Media
                                 value={item.button.icon}
