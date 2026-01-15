@@ -54,7 +54,7 @@ class Slider2 extends BaseSlider {
                 availableTypes: ["image"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d0c506a40002c318e40?alt=media",
               },
             },
@@ -97,7 +97,7 @@ class Slider2 extends BaseSlider {
                 availableTypes: ["image"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d3f506a40002c318e73?alt=media",
               },
             },
@@ -140,7 +140,7 @@ class Slider2 extends BaseSlider {
                 availableTypes: ["image"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675193c7506a40002c3192ef?alt=media",
               },
             },
@@ -183,7 +183,7 @@ class Slider2 extends BaseSlider {
                 availableTypes: ["image"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294e0?alt=media&timestamp=1719584962578",
               },
             },
@@ -227,7 +227,7 @@ class Slider2 extends BaseSlider {
                 availableTypes: ["image"],
               },
               value: {
-                type: "image",
+              type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
               },
             },
@@ -334,7 +334,7 @@ class Slider2 extends BaseSlider {
             </div>
           )}
           <div className={this.decorateCSS("carousel-wrapper")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
             {this.castToObject<SliderItem[]>("slider").map((item: SliderItem, indexSlider: number) => {
               const isActive = this.getComponentState("active_index") === indexSlider;
 

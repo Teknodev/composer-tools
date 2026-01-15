@@ -69,7 +69,7 @@ class Slider4 extends BaseSlider {
                 availableTypes: ["image", "icon"],
               },
               value: {
-                type: "icon",
+              type: "icon",
                 name: "TfiWorld",
               },
             },
@@ -100,7 +100,7 @@ class Slider4 extends BaseSlider {
                 availableTypes: ["image", "icon"],
               },
               value: {
-                type: "icon",
+              type: "icon",
                 name: "IoStatsChartSharp",
               },
             },
@@ -131,7 +131,7 @@ class Slider4 extends BaseSlider {
                 availableTypes: ["image", "icon"],
               },
               value: {
-                type: "icon",
+              type: "icon",
                 name: "MdRateReview",
               },
             },
@@ -162,7 +162,7 @@ class Slider4 extends BaseSlider {
                 availableTypes: ["image", "icon"],
               },
               value: {
-                type: "icon",
+              type: "icon",
                 name: "TfiThumbUp",
               },
             },
@@ -193,7 +193,7 @@ class Slider4 extends BaseSlider {
                 availableTypes: ["image", "icon"],
               },
               value: {
-                type: "icon",
+              type: "icon",
                 name: "TfiDropbox",
               },
             },
@@ -224,7 +224,7 @@ class Slider4 extends BaseSlider {
                 availableTypes: ["image", "icon"],
               },
               value: {
-                type: "icon",
+              type: "icon",
                 name: "RiRocketFill",
               },
             },
