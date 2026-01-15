@@ -111,7 +111,7 @@ class Slider5 extends BaseSlider {
   }
 
   render() {
-    const sliderItems = this.castToObject<SliderItem[]>("slider");
+    const sliderItems = this.castToObject<SliderItem[]>("slider").filter((item: SliderItem) => item.media);
     const isOverlayActive = this.getPropValue("overlay");
     const settings = {
       ...this.transformSliderValues(this.getPropValue("settings")),
@@ -131,12 +131,8 @@ class Slider5 extends BaseSlider {
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {sliderItems.map((item: SliderItem, index: number) => (
                 <div key={index} className={this.decorateCSS("slider-item")}>
-                  {item.media && (
-                    <>
-                      <Base.Media value={item.media} className={this.decorateCSS("media")} />
-                      {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
-                    </>
-                  )}
+                  <Base.Media value={item.media} className={this.decorateCSS("media")} />
+                  {isOverlayActive && <div className={this.decorateCSS("overlay")}></div>}
                 </div>
               ))}
             </ComposerSlider>
