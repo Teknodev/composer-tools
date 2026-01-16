@@ -129,17 +129,29 @@ class Slider8 extends BaseSlider {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "leftNavButton",
       displayer: "Left Button",
-      value: "FaArrowLeftLong",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowLeftLong",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightNavButton",
       displayer: "Right Button",
-      value: "FaArrowRightLong",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowRightLong",
+      },
     });
 
     this.addProp({
@@ -170,6 +182,8 @@ class Slider8 extends BaseSlider {
       value: true,
     });
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("activeSlide", 0);
   }
@@ -184,24 +198,22 @@ class Slider8 extends BaseSlider {
     const linesContainer = this.getPropValue("lines-container");
     const animation = this.getPropValue("animation");
 
-    const leftNavButton = this.getPropValue("leftNavButton");
-    const rightNavButton = this.getPropValue("rightNavButton");
+    const leftNavButton = this.getPropValue("leftNavButton") as any;
+    const rightNavButton = this.getPropValue("rightNavButton") as any;
 
     const cards = this.castToObject<Card[]>("slider");
     const activeSlide = this.getComponentState("activeSlide");
     const anyImagesExist = cards[activeSlide]?.image || cards[activeSlide]?.backgroundImage;
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const alignmentValue = Base.getContentAlignment();
 
     const settings = {
+      ...sliderSettings,
       fade: true,
       duration: 1500,
-      arrows: false,
-      dots: false,
       infinite: cards.length > 1,
       speed: 3000,
-      autoplay: true,
-      autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (_: number, newIndex: number) => {
@@ -226,7 +238,6 @@ class Slider8 extends BaseSlider {
                 {cards.map((item: any, index: number) => {
                   const buttons = item.buttons;
 
-                  console.log(buttons, "buttons");
                   const titleExists = this.castToString(item.imageTitle);
                   const render = titleExists || buttons?.length > 0 || item.image;
                   if (!render) return null;
@@ -245,6 +256,8 @@ class Slider8 extends BaseSlider {
                              ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}
                           `}
                         >
+                          <div className={this.decorateCSS("content-div-before")}></div>
+                          <div className={this.decorateCSS("content-div-after")}></div>
                           {linesContainer && (
                             <div className={this.decorateCSS(anyImagesExist ? "lines-container" : "lines-container2")}>
                               <div className={this.decorateCSS("line-1")}></div>
@@ -262,7 +275,9 @@ class Slider8 extends BaseSlider {
                                  ${this.decorateCSS(anyImagesExist && "imageTitle")} 
                                 ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}
                               >
-                                {item.imageTitle}
+                                <div className={this.decorateCSS("title-content")}>
+                                  {item.imageTitle}
+                                </div>
                               </Base.SectionTitle>
                             </div>
                           )}
@@ -286,37 +301,34 @@ class Slider8 extends BaseSlider {
                               })}
                             </div>
                           )}
-                          {(leftNavButton || rightNavButton) && (
+                          {(leftNavButton || rightNavButton) && sliderSettings.arrows && (
                             <div className={this.decorateCSS(anyImagesExist ? "nav-buttons" : "nav-buttons2")}>
                               {leftNavButton && cards.length > 1 && (
-                                <button
+                                <Base.Button
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
                                     this.getComponentState("slider-ref").current.slickPrev();
                                   }}
                                 >
-                                  <Base.Icon
-                                    name={leftNavButton}
-                                    propsIcon={{
-                                      className: `${this.decorateCSS("Icon")}`,
-                                    }}
+                                  <Base.Media
+                                    value={leftNavButton}
+                                    className={`${this.decorateCSS("nav-icon")} ${this.decorateCSS("nav-icon-media")}`}
                                   />
-                                </button>
+                                </Base.Button>
                               )}
                               {rightNavButton && cards.length > 1 && (
-                                <button
+                                <Base.Button
+                                  type="Bare"
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
                                     this.getComponentState("slider-ref").current.slickNext();
                                   }}
                                 >
-                                  <Base.Icon
-                                    name={rightNavButton}
-                                    propsIcon={{
-                                      className: `${this.decorateCSS("Icon")}`,
-                                    }}
+                                  <Base.Media
+                                    value={rightNavButton}
+                                    className={`${this.decorateCSS("nav-icon")} ${this.decorateCSS("nav-icon-media")}`}
                                   />
-                                </button>
+                                </Base.Button>
                               )}
                             </div>
                           )}
@@ -332,14 +344,14 @@ class Slider8 extends BaseSlider {
               </ComposerSlider>
             )}
           </div>
-          {cards.length > 1 && (
-            <ul className={`${this.decorateCSS(anyImagesExist ? "dots" : "dots-2")}`}>
+          {cards.length > 1 && sliderSettings.dots && (
+            <div className={`${this.decorateCSS(anyImagesExist ? "dots" : "dots-2")}`}>
               {cards.map((_, index) => (
-                <li key={`dot-${index}`} className={`${this.decorateCSS("slick")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
-                  <button />
-                </li>
+                <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                  <Base.Button className={this.decorateCSS("dot-button")} />
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>
@@ -348,3 +360,4 @@ class Slider8 extends BaseSlider {
 }
 
 export default Slider8;
+
