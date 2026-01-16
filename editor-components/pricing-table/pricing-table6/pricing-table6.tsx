@@ -1449,9 +1449,9 @@ class PricingMultipleTwo extends BasePricingTable {
                                   </Base.H5>
                                 )}
                                 {perText && (
-                                  <Base.H5 className={this.decorateCSS("per")}>
+                                  <Base.P className={this.decorateCSS("per")}>
                                     {tab.per}
-                                  </Base.H5>
+                                  </Base.P>
                                 )}
                               </div>
                             )}

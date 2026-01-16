@@ -13,6 +13,13 @@ class PricingTable9 extends BasePricingTable {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Best for small teams",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Choose your plan",
@@ -39,687 +46,791 @@ class PricingTable9 extends BasePricingTable {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Basic",
-            },
-
-            INPUTS.BUTTON("buttonType", "Button", "50$/ month", "", null, null, "Primary"),
-            {
-              type: "array",
-              key: "contents",
-              displayer: "Contents",
-              value: [
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "columnContent",
-          displayer: "Column Content",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Starter",
-            },
-
-            INPUTS.BUTTON("buttonType", "Button", "75$/ month", "", null, null, "Primary"),
-
-            {
-              type: "array",
-              key: "contents",
-              displayer: "Contents",
-              value: [
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "columnContent",
-          displayer: "Column Content",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Standart",
-            },
-            INPUTS.BUTTON("buttonType", "Button", "100$/ month", "", null, null, "Primary"),
-
-            {
-              type: "array",
-              key: "contents",
-              displayer: "Contents",
-              value: [
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "columnContent",
-          displayer: "Column Content",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Enterprise",
-            },
-            INPUTS.BUTTON("buttonType", "Button", "1000$/ month", "", null, null, "Primary"),
-
-            {
-              type: "array",
-              key: "contents",
-              displayer: "Contents",
-              value: [
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "icon",
-                      key: "icon",
-                      displayer: "Icon",
-                      value: "FcCheckmark",
-                    },
-                    {
-                      type: "page",
-                      key: "link",
-                      displayer: "Link",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "benefits",
-      displayer: "Benefits",
-      value: [
-        {
-          type: "object",
-          key: "benefit",
-          displayer: "Benefit",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
               value: "",
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "benefit",
-          displayer: "Benefit",
-          value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Remote device",
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
+              value: [
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "Tellus integer",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "Feugiat scelerisque",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "Scelerisque varius",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "Morbi enim",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "Nulla aliquet porttitor",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [],
             },
           ],
         },
         {
           type: "object",
-          key: "benefit",
-          displayer: "Benefit",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Access from anywhere",
+              value: "BASIC",
+            },
+
+            {
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
+              value: [
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "buttonType",
+                  "Button",
+                  "50$/ month",
+                  "",
+                  "",
+                  null,
+                  "Primary"
+                ),
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "benefit",
-          displayer: "Benefit",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "7/24 Helpdesk",
+              value: "START",
+            },
+
+            {
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
+              value: [
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "buttonType",
+                  "Button",
+                  "75$/ month",
+                  "",
+                  "",
+                  null,
+                  "Primary"
+                ),
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "benefit",
-          displayer: "Benefit",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Advanced statistics",
+              value: "STANDART",
+            },
+
+            {
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
+              value: [
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "buttonType",
+                  "Button",
+                  "100$/ month",
+                  "",
+                  "",
+                  null,
+                  "Primary"
+                ),
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "benefit",
-          displayer: "Benefit",
+          key: "columnContent",
+          displayer: "Column Content",
           value: [
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "User management",
+              value: "BUSINESS",
+            },
+
+            {
+              type: "array",
+              key: "contents",
+              displayer: "Contents",
+              value: [
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "link",
+                      displayer: "Link",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "buttonType",
+                  "Button",
+                  "1000$/ month",
+                  "",
+                  "",
+                  null,
+                  "Primary"
+                ),
+              ],
             },
           ],
         },
       ],
     });
     this.addProp({
-      type:"multiSelect",
+      type: "multiSelect",
       key: "animations",
       displayer: "Animations",
       value: ["animation1", "animation2", "animation3"],
-      additionalParams:{
-        selectItems:["animation1", "animation2", "animation3"]
-      }
-    })
+      additionalParams: {
+        selectItems: ["animation1", "animation2", "animation3"],
+      },
+    });
   }
 
   static getName(): string {
     return "Pricing 9";
+  }
+
+  private hasMediaContent(media?: any): boolean {
+    if (!media) return false;
+    return !!((media as any).name || (media as any).url || (media as any).src);
+  }
+
+  private hasButtonContent(button: INPUTS.CastedButton): boolean {
+    const textExist = this.castToString(button.text);
+    const iconExist = this.hasMediaContent(button.icon);
+    return !!(textExist || iconExist);
+  }
+
+  private hasAnyButtonContent(buttons: INPUTS.CastedButton[]): boolean {
+    return buttons.some((btn) => this.hasButtonContent(btn));
+  }
+
+  private hasAnyColumnTitle(): boolean {
+    const columns = this.castToObject<any[]>("columns");
+    return columns.some((column: any) => this.castToString(column?.title));
   }
 
   render() {
@@ -748,103 +859,269 @@ class PricingTable9 extends BasePricingTable {
       ],
     };
 
-    const titleExist = this.castToString(this.getPropValue("title"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
+
+    const titleExist = this.castToString(title);
+    const subtitleExist = this.castToString(subtitle);
+    const descriptionExist = this.castToString(description);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || descriptionExist) && (
+          {(titleExist || subtitleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {description}
+                </Base.SectionDescription>
+              )}
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("container")}>
-            <div className={this.decorateCSS("benefits-column")}>
-              {this.castToObject<string[]>("benefits").map((benefit: any, index: any) => (
-                <div key={`benefit-${index}`} className={this.decorateCSS("benefit-item")}>
-                  <Base.H5 className={this.decorateCSS("benefit-title")}>{benefit?.title}</Base.H5>
-                </div>
-              ))}
-            </div>
-
             <div className={this.decorateCSS("columns-container")}>
-              {this.castToObject<string[]>("columns").map((column: any, index: any) => {
-                const buttonTextExist = this.castToString(column?.buttonType.text);
-                const titleExist = this.castToString(column?.title);
-                return (
-                  <div key={`column-${index}`} className={`${this.decorateCSS("column-item")}
-                   ${this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `}>
-                    <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>
-                    <div className={this.decorateCSS("column-contents")}>
-                      {column?.contents.map((content: any, contentIndex: any) => (
-                        <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
-                          {content?.icon && (
-                            <span className={this.decorateCSS("content-icon")}>
-                              <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
-                            </span>
-                          )}
-                          {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}
-                        </div>
-                      ))}
-                    </div>
-                    {buttonTextExist && (
-                      <div className={this.decorateCSS("column-button-container")}>
-                        <ComposerLink path={column.buttonType.url}>
-                          <Base.Button buttonType={column.buttonType.type} className={this.decorateCSS("column-button")}>
-                            {column?.buttonType.text}
-                          </Base.Button>
-                        </ComposerLink>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className={this.decorateCSS("slider")}>
-            <div className={this.decorateCSS("benefits-column")}>
-              {this.castToObject<string[]>("benefits").map((benefit: any, index: any) => (
-                <div key={`benefit-${index}`} className={this.decorateCSS("benefit-item")}>
-                  <Base.H5 className={this.decorateCSS("benefit-title")}>{benefit?.title}</Base.H5>
-                </div>
-              ))}
-            </div>
-
-            <div className={this.decorateCSS("slider-container")}>
-              <ComposerSlider {...settings}>
-                {this.castToObject<string[]>("columns").map((column: any, index: any) => {
-                  const buttonTextExist = this.castToString(column?.buttonType.text);
-                  const titleExist = this.castToString(column?.title);
+              {this.castToObject<string[]>("columns").map(
+                (column: any, index: any) => {
+                  const buttons = column?.buttons || [];
+                  const hasButtonsWithContent =
+                    buttons.length > 0 && this.hasAnyButtonContent(buttons);
+                  const columnTitleExist = this.castToString(column?.title);
                   return (
-                    <div key={`column-${index}`} className={this.decorateCSS("column-item")}>
-                      <div className={this.decorateCSS("title-container")}>{titleExist && <Base.H3 className={this.decorateCSS("column-title")}>{column?.title}</Base.H3>}</div>
+                    <div
+                      key={`column-${index}`}
+                      className={`${this.decorateCSS("column-item")}
+                   ${
+                     index !== 0 && this.getPropValue("animations") &&
+                     this.getPropValue("animations")
+                       .map((animation: string) => this.decorateCSS(animation))
+                       .join(" ")
+                   } `}
+                    >
+                      {this.hasAnyColumnTitle() && (
+                        <div className={this.decorateCSS("title-container")}>
+                          <Base.H6 className={`${this.decorateCSS("column-title")} ${!columnTitleExist ? this.decorateCSS("empty") : ""}`}>
+                            {column?.title}
+                          </Base.H6>
+                        </div>
+                      )}
                       <div className={this.decorateCSS("column-contents")}>
-                        {column?.contents.map((content: any, contentIndex: any) => (
-                          <div key={`content-${contentIndex}`} className={this.decorateCSS("content-item")}>
-                            {content?.icon && (
-                              <span className={this.decorateCSS("content-icon")}>
-                                <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={content.icon} />
-                              </span>
-                            )}
-                            {this.castToString(content.text) && <Base.P className={this.decorateCSS("content-text")}>{content?.text}</Base.P>}
-                          </div>
-                        ))}
+                        {column?.contents.map(
+                          (content: any, contentIndex: any) => {
+                            const firstColumnContent = this.castToObject<any[]>("columns")[0]?.contents?.[contentIndex];
+                            
+                            if (!firstColumnContent) return null;
+
+                            const iconExist = this.hasMediaContent(
+                              content.icon
+                            );
+                            const textExist = this.castToString(content.text);
+
+                            return (
+                              <div
+                                key={`content-${contentIndex}`}
+                                className={this.decorateCSS("content-item")}
+                              >
+                                {iconExist && (
+                                  <Base.Media
+                                    value={content.icon}
+                                    className={this.decorateCSS("content-icon")}
+                                  />
+                                )}
+                                {textExist && (
+                                  <Base.P
+                                    className={this.decorateCSS("content-text")}
+                                  >
+                                    {content?.text}
+                                  </Base.P>
+                                )}
+                              </div>
+                            );
+                          }
+                        )}
                       </div>
-                      {buttonTextExist && (
-                        <div className={this.decorateCSS("column-button-container")}>
-                          <ComposerLink path={column.buttonType.url}>
-                            <Base.Button buttonType={column.buttonType.type} className={this.decorateCSS("column-button")}>
-                              {column?.buttonType.text}
-                            </Base.Button>
-                          </ComposerLink>
+                      {hasButtonsWithContent && (
+                        <div
+                          className={this.decorateCSS(
+                            "column-button-container"
+                          )}
+                        >
+                          {buttons.map((button: any, btnIndex: number) => {
+                            if (!this.hasButtonContent(button)) return null;
+
+                            const buttonTextExist = this.castToString(
+                              button.text
+                            );
+                            const buttonIconExist = this.hasMediaContent(
+                              button.icon
+                            );
+
+                            return (
+                            <Base.Button
+                                  buttonType={button.type}
+                                  className={this.decorateCSS("column-button")}
+                                >
+                              <ComposerLink
+                                path={button.url || "#"}
+                                key={btnIndex}
+                              >
+                                  {buttonIconExist && (
+                                    <Base.Media
+                                      value={button.icon}
+                                      className={this.decorateCSS(
+                                        "button-icon"
+                                      )}
+                                    />
+                                  )}
+                                  {buttonTextExist && (
+                                    <Base.P
+                                      className={this.decorateCSS(
+                                        "button-text"
+                                      )}
+                                    >
+                                      {button.text}
+                                    </Base.P>
+                                  )}
+                              </ComposerLink>
+                              </Base.Button>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
                   );
-                })}
+                }
+              )}
+            </div>
+          </div>
+
+          <div className={this.decorateCSS("slider")}>
+            <div className={this.decorateCSS("slider-container")}>
+              <ComposerSlider {...settings}>
+                {this.castToObject<string[]>("columns").map(
+                  (column: any, index: any) => {
+                    const buttons = column?.buttons || [];
+                    const hasButtonsWithContent =
+                      buttons.length > 0 && this.hasAnyButtonContent(buttons);
+                    const columnTitleExist = this.castToString(column?.title);
+                    return (
+                      <div
+                        key={`column-${index}`}
+                        className={this.decorateCSS("column-item")}
+                      >
+                        {this.hasAnyColumnTitle() && (
+                          <div className={this.decorateCSS("title-container")}>
+                            <Base.H6
+                              className={`${this.decorateCSS("column-title")} ${!columnTitleExist ? this.decorateCSS("empty") : ""}`}
+                            >
+                              {column?.title}
+                            </Base.H6>
+                          </div>
+                        )}
+                        <div className={this.decorateCSS("column-contents")}>
+                          {column?.contents.map(
+                            (content: any, contentIndex: any) => {
+                              const firstColumnContent = this.castToObject<any[]>("columns")[0]?.contents?.[contentIndex];
+                              
+                              if (!firstColumnContent) return null;
+
+                              const iconExist = this.hasMediaContent(
+                                content.icon
+                              );
+                              const textExist = this.castToString(content.text);
+
+                              return (
+                                <div
+                                  key={`content-${contentIndex}`}
+                                  className={this.decorateCSS("content-item")}
+                                >
+                                  {iconExist && (
+                                    <Base.Media
+                                      value={content.icon}
+                                      className={this.decorateCSS(
+                                        "content-icon"
+                                      )}
+                                    />
+                                  )}
+                                  {textExist && (
+                                    <Base.P
+                                      className={this.decorateCSS(
+                                        "button-text"
+                                      )}
+                                    >
+                                      {content?.text}
+                                    </Base.P>
+                                  )}
+                                </div>
+                              );
+                            }
+                          )}
+                        </div>
+                        {hasButtonsWithContent && (
+                          <div
+                            className={this.decorateCSS(
+                              "column-button-container"
+                            )}
+                          >
+                            {buttons.map((button: any, btnIndex: number) => {
+                              if (!this.hasButtonContent(button)) return null;
+
+                              const buttonTextExist = this.castToString(
+                                button.text
+                              );
+                              const buttonIconExist = this.hasMediaContent(
+                                button.icon
+                              );
+
+                              return (
+                                <ComposerLink
+                                  path={button.url || "#"}
+                                  key={btnIndex}
+                                >
+                                  <Base.Button
+                                    buttonType={button.type}
+                                    className={this.decorateCSS("column-button")}
+                                  >
+                                    {buttonIconExist && (
+                                      <Base.Media
+                                        value={button.icon}
+                                        className={this.decorateCSS(
+                                          "button-icon"
+                                        )}
+                                      />
+                                    )}
+                                    {buttonTextExist && (
+                                      <Base.P
+                                        className={this.decorateCSS(
+                                          "button-text"
+                                        )}
+                                      >
+                                        {button.text}
+                                      </Base.P>
+                                    )}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                )}
               </ComposerSlider>
             </div>
           </div>

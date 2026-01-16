@@ -870,27 +870,27 @@ class PricingTable2 extends BasePricingTable {
                             className={this.decorateCSS("card-upper")}
                           >
                             {hasCardTitle && (
-                              <Base.H2
+                              <Base.H4
                                 className={this.decorateCSS("card-title")}
                               >
                                 {cardTitle}
-                              </Base.H2>
+                              </Base.H4>
                             )}
                             {(hasCardPrice || hasCardDuration) && (
                               <div className={this.decorateCSS("card-price")}>
                                 {hasCardPrice && (
-                                  <Base.H1
+                                  <Base.H2
                                     className={this.decorateCSS("price")}
                                   >
                                     {cardPrice}
-                                  </Base.H1>
+                                  </Base.H2>
                                 )}
                                 {hasCardDuration && (
-                                  <Base.H2
+                                  <Base.H4
                                     className={this.decorateCSS("duration")}
                                   >
                                     {cardDuration}
-                                  </Base.H2>
+                                  </Base.H4>
                                 )}
                               </div>
                             )}

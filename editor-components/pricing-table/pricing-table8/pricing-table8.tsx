@@ -657,9 +657,9 @@ class PricingTable8 extends BasePricingTable {
                     className={this.decorateCSS("plan-desc")}
                   >
                     {this.castToString(currentCard.planTitle) && (
-                      <Base.H3 className={this.decorateCSS("text")}>
+                      <Base.H4 className={this.decorateCSS("text")}>
                         {currentCard.planTitle}
-                      </Base.H3>
+                      </Base.H4>
                     )}
                     {this.castToString(currentCard.description) && (
                       <Base.P className={this.decorateCSS("description-text")}>
@@ -681,9 +681,9 @@ class PricingTable8 extends BasePricingTable {
                             className={this.decorateCSS("bar-desc")}
                             key={index}
                           >
-                            <Base.H5 className={this.decorateCSS("bar-title")}>
+                            <Base.H6 className={this.decorateCSS("bar-title")}>
                               {bar.barTitle}
-                            </Base.H5>
+                            </Base.H6>
                             <div className={this.decorateCSS("bar-percent")}>
                               <div
                                 className={this.decorateCSS("percent")}

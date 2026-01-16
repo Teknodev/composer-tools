@@ -1155,11 +1155,11 @@ class PricingTable7 extends BasePricingTable {
                           <Base.H1 className={this.decorateCSS("price-title")}>
                             {pricing.price}
                           </Base.H1>
-                          <Base.H3
+                          <Base.H5
                             className={this.decorateCSS("duration-text")}
                           >
                             {pricing.duration}
-                          </Base.H3>
+                          </Base.H5>
                         </div>
                       )}
                       {this.castToString(pricing.promoText) && (

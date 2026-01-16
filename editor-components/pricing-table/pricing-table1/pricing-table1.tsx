@@ -82,7 +82,6 @@ class PricingTable1 extends BasePricingTable {
               displayer: "Price Title",
               value: "Individual",
             },
-            //carddescription
             {
               type: "array",
               key: "cardList",
@@ -207,7 +206,7 @@ class PricingTable1 extends BasePricingTable {
                   "Button",
                   "Join this plan",
                   "",
-                  "",
+                  "AiOutlineArrowRight",
                   null,
                   "Primary"
                 ),
@@ -386,7 +385,7 @@ class PricingTable1 extends BasePricingTable {
                   "Button",
                   "Join this plan",
                   "",
-                  "",
+                  "AiOutlineArrowRight",
                   null,
                   "Primary"
                 ),
@@ -575,7 +574,7 @@ class PricingTable1 extends BasePricingTable {
                   "Button",
                   "Join this plan",
                   "",
-                  "",
+                  "AiOutlineArrowRight",
                   null,
                   "Primary"
                 ),
@@ -711,6 +710,8 @@ class PricingTable1 extends BasePricingTable {
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
+    
+    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -786,9 +787,15 @@ class PricingTable1 extends BasePricingTable {
                         </div>
                       )}
                       {cardSubtitleExist && (
-                        <Base.H3 className={this.decorateCSS("cardsubtitle")}>
-                          {table.cardsubtitle}
-                        </Base.H3>
+                        <div 
+                          className={`${this.decorateCSS("cardsubtitle-wrapper")} ${
+                            alignmentValue === "center" ? this.decorateCSS("center") : ""
+                          }`}
+                        >
+                          <Base.H3 className={this.decorateCSS("cardsubtitle")}>
+                            {table.cardsubtitle}
+                          </Base.H3>
+                        </div>
                       )}
                       {cardTitleExist && (
                         <Base.H3 className={this.decorateCSS("card-title")}>
@@ -800,7 +807,8 @@ class PricingTable1 extends BasePricingTable {
                           const cardListItemExist = this.castToString(
                             listItem.cardListItem
                           );
-                          const cardExist = listItem.icon || cardListItemExist;
+                          const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.name || listItem.buttonIcon.url);
+                          const cardExist = buttonIconExist || cardListItemExist;
 
                           return (
                             cardExist && (
@@ -808,15 +816,17 @@ class PricingTable1 extends BasePricingTable {
                                 key={index}
                                 className={this.decorateCSS("card-list-item")}
                               >
-                                <Base.Media
-                                  name={listItem.buttonIcon}
-                                  propsIcon={{
-                                    className: this.decorateCSS("icon"),
-                                  }}
-                                />
-                                <Base.P className={this.decorateCSS("list-item")}>
-                                  {listItem.cardListItem}
-                                </Base.P>
+                                {buttonIconExist && (
+                                  <Base.Media
+                                    value={listItem.buttonIcon}
+                                    className={this.decorateCSS("icon")}
+                                  />
+                                )}
+                                {cardListItemExist && (
+                                  <Base.P className={this.decorateCSS("list-item")}>
+                                    {listItem.cardListItem}
+                                  </Base.P>
+                                )}
                               </Base.Row>
                             )
                           );
@@ -878,6 +888,7 @@ class PricingTable1 extends BasePricingTable {
                               <ComposerLink
                                 path={buttonUrl}
                                 key={`pricing-btn-${btnIndex}`}
+                                className={this.decorateCSS("card-link")}
                               >
                                 <Base.Button
                                   buttonType={buttonType}
@@ -917,13 +928,14 @@ class PricingTable1 extends BasePricingTable {
                 const text = title.getPropValue("text");
                 const icon = title.getPropValue("icon");
                 const textExist = this.castToString(text);
+                const iconExist = icon && (icon.name || icon.url);
 
-                const titleBottomExist = textExist || icon;
+                const titleBottomExist = textExist || iconExist;
                 return (
                   titleBottomExist && (
                     <div className={this.decorateCSS("title-bottom")}>
-                      {icon && (
-                        <Base.Icon name={icon}></Base.Icon>
+                      {iconExist && (
+                        <Base.Media value={icon} className={this.decorateCSS("bottom-icon")} />
                       )}
                       {textExist && (
                         <Base.P className={this.decorateCSS("text")}>

@@ -580,9 +580,9 @@ this.addProp({
                               />
                             )}
                             {titleExist && (
-                              <Base.H3 className={this.decorateCSS("title")}>
+                              <Base.H6 className={this.decorateCSS("title")}>
                                 {card.title}
-                              </Base.H3>
+                              </Base.H6>
                             )}
                             {this.castToString(card.price) && (
                               <Base.H1 className={this.decorateCSS("price")}>
