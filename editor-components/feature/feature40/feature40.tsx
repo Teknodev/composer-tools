@@ -36,7 +36,7 @@ class Feature40 extends BaseFeature {
             type: "boolean",
             key: "overlay",
             displayer: "Overlay",
-            value: true,
+            value: false,
         });
 
         this.addProp({
@@ -327,7 +327,7 @@ class Feature40 extends BaseFeature {
             type: "boolean",
             key: "iconBackground",
             displayer: "Icon Background",
-            value: false,
+            value: true,
         });
 
         this.addProp({

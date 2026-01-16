@@ -30,6 +30,12 @@
                             color: var(--color-white);
                         }
                     }
+
+                    .icon-box {
+                        .card-icon {
+                            color: var(--color-white) !important;
+                        }
+                    }
                 }
             }
         }
