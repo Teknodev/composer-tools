@@ -90,6 +90,14 @@
                 .card-wrapper {
                     padding: var(--composer-gap-xl);
 
+                    &.last-in-row {
+                        border-right: 1px solid var(--composer-tertiary-color);
+                    }
+
+                    &:nth-child(3n) {
+                        border-right: none;
+                    }
+
                     .card-icon {
                         font-size: 3rem;
                     }
