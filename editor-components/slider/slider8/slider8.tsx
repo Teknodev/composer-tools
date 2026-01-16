@@ -7,11 +7,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type SliderItem = {
-  media: any;
-  backgroundMedia: any;
+type Card = {
+  image: string;
+  backgroundImage: string;
   imageTitle: React.JSX.Element;
-  buttons: INPUTS.CastedButton[];
+  button: INPUTS.CastedButton;
 };
 
 class Slider8 extends BaseSlider {
@@ -35,28 +35,16 @@ class Slider8 extends BaseSlider {
               value: "The Petronas Twin Towers",
             },
             {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
-              },
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
             {
-              type: "media",
-              key: "backgroundMedia",
-              displayer: "Background Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
-              },
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
             },
             {
               type: "array",
@@ -81,28 +69,16 @@ class Slider8 extends BaseSlider {
               value: "Multi-Family Housing",
             },
             {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
-              },
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
             {
-              type: "media",
-              key: "backgroundMedia",
-              displayer: "Background Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
-              },
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
             },
             {
               type: "array",
@@ -127,28 +103,16 @@ class Slider8 extends BaseSlider {
               value: "The Lighthouse",
             },
             {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
-              },
+              type: "image",
+              key: "image",
+              displayer: "Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
             {
-              type: "media",
-              key: "backgroundMedia",
-              displayer: "Background Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
-              },
+              type: "image",
+              key: "backgroundImage",
+              displayer: "Background Image",
+              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
             },
             {
               type: "array",
@@ -165,17 +129,29 @@ class Slider8 extends BaseSlider {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "leftNavButton",
       displayer: "Left Button",
-      value: "FaArrowLeftLong",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowLeftLong",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "rightNavButton",
       displayer: "Right Button",
-      value: "FaArrowRightLong",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaArrowRightLong",
+      },
     });
 
     this.addProp({
@@ -222,12 +198,12 @@ class Slider8 extends BaseSlider {
     const linesContainer = this.getPropValue("lines-container");
     const animation = this.getPropValue("animation");
 
-    const leftNavButton = this.getPropValue("leftNavButton");
-    const rightNavButton = this.getPropValue("rightNavButton");
+    const leftNavButton = this.getPropValue("leftNavButton") as any;
+    const rightNavButton = this.getPropValue("rightNavButton") as any;
 
-    const cards = this.castToObject<SliderItem[]>("slider");
+    const cards = this.castToObject<Card[]>("slider");
     const activeSlide = this.getComponentState("activeSlide");
-    const anyImagesExist = cards[activeSlide]?.media || cards[activeSlide]?.backgroundMedia;
+    const anyImagesExist = cards[activeSlide]?.image || cards[activeSlide]?.backgroundImage;
     const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const alignmentValue = Base.getContentAlignment();
@@ -238,7 +214,6 @@ class Slider8 extends BaseSlider {
       duration: 1500,
       infinite: cards.length > 1,
       speed: 3000,
-      autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (_: number, newIndex: number) => {
@@ -248,10 +223,10 @@ class Slider8 extends BaseSlider {
       },
     };
     const shouldDisplayOverlay = (index: number): boolean => {
-      return !!cards[index].backgroundMedia && overlay;
+      return !!cards[index].backgroundImage && overlay;
     };
     const shouldDisplayForegroundOverlay = (index: number): boolean => {
-      return !!cards[index].media && foregroundOverlay;
+      return !!cards[index].image && foregroundOverlay;
     };
 
     return (
@@ -260,20 +235,20 @@ class Slider8 extends BaseSlider {
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
-                {cards.map((item: SliderItem, index: number) => {
+                {cards.map((item: any, index: number) => {
                   const buttons = item.buttons;
 
                   const titleExists = this.castToString(item.imageTitle);
-                  const render = titleExists || buttons?.length > 0 || item.media;
+                  const render = titleExists || buttons?.length > 0 || item.image;
                   if (!render) return null;
                   return (
                     <div className={this.decorateCSS("slider-inner-div")} key={`sld-8-${index}`}>
                       <div
                         className={`${this.decorateCSS("content")} ${anyImagesExist === "" ? this.decorateCSS("no-img") : ""}`}
+                        style={{
+                          backgroundImage: `url("${item.backgroundImage}")`,
+                        }}
                       >
-                        {item.backgroundMedia && (
-                          <Base.Media value={item.backgroundMedia} className={this.decorateCSS("background-media")} />
-                        )}
                         {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
                         <div
                           className={`
@@ -281,6 +256,8 @@ class Slider8 extends BaseSlider {
                              ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}
                           `}
                         >
+                          <div className={this.decorateCSS("content-div-before")}></div>
+                          <div className={this.decorateCSS("content-div-after")}></div>
                           {linesContainer && (
                             <div className={this.decorateCSS(anyImagesExist ? "lines-container" : "lines-container2")}>
                               <div className={this.decorateCSS("line-1")}></div>
@@ -313,7 +290,7 @@ class Slider8 extends BaseSlider {
                                     <ComposerLink key={`dw-7-btn-left ${buttonIndex}`} path={buttonItem.url}>
                                       <Base.Button
                                         buttonType={buttonItem.type}
-                                        className={`${item.backgroundMedia && item.media && this.decorateCSS("button")}
+                                        className={`${item.backgroundImage && item.image && this.decorateCSS("button")}
                                         ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}
                                       >
                                         {buttonItem.text}
@@ -328,32 +305,28 @@ class Slider8 extends BaseSlider {
                             <div className={this.decorateCSS(anyImagesExist ? "nav-buttons" : "nav-buttons2")}>
                               {leftNavButton && cards.length > 1 && (
                                 <Base.Button
-                                  type="Bare"
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
                                     this.getComponentState("slider-ref").current.slickPrev();
                                   }}
                                 >
-                                  <Base.Icon
-                                    name={leftNavButton}
-                                    propsIcon={{
-                                      className: `${this.decorateCSS("Icon")}`,
-                                    }}
+                                  <Base.Media
+                                    value={leftNavButton}
+                                    className={`${this.decorateCSS("nav-icon")} ${this.decorateCSS("nav-icon-media")}`}
                                   />
                                 </Base.Button>
                               )}
                               {rightNavButton && cards.length > 1 && (
                                 <Base.Button
+                                  type="Bare"
                                   className={this.decorateCSS("nav-button")}
                                   onClick={() => {
                                     this.getComponentState("slider-ref").current.slickNext();
                                   }}
                                 >
-                                  <Base.Icon
-                                    name={rightNavButton}
-                                    propsIcon={{
-                                      className: `${this.decorateCSS("Icon")}`,
-                                    }}
+                                  <Base.Media
+                                    value={rightNavButton}
+                                    className={`${this.decorateCSS("nav-icon")} ${this.decorateCSS("nav-icon-media")}`}
                                   />
                                 </Base.Button>
                               )}
@@ -362,12 +335,9 @@ class Slider8 extends BaseSlider {
                         </div>
                       </div>
 
-                      {item.media && (
-                        <div className={this.decorateCSS("image")}>
-                          <Base.Media value={item.media} className={this.decorateCSS("foreground-media")} />
-                          {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
-                        </div>
-                      )}
+                      <div className={this.decorateCSS("image")} style={{ backgroundImage: `url(${item.image})` }}>
+                        {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
+                      </div>
                     </div>
                   );
                 })}
@@ -378,7 +348,7 @@ class Slider8 extends BaseSlider {
             <div className={`${this.decorateCSS(anyImagesExist ? "dots" : "dots-2")}`}>
               {cards.map((_, index) => (
                 <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
-                  <Base.Button type="Bare" className={this.decorateCSS("dot-button")} />
+                  <Base.Button className={this.decorateCSS("dot-button")} />
                 </div>
               ))}
             </div>
