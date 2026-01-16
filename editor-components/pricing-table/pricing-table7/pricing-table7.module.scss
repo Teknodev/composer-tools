@@ -19,9 +19,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
+        font-size: 1.5rem;
 
         .text {
           color: var(--composer-tertiary-color);
+          width: fit-content;
 
           &.active {
             color: var(--composer-font-color-primary);
@@ -32,6 +34,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .yearlyText {
           color: var(--composer-tertiary-color);
+          width: fit-content;
 
           &.active {
             color: var(--composer-font-color-primary);
@@ -42,24 +45,27 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .icon {
           color: var(--composer-primary-color);
-          font-size: 1rem;
+          font-size: 2rem;
           right: 0;
           bottom: var(--composer-gap-xs);
           position: relative;
+          width: 25px;
+          height: 25px;
         }
 
         .planDiscount {
           right: 0;
-          top: calc(-1 * var(--composer-gap-md));
+          top: calc(-0.5 * var(--composer-gap-md));
           position: relative;
           color: var(--composer-tertiary-color);
           bottom: var(--composer-gap-xs);
+          font-size: 1rem;
         }
 
         .switch {
           position: relative;
           display: inline-block;
-          width: var(--composer-gap-xl);
+          min-width: var(--composer-gap-xl);
           height: var(--composer-gap-md);
         }
 
@@ -239,21 +245,22 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .features-element {
               display: flex;
               align-items: center;
-              gap: var(--composer-gap-xs);
+              gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
               .features-element-text{
                 content: "";
               }
+              
               .icon {
                 color: var(--composer-font-color-primary);
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
+                width: 25px;
+                height: 25px;
               }
             }
           }
         }
         .button, .button-active {
-          content: "";
+          border-radius: var(--composer-border-radius-xl);
         }
       }
     }

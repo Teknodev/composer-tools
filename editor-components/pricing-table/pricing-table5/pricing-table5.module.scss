@@ -55,11 +55,19 @@
         .buttons {
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
+
           gap: var(--composer-gap-sm);
 
-          .button-box {
+          .button-text {
+            content: "";
+          }
+          .button-icon {
+            font-size: 1.5rem;
+            height: 25px;
+            width: 25px;
             display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
@@ -178,15 +186,15 @@
             .icon-box-active {
               color: var(--composer-primary-color);
               background-color: var(--composer-html-background);
-              width: 20px;
-              height: 20px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
               border-radius: var(--composer-border-radius-xl);
 
               .icon {
                 font-size: 1rem;
+                width: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
             }
 
@@ -234,6 +242,27 @@
               transform: scale(1);
               .price {
                 font-size: 2rem;
+              }
+            }
+
+            .plan-buttons {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+
+              .plan-button {
+                .button-text {
+                  content: "";
+                }
+
+                .button-icon {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 20px;
+                  height: 20px;
+                  font-size: 1rem;
+                }
               }
             }
           }
