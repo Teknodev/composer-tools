@@ -44,12 +44,12 @@ class List7 extends BaseList {
     this.addProp({
       type: "array",
       key: "list-items",
-      displayer: "List Items",
+      displayer: "List Item",
       value: [
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "media",
@@ -88,7 +88,7 @@ class List7 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "media",
@@ -127,7 +127,7 @@ class List7 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "media",
@@ -222,7 +222,7 @@ class List7 extends BaseList {
                 const hasTitle = this.castToString(item.title);
                 const hasText = this.castToString(item.text);
                 const showIndex = !!this.getPropValue("showIndex");
-                const itemSubtitleExist = !!String(this.castToString(item.itemSubtitle) || "").trim();
+                const itemSubtitleExist = this.castToString(item.itemSubtitle);
                 const iconValue = item.icon;
                 const iconExist = !!(
                   iconValue &&
@@ -238,6 +238,8 @@ class List7 extends BaseList {
                       className={this.decorateCSS("item-content")}
                       data-animation={this.getPropValue("hoverAnimation")}
                     >
+                      <div className={this.decorateCSS("border-layer-1")}></div>
+                      <div className={this.decorateCSS("border-layer-2")}></div>
                       {showIndex && (
                         <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
                       )}

@@ -23,18 +23,7 @@ as *;
         }
       }
 
-      &.align-left {
-        text-align: left;
-        align-items: flex-start;
-        margin-bottom: var(--composer-gap-lg);
 
-        .subtitle,
-        .sectionTitle {
-          text-align: left;
-          margin-left: 0;
-          margin-right: 0;
-        }
-      }
 
       .description {
         margin-top: var(--composer-gap-sm);
@@ -167,10 +156,7 @@ as *;
             align-items: center;
             justify-content: flex-start;
 
-            &.align-left {
-              justify-content: flex-start;
-              text-align: left;
-            }
+
 
             &.align-center {
               justify-content: center;
@@ -187,17 +173,6 @@ as *;
               display: flex;
               align-items: center;
               justify-content: center;
-
-              .icon-container {
-                content: "";
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 2.5rem;
-                height: 2.5rem;
-                min-width: 2.5rem;
-                min-height: 2.5rem;
-              }
             }
 
             .icon {
@@ -209,12 +184,7 @@ as *;
               height: 2.5rem;
               font-size: 2.5rem;
               color: var(--composer-primary-color);
-
-              .media-el {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-              }
+              object-fit: contain;
             }
 
             .title {
@@ -272,13 +242,9 @@ as *;
       margin-top: var(--composer-gap-md);
 
       .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .button-text {
-        content: "";
+        .button-text {
+          content: "";
+        }
       }
     }
   }
@@ -338,17 +304,11 @@ as *;
             gap: var(--composer-gap-md);
 
             .icon,
-            .icon-wrapper,
-            .icon-container {
+            .icon-wrapper {
               flex: 0 0 auto;
             }
 
-            .icon-container {
-              width: 2.5rem;
-              height: 2.5rem;
-              min-width: 2.5rem;
-              min-height: 2.5rem;
-            }
+
 
             .index {
               font-size: 1.5rem !important;

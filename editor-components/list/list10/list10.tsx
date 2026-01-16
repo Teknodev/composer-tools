@@ -16,14 +16,14 @@ type Card = {
 class List10 extends BaseList {
     constructor(props?: any) {
         super(props, styles);
-       
+
         this.addProp({
             type: "string",
             key: "section-subtitle",
             displayer: "Subtitle",
             value: "",
         });
-       
+
         this.addProp({
             type: "string",
             key: "title",
@@ -266,7 +266,7 @@ class List10 extends BaseList {
                                     >
                                         {badgeExist && (
                                             <Base.P className={this.decorateCSS("badge")}>
-                                                {card.badge}
+                                                <span className={this.decorateCSS("badge-text")}>{card.badge}</span>
                                             </Base.P>
                                         )}
                                         <div className={this.decorateCSS("image-container")}>
@@ -298,11 +298,11 @@ class List10 extends BaseList {
                     </Base.ListGrid>
                     {buttonText && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                            <ComposerLink path={button?.url}>
                                 <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                                <ComposerLink path={button?.url}>
                                     <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
-                                </Base.Button>
-                            </ComposerLink>
+                                </ComposerLink>
+                            </Base.Button>
                         </div>
                     )}
                 </Base.MaxContent>

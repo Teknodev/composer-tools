@@ -35,19 +35,19 @@ class List8 extends BaseList {
     });
     this.addProp({
       type: "string",
-      key: "titledesc",
+      key: "description",
       displayer: "Description",
       value: "Aliquam sagittis consectetur ligulan aliquam turpis cursus at. In aliquet auguenec libero ultricies velit pellentesque.",
     });
     this.addProp({
       type: "array",
       key: "list-items",
-      displayer: "List Items",
+      displayer: "List Item",
       value: [
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -80,7 +80,7 @@ class List8 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -113,7 +113,7 @@ class List8 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -167,18 +167,17 @@ class List8 extends BaseList {
     const listItems = this.castToObject<listItem[]>("list-items");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
-    const titledesc = this.getPropValue("titledesc");
     const description = this.getPropValue("description");
-    const descriptionContent = this.castToString(description) ? description : titledesc;
+    const descriptionContent = description;
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const alignment = Base.getContentAlignment();
-    const isLeftAlignment = alignment === "left";
+    const isCenterAlignment = alignment === "center";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section")}>
-            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isLeftAlignment ? this.decorateCSS("align-left") : this.decorateCSS("align-center")}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
@@ -223,14 +222,10 @@ class List8 extends BaseList {
                         </div>
                       )}
                       {item.icon && (
-                        <div className={this.decorateCSS("icon-wrapper")}>
-                          <div className={this.decorateCSS("icon-container")}>
-                            <Base.Media
-                              value={item.icon}
-                              className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
-                            />
-                          </div>
-                        </div>
+                        <Base.Media
+                          value={item.icon}
+                          className={this.decorateCSS("icon")}
+                        />
                       )}
                       {(this.castToString(item.title) || this.castToString(item.text)) && (
                         <div className={this.decorateCSS("item-content")}>
@@ -253,15 +248,13 @@ class List8 extends BaseList {
             )}
             {this.castToString(buttonType.text) && (
               <div className={this.decorateCSS("button-wrapper")}>
-                <div className={this.decorateCSS("button-inner")}>
-                  <ComposerLink path={buttonType.url}>
-                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {buttonType.text}
-                      </Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
+                <ComposerLink path={buttonType.url}>
+                  <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
+                    <Base.P className={this.decorateCSS("button-text")}>
+                      {buttonType.text}
+                    </Base.P>
+                  </Base.Button>
+                </ComposerLink>
               </div>
             )}
           </div>

@@ -29,160 +29,154 @@ as *;
       .cards-box {
         align-items: stretch;
 
-        .card-link {
-          display: flex !important;
-          height: 100% !important;
+        .card {
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
           width: 100%;
+          border-radius: var(--composer-border-radius-md);
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          min-height: 350px;
+          transition: all var(--composer-transition-duration-normal) ease-in-out;
 
-          .card {
-            flex: 1 1 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            width: 100%;
-            border-radius: var(--composer-border-radius-md);
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            min-height: 350px;
-            transition: all var(--composer-transition-duration-normal) ease-in-out;
-
-            &[data-animation~="animate5"] {
-              &:hover {
-                box-shadow: var(--composer-box-shadow-lg);
-              }
+          &[data-animation~="animate5"] {
+            &:hover {
+              box-shadow: var(--composer-box-shadow-lg);
             }
+          }
 
-            .image-container {
+          .image-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: var(--composer-border-radius-sm);
+            overflow: hidden;
+            z-index: 1;
+
+            .card-image {
               width: 100%;
               height: 100%;
+              object-fit: cover;
+              transition: all var(--composer-transition-duration-slow) ease;
+              border-radius: inherit;
+            }
+
+            .overlay {
               position: absolute;
               top: 0;
               left: 0;
-              border-radius: var(--composer-border-radius-sm);
-              overflow: hidden;
-              z-index: 1;
-
-              .card-image {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: all var(--composer-transition-duration-slow) ease;
-                border-radius: inherit;
-              }
-
-              .overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: var(--composer-overlay-color);
-                border-radius: inherit;
-              }
-            }
-
-            .overlay-gradient {
-              position: absolute;
               width: 100%;
               height: 100%;
-              top: 0;
-              transition: all var(--composer-transition-duration-slow) ease;
-              background: linear-gradient(rgba(var(--composer-primary-color-rgb), 0.4), var(--composer-overlay-color));
-              z-index: 2;
-              opacity: 0;
+              background-color: var(--composer-overlay-color);
+              border-radius: inherit;
+            }
+          }
+
+          .overlay-gradient {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            transition: all var(--composer-transition-duration-slow) ease;
+            background: linear-gradient(rgba(var(--composer-primary-color-rgb), 0.4), var(--composer-overlay-color));
+            z-index: 2;
+            opacity: 0;
+            border-radius: var(--composer-border-radius-md);
+          }
+
+          &[data-animation~="animate1"]:hover {
+            .image-container .card-image {
+              transform: scale(1.1);
+            }
+          }
+
+          &[data-animation~="animate2"]:hover {
+            transform: translateY(calc(var(--composer-gap-sm) * -1));
+          }
+
+          &[data-animation~="animate3"]:hover {
+            .overlay-gradient {
+              opacity: 1;
+            }
+
+            .card-content .category .count-badge {
+              opacity: 1;
+              background: var(--composer-primary-color);
+            }
+          }
+
+          .card-content {
+            position: relative;
+            padding: var(--composer-gap-md);
+            display: flex;
+            color: white;
+            z-index: 4;
+            max-width: 100%;
+
+            .stick {
+              width: var(--composer-gap-xs);
+              background: var(--composer-primary-color);
+              margin-right: var(--composer-gap-md);
               border-radius: var(--composer-border-radius-md);
             }
 
-            &[data-animation~="animate1"]:hover {
-              .image-container .card-image {
-                transform: scale(1.1);
+            .category {
+              display: flex;
+              flex-direction: column;
+              align-items: start;
+
+              .category-name {
+                text-align: left;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                word-break: break-word;
+                hyphens: auto;
+              }
+
+              .count-badge {
+                display: flex;
+                gap: var(--composer-gap-xs);
+                margin: var(--composer-gap-xs) 0;
+                background: rgba(var(--composer-primary-color-rgb), 0.5);
+                padding: var(--composer-gap-xs) var(--composer-gap-xs);
+                border-radius: var(--composer-border-radius-sm);
+                transition: all var(--composer-transition-duration-normal) ease;
+
+                .count-value,
+                .count-label {
+                  color: var(--composer-font-color-secondary);
+                }
               }
             }
+          }
 
-            &[data-animation~="animate2"]:hover {
-              transform: translateY(calc(var(--composer-gap-sm) * -1));
+          &.card-no-image {
+            .image-container {
+              display: none;
             }
 
-            &[data-animation~="animate3"]:hover {
-              .overlay2 {
-                opacity: 1;
-              }
-
-              .card-content .category .count-badge {
-                opacity: 1;
-                background: var(--composer-primary-color);
-              }
+            .overlay-gradient {
+              opacity: 0;
             }
 
             .card-content {
-              position: relative;
-              padding: var(--composer-gap-md);
-              display: flex;
-              color: white;
-              z-index: 4;
-              max-width: 100%;
-
-              .stick {
-                width: var(--composer-gap-xs);
-                background: var(--composer-primary-color);
-                margin-right: var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-md);
-              }
+              color: var(--composer-font-color-primary);
 
               .category {
-                display: flex;
-                flex-direction: column;
-                align-items: start;
-
                 .category-name {
-                  text-align: left;
-                  overflow-wrap: break-word;
-                  word-wrap: break-word;
-                  word-break: break-word;
-                  hyphens: auto;
+                  color: var(--composer-font-color-primary);
                 }
 
                 .count-badge {
-                  display: flex;
-                  gap: var(--composer-gap-xs);
-                  margin: var(--composer-gap-xs) 0;
-                  background: rgba(var(--composer-primary-color-rgb), 0.5);
-                  padding: var(--composer-gap-xs) var(--composer-gap-xs);
-                  border-radius: var(--composer-border-radius-sm);
-                  transition: all var(--composer-transition-duration-normal) ease;
 
                   .count-value,
                   .count-label {
-                    color: var(--composer-font-color-secondary);
-                  }
-                }
-              }
-            }
-
-            &.card-no-image {
-              .image-container {
-                display: none;
-              }
-
-              .overlay-gradient {
-                opacity: 0;
-              }
-
-              .card-content {
-                color: var(--composer-font-color-primary);
-
-                .category {
-                  .category-name {
                     color: var(--composer-font-color-primary);
-                  }
-
-                  .count-badge {
-
-                    .count-value,
-                    .count-label {
-                      color: var(--composer-font-color-primary);
-                    }
                   }
                 }
               }

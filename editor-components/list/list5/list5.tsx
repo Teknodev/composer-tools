@@ -59,12 +59,12 @@ class List5 extends BaseList {
     this.addProp({
       type: "array",
       key: "list-items",
-      displayer: "List Items",
+      displayer: "List Item",
       value: [
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -113,7 +113,7 @@ class List5 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -162,7 +162,7 @@ class List5 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -211,7 +211,7 @@ class List5 extends BaseList {
         {
           type: "object",
           key: "list-item",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -301,7 +301,7 @@ class List5 extends BaseList {
           {hasBackgroundMedia && (
             <Base.Media
               value={backgroundMedia as TypeMediaInputValue}
-              className={`${this.decorateCSS("background-media")} ${this.decorateCSS("media-el")}`}
+              className={this.decorateCSS("background-media")}
             />
           )}
           {imageOverlay && hasBackgroundMedia && (
@@ -349,9 +349,10 @@ class List5 extends BaseList {
                                       <div className={this.decorateCSS("icon-wrapper")}>
                                         <Base.Media
                                           value={listItem.uppericon}
-                                          className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                                          className={this.decorateCSS("icon")}
                                         />
                                       </div>
+                                      <div className={this.decorateCSS("icon-badge-border")}></div>
                                     </div>
                                   </div>
                                 )}
@@ -380,7 +381,7 @@ class List5 extends BaseList {
                             {listItem.lowericon && (
                               <Base.Media
                                 value={listItem.lowericon}
-                                className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("media-el")}`}
+                                className={this.decorateCSS("arrow-icon")}
                               />
                             )}
                           </ComposerLink>

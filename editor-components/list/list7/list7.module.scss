@@ -4,6 +4,7 @@ as *;
 .container {
   .max-content {
     .header-section {
+
       .subtitle,
       .title {
         content: "";
@@ -26,17 +27,16 @@ as *;
           position: relative;
           user-select: text;
 
-          &::before,
-          &::after {
+          .border-layer-1,
+          .border-layer-2 {
             pointer-events: none;
           }
 
           &[data-animation="animate1"]:hover {
             border-color: transparent;
 
-            &::before,
-            &::after {
-              content: "";
+            .border-layer-1,
+            .border-layer-2 {
               position: absolute;
               inset: calc(-1 * var(--composer-border-width-sm));
               border-radius: var(--composer-border-radius-sm);
@@ -64,17 +64,16 @@ as *;
           &[data-animation="animate3"]:hover {
             border-color: transparent;
 
-            &::before {
-              content: "";
+            .border-layer-1 {
               position: absolute;
               inset: calc(-1 * var(--composer-border-width-sm));
               border-radius: var(--composer-border-radius-sm);
               padding: var(--composer-border-width-sm);
               background: conic-gradient(from var(--angle),
-                  rgba(var(--composer-primary-color-rgb), 1) 0deg 90deg,
-                  rgba(var(--composer-primary-color-rgb), 0.3) 90deg 180deg,
-                  rgba(var(--composer-primary-color-rgb), 1) 180deg 270deg,
-                  rgba(var(--composer-primary-color-rgb), 0.3) 270deg 360deg);
+                  var(--composer-primary-color) 0deg 90deg,
+                  color-mix(in srgb, var(--composer-primary-color), transparent 70%) 90deg 180deg,
+                  var(--composer-primary-color) 180deg 270deg,
+                  color-mix(in srgb, var(--composer-primary-color), transparent 70%) 270deg 360deg);
               animation: rotate 3s linear infinite;
               -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
                 linear-gradient(var(--color-white) 0 0);
@@ -130,13 +129,9 @@ as *;
       justify-content: center;
 
       .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .button-text {
-        content: "";
+        .button-text {
+          content: "";
+        }
       }
     }
   }

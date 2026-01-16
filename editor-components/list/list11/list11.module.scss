@@ -1,28 +1,32 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
+
     .wrapper {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
+
       .vertical-content {
         .card-titles {
           .subtitle {
             content: "";
           }
         }
-        
+
         .title-container {
           display: flex;
           flex-direction: column;
+
           .title {
             margin: 0;
           }
         }
+
         .description-container {
           .section-description {
             content: "";
@@ -35,23 +39,24 @@
           display: flex;
           flex-direction: column;
           align-items: stretch;
-          background-color: color-mix(
-            in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 5%
-          );
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-md);
           transition: all var(--composer-transition-duration-slow) ease-in-out;
+
           .card-items {
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
+
             .card-image-container {
               transition: transform 0.5s ease-in-out;
               border-radius: var(--composer-border-radius-sm);
               overflow: hidden;
               position: relative;
+
               .card-image {
                 width: 100%;
                 height: 100%;
@@ -60,6 +65,7 @@
                 transition: transform 0.5s ease-in-out;
                 border-radius: inherit;
               }
+
               .overlay {
                 position: absolute;
                 top: 0;
@@ -71,49 +77,51 @@
                 border-radius: inherit;
               }
             }
-            .card-content{
+
+            .card-content {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
               align-items: flex-start;
               text-align: left;
-              
+
               .card-title {
-              color: var(--composer-font-color-primary);
-              text-align: left;
-            }
-              .card-description {
-              color: var(--composer-font-color-primary);
-              text-align: left;
-            }
-            .navigate-container {
-              display: flex;
-              align-items: center;
-              color: var(--composer-primary-color);
-              overflow: hidden;
-              width: 100%;
-              transition: transform var(--composer-transition-duration-normal) ease-in-out, opacity var(--composer-transition-duration-normal) ease-in-out;
-              .navigate-to {
-                margin-right: calc(var(--composer-gap-xs) / 2);
-                white-space: nowrap;
+                color: var(--composer-font-color-primary);
+                text-align: left;
               }
-              .navigate-icon {
-                min-width: var(--composer-gap-sm);
-                min-height: var(--composer-gap-sm);
-                width: var(--composer-gap-sm);
-                height: var(--composer-gap-sm);
-                display: inline-flex;
+
+              .card-description {
+                color: var(--composer-font-color-primary);
+                text-align: left;
+              }
+
+              .navigate-container {
+                display: flex;
                 align-items: center;
-                justify-content: center;
-                .media-el {
-                  width: 100%;
-                  height: 100%;
+                color: var(--composer-primary-color);
+                overflow: hidden;
+                width: 100%;
+                transition: transform var(--composer-transition-duration-normal) ease-in-out, opacity var(--composer-transition-duration-normal) ease-in-out;
+
+                .navigate-to {
+                  margin-right: calc(var(--composer-gap-xs) / 2);
+                  white-space: nowrap;
+                }
+
+                .navigate-icon {
+                  min-width: var(--composer-gap-sm);
+                  min-height: var(--composer-gap-sm);
+                  width: var(--composer-gap-sm);
+                  height: var(--composer-gap-sm);
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
                   object-fit: contain;
                 }
               }
             }
-            }
           }
+
           &[data-animation~="animate1"]:hover {
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
           }
@@ -135,7 +143,8 @@
           &[data-animation~="animate3"]:hover {
             .card-image-container {
               overflow: hidden;
-              .card-image{
+
+              .card-image {
                 transform: scale(1.05);
               }
             }
@@ -146,17 +155,16 @@
           }
         }
       }
+
       .button-wrapper {
         margin-top: var(--composer-gap-md);
         display: flex;
         justify-content: center;
+
         .button {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .button-text {
-          content: "";
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -168,10 +176,12 @@
     transform: translateX(0%);
     opacity: 1;
   }
+
   90% {
     transform: translateX(70%);
     opacity: 0;
   }
+
   100% {
     transform: translateX(0%);
     opacity: 0;
@@ -182,15 +192,19 @@
   0% {
     transform: translateX(0);
   }
+
   25% {
     transform: translateX(var(--composer-gap-xs));
   }
+
   50% {
     transform: translateX(calc(-1 * var(--composer-gap-xs)));
   }
+
   75% {
     transform: translateX(var(--composer-gap-xs));
   }
+
   100% {
     transform: translateX(0);
   }

@@ -37,7 +37,7 @@ as *;
       .card-number {
         text-align: left !important;
         left: var(--composer-gap-xl);
-        bottom: calc(var(--composer-gap-xl) * (-0.8));
+        bottom: -40px;
         transform: scale(1.15);
         transform-origin: left bottom;
       }
@@ -64,7 +64,9 @@ as *;
             margin-right: auto;
           }
 
-          .subtitle , .title , .description {
+          .subtitle,
+          .title,
+          .description {
             content: "";
           }
         }
@@ -272,7 +274,7 @@ as *;
           -webkit-text-stroke-width: var(--composer-border-width-xs);
           color: var(--composer-primary-color);
           -webkit-text-fill-color: transparent;
-          bottom: calc(var(--composer-gap-xl) * (-0.8));
+          bottom: -40px;
           left: var(--composer-gap-xl);
           font-size: 6.5rem;
           line-height: 1;
@@ -330,7 +332,7 @@ as *;
 
           .card-number {
             left: var(--composer-gap-lg);
-            bottom: calc(var(--composer-gap-lg) * (-1.3));
+            bottom: -50px;
             font-size: 12rem;
             transform: scale(2.5);
             transform-origin: left bottom;
@@ -348,10 +350,6 @@ as *;
     .max-content {
       .cards-grid {
         gap: 0;
-
-        &.alignment-left {
-          text-align: left;
-        }
 
         &.alignment-center {
           text-align: center;
@@ -404,7 +402,7 @@ as *;
           }
 
           .card-number {
-            bottom: calc(var(--composer-gap-lg) * -1.2);
+            bottom: -48px;
             left: var(--composer-gap-sm);
             font-size: 6rem;
             transform: scale(2.5);
@@ -419,7 +417,7 @@ as *;
         .card {
           .card-number {
             left: var(--composer-gap-md) !important;
-            bottom: calc(var(--composer-gap-lg) * -1.2);
+            bottom: -50px;
             transform: scale(2.7);
             transform-origin: left bottom;
           }

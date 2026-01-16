@@ -298,6 +298,7 @@ class List9 extends BaseList {
                                     {imageOverlay && (
                                         <div className={this.decorateCSS("overlay")} />
                                     )}
+                                    <div className={this.decorateCSS("gradient-overlay")} />
                                 </div>
                                 <Base.VerticalContent
                                     className={this.decorateCSS("card-content")}

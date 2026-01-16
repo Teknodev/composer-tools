@@ -36,7 +36,7 @@ class List11 extends BaseList {
         });
         this.addProp({
             type: "string",
-            key: "subTitle",
+            key: "sectionDescription",
             displayer: "Description",
             value: "We focus on helping you to make useful content more accessible with an utlimate goal for a good sharing profit as a content creator."
         });
@@ -44,12 +44,12 @@ class List11 extends BaseList {
         this.addProp({
             type: "array",
             key: "listItems",
-            displayer: "List Items",
+            displayer: "List Item",
             value: [
                 {
                     type: "object",
                     key: "listItem",
-                    displayer: "List Items",
+                    displayer: "List Item",
                     value: [
                         {
                             type: "string",
@@ -104,7 +104,7 @@ class List11 extends BaseList {
                 {
                     type: "object",
                     key: "listItem",
-                    displayer: "List Items",
+                    displayer: "List Item",
                     value: [
                         {
                             type: "string",
@@ -159,7 +159,7 @@ class List11 extends BaseList {
                 {
                     type: "object",
                     key: "listItem",
-                    displayer: "List Items",
+                    displayer: "List Item",
                     value: [
                         {
                             type: "string",
@@ -238,7 +238,7 @@ class List11 extends BaseList {
         const listItems = this.castToObject<ListItems[]>("listItems");
         const title = this.getPropValue("title");
         const subtitle = this.getPropValue("subtitle");
-        const description = this.getPropValue("subTitle");
+        const description = this.getPropValue("sectionDescription");
         const imageOverlay = this.getPropValue("overlay");
         const button = this.castToObject<any>("button");
         const buttonText = this.castToString(button?.text);
@@ -303,7 +303,7 @@ class List11 extends BaseList {
                                                         {item.icon && (
                                                             <Base.Media
                                                                 value={item.icon}
-                                                                className={`${this.decorateCSS("navigate-icon")} ${this.decorateCSS("media-el")}`}
+                                                                className={this.decorateCSS("navigate-icon")}
                                                             />
                                                         )}
                                                     </div>
@@ -316,11 +316,11 @@ class List11 extends BaseList {
                         </Base.ListGrid>
                         {buttonText && (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <ComposerLink path={button?.url}>
                                     <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                                        <ComposerLink path={button?.url}>
                                         <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
+                                        </ComposerLink>
                                     </Base.Button>
-                                </ComposerLink>
                             </div>
                         )}
                     </div>

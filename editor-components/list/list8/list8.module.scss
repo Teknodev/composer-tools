@@ -1,53 +1,59 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
+
 .container {
   background-color: var(--composer-html-background);
+
   .max-content {
     .section {
       display: flex;
       flex-direction: column;
-      
+
       .header-section {
         .subtitle {
           content: "";
         }
+
         .header-title {
           content: "";
         }
+
         &.align-center {
           text-align: center;
           display: flex;
           flex-direction: column;
           align-items: center;
-          .description-wrapper { text-align: center; }
-          .subtitle, .header-title { text-align: center; }
+
+          .description-wrapper {
+            text-align: center;
+          }
+
+          .subtitle,
+          .header-title {
+            text-align: center;
+          }
         }
-        &.align-left {
-          text-align: left;
-          .description-wrapper { text-align: left; }
-          .subtitle, .header-title { text-align: left; }
-        }
+
       }
-      
+
       .description-wrapper {
         .description {
           content: "";
         }
       }
 
-      .header-section + .items-wrapper,
-      .description-wrapper + .items-wrapper {
+      .header-section+.items-wrapper,
+      .description-wrapper+.items-wrapper {
         margin-top: var(--composer-gap-xl);
       }
 
       .items-wrapper {
         gap: var(--composer-gap-xl);
+
         .list-item {
-          background-color: color-mix(
-            in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 5%
-          );
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-sm);
           position: relative;
           padding: var(--composer-gap-xl);
@@ -90,22 +96,18 @@
             width: calc(var(--composer-font-size-xl) * 3);
             height: calc(var(--composer-font-size-xl) * 3);
             border-radius: var(--composer-border-radius-full);
-            border: var(--composer-border-width-xs) solid
-              color-mix(
-                in srgb,
+            border: var(--composer-border-width-xs) solid color-mix(in srgb,
                 var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              );
-            background-color: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 5%
-            );
+                var(--composer-font-color-primary) 5%);
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%);
             box-shadow: var(--box-shadow-active);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+
             .index {
               content: "";
               color: var(--composer-font-color-primary);
@@ -114,44 +116,32 @@
               font-size: 2.5rem;
             }
           }
-          .icon-wrapper {
+
+          .icon {
             content: "";
-            display: flex;
+            font-size: 4rem;
+            width: 4rem;
+            height: 4rem;
+            color: var(--composer-primary-color);
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            .icon-container {
-              content: "";
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            .icon {
-              content: "";
-              font-size: 4rem;
-              width: 4rem;
-              height: 4rem;
-              color: var(--composer-primary-color);
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
-              .media-el {
-                width: 100%;
-                height: 100%;
-                object-fit: contain;
-              }
-            }
+            object-fit: contain;
           }
+
           .item-content {
             content: "";
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
             text-align: center;
+
             .item-title {
               content: "";
               text-align: center;
               color: var(--composer-font-color-primary);
             }
+
             .item-text {
               content: "";
               text-align: center;
@@ -160,17 +150,18 @@
           }
         }
       }
+
       .button-wrapper {
         content: "";
         width: 100%;
         margin-top: var(--composer-gap-md);
-        .button-inner {
-          width: 100% !important;
-          display: flex;
-          justify-content: center;
-        }
+
+        display: flex;
+        justify-content: center;
+
         .button {
           content: "";
+
           .button-text {
             content: "";
           }
@@ -188,10 +179,12 @@
           .number-badge {
             width: 60px !important;
             height: 60px !important;
+
             .index {
               font-size: 2rem !important;
             }
           }
+
           .icon {
             font-size: 3rem !important;
             width: 3rem !important;
@@ -211,10 +204,12 @@
           .number-badge {
             width: 50px !important;
             height: 50px !important;
+
             .index {
               font-size: 2rem !important;
             }
           }
+
           .icon {
             font-size: 2rem !important;
             width: 2rem !important;
@@ -230,18 +225,23 @@
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
   }
+
   20% {
     transform: translate(-50%, -50%) rotate(15deg);
   }
+
   40% {
     transform: translate(-50%, -50%) rotate(-10deg);
   }
+
   60% {
     transform: translate(-50%, -50%) rotate(5deg);
   }
+
   80% {
     transform: translate(-50%, -50%) rotate(-5deg);
   }
+
   100% {
     transform: translate(-50%, -50%) rotate(0deg);
   }

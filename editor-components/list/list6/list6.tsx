@@ -65,12 +65,12 @@ class List6 extends BaseList {
     this.addProp({
       type: "array",
       key: "listItems",
-      displayer: "List Items",
+      displayer: "List Item",
       value: [
         {
           type: "object",
           key: "listItem",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -108,7 +108,7 @@ class List6 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -146,7 +146,7 @@ class List6 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -184,7 +184,7 @@ class List6 extends BaseList {
         {
           type: "object",
           key: "listItem",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "string",
@@ -237,7 +237,7 @@ class List6 extends BaseList {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : this.decorateCSS("align-left")}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle
                   className={`${this.decorateCSS("subtitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
@@ -279,12 +279,10 @@ class List6 extends BaseList {
                       <div className={this.decorateCSS("item-header")}>
                         {listItem.itemIcon && (
                           <div className={this.decorateCSS("icon-wrapper")}>
-                            <div className={this.decorateCSS("icon-container")}>
-                              <Base.Media
-                                value={listItem.itemIcon}
-                                className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
-                              />
-                            </div>
+                            <Base.Media
+                              value={listItem.itemIcon}
+                              className={this.decorateCSS("icon")}
+                            />
                           </div>
                         )}
                         {this.castToString(listItem.itemTitle) && (

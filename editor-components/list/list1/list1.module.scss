@@ -191,7 +191,7 @@ as *;
 
       .button {
         position: relative;
-        
+
         .button-before {
           position: absolute;
           bottom: 0;
@@ -314,12 +314,14 @@ as *;
   .container {
     .carousel {
       padding: 0 !important;
+
       .dots {
         .dot-button {
           width: 10px;
           height: 10px;
         }
       }
+
       .card {
         min-height: 0;
         padding-top: var(--composer-gap-md);
@@ -331,6 +333,10 @@ as *;
 
         .image-container {
           width: 170px !important;
+
+          &.no-round .image {
+            font-size: 12rem;
+          }
         }
 
       }
@@ -369,5 +375,9 @@ as *;
 
   .image-container {
     width: 150px !important;
+
+    &.no-round .image {
+      font-size: 10rem;
+    }
   }
 }

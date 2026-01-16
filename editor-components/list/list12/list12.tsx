@@ -49,7 +49,7 @@ class List12 extends BaseList {
     this.addProp({
       type: "object",
       key: "box1",
-      displayer: "Box 1",
+      displayer: "Box",
       value: [
         {
           type: "media",
@@ -76,7 +76,7 @@ class List12 extends BaseList {
     this.addProp({
       type: "object",
       key: "box2",
-      displayer: "Box 2",
+      displayer: "Box",
       value: [
         {
           type: "media",
@@ -103,7 +103,7 @@ class List12 extends BaseList {
     this.addProp({
       type: "object",
       key: "box3",
-      displayer: "Box 3",
+      displayer: "Box",
       value: [
         {
           type: "media",

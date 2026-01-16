@@ -59,12 +59,12 @@ class List2 extends BaseList {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "List Items",
+      displayer: "List Item",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "page",
@@ -107,7 +107,7 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "page",
@@ -150,7 +150,7 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "page",
@@ -193,7 +193,7 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "page",
@@ -236,7 +236,7 @@ class List2 extends BaseList {
         {
           type: "object",
           key: "card",
-          displayer: "List Items",
+          displayer: "List Item",
           value: [
             {
               type: "page",
@@ -403,7 +403,6 @@ class List2 extends BaseList {
                   }
                   return (
                     <ComposerLink key={index} path={item.url}>
-                       <div className={this.decorateCSS("card-link")}>
                       <div
                         className={cardClasses.join(" ")}
                         data-animation={this.getPropValue("hoverAnimation").join(" ")}
@@ -441,7 +440,6 @@ class List2 extends BaseList {
                             )}
                           </div>
                         </div>
-                      </div>
                       </div>
                     </ComposerLink>
                   );

@@ -37,7 +37,6 @@ as *;
     display: flex;
     justify-content: center;
     width: 100%;
-    max-width: var(--composer-content-width);
     margin: 0 auto;
     box-sizing: border-box;
     overflow: visible;
@@ -46,7 +45,7 @@ as *;
       display: flex;
       justify-content: space-between;
       align-items: stretch;
-      gap: calc(var(--composer-gap-xl) * 1.25);
+      gap: var(--composer-gap-xl);
       width: 100%;
       max-width: 100%;
       flex-wrap: wrap;
@@ -203,15 +202,10 @@ as *;
         .text1,
         .text2,
         .text3 {
-          content: "";
           color: var(--composer-font-color-primary);
-          word-wrap: break-word;
-          overflow-wrap: break-word;
-          word-break: break-word;
           max-width: 100%;
           width: 100%;
           box-sizing: border-box;
-          overflow: hidden;
           text-align: center;
 
           &.with-bg {
@@ -278,7 +272,7 @@ as *;
 
       .boxes {
         max-width: 100%;
-        gap: calc(var(--composer-gap-md) * 1.25);
+        gap: var(--composer-gap-md);
 
         .leftBox,
         .rightBox,
@@ -291,23 +285,15 @@ as *;
           .text1,
           .text2,
           .text3 {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
             max-width: 100%;
             width: 100%;
-            overflow: visible;
           }
         }
 
         .section-wrapper {
           .title {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
             max-width: 100%;
             width: 100%;
-            overflow: visible;
           }
         }
       }
@@ -324,7 +310,7 @@ as *;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: calc(var(--composer-gap-md) * 1.25);
+        gap: var(--composer-gap-md);
         width: 100%;
         max-width: 100%;
 
@@ -356,13 +342,8 @@ as *;
           .text1,
           .text2,
           .text3 {
-            content: "";
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
             width: 100%;
             max-width: 100%;
-            overflow: visible;
             text-align: center !important;
 
             &.with-bg {
@@ -377,12 +358,8 @@ as *;
           text-align: center !important;
 
           .title {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            word-break: break-word;
             width: 100%;
             max-width: 100%;
-            overflow: visible;
             text-align: center !important;
 
             &.with-bg {
