@@ -42,6 +42,20 @@ class PricingTable1 extends BasePricingTable {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "cardListLines",
+      displayer: "Show card list dividers",
+      value: true,
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item count in a row",
+      value: 3,
+      max: 5,
+    });
+
+    this.addProp({
       type: "array",
       key: "pricingTableItem",
       displayer: "Pricing Table Item",
@@ -74,7 +88,7 @@ class PricingTable1 extends BasePricingTable {
               type: "string",
               key: "cardsubtitle",
               displayer: "Pricing Subtitle",
-              value: "Starter",
+              value: "STARTER",
             },
             {
               type: "string",
@@ -720,11 +734,13 @@ class PricingTable1 extends BasePricingTable {
             {(subtitleExist || titleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("top-titles")}>
                 {subtitleExist && (
-                  <Base.SectionSubTitle
-                    className={this.decorateCSS("subtitle")}
-                  >
-                    {subtitle}
-                  </Base.SectionSubTitle>
+                  <div className={this.decorateCSS("subtitle-wrapper")}>
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("subtitle")}
+                    >
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  </div>
                 )}
                 {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -740,12 +756,21 @@ class PricingTable1 extends BasePricingTable {
                 )}
               </Base.VerticalContent>
             )}
-            <div className={this.decorateCSS("items")}>
+            <Base.ListGrid
+              gridCount={{
+                pc: this.getPropValue("itemCount"),
+                tablet: 2,
+                phone: 1,
+              }}
+              className={this.decorateCSS("items")}
+            >
               {this.castToObject<Pricing[]>("pricingTableItem").map(
                 (table: Pricing, index: number) => {
                   const popularText = this.castToString(
                     table.popular_settings.text
                   );
+                  const popularBoxExist = popularText && table.popular_settings.is_popular;
+                  
                   const cardSubtitleExist = this.castToString(
                     table.cardsubtitle
                   );
@@ -761,6 +786,24 @@ class PricingTable1 extends BasePricingTable {
 
                   const buttons = this.getButtonsFromItem(table);
 
+                  const hasCardList = table.cardList && table.cardList.some((listItem: any) => {
+                    const cardListItemExist = this.castToString(listItem.cardListItem);
+                    const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.name || listItem.buttonIcon.url);
+                    return cardListItemExist || buttonIconExist;
+                  });
+
+                  const hasButtons = buttons && buttons.some((btn) => {
+                    const btnTextExist = this.castToString(btn.text);
+                    const buttonMediaExist = btn.media && (btn.media.name || btn.media.url);
+                    return btnTextExist || buttonMediaExist;
+                  });
+
+                  const hasAnyContent = popularBoxExist || cardSubtitleExist || cardTitleExist || 
+                                       cardPriceExist || durationExist || duration1Exist || 
+                                       cardpricingTableTitleExist || hasCardList || hasButtons;
+
+                  if (!hasAnyContent) return null;
+
                   return (
                     <div
                       key={index}
@@ -774,7 +817,7 @@ class PricingTable1 extends BasePricingTable {
                       } 
                   ${table.isActive && this.decorateCSS("active")} `}
                     >
-                      {popularText && (
+                      {popularBoxExist && (
                         <div
                           className={`${this.decorateCSS("popular-box")} ${
                             table.popular_settings.is_popular &&
@@ -803,35 +846,40 @@ class PricingTable1 extends BasePricingTable {
                         </Base.H3>
                       )}
                       <div className={this.decorateCSS("card-list")}>
-                        {table.cardList.map((listItem: any, index: number) => {
-                          const cardListItemExist = this.castToString(
-                            listItem.cardListItem
-                          );
-                          const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.name || listItem.buttonIcon.url);
-                          const cardExist = buttonIconExist || cardListItemExist;
+                        {(() => {
+                          const showListLines = this.getPropValue("cardListLines");
+                          return table.cardList.map((listItem: any, index: number) => {
+                            const cardListItemExist = this.castToString(
+                              listItem.cardListItem
+                            );
+                            const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.name || listItem.buttonIcon.url);
+                            const cardExist = buttonIconExist || cardListItemExist;
 
-                          return (
-                            cardExist && (
-                              <Base.Row
-                                key={index}
-                                className={this.decorateCSS("card-list-item")}
-                              >
-                                {buttonIconExist && (
-                                  <Base.Media
-                                    value={listItem.buttonIcon}
-                                    className={this.decorateCSS("icon")}
-                                  />
-                                )}
-                                {cardListItemExist && (
-                                  <Base.P className={this.decorateCSS("list-item")}>
-                                    {listItem.cardListItem}
-                                  </Base.P>
-                                )}
-                              </Base.Row>
-                            )
-                          );
-                        })}
-                      </div>
+                            return (
+                              cardExist && (
+                                <Base.Row
+                                  key={index}
+                                  className={`${this.decorateCSS("card-list-item")} ${
+                                    !showListLines ? this.decorateCSS("no-lines") : ""
+                                  }`}
+                                >
+                                  {buttonIconExist && (
+                                    <Base.Media
+                                      value={listItem.buttonIcon}
+                                      className={this.decorateCSS("icon")}
+                                    />
+                                  )}
+                                  {cardListItemExist && (
+                                    <Base.P className={this.decorateCSS("list-item")}>
+                                      {listItem.cardListItem}
+                                    </Base.P>
+                                  )}
+                                </Base.Row>
+                              )
+                            );
+                          });
+                        })()}
+                     </div>
 
                       <div
                         className={`${this.decorateCSS("card-bottom")}  ${
@@ -888,7 +936,6 @@ class PricingTable1 extends BasePricingTable {
                               <ComposerLink
                                 path={buttonUrl}
                                 key={`pricing-btn-${btnIndex}`}
-                                className={this.decorateCSS("card-link")}
                               >
                                 <Base.Button
                                   buttonType={buttonType}
@@ -922,7 +969,7 @@ class PricingTable1 extends BasePricingTable {
                   );
                 }
               )}
-            </div>
+            </Base.ListGrid>
             <div className={this.decorateCSS("titles")}>
               {this.getPropValue("titles").map((title: any) => {
                 const text = title.getPropValue("text");
