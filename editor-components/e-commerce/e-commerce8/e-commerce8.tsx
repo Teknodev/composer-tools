@@ -50,6 +50,13 @@ class ECommerce8 extends BaseECommerce {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "enableOverlay",
+            displayer: "Overlay",
+            value: false,
+        });
+
+        this.addProp({
             type: "array",
             key: "buttons",
             displayer: "Buttons",
@@ -607,6 +614,7 @@ class ECommerce8 extends BaseECommerce {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const enableOverlay = this.getPropValue("enableOverlay");
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
         const productCards = this.castToObject<ProductCard[]>("productCards") || [];
         const itemCount = this.getPropValue("itemCount");
@@ -632,12 +640,12 @@ class ECommerce8 extends BaseECommerce {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasContent && (
                         <div className={this.decorateCSS("top-header")}>
-                            {visibleButtons.length > 0 && renderButtons(false)}
                             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                             </Base.VerticalContent>
+                            {visibleButtons.length > 0 && renderButtons(false)}
                         </div>
                     )}
                     {productCards.length > 0 && (
@@ -668,7 +676,7 @@ class ECommerce8 extends BaseECommerce {
                                 return (
                                     <div key={cardIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={navigateTo} isFullWidth={true}>
-                                            <div className={`${this.decorateCSS("image-container")} ${displayHoverImage ? this.decorateCSS("has-hover") : ""}`}>
+                                            <div className={`${this.decorateCSS("image-container")} ${displayHoverImage && this.decorateCSS("has-hover")}`}>
                                                 {displayImage && (
                                                     <div className={this.decorateCSS("image-wrapper")}>
                                                         <Base.Media
@@ -680,6 +688,9 @@ class ECommerce8 extends BaseECommerce {
                                                                 value={displayHoverImage}
                                                                 className={this.decorateCSS("hover-image")}
                                                             />
+                                                        )}
+                                                        {enableOverlay && (
+                                                            <div className={this.decorateCSS("overlay")}></div>
                                                         )}
                                                     </div>
                                                 )}
@@ -706,7 +717,12 @@ class ECommerce8 extends BaseECommerce {
                                                                         <div className={this.decorateCSS("label-item")}>
                                                                             <Base.P className={this.decorateCSS("label-text")}>{labelItem.cardLabel}</Base.P>
                                                                         </div>
-                                                                        {productCard.line && !isLast && (<span className={this.decorateCSS("label-separator")}>|</span>)}
+                                                                        {productCard.line && !isLast && (
+                                                                            <Base.Media
+                                                                                value={{ type: "icon", name: "RxSlash" }}
+                                                                                className={this.decorateCSS("label-separator")}
+                                                                            />
+                                                                        )}
                                                                     </React.Fragment>
                                                                 );
                                                             })}
