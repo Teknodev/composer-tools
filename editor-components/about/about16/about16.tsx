@@ -206,7 +206,7 @@ class About16 extends BaseAbout {
                             {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                         </Base.VerticalContent>
                     )}
-                    <div className={this.decorateCSS("cards-button-wrapper")}>
+                    <div className={this.decorateCSS("cards-wrapper")}>
                         {videos.length > 0 && (
                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("list-container")}>
                                 {videos.map((item, index) => {
