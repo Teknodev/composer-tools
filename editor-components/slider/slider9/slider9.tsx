@@ -1,35 +1,40 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type SliderItem = {
-  image: string;
-  video: string;
+  media: TypeMediaInputValue;
+  videoMedia: TypeMediaInputValue;
 };
+
 class Slider9 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Studio Headphones",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "When we first checked out our new headphones, we noticed the box said “improved bass”. We had to wonder if this was marketing jargon or the real thing? But it only took a moment to realize that bass was not kidding.",
+      value: "When we first checked out our new headphones, we noticed the box said 'improved bass'. We had to wonder if this was marketing jargon or the real thing? But it only took a moment to realize that bass was not kidding.",
     });
+
     this.addProp({
       type: "string",
       key: "price",
       displayer: "Price",
       value: "$100",
     });
+
     this.addProp({
       type: "array",
       key: "sliderItems",
@@ -41,35 +46,24 @@ class Slider9 extends BaseSlider {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc6d506a40002c305aa6?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc6d506a40002c305aa6?alt=media",
+              },
             },
             {
-              type: "page",
-              key: "video",
-              displayer: "Video",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc83506a40002c305ab2?alt=media",
-            },
-            {
-              type: "page",
-              key: "video",
-              displayer: "Video",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
+              type: "media",
+              key: "videoMedia",
+              displayer: "Video Media",
+              additionalParams: { availableTypes: ["video"] },
+              value: {
+                type: "video",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+              },
             },
           ],
         },
@@ -79,16 +73,24 @@ class Slider9 extends BaseSlider {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc99506a40002c305abc?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc83506a40002c305ab2?alt=media",
+              },
             },
             {
-              type: "page",
-              key: "video",
-              displayer: "Video",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+              type: "media",
+              key: "videoMedia",
+              displayer: "Video Media",
+              additionalParams: { availableTypes: ["video"] },
+              value: {
+                type: "video",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b08ebb03b007002cc77877?alt=media",
+              },
             },
           ],
         },
@@ -98,109 +100,176 @@ class Slider9 extends BaseSlider {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dccaa506a40002c305ac7?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dcc99506a40002c305abc?alt=media",
+              },
             },
             {
-              type: "page",
-              key: "video",
-              displayer: "Video",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+              type: "media",
+              key: "videoMedia",
+              displayer: "Video Media",
+              additionalParams: { availableTypes: ["video"] },
+              value: {
+                type: "video",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+              },
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674dccaa506a40002c305ac7?alt=media",
+              },
+            },
+            {
+              type: "media",
+              key: "videoMedia",
+              displayer: "Video Media",
+              additionalParams: { availableTypes: ["video"] },
+              value: {
+                type: "video",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+              },
             },
           ],
         },
       ],
     });
 
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplaySpeed: 1500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
+
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "verticalPreviousArrow",
       displayer: "Vertical Previous Arrow Icon",
-      value: "MdOutlineKeyboardArrowUp",
-    });
-    this.addProp({
-      type: "icon",
-      key: "verticalNextArrow",
-      displayer: "Vertical Next Arrow Icon",
-      value: "MdOutlineKeyboardArrowDown",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "MdOutlineKeyboardArrowUp" },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
+      key: "verticalNextArrow",
+      displayer: "Vertical Next Arrow Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "MdOutlineKeyboardArrowDown" },
+    });
+
+    this.addProp({
+      type: "media",
       key: "horizontalPreviousArrow",
       displayer: "Horizontal Previous Arrow Icon",
-      value: "MdOutlineKeyboardArrowLeft",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "MdOutlineKeyboardArrowLeft" },
     });
+
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "horizontalNextArrow",
       displayer: "Horizontal Next Arrow Icon",
-      value: "MdOutlineKeyboardArrowRight",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "MdOutlineKeyboardArrowRight" },
     });
+
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "videoButton",
       displayer: "Video Button Icon",
-      value: "CiPlay1",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "CiPlay1" },
     });
+
     this.addProp({
       type: "string",
       key: "videoButtonText",
       displayer: "Video Button Text",
-      value: "Watch video",
+      value: "Watch Video",
     });
+
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "fsButton",
       displayer: "Fullscreen Button Icon",
-      value: "TfiFullscreen",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "TfiFullscreen" },
     });
+
     this.addProp({
       type: "string",
       key: "fsButtonText",
       displayer: "Fullscreen Button Text",
-      value: "Click to enlarge",
+      value: "Click To Enlarge",
     });
+
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "exitButton",
       displayer: "Exit Button",
-      value: "IoMdClose",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "IoMdClose" },
     });
+
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "overlayLeftArrow",
       displayer: "Fullscreen Left Arrow",
-      value: "BiLeftArrowAlt",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "BiLeftArrowAlt" },
     });
+
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "overlayRightArrow",
       displayer: "Fullscreen Right Arrow",
-      value: "BiRightArrowAlt", //dd
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "BiRightArrowAlt" },
     });
 
     this.setComponentState("vertical-slider-ref", React.createRef());
     this.setComponentState("horizontal-slider-ref", React.createRef());
     this.setComponentState("currentSlideIndex", 0);
-
     this.setComponentState("isFullscreen", false);
-
     this.setComponentState("isVideoModalOpen", false);
     this.setComponentState("videoUrl", null);
     this.setComponentState("hoveredIndex", null);
-
     this.setComponentState("originalSlideIndex", null);
+  }
+
+  static getName(): string {
+    return "Slider 9";
   }
 
   handleFullscreen = () => {
     const currentIndex = this.getComponentState("currentSlideIndex");
     const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
-    const selectedImage = sliderItems[currentIndex]?.image;
+    const selectedMedia = sliderItems[currentIndex]?.media;
 
-    if (selectedImage) {
+    if (selectedMedia) {
       this.setComponentState("isFullscreen", true);
       this.setComponentState("originalSlideIndex", currentIndex);
     } else {
@@ -218,11 +287,11 @@ class Slider9 extends BaseSlider {
   handlePlayVideo = () => {
     const currentIndex = this.getComponentState("currentSlideIndex");
     const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
-    const selectedVideo = sliderItems[currentIndex]?.video;
+    const selectedVideoMedia = sliderItems[currentIndex]?.videoMedia;
 
-    if (selectedVideo) {
+    if (selectedVideoMedia) {
       this.setComponentState("isVideoModalOpen", true);
-      this.setComponentState("videoUrl", selectedVideo);
+      this.setComponentState("videoUrl", selectedVideoMedia);
     }
   };
 
@@ -231,27 +300,23 @@ class Slider9 extends BaseSlider {
     this.setComponentState("videoUrl", null);
   };
 
-  static getName(): string {
-    return "Slider 9";
-  }
-
   handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const container = e.currentTarget.getBoundingClientRect();
     const x = ((e.clientX - container.left) / container.width) * 100;
     const y = ((e.clientY - container.top) / container.height) * 100;
 
-    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("slider9-image")}`);
+    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("slider-img")}`) as HTMLElement;
     if (imgElement) {
-      (imgElement as HTMLElement).style.transformOrigin = `${x}% ${y}%`;
-      (imgElement as HTMLElement).style.transform = "scale(1.5)";
+      imgElement.style.transformOrigin = `${x}% ${y}%`;
+      imgElement.style.transform = "scale(1.5)";
     }
   };
 
   handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("slider9-image")}`);
+    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("img")}`) as HTMLElement;
     if (imgElement) {
-      (imgElement as HTMLElement).style.transform = "scale(1)";
-      (imgElement as HTMLElement).style.transformOrigin = "center";
+      imgElement.style.transform = "scale(1)";
+      imgElement.style.transformOrigin = "center";
     }
   };
 
@@ -274,13 +339,38 @@ class Slider9 extends BaseSlider {
   };
 
   getCurrentFullscreenItem(): SliderItem | undefined {
-    const galleryCollection = this.castToObject<SliderItem[]>("sliderItems");
-    const originalIndex: number = this.getComponentState("originalSlideIndex");
-
-    return galleryCollection[originalIndex];
+    const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
+    const originalIndex = this.getComponentState("originalSlideIndex");
+    return sliderItems[originalIndex];
   }
 
   render() {
+    const title = this.getPropValue("title");
+    const price = this.getPropValue("price");
+    const description = this.getPropValue("description");
+    const verticalNextArrow = this.getPropValue("verticalNextArrow");
+    const verticalPreviousArrow = this.getPropValue("verticalPreviousArrow");
+    const horizontalPreviousArrow = this.getPropValue("horizontalPreviousArrow");
+    const horizontalNextArrow = this.getPropValue("horizontalNextArrow");
+    const videoButton = this.getPropValue("videoButton");
+    const videoButtonText = this.getPropValue("videoButtonText");
+    const fsButton = this.getPropValue("fsButton");
+    const fsButtonText = this.getPropValue("fsButtonText");
+    const exitButton = this.getPropValue("exitButton");
+    const overlayLeftArrow = this.getPropValue("overlayLeftArrow");
+    const overlayRightArrow = this.getPropValue("overlayRightArrow");
+
+    const isFullscreen = this.getComponentState("isFullscreen");
+    const isVideoModalOpen = this.getComponentState("isVideoModalOpen");
+    const videoUrl = this.getComponentState("videoUrl");
+    const hoveredIndex = this.getComponentState("hoveredIndex");
+    const currentSlideIndex = this.getComponentState("currentSlideIndex");
+    const verticalSliderRef = this.getComponentState("vertical-slider-ref");
+    const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
+
+    const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
+    const RightContentExist = title || price || description;
+
     const verticalSettings = {
       arrows: false,
       dots: false,
@@ -292,7 +382,6 @@ class Slider9 extends BaseSlider {
       vertical: true,
       afterChange: (current: number) => {
         this.setComponentState("currentSlideIndex", current);
-        const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
         if (horizontalSliderRef.current) {
           horizontalSliderRef.current.slickGoTo(current);
         }
@@ -313,68 +402,53 @@ class Slider9 extends BaseSlider {
       },
     };
 
-    const title = this.getPropValue("title");
-    const price = this.getPropValue("price");
-    const description = this.getPropValue("description");
-    const verticalNextArrow = this.getPropValue("verticalNextArrow");
-    const verticalPreviousArrow = this.getPropValue("verticalPreviousArrow");
-
-    const horizontalPreviousArrow = this.getPropValue("horizontalPreviousArrow");
-    const horizontalNextArrow = this.getPropValue("horizontalNextArrow");
-
-    const videoButton = this.getPropValue("videoButton");
-    const videoButtonText = this.getPropValue("videoButtonText");
-    const fsButton = this.getPropValue("fsButton");
-    const fsButtonText = this.getPropValue("fsButtonText");
-
-    const isFullscreen = this.getComponentState("isFullscreen");
-
-    const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
-    const hoveredIndex = this.getComponentState("hoveredIndex");
-
-    const RightContentExist = this.castToString(title) || this.castToString(price) || this.castToString(description);
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid
-            className={`${this.decorateCSS("content")}
-          ${sliderItems.length < 1 && this.decorateCSS("no-left-part")}`}
+            className={`${this.decorateCSS("content")} ${
+              sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""
+            }`}
           >
             {sliderItems.length > 0 && (
               <div
-                className={`${this.decorateCSS("sliders-parent")}
-              ${RightContentExist === "" ? this.decorateCSS("empty-right-content") : ""}`}
+                className={`${this.decorateCSS("sliders-parent")} ${
+                  !RightContentExist ? this.decorateCSS("empty-right-content") : ""
+                }`}
               >
                 <div className={this.decorateCSS("vertical-parent")}>
-                  <ComposerSlider {...verticalSettings} className={this.decorateCSS("carousel-vertical")} ref={this.getComponentState("vertical-slider-ref")}>
-                    {sliderItems.map((item: SliderItem, indexSlider: number) => {
-                      const isActive = this.getComponentState("currentSlideIndex") === indexSlider;
+                  <ComposerSlider
+                    {...verticalSettings}
+                    className={this.decorateCSS("carousel-vertical")}
+                    ref={verticalSliderRef}
+                  >
+                    {sliderItems.map((item, indexSlider) => {
+                      const isActive = currentSlideIndex === indexSlider;
                       const isHovered = hoveredIndex === indexSlider;
 
                       return (
-                        <div
-                          key={indexSlider}
-                          className={this.decorateCSS("img-container")}
-                          onClick={() => {
-                            if (!isFullscreen) {
-                              this.setComponentState("currentSlideIndex", indexSlider);
-                              this.setComponentState("hoveredIndex", indexSlider);
-                              const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                              if (horizontalSliderRef.current) {
-                                horizontalSliderRef.current.slickGoTo(indexSlider);
+                        <div className={this.decorateCSS("slick-slide-wrapper")} key={indexSlider}>
+                          <div
+                            className={this.decorateCSS("img-container")}
+                            onClick={() => {
+                              if (!isFullscreen) {
+                                this.setComponentState("currentSlideIndex", indexSlider);
+                                this.setComponentState("hoveredIndex", indexSlider);
+                                if (horizontalSliderRef.current) {
+                                  horizontalSliderRef.current.slickGoTo(indexSlider);
+                                }
                               }
-                            }
-                          }}
-                          onMouseEnter={() => {
-                            this.setComponentState("hoveredIndex", indexSlider);
-                          }}
-                          onMouseLeave={() => {
-                            this.setComponentState("hoveredIndex", null);
-                          }}
-                        >
-                          {item.image && <img src={item.image} alt="" className={this.decorateCSS("img")} />}
-                          {!isFullscreen && (isActive || isHovered) && <div className={this.decorateCSS("overlay")}></div>}
+                            }}
+                            onMouseEnter={() => this.setComponentState("hoveredIndex", indexSlider)}
+                            onMouseLeave={() => this.setComponentState("hoveredIndex", null)}
+                          >
+                            <div className={this.decorateCSS("img")}>
+                              <Base.Media value={item.media} className={this.decorateCSS("slider-img")} />
+                            </div>
+                            {!isFullscreen && (isActive || isHovered) && (
+                              <div className={this.decorateCSS("overlay")}></div>
+                            )}
+                          </div>
                         </div>
                       );
                     })}
@@ -383,38 +457,40 @@ class Slider9 extends BaseSlider {
                   {(verticalPreviousArrow || verticalNextArrow) && (
                     <div className={this.decorateCSS("verticalArrows")}>
                       {verticalPreviousArrow && (
-                        <Base.Icon
-                          name={verticalPreviousArrow}
-                          propsIcon={{
-                            className: this.decorateCSS("verticalPreviousArrow"),
-                            onClick: () => {
-                              const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-                              verticalSliderRef.current.slickPrev();
-                            },
-                          }}
-                        />
+                        <div
+                          className={this.decorateCSS("verticalPreviousArrow")}
+                          onClick={() => verticalSliderRef.current?.slickPrev()}
+                        >
+                          <Base.Media value={verticalPreviousArrow} />
+                        </div>
                       )}
                       {verticalNextArrow && (
-                        <Base.Icon
-                          name={verticalNextArrow}
-                          propsIcon={{
-                            className: this.decorateCSS("verticalNextArrow"),
-                            onClick: () => {
-                              const verticalSliderRef = this.getComponentState("vertical-slider-ref");
-                              verticalSliderRef.current.slickNext();
-                            },
-                          }}
-                        />
+                        <div
+                          className={this.decorateCSS("verticalNextArrow")}
+                          onClick={() => verticalSliderRef.current?.slickNext()}
+                        >
+                          <Base.Media value={verticalNextArrow} />
+                        </div>
                       )}
                     </div>
                   )}
                 </div>
 
                 <div className={this.decorateCSS("horizontal-parent")}>
-                  <ComposerSlider {...horizontalSettings} className={this.decorateCSS("carousel-horizontal")} ref={this.getComponentState("horizontal-slider-ref")}>
-                    {sliderItems.map((item: SliderItem, indexSlider: number) => (
-                      <div className={this.decorateCSS("img-container")} key={indexSlider} onMouseMove={this.handleMouseMove} onMouseLeave={this.handleMouseLeave}>
-                        {item.image && <img src={item.image} alt="" className={this.decorateCSS("slider9-image")} />}
+                  <ComposerSlider
+                    {...horizontalSettings}
+                    className={this.decorateCSS("carousel-horizontal")}
+                    ref={horizontalSliderRef}
+                  >
+                    {sliderItems.map((item, indexSlider) => (
+                      <div className={this.decorateCSS("slick-slide-wrapper")} key={indexSlider}>
+                        <div
+                          className={this.decorateCSS("img-container")}
+                          onMouseMove={this.handleMouseMove}
+                          onMouseLeave={this.handleMouseLeave}
+                        >
+                          <Base.Media value={item.media} className={this.decorateCSS("slider-img")} />
+                        </div>
                       </div>
                     ))}
                   </ComposerSlider>
@@ -422,28 +498,20 @@ class Slider9 extends BaseSlider {
                   {(horizontalPreviousArrow || horizontalNextArrow) && (
                     <div className={this.decorateCSS("horizontalArrows")}>
                       {horizontalPreviousArrow && (
-                        <Base.Icon
-                          name={horizontalPreviousArrow}
-                          propsIcon={{
-                            className: this.decorateCSS("horizontalPreviousArrow"),
-                            onClick: () => {
-                              const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                              horizontalSliderRef.current.slickPrev();
-                            },
-                          }}
-                        />
+                        <div
+                          className={this.decorateCSS("horizontalPreviousArrow")}
+                          onClick={() => horizontalSliderRef.current?.slickPrev()}
+                        >
+                          <Base.Media value={horizontalPreviousArrow} />
+                        </div>
                       )}
                       {horizontalNextArrow && (
-                        <Base.Icon
-                          name={horizontalNextArrow}
-                          propsIcon={{
-                            className: this.decorateCSS("horizontalNextArrow"),
-                            onClick: () => {
-                              const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
-                              horizontalSliderRef.current.slickNext();
-                            },
-                          }}
-                        />
+                        <div
+                          className={this.decorateCSS("horizontalNextArrow")}
+                          onClick={() => horizontalSliderRef.current?.slickNext()}
+                        >
+                          <Base.Media value={horizontalNextArrow} />
+                        </div>
                       )}
                     </div>
                   )}
@@ -451,13 +519,9 @@ class Slider9 extends BaseSlider {
                   <div className={this.decorateCSS("buttons")}>
                     <div className={this.decorateCSS("button-wrapper")}>
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon
-                          name={videoButton}
-                          propsIcon={{
-                            className: this.decorateCSS("button"),
-                            onClick: () => this.handlePlayVideo(),
-                          }}
-                        />
+                        <div className={this.decorateCSS("button")} onClick={this.handlePlayVideo}>
+                          <Base.Media value={videoButton} />
+                        </div>
                       </div>
                       <div className={this.decorateCSS("button-text-wrapper")}>
                         <span className={this.decorateCSS("button-text")}>{videoButtonText}</span>
@@ -466,16 +530,12 @@ class Slider9 extends BaseSlider {
 
                     <div className={this.decorateCSS("button-wrapper")}>
                       <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon
-                          name={fsButton}
-                          propsIcon={{
-                            className: this.decorateCSS("button"),
-                            onClick: () => this.handleFullscreen(),
-                          }}
-                        />
+                        <div className={this.decorateCSS("button")} onClick={this.handleFullscreen}>
+                          <Base.Media value={fsButton} />
+                        </div>
                       </div>
                       <div className={this.decorateCSS("button-text-wrapper")}>
-                        <span className={this.decorateCSS("button-text")}>{fsButtonText}</span>
+                        <Base.P className={this.decorateCSS("button-text")}>{fsButtonText}</Base.P>
                       </div>
                     </div>
                   </div>
@@ -483,54 +543,58 @@ class Slider9 extends BaseSlider {
                   {isFullscreen && (
                     <div className={this.decorateCSS("fullscreen-modal")}>
                       <div className={this.decorateCSS("fullscreen-overlay")} onClick={this.handleCloseFullscreen}>
-                        <Base.Icon
-                          name={this.getPropValue("overlayLeftArrow")}
-                          propsIcon={{
-                            className: this.decorateCSS("overlay-left-button"),
-                            onClick: (e: React.MouseEvent) => {
-                              e.stopPropagation();
-                              this.fullscreenPrevImage();
-                              this.setComponentState("hoveredIndex", null);
-                            },
+                        <div
+                          className={this.decorateCSS("overlay-left-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.fullscreenPrevImage();
+                            this.setComponentState("hoveredIndex", null);
                           }}
-                        />
-                        <Base.Icon
-                          name={this.getPropValue("overlayRightArrow")}
-                          propsIcon={{
-                            className: this.decorateCSS("overlay-right-button"),
-                            onClick: (e: React.MouseEvent) => {
-                              e.stopPropagation();
-                              this.fullscreenNextImage();
-                            },
+                        >
+                          <Base.Media value={overlayLeftArrow} />
+                        </div>
+                        <div
+                          className={this.decorateCSS("overlay-right-button")}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.fullscreenNextImage();
                           }}
-                        />
-                        <button className={this.decorateCSS("close-button-wrapper")} onClick={this.handleCloseFullscreen}>
-                          <Base.Icon
-                            name={this.getPropValue("exitButton")}
-                            propsIcon={{
-                              className: this.decorateCSS("close-button"),
-                            }}
-                          />
+                        >
+                          <Base.Media value={overlayRightArrow} />
+                        </div>
+                        <button
+                          className={this.decorateCSS("close-button-wrapper")}
+                          onClick={this.handleCloseFullscreen}
+                        >
+                          <Base.Media value={exitButton} className={this.decorateCSS("close-button")} />
                         </button>
                       </div>
-                      <div className={this.decorateCSS("fullscreen-content")}>{<img src={this.getCurrentFullscreenItem()?.image} alt="Fullscreen" className={this.decorateCSS("fullscreen-image")} />}</div>
+                      <div className={this.decorateCSS("fullscreen-content")}>
+                        <Base.Media
+                          value={this.getCurrentFullscreenItem()?.media}
+                          className={this.decorateCSS("fullscreen-image")}
+                        />
+                      </div>
                     </div>
                   )}
 
-                  {this.getComponentState("isVideoModalOpen") && (
+                  {isVideoModalOpen && (
                     <div className={this.decorateCSS("video-modal")}>
                       <div className={this.decorateCSS("video-overlay")} onClick={this.handleCloseVideoModal}></div>
                       <div className={this.decorateCSS("video-content")}>
-                        <button className={this.decorateCSS("close-button-wrapper")} onClick={this.handleCloseVideoModal}>
-                          <Base.Icon
-                            name={this.getPropValue("exitButton")}
-                            propsIcon={{
-                              className: this.decorateCSS("close-button"),
-                            }}
-                          />
+                        <button
+                          className={this.decorateCSS("close-button-wrapper")}
+                          onClick={this.handleCloseVideoModal}
+                        >
+                          <Base.Media value={exitButton} className={this.decorateCSS("close-button")} />
                         </button>
 
-                        <video src={this.getComponentState("videoUrl")} controls className={this.decorateCSS("video-player")} autoPlay />
+                        <video
+                          src={videoUrl?.url || videoUrl}
+                          controls
+                          className={this.decorateCSS("video-player")}
+                          autoPlay
+                        />
                       </div>
                     </div>
                   )}
@@ -540,9 +604,13 @@ class Slider9 extends BaseSlider {
             {RightContentExist && (
               <div className={this.decorateCSS("right-content")}>
                 <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                  {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {this.castToString(price) && <span className={this.decorateCSS("price")}>{price}</span>}
-                  {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {price && <Base.P className={this.decorateCSS("price")}>{price}</Base.P>}
+                  {description && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
+                  )}
                 </Base.VerticalContent>
               </div>
             )}

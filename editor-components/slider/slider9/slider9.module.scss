@@ -4,23 +4,13 @@ $minusLeft: calc(var(--composer-gap-lg) * -1);
 $left: var(--composer-gap-lg);
 
 @keyframes moveRight {
-  from {
-    transform: translateY(-50%) translateX($minusLeft);
-  }
-
-  to {
-    transform: translateY(-50%) translateX($left);
-  }
+  from { transform: translateY(-50%) translateX($minusLeft); }
+  to { transform: translateY(-50%) translateX($left); }
 }
 
 @keyframes moveLeft {
-  from {
-    transform: translateY(-50%) translateX($left);
-  }
-
-  to {
-    transform: translateY(-50%) translateX($minusLeft);
-  }
+  from { transform: translateY(-50%) translateX($left); }
+  to { transform: translateY(-50%) translateX($minusLeft); }
 }
 
 .container {
@@ -30,9 +20,16 @@ $left: var(--composer-gap-lg);
       gap: var(--composer-gap-lg);
       flex-direction: row;
       flex-wrap: nowrap;
-      height: 100%;
-      align-items: stretch;
       height: 500px;
+      align-items: stretch;
+
+      @container (max-width: #{$composer-tablet-width}) {
+        height: auto;
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
+        flex-direction: column;
+      }
 
       &.no-left-part {
         height: auto;
@@ -46,56 +43,46 @@ $left: var(--composer-gap-lg);
         flex: 1;
         height: 100%;
 
+        @container (max-width: #{$composer-phone-width}) {
+          width: 100%;
+        }
+
         .vertical-parent {
           height: 100%;
           width: 21%;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
+
+          @container (max-width: #{$composer-tablet-width}) {
+            display: none;
+          }
 
           .carousel-vertical {
             width: 100%;
             max-height: 93%;
 
-            > div {
-              > div {
-                > div {
-                  height: 156px !important;
-                  padding-bottom: var(--composer-gap-sm);
+            :global(.slick-list) {
+              height: 100%;
 
-                  > div {
-                    height: 100%;
+              :global(.slick-track) {
+                :global(.slick-slide) {
+                  img {
+                    width: 100% !important;
+                    height: 100% !important;
+                  }
+                  .slick-slide-wrapper {
+                    height: 156px !important;
+                    padding-bottom: var(--composer-gap-sm);
+                    .img-container .img .slider-img {
+                      width: 100%;
+                      height: 100%;
+                      object-fit: cover;
+                      display: block;
+                    }
                   }
                 }
-              }
-            }
-
-            .img-container {
-              position: relative;
-              overflow: hidden;
-              height: 100%;
-              outline: none;
-
-              .img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
-
-              .overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(var(--composer-html-background-rgb), 0.5);
-                z-index: 1;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                pointer-events: none;
-                transition: opacity 0.3s ease;
               }
             }
           }
@@ -113,7 +100,11 @@ $left: var(--composer-gap-lg);
               flex: 1;
               color: var(--composer-font-color-primary);
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-              border-radius: var(--composer-border-radius-xs);
+              border-radius: var(--composer-border-radius-sm);
+              font-size: 1.5rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
           }
         }
@@ -123,431 +114,59 @@ $left: var(--composer-gap-lg);
           height: 500px;
           position: relative;
           overflow: hidden;
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-sm);
 
-          &:hover .horizontalArrows .horizontalPreviousArrow {
-            animation: moveRight 0.3s forwards;
+          @container (max-width: #{$composer-tablet-width}) {
+            width: 100%;
           }
 
-          &:hover .horizontalArrows .horizontalNextArrow {
-            animation: moveLeft 0.3s forwards;
+          &:hover .horizontalArrows {
+            .horizontalPreviousArrow { animation: moveRight 0.3s forwards; }
+            .horizontalNextArrow { animation: moveLeft 0.3s forwards; }
           }
 
-          &:not(:hover) .horizontalArrows .horizontalPreviousArrow {
-            animation: moveLeft 0.3s forwards;
-          }
-
-          &:not(:hover) .horizontalArrows .horizontalNextArrow {
-            animation: moveRight 0.3s forwards;
+          &:not(:hover) .horizontalArrows {
+            .horizontalPreviousArrow { animation: moveLeft 0.3s forwards; }
+            .horizontalNextArrow { animation: moveRight 0.3s forwards; }
           }
 
           .carousel-horizontal {
             width: 100%;
             height: 100%;
 
-            > div {
+            :global(.slick-list), :global(.slick-track) {
               height: 100%;
-
-              > div {
-                height: 100%;
-
-                > div {
-                  > div {
-                    height: 100%;
-                  }
-                  width: 21%;
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: space-between;
-                  border-radius: var(--composer-border-radius-xs);
-
-                  .carousel-vertical {
-                    width: 100%;
-                    max-height: 93%;
-
-                    > div {
-                      > div {
-                        > div {
-                          height: 156px !important;
-                          padding-bottom: var(--composer-gap-sm);
-
-                          > div {
-                            height: 100%;
-                          }
-                        }
-                      }
-                    }
-
-                    .img-container {
-                      position: relative;
-                      overflow: hidden;
-                      height: 100%;
-                      outline: none;
-
-                      .img {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                      }
-
-                      .overlay {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: rgba(var(--composer-html-background-rgb), 0.5);
-                        z-index: 1;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        pointer-events: none;
-                        transition: opacity 0.3s ease;
-                      }
-                    }
-                  }
-
-                  .verticalArrows {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                    gap: var(--composer-gap-xs);
-                    align-items: end;
-
-                    .verticalPreviousArrow,
-                    .verticalNextArrow {
-                      height: 27px;
-                      flex: 1;
-                      color: var(--composer-font-color-primary);
-                      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                      border-radius: var(--composer-border-radius-xs);
-                    }
-                  }
+              :global(.slick-slide) {
+                img {
+                  width: 100% !important;
                 }
-
-                .horizontal-parent {
-                  width: 79%;
-                  height: 500px;
-                  position: relative;
-                  overflow: hidden;
-                  border-radius: var(--composer-border-radius-xs);
-
-                  &:hover .horizontalArrows .horizontalPreviousArrow {
-                    animation: moveRight 0.3s forwards;
-                  }
-
-                  &:hover .horizontalArrows .horizontalNextArrow {
-                    animation: moveLeft 0.3s forwards;
-                  }
-
-                  &:not(:hover) .horizontalArrows .horizontalPreviousArrow {
-                    animation: moveLeft 0.3s forwards;
-                  }
-
-                  &:not(:hover) .horizontalArrows .horizontalNextArrow {
-                    animation: moveRight 0.3s forwards;
-                  }
-
-                  .carousel-horizontal {
-                    width: 100%;
-                    height: 100%;
-
-                    > div {
-                      height: 100%;
-
-                      > div {
-                        height: 100%;
-
-                        > div {
-                          > div {
-                            height: 100%;
-                          }
-                        }
-                      }
-                    }
-
-                    .img-container {
-                      position: relative;
-                      height: 100%;
-                      width: 100%;
-                      overflow: hidden;
-
-                      .slider9-image {
-                        position: absolute;
-                        object-fit: cover;
-                        width: 100%;
-                        height: 100%;
-                      }
-
-                      &:hover .slider9-image {
-                        transform: scale(1.5);
-                      }
-                    }
-                  }
-
-                  .horizontalArrows {
-                    position: absolute;
-                    top: 50%;
-                    left: 0;
-                    right: 0;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    pointer-events: none;
-
-                    .horizontalPreviousArrow,
-                    .horizontalNextArrow {
-                      position: absolute;
-                      top: 50%;
-                      transform: translateY(-50%);
-                      pointer-events: all;
-                      z-index: 10;
-                      width: 40px;
-                      height: 40px;
-                      color: black;
-                      display: flex;
-                      justify-content: center;
-                      align-items: center;
-                      cursor: pointer;
-                      transition: color 0.3s ease, transform 0.3s ease;
-
-                      &:hover {
-                        color: var(--composer-primary-color);
-                      }
-                    }
-
-                    .horizontalPreviousArrow {
-                      left: $minusLeft;
-                    }
-
-                    .horizontalNextArrow {
-                      right: $minusLeft;
-                    }
-                  }
-
-                  .buttons {
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-sm);
-                    z-index: 20;
-                    position: absolute;
-                    left: var(--composer-gap-sm);
-                    bottom: var(--composer-gap-sm);
-
-                    .button-wrapper {
-                      display: flex;
-                      align-items: center;
-                      gap: 0;
-                      background-color: var(--composer-html-background);
-                      border-radius: calc(var(--composer-border-radius-xl) * 2);
-                      overflow: hidden;
-                      transition: background-color 0.2s ease;
-                      width: fit-content;
-
-                      .icon-wrapper {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        width: 50px;
-                        height: 50px;
-                        border-radius: 50%;
-                        background-color: var(--composer-html-background);
-
-                        .button {
-                          width: 25px;
-                          height: 25px;
-                          cursor: pointer;
-                          transition: transform 0.2s ease;
-                          color: var(--composer-font-color-primary);
-                        }
-                      }
-
-                      .button-text-wrapper {
-                        display: flex;
-                        align-items: center;
-                        justify-content: flex-start;
-                        height: auto;
-                        background-color: var(--composer-html-background);
-                        color: var(--composer-font-color-primary);
-                        white-space: nowrap;
-                        overflow: hidden;
-                        box-sizing: border-box;
-                        max-width: 0;
-                        padding: 0;
-                        transition: max-width 0.3s ease, padding 0.3s ease;
-
-                        .button-text {
-                          margin-left: 0;
-                          opacity: 0;
-                          transition: opacity 0.3s ease;
-                        }
-                      }
-
-                      &:hover .button-text-wrapper {
-                        max-width: 300px;
-                        padding-right: var(--composer-gap-md);
-                      }
-
-                      &:hover .button-text {
-                        opacity: 1;
-                      }
-                    }
-                  }
-
-                  .fullscreen-modal {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100vw;
-                    height: 100vh;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background-color: var(--composer-overlay-color);
-                    z-index: 9999;
-
-                    .fullscreen-overlay {
-                      position: absolute;
-                      width: 100%;
-                      height: 100%;
-                      background: transparent;
-                      cursor: pointer;
-
-                      .overlay-left-button,
-                      .overlay-right-button {
-                        position: absolute;
-                        color: white;
-                        width: 30px;
-                        height: 30px;
-                        transition: transform 0.3s ease;
-                        z-index: 50;
-                        cursor: pointer;
-                      }
-
-                      .overlay-left-button {
-                        left: var(--composer-gap-xl);
-                        top: 50%;
-                        transform: translateY(-50%);
-                      }
-
-                      .overlay-right-button {
-                        right: var(--composer-gap-xl);
-                        top: 50%;
-                        transform: translateY(-50%);
-                      }
-
-                      .close-button-wrapper {
-                        position: absolute;
-                        top: var(--composer-gap-md);
-                        right: var(--composer-gap-md);
-                        color: #fff;
-                        cursor: pointer;
-                        z-index: 10;
-                        background-color: transparent;
-                        border: none;
-
-                        .close-button {
-                          width: 40px;
-                          height: 40px;
-                        }
-                      }
-                    }
-
-                    .fullscreen-content {
-                      position: relative;
-                      display: inline-block;
-                      max-width: 90%;
-                      max-height: 80vh;
-                    }
-
-                    .fullscreen-image {
-                      max-width: 100%;
-                      max-height: 80vh;
-                      border-radius: var(--composer-border-radius-sm);
-                      display: block;
-                    }
-                  }
-
-                  .video-modal {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100vw;
-                    height: 100vh;
-                    background: var(--composer-overlay-color);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 1000;
-                  }
-
-                  .video-overlay {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: var(--composer-overlay-color);
-                    z-index: 1;
-                  }
-
-                  .video-content {
+                .slick-slide-wrapper {
+                  height: 100%;
+                  .img-container {
                     position: relative;
-                    z-index: 2;
-                    background: #000;
-                    border-radius: var(--composer-border-radius-sm);
-                    max-width: 90%;
-                    max-height: 80vh;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    overflow: hidden;
-                    box-shadow: 0 var(--composer-gap-xs) var(--composer-gap-sm) var(--composer-overlay-color);
-                  }
-
-                  .video-player {
+                    height: 100%;
                     width: 100%;
-                    height: auto;
-                    max-height: 80vh;
-                    border-radius: var(--composer-border-radius-xs);
-                  }
-
-                  .close-button-wrapper {
-                    position: absolute;
-                    top: var(--composer-gap-sm);
-                    right: var(--composer-gap-sm);
-                    color: #fff;
-                    cursor: pointer;
-                    z-index: 10;
-                    background-color: transparent;
-                    border: none;
-
-                    .close-button {
-                      width: 40px;
-                      height: 40px;
-                    }
+                    overflow: hidden;
+                    &:hover .slider9-image { transform: scale(1.5); }
                   }
                 }
               }
             }
+          }
 
-            .img-container {
-              position: relative;
-              height: 100%;
+          .img-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+            .slider9-image {
+              position: absolute;
+              object-fit: cover;
               width: 100%;
-              overflow: hidden;
-
-              .slider9-image {
-                position: absolute;
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-              }
-
-              &:hover .slider9-image {
-                transform: scale(1.5);
-              }
+              height: 100%;
             }
+            &:hover .slider9-image { transform: scale(1.5); }
           }
 
           .horizontalArrows {
@@ -575,20 +194,28 @@ $left: var(--composer-gap-lg);
               align-items: center;
               cursor: pointer;
               transition: color 0.3s ease, transform 0.3s ease;
+              font-size: 2rem;
 
               &:hover {
                 color: var(--composer-primary-color);
               }
+
+              & > * {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              }
             }
 
-            .horizontalPreviousArrow {
-              left: -30px;
-            }
+            .horizontalPreviousArrow { left: $minusLeft; }
+            .horizontalNextArrow { right: $minusLeft; }
 
-            .horizontalNextArrow {
-              right: -30px;
+            @container (max-width: #{$composer-tablet-width}) {
+               .horizontalPreviousArrow { left: -30px; }
+               .horizontalNextArrow { right: -30px; }
             }
           }
+          
 
           .buttons {
             display: flex;
@@ -598,6 +225,10 @@ $left: var(--composer-gap-lg);
             position: absolute;
             left: var(--composer-gap-sm);
             bottom: var(--composer-gap-sm);
+
+            @container (max-width: #{$composer-phone-width}) {
+              flex-direction: row;
+            }
 
             .button-wrapper {
               display: flex;
@@ -618,12 +249,24 @@ $left: var(--composer-gap-lg);
                 border-radius: 50%;
                 background-color: var(--composer-html-background);
 
+                @container (max-width: #{$composer-tablet-width}) {
+                    width: 40px;
+                    height: 40px;
+                }
+
                 .button {
                   width: 25px;
                   height: 25px;
                   cursor: pointer;
                   transition: transform 0.2s ease;
                   color: var(--composer-font-color-primary);
+                  font-size: 1.75rem;
+
+                  @container (max-width: #{$composer-tablet-width}) {
+                    width: 20px;
+                    height: 20px;
+                    font-size: 1.5rem;
+                  }
                 }
               }
 
@@ -648,13 +291,18 @@ $left: var(--composer-gap-lg);
                 }
               }
 
-              &:hover .button-text-wrapper {
-                max-width: 300px;
-                padding-right: var(--composer-gap-md);
-              }
-
-              &:hover .button-text {
-                opacity: 1;
+              &:hover {
+                .button-text-wrapper {
+                  max-width: 300px;
+                  padding-right: var(--composer-gap-md);
+                  
+                  @container (max-width: #{$composer-tablet-width}) {
+                    max-width: 250px;
+                  }
+                }
+                .button-text {
+                  opacity: 1;
+                }
               }
             }
           }
@@ -687,33 +335,49 @@ $left: var(--composer-gap-lg);
                 transition: transform 0.3s ease;
                 z-index: 50;
                 cursor: pointer;
+                top: 50%;
+                transform: translateY(-50%);
               }
 
               .overlay-left-button {
-                left: 50px;
-                top: 50%;
-                transform: translateY(-50%);
+                left: var(--composer-gap-xl);
+                @container (max-width: #{$composer-tablet-width}) { left: 40px; }
+                @container (max-width: #{$composer-phone-width}) { left: 5px; }
               }
 
               .overlay-right-button {
-                right: 50px;
-                top: 50%;
-                transform: translateY(-50%);
+                right: var(--composer-gap-xl);
+                @container (max-width: #{$composer-tablet-width}) { right: 40px; }
+                @container (max-width: #{$composer-phone-width}) { right: 5px; }
               }
 
               .close-button-wrapper {
                 position: absolute;
-                top: 20px;
-                right: 20px;
+                top: var(--composer-gap-md);
+                right: var(--composer-gap-md);
                 color: #fff;
                 cursor: pointer;
                 z-index: 10;
                 background-color: transparent;
                 border: none;
+                
+                @container (max-width: #{$composer-tablet-width}) {
+                  top: 20px;
+                  right: 20px;
+                }
 
                 .close-button {
                   width: 40px;
                   height: 40px;
+
+                  @container (max-width: #{$composer-tablet-width}) {
+                    width: 30px;
+                    height: 30px;
+                  }
+                  @container (max-width: #{$composer-phone-width}) {
+                    width: 20px;
+                    height: 20px;
+                  }
                 }
               }
             }
@@ -723,6 +387,10 @@ $left: var(--composer-gap-lg);
               display: inline-block;
               max-width: 90%;
               max-height: 80vh;
+
+              @container (max-width: #{$composer-phone-width}) {
+                max-width: 85%;
+              }
             }
 
             .fullscreen-image {
@@ -744,416 +412,127 @@ $left: var(--composer-gap-lg);
             justify-content: center;
             align-items: center;
             z-index: 1000;
-          }
 
-          .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--composer-overlay-color);
-            z-index: 1;
-          }
-
-          .video-content {
-            position: relative;
-            z-index: 2;
-            background: #000;
-            border-radius: var(--composer-border-radius-sm);
-            max-width: 90%;
-            max-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-            box-shadow: 0 var(--composer-gap-xs) var(--composer-gap-sm) var(--composer-overlay-color);
-          }
-
-          .video-player {
-            width: 100%;
-            height: auto;
-            max-height: 80vh;
-            border-radius: var(--composer-border-radius-xs);
-          }
-
-          .close-button-wrapper {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #fff;
-            cursor: pointer;
-            z-index: 10;
-            background-color: transparent;
-            border: none;
-
-            .close-button {
-              width: 40px;
-              height: 40px;
-            }
-          }
-        }
-      }
-
-      .empty-right-content {
-        .vertical-parent {
-          width: 10%;
-        }
-
-        .horizontal-parent {
-          width: 90%;
-        }
-      }
-
-      .right-content {
-        width: 50%;
-        flex: 1;
-        max-height: 100%;
-        overflow: hidden;
-
-        .text-wrapper {
-          justify-content: center;
-          gap: var(--composer-gap-md);
-
-          .title {
-            font-size: 2.5rem;
-            margin: 0;
-          }
-
-          .price {
-            font-size: 2rem;
-            color: var(--composer-font-color-primary);
-            margin: 0;
-          }
-        }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .content {
-        height: auto;
-
-        .sliders-parent {
-          .vertical-parent {
-            display: none;
-          }
-
-          .horizontal-parent {
-            width: 100%;
-
-            .carousel-horizontal {
-              > div {
-                height: 100%;
-
-                > div {
-                  height: 100%;
-
-                  > div {
-                    > div {
-                      height: 100%;
-                      .sliders-parent {
-                        .vertical-parent {
-                          display: none;
-                        }
-
-                        .horizontal-parent {
-                          width: 100%;
-
-                          .carousel-horizontal {
-                            > div {
-                              height: 100%;
-
-                              > div {
-                                height: 100%;
-
-                                > div {
-                                  > div {
-                                    height: 100%;
-                                  }
-                                }
-                              }
-                            }
-                          }
-
-                          .horizontalArrows {
-                            .horizontalPreviousArrow {
-                              left: $minusLeft;
-                            }
-
-                            .horizontalNextArrow {
-                              right: $minusLeft;
-                            }
-                          }
-
-                          .buttons {
-                            gap: var(--composer-gap-sm);
-
-                            .button-wrapper {
-                              .icon-wrapper {
-                                width: 40px;
-                                height: 40px;
-
-                                .button {
-                                  width: 20px;
-                                  height: 20px;
-                                }
-                              }
-
-                              &:hover .button-text-wrapper {
-                                max-width: 250px;
-                              }
-                            }
-                          }
-
-                          .fullscreen-modal {
-                            .fullscreen-overlay {
-                              .overlay-left-button {
-                                left: var(--composer-gap-lg);
-                              }
-
-                              .overlay-right-button {
-                                right: var(--composer-gap-lg);
-                              }
-
-                              .close-button-wrapper {
-                                .close-button {
-                                  width: $left;
-                                  height: $left;
-                                }
-                              }
-                            }
-                          }
-
-                          .close-button-wrapper {
-                            .close-button {
-                              width: $left;
-                              height: $left;
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-
-                .horizontalArrows {
-                  .horizontalPreviousArrow {
-                    left: -30px;
-                  }
-
-                  .horizontalNextArrow {
-                    right: -30px;
-                  }
-                }
-
-                .buttons {
-                  gap: var(--composer-gap-sm);
-
-                  .button-wrapper {
-                    .icon-wrapper {
-                      width: 40px;
-                      height: 40px;
-
-                      .button {
-                        width: 20px;
-                        height: 20px;
-                      }
-                    }
-
-                    &:hover .button-text-wrapper {
-                      max-width: 250px;
-                    }
-                  }
-                }
-
-                .fullscreen-modal {
-                  .fullscreen-overlay {
-                    .overlay-left-button {
-                      left: 40px;
-                    }
-
-                    .overlay-right-button {
-                      right: 40px;
-                    }
-
-                    .close-button-wrapper {
-                      .close-button {
-                        width: 30px;
-                        height: 30px;
-                      }
-                    }
-                  }
-                }
-
-                .close-button-wrapper {
-                  .close-button {
-                    width: 30px;
-                    height: 30px;
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
-      .container {
-        .max-content {
-          .content {
-            flex-direction: column;
-
-            .sliders-parent {
+            .video-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
               width: 100%;
+              height: 100%;
+              background: var(--composer-overlay-color);
+              z-index: 1;
+            }
 
-              .horizontal-parent {
-                width: 100%;
+            .video-content {
+              position: relative;
+              z-index: 2;
+              background: #000;
+              border-radius: var(--composer-border-radius-sm);
+              max-width: 90%;
+              max-height: 80vh;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              overflow: hidden;
+              box-shadow: 0 var(--composer-gap-xs) var(--composer-gap-sm) var(--composer-overlay-color);
+            }
 
-                .carousel-horizontal {
-                  > div {
-                    height: 100%;
+            .video-player {
+              width: 100%;
+              height: auto;
+              max-height: 80vh;
+              border-radius: var(--composer-border-radius-sm);
+            }
 
-                    > div {
-                      height: 100%;
+            .close-button-wrapper {
+              position: absolute;
+              top: var(--composer-gap-sm);
+              right: var(--composer-gap-sm);
+              color: #fff;
+              cursor: pointer;
+              z-index: 10;
+              background-color: transparent;
+              border: none;
 
-                      > div {
-                        > div {
-                          height: 100%;
-                          > div {
-                            > div {
-                              height: 100%;
-                            }
-                          }
-                        }
-                      }
-                    }
-
-                    .horizontalArrows {
-                      .horizontalPreviousArrow {
-                        left: $minusLeft;
-                      }
-
-                      .horizontalNextArrow {
-                        right: $minusLeft;
-                      }
-                    }
-
-                    .buttons {
-                      gap: var(--composer-gap-sm);
-
-                      .button-wrapper {
-                        .icon-wrapper {
-                          width: 40px;
-                          height: 40px;
-
-                          .button {
-                            width: 20px;
-                            height: 20px;
-                          }
-                        }
-                      }
-                    }
-
-                    .fullscreen-modal {
-                      .fullscreen-overlay {
-                        .close-button-wrapper {
-                          .close-button {
-                            width: 20px;
-                            height: 20px;
-                          }
-                        }
-
-                        .overlay-left-button {
-                          left: var(--composer-gap-xs);
-                        }
-
-                        .overlay-right-button {
-                          right: var(--composer-gap-xs);
-                        }
-                      }
-
-                      .fullscreen-content {
-                        max-width: 85%;
-                      }
-                    }
-
-                    .close-button-wrapper {
-                      .close-button {
-                        width: 20px;
-                        height: 20px;
-                      }
-                    }
-                  }
-                }
+              @container (max-width: #{$composer-tablet-width}) {
+                top: 10px;
+                right: 10px;
               }
-            }
-          }
 
-          .horizontalArrows {
-            .horizontalPreviousArrow {
-              left: -30px;
-            }
-
-            .horizontalNextArrow {
-              right: -30px;
-            }
-          }
-
-          .buttons {
-            gap: var(--composer-gap-sm);
-
-            .button-wrapper {
-              .icon-wrapper {
+              .close-button {
                 width: 40px;
                 height: 40px;
+                font-size: 2rem;
 
-                .button {
-                  width: 20px;
-                  height: 20px;
-                }
+                 @container (max-width: #{$composer-phone-width}) {
+                    width: 20px;
+                    height: 20px;
+                 }
               }
-            }
-          }
-
-          .fullscreen-modal {
-            .fullscreen-overlay {
-              .close-button-wrapper {
-                .close-button {
-                  width: 20px;
-                  height: 20px;
-                }
-              }
-
-              .overlay-left-button {
-                left: 5px;
-              }
-
-              .overlay-right-button {
-                right: 5px;
-              }
-            }
-
-            .fullscreen-content {
-              max-width: 85%;
-            }
-          }
-
-          .close-button-wrapper {
-            .close-button {
-              width: 20px;
-              height: 20px;
             }
           }
         }
       }
 
-      .right-content {
+      .img-container {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        outline: none;
+
+        .img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(var(--composer-html-background-rgb), 0.5);
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          pointer-events: none;
+          transition: opacity 0.3s ease;
+        }
+      }
+    }
+
+    .empty-right-content {
+      .vertical-parent { width: 10%; }
+      .horizontal-parent { width: 90%; }
+    }
+
+    .right-content {
+      width: 50%;
+      flex: 1;
+      max-height: 100%;
+      overflow: hidden;
+    
+      .title,.description,.price{
+        text-align: left;
+        color: var(--composer-font-color-primary);
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
         width: 100%;
+      }
+
+      .text-wrapper {
+        justify-content: flex-start;
+        text-align: left; 
+        gap: var(--composer-gap-md);
+
+        @container (max-width: #{$composer-tablet-width}) {          
+          .title,.description,.price{
+            text-align: left;
+          }
+        }
       }
     }
   }

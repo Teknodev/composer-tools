@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -8,9 +8,9 @@ import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
-  image: string;
-  backgroundImage: string;
-  imageTitle: React.JSX.Element;
+  media: TypeMediaInputValue;
+  backgroundMedia: TypeMediaInputValue;
+  title: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 
@@ -30,21 +30,33 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "imageTitle",
-              displayer: "Image Title",
+              key: "title",
+              displayer: "Title",
               value: "The Petronas Twin Towers",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
+              },
             },
             {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
+              type: "media",
+              key: "backgroundMedia",
+              displayer: "Background Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
+              },
             },
             {
               type: "array",
@@ -64,21 +76,33 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "imageTitle",
-              displayer: "Image Title",
+              key: "title",
+              displayer: "Title",
               value: "Multi-Family Housing",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
+              },
             },
             {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
+              type: "media",
+              key: "backgroundMedia",
+              displayer: "Background Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
+              },
             },
             {
               type: "array",
@@ -98,21 +122,33 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "imageTitle",
-              displayer: "Image Title",
+              key: "title",
+              displayer: "Title",
               value: "The Lighthouse",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
+              },
             },
             {
-              type: "image",
-              key: "backgroundImage",
-              displayer: "Background Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
+              type: "media",
+              key: "backgroundMedia",
+              displayer: "Background Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
+              },
             },
             {
               type: "array",
@@ -203,7 +239,7 @@ class Slider8 extends BaseSlider {
 
     const cards = this.castToObject<Card[]>("slider");
     const activeSlide = this.getComponentState("activeSlide");
-    const anyImagesExist = cards[activeSlide]?.image || cards[activeSlide]?.backgroundImage;
+    const anyImagesExist = cards[activeSlide]?.media || cards[activeSlide]?.backgroundMedia;
     const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const alignmentValue = Base.getContentAlignment();
@@ -223,10 +259,10 @@ class Slider8 extends BaseSlider {
       },
     };
     const shouldDisplayOverlay = (index: number): boolean => {
-      return !!cards[index].backgroundImage && overlay;
+      return !!cards[index].backgroundMedia && overlay;
     };
     const shouldDisplayForegroundOverlay = (index: number): boolean => {
-      return !!cards[index].image && foregroundOverlay;
+      return !!cards[index].media && foregroundOverlay;
     };
 
     return (
@@ -238,17 +274,20 @@ class Slider8 extends BaseSlider {
                 {cards.map((item: any, index: number) => {
                   const buttons = item.buttons;
 
-                  const titleExists = this.castToString(item.imageTitle);
-                  const render = titleExists || buttons?.length > 0 || item.image;
+                  const titleExists = item.title;
+                  const render = titleExists || buttons?.length > 0 || item.media;
                   if (!render) return null;
                   return (
                     <div className={this.decorateCSS("slider-inner-div")} key={`sld-8-${index}`}>
                       <div
-                        className={`${this.decorateCSS("content")} ${anyImagesExist === "" ? this.decorateCSS("no-img") : ""}`}
-                        style={{
-                          backgroundImage: `url("${item.backgroundImage}")`,
-                        }}
+                        className={`${this.decorateCSS("content")} ${!anyImagesExist ? this.decorateCSS("no-img") : ""}`}
                       >
+                        {item.backgroundMedia && (
+                          <Base.Media
+                            value={item.backgroundMedia}
+                            className={this.decorateCSS("bg-image")}
+                          />
+                        )}
                         {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
                         <div
                           className={`
@@ -256,8 +295,6 @@ class Slider8 extends BaseSlider {
                              ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}
                           `}
                         >
-                          <div className={this.decorateCSS("content-div-before")}></div>
-                          <div className={this.decorateCSS("content-div-after")}></div>
                           {linesContainer && (
                             <div className={this.decorateCSS(anyImagesExist ? "lines-container" : "lines-container2")}>
                               <div className={this.decorateCSS("line-1")}></div>
@@ -275,9 +312,7 @@ class Slider8 extends BaseSlider {
                                  ${this.decorateCSS(anyImagesExist && "imageTitle")} 
                                 ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}
                               >
-                                <div className={this.decorateCSS("title-content")}>
-                                  {item.imageTitle}
-                                </div>
+                                {item.title}
                               </Base.SectionTitle>
                             </div>
                           )}
@@ -286,11 +321,11 @@ class Slider8 extends BaseSlider {
                             <div className={`${this.decorateCSS(anyImagesExist ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
                               {buttons.map((buttonItem: any, buttonIndex: number) => {
                                 return (
-                                  this.castToString(buttonItem.text) && (
+                                  buttonItem.text && (
                                     <ComposerLink key={`dw-7-btn-left ${buttonIndex}`} path={buttonItem.url}>
                                       <Base.Button
                                         buttonType={buttonItem.type}
-                                        className={`${item.backgroundImage && item.image && this.decorateCSS("button")}
+                                        className={`${item.backgroundMedia && item.media && this.decorateCSS("button")}
                                         ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}
                                       >
                                         {buttonItem.text}
@@ -335,7 +370,10 @@ class Slider8 extends BaseSlider {
                         </div>
                       </div>
 
-                      <div className={this.decorateCSS("image")} style={{ backgroundImage: `url(${item.image})` }}>
+                      <div className={this.decorateCSS("image")}>
+                        {item.media && (
+                          <Base.Media value={item.media} className={this.decorateCSS("bg-image")} />
+                        )}
                         {shouldDisplayForegroundOverlay(index) === true && <div className={this.decorateCSS("image-overlay")}></div>}
                       </div>
                     </div>
