@@ -107,8 +107,7 @@
 }
 
 .container.hasBackground {
-  .subtitle,
-  .title {
+  .subtitle {
     color: white !important;
     background: transparent !important;
   }
@@ -119,6 +118,7 @@
     }
   }
 
+  .title,
   .description {
     color: white !important;
   }
