@@ -329,6 +329,13 @@ class List2 extends BaseList {
       value: true,
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "showLine",
+      displayer: "Show Line",
+      value: true,
+    });
+
     this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", null, null, null, "Primary"));
     this.addProp({
       type: "multiSelect",
@@ -362,6 +369,7 @@ class List2 extends BaseList {
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
     const imageOverlay = this.getPropValue("overlay");
+    const showLine = this.getPropValue("showLine");
 
     return (
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
@@ -417,7 +425,7 @@ class List2 extends BaseList {
                         )}
                         <div className={this.decorateCSS("overlay-gradient")}></div>
                         <div className={this.decorateCSS("card-content")}>
-                          <div className={this.decorateCSS("stick")}></div>
+                          {showLine && <div className={this.decorateCSS("stick")}></div>}
                           <div className={this.decorateCSS("category")}>
                             {this.castToString(item.text) && (
                               <Base.H4 className={this.decorateCSS("category-name")}>

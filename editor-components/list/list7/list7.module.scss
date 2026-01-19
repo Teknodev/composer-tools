@@ -26,10 +26,16 @@ as *;
           transition: all var(--composer-transition-duration-normal) ease;
           position: relative;
           user-select: text;
+          box-sizing: border-box;
 
           .border-layer-1,
           .border-layer-2 {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--composer-border-radius-sm);
             pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--composer-transition-duration-normal) ease;
           }
 
           &[data-animation="animate1"]:hover {
@@ -37,19 +43,21 @@ as *;
 
             .border-layer-1,
             .border-layer-2 {
-              position: absolute;
+              opacity: 1;
               inset: calc(-1 * var(--composer-border-width-sm));
-              border-radius: var(--composer-border-radius-sm);
               padding: var(--composer-border-width-sm);
-              background: linear-gradient(45deg,
-                  transparent 0%,
-                  transparent 40%,
-                  var(--composer-primary-color) 45%,
-                  var(--composer-primary-color) 55%,
-                  transparent 60%,
-                  transparent 100%);
+              background: linear-gradient(
+                45deg,
+                transparent 0%,
+                transparent 40%,
+                var(--composer-primary-color) 45%,
+                var(--composer-primary-color) 55%,
+                transparent 60%,
+                transparent 100%
+              );
               background-size: 300% 300%;
               animation: rotatingBorder 2s linear 1 forwards;
+
               -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
                 linear-gradient(var(--color-white) 0 0);
               -webkit-mask-composite: xor;
@@ -90,7 +98,6 @@ as *;
           }
 
           .index {
-            content: "";
             color: var(--composer-primary-color);
             margin: 0;
           }
@@ -103,19 +110,16 @@ as *;
           }
 
           .item-subtitle {
-            content: "";
             margin: 0;
             color: var(--composer-font-color-primary)
           }
 
           .item-title {
-            content: "";
             color: var(--composer-font-color-primary);
             margin: 0;
           }
 
           .description {
-            content: "";
             color: var(--composer-font-color-primary);
             margin: 0;
           }

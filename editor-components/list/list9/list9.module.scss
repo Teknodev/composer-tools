@@ -27,6 +27,16 @@ as *;
       transform: translateY(0) scale(1);
       overflow: hidden;
 
+      &[data-animation=""] {
+        .card-content {
+          bottom: -40px;
+        }
+    
+        .card-description {
+          opacity: 1 !important;
+        }
+      }
+
       &[data-animation~="animate1"] {
         &:where(:hover, :focus-within) {
           .image-container {
@@ -370,6 +380,12 @@ as *;
 
         .image-container:hover+.card-content .card-description {
           opacity: 1;
+        }
+      }
+
+      .card[data-animation=""] {
+        .card-content {
+          bottom: -20px !important;
         }
       }
 

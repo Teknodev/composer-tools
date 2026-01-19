@@ -308,6 +308,7 @@ class List1 extends BaseList {
       ? `${this.decorateCSS("dots")} ${this.decorateCSS("dots-colored")}`
       : this.decorateCSS("dots");
     const settings = {
+      dots: true,
       ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: sliderItems.length > 1,
       slidesToShow: Math.min(3, sliderItems.length),
