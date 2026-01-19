@@ -175,44 +175,46 @@ class Feature41 extends BaseFeature {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("text-content")} data-alignment={alignment}>
-                            {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                            {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                            {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                        </Base.VerticalContent>
-                    )}
-                    {cards?.length > 0 && (
-                        <Base.ListGrid
-                            className={this.decorateCSS("card-container")}
-                            gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }}
-                        >
-                            {cards.map((card: Card, index: number) => {
-                                const titleExist = !!this.castToString(card.title);
-                                const descExist = !!this.castToString(card.description);
-                                const isImage = card.icon?.type === "image";
-                                const itemCount = this.getPropValue("itemCount") || 3;
-                                const isLastInRow = (index + 1) % itemCount === 0;
+                    <div className={this.decorateCSS("card-container-section")}>
+                        {hasContent && (
+                            <Base.VerticalContent className={this.decorateCSS("text-content")} data-alignment={alignment}>
+                                {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                                {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                                {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                            </Base.VerticalContent>
+                        )}
+                        {cards?.length > 0 && (
+                            <Base.ListGrid
+                                className={this.decorateCSS("card-container")}
+                                gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3, phone: 1 }}
+                            >
+                                {cards.map((card: Card, index: number) => {
+                                    const titleExist = !!this.castToString(card.title);
+                                    const descExist = !!this.castToString(card.description);
+                                    const isImage = card.icon?.type === "image";
+                                    const itemCount = this.getPropValue("itemCount") || 3;
+                                    const isLastInRow = (index + 1) % itemCount === 0;
 
-                                return (!titleExist && !descExist && !card.icon) || (
-                                    <div
-                                        key={index}
-                                        className={`${this.decorateCSS("card-wrapper")} ${isLastInRow && this.decorateCSS("last-in-row")}`}
-                                    >
-                                        {card.icon &&
-                                            <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                                        }
-                                        {(titleExist || descExist) &&
-                                            <div className={this.decorateCSS("card-content")}>
-                                                {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
-                                                {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
-                                            </div>
-                                        }
-                                    </div>
-                                );
-                            })}
-                        </Base.ListGrid>
-                    )}
+                                    return (!titleExist && !descExist && !card.icon) || (
+                                        <div
+                                            key={index}
+                                            className={`${this.decorateCSS("card-wrapper")} ${isLastInRow && this.decorateCSS("last-in-row")}`}
+                                        >
+                                            {card.icon &&
+                                                <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                            }
+                                            {(titleExist || descExist) &&
+                                                <div className={this.decorateCSS("card-content")}>
+                                                    {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
+                                                    {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                                                </div>
+                                            }
+                                        </div>
+                                    );
+                                })}
+                            </Base.ListGrid>
+                        )}
+                    </div>
                     {visibleButtons.length > 0 && (
                         <div className={this.decorateCSS("button-container")}>
                             {visibleButtons.map((item: ButtonTypeObj, index: number) => {
