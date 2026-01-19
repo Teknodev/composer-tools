@@ -17,7 +17,7 @@ interface Section {
     text: React.JSX.Element;
 }
 
-interface ListItem {
+interface ProductCard {
     title: React.JSX.Element;
     image: TypeMediaInputValue;
     sections: Section[];
@@ -51,12 +51,12 @@ class Feature39 extends BaseFeature {
 
         this.addProp({
             type: "array",
-            key: "items",
+            key: "cards",
             displayer: "Cards",
             value: [
                 {
                     type: "object",
-                    key: "item",
+                    key: "card",
                     displayer: "Card",
                     value: [
                         {
@@ -118,8 +118,8 @@ class Feature39 extends BaseFeature {
                 },
                 {
                     type: "object",
-                    key: "item",
-                    displayer: "Item",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "string",
@@ -180,8 +180,8 @@ class Feature39 extends BaseFeature {
                 },
                 {
                     type: "object",
-                    key: "item",
-                    displayer: "Item",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "string",
@@ -245,8 +245,8 @@ class Feature39 extends BaseFeature {
 
         this.addProp({
             type: "boolean",
-            key: "showDivider",
-            displayer: "Show Divider Line",
+            key: "divider",
+            displayer: "Divider",
             value: true,
         });
     }
@@ -259,20 +259,20 @@ class Feature39 extends BaseFeature {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const items = this.castToObject<ListItem[]>("items");
-        const showDivider = this.getPropValue("showDivider");
+        const cards = this.castToObject<ProductCard[]>("cards");
+        const divider = this.getPropValue("divider");
         const activeIndex = this.getComponentState("activeIndex") || 0;
-        const hasItems = items.some((item: ListItem) => this.castToString(item.title));
-        const hasContent = subtitleExist || titleExist || descriptionExist || hasItems;
-        const hasRightContent = items.some((item: ListItem) =>
-            item.image ||
-            item.sections?.length > 0 ||
-            item.buttons?.some((btn) => this.castToString(btn.text))
+        const hasCards = cards.some((card: ProductCard) => this.castToString(card.title));
+        const hasContent = subtitleExist || titleExist || descriptionExist || hasCards;
+        const hasRightContent = cards.some((card: ProductCard) =>
+            card.image ||
+            card.sections?.length > 0 ||
+            card.buttons?.some((btn) => this.castToString(btn.text))
         );
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!showDivider && this.decorateCSS("no-show-divider")}`}>
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!divider && this.decorateCSS("no-show-divider")}`}>
                     {hasContent && (
                         <div className={`${this.decorateCSS("left-content")} ${!hasRightContent && this.decorateCSS("full-width")}`}>
                             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
@@ -280,18 +280,18 @@ class Feature39 extends BaseFeature {
                                 {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                                 {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                             </Base.VerticalContent>
-                            {hasItems && (
+                            {hasCards && (
                                 <div className={this.decorateCSS("items-wrapper")}>
-                                    {items.map((item: ListItem, index: number) => {
-                                        const itemTitle = item.title;
+                                    {cards.map((card: ProductCard, index: number) => {
+                                        const cardTitle = card.title;
                                         const isActive = activeIndex === index;
-                                        return this.castToString(itemTitle) && (
+                                        return this.castToString(cardTitle) && (
                                             <Base.H5
                                                 key={index}
                                                 className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
                                                 onClick={() => this.setComponentState("activeIndex", index)}
                                             >
-                                                {itemTitle}
+                                                {cardTitle}
                                             </Base.H5>
                                         );
                                     })}
@@ -299,31 +299,31 @@ class Feature39 extends BaseFeature {
                             )}
                         </div>
                     )}
-                    {showDivider && hasContent && hasRightContent && (
+                    {divider && hasContent && hasRightContent && (
                         <div className={this.decorateCSS("dividerColumn")}>
                             <div className={this.decorateCSS("dividerLine")} />
                         </div>
                     )}
                     {hasRightContent && (
                         <div className={this.decorateCSS("right-wrapper")}>
-                            {items.map((item: ListItem, index: number) => {
+                            {cards.map((card: ProductCard, index: number) => {
                                 const isActive = activeIndex === index;
                                 return (
                                     <div
                                         key={index}
                                         className={`${this.decorateCSS("right-content")} ${isActive && this.decorateCSS("active-item")}`}
                                     >
-                                        {item.image && (
+                                        {card.image && (
                                             <div className={this.decorateCSS("image-wrapper")}>
                                                 <Base.Media
-                                                    value={item.image}
+                                                    value={card.image}
                                                     className={this.decorateCSS("itemImage")}
                                                 />
                                             </div>
                                         )}
-                                        {item.sections.length > 0 && (
+                                        {card.sections.length > 0 && (
                                             <div className={this.decorateCSS("sectionsWrapper")}>
-                                                {item.sections.map((section: Section, sectionIndex: number) => {
+                                                {card.sections.map((section: Section, sectionIndex: number) => {
                                                     const sectionTitle = section.title;
                                                     const sectionText = section.text;
                                                     return (sectionTitle || sectionText) && (
@@ -340,7 +340,7 @@ class Feature39 extends BaseFeature {
                                             </div>
                                         )}
                                         {(() => {
-                                            const validButtons = item.buttons?.filter((btn) => this.castToString(btn.text)) || [];
+                                            const validButtons = card.buttons?.filter((btn) => this.castToString(btn.text)) || [];
                                             return validButtons.length > 0 && (
                                                 <div className={this.decorateCSS("button-container")}>
                                                     {validButtons.map((buttonItem: ButtonTypeObj, buttonIndex: number) => (
