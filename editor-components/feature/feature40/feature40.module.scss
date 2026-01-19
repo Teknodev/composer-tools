@@ -18,6 +18,10 @@
                 .subtitle {
                     background: none;
                     padding: 0;
+
+                    &::before {
+                        background-color: var(--color-white);
+                    }
                 }
             }
 
@@ -32,6 +36,8 @@
                     }
 
                     .icon-box {
+                        background-color: var(--composer-overlay-color);
+
                         .card-icon {
                             color: var(--color-white) !important;
                         }
@@ -94,7 +100,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background-color: var(--composer-overlay-color);
+                    background-color: var(--composer-primary-color);
                     border-radius: var(--composer-border-radius-full);
                     padding: var(--composer-gap-md);
                     height: 70px;
