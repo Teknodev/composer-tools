@@ -36,7 +36,7 @@
     .max-content {
       display: flex;
       min-height: 50vh !important;
-      justify-content: space-evenly;
+      justify-content: space-between;
 
       .vertical-content {
         .subtitle {
@@ -69,8 +69,9 @@
       flex-wrap: wrap;
 
       .subtitle {
-        margin-left: auto !important;
-        margin-right: auto !important;
+        margin-left: auto;
+        margin-right: auto;
+        transform: none;
 
         &::before {
           display: none !important;
@@ -91,10 +92,6 @@
       gap: var(--composer-gap-sm);
 
       .button {
-        &.animated {
-          animation: bounce 2s infinite;
-        }
-
         .button-icon {
           font-size: 5rem;
           line-height: 0;
@@ -104,6 +101,10 @@
           white-space: nowrap;
           font-size: 4rem;
         }
+      }
+
+      &.animated .button {
+        animation: bounce 2s infinite;
       }
 
       @keyframes bounce {
@@ -122,6 +123,45 @@
 
         60% {
           transform: translateY(-5px);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .button-wrapper {
+        .button {
+          .button-icon {
+            font-size: 3rem;
+          }
+
+          .button-text {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    &.has-media {
+      .max-content {
+        min-height: 40vh !important;
+      }
+    }
+
+    .max-content {
+      .button-wrapper {
+        .button {
+
+          .button-text {
+            font-size: 1rem;
+          }
         }
       }
     }

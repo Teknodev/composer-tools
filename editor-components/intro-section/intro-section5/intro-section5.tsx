@@ -111,15 +111,15 @@ class IntroSection5 extends BaseIntroSection {
             </Base.VerticalContent>
           )}
           {visibleButtons.length > 0 && (
-            <div className={this.decorateCSS("button-wrapper")}>
+            <div className={`${this.decorateCSS("button-wrapper")} ${buttonAnimation && this.decorateCSS("animated")}`}>
               {visibleButtons.map((btn, i) => {
                 const hasIcon = btn.icon && (btn.icon.type === "icon" ? !!btn.icon.name : !!btn.icon.url);
                 const hasText = this.castToString(btn.text);
                 return (hasIcon || hasText) && (
                   <ComposerLink path={btn.url || ""} key={`btn-${i}`}>
-                    <Base.Button buttonType={btn.type} className={`${this.decorateCSS("button")} ${buttonAnimation ? this.decorateCSS("animated") : ""}`}>
-                      {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
+                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
                       {hasText && <span className={this.decorateCSS("button-text")}>{btn.text}</span>}
+                      {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
                     </Base.Button>
                   </ComposerLink>
                 );
