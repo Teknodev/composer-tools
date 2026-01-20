@@ -505,7 +505,7 @@ class HeroSection23 extends BaseHeroSection {
                           <Base.Media
                             value={item.topImage}
                             className={`${this.decorateCSS("top-img")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.topImage) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                            {...(isVideo(item.topImage) ? { autoPlay: true, muted: true, loop: true, playsInline: true, controls: false } : {})}
                           />
                         </div>
                       )}
@@ -514,7 +514,7 @@ class HeroSection23 extends BaseHeroSection {
                           <Base.Media
                             value={item.background2}
                             className={`${this.decorateCSS("background2")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.background2) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                            {...(isVideo(item.background2) ? { autoPlay: true, muted: true, loop: true, playsInline: true, controls: false } : {})}
                           />
                         </div>
                       )}
@@ -523,7 +523,7 @@ class HeroSection23 extends BaseHeroSection {
                           <Base.Media
                             value={item.background4}
                             className={`${this.decorateCSS("img-background")} ${isActive && animateActive && this.decorateCSS("animate")}`}
-                            {...(isVideo(item.background4) ? { autoPlay: true, muted: true, loop: true, playsInline: true } : {})}
+                            {...(isVideo(item.background4) ? { autoPlay: true, muted: true, loop: true, playsInline: true, controls: false } : {})}
                           />
                         </div>
                       )}

@@ -311,12 +311,17 @@
               transform: translate(-50%, -50%);
               transition: transform 0.1s ease-out;
               will-change: transform;
+              width: inherit;
+              height: inherit;
 
               .top-img {
                 position: absolute;
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
+                width: 200px;
+                height: auto;
+                max-height: 200px;
 
                 &.animate {
                   animation: slideOut3 1s ease;
@@ -437,6 +442,7 @@
                 .top-img {
                   width: 200px;
                   height: auto;
+                  max-height: 200px;
                 }
               }
 
@@ -509,6 +515,7 @@
               .header23-wrapper-topImg {
                 .top-img {
                   width: 100px;
+                  max-height: 100px;
                 }
               }
 
