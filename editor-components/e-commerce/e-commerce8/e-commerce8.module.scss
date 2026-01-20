@@ -173,6 +173,12 @@
                                 font-size: 1rem;
                                 display: flex;
                                 align-items: center;
+
+                                &.is-image {
+                                    width: var(--composer-gap-md);
+                                    height: var(--composer-gap-md);
+                                    object-fit: contain;
+                                }
                             }
                         }
 
@@ -186,6 +192,12 @@
                                     font-size: 1.25rem;
                                     line-height: 0;
                                     color: var(--composer-secondary-color);
+
+                                    &.is-image {
+                                        width: var(--composer-gap-md);
+                                        height: var(--composer-gap-md);
+                                        object-fit: contain;
+                                    }
                                 }
 
                                 .rating-label {
@@ -209,9 +221,26 @@
                             }
                         }
 
-                        .price-suffix {
-                            color: var(--composer-tertiary-color);
-                            text-align: left;
+                        .price-suffix-container {
+                            display: flex;
+                            align-items: center;
+
+                            .separator-icon {
+                                display: flex;
+                                color: var(--composer-tertiary-color);
+                                font-size: 1rem;
+
+                                &.is-image {
+                                    width: var(--composer-gap-md);
+                                    height: var(--composer-gap-md);
+                                    object-fit: contain;
+                                }
+                            }
+
+                            .price-suffix {
+                                color: var(--composer-tertiary-color);
+                                text-align: left;
+                            }
                         }
                     }
                 }

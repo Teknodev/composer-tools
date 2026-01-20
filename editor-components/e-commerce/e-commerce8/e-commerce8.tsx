@@ -20,6 +20,7 @@ interface ProductCard {
     bottomIcon: TypeMediaInputValue;
     productTitle: React.JSX.Element;
     priceSuffix: React.JSX.Element;
+    separatorIcon: TypeMediaInputValue;
     cost: { value: React.JSX.Element; currency: CurrencyCode };
     navigateTo: string;
 }
@@ -67,13 +68,13 @@ class ECommerce8 extends BaseECommerce {
 
         this.addProp({
             type: "array",
-            key: "productCards",
-            displayer: "Product Cards",
+            key: "cards",
+            displayer: "Cards",
             value: [
                 {
                     type: "object",
-                    key: "productCard",
-                    displayer: "Product Card",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "string",
@@ -185,7 +186,19 @@ class ECommerce8 extends BaseECommerce {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
-                            value: "/ hour",
+                            value: "hour",
+                        },
+                        {
+                            type: "media",
+                            key: "separatorIcon",
+                            displayer: "Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
                         },
                         {
                             type: "currency",
@@ -203,8 +216,8 @@ class ECommerce8 extends BaseECommerce {
                 },
                 {
                     type: "object",
-                    key: "productCard",
-                    displayer: "Product Card",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "string",
@@ -316,7 +329,19 @@ class ECommerce8 extends BaseECommerce {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
-                            value: "/ hour",
+                            value: "hour",
+                        },
+                        {
+                            type: "media",
+                            key: "separatorIcon",
+                            displayer: "Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
                         },
                         {
                             type: "currency",
@@ -334,8 +359,8 @@ class ECommerce8 extends BaseECommerce {
                 },
                 {
                     type: "object",
-                    key: "productCard",
-                    displayer: "Product Card",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "string",
@@ -447,7 +472,19 @@ class ECommerce8 extends BaseECommerce {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
-                            value: "/ hour",
+                            value: "hour",
+                        },
+                        {
+                            type: "media",
+                            key: "separatorIcon",
+                            displayer: "Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
                         },
                         {
                             type: "currency",
@@ -465,8 +502,8 @@ class ECommerce8 extends BaseECommerce {
                 },
                 {
                     type: "object",
-                    key: "productCard",
-                    displayer: "Product Card",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "string",
@@ -578,7 +615,19 @@ class ECommerce8 extends BaseECommerce {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
-                            value: "/ hour",
+                            value: "hour",
+                        },
+                        {
+                            type: "media",
+                            key: "separatorIcon",
+                            displayer: "Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
                         },
                         {
                             type: "currency",
@@ -616,7 +665,7 @@ class ECommerce8 extends BaseECommerce {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const enableOverlay = this.getPropValue("enableOverlay");
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const productCards = this.castToObject<ProductCard[]>("productCards") || [];
+        const cards = this.castToObject<ProductCard[]>("cards") || [];
         const itemCount = this.getPropValue("itemCount");
         const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
@@ -648,26 +697,29 @@ class ECommerce8 extends BaseECommerce {
                             {visibleButtons.length > 0 && renderButtons(false)}
                         </div>
                     )}
-                    {productCards.length > 0 && (
+                    {cards.length > 0 && (
                         <Base.ListGrid
                             className={this.decorateCSS("card-wrapper")}
                             gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                         >
-                            {productCards.map((productCard: ProductCard, cardIndex: number) => {
-                                const cardLeftText = this.castToString(productCard.cardLeftText);
-                                const cardImage = productCard.cardImage;
-                                const hoverImage = productCard.hoverImage;
+                            {cards.map((card: ProductCard, cardIndex: number) => {
+                                const cardLeftText = this.castToString(card.cardLeftText);
+                                const cardImage = card.cardImage;
+                                const hoverImage = card.hoverImage;
                                 const hasCardImage = cardImage && "url" in cardImage && !!cardImage.url;
                                 const hasHoverImage = hoverImage && "url" in hoverImage && !!hoverImage.url;
                                 const displayImage = hasCardImage ? cardImage : (hasHoverImage ? hoverImage : null);
                                 const displayHoverImage = hasCardImage && hasHoverImage ? hoverImage : null;
-                                const bottomLabelsArray = productCard.BottomLabels || [];
-                                const ratingLabel = this.castToString(productCard.BottomRatingLabel);
-                                const ratingIcon = productCard.bottomIcon;
-                                const productTitle = this.castToString(productCard.productTitle);
-                                const priceSuffix = this.castToString(productCard.priceSuffix);
-                                const cost = productCard.cost;
-                                const navigateTo = productCard.navigateTo;
+                                const bottomLabelsArray = card.BottomLabels || [];
+                                const ratingLabel = this.castToString(card.BottomRatingLabel);
+                                const ratingIcon = card.bottomIcon;
+                                const isRatingImage = ratingIcon && "type" in ratingIcon && ratingIcon.type === "image";
+                                const productTitle = this.castToString(card.productTitle);
+                                const priceSuffix = this.castToString(card.priceSuffix);
+                                const separatorIcon = card.separatorIcon;
+                                const isSeparatorImage = separatorIcon && "type" in separatorIcon && separatorIcon.type === "image";
+                                const cost = card.cost;
+                                const navigateTo = card.navigateTo;
                                 const hasBottomLabels = bottomLabelsArray.length > 0;
                                 const hasRating = ratingLabel || ratingIcon;
 
@@ -698,7 +750,7 @@ class ECommerce8 extends BaseECommerce {
                                                 {cardLeftText && (
                                                     <div className={this.decorateCSS("badge")}>
                                                         <Base.P className={this.decorateCSS("badge-text")}>
-                                                            {productCard.cardLeftText}
+                                                            {card.cardLeftText}
                                                         </Base.P>
                                                     </div>
                                                 )}
@@ -717,10 +769,10 @@ class ECommerce8 extends BaseECommerce {
                                                                         <div className={this.decorateCSS("label-item")}>
                                                                             <Base.P className={this.decorateCSS("label-text")}>{labelItem.cardLabel}</Base.P>
                                                                         </div>
-                                                                        {productCard.line && !isLast && (
+                                                                        {card.line && !isLast && (
                                                                             <Base.Media
-                                                                                value={{ type: "icon", name: "RxSlash" }}
-                                                                                className={this.decorateCSS("label-separator")}
+                                                                                value={separatorIcon}
+                                                                                className={`${this.decorateCSS("label-separator")} ${isSeparatorImage && this.decorateCSS("is-image")}`}
                                                                             />
                                                                         )}
                                                                     </React.Fragment>
@@ -733,13 +785,13 @@ class ECommerce8 extends BaseECommerce {
                                                             <div className={this.decorateCSS("rating-item")}>
                                                                 {ratingLabel && (
                                                                     <Base.P className={this.decorateCSS("rating-label")}>
-                                                                        {productCard.BottomRatingLabel}
+                                                                        {card.BottomRatingLabel}
                                                                     </Base.P>
                                                                 )}
                                                                 {ratingIcon && (
                                                                     <Base.Media
                                                                         value={ratingIcon}
-                                                                        className={this.decorateCSS("rating-icon")}
+                                                                        className={`${this.decorateCSS("rating-icon")} ${isRatingImage && this.decorateCSS("is-image")}`}
                                                                     />
                                                                 )}
                                                             </div>
@@ -747,10 +799,10 @@ class ECommerce8 extends BaseECommerce {
                                                     )}
                                                 </div>
                                             )}
-                                            {productCard.line && (<div className={this.decorateCSS("line")}></div>)}
+                                            {card.line && (<div className={this.decorateCSS("line")}></div>)}
                                             {productTitle && (
                                                 <Base.H6 className={this.decorateCSS("product-title")}>
-                                                    {productCard.productTitle}
+                                                    {card.productTitle}
                                                 </Base.H6>
                                             )}
                                             {cost?.value && (
@@ -764,9 +816,15 @@ class ECommerce8 extends BaseECommerce {
                                                         </Base.P>
                                                     </div>
                                                     {priceSuffix && (
-                                                        <Base.P className={this.decorateCSS("price-suffix")}>
-                                                            {productCard.priceSuffix}
-                                                        </Base.P>
+                                                        <div className={this.decorateCSS("price-suffix-container")}>
+                                                            <Base.Media
+                                                                value={separatorIcon}
+                                                                className={`${this.decorateCSS("separator-icon")} ${isSeparatorImage && this.decorateCSS("is-image")}`}
+                                                            />
+                                                            <Base.P className={this.decorateCSS("price-suffix")}>
+                                                                {card.priceSuffix}
+                                                            </Base.P>
+                                                        </div>
                                                     )}
                                                 </div>
                                             )}
