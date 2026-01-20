@@ -31,7 +31,15 @@ class About3 extends BaseAbout {
       value:
         "A design-led approach guides the team, implementing practices, products and services that are thoughtful and environmentally sound. Family of professionals that creates intelligent designs that help the face of hospitality.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "About Resort", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "About Resort", "", null, null, "Primary")],
+      additionalParams: {
+        maxElementCount: 2,
+      },
+    });
 
     this.addProp({
       type: "string",
@@ -59,7 +67,7 @@ class About3 extends BaseAbout {
       key: "phoneIcon",
       displayer: "Media",
       additionalParams: {
-        availableTypes: ["icon","image"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -135,7 +143,7 @@ class About3 extends BaseAbout {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const isAboutTitleExist = this.castToString(
       this.getPropValue("subtitle")
@@ -144,7 +152,7 @@ class About3 extends BaseAbout {
     const isDescriptionExist = this.castToString(
       this.getPropValue("description")
     );
-    const isButtonTextExist = this.castToString(button.text);
+
     const isPhoneExist = this.castToString(this.getPropValue("phone"));
     const isRightWeakTextExist = this.castToString(
       this.getPropValue("rightWeakText")
@@ -167,7 +175,7 @@ class About3 extends BaseAbout {
       isAboutTitleExist ||
       isMainTitleExist ||
       isDescriptionExist ||
-      isButtonTextExist ||
+      buttons.length > 0 ||
       isPhoneExist;
     const noImages = !isImage1Exist && !isImage2Exist;
 
@@ -199,12 +207,20 @@ class About3 extends BaseAbout {
               )}
 
               <div className={this.decorateCSS("button-container")}>
-                {isButtonTextExist && (
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>
-                  </ComposerLink>
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("buttons-wrapper")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                      <div key={index} className={this.decorateCSS("button-wrapper")}>
+                        {this.castToString(button.text) && (
+                          <ComposerLink path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </div>
+                    ))}
+                  </div>
                 )}
 
                 {(this.getPropValue("phoneIcon") || isPhoneExist) && (
@@ -214,9 +230,9 @@ class About3 extends BaseAbout {
                       className={this.decorateCSS("icon")}
                     />
                     {isPhoneExist && (
-                      <Base.H4 className={this.decorateCSS("text")}>
+                      <Base.H6 className={this.decorateCSS("text")}>
                         {this.getPropValue("phone")}
-                      </Base.H4>
+                      </Base.H6>
                     )}
                   </div>
                 )}
@@ -226,11 +242,11 @@ class About3 extends BaseAbout {
 
           {showDiv && (
             <div className={`${this.decorateCSS("right-page")} ${!showLeftDiv ? this.decorateCSS("no-content") : ""}`}>
-              <div 
+              <div
                 className={`${this.decorateCSS("image-container")} ${(!isImage1Exist || !isImage2Exist) && this.decorateCSS("center-single-image")}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
-              
+
                 {(isImage1Exist || isImage2Exist) && (isRightWeakTextExist || isRightBoldTextExist) && (
                   <div className={this.decorateCSS("image-text")}>
                     {isRightWeakTextExist && (
@@ -266,7 +282,7 @@ class About3 extends BaseAbout {
             </div>
           )}
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }

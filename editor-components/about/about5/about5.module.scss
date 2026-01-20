@@ -12,6 +12,8 @@ as *;
       .top-section {
         display: flex;
         flex: 1;
+        align-items: center;
+        gap: var(--composer-gap-md);
 
         .left-section {
           flex: 1;
@@ -23,7 +25,8 @@ as *;
             align-items: baseline;
 
             .title,
-            .subtitle {
+            .subtitle,
+            .description {
               text-align: left;
               margin-left: 0;
             }
@@ -145,48 +148,38 @@ as *;
           }
         }
       }
-
-      .description {
-        text-align: left;
-      }
     }
   }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-  .max-content {
-    .main-wrapper {
-      flex-direction: column;
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .main-wrapper {
+        flex-direction: column;
 
-      .left-section {
-        min-width: auto;
-      }
+        .left-section {
+          min-width: auto;
+        }
 
-      .right-section {
-        .content {
-          flex-direction: column;
-          gap: var(--composer-gap-md);
+        .right-section {
+          .content {
+            flex-direction: column;
+            gap: var(--composer-gap-md);
 
-          .card-2,
-          .card-3,
-          .content-right-section-empty {
-            min-width: auto;
+            .card-2,
+            .card-3,
+            .content-right-section-empty {
+              min-width: auto;
+            }
           }
         }
       }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    .main-wrapper {
-      flex-direction: column;
-      gap: var(--composer-gap-md);
-
-      .top-section {
-        display: flex;
-        flex-direction: column !important;
+  @container (max-width: #{$composer-phone-width}) {
+    .max-content {
+      .main-wrapper {
+        flex-direction: column;
         gap: var(--composer-gap-md);
 
         .left-section,
@@ -197,6 +190,7 @@ as *;
         .left-section {
           order: 1;
         }
+
         .right-section {
           order: 2;
         }

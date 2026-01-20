@@ -1,30 +1,39 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
+
 .container {
   .max-content {
     display: flex;
     justify-content: center;
     align-items: center;
+
     .content {
       display: flex;
       flex-direction: column;
-      .subtitle, .title {
+
+      .subtitle,
+      .title {
         content: "";
       }
+
       .title {
         text-align: center !important;
       }
+
       .subtitle {
         text-align: center !important;
         align-self: center !important;
         transform: translateX(0) !important;
+
         &::before {
           display: none !important;
         }
       }
+
       .text-container {
         display: flex;
         gap: var(--composer-gap-md);
+
         .left-text,
         .right-text {
           flex: 1;
@@ -33,11 +42,31 @@
 
         &.single-text {
           justify-content: center;
+
           .left-text,
           .right-text {
             width: 100%;
             text-align: center !important;
             align-self: center;
+          }
+        }
+      }
+
+      .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+        flex-wrap: wrap;
+        width: 100%;
+        margin-top: var(--composer-gap-md);
+
+        .button-wrapper {
+          display: flex;
+
+          .button {
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -49,21 +78,40 @@
   .max-content {
     .content {
       align-items: center !important;
+
       .subtitle {
         transform: translateX(0) !important;
+
         &::before {
           content: none !important;
         }
       }
+
       .title {
         text-align: center;
       }
+
       .text-container {
         flex-direction: column;
+
         .left-text,
         .right-text {
           width: 100% !important;
           text-align: center;
+        }
+      }
+
+      .buttons-container {
+        flex-direction: column;
+        align-items: center;
+
+        .button-wrapper {
+          width: 100%;
+          justify-content: center;
+
+          .button {
+            width: 100%;
+          }
         }
       }
     }

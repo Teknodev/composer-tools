@@ -2,6 +2,7 @@ import { BaseAbout } from "../../EditorComponent";
 import styles from "./about8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Text = {
   description: React.JSX.Element;
@@ -94,17 +95,15 @@ class About8 extends BaseAbout {
       value: true,
     });
 
-    this.addProp(
-      INPUTS.BUTTON(
-        "button",
-        "Button",
-        "Learn More",
-        "",
-        null,
-        null,
-        "Primary"
-      )
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+      additionalParams: {
+        maxElementCount: 2,
+      },
+    });
   }
 
   static getName(): string {
@@ -116,11 +115,11 @@ class About8 extends BaseAbout {
     const image1 = this.getPropValue("image-1");
     const image2 = this.getPropValue("image-2");
     const texts = this.castToObject<Text[]>("texts");
-    const button: INPUTS.CastedButton =
-      this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
 
     const hasTitle = !!this.castToString(title);
-    const hasButton = !!this.castToString(button?.text);
+    const hasButton = buttons.length > 0;
     const validTexts =
       texts?.filter((t) => !!this.castToString(t.description)) || [];
     const hasTexts = validTexts.length > 0;
@@ -160,8 +159,8 @@ class About8 extends BaseAbout {
                 {hasImage1 && (
                   <div
                     className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
-                        ? this.decorateCSS("overlay")
-                        : ""
+                      ? this.decorateCSS("overlay")
+                      : ""
                       }`}
                   >
                     <Base.Media
@@ -173,8 +172,8 @@ class About8 extends BaseAbout {
                 {hasImage2 && (
                   <div
                     className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
-                        ? this.decorateCSS("overlay")
-                        : ""
+                      ? this.decorateCSS("overlay")
+                      : ""
                       }`}
                   >
                     <Base.Media
@@ -186,7 +185,7 @@ class About8 extends BaseAbout {
               </div>
             )}
 
-            {(hasTexts || hasButton) && (
+            {(hasTexts || buttons.length > 0) && (
               <div className={this.decorateCSS("content-section")}>
                 {hasTexts && (
                   <div className={this.decorateCSS("texts-wrapper")}>
@@ -201,16 +200,19 @@ class About8 extends BaseAbout {
                   </div>
                 )}
 
-                {hasButton && (
-                  <div className={this.decorateCSS("button-wrapper")}>
-                    <Base.Button
-                      buttonType={button.type}
-                      className={this.decorateCSS("button")}
-                    >
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {button.text}
-                      </Base.P>
-                    </Base.Button>
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("buttons-container")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                      <div key={index} className={this.decorateCSS("button-wrapper")}>
+                        {this.castToString(button.text) && (
+                          <ComposerLink path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>

@@ -62,13 +62,19 @@ as *;
           }
         }
 
-        .button-wrapper {
+        .buttons-container {
           display: flex;
           align-self: center;
+          gap: var(--composer-gap-md);
+          flex-wrap: wrap;
 
-          .button {
-            .button-text {
-              content: "";
+          .button-wrapper {
+            display: flex;
+
+            .button {
+              .button-text {
+                content: "";
+              }
             }
           }
         }
@@ -82,7 +88,7 @@ as *;
             }
           }
 
-          .button-wrapper {
+          .buttons-container {
             align-self: flex-start !important;
           }
         }
