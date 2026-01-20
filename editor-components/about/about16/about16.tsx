@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type VideoItemType = {
+type CardItemType = {
     video: TypeMediaInputValue;
     subtitle: React.JSX.Element;
     title: React.JSX.Element;
@@ -41,13 +41,13 @@ class About16 extends BaseAbout {
 
         this.addProp({
             type: "array",
-            key: "videos",
+            key: "cards",
             displayer: "Cards",
             value: [
                 {
                     type: "object",
-                    key: "videoItem",
-                    displayer: "Video",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
@@ -97,8 +97,8 @@ class About16 extends BaseAbout {
                 },
                 {
                     type: "object",
-                    key: "videoItem",
-                    displayer: "Video",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
@@ -190,7 +190,7 @@ class About16 extends BaseAbout {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const textButtons = buttons.filter(btn => this.castToString(btn.text));
-        const videos = this.castToObject<VideoItemType[]>("videos") || [];
+        const cards = this.castToObject<CardItemType[]>("cards") || [];
         const itemCount = this.getPropValue("itemCount") || 2;
         const enableOverlay = this.getPropValue("enableOverlay");
         const enableAnimation = this.getPropValue("enableAnimation");
@@ -207,22 +207,22 @@ class About16 extends BaseAbout {
                         </Base.VerticalContent>
                     )}
                     <div className={this.decorateCSS("cards-wrapper")}>
-                        {videos.length > 0 && (
+                        {cards.length > 0 && (
                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("list-container")}>
-                                {videos.map((item, index) => {
-                                    const cardSubtitle = this.castToString(item.subtitle);
-                                    const cardTitle = this.castToString(item.title);
-                                    const cardDescription = this.castToString(item.description);
-                                    const isImage = item.icon?.type === "image";
+                                {cards.map((card, index) => {
+                                    const cardSubtitle = this.castToString(card.subtitle);
+                                    const cardTitle = this.castToString(card.title);
+                                    const cardDescription = this.castToString(card.description);
+                                    const isImage = card.icon?.type === "image";
                                     const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
-                                    const hasMedia = item.video && "url" in item.video && item.video.url;
+                                    const hasMedia = card.video && "url" in card.video && card.video.url;
                                     return (
                                         <div key={index} className={this.decorateCSS("list-item")}>
                                             <div className={`${this.decorateCSS("image-container")} ${enableAnimation && this.decorateCSS("animated")} ${!hasMedia && this.decorateCSS("no-media")}`}>
-                                                <ComposerLink path={item.navigateTo} isFullWidth={true}>
+                                                <ComposerLink path={card.navigateTo} isFullWidth={true}>
                                                     {hasMedia && (
                                                         <Base.Media
-                                                            value={item.video}
+                                                            value={card.video}
                                                             className={this.decorateCSS("image")}
                                                             autoPlay={true}
                                                             muted={true}
@@ -233,16 +233,16 @@ class About16 extends BaseAbout {
                                                     )}
                                                     {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
                                                     <div className={this.decorateCSS("text-content")}>
-                                                        {item.icon && (
+                                                        {card.icon && (
                                                             <div className={this.decorateCSS("icon-wrapper")}>
-                                                                <Base.Media value={item.icon} className={`${this.decorateCSS("icon")} ${isImage && this.decorateCSS("is-image")}`} />
+                                                                <Base.Media value={card.icon} className={`${this.decorateCSS("icon")} ${isImage && this.decorateCSS("is-image")}`} />
                                                             </div>
                                                         )}
                                                         {hasTextDetails && (
                                                             <Base.VerticalContent className={this.decorateCSS("text-details")}>
-                                                                {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>)}
-                                                                {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>)}
-                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
+                                                                {cardSubtitle && (<Base.H5 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H5>)}
+                                                                {cardTitle && (<Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>)}
+                                                                {cardDescription && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
                                                             </Base.VerticalContent>
                                                         )}
                                                     </div>
