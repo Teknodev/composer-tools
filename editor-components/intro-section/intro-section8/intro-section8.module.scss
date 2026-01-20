@@ -124,6 +124,11 @@
                 .play-icon {
                     display: flex;
                     font-size: 2rem;
+
+                    &.is-image {
+                        width: var(--composer-gap-md);
+                        height: var(--composer-gap-md);
+                    }
                 }
             }
         }

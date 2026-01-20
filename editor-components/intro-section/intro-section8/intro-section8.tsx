@@ -148,7 +148,7 @@ class IntroSection8 extends BaseIntroSection {
                                         {hasOverlay && <div className={this.decorateCSS("overlay")} />}
                                         {(playIcon?.name || playIcon?.url) && (
                                             <div className={this.decorateCSS("play-icon-wrapper")}>
-                                                <Base.Media value={playIcon} className={this.decorateCSS("play-icon")} />
+                                                <Base.Media value={playIcon} className={`${this.decorateCSS("play-icon")} ${playIcon?.type === "image" && this.decorateCSS("is-image")}`} />
                                             </div>
                                         )}
                                     </div>
