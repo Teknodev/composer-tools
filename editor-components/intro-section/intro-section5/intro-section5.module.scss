@@ -54,6 +54,16 @@
           color: var(--composer-font-color-secondary) !important;
         }
       }
+
+      .button-wrapper {
+        .button {
+
+          .button-icon,
+          .button-text {
+            color: var(--color-white) !important;
+          }
+        }
+      }
     }
   }
 
