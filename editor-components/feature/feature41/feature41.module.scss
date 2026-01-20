@@ -7,6 +7,8 @@
         gap: var(--composer-gap-lg);
 
         .card-container-section {
+            display: flex;
+            flex-direction: column;
             gap: var(--composer-gap-md);
 
             .text-content {
@@ -28,7 +30,7 @@
                     display: flex;
                     gap: var(--composer-gap-md);
                     flex-direction: column;
-                    padding: calc(var(--composer-gap-lg) * 2);
+                    padding: var(--composer-gap-lg);
                     border-right: 1px solid var(--composer-tertiary-color);
                     height: 100%;
                     width: 100%;
@@ -92,8 +94,6 @@
             .card-container-section {
                 .card-container {
                     .card-wrapper {
-                        padding: var(--composer-gap-xl);
-
                         &.last-in-row {
                             border-right: 1px solid var(--composer-tertiary-color);
                         }
