@@ -24,14 +24,10 @@
       position: relative;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
       gap: var(--composer-gap-md);
 
       .title-container {
-
-        >*:last-child {
-          margin-bottom: 0 !important;
-        }
 
         .subtitle,
         .section-title,
@@ -42,7 +38,6 @@
         .subtitle {
           margin-left: 0px !important;
         }
-
       }
 
       .right-side {
@@ -57,31 +52,30 @@
           display: flex;
           align-items: center;
           position: relative;
-          margin-bottom: 10px;
 
           .link-text {
             display: flex;
             align-items: center;
             width: max-content;
             text-align: left;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
             color: var(--composer-font-color-primary);
+            font-size: 1rem; // Matching Base.P usually
 
             .right-side-icon {
+              width: 18px;
+              height: 18px;
               font-size: 1.5rem;
-              width: 1.5rem;
-              height: 1.5rem;
               color: var(--composer-font-color-primary);
               flex-shrink: 0;
-              transition: var(--composer-transition-duration-fast);
-              margin-top: var(--composer-gap-xs);
+              transition: transform 0.3s ease-in-out;
             }
           }
 
-          .underline-bar {
+          &::after {
             content: "";
             position: absolute;
-            bottom: -5px;
+            bottom: -2px;
             left: 0;
             width: 100%;
             height: 1px;
@@ -92,10 +86,10 @@
 
           &:hover {
             .right-side-icon {
-              rotate: 45deg;
+              transform: scale(1.1);
             }
 
-            .underline-bar {
+            &::after {
               transform: scaleX(0);
             }
           }
@@ -116,19 +110,11 @@
         gap: var(--composer-gap-md);
 
         &:has(.card:nth-child(1).mini):not(:has(.card:nth-child(2).mini)) {
-          height: 100%;
+          height: auto;
 
           .card:nth-child(1).mini {
-            height: 100%;
-            justify-content: flex-start;
-
-            .image-container {
-              display: flex;
-            }
-
-            .card-content {
-              justify-content: flex-start;
-            }
+            min-height: calc(50% - var(--composer-gap-md) / 2);
+            height: auto;
           }
         }
 
@@ -165,7 +151,7 @@
             height: 50%;
             overflow: hidden;
             box-shadow: var(--box-shadow);
-            border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
+            border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
             cursor: pointer;
 
             .image {
@@ -199,9 +185,6 @@
 
                 .date-icon {
                   flex-shrink: 0;
-                  font-size: 2rem;
-                  width: 2rem;
-                  height: 2rem;
                 }
 
                 .date-text {
@@ -220,9 +203,6 @@
 
                 .time-icon {
                   flex-shrink: 0;
-                  font-size: 2rem;
-                  width: 2rem;
-                  height: 2rem;
                 }
 
                 .time-text {
@@ -266,7 +246,6 @@
             .profile-image {
               width: var(--composer-gap-xl);
               height: var(--composer-gap-xl);
-              border-radius: var(--composer-border-radius-sm);
 
               &:hover {
                 filter: brightness(1.2);
@@ -304,6 +283,11 @@
           .link-container {
             .link-text {
               padding-bottom: var(--composer-gap-xs);
+
+              .right-side-icon {
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
+              }
             }
           }
         }
@@ -360,17 +344,15 @@
             color: var(--composer-font-color-primary);
 
             .right-side-icon {
-              width: 1.5rem;
-              height: 1.5rem;
-              font-size: 1.5rem;
+              width: var(--composer-gap-md);
+              height: var(--composer-gap-md);
               color: var(--composer-font-color-primary);
               flex-shrink: 0;
               transition: var(--composer-transition-duration-fast);
-              margin-top: var(--composer-gap-xs);
             }
           }
 
-          .underline-bar {
+          &::after {
             content: "";
             position: absolute;
             bottom: -2px;
@@ -387,7 +369,7 @@
               rotate: 45deg;
             }
 
-            .underline-bar {
+            &::after {
               transform: scaleX(0);
             }
           }

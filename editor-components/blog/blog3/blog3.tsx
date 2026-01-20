@@ -59,7 +59,7 @@ class Blog3 extends BaseBlog {
           key: "rightSideIcon",
           displayer: "Right Side Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["icon"],
           },
           value: {
             type: "icon",
@@ -71,7 +71,7 @@ class Blog3 extends BaseBlog {
           key: "dateIcon",
           displayer: "Date Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["icon"],
           },
           value: {
             type: "icon",
@@ -83,7 +83,7 @@ class Blog3 extends BaseBlog {
           key: "timeIcon",
           displayer: "Time Icon",
           additionalParams: {
-            availableTypes: ["icon", "image"],
+            availableTypes: ["icon"],
           },
           value: {
             type: "icon",
@@ -463,13 +463,6 @@ class Blog3 extends BaseBlog {
 
     const Card = ({ data, style }: { data: CardData, style?: object; }) => {
       const title = this.castToString(data.title);
-      const isMini = (() => {
-        if (typeof data.mini === "boolean") return data.mini;
-        if (!data.mini) return false;
-        if (typeof data.mini === "object" && "value" in data.mini) return Boolean((data.mini as any).value);
-        if (typeof data.mini === "string") return data.mini === "true";
-        return Boolean(data.mini);
-      })();
       const description = this.castToString(data.description);
 
       const profileDescriptionExist = !!this.castToString(data.profileDescription);
@@ -481,7 +474,7 @@ class Blog3 extends BaseBlog {
         <div
           className={`
               ${this.decorateCSS("card")}
-              ${this.decorateCSS(isMini ? "mini" : "")}
+              ${this.decorateCSS(data.mini ? "mini" : "")}
             `}
           style={style}
         >
@@ -526,14 +519,14 @@ class Blog3 extends BaseBlog {
             )}
             {title && (
               <ComposerLink path={data.url}>
-                <Base.H2
+                <Base.H5
                   className={`
                     ${this.decorateCSS("title")}
                     ${underlineAnimation ? this.decorateCSS("underline-animation") : ""}
                   `}
                 >
                   {data.title}
-                </Base.H2>
+                </Base.H5>
               </ComposerLink>
             )}
             {description && (
@@ -572,15 +565,6 @@ class Blog3 extends BaseBlog {
       );
     };
 
-    const isCardMiniValue = (c: any) => {
-      const v = c?.mini;
-      if (typeof v === "boolean") return v;
-      if (!v) return false;
-      if (typeof v === "object" && "value" in v) return Boolean((v as any).value);
-      if (typeof v === "string") return v === "true";
-      return Boolean(v);
-    };
-
     const Blocks = ({ cards }: { cards: CardData[]; }) => {
       const blocks: React.JSX.Element[] = [];
       const data: any = [];
@@ -593,8 +577,7 @@ class Blog3 extends BaseBlog {
           this.castToString(cards[i].readTime) ||
           this.castToString(cards[i].fullname) ||
           this.castToString(cards[i].profileDescription) ||
-          cards[i].image?.url ||
-          isCardMiniValue(cards[i])
+          cards[i].image?.url
         )) {
           continue;
         }
@@ -609,24 +592,7 @@ class Blog3 extends BaseBlog {
           return <>{blocks}</>;
         }
 
-        const cardIMini = (() => {
-          const v = cards[i].mini;
-          if (typeof v === "boolean") return v;
-          if (!v) return false;
-          if (typeof v === "object" && "value" in v) return Boolean((v as any).value);
-          if (typeof v === "string") return v === "true";
-          return Boolean(v);
-        })();
-        const cardI1Mini = (() => {
-          const v = cards[i + 1].mini;
-          if (typeof v === "boolean") return v;
-          if (!v) return false;
-          if (typeof v === "object" && "value" in v) return Boolean((v as any).value);
-          if (typeof v === "string") return v === "true";
-          return Boolean(v);
-        })();
-
-        if (cardIMini && cardI1Mini) {
+        if (cards[i].mini && cards[i + 1].mini) {
           blocks.push(
             <Block><>
               <Card data={cards[i]} />
@@ -660,22 +626,11 @@ class Blog3 extends BaseBlog {
       );
     };
 
-    const cardsList = this.castToObject<CardData[]>("cards");
-    const hasValidCards = cardsList.some((card) =>
-      this.castToString(card.title) ||
-      this.castToString(card.description) ||
-      this.castToString(card.date) ||
-      this.castToString(card.readTime) ||
-      this.castToString(card.fullname) ||
-      this.castToString(card.profileDescription) ||
-      card.image?.url
-    );
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(descriptionExist || leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
-            <div className={this.decorateCSS("header")}>
+            <header className={this.decorateCSS("header")}>
               <Base.VerticalContent className={this.decorateCSS("title-container")}>
                 {leftSideTextExist && (
                   <Base.SectionTitle className={this.decorateCSS("section-title")}>
@@ -692,8 +647,7 @@ class Blog3 extends BaseBlog {
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
-                      <div className={this.decorateCSS("underline-bar")} />
-                      <Base.H4 className={this.decorateCSS("link-text")}>
+                      <Base.P className={this.decorateCSS("link-text")}>
                         {rightSideTextExist && (
                           this.getPropValue("rightSideText")
                         )}
@@ -703,24 +657,21 @@ class Blog3 extends BaseBlog {
                             className={this.decorateCSS("right-side-icon")}
                           />
                         )}
-                      </Base.H4>
+                      </Base.P>
                     </div>
                   </ComposerLink>
                 </div>
               )}
-            </div>
+            </header>
           )}
-          {hasValidCards && (
-            <Base.ListGrid gridCount={{ pc: itemCountInARow, phone: 1 }} className={this.decorateCSS("cards-row")}>
-              <Blocks cards={cardsList} />
-            </Base.ListGrid>
-          )}
+          <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
+            <Blocks cards={this.castToObject<CardData[]>("cards")} />
+          </Base.ListGrid>
           {(rightSideTextExist || !!icons.rightSideIcon) && (
             <div className={this.decorateCSS("mobile-right-side")}>
               <ComposerLink path={rightSideUrl}>
                 <div className={this.decorateCSS("link-container")}>
-                  <div className={this.decorateCSS("underline-bar")} />
-                  <Base.H4 className={this.decorateCSS("link-text")}>
+                  <Base.P className={this.decorateCSS("link-text")}>
                     {rightSideTextExist && (
                       this.getPropValue("rightSideText")
                     )}
@@ -730,7 +681,7 @@ class Blog3 extends BaseBlog {
                         className={this.decorateCSS("right-side-icon")}
                       />
                     )}
-                  </Base.H4>
+                  </Base.P>
                 </div>
               </ComposerLink>
             </div>
@@ -742,4 +693,5 @@ class Blog3 extends BaseBlog {
 }
 
 export default Blog3;
+
 
