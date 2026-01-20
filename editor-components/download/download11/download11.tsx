@@ -245,7 +245,7 @@ class Download11 extends BaseDownload {
               <div className={`${this.decorateCSS("left-card")} ${(hasValidRightCard || hasValidBottomRightCard) ? this.decorateCSS("no-full") : this.decorateCSS("full")}`}>
                 {hasValidCard && (
                   <Base.VerticalContent className={this.decorateCSS("card")}>
-                    {leftImageExist && <Base.Media value={leftItems.image} className={`${this.decorateCSS("image")} ${(leftItems.image && (leftItems.image as any).type === "image" ? this.decorateCSS("image-img") : "")} ${leftCardExist ? this.decorateCSS("no-full") : this.decorateCSS("full")}`} />}
+                    {leftImageExist && <Base.Media value={leftItems.image} className={`${this.decorateCSS("image")} ${leftCardExist ? this.decorateCSS("no-full") : this.decorateCSS("full")}`} />}
                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{leftItems.subtitle}</Base.SectionSubTitle>}
                     {titleExist && <Base.H2 className={this.decorateCSS("title")}>{leftItems.title}</Base.H2>}
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{leftItems.description}</Base.SectionDescription>}
@@ -281,7 +281,7 @@ class Download11 extends BaseDownload {
                           </div>
                         )}
                       </Base.VerticalContent>
-                      {rightImageExist && <Base.Media value={rightItems.image} className={`${this.decorateCSS("image")} ${(rightItems.image && (rightItems.image as any).type === "image" ? this.decorateCSS("image-img") : "")} ${!hasValidRightCardTexts && this.decorateCSS("full")}`} />}
+                      {rightImageExist && <Base.Media value={rightItems.image} className={`${this.decorateCSS("image")} ${!hasValidRightCardTexts && this.decorateCSS("full")}`} />}
                     </div>
                   </div>
                 )}
@@ -302,7 +302,7 @@ class Download11 extends BaseDownload {
                           </div>
                         )}
                       </Base.VerticalContent>
-                      {rightBottomMediaExist && <Base.Media value={rightBottomItems.image} className={`${this.decorateCSS("image")} ${(rightBottomItems.image && (rightBottomItems.image as any).type === "image" ? this.decorateCSS("image-img") : "")} ${this.decorateCSS("image-bottom")}`} />}
+                      {rightBottomMediaExist && <Base.Media value={rightBottomItems.image} className={this.decorateCSS("image")} />}
                     </div>
                   </div>
                 )}

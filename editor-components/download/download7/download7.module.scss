@@ -38,45 +38,19 @@
         position: relative;
         z-index: 2;
 
-        &.image {
+        &.has-image {
           min-height: 600px;
           padding: var(--composer-gap-md) var(--composer-gap-md);
           align-items: center;
           text-align: center;
         }
 
-        &.no-image-left {
-          align-items: flex-start;
-          text-align: left;
-          justify-content: center;
-
-          .subtitle,
-          .title,
-          .description {
-            text-align: left;
-
-          }
-
-          .subtitle {
-            place-self: flex-start !important;
-            margin-left: 0 !important;
-
-          }
-
-          .buttons-container {
-            place-self: flex-start;
-            justify-content: flex-start;
-          }
-        }
-
-        &.no-image-center {
+        &.center {
           align-items: center;
           text-align: center;
-          justify-content: center;
 
-          .buttons-container {
+          .subtitle {
             place-self: center;
-            justify-content: center;
           }
         }
 
@@ -91,16 +65,13 @@
             &::before {
               display: none;
             }
-          }
 
-          &.no-badge {
             background: transparent !important;
           }
         }
 
         .title,
         .description {
-          text-align: center;
           content: "";
 
           &.with-image {
@@ -111,11 +82,15 @@
 
 
         .buttons-container {
-          place-self: center;
           display: flex;
           flex-wrap: wrap;
           align-items: center;
           gap: var(--composer-gap-md);
+
+          &.center {
+            justify-content: center;
+            place-self: center;
+          }
 
           .button-wrapper {
             .button-image {
@@ -137,55 +112,48 @@
       }
     }
   }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .wrapper {
-        .content-container {
+  @container (max-width: #{$composer-tablet-width}) {
+    .container {
+      .max-content {
+        .wrapper {
+          .content-container {
+            min-height: 600px;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
 
-          &.no-image-left,
-          &.no-image-center {
-            min-height: 0 !important;
-            padding: 0px !important;
+            &.has-image {
+              min-height: 600px;
+            }
           }
-
-          min-height: 600px;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
         }
       }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      .wrapper {
-        .content-container {
-          min-height: 600px;
+  @container (max-width: #{$composer-phone-width}) {
+    .container {
+      .max-content {
+        .wrapper {
+          .content-container {
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
 
-          &.no-image-left,
-          &.no-image-center {
-            min-height: 0 !important;
-            padding: 0px !important;
-          }
+            &.has-image {
+              min-height: 600px;
+            }
 
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+            .description {
+              text-align: center;
+            }
 
-          .description {
-            text-align: center;
-          }
+            .buttons-container {
+              justify-content: center;
+              flex-direction: column;
 
-          .buttons-container {
-            justify-content: center;
-            flex-direction: column;
-
-            .button-wrapper {
-              .button-image {
-                width: 150px;
-                height: 40px;
+              .button-wrapper {
+                .button-image {
+                  width: 150px;
+                  height: 40px;
+                }
               }
             }
           }

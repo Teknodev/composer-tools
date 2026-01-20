@@ -29,7 +29,7 @@ class Download3 extends BaseDownload {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
       },
     });
-    
+
     this.addProp({
       type: "boolean",
       key: "overlay",
@@ -72,7 +72,7 @@ class Download3 extends BaseDownload {
 
     const alignmentValue = Base.getContentAlignment();
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("has-image") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("has-image")}`}>
         {imageExist && (
           <div className={this.decorateCSS("image-container")}>
             <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />

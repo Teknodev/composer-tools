@@ -36,26 +36,29 @@ $min-height: 500px;
       flex-direction: column;
       gap: var(--composer-gap-md);
       width: 58%;
-      &.no-image{
+
+      &.no-image {
         width: 100% !important;
         min-height: 0 !important;
       }
-        &.image-center{
-          align-items: flex-start;
-          .header {
-            .title,
-            .description,
-            .subtitle {
-              text-align: left !important;
-              margin-left: 0 !important;
-            }
-          }
-          .buttons-container{
-            place-self: flex-start;
+
+      &.image-center {
+        align-items: flex-start;
+
+        .header {
+
+          .title,
+          .description,
+          .subtitle {
+            text-align: left !important;
+            margin-left: 0 !important;
           }
         }
 
+      }
+
       .header {
+
         .title,
         .description,
         .subtitle {
@@ -68,6 +71,7 @@ $min-height: 500px;
         flex-wrap: wrap;
         align-items: center;
         gap: var(--composer-gap-sm);
+
         .button-wrapper {
           .button-full {
             width: 100% !important;
@@ -75,6 +79,7 @@ $min-height: 500px;
             display: flex;
             align-items: center;
           }
+
           .button-image {
             height: 100%;
             width: 100%;
@@ -83,12 +88,15 @@ $min-height: 500px;
             object-fit: cover;
           }
         }
-          .button-element {
-            .icon, .button-text {
-              content: "";
-            }
+
+        .button-element {
+
+          .icon,
+          .button-text {
+            content: "";
           }
-    
+        }
+
         &.center {
           justify-content: center;
         }
@@ -106,25 +114,25 @@ $min-height: 500px;
     z-index: 1;
     background-color: var(--composer-overlay-color);
   }
-  &.single{
+
+  &.single {
     min-height: 0 !important;
     height: auto;
-    .max-content{
+
+    .max-content {
       min-height: 0 !important;
       height: auto;
     }
   }
-  &.single .max-content {
-    min-height: 0 !important;
-  }
 }
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .page {
         width: 55% !important;
 
-        .buttons-container{
+        .buttons-container {
           .button-wrapper {
             .button-image {
               width: 100%;
@@ -132,6 +140,7 @@ $min-height: 500px;
           }
         }
       }
+
       .page-no-image {
         width: 100%;
       }

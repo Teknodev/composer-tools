@@ -116,18 +116,16 @@ class Download9 extends BaseDownload {
     const descriptionExist = this.castToString(description);
     const cardTitleExist = this.castToString(cardTitle);
     const cardDescriptionExist = this.castToString(cardDescription);
-    const subtitleType = Base.getSectionSubTitleType();
-    const hideBadge = imageExist && subtitleType === "badge";
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("has-image") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("has-image")}`}>
         <div className={`${this.decorateCSS("page")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>
           {imageExist && <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />}
           {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
           <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist && this.decorateCSS("image")}`}>
             {(titleExist || subtitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("middle-container")}>
-                {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("with-image")} ${hideBadge ? this.decorateCSS("no-badge") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>

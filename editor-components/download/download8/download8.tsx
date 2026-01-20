@@ -79,7 +79,7 @@ class Download8 extends BaseDownload {
               key: "itemIcon",
               displayer: "Item Icon",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -104,7 +104,7 @@ class Download8 extends BaseDownload {
               key: "itemIcon",
               displayer: "Item Icon",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -155,7 +155,7 @@ class Download8 extends BaseDownload {
     }
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("has-image") : ""}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("has-image")}`}>
         <div className={this.decorateCSS("page")}>
           {imageExist && (
             <div className={this.decorateCSS("image-child")}>

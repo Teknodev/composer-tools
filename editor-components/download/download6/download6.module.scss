@@ -7,7 +7,10 @@
     align-items: center;
 
     @mixin column-styles {
-      .title, .description, .subtitle {
+
+      .title,
+      .description,
+      .subtitle {
         content: "";
       }
 
@@ -16,33 +19,38 @@
         flex-wrap: wrap;
         align-items: center;
         gap: var(--composer-gap-md);
-          .button-image {
-            width: 200px;
-            height: 50px;
-            cursor: pointer;
-            border-radius: var(--composer-border-radius-sm);
-            object-fit: cover;
+
+        .button-image {
+          width: 200px;
+          height: 50px;
+          cursor: pointer;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+        }
+
+        .button-element {
+          height: 50px;
+
+          .icon,
+          .button-text {
+            content: "";
           }
-          .button-element {
-            height: 50px;
-            .icon, .button-text{
-              content: "";
-            }
         }
       }
     }
 
     .left-column {
-      width: 70%;
+      width: 100%;
       @include column-styles;
-      &.no-image{
-        width: 100%;
-      }
-      &.with-image {
+
+      &.has-image {
+        width: 70%;
         align-items: flex-start;
         text-align: left;
 
-        .title, .description, .subtitle {
+        .title,
+        .description,
+        .subtitle {
           text-align: left !important;
           margin-left: 0 !important;
         }
@@ -86,9 +94,11 @@
     .max-content {
       flex-direction: column;
       gap: var(--composer-gap-lg);
+
       .left-column {
         width: 100%;
       }
+
       .right-column {
         width: 100%;
       }

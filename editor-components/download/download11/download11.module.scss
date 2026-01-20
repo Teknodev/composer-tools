@@ -8,6 +8,30 @@
       min-height: 100%;
       margin-top: var(--composer-gap-sm);
 
+
+
+      .left-card .card .button-wrapper,
+      .right-cards .card .button-wrapper {
+        place-self: flex-start !important;
+
+        .button-image {
+          width: 200px;
+          height: 40px;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+        }
+
+        .button-element {
+          .icon {
+            font-size: 1.5rem;
+          }
+
+          .button-text {
+            content: "";
+          }
+        }
+      }
+
       .left-card {
         &.no-full {
           width: 35%;
@@ -44,12 +68,7 @@
               height: 100%;
             }
 
-            &.image-img {
-              width: 100%;
-              height: auto !important;
-              object-fit: cover;
-              display: block;
-            }
+
           }
 
           .title,
@@ -70,26 +89,6 @@
             margin-left: 0px !important;
           }
 
-          .button-wrapper {
-            place-self: flex-start;
-
-            .button-image {
-              width: 200px;
-              height: 40px;
-              border-radius: var(--composer-border-radius-sm);
-              object-fit: cover;
-            }
-
-            .button-element {
-              .icon {
-                font-size: 1.5rem;
-              }
-
-              .button-text {
-                content: "";
-              }
-            }
-          }
         }
       }
 
@@ -100,7 +99,8 @@
         gap: var(--composer-gap-md);
         flex: 1;
 
-        .upper-card {
+        .upper-card,
+        .buttom-card {
           width: 100%;
           flex: 1;
           display: flex;
@@ -124,8 +124,10 @@
               .description {
                 text-align: left !important;
                 color: var(--composer-font-color-primary) !important;
-                overflow: hidden;
-                text-overflow: ellipsis;
+              }
+
+              .title {
+                margin-bottom: var(--composer-gap-md);
               }
 
               .subtitle {
@@ -135,23 +137,6 @@
 
               .button-wrapper {
                 place-self: flex-start !important;
-
-                .button-image {
-                  width: 200px;
-                  height: 40px;
-                  border-radius: var(--composer-border-radius-sm);
-                  object-fit: cover;
-                }
-
-                .button-element {
-                  .icon {
-                    font-size: 1.5rem;
-                  }
-
-                  .button-text {
-                    content: "";
-                  }
-                }
               }
             }
 
@@ -170,71 +155,14 @@
         }
 
         .buttom-card {
-          flex: 1;
-          display: flex;
-
           .card {
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            border-radius: var(--composer-border-radius-md);
-            padding: var(--composer-gap-md);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: var(--composer-gap-xl);
-            box-shadow: var(--box-shadow-active);
-            width: 100%;
-
-            .left {
-              flex: 1 1 50%;
-              min-width: 0;
-
-              .title {
-                text-align: left !important;
-                color: var(--composer-font-color-primary) !important;
-                margin-bottom: var(--composer-gap-md);
-              }
-
-              .description {
-                text-align: left !important;
-                color: var(--composer-font-color-primary) !important;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-
-              .subtitle {
-                text-align: left !important;
-                margin-left: 0px !important;
-              }
-
-              .button-wrapper {
-                place-self: flex-start !important;
-
-                .button-image {
-                  width: 200px;
-                  height: 40px;
-                  border-radius: var(--composer-border-radius-sm);
-                  object-fit: cover;
-                }
-
-                .button-element {
-                  .icon {
-                    font-size: 1.5rem;
-                  }
-
-                  .button-text {
-                    content: "";
-                  }
-                }
-              }
+            .button-wrapper {
+              place-self: flex-start !important;
             }
 
-            .image,
-            .image-bottom {
-              width: 50%;
-              min-height: 400px;
+
+            .image {
               max-height: 400px;
-              object-fit: cover;
-              border-radius: var(--composer-border-radius-sm);
               flex-shrink: 0;
             }
 
@@ -321,12 +249,6 @@
               gap: var(--composer-gap-md);
 
               .image {
-                margin: 0;
-                margin-right: auto;
-                display: block;
-                width: 100% !important;
-                height: auto !important;
-                min-height: auto !important;
                 aspect-ratio: 3/1;
               }
 
@@ -347,8 +269,6 @@
                 }
 
                 .left .button-wrapper {
-                  place-self: flex-start !important;
-                  align-self: flex-start !important;
                   justify-content: flex-start !important;
                   margin-left: 0 !important;
                   margin-right: 0 !important;
@@ -383,21 +303,12 @@
                 }
 
                 .button-wrapper {
-                  place-self: flex-start !important;
-                  align-self: flex-start !important;
                   justify-content: flex-start !important;
                   margin-left: 0 !important;
                 }
               }
 
-              .image,
-              .image-bottom {
-                margin: 0;
-                margin-right: auto;
-                display: block;
-                width: 100% !important;
-                height: auto !important;
-                min-height: auto !important;
+              .image {
                 max-height: none !important;
                 aspect-ratio: 3/1;
               }
@@ -425,8 +336,6 @@
               }
 
               .button-wrapper {
-                place-self: flex-start !important;
-                align-self: flex-start !important;
                 justify-content: flex-start !important;
                 margin-left: 0 !important;
               }

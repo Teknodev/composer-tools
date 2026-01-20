@@ -50,7 +50,7 @@ class Download10 extends BaseDownload {
       key: "image",
       displayer: "Media",
       additionalParams: {
-        availableTypes: ["image","video"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -81,7 +81,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -100,7 +100,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -119,7 +119,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -138,7 +138,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -157,7 +157,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -198,10 +198,14 @@ class Download10 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div
-              className={`${this.decorateCSS("left-container")} ${image ? this.decorateCSS("with-image") : ""} ${(image && alignmentValue === "center") && this.decorateCSS("center")} ${!image && this.decorateCSS("no-image")}`}
+              className={`${this.decorateCSS("left-container")} ${!image && this.decorateCSS("no-image")} ${alignmentValue === "center" && this.decorateCSS("center")}`}
             >
               <Base.VerticalContent>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {subtitleExist && (
+                  <div className={this.decorateCSS("subtitle-container")}>
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>
+                  </div>
+                )}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
@@ -218,7 +222,7 @@ class Download10 extends BaseDownload {
                           ) : (
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                               {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                             </Base.Button>
                           )}
                         </ComposerLink>
