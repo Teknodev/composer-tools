@@ -346,12 +346,15 @@ class HeroSection34 extends BaseHeroSection {
             </div>
 
             <div className={this.decorateCSS("slider")}> 
-              {activeSlide.image && (
-                <Base.Media
-                  value={activeSlide.image}
-                  className={`${this.decorateCSS("image")} ${this.decorateCSS("active")}`}
-                />
-              )}
+              {slides.map((slide, idx) => (
+                slide.image && (
+                  <Base.Media
+                    key={idx}
+                    value={slide.image}
+                    className={`${this.decorateCSS("image")} ${idx === activeIndex && this.decorateCSS("active")}`}
+                  />
+                )
+              ))}
             </div>
           </div>
           <div

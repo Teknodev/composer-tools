@@ -374,19 +374,19 @@ class HeroSection35 extends BaseHeroSection {
                                                 <defs>
                                                     <mask id="cutout-topleft">
                                                         <rect width="20" height="20" fill="white" />
-                                                        <path d="M0,0 L20,0 A20,20 0 0,1 0,20 Z" fill="black" />
+                                                        <path d="M 0 0 L 42 0 C 0 0 40 25 0 20 Z" fill="black" />
                                                     </mask>
                                                 </defs>
-                                                <rect width="20" height="20" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-topleft)" />
+                                                <rect width="25" height="25" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-topleft)" />
                                             </svg>
                                             <svg className={this.decorateCSS("box-corner-right")}>
                                                 <defs>
                                                     <mask id="cutout-bottomright">
                                                         <rect width="20" height="20" fill="white" />
-                                                        <path d="M20,0 A20,20 0 0,1 0,20 L0,0 Z" fill="black" />
+                                                        <path d="M 0 0 L 42 0 C 0 0 40 25 0 20 Z" fill="black" />
                                                     </mask>
                                                 </defs>
-                                                <rect width="20" height="20" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-bottomright)" />
+                                                <rect width="25" height="25" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-bottomright)" />
                                             </svg>
                                             <div className={this.decorateCSS("customer-box")}> 
                                                 {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
