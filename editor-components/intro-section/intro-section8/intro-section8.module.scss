@@ -17,8 +17,9 @@
 
         .text-content {
             .subtitle {
-                margin-left: auto !important;
-                margin-right: auto !important;
+                margin-left: auto;
+                margin-right: auto;
+                transform: none;
 
                 &::before {
                     display: none;
