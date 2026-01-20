@@ -308,8 +308,8 @@ class List1 extends BaseList {
       ? `${this.decorateCSS("dots")} ${this.decorateCSS("dots-colored")}`
       : this.decorateCSS("dots");
     const settings = {
+      ...this.transformSliderValues(this.getPropValue("settings") || []),
       dots: true,
-      ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: sliderItems.length > 1,
       slidesToShow: Math.min(3, sliderItems.length),
       initialSlide: 1,
@@ -407,9 +407,9 @@ class List1 extends BaseList {
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} >
                             {this.castToString(item.button.text) && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {item.button.text}
-                            </Base.P>
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {item.button.text}
+                              </Base.P>
                             )}
                             {item.button.icon && (
                               <Base.Media
