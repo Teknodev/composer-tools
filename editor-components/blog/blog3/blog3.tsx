@@ -675,7 +675,7 @@ class Blog3 extends BaseBlog {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(descriptionExist || leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
-            <header className={this.decorateCSS("header")}>
+            <div className={this.decorateCSS("header")}>
               <Base.VerticalContent className={this.decorateCSS("title-container")}>
                 {leftSideTextExist && (
                   <Base.SectionTitle className={this.decorateCSS("section-title")}>
@@ -684,7 +684,7 @@ class Blog3 extends BaseBlog {
                 )}
                 {descriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {descriptionExist}
+                    {description}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
@@ -692,6 +692,7 @@ class Blog3 extends BaseBlog {
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
+                      <div className={this.decorateCSS("underline-bar")} />
                       <Base.H4 className={this.decorateCSS("link-text")}>
                         {rightSideTextExist && (
                           this.getPropValue("rightSideText")
@@ -707,7 +708,7 @@ class Blog3 extends BaseBlog {
                   </ComposerLink>
                 </div>
               )}
-            </header>
+            </div>
           )}
           {hasValidCards && (
             <Base.ListGrid gridCount={{ pc: itemCountInARow, phone: 1 }} className={this.decorateCSS("cards-row")}>
@@ -718,6 +719,7 @@ class Blog3 extends BaseBlog {
             <div className={this.decorateCSS("mobile-right-side")}>
               <ComposerLink path={rightSideUrl}>
                 <div className={this.decorateCSS("link-container")}>
+                  <div className={this.decorateCSS("underline-bar")} />
                   <Base.H4 className={this.decorateCSS("link-text")}>
                     {rightSideTextExist && (
                       this.getPropValue("rightSideText")

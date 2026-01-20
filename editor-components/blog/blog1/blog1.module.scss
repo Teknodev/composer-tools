@@ -30,7 +30,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        padding-top: var(--composer-gap-xl) !important;
+        justify-content: center;
         gap: var(--composer-gap-xs);
 
         .inner-div {
@@ -76,6 +76,7 @@
           transition: transform 0.3s ease-in-out;
           margin-top: var(--composer-gap-xs);
         }
+
         .inner-div .text {
           text-align: center;
         }
@@ -89,12 +90,13 @@
     }
 
     .header {
+
       .title,
       .subtitle,
       .description {
         content: "";
       }
-      
+
       .title,
       .subtitle,
       .description {
@@ -113,32 +115,44 @@
     }
 
     .header-wrapper {
-      display: block;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--composer-gap-md);
       position: relative;
       width: 100%;
+      flex-wrap: wrap;
+      margin-bottom: var(--composer-gap-md);
     }
 
-    .header-left {
-      display: block;
+    .header-top {
       width: 100%;
+
       .subtitle {
         width: fit-content !important;
       }
+
       .title,
       .subtitle,
-      .description {
+      .line {
         text-align: left !important;
         margin-left: 0 !important;
       }
     }
 
-    .right-link {
-      position: absolute;
-      top: 0;
-      right: 0;
-      display: flex;
-      align-items: center;
+    .header-left {
+      display: block;
+      width: auto;
+      flex: 1;
+
+      .description {
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-bottom: 0 !important;
+      }
     }
+
+
 
     .wrapper {
       display: flex;
@@ -204,7 +218,7 @@
           .card {
             position: relative;
 
-            &::before {
+            .gradient-overlay {
               content: '';
               position: absolute;
               inset: 0;
@@ -220,7 +234,7 @@
           }
 
           &:hover {
-            .card::before {
+            .card .gradient-overlay {
               opacity: 1;
             }
 
@@ -241,7 +255,7 @@
           .card {
             position: relative;
 
-            &::before {
+            .gradient-overlay {
               content: '';
               position: absolute;
               inset: 225px 0 0 0;
@@ -256,7 +270,7 @@
           }
 
           &:hover {
-            .card::before {
+            .card .gradient-overlay {
               opacity: 1;
             }
 
@@ -292,7 +306,9 @@
             height: 225px;
             object-fit: cover;
             transition: transform 0.5s;
+            border-radius: var(--composer-border-radius-sm);
           }
+
 
           .overlay {
             position: absolute;
@@ -303,6 +319,7 @@
             background: var(--composer-overlay-color);
             z-index: 0;
             pointer-events: none;
+            border-radius: var(--composer-border-radius-sm);
           }
         }
 
@@ -357,8 +374,8 @@
 
       button {
         display: block;
-        width: 20px;
-        height: 20px;
+        width: 14px;
+        height: 14px;
         cursor: pointer;
         border: 0;
         outline: none;
@@ -369,15 +386,15 @@
         &::before {
           content: '';
           display: inline-block;
-          width: 10px;
-          height: 10px;
+          width: 7px;
+          height: 7px;
           background-color: var(--composer-font-color-primary);
           border-radius: 50%;
         }
       }
 
       &.slick-active button::before {
-        transform: scale(1.3);
+        transform: scale(1.25);
       }
     }
 
@@ -395,12 +412,10 @@
 
   .container {
     .max-content {
-      .right-link {
-        .inner-right-link {
-          padding-top: var(--composer-gap-md) !important;
-        }
-      }
+
+
       .wrapper {
+
         .slider-button-right,
         .slider-button-left {
           height: 150px;
@@ -415,5 +430,23 @@
 
   .media-wrapper .media {
     height: 150px !important;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-sm);
+      }
+
+      .header-left,
+      .right-link {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
   }
 }

@@ -430,7 +430,7 @@ class Blog1 extends BaseBlog {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header-wrapper")}>
-            <Base.VerticalContent className={this.decorateCSS("header-left")}>
+            <Base.VerticalContent className={this.decorateCSS("header-top")}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
               )}
@@ -440,12 +440,14 @@ class Blog1 extends BaseBlog {
                 </Base.SectionTitle>
               )}
               {line && <hr className={this.decorateCSS("line")} />}
-              {isDescriptionExist && (
+            </Base.VerticalContent>
+            {isDescriptionExist && (
+              <Base.VerticalContent className={this.decorateCSS("header-left")}>
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
+              </Base.VerticalContent>
+            )}
             {(rightText.arrow || this.castToString(rightText.text)) && (
               <div className={this.decorateCSS("right-link")}>
                 <ComposerLink path={rightText.textUrl}>
@@ -494,8 +496,8 @@ class Blog1 extends BaseBlog {
                   {items.map((item: CardType, index: number) => (
                     <article
                       className={`${this.decorateCSS("slider-item")} ${this.getComponentState("prevSlide") === index
-                          ? this.decorateCSS("prevSlide")
-                          : ""
+                        ? this.decorateCSS("prevSlide")
+                        : ""
                         } ${this.getComponentState("nextSlide") === index
                           ? this.decorateCSS("nextSlide")
                           : ""
@@ -504,6 +506,7 @@ class Blog1 extends BaseBlog {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       <div className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("gradient-overlay")} />
                         {item.image?.url && (
                           <div className={this.decorateCSS("media-wrapper")}>
                             <ComposerLink path={item.url}>
@@ -530,7 +533,7 @@ class Blog1 extends BaseBlog {
                                 </Base.P>
                               )}
                               {this.castToString(item.imageTitle) && (
-                                <Base.H3
+                                <Base.H4
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${!disableAnimation
@@ -541,7 +544,7 @@ class Blog1 extends BaseBlog {
                                     }`}
                                 >
                                   {item.imageTitle}
-                                </Base.H3>
+                                </Base.H4>
                               )}
                             </Base.VerticalContent>
                           )}

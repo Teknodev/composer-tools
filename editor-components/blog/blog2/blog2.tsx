@@ -179,12 +179,13 @@ class Blog2 extends BaseBlog {
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid>
+          <Base.ContainerGrid className={this.decorateCSS("content-grid")}>
             {videoSection && videoSection.videoImage && videoSection.videoImage.url && (
               <div
                 className={`${this.decorateCSS("video-part")} ${!displayContent ? this.decorateCSS("video-only") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
+                <div className={this.decorateCSS("gradient-overlay")} />
                 <Base.Media
                   value={videoSection.videoImage}
                   className={this.decorateCSS("video-image")}

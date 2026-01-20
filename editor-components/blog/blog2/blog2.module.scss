@@ -103,14 +103,15 @@
     .video-part {
       flex: 1;
       display: flex;
-      aspect-ratio: 1;
       position: relative;
-      align-self: center;
+      align-self: stretch;
       overflow: hidden;
-      flex-shrink: 0;
+      min-height: 400px;
 
       &.video-only {
         max-height: 900px;
+        aspect-ratio: 1;
+        align-self: center;
       }
 
       .overlay {
@@ -125,7 +126,7 @@
       }
 
       &[data-animation~="animate1"] {
-        &::before {
+        .gradient-overlay {
           content: '';
           position: absolute;
           top: 0;
@@ -143,7 +144,7 @@
         }
 
         &:hover {
-          &::before {
+          .gradient-overlay {
             background-color: rgba(0, 0, 0, 0.2);
           }
 
@@ -168,7 +169,7 @@
 
       .video-image {
         width: 100%;
-        aspect-ratio: 1;
+        height: 100%;
         object-fit: cover;
         border-radius: var(--composer-border-radius-sm);
       }
@@ -269,11 +270,12 @@
     .max-content {
       .video-part {
         width: 100%;
-        flex: auto;
-        height: 500px;
+        flex: 1;
+        min-height: 400px;
+        aspect-ratio: auto;
 
         &.video-only {
-          max-height: 500px;
+          max-height: 600px;
         }
 
         .play-container {
@@ -302,11 +304,24 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .content-grid {
+        flex-direction: column;
+      }
+
       .video-part {
-        height: 300px;
+        width: 100%;
+        aspect-ratio: 1;
+        align-self: auto;
+        min-height: auto;
+        height: auto;
 
         &.video-only {
-          max-height: 300px;
+          max-height: 500px;
+        }
+
+        .video-image {
+          aspect-ratio: 1;
+          height: auto;
         }
 
         .play-container {
