@@ -149,7 +149,6 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            flex-direction: row;
             gap: var(--composer-gap-sm);
 
             .button {
@@ -165,7 +164,7 @@
     .container {
         .max-content {
             flex-direction: column;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-md);
 
             .card-container {
                 gap: var(--composer-gap-md);
