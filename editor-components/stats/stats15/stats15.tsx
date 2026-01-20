@@ -24,16 +24,20 @@ class Stats15 extends BaseStats {
       key: "stats",
       displayer: "Stats",
       value: [
-        { type: "object", key: "stat", displayer: "Stat", value: [
-          { type: "string", key: "number", displayer: "Number", value: "10" },
-          { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
-          { type: "string", key: "label", displayer: "Label", value: "Active Users" },
-        ]},
-        { type: "object", key: "stat", displayer: "Stat", value: [
-          { type: "string", key: "number", displayer: "Number", value: "0.9" },
-          { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-          { type: "string", key: "label", displayer: "Label", value: "Commission Fee" },
-        ]},
+        {
+          type: "object", key: "stat", displayer: "Stat", value: [
+            { type: "string", key: "number", displayer: "Number", value: "10" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
+            { type: "string", key: "label", displayer: "Label", value: "Active Users" },
+          ]
+        },
+        {
+          type: "object", key: "stat", displayer: "Stat", value: [
+            { type: "string", key: "number", displayer: "Number", value: "0.9" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
+            { type: "string", key: "label", displayer: "Label", value: "Commission Fee" },
+          ]
+        },
       ],
     });
 
@@ -85,7 +89,7 @@ class Stats15 extends BaseStats {
       }
 
       const targetNumber = stat.number;
-      
+
       const steps = animationDuration / 30;
       let currentNumber = 0;
       const increment = targetNumber / steps;
@@ -153,9 +157,8 @@ class Stats15 extends BaseStats {
     const titleText = this.castToString(title);
     const descriptionText = this.castToString(description);
     const hasHeader = titleText || descriptionText || buttons.some(button => this.castToString(button?.text));
-    const subtitleType = Base.getSectionSubTitleType();
-    const hideBadgeBackground = subtitleType === "badge" && !!background;
-    const subtitleClasses = `${this.decorateCSS("subtitle")} ${hideBadgeBackground ? this.decorateCSS("subtitle-badge-hidden") : ""}`;
+    const withBackground = !!background;
+    const subtitleClasses = `${this.decorateCSS("subtitle")} ${withBackground && this.decorateCSS("with-bg")}`;
 
 
     const containerStyle = { backgroundImage: `url('${background?.url || background || ""}')` } as React.CSSProperties;

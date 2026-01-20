@@ -459,8 +459,10 @@ class Blog3 extends BaseBlog {
 
     const rightSideTextExist = this.castToString(this.getPropValue("rightSideText"));
     const rightSideUrl = this.getPropValue("url");
-      const subtitle = this.getPropValue("subtitle");
-      const subtitleText = this.castToString(subtitle);
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleText = this.castToString(subtitle);
+    const description = this.castToString(this.getPropValue("description"));
+    const descriptionExist = !!description;
 
     const icons = this.castToObject<{
       rightSideIcon: { type: "icon"; name: string };
@@ -638,7 +640,7 @@ class Blog3 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleText || leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
+          {(subtitleText || descriptionExist || leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
               <Base.VerticalContent className={this.decorateCSS("title-container")}>
               {subtitleText && (
@@ -650,6 +652,11 @@ class Blog3 extends BaseBlog {
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
                   {this.getPropValue("leftSideText")}
                 </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
               )}
               </Base.VerticalContent>
               {(rightSideTextExist || !!icons.rightSideIcon) && (

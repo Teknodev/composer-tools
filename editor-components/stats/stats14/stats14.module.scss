@@ -6,7 +6,8 @@
       width: 100%;
       display: flex;
       align-items: center;
-       justify-content: space-between;;
+      justify-content: space-between;
+      ;
       gap: var(--composer-gap-xl);
 
       .left-container {
@@ -14,10 +15,11 @@
         flex-direction: column;
         align-items: flex-start;
 
-        .title {
+        .title,
+        .description {
           text-align: left;
         }
-  
+
         .subtitle {
           margin-left: 0px !important;
           text-align: left !important;
@@ -184,4 +186,3 @@
     }
   }
 }
-

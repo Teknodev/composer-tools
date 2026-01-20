@@ -11,9 +11,10 @@
       .subtitle {
         gap: 0px !important;
       }
-      .title {
-        content: "";
-      }
+    }
+
+    .title , .description {
+      content: "";
     }
 
     .main-content {

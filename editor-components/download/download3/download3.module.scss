@@ -2,17 +2,20 @@
 
 .container {
   padding: 0;
+
   .image-container {
     width: 100%;
     height: 600px;
     padding: 0;
     margin: 0;
     position: relative;
+
     .image {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     .overlay {
       position: absolute;
       top: 0;
@@ -23,6 +26,7 @@
       z-index: 1;
     }
   }
+
   .max-content {
     .page {
       .group-container {
@@ -36,37 +40,46 @@
         .title-block {
           display: flex;
           flex-direction: column;
-          width: 100%;
+          width: auto;
           align-items: flex-start;
           justify-content: center;
+
           .subtitle {
             content: "";
             text-align: center;
             margin-bottom: calc(var(--composer-gap-xs));
 
           }
+
           .title {
             margin: 0;
+
             &.full {
               width: 40%;
             }
           }
         }
+
         .description {
           color: var(--composer-font-color-primary);
           width: 60%;
-          &.full{
+
+          &.full {
             width: 100%;
           }
         }
+
         .button-group {
           .button {
             display: flex;
             width: 170px;
             height: 50px;
-            >div,>a{
+
+            >div,
+            >a {
               width: 100% !important;
             }
+
             .button-logo {
               height: 100%;
               width: 100%;
@@ -74,13 +87,16 @@
               cursor: pointer;
               border-radius: var(--composer-border-radius-sm);
             }
+
             .button-element {
               width: 100%;
               display: flex;
               justify-content: center;
+
               .button-text {
                 content: "";
               }
+
               .button-icon {
                 font-size: 1.5rem;
               }
@@ -96,15 +112,18 @@
         .title {
           content: "";
         }
+
         .description {
           color: var(--composer-font-color-primary);
         }
+
         .button-group {
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
           align-items: center;
           gap: var(--composer-gap-md);
+
           .button {
             .button-logo {
               width: 200px;
@@ -114,7 +133,9 @@
             }
 
             .button-element {
-              .button-text, .button-icon {
+
+              .button-text,
+              .button-icon {
                 content: "";
               }
             }
@@ -140,7 +161,8 @@
           gap: var(--composer-gap-sm);
           padding: var(--composer-gap-md) var(--composer-gap-lg);
 
-          .title, .description {
+          .title,
+          .description {
             text-align: center;
             width: 100%;
           }
@@ -149,10 +171,12 @@
             text-align: center;
             transform: translateX(0);
             width: 100%;
+
             &::before {
               display: none;
             }
           }
+
           .button-group {
             flex-direction: row;
             flex-wrap: wrap;
@@ -163,7 +187,8 @@
             width: 100%;
           }
         }
-        .group-container-center{
+
+        .group-container-center {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
         }
       }
@@ -176,6 +201,7 @@
     .image-container {
       height: 300px;
     }
+
     .max-content {
       .page {
         .group-container {
@@ -188,12 +214,15 @@
           .title-block {
             width: 50%;
           }
+
           .button-group {
             gap: var(--composer-gap-sm);
+
             .button {
               width: 120px;
               height: 30px;
               margin: 0px;
+
               .button-element {
                 display: flex;
                 align-items: center;
@@ -204,6 +233,7 @@
                 .button-text {
                   content: "";
                 }
+
                 .button-icon {
                   font-size: 1rem;
                 }
@@ -211,13 +241,16 @@
             }
           }
         }
+
         .group-container-center {
           padding: var(--composer-gap-md);
+
           .button-group {
             display: flex;
             flex-direction: column;
             width: 100%;
             gap: var(--composer-gap-sm);
+
             .button {
               .button-logo {
                 height: 60px;

@@ -427,12 +427,12 @@ class Feature8 extends BaseFeature {
                 {title}
               </Base.SectionTitle>
             )}
-          </Base.VerticalContent>
-          )}
           {descriptionExist && (
             <Base.SectionDescription className={this.decorateCSS("description")}>
               {description}
             </Base.SectionDescription>
+          )}
+          </Base.VerticalContent>
           )}
           {cards?.length > 0 && (
             <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 , tablet: 3 }} className={this.decorateCSS("cards-container")}>
