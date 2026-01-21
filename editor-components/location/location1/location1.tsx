@@ -52,7 +52,7 @@ class Location1 extends Location {
       displayer: "Title",
       value: "Connect with social media",
     });
-   
+
     this.addProp({
       type: "string",
       key: "headerDescription",
@@ -401,7 +401,7 @@ class Location1 extends Location {
     const description = buttom.description;
     const phone = buttom.phoneNumber;
     const headerDescription = this.getPropValue("headerDescription");
-
+    const headerDescriptionExist = this.castToString(headerDescription);
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
@@ -420,46 +420,23 @@ class Location1 extends Location {
                     </div>
                   )}
                   {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {headerDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{headerDescription}</Base.SectionDescription>}
+                  {headerDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{headerDescription}</Base.SectionDescription>}
                 </Base.VerticalContent>
-                {alignment === "left" ? (
-                  <div className={this.decorateCSS("right-block")}>
-                    {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
-                    {icons.length > 0 && (
-                      <div className={this.decorateCSS("icon-container")}>
-                        {icons.map((icon: any, index: number) => {
-                          const iconValue = icon.getPropValue && icon.getPropValue("icon");
-                          if (!iconValue) return null;
-                          return (
-                            <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                              <ComposerLink path={icon.getPropValue("path")}>
-                                <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
-                              </ComposerLink>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
+                {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
+                {icons.length > 0 && (
+                  <div className={this.decorateCSS("icon-container")}>
+                    {icons.map((icon: any, index: number) => {
+                      const iconValue = icon.getPropValue && icon.getPropValue("icon");
+                      if (!iconValue) return null;
+                      return (
+                        <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                          <ComposerLink path={icon.getPropValue("path")}>
+                            <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
+                          </ComposerLink>
+                        </div>
+                      );
+                    })}
                   </div>
-                ) : (
-                  <>
-                    {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
-                    {icons.length > 0 && (
-                      <div className={this.decorateCSS("icon-container")}>
-                        {icons.map((icon: any, index: number) => {
-                          const iconValue = icon.getPropValue && icon.getPropValue("icon");
-                          if (!iconValue) return null;
-                          return (
-                            <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                              <ComposerLink path={icon.getPropValue("path")}>
-                                <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
-                              </ComposerLink>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </>
                 )}
               </div>
             )}

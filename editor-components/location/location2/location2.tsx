@@ -254,7 +254,7 @@ class Location2 extends Location {
                       type: "string",
                       key: "text",
                       displayer: "Text",
-                      value: "Monda - Friday",
+                      value: "Monday - Friday",
                     },
                   ],
                 },
@@ -451,18 +451,7 @@ class Location2 extends Location {
       displayer: "Item Count In A Row",
       value: 4,
     });
-    this.addProp({
-      type: "media",
-      key: "logo",
-      displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image", "icon"],
-      },
-      value: {
-        type: "image",
-        url: "",
-      },
-    });
+
   }
 
   static getName(): string {
@@ -488,12 +477,7 @@ class Location2 extends Location {
     const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675acbf30655f8002ca64e33?alt=media";
 
     const alignmentValue = Base.getContentAlignment();
-    const logo = this.getPropValue("logo");
-    const isLogoExist = Boolean(
-      (logo as any)?.url ||
-      (logo as any)?.name ||
-      (logo as any)?.icon
-    );
+
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
         const markerData = address.getPropValue("coordinate");
@@ -579,12 +563,6 @@ class Location2 extends Location {
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")} ${alignmentValue === "left" && this.decorateCSS("left")} ${!isDescriptionExist && isTitleExist && this.decorateCSS("no-description-title")} ${!isDescriptionExist && !isTitleExist && this.decorateCSS("no-description-no-title")}`}>
-                {isLogoExist && (
-                  <Base.Media
-                    value={logo}
-                    className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`}
-                  />
-                )}
 
                 {hasSubtitle && (
                   <div className={this.decorateCSS("subtitle-row")}>

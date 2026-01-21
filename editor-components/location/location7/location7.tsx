@@ -27,6 +27,7 @@ type MarkerObject = {
 class Location7 extends Location {
   constructor(props?: any) {
     super(props, styles);
+    this.removeProp("theme");
 
     this.addProp({
       type: "media",

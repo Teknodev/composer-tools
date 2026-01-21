@@ -2,9 +2,11 @@
 
 .wrapper {
   width: 100%;
+
   .container {
     margin-bottom: 0px !important;
     padding-bottom: 0px !important;
+
     .max-content {
       .header {
         text-align: center;
@@ -19,6 +21,7 @@
             height: var(--composer-gap-xl);
             font-size: 2rem;
           }
+
           .icon.icon-img {
             aspect-ratio: 3 / 1;
             width: calc(var(--composer-gap-xl) * 3) !important;
@@ -30,7 +33,7 @@
 
         .subtitle,
         .title,
-        .description { 
+        .description {
           text-align: center;
         }
 
@@ -49,8 +52,8 @@
           border-bottom: var(--composer-gap-sm) solid var(--composer-primary-color);
           padding-bottom: var(--composer-gap-md);
           width: auto;
-          padding-left: 15%;
-          padding-right: 15%;
+          padding-left: 10%;
+          padding-right: 10%;
           flex-wrap: wrap;
 
           .continent-item {
@@ -61,7 +64,7 @@
             .continent-name {
               color: var(--composer-primary-color);
               text-align: justify !important;
-
+              font-size: var(--composer-font-size-xs);
             }
 
             .continent-count {
@@ -131,13 +134,13 @@
                 color: var(--composer-primary-color);
               }
 
-          .continent-count {
-            color: var(--composer-font-color-primary);
-            text-align: center !important;
-            width: 100%;
-            display: block;
-            margin: 0 auto;
-          }
+              .continent-count {
+                color: var(--composer-font-color-primary);
+                text-align: center !important;
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+              }
             }
           }
         }

@@ -19,14 +19,14 @@
         width: 100%;
 
         .title-block {
-          width: 100%;
-          align-items: flex-start;
+          width: auto;
+          align-items: center;
 
           .subtitle,
           .title,
           .description {
             content: "";
-            text-align: left;
+            text-align: center;
             margin-left: 0;
           }
 
@@ -53,8 +53,8 @@
           .subtitle-wrapper {
             width: 100%;
             display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
+            justify-content: center;
+            align-items: center;
           }
         }
 
@@ -164,19 +164,28 @@
         }
 
         &.left {
-          justify-content: flex-start;
+          justify-content: center;
+          align-items: center;
 
           .title-block {
             width: auto;
-            text-align: left;
+            text-align: center;
+            align-items: center !important;
+
+            .title,
+            .subtitle,
+            .description {
+              text-align: center !important;
+            }
           }
 
           .icon-container {
-            margin-left: var(--composer-gap-xs);
+            margin-left: var(--composer-gap-md);
           }
 
           .divider {
             width: 200px !important;
+            align-self: center;
           }
         }
       }
@@ -187,6 +196,7 @@
         align-items: center;
         width: 100%;
         max-width: 100%;
+        margin: 0;
 
         .map {
           width: 100%;
@@ -201,6 +211,7 @@
         gap: var(--composer-gap-xs);
         align-items: center;
         justify-content: center;
+        margin-top: var(--composer-gap-md);
 
         .bottom-title {
           padding: 0;
@@ -250,7 +261,26 @@
         }
 
         &.left {
-          justify-content: space-between;
+          justify-content: center;
+          gap: var(--composer-gap-md);
+
+          .bottom-title {
+            margin-right: var(--composer-gap-xs);
+            max-width: 80%;
+            padding: 0;
+            text-align: center;
+          }
+
+          .phone-container {
+            width: auto;
+            display: flex;
+            justify-content: center;
+            gap: var(--composer-gap-xs);
+
+            .phone {
+              text-align: center;
+            }
+          }
         }
       }
 
@@ -422,11 +452,13 @@
       }
     }
   }
+
   .container .max-content .wrapper .header .title-block .subtitle-wrapper {
     display: block !important;
     width: 100% !important;
     text-align: center !important;
   }
+
   .container .max-content .wrapper .header .title-block .subtitle-wrapper .badge {
     display: inline-block !important;
     width: auto !important;

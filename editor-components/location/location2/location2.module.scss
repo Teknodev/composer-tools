@@ -7,16 +7,16 @@
     padding-bottom: var(--composer-gap-lg) !important;
 
     .max-content {
-      max-width: 100% !important;
-
       .header {
+
         .title-with-socials .socials,
         .subtitle-row .socials,
         .description-container .socials {
           display: flex !important;
           width: auto !important;
-          justify-content: flex-start !important;
+          align-self: center !important;
         }
+
         .socials {
           display: flex !important;
           gap: var(--composer-gap-sm);
@@ -35,10 +35,12 @@
               align-items: center;
               justify-content: center;
               border-radius: var(--composer-border-radius-sm);
+
               &:hover {
                 background-color: var(--composer-secondary-color) !important;
                 color: var(--composer-font-color-secondary) !important;
               }
+
               .icon {
                 color: var(--composer-font-color-secondary) !important;
               }
@@ -46,23 +48,7 @@
             }
           }
         }
-        .location-logo {
-          width: 80px;
-          height: auto;
-          margin-bottom: var(--composer-gap-md);
-          color: var(--composer-font-color-primary);
-          font-size: 6rem;
-          margin-left: 0px;
-          place-self: flex-start;
-        }
 
-        .location-logo-img {
-          aspect-ratio: 3 / 1;
-          width: 80px;
-          height: auto !important;
-          object-fit: cover;
-          display: block;
-        }
 
         .subtitle,
         .title {
@@ -107,6 +93,7 @@
                 align-items: center;
                 justify-content: center;
                 border-radius: var(--composer-border-radius-sm);
+
                 &:hover {
                   background-color: var(--composer-secondary-color);
                   color: var(--composer-html-background);
@@ -115,14 +102,15 @@
             }
           }
         }
+
         .title-with-socials .socials,
         .subtitle-row .socials,
         .description-container .socials {
           display: flex !important;
         }
-        
-        .subtitle-row ~ .description-container .socials,
-        .title-with-socials ~ .description-container .socials {
+
+        .subtitle-row~.description-container .socials,
+        .title-with-socials~.description-container .socials {
           display: none;
         }
 
@@ -140,6 +128,7 @@
                 align-items: center;
                 justify-content: center;
                 border-radius: var(--composer-border-radius-sm);
+
                 &:hover {
                   background-color: var(--composer-secondary-color);
                   color: var(--composer-html-background);
@@ -159,6 +148,7 @@
           .subtitle {
             margin: 0;
           }
+
           .socials {
             display: flex;
             gap: var(--composer-gap-sm);
@@ -176,6 +166,7 @@
                 align-items: center;
                 justify-content: center;
                 border-radius: var(--composer-border-radius-sm);
+
                 &:hover {
                   background-color: var(--composer-secondary-color);
                   color: var(--composer-html-background);
@@ -192,11 +183,6 @@
             text-align: left;
           }
 
-          .location-logo {
-            place-self: center;
-            margin-left: auto;
-            margin-right: auto;
-          }
 
           .description-container .description-text {
             text-align: left;
@@ -295,12 +281,14 @@
 
   .middle-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     width: 100%;
 
     .middle-grid {
+      max-width: var(--composer-content-width);
+      margin: auto;
       width: 100%;
       padding: 40px var(--composer-gap-md);
       box-sizing: border-box;
@@ -391,7 +379,7 @@
         .header {
           display: flex;
           flex-direction: column !important;
-          align-items: flex-start !important;
+          align-items: center !important;
 
           .subtitle-row,
           .title-with-socials,
@@ -399,7 +387,7 @@
             width: 100% !important;
             display: flex !important;
             flex-direction: column !important;
-            align-items: flex-start !important;
+            align-items: center !important;
             gap: var(--composer-gap-sm);
           }
 
@@ -410,9 +398,60 @@
           .socials {
             width: 100% !important;
             display: flex !important;
-            justify-content: flex-start !important;
+            justify-content: center !important;
             gap: var(--composer-gap-sm) !important;
-            align-items: flex-start !important;
+            align-items: center !important;
+          }
+
+          .socials-container {
+            display: flex;
+            justify-content: center !important;
+            width: 100%;
+          }
+
+          .subtitle,
+          .title,
+          .description-text {
+            text-align: center !important;
+          }
+
+          .location-logo {
+            place-self: center;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          &.center {
+            align-items: center !important;
+
+            .subtitle-row,
+            .title-with-socials,
+            .description-container {
+              align-items: center !important;
+            }
+
+            .subtitle,
+            .title,
+            .description-text {
+              text-align: center !important;
+            }
+
+            .socials {
+              justify-content: center !important;
+              align-items: center !important;
+            }
+
+            .socials-container {
+              display: flex;
+              justify-content: center !important;
+              width: 100%;
+            }
+
+            .location-logo {
+              place-self: center;
+              margin-left: auto;
+              margin-right: auto;
+            }
           }
 
           .location-logo {
