@@ -38,7 +38,7 @@ class Location3 extends Location {
     this.addProp({
       type: "media",
       key: "icon",
-      displayer: "Media",
+      displayer: "Logo",
       additionalParams: {
         availableTypes: ["image", "icon"],
       },

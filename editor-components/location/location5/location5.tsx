@@ -12,6 +12,19 @@ class Location5 extends Location {
     super(props, styles);
 
     this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "image",
+        url: "",
+      },
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -30,19 +43,6 @@ class Location5 extends Location {
       key: "description",
       displayer: "Description",
       value: "",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "logo",
-      displayer: "Logo",
-      additionalParams: {
-        availableTypes: ["image", "icon"],
-      },
-      value: {
-        type: "image",
-        url: "",
-      },
     });
 
     this.addProp({
