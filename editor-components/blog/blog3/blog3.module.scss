@@ -60,12 +60,12 @@
             text-align: left;
             gap: var(--composer-gap-xs);
             color: var(--composer-font-color-primary);
-            font-size: 1rem; // Matching Base.P usually
+            font-size: 1rem;
 
             .right-side-icon {
               width: 18px;
               height: 18px;
-              font-size: 1.5rem;
+              font-size: 1.25rem;
               color: var(--composer-font-color-primary);
               flex-shrink: 0;
               transition: transform 0.3s ease-in-out;
@@ -346,6 +346,7 @@
             .right-side-icon {
               width: var(--composer-gap-md);
               height: var(--composer-gap-md);
+              font-size: 1.25rem;
               color: var(--composer-font-color-primary);
               flex-shrink: 0;
               transition: var(--composer-transition-duration-fast);

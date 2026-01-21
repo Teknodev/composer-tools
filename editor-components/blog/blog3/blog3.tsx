@@ -647,7 +647,7 @@ class Blog3 extends BaseBlog {
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
-                      <Base.P className={this.decorateCSS("link-text")}>
+                      <div className={this.decorateCSS("link-text")}>
                         {rightSideTextExist && (
                           this.getPropValue("rightSideText")
                         )}
@@ -657,7 +657,7 @@ class Blog3 extends BaseBlog {
                             className={this.decorateCSS("right-side-icon")}
                           />
                         )}
-                      </Base.P>
+                      </div>
                     </div>
                   </ComposerLink>
                 </div>
@@ -671,7 +671,7 @@ class Blog3 extends BaseBlog {
             <div className={this.decorateCSS("mobile-right-side")}>
               <ComposerLink path={rightSideUrl}>
                 <div className={this.decorateCSS("link-container")}>
-                  <Base.P className={this.decorateCSS("link-text")}>
+                  <div className={this.decorateCSS("link-text")}>
                     {rightSideTextExist && (
                       this.getPropValue("rightSideText")
                     )}
@@ -681,7 +681,7 @@ class Blog3 extends BaseBlog {
                         className={this.decorateCSS("right-side-icon")}
                       />
                     )}
-                  </Base.P>
+                  </div>
                 </div>
               </ComposerLink>
             </div>

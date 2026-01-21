@@ -121,7 +121,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -158,7 +158,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -195,7 +195,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -232,7 +232,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -269,7 +269,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -429,6 +429,22 @@ class Blog1 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.VerticalContent className={this.decorateCSS("header header-left")}>
+            {subtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+            )}
+            {isTitleExist && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
+            )}
+            {line && <hr className={this.decorateCSS("line")} />}
+            {isDescriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
+            )}
+          </Base.VerticalContent>
           {(rightText.arrow || this.castToString(rightText.text)) && (
             <div className={this.decorateCSS("right-link")}>
               <ComposerLink path={rightText.textUrl}>
@@ -448,22 +464,6 @@ class Blog1 extends BaseBlog {
               </ComposerLink>
             </div>
           )}
-          <Base.VerticalContent className={this.decorateCSS("header")}>
-            {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-            )}
-            {isTitleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
-            )}
-            {line && <hr className={this.decorateCSS("line")} />}
-            {isDescriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
-            )}
-          </Base.VerticalContent>
 
           <main
             className={`${this.decorateCSS("wrapper")} ${items.length <= 3 ? this.decorateCSS("no-slider") : ""
@@ -491,15 +491,13 @@ class Blog1 extends BaseBlog {
                 >
                   {items.map((item: CardType, index: number) => (
                     <article
-                      className={`${this.decorateCSS("slider-item")} ${
-                        this.getComponentState("prevSlide") === index
+                      className={`${this.decorateCSS("slider-item")} ${this.getComponentState("prevSlide") === index
                         ? this.decorateCSS("prevSlide")
                         : ""
-                      } ${
-                        this.getComponentState("nextSlide") === index
-                        ? this.decorateCSS("nextSlide")
-                        : ""
-                      }`}
+                        } ${this.getComponentState("nextSlide") === index
+                          ? this.decorateCSS("nextSlide")
+                          : ""
+                        }`}
                       key={index}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
@@ -530,7 +528,7 @@ class Blog1 extends BaseBlog {
                                 </Base.P>
                               )}
                               {this.castToString(item.imageTitle) && (
-                                <Base.H2
+                                <Base.H5
                                   className={`${this.decorateCSS(
                                     "card-title"
                                   )} ${!disableAnimation
@@ -541,7 +539,7 @@ class Blog1 extends BaseBlog {
                                     }`}
                                 >
                                   {item.imageTitle}
-                                </Base.H2>
+                                </Base.H5>
                               )}
                             </Base.VerticalContent>
                           )}
