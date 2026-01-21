@@ -1,3 +1,4 @@
+
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
 as *;
 
@@ -327,7 +328,8 @@ as *;
 
         .section-subtitle {
           text-align: center !important;
-          margin-left: auto !important;
+          margin-left: 0 !important;
+          margin-right: 0 !important;
         }
 
         .title-row {
@@ -341,8 +343,25 @@ as *;
         }
 
         .title,
-        .subtitle {
-          text-align: center;
+        .subtitle,
+        .description,
+        .up-description,
+        .bottom-text {
+          text-align: center !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+      }
+      .cards-grid {
+        .card {
+          .description,
+          .bottom-text,
+          .badge,
+          .badge-text {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
         }
       }
     }
