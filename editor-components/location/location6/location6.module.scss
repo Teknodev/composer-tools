@@ -1,7 +1,7 @@
 @use "../../../../composer-tools/composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding-right: 0px !important;
+  // padding-right: 0px !important;
 
   .max-content {
     max-width: var(--composer-content-width);
@@ -27,6 +27,36 @@
     margin: 0 auto;
     height: 100%;
     gap: var(--composer-gap-xl);
+
+    &.no-buttons {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 100%;
+      gap: var(--composer-gap-md);
+
+      .left-container {
+        width: 100%;
+        max-width: var(--composer-content-width);
+        margin: 0;
+
+        .left-side {
+          margin-top: var(--composer-gap-md);
+
+          .map-container {
+            width: 100%;
+            min-height: 400px;
+            height: 400px;
+
+            .map {
+              width: 100%;
+              height: 100%;
+              border-radius: var(--composer-border-radius-sm);
+            }
+          }
+        }
+      }
+    }
 
     .left-container {
       min-width: 0;
@@ -239,6 +269,22 @@
             overflow: visible !important;
             border-top-left-radius: var(--composer-border-radius-sm);
             border-bottom-left-radius: var(--composer-border-radius-sm);
+          }
+        }
+      }
+    }
+
+    .wrapper.no-buttons {
+      .left-container {
+        padding-right: 0 !important;
+
+        .left-side {
+          .map-container {
+            width: 100% !important;
+
+            .map {
+              width: 100% !important;
+            }
           }
         }
       }

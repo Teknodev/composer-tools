@@ -581,11 +581,11 @@ class Location6 extends Location {
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
-
+    const hasButtons = buttons && buttons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("wrapper")}>
+        <div className={`${this.decorateCSS("wrapper")} ${!hasButtons ? this.decorateCSS("no-buttons") : ""}`}>
           <div className={this.decorateCSS("left-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("header")}>
@@ -594,7 +594,7 @@ class Location6 extends Location {
                 {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
               </Base.VerticalContent>
               <div className={this.decorateCSS("left-side")}>
-                {buttons?.length > 0 && (
+                {hasButtons ? (
                   <Base.VerticalContent className={this.decorateCSS("button-container")}>
                     {buttons.map((button: any, index: number) => {
                       const buttonTextExist = this.castToString(button?.text);
@@ -604,7 +604,7 @@ class Location6 extends Location {
 
                       const rawSeparatorIcon = button?.["separator-icon"];
                       const normalizedSeparatorIcon: any = typeof rawSeparatorIcon === "string" ? { type: "icon", name: rawSeparatorIcon } : rawSeparatorIcon;
-                      const finalSeparatorIcon = normalizedSeparatorIcon || { type: "icon", name: "FiMinus" }; // Fallback
+                      const finalSeparatorIcon = normalizedSeparatorIcon || { type: "icon", name: "FiMinus" };
 
                       const buttonExist = buttonTextExist || buttonInfoExist || normalizedIcon;
 
@@ -626,16 +626,22 @@ class Location6 extends Location {
                       );
                     })}
                   </Base.VerticalContent>
+                ) : (
+                  <div className={this.decorateCSS("map-container")}>
+                    <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+                  </div>
                 )}
               </div>
             </Base.MaxContent>
           </div>
 
-          <div className={this.decorateCSS("right-container")}>
-            <div className={this.decorateCSS("map-container")}>
-              <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+          {hasButtons && (
+            <div className={this.decorateCSS("right-container")}>
+              <div className={this.decorateCSS("map-container")}>
+                <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </Base.Container>
     );

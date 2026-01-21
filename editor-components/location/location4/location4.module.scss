@@ -45,7 +45,6 @@
             width: 100%;
 
             .logo {
-              width: 60px;
               height: 60px;
               font-size: 3.5rem;
               color: var(--composer-font-color-primary);
@@ -53,10 +52,11 @@
               align-items: center;
               justify-content: center;
               overflow: hidden;
+              aspect-ratio: 3 / 1;
+              object-fit: cover;
             }
 
             .logo-img {
-              aspect-ratio: 3 / 1;
               width: 60px;
               height: auto !important;
               object-fit: cover;
@@ -150,7 +150,6 @@
           width: 100%;
 
           .logo {
-            width: 60px;
             height: 60px;
             font-size: 3.5rem;
             color: var(--composer-font-color-primary);
@@ -158,6 +157,8 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            aspect-ratio: 3 / 1;
+            object-fit: cover;
 
             .logo-img {
               width: 100%;

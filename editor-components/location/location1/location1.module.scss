@@ -13,7 +13,7 @@
 
       .header {
         display: flex;
-        align-items: flex-end;
+        align-items: center;
         justify-content: center;
         gap: var(--composer-gap-lg);
         width: 100%;
@@ -167,7 +167,6 @@
 
         &.left {
           justify-content: center;
-          align-items: center;
 
           .title-block {
             width: auto;
