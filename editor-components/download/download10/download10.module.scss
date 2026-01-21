@@ -13,16 +13,38 @@
         &.no-image {
           width: 100%;
         }
-
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-sm);
 
-        .subtitle,
         .title,
         .description {
-          content: "";
+          width: 100%;
+          text-align: left !important;
+          margin-left: 0 !important;
         }
+
+        .subtitle-container {
+          margin-left: 0 !important;
+          width: 100%;
+          .subtitle {
+            text-align: left !important;
+            margin-left: 0 !important;
+            width: fit-content;
+          }
+        }
+
+        .button-group,
+        .stats,
+        .down-description {
+          justify-content: flex-start;
+          align-items: center;
+          width: 100%;
+        }
+        .info {
+          text-align: left !important;
+        }
+        
 
         &.center {
           align-items: center;
@@ -38,6 +60,7 @@
 
             .subtitle {
               text-align: center !important;
+              margin-left: auto !important;
             }
           }
 
@@ -47,8 +70,15 @@
           }
 
           .stats {
+            .stats-title {
+              text-align: center !important;
+            }
             .down-description {
-              place-self: center;
+              justify-content: center;
+              width:auto;
+              .info {
+                text-align: center !important;
+              }
             }
           }
         }
@@ -92,6 +122,7 @@
 
           .stats-title {
             color: var(--composer-font-color-primary);
+            text-align: left;
           }
 
           .down-description {
@@ -172,6 +203,9 @@
           gap: var(--composer-gap-md);
 
           .left-container {
+            width: 100%;
+            align-items: flex-start;
+
             .button-group {
               .button-element {
                 height: 40px;
