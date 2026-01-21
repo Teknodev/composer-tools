@@ -85,6 +85,12 @@ export * from './schema/InteractionSchema';
 // Bootstrap
 export { bootstrapInteractions } from './bootstrap/InteractionBootstrap';
 export type { BootstrapDependencies } from './bootstrap/InteractionBootstrap';
+export {
+  initializeInteractionEngine,
+  getInteractionEngine,
+  bootstrapPageInteractions,
+  cleanupActiveInteractions,
+} from './bootstrap/EngineManager';
 
 // History
 export { CommandHistory } from './history/CommandHistory';
