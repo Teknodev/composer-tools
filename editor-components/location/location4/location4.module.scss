@@ -57,10 +57,10 @@
             }
 
             .logo-img {
-              width: 60px;
-              height: auto !important;
-              object-fit: cover;
               display: block;
+              height: 60px;
+              object-fit: cover;
+              aspect-ratio: 3 / 1;
             }
           }
 
