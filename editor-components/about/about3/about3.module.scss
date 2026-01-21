@@ -61,6 +61,9 @@
 
                     .icon {
                         font-size: 1.25rem;
+                        width: 1.25rem;
+                        height: 1.25rem;
+                        object-fit: contain;
                         color: var(--composer-font-color-primary);
                     }
 
@@ -169,13 +172,14 @@
                     .upper-text {
                         text-align: center;
                         text-transform: uppercase;
-                        color: var(--composer-font-color-primary);
+                        color: var(--composer-tertiary-color);
+                        font-size: 1.75rem;
                     }
 
                     .lower-text {
                         text-align: center;
                         color: var(--composer-font-color-primary);
-                        font-size: 3.25rem;
+                        font-size: 5rem;
                     }
                 }
 

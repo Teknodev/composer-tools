@@ -9,6 +9,10 @@ as *;
       flex: 1;
       gap: var(--composer-gap-md);
 
+      .description {
+        text-align: left;
+      }
+
       .top-section {
         display: flex;
         flex: 1;
@@ -25,9 +29,8 @@ as *;
             align-items: baseline;
 
             .title,
-            .subtitle,
-            .description {
-              text-align: left;
+            .subtitle {
+              text-align: left !important;
               margin-left: 0;
             }
           }

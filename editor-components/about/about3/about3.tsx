@@ -143,7 +143,7 @@ class About3 extends BaseAbout {
   }
 
   render() {
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons").slice(0, 2);
 
     const isAboutTitleExist = this.castToString(
       this.getPropValue("subtitle")
