@@ -23,7 +23,6 @@ type Marker = {
 type Buttons = {
   info?: string;
   text?: string;
-  icon?: string;
 };
 
 type MarkerObject = {
@@ -99,7 +98,19 @@ class Location6 extends Location {
               key: "info",
               value: "1.8 KM",
             },
-                {
+            {
+              type: "media",
+              key: "separator-icon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiMinus",
+              },
+            },
+            {
               type: "media",
               key: "icon",
               displayer: "Media",
@@ -131,10 +142,28 @@ class Location6 extends Location {
               value: "1.6 KM",
             },
             {
-              type: "icon",
+              type: "media",
+              key: "separator-icon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiMinus",
+              },
+            },
+            {
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiArrowRight",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiArrowRight",
+              },
             },
           ],
         },
@@ -156,10 +185,28 @@ class Location6 extends Location {
               value: "2.0 KM",
             },
             {
-              type: "icon",
+              type: "media",
+              key: "separator-icon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiMinus",
+              },
+            },
+            {
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiArrowRight",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiArrowRight",
+              },
             },
           ],
         },
@@ -181,10 +228,28 @@ class Location6 extends Location {
               value: "0.96 KM",
             },
             {
-              type: "icon",
+              type: "media",
+              key: "separator-icon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiMinus",
+              },
+            },
+            {
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiArrowRight",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiArrowRight",
+              },
             },
           ],
         },
@@ -206,10 +271,28 @@ class Location6 extends Location {
               value: "1.6 KM",
             },
             {
-              type: "icon",
+              type: "media",
+              key: "separator-icon",
+              displayer: "Separator Icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiMinus",
+              },
+            },
+            {
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FiArrowRight",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FiArrowRight",
+              },
             },
           ],
         },
@@ -518,6 +601,11 @@ class Location6 extends Location {
                       const buttonInfoExist = this.castToString(button?.info);
                       const rawIcon = button?.icon;
                       const normalizedIcon: any = typeof rawIcon === "string" ? { type: "icon", name: rawIcon } : rawIcon;
+
+                      const rawSeparatorIcon = button?.["separator-icon"];
+                      const normalizedSeparatorIcon: any = typeof rawSeparatorIcon === "string" ? { type: "icon", name: rawSeparatorIcon } : rawSeparatorIcon;
+                      const finalSeparatorIcon = normalizedSeparatorIcon || { type: "icon", name: "FiMinus" }; // Fallback
+
                       const buttonExist = buttonTextExist || buttonInfoExist || normalizedIcon;
 
                       return (
@@ -527,7 +615,7 @@ class Location6 extends Location {
                               <div className={this.decorateCSS("button-element")}>
                                 <div className={this.decorateCSS("button-text")}>
                                   {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
-                                  {buttonTextExist && buttonInfoExist && <div className={this.decorateCSS("separator")} />}
+                                  {buttonTextExist && buttonInfoExist && <Base.Media className={this.decorateCSS("separator-icon")} value={finalSeparatorIcon} />}
                                   {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                                 </div>
                                 {normalizedIcon && <Base.Media value={normalizedIcon} className={this.decorateCSS("icon")} />}
