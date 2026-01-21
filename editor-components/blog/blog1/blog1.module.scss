@@ -52,7 +52,6 @@
       z-index: 10;
       position: relative;
       margin-left: auto;
-
       margin-bottom: var(--composer-gap-md);
 
       .inner-right-link {
@@ -193,7 +192,7 @@
     flex: 1;
 
     .line {
-      width: 100%;
+      width: calc(100% + 120px);
       height: 1px;
       background-color: var(--composer-font-color-primary);
       border: none;
