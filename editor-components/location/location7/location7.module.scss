@@ -16,7 +16,6 @@
         text-align: center;
 
         .logo {
-          width: 60px;
           height: 60px;
           font-size: 3.5rem;
           object-fit: cover;
@@ -25,8 +24,7 @@
 
         .logo-img {
           aspect-ratio: 3 / 1;
-          width: 60px;
-          height: auto !important;
+          height: 60px !important;
           object-fit: cover;
           display: block;
         }

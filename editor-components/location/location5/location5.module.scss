@@ -5,8 +5,7 @@
   .max-content {
       .title-block {
       .location-logo {
-        width: 80px;
-        height: auto;
+        height: 60px;
         margin-bottom: var(--composer-gap-sm);
         color: var(--composer-font-color-primary);
         font-size: 4rem;
@@ -16,8 +15,7 @@
 
       .location-logo-img {
         aspect-ratio: 3 / 1;
-        width: 80px;
-        height: auto !important;
+        height: 60px !important;
         object-fit: cover;
         display: block;
       }
