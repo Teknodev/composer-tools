@@ -39,9 +39,6 @@ class About4 extends BaseAbout {
             key: "buttons",
             displayer: "Buttons",
             value: [INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")],
-            additionalParams: {
-                maxElementCount: 2,
-            },
         });
     }
 
@@ -55,7 +52,7 @@ class About4 extends BaseAbout {
         const title = this.getPropValue("title");
         const leftText = this.getPropValue("leftText");
         const rightText = this.getPropValue("rightText");
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons").slice(0, 2);
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const singleText = (this.castToString(leftText) && !this.castToString(rightText)) || (!this.castToString(leftText) && this.castToString(rightText));
 
 

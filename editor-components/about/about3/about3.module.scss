@@ -262,6 +262,10 @@
                     .image-text {
                         top: 40px;
                         left: 5%;
+
+                       .lower-text {    
+                            font-size:3.5rem !important
+                        }
                     }
 
                     &.center-single-image {
@@ -304,6 +308,10 @@
                     .image-text {
                         left: 30%;
                         top: 20px;
+
+                        .lower-text {
+                            font-size:3rem !important
+                        }
                     }
                 }
             }

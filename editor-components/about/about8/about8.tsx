@@ -100,9 +100,6 @@ class About8 extends BaseAbout {
       key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
-      additionalParams: {
-        maxElementCount: 2,
-      },
     });
   }
 
@@ -115,7 +112,7 @@ class About8 extends BaseAbout {
     const image1 = this.getPropValue("image-1");
     const image2 = this.getPropValue("image-2");
     const texts = this.castToObject<Text[]>("texts");
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons").slice(0, 2);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
 
     const hasTitle = !!this.castToString(title);

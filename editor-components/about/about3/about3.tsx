@@ -36,9 +36,6 @@ class About3 extends BaseAbout {
       key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "About Resort", "", null, null, "Primary")],
-      additionalParams: {
-        maxElementCount: 2,
-      },
     });
 
     this.addProp({
@@ -143,7 +140,7 @@ class About3 extends BaseAbout {
   }
 
   render() {
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons").slice(0, 2);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const isAboutTitleExist = this.castToString(
       this.getPropValue("subtitle")
@@ -262,7 +259,7 @@ class About3 extends BaseAbout {
                   </div>
                 )}
                 {isImage1Exist && (
-                  <div className={`${this.decorateCSS("back-image")} ${!isImage2Exist ? this.decorateCSS("no-image") : ""}`}>
+                  <div className={`${this.decorateCSS("back-image")} ${!isImage2Exist && this.decorateCSS("no-image")}`}>
                     <Base.Media value={backMedia} className={this.decorateCSS("image")} />
                     {backImage?.overlay && (
                       <div className={this.decorateCSS("overlay")} />
@@ -271,7 +268,7 @@ class About3 extends BaseAbout {
                 )}
 
                 {isImage2Exist && (
-                  <div className={`${this.decorateCSS("front-image")} ${!isImage1Exist ? this.decorateCSS("no-image") : ""} `}>
+                  <div className={`${this.decorateCSS("front-image")} ${!isImage1Exist && this.decorateCSS("no-image")} `}>
                     <Base.Media value={frontMedia} className={this.decorateCSS("image")} />
                     {frontImage?.overlay && (
                       <div className={this.decorateCSS("overlay")} />
