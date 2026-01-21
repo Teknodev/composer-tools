@@ -15,7 +15,7 @@ import { LoopEffectCommand } from "../commands/LoopEffectCommand";
 import { WebAnimationsAPI } from "../animations/WebAnimationsAPI";
 import { AnimateCssAnimationEngine } from "../animations/AnimateCssAnimationEngine";
 import { SimpleRouter } from "../services/SimpleRouter";
-import { BasicModalService } from "../services/BasicModalService";
+import { BasicModalService } from "../services/ModalService";
 import { InteractionSchema } from "../schema/InteractionSchema";
 import { bootstrapInteractions, BootstrapDependencies } from "./InteractionBootstrap";
 
