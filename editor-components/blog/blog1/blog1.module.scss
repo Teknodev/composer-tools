@@ -17,7 +17,7 @@
   .max-content {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-end;
+    align-items: center;
     gap: var(--composer-gap-md);
     position: relative;
     width: 100%;
@@ -60,6 +60,7 @@
         align-items: center;
         justify-content: center;
         gap: var(--composer-gap-xs);
+        margin-top: var(--composer-gap-md) !important;
 
         .inner-div {
           position: relative;
