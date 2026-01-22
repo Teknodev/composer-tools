@@ -164,6 +164,7 @@ class About8 extends BaseAbout {
                       value={image1}
                       className={this.decorateCSS("image")}
                     />
+                    <div className={this.decorateCSS("overlay-layer")} />
                   </div>
                 )}
                 {hasImage2 && (
@@ -177,6 +178,7 @@ class About8 extends BaseAbout {
                       value={image2}
                       className={this.decorateCSS("image")}
                     />
+                    <div className={this.decorateCSS("overlay-layer")} />
                   </div>
                 )}
               </div>

@@ -36,7 +36,7 @@ class About1 extends BaseAbout {
       key: "icon",
       displayer: "Media",
       additionalParams: {
-        availableTypes: ["icon","image"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -147,7 +147,7 @@ class About1 extends BaseAbout {
               key: "icon",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -172,7 +172,7 @@ class About1 extends BaseAbout {
               key: "icon",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -197,7 +197,7 @@ class About1 extends BaseAbout {
               key: "icon",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -222,7 +222,7 @@ class About1 extends BaseAbout {
               key: "icon",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon","image"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -277,16 +277,16 @@ class About1 extends BaseAbout {
                 </Base.SectionTitle>
               )}
               {icon && (
-                  <Base.Media
-                    value={this.getPropValue("icon")}
-                    className={this.decorateCSS("icon")}
-                  />
-                )}
+                <Base.Media
+                  value={this.getPropValue("icon")}
+                  className={this.decorateCSS("icon")}
+                />
+              )}
             </Base.VerticalContent>
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {image && (
-              <Base.GridCell 
+              <Base.GridCell
                 className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
@@ -297,6 +297,7 @@ class About1 extends BaseAbout {
                 {this.getPropValue("overlay") && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
+                <div className={this.decorateCSS("hover-effect")} />
               </Base.GridCell>
             )}
             {textContent.length > 0 && (

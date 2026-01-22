@@ -154,7 +154,7 @@ as *;
 .overlay {
   position: relative;
 
-  &::after {
+  .overlay-layer {
     content: "";
     position: absolute;
     left: 0;

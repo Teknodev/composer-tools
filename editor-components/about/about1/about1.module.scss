@@ -49,7 +49,7 @@
                 }
 
                 &[data-animation~="animate2"] {
-                    &::before {
+                    .hover-effect {
                         content: '';
                         position: absolute;
                         inset: 0;
@@ -63,7 +63,7 @@
                     }
 
                     &:hover {
-                        &::before {
+                        .hover-effect {
                             opacity: 0.7;
                             transform: translateY(0);
                         }
