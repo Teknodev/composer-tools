@@ -151,18 +151,7 @@ class Slider9 extends BaseSlider {
       ],
     });
 
-    this.addProp(
-      INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        autoplaySpeed: 1500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        adaptiveHeight: false,
-      })
-    );
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.addProp({
       type: "media",
@@ -248,6 +237,13 @@ class Slider9 extends BaseSlider {
       displayer: "Fullscreen Right Arrow",
       additionalParams: { availableTypes: ["icon", "image"] },
       value: { type: "icon", name: "BiRightArrowAlt" },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.setComponentState("vertical-slider-ref", React.createRef());
@@ -359,6 +355,7 @@ class Slider9 extends BaseSlider {
     const exitButton = this.getPropValue("exitButton");
     const overlayLeftArrow = this.getPropValue("overlayLeftArrow");
     const overlayRightArrow = this.getPropValue("overlayRightArrow");
+    const overlay = this.getPropValue("overlay");
 
     const isFullscreen = this.getComponentState("isFullscreen");
     const isVideoModalOpen = this.getComponentState("isVideoModalOpen");
@@ -372,11 +369,7 @@ class Slider9 extends BaseSlider {
     const RightContentExist = title || price || description;
 
     const verticalSettings = {
-      arrows: false,
-      dots: false,
-      infinite: false,
-      speed: 500,
-      autoplay: true,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       slidesToShow: 3,
       slidesToScroll: 1,
       vertical: true,
@@ -389,12 +382,7 @@ class Slider9 extends BaseSlider {
     };
 
     const horizontalSettings = {
-      arrows: false,
-      dots: false,
-      infinite: true,
-      speed: 500,
-      autoplay: true,
-      autoplaySpeed: 1500,
+      ...this.transformSliderValues(this.getPropValue("settings")),
       slidesToShow: 1,
       slidesToScroll: 1,
       afterChange: (currentIndex: number) => {
@@ -406,15 +394,13 @@ class Slider9 extends BaseSlider {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid
-            className={`${this.decorateCSS("content")} ${
-              sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""
-            }`}
+            className={`${this.decorateCSS("content")} ${sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""
+              }`}
           >
             {sliderItems.length > 0 && (
               <div
-                className={`${this.decorateCSS("sliders-parent")} ${
-                  !RightContentExist ? this.decorateCSS("empty-right-content") : ""
-                }`}
+                className={`${this.decorateCSS("sliders-parent")} ${!RightContentExist ? this.decorateCSS("empty-right-content") : ""
+                  }`}
               >
                 <div className={this.decorateCSS("vertical-parent")}>
                   <ComposerSlider
@@ -490,6 +476,7 @@ class Slider9 extends BaseSlider {
                           onMouseLeave={this.handleMouseLeave}
                         >
                           <Base.Media value={item.media} className={this.decorateCSS("slider-img")} />
+                          {overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       </div>
                     ))}
