@@ -14,8 +14,6 @@ as *;
     height: 100%;
     z-index: 0;
     object-fit: cover;
-
-
   }
 
   .overlay {
@@ -37,7 +35,7 @@ as *;
     max-width: var(--composer-content-width);
     width: 100%;
     margin: 0 auto;
-    padding: 0 var(--composer-gap-md);
+    padding-bottom: var(--composer-gap-lg);
     box-sizing: border-box;
 
 
@@ -379,6 +377,7 @@ as *;
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      padding: unset !important;
       .cards-grid {
         .card-wrapper {
           &:nth-child(2n) {
