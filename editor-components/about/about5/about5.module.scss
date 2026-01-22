@@ -101,10 +101,12 @@ as *;
 
               .name {
                 color: var(--composer-primary-color);
+                text-align: left;
               }
 
               .job-title {
                 color: var(--composer-tertiary-color);
+                text-align: left;
               }
             }
           }
