@@ -1,17 +1,7 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  &.has-image {
-    padding: 0;
-
-    .page {
-
-      .group-container,
-      .group-container-center {
-        padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
-      }
-    }
-  }
+  padding: 0;
 
   .image-container {
     width: 100%;
@@ -40,11 +30,12 @@
   .max-content {
     .page {
       .group-container {
+        padding: var(--composer-gap-md) 50px;
+        padding-bottom: 80px;
         display: flex;
         width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding: 0px !important;
         gap: var(--composer-gap-lg);
 
         .title {
@@ -66,10 +57,23 @@
         }
 
         .button-group {
+          display: flex;
+          align-items: center;
+
           .button {
             display: flex;
+            align-items: center;
+            justify-content: center;
             width: 170px;
+            min-width: 170px;
+            max-width: 170px;
             height: 50px;
+            min-height: 50px;
+            max-height: 50px;
+            padding: 0;
+            flex-shrink: 0;
+            flex-grow: 0;
+            box-sizing: border-box;
 
             .button-logo {
               height: 100%;
@@ -81,8 +85,10 @@
 
             .button-element {
               width: 100%;
+              height: 100%;
               display: flex;
               justify-content: center;
+              align-items: center;
 
               .button-text {
                 content: "";
@@ -98,7 +104,8 @@
 
       .group-container-center {
         align-items: center;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding: var(--composer-gap-md) 50px;
+        padding-bottom: 80px;
 
         .title {
           content: "";
@@ -116,14 +123,33 @@
           gap: var(--composer-gap-md);
 
           .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 170px;
+            min-width: 170px;
+            max-width: 170px;
+            height: 50px;
+            min-height: 50px;
+            max-height: 50px;
+            padding: 0;
+            flex-shrink: 0;
+            flex-grow: 0;
+            box-sizing: border-box;
+
             .button-logo {
-              width: 200px;
-              height: 60px;
+              width: 100%;
+              height: 100%;
               object-fit: cover;
               border-radius: var(--composer-border-radius-sm);
             }
 
             .button-element {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
 
               .button-text,
               .button-icon {
@@ -141,13 +167,13 @@
 
   .group-container,
   .group-container-center {
-    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+    content: "";
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px 0px !important;
+    padding: 0 !important;
 
     .image-container {
       height: 300px;
@@ -160,7 +186,8 @@
           flex-direction: column;
           width: 100%;
           gap: var(--composer-gap-sm);
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding-bottom: 80px;
+          padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
 
           .title,
           .description {
@@ -169,18 +196,48 @@
           }
 
           .button-group {
+            display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: center !important;
+            justify-content: center;
             align-items: center;
             gap: var(--composer-gap-md);
-            justify-content: unset;
             width: 100%;
+            margin-top: 20px;
+
+            .button {
+              width: 150px;
+              min-width: 150px;
+              max-width: 150px;
+              height: 40px;
+              min-height: 40px;
+              max-height: 40px;
+              margin: 0;
+            }
           }
         }
 
         .group-container-center {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding-bottom: 80px;
+
+          .button-group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .button {
+              width: 150px;
+              min-width: 150px;
+              max-width: 150px;
+              height: 40px;
+              min-height: 40px;
+              max-height: 40px;
+              margin: 0;
+            }
+          }
         }
       }
     }
@@ -189,6 +246,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: 0;
+
     .image-container {
       height: 300px;
     }
@@ -200,21 +259,22 @@
           flex-direction: column;
           width: 100%;
           gap: var(--composer-gap-sm);
-          padding: var(--composer-gap-md);
+          padding-bottom: 50px;
 
           .button-group {
             gap: var(--composer-gap-sm);
+            justify-content: center;
 
             .button {
-              width: 120px;
-              height: 30px;
+              width: 140px;
+              min-width: 140px;
+              max-width: 140px;
+              height: 35px;
+              min-height: 35px;
+              max-height: 35px;
               margin: 0px;
 
               .button-element {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
                 gap: var(--composer-gap-sm);
 
                 .button-text {
@@ -230,17 +290,28 @@
         }
 
         .group-container-center {
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-md) 40px;
+          padding-bottom: 50px;
 
           .button-group {
             display: flex;
             flex-direction: column;
             width: 100%;
             gap: var(--composer-gap-sm);
+            align-items: center;
 
             .button {
+              width: 140px;
+              min-width: 140px;
+              max-width: 140px;
+              height: 35px;
+              min-height: 35px;
+              max-height: 35px;
+              margin: 0px;
+
               .button-logo {
-                height: 60px;
+                width: 100%;
+                height: 100%;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-sm);
               }
