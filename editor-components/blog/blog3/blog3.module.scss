@@ -161,7 +161,7 @@
               transition: transform var(--composer-transition-duration-normal) ease;
             }
 
-            &:hover img {
+            &:hover .image {
               transform: scale(1.1);
               filter: brightness(1.2);
             }
@@ -366,7 +366,7 @@
             }
           }
 
-          &::after {
+          .underline {
             content: "";
             position: absolute;
             bottom: -2px;
@@ -383,7 +383,7 @@
               rotate: 45deg;
             }
 
-            &::after {
+            .underline {
               transform: scaleX(0);
             }
           }
