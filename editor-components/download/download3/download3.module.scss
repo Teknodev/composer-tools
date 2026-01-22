@@ -45,8 +45,7 @@
           justify-content: center;
 
           .subtitle {
-            content: "";
-            text-align: center;
+            text-align: left;
             margin-bottom: calc(var(--composer-gap-xs));
 
           }
@@ -225,7 +224,12 @@
 
           .title-block {
             width: 50%;
+
+            .subtitle {
+              text-align: center !important;
+            }
           }
+
 
           .button-group {
             gap: var(--composer-gap-sm);
