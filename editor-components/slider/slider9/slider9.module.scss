@@ -46,6 +46,10 @@ $left: var(--composer-gap-lg);
         height: auto;
       }
 
+      &.center-content {
+        justify-content: center;
+      }
+
       .sliders-parent {
         display: flex;
         gap: var(--composer-gap-sm);
@@ -112,6 +116,7 @@ $left: var(--composer-gap-lg);
 
             .verticalPreviousArrow,
             .verticalNextArrow {
+              width: 27px;
               height: 27px;
               flex: 1;
               color: var(--composer-font-color-primary);
@@ -121,6 +126,12 @@ $left: var(--composer-gap-lg);
               display: flex;
               justify-content: center;
               align-items: center;
+
+              .arrow-icon {
+                object-fit: contain;
+                width: 27px;
+                height: 27px;
+              }
             }
           }
         }
@@ -254,10 +265,18 @@ $left: var(--composer-gap-lg);
                 color: var(--composer-primary-color);
               }
 
-              div {
+              .arrow-icon {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+
+              .arrow-icon {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                width: 100%;
+                height: 100%;
               }
             }
 
@@ -320,12 +339,20 @@ $left: var(--composer-gap-lg);
                 }
 
                 .button {
+                  min-width: 25px;
+                  min-height: 25px;
                   width: 25px;
                   height: 25px;
                   cursor: pointer;
                   transition: transform 0.2s ease;
                   color: var(--composer-font-color-primary);
                   font-size: 1.75rem;
+
+                  .button-icon {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                  }
 
                   @container (max-width: #{$composer-tablet-width}) {
                     width: 20px;
@@ -403,6 +430,12 @@ $left: var(--composer-gap-lg);
                 cursor: pointer;
                 top: 50%;
                 transform: translateY(-50%);
+
+                .arrow-icon {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                }
               }
 
               .overlay-left-button {
@@ -456,6 +489,12 @@ $left: var(--composer-gap-lg);
                   @container (max-width: #{$composer-phone-width}) {
                     width: 20px;
                     height: 20px;
+                  }
+
+                  .button-icon {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
                   }
                 }
               }
@@ -547,6 +586,12 @@ $left: var(--composer-gap-lg);
                 @container (max-width: #{$composer-phone-width}) {
                   width: 20px;
                   height: 20px;
+                }
+
+                .button-icon {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
                 }
               }
             }

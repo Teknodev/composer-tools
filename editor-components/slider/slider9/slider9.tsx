@@ -366,7 +366,7 @@ class Slider9 extends BaseSlider {
     const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
 
     const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
-    const RightContentExist = title || price || description;
+    const RightContentExist = this.castToString(title) || this.castToString(price) || this.castToString(description);
 
     const verticalSettings = {
       ...this.transformSliderValues(this.getPropValue("settings")),
@@ -394,13 +394,12 @@ class Slider9 extends BaseSlider {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid
-            className={`${this.decorateCSS("content")} ${sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""
+            className={`${this.decorateCSS("content")} ${sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""} ${!RightContentExist ? this.decorateCSS("center-content") : ""
               }`}
           >
             {sliderItems.length > 0 && (
               <div
-                className={`${this.decorateCSS("sliders-parent")} ${!RightContentExist ? this.decorateCSS("empty-right-content") : ""
-                  }`}
+                className={`${this.decorateCSS("sliders-parent")} ${!RightContentExist && this.decorateCSS("empty-right-content")}`}
               >
                 <div className={this.decorateCSS("vertical-parent")}>
                   <ComposerSlider
@@ -447,7 +446,7 @@ class Slider9 extends BaseSlider {
                           className={this.decorateCSS("verticalPreviousArrow")}
                           onClick={() => verticalSliderRef.current?.slickPrev()}
                         >
-                          <Base.Media value={verticalPreviousArrow} />
+                          <Base.Media value={verticalPreviousArrow} className={this.decorateCSS("arrow-icon")} />
                         </div>
                       )}
                       {verticalNextArrow && (
@@ -455,7 +454,7 @@ class Slider9 extends BaseSlider {
                           className={this.decorateCSS("verticalNextArrow")}
                           onClick={() => verticalSliderRef.current?.slickNext()}
                         >
-                          <Base.Media value={verticalNextArrow} />
+                          <Base.Media value={verticalNextArrow} className={this.decorateCSS("arrow-icon")} />
                         </div>
                       )}
                     </div>
@@ -489,7 +488,7 @@ class Slider9 extends BaseSlider {
                           className={this.decorateCSS("horizontalPreviousArrow")}
                           onClick={() => horizontalSliderRef.current?.slickPrev()}
                         >
-                          <Base.Media value={horizontalPreviousArrow} />
+                          <Base.Media value={horizontalPreviousArrow} className={this.decorateCSS("arrow-icon")} />
                         </div>
                       )}
                       {horizontalNextArrow && (
@@ -497,7 +496,7 @@ class Slider9 extends BaseSlider {
                           className={this.decorateCSS("horizontalNextArrow")}
                           onClick={() => horizontalSliderRef.current?.slickNext()}
                         >
-                          <Base.Media value={horizontalNextArrow} />
+                          <Base.Media value={horizontalNextArrow} className={this.decorateCSS("arrow-icon")} />
                         </div>
                       )}
                     </div>
@@ -507,18 +506,18 @@ class Slider9 extends BaseSlider {
                     <div className={this.decorateCSS("button-wrapper")}>
                       <div className={this.decorateCSS("icon-wrapper")}>
                         <div className={this.decorateCSS("button")} onClick={this.handlePlayVideo}>
-                          <Base.Media value={videoButton} />
+                          <Base.Media value={videoButton} className={this.decorateCSS("button-icon")} />
                         </div>
                       </div>
                       <div className={this.decorateCSS("button-text-wrapper")}>
-                        <span className={this.decorateCSS("button-text")}>{videoButtonText}</span>
+                        <Base.P className={this.decorateCSS("button-text")}>{videoButtonText}</Base.P>
                       </div>
                     </div>
 
                     <div className={this.decorateCSS("button-wrapper")}>
                       <div className={this.decorateCSS("icon-wrapper")}>
                         <div className={this.decorateCSS("button")} onClick={this.handleFullscreen}>
-                          <Base.Media value={fsButton} />
+                          <Base.Media value={fsButton} className={this.decorateCSS("button-icon")} />
                         </div>
                       </div>
                       <div className={this.decorateCSS("button-text-wrapper")}>
@@ -538,7 +537,7 @@ class Slider9 extends BaseSlider {
                             this.setComponentState("hoveredIndex", null);
                           }}
                         >
-                          <Base.Media value={overlayLeftArrow} />
+                          <Base.Media value={overlayLeftArrow} className={this.decorateCSS("arrow-icon")} />
                         </div>
                         <div
                           className={this.decorateCSS("overlay-right-button")}
@@ -547,13 +546,13 @@ class Slider9 extends BaseSlider {
                             this.fullscreenNextImage();
                           }}
                         >
-                          <Base.Media value={overlayRightArrow} />
+                          <Base.Media value={overlayRightArrow} className={this.decorateCSS("arrow-icon")} />
                         </div>
                         <button
                           className={this.decorateCSS("close-button-wrapper")}
                           onClick={this.handleCloseFullscreen}
                         >
-                          <Base.Media value={exitButton} className={this.decorateCSS("close-button")} />
+                          <Base.Media value={exitButton} className={`${this.decorateCSS("close-button")} ${this.decorateCSS("button-icon")}`} />
                         </button>
                       </div>
                       <div className={this.decorateCSS("fullscreen-content")}>
@@ -573,7 +572,7 @@ class Slider9 extends BaseSlider {
                           className={this.decorateCSS("close-button-wrapper")}
                           onClick={this.handleCloseVideoModal}
                         >
-                          <Base.Media value={exitButton} className={this.decorateCSS("close-button")} />
+                          <Base.Media value={exitButton} className={`${this.decorateCSS("close-button")} ${this.decorateCSS("button-icon")}`} />
                         </button>
 
                         <video
@@ -591,9 +590,9 @@ class Slider9 extends BaseSlider {
             {RightContentExist && (
               <div className={this.decorateCSS("right-content")}>
                 <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {price && <Base.P className={this.decorateCSS("price")}>{price}</Base.P>}
-                  {description && (
+                  {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {this.castToString(price) && <Base.P className={this.decorateCSS("price")}>{price}</Base.P>}
+                  {this.castToString(description) && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
                       {description}
                     </Base.SectionDescription>
