@@ -163,7 +163,7 @@
       }
     }
   }
-
+}
 
   @container (max-width: #{$composer-tablet-width}) {
     .container {
@@ -199,7 +199,7 @@
     .container {
       .max-content {
         .page {
-          flex-direction: column;
+          flex-direction: column !important;
           gap: var(--composer-gap-md);
 
           .left-container {
@@ -230,4 +230,3 @@
       }
     }
   }
-}

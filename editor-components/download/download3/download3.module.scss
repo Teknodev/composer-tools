@@ -187,7 +187,6 @@
           width: 100%;
           gap: var(--composer-gap-sm);
           padding-bottom: 80px;
-          padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
 
           .title,
           .description {
@@ -218,7 +217,7 @@
         }
 
         .group-container-center {
-          padding-bottom: 80px;
+          padding-bottom: 80px !important;
 
           .button-group {
             display: flex;
@@ -227,6 +226,10 @@
             justify-content: center;
             align-items: center;
             width: 100%;
+            padding-bottom: 80px !important;
+            padding-left: var(--composer-gap-lg) !important;
+            padding-right: var(--composer-gap-lg) !important;
+
 
             .button {
               width: 150px;
@@ -259,7 +262,7 @@
           flex-direction: column;
           width: 100%;
           gap: var(--composer-gap-sm);
-          padding-bottom: 50px;
+          padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) !important;
 
           .button-group {
             gap: var(--composer-gap-sm);

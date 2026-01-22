@@ -286,7 +286,7 @@ class Download11 extends BaseDownload {
                   </div>
                 )}
                 {hasValidBottomRightCard && rightBottomItems.visibility && (
-                  <div className={this.decorateCSS("buttom-card")}>
+                  <div className={this.decorateCSS("button-card")}>
                     <div className={this.decorateCSS("card")}>
                       <Base.VerticalContent className={this.decorateCSS("left")}>
                         {rightBottomSubtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{rightBottomItems.subtitle}</Base.SectionSubTitle>}
