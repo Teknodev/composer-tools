@@ -353,6 +353,7 @@
             align-items: center;
             width: max-content;
             text-align: left;
+            font-size: var(--composer-font-size-md) !important;
             gap: var(--composer-gap-sm);
             color: var(--composer-font-color-primary);
 
