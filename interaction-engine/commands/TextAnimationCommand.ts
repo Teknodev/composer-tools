@@ -21,6 +21,14 @@ export class TextAnimationCommand extends BaseAnimationCommand {
   }
 
   async execute(context: InteractionContext): Promise<void> {
+    // Debug log to confirm execution in preview/page
+    // eslint-disable-next-line no-console
+    console.log('TextAnimationCommand.execute called', {
+      element: context.target,
+      config: context.config,
+      metadata: context.metadata,
+    });
+
     const textAnimationConfig = context.config.textAnimation;
     if (!textAnimationConfig) {
       console.warn('No text animation config provided');
@@ -54,6 +62,9 @@ export class TextAnimationCommand extends BaseAnimationCommand {
     textContent: string,
     fullConfig?: any
   ): Promise<void> {
+    // Debug: report invocation details
+    // eslint-disable-next-line no-console
+    console.log('[TextAnimation] applyTextAnimation start', { target, config, preset, textContent, fullConfig });
     const { granularity, enterEffect, transition } = config;
 
     // Split text based on granularity
@@ -88,17 +99,32 @@ export class TextAnimationCommand extends BaseAnimationCommand {
 
       target.appendChild(span);
     });
+      // Debug: report spans created
+      // eslint-disable-next-line no-console
+      console.log('[TextAnimation] spans created', { total: spans.length, animatable: animatableSpans.length });
 
-    // Apply enter effects
-    if (enterEffect && preset.supportsEnterEffect) {
-      await this.applyEnterEffects(animatableSpans, enterEffect, transition);
-    } else if (preset.id === 'custom' && fullConfig?.engine === 'animateCss') {
-      // Apply Animate.css for custom preset
-      await this.applyAnimateCssToSpans(animatableSpans, fullConfig, transition);
-    } else {
-      // Apply basic preset animation
-      await this.applyPresetAnimation(animatableSpans, preset, transition, fullConfig);
-    }
+      // Apply enter effects
+      if (enterEffect && preset.supportsEnterEffect) {
+        // eslint-disable-next-line no-console
+        console.log('[TextAnimation] using enterEffect branch');
+        await this.applyEnterEffects(animatableSpans, enterEffect, transition);
+        // eslint-disable-next-line no-console
+        console.log('[TextAnimation] enterEffect complete');
+      } else if (preset.id === 'custom' && fullConfig?.engine === 'animateCss') {
+        // Apply Animate.css for custom preset
+        // eslint-disable-next-line no-console
+        console.log('[TextAnimation] using animateCss branch for custom preset');
+        await this.applyAnimateCssToSpans(animatableSpans, fullConfig, transition);
+        // eslint-disable-next-line no-console
+        console.log('[TextAnimation] animateCss custom preset complete');
+      } else {
+        // Apply basic preset animation
+        // eslint-disable-next-line no-console
+        console.log('[TextAnimation] using preset animation branch', { presetId: preset.id });
+        await this.applyPresetAnimation(animatableSpans, preset, transition, fullConfig);
+        // eslint-disable-next-line no-console
+        console.log('[TextAnimation] preset animation complete');
+      }
   }
 
   private async applyAnimateCssToSpans(

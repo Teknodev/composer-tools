@@ -14,15 +14,17 @@ export class PressTrigger extends BaseTrigger {
 this.boundPressHandler = () => fire();
 
     this.boundReleaseHandler = () => {
-      if (!target) {
-        cleanup?.();
-        return;
-      }
+      (async () => {
+        if (!target) {
+          await cleanup?.();
+          return;
+        }
 
-      // Delegate to the animation engine so it can capture current
-      // computed styles and run a smooth transition back to originals.
-      // Avoid calling `cancel()` here to prevent an immediate snap.
-      cleanup?.();
+        // Delegate to the animation engine so it can capture current
+        // computed styles and run a smooth transition back to originals.
+        // Avoid calling `cancel()` here to prevent an immediate snap.
+        await cleanup?.();
+      })();
     };
 
     this.addEventListener(target, 'mousedown', this.boundPressHandler);

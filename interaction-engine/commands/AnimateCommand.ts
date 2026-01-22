@@ -18,10 +18,25 @@ export class AnimateCommand extends BaseAnimationCommand {
     const engine =
       engineType === "animateCss" ? new AnimateCssAnimationEngine() : new WebAnimationsAPI();
 
+    
+
     // Check if we're using animate.css
     if (engine instanceof AnimateCssAnimationEngine) {
       // Store original styles so cleanup can restore them after animate.css runs
       this.storeOriginalStyles(context.target, ['opacity', 'transform']);
+
+      // If we previously applied inline "frozen" properties during cleanup,
+      // remove them so adding the animate.css classes will restart the animation.
+      try {
+        ['opacity', 'transform'].forEach((p) => context.target.style.removeProperty(p));
+        // Ensure no inline animation or transition blocks class animation restart
+        context.target.style.removeProperty('animation');
+        context.target.style.removeProperty('transition');
+        // Force reflow to ensure class-based animation restarts reliably
+        void context.target.offsetWidth;
+      } catch (err) {
+        /* ignore */
+      }
 
       this.isAnimating = true;
       const animationConfig = {
@@ -47,14 +62,22 @@ export class AnimateCommand extends BaseAnimationCommand {
     } = context.config;
 
     // Check if using loop/transform mode (Framer-style)
-    const isLoopMode = context.config.loopType || context.config.scale || context.config.rotate || context.config.skew || context.config.offset;
+    // Only treat as loop mode if transform-related values are actually non-default
+    const cfg = context.config || {};
+    const hasScale = cfg.scale !== undefined && cfg.scale !== 1;
+    const hasRotate = cfg.rotate && (cfg.rotate.x || cfg.rotate.y || cfg.rotate.z);
+    const hasSkew = cfg.skew && (cfg.skew.x || cfg.skew.y);
+    const hasOffset = cfg.offset && (cfg.offset.x || cfg.offset.y);
+    const isLoopMode = Boolean(cfg.loopType || hasScale || hasRotate || hasSkew || hasOffset);
 
     if (isLoopMode) {
       // Loop/Transform Animation Mode
       await this.executeLoopAnimation(context);
     } else {
       // Standard property animation
-      const targetValue = context.config.value || context.config.to || 0.8;
+      // Support UI-provided shortcuts like `opacity` in config
+      const targetValue =
+        (context.config && (context.config.value ?? context.config.to ?? context.config.opacity)) ?? 0.8;
 
       // Store original values for cleanup BEFORE animation starts
       const computedStyle = getComputedStyle(context.target);
@@ -94,14 +117,23 @@ export class AnimateCommand extends BaseAnimationCommand {
     // Store original styles
     this.storeOriginalStyles(context.target, ['opacity', 'transform']);
 
-    // Build keyframes based on config
-    const keyframes = this.buildLoopKeyframes(config);
+    // Build keyframes based on config using the element's current computed styles
+    const { keyframes, hasAnimated } = this.buildLoopKeyframes(config, context.target);
+
+    if (!hasAnimated) {
+      // Nothing to animate in loop mode
+      // eslint-disable-next-line no-console
+      console.warn('AnimateCommand: loop mode has no animated properties, skipping', config);
+      return;
+    }
 
     // Configure animation options
     const loopType = config.loopType || "loop";
     
-    // Use configured iterationCount, default to 1 if not specified
-    const iterations = config.iterationCount === "infinite" ? Infinity : (config.iterationCount || 1);
+    // Use configured iterationCount. If this is a loop-type config, default to infinite.
+    const iterations = config.iterationCount === "infinite" || Boolean(config.loopType)
+      ? Infinity
+      : (config.iterationCount || 1);
 
     // For Web Animations API, we need to animate with proper keyframes
     const animation = context.target.animate(keyframes, {
@@ -125,17 +157,20 @@ export class AnimateCommand extends BaseAnimationCommand {
     this.isAnimating = true;
   }
 
-  private buildLoopKeyframes(config: any): Keyframe[] {
+  private buildLoopKeyframes(config: any, element: HTMLElement): { keyframes: Keyframe[]; hasAnimated: boolean } {
+    const computed = getComputedStyle(element);
     const initialState: Keyframe = {
-      opacity: 1,
-      transform: 'translate(0, 0) scale(1) rotate(0deg) skew(0deg, 0deg)',
+      opacity: parseFloat(computed.getPropertyValue('opacity')) || 1,
+      transform: computed.getPropertyValue('transform') || 'translate(0, 0) scale(1) rotate(0deg) skew(0deg, 0deg)',
     };
 
-    const animatedState: Keyframe = {};
+    const animatedState: Keyframe = {} as Keyframe;
+    let hasAnimated = false;
 
     // Apply opacity
     if (config.opacity !== undefined) {
       animatedState.opacity = config.opacity;
+      hasAnimated = true;
     }
 
     // Build transform string
@@ -175,13 +210,14 @@ export class AnimateCommand extends BaseAnimationCommand {
 
     if (transforms.length > 0) {
       animatedState.transform = transforms.join(' ');
+      hasAnimated = true;
     }
 
     // Return keyframes based on loop type
     if (config.loopType === "mirror") {
-      return [initialState, animatedState];
+      return { keyframes: [initialState, animatedState], hasAnimated };
     } else {
-      return [initialState, animatedState, initialState];
+      return { keyframes: [initialState, animatedState, initialState], hasAnimated };
     }
   }
 
@@ -234,7 +270,28 @@ export class AnimateCommand extends BaseAnimationCommand {
     this.originalStyles.clear();
   }
 
-  cleanup(context: InteractionContext): void {
+  async cleanup(context: InteractionContext): Promise<void> {
+    // If caller requested to preserve end state, set final values and skip restoring originals
+    const preserveEnd = Boolean(context.config?.preserveEndState || context.config?.keepEndState);
+    if (preserveEnd) {
+      // Cancel running animations but DO NOT restore original styles
+      this.cancelAllAnimations();
+
+      // If a specific property animation was used, set its final value inline
+      const prop = context.config?.property;
+      const finalVal = context.config?.value ?? context.config?.to;
+      if (prop && finalVal !== undefined) {
+        try {
+          context.target.style.setProperty(prop, String(finalVal));
+        } catch (err) {
+          /* ignore */
+        }
+      }
+
+      // For animate.css or other class-based animations, we can't always infer the final
+      // computed value here; leave classes removed and any inline values as-is.
+      return Promise.resolve();
+    }
     // Disconnect observer if exists
     if (this.observer) {
       this.observer.disconnect();
@@ -245,35 +302,97 @@ export class AnimateCommand extends BaseAnimationCommand {
     const engine =
       engineType === "animateCss" ? new AnimateCssAnimationEngine() : new WebAnimationsAPI();
 
-    // For animate.css animations, remove classes and styles with transition
+    // For animate.css animations, smoothly reverse using a CSS transition instead
     if (engine instanceof AnimateCssAnimationEngine) {
-      // Add transition before removing animation
-      context.target.style.transition = 'all 0.3s ease-out';
-      
-      setTimeout(() => {
-        context.target.classList.remove(
-          "animate__animated",
-          `animate__${context.config.animation || "bounce"}`
-        );
-        context.target.style.removeProperty("--animate-duration");
-        context.target.style.removeProperty("--animate-delay");
-        context.target.style.removeProperty("animation-iteration-count");
-        context.target.style.removeProperty("animation-direction");
-        context.target.style.removeProperty("animation-fill-mode");
+      return new Promise<void>((resolve) => {
+        const animationClass = `animate__${context.config.animation || "bounce"}`;
 
-        // Restore any original inline styles that were saved when the animation started
-        try {
-          this.restoreOriginalStyles(context.target);
-        } catch (err) {
-          /* ignore */
+        // Determine which properties we previously stored
+        const properties = Array.from(this.originalStyles.keys());
+
+        // Capture computed (current) values and apply them inline to "freeze" visual state
+        const computed = getComputedStyle(context.target);
+        properties.forEach((prop) => {
+          try {
+            const val = computed.getPropertyValue(prop);
+            context.target.style.setProperty(prop, val);
+          } catch (err) {
+            /* ignore property errors */
+          }
+        });
+
+        // Remove animate.css classes and variables so the element no longer relies on the CSS animation
+        context.target.classList.remove('animate__animated', animationClass);
+        context.target.style.removeProperty('--animate-duration');
+        context.target.style.removeProperty('--animate-delay');
+        context.target.style.removeProperty('animation-iteration-count');
+        context.target.style.removeProperty('animation-direction');
+        context.target.style.removeProperty('animation-fill-mode');
+
+        // Build target values from stored originals
+        const targetValues: Record<string, any> = {};
+        properties.forEach((prop) => {
+          targetValues[prop] = this.originalStyles.get(prop) || '';
+        });
+
+        if (properties.length > 0) {
+          // Use a short CSS transition to animate back to original values
+          const duration = Math.min(context.config.duration || 1000, 600);
+          const transitionValue = properties.map(p => `${p} ${duration}ms ease-out`).join(', ');
+
+          // Apply transition
+          context.target.style.transition = transitionValue;
+
+          // Force reflow then apply target values to trigger transition
+          requestAnimationFrame(() => {
+            properties.forEach((prop) => {
+              try {
+                context.target.style.setProperty(prop, targetValues[prop]);
+              } catch (err) {
+                /* ignore */
+              }
+            });
+          });
+
+          const onTransitionEnd = (ev: Event) => {
+            // Clean up only after transition
+            try {
+              properties.forEach((prop) => context.target.style.removeProperty(prop));
+              context.target.style.removeProperty('transition');
+              context.target.style.removeProperty('--animate-duration');
+              context.target.style.removeProperty('--animate-delay');
+              context.target.removeEventListener('transitionend', onTransitionEnd);
+            } catch (err) {
+              /* ignore */
+            }
+            resolve();
+          };
+
+          context.target.addEventListener('transitionend', onTransitionEnd);
+
+          // Fallback timeout
+          setTimeout(() => {
+            try {
+              properties.forEach((prop) => context.target.style.removeProperty(prop));
+              context.target.style.removeProperty('transition');
+              context.target.style.removeProperty('--animate-duration');
+              context.target.style.removeProperty('--animate-delay');
+              context.target.removeEventListener('transitionend', onTransitionEnd);
+            } catch (err) {
+              /* ignore */
+            }
+            resolve();
+          }, (Math.min(context.config.duration || 1000, 600) + 100));
+        } else {
+          // Nothing stored, just restore and resolve
+          try {
+            this.restoreOriginalStyles(context.target);
+          } catch (err) {
+            /* ignore */
+          }
+          resolve();
         }
-        
-        // Remove transition after animation is removed
-        setTimeout(() => {
-          context.target.style.removeProperty("transition");
-        }, 300);
-      }, 10);
-      return;
+      });
     }
 
     // For Web Animations API - smoothly animate back to all original values
@@ -296,28 +415,33 @@ export class AnimateCommand extends BaseAnimationCommand {
 
       // Create a smooth transition back to all original values
       const duration = Math.min(context.config.duration || 1000, 600); // Max 600ms for cleanup
-      
-      const animation = context.target.animate([currentKeyframe, targetKeyframe], {
-        duration: duration,
-        easing: 'ease-out',
-        fill: 'forwards'
+
+      return new Promise<void>((resolve) => {
+        const animation = context.target.animate([currentKeyframe, targetKeyframe], {
+          duration: duration,
+          easing: 'ease-out',
+          fill: 'forwards'
+        });
+
+        // Store the cleanup animation reference
+        this.reverseAnimation = animation;
+
+        animation.onfinish = () => {
+          this.restoreOriginalStyles(context.target);
+          this.reverseAnimation = undefined;
+          resolve();
+        };
+
+        animation.oncancel = () => {
+          this.reverseAnimation = undefined;
+          resolve();
+        };
       });
-
-      // Store the cleanup animation reference
-      this.reverseAnimation = animation;
-
-      animation.onfinish = () => {
-        this.restoreOriginalStyles(context.target);
-        this.reverseAnimation = undefined;
-      };
-
-      animation.oncancel = () => {
-        this.reverseAnimation = undefined;
-      };
     } else {
       // Fallback if no original values stored
       this.cancelAllAnimations();
       this.restoreOriginalStyles(context.target);
+      return Promise.resolve();
     }
   }
 }

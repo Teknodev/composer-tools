@@ -148,10 +148,11 @@ export interface InteractionCommand {
   execute(context: InteractionContext): Promise<void> | void;
   
   /**
-   * Cleanup resources after execution
+   * Cleanup resources after execution. May be asynchronous to allow
+   * animation reversal to finish before callers proceed.
    * @param context - Execution context
    */
-  cleanup?(context: InteractionContext): void;
+  cleanup?(context: InteractionContext): void | Promise<void>;
   
   /**
    * Undo the command's effects

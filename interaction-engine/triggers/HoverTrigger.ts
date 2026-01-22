@@ -5,6 +5,12 @@ import { BaseTrigger } from './TriggerStrategy';
 export class HoverTrigger extends BaseTrigger {
   private boundEnterHandler?: (event: Event) => void;
   private boundLeaveHandler?: (event: Event) => void;
+  private persistOnLeave: boolean = false;
+
+  constructor(config?: Record<string, any>) {
+    super();
+    this.persistOnLeave = Boolean(config?.persistOnLeave || config?.keepOnLeave || config?.hold);
+  }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
     this.target = target;
@@ -13,20 +19,22 @@ export class HoverTrigger extends BaseTrigger {
     
     this.boundEnterHandler = () => fire();
 
-    this.boundLeaveHandler = () => {
+    this.boundLeaveHandler = async () => {
       if (!target) {
-        cleanup?.();
+        await cleanup?.();
         return;
       }
 
       // Delegate restore to the animation engine so it can capture the
       // current computed style and perform a smooth transition back to
       // the original values. Do NOT call `cancel()` here — that causes a snap.
-      cleanup?.();
+      if (!this.persistOnLeave) {
+        await cleanup?.();
+      }
     };
 
     this.addEventListener(target, 'mouseenter', this.boundEnterHandler);
-    if (cleanup) {
+    if (cleanup && !this.persistOnLeave) {
       this.addEventListener(target, 'mouseleave', this.boundLeaveHandler);
     }
   }

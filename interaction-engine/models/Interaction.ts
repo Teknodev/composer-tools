@@ -88,7 +88,7 @@ export class Interaction implements Disposable {
     };
 
     const cleanup = () => {
-      this.cleanupCommand();
+      return this.cleanupCommand();
     };
 
     try {
@@ -320,7 +320,7 @@ export class Interaction implements Disposable {
   /**
    * Cleanup command resources
    */
-  private cleanupCommand(): void {
+  private async cleanupCommand(): Promise<void> {
     if (!this.target) {
       return;
     }
@@ -335,7 +335,10 @@ export class Interaction implements Disposable {
     };
 
     try {
-      this.command.cleanup?.(context);
+      const result = this.command.cleanup?.(context);
+      if (result && typeof (result as Promise<void>).then === 'function') {
+        await result as Promise<void>;
+      }
     } catch (error) {
       errorHandler.handle(error as Error, {
         component: 'Interaction',

@@ -86,22 +86,35 @@ export function bootstrapInteractions(
     }
     
     if (elements.length === 0) {
-      console.warn(`Element with ${isClassName ? 'class' : 'id'} "${elementSchema.elementId}" not found, skipping interactions`);
+      console.warn(`InteractionBootstrap: Element with ${isClassName ? 'class' : 'id'} "${elementSchema.elementId}" not found, skipping interactions`);
       continue;
     }
 
     // Apply interactions to all matching elements
     elements.forEach((element, index) => {
       const elementInteractions = new ElementInteractions();
+      // Debug: report mounting target
+      // eslint-disable-next-line no-console
+      console.log(`InteractionBootstrap: mounting interactions for element "${elementSchema.elementId}" (instance ${index})`, element);
 
       for (const interactionDef of elementSchema.interactions) {
         try {
-          // Config is passed directly to trigger/command constructors, no need for data attributes
-          const trigger = dependencies.triggerFactory.create(interactionDef.trigger, interactionDef.config);
-          const command = dependencies.commandFactory.create(interactionDef.command, interactionDef.config);
+          // Ensure loop trigger configs include a loopType default so commands
+          // can detect loop mode even if the stored schema omitted it.
+          const config = { ...(interactionDef.config || {}) };
+          if (interactionDef.trigger === 'loop' && config.loopType === undefined) {
+            config.loopType = 'loop';
+          }
 
-          const interaction = new Interaction(trigger, command, interactionDef.config);
+          // Create trigger/command with the possibly-augmented config
+          const trigger = dependencies.triggerFactory.create(interactionDef.trigger, config);
+          const command = dependencies.commandFactory.create(interactionDef.command, config);
+
+          const interaction = new Interaction(trigger, command, config);
           elementInteractions.addInteraction(interaction);
+          // Debug: report added interaction
+          // eslint-disable-next-line no-console
+          console.log(`InteractionBootstrap: added interaction "${interactionDef.id}" -> trigger:"${interactionDef.trigger}" command:"${interactionDef.command}" on element "${elementSchema.elementId}"`);
         } catch (error) {
           console.error(`Failed to create interaction "${interactionDef.id}":`, error);
         }
