@@ -248,24 +248,10 @@ as *;
         }
       }
 
-      &[data-animation~="animate3"] {
-        .button {
-          .button-before {
-            transition: width var(--composer-transition-duration-slow) ease-in-out;
-          }
-        }
-
-        &:hover .button .button-before {
-          width: 100%;
-        }
-
-        &:not(:hover) .button .button-before {
-          width: 0;
-        }
-      }
 
 
-      &[data-animation~="animate4"]:hover {
+
+      &[data-animation~="animate3"]:hover {
         .button {
           animation: breathing 2s infinite ease-in-out;
         }
