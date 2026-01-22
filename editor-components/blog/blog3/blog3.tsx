@@ -526,6 +526,7 @@ class Blog3 extends BaseBlog {
                   `}
                 >
                   {data.title}
+                  <div className={this.decorateCSS("title-underline")} />
                 </Base.H5>
               </ComposerLink>
             )}
@@ -658,6 +659,7 @@ class Blog3 extends BaseBlog {
                           />
                         )}
                       </div>
+                      <div className={this.decorateCSS("underline")} />
                     </div>
                   </ComposerLink>
                 </div>
@@ -682,6 +684,7 @@ class Blog3 extends BaseBlog {
                       />
                     )}
                   </div>
+                  <div className={this.decorateCSS("underline")} />
                 </div>
               </ComposerLink>
             </div>

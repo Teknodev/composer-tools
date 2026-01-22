@@ -37,7 +37,7 @@
       margin-left: 0px;
     }
 
-    .subtitle{
+    .subtitle {
       width: fit-content;
     }
 
@@ -69,7 +69,7 @@
             content: "";
           }
 
-          &::after {
+          .underline {
             content: '';
             position: absolute;
             display: inline-block;
@@ -84,7 +84,7 @@
           }
 
           &:hover {
-            &::after {
+            .underline {
               transform: scaleX(0);
             }
           }
@@ -92,7 +92,7 @@
           .no-animation {
             position: relative;
 
-            &:after {
+            .underline {
               transition-duration: 0s;
             }
           }
@@ -403,22 +403,38 @@
           word-wrap: break-word;
           overflow: hidden;
 
-          &::after {
-            @include item-title-after(hidden, 0, width 0.5s ease-in-out);
+          .title-underline {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--composer-font-color-primary);
+            visibility: hidden;
+            transform-origin: left;
+            transition: width 0.5s ease-in-out;
           }
 
-          &:hover::after {
-            @include item-title-after(visible, 100%, width 0.5s ease-in-out);
+          &:hover {
+            .title-underline {
+              visibility: visible;
+              width: 100%;
+            }
           }
         }
 
         .no-animation-card-title {
-          &::after {
-            @include item-title-after(hidden, 0, none);
+          .title-underline {
+            visibility: hidden;
+            width: 0;
+            transition: none;
           }
 
-          &:hover::after {
-            @include item-title-after(hidden, 0, none);
+          &:hover .title-underline {
+            visibility: hidden;
+            width: 0;
+            transition: none;
           }
         }
       }
@@ -499,6 +515,7 @@
       .header {
         order: 1;
         width: 100%;
+
         .title,
         .subtitle,
         .line,
@@ -516,8 +533,8 @@
       .right-link {
         order: 3;
         width: 100%;
-        justify-content: center; 
-        margin-left: 0; 
+        justify-content: center;
+        margin-left: 0;
         margin-top: var(--composer-gap-sm);
       }
     }

@@ -455,6 +455,7 @@ class Blog1 extends BaseBlog {
                       }`
                     }>
                     <Base.P className={this.decorateCSS("text")}>{rightText.text}</Base.P>
+                    <div className={this.decorateCSS("underline")} />
                   </Base.P>
                   <Base.Media
                     value={rightText.arrow}
@@ -539,6 +540,7 @@ class Blog1 extends BaseBlog {
                                     }`}
                                 >
                                   {item.imageTitle}
+                                  <div className={this.decorateCSS("title-underline")} />
                                 </Base.H5>
                               )}
                             </Base.VerticalContent>

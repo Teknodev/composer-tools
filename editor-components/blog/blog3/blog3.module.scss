@@ -72,7 +72,7 @@
             }
           }
 
-          &::after {
+          .underline {
             content: "";
             position: absolute;
             bottom: -2px;
@@ -89,7 +89,7 @@
               transform: scale(1.1);
             }
 
-            &::after {
+            .underline {
               transform: scaleX(0);
             }
           }
@@ -220,12 +220,25 @@
               text-align: start;
 
 
-              &.underline-animation::after {
-                @include itemTitleAfter(hidden, 0);
+              .title-underline {
+                content: "";
+                position: absolute;
+                word-break: break-word;
+                width: 0;
+                height: 2px;
+                bottom: -2px;
+                left: 0;
+                background-color: var(--composer-font-color-primary);
+                visibility: hidden;
+                transform-origin: left;
+                transition: var(--composer-transition-duration-slow);
               }
 
-              &.underline-animation:hover::after {
-                @include itemTitleAfter(visible, 100%);
+              &.underline-animation:hover {
+                .title-underline {
+                  visibility: visible;
+                  width: 100%;
+                }
               }
             }
 
