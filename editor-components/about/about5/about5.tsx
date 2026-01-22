@@ -89,109 +89,110 @@ class About5 extends BaseAbout {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("main-wrapper")}>
-                        <div className={this.decorateCSS("top-section")}>
-                            {showCard1 && (
-                                <div className={this.decorateCSS("left-section")}>
-                                    <Base.VerticalContent className={this.decorateCSS("card-1")}>
-                                        {subtitleStr && (
-                                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                                {subtitle}
-                                            </Base.SectionSubTitle>
-                                        )}
-                                        {titleStr && (
-                                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                                {title}
-                                            </Base.SectionTitle>
-                                        )}
-                                    </Base.VerticalContent>
-                                </div>
-                            )}
 
-                            <div className={this.decorateCSS("right-section")}>
-                                <div className={this.decorateCSS(contentClass)}>
-                                    {areBothTextsEmpty ? (
-                                        showInformation && (
-                                            <div className={this.decorateCSS("information")}>
-                                                {nameStr && (
-                                                    <Base.P className={this.decorateCSS("name")}>
-                                                        {name}
-                                                    </Base.P>
-                                                )}
-                                                {jobTitleStr && (
-                                                    <Base.P className={this.decorateCSS("job-title")}>
-                                                        {jobTitle}
-                                                    </Base.P>
-                                                )}
-                                            </div>
-                                        )
-                                    ) : (
-                                        isText2Empty ? (
-                                            <div className={this.decorateCSS("content-right-section-empty")}>
-                                                {showCard2 && (
-                                                    <Base.P className={this.decorateCSS("left-text")}>
-                                                        {text1}
-                                                    </Base.P>
-                                                )}
-                                                {showInformation && (
-                                                    <div className={this.decorateCSS("information-below-text1")}>
-                                                        {nameStr && (
-                                                            <Base.P className={this.decorateCSS("name")}>
-                                                                {name}
-                                                            </Base.P>
-                                                        )}
-                                                        {jobTitleStr && (
-                                                            <Base.P className={this.decorateCSS("job-title")}>
-                                                                {jobTitle}
-                                                            </Base.P>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        ) : (
-                                            <>
-                                                {showCard2 && (
-                                                    <div className={this.decorateCSS("card-2")}>
-                                                        {text1Str && (
-                                                            <Base.P className={this.decorateCSS("left-text")}>
-                                                                {text1}
-                                                            </Base.P>
-                                                        )}
-                                                    </div>
-                                                )}
-                                                {showCard3 && (
-                                                    <div className={this.decorateCSS("card-3")}>
-                                                        {text2Str && (
-                                                            <Base.P className={this.decorateCSS("right-text")}>
-                                                                {text2}
-                                                            </Base.P>
-                                                        )}
-                                                        {showInformation && (
-                                                            <div className={this.decorateCSS("information")}>
-                                                                {nameStr && (
-                                                                    <Base.P className={this.decorateCSS("name")}>
-                                                                        {name}
-                                                                    </Base.P>
-                                                                )}
-                                                                {jobTitleStr && (
-                                                                    <Base.P className={this.decorateCSS("job-title")}>
-                                                                        {jobTitle}
-                                                                    </Base.P>
-                                                                )}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </>
-                                        )
+                        {showCard1 && (
+                            <div className={this.decorateCSS("left-section")}>
+                                <Base.VerticalContent className={this.decorateCSS("card-1")}>
+                                    {subtitleStr && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {subtitle}
+                                        </Base.SectionSubTitle>
                                     )}
-                                </div>
+                                    {titleStr && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {descriptionStr && (
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {description}
+                                        </Base.SectionDescription>
+                                    )}
+                                </Base.VerticalContent>
+                            </div>
+                        )}
+
+                        <div className={this.decorateCSS("right-section")}>
+                            <div className={this.decorateCSS(contentClass)}>
+                                {areBothTextsEmpty ? (
+                                    showInformation && (
+                                        <div className={this.decorateCSS("information")}>
+                                            {nameStr && (
+                                                <Base.P className={this.decorateCSS("name")}>
+                                                    {name}
+                                                </Base.P>
+                                            )}
+                                            {jobTitleStr && (
+                                                <Base.P className={this.decorateCSS("job-title")}>
+                                                    {jobTitle}
+                                                </Base.P>
+                                            )}
+                                        </div>
+                                    )
+                                ) : (
+                                    isText2Empty ? (
+                                        <div className={this.decorateCSS("content-right-section-empty")}>
+                                            {showCard2 && (
+                                                <Base.P className={this.decorateCSS("left-text")}>
+                                                    {text1}
+                                                </Base.P>
+                                            )}
+                                            {showInformation && (
+                                                <div className={this.decorateCSS("information-below-text1")}>
+                                                    {nameStr && (
+                                                        <Base.P className={this.decorateCSS("name")}>
+                                                            {name}
+                                                        </Base.P>
+                                                    )}
+                                                    {jobTitleStr && (
+                                                        <Base.P className={this.decorateCSS("job-title")}>
+                                                            {jobTitle}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ) : (
+                                        <>
+                                            {showCard2 && (
+                                                <div className={this.decorateCSS("card-2")}>
+                                                    {text1Str && (
+                                                        <Base.P className={this.decorateCSS("left-text")}>
+                                                            {text1}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            )}
+                                            {showCard3 && (
+                                                <div className={this.decorateCSS("card-3")}>
+                                                    {text2Str && (
+                                                        <Base.P className={this.decorateCSS("right-text")}>
+                                                            {text2}
+                                                        </Base.P>
+                                                    )}
+                                                    {showInformation && (
+                                                        <div className={this.decorateCSS("information")}>
+                                                            {nameStr && (
+                                                                <Base.P className={this.decorateCSS("name")}>
+                                                                    {name}
+                                                                </Base.P>
+                                                            )}
+                                                            {jobTitleStr && (
+                                                                <Base.P className={this.decorateCSS("job-title")}>
+                                                                    {jobTitle}
+                                                                </Base.P>
+                                                            )}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </>
+                                    )
+                                )}
                             </div>
                         </div>
-                        {descriptionStr && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {description}
-                            </Base.SectionDescription>
-                        )}
+
+
                     </div>
                 </Base.MaxContent>
             </Base.Container>

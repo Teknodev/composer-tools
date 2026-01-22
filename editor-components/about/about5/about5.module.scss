@@ -5,131 +5,68 @@ as *;
   .max-content {
     .main-wrapper {
       display: flex;
-      flex-direction: column;
       flex: 1;
+      align-items: center;
       gap: var(--composer-gap-md);
 
-      .description {
-        text-align: left;
-      }
-
-      .top-section {
-        display: flex;
+      .left-section {
         flex: 1;
-        align-items: center;
-        gap: var(--composer-gap-md);
+        min-width: 275px;
 
-        .left-section {
-          flex: 1;
-          min-width: 275px;
-
-          .card-1 {
-            display: flex;
-            flex-direction: column;
-            align-items: baseline;
-
-            .title,
-            .subtitle {
-              text-align: left !important;
-              margin-left: 0;
-            }
-          }
-        }
-
-        .right-section {
-          flex: 4;
+        .card-1 {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-md);
+          align-items: baseline;
 
-          .content {
+          .title,
+          .subtitle,
+          .description {
+            text-align: left !important;
+            margin-left: 0;
+          }
+        }
+      }
+
+      .right-section {
+        flex: 4;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        .content {
+          display: flex;
+          flex: 1;
+          gap: var(--composer-gap-xl);
+          flex-wrap: wrap;
+
+          .card-2 {
+            color: var(--composer-font-color-primary);
             display: flex;
             flex: 1;
-            gap: var(--composer-gap-xl);
-            flex-wrap: wrap;
+            min-width: 300px;
 
-            .card-2 {
-              color: var(--composer-font-color-primary);
-              display: flex;
-              flex: 1;
-              min-width: 300px;
-
-              .left-text {
-                color: var(--composer-tertiary-color);
-                text-align: justify;
-              }
-            }
-
-            .card-3 {
-              display: flex;
-              flex-direction: column;
-              flex: 1;
-              min-width: 300px;
-              gap: var(--composer-gap-md);
-
-              .right-text {
-                color: var(--composer-tertiary-color);
-                text-align: justify;
-              }
-
-              .information {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-xs);
-                align-items: flex-start;
-
-                .name {
-                  color: var(--composer-primary-color);
-                  text-align: left;
-                }
-
-                .job-title {
-                  color: var(--composer-tertiary-color);
-                  text-align: left;
-                }
-              }
-            }
-
-            .content-right-section-empty {
-              display: flex;
-              flex-direction: column;
-              flex: 1;
-              min-width: 300px;
-              gap: var(--composer-gap-md);
-
-              .left-text {
-                color: var(--composer-tertiary-color);
-                text-align: justify;
-              }
-
-              .information-below-text1 {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-xs);
-                align-items: flex-start;
-
-                .name {
-                  color: var(--composer-primary-color);
-                }
-
-                .job-title {
-                  color: var(--composer-tertiary-color);
-                }
-              }
+            .left-text {
+              color: var(--composer-tertiary-color);
+              text-align: justify;
             }
           }
 
-          .content-column {
+          .card-3 {
             display: flex;
             flex-direction: column;
             flex: 1;
+            min-width: 300px;
             gap: var(--composer-gap-md);
+
+            .right-text {
+              color: var(--composer-tertiary-color);
+              text-align: justify;
+            }
 
             .information {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-xs);
-              align-self: flex-start;
               align-items: flex-start;
 
               .name {
@@ -142,12 +79,65 @@ as *;
                 text-align: left;
               }
             }
+          }
 
-            .card-2,
-            .card-3,
-            .content-right-section-empty {
-              display: none;
+          .content-right-section-empty {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 300px;
+            gap: var(--composer-gap-md);
+
+            .left-text {
+              color: var(--composer-tertiary-color);
+              text-align: justify;
             }
+
+            .information-below-text1 {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
+              align-items: flex-start;
+
+              .name {
+                color: var(--composer-primary-color);
+              }
+
+              .job-title {
+                color: var(--composer-tertiary-color);
+              }
+            }
+          }
+        }
+
+        .content-column {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          gap: var(--composer-gap-md);
+
+          .information {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+            align-self: flex-start;
+            align-items: flex-start;
+
+            .name {
+              color: var(--composer-primary-color);
+              text-align: left;
+            }
+
+            .job-title {
+              color: var(--composer-tertiary-color);
+              text-align: left;
+            }
+          }
+
+          .card-2,
+          .card-3,
+          .content-right-section-empty {
+            display: none;
           }
         }
       }
