@@ -510,7 +510,7 @@
     .max-content {
       flex-direction: column;
       align-items: center;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-xs);
 
       .header {
         order: 1;
@@ -535,7 +535,6 @@
         width: 100%;
         justify-content: center;
         margin-left: 0;
-        margin-top: var(--composer-gap-sm);
       }
     }
   }
