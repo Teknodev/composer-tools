@@ -359,6 +359,19 @@ as *;
         padding: 0 !important;
       }
 
+      .dots {
+        bottom:-10px !important;
+
+        .dot-button {
+          width: var(--composer-gap-sm) !important;
+          height: var(--composer-gap-sm) !important;
+        }
+
+        :global(.slick-active) .dot-button {
+          width: 25px !important;
+        }
+      }
+
       .dots-colored {
         li {
           button {

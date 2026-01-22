@@ -37,7 +37,7 @@ as *;
     }
 
     .sectionTitle {
-      margin: 0;
+      margin: 0 0 var(--composer-gap-md) 0;
 
       &.animation {
         animation: fadeInUp 400ms ease-out 100ms both;
