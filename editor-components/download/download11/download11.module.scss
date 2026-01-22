@@ -29,6 +29,10 @@
           flex-direction: column;
           height: 100%;
           
+          .title {
+            color: var(--composer-font-color-primary);
+          }
+
           .image {
             width: 100%;
             flex: 1; 
@@ -87,6 +91,10 @@
             box-shadow: var(--box-shadow-active);
             width: 100%;
             height: 100%;
+
+            .title {
+              color: var(--composer-font-color-primary);
+            }
 
             .left {
               .button-wrapper {
@@ -149,6 +157,7 @@
 
             .title {
               width: fit-content;
+              color: var(--composer-font-color-primary);
             }
             &.center {
               flex-direction: column;
@@ -184,6 +193,10 @@
           .card {
             height: auto;
             
+            .title {
+               color: var(--composer-font-color-primary);
+            }
+
             .image {
               flex: none; 
               width: 100%;
@@ -210,6 +223,10 @@
               gap: var(--composer-gap-md);
               height: auto;
 
+              .title {
+                color: var(--composer-font-color-primary);
+              }
+
               .left {
                  width: 100%;
               }
@@ -234,6 +251,7 @@
               
               .title {
                 margin: 0;
+                color: var(--composer-font-color-primary);
               }
               
               &.center {
