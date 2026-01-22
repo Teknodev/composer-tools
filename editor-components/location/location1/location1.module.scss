@@ -72,7 +72,7 @@
         .icon-container {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-lg);
 
           .icon-wrapper {
             display: flex;
@@ -88,6 +88,9 @@
               font-size: 1.8rem;
               position: relative;
               z-index: 1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
             }
 
             .icon-wrapper:hover .icon,
@@ -343,6 +346,25 @@
       .wrapper {
         gap: var(--composer-gap-md);
 
+        .header {
+          .icon-container {
+            .icon-wrapper {
+              .icon {
+                width: calc(var(--composer-gap-md) * 0.85);
+                height: calc(var(--composer-gap-md) * 0.85);
+                font-size: 1.5rem;
+              }
+
+              &[data-animation~="animate1"] {
+                &::before {
+                  width: calc(var(--composer-gap-xl) * 0.85);
+                  height: calc(var(--composer-gap-xl) * 0.85);
+                }
+              }
+            }
+          }
+        }
+
         .popup {
           width: 200px;
 
@@ -377,6 +399,23 @@
           flex-direction: column;
           align-items: center;
           gap: var(--composer-gap-sm);
+
+          .icon-container {
+            .icon-wrapper {
+              .icon {
+                width: calc(var(--composer-gap-md) * 0.7);
+                height: calc(var(--composer-gap-md) * 0.7);
+                font-size: 1.2rem;
+              }
+
+              &[data-animation~="animate1"] {
+                &::before {
+                  width: calc(var(--composer-gap-xl) * 0.7);
+                  height: calc(var(--composer-gap-xl) * 0.7);
+                }
+              }
+            }
+          }
 
           .title-block {
             .subtitle {
