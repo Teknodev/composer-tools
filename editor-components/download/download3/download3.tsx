@@ -106,21 +106,23 @@ class Download3 extends BaseDownload {
                       const buttonExist = buttonTextExist || iconExist || imageExist;
                       return buttonExist && (
                         <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
-                          <ComposerLink path={item.url}>
-                            {imageExist ? (
-                              <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
-                            ) : (
-                              <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                                {iconExist && (
-                                  <Base.Media
-                                    value={item.icon}
-                                    className={this.decorateCSS("button-icon")}
-                                  />
-                                )}
-                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                              </Base.Button>
-                            )}
-                          </ComposerLink>
+                          <div className={this.decorateCSS("button-link")}>
+                            <ComposerLink path={item.url}>
+                              {imageExist ? (
+                                <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
+                              ) : (
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                  {iconExist && (
+                                    <Base.Media
+                                      value={item.icon}
+                                      className={this.decorateCSS("button-icon")}
+                                    />
+                                  )}
+                                  {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                </Base.Button>
+                              )}
+                            </ComposerLink>
+                          </div>
                         </div>
                       );
                     })}
@@ -141,21 +143,23 @@ class Download3 extends BaseDownload {
                     const imageExist = item.image && item.image.url;
                     return (
                       <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
-                        <ComposerLink path={item.url}>
-                          {imageExist ? (
-                            <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
-                          ) : (
-                            <Base.Button className={this.decorateCSS("button-element")}>
-                              {iconExist && (
-                                <Base.Media
-                                  value={item.icon}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              )}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
+                        <div className={this.decorateCSS("button-link")}>
+                          <ComposerLink path={item.url}>
+                            {imageExist ? (
+                              <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
+                            ) : (
+                              <Base.Button className={this.decorateCSS("button-element")}>
+                                {iconExist && (
+                                  <Base.Media
+                                    value={item.icon}
+                                    className={this.decorateCSS("button-icon")}
+                                  />
+                                )}
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                              </Base.Button>
+                            )}
+                          </ComposerLink>
+                        </div>
                       </div>
                     );
                   })}
