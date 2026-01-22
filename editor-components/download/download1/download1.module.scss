@@ -35,7 +35,7 @@
           margin-bottom: var(--composer-gap-lg);
           text-align: center;
 
-          &::after {
+          .title-underline {
             content: "";
             position: absolute;
             bottom: calc(-1 * var(--composer-gap-md));
