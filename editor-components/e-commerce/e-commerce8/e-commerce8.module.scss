@@ -224,6 +224,7 @@
                         .price-suffix-container {
                             display: flex;
                             align-items: center;
+                            gap: var(--composer-gap-xs);
 
                             .separator-icon {
                                 display: flex;
