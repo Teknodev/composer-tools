@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseBlog } from "../../EditorComponent";
 import styles from "./blog1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -13,50 +13,20 @@ type CardType = {
   imageSubtitle: React.JSX.Element;
   imageTitle: React.JSX.Element;
   imageDescription: React.JSX.Element;
-  image: { type: string; url: string };
+  image: { type: "image"; url: string };
   url: string;
 };
 type RightTextItem = {
-  text: React.JSX.Element
-  textUrl: string;
-  arrow: { type: string; name: string };
+  text: string;
+  icon: { type: "icon"; name: string };
+  image?: { type: "image"; url: string };
+  url: string;
+  type?: string;
 };
 
 class Blog1 extends BaseBlog {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "object",
-      key: "rightText",
-      displayer: "Right Text",
-      value: [
-        {
-          type: "page",
-          key: "textUrl",
-          displayer: "URL",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "Latest News",
-        },
-        {
-          type: "media",
-          key: "arrow",
-          displayer: "Arrow",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "LuArrowUpRight",
-          },
-        },
-      ],
-    });
 
     this.addProp({
       type: "string",
@@ -73,18 +43,27 @@ class Blog1 extends BaseBlog {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "line",
-      displayer: "Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value:
         "Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "rightText",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Latest News", "", "LuArrowUpRight", "", "Bare"),
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -419,7 +398,7 @@ class Blog1 extends BaseBlog {
     const subtitleExist = this.castToString(subtitle);
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
-    const rightText = this.castToObject<RightTextItem>("rightText");
+    const rightTextItems = this.castToObject<RightTextItem[]>("rightText");
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
@@ -438,34 +417,54 @@ class Blog1 extends BaseBlog {
                 {title}
               </Base.SectionTitle>
             )}
+
+          </Base.VerticalContent>
+          <div className={this.decorateCSS("right-links-wrapper")}>
+            {rightTextItems.map((item: RightTextItem, index: number) => {
+              const buttonTextExist = this.castToString(item.text);
+              const iconExist = item.icon && item.icon.name;
+              const imageExist = item.image && item.image.url;
+              const buttonExist = buttonTextExist || iconExist || imageExist;
+
+              return buttonExist && (
+                <div key={`blog-1-btn-${index}`} className={this.decorateCSS("right-link")}>
+                  <ComposerLink path={item.url}>
+                    <div className={this.decorateCSS("inner-right-link")}>
+                      <Base.P
+                        className={
+                          `${this.decorateCSS("inner-div")} ${!disableAnimation ? this.decorateCSS("no-animation") : ""
+                          }`
+                        }>
+                        <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>
+                        <div className={this.decorateCSS("underline")} />
+                      </Base.P>
+                      {iconExist && (
+                        <Base.Media
+                          value={item.icon}
+                          className={`${this.decorateCSS("icon")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
+                        />
+                      )}
+                      {imageExist && (
+                        <Base.Media
+                          value={item.image}
+                          className={`${this.decorateCSS("image")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
+                        />
+                      )}
+                    </div>
+                  </ComposerLink>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className={this.decorateCSS("header-bottom")}>
             {line && <hr className={this.decorateCSS("line")} />}
             {isDescriptionExist && (
               <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}
               </Base.SectionDescription>
             )}
-          </Base.VerticalContent>
-          {(rightText.arrow || this.castToString(rightText.text)) && (
-            <div className={this.decorateCSS("right-link")}>
-              <ComposerLink path={rightText.textUrl}>
-                <div className={this.decorateCSS("inner-right-link")}>
-                  <Base.P
-                    className={
-                      `${this.decorateCSS("inner-div")} ${!disableAnimation ? this.decorateCSS("no-animation") : ""
-                      }`
-                    }>
-                    <Base.P className={this.decorateCSS("text")}>{rightText.text}</Base.P>
-                    <div className={this.decorateCSS("underline")} />
-                  </Base.P>
-                  <Base.Media
-                    value={rightText.arrow}
-                    className={`${this.decorateCSS("icon")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
-                  />
-                </div>
-              </ComposerLink>
-            </div>
-          )}
-
+          </div>
           <main
             className={`${this.decorateCSS("wrapper")} ${items.length <= 3 ? this.decorateCSS("no-slider") : ""
               }`}
@@ -530,14 +529,7 @@ class Blog1 extends BaseBlog {
                               )}
                               {this.castToString(item.imageTitle) && (
                                 <Base.H5
-                                  className={`${this.decorateCSS(
-                                    "card-title"
-                                  )} ${!disableAnimation
-                                    ? this.decorateCSS(
-                                      "no-animation-card-title"
-                                    )
-                                    : ""
-                                    }`}
+                                  className={`${this.decorateCSS("card-title")} ${!disableAnimation && this.decorateCSS("no-animation-card-title")}`}
                                 >
                                   {item.imageTitle}
                                   <div className={this.decorateCSS("title-underline")} />
@@ -572,4 +564,3 @@ class Blog1 extends BaseBlog {
   }
 }
 export default Blog1;
-
