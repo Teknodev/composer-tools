@@ -7,6 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ButtonTypeObj = {
     text: React.JSX.Element;
+    icon: TypeMediaInputValue;
     url: string;
     type: TypeButton;
 }
@@ -15,6 +16,7 @@ type Card = {
     icon: TypeMediaInputValue;
     title: React.JSX.Element;
     description: React.JSX.Element;
+    button: INPUTS.CastedButton;
 };
 
 class Feature41 extends BaseFeature {
@@ -75,7 +77,8 @@ class Feature41 extends BaseFeature {
                             key: "description",
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
-                        }
+                        },
+                        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")
                     ]
                 },
                 {
@@ -106,7 +109,8 @@ class Feature41 extends BaseFeature {
                             key: "description",
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
-                        }
+                        },
+                        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")
                     ]
                 },
                 {
@@ -137,7 +141,8 @@ class Feature41 extends BaseFeature {
                             key: "description",
                             displayer: "Description",
                             value: "Distinctively exploit optimal alignments for intuitive bandwidth."
-                        }
+                        },
+                        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")
                     ]
                 },
             ]
@@ -207,6 +212,19 @@ class Feature41 extends BaseFeature {
                                                 <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                                     {titleExist && <Base.H4 className={this.decorateCSS("card-title")}>{card.title}</Base.H4>}
                                                     {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                                                    {(() => {
+                                                        const buttonTitleExist = this.castToString(card.button?.text);
+                                                        const iconExist = card.button?.icon && (card.button.icon)?.name ;
+                                                        const buttonExist = buttonTitleExist || iconExist;
+                                                        return buttonExist && (
+                                                            <ComposerLink path={card.button?.url || ""}>
+                                                                <Base.Button buttonType={card.button?.type || "Primary"} className={this.decorateCSS("card-button")}>
+                                                                    {buttonTitleExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
+                                                                    {iconExist && <Base.Media value={card.button.icon} className={this.decorateCSS("card-button-icon")} />}
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        );
+                                                    })()}
                                                 </Base.VerticalContent>
                                             }
                                         </div>
