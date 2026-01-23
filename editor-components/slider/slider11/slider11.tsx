@@ -246,7 +246,6 @@ class Slider11 extends BaseSlider {
     const buttons = this.castToObject<Button[]>("buttons");
     const tabs = this.castToObject<ITabs[]>("tabs");
     const active = this.getComponentState("activeTab") as number;
-    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -317,13 +316,7 @@ class Slider11 extends BaseSlider {
                   )}
                   {this.castToString(tab.text) && (
                     <ComposerLink path={tab.url}>
-                      <div
-                        className={`${this.decorateCSS("link-wrapper")} ${
-                          alignmentValue === "center"
-                            ? this.decorateCSS("center")
-                            : this.decorateCSS("left")
-                        }`}
-                      >
+                      <div className={this.decorateCSS("link-wrapper")}>
                         <Base.P className={this.decorateCSS("tab-link")}>
                           {tab.text}
                         </Base.P>

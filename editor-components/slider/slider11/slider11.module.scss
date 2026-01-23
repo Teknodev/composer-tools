@@ -70,13 +70,6 @@
       align-items: center;
       gap: var(--composer-gap-xs);
       justify-content: flex-start;
-
-      &.center {
-        justify-content: flex-start;
-      }
-      &.left {
-        justify-content: flex-start;
-      }
       .tab-link {
         font-size: 1rem;
         color: var(--composer-font-color-primary);
