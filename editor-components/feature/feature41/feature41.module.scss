@@ -51,11 +51,6 @@
                     }
 
                     .card-content {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        gap: var(--composer-gap-md);
-
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left;
