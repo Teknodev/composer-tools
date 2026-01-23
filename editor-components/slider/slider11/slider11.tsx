@@ -4,6 +4,11 @@ import styles from "./slider11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type Button = INPUTS.CastedButton;
+
+
 type ITabs = {
   title: React.JSX.Element;
   description: React.JSX.Element;
@@ -22,6 +27,12 @@ class Slider11 extends BaseSlider {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Design eye-catching websites with next generation performance",
@@ -32,6 +43,13 @@ class Slider11 extends BaseSlider {
       displayer: "Description",
       value:
         "Create beautiful sites with ultimate design flexibility, backed by ultra-reliable infrastructure and unbeatable performance.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
     });
 
     this.addProp({
@@ -222,17 +240,24 @@ class Slider11 extends BaseSlider {
   }
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const buttons = this.castToObject<Button[]>("buttons");
     const tabs = this.castToObject<ITabs[]>("tabs");
     const active = this.getComponentState("activeTab") as number;
-    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(title) || this.castToString(description)) && (
+          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || buttons.length > 0) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+
               {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {title}
@@ -245,6 +270,20 @@ class Slider11 extends BaseSlider {
                 >
                   {description}
                 </Base.SectionDescription>
+              )}
+
+              {buttons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((button: Button, index: number) => (
+                    <ComposerLink key={index} path={button.url}>
+                      {this.castToString(button.text) && (
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      )}
+                    </ComposerLink>
+                  ))}
+                </div>
               )}
             </Base.VerticalContent>
           )}
@@ -277,13 +316,7 @@ class Slider11 extends BaseSlider {
                   )}
                   {this.castToString(tab.text) && (
                     <ComposerLink path={tab.url}>
-                      <div
-                        className={`${this.decorateCSS("link-wrapper")} ${
-                          alignmentValue === "center"
-                            ? this.decorateCSS("center")
-                            : this.decorateCSS("left")
-                        }`}
-                      >
+                      <div className={this.decorateCSS("link-wrapper")}>
                         <Base.P className={this.decorateCSS("tab-link")}>
                           {tab.text}
                         </Base.P>
