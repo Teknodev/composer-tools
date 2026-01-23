@@ -20,7 +20,7 @@ type MarkerObject = {
   leftPercent: string;
   topPercent: string;
   popupTitle: string;
-  description: string;
+  description: any[];
   markerImage: string;
 };
 
@@ -93,10 +93,29 @@ class Location7 extends Location {
               value: "NEW YORK",
             },
             {
-              type: "string",
+              type: "array",
               displayer: "Description",
               key: "description",
-              value: "+0 595-510-1352\nflatley.don@weissnat.me\n713 Dibbert Bridge",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "+0 595-510-1352",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "flatley.don@weissnat.me",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "713 Dibbert Bridge",
+                },
+              ],
             },
           ],
         },
@@ -124,11 +143,31 @@ class Location7 extends Location {
               value: "MOSCOW",
             },
             {
-              type: "string",
+              type: "array",
               displayer: "Description",
               key: "description",
-              value: "+7 495-123-4567\nmoscow.office@example.com\nRed Square",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "+7 495-123-4567",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "moscow.office@example.com",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "Red Square",
+                },
+              ],
             },
+
           ],
         },
         {
@@ -155,10 +194,29 @@ class Location7 extends Location {
               value: "TOKYO",
             },
             {
-              type: "string",
+              type: "array",
               displayer: "Description",
               key: "description",
-              value: "+81 3-1234-5678\ntokyo.office@example.com\nShinjuku",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "+81 3-1234-5678",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "tokyo.office@example.com",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "Shinjuku",
+                },
+              ],
             },
           ],
         },
@@ -186,10 +244,29 @@ class Location7 extends Location {
               value: "SYDNEY",
             },
             {
-              type: "string",
+              type: "array",
               displayer: "Description",
               key: "description",
-              value: "+61 2-1234-5678\nsydney.office@example.com\nOpera House",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "+61 2-1234-5678",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "sydney.office@example.com",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "Opera House",
+                },
+              ],
             },
           ],
         },
@@ -217,10 +294,29 @@ class Location7 extends Location {
               value: "SAO PAULO",
             },
             {
-              type: "string",
+              type: "array",
               displayer: "Description",
               key: "description",
-              value: "+55 11-1234-5678\nsaopaulo.office@example.com\nPaulista Avenue",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "+55 11-1234-5678",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "saopaulo.office@example.com",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "Paulista Avenue",
+                },
+              ],
             },
           ],
         },
@@ -248,10 +344,29 @@ class Location7 extends Location {
               value: "PARIS",
             },
             {
-              type: "string",
+              type: "array",
               displayer: "Description",
               key: "description",
-              value: "+33 1-2345-6789\nparis.office@example.com\nEiffel Tower",
+              value: [
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "+33 1-2345-6789",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "paris.office@example.com",
+                },
+                {
+                  type: "string",
+                  displayer: "Text",
+                  key: "text",
+                  value: "Eiffel Tower",
+                },
+              ],
             },
           ],
         },
@@ -272,6 +387,7 @@ class Location7 extends Location {
       value: false,
     });
 
+
     this.addProp({
       type: "media",
       key: "background-media",
@@ -284,7 +400,7 @@ class Location7 extends Location {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
       },
     });
-    this.setComponentState("activeMarkerIndex", null);
+    this.setComponentState("activeMarkerIndex", 0);
   }
 
   static getName(): string {
@@ -322,10 +438,13 @@ class Location7 extends Location {
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
       if (address.type === "object" && Array.isArray(address.value)) {
-        const leftPercent = address.getPropValue("leftPercent");
-        const topPercent = address.getPropValue("topPercent");
-        const popupTitle = address.getPropValue("popupTitle");
-        const description = address.getPropValue("description");
+        const markerProps = address.value;
+        const leftPercent = markerProps.find((p: any) => p.key === "leftPercent")?.value;
+        const topPercent = markerProps.find((p: any) => p.key === "topPercent")?.value;
+        const popupTitle = markerProps.find((p: any) => p.key === "popupTitle")?.value;
+        const descriptionProp = markerProps.find((p: any) => p.key === "description");
+        const description = (descriptionProp?.value || []).map((item: any) => item?.value || item);
+
         acc.push({
           leftPercent,
           topPercent,
@@ -395,7 +514,13 @@ class Location7 extends Location {
                         >
                           {popupTitle && <div className={this.decorateCSS("tooltip-header")}>{marker.popupTitle}</div>}
                           {showTooltipLine && <div className={this.decorateCSS("tooltip-divider")}></div>}
-                          {description && <div className={this.decorateCSS("tooltip-content")}>{marker.description}</div>}
+                          {description && description.length > 0 && (
+                            <div className={this.decorateCSS("tooltip-content")}>
+                              {description.map((text: any, i: number) => {
+                                return <div key={i}>{this.castToString(text)}</div>;
+                              })}
+                            </div>
+                          )}
                         </div>
                       )}
                     </React.Fragment>

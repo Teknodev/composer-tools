@@ -13,7 +13,7 @@
 
       .header {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
         gap: var(--composer-gap-lg);
         width: 100%;
@@ -82,8 +82,8 @@
             overflow: visible;
 
             .icon {
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
+              width: 1.8rem;
+              height: 1.8rem;
               color: var(--composer-font-color-primary);
               font-size: 1.8rem;
               position: relative;
@@ -161,6 +161,7 @@
 
           .icon-container {
             margin-left: var(--composer-gap-md);
+            margin-bottom: var(--composer-gap-sm);
           }
 
           .divider {
@@ -201,6 +202,8 @@
         width: 100%;
         max-width: 100%;
         margin: 0;
+        border-radius: var(--composer-border-radius-md);
+        overflow: hidden;
 
         .map {
           width: 100%;
@@ -226,19 +229,15 @@
           width: auto;
         }
 
-        .phone-container {
-          gap: var(--composer-gap-xs);
-          display: inline-flex;
-          width: auto;
 
-          .phone {
-            color: var(--composer-font-color-primary);
-            width: fit-content;
-            border-bottom: solid 2px var(--composer-font-color-primary);
-            margin: 0;
-            padding: 0;
-            text-align: left;
-          }
+
+        .phone {
+          color: var(--composer-font-color-primary);
+          width: fit-content;
+          border-bottom: solid 2px var(--composer-font-color-primary);
+          margin: 0;
+          padding: 0;
+          text-align: left;
         }
 
         &.center {
@@ -252,15 +251,13 @@
             text-align: center;
           }
 
-          .phone-container {
-            width: auto;
-            display: flex;
-            justify-content: center;
-            gap: var(--composer-gap-xs);
+          width: auto;
+          display: flex;
+          justify-content: center;
+          gap: var(--composer-gap-xs);
 
-            .phone {
-              text-align: center;
-            }
+          .phone {
+            text-align: center;
           }
         }
 
@@ -275,15 +272,8 @@
             text-align: center;
           }
 
-          .phone-container {
-            width: auto;
-            display: flex;
-            justify-content: center;
-            gap: var(--composer-gap-xs);
-
-            .phone {
-              text-align: center;
-            }
+          .phone {
+            text-align: center;
           }
         }
       }
@@ -332,6 +322,20 @@
             padding: var(--composer-gap-md);
             border-bottom-left-radius: var(--composer-border-radius-sm);
             border-bottom-right-radius: var(--composer-border-radius-sm);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--composer-gap-xs);
+
+            .popup-button-icon {
+              width: 1.25rem;
+              height: 1.25rem;
+              font-size: 1.25rem;
+              color: var(--composer-html-background);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
           }
         }
       }
@@ -350,8 +354,8 @@
           .icon-container {
             .icon-wrapper {
               .icon {
-                width: calc(var(--composer-gap-md) * 0.85);
-                height: calc(var(--composer-gap-md) * 0.85);
+                width: 1.5rem;
+                height: 1.5rem;
                 font-size: 1.5rem;
               }
 
@@ -403,9 +407,9 @@
           .icon-container {
             .icon-wrapper {
               .icon {
-                width: calc(var(--composer-gap-md) * 0.7);
-                height: calc(var(--composer-gap-md) * 0.7);
-                font-size: 1.2rem;
+                width: 1.25rem;
+                height: 1.2rem;
+                font-size: 1.25rem;
               }
 
               &[data-animation~="animate1"] {
@@ -446,8 +450,9 @@
 
 
           &.left {
-            .right-block {
+            .title-block {
               width: 100%;
+              align-items: center !important;
 
               .divider {
                 display: none !important;
@@ -456,7 +461,7 @@
               .title,
               .description,
               .subtitle {
-                text-align: left;
+                text-align: center !important;
               }
             }
           }
@@ -482,11 +487,9 @@
             text-align: center;
           }
 
-          .phone-container {
-            .phone {
-              font-size: 1.5rem;
-              text-align: center;
-            }
+          .phone {
+            font-size: 1.5rem;
+            text-align: center;
           }
         }
       }

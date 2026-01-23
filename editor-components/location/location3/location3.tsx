@@ -151,12 +151,12 @@ class Location3 extends Location {
     this.addProp({
       type: "array",
       key: "continents",
-      displayer: "Continents",
+      displayer: "Label",
       value: [
         {
           type: "object",
           key: "continent",
-          displayer: "Continent",
+          displayer: "Label",
           value: [
             {
               type: "string",

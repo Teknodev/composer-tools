@@ -383,7 +383,7 @@ class Location5 extends Location {
             )}
             {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
             {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-            {hasDescription && <Base.SectionDescription className={this.decorateCSS("location-description-header")}>{description}</Base.SectionDescription>}
+            {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
           </Base.VerticalContent>
           <div className={this.decorateCSS("wrapper")}>
             <section className={this.decorateCSS("map-container")}>

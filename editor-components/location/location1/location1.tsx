@@ -278,6 +278,18 @@ class Location1 extends Location {
               value: "View Map",
             },
             {
+              type: "media",
+              key: "popupButtonIcon",
+              displayer: "Popup Button Icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
               type: "page",
               key: "navigateTo",
               displayer: "Popup Navigate To",
@@ -340,6 +352,8 @@ class Location1 extends Location {
         const popupTitle = this.castToString(address.getPropValue("popupTitle"));
 
         const popupButtonText = this.castToString(address.getPropValue("popupButtonText"));
+        const popupButtonIcon = address.getPropValue("popupButtonIcon");
+        const popupButtonIconExist = popupButtonIcon && (popupButtonIcon.name || popupButtonIcon.url);
 
         const popupButtonUrl = address.getPropValue("popupButtonUrl");
 
@@ -368,6 +382,7 @@ class Location1 extends Location {
                     <ComposerLink path={popupButtonUrl}>
                       <div className={this.decorateCSS("popup-button")}>
                         {popupButtonText && (typeof popupButtonText === "string" ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText)}
+                        {popupButtonIconExist && <Base.Media value={popupButtonIcon} className={this.decorateCSS("popup-button-icon")} />}
                       </div>
                     </ComposerLink>
                   </div>
@@ -449,7 +464,7 @@ class Location1 extends Location {
               <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
                 {description && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
                 {phone && (
-                  <Base.VerticalContent className={this.decorateCSS("phone-container")}>
+                  <Base.VerticalContent>
                     <ComposerLink path={buttom.path}>
                       <Base.H5 className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.H5>
                     </ComposerLink>

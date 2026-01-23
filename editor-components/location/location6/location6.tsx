@@ -582,56 +582,55 @@ class Location6 extends Location {
     const hasDescription = this.castToString(description);
 
     const hasButtons = buttons && buttons.length > 0;
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={`${this.decorateCSS("wrapper")} ${!hasButtons ? this.decorateCSS("no-buttons") : ""}`}>
           <div className={this.decorateCSS("left-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
               </Base.VerticalContent>
-              <div className={this.decorateCSS("left-side")}>
-                {hasButtons ? (
-                  <Base.VerticalContent className={this.decorateCSS("button-container")}>
-                    {buttons.map((button: any, index: number) => {
-                      const buttonTextExist = this.castToString(button?.text);
-                      const buttonInfoExist = this.castToString(button?.info);
-                      const rawIcon = button?.icon;
-                      const normalizedIcon: any = typeof rawIcon === "string" ? { type: "icon", name: rawIcon } : rawIcon;
+              {hasButtons ? (
+                <Base.VerticalContent className={this.decorateCSS("tab-container")}>
+                  {buttons.map((button: any, index: number) => {
+                    const buttonTextExist = this.castToString(button?.text);
+                    const buttonInfoExist = this.castToString(button?.info);
+                    const rawIcon = button?.icon;
+                    const normalizedIcon: any = typeof rawIcon === "string" ? { type: "icon", name: rawIcon } : rawIcon;
 
-                      const rawSeparatorIcon = button?.["separator-icon"];
-                      const normalizedSeparatorIcon: any = typeof rawSeparatorIcon === "string" ? { type: "icon", name: rawSeparatorIcon } : rawSeparatorIcon;
-                      const finalSeparatorIcon = normalizedSeparatorIcon || { type: "icon", name: "FiMinus" };
+                    const rawSeparatorIcon = button?.["separator-icon"];
+                    const normalizedSeparatorIcon: any = typeof rawSeparatorIcon === "string" ? { type: "icon", name: rawSeparatorIcon } : rawSeparatorIcon;
+                    const finalSeparatorIcon = normalizedSeparatorIcon || { type: "icon", name: "FiMinus" };
 
-                      const buttonExist = buttonTextExist || buttonInfoExist || normalizedIcon;
+                    const buttonExist = buttonTextExist || buttonInfoExist || normalizedIcon;
 
-                      return (
-                        buttonExist && (
-                          <div key={index} className={this.decorateCSS("button")} onClick={() => handleButtonClick(index)}>
-                            <ComposerLink path={button.link}>
-                              <div className={this.decorateCSS("button-element")}>
-                                <div className={this.decorateCSS("button-text")}>
-                                  {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
-                                  {buttonTextExist && buttonInfoExist && <Base.Media className={this.decorateCSS("separator-icon")} value={finalSeparatorIcon} />}
-                                  {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
-                                </div>
-                                {normalizedIcon && <Base.Media value={normalizedIcon} className={this.decorateCSS("icon")} />}
+                    return (
+                      buttonExist && (
+                        <div key={index} className={this.decorateCSS("tab")} onClick={() => handleButtonClick(index)}>
+                          <ComposerLink path={button.link}>
+                            <div className={this.decorateCSS("tab-element")}>
+                              <div className={this.decorateCSS("tab-text")}>
+                                {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
+                                {buttonTextExist && buttonInfoExist && <Base.Media className={this.decorateCSS("separator-icon")} value={finalSeparatorIcon} />}
+                                {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                               </div>
-                            </ComposerLink>
-                          </div>
-                        )
-                      );
-                    })}
-                  </Base.VerticalContent>
-                ) : (
-                  <div className={this.decorateCSS("map-container")}>
-                    <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
-                  </div>
-                )}
-              </div>
+                              {normalizedIcon && <Base.Media value={normalizedIcon} className={this.decorateCSS("icon")} />}
+                            </div>
+                          </ComposerLink>
+                        </div>
+                      )
+                    );
+                  })}
+                </Base.VerticalContent>
+              ) : (
+                <div className={this.decorateCSS("map-container")}>
+                  <ComposerMap defaultZoom={centerZoom} customSelectedMarker={customSelectedMarker} styles={mapStyle?.colors} markers={markers} className={this.decorateCSS("map")} handleMarkerZoom={markerZoom} />
+                </div>
+              )}
             </Base.MaxContent>
           </div>
 

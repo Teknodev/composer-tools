@@ -315,12 +315,14 @@
         }
       }
 
-      .content-description {
-        margin-top: 0;
-        color: var(--composer-tertiary-color);
-        text-align: center;
-        display: flex;
-        flex-direction: column;
+      .description-wrapper {
+        .content-description {
+          margin-top: 0;
+          color: var(--composer-tertiary-color);
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }

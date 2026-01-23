@@ -1,8 +1,6 @@
 @use "../../../../composer-tools/composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  // padding-right: 0px !important;
-
   .max-content {
     max-width: var(--composer-content-width);
     margin: 0 auto;
@@ -40,21 +38,18 @@
         max-width: var(--composer-content-width);
         margin: 0;
 
-        .left-side {
-          margin-top: var(--composer-gap-md);
+        .map-container {
+          width: 100%;
+          min-height: 400px;
+          height: 400px;
 
-          .map-container {
+          .map {
             width: 100%;
-            min-height: 400px;
-            height: 400px;
-
-            .map {
-              width: 100%;
-              height: 100%;
-              border-radius: var(--composer-border-radius-sm);
-            }
+            height: 100%;
+            border-radius: var(--composer-border-radius-sm);
           }
         }
+
       }
     }
 
@@ -81,123 +76,128 @@
       box-sizing: border-box;
       min-height: 0;
 
-      .left-side {
+      .tab-container {
+        width: 100% !important;
         display: flex;
         flex-direction: column;
-        min-width: 0;
-        width: 100%;
+        gap: var(--composer-gap-sm);
         margin-top: var(--composer-gap-md);
 
-        .button-container {
-          width: 100% !important;
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-sm);
+        .tab {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          color: var(--composer-font-color-primary);
+          padding: var(--composer-gap-md) var(--composer-gap-md);
+          width: 100%;
+          align-self: stretch;
+          border-radius: var(--composer-border-radius-sm);
+          min-height: fit-content;
+          box-sizing: border-box;
 
-          .button {
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            color: var(--composer-font-color-primary);
-            padding: var(--composer-gap-md) var(--composer-gap-md);
-            width: 100%;
-            align-self: stretch;
-            border-radius: var(--composer-border-radius-md);
-            min-height: fit-content;
-            box-sizing: border-box;
+          .tab-element {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--composer-gap-sm);
 
-            .button-element {
+            .tab-text {
               display: flex;
-              justify-content: space-between;
               align-items: center;
-              gap: var(--composer-gap-sm);
+              gap: var(--composer-gap-xs);
+              width: auto;
+              min-width: 0;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              font-size: var(--composer-font-size-sm) !important;
 
-              .button-text {
+              .info {
+                font-size: var(--composer-font-size-xs);
+                color: var(--composer-tertiary-color);
+              }
+
+              .separator-icon {
+                width: 12px;
+                height: 12px;
+                font-size: 12px;
+                color: var(--composer-font-color-primary);
+                opacity: 0.5;
                 display: flex;
                 align-items: center;
-                gap: var(--composer-gap-xs);
-                width: auto;
-                min-width: 0;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-                font-size: var(--composer-font-size-sm) !important;
-
-                .info {
-                  font-size: var(--composer-font-size-xs);
-                  color: var(--composer-tertiary-color);
-                }
-
-                .separator-icon {
-                  width: 12px;
-                  height: 12px;
-                  font-size: 12px;
-                  color: var(--composer-font-color-primary);
-                  opacity: 0.5;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                }
-              }
-
-              .icon {
-                width: calc(var(--composer-gap-md) + 2px);
-                height: calc(var(--composer-gap-md) + 2px);
-                font-size: 1.5rem;
-                display: inline-flex;
-                align-items: center;
                 justify-content: center;
-                flex-shrink: 0;
-
               }
+            }
+
+            .icon {
+              width: calc(var(--composer-gap-md) + 2px);
+              height: calc(var(--composer-gap-md) + 2px);
+              font-size: 1.5rem;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              flex-shrink: 0;
             }
           }
         }
       }
-    }
 
-    .map-container {
-      width: 100%;
-      min-width: 0;
-      height: 100%;
-      min-height: 500px;
-
-      .map {
+      .map-container {
         width: 100%;
-        height: 100%;
-        min-width: 0;
-        border-top-left-radius: var(--composer-border-radius-sm);
-        border-bottom-left-radius: var(--composer-border-radius-sm);
-        overflow: hidden;
+        margin-top: var(--composer-gap-md);
+
+        .map {
+          width: 100%;
+          height: 100%;
+          border-radius: var(--composer-border-radius-sm);
+        }
       }
+
     }
   }
-}
 
-.popup {
-  background: var(--composer-font-color-primary);
-  color: var(--composer-html-background);
-  padding: var(--composer-gap-sm);
-  border-radius: calc(2 * var(--composer-border-radius-xl));
-  width: 200px;
-  max-width: 400px;
-  text-align: center;
-  margin-bottom: var(--composer-gap-md);
 
-  .popup-balloon {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border: var(--composer-gap-md) solid transparent;
-    border-top-color: var(--composer-font-color-primary);
-    border-bottom: 0;
-    margin-left: calc(-1 * var(--composer-gap-md));
-    margin-bottom: 0;
+  .map-container {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    min-height: 500px;
+
+    .map {
+      width: 100%;
+      height: 100%;
+      min-width: 0;
+      border-radius: var(--composer-border-radius-sm);
+    }
   }
 
-  .popup-content {
-    margin: 0;
+
+
+  .popup {
+    background: var(--composer-font-color-primary);
+    color: var(--composer-html-background);
+    padding: var(--composer-gap-sm);
+    border-radius: calc(2 * var(--composer-border-radius-xl));
+    width: 200px;
+    max-width: 400px;
+    text-align: center;
+    margin-bottom: var(--composer-gap-md);
+
+    .popup-balloon {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border: var(--composer-gap-md) solid transparent;
+      border-top-color: var(--composer-font-color-primary);
+      border-bottom: 0;
+      margin-left: calc(-1 * var(--composer-gap-md));
+      margin-bottom: 0;
+    }
+
+    .popup-content {
+      margin: 0;
+    }
   }
 }
 
@@ -206,10 +206,7 @@
     gap: 0;
 
     .wrapper {
-      display: grid;
-      grid-template-columns: 50% 50%;
-      align-items: stretch;
-      gap: 20px;
+      gap: var(--composer-gap-md);
 
       .left-container {
         min-width: 0;
@@ -219,39 +216,36 @@
         .max-content {
           width: 100%;
 
-          .left-side {
-            width: 100%;
-            margin-top: var(--composer-gap-md);
+          .tab-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+            height: 100%;
 
-            .button-container {
-              display: flex;
-              flex-direction: column;
-              gap: var(--composer-gap-sm);
-              height: 100%;
+            .tab {
+              width: 100% !important;
+              padding: var(--composer-gap-sm) !important;
+              border-radius: var(--composer-border-radius-sm) !important;
 
-              .button {
-                width: 100% !important;
-                padding: var(--composer-gap-sm) !important;
-
-                .button-element {
-                  .button-text {
-                    .text {
-                      font-size: var(--composer-font-size-sm);
-                    }
-
-                    .info {
-                      font-size: var(--composer-font-size-xs) !important;
-                    }
+              .tab-element {
+                .tab-text {
+                  .text {
+                    font-size: var(--composer-font-size-sm);
                   }
 
-                  .icon {
-                    width: calc(var(--composer-gap-md) - 4px);
-                    height: calc(var(--composer-gap-md) - 4px);
+                  .info {
+                    font-size: var(--composer-font-size-xs) !important;
                   }
+                }
+
+                .icon {
+                  width: calc(var(--composer-gap-md) - 4px);
+                  height: calc(var(--composer-gap-md) - 4px);
                 }
               }
             }
           }
+
         }
       }
 
@@ -267,8 +261,7 @@
             width: 95%;
             height: 100%;
             overflow: visible !important;
-            border-top-left-radius: var(--composer-border-radius-sm);
-            border-bottom-left-radius: var(--composer-border-radius-sm);
+            border-radius: var(--composer-border-radius-sm) !important;
           }
         }
       }
@@ -278,13 +271,11 @@
       .left-container {
         padding-right: 0 !important;
 
-        .left-side {
-          .map-container {
-            width: 100% !important;
+        .map-container {
+          width: 100% !important;
 
-            .map {
-              width: 100% !important;
-            }
+          .map {
+            width: 100% !important;
           }
         }
       }
@@ -297,8 +288,7 @@
     padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
 
     .wrapper {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: 100% !important;
       gap: var(--composer-gap-md);
 
       .right-container {
@@ -308,37 +298,70 @@
       }
 
       .max-content {
-        .left-side {
+        width: 100%;
+        padding: 0px;
+        margin-top: var(--composer-gap-sm) !important;
+
+        .header {
+          &.center {
+            align-items: center;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+            }
+          }
+
+          &.left {
+            align-items: center;
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center;
+              margin-left: auto;
+              margin-right: auto;
+            }
+
+            .subtitle {
+              transform: translateX(0);
+
+              &::before {
+                display: none;
+              }
+            }
+          }
+        }
+
+        .tab-container {
           width: 100%;
-          gap: var(--composer-gap-sm);
-          padding: 0px;
-          margin-top: var(--composer-gap-sm) !important;
+          height: 280px;
+          margin: unset !important;
 
-          .button-container {
-            width: 100%;
-            height: 280px;
+          .tab {
+            width: 100% !important;
+            border-radius: var(--composer-border-radius-sm) !important;
 
-            .button {
-              width: 100% !important;
+            .tab-element {
+              .tab-text {
+                font-size: var(--composer-font-size-sm) !important;
 
-              .button-element {
-                .button-text {
-                  font-size: var(--composer-font-size-sm) !important;
-
-                  .text {
-                    font-size: var(--composer-font-size-sm);
-                  }
-
-                  .info {
-                    font-size: var(--composer-font-size-xs) !important;
-                  }
+                .text {
+                  font-size: var(--composer-font-size-sm);
                 }
 
-                .icon {
-                  width: 1.25rem !important;
-                  height: 1.25rem !important;
-                  font-size: 1.2rem !important;
+                .info {
+                  font-size: var(--composer-font-size-xs) !important;
                 }
+              }
+
+              .icon {
+                width: 1.25rem !important;
+                height: 1.25rem !important;
+                font-size: 1.2rem !important;
               }
             }
           }
@@ -353,12 +376,7 @@
           width: 100%;
           height: 280px !important;
           min-height: 280px !important;
-        }
-      }
-
-      .max-content {
-        .left-side {
-          order: 1 !important;
+          border-radius: var(--composer-border-radius-sm) !important;
         }
       }
 

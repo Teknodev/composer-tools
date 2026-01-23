@@ -563,7 +563,6 @@ class Location2 extends Location {
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")} ${alignmentValue === "left" && this.decorateCSS("left")} ${!isDescriptionExist && isTitleExist && this.decorateCSS("no-description-title")} ${!isDescriptionExist && !isTitleExist && this.decorateCSS("no-description-no-title")}`}>
-
                 {hasSubtitle && (
                   <div className={this.decorateCSS("subtitle-row")}>
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
@@ -608,10 +607,18 @@ class Location2 extends Location {
                           <Base.H4 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H4>
                         </div>
                       )}
-                      {item.contentDescriptionArray.map((descItem: any, descIdx: number) => {
-                        const isDesExist = this.castToString(descItem.text);
-                        return isDesExist && <Base.P key={descIdx} className={this.decorateCSS("content-description")}>{descItem.text}</Base.P>;
-                      })}
+                      {isDesExist && (
+                        <div className={this.decorateCSS("description-wrapper")}>
+                          {item.contentDescriptionArray.map((descItem: any, descIdx: number) => {
+                            const hasText = this.castToString(descItem.text);
+                            return hasText && (
+                              <div key={descIdx} className={this.decorateCSS("description-item")}>
+                                <Base.P className={this.decorateCSS("content-description")}>{descItem.text}</Base.P>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   );
                 }

@@ -51,9 +51,9 @@
           column-gap: var(--composer-gap-lg);
           border-bottom: var(--composer-gap-sm) solid var(--composer-primary-color);
           padding-bottom: var(--composer-gap-md);
-          width: auto;
-          padding-left: 10%;
-          padding-right: 10%;
+          width: 50%;
+          padding-left: 0;
+          padding-right: 0;
           flex-wrap: wrap;
 
           .continent-item {

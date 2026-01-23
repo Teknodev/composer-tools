@@ -119,6 +119,7 @@
         background-color: var(--composer-overlay-color);
         z-index: 1;
         pointer-events: none;
+        border-radius: var(--composer-border-radius-sm);
       }
 
       .background-image {
@@ -130,6 +131,7 @@
         top: 0;
         z-index: 0;
         object-fit: contain;
+        border-radius: var(--composer-border-radius-sm);
       }
 
       .marker-image {
