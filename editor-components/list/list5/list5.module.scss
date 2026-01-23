@@ -38,9 +38,6 @@ as *;
     padding-bottom: var(--composer-gap-lg);
     box-sizing: border-box;
 
-
-
-
     .header {
       margin-bottom: var(--composer-gap-md) !important;
 
@@ -101,7 +98,9 @@ as *;
           flex: 1 1 auto;
           align-items: stretch;
           border-radius: var(--composer-border-radius-sm);
-          background-color: var(--composer-html-background);
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
           padding: var(--composer-gap-md);
           gap: var(--composer-gap-md);
           transition: all var(--composer-transition-duration-normal) ease;
@@ -378,6 +377,7 @@ as *;
   .container {
     .max-content {
       padding: unset !important;
+
       .cards-grid {
         .card-wrapper {
           &:nth-child(2n) {
