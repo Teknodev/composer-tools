@@ -12,7 +12,7 @@
 .container {
   width: 100%;
   position: relative;
-  padding: 0px;
+  padding: 0px !important;
   min-height: 100px;
   .carousel {
     width: 100%;
@@ -32,8 +32,8 @@
         width: 100%;
     
         &::after {
-          background-color: transparent;
           content: "";
+          background-color: transparent;
           width: 100%;
           height: 100%;
           position: absolute;
@@ -92,15 +92,28 @@
     bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 20px 50px;
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
     background-color: transparent;
     .info-box {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
       color: white;
+      max-width: 100%;
+
+      .logo {
+        font-size: 3rem;
+        color: white;
+        aspect-ratio: 3/1;
+        object-fit: cover;
+        max-width: 150px;
+      }
+
       &.no-image{
         color: var(--composer-font-color-primary);
+        .logo {
+          color: var(--composer-font-color-primary);
+        }
         .line {
           border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
@@ -120,27 +133,34 @@
           transform: scale(1);
         }
       }
-      .tag {
-        font-size: 1.5rem;
-      }
-      .title {
-        font-size: 4rem;
-      }
-      .line {
-        border-bottom: 1px solid hsla(0, 0%, 100%, .07);
-      }
-      .description {
-        font-size: 2rem;
+      .tag, .title, .description {
+        color: white;
+        text-align: left;
       }
 
+      &.no-image {
+        .tag, .title, .description {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+      }
+    
+      .line {
+        border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2)
+      }
+    }
+
+  }
+  .arrow-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
     .pagination {
-      text-align: center;
-      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      padding-top: var(--composer-gap-md);
 
       .current-page {
         font-size: 1.5rem;
@@ -154,15 +174,15 @@
       .total-page {
         font-size: 2rem;
       }
+      
+      &.no-image {
+        color: var(--composer-font-color-primary);
+      }
     }
-    }
-
-  }
-  .arrow-wrapper{
-    display: flex;
-    justify-content: space-between;
+    
     .arrow-prev-wrapper, .arrow-next-wrapper{
       position: relative;
+      cursor: pointer;
       .arrow-prev, .arrow-next{
         width: 40px;
         height: 40px;
@@ -173,6 +193,13 @@
         transition: transform 0.3s ease-in;
         .icon{
           font-size: 1.5rem;
+          height: var(--composer-gap-md);
+          width: var(--composer-gap-md);
+          object-fit: contain;
+          color: white;
+          &.no-image{
+            color: var(--composer-font-color-primary);
+          }
         }
       }
       &::before {
@@ -230,8 +257,18 @@
 
 @container (max-width: #{$composer-tablet-width}){
   .container{
-    .carousel {
-      .arrow-wrapper{
+    .arrow-wrapper{
+        .pagination{
+          .current-page{
+            font-size: 1.25rem !important;
+          }
+          .slash{
+            font-size: 1.5rem !important;
+          }
+          .total-page{
+            font-size: 1.5rem !important;
+          }
+        }
         .arrow-prev-wrapper, .arrow-next-wrapper{
           &.next{
             &::after {
@@ -245,54 +282,15 @@
           }
         }
       }
-    }
     .max-content{
-      padding: 20px 40px;
+      padding: var(--composer-gap-md) var(--composer-gap-lg);
     }
   }
 }
 @container (max-width: #{$composer-phone-width}){
   .container{
-    .carousel{
-      .arrow-wrapper{
-        .arrow-prev-wrapper, .arrow-next-wrapper{
-          &.next{
-            &::after {
-              left: -20px;
-            }
-          }
-          &.prev{
-            &::after {
-              right: -20px;
-            }      
-          }
-        }
-      }
-    }
     .max-content{
       padding: 20px;
-      .info-box{
-        .tag{
-          font-size: 1rem;
-        }
-        .title{
-          font-size: 2.5rem;
-        }
-        .description{
-          font-size: 1.5rem;
-        }
-        .pagination{
-          .current-page{
-            font-size: 1rem;
-          }
-          .slash{
-            font-size: 2rem;
-          }
-          .total-page{
-            font-size: 1.5rem;
-          }
-        }
-      }
     }
   }
 }

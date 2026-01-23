@@ -1,60 +1,75 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0px 50px 20px 50px;
   .max-content {
     .background-layer {
+      position: relative;
       background-color: var(--composer-html-background);
       width: 100%;
       height: 100%;
+
+      .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
 
       &.with-image {
         border-bottom-left-radius: var(--composer-border-radius-sm);
         border-bottom-right-radius: var(--composer-border-radius-sm);
         overflow: hidden;
-        background-size: cover;
-        background-position: center;
 
-        .sub-title,
+        .subtitle,
         .title,
-        .description {
+        .description,
+        .logo {
           text-align: center;
-          align-self: center;
-          color: #fff;
+          color: white;
         }
 
-        .heading-page {
+        .subtitle{
+          background: transparent;
+        }
+
+        .content {
           padding: var(--composer-gap-lg);
+          height: calc(100vh - var(--composer-gap-md));
         }
+      }
 
-        .sub-title {
-          transform: unset;
-          &::before {
+       .subtitle {
+          width: fit-content !important;
+          transform: translateX(0);
+          &::before{
             display: none;
           }
         }
-      }
     }
 
     .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
       width: 100%;
       height: 100%;
-      background: var(--composer-overlay-color);
-      &.no{
-        background: transparent;
-      }
+      background-color: var(--composer-overlay-color);
     }
 
-    .heading-page {
-      height: calc(100vh - var(--composer-gap-md));
+    .content {
+      position: relative;
+      z-index: 2;
       width: 100%;
-      padding: var(--composer-gap-lg) 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
 
-      .sub-title,
+      .subtitle,
       .title,
       .description {
         width: 100%;
@@ -62,19 +77,33 @@
         align-items: center;
       }
 
-      .sub-title {
+      .logo {
+        &.logo-icon {
+          font-size: 3rem;
+          color: var(--composer-font-color-primary);
+
+          &.with-background {
+            color: white;
+          }
+        }
+
+        &.logo-image {
+          aspect-ratio: 3/1;
+          object-fit: contain;
+        }
+      }
+
+      .subtitle {
         letter-spacing: 5px;
       }
 
       .title {
-        margin: 0;
         font-size: 5rem;
         letter-spacing: var(--composer-gap-xs);
       }
 
       .description {
         font-size: 1.5rem;
-        margin-bottom: var(--composer-gap-lg);
         letter-spacing: var(--composer-gap-xs);
       }
 
@@ -83,24 +112,59 @@
         flex-direction: row;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
+        .button {
+          .button-text {
+            content: "";
+          }
+          
+          &.tertiary-with-image {
+            border-color: white;
+            color: white;
+            
+            .button-text {
+              color: white;
+            }
+            
+            &:hover {
+              border-color: white;
+              color: white;
+            }
+          }
+        }
       }
     }
   }
 }
+
+.container.with-background {
+  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
+  .max-content {
+    .background-layer.with-image {
+      .content {
+        padding: var(--composer-gap-lg);
+        height: calc(100vh - var(--composer-gap-md));
+      }
+    }
+    .content {
+      padding: var(--composer-gap-lg) 0;
+    }
+  }
+}
+
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    padding: 0px 40px 20px 40px;
+  .container.with-background {
+    padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    padding: 0px 20px 20px 20px;
+  .container.with-background {
+    padding: 0px var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) !important;
     .max-content {
-      .heading-page {
+      .content {
         padding: var(--composer-gap-md);
 
-        .sub-title,
+        .subtitle,
         .description {
           font-size: 1rem;
         }
