@@ -36,7 +36,7 @@ class Download3 extends BaseDownload {
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/674030b7506a40002c2d16c7?alt=media&timestamp=1732260086754",
       },
     });
-    
+
     this.addProp({
       type: "boolean",
       key: "overlay",
@@ -74,7 +74,7 @@ class Download3 extends BaseDownload {
 
     const imageExist = this.getPropValue("image");
     const titleExist = this.castToString(title);
-    const subtitleExist = this.castToString(subtitle);  
+    const subtitleExist = this.castToString(subtitle);
     const descriptionExist = this.castToString(description);
 
     const buttonsExist = this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0;
@@ -92,13 +92,13 @@ class Download3 extends BaseDownload {
           <div className={this.decorateCSS("page")}>
             {alignmentValue === "left" && (
               <div className={this.decorateCSS("group-container")}>
-                <Base.VerticalContent className={this.decorateCSS("title-block")}>
+                <div className={this.decorateCSS("title-block")}>
                   {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                   {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!buttonsExist && this.decorateCSS("full")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
-                </Base.VerticalContent>
+                </div>
                 <Base.SectionDescription className={`${this.decorateCSS("description")} ${!titleExist && this.decorateCSS("full")}`}>{this.getPropValue("description")}</Base.SectionDescription>
                 {buttonsExist && (
-                  <Base.VerticalContent className={this.decorateCSS("button-group")}>
+                  <div className={this.decorateCSS("button-group")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
                       const iconExist = item.icon && item.icon.name;
@@ -126,13 +126,13 @@ class Download3 extends BaseDownload {
                         </div>
                       );
                     })}
-                  </Base.VerticalContent>
+                  </div>
                 )}
               </div>
             )}
 
             {alignmentValue === "center" && (
-              <Base.VerticalContent className={this.decorateCSS("group-container-center")}>
+              <div className={this.decorateCSS("group-container-center")}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -164,7 +164,7 @@ class Download3 extends BaseDownload {
                     );
                   })}
                 </div>
-              </Base.VerticalContent>
+              </div>
             )}
           </div>
         </Base.MaxContent>
