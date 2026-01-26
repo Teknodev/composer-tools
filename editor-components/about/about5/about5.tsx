@@ -105,11 +105,12 @@ class About5 extends BaseAbout {
                                         </Base.SectionTitle>
                                     )}
                                     {descriptionStr && (
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        <Base.SectionDescription className={this.decorateCSS("description-mobile")}>
                                             {description}
                                         </Base.SectionDescription>
                                     )}
                                 </Base.VerticalContent>
+
                             </div>
                         )}
 
@@ -197,6 +198,11 @@ class About5 extends BaseAbout {
 
 
                     </div>
+                    {descriptionStr && (
+                        <Base.SectionDescription className={this.decorateCSS("description-desktop")}>
+                            {description}
+                        </Base.SectionDescription>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         )
