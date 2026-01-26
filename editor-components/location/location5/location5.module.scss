@@ -3,14 +3,13 @@
 .container {
 
   .max-content {
-      .title-block {
+    .title-block {
       .location-logo {
         height: 60px;
         margin-bottom: var(--composer-gap-sm);
         color: var(--composer-font-color-primary);
         font-size: 4rem;
-        place-self: flex-start;
-        margin-left: 0;
+        align-self: flex-start;
       }
 
       .location-logo-img {
@@ -32,6 +31,7 @@
       }
 
       &.center {
+        align-items: center;
 
         .subtitle,
         .title,
@@ -40,7 +40,9 @@
         }
 
         .location-logo {
-          content: "";
+          align-self: center;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
     }
@@ -163,18 +165,35 @@
   .container {
     .max-content {
       .title-block {
-        .location-logo {
-          width: 40px;
-          font-size: 2.5rem;
+        &.center {
+          align-items: center;
+
+          .location-logo {
+            align-self: center;
+            margin-left: auto;
+            margin-right: auto;
+          }
         }
- 
+
+        &.left {
+          align-items: flex-start;
+
+          .location-logo {
+            align-self: flex-start;
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+
         .location-logo {
-          width: 40px;
+          width: auto;
+          height: 40px;
           font-size: 2.5rem;
         }
 
         .location-logo-img {
-          width: 40px;
+          width: auto;
+          height: 40px !important;
         }
       }
 

@@ -427,8 +427,8 @@ class Location1 extends Location {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {(hasTitle || icons.length > 0) && (
-              <div className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
-                <Base.VerticalContent className={this.decorateCSS("title-block")}>
+              <div className={this.decorateCSS("header")}>
+                <Base.VerticalContent className={`${this.decorateCSS("title-block")} ${this.decorateCSS(alignment)}`}>
                   {hasSubtitle && (
                     <div className={this.decorateCSS("subtitle-wrapper")}>
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>

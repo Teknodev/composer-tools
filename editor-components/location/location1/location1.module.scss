@@ -20,7 +20,37 @@
 
         .title-block {
           width: auto;
-          align-items: center;
+          align-items: flex-start;
+
+          &.center {
+            align-items: center;
+            text-align: center;
+
+            .subtitle-wrapper {
+              justify-content: center;
+            }
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: center;
+            }
+          }
+
+          &.left {
+            align-items: flex-start;
+            text-align: left;
+
+            .subtitle-wrapper {
+              justify-content: flex-start;
+            }
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: left;
+            }
+          }
 
           >*:last-child {
             margin-bottom: 0;
@@ -29,7 +59,7 @@
           .subtitle,
           .title,
           .description {
-            text-align: left;
+            text-align: inherit;
             margin-left: 0;
           }
 
@@ -73,6 +103,7 @@
           display: flex;
           align-items: center;
           gap: var(--composer-gap-lg);
+          margin-bottom: var(--composer-gap-sm);
 
           .icon-wrapper {
             display: flex;
@@ -141,54 +172,6 @@
             height: 1px;
             background-color: var(--composer-tertiary-color);
             margin: 0 var(--composer-gap-sm);
-            width: 200px !important;
-            align-self: center;
-          }
-        }
-
-        &.center {
-          justify-content: center;
-
-          .title-block {
-            width: auto;
-            text-align: center;
-
-            .title,
-            .subtitle {
-              text-align: left;
-            }
-          }
-
-          .icon-container {
-            margin-left: var(--composer-gap-md);
-            margin-bottom: var(--composer-gap-sm);
-          }
-
-          .divider {
-            width: 200px;
-          }
-        }
-
-        &.left {
-          justify-content: center;
-
-          .title-block {
-            width: auto;
-            text-align: center;
-            align-items: center !important;
-
-            .title,
-            .subtitle,
-            .description {
-              text-align: left !important;
-            }
-          }
-
-          .icon-container {
-            margin-left: var(--composer-gap-md);
-          }
-
-          .divider {
             width: 200px !important;
             align-self: center;
           }
@@ -449,25 +432,46 @@
           }
 
 
-          &.left {
-            .title-block {
-              width: 100%;
+          .title-block {
+            &.center {
               align-items: center !important;
+              text-align: center !important;
 
-              .divider {
-                display: none !important;
+              .subtitle-wrapper {
+                justify-content: center !important;
               }
 
+              .subtitle,
               .title,
-              .description,
-              .subtitle {
+              .description {
                 text-align: center !important;
+              }
+            }
+
+            &.left {
+              align-items: flex-start !important;
+              text-align: left !important;
+
+              .subtitle-wrapper {
+                justify-content: flex-start !important;
+              }
+
+              .subtitle,
+              .title,
+              .description {
+                text-align: left !important;
               }
             }
           }
 
+          .divider {
+            display: none !important;
+          }
+
           .icon-container {
+            width: 100%;
             justify-content: center;
+            margin-top: var(--composer-gap-sm);
           }
         }
 

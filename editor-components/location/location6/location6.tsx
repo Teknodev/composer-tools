@@ -604,7 +604,11 @@ class Location6 extends Location {
 
                     const rawSeparatorIcon = button?.["separator-icon"];
                     const normalizedSeparatorIcon: any = typeof rawSeparatorIcon === "string" ? { type: "icon", name: rawSeparatorIcon } : rawSeparatorIcon;
-                    const finalSeparatorIcon = normalizedSeparatorIcon || { type: "icon", name: "FiMinus" };
+                    const separatorIconExist = Boolean(
+                      normalizedSeparatorIcon?.url ||
+                      normalizedSeparatorIcon?.name ||
+                      normalizedSeparatorIcon?.icon
+                    );
 
                     const buttonExist = buttonTextExist || buttonInfoExist || normalizedIcon;
 
@@ -615,7 +619,9 @@ class Location6 extends Location {
                             <div className={this.decorateCSS("tab-element")}>
                               <div className={this.decorateCSS("tab-text")}>
                                 {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{button?.text}</Base.P>}
-                                {buttonTextExist && buttonInfoExist && <Base.Media className={this.decorateCSS("separator-icon")} value={finalSeparatorIcon} />}
+                                {buttonTextExist && buttonInfoExist && separatorIconExist && (
+                                  <Base.Media className={this.decorateCSS("separator-icon")} value={normalizedSeparatorIcon} />
+                                )}
                                 {buttonInfoExist && <Base.P className={this.decorateCSS("info")}>{button?.info}</Base.P>}
                               </div>
                               {normalizedIcon && <Base.Media value={normalizedIcon} className={this.decorateCSS("icon")} />}

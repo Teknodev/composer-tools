@@ -562,7 +562,7 @@ class Location2 extends Location {
         {headerExist && (
           <Base.Container className={this.decorateCSS("content-container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignmentValue === "center" && this.decorateCSS("center")} ${alignmentValue === "left" && this.decorateCSS("left")} ${!isDescriptionExist && isTitleExist && this.decorateCSS("no-description-title")} ${!isDescriptionExist && !isTitleExist && this.decorateCSS("no-description-no-title")}`}>
+              <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.decorateCSS(alignmentValue)} ${!isDescriptionExist && isTitleExist && this.decorateCSS("no-description-title")} ${!isDescriptionExist && !isTitleExist && this.decorateCSS("no-description-no-title")}`}>
                 {hasSubtitle && (
                   <div className={this.decorateCSS("subtitle-row")}>
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
@@ -577,10 +577,12 @@ class Location2 extends Location {
                   </div>
                 )}
 
-                <div className={`${this.decorateCSS("description-container")} ${alignmentValue === "center" && this.decorateCSS("center")} ${alignmentValue === "left" && this.decorateCSS("left")} ${!isDescriptionExist && isTitleExist && this.decorateCSS("no-description-right")} ${!isDescriptionExist && !isTitleExist && this.decorateCSS("no-description-left")}`}>
-                  {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
-                  {socialPlacement === "description" && socialNodes}
-                </div>
+                {(isDescriptionExist || socialPlacement === "description") && (
+                  <div className={`${this.decorateCSS("description-container")} ${this.decorateCSS(alignmentValue)} ${!isDescriptionExist && isTitleExist && this.decorateCSS("no-description-right")} ${!isDescriptionExist && !isTitleExist && this.decorateCSS("no-description-left")}`}>
+                    {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
+                    {socialPlacement === "description" && socialNodes}
+                  </div>
+                )}
                 {!socialPlacement && socialNodes}
               </Base.VerticalContent>
             </Base.MaxContent>

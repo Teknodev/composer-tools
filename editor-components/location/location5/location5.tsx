@@ -66,7 +66,6 @@ class Location5 extends Location {
       value: [
         {
           type: "object",
-          key: "firstAddress",
           displayer: "First Location",
           value: [
             {
@@ -100,7 +99,6 @@ class Location5 extends Location {
               value: [
                 {
                   type: "object",
-                  key: "loca",
                   displayer: "Location",
                   value: [
                     {
@@ -150,13 +148,12 @@ class Location5 extends Location {
                     },
                   ],
                 },
-              ],
+              ] as any,
             },
           ],
         },
         {
           type: "object",
-          key: "secondAddress",
           displayer: "Second Location",
           value: [
             {
@@ -190,7 +187,6 @@ class Location5 extends Location {
               value: [
                 {
                   type: "object",
-                  key: "loca",
                   displayer: "Location",
                   value: [
                     {
@@ -240,11 +236,11 @@ class Location5 extends Location {
                     },
                   ],
                 },
-              ],
+              ] as any,
             },
           ],
         },
-      ],
+      ] as any,
     });
   }
 
@@ -304,20 +300,22 @@ class Location5 extends Location {
           if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
             try {
               const iconName = (markerImage as any).name;
-              let ElementIcon: any = null;
-              for (const lib of iconLibraries) {
-                if (ElementIcon) break;
-                for (const [name, Comp] of Object.entries(lib)) {
-                  if (name === iconName) {
-                    ElementIcon = Comp;
-                    break;
+              if (iconName) {
+                let ElementIcon: any = null;
+                for (const lib of iconLibraries) {
+                  if (ElementIcon) break;
+                  for (const [name, Comp] of Object.entries(lib)) {
+                    if (name === iconName) {
+                      ElementIcon = Comp;
+                      break;
+                    }
                   }
                 }
-              }
 
-              if (ElementIcon) {
-                const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-                iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+                if (ElementIcon) {
+                  const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+                  iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+                }
               }
             } catch (e) {
               iconUrl = undefined;
