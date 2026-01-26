@@ -51,6 +51,7 @@
                     }
 
                     .card-content {
+                        align-items: baseline;
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left;
@@ -59,6 +60,19 @@
                         .card-description {
                             color: var(--composer-tertiary-color);
                             text-align: left;
+                        }
+
+                        .card-button {
+                            .card-button-text {
+                                text-align: left;
+                            }
+
+                            .card-button-icon {
+                                font-size: 1.25rem;
+                                width: 15px;
+                                height: 15px;
+                                color: var(--composer-font-color-primary);
+                            }
                         }
                     }
                 }
