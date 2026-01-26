@@ -22,13 +22,6 @@ class Feature40 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
-            type: "boolean",
-            key: "iconBackground",
-            displayer: "Icon Background",
-            value: true,
-        });
-
-        this.addProp({
             type: "media",
             key: "cover-image",
             displayer: "Media",
@@ -57,7 +50,7 @@ class Feature40 extends BaseFeature {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Blink Page Core Features"
+            value: "BlinkPage Core Features"
         });
 
         this.addProp({
@@ -65,6 +58,13 @@ class Feature40 extends BaseFeature {
             key: "description",
             displayer: "Description",
             value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key indicators offline to maximise the long tail."
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "iconBackground",
+            displayer: "Icon Background",
+            value: true,
         });
 
         this.addProp({
