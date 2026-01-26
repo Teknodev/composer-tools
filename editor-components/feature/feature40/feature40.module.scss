@@ -131,10 +131,7 @@
                 }
 
                 .card-content {
-                    display: flex;
-                    flex-direction: column;
                     align-items: flex-start;
-                    gap: var(--composer-gap-md);
 
                     .card-title,
                     .card-description {
@@ -163,7 +160,6 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            flex-direction: column;
             gap: var(--composer-gap-md);
 
             .card-container {
