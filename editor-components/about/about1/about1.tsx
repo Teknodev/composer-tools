@@ -263,7 +263,7 @@ class About1 extends BaseAbout {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
           {(this.castToString(subtitle) || this.castToString(title) || icon) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
               {this.castToString(subtitle) && (

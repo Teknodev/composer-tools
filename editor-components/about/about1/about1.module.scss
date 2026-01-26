@@ -6,8 +6,12 @@
         flex-direction: column;
         justify-content: center;
 
+
+
         .heading {
             margin-bottom: var(--composer-gap-md);
+            display: flex;
+            flex-direction: column;
 
             .subtitle,
             .section-title {
@@ -107,6 +111,9 @@
                 gap: var(--composer-gap-md);
 
                 .item {
+                    display: flex;
+                    flex-direction: column;
+
                     .title {
                         color: var(--composer-primary-color);
                         text-align: left;
@@ -157,12 +164,55 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            .heading {
-                align-items: baseline;
+            &.center {
+                .heading {
+                    align-items: center;
+                    text-align: center;
 
-                .subtitle,
-                .section-title {
-                    text-align: left;
+                    .subtitle,
+                    .section-title {
+                        text-align: center;
+                    }
+                }
+
+                .content {
+                    .content-right {
+                        .item {
+                            align-items: center;
+
+                            .title,
+                            .description {
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+
+                .icons {
+                    justify-content: center !important;
+                }
+            }
+
+            &:not(.center) {
+                .heading {
+                    align-items: baseline;
+
+                    .subtitle,
+                    .section-title {
+                        text-align: left;
+                    }
+                }
+
+                .content {
+                    .content-right {
+                        .item {
+
+                            .title,
+                            .description {
+                                text-align: left;
+                            }
+                        }
+                    }
                 }
             }
 
