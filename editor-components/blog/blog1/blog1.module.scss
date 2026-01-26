@@ -534,6 +534,7 @@
       flex-direction: column;
       align-items: center;
       gap: var(--composer-gap-xs);
+      margin-bottom: 0px !important;
 
       .header {
         order: 1;
@@ -562,7 +563,7 @@
       .right-links-wrapper {
         order: 4;
         width: 100%;
-        justify-content: flex-start;
+        justify-content: center;
         margin-left: 0;
       }
     }
