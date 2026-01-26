@@ -5,17 +5,25 @@ import { BaseTrigger } from './TriggerStrategy';
 export class PressTrigger extends BaseTrigger {
   private boundPressHandler?: (event: Event) => void;
   private boundReleaseHandler?: (event: Event) => void;
+  private config?: Record<string, any>;
+
+  constructor(config?: Record<string, any>) {
+    super();
+    this.config = config;
+  }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
-    this.target = target;
+    const triggerTarget = this.config?.sectionId ? document.getElementById(this.config.sectionId) || target : target;
+    
+    this.target = triggerTarget;
     this.fire = fire;
     this.cleanup = cleanup;
     
-this.boundPressHandler = () => fire();
+    this.boundPressHandler = () => fire();
 
     this.boundReleaseHandler = () => {
       (async () => {
-        if (!target) {
+        if (!triggerTarget) {
           await cleanup?.();
           return;
         }
@@ -27,7 +35,7 @@ this.boundPressHandler = () => fire();
       })();
     };
 
-    this.addEventListener(target, 'mousedown', this.boundPressHandler);
+    this.addEventListener(triggerTarget, 'mousedown', this.boundPressHandler);
     if (cleanup) {
       // Attach mouseup to document to ensure it's captured even if mouse moves outside element
       this.addEventListener(document, 'mouseup', this.boundReleaseHandler);

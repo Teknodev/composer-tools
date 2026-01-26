@@ -110,7 +110,7 @@ export function bootstrapInteractions(
           const trigger = dependencies.triggerFactory.create(interactionDef.trigger, config);
           const command = dependencies.commandFactory.create(interactionDef.command, config);
 
-          const interaction = new Interaction(trigger, command, config);
+          const interaction = new Interaction(trigger, command, config, interactionDef.trigger);
           elementInteractions.addInteraction(interaction);
           // Debug: report added interaction
           // eslint-disable-next-line no-console

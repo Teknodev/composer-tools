@@ -77,7 +77,9 @@ export class AnimateCommand extends BaseAnimationCommand {
       // Standard property animation
       // Support UI-provided shortcuts like `opacity` in config
       const targetValue =
-        (context.config && (context.config.value ?? context.config.to ?? context.config.opacity)) ?? 0.8;
+        property === 'opacity' && context.config.opacity !== undefined
+          ? context.config.opacity
+          : (context.config.value ?? context.config.to ?? 0.8);
 
       // Store original values for cleanup BEFORE animation starts
       const computedStyle = getComputedStyle(context.target);
@@ -101,6 +103,14 @@ export class AnimateCommand extends BaseAnimationCommand {
       if (result && typeof result === "object" && "cancel" in result && result.cancel) {
         this.cancelAnimation = result.cancel;
       }
+
+      // Set cleanup to animate back to original value
+      this.cleanup = async (context: InteractionContext) => {
+        const originalValue = this.originalStyles.get(property);
+        if (originalValue !== undefined) {
+          await engine.animate(context.target, { [property]: originalValue }, duration, easing);
+        }
+      };
 
       // Reset animation flag when animation completes (for non-infinite)
       if (iterationCount !== "infinite") {

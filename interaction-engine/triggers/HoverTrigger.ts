@@ -6,21 +6,25 @@ export class HoverTrigger extends BaseTrigger {
   private boundEnterHandler?: (event: Event) => void;
   private boundLeaveHandler?: (event: Event) => void;
   private persistOnLeave: boolean = false;
+  private config?: Record<string, any>;
 
   constructor(config?: Record<string, any>) {
     super();
     this.persistOnLeave = Boolean(config?.persistOnLeave || config?.keepOnLeave || config?.hold);
+    this.config = config;
   }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
-    this.target = target;
+    const triggerTarget = this.config?.sectionId ? document.getElementById(this.config.sectionId) || target : target;
+    
+    this.target = triggerTarget;
     this.fire = fire;
     this.cleanup = cleanup;
     
     this.boundEnterHandler = () => fire();
 
     this.boundLeaveHandler = async () => {
-      if (!target) {
+      if (!triggerTarget) {
         await cleanup?.();
         return;
       }
@@ -33,9 +37,9 @@ export class HoverTrigger extends BaseTrigger {
       }
     };
 
-    this.addEventListener(target, 'mouseenter', this.boundEnterHandler);
+    this.addEventListener(triggerTarget, 'mouseenter', this.boundEnterHandler);
     if (cleanup && !this.persistOnLeave) {
-      this.addEventListener(target, 'mouseleave', this.boundLeaveHandler);
+      this.addEventListener(triggerTarget, 'mouseleave', this.boundLeaveHandler);
     }
   }
 }

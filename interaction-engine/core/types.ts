@@ -8,6 +8,8 @@ export interface InteractionContext {
   target: HTMLElement;
   /** Configuration object for the interaction */
   config: InteractionConfig;
+  /** Trigger type for the interaction */
+  triggerType: string;
   /** Optional router service for navigation */
   router?: Router;
   /** Optional modal service for modal operations */
@@ -201,6 +203,7 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
   protected cleanupFunctions: Map<string, () => void> = new Map();
   protected originalStyles: Map<string, string> = new Map();
   protected isAnimating: boolean = false;
+  protected animationTarget?: HTMLElement;
 
   /**
    * Cancel all active animations for this command
@@ -257,6 +260,6 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
    */
   undo(context: InteractionContext): void {
     this.cancelAllAnimations();
-    this.restoreOriginalStyles(context.target);
+    this.restoreOriginalStyles(this.animationTarget || context.target);
   }
 }

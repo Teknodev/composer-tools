@@ -4,6 +4,7 @@ import { InteractionFactory } from "../factory/InteractionFactory";
 import { TriggerFactory } from "../factory/TriggerFactory";
 import { PressTrigger } from "../triggers/PressTrigger";
 import { HoverTrigger } from "../triggers/HoverTrigger";
+import { ClickTrigger } from "../triggers/ClickTrigger";
 import { TextAnimateTrigger } from "../triggers/TextAnimateTrigger";
 import { LoopTrigger } from "../triggers/LoopTrigger";
 import { LoadTrigger } from "../triggers/LoadTrigger";
@@ -30,12 +31,13 @@ export const initializeInteractionEngine = (
   const triggerFactory = new TriggerFactory();
 
   // Register core triggers
-  triggerFactory.register("press", (config) => new PressTrigger());
-  triggerFactory.register("hover", (config) => new HoverTrigger());
+  triggerFactory.register("press", (config) => new PressTrigger(config));
+  triggerFactory.register("hover", (config) => new HoverTrigger(config));
+  triggerFactory.register("click", (config) => new ClickTrigger(config));
   triggerFactory.register("loop", (config) => new LoopTrigger(config));
   triggerFactory.register("textAnimate", (config) => new TextAnimateTrigger(config));
   triggerFactory.register("load", (config) => new LoadTrigger());
-  triggerFactory.register("appear", (config) => new OnAppearTrigger());
+  triggerFactory.register("appear", (config) => new OnAppearTrigger(config));
   triggerFactory.register("scroll", (config) => new OnScrollTrigger(config));
 
   // Register core commands

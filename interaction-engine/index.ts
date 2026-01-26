@@ -47,6 +47,7 @@ export type { LoopEffectConfig } from './commands/LoopEffectCommand';
 export * from './triggers/TriggerStrategy';
 export { PressTrigger } from './triggers/PressTrigger';
 export { HoverTrigger } from './triggers/HoverTrigger';
+export { ClickTrigger } from './triggers/ClickTrigger';
 export { LoadTrigger } from './triggers/LoadTrigger';
 export type { LoadTriggerConfig } from './triggers/LoadTrigger';
 export { OnAppearTrigger } from './triggers/OnAppearTrigger';

@@ -13,6 +13,12 @@ export class OnAppearTrigger extends BaseTrigger {
   private observer?: IntersectionObserver;
   private hasTriggered = false;
   private timeoutId?: number;
+  private interactionConfig?: OnAppearConfig;
+
+  constructor(config?: OnAppearConfig) {
+      super();
+      this.interactionConfig = config;
+    }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
     this.target = target;
@@ -21,8 +27,8 @@ export class OnAppearTrigger extends BaseTrigger {
 
     // Get configuration from data attributes or defaults
     const config = this.getConfig(target);
-    const { threshold = 0.1, rootMargin = '0px', once = false, delay = 0 } = config;
-
+    const { threshold = 0.1, rootMargin = '0px', once = false, delay = 0 } = this.interactionConfig || {};
+    console.log('OnAppearTrigger config:', config);
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

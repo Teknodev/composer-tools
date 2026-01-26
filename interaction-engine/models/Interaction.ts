@@ -28,6 +28,7 @@ export class Interaction implements Disposable {
     private trigger: TriggerStrategy,
     private command: InteractionCommand,
     private config: InteractionConfig,
+    private triggerType: string,
     interactionId?: string
   ) {
     this.debounceDelay = config.debounceDelay || 0;
@@ -251,6 +252,7 @@ export class Interaction implements Disposable {
     const context: InteractionContext = {
       target: this.target,
       config: this.config,
+      triggerType: this.triggerType,
       router: services.router,
       modalService: services.modalService,
       animationEngine: services.animationEngine,
