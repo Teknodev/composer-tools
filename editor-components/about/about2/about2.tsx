@@ -23,10 +23,10 @@ class About2 extends BaseAbout {
 
     this.addProp({
       type: "media",
-      displayer: "Image",
+      displayer: "Media",
       key: "cover-image",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -75,18 +75,16 @@ class About2 extends BaseAbout {
   render() {
     const closeIcon: string = this.getPropValue("closeIcon");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const cover = this.getPropValue("cover-image");
+    const rawVideo = this.getPropValue("videoUrl");
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}
-        style={{
-          backgroundImage: `url(${this.getPropValue("cover-image")?.url})`,
-        }}
-        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+        data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}
       >
-        {this.getPropValue("overlay") && this.getPropValue("cover-image")?.url && (
-          <div className={this.decorateCSS("overlay")} />
-        )}
+        {cover && <Base.Media value={cover} className={this.decorateCSS("cover-media")} />}
+        {this.getPropValue("overlay") && cover && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.Button onClick={() => {this.setComponentState("is_video_visible", true);}}
              buttonType={button.type} className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image")?.url && this.decorateCSS("with-image")}`}>
@@ -100,18 +98,9 @@ class About2 extends BaseAbout {
               isVisible={true}
             >
               <div className={this.decorateCSS("video-container")}>
-                <div
-                  className={this.decorateCSS("video")}
-                >
-                  <Base.Media
-                    value={this.getPropValue("videoUrl")}
-                    className={this.decorateCSS("player")}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                    }}
-                  />
-
-                </div>
+                  <div className={this.decorateCSS("video")} onClick={(event: React.MouseEvent) => event.stopPropagation()}>
+                    <Base.Media value={rawVideo} className={this.decorateCSS("player")} />
+                  </div>
               </div>
               {closeIcon && (
                 <div className={this.decorateCSS("close-icon-box")}>

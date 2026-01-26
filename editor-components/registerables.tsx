@@ -104,13 +104,17 @@ import HeroSection32 from "./hero-section/hero-section32/hero-section32";
 import HeroSection33 from "./hero-section/hero-section33/hero-section33";
 import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
+import HeroSection38 from "./hero-section/hero-section38/hero-section38";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
+<<<<<< BP-86
 import IntroSection10 from "./intro-section/intro-section10/intro-section10";
+import IntroSection3 from "./intro-section/intro-section3/intro-section3";
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
 import IntroSection6 from "./intro-section/intro-section6/intro-section6";
 import IntroSection7 from "./intro-section/intro-section7/intro-section7";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
+import IntroSection10 from "./intro-section/intro-section10/intro-section10";
 import IntroSection11 from "./intro-section/intro-section11/intro-section11";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
@@ -134,15 +138,23 @@ import FeatureComponent19 from "./feature/feature19/feature19";
 import FeatureComponent20 from "./feature/feature20/feature20";
 import FeatureComponent21 from "./feature/feature21/feature21";
 import FeatureComponent22 from "./feature/feature22/feature22";
+import FeatureComponent24 from "./feature/feature24/feature24";
 import FeatureComponent25 from "./feature/feature25/feature25";
 import FeatureComponent26 from "./feature/feature26/feature26";
 import FeatureComponent27 from "./feature/feature27/feature27";
+import FeatureComponent28 from "./feature/feature28/feature28";
+import FeatureComponent29 from "./feature/feature29/feature29";
 import FeatureComponent30 from "./feature/feature30/feature30";
 import FeatureComponent31 from "./feature/feature31/feature31";
 import FeatureComponent32 from "./feature/feature32/feature32";
+import FeatureComponent33 from "./feature/feature33/feature33";
 import FeatureComponent34 from "./feature/feature34/feature34";
 import FeatureComponent35 from "./feature/feature35/feature35";
 import FeatureComponent37 from "./feature/feature37/feature37";
+import FeatureComponent36 from "./feature/feature36/feature36";
+import FeatureComponent38 from "./feature/feature38/feature38";
+import FeatureComponent39 from "./feature/feature39/feature39";
+import FeatureComponent41 from "./feature/feature41/feature41";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -195,6 +207,7 @@ import StatsComponent9 from "./stats/stats9/stats9";
 import StatsComponent10 from "./stats/stats10/stats10";
 import StatsComponent11 from "./stats/stats11/stats11";
 import StatsComponent12 from "./stats/stats12/stats12";
+import StatsComponent13 from "./stats/stats13/stats13";
 import StatsComponent14 from "./stats/stats14/stats14";
 import StatsComponent15 from "./stats/stats15/stats15";
 import Form1 from "./contacts/form1/form1";
@@ -238,6 +251,7 @@ import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-galler
 import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
 import ImageGalleryCompanent9 from "./Image_gallery/image_gallery_9/image-gallery9";
 import ImageGalleryComponent10 from "./Image_gallery/image_gallery_10/image-gallery10";
+import ImageGalleryComponent11 from "./Image_gallery/image_gallery_11/image-gallery11";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -294,8 +308,10 @@ import About6 from "./about/about6/about6";
 import About7 from "./about/about7/about7";
 import About8 from "./about/about8/about8";
 import About9 from "./about/about9/about9";
+import About10 from "./about/about10/about10";
 import About11 from "./about/about11/about11";
 import About12 from "./about/about12/about12";
+import About13 from "./about/about13/about13";
 import About14 from "./about/about14/about14";
 import About15 from "./about/about15/about15";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
@@ -423,13 +439,16 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection33,
     HeroSection34,
     HeroSection35,
+    HeroSection38,
     IntroSection1,
     IntroSection2,
     IntroSection10,
+    IntroSection3,
     IntroSection4,
     IntroSection6,
     IntroSection7,
     IntroSection9,
+    IntroSection10,
     IntroSection11,
     NavbarComponent1,
     NavbarComponent2,
@@ -451,6 +470,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent8,
     ImageGalleryCompanent9,
     ImageGalleryComponent10,
+    ImageGalleryComponent11,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,
@@ -473,15 +493,23 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent20,
     FeatureComponent21,
     FeatureComponent22,
+    FeatureComponent24,
     FeatureComponent25,
     FeatureComponent26,
     FeatureComponent27,
+    FeatureComponent28,
+    FeatureComponent29,
     FeatureComponent30,
     FeatureComponent31,
     FeatureComponent32,
+    FeatureComponent33,
     FeatureComponent34,
     FeatureComponent35,
     FeatureComponent37,
+    FeatureComponent36,
+    FeatureComponent38,
+    FeatureComponent39,
+    FeatureComponent41,
     CallToAction1,
     CallToAction2,
     CallToAction3,
@@ -534,6 +562,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent10,
     StatsComponent11,
     StatsComponent12,
+    StatsComponent13,
     StatsComponent14,
     StatsComponent15,
     Form1,
@@ -600,8 +629,10 @@ function Registerables(composer: ComponentsRegistery) {
     About7,
     About8,
     About9,
+    About10,
     About11,
     About12,
+    About13,
     About14,
     About15,
     Portfolio1,

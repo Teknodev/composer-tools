@@ -1,0 +1,89 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  .background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    .background-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: var(--composer-overlay-color);
+      pointer-events: none;
+    }
+  }
+
+  &.has-media {
+    .content {
+      min-height: 80vh !important;
+
+      .vertical-content {
+        .subtitle {
+          padding: 0 !important;
+          background: transparent !important;
+        }
+
+        .subtitle,
+        .title,
+        .description,
+        .label {
+          color: var(--color-white) !important;
+        }
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+
+    .vertical-content {
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .icon {
+            display: flex;
+          }
+
+          .button-text {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+}
