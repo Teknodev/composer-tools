@@ -3,9 +3,6 @@ as *;
 
 .container {
   position: relative;
-  background-color: color-mix(in srgb,
-      var(--composer-html-background),
-      var(--composer-font-color-primary) 5%);
 
   .background-media {
     position: absolute;

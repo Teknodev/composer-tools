@@ -285,7 +285,7 @@ class List1 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3"]
       }
     });
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Config"));
 
     this.setComponentState("active-index", 1);
   }
@@ -308,8 +308,7 @@ class List1 extends BaseList {
       ? `${this.decorateCSS("dots")} ${this.decorateCSS("dots-colored")}`
       : this.decorateCSS("dots");
     const settings = {
-      ...this.transformSliderValues(this.getPropValue("settings") || []),
-      dots: true,
+      ...this.transformSliderValues(this.getPropValue("slider-settings") || []),
       infinite: sliderItems.length > 1,
       slidesToShow: Math.min(3, sliderItems.length),
       initialSlide: 1,

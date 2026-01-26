@@ -39,6 +39,27 @@ as *;
         align-items: stretch;
       }
 
+      :global(.slick-prev),
+      :global(.slick-next) {
+        width: 40px;
+        height: 40px;
+        z-index: 100;
+
+        &:before {
+          color: var(--composer-font-color-primary) !important;
+          opacity: 1;
+          font-size: 30px;
+        }
+      }
+
+      :global(.slick-prev) {
+        left: 0;
+      }
+
+      :global(.slick-next) {
+        right: 0;
+      }
+
       :global(.slick-slide) {
         flex-direction: column;
       }
@@ -346,7 +367,7 @@ as *;
       }
 
       .dots {
-        bottom:-10px !important;
+        bottom: -10px !important;
 
         .dot-button {
           width: var(--composer-gap-sm) !important;
