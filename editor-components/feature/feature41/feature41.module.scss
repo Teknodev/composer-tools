@@ -1,0 +1,128 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .card-container-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+
+            .text-content {
+
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
+                }
+            }
+
+            .card-container {
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                border-radius: var(--composer-border-radius-md);
+                overflow: hidden;
+                gap: 0;
+
+                .card-wrapper {
+                    display: flex;
+                    gap: var(--composer-gap-md);
+                    flex-direction: column;
+                    padding: var(--composer-gap-lg);
+                    border-right: 1px solid var(--composer-html-background);
+                    height: 100%;
+                    width: 100%;
+
+                    &.last-in-row {
+                        border-right: none;
+                    }
+
+                    .card-icon {
+                        font-size: 3.5rem;
+                        color: var(--composer-primary-color);
+                        display: flex;
+
+                        &.is-image {
+                            width: var(--composer-gap-lg);
+                            height: var(--composer-gap-lg);
+                        }
+                    }
+
+                    .card-content {
+                        .card-title {
+                            color: var(--composer-font-color-primary);
+                            text-align: left;
+                        }
+
+                        .card-description {
+                            color: var(--composer-tertiary-color);
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: var(--composer-gap-sm);
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            flex-direction: column;
+
+            .card-container-section {
+                .card-container {
+                    .card-wrapper {
+                        &.last-in-row {
+                            border-right: 1px solid var(--composer-tertiary-color);
+                        }
+
+                        &:nth-child(3n) {
+                            border-right: none;
+                        }
+
+                        .card-icon {
+                            font-size: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+
+            .card-container-section {
+                .card-container {
+                    .card-wrapper {
+                        border-right: none;
+
+                        .card-icon {
+                            font-size: 2.5rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
