@@ -181,6 +181,12 @@
         }
 
         .button {
+          width: 170px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
 
           .icon,
           .text {
@@ -239,11 +245,14 @@
           padding: var(--composer-gap-md) var(--composer-gap-lg);
 
           .buttons-container {
-            .image-container {
-              width: 152px;
-              height: 45px;
 
-
+            .image-container,
+            .button {
+              width: 170px !important;
+              height: 50px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
             }
           }
         }
@@ -266,9 +275,13 @@
           .buttons-container {
             flex-direction: column;
 
-            .image-container {
-              width: 150px;
-              height: 45px;
+            .image-container,
+            .button {
+              width: 170px !important;
+              height: 50px !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
             }
           }
         }

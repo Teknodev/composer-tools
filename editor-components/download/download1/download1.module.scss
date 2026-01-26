@@ -78,14 +78,21 @@
         .image-container {
           .image {
             content: "";
-            width: 200px;
-            height: 70px;
+            width: 170px;
+            height: 50px;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
         }
 
         .button {
+          width: 170px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+
           .button-text {
             content: "";
           }
@@ -107,7 +114,8 @@
 
         .button-wrapper {
           .button {
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
+            width: 170px;
+            height: 50px;
 
             .button-text {
               content: "";
@@ -133,11 +141,12 @@
       }
 
       .box {
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
+        flex-wrap: wrap;
 
         .button-wrapper {
-          width: 100%;
+          width: auto;
           display: flex;
           justify-content: center;
         }

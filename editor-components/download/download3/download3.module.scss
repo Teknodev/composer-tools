@@ -84,11 +84,11 @@
             }
 
             .button-element {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
+              width: 100% !important;
+              height: 100% !important;
+              display: flex !important;
+              justify-content: center !important;
+              align-items: center !important;
 
               .button-text {
                 content: "";
@@ -145,11 +145,11 @@
             }
 
             .button-element {
-              width: 100%;
-              height: 100%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
+              width: 100% !important;
+              height: 100% !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
 
               .button-text,
               .button-icon {
@@ -187,6 +187,8 @@
           width: 100%;
           gap: var(--composer-gap-sm);
           padding-bottom: 80px;
+          padding-left: var(--composer-gap-lg);
+          padding-right: var(--composer-gap-lg);
 
           .title,
           .description {
@@ -205,19 +207,16 @@
             margin-top: 20px;
 
             .button {
-              width: 150px;
-              min-width: 150px;
-              max-width: 150px;
-              height: 40px;
-              min-height: 40px;
-              max-height: 40px;
+              width: 170px !important;
+              height: 50px !important;
               margin: 0;
             }
           }
         }
 
         .group-container-center {
-          padding-bottom: 80px !important;
+          padding-left: 40px !important;
+          padding-right: 40px !important;
 
           .button-group {
             display: flex;
@@ -226,18 +225,13 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            padding-bottom: 80px !important;
             padding-left: var(--composer-gap-lg) !important;
             padding-right: var(--composer-gap-lg) !important;
 
 
             .button {
-              width: 150px;
-              min-width: 150px;
-              max-width: 150px;
-              height: 40px;
-              min-height: 40px;
-              max-height: 40px;
+              width: 170px !important;
+              height: 50px !important;
               margin: 0;
             }
           }
@@ -304,17 +298,18 @@
             align-items: center;
 
             .button {
-              width: 140px;
-              min-width: 140px;
-              max-width: 140px;
-              height: 35px;
-              min-height: 35px;
-              max-height: 35px;
+              width: 170px !important;
+              height: 50px !important;
               margin: 0px;
 
+              .button-element {
+                width: 170px !important;
+                height: 50px !important;
+              }
+
               .button-logo {
-                width: 100%;
-                height: 100%;
+                width: 100% !important;
+                height: 100% !important;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-sm);
               }

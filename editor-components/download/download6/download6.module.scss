@@ -21,7 +21,7 @@
         gap: var(--composer-gap-md);
 
         .button-image {
-          width: 200px;
+          width: 170px;
           height: 50px;
           cursor: pointer;
           border-radius: var(--composer-border-radius-sm);
@@ -29,7 +29,12 @@
         }
 
         .button-element {
+          width: 170px;
           height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
 
           .icon,
           .button-text {
@@ -96,7 +101,7 @@
       gap: var(--composer-gap-lg);
 
       .left-column {
-        width: 100%;
+        width: 100% !important;
       }
 
       .right-column {
