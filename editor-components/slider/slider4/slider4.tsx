@@ -27,7 +27,7 @@ class Slider4 extends BaseSlider {
       displayer: "Title",
       value: "Our dedication to our customer",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", null, null, null));
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
 
     this.addProp({
       type: "boolean",
@@ -112,7 +112,7 @@ class Slider4 extends BaseSlider {
               displayer: "Description",
               value: "We prioritize our customers' experience, ensuring that every interaction with our platform is not only seamless and intuitive but also consistently exceeds expectations.",
             },
-            INPUTS.BUTTON("button", "Button", "Detail", null, null, null),
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
@@ -144,7 +144,7 @@ class Slider4 extends BaseSlider {
               displayer: "Description",
               value: "Our sales and marketing team Works together to provide you with a comprehensive solution that is tailored to your needs.",
             },
-            INPUTS.BUTTON("button", "Button", "Detail", null, null, null),
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
@@ -182,7 +182,7 @@ class Slider4 extends BaseSlider {
               displayer: "Description",
               value: "Our focus on ratings and reviews onsures that you have Access to the most comprehensive and up-to-date information available.",
             },
-            INPUTS.BUTTON("button", "Button", "Detail", null, null, null),
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
@@ -214,7 +214,7 @@ class Slider4 extends BaseSlider {
               displayer: "Description",
               value: "We are committed to fostering innovation and driving growth, providing you with cutting-edge tools and solutions to stay ahead in your industry.",
             },
-            INPUTS.BUTTON("button", "Button", "Detail", null, null, null),
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
@@ -246,7 +246,7 @@ class Slider4 extends BaseSlider {
               displayer: "Description",
               value: "Your trust is our top priority. We ensure reliability in every aspect of our platform, delivering consistent performance and support so you can focus on what matters most.",
             },
-            INPUTS.BUTTON("button", "Button", "Detail", null, null, null),
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
@@ -278,12 +278,23 @@ class Slider4 extends BaseSlider {
               displayer: "Description",
               value: "Our platform provides data-driven insights and tools to help you make confident decisions, optimize performance, and unlock your potential.",
             },
-            INPUTS.BUTTON("button", "Button", "Detail", null, null, null),
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
       ],
     });
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+      dots: true,
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
 
     this.setComponentState("slider-ref", React.createRef());
   }
@@ -297,12 +308,23 @@ class Slider4 extends BaseSlider {
     const carouselClass = cardNumber === 1 ? "carousel--singleCard" : "carousel--multipleCards";
 
     const settings = {
-      infinite: true,
-      speed: 500,
-      autoplaySpeed: 3000,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      ...this.transformSliderValues(this.getPropValue("settings")),
+      ...this.transformSliderValues(this.getPropValue("settings") || []),
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     };
 
     const title = this.getPropValue("title");
@@ -389,13 +411,15 @@ class Slider4 extends BaseSlider {
                         <Base.Media value={item.media} className={this.decorateCSS("play-icon")} />
                       )}
                     </Base.Row>
-                    {/* item.subtitle removed as requested */}
                     <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
                     <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>
                     {item.button && this.castToString(item.button.text) && (
                       <div className={this.decorateCSS("button")}>
                         <Base.Button buttonType={item.button.type}>
-                          {item.button.text}
+                          {item.button.text && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}
+                          {item.button.icon && (
+                            <Base.Media value={item.button.icon as any} className={this.decorateCSS("button-icon")} />
+                          )}
                         </Base.Button>
                       </div>
                     )}
@@ -408,7 +432,10 @@ class Slider4 extends BaseSlider {
           {button && this.castToString(button.text) && (
             <div className={`${this.decorateCSS("global-button")} ${contentAlignment === "center" && this.decorateCSS("center")}`}>
               <Base.Button buttonType={button.type}>
-                {button.text}
+                {button.text && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                {button.icon && (
+                  <Base.Media value={button.icon as any} className={this.decorateCSS("button-icon")} />
+                )}
               </Base.Button>
             </div>
           )}

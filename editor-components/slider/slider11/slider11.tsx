@@ -86,6 +86,9 @@ class Slider11 extends BaseSlider {
               type: "media",
               key: "media",
               displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
@@ -115,6 +118,7 @@ class Slider11 extends BaseSlider {
                 name: "GoArrowRight",
               },
             },
+
           ],
         },
         {
@@ -139,6 +143,9 @@ class Slider11 extends BaseSlider {
               type: "media",
               key: "media",
               displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
@@ -168,6 +175,7 @@ class Slider11 extends BaseSlider {
                 name: "GoArrowRight",
               },
             },
+
           ],
         },
         {
@@ -192,6 +200,9 @@ class Slider11 extends BaseSlider {
               type: "media",
               key: "media",
               displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
@@ -221,6 +232,7 @@ class Slider11 extends BaseSlider {
                 name: "GoArrowRight",
               },
             },
+
           ],
         },
       ] as any,
@@ -288,7 +300,6 @@ class Slider11 extends BaseSlider {
     const buttons = this.castToObject<Button[]>("buttons");
     const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
     const active = this.getComponentState("activeTab") as number;
-    const alignmentValue = Base.getContentAlignment();
     const isOverlayActive = this.getPropValue("overlay");
 
     const rawSettings = this.getPropValue("slider-settings");
@@ -300,6 +311,10 @@ class Slider11 extends BaseSlider {
 
     const titleExist = !!title;
     const descriptionExist = !!description;
+
+    const activeItem = sliderItems[active];
+    const activeItemHasMedia = !!(activeItem?.media as any)?.url;
+    const noMediaAtAll = sliderItems.every(item => !(item.media as any)?.url);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -342,7 +357,7 @@ class Slider11 extends BaseSlider {
             </Base.VerticalContent>
           )}
 
-          <div className={this.decorateCSS("tabs-layout")}>
+          <div className={`${this.decorateCSS("tabs-layout")} ${activeItemHasMedia ? "" : this.decorateCSS("no-media")} ${noMediaAtAll ? this.decorateCSS("all-no-media") : ""}`}>
             {sliderItems.length > 1 && showArrows && (
               <>
                 <div
@@ -356,12 +371,13 @@ class Slider11 extends BaseSlider {
               </>
             )}
 
-            <div className={this.decorateCSS("tabs-left")}>
+
+            <div className={`${this.decorateCSS("tabs-left")} ${(!activeItemHasMedia || noMediaAtAll) ? this.decorateCSS("full-width") : ""}`}>
               {sliderItems.map((item: ISliderItem, index: number) => {
                 const itemTitleExist = !!item.title;
                 const itemDescExist = !!item.description;
                 const linkTextExist = !!item.linkText;
-                const iconExist = !!item.icon;
+                const iconValue = item.icon;
 
                 return (
                   <div
@@ -370,20 +386,22 @@ class Slider11 extends BaseSlider {
                       }`}
                     onClick={() => this.setActiveTab(index)}
                   >
-                    <div className={this.decorateCSS("tab-background")}>
-                      <Base.Media
-                        value={item.media}
-                        className={this.decorateCSS("tab-bg-media")}
-                      />
-                      {isOverlayActive && (
-                        <div className={this.decorateCSS("overlay")} />
-                      )}
-                    </div>
+                    {(item.media as any)?.url && (
+                      <div className={this.decorateCSS("tab-background")}>
+                        <Base.Media
+                          value={item.media}
+                          className={this.decorateCSS("tab-bg-media")}
+                        />
+                        {isOverlayActive && (
+                          <div className={this.decorateCSS("overlay")} />
+                        )}
+                      </div>
+                    )}
 
                     {itemTitleExist && (
-                      <Base.H3 className={this.decorateCSS("tab-title")}>
+                      <Base.H4 className={this.decorateCSS("tab-title")}>
                         {item.title}
-                      </Base.H3>
+                      </Base.H4>
                     )}
                     {itemDescExist && (
                       <Base.P className={this.decorateCSS("tab-desc")}>
@@ -393,17 +411,14 @@ class Slider11 extends BaseSlider {
                     {linkTextExist && (
                       <ComposerLink path={item.path}>
                         <div
-                          className={`${this.decorateCSS("link-wrapper")} ${alignmentValue === "center"
-                            ? this.decorateCSS("center")
-                            : this.decorateCSS("left")
-                            }`}
+                          className={`${this.decorateCSS("link-wrapper")} ${this.decorateCSS("left")}`}
                         >
                           <Base.P className={this.decorateCSS("tab-link")}>
                             {item.linkText}
                           </Base.P>
-                          {iconExist && (
+                          {iconValue && (
                             <Base.Media
-                              value={item.icon}
+                              value={iconValue}
                               className={this.decorateCSS("icon")}
                             />
                           )}
@@ -432,23 +447,25 @@ class Slider11 extends BaseSlider {
               })}
             </div>
 
-            <div className={this.decorateCSS("tabs-right")}>
-              {sliderItems.map((item: ISliderItem, index: number) => (
-                <div
-                  key={index}
-                  className={`${this.decorateCSS("tab-image-wrapper")} 
-                    ${active === index ? this.decorateCSS("visible") : ""}`}
-                >
-                  <Base.Media
-                    value={item.media}
-                    className={this.decorateCSS("tab-image")}
-                  />
-                  {isOverlayActive && (
-                    <div className={this.decorateCSS("overlay")} />
-                  )}
-                </div>
-              ))}
-            </div>
+            {activeItemHasMedia && !noMediaAtAll && (
+              <div className={this.decorateCSS("tabs-right")}>
+                {sliderItems.map((item: ISliderItem, index: number) => (
+                  <div
+                    key={index}
+                    className={`${this.decorateCSS("tab-image-wrapper")} 
+                      ${active === index ? this.decorateCSS("visible") : ""}`}
+                  >
+                    <Base.Media
+                      value={item.media}
+                      className={this.decorateCSS("tab-image")}
+                    />
+                    {isOverlayActive && (
+                      <div className={this.decorateCSS("overlay")} />
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {sliderItems.length > 1 && showDots && (

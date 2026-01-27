@@ -175,17 +175,29 @@ class Slider7 extends BaseSlider {
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
-      value: "BsArrowLeft"
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowLeft",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "nextArrow",
       displayer: "Next Arrow Icon",
-      value: "BsArrowRight"
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowRight",
+      },
     });
 
     this.addProp({
@@ -195,7 +207,24 @@ class Slider7 extends BaseSlider {
       value: false,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp({
+      type: "boolean",
+      key: "hoverAnimation",
+      displayer: "Hover Animation",
+      value: true,
+    });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+      arrows: true,
+      dots: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
 
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
@@ -212,6 +241,7 @@ class Slider7 extends BaseSlider {
     );
     const isCardExist = items.length > 0;
     const isOverlayActive = this.getPropValue("overlay");
+    const isHoverActive = this.getPropValue("hoverAnimation");
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
     const sliderRef = this.getComponentState("slider-ref");
@@ -264,29 +294,17 @@ class Slider7 extends BaseSlider {
       ${items.length === 1 && this.decorateCSS("one-card")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
 
-          {previousArrow && sliderSettings.arrows &&
-            <div className={this.decorateCSS("prevArrow")}>
-              <Base.Icon
-                name={this.getPropValue("previousArrow")}
-                propsIcon={{
-                  onClick: () => {
-                    sliderRef.current.slickPrev();
-                  },
-                }}
-              />
-            </div>}
+          {previousArrow && sliderSettings.arrows && (
+            <div className={this.decorateCSS("prevArrow")} onClick={() => sliderRef.current.slickPrev()}>
+              <Base.Media value={previousArrow} className={this.decorateCSS("arrow-icon")} />
+            </div>
+          )}
 
-          {nextArrow && sliderSettings.arrows &&
-            <div className={this.decorateCSS("nextArrow")}>
-              <Base.Icon
-                name={this.getPropValue("nextArrow")}
-                propsIcon={{
-                  onClick: () => {
-                    sliderRef.current.slickNext();
-                  },
-                }}
-              />
-            </div>}
+          {nextArrow && sliderSettings.arrows && (
+            <div className={this.decorateCSS("nextArrow")} onClick={() => sliderRef.current.slickNext()}>
+              <Base.Media value={nextArrow} className={this.decorateCSS("arrow-icon")} />
+            </div>
+          )}
 
           {isCardExist && (
             <div className={this.decorateCSS("carousel-wrapper")}>
@@ -298,7 +316,7 @@ class Slider7 extends BaseSlider {
                 {items.map((item: SliderItem, index: number) => (
                   <div
                     key={index}
-                    className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")
+                    className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")} ${isHoverActive && this.decorateCSS("hover-active")
                       }`}
                   >
                     <div className={this.decorateCSS("imgContainer")}>

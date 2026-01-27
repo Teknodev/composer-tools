@@ -58,15 +58,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
               },
             },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              additionalParams: {
-                maxElementCount: 2,
-              },
-              value: [INPUTS.BUTTON("buttons", "Button", "VIEW PROJECT", "", null, null, "White")],
-            },
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "", null, "White"),
           ],
         },
         {
@@ -104,15 +96,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
               },
             },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              additionalParams: {
-                maxElementCount: 2,
-              },
-              value: [INPUTS.BUTTON("buttons", "Button", "VIEW PROJECT", "", null, null, "White")],
-            },
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "", null, "White"),
           ],
         },
         {
@@ -150,15 +134,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
               },
             },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              additionalParams: {
-                maxElementCount: 2,
-              },
-              value: [INPUTS.BUTTON("buttons", "Button", "VIEW PROJECT", "", null, null, "White")],
-            },
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "", null, "White"),
           ],
         },
       ],
@@ -218,7 +194,17 @@ class Slider8 extends BaseSlider {
       value: true,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+      dots: true,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
 
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("activeSlide", 0);
@@ -272,10 +258,8 @@ class Slider8 extends BaseSlider {
             {cards?.length && cards?.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                 {cards.map((item: any, index: number) => {
-                  const buttons = item.buttons;
-
                   const titleExists = item.title;
-                  const render = titleExists || buttons?.length > 0 || item.media;
+                  const render = titleExists || item.button?.text || item.media;
                   if (!render) return null;
                   return (
                     <div className={this.decorateCSS("slider-inner-div")} key={`sld-8-${index}`}>
@@ -317,23 +301,23 @@ class Slider8 extends BaseSlider {
                             </div>
                           )}
 
-                          {buttons?.length > 0 && (
+                          {item.button?.text && (
                             <div className={`${this.decorateCSS(anyImagesExist ? "buttons" : "buttons2")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}>
-                              {buttons.map((buttonItem: any, buttonIndex: number) => {
-                                return (
-                                  buttonItem.text && (
-                                    <ComposerLink key={`dw-7-btn-left ${buttonIndex}`} path={buttonItem.url}>
-                                      <Base.Button
-                                        buttonType={buttonItem.type}
-                                        className={`${item.backgroundMedia && item.media && this.decorateCSS("button")}
-                                        ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}
-                                      >
-                                        {buttonItem.text}
-                                      </Base.Button>
-                                    </ComposerLink>
-                                  )
-                                );
-                              })}
+                              <ComposerLink path={item.button.url}>
+                                <Base.Button
+                                  buttonType={item.button.type}
+                                  className={`${this.decorateCSS("button")}
+                                  ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("animateButtons") : ""}`}
+                                >
+                                  <span className={this.decorateCSS("button-text")}>{item.button.text}</span>
+                                  {item.button.icon && (item.button.icon as any).name && (
+                                    <Base.Media
+                                      value={item.button.icon as any}
+                                      className={this.decorateCSS("button-icon")}
+                                    />
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
                             </div>
                           )}
                           {(leftNavButton || rightNavButton) && sliderSettings.arrows && (

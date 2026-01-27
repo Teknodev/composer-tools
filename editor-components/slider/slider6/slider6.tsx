@@ -7,12 +7,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
+  card_subtitle: React.JSX.Element;
+  card_title: React.JSX.Element;
   vertText: React.JSX.Element;
-  image_subtitle: React.JSX.Element;
-  image_title: React.JSX.Element;
-  image_description: React.JSX.Element;
+  card_description: React.JSX.Element;
   media: any;
   button: INPUTS.CastedButton;
   path: string;
@@ -46,20 +44,20 @@ class Slider6 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
+              key: "card_subtitle",
+              displayer: "Card Subtitle",
               value: "LIFESTYLE",
             },
             {
               type: "string",
-              key: "image_title",
-              displayer: "Image Title",
+              key: "card_title",
+              displayer: "Card Title",
               value: "Extreme Athleticism Is the New Midlife Crisis",
             },
             {
               type: "string",
-              key: "image_description",
-              displayer: "Image Description",
+              key: "card_description",
+              displayer: "Card Description",
               value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
@@ -80,7 +78,7 @@ class Slider6 extends BaseSlider {
               displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
           ],
         },
         {
@@ -90,20 +88,20 @@ class Slider6 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
+              key: "card_subtitle",
+              displayer: "Card Subtitle",
               value: "TRAVEL",
             },
             {
               type: "string",
-              key: "image_title",
-              displayer: "Image Title",
+              key: "card_title",
+              displayer: "Card Title",
               value: "The Day I Lost My Child in Charles de Gaulle Airport",
             },
             {
               type: "string",
-              key: "image_description",
-              displayer: "Image Description",
+              key: "card_description",
+              displayer: "Card Description",
               value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
@@ -125,7 +123,7 @@ class Slider6 extends BaseSlider {
               value: "Dsn Grid - March , 17th 2020",
             },
 
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
           ],
         },
         {
@@ -135,20 +133,20 @@ class Slider6 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
+              key: "card_subtitle",
+              displayer: "Card Subtitle",
               value: "HEALTH",
             },
             {
               type: "string",
-              key: "image_title",
-              displayer: "Image Title",
+              key: "card_title",
+              displayer: "Card Title",
               value: "Relationships Aren’t Easy, But They’re Worth It",
             },
             {
               type: "string",
-              key: "image_description",
-              displayer: "Image Description",
+              key: "card_description",
+              displayer: "Card Description",
               value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
@@ -169,7 +167,7 @@ class Slider6 extends BaseSlider {
               displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
           ],
         },
         {
@@ -179,20 +177,20 @@ class Slider6 extends BaseSlider {
           value: [
             {
               type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
+              key: "card_subtitle",
+              displayer: "Card Subtitle",
               value: "LIFESTYLE",
             },
             {
               type: "string",
-              key: "image_title",
-              displayer: "Image Title",
+              key: "card_title",
+              displayer: "Card Title",
               value: "Extreme Athleticism Is the New Midlife Crisis",
             },
             {
               type: "string",
-              key: "image_description",
-              displayer: "Image Description",
+              key: "card_description",
+              displayer: "Card Description",
               value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
@@ -214,7 +212,7 @@ class Slider6 extends BaseSlider {
               value: "Dsn Grid - March , 17th 2020",
             },
 
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
           ],
         },
       ],
@@ -227,7 +225,17 @@ class Slider6 extends BaseSlider {
       value: false,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+      dots: true,
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: true,
+    }));
 
     this.setComponentState("prevSlide", this.castToObject<SliderItem[]>("header").length - 1);
     this.setComponentState("activeSlide", 0);
@@ -344,15 +352,21 @@ class Slider6 extends BaseSlider {
                         </div>
                       )}
 
-                      {(this.castToString(item.image_subtitle) || this.castToString(item.image_title) || this.castToString(item.image_description) || this.castToString(item.button.text)) && (
+                      {(this.castToString(item.card_subtitle) || this.castToString(item.card_title) || this.castToString(item.card_description) || this.castToString(item.button.text)) && (
                         <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
-                          {this.castToString(item.image_subtitle) && <Base.P className={this.decorateCSS("first-header")}>{item.image_subtitle}</Base.P>}
-                          {this.castToString(item.image_title) && <Base.P className={this.decorateCSS("item-title")}>{item.image_title}</Base.P>}
-                          {this.castToString(item.image_description) && <Base.P className={this.decorateCSS("item-description")}>{item.image_description}</Base.P>}
+                          {this.castToString(item.card_subtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.card_subtitle}</Base.P>}
+                          {this.castToString(item.card_title) && <Base.P className={this.decorateCSS("card-title")}>{item.card_title}</Base.P>}
+                          {this.castToString(item.card_description) && <Base.P className={this.decorateCSS("card-description")}>{item.card_description}</Base.P>}
                           {this.castToString(item.button.text) && (
                             <ComposerLink key={index} path={item.button.url}>
                               <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("button")}>
-                                {item.button.text}
+                                <span className={this.decorateCSS("button-text")}>{item.button.text}</span>
+                                {item.button.icon && (item.button.icon as any).name && (
+                                  <Base.Media
+                                    value={item.button.icon as any}
+                                    className={this.decorateCSS("icon")}
+                                  />
+                                )}
                               </Base.Button>
                             </ComposerLink>
                           )}

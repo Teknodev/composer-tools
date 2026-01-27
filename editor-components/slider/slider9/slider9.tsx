@@ -4,10 +4,39 @@ import styles from "./slider9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import { getCurrencyInfo } from "../../../utils/currency";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type SliderItem = {
   media: TypeMediaInputValue;
   videoMedia: TypeMediaInputValue;
+};
+
+type WishlistItem = {
+  wishlistIcon: TypeMediaInputValue;
+  wishlistText: React.JSX.Element;
+  wishlistUrl: string;
+};
+
+type ReviewItem = {
+  reviewText: React.JSX.Element;
+  reviewCount: number;
+  starIcon: TypeMediaInputValue;
+  starIconBorder: TypeMediaInputValue;
+  point: number;
+};
+
+type CategoryOrTag = {
+  title: React.JSX.Element;
+  items: { category?: React.JSX.Element; tag?: React.JSX.Element }[];
+};
+
+type QuantitySection = {
+  quantityText: React.JSX.Element;
+  leftArrow: TypeMediaInputValue;
+  rightArrow: TypeMediaInputValue;
+  button: INPUTS.CastedButton;
+  wishlist: WishlistItem;
 };
 
 class Slider9 extends BaseSlider {
@@ -29,10 +58,208 @@ class Slider9 extends BaseSlider {
     });
 
     this.addProp({
-      type: "string",
+      type: "currency",
       key: "price",
       displayer: "Price",
-      value: "$100",
+      value: {
+        value: "100",
+        currency: "USD",
+      },
+    });
+
+    this.addProp({
+      type: "object",
+      key: "reviewItem",
+      displayer: "Review Section",
+      value: [
+        {
+          type: "string",
+          key: "reviewText",
+          displayer: "Text",
+          value: "REVIEWS",
+        },
+        {
+          type: "number",
+          key: "reviewCount",
+          displayer: "Count",
+          value: 12,
+        },
+        {
+          type: "number",
+          key: "point",
+          displayer: "Point",
+          value: 5,
+          max: 5,
+        },
+        {
+          type: "media",
+          key: "starIcon",
+          displayer: "Rated Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdOutlineStar",
+          } as any,
+        },
+        {
+          type: "media",
+          key: "starIconBorder",
+          displayer: "Unrated Icon",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "MdOutlineStarBorder",
+          } as any,
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "quantitySection",
+      displayer: "Quantity Section",
+      value: [
+        {
+          type: "string",
+          key: "quantityText",
+          displayer: "Placeholder Text",
+          value: "Quantity",
+        },
+        {
+          type: "media",
+          key: "leftArrow",
+          displayer: "Left Arrow",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropleft",
+          } as any,
+        },
+        {
+          type: "media",
+          key: "rightArrow",
+          displayer: "Right Arrow",
+          additionalParams: {
+            availableTypes: ["icon"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropright",
+          } as any,
+        },
+        INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Black"),
+        {
+          type: "object",
+          key: "wishlist",
+          displayer: "Wishlist",
+          value: [
+            {
+              type: "media",
+              key: "wishlistIcon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaHeart",
+              } as any,
+            },
+            {
+              type: "string",
+              key: "wishlistText",
+              displayer: "Text",
+              value: "ADD TO WISHLIST",
+            },
+            {
+              type: "page",
+              key: "wishlistUrl",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "categoriesAndTags",
+      displayer: "Information",
+      value: [
+        {
+          type: "object",
+          key: "section",
+          displayer: "section",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Label",
+              value: "SKU: ",
+            },
+            {
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "category",
+                      displayer: "Text",
+                      value: "008",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "section",
+          displayer: "section",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Label",
+              value: "Categories: ",
+            },
+            {
+              type: "array",
+              key: "items",
+              displayer: "Items",
+              value: [
+                {
+                  type: "object",
+                  key: "item",
+                  displayer: "Item",
+                  value: [
+                    {
+                      type: "string",
+                      key: "category",
+                      displayer: "Text",
+                      value: "Decoration",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     });
 
     this.addProp({
@@ -246,6 +473,7 @@ class Slider9 extends BaseSlider {
       value: false,
     });
 
+    this.setComponentState("count", 0);
     this.setComponentState("vertical-slider-ref", React.createRef());
     this.setComponentState("horizontal-slider-ref", React.createRef());
     this.setComponentState("currentSlideIndex", 0);
@@ -254,6 +482,12 @@ class Slider9 extends BaseSlider {
     this.setComponentState("videoUrl", null);
     this.setComponentState("hoveredIndex", null);
     this.setComponentState("originalSlideIndex", null);
+    this.setComponentState("isDragging", false);
+    this.setComponentState("panX", 0);
+    this.setComponentState("panY", 0);
+    this.setComponentState("startX", 0);
+    this.setComponentState("startY", 0);
+    this.setComponentState("isZoomed", false);
   }
 
   static getName(): string {
@@ -296,24 +530,45 @@ class Slider9 extends BaseSlider {
     this.setComponentState("videoUrl", null);
   };
 
-  handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const container = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - container.left) / container.width) * 100;
-    const y = ((e.clientY - container.top) / container.height) * 100;
+  handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    this.setComponentState("isDragging", true);
+    this.setComponentState("startX", e.clientX - this.getComponentState("panX"));
+    this.setComponentState("startY", e.clientY - this.getComponentState("panY"));
+  };
 
-    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("slider-img")}`) as HTMLElement;
-    if (imgElement) {
-      imgElement.style.transformOrigin = `${x}% ${y}%`;
-      imgElement.style.transform = "scale(1.5)";
+  handleMouseMovePan = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (this.getComponentState("isDragging")) {
+      const newPanX = e.clientX - this.getComponentState("startX");
+      const newPanY = e.clientY - this.getComponentState("startY");
+
+      const container = e.currentTarget.getBoundingClientRect();
+      const scale = 1.5;
+
+      const maxX = (container.width * (scale - 1)) / 2;
+      const maxY = (container.height * (scale - 1)) / 2;
+
+      const constrainedX = Math.max(-maxX, Math.min(maxX, newPanX));
+      const constrainedY = Math.max(-maxY, Math.min(maxY, newPanY));
+
+      this.setComponentState("panX", constrainedX);
+      this.setComponentState("panY", constrainedY);
     }
   };
 
-  handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    const imgElement = e.currentTarget.querySelector(`.${this.decorateCSS("img")}`) as HTMLElement;
-    if (imgElement) {
-      imgElement.style.transform = "scale(1)";
-      imgElement.style.transformOrigin = "center";
-    }
+  handleMouseUp = () => {
+    this.setComponentState("isDragging", false);
+  };
+
+  handleMouseEnter = () => {
+    this.setComponentState("isZoomed", true);
+  };
+
+  handleMouseLeave = () => {
+    this.setComponentState("isZoomed", false);
+    this.setComponentState("isDragging", false);
+    this.setComponentState("panX", 0);
+    this.setComponentState("panY", 0);
   };
 
   fullscreenPrevImage = () => {
@@ -340,10 +595,28 @@ class Slider9 extends BaseSlider {
     return sliderItems[originalIndex];
   }
 
+  handleLeftClick = () => {
+    let count = this.getComponentState("count");
+    if (count > 0) {
+      this.setComponentState("count", count - 1);
+    }
+  };
+
+  handleRightClick = () => {
+    let count = this.getComponentState("count");
+    this.setComponentState("count", count + 1);
+  };
+
   render() {
     const title = this.getPropValue("title");
+    const titleExist = this.castToString(title);
     const price = this.getPropValue("price");
     const description = this.getPropValue("description");
+    const descriptionExist = this.castToString(description);
+    const reviewItem = this.castToObject<ReviewItem>("reviewItem");
+    const quantitySection = this.castToObject<QuantitySection>("quantitySection");
+    const categoriesAndTags = this.castToObject<CategoryOrTag[]>("categoriesAndTags");
+
     const verticalNextArrow = this.getPropValue("verticalNextArrow");
     const verticalPreviousArrow = this.getPropValue("verticalPreviousArrow");
     const horizontalPreviousArrow = this.getPropValue("horizontalPreviousArrow");
@@ -365,8 +638,32 @@ class Slider9 extends BaseSlider {
     const verticalSliderRef = this.getComponentState("vertical-slider-ref");
     const horizontalSliderRef = this.getComponentState("horizontal-slider-ref");
 
+    const isDragging = this.getComponentState("isDragging");
+    const panX = this.getComponentState("panX");
+    const panY = this.getComponentState("panY");
+    const isZoomed = this.getComponentState("isZoomed");
     const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
-    const RightContentExist = this.castToString(title) || this.castToString(price) || this.castToString(description);
+
+    const buttonText = this.getPropValue("text", { parent_object: quantitySection.button as any });
+    const buttonType = this.getPropValue("type", { parent_object: quantitySection.button as any });
+    const buttonUrl = this.getPropValue("url", { parent_object: quantitySection.button as any });
+
+    const RightContentExist =
+      titleExist ||
+      price.value ||
+      reviewItem.point ||
+      reviewItem.reviewCount ||
+      this.castToString(reviewItem.reviewText) ||
+      reviewItem.starIcon ||
+      reviewItem.starIconBorder ||
+      descriptionExist ||
+      this.castToString(quantitySection.quantityText) ||
+      quantitySection.leftArrow ||
+      quantitySection.rightArrow ||
+      this.castToString(buttonText) ||
+      this.castToString(quantitySection.wishlist.wishlistText) ||
+      quantitySection.wishlist.wishlistIcon ||
+      categoriesAndTags.length > 0;
 
     const verticalSettings = {
       ...this.transformSliderValues(this.getPropValue("settings")),
@@ -394,8 +691,7 @@ class Slider9 extends BaseSlider {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid
-            className={`${this.decorateCSS("content")} ${sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""} ${!RightContentExist ? this.decorateCSS("center-content") : ""
-              }`}
+            className={`${this.decorateCSS("content")} ${sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""} ${!RightContentExist ? this.decorateCSS("center-content") : ""}`}
           >
             {sliderItems.length > 0 && (
               <div
@@ -470,11 +766,28 @@ class Slider9 extends BaseSlider {
                     {sliderItems.map((item, indexSlider) => (
                       <div className={this.decorateCSS("slick-slide-wrapper")} key={indexSlider}>
                         <div
-                          className={this.decorateCSS("img-container")}
-                          onMouseMove={this.handleMouseMove}
+                          className={`${this.decorateCSS("img-container")} ${isDragging ? this.decorateCSS("dragging") : ""}`}
+                          onMouseDown={this.handleMouseDown}
+                          onMouseMove={this.handleMouseMovePan}
+                          onMouseUp={this.handleMouseUp}
                           onMouseLeave={this.handleMouseLeave}
+                          onMouseEnter={this.handleMouseEnter}
+                          style={{ cursor: isZoomed ? (isDragging ? 'grabbing' : 'grab') : 'zoom-in' }}
                         >
-                          <Base.Media value={item.media} className={this.decorateCSS("slider-img")} />
+                          <div
+                            className={this.decorateCSS("slider-img-wrapper")}
+                            style={{
+                              transform: isZoomed ? `scale(1.5) translate(${panX / 1.5}px, ${panY / 1.5}px)` : 'scale(1)',
+                              transition: isDragging ? 'none' : 'transform 0.3s ease-out',
+                              width: '100%',
+                              height: '100%'
+                            }}
+                          >
+                            <Base.Media
+                              value={item.media}
+                              className={this.decorateCSS("slider-img")}
+                            />
+                          </div>
                           {overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       </div>
@@ -590,12 +903,185 @@ class Slider9 extends BaseSlider {
             {RightContentExist && (
               <div className={this.decorateCSS("right-content")}>
                 <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                  {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {this.castToString(price) && <Base.P className={this.decorateCSS("price")}>{price}</Base.P>}
-                  {this.castToString(description) && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
-                    </Base.SectionDescription>
+                  {(titleExist || price.value) && (
+                    <div className={this.decorateCSS("header")}>
+                      {titleExist && (
+                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                          {title}
+                        </Base.SectionTitle>
+                      )}
+                      {price.value && (
+                        <Base.H3 className={this.decorateCSS("price")}>
+                          {getCurrencyInfo(price.currency)?.symbol}
+                          {price.value}
+                        </Base.H3>
+                      )}
+                    </div>
+                  )}
+                  {(reviewItem.point ||
+                    reviewItem.reviewCount ||
+                    this.castToString(reviewItem.reviewText) ||
+                    reviewItem.starIcon ||
+                    reviewItem.starIconBorder ||
+                    descriptionExist) && (
+                      <div className={this.decorateCSS("review-and-description")}>
+                        {(reviewItem.point ||
+                          reviewItem.reviewCount ||
+                          this.castToString(reviewItem.reviewText) ||
+                          reviewItem.starIcon ||
+                          reviewItem.starIconBorder) && (
+                            <div className={this.decorateCSS("review-area")}>
+                              {(reviewItem.starIcon || reviewItem.starIconBorder || reviewItem.point) && (
+                                <div className={this.decorateCSS("stars")}>
+                                  {[...Array(5)].map((_, index) => {
+                                    return (
+                                      <Base.Media
+                                        key={index}
+                                        value={
+                                          index < reviewItem.point
+                                            ? reviewItem.starIcon
+                                            : reviewItem.starIconBorder
+                                        }
+                                        className={this.decorateCSS("star")}
+                                      />
+                                    );
+                                  })}
+                                </div>
+                              )}
+                              {(reviewItem.reviewCount ||
+                                this.castToString(reviewItem.reviewText)) && (
+                                  <div className={this.decorateCSS("review")}>
+                                    <span className={this.decorateCSS("brackets")}>(</span>
+                                    {reviewItem.reviewCount && (
+                                      <Base.P className={this.decorateCSS("review-count")}>
+                                        {reviewItem.reviewCount}
+                                      </Base.P>
+                                    )}
+                                    {this.castToString(reviewItem.reviewText) && (
+                                      <Base.P className={this.decorateCSS("review-text")}>
+                                        {reviewItem.reviewText}
+                                      </Base.P>
+                                    )}
+                                    <span className={this.decorateCSS("brackets")}>)</span>
+                                  </div>
+                                )}
+                            </div>
+                          )}
+                        {descriptionExist && (
+                          <Base.SectionDescription className={this.decorateCSS("description")}>
+                            {description}
+                          </Base.SectionDescription>
+                        )}
+                      </div>
+                    )}
+                  {(this.castToString(quantitySection.quantityText) ||
+                    quantitySection.leftArrow ||
+                    quantitySection.rightArrow ||
+                    this.castToString(buttonText)) && (
+                      <div className={this.decorateCSS("inputs")}>
+                        {(this.castToString(quantitySection.quantityText) ||
+                          quantitySection.leftArrow ||
+                          quantitySection.rightArrow) && (
+                            <div
+                              className={`${this.decorateCSS("count-input")} ${this.castToString(buttonText) && this.decorateCSS("with-button")}`}
+                            >
+                              {this.castToString(quantitySection.quantityText) && (
+                                <Base.P className={this.decorateCSS("label")}>
+                                  {quantitySection.quantityText}
+                                </Base.P>
+                              )}
+                              {quantitySection.leftArrow && (
+                                <div onClick={this.handleLeftClick} className={this.decorateCSS("left-icon")}>
+                                  <Base.Media
+                                    value={quantitySection.leftArrow}
+                                  />
+                                </div>
+                              )}
+                              <input
+                                type="number"
+                                min={1}
+                                className={this.decorateCSS("input")}
+                                value={
+                                  this.getComponentState("count") !== undefined
+                                    ? String(this.getComponentState("count"))
+                                    : ""
+                                }
+                                onChange={(e) => {
+                                  const value = e.target.value;
+                                  if (value === "") {
+                                    this.setComponentState("count", "");
+                                    return;
+                                  }
+
+                                  const parsed = parseInt(value, 10);
+                                  if (!isNaN(parsed) && parsed >= 1) {
+                                    this.setComponentState("count", parsed);
+                                  }
+                                }}
+                              />
+
+                              {quantitySection.rightArrow && (
+                                <div onClick={this.handleRightClick} className={this.decorateCSS("right-icon")}>
+                                  <Base.Media
+                                    value={quantitySection.rightArrow}
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        {this.castToString(buttonText) && (
+                          <ComposerLink path={buttonUrl}>
+                            <Base.Button
+                              className={this.decorateCSS("button")}
+                              buttonType={buttonType}
+                            >
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {buttonText}
+                              </Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </div>
+                    )}
+                  {(this.castToString(quantitySection.wishlist.wishlistText) ||
+                    quantitySection.wishlist.wishlistIcon) && (
+                      <div className={this.decorateCSS("wishlist-container")}>
+                        <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
+                          <div className={this.decorateCSS("wishlist")}>
+                            <Base.Media
+                              value={quantitySection.wishlist.wishlistIcon}
+                              className={this.decorateCSS("heart-icon")}
+                            />
+                            {this.castToString(quantitySection.wishlist.wishlistText) && (
+                              <span className={this.decorateCSS("cart-title")}>
+                                {quantitySection.wishlist.wishlistText}
+                              </span>
+                            )}
+                          </div>
+                        </ComposerLink>
+                      </div>
+                    )}
+                  {categoriesAndTags.length > 0 && (
+                    <div className={this.decorateCSS("categories")}>
+                      {categoriesAndTags.map((item, index) => (
+                        <div key={index} className={this.decorateCSS("category")}>
+                          {this.castToString(item.title) && (
+                            <Base.P className={this.decorateCSS("categoryLabel")}>
+                              {item.title}
+                            </Base.P>
+                          )}
+                          {item.items.length > 0 && (
+                            <div className={this.decorateCSS("categoryText")}>
+                              {item.items.map((subItem, subIndex) => (
+                                <Base.P key={subIndex} className={this.decorateCSS("text")}>
+                                  {subItem.category || subItem.tag}
+                                </Base.P>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   )}
                 </Base.VerticalContent>
               </div>

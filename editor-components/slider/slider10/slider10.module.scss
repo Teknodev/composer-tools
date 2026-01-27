@@ -79,6 +79,7 @@
               width: 100%;
               transition: 700ms;
               opacity: 0;
+              text-align: left;
 
               &.slider-item-title-with-media {
                 color: white;
@@ -156,19 +157,23 @@
               width: 50%;
               display: flex;
               justify-content: center;
+              align-items: flex-start;
               flex-direction: column;
               gap: var(--composer-gap-xs);
               max-height: 130px;
+              text-align: left;
 
 
               .slider-footer-item-title {
                 margin: 0;
                 color: var(--composer-font-color-primary);
+                text-align: left;
               }
 
               .slider-footer-item-subtitle {
                 margin: 0;
                 color: var(--composer-tertiary-color);
+                text-align: left;
               }
             }
           }

@@ -1,25 +1,22 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-$minusLeft: calc(var(--composer-gap-lg) * -1);
-$left: var(--composer-gap-lg);
-
 @keyframes moveRight {
   from {
-    transform: translateY(-50%) translateX($minusLeft);
+    transform: translateY(-50%) translateX(calc(var(--composer-gap-lg) * -1));
   }
 
   to {
-    transform: translateY(-50%) translateX($left);
+    transform: translateY(-50%) translateX(var(--composer-gap-lg));
   }
 }
 
 @keyframes moveLeft {
   from {
-    transform: translateY(-50%) translateX($left);
+    transform: translateY(-50%) translateX(var(--composer-gap-lg));
   }
 
   to {
-    transform: translateY(-50%) translateX($minusLeft);
+    transform: translateY(-50%) translateX(calc(var(--composer-gap-lg) * -1));
   }
 }
 
@@ -30,17 +27,8 @@ $left: var(--composer-gap-lg);
       gap: var(--composer-gap-lg);
       flex-direction: row;
       flex-wrap: nowrap;
-      height: 500px;
+      height: 650px;
       align-items: stretch;
-
-      @container (max-width: #{$composer-tablet-width}) {
-        height: auto;
-        flex-direction: column;
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        flex-direction: column;
-      }
 
       &.no-left-part {
         height: auto;
@@ -58,23 +46,13 @@ $left: var(--composer-gap-lg);
         flex: 1;
         height: 100%;
 
-        @container (max-width: #{$composer-phone-width}) {
-          width: 100%;
-          flex-direction: column;
-          height: auto;
-        }
-
         .vertical-parent {
           height: 100%;
-          width: 21%;
+          width: 25%;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
           border-radius: var(--composer-border-radius-sm);
-
-          @container (max-width: #{$composer-tablet-width}) {
-            display: none;
-          }
 
           .carousel-vertical {
             width: 100%;
@@ -85,21 +63,31 @@ $left: var(--composer-gap-lg);
 
               :global(.slick-track) {
                 :global(.slick-slide) {
-                  img {
-                    width: 100% !important;
-                    height: 100% !important;
-                  }
-
                   .slick-slide-wrapper {
-                    height: 156px !important;
+                    height: 200px !important;
                     padding-bottom: var(--composer-gap-sm);
+                    box-sizing: border-box;
 
-                    .img-container .img .slider-img {
-                      width: 100%;
+                    .img-container {
                       height: 100%;
-                      object-fit: cover;
-                      object-position: center;
-                      display: block;
+                      width: 100%;
+                      cursor: pointer;
+                      position: relative;
+                      border-radius: var(--composer-border-radius-sm);
+                      overflow: hidden;
+
+                      .img {
+                        height: 100%;
+                        width: 100%;
+
+                        .slider-img {
+                          width: 100%;
+                          height: 100%;
+                          object-fit: cover;
+                          object-position: top;
+                          display: block;
+                        }
+                      }
                     }
                   }
                 }
@@ -137,22 +125,11 @@ $left: var(--composer-gap-lg);
         }
 
         .horizontal-parent {
-          width: 79%;
+          width: 75%;
           height: 100%;
           position: relative;
           overflow: hidden;
           border-radius: var(--composer-border-radius-sm);
-
-          @container (max-width: #{$composer-tablet-width}) {
-            width: 100%;
-            height: 450px;
-            min-height: 450px;
-          }
-
-          @container (max-width: #{$composer-phone-width}) {
-            height: 400px;
-            min-height: 400px;
-          }
 
           &:hover .horizontalArrows {
             .horizontalPreviousArrow {
@@ -200,16 +177,21 @@ $left: var(--composer-gap-lg);
                     height: 100%;
                     width: 100%;
                     overflow: hidden;
+                    cursor: zoom-in;
+
+                    .slider-img-wrapper {
+                      width: 100%;
+                      height: 100%;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                    }
 
                     .slider-img {
-                      position: absolute;
-                      top: 0;
-                      left: 0;
                       width: 100%;
                       height: 100%;
                       object-fit: cover;
-                      object-position: center;
-                      z-index: 0;
+                      object-position: top;
                     }
 
                     .overlay {
@@ -222,10 +204,6 @@ $left: var(--composer-gap-lg);
                       z-index: 1;
                       pointer-events: none;
                       opacity: 0.3;
-                    }
-
-                    &:hover .slider-img {
-                      transform: scale(1.5);
                     }
                   }
                 }
@@ -269,33 +247,18 @@ $left: var(--composer-gap-lg);
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
-              }
-
-              .arrow-icon {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 100%;
-                height: 100%;
               }
             }
 
             .horizontalPreviousArrow {
-              left: $minusLeft;
+              left: calc(var(--composer-gap-lg) * -1);
             }
 
             .horizontalNextArrow {
-              right: $minusLeft;
-            }
-
-            @container (max-width: #{$composer-tablet-width}) {
-              .horizontalPreviousArrow {
-                left: -30px;
-              }
-
-              .horizontalNextArrow {
-                right: -30px;
-              }
+              right: calc(var(--composer-gap-lg) * -1);
             }
           }
 
@@ -308,11 +271,6 @@ $left: var(--composer-gap-lg);
             left: var(--composer-gap-sm);
             bottom: var(--composer-gap-sm);
             pointer-events: all;
-
-            @container (max-width: #{$composer-phone-width}) {
-              flex-direction: row;
-              flex-wrap: wrap;
-            }
 
             .button-wrapper {
               display: flex;
@@ -333,11 +291,6 @@ $left: var(--composer-gap-lg);
                 border-radius: 50%;
                 background-color: var(--composer-html-background);
 
-                @container (max-width: #{$composer-tablet-width}) {
-                  width: 40px;
-                  height: 40px;
-                }
-
                 .button {
                   min-width: 25px;
                   min-height: 25px;
@@ -352,12 +305,6 @@ $left: var(--composer-gap-lg);
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
-                  }
-
-                  @container (max-width: #{$composer-tablet-width}) {
-                    width: 20px;
-                    height: 20px;
-                    font-size: 1.5rem;
                   }
                 }
               }
@@ -387,10 +334,6 @@ $left: var(--composer-gap-lg);
                 .button-text-wrapper {
                   max-width: 300px;
                   padding-right: var(--composer-gap-md);
-
-                  @container (max-width: #{$composer-tablet-width}) {
-                    max-width: 250px;
-                  }
                 }
 
                 .button-text {
@@ -440,26 +383,10 @@ $left: var(--composer-gap-lg);
 
               .overlay-left-button {
                 left: var(--composer-gap-xl);
-
-                @container (max-width: #{$composer-tablet-width}) {
-                  left: 40px;
-                }
-
-                @container (max-width: #{$composer-phone-width}) {
-                  left: 5px;
-                }
               }
 
               .overlay-right-button {
                 right: var(--composer-gap-xl);
-
-                @container (max-width: #{$composer-tablet-width}) {
-                  right: 40px;
-                }
-
-                @container (max-width: #{$composer-phone-width}) {
-                  right: 5px;
-                }
               }
 
               .close-button-wrapper {
@@ -472,24 +399,9 @@ $left: var(--composer-gap-lg);
                 background-color: transparent;
                 border: none;
 
-                @container (max-width: #{$composer-tablet-width}) {
-                  top: 20px;
-                  right: 20px;
-                }
-
                 .close-button {
                   width: 40px;
                   height: 40px;
-
-                  @container (max-width: #{$composer-tablet-width}) {
-                    width: 30px;
-                    height: 30px;
-                  }
-
-                  @container (max-width: #{$composer-phone-width}) {
-                    width: 20px;
-                    height: 20px;
-                  }
 
                   .button-icon {
                     width: 100%;
@@ -505,10 +417,6 @@ $left: var(--composer-gap-lg);
               display: inline-block;
               max-width: 90%;
               max-height: 80vh;
-
-              @container (max-width: #{$composer-phone-width}) {
-                max-width: 85%;
-              }
             }
 
             .fullscreen-image {
@@ -573,20 +481,10 @@ $left: var(--composer-gap-lg);
               background-color: transparent;
               border: none;
 
-              @container (max-width: #{$composer-tablet-width}) {
-                top: 10px;
-                right: 10px;
-              }
-
               .close-button {
                 width: 40px;
                 height: 40px;
                 font-size: 2rem;
-
-                @container (max-width: #{$composer-phone-width}) {
-                  width: 20px;
-                  height: 20px;
-                }
 
                 .button-icon {
                   width: 100%;
@@ -599,75 +497,383 @@ $left: var(--composer-gap-lg);
         }
       }
 
-      .img-container {
-        position: relative;
+      .empty-right-content {
+        .vertical-parent {
+          width: 10%;
+        }
+
+        .horizontal-parent {
+          width: 90%;
+        }
+      }
+
+      .right-content {
+        width: 50%;
+        flex: 1;
+        max-height: 100%;
         overflow: hidden;
-        height: 100%;
-        outline: none;
 
-        .img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
+        .title,
+        .description,
+        .price {
+          text-align: left;
+          color: var(--composer-font-color-primary);
         }
 
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: rgba(var(--composer-html-background-rgb), 0.5);
-          z-index: 1;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          pointer-events: none;
-          transition: opacity 0.3s ease;
-        }
-      }
-    }
+        .text-wrapper {
+          justify-content: flex-start;
+          text-align: left;
+          gap: var(--composer-gap-lg);
 
-    .empty-right-content {
-      .vertical-parent {
-        width: 10%;
-      }
+          .header {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+            width: 100%;
 
-      .horizontal-parent {
-        width: 90%;
-      }
-    }
+            .title {
+              text-align: left;
+            }
 
-    .right-content {
-      width: 50%;
-      flex: 1;
-      max-height: 100%;
-      overflow: hidden;
-
-      .title,
-      .description,
-      .price {
-        text-align: left;
-        color: var(--composer-font-color-primary);
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        width: 100%;
-      }
-
-      .text-wrapper {
-        justify-content: flex-start;
-        text-align: left;
-        gap: var(--composer-gap-md);
-
-        @container (max-width: #{$composer-tablet-width}) {
-
-          .title,
-          .description,
-          .price {
-            text-align: left;
+            .price {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+              font-size: 1.5rem;
+              font-weight: 600;
+            }
           }
+
+          .review-and-description {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+            width: 100%;
+
+            .review-area {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-sm);
+
+              .stars {
+                display: flex;
+
+                .star {
+                  color: #ebbc00;
+                  font-size: 1rem !important;
+                }
+              }
+
+              .review {
+                display: flex;
+                align-items: center;
+                gap: var(--composer-gap-xs);
+
+                .review-count,
+                .review-text,
+                .brackets {
+                  color: var(--composer-font-color-primary);
+                  margin: 0;
+                  width: fit-content;
+                }
+              }
+            }
+
+            .description {
+              color: var(--composer-tertiary-color);
+              width: fit-content;
+              text-align: left;
+              margin: 0;
+            }
+          }
+
+          .inputs {
+            display: flex;
+            width: 100%;
+
+            .count-input {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border: 1px solid var(--composer-tertiary-color);
+              border-radius: var(--composer-border-radius-sm);
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+              padding: var(--composer-gap-sm);
+              width: 175px;
+
+              &.with-button {
+                border-right: none;
+              }
+
+              .label {
+                text-align: left;
+                color: var(--composer-tertiary-color);
+              }
+
+              .left-icon,
+              .right-icon {
+                flex: 1;
+                font-size: 1.5rem !important;
+                min-width: 1.5rem;
+                height: 22px;
+                color: var(--composer-tertiary-color);
+                cursor: pointer;
+                transition: opacity 0.3s ease;
+
+                &:hover {
+                  opacity: 0.5;
+                }
+              }
+
+              .input {
+                max-width: 2.5rem;
+                background-color: transparent;
+                border: none;
+                text-align: center;
+                color: var(--composer-tertiary-color);
+                outline: none;
+                font-size: 1rem;
+              }
+            }
+
+            .button {
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+              height: 100%;
+
+              .button-text {
+                text-align: center;
+              }
+            }
+          }
+
+          .wishlist-container {
+            width: 100%;
+
+            .wishlist {
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-xs);
+              cursor: pointer;
+              transition: opacity 0.3s ease;
+
+              &:hover {
+                opacity: 0.5;
+              }
+
+              .heart-icon {
+                color: var(--composer-font-color-primary);
+                min-width: 14px;
+                min-height: 14px;
+              }
+
+              .cart-title {
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
+
+          .categories {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+            width: 100%;
+
+            .category {
+              color: var(--composer-font-color-primary);
+              width: 100%;
+              display: flex;
+              align-items: center;
+              gap: var(--composer-gap-xs);
+
+              .categoryLabel {
+                width: fit-content;
+                color: var(--composer-font-color-primary);
+                text-align: left;
+                font-weight: 600;
+              }
+            }
+
+            .categoryText {
+              width: 100%;
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-xs);
+            }
+
+            .text {
+              color: var(--composer-tertiary-color);
+              width: fit-content;
+              cursor: pointer;
+              transition: opacity 0.3s ease;
+              margin: 0;
+              text-align: left;
+
+              &:hover {
+                opacity: 0.5;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .content {
+        height: auto;
+        flex-direction: column;
+
+        .sliders-parent {
+          .vertical-parent {
+            display: none;
+          }
+
+          .horizontal-parent {
+            width: 100%;
+            height: 450px;
+            min-height: 450px;
+
+            .horizontalArrows {
+              .horizontalPreviousArrow {
+                left: -30px;
+              }
+
+              .horizontalNextArrow {
+                right: -30px;
+              }
+            }
+
+            .buttons {
+              .button-wrapper {
+                .icon-wrapper {
+                  width: 40px;
+                  height: 40px;
+
+                  .button {
+                    width: 20px;
+                    height: 20px;
+                    font-size: 1.5rem;
+                  }
+                }
+
+                &:hover .button-text-wrapper {
+                  max-width: 250px;
+                }
+              }
+            }
+
+            .fullscreen-modal {
+              .fullscreen-overlay {
+
+                .overlay-left-button {
+                  left: 40px;
+                }
+
+                .overlay-right-button {
+                  right: 40px;
+                }
+
+                .close-button-wrapper {
+                  top: 20px;
+                  right: 20px;
+
+                  .close-button {
+                    width: 30px;
+                    height: 30px;
+                  }
+                }
+              }
+            }
+
+            .video-modal {
+              .video-content {
+                .close-button-wrapper {
+                  top: 10px;
+                  right: 10px;
+                }
+              }
+            }
+          }
+        }
+
+        .right-content {
+          .text-wrapper {
+
+            .title,
+            .description,
+            .price {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        flex-direction: column;
+
+        .sliders-parent {
+          width: 100%;
+          flex-direction: column;
+          height: auto;
+
+          .horizontal-parent {
+            height: 400px;
+            min-height: 400px;
+
+            .buttons {
+              flex-direction: row;
+              flex-wrap: wrap;
+            }
+
+            .fullscreen-modal {
+              .fullscreen-overlay {
+
+                .overlay-left-button {
+                  left: 5px;
+                }
+
+                .overlay-right-button {
+                  right: 5px;
+                }
+
+                .close-button-wrapper {
+                  .close-button {
+                    width: 20px;
+                    height: 20px;
+                  }
+                }
+              }
+
+              .fullscreen-content {
+                max-width: 85%;
+              }
+            }
+
+            .video-modal {
+              .video-content {
+                .close-button-wrapper {
+                  .close-button {
+                    width: 20px;
+                    height: 20px;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .right-content {
+          width: 100%;
         }
       }
     }
