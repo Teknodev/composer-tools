@@ -147,23 +147,6 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            .content {
-                .image-box {
-                    aspect-ratio: unset;
-
-                    .image {
-                        position: relative;
-                        aspect-ratio: 1;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
             &.center {
                 .heading {
                     align-items: center;
@@ -176,20 +159,26 @@
                 }
 
                 .content {
+                    .image-box {
+                        aspect-ratio: unset;
+    
+                        .image {
+                            position: relative;
+                            aspect-ratio: 1;
+                        }
+                    }
                     .content-right {
                         .item {
-                            align-items: center;
-
                             .title,
                             .description {
-                                text-align: center;
+                                text-align: left;
                             }
                         }
                     }
                 }
 
                 .icons {
-                    justify-content: center !important;
+                    justify-content: flex-start !important;
                 }
             }
 
