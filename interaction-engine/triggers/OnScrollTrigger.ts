@@ -70,9 +70,26 @@ export class OnScrollTrigger extends BaseTrigger {
       return;
     }
 
-    this.targetSection = document.getElementById(config.sectionId) || undefined;
+    if (config.sectionId.startsWith('.')) {
+      const className = config.sectionId.slice(1);
+      try {
+        let elements = document.querySelectorAll(`[class~="${className}"]`);
+        if (elements.length === 0 && !className.startsWith('auto-generate-')) {
+          const prefixed = `auto-generate-${className}`;
+          elements = document.querySelectorAll(`[class~="${prefixed}"]`);
+          console.log('OnScrollTrigger: fallback to prefixed token', { className, prefixed }, elements);
+        } else {
+          console.log('OnScrollTrigger: found section elements for', { className }, elements);
+        }
+        this.targetSection = (elements[0] as HTMLElement) || undefined;
+      } catch (error) {
+        console.error('OnScrollTrigger: error finding section elements', error);
+      }
+    } else {
+      this.targetSection = document.getElementById(config.sectionId) || undefined;
+    }
     if (!this.targetSection) {
-      console.warn(`OnScrollTrigger: Section with id "${config.sectionId}" not found`);
+      console.warn(`OnScrollTrigger: Section with selector "${config.sectionId}" not found`);
       return;
     }
 

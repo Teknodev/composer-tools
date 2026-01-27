@@ -73,8 +73,16 @@ export function bootstrapInteractions(
     let elements: Element[] = [];
     
     if (isClassName) {
-      // For class names, use querySelectorAll with . prefix to get all matching elements
-      const nodeList = document.querySelectorAll(`.${elementSchema.elementId}`);
+      // For class names, try exact token first and fall back to prefixed token
+      let nodeList = document.querySelectorAll(`[class~="${elementSchema.elementId}"]`);
+      if (nodeList.length === 0 && !elementSchema.elementId.startsWith('auto-generate-')) {
+        nodeList = document.querySelectorAll(`[class~="auto-generate-${elementSchema.elementId}"]`);
+        // eslint-disable-next-line no-console
+        console.log('InteractionBootstrap: fallback to prefixed class token', { requested: elementSchema.elementId, prefixed: `auto-generate-${elementSchema.elementId}` }, nodeList);
+      } else {
+        // eslint-disable-next-line no-console
+        console.log('InteractionBootstrap: found elements for', elementSchema.elementId, nodeList);
+      }
       elements = Array.from(nodeList);
     } else {
       // For IDs, use data attribute or getElementById (single element)

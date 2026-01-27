@@ -15,16 +15,25 @@ export class HoverTrigger extends BaseTrigger {
   }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
-    const triggerTarget = this.config?.sectionId ? document.getElementById(this.config.sectionId) || target : target;
-    
-    this.target = triggerTarget;
     this.fire = fire;
     this.cleanup = cleanup;
-    
-    this.boundEnterHandler = () => fire();
+
+    // Debug: report attachment
+    // eslint-disable-next-line no-console
+    console.log('HoverTrigger: attaching to', target, 'with config', this.config);
+
+    this.boundEnterHandler = async (event?: Event) => {
+      // Debug: enter fired
+      // eslint-disable-next-line no-console
+      console.log('HoverTrigger: enter handler fired on', event?.currentTarget || event?.target || target);
+      // Reverse any previous animation before starting new one to avoid
+      // mid-animation 'frozen' states when switching between elements.
+      await cleanup?.();
+      fire();
+    };
 
     this.boundLeaveHandler = async () => {
-      if (!triggerTarget) {
+      if (!this.target) {
         await cleanup?.();
         return;
       }
@@ -37,9 +46,45 @@ export class HoverTrigger extends BaseTrigger {
       }
     };
 
-    this.addEventListener(triggerTarget, 'mouseenter', this.boundEnterHandler);
-    if (cleanup && !this.persistOnLeave) {
-      this.addEventListener(triggerTarget, 'mouseleave', this.boundLeaveHandler);
+    let triggerTarget = target;
+    if (this.config?.sectionId) {
+      if (this.config.sectionId.startsWith('.')) {
+        const className = this.config.sectionId.slice(1);
+        try {
+          let elements = document.querySelectorAll(`[class~="${className}"]`);
+          if (elements.length === 0 && !className.startsWith('auto-generate-')) {
+            const prefixed = `auto-generate-${className}`;
+            elements = document.querySelectorAll(`[class~="${prefixed}"]`);
+            console.log("HoverTrigger: fallback to prefixed token", { className, prefixed }, elements);
+          } else {
+            console.log("HoverTrigger: found elements for", { className }, elements);
+          }
+
+          triggerTarget = (elements[0] as HTMLElement) || target;
+          // Attach to all elements with the class token
+          for (let i = 0; i < elements.length; i++) {
+            this.addEventListener(elements[i] as HTMLElement, 'mouseenter', this.boundEnterHandler);
+            if (cleanup && !this.persistOnLeave) {
+              this.addEventListener(elements[i] as HTMLElement, 'mouseleave', this.boundLeaveHandler);
+            }
+          }
+        } catch (error) {
+          console.error("HoverTrigger: error finding elements", error);
+        }
+      } else {
+        triggerTarget = document.getElementById(this.config.sectionId) || target;
+        this.addEventListener(triggerTarget, 'mouseenter', this.boundEnterHandler);
+        if (cleanup && !this.persistOnLeave) {
+          this.addEventListener(triggerTarget, 'mouseleave', this.boundLeaveHandler);
+        }
+      }
+    } else {
+      this.addEventListener(target, 'mouseenter', this.boundEnterHandler);
+      if (cleanup && !this.persistOnLeave) {
+        this.addEventListener(target, 'mouseleave', this.boundLeaveHandler);
+      }
     }
+    
+    this.target = triggerTarget;
   }
 }

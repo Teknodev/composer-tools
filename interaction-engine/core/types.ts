@@ -196,6 +196,11 @@ export abstract class BaseInteractionCommand implements InteractionCommand {
 /**
  * Base class for animation commands with animation management
  */
+// Registry that holds the *true initial* computed styles for an element.
+// We keep this global (weakly) per-element so multiple command instances
+// animating the same DOM node never overwrite the real initial values.
+const originalStyleRegistry: WeakMap<HTMLElement, Map<string, string>> = new WeakMap();
+
 export abstract class BaseAnimationCommand extends BaseInteractionCommand {
   protected cancelAnimation?: () => void;
   protected reverseAnimation?: Animation;
@@ -237,9 +242,22 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
    * @param target - Target element
    */
   protected restoreOriginalStyles(target: HTMLElement): void {
+    const registry = originalStyleRegistry.get(target);
+
+    // Debug: show registry vs. per-command stored originals for this restore
+    // eslint-disable-next-line no-console
+    console.log('restoreOriginalStyles: registry', registry ? Object.fromEntries(registry) : null, 'commandStored', Object.fromEntries(this.originalStyles));
+
     this.originalStyles.forEach((value, property) => {
-      target.style.setProperty(property, value);
+      const original = registry?.get(property) ?? value;
+      try {
+        target.style.setProperty(property, original);
+      } catch (err) {
+        /* ignore */
+      }
     });
+
+    // Clear per-command stored originals (element registry remains)
     this.originalStyles.clear();
   }
 
@@ -249,9 +267,28 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
    * @param properties - CSS properties to store
    */
   protected storeOriginalStyles(target: HTMLElement, properties: string[]): void {
+    // Ensure an element-scoped registry exists
+    let registry = originalStyleRegistry.get(target);
+    if (!registry) {
+      registry = new Map<string, string>();
+      originalStyleRegistry.set(target, registry);
+    }
+
     properties.forEach(property => {
-      const originalValue = getComputedStyle(target).getPropertyValue(property);
-      this.originalStyles.set(property, originalValue);
+      // Save the true initial value in the registry only once per-element
+      if (!registry!.has(property)) {
+        const initial = getComputedStyle(target).getPropertyValue(property);
+        registry!.set(property, initial);
+        // eslint-disable-next-line no-console
+        console.log('storeOriginalStyles: captured initial for element', target, property, initial);
+      }
+
+      // Per-command map: only set if this command hasn't stored it yet.
+      // Do NOT overwrite either the per-command or the element registry with
+      // a mid-animation computed value.
+      if (!this.originalStyles.has(property)) {
+        this.originalStyles.set(property, registry!.get(property)!);
+      }
     });
   }
 

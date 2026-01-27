@@ -11,8 +11,10 @@ export class AnimateCommand extends BaseAnimationCommand {
     // Don't cancel animations from other interactions on the same element
     this.cancelAllAnimations();
 
-    // Clear previous original styles for this interaction
-    this.originalStyles.clear();
+    // IMPORTANT: do NOT clear `originalStyles` here. The original (pre-animation)
+    // values must be preserved across fast/overlapping executions so we can
+    // always restore to the true initial state. Only capture originals if
+    // they are not already stored (storeOriginalStyles is idempotent now).
 
     const engineType = context.config.engine || "webAnimations";
     const engine =
@@ -81,10 +83,11 @@ export class AnimateCommand extends BaseAnimationCommand {
           ? context.config.opacity
           : (context.config.value ?? context.config.to ?? 0.8);
 
-      // Store original values for cleanup BEFORE animation starts
-      const computedStyle = getComputedStyle(context.target);
-      const originalValue = computedStyle.getPropertyValue(property);
-      this.originalStyles.set(property, originalValue);
+      // Store original values for cleanup BEFORE animation starts (use registry-aware helper)
+      this.storeOriginalStyles(context.target, [property]);
+      // Debug: show what we stored for this command
+      // eslint-disable-next-line no-console
+      console.log('AnimateCommand: stored original for', property, this.originalStyles.get(property));
 
       // Set animation flag
       this.isAnimating = true;

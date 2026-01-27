@@ -31,14 +31,15 @@ export class WebAnimationsAPI implements AnimationEngine {
       // For infinite animations, resolve immediately but keep animation running
       if (iterationCount === 'infinite') {
         setTimeout(() => {
-          resolve({ cancel: () => animation.cancel() });
+          resolve({ cancel: () => animation.cancel(), animation });
         }, delay);
         return;
       }
 
-      animation.onfinish = () => resolve({ cancel: () => animation.cancel() });
-      // Return the cancel function immediately for non-infinite animations
-      resolve({ cancel: () => animation.cancel() });
+      // Resolve with cancel and animation reference
+      animation.onfinish = () => resolve({ cancel: () => animation.cancel(), animation });
+      // Return the cancel function and animation immediately for non-infinite animations
+      resolve({ cancel: () => animation.cancel(), animation });
     });
   }
 }
