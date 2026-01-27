@@ -6,6 +6,7 @@ import { ElementInteractions } from '../composite/ElementInteractions';
 import { InteractionFactory } from '../factory/InteractionFactory';
 import { TriggerFactory } from '../factory/TriggerFactory';
 import { Router, ModalService, AnimationEngine } from '../core/types';
+import { logger } from '../utils/Logger';
 
 export interface BootstrapDependencies {
   commandFactory: InteractionFactory;
@@ -26,6 +27,7 @@ function applyConfigToElement(element: HTMLElement, interactionDef: InteractionD
     if (config.threshold !== undefined) element.setAttribute('data-scroll-threshold', config.threshold.toString());
     if (config.replay !== undefined) element.setAttribute('data-scroll-replay', config.replay.toString());
     if (config.debounce !== undefined) element.setAttribute('data-scroll-debounce', config.debounce.toString());
+    if (config.debounceDelay !== undefined) element.setAttribute('data-scroll-debounce', config.debounceDelay.toString());
     if (config.sectionId) element.setAttribute('data-scroll-section-id', config.sectionId);
     if (config.sectionThreshold !== undefined) element.setAttribute('data-scroll-section-threshold', config.sectionThreshold.toString());
     if (config.sectionRootMargin) element.setAttribute('data-scroll-section-root-margin', config.sectionRootMargin);
@@ -65,11 +67,9 @@ export function bootstrapInteractions(
   dependencies: BootstrapDependencies
 ): () => void {
   const elementInteractionsMap = new Map<string, ElementInteractions>();
-
   for (const elementSchema of schema.elements) {
     // Check if elementId is a class name (starts with auto-generate or contains spaces)
     const isClassName = elementSchema.elementId.startsWith('auto-generate-') || elementSchema.elementId.includes(' ');
-    
     let elements: Element[] = [];
     
     if (isClassName) {
@@ -77,11 +77,9 @@ export function bootstrapInteractions(
       let nodeList = document.querySelectorAll(`[class~="${elementSchema.elementId}"]`);
       if (nodeList.length === 0 && !elementSchema.elementId.startsWith('auto-generate-')) {
         nodeList = document.querySelectorAll(`[class~="auto-generate-${elementSchema.elementId}"]`);
-        // eslint-disable-next-line no-console
-        console.log('InteractionBootstrap: fallback to prefixed class token', { requested: elementSchema.elementId, prefixed: `auto-generate-${elementSchema.elementId}` }, nodeList);
+        logger.debug('InteractionBootstrap: fallback to prefixed class token', { requested: elementSchema.elementId, prefixed: `auto-generate-${elementSchema.elementId}`, nodeList });
       } else {
-        // eslint-disable-next-line no-console
-        console.log('InteractionBootstrap: found elements for', elementSchema.elementId, nodeList);
+        logger.debug('InteractionBootstrap: found elements for', { elementId: elementSchema.elementId, nodeList });
       }
       elements = Array.from(nodeList);
     } else {
@@ -94,7 +92,7 @@ export function bootstrapInteractions(
     }
     
     if (elements.length === 0) {
-      console.warn(`InteractionBootstrap: Element with ${isClassName ? 'class' : 'id'} "${elementSchema.elementId}" not found, skipping interactions`);
+      logger.warn(`InteractionBootstrap: Element with ${isClassName ? 'class' : 'id'} "${elementSchema.elementId}" not found, skipping interactions`);
       continue;
     }
 
@@ -102,8 +100,7 @@ export function bootstrapInteractions(
     elements.forEach((element, index) => {
       const elementInteractions = new ElementInteractions();
       // Debug: report mounting target
-      // eslint-disable-next-line no-console
-      console.log(`InteractionBootstrap: mounting interactions for element "${elementSchema.elementId}" (instance ${index})`, element);
+      logger.debug(`InteractionBootstrap: mounting interactions for element "${elementSchema.elementId}" (instance ${index})`, { element });
 
       for (const interactionDef of elementSchema.interactions) {
         try {
@@ -116,15 +113,27 @@ export function bootstrapInteractions(
 
           // Create trigger/command with the possibly-augmented config
           const trigger = dependencies.triggerFactory.create(interactionDef.trigger, config);
-          const command = dependencies.commandFactory.create(interactionDef.command, config);
+
+          // Backwards-compatibility: if schema uses generic `animate` command but
+          // includes `textAnimation` config or the trigger is `textAnimate`, prefer
+          // the specialized `textAnimate` command so text animations run correctly.
+          let commandType = interactionDef.command;
+          if (
+            commandType === 'animate' &&
+            (interactionDef.trigger === 'textAnimate' || (config && config.textAnimation))
+          ) {
+            logger.debug('InteractionBootstrap: switching command type to textAnimate for text animation config', { interactionId: interactionDef.id });
+            commandType = 'textAnimate';
+          }
+
+          const command = dependencies.commandFactory.create(commandType, config);
 
           const interaction = new Interaction(trigger, command, config, interactionDef.trigger);
           elementInteractions.addInteraction(interaction);
           // Debug: report added interaction
-          // eslint-disable-next-line no-console
-          console.log(`InteractionBootstrap: added interaction "${interactionDef.id}" -> trigger:"${interactionDef.trigger}" command:"${interactionDef.command}" on element "${elementSchema.elementId}"`);
+          logger.debug(`InteractionBootstrap: added interaction "${interactionDef.id}" -> trigger:"${interactionDef.trigger}" command:"${interactionDef.command}" on element "${elementSchema.elementId}"`);
         } catch (error) {
-          console.error(`Failed to create interaction "${interactionDef.id}":`, error);
+          logger.error(`Failed to create interaction "${interactionDef.id}":`, error);
         }
       }
 

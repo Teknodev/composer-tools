@@ -1,6 +1,7 @@
 // src/composer-tools/interaction-engine/triggers/PressTrigger.ts
 
 import { BaseTrigger } from './TriggerStrategy';
+import { logger } from '../utils/Logger';
 
 export class PressTrigger extends BaseTrigger {
   private boundPressHandler?: (event: Event) => void;
@@ -43,9 +44,9 @@ export class PressTrigger extends BaseTrigger {
           if (elements.length === 0 && !className.startsWith('auto-generate-')) {
             const prefixed = `auto-generate-${className}`;
             elements = document.querySelectorAll(`[class~="${prefixed}"]`);
-            console.log("PressTrigger: fallback to prefixed token", { className, prefixed }, elements);
+            logger.debug('PressTrigger: fallback to prefixed token', { className, prefixed, elements });
           } else {
-            console.log("PressTrigger: found elements for", { className }, elements);
+            logger.debug('PressTrigger: found elements for', { className, elements });
           }
 
           triggerTarget = (elements[0] as HTMLElement) || target;
@@ -58,7 +59,7 @@ export class PressTrigger extends BaseTrigger {
             this.addEventListener(document, 'mouseup', this.boundReleaseHandler);
           }
         } catch (error) {
-          console.error("PressTrigger: error finding elements", error);
+          logger.error('PressTrigger: error finding elements', error);
         }
       } else {
         triggerTarget = document.getElementById(this.config.sectionId) || target;

@@ -1,29 +1,32 @@
 // src/composer-tools/interaction-engine/commands/TextAnimationCommand.ts
 
-import { BaseAnimationCommand, InteractionContext } from '../core/types';
-import { TEXT_ANIMATION_PRESETS } from '../text-animations/presets';
+import { BaseAnimationCommand, InteractionContext } from "../core/types";
+import { logger } from "../utils/Logger";
+import { TEXT_ANIMATION_PRESETS } from "../text-animations/presets";
 
 export class TextAnimationCommand extends BaseAnimationCommand {
-
+  constructor() {
+    super();
+    logger.debug("TextAnimationCommand instantiated");
+  } 
   private mapEasing(easing: string): string {
     // The easing values are already in CSS format, but handle legacy camelCase values
     const easingMap: Record<string, string> = {
-      'ease': 'ease',
-      'easeIn': 'ease-in',
-      'easeOut': 'ease-out',
-      'easeInOut': 'ease-in-out',
-      'linear': 'linear',
-      'ease-in': 'ease-in',
-      'ease-out': 'ease-out',
-      'ease-in-out': 'ease-in-out',
+      ease: "ease",
+      easeIn: "ease-in",
+      easeOut: "ease-out",
+      easeInOut: "ease-in-out",
+      linear: "linear",
+      "ease-in": "ease-in",
+      "ease-out": "ease-out",
+      "ease-in-out": "ease-in-out",
     };
     return easingMap[easing] || easing; // Return the easing as-is if it's already valid
   }
 
   async execute(context: InteractionContext): Promise<void> {
     // Debug log to confirm execution in preview/page
-    // eslint-disable-next-line no-console
-    console.log('TextAnimationCommand.execute called', {
+    logger.debug("TextAnimationCommand.execute called", {
       element: context.target,
       config: context.config,
       metadata: context.metadata,
@@ -31,7 +34,7 @@ export class TextAnimationCommand extends BaseAnimationCommand {
 
     const textAnimationConfig = context.config.textAnimation;
     if (!textAnimationConfig) {
-      console.warn('No text animation config provided');
+      logger.warn("No text animation config provided");
       return;
     }
 
@@ -40,19 +43,25 @@ export class TextAnimationCommand extends BaseAnimationCommand {
 
     const preset = TEXT_ANIMATION_PRESETS[textAnimationConfig.preset];
     if (!preset) {
-      console.warn(`Text animation preset "${textAnimationConfig.preset}" not found`);
+      logger.warn(`Text animation preset "${textAnimationConfig.preset}" not found`);
       return;
     }
 
     // Get text content from the element (not from config)
-    const textContent = context.target.textContent || '';
+    const textContent = context.target.textContent || "";
     if (!textContent.trim()) {
-      console.warn('No text content found in target element for text animation');
+      logger.warn("No text content found in target element for text animation");
       return;
     }
 
     // Apply the animation based on granularity
-    await this.applyTextAnimation(context.target, textAnimationConfig, preset, textContent, context.config);
+    await this.applyTextAnimation(
+      context.target,
+      textAnimationConfig,
+      preset,
+      textContent,
+      context.config,
+    );
   }
 
   private async applyTextAnimation(
@@ -60,104 +69,107 @@ export class TextAnimationCommand extends BaseAnimationCommand {
     config: any,
     preset: any,
     textContent: string,
-    fullConfig?: any
+    fullConfig?: any,
   ): Promise<void> {
     // Debug: report invocation details
-    // eslint-disable-next-line no-console
-    console.log('[TextAnimation] applyTextAnimation start', { target, config, preset, textContent, fullConfig });
+    logger.debug("[TextAnimation] applyTextAnimation start", {
+      target,
+      config,
+      preset,
+      textContent,
+      fullConfig,
+    });
     const { granularity, enterEffect, transition } = config;
 
     // Split text based on granularity
     const textSegments = this.splitText(textContent, granularity);
 
     // Save original text for restoration
-    if (!target.hasAttribute('data-original-text')) {
-      target.setAttribute('data-original-text', target.textContent || '');
+    if (!target.hasAttribute("data-original-text")) {
+      target.setAttribute("data-original-text", target.textContent || "");
     }
 
     // Clear existing content
-    target.innerHTML = '';
+    target.innerHTML = "";
 
     // Create spans for each segment
     const spans: HTMLSpanElement[] = [];
     const animatableSpans: HTMLSpanElement[] = [];
     textSegments.forEach((segment, index) => {
-      const span = document.createElement('span');
+      const span = document.createElement("span");
       span.textContent = segment;
 
       if (segment.trim().length > 0) {
         // This is a word/character segment that should be animated
-        span.style.display = 'inline-block';
-        span.style.whiteSpace = 'pre';
+        span.style.display = "inline-block";
+        span.style.whiteSpace = "pre";
         spans.push(span);
         animatableSpans.push(span);
       } else {
         // This is whitespace that should not be animated
-        span.style.display = 'inline';
+        span.style.display = "inline";
         spans.push(span); // Include in DOM but not in animation
       }
 
       target.appendChild(span);
     });
-      // Debug: report spans created
-      // eslint-disable-next-line no-console
-      console.log('[TextAnimation] spans created', { total: spans.length, animatable: animatableSpans.length });
+    // Debug: report spans created
+    logger.debug("[TextAnimation] spans created", {
+      total: spans.length,
+      animatable: animatableSpans.length,
+    });
 
-      // Apply enter effects
-      if (enterEffect && preset.supportsEnterEffect) {
-        // eslint-disable-next-line no-console
-        console.log('[TextAnimation] using enterEffect branch');
-        await this.applyEnterEffects(animatableSpans, enterEffect, transition);
-        // eslint-disable-next-line no-console
-        console.log('[TextAnimation] enterEffect complete');
-      } else if (preset.id === 'custom' && fullConfig?.engine === 'animateCss') {
-        // Apply Animate.css for custom preset
-        // eslint-disable-next-line no-console
-        console.log('[TextAnimation] using animateCss branch for custom preset');
-        await this.applyAnimateCssToSpans(animatableSpans, fullConfig, transition);
-        // eslint-disable-next-line no-console
-        console.log('[TextAnimation] animateCss custom preset complete');
-      } else {
-        // Apply basic preset animation
-        // eslint-disable-next-line no-console
-        console.log('[TextAnimation] using preset animation branch', { presetId: preset.id });
-        await this.applyPresetAnimation(animatableSpans, preset, transition, fullConfig);
-        // eslint-disable-next-line no-console
-        console.log('[TextAnimation] preset animation complete');
-      }
+    // Apply enter effects
+    if (enterEffect && preset.supportsEnterEffect) {
+      logger.debug("[TextAnimation] using enterEffect branch");
+      await this.applyEnterEffects(animatableSpans, enterEffect, transition);
+      logger.debug("[TextAnimation] enterEffect complete");
+    } else if (preset.id === "custom" && fullConfig?.engine === "animateCss") {
+      // Apply Animate.css for custom preset
+      logger.debug("[TextAnimation] using animateCss branch for custom preset");
+      await this.applyAnimateCssToSpans(animatableSpans, fullConfig, transition);
+      logger.debug("[TextAnimation] animateCss custom preset complete");
+    } else {
+      // Apply basic preset animation
+      logger.debug("[TextAnimation] using preset animation branch", { presetId: preset.id });
+      await this.applyPresetAnimation(animatableSpans, preset, transition, fullConfig);
+      logger.debug("[TextAnimation] preset animation complete");
+    }
   }
 
   private async applyAnimateCssToSpans(
     spans: HTMLSpanElement[],
     config: any,
-    transition: any
+    transition: any,
   ): Promise<void> {
     const promises: Promise<void>[] = [];
 
     spans.forEach((span, index) => {
       const delay = index * (transition?.staggerDelay || 100);
-      
+
       // Apply Animate.css animation
-      const animationName = config.animation || 'bounce';
+      const animationName = config.animation || "bounce";
       const duration = config.duration || 1000;
       const iterationCount = config.iterationCount || 1;
-      const direction = config.direction || 'normal';
-      const fillMode = config.fillMode || 'both';
-      
+      const direction = config.direction || "normal";
+      const fillMode = config.fillMode || "both";
+
       span.style.animationName = animationName;
       span.style.animationDuration = `${duration}ms`;
       span.style.animationDelay = `${delay}ms`;
       span.style.animationIterationCount = String(iterationCount);
       span.style.animationDirection = direction;
       span.style.animationFillMode = fillMode;
-      
-      promises.push(new Promise<void>(resolve => {
-        const handleAnimationEnd = () => {
-          span.removeEventListener('animationend', handleAnimationEnd);
-          resolve();
-        };
-        span.addEventListener('animationend', handleAnimationEnd);
-      }));
+
+      promises.push(
+        new Promise<void>((resolve) => {
+          const handleAnimationEnd = () => {
+            span.removeEventListener("animationend", handleAnimationEnd);
+            resolve();
+          };
+          span.addEventListener("animationend", handleAnimationEnd);
+        }),
+      );
     });
 
     await Promise.all(promises);
@@ -165,26 +177,26 @@ export class TextAnimationCommand extends BaseAnimationCommand {
 
   private splitText(text: string, granularity: string): string[] {
     switch (granularity) {
-      case 'character':
-        return text.split('');
-      case 'word':
+      case "character":
+        return text.split("");
+      case "word":
         // Split on whitespace but preserve spaces between words
         const words = text.split(/(\s+)/);
         // Filter out empty strings but keep spaces
-        return words.filter(segment => segment.length > 0);
-      case 'layer':
+        return words.filter((segment) => segment.length > 0);
+      case "layer":
         return [text]; // Single layer
-      case 'element':
+      case "element":
         return [text]; // Single element
       default:
-        return text.split('');
+        return text.split("");
     }
   }
 
   private async applyEnterEffects(
     spans: HTMLSpanElement[],
     enterEffect: any,
-    transition: any
+    transition: any,
   ): Promise<void> {
     const promises: Promise<void>[] = [];
 
@@ -203,28 +215,33 @@ export class TextAnimationCommand extends BaseAnimationCommand {
       }
 
       // Animate to final state
-      const animation = span.animate([
+      const animation = span.animate(
+        [
+          {
+            opacity: enterEffect.opacity?.active ? enterEffect.opacity.value : 1,
+            transform: enterEffect.scale?.active ? `scale(${enterEffect.scale.value})` : "scale(1)",
+            filter: enterEffect.blur?.active ? `blur(${enterEffect.blur.value}px)` : "blur(0px)",
+          },
+          {
+            opacity: 1,
+            transform: "scale(1)",
+            filter: "blur(0px)",
+          },
+        ],
         {
-          opacity: enterEffect.opacity?.active ? enterEffect.opacity.value : 1,
-          transform: enterEffect.scale?.active ? `scale(${enterEffect.scale.value})` : 'scale(1)',
-          filter: enterEffect.blur?.active ? `blur(${enterEffect.blur.value}px)` : 'blur(0px)',
+          duration: transition?.duration || 1000,
+          delay,
+          easing: this.mapEasing(transition?.easing || "ease"),
+          fill: "forwards",
         },
-        {
-          opacity: 1,
-          transform: 'scale(1)',
-          filter: 'blur(0px)',
-        }
-      ], {
-        duration: transition?.duration || 1000,
-        delay,
-        easing: this.mapEasing(transition?.easing || 'ease'),
-        fill: 'forwards',
-      });
+      );
 
       this.activeAnimations.set(`span-${index}`, animation);
-      promises.push(new Promise(resolve => {
-        animation.addEventListener('finish', () => resolve());
-      }));
+      promises.push(
+        new Promise((resolve) => {
+          animation.addEventListener("finish", () => resolve());
+        }),
+      );
     });
 
     await Promise.all(promises);
@@ -234,7 +251,7 @@ export class TextAnimationCommand extends BaseAnimationCommand {
     spans: HTMLSpanElement[],
     preset: any,
     transition: any,
-    fullConfig?: any
+    fullConfig?: any,
   ): Promise<void> {
     const promises: Promise<void>[] = [];
 
@@ -247,15 +264,19 @@ export class TextAnimationCommand extends BaseAnimationCommand {
       const animation = span.animate(keyframes, {
         duration: transition?.duration || preset.defaultConfig?.timing?.duration || 1000,
         delay,
-        easing: this.mapEasing(transition?.easing || preset.defaultConfig?.timing?.easing || 'ease'),
-        fill: 'forwards',
+        easing: this.mapEasing(
+          transition?.easing || preset.defaultConfig?.timing?.easing || "ease",
+        ),
+        fill: "forwards",
         iterations: 1,
       });
 
       this.activeAnimations.set(`span-${index}`, animation);
-      promises.push(new Promise(resolve => {
-        animation.addEventListener('finish', () => resolve());
-      }));
+      promises.push(
+        new Promise((resolve) => {
+          animation.addEventListener("finish", () => resolve());
+        }),
+      );
     });
 
     await Promise.all(promises);
@@ -265,7 +286,7 @@ export class TextAnimationCommand extends BaseAnimationCommand {
     const duration = transition?.duration || preset.defaultConfig?.timing?.duration || 1000;
 
     // Handle custom preset with Web Animation API config
-    if (preset.id === 'custom' && fullConfig) {
+    if (preset.id === "custom" && fullConfig) {
       const startTransforms = [
         fullConfig.scale !== undefined && fullConfig.scale !== 1 && `scale(${fullConfig.scale})`,
         fullConfig.rotate?.z && `rotate(${fullConfig.rotate.z}deg)`,
@@ -273,86 +294,83 @@ export class TextAnimationCommand extends BaseAnimationCommand {
         fullConfig.rotate?.y && `rotateY(${fullConfig.rotate.y}deg)`,
         fullConfig.skew?.x && `skewX(${fullConfig.skew.x}deg)`,
         fullConfig.skew?.y && `skewY(${fullConfig.skew.y}deg)`,
-        (fullConfig.offset?.x || fullConfig.offset?.y) && `translate(${fullConfig.offset.x || 0}px, ${fullConfig.offset.y || 0}px)`,
-      ].filter(Boolean).join(' ');
+        (fullConfig.offset?.x || fullConfig.offset?.y) &&
+          `translate(${fullConfig.offset.x || 0}px, ${fullConfig.offset.y || 0}px)`,
+      ]
+        .filter(Boolean)
+        .join(" ");
 
       return [
-        { 
-          opacity: fullConfig.opacity !== undefined ? fullConfig.opacity : 0, 
-          transform: startTransforms || 'scale(0.5)' 
+        {
+          opacity: fullConfig.opacity !== undefined ? fullConfig.opacity : 0,
+          transform: startTransforms || "scale(0.5)",
         },
-        { 
-          opacity: 1, 
-          transform: 'none' 
-        }
+        {
+          opacity: 1,
+          transform: "none",
+        },
       ];
     }
 
     switch (preset.id) {
-      case 'blur':
+      case "blur":
         return [
-          { opacity: 0, filter: 'blur(10px)' },
-          { opacity: 1, filter: 'blur(0px)' }
+          { opacity: 0, filter: "blur(10px)" },
+          { opacity: 1, filter: "blur(0px)" },
         ];
-      case 'flip':
+      case "flip":
         return [
-          { opacity: 0, transform: 'rotateY(180deg)' },
-          { opacity: 1, transform: 'rotateY(0deg)' }
+          { opacity: 0, transform: "rotateY(180deg)" },
+          { opacity: 1, transform: "rotateY(0deg)" },
         ];
-      case 'shake':
+      case "shake":
         return [
-          { transform: 'translateX(-5px)' },
-          { transform: 'translateX(5px)' },
-          { transform: 'translateX(-5px)' },
-          { transform: 'translateX(5px)' },
-          { transform: 'translateX(0px)' }
+          { transform: "translateX(-5px)" },
+          { transform: "translateX(5px)" },
+          { transform: "translateX(-5px)" },
+          { transform: "translateX(5px)" },
+          { transform: "translateX(0px)" },
         ];
-      case 'shoot':
+      case "shoot":
         return [
-          { opacity: 0, transform: 'translateY(100%)' },
-          { opacity: 1, transform: 'translateY(0%)' }
+          { opacity: 0, transform: "translateY(100%)" },
+          { opacity: 1, transform: "translateY(0%)" },
         ];
-      case 'rotate':
+      case "rotate":
         return [
-          { opacity: 0, transform: 'rotate(360deg)' },
-          { opacity: 1, transform: 'rotate(0deg)' }
+          { opacity: 0, transform: "rotate(360deg)" },
+          { opacity: 1, transform: "rotate(0deg)" },
         ];
-      case 'scale':
+      case "scale":
         return [
-          { opacity: 0, transform: 'scale(0.5)' },
-          { opacity: 1, transform: 'scale(1)' }
+          { opacity: 0, transform: "scale(0.5)" },
+          { opacity: 1, transform: "scale(1)" },
         ];
-      case 'stagger':
-        return [
-          { opacity: 0 },
-          { opacity: 1 }
-        ];
+      case "stagger":
+        return [{ opacity: 0 }, { opacity: 1 }];
       default:
-        return [
-          { opacity: 0 },
-          { opacity: 1 }
-        ];
+        return [{ opacity: 0 }, { opacity: 1 }];
     }
   }
 
   private cancelAnimations(target: HTMLElement): void {
     // Cancel all active animations
     this.activeAnimations.forEach((animation, key) => {
-      if (key.startsWith('span-')) {
+      if (key.startsWith("span-")) {
         animation.cancel();
       }
     });
     this.activeAnimations.clear();
 
     // Run cleanup functions
-    this.cleanupFunctions.forEach(cleanup => cleanup());
+    this.cleanupFunctions.forEach((cleanup) => cleanup());
     this.cleanupFunctions.clear();
 
     // Restore original content
-    const originalText = target.getAttribute('data-original-text');
+    const originalText = target.getAttribute("data-original-text");
     if (originalText) {
       target.textContent = originalText;
-      target.removeAttribute('data-original-text');
+      target.removeAttribute("data-original-text");
     }
   }
 

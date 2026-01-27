@@ -1,6 +1,7 @@
 // src/composer-tools/interaction-engine/animations/AnimateCssAnimationEngine.ts
 
 import { AnimationEngine } from '../core/types';
+import { logger } from '../utils/Logger';
 
 export class AnimateCssAnimationEngine implements AnimationEngine {
   async animate(
@@ -11,7 +12,7 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
   ): Promise<void> {
     // Check if animate.css is loaded
     if (!this.isAnimateCssLoaded()) {
-      console.warn('animate.css not found. Please include animate.css in your project.');
+      logger.warn('animate.css not found. Please include animate.css in your project.');
       return;
     }
 

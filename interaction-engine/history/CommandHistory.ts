@@ -1,6 +1,7 @@
 // src/composer-tools/interaction-engine/history/CommandHistory.ts
 
 import { InteractionCommand, InteractionContext } from '../core/types';
+import { logger } from '../utils/Logger';
 
 export class CommandHistory {
   private undoStack: Array<{ command: InteractionCommand; context: InteractionContext }> = [];
@@ -14,14 +15,14 @@ export class CommandHistory {
           this.undoStack.push({ command, context });
           this.redoStack = [];
         }).catch(error => {
-          console.error('Command execution failed:', error);
+          logger.error('Command execution failed:', error);
         });
       } else {
         this.undoStack.push({ command, context });
         this.redoStack = [];
       }
     } catch (error) {
-      console.error('Command execution failed:', error);
+      logger.error('Command execution failed:', error);
     }
   }
 
@@ -32,7 +33,7 @@ export class CommandHistory {
         entry.command.undo(entry.context);
         this.redoStack.push(entry);
       } catch (error) {
-        console.error('Command undo failed:', error);
+        logger.error('Command undo failed:', error);
       }
     }
   }
@@ -46,13 +47,13 @@ export class CommandHistory {
           result.then(() => {
             this.undoStack.push(entry);
           }).catch(error => {
-            console.error('Command redo failed:', error);
+            logger.error('Command redo failed:', error);
           });
         } else {
           this.undoStack.push(entry);
         }
       } catch (error) {
-        console.error('Command redo failed:', error);
+        logger.error('Command redo failed:', error);
       }
     }
   }

@@ -3,6 +3,7 @@
 import { BaseAnimationCommand, InteractionContext } from "../core/types";
 import { AnimateCssAnimationEngine } from "../animations/AnimateCssAnimationEngine";
 import { WebAnimationsAPI } from "../animations/WebAnimationsAPI";
+import { logger } from '../utils/Logger';
 
 export class AnimateCommand extends BaseAnimationCommand {
 
@@ -41,14 +42,25 @@ export class AnimateCommand extends BaseAnimationCommand {
       }
 
       this.isAnimating = true;
+
+      const animationName =
+        context.config.animateCssAnimation || context.config.animation || "bounce";
+      const formattedAnimationName = animationName.startsWith("animate__")
+        ? animationName
+        : `animate__${animationName}`;
+
       const animationConfig = {
-        animation: `animate__${context.config.animation || "bounce"}`,
-        delay: context.config.delay,
-        iterationCount: context.config.iterationCount,
-        direction: context.config.direction,
-        fillMode: context.config.fillMode,
+        // support both new `animateCss*` keys and legacy keys
+        animation: formattedAnimationName,
+        delay: context.config.animateCssDelay ?? context.config.delay,
+        iterationCount: context.config.animateCssIterationCount ?? context.config.iterationCount,
+        direction: context.config.animateCssDirection ?? context.config.direction,
+        fillMode: context.config.animateCssFillMode ?? context.config.fillMode,
       };
-      await engine.animate(context.target, animationConfig, context.config.duration || 1000);
+
+      const duration = context.config.animateCssDuration ?? context.config.duration ?? 1000;
+
+      await engine.animate(context.target, animationConfig, duration);
       this.isAnimating = false;
       return;
     }
@@ -86,8 +98,7 @@ export class AnimateCommand extends BaseAnimationCommand {
       // Store original values for cleanup BEFORE animation starts (use registry-aware helper)
       this.storeOriginalStyles(context.target, [property]);
       // Debug: show what we stored for this command
-      // eslint-disable-next-line no-console
-      console.log('AnimateCommand: stored original for', property, this.originalStyles.get(property));
+      logger.debug('AnimateCommand: stored original for', { property, value: this.originalStyles.get(property) });
 
       // Set animation flag
       this.isAnimating = true;
@@ -135,8 +146,7 @@ export class AnimateCommand extends BaseAnimationCommand {
 
     if (!hasAnimated) {
       // Nothing to animate in loop mode
-      // eslint-disable-next-line no-console
-      console.warn('AnimateCommand: loop mode has no animated properties, skipping', config);
+      logger.warn('AnimateCommand: loop mode has no animated properties, skipping', config);
       return;
     }
 
@@ -318,7 +328,10 @@ export class AnimateCommand extends BaseAnimationCommand {
     // For animate.css animations, smoothly reverse using a CSS transition instead
     if (engine instanceof AnimateCssAnimationEngine) {
       return new Promise<void>((resolve) => {
-        const animationClass = `animate__${context.config.animation || "bounce"}`;
+        const animationName = context.config.animateCssAnimation || context.config.animation || "bounce";
+        const animationClass = animationName.startsWith("animate__")
+          ? animationName
+          : `animate__${animationName}`;
 
         // Determine which properties we previously stored
         const properties = Array.from(this.originalStyles.keys());

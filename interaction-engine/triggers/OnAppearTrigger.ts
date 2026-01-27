@@ -1,6 +1,7 @@
 // src/composer-tools/interaction-engine/triggers/OnAppearTrigger.ts
 
 import { BaseTrigger } from './TriggerStrategy';
+import { logger } from '../utils/Logger';
 
 export interface OnAppearConfig {
   threshold?: number | number[];
@@ -28,7 +29,7 @@ export class OnAppearTrigger extends BaseTrigger {
     // Get configuration from data attributes or defaults
     const config = this.getConfig(target);
     const { threshold = 0.1, rootMargin = '0px', once = false, delay = 0 } = this.interactionConfig || {};
-    console.log('OnAppearTrigger config:', config);
+    logger.debug('OnAppearTrigger config:', { config });
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

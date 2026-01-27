@@ -3,6 +3,7 @@
 /**
  * Context passed to interaction commands during execution
  */
+import { logger } from '../utils/Logger';
 export interface InteractionContext {
   /** Target HTML element for the interaction */
   target: HTMLElement;
@@ -245,8 +246,7 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
     const registry = originalStyleRegistry.get(target);
 
     // Debug: show registry vs. per-command stored originals for this restore
-    // eslint-disable-next-line no-console
-    console.log('restoreOriginalStyles: registry', registry ? Object.fromEntries(registry) : null, 'commandStored', Object.fromEntries(this.originalStyles));
+    logger.debug('restoreOriginalStyles', { registry: registry ? Object.fromEntries(registry) : null, commandStored: Object.fromEntries(this.originalStyles) });
 
     this.originalStyles.forEach((value, property) => {
       const original = registry?.get(property) ?? value;
@@ -279,8 +279,7 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
       if (!registry!.has(property)) {
         const initial = getComputedStyle(target).getPropertyValue(property);
         registry!.set(property, initial);
-        // eslint-disable-next-line no-console
-        console.log('storeOriginalStyles: captured initial for element', target, property, initial);
+        logger.debug('storeOriginalStyles: captured initial for element', { target, property, initial });
       }
 
       // Per-command map: only set if this command hasn't stored it yet.

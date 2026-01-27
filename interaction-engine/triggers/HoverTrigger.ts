@@ -1,6 +1,7 @@
 // src/composer-tools/interaction-engine/triggers/HoverTrigger.ts
 
 import { BaseTrigger } from './TriggerStrategy';
+import { logger } from '../utils/Logger';
 
 export class HoverTrigger extends BaseTrigger {
   private boundEnterHandler?: (event: Event) => void;
@@ -19,13 +20,11 @@ export class HoverTrigger extends BaseTrigger {
     this.cleanup = cleanup;
 
     // Debug: report attachment
-    // eslint-disable-next-line no-console
-    console.log('HoverTrigger: attaching to', target, 'with config', this.config);
+    logger.debug('HoverTrigger: attaching to', { target, config: this.config });
 
     this.boundEnterHandler = async (event?: Event) => {
       // Debug: enter fired
-      // eslint-disable-next-line no-console
-      console.log('HoverTrigger: enter handler fired on', event?.currentTarget || event?.target || target);
+      logger.debug('HoverTrigger: enter handler fired on', { element: event?.currentTarget || event?.target || target });
       // Reverse any previous animation before starting new one to avoid
       // mid-animation 'frozen' states when switching between elements.
       await cleanup?.();
@@ -55,9 +54,9 @@ export class HoverTrigger extends BaseTrigger {
           if (elements.length === 0 && !className.startsWith('auto-generate-')) {
             const prefixed = `auto-generate-${className}`;
             elements = document.querySelectorAll(`[class~="${prefixed}"]`);
-            console.log("HoverTrigger: fallback to prefixed token", { className, prefixed }, elements);
+            logger.debug('HoverTrigger: fallback to prefixed token', { className, prefixed, elements });
           } else {
-            console.log("HoverTrigger: found elements for", { className }, elements);
+            logger.debug('HoverTrigger: found elements for', { className, elements });
           }
 
           triggerTarget = (elements[0] as HTMLElement) || target;
@@ -69,7 +68,7 @@ export class HoverTrigger extends BaseTrigger {
             }
           }
         } catch (error) {
-          console.error("HoverTrigger: error finding elements", error);
+          logger.error('HoverTrigger: error finding elements', error);
         }
       } else {
         triggerTarget = document.getElementById(this.config.sectionId) || target;

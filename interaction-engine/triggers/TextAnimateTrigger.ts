@@ -16,28 +16,7 @@ export class TextAnimateTrigger extends BaseTrigger {
     this.fire = fire;
     this.cleanup = cleanup;
 
-    const enter = async () => {
-      try {
-        const result = this.fire?.();
-        if (result instanceof Promise) await result;
-      } catch (err) {
-        /* ignore */
-      }
-    };
 
-    const leave = async () => {
-      try {
-        if (this.cleanup) {
-          const res = this.cleanup();
-          if (res && typeof (res as Promise<void>).then === 'function') await res as Promise<void>;
-        }
-      } catch (err) {
-        /* ignore */
-      }
-    };
-
-    this.addEventListener(target, 'mouseenter', enter);
-    this.addEventListener(target, 'mouseleave', leave);
 
     // Also trigger when element appears in viewport
     try {

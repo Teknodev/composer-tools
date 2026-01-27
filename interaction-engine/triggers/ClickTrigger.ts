@@ -1,6 +1,7 @@
 // src/composer-tools/interaction-engine/triggers/ClickTrigger.ts
 
 import { BaseTrigger } from './TriggerStrategy';
+import { logger } from '../utils/Logger';
 
 export class ClickTrigger extends BaseTrigger {
   private boundClickHandler?: (event: Event) => void;
@@ -38,9 +39,9 @@ export class ClickTrigger extends BaseTrigger {
           if (elements.length === 0 && !className.startsWith('auto-generate-')) {
             const prefixed = `auto-generate-${className}`;
             elements = document.querySelectorAll(`[class~="${prefixed}"]`);
-            console.log("ClickTrigger: fallback to prefixed token", { className, prefixed }, elements);
+            logger.debug('ClickTrigger: fallback to prefixed token', { className, prefixed, elements });
           } else {
-            console.log("ClickTrigger: found elements for", { className }, elements);
+            logger.debug('ClickTrigger: found elements for', { className, elements });
           }
 
           triggerTarget = (elements[0] as HTMLElement) || target;
@@ -49,7 +50,7 @@ export class ClickTrigger extends BaseTrigger {
             this.addEventListener(elements[i] as HTMLElement, 'click', this.boundClickHandler);
           }
         } catch (error) {
-          console.error("ClickTrigger: error finding elements", error);
+          logger.error('ClickTrigger: error finding elements', error);
         }
       } else {
         triggerTarget = document.getElementById(this.config.sectionId) || target;
