@@ -1,6 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    position: relative;
+    overflow: visible;
+
     .background {
         position: absolute;
         inset: 0;
@@ -142,10 +145,6 @@
                 height: auto;
             }
         }
-    }
-
-    .container .background {
-        clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
     }
 }
 
