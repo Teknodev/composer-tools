@@ -27,147 +27,113 @@
     }
   }
 
-  .max-content {
-    .page {
-      .group-container {
-        padding: var(--composer-gap-md) 50px;
-        padding-bottom: 80px;
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        gap: var(--composer-gap-lg);
+  .max-content .page {
+    .group-container,
+    .group-container-center {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      padding-left: 50px;
+      padding-right: 50px;
+      width: 100%;
+      box-sizing: border-box;
 
-        .title {
-          width: 20%;
-          margin: 0;
-
-          &.full {
-            width: 40%;
-          }
-        }
-
-        .description {
-          color: var(--composer-font-color-primary);
-          width: 60%;
-
-          &.full {
-            width: 100%;
-          }
-        }
-
-        .button-group {
-          display: flex;
-          align-items: center;
-
-          .button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 170px;
-            min-width: 170px;
-            max-width: 170px;
-            height: 50px;
-            min-height: 50px;
-            max-height: 50px;
-            padding: 0;
-            flex-shrink: 0;
-            flex-grow: 0;
-            box-sizing: border-box;
-
-            .button-logo {
-              height: 100%;
-              width: 100%;
-              object-fit: cover;
-              cursor: pointer;
-              border-radius: var(--composer-border-radius-sm);
-            }
-
-            .button-element {
-              width: 100% !important;
-              height: 100% !important;
-              display: flex !important;
-              justify-content: center !important;
-              align-items: center !important;
-
-              .button-text {
-                content: "";
-              }
-
-              .button-icon {
-                font-size: 1.5rem;
-              }
-            }
-          }
-        }
+      .description {
+        color: var(--composer-font-color-primary);
       }
 
-      .group-container-center {
+      .button-group {
+        display: flex;
         align-items: center;
-        padding: var(--composer-gap-md) 50px;
-        padding-bottom: 80px;
+        gap: var(--composer-gap-md);
 
-        .title {
-          content: "";
-        }
-
-        .description {
-          color: var(--composer-font-color-primary);
-        }
-
-        .button-group {
+        .button {
           display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
           align-items: center;
-          gap: var(--composer-gap-md);
+          justify-content: center;
+          padding: 0;
+          box-sizing: border-box;
+          flex-shrink: 0;
 
-          .button {
+          .button-logo,
+          .button-element {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 170px;
-            min-width: 170px;
-            max-width: 170px;
-            height: 50px;
-            min-height: 50px;
-            max-height: 50px;
-            padding: 0;
-            flex-shrink: 0;
-            flex-grow: 0;
-            box-sizing: border-box;
+            border-radius: var(--composer-border-radius-sm);
+            object-fit: cover;
+          }
 
-            .button-logo {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              border-radius: var(--composer-border-radius-sm);
+          .button-element {
+            .button-text {
+              content: "";
             }
-
-            .button-element {
-              width: 100% !important;
-              height: 100% !important;
-              display: flex !important;
-              align-items: center !important;
-              justify-content: center !important;
-
-              .button-text,
-              .button-icon {
-                content: "";
-              }
+            .button-icon {
+              font-size: 1.5rem;
             }
           }
         }
       }
     }
+
+    .group-container {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--composer-gap-md);
+
+      .title {
+        width: 20%;
+        margin: 0;
+        &.full { width: 40%; }
+      }
+
+      .description {
+        width: 60%;
+        &.full { width: 100%; }
+      }
+
+      .button-group .button {
+        width: 170px;
+        height: 50px;
+
+        .button-element {
+          width: 170px !important;
+          height: 50px !important;
+        }
+      }
+    }
+
+    .group-container-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        content: "";
+      }
+
+      .button-group {
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .button {
+          width: 170px;
+          height: 50px;
+        }
+        .button-element {
+          width: 170px !important;
+          height: 50px !important;
+        }
+      }
+    }
   }
-}
 
-.container.has-image .max-content .page {
-
-  .group-container,
-  .group-container-center {
-    content: "";
+  &.has-image .max-content .page {
+    .group-container,
+    .group-container-center {
+      content: "";
+    }
   }
 }
 
@@ -179,134 +145,71 @@
       height: 300px;
     }
 
-    .max-content {
-      .page {
-        .group-container {
-          display: flex;
-          flex-direction: column;
+    .max-content .page {
+      .group-container,
+      .group-container-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+        padding-bottom: 80px;
+        padding-left: var(--composer-gap-lg);
+        padding-right: var(--composer-gap-lg);
+
+        .title,
+        .description {
+          text-align: center;
           width: 100%;
-          gap: var(--composer-gap-sm);
-          padding-bottom: 80px;
-          padding-left: var(--composer-gap-lg);
-          padding-right: var(--composer-gap-lg);
-
-          .title,
-          .description {
-            text-align: center;
-            width: 100%;
-          }
-
-          .button-group {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: var(--composer-gap-md);
-            width: 100%;
-            margin-top: 20px;
-
-            .button {
-              width: 170px !important;
-              height: 50px !important;
-              margin: 0;
-            }
-          }
         }
 
-        .group-container-center {
-          padding-left: 40px !important;
-          padding-right: 40px !important;
+        .button-group {
+          justify-content: center;
+          width: 100%;
+          margin-top: 20px;
 
-          .button-group {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            padding-left: var(--composer-gap-lg) !important;
-            padding-right: var(--composer-gap-lg) !important;
-
-
-            .button {
-              width: 170px !important;
-              height: 50px !important;
-              margin: 0;
-            }
+          .button {
+            width: 170px !important;
+            height: 50px !important;
+            margin: 0;
+          }
+          .button-element {
+            width: 170px !important;
+            height: 50px !important;
           }
         }
+      }
+
+      .group-container-center {
+        padding-left: 40px;
+        padding-right: 40px;
       }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    padding: 0;
+  .container .max-content .page {
+    .group-container,
+    .group-container-center {
+      padding-top: 50px !important;
+      padding-bottom: 50px;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
 
-    .image-container {
-      height: 300px;
-    }
+      .button-group {
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
 
-    .max-content {
-      .page {
-        .group-container {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          gap: var(--composer-gap-sm);
-          padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) !important;
+        .button {
+          width: 150px !important;
+          height: 40px !important;
 
-          .button-group {
-            gap: var(--composer-gap-sm);
-            justify-content: center;
-
-            .button {
-              width: 150px !important;
-              height: 40px !important;
-
-              .button-element {
-                gap: var(--composer-gap-sm);
-
-                .button-text {
-                  content: "";
-                }
-
-                .button-icon {
-                  font-size: 1rem;
-                }
-              }
-            }
-          }
-        }
-
-        .group-container-center {
-          padding: var(--composer-gap-md) 20px !important;
-          padding-bottom: 50px;
-
-          .button-group {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: var(--composer-gap-sm);
-            align-items: center;
-
-            .button {
-              width: 150px !important;
-              height: 40px !important;
-
-              .button-element {
-                width: 150px !important;
-                height: 40px !important;
-              }
-
-              .button-logo {
-                width: 150px !important;
-                height: 40px !important;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
+          .button-element {
+            width: 150px !important;
+            height: 40px !important;
+  
+            .button-icon {
+              font-size: 1rem;
             }
           }
         }

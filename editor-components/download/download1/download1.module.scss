@@ -77,8 +77,7 @@
       .button-wrapper {
         .image-container {
           .image {
-            content: "";
-            width: 170px;
+            width: 150px;
             height: 50px;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
@@ -86,12 +85,14 @@
         }
 
         .button {
-          width: 170px;
+          width: 150px;
           height: 50px;
 
           .button-text {
             content: "";
-            margin: unset !important;
+            margin-left: unset !important;
+            margin-right: unset !important;
+            width: unset !important;
           }
 
           .icon {
@@ -111,11 +112,9 @@
 
         .button-wrapper {
           .button {
-            width: 170px;
+            width: 130px;
             height: 50px;
-
-
-
+            
             .icon {
               font-size: 1rem;
             }
@@ -146,7 +145,7 @@
           justify-content: center;
 
           .button {
-            width: 150px !important;
+            width: 130px !important;
             height: 40px !important;
           }
         }
