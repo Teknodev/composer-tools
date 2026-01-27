@@ -16,11 +16,14 @@ interface ProductCard {
     hoverImage: TypeMediaInputValue;
     line: boolean;
     BottomLabels: BottomLabelItem[];
+    enableLabelSeparator: boolean;
+    labelSeparatorIcon: TypeMediaInputValue;
     BottomRatingLabel: React.JSX.Element;
     bottomIcon: TypeMediaInputValue;
     productTitle: React.JSX.Element;
     priceSuffix: React.JSX.Element;
-    separatorIcon: TypeMediaInputValue;
+    enablePriceSeparator: boolean;
+    priceSeparatorIcon: TypeMediaInputValue;
     cost: { value: React.JSX.Element; currency: CurrencyCode };
     navigateTo: string;
 }
@@ -183,15 +186,39 @@ class ECommerce8 extends BaseECommerce {
                             value: "Arya",
                         },
                         {
+                            type: "boolean",
+                            key: "enableLabelSeparator",
+                            displayer: "Label Separator",
+                            value: true,
+                        },
+                        {
+                            type: "media",
+                            key: "labelSeparatorIcon",
+                            displayer: "Label Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
+                        },
+                        {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
                             value: "hour",
                         },
                         {
+                            type: "boolean",
+                            key: "enablePriceSeparator",
+                            displayer: "Price Separator",
+                            value: true,
+                        },
+                        {
                             type: "media",
-                            key: "separatorIcon",
-                            displayer: "Separator Icon",
+                            key: "priceSeparatorIcon",
+                            displayer: "Price Separator Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -326,15 +353,39 @@ class ECommerce8 extends BaseECommerce {
                             value: "Cali",
                         },
                         {
+                            type: "boolean",
+                            key: "enableLabelSeparator",
+                            displayer: "Label Separator",
+                            value: true,
+                        },
+                        {
+                            type: "media",
+                            key: "labelSeparatorIcon",
+                            displayer: "Label Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
+                        },
+                        {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
                             value: "hour",
                         },
                         {
+                            type: "boolean",
+                            key: "enablePriceSeparator",
+                            displayer: "Price Separator",
+                            value: true,
+                        },
+                        {
                             type: "media",
-                            key: "separatorIcon",
-                            displayer: "Separator Icon",
+                            key: "priceSeparatorIcon",
+                            displayer: "Price Separator Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -469,15 +520,39 @@ class ECommerce8 extends BaseECommerce {
                             value: "Jude",
                         },
                         {
+                            type: "boolean",
+                            key: "enableLabelSeparator",
+                            displayer: "Label Separator",
+                            value: true,
+                        },
+                        {
+                            type: "media",
+                            key: "labelSeparatorIcon",
+                            displayer: "Label Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
+                        },
+                        {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
                             value: "hour",
                         },
                         {
+                            type: "boolean",
+                            key: "enablePriceSeparator",
+                            displayer: "Price Separator",
+                            value: true,
+                        },
+                        {
                             type: "media",
-                            key: "separatorIcon",
-                            displayer: "Separator Icon",
+                            key: "priceSeparatorIcon",
+                            displayer: "Price Separator Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -612,15 +687,39 @@ class ECommerce8 extends BaseECommerce {
                             value: "Julia",
                         },
                         {
+                            type: "boolean",
+                            key: "enableLabelSeparator",
+                            displayer: "Label Separator",
+                            value: true,
+                        },
+                        {
+                            type: "media",
+                            key: "labelSeparatorIcon",
+                            displayer: "Label Separator Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "RxSlash",
+                            },
+                        },
+                        {
                             type: "string",
                             key: "priceSuffix",
                             displayer: "Price Suffix",
                             value: "hour",
                         },
                         {
+                            type: "boolean",
+                            key: "enablePriceSeparator",
+                            displayer: "Price Separator",
+                            value: true,
+                        },
+                        {
                             type: "media",
-                            key: "separatorIcon",
-                            displayer: "Separator Icon",
+                            key: "priceSeparatorIcon",
+                            displayer: "Price Separator Icon",
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
@@ -716,8 +815,12 @@ class ECommerce8 extends BaseECommerce {
                                 const isRatingImage = ratingIcon && "type" in ratingIcon && ratingIcon.type === "image";
                                 const productTitle = this.castToString(card.productTitle);
                                 const priceSuffix = this.castToString(card.priceSuffix);
-                                const separatorIcon = card.separatorIcon;
-                                const isSeparatorImage = separatorIcon && "type" in separatorIcon && separatorIcon.type === "image";
+                                const enableLabelSeparator = card.enableLabelSeparator;
+                                const labelSeparatorIcon = card.labelSeparatorIcon;
+                                const isLabelSeparatorImage = labelSeparatorIcon && "type" in labelSeparatorIcon && labelSeparatorIcon.type === "image";
+                                const enablePriceSeparator = card.enablePriceSeparator;
+                                const priceSeparatorIcon = card.priceSeparatorIcon;
+                                const isPriceSeparatorImage = priceSeparatorIcon && "type" in priceSeparatorIcon && priceSeparatorIcon.type === "image";
                                 const cost = card.cost;
                                 const navigateTo = card.navigateTo;
                                 const hasBottomLabels = bottomLabelsArray.length > 0;
@@ -769,10 +872,10 @@ class ECommerce8 extends BaseECommerce {
                                                                         <div className={this.decorateCSS("label-item")}>
                                                                             <Base.P className={this.decorateCSS("label-text")}>{labelItem.cardLabel}</Base.P>
                                                                         </div>
-                                                                        {card.line && !isLast && (
+                                                                        {!isLast && enableLabelSeparator && (
                                                                             <Base.Media
-                                                                                value={separatorIcon}
-                                                                                className={`${this.decorateCSS("label-separator")} ${isSeparatorImage && this.decorateCSS("is-image")}`}
+                                                                                value={labelSeparatorIcon}
+                                                                                className={`${this.decorateCSS("label-separator")} ${isLabelSeparatorImage && this.decorateCSS("is-image")}`}
                                                                             />
                                                                         )}
                                                                     </React.Fragment>
@@ -817,10 +920,12 @@ class ECommerce8 extends BaseECommerce {
                                                     </div>
                                                     {priceSuffix && (
                                                         <div className={this.decorateCSS("price-suffix-container")}>
-                                                            <Base.Media
-                                                                value={separatorIcon}
-                                                                className={`${this.decorateCSS("separator-icon")} ${isSeparatorImage && this.decorateCSS("is-image")}`}
-                                                            />
+                                                            {enablePriceSeparator && (
+                                                                <Base.Media
+                                                                    value={priceSeparatorIcon}
+                                                                    className={`${this.decorateCSS("separator-icon")} ${isPriceSeparatorImage && this.decorateCSS("is-image")}`}
+                                                                />
+                                                            )}
                                                             <Base.P className={this.decorateCSS("price-suffix")}>
                                                                 {card.priceSuffix}
                                                             </Base.P>
