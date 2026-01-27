@@ -229,7 +229,6 @@ class Download11 extends BaseDownload {
       rightBottomItems.visibility;
 
     const hasValidRightCards = hasValidRightCard || hasValidBottomRightCard;
-    const getSubtitleType = Base.getSectionSubTitleType();
 
 
     return (
@@ -238,10 +237,7 @@ class Download11 extends BaseDownload {
           {(this.castToString(sectionSubtitle) || this.castToString(sectionTitle) || this.castToString(sectionDescription)) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(sectionSubtitle)
-              && <Base.SectionSubTitle className={`${getSubtitleType === "badge"
-                ? this.decorateCSS("subtitle-badge")
-                : this.decorateCSS("subtitle")
-                } `}>
+                && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {sectionSubtitle}
               </Base.SectionSubTitle>}
               {this.castToString(sectionTitle) && <Base.SectionTitle className={this.decorateCSS("title")}>{sectionTitle}</Base.SectionTitle>}
