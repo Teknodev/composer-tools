@@ -1,15 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding-bottom: 0;
-
-  @container (max-width: #{$composer-tablet-width}) {
-    padding: 0;
-  }
-
-  @container (max-width: #{$composer-phone-width}) {
-    padding: 0;
-  }
 
   .max-content {
     display: flex;
@@ -21,14 +12,9 @@
     }
 
     .header {
-      @container (max-width: #{$composer-tablet-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
-      }
 
-      @container (max-width: #{$composer-phone-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
-      }
-
+      .title,
+      .subtitle,
       .description {
         content: "";
       }
@@ -47,9 +33,12 @@
 
       .control-part {
         flex: 1;
-        max-width: 100%;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+        text-align: left;
         padding: var(--composer-gap-md);
         margin: var(--composer-gap-md) 0;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -67,11 +56,14 @@
         .control-title {
           margin-top: var(--composer-gap-sm);
           color: var(--composer-primary-color);
-          font-size: 1.5rem;
+          text-align: left;
+          width: 100%;
         }
 
         .control-description {
           color: var(--composer-font-color-primary);
+          text-align: left;
+          width: 100%;
         }
 
         .arrows {
@@ -126,20 +118,22 @@
             padding: 0;
           }
 
-          > div {
-            > div {
+          :global(.slick-list) {
+            :global(.slick-track) {
               padding: var(--composer-gap-md) 0;
               display: flex;
               align-items: stretch;
               height: 100%;
 
-              > div {
+              :global(.slick-slide) {
                 padding: 0 var(--composer-gap-md);
-                height: auto;
-                min-height: 219px;
+                height: 100%;
+                display: flex;
 
-                > div {
+                >div {
                   height: 100%;
+                  width: 100%;
+                  display: flex;
                 }
               }
             }
@@ -147,14 +141,20 @@
 
           .card {
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: flex-start;
+            text-align: left;
             padding: var(--composer-gap-md);
-            transition: transform 0.3s ease;
+            transition: transform var(--composer-transition-duration-normal) ease;
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
             border-radius: var(--composer-border-radius-lg);
             gap: var(--composer-gap-md);
             height: 100%;
+            min-height: 265px;
 
-            &:hover {
+            &.hover-active:hover {
               transform: scale(1.05);
 
               @container (max-width: #{$composer-tablet-width}) {
@@ -166,19 +166,65 @@
               }
             }
 
+            .button {
+              color: var(--composer-primary-color);
+              font-weight: 600;
+              margin-top: auto;
+              text-align: left;
+              width: 100%;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              gap: var(--composer-gap-xs);
+
+              .button-text {
+                width: auto;
+              }
+
+              .button-icon {
+                color: var(--composer-font-color-secondary);
+                width: 1.25rem;
+                height: 1.25rem;
+              }
+            }
+
+            .icon-row {
+              margin: 0;
+              margin-bottom: var(--composer-gap-sm);
+              padding: 0;
+              width: 100%;
+              justify-content: flex-start;
+            }
+
             .play-icon {
               flex-shrink: 0;
               font-size: 3rem;
               color: var(--composer-primary-color);
+              width: 3rem;
+              height: 3rem;
+              margin-left: 0;
+            }
+
+            .item-subtitle {
+              color: var(--composer-font-color-secondary);
+              margin-bottom: var(--composer-gap-xs);
+              text-align: left;
+              width: 100%;
             }
 
             .item-header {
               color: var(--composer-font-color-primary);
+              text-align: left;
+              width: 100%;
             }
 
             .item-content {
               color: var(--composer-tertiary-color);
+              text-align: left;
+              width: 100%;
             }
+
+
           }
 
           .for-single-card {
@@ -198,19 +244,29 @@
 
         .carousel--singleCard {
           width: 100%;
-
-          > div {
-            width: 100%;
-          }
         }
 
         .carousel--multipleCards {
           width: auto;
         }
+
+
       }
 
       .no-control-part {
         max-width: 100%;
+      }
+    }
+
+
+    .global-button {
+      margin-top: var(--composer-gap-lg);
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      &.center {
+        justify-content: center;
       }
     }
   }
