@@ -31,39 +31,24 @@
     }
 
     &[data-animation~="animate1"] {
-        .bg-animation {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: inherit;
-            background-size: cover;
-            background-position: center;
+        .cover-media {
             transition: transform 0.5s ease;
-            z-index: 0;
         }
 
         &:hover {
-            .bg-animation {
+            .cover-media {
                 transform: scale(1.1);
             }
         }
-
     }
 
     &[data-animation~="animate2"] {
-        .bg-animation {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: inherit;
-            background-size: cover;
-            background-position: center;
-            z-index: 0;
+        .cover-media {
             transition: all 0.5s ease;
         }
 
         &:hover {
-            .bg-animation {
+            .cover-media {
                 filter: blur(var(--composer-gap-xs)) brightness(0.7);
             }
 

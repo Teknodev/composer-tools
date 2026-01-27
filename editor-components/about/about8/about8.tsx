@@ -113,6 +113,7 @@ class About8 extends BaseAbout {
     const image2 = this.getPropValue("image-2");
     const texts = this.castToObject<Text[]>("texts");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const alignment = Base.getContentAlignment();
 
 
     const hasTitle = !!this.castToString(title);
@@ -200,7 +201,7 @@ class About8 extends BaseAbout {
                 )}
 
                 {buttons.length > 0 && (
-                  <div className={this.decorateCSS("buttons-container")}>
+                  <div className={`${this.decorateCSS("buttons-container")} ${this.decorateCSS(alignment)}`}>
                     {buttons.map((button: INPUTS.CastedButton, index: number) => (
                       <div key={index} className={this.decorateCSS("button-wrapper")}>
                         {this.castToString(button.text) && (

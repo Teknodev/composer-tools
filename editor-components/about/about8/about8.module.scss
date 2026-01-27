@@ -64,9 +64,19 @@ as *;
 
         .buttons-container {
           display: flex;
-          align-self: center;
+          align-self: flex-start;
           gap: var(--composer-gap-md);
           flex-wrap: wrap;
+
+          &.center {
+            align-self: center;
+            justify-content: center;
+          }
+
+          &.right {
+            align-self: flex-end;
+            justify-content: flex-end;
+          }
 
           .button-wrapper {
             display: flex;

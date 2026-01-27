@@ -83,7 +83,7 @@ class About2 extends BaseAbout {
         className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}
         data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}
       >
-        <div className={this.decorateCSS("bg-animation")} />
+
         {cover && <Base.Media value={cover} className={this.decorateCSS("cover-media")} />}
         {this.getPropValue("overlay") && cover && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
