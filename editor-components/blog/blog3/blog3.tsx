@@ -55,7 +55,7 @@ class Blog3 extends BaseBlog {
           key: "dateIcon",
           displayer: "Date Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -67,7 +67,7 @@ class Blog3 extends BaseBlog {
           key: "timeIcon",
           displayer: "Time Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -420,6 +420,12 @@ class Blog3 extends BaseBlog {
       value: true
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "hoverAnimation",
+      displayer: "Hover Animation",
+      value: true
+    });
   }
 
   static getName(): string {
@@ -453,6 +459,7 @@ class Blog3 extends BaseBlog {
       const fullNameExist = !!this.castToString(data.fullname);
       const readTimeExist = !!this.castToString(data.readTime);
       const dateExist = !!this.castToString(data.date);
+      const hoverAnimation = !!this.getPropValue("hoverAnimation");
 
       return (
         <div
@@ -466,7 +473,10 @@ class Blog3 extends BaseBlog {
             <div className={this.decorateCSS("image-container")}>
               <Base.Media
                 value={data.image}
-                className={this.decorateCSS("image")}
+                className={`
+                  ${this.decorateCSS("image")}
+                  ${hoverAnimation && this.decorateCSS("hover-animation")}
+                `}
               />
             </div>
           }

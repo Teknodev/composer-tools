@@ -430,10 +430,10 @@ class Blog1 extends BaseBlog {
                 <div key={`blog-1-btn-${index}`} className={this.decorateCSS("right-link")}>
                   <ComposerLink path={item.url}>
                     <div className={this.decorateCSS("inner-right-link")}>
-                    <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
-                     {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                     {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                    </Base.Button>
+                      <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
+                        {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                        {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                      </Base.Button>
                     </div>
                   </ComposerLink>
                 </div>
@@ -486,6 +486,7 @@ class Blog1 extends BaseBlog {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       <div className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("gradient-overlay")} />
                         {item.image?.url && (
                           <div className={this.decorateCSS("media-wrapper")}>
                             <ComposerLink path={item.url}>
