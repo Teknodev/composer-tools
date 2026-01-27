@@ -1,3 +1,5 @@
+@use "../../base/utitilities/viewports.module.scss" as *;
+
 .accordion {
    display: flex;
    flex-direction: column;
@@ -7,6 +9,17 @@
      align-items: center;
      justify-content: space-between;
      text-transform: capitalize;
+   }
+
+   .accordionTitle {
+    color: var(--composer-font-color-primary);
+     @container (max-width: #{$composer-tablet-width}) {
+       text-align: left !important;
+     }
+
+     @container (max-width: #{$composer-phone-width}) {
+       text-align: left !important;
+     }
    }
 
    .accordionContent {

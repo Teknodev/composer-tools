@@ -19,9 +19,42 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  height: 100vh;
   scrollbar-width: none;
   -ms-overflow-style: none;
+
+  &.no-background-image {
+    padding: 80px var(--composer-gap-xl) !important;
+  }
+
+  &.center-alignment {
+    .card-container {
+      &.without-image {
+        .card {
+          align-items: center;
+
+          .logo {
+            text-align: center;
+          }
+
+          .subtitle,
+          .title,
+          .description,
+          .note {
+            text-align: center;
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
+      }
+      .card {
+        .subtitle {
+          margin-left: 0;
+        }
+      }
+    }
+  }
 
   ::-webkit-scrollbar {
     display: none;
@@ -30,116 +63,168 @@
   .max-content {
     position: relative;
     height: 100%;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100%;
 
     .image-container {
       height: 100vh;
       position: relative;
 
-      .image {
-        height: 130%;
+      .image-element {
         width: 100%;
-        inset: 0px;
-        color: transparent;
-        scale: none;
-        rotate: none;
+        height: 100%;
         object-fit: cover;
       }
 
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
+      }
+
       .no-img-anm {
-        top: 50% !important;
-        transform: translateY(-50%) !important;
+        height: 100%;
       }
     }
 
+  .card-container {
+    position: relative;
+    
+    &.no-image {
+      .card {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        max-width: var(--composer-content-width);
+        margin: 0 auto;
+        padding: 0;
+      }
+    }
+    
     .card {
-      border-radius: var(--composer-border-radius-xs);
+      position: relative;
+      z-index: 2;
+      align-items: baseline;
+
+      .logo {
+        &.logo-icon {
+          font-size: 3rem;
+          color: var(--composer-font-color-primary);
+        }
+
+        &.logo-image {
+          aspect-ratio: 3/1;
+          object-fit: cover;
+          width: 100%;
+          max-width: 200px;
+        }
+      }
+      border-radius: var(--composer-border-radius-md);
       position: absolute;
       bottom: var(--composer-gap-md);
       background: var(--composer-html-background);
-      right: var(--composer-gap-xl);
-      width: 30%;
+      right: 100px;
+      width: 35%;
+      padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
-      .box {
-        padding:calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+      .subtitle ,.title ,.description ,.note {
+        text-align: left;
+      }
+
+      .subtitle, .title, .note {
+        @include textEllipsis(2);
+      }
+
+      .button-container {
         display: flex;
-        gap: var(--composer-gap-sm);
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: var(--composer-gap-md);
-        .heading {
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
-          .sub-heading-container {
-            font-size: 1rem;
-            color: var(--composer-font-color-primary);
-            display: flex;
-            gap: var(--composer-gap-sm);
-            align-items: center;
-            .sub-heading-line {
-              height: 1px;
-              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-              width: 4rem;
-              margin: 0px;
-            }
-            .sub-heading-title {
-              flex: 1;
-              font-size: 1.5rem;
-              color: var(--composer-font-color-primary);
-              @include textEllipsis(2);
-            }
+        .button{
+          .button-text {
+            content: "";
           }
-          .title {
-            font-size: 3.5rem;
-            margin: 0;         
-            color: var(--composer-font-color-primary);
-            @include textEllipsis(2);
+          .button-icon{
+            height: 12px;
+            width: 12px;
           }
-        }
-
-        .desc {
-          margin: 0;
-          font-size: 1.5rem;
-          color: var(--composer-font-color-primary);
-          max-height: 20rem;
-          overflow: auto;
-        }
-
-        .note {
-          font-size: 1.5rem;
-          color: var(--composer-primary-color);
-          margin: 0;
-          @include textEllipsis(2);
         }
       }
+
+      .note {
+        color: var(--composer-primary-color);
+      }
     }
+  }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container{
+    padding: 0 !important;
+
+    &.no-background-image {
+      padding: 80px var(--composer-gap-lg) !important;
+    }
+
     .max-content{
-      .card {
-        width: 50%;
-        .box {
-          .heading {
-            .sub-heading-container {
-              .sub-heading-line {
-                width: 3rem;
-              }
-              .sub-heading-title {
-                font-size: 1rem;
-              }
-            }
-            .title {
-              font-size: 2rem;
-              letter-spacing: 2px;
-            }
+      position: relative;
+      min-height: 100vh;
+      
+      &.no-image-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: auto;
+        height: auto;
+      }
+      
+      .image-container {
+        height: 100vh;
+        position: relative;
+      }
+      
+      .card-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        
+        &.no-image {
+          position: static;
+          width: 100%;
+          height: auto;
+          pointer-events: all;
+          
+          .card {
+            position: relative;
+            right: auto;
+            bottom: auto;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: var(--composer-gap-lg) var(--composer-gap-md);
           }
-    
-          .desc,
-          .note {
-            font-size: 1rem;
-          }
+        }
+        
+        .card {
+          position: absolute;
+          z-index: 2;
+          pointer-events: all;
+          width: 60%;
+          max-width: 500px;
+          right: var(--composer-gap-xl);
+          bottom: var(--composer-gap-md);
+          padding: var(--composer-gap-lg) var(--composer-gap-md);
         }
       }
     }
@@ -149,38 +234,48 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     height: fit-content;
-    padding: 20px !important;
+    min-height: fit-content;
+    padding: 0 !important;
+
+    &.no-background-image {
+      padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
+    }
+
     .max-content {
+      position: static;
       display: flex;
       flex-direction: column;
-        .image-container {
-          height: 50vh; 
-          .image {
-            scale: 1;
-            height: 100%;
-            width: 100%;
-            transform: none !important;
-          }
+      height: auto;
+      
+      .image-container {
+        height: 50vh;
+        position: relative;
+        order: 1;
+          
+        .image-element {
+          width: 100%;
+          object-fit: cover;
+          height: 500px;
         }
-      .card {
-        bottom: 0 ;
-        position: relative ;
-        transform: none ;
-        right: 0px ;
-        width: auto ;
-    
-        .box {
-          padding: var(--composer-gap-md) ;
-          .heading {
-            .sub-heading-container {
-              .sub-heading-line {
-                display: none;
-              }
-            }
-          }
-          .desc{
-            max-height: unset !important;
-          }
+      }
+      
+      .card-container {
+        position: static;
+        order: 2;
+        width: 100%;
+        height: auto;
+        pointer-events: all;
+        
+        .card {
+          position: relative;
+          transform: none;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          max-width: 100%;
+          padding: var(--composer-gap-md);
+          margin-top: var(--composer-gap-md);
+          border-radius: 0;
         }
       }
     }

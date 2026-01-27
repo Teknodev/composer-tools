@@ -1,11 +1,15 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
+.hamburgerActive {
+  background: inherit !important;
+}
+
+.navbarContainer {
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
   position: relative;
-  z-index: 101;
+  z-index: 101 !important;
 }
 
 .maxContent {
@@ -48,12 +52,12 @@
     display: flex;
     gap: var(--composer-gap-sm);
     justify-content: end;
-    align-items: flex-end;
     align-items: center;
     height: fit-content;
     z-index: 20;
 
     .localization, .localizationLabel, .localizationItem, .localizationContent {
+      content: "";
     }
     .localization{
       .localizationLabel{
@@ -87,11 +91,18 @@
     
     .languageIcon{
       content: "";
+      width: 14px;
+      height: 14px;
+      object-fit: cover;
     }
 
     .hamburgerIcon {
-      font-size: 2.5rem;
+      font-size: calc(1.5 * var(--composer-font-size-md));
       cursor: pointer;
+      width: 24px;
+      height: 24px;
+      object-fit: cover;
+      display: flex;
     }
 
     .activeHamburgerIcon {
@@ -119,7 +130,7 @@
 }
 
  .overlay {
-  content: "";
+    z-index: 1;
   }
 
 .dropdownMenu {
@@ -129,11 +140,13 @@
   transition: all 0.3s ease;
 
   &.active {
-    height: 85vh;
+    height: calc(100vh - 125px) !important;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     transition: all 0.3s ease;
+    padding: var(--composer-gap-lg) 0;
+    box-sizing: border-box;
   }
   &.overflowShow{
     overflow-y: auto;
@@ -145,12 +158,16 @@
     gap: var(--composer-gap-md);
     justify-content: center;
     margin: 0 calc(var(--composer-gap-xl) * 2);
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
 
     .leftPage {
       .title {
         font-size: 7rem;
         letter-spacing: var(--composer-gap-xs);
-        color: var(--composer-font-color-primary);
+        color: var(--composer-tertiary-color);
+        line-height: normal;
       }
     }
 
@@ -162,13 +179,14 @@
 
       .items {
         .item-title {
-          font-size: 2.5rem;
           color: var(--composer-font-color-primary);
           opacity: 0;
           transform: translateY(-100px);
           animation: fadeIn 1.5s ease forwards;
           transition: color 0.3s;
           cursor: pointer;
+          line-height: normal;
+          font-size: 3.5rem;
           &.animation1{
             &:hover {
               color: var(--composer-tertiary-color);
@@ -186,38 +204,37 @@
 
   .line {
     border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
+    margin-top: auto;
+    margin-bottom: 0;
+    flex-shrink: 0;
   }
 
   .down {
+    margin-top: 0;
+    flex-shrink: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: var(--composer-gap-md);
+    padding-top: var(--composer-gap-lg);
 
     .text {
-      font-size: 1.5rem;
       color: var(--composer-font-color-primary);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      flex: 0 1 auto;
     }
 
     .divider {
       flex-shrink: 0;
-      width: var(--composer-gap-xl);
+      flex-grow: 0;
+      width: 100px;
       height: 1px;
       border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.2);
-    }
-
-    .text,
-    .divider {
-      flex: 1 1;
     }
   }
 
   .down > :first-child {
     display: flex;
-    justify-content: start;
+    justify-content: flex-end;
   }
 
   @keyframes fadeOut {
@@ -269,6 +286,19 @@
 .filledBackground{
   background-color: var(--composer-html-background) !important;
   transition: all 0.3s ease;
+  
+  .maxContent {
+    .logo,
+    .socialMediaBox {
+      display: none !important;
+    }
+    
+    .navbar {
+      .localization {
+        display: none !important;
+      }
+    }
+  }
 }
 
 
@@ -296,6 +326,10 @@
     .navbar {
       .hamburgerIcon {
         font-size: 1.5rem;
+        display: flex;
+        font-size: calc(1.5 * var(--composer-font-size-md));
+        height: 24px;
+        width: 24px;
       }
     }
 
@@ -306,21 +340,24 @@
       gap: var(--composer-gap-xl);
       margin: 0 var(--composer-gap-lg);
 
+      .leftPage {
+        .title {
+          font-size: 5rem !important;
+          line-height: normal !important;
+        }
+      }
+
       .rightPage {
         width: 100%;
-        text-align: center;
+        text-align: left;
 
         .items {
           .item-title {
-            font-size: 2.5rem;
-            text-align: center;
+            text-align: left !important;
+            font-size: 2.5rem !important;
+            line-height: normal !important;
           }
         }
-      }
-    }
-    .down{
-      .text{
-        font-size: 1rem;
       }
     }
   }
@@ -361,7 +398,7 @@
 
           .item-title {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 2rem !important;
           }
         }
       }

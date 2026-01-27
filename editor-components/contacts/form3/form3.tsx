@@ -41,9 +41,9 @@ class Form3 extends BaseContacts {
     this.addProp({
       type: "media",
       key: "background",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",

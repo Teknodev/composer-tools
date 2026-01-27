@@ -88,6 +88,7 @@
         .subtitle {
           content: "";
           transform: translateX(0);
+          align-self: center;
           &::before{
             display: none;
           }

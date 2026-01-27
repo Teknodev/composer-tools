@@ -21,6 +21,12 @@ class Breadcrumb2 extends BaseBreadcrumb {
       value: "The Best Time to Celebrate",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "array",
       key: "breadcrumbItems",
       displayer: "Breadcrumb Items",
@@ -95,6 +101,13 @@ class Breadcrumb2 extends BaseBreadcrumb {
       displayer: "Show Gradient",
       value: true,
     });
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Background Media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: { type: "image", url: "" },
+    });
         this.addProp({
             type: "media",
             key: "breadcrumbIcon",
@@ -122,12 +135,15 @@ class Breadcrumb2 extends BaseBreadcrumb {
   render() {
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
     const currentPage = this.castToObject("currentPage");
     const currentPageTitle = currentPage?.title || "";
     const currentPageIcon = currentPage?.icon || "";
     const showGradient = this.getPropValue("showGradient");
     const overlay = this.getPropValue("overlay");
+    const bgImage = this.getPropValue("image");
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
@@ -136,7 +152,8 @@ class Breadcrumb2 extends BaseBreadcrumb {
             : this.decorateCSS("noGradient")
         }`}
       >
-        {overlay && <div className={this.decorateCSS("overlay")}></div>}
+        {bgImage && <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />}
+        {overlay && bgImage && <div className={this.decorateCSS("overlay")}></div>}
         {showBreadcrumb && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             <Base.Row className={this.decorateCSS("crumber-content")}>
@@ -181,16 +198,25 @@ class Breadcrumb2 extends BaseBreadcrumb {
                 </>
               )}
             </Base.Row>
-          </Base.MaxContent>
-        )}
-        {isTitleExist && (
-          <Base.MaxContent>
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {this.getPropValue("title")}
-            </Base.SectionTitle>
-          </Base.MaxContent>
-        )}
-      </Base.Container>
+            <Base.VerticalContent className={this.decorateCSS("content-container")}>
+            {isTitleExist && (
+            <div>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+            </div>
+          )}
+            {isDescriptionExist && (
+            <div>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
+            </div>
+          )}
+          </Base.VerticalContent>
+            </Base.MaxContent>
+          )}
+        </Base.Container>
     );
   }
 }

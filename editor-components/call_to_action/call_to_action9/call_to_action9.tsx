@@ -26,6 +26,13 @@ class CallToAction9Page extends BaseCallToAction {
       value: "98% designers love Shuffle. Not convinced you're one?",
     });
 
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp(
       INPUTS.BUTTON(
         "button",
@@ -40,8 +47,8 @@ class CallToAction9Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
+      key: "itemDescription",
+      displayer: "Item Description",
       value: "Trusted by 100+ development team",
     });
     this.addProp({
@@ -179,6 +186,8 @@ class CallToAction9Page extends BaseCallToAction {
 
   render() {
     const images = this.castToObject<ImageItem[]>("imageItems");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const button: INPUTS.CastedButton =
       this.castToObject<INPUTS.CastedButton>("button");
 
@@ -199,6 +208,11 @@ class CallToAction9Page extends BaseCallToAction {
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
            </Base.VerticalContent>
             {this.castToString(button.text) && (
               <ComposerLink path={button.url}>
@@ -212,9 +226,9 @@ class CallToAction9Page extends BaseCallToAction {
                 </Base.Button>
               </ComposerLink>
             )}
-            {this.castToString(this.getPropValue("description")) && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
+            {this.castToString(this.getPropValue("itemDescription")) && (
+              <Base.SectionDescription className={this.decorateCSS("item-description")}>
+                {this.getPropValue("itemDescription")}
               </Base.SectionDescription>
             )}
             {images.length > 0 && (

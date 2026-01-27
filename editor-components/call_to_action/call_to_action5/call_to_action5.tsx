@@ -11,10 +11,16 @@ class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -90,8 +96,13 @@ class CallToAction5Page extends BaseCallToAction {
       <Base.Container
         className={`${this.decorateCSS("container")}
         ${this.getPropValue("overlay") && this.getPropValue("background") && this.decorateCSS("overlay-active")}`}
-        style={{ backgroundImage: `url(${this.getPropValue("background")})` }}
       >
+        {this.getPropValue("background") && (
+          <Base.Media
+            value={this.getPropValue("background")}
+            className={this.decorateCSS("background")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist || subtitleExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>

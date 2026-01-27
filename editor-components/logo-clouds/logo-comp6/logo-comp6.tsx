@@ -55,7 +55,39 @@ class LogoComp6Page extends LogoClouds {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+              },
+            },
+            {
+              type: "page",
+              key: "imageLink",
+              value: "",
+              displayer: "Navigate To",
+            },
+            {
+              type: "string",
+              key: "itemText",
+              displayer: "Item Text",
+              value:
+                "Sound production and light creators. The company has already worked with big city projects as City collectors in 2019.",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "list-item",
+          displayer: "List Item",
+          value: [
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -87,9 +119,9 @@ class LogoComp6Page extends LogoClouds {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -119,41 +151,9 @@ class LogoComp6Page extends LogoClouds {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
-              },
-            },
-            {
-              type: "page",
-              key: "imageLink",
-              value: "",
-              displayer: "Navigate To",
-            },
-            {
-              type: "string",
-              key: "itemText",
-              displayer: "Item Text",
-              value:
-                "Sound production and light creators. The company has already worked with big city projects as City collectors in 2019.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "list-item",
-          displayer: "List Item",
-          value: [
-            {
-              type: "media",
-              key: "image",
-              displayer: "Image",
-              additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",

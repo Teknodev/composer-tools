@@ -52,7 +52,7 @@ class ECommerce1 extends BaseECommerce {
     this.addProp({
       type: "array",
       key: "images",
-      displayer: "Product Images",
+      displayer: "Product Media",
       additionalParams: {
         maxElementCount: 4,
       },
@@ -65,9 +65,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+              displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -84,9 +84,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+              displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -103,9 +103,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+              displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -122,9 +122,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+                displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",

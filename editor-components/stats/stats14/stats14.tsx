@@ -23,6 +23,13 @@ class Stats14 extends BaseStats {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "features-item",
       displayer: "Feature Items",
@@ -99,6 +106,8 @@ class Stats14 extends BaseStats {
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
     const isLeftContainerExist = isTitleExist || FeaturesItem.length > 0 || buttons.length > 0;
+    const description = this.getPropValue("description");
+    const descriptionExist = this.castToString(description);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -121,7 +130,11 @@ class Stats14 extends BaseStats {
                     {title}
                   </Base.SectionTitle>
                 )}
-
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
                 {FeaturesItem.length > 0 && (
                   <Base.Row
                     className={`${this.decorateCSS("features-list")} ${
@@ -190,5 +203,6 @@ class Stats14 extends BaseStats {
 
 export default Stats14;
  
+
 
 

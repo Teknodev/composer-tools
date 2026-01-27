@@ -6,6 +6,7 @@
 
   .max-content {
     height: 100%;
+    max-width: 100%;
     .content {
       display: flex;
       flex-direction: column;
@@ -17,8 +18,16 @@
         .items {
           .text {
             color: var(--composer-font-color-primary);
-            &:hover {
+            
+            &::before {
               background: var(--composer-font-color-primary);
+            }
+            
+            &:hover {
+              color: var(--composer-font-color-secondary);
+            }
+            
+            &.active {
               color: var(--composer-font-color-secondary);
             }
           }
@@ -26,7 +35,8 @@
       }
 
       .items {
-        z-index: 1;
+        position: relative;
+        z-index: 2;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -38,22 +48,63 @@
           font-size: 2.5rem;
           margin: var(--composer-gap-sm) 0;
           cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          transition: color 0.5s ease;
+
+          &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: black;
+            z-index: -1;
+            transition: width 0.5s ease;
+          }
 
           &:hover {
-            background: black;
             color: white;
+            
+            &::before {
+              width: 100%;
+            }
+          }
+          
+          &.active {
+            color: white;
+            
+            &::before {
+              width: 100%;
+            }
           }
         }
       }
 
-      .image {
+      .image-wrapper {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: 0;
-        object-fit: cover;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-color: var(--composer-overlay-color);
+        }
       }
     }
   }
