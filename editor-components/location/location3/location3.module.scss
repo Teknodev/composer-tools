@@ -1,12 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
   width: 100%;
 
   .container {
-    padding-bottom: 0;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+
     .max-content {
       .header {
         text-align: center;
@@ -19,15 +19,30 @@
           .icon {
             width: var(--composer-gap-xl);
             height: var(--composer-gap-xl);
+            font-size: 2rem;
+          }
+
+          .icon.icon-img {
+            aspect-ratio: 3 / 1;
+            width: calc(var(--composer-gap-xl) * 3) !important;
+            height: auto !important;
+            object-fit: cover;
+            display: block;
           }
         }
 
-        .title {
+        .subtitle,
+        .title,
+        .description {
           text-align: center;
         }
 
-        .description {
-          text-align: center;
+        .subtitle {
+          transform: translateX(0);
+
+          &::before {
+            display: none;
+          }
         }
 
         .continents-wrapper {
@@ -36,9 +51,9 @@
           column-gap: var(--composer-gap-lg);
           border-bottom: var(--composer-gap-sm) solid var(--composer-primary-color);
           padding-bottom: var(--composer-gap-md);
-          width: auto;
-          padding-left: 15%;
-          padding-right: 15%;
+          width: 50%;
+          padding-left: 0;
+          padding-right: 0;
           flex-wrap: wrap;
 
           .continent-item {
@@ -47,13 +62,15 @@
             align-items: center;
 
             .continent-name {
-              font-size: 1rem;
               color: var(--composer-primary-color);
+              text-align: justify !important;
+              font-size: var(--composer-font-size-xs);
             }
 
             .continent-count {
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
+              text-align: justify !important;
+
             }
           }
         }
@@ -66,7 +83,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-bottom: var(--composer-gap-md);
 
     .map {
       width: 100%;
@@ -102,8 +118,30 @@
       .max-content {
         .header {
           .continents-wrapper {
-            min-width: 200px;
+            width: 100%;
+            justify-content: center;
+            min-width: 0;
             padding: 0;
+            gap: var(--composer-gap-sm);
+
+            .continent-item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+
+              .continent-name {
+                color: var(--composer-primary-color);
+              }
+
+              .continent-count {
+                color: var(--composer-font-color-primary);
+                text-align: center !important;
+                width: 100%;
+                display: block;
+                margin: 0 auto;
+              }
+            }
           }
         }
       }
