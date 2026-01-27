@@ -263,13 +263,8 @@
             justify-content: center;
 
             .button {
-              width: 140px;
-              min-width: 140px;
-              max-width: 140px;
-              height: 35px;
-              min-height: 35px;
-              max-height: 35px;
-              margin: 0px;
+              width: 150px !important;
+              height: 40px !important;
 
               .button-element {
                 gap: var(--composer-gap-sm);
@@ -287,7 +282,7 @@
         }
 
         .group-container-center {
-          padding: var(--composer-gap-md) 40px;
+          padding: var(--composer-gap-md) 20px !important;
           padding-bottom: 50px;
 
           .button-group {
@@ -298,18 +293,17 @@
             align-items: center;
 
             .button {
-              width: 170px !important;
-              height: 50px !important;
-              margin: 0px;
+              width: 150px !important;
+              height: 40px !important;
 
               .button-element {
-                width: 170px !important;
-                height: 50px !important;
+                width: 150px !important;
+                height: 40px !important;
               }
 
               .button-logo {
-                width: 100% !important;
-                height: 100% !important;
+                width: 150px !important;
+                height: 40px !important;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-sm);
               }

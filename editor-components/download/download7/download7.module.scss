@@ -121,64 +121,64 @@
       }
     }
   }
+}
 
-  @container (max-width: #{$composer-tablet-width}) {
-    .container {
-      .max-content {
-        .wrapper {
-          .content-container {
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .content-container {
+          min-height: 600px;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+          &.has-image {
             min-height: 600px;
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-
-            &.has-image {
-              min-height: 600px;
-            }
           }
         }
       }
     }
   }
+}
 
-  @container (max-width: #{$composer-phone-width}) {
-    .container {
-      .max-content {
-        .wrapper {
-          .content-container {
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .wrapper {
+        .content-container {
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
 
-            &.has-image {
-              min-height: 600px;
+          &.has-image {
+            min-height: 600px;
+          }
+
+          .description {
+            text-align: center;
+          }
+
+          .buttons-container {
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+
+            &.center {
+              justify-content: center;
+              align-items: center;
             }
 
-            .description {
-              text-align: center;
-            }
+            .button-wrapper {
+              margin-left: 0;
 
-            .buttons-container {
-              justify-content: flex-start;
-              align-items: flex-start;
-              flex-direction: column;
-
-              &.center {
-                justify-content: center;
-                align-items: center;
+              .button-image,
+              .button {
+                width: 150px !important;
+                height: 40px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
               }
 
-              .button-wrapper {
-                margin-left: 0;
-
-                .button-image,
-                .button {
-                  width: 170px !important;
-                  height: 50px !important;
-                  display: flex !important;
-                  align-items: center !important;
-                  justify-content: center !important;
-                }
-
-                .button-image {
-                  object-fit: cover;
-                }
+              .button-image {
+                object-fit: cover;
               }
             }
           }
