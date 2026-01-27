@@ -1,15 +1,14 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding: 80px 0px;
 
   .max-content {
     display: flex;
     flex-direction: column;
     max-width: unset;
 
-    .header {
+    .title {
       flex-direction: column;
       align-items: center;
       margin: 0 auto;
@@ -18,6 +17,7 @@
       flex-wrap: nowrap;
       width: 100%;
       display: flex;
+      padding: 0 var(--composer-gap-xl);
 
       .header-content {
         flex: 1;
@@ -28,10 +28,10 @@
         @container (max-width: #{$composer-phone-width}) {
           margin-bottom: 0;
         }
-       
+
         .subtitle {
           content: "";
-        }     
+        }
 
         .title {
           word-break: break-word;
@@ -58,14 +58,16 @@
 
         .nextArrow,
         .prevArrow {
-          color: var(--composer-tertiary-color);
-          width: 45px;
-          height: 45px;
+          color: var(--composer-font-color-primary);
+          width: 3rem;
+          height: 3rem;
+          font-size: 3rem;
           cursor: pointer;
 
           @container (max-width: #{$composer-tablet-width}) {
-            width: 35px;
-            height: 35px;
+            width: 2rem;
+            height: 2rem;
+            font-size: 2rem;
           }
         }
 
@@ -85,6 +87,10 @@
 
     .slider-parent {
       margin: var(--composer-gap-md) 0;
+      padding: 0 !important;
+      width: calc(100% + (2 * var(--composer-gap-xl)));
+      margin-left: calc(-1 * var(--composer-gap-xl));
+      margin-right: calc(-1 * var(--composer-gap-xl));
 
       .carousel {
         width: 100%;
@@ -93,11 +99,12 @@
           :global(.slick-track) {
             display: flex;
             height: 100%;
-            gap: var(--composer-gap-md);
+            padding: 0 !important;
 
             :global(.slick-slide) {
               height: auto;
               width: 800px;
+              padding: 0 !important;
 
               @container (max-width: #{$composer-tablet-width}) {
                 width: 500px;
@@ -107,10 +114,11 @@
                 width: auto;
               }
 
-              > div {
+              >div {
                 height: 100%;
 
-                > div {
+                >div,
+                >a {
                   height: 100%;
                   display: flex;
                 }
@@ -121,6 +129,36 @@
 
         :global(.slick-dots) {
           bottom: calc(-1 * var(--composer-gap-lg));
+          display: flex !important;
+          justify-content: center;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          z-index: 10;
+
+          li {
+            margin: 0 5px;
+
+            button {
+              font-size: 0;
+              line-height: 0;
+              display: block;
+              width: 10px;
+              height: 10px;
+              padding: 5px;
+              cursor: pointer;
+              color: transparent;
+              border: 0;
+              outline: none;
+              background: rgba(var(--composer-font-color-primary-rgb), 0.5);
+              border-radius: 50%;
+            }
+
+            &.slick-active button {
+              background: var(--composer-font-color-primary);
+            }
+          }
         }
 
         .card {
@@ -130,7 +168,7 @@
           display: flex;
           flex-direction: column;
           justify-content: start;
-          align-items: center;
+          align-items: flex-start;
           transition: transform var(--composer-transition-duration-normal);
           transform: scale(0.8);
           z-index: 1;
@@ -159,7 +197,7 @@
               z-index: 1;
               transition: transform var(--composer-transition-duration-slow) ease, filter var(--composer-transition-duration-slow) ease;
 
-              &:hover {
+              &.hover-active:hover {
                 transform: scale(1);
                 filter: brightness(80%);
               }
@@ -188,13 +226,16 @@
             padding-top: var(--composer-gap-xl);
             gap: var(--composer-gap-md);
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start !important;
+            text-align: left !important;
 
             @container (max-width: #{$composer-phone-width}) {
               padding: var(--composer-gap-md) var(--composer-gap-md);
             }
 
             &.active {
-              display: flex;
               opacity: 1;
             }
 
@@ -202,10 +243,14 @@
               padding: 0;
               margin: 0;
               color: var(--composer-font-color-primary);
+              text-align: left !important;
+              width: 100%;
             }
 
             .content-description {
               color: var(--composer-font-color-primary);
+              text-align: left !important;
+              width: 100%;
             }
           }
         }

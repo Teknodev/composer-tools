@@ -200,6 +200,8 @@ class Slider1 extends BaseSlider {
       },
     };
 
+    const hasArrows = settings.arrows;
+
     const isOverlayActive = this.getPropValue("overlay");
     const icons = this.castToObject<SocialItem[]>("socials");
     const sliderItems = this.castToObject<SliderItem[]>("slider");
@@ -211,7 +213,7 @@ class Slider1 extends BaseSlider {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
+            <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${hasArrows ? this.decorateCSS("has-arrows") : ""}`} ref={this.getComponentState("slider-ref")}>
               {sliderItems.map((item: SliderItem, indexSlider: number) => (
                 <div key={indexSlider} className={this.decorateCSS("slider-item")}>
                   <div className={this.decorateCSS("img-wrapper")}>

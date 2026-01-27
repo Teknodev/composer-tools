@@ -51,10 +51,10 @@ class Slider2 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
-              type: "image",
+                type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d0c506a40002c318e40?alt=media",
               },
             },
@@ -94,10 +94,10 @@ class Slider2 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
-              type: "image",
+                type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d3f506a40002c318e73?alt=media",
               },
             },
@@ -137,10 +137,10 @@ class Slider2 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
-              type: "image",
+                type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675193c7506a40002c3192ef?alt=media",
               },
             },
@@ -180,10 +180,10 @@ class Slider2 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
-              type: "image",
+                type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294e0?alt=media&timestamp=1719584962578",
               },
             },
@@ -224,10 +224,10 @@ class Slider2 extends BaseSlider {
               key: "media",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
-              type: "image",
+                type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
               },
             },
@@ -267,8 +267,6 @@ class Slider2 extends BaseSlider {
       infinite: slider.length > 2,
       speed: 1000,
       variableWidth: true,
-      slidesToShow: 2.5,
-      slidesToScroll: 1,
       centerMode: false,
       initialSlide: 0,
       responsive: [
@@ -332,37 +330,37 @@ class Slider2 extends BaseSlider {
             </div>
           )}
           <div className={this.decorateCSS("carousel-wrapper")}>
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-            {this.castToObject<SliderItem[]>("slider").map((item: SliderItem, indexSlider: number) => {
-              const isActive = this.getComponentState("active_index") === indexSlider;
+            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+              {this.castToObject<SliderItem[]>("slider").map((item: SliderItem, indexSlider: number) => {
+                const isActive = this.getComponentState("active_index") === indexSlider;
 
-              return (
-                <div key={indexSlider} className={this.decorateCSS("card")}>
-                  <div
-                    className={this.decorateCSS("button-wrapper")}
-                    onMouseOver={() => {
-                      const isIndexSame = this.getComponentState("active_index") === indexSlider;
-                      if (isIndexSame) return;
+                return (
+                  <div key={indexSlider} className={this.decorateCSS("card")}>
+                    <div
+                      className={this.decorateCSS("button-wrapper")}
+                      onMouseOver={() => {
+                        const isIndexSame = this.getComponentState("active_index") === indexSlider;
+                        if (isIndexSame) return;
 
-                      this.setComponentState("active_index", indexSlider);
-                      this.setComponentState("text_visibility", false);
-                      setTimeout(() => {
-                        this.setComponentState("text_visibility", true);
-                        this.setComponentState("text", item.text);
-                      }, 200);
-                    }}
-                  >
-                    <ComposerLink key={indexSlider} path={item.path}>
-                      <div className={this.decorateCSS("link-wrapper")}>
-                        {this.castToString(item.number) && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
-                        {this.castToString(item.button) && <div className={`${this.decorateCSS("title-text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</div>}
-                      </div>
-                    </ComposerLink>
+                        this.setComponentState("active_index", indexSlider);
+                        this.setComponentState("text_visibility", false);
+                        setTimeout(() => {
+                          this.setComponentState("text_visibility", true);
+                          this.setComponentState("text", item.text);
+                        }, 200);
+                      }}
+                    >
+                      <ComposerLink key={indexSlider} path={item.path}>
+                        <div className={this.decorateCSS("link-wrapper")}>
+                          {this.castToString(item.number) && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
+                          {this.castToString(item.button) && <div className={`${this.decorateCSS("title-text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</div>}
+                        </div>
+                      </ComposerLink>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </ComposerSlider>
+                );
+              })}
+            </ComposerSlider>
           </div>
         </Base.MaxContent>
       </Base.Container>

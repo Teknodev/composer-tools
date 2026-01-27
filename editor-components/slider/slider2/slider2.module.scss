@@ -15,88 +15,151 @@
       position: relative;
 
       .carousel {
-      width: 100%;
-      text-align: center;
-      margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
 
-      :global(.slick-list) {
-        :global(.slick-track) {
-          :global(.slick-slide) {
-            :global(.slick-slide) > div {
-              padding: 0 var(--composer-gap-xl);
+        :global(.slick-prev),
+        :global(.slick-next) {
+          z-index: 20;
+          width: 40px;
+          height: 40px;
+          top: 55%;
 
-              @container (max-width: #{$composer-tablet-width}) {
-                padding: 0 var(--composer-gap-lg);
-              }
+          @container (max-width: #{$composer-tablet-width}) {
+            top: 50%;
+          }
 
-              @container (max-width: #{$composer-phone-width}) {
-                padding: 0 var(--composer-gap-md);
+          &:before {
+            font-size: 40px;
+            color: white;
+            opacity: 1;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: 25px;
+        }
+
+        :global(.slick-next) {
+          right: 25px;
+        }
+
+        :global(.slick-dots) {
+          position: absolute;
+          bottom: var(--composer-gap-lg);
+          display: flex !important;
+          justify-content: center;
+          width: 100%;
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          z-index: 10;
+
+          li {
+            margin: 0 5px;
+
+            button {
+              font-size: 0;
+              line-height: 0;
+              display: block;
+              width: 10px;
+              height: 10px;
+              padding: 5px;
+              cursor: pointer;
+              color: transparent;
+              border: 0;
+              outline: none;
+              background: rgba(255, 255, 255, 0.5);
+              border-radius: 50%;
+            }
+
+            &.slick-active button {
+              background: white;
+            }
+          }
+        }
+
+        :global(.slick-list) {
+          :global(.slick-track) {
+            :global(.slick-slide) {
+              :global(.slick-slide)>div {
+                padding: 0 var(--composer-gap-xl);
+
+                @container (max-width: #{$composer-tablet-width}) {
+                  padding: 0 var(--composer-gap-lg);
+                }
+
+                @container (max-width: #{$composer-phone-width}) {
+                  padding: 0 var(--composer-gap-md);
+                }
               }
             }
           }
         }
-      }
 
-      .card {
-        width: 100%;
-        height: 100vh;
-        position: relative;
-
-        .button-wrapper {
-          font-size: 6rem;
-          background-color: transparent;
-          color: transparent;
-          position: relative;
-          cursor: pointer;
-          top: 45%;
-          transform: translate(0, -50%);
-          z-index: 2;
-          -webkit-text-stroke: 1px white;
-          text-transform: uppercase;
-          transition: var(--composer-transition-duration-normal) ease-out;
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
+        .card {
           width: 100%;
-          padding-left: 0;
+          height: 100vh;
+          position: relative;
 
-          &:hover {
-            color: white;
+          .button-wrapper {
+            font-size: 6rem;
+            background-color: transparent;
+            color: transparent;
+            position: relative;
+            cursor: pointer;
+            top: 45%;
+            transform: translate(0, -50%);
+            z-index: 2;
             -webkit-text-stroke: 1px white;
-          }
-
-          @container (max-width: #{$composer-tablet-width}) {
-            font-size: 3rem;
-          }
-
-          @container (max-width: #{$composer-phone-width}) {
-            font-size: 2rem;
-          }
-
-          .link-wrapper {
-            width: 100%;
+            text-transform: uppercase;
+            transition: var(--composer-transition-duration-normal) ease-out;
             display: flex;
             align-items: flex-start;
             justify-content: center;
-          }
+            width: 100%;
+            margin-right: var(--composer-gap-xl) !important;
 
-          .number {
-            font-size: 1rem;
-            color: white;
-            align-self: flex-start;
-            margin: 0;
-            margin-top: var(--composer-gap-xs);
-          }
-
-          .title-text {
-            white-space: nowrap;
-
-            &.active {
+            &:hover {
               color: white;
+              -webkit-text-stroke: 1px white;
+            }
+
+            @container (max-width: #{$composer-tablet-width}) {
+              font-size: 3rem;
+            }
+
+            @container (max-width: #{$composer-phone-width}) {
+              font-size: 2rem;
+            }
+
+            .link-wrapper {
+              width: 100%;
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+            }
+
+            .number {
+              font-size: 1rem;
+              color: white;
+              align-self: flex-start;
+              margin: 0;
+              margin-top: var(--composer-gap-xs);
+            }
+
+            .title-text {
+              white-space: nowrap;
+              flex-shrink: 0;
+              width: max-content;
+
+              &.active {
+                color: white;
+              }
             }
           }
         }
-      }
       }
     }
 
