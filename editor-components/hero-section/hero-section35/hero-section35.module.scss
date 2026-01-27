@@ -233,7 +233,7 @@
                                 bottom: 0;
                                 left: 0;
                                 height: auto;
-                                max-height: 50%;
+                                max-height: 80%;
                                 width: 40%;
                                 background-color: var(--composer-html-background);
                                 padding: 15px 15px 0 0;
@@ -243,7 +243,8 @@
                                 display: flex;
                                 flex-direction: column;
                                 justify-content: flex-end;
-                                overflow: visible;
+                                overflow-y: auto;
+                                overflow-x: hidden;
 
                                 .box-corner-left,
                                 .box-corner-right {
@@ -291,7 +292,6 @@
 
                         .customer-box {
                             height: auto;
-                            max-height: 100%;
                             width: 100%;
                             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                             border-radius: var(--composer-border-radius-md);
@@ -299,7 +299,7 @@
                             display: flex;
                             flex-direction: column;
                             gap: var(--composer-gap-md);
-                            overflow: auto;
+                            overflow-y: auto;
 
                             .customer-images {
                                 display: flex;
@@ -421,7 +421,7 @@
                             margin: 0 auto;
                             padding: 30px var(--composer-gap-md);
                             .title{
-                                font-size: 2.6rem;
+                                font-size: 2.5rem;
                                 margin-bottom: var(--composer-gap-md);
                             }
                             .main-info-wrapper{
@@ -454,12 +454,15 @@
                     .image-container{
                         height: 450px;
                         .box-area{
-                            height: 50%;
+                            height: auto;
                             width: 55%;
-                            max-height: 210px;
+                            max-height: 70%;
                             max-width: 200px;
+                            overflow-y: auto;
+                            overflow-x: hidden;
                             .customer-box{
                                 padding: var(--composer-gap-md);
+                                gap: var(--composer-gap-sm);
                                 .customer-images{
                                     .customer-img{
                                         width: 40px;
@@ -469,7 +472,7 @@
                                         width: 40px;
                                         height: 40px;
                                         .customer-icon{
-                                            font-size: 1rem;
+                                            font-size: 1.5rem;
                                         }
                                     }
                                 }
