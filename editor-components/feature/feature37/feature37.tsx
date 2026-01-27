@@ -185,7 +185,7 @@ class Feature37 extends BaseFeature {
                         {cards?.length > 0 && (
                             <Base.ListGrid
                                 className={`${this.decorateCSS("cards-content")} ${!isImageExist && this.decorateCSS("cards-full-width")}`}
-                                gridCount={{ pc: this.getPropValue("itemCount") }}
+                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }}
                             >
                                 {cards.map((card: Card, index: number) => {
                                     const titleExist = this.castToString(card.title);
