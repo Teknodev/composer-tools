@@ -68,63 +68,22 @@
           gap: var(--composer-gap-xs);
           margin-top: var(--composer-gap-md) !important;
 
-          .inner-div {
-            position: relative;
 
-            .text {
-              content: "";
-            }
 
-            .underline {
-              content: '';
-              position: absolute;
-              display: inline-block;
-              width: 100%;
-              bottom: calc(-1 * var(--composer-gap-xs));
-              left: 0;
-              height: 1px;
-              background-color: var(--composer-font-color-primary);
-              transform-origin: left;
-              transition: transform 0.6s ease-in-out;
-              transform: scaleX(1);
-            }
-
-            &:hover {
-              .underline {
-                transform: scaleX(0);
-              }
-            }
-
-            .no-animation {
-              position: relative;
-
-              .underline {
-                transition-duration: 0s;
-              }
-            }
-          }
-
-          .icon {
+          .button-icon {
             width: 18px;
             height: 18px;
             font-size: 1.25rem;
             transition: transform 0.3s ease-in-out;
           }
 
-          .image {
-            width: 18px;
-            height: 18px;
-            object-fit: cover;
-            transition: transform 0.3s ease-in-out;
-          }
 
-          .inner-div .text {
-            text-align: center;
-          }
+
+
         }
 
         &:hover {
-          .icon {
+          .button-icon {
             transform: scale(1.1);
           }
         }

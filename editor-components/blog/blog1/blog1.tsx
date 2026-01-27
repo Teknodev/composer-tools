@@ -55,7 +55,7 @@ class Blog1 extends BaseBlog {
       key: "rightText",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Latest News", "", "LuArrowUpRight", "", "Bare"),
+        INPUTS.BUTTON("button", "Button", "Latest News", "", "LuArrowUpRight", "", "Link"),
       ],
     });
 
@@ -430,26 +430,10 @@ class Blog1 extends BaseBlog {
                 <div key={`blog-1-btn-${index}`} className={this.decorateCSS("right-link")}>
                   <ComposerLink path={item.url}>
                     <div className={this.decorateCSS("inner-right-link")}>
-                      <Base.P
-                        className={
-                          `${this.decorateCSS("inner-div")} ${!disableAnimation ? this.decorateCSS("no-animation") : ""
-                          }`
-                        }>
-                        <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>
-                        <div className={this.decorateCSS("underline")} />
-                      </Base.P>
-                      {iconExist && (
-                        <Base.Media
-                          value={item.icon}
-                          className={`${this.decorateCSS("icon")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
-                        />
-                      )}
-                      {imageExist && (
-                        <Base.Media
-                          value={item.image}
-                          className={`${this.decorateCSS("image")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
-                        />
-                      )}
+                    <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
+                     {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                     {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                    </Base.Button>
                     </div>
                   </ComposerLink>
                 </div>

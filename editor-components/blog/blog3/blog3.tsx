@@ -3,6 +3,7 @@ import { BaseBlog } from "../../EditorComponent";
 import styles from "./blog3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
   image: { type: "image"; url: string };
@@ -37,35 +38,18 @@ class Blog3 extends BaseBlog {
 
     this.addProp({
       type: "string",
-      key: "rightSideText",
-      displayer: "Right Side Text",
-      value: "Featured Posts",
-    });
-
-    this.addProp({
-      type: "page",
-      key: "url",
-      displayer: "Navigate To",
+      key: "description",
+      displayer: "Description",
       value: "",
     });
+
+    this.addProp(INPUTS.BUTTON("rightButton", "Right Side Button", "Featured Posts", "", "MdArrowOutward", "", "Link"));
 
     this.addProp({
       type: "object",
       key: "icons",
       displayer: "Icons",
       value: [
-        {
-          type: "media",
-          key: "rightSideIcon",
-          displayer: "Right Side Icon",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "MdArrowOutward",
-          },
-        },
         {
           type: "media",
           key: "dateIcon",
@@ -450,13 +434,13 @@ class Blog3 extends BaseBlog {
 
     const leftSideTextExist = this.castToString(this.getPropValue("leftSideText"));
 
-    const rightSideTextExist = this.castToString(this.getPropValue("rightSideText"));
-    const rightSideUrl = this.getPropValue("url");
+    const rightButton = this.castToObject<INPUTS.CastedButton>("rightButton");
+    const rightSideTextExist = this.castToString(rightButton.text);
+    const rightSideUrl = rightButton.url;
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
 
     const icons = this.castToObject<{
-      rightSideIcon: { type: "icon"; name: string };
       dateIcon: { type: "icon"; name: string };
       timeIcon: { type: "icon"; name: string };
     }>("icons");
@@ -630,7 +614,7 @@ class Blog3 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(descriptionExist || leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
+          {(descriptionExist || leftSideTextExist || rightButton.icon || rightSideTextExist) && (
             <header className={this.decorateCSS("header")}>
               <Base.VerticalContent className={this.decorateCSS("title-container")}>
                 {leftSideTextExist && (
@@ -644,22 +628,14 @@ class Blog3 extends BaseBlog {
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
-              {(rightSideTextExist || !!icons.rightSideIcon) && (
+              {(rightSideTextExist || rightButton.icon) && (
                 <div className={this.decorateCSS("right-side")}>
                   <ComposerLink path={rightSideUrl}>
                     <div className={this.decorateCSS("link-container")}>
-                      <div className={this.decorateCSS("link-text")}>
-                        {rightSideTextExist && (
-                          this.getPropValue("rightSideText")
-                        )}
-                        {!!icons.rightSideIcon && (
-                          <Base.Media
-                            value={icons.rightSideIcon}
-                            className={this.decorateCSS("right-side-icon")}
-                          />
-                        )}
-                      </div>
-                      <div className={this.decorateCSS("underline")} />
+                      <Base.Button className={this.decorateCSS("button")} buttonType={rightButton.type}>
+                        {rightSideTextExist && <Base.P className={this.decorateCSS("button-text")}>{rightButton.text}</Base.P>}
+                        {rightButton.icon && <Base.Media value={rightButton.icon as any} className={this.decorateCSS("button-icon")} />}
+                      </Base.Button>
                     </div>
                   </ComposerLink>
                 </div>
@@ -669,22 +645,21 @@ class Blog3 extends BaseBlog {
           <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
-          {(rightSideTextExist || !!icons.rightSideIcon) && (
+          {(rightSideTextExist || rightButton.icon) && (
             <div className={this.decorateCSS("mobile-right-side")}>
               <ComposerLink path={rightSideUrl}>
                 <div className={this.decorateCSS("link-container")}>
                   <div className={this.decorateCSS("link-text")}>
                     {rightSideTextExist && (
-                      this.getPropValue("rightSideText")
+                      rightButton.text
                     )}
-                    {!!icons.rightSideIcon && (
+                    {rightButton.icon && (
                       <Base.Media
-                        value={icons.rightSideIcon}
+                        value={rightButton.icon as any}
                         className={this.decorateCSS("right-side-icon")}
                       />
                     )}
                   </div>
-                  <div className={this.decorateCSS("underline")} />
                 </div>
               </ComposerLink>
             </div>

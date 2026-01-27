@@ -72,26 +72,14 @@
             }
           }
 
-          .underline {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: var(--composer-font-color-primary);
-            transition: transform var(--composer-transition-duration-normal) ease;
-            transform-origin: right;
-          }
+
 
           &:hover {
             .right-side-icon {
               transform: scale(1.1);
             }
 
-            .underline {
-              transform: scaleX(0);
-            }
+
           }
         }
       }
@@ -367,26 +355,14 @@
             }
           }
 
-          .underline {
-            content: "";
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: var(--composer-font-color-primary);
-            transition: transform var(--composer-transition-duration-normal) ease;
-            transform-origin: right;
-          }
+
 
           &:hover {
             .right-side-icon {
               rotate: 45deg;
             }
 
-            .underline {
-              transform: scaleX(0);
-            }
+
           }
         }
       }
