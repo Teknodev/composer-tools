@@ -285,7 +285,17 @@ class List1 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3"]
       }
     });
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Config", {
+      dots: true,
+      arrows: false,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
 
     this.setComponentState("active-index", 1);
   }
@@ -307,11 +317,12 @@ class List1 extends BaseList {
     const dotsClassName = backgroundColor
       ? `${this.decorateCSS("dots")} ${this.decorateCSS("dots-colored")}`
       : this.decorateCSS("dots");
+    const userSettings = this.transformSliderValues(this.getPropValue("slider-settings") || []);
     const settings = {
-      ...this.transformSliderValues(this.getPropValue("slider-settings") || []),
-      infinite: sliderItems.length > 1,
-      slidesToShow: Math.min(3, sliderItems.length),
-      initialSlide: 1,
+      ...userSettings,
+      infinite: sliderItems.length > 1 && userSettings.infinite,
+      slidesToShow: userSettings.slidesToShow,
+      initialSlide: this.getComponentState("active-index"),
       centerMode: true,
       dotsClass: dotsClassName,
       customPaging: (_i: number) => <button className={this.decorateCSS("dot-button")} />,
@@ -359,6 +370,8 @@ class List1 extends BaseList {
           {(sliderItems.length > 0) && (
             <ComposerSlider
               {...settings}
+              initialSlide={this.getComponentState("active-index")}
+              key={`slider-${settings.adaptiveHeight}`}
               className={this.decorateCSS("carousel")}
             >
               {sliderItems.map((item: Card, indexSlider: number) => {
@@ -412,7 +425,7 @@ class List1 extends BaseList {
                             )}
                             {item.button.icon && (
                               <Base.Media
-                                value={item.button.icon}
+                                value={item.button.icon as any}
                                 className={this.decorateCSS("icon")}
                               />
                             )}
