@@ -35,8 +35,9 @@
   &.has-media {
     .max-content {
       display: flex;
-      min-height: 50vh !important;
-      justify-content: space-between;
+      min-height: 90vh !important;
+      justify-content: space-evenly;
+      gap: 0;
 
       .vertical-content {
         .subtitle {
@@ -162,7 +163,7 @@
   .container {
     &.has-media {
       .max-content {
-        min-height: 40vh !important;
+        min-height: 60vh !important;
       }
     }
 
