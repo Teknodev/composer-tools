@@ -70,7 +70,7 @@
               height: fit-content;
               margin: 0;
               color: var(--composer-tertiary-color);
-              line-height: normal;
+              line-height: normal !important;
               text-align: left;
             }
 
@@ -78,7 +78,7 @@
               margin: 0;
               font-size: 3rem;
               color: var(--composer-font-color-primary);
-              line-height: normal;
+              line-height: normal !important;
               text-align: left;
             }
           }

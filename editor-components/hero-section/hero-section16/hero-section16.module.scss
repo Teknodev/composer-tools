@@ -329,7 +329,6 @@
 
           .content,
           .image-no-content {
-            gap: var(--composer-gap-sm);
             width: 70%;
           }
 
@@ -347,7 +346,7 @@
           }
 
           .title {
-            font-size: 1.5rem !important;
+            font-size: 2rem !important;
           }
         }
       }

@@ -347,25 +347,25 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     flex-direction: row;
-    min-height: 70vh;
+    min-height: 60vh;
     .max-content {
       flex-direction: row;
       .wrapper {
         .carousel {
           :global(.slick-list) {
-            height: 70vh;
+            height: 60vh;
           }
 
           :global(.slick-track) {
-            height: 70vh;
+            height: 60vh;
           }
 
           :global(.slick-slide) {
-            height: 70vh;
+            height: 60vh;
           }
 
           .item {
-            height: 70vh;
+            height: 60vh;
             .main-content {
               flex-direction: row;
 
@@ -430,24 +430,24 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    min-height: 100vh;
+    min-height: 80vh;
     .max-content {
       .wrapper {
         .carousel {
           :global(.slick-list) {
-            height: 100vh;
+            height: 80vh;
           }
 
           :global(.slick-track) {
-            height: 100vh;
+            height: 80vh;
           }
 
           :global(.slick-slide) {
-            height: 100vh;
+            height: 80vh;
           }
 
           .item {
-            height: 100vh;
+            height: 80vh;
             .main-content {
               flex-direction: column;
               .left {
