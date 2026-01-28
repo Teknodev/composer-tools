@@ -117,7 +117,7 @@
       }
 
       &[data-animation~="animate2"] {
-        &::before {
+        .hover-effect {
           content: '';
           position: absolute;
           inset: 0;
@@ -131,7 +131,7 @@
         }
 
         &:hover {
-          &::before {
+          .hover-effect {
             opacity: 0.3;
             transform: translateY(0);
           }
@@ -251,7 +251,7 @@
 
       .features-section {
         margin-top: 0px !important;
-        margin-top:var(--composer-gap-md) !important;
+        margin-top: var(--composer-gap-md) !important;
 
 
         .features-grid {
