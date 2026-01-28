@@ -25,21 +25,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: var(--composer-gap-md);
-
       .title-container {
-
-        .subtitle,
-        .section-title,
-        .description {
-          text-align: left;
-        }
-
-        .subtitle {
-          margin-left: 0px !important;
-        }
+      .subtitle,
+      .section-title, .description {
+        text-align: left;
       }
-
+      .subtitle {
+        margin-left: 0px !important;
+      }
+      }
       .right-side {
         display: flex;
         column-gap: var(--composer-gap-md);
