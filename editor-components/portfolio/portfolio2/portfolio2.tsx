@@ -150,17 +150,7 @@ class Portfolio2 extends BasePortfolio {
     });
   }
 
-  private hasAnyButton(
-    buttons: { text?: string; media?: TypeMediaInputValue }[]
-  ) {
-    if (!Array.isArray(buttons)) return false;
-    return buttons.some((b: any) => {
-      return (
-        this.castToString(b?.text) ||
-        (b?.media && ((b as any).media?.name || (b as any).media?.url))
-      );
-    });
-  }
+
 
   private renderButtons(
     buttons: {
@@ -204,6 +194,8 @@ class Portfolio2 extends BasePortfolio {
                     className={this.decorateCSS("navigate-icon")}
                   />
                 )}
+                <div className={this.decorateCSS("border-top-right")} />
+                <div className={this.decorateCSS("border-bottom-left")} />
               </Base.Button>
             </ComposerLink>
           );
@@ -227,7 +219,7 @@ class Portfolio2 extends BasePortfolio {
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
-    const hasButtons = this.hasAnyButton(buttons);
+    const hasButtons = buttons.some((b) => b.text || b.media);
 
     const hasContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
@@ -268,7 +260,7 @@ class Portfolio2 extends BasePortfolio {
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
-    const hasButtons = this.hasAnyButton(buttons);
+    const hasButtons = buttons.some((b) => b.text || b.media);
 
     const hasContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
@@ -302,8 +294,7 @@ class Portfolio2 extends BasePortfolio {
     const media = this.getPropValue("media");
     const overlay = this.getPropValue("overlay");
 
-    const hasMedia =
-      media && typeof media === "object" && ("url" in media ? media.url : true);
+    const hasMedia = media;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>

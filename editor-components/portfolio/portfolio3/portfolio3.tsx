@@ -221,7 +221,7 @@ class Portfolio3 extends BasePortfolio {
               additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_13.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6979b9778ea13f002c01b334?alt=media",
               },
             },
             {
@@ -589,9 +589,8 @@ class Portfolio3 extends BasePortfolio {
         const observer = new IntersectionObserver(
           ([entry]) => {
             const isScaled = entry.intersectionRatio === 0;
-            card.className = `${this.decorateCSS("game-card")} ${
-              styles.gameCard
-            } ${isScaled ? this.decorateCSS("scaled") : ""}`.trim();
+            card.className = `${this.decorateCSS("game-card")} ${styles.gameCard
+              } ${isScaled && this.decorateCSS("scaled")}`;
           },
           {
             threshold: [0],
@@ -677,249 +676,233 @@ class Portfolio3 extends BasePortfolio {
         <Base.Container
           className={this.decorateCSS("container")}
         >
-        <div className={this.decorateCSS("content-wrapper")}>
-          {hasHeaderContent && (
-            <Base.MaxContent className={this.decorateCSS("max-content")}>
-              <div
-                className={`${this.decorateCSS("header-content")} ${
-                  alignmentValue === "center" ? this.decorateCSS("center") : ""
-                }`}
-              >
-                <Base.VerticalContent
-                  className={this.decorateCSS("header-text")}
+          <div className={this.decorateCSS("content-wrapper")}>
+            {hasHeaderContent && (
+              <Base.MaxContent className={this.decorateCSS("max-content")}>
+                <Base.ListGrid
+                  gridCount={{ pc: 2, tablet: 2, phone: 1 }}
+                  className={`${this.decorateCSS("header-content")} ${alignmentValue === "center" && this.decorateCSS("center")}`}
                 >
-                  {hasSubtitle && (
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS("subtitle")}
-                    >
-                      {subtitle}
-                    </Base.SectionSubTitle>
-                  )}
-                  {hasTitle && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
-                    </Base.SectionTitle>
-                  )}
-                  {hasDescription && (
-                    <Base.SectionDescription
-                      className={this.decorateCSS("description")}
-                    >
-                      {description}
-                    </Base.SectionDescription>
-                  )}
-                </Base.VerticalContent>
-                {hasAnyButton && (
-                  <div className={this.decorateCSS("header-buttons")}>
-                    {this.renderButtons(buttons, "header-btn")}
-                  </div>
-                )}
-              </div>
-            </Base.MaxContent>
-          )}
-
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <div className={this.decorateCSS("games-section")}>
-              {games.map((game: Game, index: number) => {
-                const title = game?.title;
-                const titlePage = game?.titlePage;
-                const image = game?.image;
-                const badge = game?.genreBadge;
-                const gamePlatforms = game?.platforms;
-                const overlay = game?.overlay;
-
-                const gameTitle = this.castToString(title);
-                const gamePage = titlePage || "#";
-                const gameImageValue = image;
-                const genreBadge = this.castToString(badge);
-                const platforms = Array.isArray(gamePlatforms)
-                  ? gamePlatforms
-                  : [];
-
-                const hasGameImage = !!(
-                  gameImageValue &&
-                  (typeof gameImageValue === "string" ||
-                    (gameImageValue as any)?.url)
-                );
-
-                const validPlatforms = platforms.filter(
-                  (platformWrapper: any) => {
-                    const platformIcon =
-                      platformWrapper?.platform?.icon || platformWrapper?.icon;
-
-                    return !!(
-                      platformIcon &&
-                      (typeof platformIcon === "string" ||
-                        platformIcon?.name ||
-                        platformIcon?.url)
-                    );
-                  }
-                );
-                const hasPlatforms = validPlatforms.length > 0;
-
-                const hasOverlayContent = !!(
-                  genreBadge ||
-                  gameTitle ||
-                  hasPlatforms
-                );
-
-                if (!hasGameImage && !hasOverlayContent) {
-                  return null;
-                }
-
-                return (
-                  <React.Fragment key={`game-${index}`}>
-                    {enableAnimation && (
-                      <div
-                        ref={(el) => {
-                          this.sentinelRefs[index] = el;
-                        }}
-                        className={styles.sentinel}
-                      />
+                  <Base.VerticalContent
+                    className={this.decorateCSS("header-text")}
+                  >
+                    {hasSubtitle && (
+                      <Base.SectionSubTitle
+                        className={this.decorateCSS("subtitle")}
+                      >
+                        {subtitle}
+                      </Base.SectionSubTitle>
                     )}
-                    <div
-                      ref={
-                        enableAnimation
-                          ? (el) => {
+                    {hasTitle && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {hasDescription && (
+                      <Base.SectionDescription
+                        className={this.decorateCSS("description")}
+                      >
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
+                  {hasAnyButton && (
+                    <div className={this.decorateCSS("header-buttons")}>
+                      {this.renderButtons(buttons, "header-btn")}
+                    </div>
+                  )}
+                </Base.ListGrid>
+              </Base.MaxContent>
+            )}
+
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
+              <div className={this.decorateCSS("games-section")}>
+                {games.map((game: Game, index: number) => {
+                  const title = game?.title;
+                  const titlePage = game?.titlePage;
+                  const image = game?.image;
+                  const badge = game?.genreBadge;
+                  const gamePlatforms = game?.platforms;
+                  const overlay = game?.overlay;
+
+                  const gameTitle = this.castToString(title);
+                  const gamePage = titlePage || "#";
+                  const gameImageValue = image;
+                  const genreBadge = this.castToString(badge);
+                  const platforms = Array.isArray(gamePlatforms)
+                    ? gamePlatforms
+                    : [];
+
+                  const hasGameImage = !!gameImageValue;
+
+                  const validPlatforms = platforms.filter(
+                    (platformWrapper) => platformWrapper?.platform?.icon
+                  );
+                  const hasPlatforms = validPlatforms.length > 0;
+
+                  const hasOverlayContent = !!(
+                    genreBadge ||
+                    gameTitle ||
+                    hasPlatforms
+                  );
+
+                  if (!hasGameImage && !hasOverlayContent) {
+                    return null;
+                  }
+
+                  return (
+                    <React.Fragment key={`game-${index}`}>
+                      {enableAnimation && (
+                        <div
+                          ref={(el) => {
+                            this.sentinelRefs[index] = el;
+                          }}
+                          className={styles.sentinel}
+                        />
+                      )}
+                      <div
+                        ref={
+                          enableAnimation
+                            ? (el) => {
                               this.gameCardRefs[index] = el;
                             }
-                          : undefined
-                      }
-                      className={`${this.decorateCSS("game-card")} ${
-                        styles.gameCard
-                      }`}
-                      style={
-                        enableAnimation ? this.getTopStyle(index) : undefined
-                      }
-                    >
-                      <div className={this.decorateCSS("game-content")}>
-                        {hasGameImage ? (
-                          <div
-                            className={this.decorateCSS("game-image-container")}
-                          >
-                            <Base.Media
-                              value={image}
-                              className={this.decorateCSS("game-image")}
-                            />
-                            {overlay && (
-                              <div
-                                className={this.decorateCSS(
-                                  "thumbnail-overlay"
-                                )}
+                            : undefined
+                        }
+                        className={`${this.decorateCSS("game-card")} ${styles.gameCard
+                          }`}
+                        style={
+                          enableAnimation ? this.getTopStyle(index) : undefined
+                        }
+                      >
+                        <div className={this.decorateCSS("game-content")}>
+                          {hasGameImage ? (
+                            <div
+                              className={this.decorateCSS("game-image-container")}
+                            >
+                              <Base.Media
+                                value={image}
+                                className={this.decorateCSS("game-image")}
                               />
-                            )}
-                            {hasOverlayContent && (
-                              <div className={this.decorateCSS("game-overlay")}>
-                                <div className={this.decorateCSS("game-info")}>
-                                  {genreBadge && (
-                                    <span
-                                      className={this.decorateCSS(
-                                        "genre-badge"
-                                      )}
-                                    >
+                              {overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                              {hasOverlayContent && (
+                                <div className={this.decorateCSS("game-overlay")}>
+                                  <div className={this.decorateCSS("game-info")}>
+                                    {genreBadge && (
                                       <Base.P
                                         className={this.decorateCSS(
-                                          "badge-text"
+                                          "genre-badge"
                                         )}
                                       >
-                                        {genreBadge}
-                                      </Base.P>
-                                    </span>
-                                  )}
-
-                                  {(gameTitle || hasPlatforms) && (
-                                    <div
-                                      className={this.decorateCSS(
-                                        "title-platforms-row"
-                                      )}
-                                    >
-                                      {gameTitle && (
-                                        <ComposerLink path={gamePage}>
-                                          <Base.H3
-                                            className={this.decorateCSS(
-                                              "game-title"
-                                            )}
-                                          >
-                                            {gameTitle}
-                                          </Base.H3>
-                                        </ComposerLink>
-                                      )}
-
-                                      {hasPlatforms && (
-                                        <div
+                                        <Base.P
                                           className={this.decorateCSS(
-                                            "platforms"
+                                            "badge-text"
                                           )}
                                         >
-                                          {validPlatforms.map(
-                                            (
-                                              platformWrapper: any,
-                                              platformIndex: number
-                                            ) => {
-                                              const icon =
-                                                platformWrapper?.platform
-                                                  ?.icon ||
-                                                platformWrapper?.icon;
-                                              const page =
-                                                platformWrapper?.platform
-                                                  ?.page ||
-                                                platformWrapper?.page;
+                                          {genreBadge}
+                                        </Base.P>
+                                      </Base.P>
+                                    )}
 
-                                              const platformIcon = icon;
-                                              const platformPage = page || "#";
+                                    {(gameTitle || hasPlatforms) && (
+                                      <div
+                                        className={this.decorateCSS(
+                                          "title-platforms-row"
+                                        )}
+                                      >
+                                        {gameTitle && (
+                                          <ComposerLink path={gamePage}>
+                                            <Base.H3
+                                              className={this.decorateCSS(
+                                                "game-title"
+                                              )}
+                                            >
+                                              {gameTitle}
+                                            </Base.H3>
+                                          </ComposerLink>
+                                        )}
 
-                                              return (
-                                                <ComposerLink
-                                                  key={`platform-${index}-${platformIndex}`}
-                                                  path={platformPage}
-                                                >
-                                                  <div
-                                                    className={this.decorateCSS(
-                                                      "platform-icon"
-                                                    )}
+                                        {hasPlatforms && (
+                                          <div
+                                            className={this.decorateCSS(
+                                              "platforms"
+                                            )}
+                                          >
+                                            {validPlatforms.map(
+                                              (
+                                                platformWrapper: any,
+                                                platformIndex: number
+                                              ) => {
+                                                const icon =
+                                                  platformWrapper?.platform
+                                                    ?.icon ||
+                                                  platformWrapper?.icon;
+                                                const page =
+                                                  platformWrapper?.platform
+                                                    ?.page ||
+                                                  platformWrapper?.page;
+
+                                                const platformIcon = icon;
+                                                const platformPage = page || "#";
+
+                                                return (
+                                                  <ComposerLink
+                                                    key={`platform-${index}-${platformIndex}`}
+                                                    path={platformPage}
                                                   >
-                                                    <Base.Media
-                                                      value={platformIcon}
+                                                    <div
                                                       className={this.decorateCSS(
-                                                        "platform-icon-element"
+                                                        "platform-icon"
                                                       )}
-                                                    />
-                                                  </div>
-                                                </ComposerLink>
-                                              );
-                                            }
-                                          )}
-                                        </div>
-                                      )}
-                                    </div>
-                                  )}
+                                                    >
+                                                      <Base.Media
+                                                        value={platformIcon}
+                                                        className={this.decorateCSS(
+                                                          "platform-icon-element"
+                                                        )}
+                                                      />
+                                                    </div>
+                                                  </ComposerLink>
+                                                );
+                                              }
+                                            )}
+                                          </div>
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
-                              </div>
-                            )}
-                          </div>
-                        ) : (
-                          hasOverlayContent && (
-                            <div
-                              className={this.decorateCSS("game-placeholder")}
-                            >
-                              No image for {gameTitle}
+                              )}
                             </div>
-                          )
-                        )}
+                          ) : (
+                            hasOverlayContent && (
+                              <Base.P
+                                className={this.decorateCSS("game-placeholder")}
+                              >
+                                No image for {gameTitle}
+                              </Base.P>
+                            )
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </React.Fragment>
-                );
-              })}
-            </div>
-          </Base.MaxContent>
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+            </Base.MaxContent>
 
-          {hasAnyButton && (
-            <div className={this.decorateCSS("mobile-button-section")}>
-              {this.renderButtons(buttons, "mobile-btn")}
-            </div>
-          )}
-        </div>
-      </Base.Container>
+            {hasAnyButton && (
+              <div className={this.decorateCSS("mobile-button-section")}>
+                {this.renderButtons(buttons, "mobile-btn")}
+              </div>
+            )}
+          </div>
+        </Base.Container>
       </div>
     );
   }

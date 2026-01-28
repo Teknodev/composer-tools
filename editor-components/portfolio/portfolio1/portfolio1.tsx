@@ -1,4 +1,3 @@
-import * as React from "react";
 import styles from "./portfolio1.module.scss";
 import { BasePortfolio, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -13,7 +12,7 @@ interface PortfolioItem {
   description: string;
   icon: TypeMediaInputValue;
   icon2: TypeMediaInputValue;
-  buttons: any[];
+  buttons: INPUTS.CastedButton[];
   media: TypeMediaInputValue;
   overlay: boolean;
 }
@@ -437,35 +436,26 @@ class Portfolio1 extends BasePortfolio {
       "rightSideBottomRightCard"
     );
 
-    const isRenderableMedia = (m: TypeMediaInputValue) =>
-      !!(m && typeof m === "object" && "url" in m && m.url);
-
-    const hasIcon = (icon: TypeMediaInputValue) =>
-      !!(icon && typeof icon === "object" && (icon?.name || icon?.url));
-
     const getButtonsFromItem = (item: PortfolioItem) => {
       const buttonsArray = item?.buttons;
       if (!buttonsArray) return [];
 
-      return buttonsArray.map((btn: { value?: any }) => {
-        const parent = btn?.value;
-        const icon = this.getPropValue("icon", { parent_object: parent });
-        const media = icon || null;
+      return buttonsArray.map((btn: INPUTS.CastedButton) => {
         return {
-          text: this.getPropValue("text", { parent_object: parent }),
-          type: this.getPropValue("type", { parent_object: parent }),
-          url: this.getPropValue("url", { parent_object: parent }),
-          media,
+          text: btn.text,
+          type: btn.type,
+          url: btn.url,
+          media: btn.icon,
         };
       });
     };
 
     const hasAnyButtonInItem = (
-      buttons: { text?: string; media?: TypeMediaInputValue }[]
+      buttons: any[]
     ) => {
       return buttons.some(
         (b: any) =>
-          this.castToString(b?.text) || b?.media?.name || b?.media?.url
+          b?.text || b?.media?.name || b?.media?.url
       );
     };
 
@@ -478,10 +468,10 @@ class Portfolio1 extends BasePortfolio {
       const icon = item?.icon;
       const icon2 = item?.icon2;
 
-      const hasSubtitle = this.castToString(subtitle);
-      const hasTitle = this.castToString(title);
-      const hasDescription = this.castToString(description);
-      const hasMedia = isRenderableMedia(media);
+      const hasSubtitle = !!subtitle;
+      const hasTitle = !!title;
+      const hasDescription = !!description;
+      const hasMedia = media;
 
       const hasAnyButton = hasAnyButtonInItem(buttons);
 
@@ -490,8 +480,8 @@ class Portfolio1 extends BasePortfolio {
         hasTitle ||
         hasDescription ||
         hasMedia ||
-        hasIcon(icon) ||
-        hasIcon(icon2) ||
+        icon ||
+        icon2 ||
         hasAnyButton
       );
     };
@@ -505,44 +495,39 @@ class Portfolio1 extends BasePortfolio {
       itemHasContent(itemBottomLeft) ||
       itemHasContent(itemBottomRight);
 
-    const anyVisible = itemHasContent(itemLeft) || renderRight;
+
 
     const hasLeftSection = itemHasContent(itemLeft);
 
     const getRightSideBorderClasses = (position: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'): string => {
       const classes: string[] = [];
-      
-      if (position === 'topLeft' && itemHasContent(itemTopLeft) && itemHasContent(itemTopRight)) {
-        classes.push(this.decorateCSS("inner-right"));
-      }
-      
-      if (position === 'topRight' && itemHasContent(itemTopLeft) && itemHasContent(itemTopRight)) {
-        classes.push(this.decorateCSS("inner-left"));
-      }
-      
-      if (position === 'bottomLeft' && itemHasContent(itemBottomLeft) && itemHasContent(itemBottomRight)) {
-        classes.push(this.decorateCSS("inner-right"));
-      }
-      
-      if (position === 'bottomRight' && itemHasContent(itemBottomLeft) && itemHasContent(itemBottomRight)) {
-        classes.push(this.decorateCSS("inner-left"));
+
+      const hasTopLeft = itemHasContent(itemTopLeft);
+      const hasTopRight = itemHasContent(itemTopRight);
+      const hasBottomLeft = itemHasContent(itemBottomLeft);
+      const hasBottomRight = itemHasContent(itemBottomRight);
+
+      const isLeft = position === "topLeft" || position === "bottomLeft";
+      const isTop = position === "topLeft" || position === "topRight";
+
+      const hasRowPartner = isTop
+        ? hasTopLeft && hasTopRight
+        : hasBottomLeft && hasBottomRight;
+
+      if (hasRowPartner) {
+        classes.push(this.decorateCSS(isLeft ? "inner-right" : "inner-left"));
       }
 
-      if (hasLeftSection) {
-        if (position === 'topLeft') {
-          classes.push(this.decorateCSS("left-edge"));
-        }
-        if (position === 'bottomLeft') {
-          classes.push(this.decorateCSS("left-edge"));
-        }
-        if (position === 'topRight' && !itemHasContent(itemTopLeft)) {
-          classes.push(this.decorateCSS("left-edge"));
-        }
-        if (position === 'bottomRight' && !itemHasContent(itemBottomLeft)) {
-          classes.push(this.decorateCSS("left-edge"));
-        }
+      const isLeftMost =
+        (position === "topLeft") ||
+        (position === "bottomLeft") ||
+        (position === "topRight" && !hasTopLeft) ||
+        (position === "bottomRight" && !hasBottomLeft);
+
+      if (hasLeftSection && isLeftMost) {
+        classes.push(this.decorateCSS("left-edge"));
       }
-      
+
       return classes.join(" ");
     };
 
@@ -554,9 +539,9 @@ class Portfolio1 extends BasePortfolio {
       const icon = item?.icon;
       const icon2 = item?.icon2;
 
-      const hasSubtitle = this.castToString(subtitle);
-      const hasTitle = this.castToString(title);
-      const hasDescription = this.castToString(description);
+      const hasSubtitle = !!subtitle;
+      const hasTitle = !!title;
+      const hasDescription = !!description;
       const hasAnyButton = hasAnyButtonInItem(buttons);
 
       if (!hasContentInItem(item)) {
@@ -574,7 +559,7 @@ class Portfolio1 extends BasePortfolio {
               </Base.SectionSubTitle>
             )}
 
-            {(hasTitle || hasIcon(icon) || hasIcon(icon2)) && (
+            {(hasTitle || icon || icon2) && (
               <div className={this.decorateCSS("title-row")}>
                 {hasTitle && (
                   <Base.H2 className={this.decorateCSS("title")}>
@@ -582,15 +567,15 @@ class Portfolio1 extends BasePortfolio {
                   </Base.H2>
                 )}
 
-                {(hasIcon(icon) || hasIcon(icon2)) && (
+                {(icon || icon2) && (
                   <div className={this.decorateCSS("icons-wrapper")}>
-                    {hasIcon(icon) && (
+                    {icon && (
                       <Base.Media
                         value={icon}
                         className={this.decorateCSS("icon1")}
                       />
                     )}
-                    {hasIcon(icon2) && (
+                    {icon2 && (
                       <Base.Media
                         value={icon2}
                         className={this.decorateCSS("icon2")}
@@ -613,11 +598,11 @@ class Portfolio1 extends BasePortfolio {
               <div className={this.decorateCSS("action-buttons")}>
                 {buttons.map((btn, index: number) => {
                   const buttonText = btn.text;
-                  const buttonMedia = btn.media;
+                  const buttonMedia = btn.media as any;
                   const buttonUrl = btn.url || "#";
                   const buttonType = btn.type;
 
-                  const btnTextExist = this.castToString(buttonText);
+                  const btnTextExist = !!buttonText;
                   const buttonMediaExist =
                     buttonMedia && (buttonMedia.name || buttonMedia.url);
 
@@ -657,19 +642,16 @@ class Portfolio1 extends BasePortfolio {
     return (
       <Base.Container
         isFull={true}
-        className={`${this.decorateCSS("container")} ${
-          !anyVisible && this.decorateCSS("no-visible")
-        }`}
+        className={this.decorateCSS("container")}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {itemHasContent(itemLeft) && (
             <div className={this.decorateCSS("left")}>
               <ComposerLink path={itemLeft.url} isFullWidth={true}>
                 <div
-                  className={`${this.decorateCSS("item")} ${
-                    (!itemLeft.media || !itemLeft.media.url) &&
+                  className={`${this.decorateCSS("item")} ${(!itemLeft.media || !itemLeft.media.url) &&
                     this.decorateCSS("no-media")
-                  } ${renderRight ? this.decorateCSS("right-edge") : ""}`}
+                    } ${renderRight ? this.decorateCSS("right-edge") : ""}`}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
                   {itemLeft.media && itemLeft.media.url && (
@@ -695,134 +677,130 @@ class Portfolio1 extends BasePortfolio {
             <div className={this.decorateCSS("right")}>
               {(itemHasContent(itemTopLeft) ||
                 itemHasContent(itemTopRight)) && (
-                <div className={this.decorateCSS("top")}>
-                  {itemHasContent(itemTopLeft) && (
-                    <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                      <div
-                        className={`${this.decorateCSS("item")} ${
-                          (!itemTopLeft.media || !itemTopLeft.media.url) &&
-                          this.decorateCSS("no-media")
-                        } ${getRightSideBorderClasses('topLeft')}`}
-                        data-animation={this.getPropValue(
-                          "hoverAnimation"
-                        ).join(" ")}
-                      >
-                        {itemTopLeft.media && itemTopLeft.media.url && (
-                          <div className={this.decorateCSS("background-media")}>
-                            <Base.Media
-                              value={itemTopLeft.media}
-                              className={this.decorateCSS("media-element")}
-                            />
-                            {itemTopLeft.overlay && (
-                              <div
-                                className={this.decorateCSS(
-                                  "thumbnail-overlay"
-                                )}
+                  <div className={this.decorateCSS("top")}>
+                    {itemHasContent(itemTopLeft) && (
+                      <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemTopLeft.media || !itemTopLeft.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('topLeft')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemTopLeft.media && itemTopLeft.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemTopLeft.media}
+                                className={this.decorateCSS("media-element")}
                               />
-                            )}
-                          </div>
-                        )}
-                        {renderItemContent(itemTopLeft)}
-                      </div>
-                    </ComposerLink>
-                  )}
-                  {itemHasContent(itemTopRight) && (
-                    <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                      <div
-                        className={`${this.decorateCSS("item")} ${
-                          (!itemTopRight.media || !itemTopRight.media.url) &&
-                          this.decorateCSS("no-media")
-                        } ${getRightSideBorderClasses('topRight')}`}
-                        data-animation={this.getPropValue(
-                          "hoverAnimation"
-                        ).join(" ")}
-                      >
-                        {itemTopRight.media && itemTopRight.media.url && (
-                          <div className={this.decorateCSS("background-media")}>
-                            <Base.Media
-                              value={itemTopRight.media}
-                              className={this.decorateCSS("media-element")}
-                            />
-                            {itemTopRight.overlay && (
-                              <div
-                                className={this.decorateCSS(
-                                  "thumbnail-overlay"
-                                )}
+                              {itemTopLeft.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemTopLeft)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                    {itemHasContent(itemTopRight) && (
+                      <ComposerLink path={itemTopRight.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemTopRight.media || !itemTopRight.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('topRight')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemTopRight.media && itemTopRight.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemTopRight.media}
+                                className={this.decorateCSS("media-element")}
                               />
-                            )}
-                          </div>
-                        )}
-                        {renderItemContent(itemTopRight)}
-                      </div>
-                    </ComposerLink>
-                  )}
-                </div>
-              )}
+                              {itemTopRight.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemTopRight)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                  </div>
+                )}
               {(itemHasContent(itemBottomLeft) ||
                 itemHasContent(itemBottomRight)) && (
-                <div className={this.decorateCSS("bottom")}>
-                  {itemHasContent(itemBottomLeft) && (
-                    <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
-                      <div
-                        className={`${this.decorateCSS("item")} ${
-                          (!itemBottomLeft.media || !itemBottomLeft.media.url) &&
-                          this.decorateCSS("no-media")
-                        } ${getRightSideBorderClasses('bottomLeft')}`}
-                        data-animation={this.getPropValue(
-                          "hoverAnimation"
-                        ).join(" ")}
-                      >
-                        {itemBottomLeft.media && itemBottomLeft.media.url && (
-                          <div className={this.decorateCSS("background-media")}>
-                            <Base.Media
-                              value={itemBottomLeft.media}
-                              className={this.decorateCSS("media-element")}
-                            />
-                            {itemBottomLeft.overlay && (
-                              <div
-                                className={this.decorateCSS(
-                                  "thumbnail-overlay"
-                                )}
+                  <div className={this.decorateCSS("bottom")}>
+                    {itemHasContent(itemBottomLeft) && (
+                      <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemBottomLeft.media || !itemBottomLeft.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('bottomLeft')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemBottomLeft.media && itemBottomLeft.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemBottomLeft.media}
+                                className={this.decorateCSS("media-element")}
                               />
-                            )}
-                          </div>
-                        )}
-                        {renderItemContent(itemBottomLeft)}
-                      </div>
-                    </ComposerLink>
-                  )}
-                  {itemHasContent(itemBottomRight) && (
-                    <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                      <div
-                        className={`${this.decorateCSS("item")} ${
-                          (!itemBottomRight.media || !itemBottomRight.media.url) &&
-                          this.decorateCSS("no-media")
-                        } ${getRightSideBorderClasses('bottomRight')}`}
-                        data-animation={this.getPropValue(
-                          "hoverAnimation"
-                        ).join(" ")}
-                      >
-                        {itemBottomRight.media && itemBottomRight.media.url && (
-                          <div className={this.decorateCSS("background-media")}>
-                            <Base.Media
-                              value={itemBottomRight.media}
-                              className={this.decorateCSS("media-element")}
-                            />
-                            {itemBottomRight.overlay && (
-                              <div
-                                className={this.decorateCSS(
-                                  "thumbnail-overlay"
-                                )}
+                              {itemBottomLeft.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemBottomLeft)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                    {itemHasContent(itemBottomRight) && (
+                      <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemBottomRight.media || !itemBottomRight.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('bottomRight')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemBottomRight.media && itemBottomRight.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemBottomRight.media}
+                                className={this.decorateCSS("media-element")}
                               />
-                            )}
-                          </div>
-                        )}
-                        {renderItemContent(itemBottomRight)}
-                      </div>
-                    </ComposerLink>
-                  )}
-                </div>
-              )}
+                              {itemBottomRight.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemBottomRight)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                  </div>
+                )}
             </div>
           )}
         </Base.MaxContent>
