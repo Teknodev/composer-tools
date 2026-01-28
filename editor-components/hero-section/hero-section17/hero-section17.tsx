@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section17.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -9,9 +9,10 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ISliderData = {
   title: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   description: React.JSX.Element;
   button: INPUTS.CastedButton;
+  overlay: boolean;
 };
 
 class HeroSection17 extends BaseHeroSection {
@@ -19,16 +20,35 @@ class HeroSection17 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "icon",
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
       key: "prev_icon",
-      displayer: "Prev icon",
-      value: "GrFormPrevious",
+      displayer: "Prev Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "GrFormPrevious",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next_icon",
-      displayer: "Next icon",
-      value: "GrFormNext",
+      displayer: "Next Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "GrFormNext",
+      },
     });
 
     this.addProp({
@@ -54,13 +74,24 @@ class HeroSection17 extends BaseHeroSection {
               value: "Scandinavian Style House",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              },
             },
-
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            },
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
           ],
         },
         {
@@ -81,13 +112,24 @@ class HeroSection17 extends BaseHeroSection {
               value: "Contemporary Style House",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d53?alt=media&timestamp=1719483639150",
+              },
             },
-
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            },
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
           ],
         },
         {
@@ -108,13 +150,24 @@ class HeroSection17 extends BaseHeroSection {
               value: "Metal Facade Coatings",
             },
             {
-              type: "image",
+              type: "media",
               displayer: "Image",
               key: "image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d52?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666193cabd2970002c625d54?alt=media&timestamp=1719483639150",
+              },
             },
-
-            INPUTS.BUTTON("button", "Button", "View Content", "", null, null, "Primary"),
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
+            },
+            INPUTS.BUTTON("button", "Button", "View Content", "", "GrFormNext", null, "White"),
           ],
         },
       ],
@@ -135,7 +188,7 @@ class HeroSection17 extends BaseHeroSection {
       dotsClass: this.decorateCSS("dots"),
       infinite: true,
       speed: 1000,
-      autoplay: true,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
@@ -153,7 +206,8 @@ class HeroSection17 extends BaseHeroSection {
             return (
               sliderExist && (
                 <div className={this.decorateCSS("slider-content")} key={`key${index}`}>
-                  {image && <img src={item.image} alt="" className={this.decorateCSS("bg-img")} />}
+                  {image && <Base.Media value={item.image} className={this.decorateCSS("bg-img")} autoPlay muted loop playsInline />}
+                  {image && item.overlay && <div className={this.decorateCSS("overlay")} />}
                   <Base.Container className={this.decorateCSS("sub-container")}>
                     <Base.MaxContent className={this.decorateCSS("sub-content")}>
                       {cardExist && (
@@ -165,33 +219,35 @@ class HeroSection17 extends BaseHeroSection {
                       {buttonExist && (
                         <ComposerLink path={item.button.url}>
                           <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
-                            {item.button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
+                            <Base.Media
+                              className={this.decorateCSS("button-icon")}
+                              value={item.button.icon}
+                            />
                           </Base.Button>
                         </ComposerLink>
                       )}
                     </Base.MaxContent>
                   </Base.Container>
                   {slider.length > 1 && (
-                    <Base.Icon
-                      name={this.getPropValue("next_icon")}
-                      propsIcon={{
-                        className: `${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                        onClick: () => {
-                          this.getComponentState("slider-ref").current.slickNext();
-                        },
+                    <div
+                      className={`${this.decorateCSS("next-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`}
+                      onClick={() => {
+                        this.getComponentState("slider-ref").current.slickNext();
                       }}
-                    />
+                    >
+                      <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("next_icon") as TypeMediaInputValue} />
+                    </div>
                   )}
                   {slider.length > 1 && (
-                    <Base.Icon
-                      name={this.getPropValue("prev_icon")}
-                      propsIcon={{
-                        className: `${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`,
-                        onClick: () => {
-                          this.getComponentState("slider-ref").current.slickPrev();
-                        },
+                    <div
+                      className={`${this.decorateCSS("prev-icon")} ${!image && this.decorateCSS("slider-icon-without-image")}`}
+                      onClick={() => {
+                        this.getComponentState("slider-ref").current.slickPrev();
                       }}
-                    />
+                    >
+                      <Base.Media className={this.decorateCSS("icon")} value={this.getPropValue("prev_icon") as TypeMediaInputValue} />
+                    </div>
                   )}
                 </div>
               )
