@@ -111,6 +111,7 @@ import IntroSection3 from "./intro-section/intro-section3/intro-section3";
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
 import IntroSection6 from "./intro-section/intro-section6/intro-section6";
 import IntroSection7 from "./intro-section/intro-section7/intro-section7";
+import IntroSection8 from "./intro-section/intro-section8/intro-section8";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
 import IntroSection10 from "./intro-section/intro-section10/intro-section10";
 import IntroSection11 from "./intro-section/intro-section11/intro-section11";
@@ -444,6 +445,7 @@ function Registerables(composer: ComponentsRegistery) {
     IntroSection4,
     IntroSection6,
     IntroSection7,
+    IntroSection8,
     IntroSection9,
     IntroSection10,
     IntroSection11,
