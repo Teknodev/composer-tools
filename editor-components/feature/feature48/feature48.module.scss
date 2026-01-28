@@ -1,0 +1,140 @@
+@import "../../../composer-base-components/base/utitilities/viewports.module.scss";
+
+.container {
+  content: "";
+  background-color: var(--composer-html-background);
+}
+
+.max-content {
+  content: "";
+}
+
+.header-section {
+  content: "";
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+.subtitle {
+  content: "";
+  text-align: left;
+}
+
+.title {
+  text-align: left;
+}
+
+.description {
+  content: "";
+  text-align: left;
+}
+
+.cards-container {
+  content: "";
+  display: grid;
+  grid-template-columns: repeat(var(--items-per-row, 3), 1fr);
+  gap: 2rem;
+
+  @container (max-width: #{$composer-tablet-width}) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.card {
+  content: "";
+  background-color: color-mix(
+    in srgb,
+    var(--composer-html-background),
+    var(--composer-font-color-primary) 5%
+  );
+  border-radius: var(--composer-border-radius-md);
+  padding: var(--composer-gap-lg);
+  height: 100%;
+
+  // Only target base elements within this specific card
+  :global(.base_h1__Jpwhz),
+  :global(.base_h2__yUJOB),
+  :global(.base_h3__yAZ6n),
+  :global(.base_h4__NNi2n),
+  :global(.base_h5__6f5qG),
+  :global(.base_h6__7dp5u),
+  :global(.base_p__OE5iz) {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    justify-content: flex-start !important;
+  }
+}
+
+.card-content {
+  content: "";
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: left;
+  gap: var(--composer-gap-sm);
+}
+
+.icon-container {
+  content: "";
+}
+
+.icon {
+  content: "";
+  color: var(--composer-primary-color);
+  font-size: 6rem;
+
+  @container (max-width: #{$composer-tablet-width}) {
+    font-size: 4rem;
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    font-size: 3rem;
+  }
+}
+
+.text-content {
+  content: "";
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--composer-gap-sm);
+}
+
+.card-content-text {
+  content: "";
+  color: var(--composer-primary-color);
+  font-weight: 500;
+
+  span {
+    width: auto !important;
+    display: inline !important;
+  }
+}
+
+.card-description {
+  content: "";
+  color: var(--composer-font-color-primary);
+  flex: 1;
+  line-height: 1.6;
+}
+
+.buttons-container {
+  content: "";
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.button {
+  content: "";
+  display: inline-block;
+}
