@@ -21,7 +21,7 @@
     gap: var(--composer-gap-xs);
     position: relative;
     width: 100%;
-    margin-bottom: var(--composer-gap-md);
+    width: 100%;
 
     .header {
       order: 1;
@@ -41,34 +41,33 @@
       width: fit-content;
     }
 
-    .right-links-wrapper {
+    .button-container {
       order: 2;
       display: flex;
       flex-wrap: wrap;
       gap: var(--composer-gap-md);
       margin-left: auto;
-      margin-bottom: var(--composer-gap-md);
       align-items: center;
       justify-content: flex-end;
       z-index: 10;
       position: relative;
 
-      .right-link {
+      .button-wrapper {
         display: flex;
         color: var(--composer-font-color-primary);
         text-decoration: none;
         align-items: center;
         width: fit-content;
 
-        .inner-right-link {
+        .button {
           display: flex;
-          flex-direction: row;
           align-items: center;
-          justify-content: center;
           gap: var(--composer-gap-xs);
-          margin-top: var(--composer-gap-md) !important;
+          color: var(--composer-font-color-primary);
 
-
+          .button-text {
+            margin: 0;
+          }
 
           .button-icon {
             width: 18px;
@@ -76,10 +75,6 @@
             font-size: 1.25rem;
             transition: transform 0.3s ease-in-out;
           }
-
-
-
-
         }
 
         &:hover {
@@ -325,6 +320,48 @@
         }
       }
 
+      &[data-animation~="animate3"] {
+        .card {
+          .content {
+            .card-title {
+              .title-underline {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: 0;
+                left: 0;
+                background-color: var(--composer-font-color-primary);
+                visibility: hidden;
+                transform-origin: left;
+                transition: width 0.5s ease-in-out;
+              }
+
+              &:hover {
+                .title-underline {
+                  visibility: visible;
+                  width: 100%;
+                }
+              }
+            }
+
+            .no-animation-card-title {
+              .title-underline {
+                visibility: hidden;
+                width: 0;
+                transition: none;
+              }
+
+              &:hover .title-underline {
+                visibility: hidden;
+                width: 0;
+                transition: none;
+              }
+            }
+          }
+        }
+      }
+
       .card {
         display: flex;
         flex-direction: column;
@@ -385,40 +422,9 @@
           word-wrap: break-word;
           overflow: hidden;
 
-          .title-underline {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--composer-font-color-primary);
-            visibility: hidden;
-            transform-origin: left;
-            transition: width 0.5s ease-in-out;
-          }
-
-          &:hover {
-            .title-underline {
-              visibility: visible;
-              width: 100%;
-            }
-          }
         }
 
-        .no-animation-card-title {
-          .title-underline {
-            visibility: hidden;
-            width: 0;
-            transition: none;
-          }
 
-          &:hover .title-underline {
-            visibility: hidden;
-            width: 0;
-            transition: none;
-          }
-        }
       }
     }
   }
@@ -458,6 +464,7 @@
     align-items: center;
     justify-content: center;
     padding: 0;
+    margin-bottom: 0px;
   }
 }
 
@@ -485,15 +492,23 @@
   .media-wrapper .media {
     height: 150px !important;
   }
+
+  .slider-item[data-animation~="animate2"] .card .gradient-overlay {
+    inset: 150px 0 0 0 !important;
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+
+    .custom-dots {
+      margin-bottom: var(--composer-gap-md);
+    }
+
     .max-content {
       flex-direction: column;
       align-items: center;
       gap: var(--composer-gap-xs);
-      margin-bottom: 0px !important;
 
       .header {
         order: 1;
@@ -519,7 +534,7 @@
         width: 100%;
       }
 
-      .right-links-wrapper {
+      .button-container {
         order: 4;
         width: 100%;
         justify-content: center;

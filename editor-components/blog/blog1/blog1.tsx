@@ -66,6 +66,8 @@ class Blog1 extends BaseBlog {
       value: true,
     });
 
+
+
     this.addProp({
       type: "boolean",
       key: "overlay",
@@ -274,12 +276,6 @@ class Blog1 extends BaseBlog {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "disableAnimation",
-      displayer: "Animation",
-      value: true,
-    });
-    this.addProp({
       type: "media",
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
@@ -310,10 +306,11 @@ class Blog1 extends BaseBlog {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
 
+    this.setComponentState("activeSlideIndex", 0);
     this.setComponentState(
       "prevSlide",
       this.castToObject<CardType[]>("items").length - 1
@@ -321,10 +318,6 @@ class Blog1 extends BaseBlog {
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
-    this.setComponentState(
-      "disableAnimation",
-      this.getPropValue("disableAnimation")
-    );
   }
 
   static getName(): string {
@@ -336,7 +329,7 @@ class Blog1 extends BaseBlog {
 
     return (
       <ul className={this.decorateCSS("custom-dots")}>
-        {items.map((item, index) => (
+        {items.map((_item, index) => (
           <li
             key={index}
             className={
@@ -386,7 +379,7 @@ class Blog1 extends BaseBlog {
           },
         },
       ],
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_current: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);
       },
@@ -403,7 +396,6 @@ class Blog1 extends BaseBlog {
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
     const line = this.getPropValue("line");
-    const disableAnimation = this.getPropValue("disableAnimation");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -414,27 +406,25 @@ class Blog1 extends BaseBlog {
             )}
             {isTitleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
+                {title as any}
               </Base.SectionTitle>
             )}
 
           </Base.VerticalContent>
-          <div className={this.decorateCSS("right-links-wrapper")}>
+          <div className={this.decorateCSS("button-container")}>
             {rightTextItems.map((item: RightTextItem, index: number) => {
-              const buttonTextExist = this.castToString(item.text);
+              const buttonTextExist = this.castToString(item.text as any);
               const iconExist = item.icon && item.icon.name;
               const imageExist = item.image && item.image.url;
               const buttonExist = buttonTextExist || iconExist || imageExist;
 
               return buttonExist && (
-                <div key={`blog-1-btn-${index}`} className={this.decorateCSS("right-link")}>
+                <div key={`blog-1-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
                   <ComposerLink path={item.url}>
-                    <div className={this.decorateCSS("inner-right-link")}>
-                      <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
-                        {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                        {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                      </Base.Button>
-                    </div>
+                    <Base.Button className={this.decorateCSS("button")} buttonType={(item.type as any) || "Link"}>
+                      {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                      {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                    </Base.Button>
                   </ComposerLink>
                 </div>
               );
@@ -483,7 +473,7 @@ class Blog1 extends BaseBlog {
                           : ""
                         }`}
                       key={index}
-                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      data-animation={Array.isArray(this.getPropValue("hoverAnimation")) ? this.getPropValue("hoverAnimation").join(" ") : ""}
                     >
                       <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("gradient-overlay")} />
@@ -514,7 +504,7 @@ class Blog1 extends BaseBlog {
                               )}
                               {this.castToString(item.imageTitle) && (
                                 <Base.H5
-                                  className={`${this.decorateCSS("card-title")} ${!disableAnimation && this.decorateCSS("no-animation-card-title")}`}
+                                  className={this.decorateCSS("card-title")}
                                 >
                                   {item.imageTitle}
                                   <div className={this.decorateCSS("title-underline")} />

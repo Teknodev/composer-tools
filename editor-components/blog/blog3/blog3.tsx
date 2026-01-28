@@ -24,17 +24,19 @@ class Blog3 extends BaseBlog {
 
     this.addProp({
       type: "string",
-      key: "leftSideText",
-      displayer: "Title",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Featured Posts",
     });
 
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "",
+      key: "title",
+      displayer: "Title",
+      value: "OUR BLOG",
     });
+
+
 
     this.addProp({
       type: "string",
@@ -43,7 +45,21 @@ class Blog3 extends BaseBlog {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("rightButton", "Right Side Button", "Featured Posts", "", "MdArrowOutward", "", "Link"));
+    this.addProp({
+      type: "array",
+      key: "rightText",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Featured Posts", "", "MdArrowOutward", "", "Link"),
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
 
     this.addProp({
       type: "object",
@@ -413,18 +429,15 @@ class Blog3 extends BaseBlog {
       max: 4
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "underlineAnimation",
-      displayer: "Animation",
-      value: true
-    });
 
     this.addProp({
-      type: "boolean",
+      type: "multiSelect",
       key: "hoverAnimation",
-      displayer: "Hover Animation",
-      value: true
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
     });
   }
 
@@ -436,13 +449,15 @@ class Blog3 extends BaseBlog {
   render() {
     const itemCountInARow = this.getPropValue("itemCountInARow");
 
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const line = this.getPropValue("line");
     const underlineAnimation = !!this.getPropValue("underlineAnimation");
+    const hoverAnimation = this.getPropValue("hoverAnimation");
 
-    const leftSideTextExist = this.castToString(this.getPropValue("leftSideText"));
-
-    const rightButton = this.castToObject<INPUTS.CastedButton>("rightButton");
-    const rightSideTextExist = this.castToString(rightButton.text);
-    const rightSideUrl = rightButton.url;
+    const subtitleExist = this.castToString(subtitle);
+    const isTitleExist = this.castToString(title);
+    const rightTextItems = this.castToObject<any[]>("rightText");
     const description = this.getPropValue("description");
     const descriptionExist = this.castToString(description);
 
@@ -459,7 +474,7 @@ class Blog3 extends BaseBlog {
       const fullNameExist = !!this.castToString(data.fullname);
       const readTimeExist = !!this.castToString(data.readTime);
       const dateExist = !!this.castToString(data.date);
-      const hoverAnimation = !!this.getPropValue("hoverAnimation");
+      const isHoverAnimation = Array.isArray(hoverAnimation) ? hoverAnimation.length > 0 : !!hoverAnimation;
 
       return (
         <div
@@ -468,14 +483,16 @@ class Blog3 extends BaseBlog {
               ${this.decorateCSS(data.mini ? "mini" : "")}
             `}
           style={style}
+          data-animation={Array.isArray(hoverAnimation) ? hoverAnimation.join(" ") : ""}
         >
+          <div className={this.decorateCSS("gradient-overlay")} />
           {data.image &&
             <div className={this.decorateCSS("image-container")}>
               <Base.Media
                 value={data.image}
                 className={`
                   ${this.decorateCSS("image")}
-                  ${hoverAnimation && this.decorateCSS("hover-animation")}
+                  ${isHoverAnimation && this.decorateCSS("hover-animation")}
                 `}
               />
             </div>
@@ -624,56 +641,69 @@ class Blog3 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(descriptionExist || leftSideTextExist || rightButton.icon || rightSideTextExist) && (
-            <header className={this.decorateCSS("header")}>
-              <Base.VerticalContent className={this.decorateCSS("title-container")}>
-                {leftSideTextExist && (
-                  <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                    {this.getPropValue("leftSideText")}
+          {(descriptionExist || subtitleExist || isTitleExist || rightTextItems.some(item => item.text || (item.icon && item.icon.name))) && (
+            <div className={this.decorateCSS("header-wrapper")}>
+              <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.decorateCSS("header-left")}`}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                )}
+                {isTitleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
                   </Base.SectionTitle>
                 )}
+
+              </Base.VerticalContent>
+              <div className={this.decorateCSS("button-container")}>
+                {rightTextItems.map((item: any, index: number) => {
+                  const buttonTextExist = this.castToString(item.text);
+                  const iconExist = item.icon && item.icon.name;
+                  const buttonExist = buttonTextExist || iconExist;
+
+                  return buttonExist && (
+                    <div key={`blog-3-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
+                      <ComposerLink path={item.url}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
+                          {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className={this.decorateCSS("header-bottom")}>
+                {line && <hr className={this.decorateCSS("line")} />}
                 {descriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
                     {description}
                   </Base.SectionDescription>
                 )}
-              </Base.VerticalContent>
-              {(rightSideTextExist || rightButton.icon) && (
-                <div className={this.decorateCSS("right-side")}>
-                  <ComposerLink path={rightSideUrl}>
-                    <div className={this.decorateCSS("link-container")}>
-                      <Base.Button className={this.decorateCSS("button")} buttonType={rightButton.type}>
-                        {rightSideTextExist && <Base.P className={this.decorateCSS("button-text")}>{rightButton.text}</Base.P>}
-                        {rightButton.icon && <Base.Media value={rightButton.icon as any} className={this.decorateCSS("button-icon")} />}
-                      </Base.Button>
-                    </div>
-                  </ComposerLink>
-                </div>
-              )}
-            </header>
+              </div>
+            </div>
           )}
           <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
-          {(rightSideTextExist || rightButton.icon) && (
-            <div className={this.decorateCSS("mobile-right-side")}>
-              <ComposerLink path={rightSideUrl}>
-                <div className={this.decorateCSS("link-container")}>
-                  <div className={this.decorateCSS("link-text")}>
-                    {rightSideTextExist && (
-                      rightButton.text
-                    )}
-                    {rightButton.icon && (
-                      <Base.Media
-                        value={rightButton.icon as any}
-                        className={this.decorateCSS("right-side-icon")}
-                      />
-                    )}
-                  </div>
+          <div className={this.decorateCSS("mobile-right-side")}>
+            {rightTextItems.map((item: any, index: number) => {
+              const buttonTextExist = this.castToString(item.text);
+              const iconExist = item.icon && item.icon.name;
+              const buttonExist = buttonTextExist || iconExist;
+
+              return buttonExist && (
+                <div key={`blog-3-mobile-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
+                  <ComposerLink path={item.url}>
+                    <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
+                      {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                      {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                    </Base.Button>
+                  </ComposerLink>
                 </div>
-              </ComposerLink>
-            </div>
-          )}
+              );
+            })}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
