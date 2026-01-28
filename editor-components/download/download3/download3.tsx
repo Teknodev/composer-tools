@@ -93,7 +93,11 @@ class Download3 extends BaseDownload {
             {alignmentValue === "left" && (
               <div className={this.decorateCSS("group-container")}>
                 <div className={this.decorateCSS("title-block")}>
-                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                  {subtitleExist && (
+                    <div className={this.decorateCSS("subtitle-wrapper")}>
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                    </div>
+                  )}
                   {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!buttonsExist && this.decorateCSS("full")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                 </div>
                 <Base.SectionDescription className={`${this.decorateCSS("description")} ${!titleExist && this.decorateCSS("full")}`}>{this.getPropValue("description")}</Base.SectionDescription>
@@ -133,7 +137,11 @@ class Download3 extends BaseDownload {
 
             {alignmentValue === "center" && (
               <div className={this.decorateCSS("group-container-center")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {subtitleExist && (
+                  <div className={this.decorateCSS("subtitle-wrapper")}>
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                  </div>
+                )}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 <div className={this.decorateCSS("button-group")}>

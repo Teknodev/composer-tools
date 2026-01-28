@@ -45,9 +45,17 @@
           align-items: flex-start;
           justify-content: center;
 
-          .subtitle {
-            text-align: left;
+          .subtitle-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
             margin-bottom: calc(var(--composer-gap-xs));
+
+            .subtitle {
+              text-align: left;
+              width: fit-content;
+              margin-bottom: 0;
+            }
           }
 
           .title {
@@ -114,6 +122,16 @@
         align-items: center;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
 
+        .subtitle-wrapper {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+
+          .subtitle {
+            width: fit-content;
+          }
+        }
+
         .title {
           content: "";
         }
@@ -138,6 +156,7 @@
             }
 
             .button-element {
+
               .button-text,
               .button-icon {
                 content: "";
@@ -174,9 +193,15 @@
             justify-content: center;
             text-align: center;
 
-            .subtitle {
-              text-align: center;
+            .subtitle-wrapper {
               width: 100%;
+              display: flex;
+              justify-content: center;
+
+              .subtitle {
+                text-align: center;
+                width: fit-content;
+              }
             }
 
             .title {
@@ -268,9 +293,15 @@
             align-items: center;
             text-align: center;
 
-            .subtitle {
-              text-align: center !important;
+            .subtitle-wrapper {
               width: 100%;
+              display: flex;
+              justify-content: center;
+
+              .subtitle {
+                text-align: center !important;
+                width: fit-content;
+              }
             }
 
             .title {
