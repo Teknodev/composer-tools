@@ -1,4 +1,3 @@
-import * as React from "react";
 import styles from "./download5.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -36,7 +35,7 @@ class Download5 extends BaseDownload {
       key: "backgroundImage",
       displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image","video"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -84,41 +83,43 @@ class Download5 extends BaseDownload {
     const backgroundImageUrl = backgroundImage && backgroundImage.url ? backgroundImage.url : null;
 
     return (
-        <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`}>
         <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("page")} ${!backgroundImageUrl && this.decorateCSS("no-image")}`}>
-            {(subtitleExist || titleExist || descExist) && 
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{desc}</Base.SectionDescription>}
-            </Base.VerticalContent>}
+          <div className={`${this.decorateCSS("page")} ${!backgroundImageUrl && this.decorateCSS("no-image")} ${backgroundImageUrl && alignmentValue === "center" ? this.decorateCSS("image-center") : ""}`}>
+            {(subtitleExist || titleExist || descExist) &&
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{desc}</Base.SectionDescription>}
+              </Base.VerticalContent>}
 
             {buttons.length > 0 && (
               <div className={`${this.decorateCSS("buttons-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                   const buttonTextExist = this.castToString(item?.text);
-                  const iconExist = item.icon && item.icon.name;
-                  const imageExist = item.image && item.image.url;
+                  const iconExist = item.icon && (item.icon)?.name;
+                  const imageExist = item.image && (item.image)?.url;
                   const buttonExist = buttonTextExist || iconExist || imageExist;
                   return buttonExist && (
                     <div className={this.decorateCSS("button-wrapper")}>
-                      <ComposerLink key={index} path={item.url}>
-                        {imageExist ? (
-                          <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                        ) : (
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                            {iconExist && (
-                              <Base.Media
-                                value={item.icon}
-                                className={this.decorateCSS("icon")}
-                              />
-                            )}
-                            {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                          </Base.Button>
-                        )}
-                      </ComposerLink>
+                      <div className={this.decorateCSS("button-full")}>
+                        <ComposerLink key={index} path={item.url}>
+                          {imageExist ? (
+                            <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                          ) : (
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                              {iconExist && (
+                                <Base.Media
+                                  value={item.icon}
+                                  className={this.decorateCSS("icon")}
+                                />
+                              )}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            </Base.Button>
+                          )}
+                        </ComposerLink>
+                      </div>
                     </div>
                   );
                 })}

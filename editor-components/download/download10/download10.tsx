@@ -1,7 +1,6 @@
-import * as React from "react";
 import styles from "./download10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseDownload } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -50,7 +49,7 @@ class Download10 extends BaseDownload {
       key: "image",
       displayer: "Media",
       additionalParams: {
-        availableTypes: ["image","video"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -81,7 +80,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -100,7 +99,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -119,7 +118,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -138,7 +137,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -157,7 +156,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -198,29 +197,31 @@ class Download10 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div
-              className={`${this.decorateCSS("left-container")} 
-            ${(image && alignmentValue === "center") && this.decorateCSS("center")} 
-            ${!image && this.decorateCSS("no-image")}`}
+              className={`${this.decorateCSS("left-container")} ${!image && this.decorateCSS("no-image")} ${alignmentValue === "center" && !image && this.decorateCSS("center")}`}
             >
               <Base.VerticalContent>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                {subtitleExist && (
+                  <div className={this.decorateCSS("subtitle-container")}>
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>
+                  </div>
+                )}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {buttons.length > 0 && (
                   <Base.Row className={this.decorateCSS("button-group")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
-                      const iconExist = item.icon && item.icon.name;
-                      const imageExist = item.image && item.image.url;
+                      const iconExist = item.icon && (item.icon as any).name;
+                      const imageExist = item.image && (item.image as any).url;
                       const buttonExist = buttonTextExist || iconExist || imageExist;
                       return buttonExist && (
                         <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
                           {imageExist ? (
-                            <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                            <Base.Media value={item.image as any} className={this.decorateCSS("button-image")} />
                           ) : (
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                              {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("button-icon")} />}
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                             </Base.Button>
                           )}
                         </ComposerLink>
@@ -233,7 +234,7 @@ class Download10 extends BaseDownload {
                 <Base.VerticalContent className={this.decorateCSS("stats")}>
                   {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
                   <Base.Row className={this.decorateCSS("down-description")}>
-                    <div className={this.decorateCSS("stars")}>{icons.map((icon: any, index: number) => icon.icon && <Base.Media value={icon.icon} className={this.decorateCSS("icon")} />)}</div>
+                    <div className={this.decorateCSS("stars")}>{icons.map((icon: any) => icon.icon && <Base.Media value={icon.icon} className={this.decorateCSS("icon")} />)}</div>
                     {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
                   </Base.Row>
                 </Base.VerticalContent>

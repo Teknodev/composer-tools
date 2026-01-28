@@ -1,72 +1,94 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0;
+  padding-right: 0 !important;
+
+  &.has-image {
+    padding: 0 !important;
+  }
+
   .page {
     width: 100%;
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
     height: auto;
 
     .image-child {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
       position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+
       .background-image {
-        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        min-width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
+        z-index: 0;
       }
 
       .overlay {
         position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
+        inset: 0;
         background-color: var(--composer-overlay-color);
+        z-index: 1;
+        pointer-events: none;
       }
     }
-    .max-content{
+
+    .max-content {
       display: flex;
-      overflow: hidden;
       position: relative;
+      z-index: 2;
       height: auto;
+
       .left-content {
-        &.center{
+        &.center {
           align-items: center;
           text-align: center;
         }
+
         width: 100%;
         justify-content: center;
         bottom: 0;
         opacity: 1;
-        transition: opacity 0.5s, height 0.5s;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
+        transition: opacity 0.5s,
+        height 0.5s;
+        padding: var(--composer-gap-md) var(--composer-gap-md);
         overflow: auto;
         z-index: 3;
         min-height: 100%;
         height: auto;
         position: relative;
 
-        .title, .description {
+        .title,
+        .description {
           content: "";
           text-align: center;
-          &.image{
+
+          &.image {
             color: white;
           }
         }
-        
+
       }
+
       &.image {
         min-height: 350px;
       }
-  
+
       &.no-image {
-        min-height: 250px;
+        min-height: 0px;
+        overflow: visible;
+
+        .left-content {
+          padding: initial;
+        }
       }
     }
 
@@ -104,12 +126,14 @@
           flex-direction: column;
           overflow: hidden;
           margin: 0px;
+
           .cardTitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
             margin: 0;
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
           }
+
           .list-group {
             width: 100%;
             display: flex;
@@ -129,6 +153,7 @@
                 height: 12px;
                 flex-shrink: 0;
               }
+
               .text {
                 color: var(--composer-font-color-primary);
               }
@@ -142,6 +167,7 @@
           display: flex;
           align-items: center;
           border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+
           .buttons-container {
             display: flex;
             flex-wrap: wrap;
@@ -163,11 +189,23 @@
             }
 
             .button {
-              .icon{
-                content: "";
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: var(--composer-gap-xs);
+
+              .icon {
+                font-size: 1rem;
+                width: 1rem;
+                height: 1rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
               }
-              .text{
-                content: "";
+
+              .text {
+                margin: 0;
+                text-align: center;
               }
             }
           }
@@ -176,6 +214,7 @@
     }
 
     &:hover {
+
       .left-content,
       .left-content-no-image {
         opacity: 0;
@@ -183,6 +222,7 @@
         .title {
           opacity: 0;
         }
+
         .description {
           opacity: 0;
         }
@@ -198,10 +238,14 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .page {
-    .max-content {
-      .left-content {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
+  .container {
+    padding-right: 0 !important;
+
+    .page {
+      .max-content {
+        .left-content {
+          padding: var(--composer-gap-md) var(--composer-gap-lg);
+        }
       }
     }
   }
@@ -209,15 +253,19 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding-right: 0 !important;
+
     .page {
-      .max-content{
-        .left-content{
-          padding: var(--composer-gap-md) !important;
+      .max-content {
+        .left-content {
+          content: "";
         }
       }
+
       .right-content {
         width: 20vw;
         min-width: 20vw;
+
         .card {
           width: 20vw;
           height: 100%;
@@ -229,18 +277,22 @@
                   width: var(--composer-gap-sm);
                   height: var(--composer-gap-sm);
                 }
+
                 .text {
                   content: "";
                 }
               }
             }
           }
+
           .card-down {
             .buttons-container {
-              align-items: baseline;
+              align-items: center;
+
               .image-container {
                 width: 120px;
                 height: 35px;
+
                 .image {
                   width: 100%;
                   height: 100%;

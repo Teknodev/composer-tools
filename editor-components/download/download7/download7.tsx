@@ -15,7 +15,7 @@ class Download7 extends BaseDownload {
       key: "image",
       displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image","video"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -56,7 +56,7 @@ class Download7 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download for IOS", "", "FaAppel", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download for IOS", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
         INPUTS.BUTTON("button", "Button", "Download for Android", "", "FaAndroid", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759e80e0655f8002ca61199?alt=media", "Primary"),
       ],
     });
@@ -80,10 +80,9 @@ class Download7 extends BaseDownload {
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-    const alignmentValue = Base.getContentAlignment();
-
     const backgroundImage = this.getPropValue("image");
     const backgroundImageUrl = backgroundImage && backgroundImage.url ? backgroundImage.url : null;
+    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -92,12 +91,12 @@ class Download7 extends BaseDownload {
           <div className={this.decorateCSS("wrapper")} style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}>
             {overlay && backgroundImageUrl && <div className={this.decorateCSS("overlay")}></div>}
 
-            <Base.VerticalContent className={`${this.decorateCSS("content-container")} ${backgroundImageUrl && this.decorateCSS("image")}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("content-container")} ${backgroundImageUrl && this.decorateCSS("has-image")} ${!backgroundImageUrl && alignmentValue === "center" && this.decorateCSS("center")}`}>
               {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{title}</Base.SectionTitle>}
               {descExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{description}</Base.SectionDescription>}
               {buttons?.length > 0 && (
-                <div className={`${this.decorateCSS("buttons-container")} ${(backgroundImageUrl || (!backgroundImageUrl && alignmentValue === "center")) && this.decorateCSS("center")}`}>
+                <div className={`${this.decorateCSS("buttons-container")} ${!backgroundImageUrl && alignmentValue === "center" && this.decorateCSS("center")}`}>
                   {buttons.map((button: INPUTS.CastedButton, index: number) => {
                     const buttonTextExist = this.castToString(button.text);
                     const iconExist = button.icon && button.icon.name;

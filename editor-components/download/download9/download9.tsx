@@ -118,7 +118,7 @@ class Download9 extends BaseDownload {
     const cardDescriptionExist = this.castToString(cardDescription);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("has-image")}`}>
         <div className={`${this.decorateCSS("page")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>
           {imageExist && <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />}
           {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}

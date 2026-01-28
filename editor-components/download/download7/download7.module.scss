@@ -1,6 +1,9 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
+  overflow: hidden;
+
   .background-image {
     position: absolute;
     top: 0;
@@ -9,6 +12,7 @@
     height: 100%;
     object-fit: cover;
   }
+
   .max-content {
     .wrapper {
       width: 100%;
@@ -28,31 +32,51 @@
         z-index: 1;
       }
 
-      .content-container{
+      .content-container {
         height: 100%;
         justify-content: center;
         position: relative;
         z-index: 2;
-        &.image{
+
+        &.has-image {
           min-height: 600px;
           padding: var(--composer-gap-md) var(--composer-gap-md);
           align-items: center;
           text-align: center;
         }
-        .subtitle {
-          content: "";
-          transform: translateX(0);
-          &::before{
-            display: none;
-          }
-          &.with-image{
-            color: white;
+
+        &.center {
+          align-items: center;
+          text-align: center;
+
+          .subtitle {
+            place-self: center;
           }
         }
-        .title, .description {
+
+        .subtitle {
           content: "";
-          &.with-image{
+
+          &.with-image {
             color: white;
+            transform: translateX(0);
+            place-self: center;
+
+            &::before {
+              display: none;
+            }
+
+            background: transparent !important;
+          }
+        }
+
+        .title,
+        .description {
+          content: "";
+
+          &.with-image {
+            color: white;
+            text-align: center;
           }
         }
 
@@ -60,19 +84,41 @@
         .buttons-container {
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
+          justify-content: center;
           gap: var(--composer-gap-md);
+
+          &.center {
+            justify-content: center;
+            place-self: center;
+          }
+
           .button-wrapper {
-            .button-image {
-              width: 170px;
-              height:50px;
-              border-radius: var(--composer-border-radius-sm);
-              object-fit: cover;
+            margin: 0;
+            display: flex;
+          }
+
+          .button-image {
+            width: 170px;
+            height: 50px;
+            border-radius: var(--composer-border-radius-sm);
+            object-fit: cover;
+          }
+
+          .button {
+            width: 170px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+
+            .button-icon {
+              font-size: 1.5rem;
             }
-            .button-element {
-              .button-icon, .button-text {
-                content: "";
-              }
+
+            .button-text {
+              margin: 0;
+              text-align: center;
             }
           }
         }
@@ -88,6 +134,10 @@
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+          &.has-image {
+            min-height: 600px;
+          }
         }
       }
     }
@@ -99,18 +149,40 @@
     .max-content {
       .wrapper {
         .content-container {
-          min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-          .description{
+
+          &.has-image {
+            min-height: 600px;
+          }
+
+          .description {
             text-align: center;
           }
-          .buttons-container{
-            justify-content: center;
+
+          .buttons-container {
+            justify-content: flex-start;
+            align-items: flex-start;
             flex-direction: column;
-            .button-wrapper{
-              .button-image{
-                width: 150px;
-                height: 40px;
+
+            &.center {
+              justify-content: center;
+              align-items: center;
+            }
+
+            .button-wrapper {
+              margin-left: 0;
+
+              .button-image,
+              .button {
+                width: 150px !important;
+                height: 40px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+              }
+
+              .button-image {
+                object-fit: cover;
               }
             }
           }

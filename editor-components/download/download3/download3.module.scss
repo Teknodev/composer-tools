@@ -2,17 +2,20 @@
 
 .container {
   padding: 0;
+
   .image-container {
     width: 100%;
     height: 600px;
     padding: 0;
     margin: 0;
     position: relative;
+
     .image {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     .overlay {
       position: absolute;
       top: 0;
@@ -23,183 +26,204 @@
       z-index: 1;
     }
   }
-  .max-content {
-    .page {
-      .group-container {
+
+  .max-content .page {
+
+    .group-container,
+    .group-container-center {
+      padding-top: 80px;
+      padding-bottom: 80px;
+      padding-left: 50px;
+      padding-right: 50px;
+      width: 100%;
+      box-sizing: border-box;
+
+      .description {
+        color: var(--composer-font-color-primary);
+      }
+
+      .button-group {
         display: flex;
-        width: 100%;
         align-items: center;
-        justify-content: space-between;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-md);
 
-        .title {
-          width: 20%;
-          margin: 0;
-          &.full{
-            width: 40%;
-          }
-        }
-        .description {
-          color: var(--composer-font-color-primary);
-          width: 60%;
-          &.full{
-            width: 100%;
-          }
-        }
-        .button-group {
-          .button {
-            display: flex;
-            width: 170px;
-            height: 50px;
-            >div,>a{
-              width: 100% !important;
-            }
-            .button-logo {
-              height: 100%;
-              width: 100%;
-              object-fit: cover;
-              cursor: pointer;
-              border-radius: var(--composer-border-radius-sm);
-            }
-            .button-element {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              .button-text {
-                content: "";
-              }
-              .button-icon {
-                font-size: 1.5rem;
-              }
-            }
-          }
-        }
-      }
-
-      .group-container-center {
-        align-items: center;
-        padding: var(--composer-gap-md) var(--composer-gap-xl);
-
-        .title {
-          content: "";
-        }
-        .description {
-          color: var(--composer-font-color-primary);
-        }
-        .button-group {
+        .button {
           display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
           align-items: center;
-          gap: var(--composer-gap-md);
-          .button {
-            .button-logo {
-              width: 200px;
-              height: 60px;
-              object-fit: cover;
-              border-radius: var(--composer-border-radius-sm);
+          justify-content: center;
+          padding: 0;
+          box-sizing: border-box;
+          flex-shrink: 0;
+
+          .button-logo,
+          .button-element {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--composer-border-radius-sm);
+            object-fit: cover;
+          }
+
+          .button-element {
+            .button-text {
+              margin: 0;
+              text-align: center;
             }
 
-            .button-element {
-              .button-text, .button-icon {
-                content: "";
-              }
+            .button-icon {
+              font-size: 1.5rem;
             }
           }
         }
       }
+    }
+
+    .group-container {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--composer-gap-md);
+
+      .title {
+        width: 20%;
+        margin: 0;
+
+        &.full {
+          width: 40%;
+        }
+      }
+
+      .description {
+        width: 60%;
+
+        &.full {
+          width: 100%;
+        }
+      }
+
+      .button-group .button {
+        width: 170px;
+        height: 50px;
+
+        .button-element {
+          width: 170px !important;
+          height: 50px !important;
+        }
+      }
+    }
+
+    .group-container-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title {
+        content: "";
+      }
+
+      .button-group {
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .button {
+          width: 170px;
+          height: 50px;
+        }
+
+        .button-element {
+          width: 170px !important;
+          height: 50px !important;
+        }
+      }
+    }
+  }
+
+  &.has-image .max-content .page {
+
+    .group-container,
+    .group-container-center {
+      content: "";
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: 0 !important;
+
     .image-container {
       height: 300px;
     }
 
-    .max-content {
-      .page {
-        .group-container {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          gap: var(--composer-gap-sm);
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
+    .max-content .page {
 
-          .title, .description {
-            text-align: center;
-            width: 100%;
+      .group-container,
+      .group-container-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 80px;
+        padding-bottom: 80px;
+        padding-left: var(--composer-gap-lg);
+        padding-right: var(--composer-gap-lg);
+
+        .title,
+        .description {
+          text-align: center;
+          width: 100%;
+        }
+
+        .button-group {
+          justify-content: center;
+          width: 100%;
+          margin-top: 20px;
+
+          .button {
+            width: 170px !important;
+            height: 50px !important;
+            margin: 0;
           }
-          .button-group {
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center !important;
-            align-items: center;
-            gap: var(--composer-gap-md);
-            justify-content: unset;
-            width: 100%;
+
+          .button-element {
+            width: 170px !important;
+            height: 50px !important;
           }
         }
-        .group-container-center{
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-        }
+      }
+
+      .group-container-center {
+        padding-left: 40px;
+        padding-right: 40px;
       }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .image-container {
-      height: 300px;
-    }
-    .max-content {
-      .page {
-        .group-container {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          gap: var(--composer-gap-sm);
-          padding: var(--composer-gap-md);
+  .container .max-content .page {
 
-          .button-group {
-            gap: var(--composer-gap-sm);
-            .button {
-              width: 120px;
-              height: 30px;
-              margin: 0px;
-              .button-element {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                gap: var(--composer-gap-sm);
+    .group-container,
+    .group-container-center {
+      padding-top: 50px !important;
+      padding-bottom: 50px;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
 
-                .button-text {
-                  content: "";
-                }
-                .button-icon {
-                  font-size: 1rem;
-                }
-              }
-            }
-          }
-        }
-        .group-container-center {
-          padding: var(--composer-gap-md);
-          .button-group {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: var(--composer-gap-sm);
-            .button {
-              .button-logo {
-                height: 60px;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
+      .button-group {
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          width: 150px !important;
+          height: 40px !important;
+
+          .button-element {
+            width: 150px !important;
+            height: 40px !important;
+
+            .button-icon {
+              font-size: 1rem;
             }
           }
         }
