@@ -6,6 +6,7 @@ import { logger } from '../utils/Logger';
 export class ClickTrigger extends BaseTrigger {
   private boundClickHandler?: (event: Event) => void;
   private config?: Record<string, any>;
+  private hasTriggered = false;
 
   constructor(config?: Record<string, any>) {
     super();
@@ -17,15 +18,16 @@ export class ClickTrigger extends BaseTrigger {
     this.cleanup = cleanup;
     
     this.boundClickHandler = async () => {
+      // Check if trigger should only fire once
+      if (this.config?.once && this.hasTriggered) {
+        return;
+      }
+
       // Cancel any ongoing animation before starting new one
       await cleanup?.();
       fire();
-      // For click, animate to target and then reverse back to original
-      if (cleanup) {
-        const duration = this.config?.duration || 500;
-        const delay = this.config?.delay || 0;
-        setTimeout(() => cleanup(), duration + delay + 100);
-      }
+      this.hasTriggered = true;
+      // For click, animate and let it complete naturally (no forced reverse)
     };
 
     let triggerTarget = target;

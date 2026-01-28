@@ -217,16 +217,31 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
   protected cancelAllAnimations(): void {
     // Cancel Web Animations API animations
     if (this.cancelAnimation) {
+      try {
+        console.debug('BaseAnimationCommand: cancelling cancelAnimation');
+      } catch (err) {
+        /* ignore */
+      }
       this.cancelAnimation();
       this.cancelAnimation = undefined;
     }
     if (this.reverseAnimation) {
+      try {
+        console.debug('BaseAnimationCommand: cancelling reverseAnimation');
+      } catch (err) {
+        /* ignore */
+      }
       this.reverseAnimation.cancel();
       this.reverseAnimation = undefined;
     }
 
     // Cancel all active animations from the map
     this.activeAnimations.forEach((animation) => {
+      try {
+        console.debug('BaseAnimationCommand: cancelling active animation');
+      } catch (err) {
+        /* ignore */
+      }
       animation.cancel();
     });
     this.activeAnimations.clear();

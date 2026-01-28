@@ -7,6 +7,7 @@ export class PressTrigger extends BaseTrigger {
   private boundPressHandler?: (event: Event) => void;
   private boundReleaseHandler?: (event: Event) => void;
   private config?: Record<string, any>;
+  private hasTriggered = false;
 
   constructor(config?: Record<string, any>) {
     super();
@@ -18,9 +19,15 @@ export class PressTrigger extends BaseTrigger {
     this.cleanup = cleanup;
     
     this.boundPressHandler = async () => {
+      // Check if trigger should only fire once
+      if (this.config?.once && this.hasTriggered) {
+        return;
+      }
+
       // Reverse any ongoing animation before starting the press animation
       await cleanup?.();
       fire();
+      this.hasTriggered = true;
     };
 
     this.boundReleaseHandler = async () => {

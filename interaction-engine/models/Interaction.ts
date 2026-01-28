@@ -1,7 +1,7 @@
 // src/composer-tools/interaction-engine/models/Interaction.ts
 
 import { TriggerStrategy } from '../triggers/TriggerStrategy';
-import { InteractionCommand, InteractionContext, InteractionConfig, InteractionMetadata } from '../core/types';
+import { InteractionCommand, InteractionContext, InteractionConfig, InteractionMetadata, BaseAnimationCommand } from '../core/types';
 import { logger } from '../utils/Logger';
 import { errorHandler, ExecutionError } from '../utils/ErrorHandler';
 import { ResourceManager, Disposable } from '../utils/ResourceManager';
@@ -56,6 +56,9 @@ export class Interaction implements Disposable {
 
     this.target = target;
 
+    // Set queueable based on trigger type for better UX
+    // Note: on appear has special handling in fire function
+
     const fire = () => {
       // Debouncing: Skip execution if called too soon
       const now = performance.now();
@@ -70,8 +73,12 @@ export class Interaction implements Disposable {
 
       // Prevent concurrent execution of the same interaction
       if (this.isExecuting) {
-        // Queue for later execution if interaction is busy
-        if (this.config.queueable) {
+        // Special handling for animation commands: cancel current execution and start new one
+        if (this.command instanceof BaseAnimationCommand) {
+          this.cleanupCommand();
+          // Continue to execute new command
+        } else if (this.config.queueable) {
+          // Queue for later execution if interaction is busy
           if (this.executionQueue.length >= this.maxQueueSize) {
             logger.warn('Execution queue full, dropping oldest execution', {
               component: 'Interaction',
@@ -81,8 +88,10 @@ export class Interaction implements Disposable {
             this.executionQueue.shift();
           }
           this.executionQueue.push({ fire, timestamp: now });
+          return;
+        } else {
+          return;
         }
-        return;
       }
 
       this.executeCommand();
@@ -125,7 +134,10 @@ export class Interaction implements Disposable {
       this.isExecuting = false;
 
       if (this.target) {
-        this.undoCommand();
+        // For on appear trigger, don't undo so animation state is preserved
+        if (this.triggerType !== 'appear') {
+          this.undoCommand();
+        }
       }
 
       this.clearQueue();

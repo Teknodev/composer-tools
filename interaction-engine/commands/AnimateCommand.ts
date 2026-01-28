@@ -12,6 +12,8 @@ export class AnimateCommand extends BaseAnimationCommand {
     // Don't cancel animations from other interactions on the same element
     this.cancelAllAnimations();
 
+    this.animationTarget = context.target;
+
     // IMPORTANT: do NOT clear `originalStyles` here. The original (pre-animation)
     // values must be preserved across fast/overlapping executions so we can
     // always restore to the true initial state. Only capture originals if
@@ -56,11 +58,18 @@ export class AnimateCommand extends BaseAnimationCommand {
         iterationCount: context.config.animateCssIterationCount ?? context.config.iterationCount,
         direction: context.config.animateCssDirection ?? context.config.direction,
         fillMode: context.config.animateCssFillMode ?? context.config.fillMode,
+        triggerType: context.triggerType, // Pass trigger type for cleanup logic
       };
 
       const duration = context.config.animateCssDuration ?? context.config.duration ?? 1000;
 
-      await engine.animate(context.target, animationConfig, duration);
+      const result = await engine.animate(context.target, animationConfig, duration);
+
+      // Store cancel function if provided
+      if (result && typeof result === "object" && result.cancel) {
+        this.cancelAnimation = result.cancel;
+      }
+
       this.isAnimating = false;
       return;
     }
@@ -109,13 +118,25 @@ export class AnimateCommand extends BaseAnimationCommand {
         delay,
         iterationCount,
         direction,
+        triggerType: context.triggerType, // Pass trigger type for cleanup logic
       };
 
       const result = await engine.animate(context.target, animationConfig, duration, easing);
 
-      // Store cancel function if provided
-      if (result && typeof result === "object" && "cancel" in result && result.cancel) {
-        this.cancelAnimation = result.cancel;
+      // Store cancel function and finished promise if provided
+      if (result && typeof result === "object") {
+        if (result.cancel) {
+          this.cancelAnimation = result.cancel;
+        }
+        if (result.finished && iterationCount !== "infinite") {
+          // Wait for animation to actually finish before resetting isAnimating flag
+          result.finished.then(() => {
+            this.isAnimating = false;
+          }).catch(() => {
+            // If animation is cancelled, immediately set isAnimating to false
+            this.isAnimating = false;
+          });
+        }
       }
 
       // Set cleanup to animate back to original value
@@ -126,11 +147,9 @@ export class AnimateCommand extends BaseAnimationCommand {
         }
       };
 
-      // Reset animation flag when animation completes (for non-infinite)
-      if (iterationCount !== "infinite") {
-        setTimeout(() => {
-          this.isAnimating = false;
-        }, duration + delay);
+      // For infinite animations, don't wait for finish
+      if (iterationCount === "infinite") {
+        this.isAnimating = false;
       }
     }
   }
@@ -178,6 +197,16 @@ export class AnimateCommand extends BaseAnimationCommand {
     }
 
     this.isAnimating = true;
+
+    // For non-infinite animations, wait for finish
+    if (iterations !== Infinity) {
+      animation.finished.then(() => {
+        this.isAnimating = false;
+      }).catch(() => {
+        // If animation is cancelled, immediately set isAnimating to false
+        this.isAnimating = false;
+      });
+    }
   }
 
   private buildLoopKeyframes(config: any, element: HTMLElement): { keyframes: Keyframe[]; hasAnimated: boolean } {
@@ -468,6 +497,19 @@ export class AnimateCommand extends BaseAnimationCommand {
       this.cancelAllAnimations();
       this.restoreOriginalStyles(context.target);
       return Promise.resolve();
+    }
+  }
+
+  protected cancelAllAnimations(): void {
+    // Call parent cancelAllAnimations first
+    super.cancelAllAnimations();
+    
+    // Also cancel any Animate.css timeouts
+    if (this.animationTarget) {
+      const engine = new AnimateCssAnimationEngine();
+      if (engine.cancelAll) {
+        engine.cancelAll(this.animationTarget);
+      }
     }
   }
 }

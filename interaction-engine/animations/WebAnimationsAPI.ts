@@ -8,7 +8,7 @@ export class WebAnimationsAPI implements AnimationEngine {
     properties: Record<string, any>,
     duration: number,
     easing = 'ease'
-  ): Promise<{ cancel?: () => void } | void> {
+  ): Promise<{ cancel?: () => void; finished?: Promise<void>; animation?: Animation } | void> {
     const { delay = 0, iterationCount = 1, ...animationProperties } = properties;
     
     // Get current values for all animated properties
@@ -31,15 +31,21 @@ export class WebAnimationsAPI implements AnimationEngine {
       // For infinite animations, resolve immediately but keep animation running
       if (iterationCount === 'infinite') {
         setTimeout(() => {
-          resolve({ cancel: () => animation.cancel(), animation });
+          resolve({ 
+            cancel: () => animation.cancel(), 
+            finished: animation.finished,
+            animation 
+          });
         }, delay);
         return;
       }
 
-      // Resolve with cancel and animation reference
-      animation.onfinish = () => resolve({ cancel: () => animation.cancel(), animation });
-      // Return the cancel function and animation immediately for non-infinite animations
-      resolve({ cancel: () => animation.cancel(), animation });
+      // Resolve with cancel, finished promise and animation reference
+      resolve({ 
+        cancel: () => animation.cancel(), 
+        finished: animation.finished,
+        animation 
+      });
     });
   }
 }
