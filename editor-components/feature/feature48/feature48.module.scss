@@ -34,10 +34,9 @@
   display: grid;
   grid-template-columns: repeat(var(--items-per-row, 3), 1fr);
   gap: 2rem;
-  margin-bottom: 3rem;
 
   @container (max-width: #{$composer-tablet-width}) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
@@ -55,7 +54,7 @@
     var(--composer-font-color-primary) 5%
   );
   border-radius: var(--composer-border-radius-md);
-  padding: 3rem;
+  padding: var(--composer-gap-lg);
   height: 100%;
 
   // Only target base elements within this specific card
@@ -79,17 +78,25 @@
   flex-direction: column;
   height: 100%;
   text-align: left;
+  gap: var(--composer-gap-sm);
 }
 
 .icon-container {
   content: "";
-  margin-bottom: 1.5rem;
 }
 
 .icon {
   content: "";
   color: var(--composer-primary-color);
   font-size: 6rem;
+
+  @container (max-width: #{$composer-tablet-width}) {
+    font-size: 4rem;
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    font-size: 3rem;
+  }
 }
 
 .text-content {
@@ -97,51 +104,37 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: var(--composer-gap-sm);
 }
 
-.card-title {
+.card-content-text {
   content: "";
   color: var(--composer-primary-color);
-  margin-bottom: 0.25rem;
   font-weight: 500;
-}
 
-.card-subtitle {
-  content: "";
-  color: var(--composer-font-color-primary);
-  margin-bottom: 1rem;
-  font-weight: 500;
+  span {
+    width: auto !important;
+    display: inline !important;
+  }
 }
 
 .card-description {
   content: "";
   color: var(--composer-font-color-primary);
-  margin-bottom: 1.5rem;
   flex: 1;
   line-height: 1.6;
 }
 
-.card-button-container {
-  content: "";
-  margin-top: auto;
-}
-
-.card-button {
-  content: "";
-}
-
-.actions-container {
+.buttons-container {
   content: "";
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-top: 2rem;
 }
 
-.action-button-wrapper {
+.button {
   content: "";
-}
-
-.action-button {
-  content: "";
+  display: inline-block;
 }
