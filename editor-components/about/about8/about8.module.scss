@@ -109,28 +109,7 @@ as *;
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .max-content {
-      gap: var(--composer-gap-md);
-
-      .main-content {
-        flex-direction: column;
-        gap: var(--composer-gap-md);
-
-        .images-section {
-          width: 100%;
-          flex-direction: column;
-          gap: var(--composer-gap-sm);
-
-          .image-box {
-            width: 100%;
-          }
-        }
-
-        .content-section {
-          gap: var(--composer-gap-md);
-        }
-      }
-    }
+    .max-content {}
   }
 }
 

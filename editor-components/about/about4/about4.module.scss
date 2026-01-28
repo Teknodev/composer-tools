@@ -93,6 +93,7 @@ as *;
 
       .text-container {
         flex-direction: column;
+        gap: var(--composer-gap-xs) !important;
 
         .left-text,
         .right-text {

@@ -2,6 +2,7 @@ import * as React from "react";
 import { BaseAbout } from "../../EditorComponent";
 import styles from "./about1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -32,17 +33,15 @@ class About1 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
-      key: "icon",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "GoChevronDown",
-      },
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "We are a creative agency distinctively defined by our commitment to design excellence and innovation.",
     });
+
+    this.addProp(
+      INPUTS.BUTTON("icon", "Button", "", "", "GoChevronDown", "", "Bare")
+    );
 
     this.addProp({
       type: "media",
@@ -257,7 +256,8 @@ class About1 extends BaseAbout {
     const image = this.getPropValue("image");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("sectionTitle");
-    const icon = this.getPropValue("icon");
+    const description = this.getPropValue("description");
+    const icon = this.castToObject<any>("icon");
     const rightItems = this.castToObject<Icon[]>("right-items")
     const textContent = this.castToObject<ListItem[]>("items");
 
@@ -276,11 +276,18 @@ class About1 extends BaseAbout {
                   {title}
                 </Base.SectionTitle>
               )}
-              {icon && (
-                <Base.Media
-                  value={this.getPropValue("icon")}
-                  className={this.decorateCSS("icon")}
-                />
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
+              {(icon?.image?.url || icon?.icon?.name) && (
+                <ComposerLink path={icon.url}>
+                  <Base.Button buttonType={icon.type} className={this.decorateCSS("button")}>
+                    <Base.Media
+                      value={icon.image?.url ? { type: "image", url: icon.image.url } : { type: "icon", name: icon.icon?.name }}
+                      className={this.decorateCSS("icon")}
+                    />
+                  </Base.Button>
+                </ComposerLink>
               )}
             </Base.VerticalContent>
           )}

@@ -174,7 +174,7 @@ as *;
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
+      gap: 0px;
     }
   }
 }
@@ -186,8 +186,6 @@ as *;
         flex-direction: column;
         gap: var(--composer-gap-md);
 
-
-
         .left-section,
         .right-section {
           width: 100% !important;
@@ -196,6 +194,10 @@ as *;
 
         .left-section {
           order: 1;
+
+          .card-1 {
+            padding-bottom: 0px;
+          }
         }
 
         .right-section {

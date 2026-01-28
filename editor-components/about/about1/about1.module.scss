@@ -14,15 +14,22 @@
             flex-direction: column;
 
             .subtitle,
-            .section-title {
+            .section-title,
+            .description {
                 margin: inherit;
             }
 
-            .icon {
-                color: var(--composer-primary-color);
-                font-size: 4rem;
-                width: 4rem;
-                height: 4rem;
+            .button {
+                padding: 0;
+                width: fit-content;
+
+                .icon {
+                    color: var(--composer-primary-color);
+                    font-size: 5rem;
+                    width: 5rem;
+                    height: 5rem;
+                    object-fit: cover;
+                }
             }
         }
 
@@ -151,24 +158,37 @@
                 .heading {
                     align-items: center;
                     text-align: center;
+                    gap: var(--composer-gap-xs);
+                    margin-bottom: var(--composer-gap-sm);
 
                     .subtitle,
-                    .section-title {
+                    .section-title,
+                    .description {
                         text-align: center;
+                    }
+
+                    .button {
+                        .icon {
+                            font-size: 3rem;
+                            width: 3rem;
+                            height: 3rem;
+                        }
                     }
                 }
 
                 .content {
                     .image-box {
                         aspect-ratio: unset;
-    
+
                         .image {
                             position: relative;
                             aspect-ratio: 1;
                         }
                     }
+
                     .content-right {
                         .item {
+
                             .title,
                             .description {
                                 text-align: left;
@@ -187,8 +207,17 @@
                     align-items: baseline;
 
                     .subtitle,
-                    .section-title {
+                    .section-title,
+                    .description {
                         text-align: left;
+                    }
+
+                    .button {
+                        .icon {
+                            font-size: 3rem;
+                            width: 3rem;
+                            height: 3rem;
+                        }
                     }
                 }
 
