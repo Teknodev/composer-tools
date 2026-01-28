@@ -21,7 +21,7 @@ as *;
     .carousel {
       width: 100%;
       overflow: hidden;
-      padding: 0 var(--composer-gap-md);
+      padding: 0 calc(3 * var(--composer-gap-md));
       position: relative;
 
       :global(.slick-slide) {
@@ -320,7 +320,7 @@ as *;
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .carousel {
-      padding: 0 !important;
+
 
       .dots {
         .dot-button {
