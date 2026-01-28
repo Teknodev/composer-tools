@@ -1,4 +1,4 @@
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./list8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -7,8 +7,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type listItem = {
-  number: number;
-  icon: React.JSX.Element;
+  number: React.JSX.Element;
+  icon: TypeMediaInputValue;
   title: React.JSX.Element;
   text: React.JSX.Element;
 };
@@ -25,7 +25,7 @@ class List8 extends BaseList {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "How it works",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -35,14 +35,14 @@ class List8 extends BaseList {
     });
     this.addProp({
       type: "string",
-      key: "titledesc",
+      key: "description",
       displayer: "Description",
       value: "Aliquam sagittis consectetur ligulan aliquam turpis cursus at. In aliquet auguenec libero ultricies velit pellentesque.",
     });
     this.addProp({
       type: "array",
       key: "list-items",
-      displayer: "List Items",
+      displayer: "List Item",
       value: [
         {
           type: "object",
@@ -50,16 +50,17 @@ class List8 extends BaseList {
           displayer: "List Item",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "number",
               displayer: "Box Number",
-              value: 1,
+              value: "1",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaMapLocationDot",
+              displayer: "Media",
+              value: { type: "icon", name: "FaMapLocationDot" },
+              additionalParams: { availableTypes: ["icon", "image"] },
             },
             {
               type: "string",
@@ -82,16 +83,17 @@ class List8 extends BaseList {
           displayer: "List Item",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "number",
               displayer: "Box Number",
-              value: 2,
+              value: "2",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "HiChartBar",
+              displayer: "Media",
+              value: { type: "icon", name: "HiChartBar" },
+              additionalParams: { availableTypes: ["icon", "image"] },
             },
             {
               type: "string",
@@ -114,16 +116,17 @@ class List8 extends BaseList {
           displayer: "List Item",
           value: [
             {
-              type: "number",
+              type: "string",
               key: "number",
               displayer: "Box Number",
-              value: 3,
+              value: "3",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
-              displayer: "Icon",
-              value: "FaMoneyBillAlt",
+              displayer: "Media",
+              value: { type: "icon", name: "FaMoneyBillAlt" },
+              additionalParams: { availableTypes: ["icon", "image"] },
             },
             {
               type: "string",
@@ -164,85 +167,92 @@ class List8 extends BaseList {
     const listItems = this.castToObject<listItem[]>("list-items");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
-    const titledesc = this.getPropValue("titledesc");
+    const description = this.getPropValue("description");
+    const descriptionContent = description;
     const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const alignment = Base.getContentAlignment();
+    const isCenterAlignment = alignment === "center";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("section")}>
-            <Base.VerticalContent className={this.decorateCSS("card-titles")}>
+            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
               {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
+                <Base.SectionTitle className={this.decorateCSS("header-title")}>
                   {title}
                 </Base.SectionTitle>
               )}
-            </Base.VerticalContent>
-            {this.castToString(titledesc) && (
-              <Base.VerticalContent className={this.decorateCSS("section-wrapper")} >
-                {this.castToString(titledesc) && (
+              {this.castToString(descriptionContent) && (
+                <Base.VerticalContent className={this.decorateCSS("description-wrapper")}>
                   <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {titledesc}
+                    {descriptionContent}
                   </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
+                </Base.VerticalContent>
+              )}
+            </Base.VerticalContent>
+
             {(listItems.length > 0) && (
               <Base.ListGrid
-                className={this.decorateCSS("boxes")}
-                gridCount={{ pc: this.getPropValue("itemCount") }}
+                className={this.decorateCSS("items-wrapper")}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}
               >
-                {listItems.map((item: any, index: number) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("boxlower")}
-                    data-animation={this.getPropValue("hoverAnimation")}
-                  >
-                    {item.getPropValue("number") && (
-                      <div className={this.decorateCSS("circle")}>
-                        <Base.H1 className={this.decorateCSS("index")}>
-                          {item.getPropValue("number")}
-                        </Base.H1>
-                      </div>
-                    )}
-                    {item.icon && (
-                      <div className={this.decorateCSS("icon-box")}>
-                        <Base.Icon
-                          name={item.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
+                {listItems.map((item: listItem, index: number) => {
+                  const hasTitle = this.castToString(item.title);
+                  const hasText = this.castToString(item.text);
+                  const hasIcon = !!item.icon;
+                  const hasNumber = this.castToString(item.number);
+                  if (!hasTitle && !hasText && !hasIcon && !hasNumber) return null;
+                  return (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("list-item")}
+                      data-animation={this.getPropValue("hoverAnimation")}
+                    >
+                      {this.castToString(item.number) && (
+                        <div className={this.decorateCSS("number-badge")}>
+                          <Base.H1 className={this.decorateCSS("index")}>
+                            {item.number}
+                          </Base.H1>
+                        </div>
+                      )}
+                      {item.icon && (
+                        <Base.Media
+                          value={item.icon}
+                          className={this.decorateCSS("icon")}
                         />
-                      </div>
-                    )}
-                    {(this.castToString(item.title) || this.castToString(item.text)) && (
-                      <div className={this.decorateCSS("titles")}>
-                        {this.castToString(item.title) && (
-                          <Base.H4 className={this.decorateCSS("midwriting")}>
-                            {item.title}
-                          </Base.H4>
-                        )}
-                        {this.castToString(item.text) && (
-                          <Base.P className={this.decorateCSS("text")}>
-                            {item.text}
-                          </Base.P>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                      {(this.castToString(item.title) || this.castToString(item.text)) && (
+                        <div className={this.decorateCSS("item-content")}>
+                          {this.castToString(item.title) && (
+                            <Base.H5 className={this.decorateCSS("item-title")}>
+                              {item.title}
+                            </Base.H5>
+                          )}
+                          {this.castToString(item.text) && (
+                            <Base.P className={this.decorateCSS("item-text")}>
+                              {item.text}
+                            </Base.P>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
               </Base.ListGrid>
             )}
             {this.castToString(buttonType.text) && (
-              <div className={this.decorateCSS("button-box")}>
+              <div className={this.decorateCSS("button-wrapper")}>
                 <ComposerLink path={buttonType.url}>
                   <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                    {buttonType.text}
+                    <Base.P className={this.decorateCSS("button-text")}>
+                      {buttonType.text}
+                    </Base.P>
                   </Base.Button>
                 </ComposerLink>
               </div>
