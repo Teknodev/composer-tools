@@ -83,16 +83,15 @@
 
         .buttons-container {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           gap: var(--composer-gap-sm);
 
-          .image-wrapper {
-            .button-image, .button {
-              width: 150px !important;
-              height: 40px !important;
-            }
+          .image-wrapper .button-image,
+          .button {
+            width: 150px !important;
+            height: 40px !important;
           }
         }
 

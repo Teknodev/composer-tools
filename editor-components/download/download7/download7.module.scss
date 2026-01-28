@@ -112,9 +112,12 @@
             justify-content: center;
             box-sizing: border-box;
 
-            .button-icon,
+            .button-icon {
+              font-size: 1.5rem;
+            }
+
             .button-text {
-              content: "";
+              margin: 0;
             }
           }
         }
