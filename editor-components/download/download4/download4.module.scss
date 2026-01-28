@@ -55,6 +55,11 @@
           align-items: center;
           justify-content: center;
           gap: var(--composer-gap-xs);
+
+          .button-text {
+            text-align: center;
+            margin: 0;
+          }
         }
 
 
@@ -90,7 +95,7 @@
 
           .image-wrapper .button-image,
           .button {
-            width: 150px !important;
+            width: 170px !important;
             height: 40px !important;
           }
         }

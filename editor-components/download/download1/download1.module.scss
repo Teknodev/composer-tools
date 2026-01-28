@@ -87,12 +87,13 @@
         .button {
           width: 150px;
           height: 50px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           .button-text {
-            content: "";
-            margin-left: unset !important;
-            margin-right: unset !important;
-            width: unset !important;
+            margin: 0;
+            text-align: center;
           }
 
           .icon {
@@ -114,7 +115,7 @@
           .button {
             width: 130px;
             height: 50px;
-            
+
             .icon {
               font-size: 1rem;
             }
