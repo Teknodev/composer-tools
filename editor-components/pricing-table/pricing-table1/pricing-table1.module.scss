@@ -1,5 +1,5 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   .max-content {
@@ -11,11 +11,10 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+
       @container (max-width: #{$composer-tablet-width}) {
         .items {
           .item-card {
-            width: 100% !important;
-            flex: unset !important;
             border: 1px solid var(--composer-primary-color);
             overflow: hidden;
           }
@@ -23,26 +22,23 @@
       }
 
       .top-titles {
+
         .title,
         .subtitle,
         .description {
-          text-align: center;
+          content: "";
         }
 
         .subtitle-wrapper {
           width: 100%;
           display: flex;
-          justify-content: center;
-          align-items: center;
         }
       }
 
       .items {
-                display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+
         width: 100%;
+        gap: var(--composer-gap-md);
 
 
         .item-card {
@@ -51,9 +47,10 @@
           align-items: center;
           justify-content: center;
           width: 100%;
-          flex: 1;
+          height: 100%;
           border-radius: var(--composer-border-radius-md);
           overflow: hidden;
+
           &.animation1:hover {
             .card-list {
               .card-list-item {
@@ -63,10 +60,12 @@
               }
             }
           }
+
           &.animation2:hover {
             .cardsubtitle {
               transform: scale(1.1);
             }
+
             .card-bottom {
               .card-bottom-content {
                 transform: scale(1.1);
@@ -76,27 +75,24 @@
 
           &.active {
             box-shadow: var(--composer-box-shadow);
-            background: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 5%
-            );
+            background: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%);
           }
 
           .popular-box {
             opacity: 0;
             width: 100%;
             text-align: center;
-            background-image: linear-gradient(
-              to right,
-              var(--composer-primary-color),
-              var(--composer-secondary-color)
-            );
+            background-image: linear-gradient(to right,
+                var(--composer-primary-color),
+                var(--composer-secondary-color));
             padding: var(--composer-gap-sm) 0;
 
             &.active {
               opacity: 1;
             }
+
             .popular-text {
               margin: 0;
               text-align: center;
@@ -107,21 +103,25 @@
           .cardsubtitle-wrapper {
             display: flex;
             width: 100%;
-            justify-content: center;
+            justify-content: flex-start;
 
             &.center {
               justify-content: center;
+
+              .cardsubtitle {
+                margin-left: auto;
+                margin-right: auto;
+              }
             }
           }
 
           .cardsubtitle {
-            background: color-mix(
-              in srgb,
-              var(--composer-primary-color),
-              #fff 80%
-            );
+            background: color-mix(in srgb,
+                var(--composer-primary-color),
+                #fff 80%);
             color: var(--composer-primary-color);
-            padding: 0 var(--composer-gap-md);
+            padding: var(--composer-gap-xs) var(--composer-gap-md);
+            margin-left: var(--composer-gap-lg);
             border-radius: var(--composer-border-radius-xl);
             font-size: 1rem;
             transition-duration: 0.8s;
@@ -130,11 +130,16 @@
           }
 
           .card-title {
-            text-align: center;
             padding: var(--composer-gap-xs) var(--composer-gap-lg);
             margin: 0 0 var(--composer-gap-sm) 0;
             font-size: 1.5rem;
             color: var(--composer-font-color-primary);
+            width: 100%;
+            text-align: left;
+
+            &.center {
+              text-align: center;
+            }
           }
 
           .card-list {
@@ -145,13 +150,13 @@
               align-items: center;
               gap: var(--composer-gap-sm);
               padding: var(--composer-gap-sm) var(--composer-gap-lg);
-              border-top: 1px solid
-                rgba(var(--composer-font-color-primary-rgb), 0.2);
+              border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
               color: var(--composer-font-color-primary);
               font-size: 1rem;
               width: 100%;
               position: relative;
               margin-bottom: var(--composer-gap);
+
               &::before {
                 content: "";
                 position: absolute;
@@ -162,8 +167,9 @@
                 background: var(--composer-primary-color);
                 transition: width 0.8s ease-in-out;
               }
+
               .icon {
-                color: var(--composer-font-color-primary);
+                color: var(--composer-primary-color);
                 font-size: 1rem;
                 width: 25px;
                 height: 25px;
@@ -174,6 +180,7 @@
 
             .card-list-item.no-lines {
               border-top: none !important;
+
               &::before {
                 display: none !important;
               }
@@ -189,20 +196,24 @@
             width: 100%;
             font-size: 1rem;
             color: var(--composer-font-color-primary);
+
             &.active {
               background: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
+
               .card-button {
                 background: var(--composer-font-color-secondary);
                 color: var(--composer-primary-color);
               }
             }
+
             .card-bottom-content {
               transition-duration: 0.8s;
               display: flex;
               flex-direction: column;
               align-items: center;
               justify-content: center;
+
               .card-price {
                 width: 100%;
                 display: flex;
@@ -210,20 +221,25 @@
                 justify-content: center;
                 gap: var(--composer-gap-sm);
                 margin: var(--composer-gap-xs);
+
                 .price {
                   font-size: 3rem;
                   width: fit-content;
                   margin-left: 0;
                   margin-right: 0;
+                  color: var(--composer-tertiary-color);
                 }
+
                 .card-duration {
                   font-size: 1rem;
+
                   .duration,
                   .duration1 {
                     content: "";
                   }
                 }
               }
+
               .button-wrapper {
                 display: flex;
                 justify-content: center;
@@ -239,6 +255,7 @@
                     justify-content: center;
 
                     align-items: center;
+
                     .button-icon {
                       display: flex;
                       align-items: center;
@@ -254,6 +271,7 @@
                 margin-top: var(--composer-gap-md);
                 font-size: 1rem;
                 text-align: center;
+                color: var(--composer-tertiary-color);
               }
             }
           }
@@ -276,7 +294,12 @@
           gap: var(--composer-gap-sm);
 
           .bottom-icon {
-            font-size: 1rem;
+            font-size: 1.5rem;
+            color: var(--composer-font-color-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }

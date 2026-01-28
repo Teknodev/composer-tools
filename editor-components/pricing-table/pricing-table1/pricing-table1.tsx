@@ -50,7 +50,7 @@ class PricingTable1 extends BasePricingTable {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
       max: 5,
     });
@@ -119,7 +119,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -141,7 +141,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -163,8 +163,8 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "IoMdCloseCircle"},
-                      
+                      value: { type: "icon", name: "IoMdCloseCircle" },
+
                     },
                   ],
                 },
@@ -186,7 +186,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "IoMdCloseCircle"},
+                      value: { type: "icon", name: "IoMdCloseCircle" },
                     },
                   ],
                 },
@@ -299,7 +299,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -321,7 +321,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -343,7 +343,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -365,7 +365,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "IoMdCloseCircle"},
+                      value: { type: "icon", name: "IoMdCloseCircle" },
                     },
                   ],
                 },
@@ -478,7 +478,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -500,7 +500,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -522,7 +522,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -544,7 +544,7 @@ class PricingTable1 extends BasePricingTable {
                       additionalParams: {
                         availableTypes: ["icon", "image"],
                       },
-                      value: {type: "icon", name: "FaCheckCircle"},
+                      value: { type: "icon", name: "FaCheckCircle" },
                     },
                   ],
                 },
@@ -555,10 +555,10 @@ class PricingTable1 extends BasePricingTable {
               key: "buttonIcon",
               displayer: "In Button Icon",
               additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: {type: "icon", name: "BsCheckCircle"},
-              
+                availableTypes: ["icon", "image"],
+              },
+              value: { type: "icon", name: "BsCheckCircle" },
+
             },
             {
               type: "string",
@@ -724,8 +724,10 @@ class PricingTable1 extends BasePricingTable {
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    
+
     const alignmentValue = Base.getContentAlignment();
+
+    const itemCountInARow = this.getPropValue("item_count");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -770,7 +772,7 @@ class PricingTable1 extends BasePricingTable {
                     table.popular_settings.text
                   );
                   const popularBoxExist = popularText && table.popular_settings.is_popular;
-                  
+
                   const cardSubtitleExist = this.castToString(
                     table.cardsubtitle
                   );
@@ -798,31 +800,29 @@ class PricingTable1 extends BasePricingTable {
                     return btnTextExist || buttonMediaExist;
                   });
 
-                  const hasAnyContent = popularBoxExist || cardSubtitleExist || cardTitleExist || 
-                                       cardPriceExist || durationExist || duration1Exist || 
-                                       cardpricingTableTitleExist || hasCardList || hasButtons;
+                  const hasAnyContent = popularBoxExist || cardSubtitleExist || cardTitleExist ||
+                    cardPriceExist || durationExist || duration1Exist ||
+                    cardpricingTableTitleExist || hasCardList || hasButtons;
 
                   if (!hasAnyContent) return null;
 
                   return (
                     <div
                       key={index}
-                      className={`${this.decorateCSS("item-card")} ${
-                        this.getPropValue("animations") &&
+                      className={`${this.decorateCSS("item-card")} ${this.getPropValue("animations") &&
                         this.getPropValue("animations")
                           .map((animation: string) =>
                             this.decorateCSS(animation)
                           )
                           .join(" ")
-                      } 
+                        } 
                   ${table.isActive && this.decorateCSS("active")} `}
                     >
                       {popularBoxExist && (
                         <div
-                          className={`${this.decorateCSS("popular-box")} ${
-                            table.popular_settings.is_popular &&
+                          className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular &&
                             this.decorateCSS("active")
-                          }`}
+                            }`}
                         >
                           <Base.P className={this.decorateCSS("popular-text")}>
                             {table.popular_settings.text}
@@ -830,10 +830,9 @@ class PricingTable1 extends BasePricingTable {
                         </div>
                       )}
                       {cardSubtitleExist && (
-                        <div 
-                          className={`${this.decorateCSS("cardsubtitle-wrapper")} ${
-                            alignmentValue === "center" ? this.decorateCSS("center") : ""
-                          }`}
+                        <div
+                          className={`${this.decorateCSS("cardsubtitle-wrapper")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""
+                            }`}
                         >
                           <Base.H3 className={this.decorateCSS("cardsubtitle")}>
                             {table.cardsubtitle}
@@ -841,7 +840,7 @@ class PricingTable1 extends BasePricingTable {
                         </div>
                       )}
                       {cardTitleExist && (
-                        <Base.H3 className={this.decorateCSS("card-title")}>
+                        <Base.H3 className={`${this.decorateCSS("card-title")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""}`}>
                           {table.cardTitle}
                         </Base.H3>
                       )}
@@ -859,9 +858,8 @@ class PricingTable1 extends BasePricingTable {
                               cardExist && (
                                 <Base.Row
                                   key={index}
-                                  className={`${this.decorateCSS("card-list-item")} ${
-                                    !showListLines ? this.decorateCSS("no-lines") : ""
-                                  }`}
+                                  className={`${this.decorateCSS("card-list-item")} ${!showListLines ? this.decorateCSS("no-lines") : ""
+                                    }`}
                                 >
                                   {buttonIconExist && (
                                     <Base.Media
@@ -879,12 +877,11 @@ class PricingTable1 extends BasePricingTable {
                             );
                           });
                         })()}
-                     </div>
+                      </div>
 
                       <div
-                        className={`${this.decorateCSS("card-bottom")}  ${
-                          table.isActive && this.decorateCSS("active")
-                        }`}
+                        className={`${this.decorateCSS("card-bottom")}  ${table.isActive && this.decorateCSS("active")
+                          }`}
                       >
                         <div
                           className={`${this.decorateCSS(
@@ -892,9 +889,8 @@ class PricingTable1 extends BasePricingTable {
                           )} `}
                         >
                           <div
-                            className={`${this.decorateCSS("card-price")}  ${
-                              table.isActive && this.decorateCSS("active")
-                            }`}
+                            className={`${this.decorateCSS("card-price")}  ${table.isActive && this.decorateCSS("active")
+                              }`}
                           >
                             {cardPriceExist && (
                               <Base.P className={this.decorateCSS("price")}>
@@ -918,46 +914,46 @@ class PricingTable1 extends BasePricingTable {
                               </div>
                             )}
                           </div>
-                            <div className={this.decorateCSS("button-wrapper")}>
-                          {buttons.map((btn, btnIndex: number) => {
-                            const buttonText = btn.text;
-                            const buttonMedia = btn.media;
-                            const buttonUrl = btn.url || "#";
-                            const buttonType = btn.type;
+                          <div className={this.decorateCSS("button-wrapper")}>
+                            {buttons.map((btn, btnIndex: number) => {
+                              const buttonText = btn.text;
+                              const buttonMedia = btn.media;
+                              const buttonUrl = btn.url || "#";
+                              const buttonType = btn.type;
 
-                            const btnTextExist = this.castToString(buttonText);
-                            const buttonMediaExist =
-                              buttonMedia &&
-                              (buttonMedia.name || buttonMedia.url);
+                              const btnTextExist = this.castToString(buttonText);
+                              const buttonMediaExist =
+                                buttonMedia &&
+                                (buttonMedia.name || buttonMedia.url);
 
-                            if (!btnTextExist && !buttonMediaExist) return null;
+                              if (!btnTextExist && !buttonMediaExist) return null;
 
-                            return (
-                              <ComposerLink
-                                path={buttonUrl}
-                                key={`pricing-btn-${btnIndex}`}
-                              >
-                                <Base.Button
-                                  buttonType={buttonType}
-                                  className={this.decorateCSS("card-button")}
+                              return (
+                                <ComposerLink
+                                  path={buttonUrl}
+                                  key={`pricing-btn-${btnIndex}`}
                                 >
-                                  {btnTextExist && (
-                                    <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
-                                  )}
-                                  {buttonMediaExist && (
-                                    <Base.Media
-                                      value={buttonMedia}
-                                      className={this.decorateCSS(
-                                        "button-icon"
-                                      )}
-                                    />
-                                  )}
-                                  
-                                </Base.Button>
-                              </ComposerLink>
-                            );
-                          })}
-                        </div>
+                                  <Base.Button
+                                    buttonType={buttonType}
+                                    className={this.decorateCSS("card-button")}
+                                  >
+                                    {btnTextExist && (
+                                      <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                                    )}
+                                    {buttonMediaExist && (
+                                      <Base.Media
+                                        value={buttonMedia}
+                                        className={this.decorateCSS(
+                                          "button-icon"
+                                        )}
+                                      />
+                                    )}
+
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
                           {cardpricingTableTitleExist && (
                             <Base.P className={this.decorateCSS("pricingTitle")}>
                               {table.pricingTableTitle}
@@ -988,7 +984,7 @@ class PricingTable1 extends BasePricingTable {
                         <Base.P className={this.decorateCSS("text")}>
                           {text}
                         </Base.P>
-                        
+
                       )}
                     </div>
                   )
@@ -997,7 +993,7 @@ class PricingTable1 extends BasePricingTable {
             </div>
           </div>
         </Base.MaxContent>
-      </Base.Container>
+      </Base.Container >
     );
   }
 }
