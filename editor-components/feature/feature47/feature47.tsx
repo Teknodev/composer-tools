@@ -11,17 +11,14 @@ type Card = {
   title: Element;
   subtitle: Element;
   description: Element;
-  buttons: {
-    type: TypeButton;
-    text: Element;
-    url: string;
-  }[];
+  buttons: PrimaryButton[];
 };
 
 type PrimaryButton = {
   type: TypeButton;
   text: Element;
   url: string;
+  icon?: any;
 };
 
 class Feature47 extends BaseFeature {
@@ -30,22 +27,22 @@ class Feature47 extends BaseFeature {
 
     this.addProp({
       type: "string",
-      key: "baseSubTitle",
-      displayer: "Base Subtitle",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "",
     });
 
     this.addProp({
       type: "string",
-      key: "baseTitle",
-      displayer: "Base Title",
+      key: "title",
+      displayer: "Title",
       value: "Our Services",
     });
 
     this.addProp({
       type: "string",
-      key: "baseDescription",
-      displayer: "Base Description",
+      key: "description",
+      displayer: "Description",
       value: "",
     });
 
@@ -87,10 +84,10 @@ class Feature47 extends BaseFeature {
                   "button",
                   "Button",
                   "Learn More",
-                  "#",
                   "",
-                  "",
-                  "Link",
+                  null,
+                  null,
+                  "Primary",
                 ),
               ],
             },
@@ -129,10 +126,10 @@ class Feature47 extends BaseFeature {
                   "button",
                   "Button",
                   "Learn More",
-                  "#",
                   "",
-                  "",
-                  "Link",
+                  null,
+                  null,
+                  "Primary",
                 ),
               ],
             },
@@ -171,10 +168,10 @@ class Feature47 extends BaseFeature {
                   "button",
                   "Button",
                   "Learn More",
-                  "#",
                   "",
-                  "",
-                  "Link",
+                  null,
+                  null,
+                  "Primary",
                 ),
               ],
             },
@@ -193,10 +190,10 @@ class Feature47 extends BaseFeature {
   }
 
   render() {
-    const baseSubTitle = this.castToString(this.getPropValue("baseSubTitle"));
-    const baseTitle = this.castToString(this.getPropValue("baseTitle"));
-    const baseDescription = this.castToString(
-      this.getPropValue("baseDescription"),
+    const sectionSubtitle = this.castToString(this.getPropValue("subtitle"));
+    const sectionTitle = this.castToString(this.getPropValue("title"));
+    const sectionDescription = this.castToString(
+      this.getPropValue("description"),
     );
 
     const cards = this.castToObject<Card[]>("cards");
@@ -205,25 +202,35 @@ class Feature47 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {baseSubTitle && (
-            <Base.SectionSubTitle>{baseSubTitle}</Base.SectionSubTitle>
-          )}
-          {baseTitle && (
-            <Base.SectionTitle className={this.decorateCSS("section-title")}>
-              {baseTitle}
-            </Base.SectionTitle>
-          )}
-          {baseDescription && (
-            <Base.SectionSubTitle>{baseDescription}</Base.SectionSubTitle>
-          )}
+          <Base.VerticalContent>
+            {sectionSubtitle && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
+
+            {sectionTitle && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {this.getPropValue("title")}
+              </Base.SectionTitle>
+            )}
+
+            {sectionDescription && (
+              <Base.SectionDescription
+                className={this.decorateCSS("description")}
+              >
+                {this.getPropValue("description")}
+              </Base.SectionDescription>
+            )}
+          </Base.VerticalContent>
 
           <Base.ListGrid
-            gridCount={{ pc: cards.length || 1, tablet: 1 }}
+            gridCount={{ pc: cards.length || 1, phone: 1 }}
             className={this.decorateCSS("cards-list")}
           >
             {cards?.map((card, index) => (
               <div key={index} className={this.decorateCSS("card")}>
-                <div>
+                <Base.VerticalContent>
                   <span className={this.decorateCSS("subtitle")}>
                     {this.castToString(card.subtitle)?.toUpperCase() || ""}
                   </span>
@@ -233,29 +240,49 @@ class Feature47 extends BaseFeature {
                   <Base.P className={this.decorateCSS("description")}>
                     {this.castToString(card.description) || ""}
                   </Base.P>
-                </div>
-                {card.buttons.map((button, index) => (
-                  <Base.Button
-                    className={this.decorateCSS("button")}
-                    key={index}
-                    buttonType={"Primary"}
-                  >
+                </Base.VerticalContent>
+                <div className={this.decorateCSS("buttons-wrapper")}>
+                  {card.buttons.map((button, index) => (
                     <ComposerLink path={button.url}>
-                      {this.castToString(button.text)}
+                      <Base.Button
+                        className={this.decorateCSS("button")}
+                        key={index}
+                        buttonType={button.type}
+                      >
+                        {button.icon && (
+                          <Base.Icon
+                            name={button.icon.name}
+                            propsIcon={{
+                              className: this.decorateCSS("icon"),
+                            }}
+                          />
+                        )}
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {this.castToString(button.text)}
+                        </Base.P>
+                      </Base.Button>
                     </ComposerLink>
-                  </Base.Button>
-                ))}
+                  ))}
+                </div>
               </div>
             ))}
           </Base.ListGrid>
 
-          {!!this.castToString(primaryButton.text) && (
-            <div className={this.decorateCSS("button-container")}>
+          {this.castToString(primaryButton.text) && (
+            <div className={this.decorateCSS("section-button")}>
               <ComposerLink path={primaryButton.url}>
                 <Base.Button
                   buttonType={primaryButton.type}
                   className={this.decorateCSS("button")}
                 >
+                  {primaryButton.icon && (
+                    <Base.Icon
+                      name={primaryButton.icon.name}
+                      propsIcon={{
+                        className: this.decorateCSS("icon"),
+                      }}
+                    />
+                  )}
                   <Base.P className={this.decorateCSS("button-text")}>
                     {this.castToString(primaryButton.text)}
                   </Base.P>
