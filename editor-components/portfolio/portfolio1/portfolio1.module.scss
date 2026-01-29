@@ -99,7 +99,7 @@
         }
       }
 
-      .background-media ~ .content {
+      .background-media~.content {
         color: white !important;
 
         .subtitle,
@@ -249,6 +249,7 @@
 
     .max-content {
       flex-direction: column;
+      height: auto;
 
       .left {
         min-height: 450px;
