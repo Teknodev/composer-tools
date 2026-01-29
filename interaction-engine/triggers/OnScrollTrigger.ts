@@ -15,13 +15,13 @@ export interface OnScrollConfig {
   layerThreshold?: number;
   layerRootMargin?: string;
   progressEffect?:
-    | "fade"
-    | "slideUp"
-    | "slideDown"
-    | "slideLeft"
-    | "slideRight"
-    | "scale"
-    | "custom";
+  | "fade"
+  | "slideUp"
+  | "slideDown"
+  | "slideLeft"
+  | "slideRight"
+  | "scale"
+  | "custom";
   progressStart?: number;
   progressEnd?: number;
   // Custom progress settings
@@ -33,6 +33,19 @@ export interface OnScrollConfig {
   customScaleEnd?: number;
   customRotate?: number;
   customBlur?: number;
+  // Direct animation properties (mapped to custom* internally)
+  opacity?: number;
+  scale?: number;
+  translateX?: string | number;
+  translateY?: string | number;
+  rotate?: { mode: string; x?: number; y?: number; z?: number };
+  skew?: { x?: number; y?: number };
+  offset?: { x?: string | number; y?: string | number };
+  delay?: number;
+  duration?: number;
+  easing?: string;
+  engine?: string;
+  animateCssAnimation?: string;
 }
 
 export class OnScrollTrigger extends BaseTrigger {
@@ -42,6 +55,7 @@ export class OnScrollTrigger extends BaseTrigger {
   private observer?: IntersectionObserver;
   private targetSection?: HTMLElement;
   private progressRAF?: number;
+  private directionRAF?: number;
   private isTrackingProgress = false;
   private interactionConfig?: OnScrollConfig;
   private isFinished = false;
@@ -57,7 +71,7 @@ export class OnScrollTrigger extends BaseTrigger {
     this.cleanup = cleanup;
 
     const config = this.getConfig(target);
-
+    console.log("OnScrollTrigger: attach", config);
     if (config.type === "section") {
       this.attachSectionMode();
     } else if (config.type === "layer") {
@@ -95,7 +109,7 @@ export class OnScrollTrigger extends BaseTrigger {
         }
         this.targetSection = (elements[0] as HTMLElement) || undefined;
       } catch (error) {
-        logger.error("OnScrollTrigger: error finding section elements", error);
+        logger.error("OnScrollTrigger: error finding section elements", error as Error);
       }
     } else {
       this.targetSection = document.getElementById(config.sectionId) || undefined;
@@ -168,9 +182,37 @@ export class OnScrollTrigger extends BaseTrigger {
   private attachDirectionMode(): void {
     if (!this.target) return;
     const config = this.getConfig(this.target);
+
+    // Find the actual scrollable container dynamically
+    const findScrollContainer = (): HTMLElement | Window => {
+      let element: HTMLElement | null = this.target || null;
+      while (element && element !== document.body) {
+        const style = window.getComputedStyle(element);
+        if (
+          (style.overflowY === "auto" || style.overflowY === "scroll") &&
+          element.scrollHeight > element.clientHeight
+        ) {
+          return element;
+        }
+        element = element.parentElement;
+      }
+      // Check for playground specifically
+      const playground = document.getElementById("playground");
+      if (playground && playground.scrollHeight > playground.clientHeight) {
+        return playground;
+      }
+      return window;
+    };
+
+    const scrollContainer = findScrollContainer();
+
     const scrollHandler = () => {
-      const currentScrollY = window.scrollY;
-      const direction = currentScrollY > this.lastScrollY ? "down" : "up";
+      // Determine scroll direction based on the scroll container's offset
+      const currentOffset =
+        scrollContainer instanceof Window
+          ? window.scrollY
+          : (scrollContainer as HTMLElement).scrollTop;
+      const direction = currentOffset > this.lastScrollY ? "down" : "up";
 
       // Only trigger if the target is at least partially visible in the viewport.
       if (!this.target) return;
@@ -180,15 +222,38 @@ export class OnScrollTrigger extends BaseTrigger {
       const requiredVisible = config.threshold ?? 0;
       const isVisible = visibleHeight > requiredVisible;
 
+      console.log("[OnScrollTrigger][direction] scrollHandler", {
+        instanceId: this.target.id || 'no-id',
+        direction,
+        currentOffset,
+        lastScrollY: this.lastScrollY,
+        isVisible,
+        hasTriggered: this.hasTriggered,
+        configDirection: config.direction,
+        configOpacity: config.opacity,
+        scrollContainer: scrollContainer instanceof Window ? 'window' : scrollContainer.id || 'unknown',
+      });
+
       if (isVisible) {
         if (config.direction === "both" || config.direction === direction) {
           // Correct direction - trigger animation
           if (!this.hasTriggered) {
+            console.log("[OnScrollTrigger][direction] FIRE", {
+              instanceId: this.target.id || 'no-id',
+              configOpacity: config.opacity,
+            });
             this.hasTriggered = true;
             if (this.fire) this.fire();
+          } else {
+            console.log("[OnScrollTrigger][direction] SKIP_ALREADY_TRIGGERED", {
+              instanceId: this.target.id || 'no-id',
+              configOpacity: config.opacity,
+            });
           }
         } else if (config.replay && this.hasTriggered) {
-          // Wrong direction with replay enabled - remove animation
+          // Visible but scrolling in the opposite direction and replay enabled:
+          // immediately remove the animation so it can be re‑triggered on the next
+          // correct-direction scroll.
           if (this.cleanup) this.cleanup();
           this.hasTriggered = false;
         }
@@ -200,7 +265,9 @@ export class OnScrollTrigger extends BaseTrigger {
         }
       }
 
-      this.lastScrollY = currentScrollY;
+      // Store last scroll offset so that direction detection is based on
+      // actual scroll movement (of window or playground), not element position.
+      this.lastScrollY = currentOffset;
     };
 
     const debouncedScrollHandler = () => {
@@ -210,12 +277,44 @@ export class OnScrollTrigger extends BaseTrigger {
       this.debounceTimeout = setTimeout(scrollHandler, config.debounceDelay || 50);
     };
 
-    this.addEventListener(window, "scroll", debouncedScrollHandler);
+    // Attach to scroll container (playground) if available, otherwise fallback to window
+    if (scrollContainer instanceof Window) {
+      this.addEventListener(window, "scroll", debouncedScrollHandler);
+      console.log("[OnScrollTrigger][direction] attached to window");
+    } else {
+      this.addEventListener(scrollContainer, "scroll", debouncedScrollHandler);
+      console.log("[OnScrollTrigger][direction] attached to", scrollContainer.id || 'container');
+    }
+
+    // Also attach a capturing scroll listener at the document level.
+    // Scroll events don't bubble, and in preview the actual scrollable element
+    // can vary. Capturing ensures we still receive scroll events reliably.
+    this.addEventListener(document, "scroll", debouncedScrollHandler, true);
+    
+    // Use RAF polling as fallback if scroll events don't fire reliably
+    let rafId: number | null = null;
+    let lastCheckedOffset = scrollContainer instanceof Window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
+    
+    const rafCheck = () => {
+      if (!this.target) return;
+      const currentOffset = scrollContainer instanceof Window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
+      if (currentOffset !== lastCheckedOffset) {
+        lastCheckedOffset = currentOffset;
+        scrollHandler();
+      }
+      rafId = requestAnimationFrame(rafCheck);
+    };
+    
+    this.directionRAF = requestAnimationFrame(rafCheck);
   }
 
   private attachProgressMode(): void {
     if (!this.target) return;
     const config = this.getConfig(this.target);
+    // Try to scope progress calculations to the closest scrollable container
+    // (e.g. #playground in preview). If none is found, fall back to window viewport.
+    const scrollRoot =
+      (this.target.closest("#playground") as HTMLElement | null) || null;
     let frameCount = 0;
     let lastRange: "before" | "during" | "after" | null = null;
     let animationCompleted = false;
@@ -226,31 +325,34 @@ export class OnScrollTrigger extends BaseTrigger {
       frameCount++;
 
       const rect = this.target.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+      const rootRect = scrollRoot ? scrollRoot.getBoundingClientRect() : null;
+      const viewportHeight = scrollRoot ? scrollRoot.clientHeight : window.innerHeight;
 
-      const elementTop = rect.top;
-      const elementBottom = rect.bottom;
+      // Positions relative to the scroll root (playground) if available,
+      // otherwise relative to the window viewport.
+      const elementTop = rect.top - (rootRect ? rootRect.top : 0);
+      const elementBottom = rect.bottom - (rootRect ? rootRect.top : 0);
       const elementHeight = rect.height;
 
       let viewportProgress = 0;
 
       // Element must be at least partially in viewport for progress > 0
-      if (elementBottom <= 0 || elementTop >= windowHeight) {
+      if (elementBottom <= 0 || elementTop >= viewportHeight) {
         // Element completely outside viewport
         viewportProgress = 0;
-      } else if (elementHeight <= windowHeight) {
+      } else if (elementHeight <= viewportHeight) {
         // Element smaller than viewport
         // Progress calculation:
         // 0 -> 1: Element entering until fully visible
         // 1 -> 2: Element moving from fully visible position to viewport top
         // 2+: Element exiting from top
 
-        if (elementBottom <= windowHeight && elementTop >= 0) {
+        if (elementBottom <= viewportHeight && elementTop >= 0) {
           // Element is fully visible in viewport
-          // When element first becomes fully visible: top = (windowHeight - elementHeight)
+          // When element first becomes fully visible: top = (viewportHeight - elementHeight)
           // When element reaches viewport top: top = 0
 
-          const fullyVisiblePosition = windowHeight - elementHeight;
+          const fullyVisiblePosition = viewportHeight - elementHeight;
 
           if (elementTop >= fullyVisiblePosition) {
             // Element is entering - not yet at "fully visible" position
@@ -267,9 +369,9 @@ export class OnScrollTrigger extends BaseTrigger {
           // Element's top is above viewport
           const distancePastTop = Math.abs(elementTop);
           viewportProgress = 2 + distancePastTop / elementHeight;
-        } else if (elementTop < windowHeight && elementBottom > windowHeight) {
+        } else if (elementTop < viewportHeight && elementBottom > viewportHeight) {
           // Element entering from bottom
-          const visibleHeight = windowHeight - elementTop;
+          const visibleHeight = viewportHeight - elementTop;
           viewportProgress = visibleHeight / elementHeight;
         } else {
           viewportProgress = 0;
@@ -278,7 +380,7 @@ export class OnScrollTrigger extends BaseTrigger {
         // Element larger than viewport
         if (elementTop >= 0) {
           // Element entering
-          const visibleHeight = Math.min(elementBottom - windowHeight, elementHeight);
+          const visibleHeight = Math.min(elementBottom - viewportHeight, elementHeight);
           viewportProgress = Math.max(0, visibleHeight / elementHeight);
         } else if (elementBottom <= 0) {
           // Element completely above viewport
@@ -308,13 +410,20 @@ export class OnScrollTrigger extends BaseTrigger {
         // Before this interaction's range - don't apply anything
         if (lastRange !== "before") {
           lastRange = "before";
+          if (config.engine === 'animateCss') {
+            this.removeAnimateCssClasses(this.target);
+          }
         }
       } else if (viewportProgress > endThreshold) {
         // After this interaction's range - mark as completed
         if (!animationCompleted) {
           // Apply final state one last time
-          const effect = config.progressEffect || "fade";
-          this.applyProgressEffect(this.target, 1, effect);
+          if (config.engine !== 'animateCss') {
+            const effect = config.progressEffect || "fade";
+            this.applyProgressEffect(this.target, 1, effect);
+          } else {
+            this.removeAnimateCssClasses(this.target);
+          }
           animationCompleted = true;
           lastRange = "after";
         }
@@ -325,11 +434,16 @@ export class OnScrollTrigger extends BaseTrigger {
 
         if (lastRange !== "during") {
           lastRange = "during";
+          if (config.engine === 'animateCss') {
+            this.addAnimateCssClasses(this.target, config);
+          }
         }
 
         // Apply effect based on config
-        const effect = config.progressEffect || "fade";
-        this.applyProgressEffect(this.target, effectProgress, effect);
+        if (config.engine !== 'animateCss') {
+          const effect = config.progressEffect || "fade";
+          this.applyProgressEffect(this.target, effectProgress, effect);
+        }
       }
 
       if (this.isTrackingProgress) {
@@ -353,19 +467,28 @@ export class OnScrollTrigger extends BaseTrigger {
             if (config.replay) {
               animationCompleted = false;
               lastRange = null;
+              if (config.engine === 'animateCss') {
+                this.removeAnimateCssClasses(this.target);
+              }
             }
           }
         });
       },
-      { threshold: 0 },
+      {
+        root: scrollRoot || null,
+        threshold: 0,
+      },
     );
 
     this.observer.observe(this.target);
 
     // Start immediately if element is already in viewport
     const rect = this.target.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    if (rect.top < windowHeight && rect.bottom > 0) {
+    const rootRect = scrollRoot ? scrollRoot.getBoundingClientRect() : null;
+    const viewportHeight = scrollRoot ? scrollRoot.clientHeight : window.innerHeight;
+    const elementTop = rect.top - (rootRect ? rootRect.top : 0);
+    const elementBottom = rect.bottom - (rootRect ? rootRect.top : 0);
+    if (elementTop < viewportHeight && elementBottom > 0) {
       this.isTrackingProgress = true;
       updateProgress();
     }
@@ -468,10 +591,48 @@ export class OnScrollTrigger extends BaseTrigger {
     }
   }
 
+  private addAnimateCssClasses(element: HTMLElement, config: OnScrollConfig): void {
+    if (!config.animateCssAnimation) return;
+    element.classList.add('animate__animated', `animate__${config.animateCssAnimation}`);
+  }
+
+  private removeAnimateCssClasses(element: HTMLElement): void {
+    // Remove all animate__ classes
+    const classes = Array.from(element.classList).filter(cls => cls.startsWith('animate__'));
+    classes.forEach(cls => element.classList.remove(cls));
+  }
+
   private getConfig(target: HTMLElement): OnScrollConfig {
     // If config was passed to constructor, use it (for multiple interactions)
     if (this.interactionConfig) {
-      return this.interactionConfig;
+      const config = { ...this.interactionConfig };
+      // Set defaults for scroll trigger config
+      if (!config.type) config.type = "direction";
+      if (!config.direction) config.direction = "both";
+      if (config.threshold === undefined) config.threshold = 50;
+      if (config.replay === undefined) config.replay = false;
+      if (config.debounceDelay === undefined) config.debounceDelay = 50;
+
+      // Map direct animation properties to custom* properties for progress effects
+      if (config.opacity !== undefined) {
+        config.customOpacityEnd = config.opacity;
+        config.customOpacityStart = 0;
+      }
+      if (config.scale !== undefined) {
+        config.customScaleEnd = config.scale;
+        config.customScaleStart = 0.8; // Default start scale
+      }
+      if (config.translateX !== undefined) {
+        config.customTranslateX = typeof config.translateX === 'string' ? parseFloat(config.translateX) : config.translateX;
+      }
+      if (config.translateY !== undefined) {
+        config.customTranslateY = typeof config.translateY === 'string' ? parseFloat(config.translateY) : config.translateY;
+      }
+      if (config.rotate?.z !== undefined) {
+        config.customRotate = config.rotate.z;
+      }
+
+      return config;
     }
 
     // Otherwise read from data attributes (for single interaction or backward compatibility)
@@ -618,6 +779,13 @@ export class OnScrollTrigger extends BaseTrigger {
       config.customBlur = isNaN(parsed) ? undefined : parsed;
     }
 
+    // Set defaults
+    if (!config.type) config.type = "direction";
+    if (!config.direction) config.direction = "both";
+    if (config.threshold === undefined) config.threshold = 50;
+    if (config.replay === undefined) config.replay = false;
+    if (config.debounceDelay === undefined) config.debounceDelay = 50;
+
     return config;
   }
 
@@ -635,6 +803,11 @@ export class OnScrollTrigger extends BaseTrigger {
     if (this.progressRAF) {
       cancelAnimationFrame(this.progressRAF);
       this.progressRAF = undefined;
+    }
+
+    if (this.directionRAF) {
+      cancelAnimationFrame(this.directionRAF);
+      this.directionRAF = undefined;
     }
 
     this.isTrackingProgress = false;
