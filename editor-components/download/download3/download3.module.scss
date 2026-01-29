@@ -35,7 +35,7 @@
         align-items: flex-start;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         padding-bottom: 80px;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
 
         .title-block {
           display: flex;
@@ -54,7 +54,6 @@
             .subtitle {
               text-align: left;
               width: fit-content;
-              margin-bottom: 0;
             }
           }
 
@@ -70,7 +69,7 @@
         .description {
           color: var(--composer-font-color-primary);
           flex: 1;
-          max-width: 600px;
+          min-width: 60%;
           align-self: center;
 
           &.full {
@@ -83,7 +82,6 @@
           align-self: center;
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-sm);
 
           .button {
             display: flex;
@@ -91,6 +89,7 @@
 
             .button-link {
               width: 100% !important;
+              height: 40px;
             }
 
             .button-logo {
@@ -201,6 +200,11 @@
               .subtitle {
                 text-align: center;
                 width: fit-content;
+                transform: translateX(0) !important;
+
+                &::before {
+                  display: none;
+                }
               }
             }
 
@@ -239,6 +243,11 @@
 
             .button {
               width: 180px;
+
+              .button-link {
+                min-height: 40px !important;
+                height: auto !important;
+              }
 
               .button-logo {
                 height: 100%;
@@ -301,6 +310,11 @@
               .subtitle {
                 text-align: center !important;
                 width: fit-content;
+                transform: translateX(0) !important;
+
+                &::before {
+                  display: none;
+                }
               }
             }
 
@@ -319,7 +333,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: var(--composer-gap-md);
+            gap: 0px !important;
             width: 100%;
 
             .button {
