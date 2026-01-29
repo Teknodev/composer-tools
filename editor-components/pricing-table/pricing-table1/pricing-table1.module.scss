@@ -1,5 +1,4 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
-as *;
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -12,17 +11,7 @@ as *;
       flex-direction: column;
       width: 100%;
 
-      @container (max-width: #{$composer-tablet-width}) {
-        .items {
-          .item-card {
-            border: 1px solid var(--composer-primary-color);
-            overflow: hidden;
-          }
-        }
-      }
-
       .top-titles {
-
         .title,
         .subtitle,
         .description {
@@ -36,10 +25,8 @@ as *;
       }
 
       .items {
-
         width: 100%;
         gap: var(--composer-gap-md);
-
 
         .item-card {
           display: flex;
@@ -75,18 +62,14 @@ as *;
 
           &.active {
             box-shadow: var(--composer-box-shadow);
-            background: color-mix(in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%);
+            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           }
 
           .popular-box {
             opacity: 0;
             width: 100%;
             text-align: center;
-            background-image: linear-gradient(to right,
-                var(--composer-primary-color),
-                var(--composer-secondary-color));
+            background-image: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
             padding: var(--composer-gap-sm) 0;
 
             &.active {
@@ -116,23 +99,19 @@ as *;
           }
 
           .cardsubtitle {
-            background: color-mix(in srgb,
-                var(--composer-primary-color),
-                #fff 80%);
+            background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
             color: var(--composer-primary-color);
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             margin-left: var(--composer-gap-lg);
             border-radius: var(--composer-border-radius-xl);
-            font-size: 1rem;
             transition-duration: 0.8s;
             width: unset;
             margin-top: var(--composer-gap-md);
           }
 
           .card-title {
-            padding: var(--composer-gap-xs) var(--composer-gap-lg);
+            padding: var(--composer-gap-xs) var(--composer-gap-md);
             margin: 0 0 var(--composer-gap-sm) 0;
-            font-size: 1.5rem;
             color: var(--composer-font-color-primary);
             width: 100%;
             text-align: left;
@@ -253,7 +232,6 @@ as *;
                   .card-button {
                     width: 100%;
                     justify-content: center;
-
                     align-items: center;
 
                     .button-icon {
@@ -300,6 +278,35 @@ as *;
             display: flex;
             align-items: center;
             justify-content: center;
+          }
+        }
+      }
+    }
+  }
+
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .table {
+        .items {
+          .item-card {
+            border: 1px solid var(--composer-primary-color);
+            overflow: hidden;
+
+            .card-list {
+              .card-list-item {
+                font-size: 0.9rem;
+              }
+            }
+
+            .card-bottom {
+              .card-bottom-content {
+                .card-price {
+                  .price {
+                    font-size: 2rem;
+                  }
+                }
+              }
+            }
           }
         }
       }

@@ -44,7 +44,7 @@ class PricingTable1 extends BasePricingTable {
     this.addProp({
       type: "boolean",
       key: "cardListLines",
-      displayer: "Show card list dividers",
+      displayer: "Show Card List Dividers",
       value: true,
     });
     this.addProp({
@@ -52,7 +52,7 @@ class PricingTable1 extends BasePricingTable {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 5,
+      max: 6,
     });
 
     this.addProp({
@@ -727,7 +727,6 @@ class PricingTable1 extends BasePricingTable {
 
     const alignmentValue = Base.getContentAlignment();
 
-    const itemCountInARow = this.getPropValue("item_count");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -761,7 +760,6 @@ class PricingTable1 extends BasePricingTable {
             <Base.ListGrid
               gridCount={{
                 pc: this.getPropValue("itemCount"),
-                tablet: 2,
                 phone: 1,
               }}
               className={this.decorateCSS("items")}
@@ -834,9 +832,9 @@ class PricingTable1 extends BasePricingTable {
                           className={`${this.decorateCSS("cardsubtitle-wrapper")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""
                             }`}
                         >
-                          <Base.H3 className={this.decorateCSS("cardsubtitle")}>
+                          <Base.SectionDescription className={this.decorateCSS("cardsubtitle")}>
                             {table.cardsubtitle}
-                          </Base.H3>
+                          </Base.SectionDescription>
                         </div>
                       )}
                       {cardTitleExist && (

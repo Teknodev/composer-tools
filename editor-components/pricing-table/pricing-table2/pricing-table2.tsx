@@ -46,7 +46,7 @@ class PricingTable2 extends BasePricingTable {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 4,
       max: 5,
     });
@@ -855,14 +855,13 @@ class PricingTable2 extends BasePricingTable {
                   return (
                     <Base.VerticalContent
                       key={index}
-                      className={`${this.decorateCSS("card-item-count")} ${
-                        this.getPropValue("animations") &&
+                      className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") &&
                         this.getPropValue("animations")
                           .map((animation: string) =>
                             this.decorateCSS(animation)
                           )
                           .join(" ")
-                      }`}
+                        }`}
                     >
                       <div className={this.decorateCSS("item-card")}>
                         {hasUpperContent && (
@@ -899,10 +898,8 @@ class PricingTable2 extends BasePricingTable {
 
                         {hasBottomContent && (
                           <Base.VerticalContent
-                          className={`${this.decorateCSS("card-bottom")} ${
-                            
-                            !hasUpperContent && this.decorateCSS("no-upper")
-                          }`}  
+                            className={`${this.decorateCSS("card-bottom")} ${!hasUpperContent && this.decorateCSS("no-upper")
+                              }`}
                           >
                             {hasCardIcon && (
                               <div className={this.decorateCSS("card-img")}>

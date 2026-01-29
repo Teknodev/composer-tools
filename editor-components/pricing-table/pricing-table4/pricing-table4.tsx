@@ -66,7 +66,7 @@ class PricingMultiple extends BasePricingTable {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
       max: 4,
     });
@@ -724,9 +724,12 @@ class PricingMultiple extends BasePricingTable {
                   const pricing = this.castToString(price.pricing);
                   const hasCardUp = title1 || title2 || pricing;
 
-                  const hasList = price.list.some(
-                    (item: any) => this.castToString(item.liText)
-                  );
+                  const hasList = price.list.some((item: any) => {
+                    const textExist = this.castToString(item.liText);
+                    const iconExist =
+                      item.icon && (item.icon.name || item.icon.url);
+                    return textExist || iconExist;
+                  });
 
                   const cardButtons = this.getButtonsFromItem(price);
                   const hasCardButtons = this.hasAnyButtonInItem(cardButtons);
@@ -741,16 +744,14 @@ class PricingMultiple extends BasePricingTable {
                       className={this.decorateCSS("all-card")}
                     >
                       <Base.VerticalContent
-                        className={`${this.decorateCSS("card")} ${
-                          price.isFocus && this.decorateCSS("focused")
-                        } ${
-                          this.getPropValue("animations") &&
+                        className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")
+                          } ${this.getPropValue("animations") &&
                           this.getPropValue("animations")
                             .map((animation: string) =>
                               this.decorateCSS(animation)
                             )
                             .join(" ")
-                        } `}
+                          } `}
                       >
                         {hasCardUp && (
                           <div className={this.decorateCSS("card-up")}>
@@ -771,7 +772,7 @@ class PricingMultiple extends BasePricingTable {
                                   {price.title2}
                                 </Base.P>
                               )}
-                              {pricing && (
+                              {this.castToString(price.pricing) && (
                                 <Base.H1
                                   className={this.decorateCSS("price-pricing")}
                                 >
@@ -798,10 +799,10 @@ class PricingMultiple extends BasePricingTable {
                                       ? item.icon.name || item.icon.url
                                       : true);
 
-                                  if (!liElement) return null;
+                                  if (!liElement && !hasIcon) return null;
 
                                   return (
-                                    <Base.P
+                                    <div
                                       key={indexListGroup}
                                       className={this.decorateCSS(
                                         "list-element"
@@ -819,14 +820,16 @@ class PricingMultiple extends BasePricingTable {
                                           />
                                         </div>
                                       )}
-                                      <div
-                                        className={this.decorateCSS(
-                                          "list-item-text"
-                                        )}
-                                      >
-                                        {item.liText}
-                                      </div>
-                                    </Base.P>
+                                      {liElement && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "list-item-text"
+                                          )}
+                                        >
+                                          {item.liText}
+                                        </Base.P>
+                                      )}
+                                    </div>
                                   );
                                 }
                               )}

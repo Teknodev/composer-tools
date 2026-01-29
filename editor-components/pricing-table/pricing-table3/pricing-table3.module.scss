@@ -1,5 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 @keyframes pulse {
   0% {
@@ -23,12 +23,18 @@
 
   .featured {
     width: 40%;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
 
     .title,
     .subtitle,
     .description {
-      content: "";
+      width: 100%;
+      text-align: left !important;
+      margin-left: 0 !important;
     }
 
     .top-level-buttons {
@@ -36,9 +42,11 @@
       flex-direction: row;
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
-      align-items: center;
+      place-self: flex-start;
+
       .button {
         .button-text {
+          content: "";
         }
 
         .button-icon {
@@ -65,7 +73,7 @@
 
   .cards-div {
     width: 65%;
-    justify-content: end;
+    justify-content: center;
   }
 
   .cards-div-alternate {
@@ -75,7 +83,7 @@
 
   .card-container {
     width: 100%;
-    border: 1px solid var(--composer-font-color-primary);
+    border: 1px solid var(--composer-tertiary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,6 +177,8 @@
           .price {
             margin: 0;
             color: var(--composer-font-color-primary);
+            width: 100%;
+            text-align: center;
           }
         }
 
@@ -178,10 +188,17 @@
               padding: var(--composer-gap-sm);
               width: 100%;
               color: var(--composer-font-color-primary);
-              border-bottom: 1px solid
-                rgba(var(--composer-font-color-primary-rgb), 0.2);
+              border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
               text-align: center;
               position: relative;
+
+              &.no-lines {
+                border-bottom: none;
+
+                &::before {
+                  display: none;
+                }
+              }
 
               &::before {
                 content: "";
@@ -229,11 +246,14 @@
 
     .cards-div {
       width: 100%;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
+
   .cards-div,
   .cards-div-alternate {
     width: 100%;

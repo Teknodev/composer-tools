@@ -1,5 +1,4 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -7,31 +6,45 @@
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
+
       .up-content {
         .title,
         .subtitle,
         .description {
-          content: "";
+          text-align: center !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+        }
+
+        .subtitle {
+          &:before {
+            display: none !important;
+          }
+
+          transform: translateX(0) !important;
         }
       }
 
       .item-div {
         gap: var(--composer-gap-lg);
+
         .card-item-count {
           transition-duration: 0.8s;
+
           &.animation1:hover {
             transform: scale(1.05);
           }
+
           &.animation2:hover {
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
           }
+
           .item-card {
             width: 100%;
 
             .card-upper {
               margin-bottom: var(--composer-gap-md);
-              padding: var(--composer-gap-lg) var(--composer-gap-lg)
-                var(--composer-gap-xl) var(--composer-gap-lg);
+              padding: var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg);
               border-radius: var(--composer-border-radius-lg);
               background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
@@ -39,6 +52,7 @@
 
               .card-title {
                 color: var(--composer-font-color-secondary);
+                text-align: left !important;
               }
 
               .card-price {
@@ -46,13 +60,21 @@
                 align-items: center;
                 gap: var(--composer-gap-sm);
                 margin-bottom: var(--composer-gap-sm);
+                text-align: left !important;
+                margin-left: 0 !important;
+                width: 100% !important;
 
                 .price,
                 .duration {
                   color: var(--composer-font-color-secondary);
+                  text-align: left !important;
+                  width: fit-content !important;
+                  margin-left: 0 !important;
+                  margin-right: 0 !important;
                 }
               }
             }
+
             .hidden {
               visibility: hidden;
             }
@@ -60,7 +82,8 @@
             .card-bottom {
               align-self: center;
               width: 85%;
-              margin-left: 5%;
+              margin-left: auto;
+              margin-right: auto;
               z-index: 40;
               box-shadow: var(--box-shadow-active);
               padding: var(--composer-gap-md) var(--composer-gap-md);
@@ -68,27 +91,33 @@
               background-color: var(--composer-html-background);
               border-radius: var(--composer-border-radius-lg);
 
+              &.no-upper {
+                margin-top: 0;
+              }
+
               .card-img {
                 padding: var(--composer-gap-md);
-                background: color-mix(
-                  in srgb,
-                  var(--composer-html-background),
-                  var(--composer-font-color-primary) 5%
-                );
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-lg);
                 box-shadow: var(--box-shadow-active);
                 width: max-content;
                 margin-top: calc(-1 * var(--composer-gap-xl));
                 color: var(--composer-primary-color);
+                align-self: center;
+                margin-left: 0 !important;
+                margin-right: auto !important;
 
                 .icon {
                   font-size: 2rem;
                   width: 25px;
                   height: 25px;
+                  color: var(--composer-font-color-primary);
                 }
               }
 
               .card-list {
+                place-self: flex-start !important;
+
                 .card-list-item {
                   display: flex;
                   padding: var(--composer-gap-sm);
@@ -97,7 +126,7 @@
 
                   .list-item {
                     width: 100%;
-                    color: var(--composer-font-color-primary);
+                    color: var(--composer-tertiary-color);
                   }
 
                   .list-icon {
@@ -107,16 +136,19 @@
                     height: 20px;
                     color: var(--composer-font-color-primary);
                   }
+
                   .list-item {
                     color: var(--composer-font-color-primary);
                   }
                 }
               }
+
               .action-buttons {
                 display: flex;
                 gap: var(--composer-gap-sm);
                 flex-wrap: wrap;
                 flex-direction: row;
+                place-self: flex-start;
 
                 .card-button {
                   .button-text,
@@ -126,28 +158,34 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
 
-            
-            .card-bottom.no-upper {
-              margin-top: 0;
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .table {
+        .item-div {
+          .card-item-count {
+            .item-card {
+              content: "";
             }
           }
         }
       }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
+  @container (max-width: #{$composer-phone-width}) {
     .max-content {
       .table {
         .item-div {
           .card-item-count {
             .item-card {
               .card-upper {
-                padding: var(--composer-gap-md) var(--composer-gap-md)
-                  var(--composer-gap-lg) var(--composer-gap-md);
+                padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md);
               }
 
               .card-bottom {

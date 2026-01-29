@@ -24,7 +24,7 @@ class PricingTable3 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
 
-this.addProp({
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -60,6 +60,13 @@ this.addProp({
           "Primary"
         ),
       ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showListDividers",
+      displayer: "Show List Dividers",
+      value: true,
     });
 
     this.addProp({
@@ -108,7 +115,7 @@ this.addProp({
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "PERSONAL",
+              value: "<span style='color: var(--composer-primary-color);'>PERSONAL</span> PLAN",
             },
             {
               type: "string",
@@ -218,117 +225,7 @@ this.addProp({
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "PERSONAL",
-            },
-            {
-              type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$ 250",
-            },
-            {
-              type: "array",
-              key: "items",
-              displayer: "List Items",
-              value: [
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "value",
-                      displayer: "",
-                      value: "Regular seats",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "value",
-                      displayer: "",
-                      value: "Snacks and brunch",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "item",
-                  displayer: "List Item",
-                  value: [
-                    {
-                      type: "string",
-                      key: "value",
-                      displayer: "",
-                      value: "Event certificate",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Join this plan",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "object",
-              key: "tagSettings",
-              displayer: "Tag Settings",
-              value: [
-                {
-                  type: "string",
-                  key: "tag",
-                  displayer: "Tag",
-                  value: "POPULAR",
-                },
-                {
-                  type: "boolean",
-                  key: "showTag",
-                  displayer: "Show",
-                  value: false,
-                },
-              ],
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: { type: "icon", name: "FaUsers" },
-            },
-
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "PERSONAL",
+              value: "<span style='color: var(--composer-primary-color);'>BUSINESS</span> PLAN",
             },
             {
               type: "string",
@@ -420,7 +317,7 @@ this.addProp({
     return buttonsArray.map((btn: any) => {
       const parent = btn?.value ?? btn;
       const icon = this.getPropValue("icon", { parent_object: parent });
-      
+
       const media = icon || null;
       return {
         text: this.getPropValue("text", { parent_object: parent }),
@@ -434,11 +331,11 @@ this.addProp({
   private hasAnyButtonInItem(
     buttons: { text?: string; media?: TypeMediaInputValue }[]
   ) {
-    
+
     return buttons.some(
       (b: any) =>
         this.castToString(b?.text) ||
-         ((b as any).icon?.name || (b as any).icon?.url)
+        ((b as any).icon?.name || (b as any).icon?.url)
     );
   }
 
@@ -451,6 +348,7 @@ this.addProp({
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
+    const showListDividers = this.getPropValue("showListDividers");
 
 
     const titleExist = this.castToString(title);
@@ -473,9 +371,8 @@ this.addProp({
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || descExist || hasTopLevelButtons) && (
               <Base.VerticalContent
-                className={`${this.decorateCSS("featured")} ${
-                  !hasCards && this.decorateCSS("featured-alternate")
-                } `}
+                className={`${this.decorateCSS("featured")} ${!hasCards && this.decorateCSS("featured-alternate")
+                  } `}
               >
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -541,10 +438,9 @@ this.addProp({
             )}
             {hasCards && (
               <div
-                className={`${this.decorateCSS("cards-div")} ${
-                  !(titleExist || descExist || hasTopLevelButtons) &&
+                className={`${this.decorateCSS("cards-div")} ${!(titleExist || descExist || hasTopLevelButtons) &&
                   this.decorateCSS("cards-div-alternate")
-                }`}
+                  }`}
               >
                 {cards.map((card: Card, idx: number) => {
                   const showTag = card.tagSettings.showTag;
@@ -555,9 +451,8 @@ this.addProp({
                   return (
                     <div
                       key={idx}
-                      className={`${this.decorateCSS("card-container")} ${
-                        showTag && this.decorateCSS("active")
-                      } ${this.getPropValue("animations") && animations}`}
+                      className={`${this.decorateCSS("card-container")} ${showTag && this.decorateCSS("active")
+                        } ${this.getPropValue("animations") && animations}`}
                     >
                       <Base.VerticalContent
                         className={this.decorateCSS("card")}
@@ -607,7 +502,7 @@ this.addProp({
                                       itemExist && (
                                         <Base.P
                                           key={idx}
-                                          className={this.decorateCSS("item")}
+                                          className={`${this.decorateCSS("item")} ${!showListDividers && this.decorateCSS("no-lines")}`}
                                         >
                                           {item.value}
                                         </Base.P>
@@ -623,7 +518,7 @@ this.addProp({
                             <div className={this.decorateCSS("footer")}>
                               {cardButtons.map((btn, btnIndex: number) => {
                                 console.log(btn);
-                                
+
                                 const buttonText = btn.text;
                                 const buttonMedia = btn?.media;
                                 const buttonUrl = btn.url || "#";
@@ -649,7 +544,7 @@ this.addProp({
                                       className={this.decorateCSS(
                                         "button"
                                       )}
-                                    > 
+                                    >
                                       {btnTextExist && (
                                         <Base.P
                                           className={this.decorateCSS(

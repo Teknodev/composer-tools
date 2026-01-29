@@ -44,9 +44,12 @@
           gap: var(--composer-gap-md);
         }
 
-        .subtitle,
-        .title {
-          content: "";
+        .title,.description {
+          text-align:left !important;
+        }
+
+        .subtitle {
+          margin-left: 0 !important;
         }
 
         .description {
@@ -55,6 +58,7 @@
         .buttons {
           display: flex;
           flex-wrap: wrap;
+          place-self: flex-start !important;
 
           gap: var(--composer-gap-sm);
 
@@ -175,7 +179,7 @@
           .plan-upper {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            place-self: flex-start !important;
 
             .plan-title {
               margin: 0;
@@ -227,6 +231,7 @@
 
           .plan-upper {
             padding: var(--composer-gap-sm);
+            gap: var(--composer-gap-sm);
           }
 
           .plan-price-box {
