@@ -611,7 +611,12 @@ class Portfolio3 extends BasePortfolio {
   renderButtons(buttons: INPUTS.CastedButton[], keyPrefix: string) {
     return buttons.map((item: INPUTS.CastedButton, index: number) => {
       const buttonText = item.text;
-      const buttonIcon = item.icon;
+      let buttonIcon = item.icon as any;
+
+      if (typeof buttonIcon === "string") {
+        buttonIcon = { type: "icon", name: buttonIcon };
+      }
+
       const buttonUrl = item.url;
       const buttonType = item.type;
 
@@ -736,7 +741,8 @@ class Portfolio3 extends BasePortfolio {
                   const hasGameImage = !!gameImageValue;
 
                   const validPlatforms = platforms.filter(
-                    (platformWrapper) => platformWrapper?.platform?.icon
+                    (platformWrapper: any) =>
+                      platformWrapper?.platform?.icon || platformWrapper?.icon
                   );
                   const hasPlatforms = validPlatforms.length > 0;
 
