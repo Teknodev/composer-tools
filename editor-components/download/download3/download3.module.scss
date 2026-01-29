@@ -49,7 +49,6 @@
             width: 100%;
             display: flex;
             justify-content: flex-start;
-            margin-bottom: calc(var(--composer-gap-xs));
 
             .subtitle {
               text-align: left;
@@ -125,6 +124,7 @@
           width: 100%;
           display: flex;
           justify-content: center;
+          margin-bottom: var(--composer-gap-sm) !important;
 
           .subtitle {
             width: fit-content;
