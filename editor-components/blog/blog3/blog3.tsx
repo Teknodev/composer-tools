@@ -641,7 +641,7 @@ class Blog3 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(descriptionExist || subtitleExist || isTitleExist || rightTextItems.some(item => item.text || (item.icon && item.icon.name))) && (
+          {(descriptionExist || subtitleExist || isTitleExist || rightTextItems.some(item => item.text || (item.icon && (typeof item.icon === 'string' || item.icon.name || item.icon.url)) || (item.image && (typeof item.image === 'string' || item.image.name || item.image.url)))) && (
             <React.Fragment>
               <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.decorateCSS("header-left")}`}>
                 {subtitleExist && (
@@ -657,15 +657,24 @@ class Blog3 extends BaseBlog {
               <div className={this.decorateCSS("button-container")}>
                 {rightTextItems.map((item: any, index: number) => {
                   const buttonTextExist = this.castToString(item.text);
-                  const iconExist = item.icon && item.icon.name;
+                  let iconValue = item.icon || item.image;
+                  if (typeof iconValue === "string") {
+                    iconValue = { type: "icon", name: iconValue };
+                  }
+                  if (iconValue && iconValue.url && !iconValue.type) {
+                    iconValue = { ...iconValue, type: "image" };
+                  }
+
+                  const iconExist = iconValue && (iconValue.name || iconValue.url);
                   const buttonExist = buttonTextExist || iconExist;
+
 
                   return buttonExist && (
                     <div key={`blog-3-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
                       <ComposerLink path={item.url}>
                         <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
                           {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                          {iconExist && <Base.Media value={iconValue} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
                     </div>

@@ -73,6 +73,8 @@
             height: 18px;
             font-size: 1.25rem;
             transition: transform 0.3s ease-in-out;
+            display: block;
+            object-fit: contain;
           }
         }
 
