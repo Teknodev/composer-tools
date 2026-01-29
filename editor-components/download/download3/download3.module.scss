@@ -33,8 +33,8 @@
     .group-container-center {
       padding-top: 80px;
       padding-bottom: 80px;
-      padding-left: 50px;
-      padding-right: 50px;
+      padding-left: var(--composer-gap-xl);
+      padding-right: var(--composer-gap-xl);
       width: 100%;
       box-sizing: border-box;
 
@@ -45,7 +45,8 @@
       .button-group {
         display: flex;
         align-items: center;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
 
         .button {
           display: flex;
@@ -104,11 +105,11 @@
 
       .button-group .button {
         width: 170px;
-        height: 50px;
+        height: var(--composer-gap-lg);
 
         .button-element {
           width: 170px !important;
-          height: 50px !important;
+          height: var(--composer-gap-xl) !important;
         }
       }
     }
@@ -128,12 +129,12 @@
 
         .button {
           width: 170px;
-          height: 50px;
+          height: var(--composer-gap-xl);
         }
 
         .button-element {
           width: 170px !important;
-          height: 50px !important;
+          height: var(--composer-gap-xl) !important;
         }
       }
     }
@@ -158,7 +159,18 @@
 
     .max-content .page {
 
-      .group-container,
+      .group-container {
+        padding-top: 80px;
+        padding-bottom: 80px;
+        padding-left: var(--composer-gap-lg);
+        padding-right: var(--composer-gap-lg);
+        gap: var(--composer-gap-md);
+
+        .title {
+          width: 30%;
+        }
+      }
+
       .group-container-center {
         display: flex;
         flex-direction: column;
@@ -168,7 +180,10 @@
         padding-left: var(--composer-gap-lg);
         padding-right: var(--composer-gap-lg);
 
-        .title,
+        .title {
+          width: 40%;
+        }
+
         .description {
           text-align: center;
           width: 100%;
@@ -177,24 +192,24 @@
         .button-group {
           justify-content: center;
           width: 100%;
-          margin-top: 20px;
+          margin-top: var(--composer-gap-md);
 
           .button {
             width: 170px !important;
-            height: 50px !important;
+            height: var(--composer-gap-xl) !important;
             margin: 0;
           }
 
           .button-element {
             width: 170px !important;
-            height: 50px !important;
+            height: var(--composer-gap-xl) !important;
           }
         }
       }
 
       .group-container-center {
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: var(--composer-gap-lg);
+        padding-right: var(--composer-gap-lg);
       }
     }
   }
@@ -202,25 +217,66 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .page {
+    .group-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--composer-gap-md);
+      padding-left: var(--composer-gap-md) !important;
+      padding-right: var(--composer-gap-md) !important;
+      padding-top: var(--composer-gap-xl) !important;
+      padding-bottom: var(--composer-gap-xl) !important;
 
-    .group-container,
-    .group-container-center {
-      padding-top: 50px !important;
-      padding-bottom: 50px;
-      padding-left: 20px !important;
-      padding-right: 20px !important;
+      .title,
+      .description {
+        text-align: left;
+        width: 100% !important;
+      }
 
       .button-group {
-        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        width: 100%;
+
+        .button {
+          width: 150px !important;
+          height: var(--composer-gap-lg) !important;
+          justify-content: center;
+
+          .button-element {
+            width: 150px !important;
+            height: var(--composer-gap-lg) !important;
+            justify-content: center;
+          }
+        }
+      }
+    }
+
+    .group-container-center {
+      padding-top: var(--composer-gap-xl) !important;
+      padding-bottom: var(--composer-gap-xl);
+      padding-left: var(--composer-gap-md) !important;
+      padding-right: var(--composer-gap-md) !important;
+
+      .title {
+        min-width: 100% !important;
+      }
+
+      .button-group {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
         gap: var(--composer-gap-sm);
 
         .button {
           width: 150px !important;
-          height: 40px !important;
+          height: var(--composer-gap-lg) !important;
 
           .button-element {
             width: 150px !important;
-            height: 40px !important;
+            height: var(--composer-gap-lg) !important;
 
             .button-icon {
               font-size: 1rem;

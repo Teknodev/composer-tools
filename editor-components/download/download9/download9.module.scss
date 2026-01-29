@@ -273,7 +273,9 @@
           padding: var(--composer-gap-md);
 
           .buttons-container {
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
 
             .image-container,
             .button {

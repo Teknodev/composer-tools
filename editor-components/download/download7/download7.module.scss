@@ -85,7 +85,7 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
 
           &.center {
             justify-content: center;
@@ -162,7 +162,9 @@
           .buttons-container {
             justify-content: flex-start;
             align-items: flex-start;
-            flex-direction: column;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
 
             &.center {
               justify-content: center;
