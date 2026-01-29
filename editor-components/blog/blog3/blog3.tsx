@@ -532,7 +532,7 @@ class Blog3 extends BaseBlog {
               <ComposerLink path={data.url}>
                 <Base.H5
                   className={`
-                    ${this.decorateCSS("title")}
+                    ${this.decorateCSS("card-title")}
                     ${underlineAnimation ? this.decorateCSS("underline-animation") : ""}
                   `}
                 >
@@ -642,7 +642,7 @@ class Blog3 extends BaseBlog {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(descriptionExist || subtitleExist || isTitleExist || rightTextItems.some(item => item.text || (item.icon && item.icon.name))) && (
-            <div className={this.decorateCSS("header-wrapper")}>
+            <React.Fragment>
               <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.decorateCSS("header-left")}`}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
@@ -681,29 +681,11 @@ class Blog3 extends BaseBlog {
                   </Base.SectionDescription>
                 )}
               </div>
-            </div>
+            </React.Fragment>
           )}
           <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
-          <div className={this.decorateCSS("mobile-right-side")}>
-            {rightTextItems.map((item: any, index: number) => {
-              const buttonTextExist = this.castToString(item.text);
-              const iconExist = item.icon && item.icon.name;
-              const buttonExist = buttonTextExist || iconExist;
-
-              return buttonExist && (
-                <div key={`blog-3-mobile-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={item.url}>
-                    <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
-                      {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                      {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              );
-            })}
-          </div>
         </Base.MaxContent>
       </Base.Container>
     );

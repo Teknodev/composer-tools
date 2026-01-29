@@ -332,11 +332,10 @@ class Blog1 extends BaseBlog {
         {items.map((_item, index) => (
           <li
             key={index}
-            className={
-              index === activeSlideIndex ? this.decorateCSS("slick-active") : ""
-            }
+            className={`${this.decorateCSS("dot-item")} ${index === activeSlideIndex ? this.decorateCSS("slick-active") : ""
+              }`}
           >
-            <button>
+            <button className={this.decorateCSS("dot-button")}>
               <span></span>
             </button>
           </li>
