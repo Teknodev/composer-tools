@@ -175,6 +175,14 @@ as *;
   .container {
     .max-content {
       gap: 0px;
+
+      .description-mobile {
+        display: block;
+      }
+
+      .description-desktop {
+        display: none;
+      }
     }
   }
 }
