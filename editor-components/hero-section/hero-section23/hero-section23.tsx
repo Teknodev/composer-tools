@@ -416,7 +416,7 @@ class HeroSection23 extends BaseHeroSection {
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_current: number, next: number) => {
         if (this.getComponentState("active") !== next) {
           this.setComponentState("active", next);
         }
@@ -427,16 +427,20 @@ class HeroSection23 extends BaseHeroSection {
     const activeSlide = this.getComponentState("active");
     const sliderRef = this.getComponentState("slider-ref");
 
-    const isVideo = (m) => m && m.type === "video";
+    const isVideo = (m?: TypeMediaInputValue) => !!(m && m.type === "video");
 
     const nextArrow = this.getPropValue("nextArrow") as TypeMediaInputValue | undefined;
     const previousArrow = this.getPropValue("previousArrow") as TypeMediaInputValue | undefined;
 
     const mouseMoveActive = this.getPropValue("mouseMoveActivation");
     const animateActive = this.getPropValue("animateActivation");
+    const waveActive = this.getPropValue("wave");
 
     return (
-      <div className={this.decorateCSS("container")} onMouseMove={mouseMoveActive ? this.handleMouseMove : undefined}>
+      <div
+        className={`${this.decorateCSS("container")} ${waveActive ? this.decorateCSS("has-wave") : ""}`}
+        onMouseMove={mouseMoveActive ? this.handleMouseMove : undefined}
+      >
         <div className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {slider.length > 1 && previousArrow && (
@@ -462,7 +466,11 @@ class HeroSection23 extends BaseHeroSection {
             {slider.length > 1 && (
               <ul className={this.decorateCSS("dots")}>
                 {slider.map((_, index) => (
-                  <li key={`dot-${index}`} className={activeSlide === index && this.decorateCSS("slick-active")} onClick={() => sliderRef.current.slickGoTo(index)}>
+                  <li
+                    key={`dot-${index}`}
+                    className={activeSlide === index ? this.decorateCSS("slick-active") : undefined}
+                    onClick={() => sliderRef.current.slickGoTo(index)}
+                  >
                     <button />
                   </li>
                 ))}
@@ -472,7 +480,10 @@ class HeroSection23 extends BaseHeroSection {
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={sliderRef}>
               {slider.map((item: SliderItem, index: number) => {
                 const isActive = activeSlide === index;
-                const baseColor = this.castToString(item.baseColor) || "rgba(186, 226, 255, 0.8)";
+                const baseColor =
+                  typeof item.baseColor === "string" && item.baseColor.trim()
+                    ? item.baseColor
+                    : "rgba(186, 226, 255, 0.8)";
                 const colors = this.getColorVariations(baseColor);
 
                 return (
@@ -567,9 +578,11 @@ class HeroSection23 extends BaseHeroSection {
             </ComposerSlider>
           </div>
         </div>
-        {this.getPropValue("wave") && <svg className={this.decorateCSS("wave")} viewBox="0 0 1920 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill="currentColor" d="M 0 20 C 0 20 169.5 0 510 0 C 850.5 0 1069.5 60 1410 60 C 1750.5 60 1920 20 1920 20 V 80 H 0 V 20 Z" />
-        </svg>}
+        {waveActive && (
+          <svg className={this.decorateCSS("wave")} viewBox="0 0 1920 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor" d="M 0 20 C 0 20 169.5 0 510 0 C 850.5 0 1069.5 60 1410 60 C 1750.5 60 1920 20 1920 20 V 80 H 0 V 20 Z" />
+          </svg>
+        )}
       </div>
     );
   }

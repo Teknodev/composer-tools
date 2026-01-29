@@ -168,7 +168,7 @@
 
       .dots {
         position: absolute;
-        bottom: 50px;
+        bottom: var(--composer-gap-md);
         left: 50%;
         transform: translateX(-50%);
         display: flex;
@@ -419,7 +419,7 @@
         }
 
         .dots {
-          bottom: var(--composer-gap-lg);
+          bottom: var(--composer-gap-md);
           display: flex;
         }
 
@@ -472,6 +472,16 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+
+    &.has-wave {
+      .max-content {
+        .wrapper {
+          .dots {
+            bottom: 60px;
           }
         }
       }
@@ -545,6 +555,16 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+
+    &.has-wave {
+      .max-content {
+        .wrapper {
+          .dots {
+            bottom: var(--composer-gap-xl);
           }
         }
       }
