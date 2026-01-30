@@ -235,7 +235,7 @@ class Feature47 extends BaseFeature {
           <Base.ListGrid
             gridCount={{
               pc: itemCountPerRow || 3,
-              tablet: itemCountPerRow || 3,
+              tablet: 3,
               phone: 1,
             }}
             className={this.decorateCSS("cards-list")}

@@ -58,11 +58,17 @@
       }
 
       .card-title {
-        max-width: 300px;
+        margin-inline-start: 0;
+        @media (min-width: $composer-tablet-width) {
+          max-width: 300px;
+        }
       }
 
       .card-description {
-        max-width: 320px;
+        margin-inline-start: 0;
+        @media (min-width: $composer-tablet-width) {
+          max-width: 320px;
+        }
         opacity: 0.9;
       }
 
