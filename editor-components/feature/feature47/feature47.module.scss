@@ -46,7 +46,6 @@
       .card-title,
       .card-description {
         text-align: left !important;
-        margin-inline-start: 0 !important;
       }
 
       .card-subtitle {
@@ -55,20 +54,15 @@
         font-weight: bold;
         font-size: 1.2rem;
         letter-spacing: 1px;
+        text-transform: uppercase;
       }
 
       .card-title {
         max-width: 300px;
-        margin-top: 12px !important;
-
-        @media (max-width: $composer-tablet-width) {
-          margin-top: 14px !important;
-        }
       }
 
       .card-description {
         max-width: 320px;
-        margin-top: 10px !important;
         opacity: 0.9;
       }
 
@@ -79,8 +73,6 @@
         gap: 0.5rem;
 
         .card-button {
-          margin-top: 26px;
-
           .card-button-icon,
           .card-button-text {
             content: "";

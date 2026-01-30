@@ -243,14 +243,14 @@ class Feature47 extends BaseFeature {
             {cards?.map((card, index) => (
               <div key={index} className={this.decorateCSS("card")}>
                 <Base.VerticalContent>
-                  <span className={this.decorateCSS("card-subtitle")}>
-                    {this.castToString(card.subtitle)?.toUpperCase() || ""}
-                  </span>
+                  <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                    {card.subtitle || ""}
+                  </Base.H6>
                   <Base.H3 className={this.decorateCSS("card-title")}>
-                    {this.castToString(card.title) || ""}
+                    {card.title || ""}
                   </Base.H3>
                   <Base.P className={this.decorateCSS("card-description")}>
-                    {this.castToString(card.description) || ""}
+                    {card.description || ""}
                   </Base.P>
                   <div className={this.decorateCSS("card-buttons-wrapper")}>
                     {card.buttons.map((button, index) => {
@@ -275,7 +275,7 @@ class Feature47 extends BaseFeature {
                               <Base.P
                                 className={this.decorateCSS("card-button-text")}
                               >
-                                {buttonText}
+                                {button.text}
                               </Base.P>
                             </Base.Button>
                           </ComposerLink>
@@ -303,7 +303,7 @@ class Feature47 extends BaseFeature {
                     />
                   )}
                   <Base.P className={this.decorateCSS("section-button-text")}>
-                    {this.castToString(primaryButton.text)}
+                    {primaryButton.text}
                   </Base.P>
                 </Base.Button>
               </ComposerLink>
