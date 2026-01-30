@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./feature42.module.scss";
+import styles from "./feature46.module.scss";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -22,7 +22,7 @@ type PrimaryButton = {
     url: string;
 };
 
-class Feature42 extends BaseFeature {
+class Feature46 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
 
@@ -174,7 +174,7 @@ class Feature42 extends BaseFeature {
     }
 
     static getName(): string {
-        return "Feature 42";
+        return "Feature 46";
     }
 
     render() {
@@ -271,4 +271,4 @@ class Feature42 extends BaseFeature {
     }
 }
 
-export default Feature42;
+export default Feature46;
