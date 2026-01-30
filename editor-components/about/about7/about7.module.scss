@@ -35,12 +35,54 @@
     }
 
     .max-content {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
 
+        .top-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: var(--composer-gap-xl);
+            align-items: center;
+            text-align: center;
+
+            .subtitle {
+                justify-content: center;
+                transform: translateX(0);
+                background: transparent;
+
+                &::before {
+                    display: none;
+                }
+
+                &.with-image {
+                    color: var(--composer-font-color-white);
+                }
+            }
+
+            .title {
+                text-align: center;
+
+                &.with-image {
+                    color: var(--composer-font-color-white);
+                }
+            }
+
+            .description {
+                text-align: center;
+                max-width: 600px;
+
+                &.with-image {
+                    color: var(--composer-font-color-white);
+                }
+            }
+        }
+
         .items-wrapper {
             display: flex;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-md);
 
             &.row-reverse {
                 flex-direction: row-reverse;
@@ -63,9 +105,7 @@
 
             .left-container {
                 width: 100%;
-                flex: 5;
-                padding: var(--composer-gap-md) 0px;
-
+                
                 .image-wrapper {
                     width: 100%;
                     height: 100%;
@@ -93,7 +133,6 @@
 
             .middle-container {
                 width: 100%;
-                flex: 2;
                 position: relative;
 
                 .line-wrapper {
@@ -123,10 +162,10 @@
                     align-items: center;
                     justify-content: center;
                     position: absolute;
-                    top: 0px;
+                    top: 50%;
                     left: 50%;
                     z-index: 2;
-                    transform: translateX(-50%);
+                    transform: translate(-50%, -50%);
 
                     .dot {
                         height: 10px;
@@ -193,17 +232,17 @@
             .right-container {
                 position: relative;
                 z-index: 3;
-                flex: 5;
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                padding: var(--composer-gap-md) 0px;
                 justify-content: center;
                 align-items: start;
 
                 .subtitle,
                 .description,
                 .title {
+                    color: white;
+
                     &.with-image {
                         color: black;
                         background: transparent;
@@ -215,9 +254,9 @@
                 }
 
                 .subtitle {
-                    &.with-image {
-                        transform: translateX(0);
+                    transform: translateX(0);
 
+                    &.with-image {
                         &::before {
                             display: none;
                         }
@@ -288,6 +327,7 @@
 
             .items-wrapper {
                 flex-direction: column-reverse;
+                gap: var(--composer-gap-md);
 
                 &.row-reverse {
                     flex-direction: column-reverse;
@@ -336,9 +376,9 @@
                 .left-container {
                     .image-wrapper {
                         .image {
-                            max-height: 480px;
+                            max-height: 600px;
                             height: auto;
-                            object-fit: contain;
+                            object-fit: cover;
                             width: 100%;
                         }
                     }
@@ -351,9 +391,12 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            gap: var(--composer-gap-xl);
+
             .items-wrapper {
                 .right-container {
                     align-items: center;
+                    gap: 0px !important;
 
                     .subtitle,
                     .title,
