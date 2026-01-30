@@ -929,7 +929,7 @@ class PricingTable7 extends BasePricingTable {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Items per Row",
+      displayer: "Item Count in a Row",
       value: 3,
       max: 3,
     });
@@ -1081,7 +1081,7 @@ class PricingTable7 extends BasePricingTable {
           <Base.ListGrid
             gridCount={{
               pc: this.getPropValue("itemCount"),
-              tablet: 1,
+              tablet: 3,
               phone: 1,
             }}
             className={this.decorateCSS("card")}

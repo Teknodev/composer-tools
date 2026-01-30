@@ -1,13 +1,15 @@
 @use "../../../../composer-tools/composer-base-components//base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 @keyframes bounceText {
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -31,7 +33,7 @@
   .max-content {
     .content {
       display: flex;
-      gap: calc(3 * var(--composer-gap-xl));
+      gap: var(--composer-gap-xl);
       width: 100%;
 
       .left-content {
@@ -44,8 +46,9 @@
           gap: var(--composer-gap-md);
         }
 
-        .title,.description {
-          text-align:left !important;
+        .title,
+        .description {
+          text-align: left !important;
         }
 
         .subtitle {
@@ -55,6 +58,7 @@
         .description {
           color: var(--composer-font-color-primary);
         }
+
         .buttons {
           display: flex;
           flex-wrap: wrap;
@@ -65,6 +69,7 @@
           .button-text {
             content: "";
           }
+
           .button-icon {
             font-size: 1.5rem;
             height: 25px;
@@ -89,12 +94,10 @@
 
         .plan {
           width: 100%;
-          background: color-mix(
-            in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 5%
-          );
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          background: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+          padding: var(--composer-gap-md);
           border-radius: var(--composer-gap-xs) !important;
           display: flex;
           flex-direction: column;
@@ -104,6 +107,7 @@
           cursor: pointer;
           position: relative;
           overflow: hidden;
+
           &::before {
             content: "";
             position: absolute;
@@ -114,21 +118,25 @@
             background: var(--composer-primary-color);
             transition: width 0.8s ease-in-out;
           }
+
           &.animation1:hover {
             &::before {
               width: 100%;
             }
           }
+
           &.animation2:hover {
             .plan-price-box {
               .labels {
                 animation: bounceText 0.8s ease-in-out infinite;
               }
+
               .plan-button {
                 content: "";
               }
             }
           }
+
           &.animation3:hover {
             .plan-price-box {
               .labels {
@@ -155,7 +163,7 @@
 
             .plan-description,
             .price-description {
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-tertiary-color);
               text-align: left;
             }
 
@@ -193,9 +201,9 @@
               border-radius: var(--composer-border-radius-xl);
 
               .icon {
-                font-size: 1rem;
-                width: 20px;
-                height: 20px;
+                font-size: 1.5rem;
+                width: 25px;
+                height: 30px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -205,6 +213,7 @@
             .icon-box-active {
               background-color: var(--composer-font-color-secondary);
               color: var(--composer-primary-color);
+
               .icon {
                 content: "";
               }
@@ -245,6 +254,7 @@
               gap: var(--composer-gap-sm);
               transition: all 0.5s ease;
               transform: scale(1);
+
               .price {
                 font-size: 2rem;
               }
@@ -277,36 +287,23 @@
   }
 }
 
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    position: relative;
-
     .max-content {
       .content {
-        flex-direction: column;
-        gap: var(--composer-gap-lg) !important;
-
-        .left-content,
         .right-content {
-          max-width: unset;
-        }
-
-        .left-content {
           width: 100%;
-          text-align: left;
+          .plan {
+            .plan-price-box {
+              .labels {
 
-          .buttons,
-          .button-box {
-            margin: auto;
-          }
-          .buttons {
-            .button-box {
-              width: fit-content;
+                .price-description {
+                  min-width: 100% !important;
+                }
+              }
             }
           }
-        }
-        .right-content {
-          width: 100%;
         }
       }
     }
@@ -325,10 +322,22 @@
         align-items: center;
 
         .left-content {
+          width: 100% !important;
+
+          .subtitle,
+          .title,
+          .description {
+            margin-left: auto !important;
+            text-align: center !important;
+          }
+
+
           .buttons {
+            width: 100% !important;
             justify-content: center;
           }
         }
+
         .right-content {
           width: 100%;
 
@@ -339,6 +348,10 @@
               .labels {
                 .price {
                   font-size: 1rem;
+                }
+
+                .price-description {
+                  min-width: 100% !important;
                 }
               }
             }

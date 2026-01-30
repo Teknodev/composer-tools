@@ -1,24 +1,26 @@
 @use "../../../../composer-tools//composer-base-components/base//utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   .max-content {
     display: flex;
     justify-content: center;
     width: 100%;
+
     .box {
       margin: var(--composer-gap-lg) 0;
       width: 100%;
-      background: color-mix(
-        in srgb,
-        var(--composer-html-background),
-        var(--composer-font-color-primary) 5%
-      );
+      background: color-mix(in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%);
       padding-bottom: var(--composer-gap-lg);
       position: relative;
       border-radius: var(--composer-border-radius-md);
       margin-top: calc(1.5 * var(--composer-gap-xl));
       padding-top: 1px;
+      padding-left: 10%;
+      padding-right: 10%;
+  
 
       .carousel {
         display: none;
@@ -33,27 +35,29 @@
         padding-top: 1px;
 
         .card-item-count {
-          width: 20%;
+          width: auto; 
+          flex: 1;  
           height: 100% !important;
           transition: 0.8s;
+
           &.animation1:hover {
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
             transition: 0.8s;
+
             &.middle-card {
-              transform: scale(1.1)
-                translateY(calc(-1 * var(--composer-gap-sm)));
+              transform: scale(1.1) translateY(calc(-1 * var(--composer-gap-sm)));
             }
           }
+
           &.animation2:hover {
             .pricing {
               .pricing-container {
                 .price {
-                  color: color-mix(
-                    in srgb,
-                    var(--composer-html-background),
-                    var(--composer-font-color-primary) 5%
-                  );
+                  color: color-mix(in srgb,
+                      var(--composer-html-background),
+                      var(--composer-font-color-primary) 5%);
                 }
+
                 .price-big {
                   transform: translateY(calc(-1 * var(--composer-gap-md)));
                   color: var(--composer-font-color-primary);
@@ -61,6 +65,7 @@
               }
             }
           }
+
           &.animation3:hover {
             .pricing {
               .icon {
@@ -70,13 +75,15 @@
           }
 
           cursor: pointer;
+
           .pricing {
             position: relative;
             flex-wrap: wrap;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start; 
+            gap: var(--composer-gap-lg); 
             height: 100%;
-            min-height: 330px;
+            min-height: 450px; 
             background-color: var(--composer-html-background);
             border-radius: var(--composer-border-radius-md);
             box-shadow: var(--box-shadow-active);
@@ -93,41 +100,39 @@
               z-index: 0;
               border-radius: var(--composer-border-radius-md);
               overflow: hidden;
+              object-fit: cover; 
+              object-position: center 30%; 
             }
 
             .title {
               z-index: 4;
-              font-size: 3rem;
               color: var(--composer-font-color-secondary);
               text-align: center;
-              margin: var(--composer-gap-md) 0;
-              margin-bottom: calc(3 * var(--composer-gap-lg));
+              margin: calc(2.5 * var(--composer-gap-xl)) 0 0 0;
             }
+
             .price-stack {
               position: relative;
               width: 100%;
+              margin: 0;
 
               .price-big {
                 position: absolute;
                 left: 0;
-                font-size: 10rem;
-                font-weight: bold;
-                margin-top: var(--composer-gap-lg);
-                margin-bottom: var(--composer-gap-lg);
+                margin-top: 0;
+                margin-bottom: 0;
                 z-index: 0;
                 text-align: center;
                 pointer-events: none;
+                font-size: 8rem;
                 transition: 0.8s;
-                color: color-mix(
-                  in srgb,
-                  var(--composer-html-background),
-                  var(--composer-font-color-primary) 5%
-                );
+                color: color-mix(in srgb,
+                    var(--composer-html-background),
+                    var(--composer-font-color-primary) 5%);
               }
 
               .pricing-container {
-                margin-top: calc(1.5 * var(--composer-gap-xl));
-                margin-bottom: calc(1.5 * var(--composer-gap-lg));
+                margin: 0;
                 display: flex;
                 flex-direction: column;
 
@@ -135,8 +140,6 @@
                   position: relative;
                   z-index: 2;
                   text-align: center;
-                  font-size: 3rem;
-                  font-weight: bold;
                   color: var(--composer-font-color-primary);
                   margin: 0;
                   transition: 0.8s;
@@ -151,6 +154,7 @@
                 }
               }
             }
+
             .icon {
               display: flex;
               position: absolute;
@@ -160,14 +164,11 @@
               transform-origin: center center;
               color: var(--composer-font-color-secondary);
               background-color: var(--composer-secondary-color);
-              font-size: 3rem;
+              font-size: 2rem;
               border-radius: 50%;
-              border: 4px solid
-                color-mix(
-                  in srgb,
+              border: 4px solid color-mix(in srgb,
                   var(--composer-secondary-color),
-                  var(--composer-font-color-primary) 25%
-                );
+                  var(--composer-font-color-primary) 25%);
               z-index: 3;
               transition: transform 0.8s ease;
             }
@@ -178,6 +179,7 @@
               padding: 0;
             }
           }
+
           &.middle-card {
             transform: scale(1.1);
             z-index: 1;
@@ -193,9 +195,23 @@
         width: 100%;
         margin-top: calc(2 * var(--composer-gap-lg));
         justify-content: center;
-        padding: 0 10%;
         gap: var(--composer-gap-lg);
         overflow: hidden;
+
+        &.center {
+          .plan-desc {
+            width: 100%;
+            align-items: center;
+
+            .text {
+              text-align: center;
+            }
+
+            .description-text {
+              text-align: center;
+            }
+          }
+        }
 
         .plan-desc {
           width: 50%;
@@ -208,6 +224,7 @@
             margin: 0;
             text-align: left;
           }
+
           .description-text {
             color: var(--composer-tertiary-color);
             margin: 0;
@@ -241,6 +258,7 @@
                 text-align: right;
                 margin: 0;
               }
+
               .bar-percent {
                 position: relative;
                 width: 85%;
@@ -279,7 +297,7 @@
           .buttonicon {
             display: flex;
             align-items: center;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             width: 25px;
             height: 25px;
           }
@@ -303,6 +321,12 @@
     .max-content {
       .box {
         margin-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+
+        :global(.slick-list) {
+          padding-bottom: var(--composer-gap-md);
+        }
 
         .carousel {
           position: relative;
@@ -310,6 +334,8 @@
           flex-direction: column;
 
           .card-item-count {
+            overflow: visible;
+
             .pricing {
               position: relative;
               width: 100%;
@@ -319,14 +345,10 @@
               height: auto;
               justify-content: space-between;
               background-color: var(--composer-html-background);
-              border: var(--composer-gap-xs) solid
-                color-mix(
-                  in srgb,
+              border: var(--composer-gap-xs) solid color-mix(in srgb,
                   var(--composer-html-background),
-                  var(--composer-font-color-primary) 5%
-                );
-              border-radius: var(--composer-border-radius-md);
-              overflow: hidden;
+                  var(--composer-font-color-primary) 5%);
+              overflow: visible;
               padding-bottom: var(--composer-gap-md);
 
               .card-bg {
@@ -355,24 +377,21 @@
                 .price-big {
                   margin-top: calc(-1 *var(--composer-gap-md));
                   position: absolute;
-                  font-size: 6rem !important;
-                  font-weight: bold;
                   text-align: center;
                   transition: 0.8s;
+                  font-size: 6rem !important;
 
-                  color: color-mix(
-                    in srgb,
-                    var(--composer-html-background),
-                    var(--composer-font-color-primary) 5%
-                  );
+                  color: color-mix(in srgb,
+                      var(--composer-html-background),
+                      var(--composer-font-color-primary) 5%);
                 }
 
                 .pricing-container {
                   margin-top: calc(1.5 * var(--composer-gap-xl));
+
                   .price {
                     position: relative;
                     text-align: center;
-                    font-weight: bold;
                     color: var(--composer-font-color-primary);
                     transition: 0.8s;
                   }
@@ -386,24 +405,22 @@
 
               .icon {
                 z-index: 4;
+                position: relative;
+                top: 30px;
                 display: flex;
                 color: var(--composer-font-color-secondary);
                 background-color: var(--composer-secondary-color);
-                font-size: 2rem;
+                font-size: 1.75rem;
                 border-radius: 50%;
-                border: 2px solid
-                  color-mix(
-                    in srgb,
+                border: 2px solid color-mix(in srgb,
                     var(--composer-secondary-color),
-                    var(--composer-font-color-primary) 25%
-                  );
+                    var(--composer-font-color-primary) 25%);
               }
 
               .icon-image {
                 width: 45px;
                 height: 45px;
               }
-              // }
             }
           }
         }
@@ -432,6 +449,7 @@
                   width: 40% !important;
                   text-align: left !important;
                 }
+
                 .bar-percent {
                   width: 100% !important;
                 }
@@ -451,25 +469,22 @@
         .upper-container {
           .card-item-count {
             width: 25%;
+
             .pricing {
               .price-stack {
                 .pricing-container {
                   margin-top: calc(1 * var(--composer-gap-xl));
                 }
+
                 .price-big {
-                  font-size: 8rem !important;
                   margin-top: var(--composer-gap-md);
+                  font-size: 6rem !important;
                 }
               }
             }
           }
         }
-
-        .lower-container {
-          padding: 0 5% !important;
-        }
       }
     }
   }
 }
-

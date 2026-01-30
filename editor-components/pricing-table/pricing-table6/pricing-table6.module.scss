@@ -1,17 +1,21 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+
 @keyframes bounceText {
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
+
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes breathe {
   0% {
     transform: scale(1);
@@ -32,6 +36,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       display: flex;
       flex-direction: column;
       width: 100%;
+
       .plan-items {
         display: flex;
         box-shadow: var(--box-shadow-active);
@@ -39,6 +44,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         margin-bottom: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md);
         width: fit-content;
+        place-self: flex-start;
+
         .activeTab:first-child {
           border-top-left-radius: var(--composer-border-radius-md);
           border-bottom-left-radius: var(--composer-border-radius-md);
@@ -61,6 +68,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
       .up-page {
+
         .title,
         .subtitle,
         .description {
@@ -73,6 +81,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
           align-items: center;
+
           .button {
             .button-text {
               content: "";
@@ -102,11 +111,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           gap: var(--composer-gap-md);
 
           .listArray {
-            background-color: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-secondary) 5%
-            );
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-secondary) 5%);
             color: var(--composer-font-color-primary);
             box-shadow: var(--box-shadow-active);
             width: 100%;
@@ -121,10 +128,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             &.active {
               background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
+
               .tag,
               .item-price {
                 color: var(--composer-font-color-secondary);
               }
+
               .per {
                 color: var(--composer-font-color-secondary);
               }
@@ -146,9 +155,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
               }
             }
+
             &.animation1:hover {
               &:not(.active):hover {
                 background-color: var(--composer-primary-color);
+
                 .plan-icons,
                 .tag,
                 .item-price {
@@ -173,11 +184,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 }
               }
             }
+
             &.animation2:hover {
               .item-price {
                 animation: bounceText 0.8s ease-in-out infinite;
               }
             }
+
             &.animation4:hover {
               .item-price {
                 animation-name: breathe;
@@ -206,7 +219,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             .tag-wrapper {
-              
+
               width: 100%;
               padding-left: var(--composer-gap-md);
 
@@ -216,13 +229,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 border-radius: var(--composer-border-radius-lg);
                 padding: var(--composer-gap-xs) var(--composer-gap-md);
                 font-size: 1rem;
-                background-color: transparent;
-                border: 1px solid
-                  rgba(var(--composer-font-color-primary-rgb), 0.5);
+                background-color: var(--composer-overlay-color);
+                border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
                 width: auto;
                 white-space: nowrap;
               }
             }
+
             .item-price {
               display: flex;
               align-items: center;
@@ -231,6 +244,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               transform: scale(1);
               transition: all 0.8s ease;
               width: inherit;
+
               .price,
               .per {
                 padding: var(--composer-gap-xs);
@@ -241,26 +255,27 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 width: fit-content;
               }
 
-            .per {
-              white-space: inherit;
-              width: fit-content;
+              .per {
+                white-space: inherit;
+                width: fit-content;
+              }
             }
-            }
+
             .per {
               color: var(--composer-tertiary-color);
             }
           }
         }
+
         .right-page {
           width: 40%;
-          background: color-mix(
-            in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-secondary) 5%
-          );
+          background: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-secondary) 5%);
           box-shadow: var(--box-shadow-active);
           border-radius: var(--composer-border-radius-md);
           display: flex;
+
           &.animation3:hover {
             .content {
               .header-wrapper {
@@ -305,10 +320,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   transition: 0.8s;
                   width: auto;
                   position: relative;
-                  top: -10px;
+                  top: 0px;
                 }
               }
             }
+
             .list-body {
               flex-grow: 1;
               display: grid;
@@ -319,10 +335,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-sm);
-                padding: var(--composer-gap-sm) 0 var(--composer-gap-md)
-                  var(--composer-gap-md);
-                border-bottom: 1px solid
-                  rgba(var(--composer-font-color-primary-rgb), 0.2);
+                padding: var(--composer-gap-sm) 0 var(--composer-gap-md) var(--composer-gap-md);
+                border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                 color: var(--composer-font-color-primary);
 
                 .dash_icon {
@@ -330,6 +344,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   color: var(--composer-font-color-primary);
                   flex-shrink: 0;
                 }
+
                 .property {
                   color: var(--composer-font-color-primary);
                   margin: 0;
@@ -340,10 +355,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-sm);
-                padding: var(--composer-gap-sm) 0 var(--composer-gap-md)
-                  var(--composer-gap-md);
-                border-bottom: 1px solid
-                  rgba(var(--composer-font-color-primary-rgb), 0.2);
+                padding: var(--composer-gap-sm) 0 var(--composer-gap-md) var(--composer-gap-md);
+                border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                 color: var(--composer-tertiary-color);
 
                 .dash_icon {
@@ -351,6 +364,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   color: var(--composer-tertiary-color);
                   flex-shrink: 0;
                 }
+
                 .property {
                   color: var(--composer-tertiary-color);
                 }
@@ -358,12 +372,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             .body-bottom {
-              background-color: color-mix(
-                in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%
-              );
+              background-color: color-mix(in srgb,
+                  var(--composer-html-background),
+                  var(--composer-font-color-primary) 5%);
               padding: var(--composer-gap-md);
+              padding-top: var(--composer-gap-xs) !important;
               display: flex;
               width: 100%;
               gap: var(--composer-gap-md);
@@ -375,6 +388,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: var(--composer-gap-sm);
+
                 .button {
                   .button-icon {
                     font-size: 1.5rem;
@@ -403,40 +417,59 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      align-items: center;
-      flex-direction: column;
-      .page {
-        .down-page {
-          flex-direction: column;
-
-          .right-page {
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .page {
+        .plan-items {
+          place-self: center;
+        }
+
+        .up-page {
+          .title,.description {
+            text-align: center !important;
+          }
+
+          .subtitle {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            transform: translateX(0) !important;
+            &::before {
+              display: none !important;
+            }
+          }
+        }
+
         .down-page {
+          flex-direction: column !important;
+
           .left-page {
             .listArray {
-              padding: var(--composer-gap-sm);
+              padding: var(--composer-gap-md);
               height: auto;
-              gap: 0;
+              gap: var(--composer-gap-md);
+              flex-direction: column;
+              justify-content: center;
 
               .plan-icons .plan,
               .plan-icons .icons,
               .item-price .price,
               .item-price .per {
                 margin: 0;
+              }
+
+              .item-price {
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+              }
+
+              .tag-wrapper {
+                display: flex;
+                justify-content: center;
+                padding-left: 0;
               }
 
               .plan-icons {
@@ -452,7 +485,36 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               &.active {
-                gap: 0;
+                gap: var(--composer-gap-md);
+              }
+            }
+          }
+
+          .right-page {
+            width: 100% !important;
+
+            .content {
+              min-height: 400px !important;
+              display: flex;
+              flex-direction: column;
+
+              .list-body {
+
+                .list-item,
+                .list-item-disabled {
+                  padding: var(--composer-gap-md) 0 var(--composer-gap-md) var(--composer-gap-md) !important;
+                }
+              }
+
+              .body-bottom {
+                justify-content: center !important;
+                padding-top: 0 !important;
+              }
+
+              .header-wrapper {
+                .subtitle {
+                  top: 0 !important;
+                }
               }
             }
           }
