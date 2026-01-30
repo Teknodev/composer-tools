@@ -18,10 +18,15 @@
   }
 
   .card {
+    min-width: 220px;
     background-color: var(--composer-html-background);
     box-shadow: var(--box-shadow-active);
     border-radius: var(--composer-border-radius-md);
     padding: var(--composer-gap-lg);
+
+    @media (min-width: $composer-phone-width) and (max-width: $composer-tablet-width) {
+      padding: var(--composer-gap-md);
+    }
 
     display: flex;
     flex-direction: column;
@@ -70,7 +75,7 @@
   }
 
   .section-button {
-    margin: 4rem auto;
+    margin: 4rem auto 0;
     width: fit-content;
   }
 }

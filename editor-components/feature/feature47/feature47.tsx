@@ -180,6 +180,13 @@ class Feature47 extends BaseFeature {
       ],
     });
 
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+
     this.addProp(
       INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
     );
@@ -198,6 +205,7 @@ class Feature47 extends BaseFeature {
 
     const cards = this.castToObject<Card[]>("cards");
     const primaryButton = this.castToObject<PrimaryButton>("button");
+    const itemCountPerRow = this.getPropValue("itemCount");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -225,7 +233,11 @@ class Feature47 extends BaseFeature {
           </Base.VerticalContent>
 
           <Base.ListGrid
-            gridCount={{ pc: cards.length || 1, phone: 1 }}
+            gridCount={{
+              pc: itemCountPerRow || 3,
+              tablet: itemCountPerRow || 3,
+              phone: 1,
+            }}
             className={this.decorateCSS("cards-list")}
           >
             {cards?.map((card, index) => (
@@ -245,7 +257,7 @@ class Feature47 extends BaseFeature {
                   {card.buttons.map((button, index) => (
                     <ComposerLink path={button.url}>
                       <Base.Button
-                        className={this.decorateCSS("button")}
+                        className={this.decorateCSS("card-button")}
                         key={index}
                         buttonType={button.type}
                       >
@@ -253,11 +265,13 @@ class Feature47 extends BaseFeature {
                           <Base.Icon
                             name={button.icon.name}
                             propsIcon={{
-                              className: this.decorateCSS("icon"),
+                              className: this.decorateCSS("card-icon"),
                             }}
                           />
                         )}
-                        <Base.P className={this.decorateCSS("button-text")}>
+                        <Base.P
+                          className={this.decorateCSS("card-button-text")}
+                        >
                           {this.castToString(button.text)}
                         </Base.P>
                       </Base.Button>
