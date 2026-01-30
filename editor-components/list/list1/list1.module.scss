@@ -9,7 +9,7 @@ as *;
       align-items: flex-start;
       text-align: left;
       width: 100%;
-      padding: 0 var(--composer-gap-md);
+      padding: 0;
 
       .subtitle,
       .title,
@@ -19,9 +19,10 @@ as *;
     }
 
     .carousel {
-      width: 100%;
+      width: calc(100% + var(--composer-gap-md));
       overflow: hidden;
-      padding: 0 var(--composer-gap-md);
+      padding: 0;
+      margin-left: calc(var(--composer-gap-md) / -2);
       position: relative;
 
       :global(.slick-slide) {
@@ -239,7 +240,7 @@ as *;
           content: "";
           position: absolute;
           width: calc(100% + var(--composer-gap-lg));
-          height: 85%;
+          height: 100%;
           bottom: calc(-2 * var(--composer-gap-md));
           left: calc(-0.5 * var(--composer-gap-lg));
           background-color: var(--composer-primary-color);

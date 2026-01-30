@@ -25,6 +25,13 @@ class List12 extends BaseList {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "backgroundOverlay",
+      displayer: "Background Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -140,12 +147,7 @@ class List12 extends BaseList {
       displayer: "Overlay",
       value: false,
     });
-    this.addProp({
-      type: "boolean",
-      key: "backgroundOverlay",
-      displayer: "Background Overlay",
-      value: false,
-    });
+
   }
 
   render() {

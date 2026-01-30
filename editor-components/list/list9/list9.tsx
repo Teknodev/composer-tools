@@ -233,10 +233,17 @@ class List9 extends BaseList {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "gradientOverlay",
+            displayer: "Gradient Overlay",
+            value: true,
+        });
+
+        this.addProp({
             type: "multiSelect",
             key: "hoverAnimation",
             displayer: "Hover Animation Style",
-            value: ["animate1"],
+            value: ["animate1", "animate3", "animate5"],
             additionalParams: {
                 selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
             }
@@ -253,6 +260,7 @@ class List9 extends BaseList {
         const subtitle = this.getPropValue("subtitle");
         const description = this.getPropValue("description");
         const imageOverlay = this.getPropValue("overlay");
+        const gradientOverlay = this.getPropValue("gradientOverlay");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -298,7 +306,7 @@ class List9 extends BaseList {
                                     {imageOverlay && (
                                         <div className={this.decorateCSS("overlay")} />
                                     )}
-                                    <div className={this.decorateCSS("gradient-overlay")} />
+                                    {gradientOverlay && <div className={this.decorateCSS("gradient-overlay")} />}
                                 </div>
                                 <Base.VerticalContent
                                     className={this.decorateCSS("card-content")}

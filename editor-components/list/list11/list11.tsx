@@ -23,12 +23,6 @@ class List11 extends BaseList {
             value: "Smart solutions"
         });
         this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 3,
-        });
-        this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
@@ -228,6 +222,12 @@ class List11 extends BaseList {
             displayer: "Overlay",
             value: false,
         });
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 3,
+        });
     }
 
     static getName(): string {
@@ -316,11 +316,11 @@ class List11 extends BaseList {
                         </Base.ListGrid>
                         {buttonText && (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                    <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
-                                        <ComposerLink path={button?.url}>
+                                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                                    <ComposerLink path={button?.url}>
                                         <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
-                                        </ComposerLink>
-                                    </Base.Button>
+                                    </ComposerLink>
+                                </Base.Button>
                             </div>
                         )}
                     </div>

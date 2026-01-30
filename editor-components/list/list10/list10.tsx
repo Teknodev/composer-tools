@@ -44,6 +44,13 @@ class List10 extends BaseList {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: false,
+        });
+
+        this.addProp({
             type: "array",
             key: "cards",
             displayer: "Cards",
@@ -187,12 +194,6 @@ class List10 extends BaseList {
             max: 4,
         });
         this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
-        });
-        this.addProp({
             type: "multiSelect",
             key: "hoverAnimation",
             displayer: "Hover Animation Style",
@@ -216,9 +217,10 @@ class List10 extends BaseList {
         const imageOverlay = this.getPropValue("overlay");
         const button = this.castToObject<any>("button");
         const buttonText = this.castToString(button?.text);
+        const alignment = Base.getContentAlignment();
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} ${this.decorateCSS(alignment)}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {(this.castToString(sectionSubtitle) || this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
                         <div className={this.decorateCSS("up-page")}>
@@ -298,7 +300,7 @@ class List10 extends BaseList {
                     </Base.ListGrid>
                     {buttonText && (
                         <div className={this.decorateCSS("button-wrapper")}>
-                                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
+                            <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
                                 <ComposerLink path={button?.url}>
                                     <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
                                 </ComposerLink>
