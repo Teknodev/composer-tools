@@ -103,23 +103,21 @@ class Download7 extends BaseDownload {
                     const imageExist = button.image && button.image.url;
                     const buttonExist = buttonTextExist || iconExist || imageExist;
                     return buttonExist && (
-                      <div className={this.decorateCSS("button-wrapper")} key={index}>
-                        <ComposerLink path={button.url}>
-                          {imageExist ? (
-                            <Base.Media value={button.image} className={this.decorateCSS("button-image")} />
-                          ) : (
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                              {iconExist && (
-                                <Base.Media
-                                  value={button.icon}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              )}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
-                      </div>
+                      <ComposerLink path={button.url} key={index}>
+                        {imageExist ? (
+                          <Base.Media value={button.image} className={this.decorateCSS("button-image")} />
+                        ) : (
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            {iconExist && (
+                              <Base.Media
+                                value={button.icon}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                            {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          </Base.Button>
+                        )}
+                      </ComposerLink>
                     );
                   })}
                 </div>

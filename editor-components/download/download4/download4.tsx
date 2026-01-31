@@ -3,7 +3,6 @@ import styles from "./download4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Download4 extends BaseDownload {
@@ -69,44 +68,53 @@ class Download4 extends BaseDownload {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasButtons = buttons.length > 0;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(titleExist || subtitleExist || descriptionExist) && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-              </Base.VerticalContent>
-            )}
-            {this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0 && (
-              <div className={this.decorateCSS("buttons-container")}>
-                {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
-                  const buttonTextExist = this.castToString(item.text);
-                  const iconExist = item.icon && item.icon.name;
-                  const imageExist = item.image && item.image.url;
-                  const buttonExist = buttonTextExist || iconExist || imageExist;
-                  return buttonExist && (
-                    <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
-                      {imageExist ? (
-                        <div className={this.decorateCSS("image-wrapper")}>
-                          <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                        </div>
-                      ) : (
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
-                          {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
-                        </Base.Button>
-                      )}
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
+            <div className={this.decorateCSS("content")}>
+              {(titleExist || subtitleExist || descriptionExist) && (
+                <Base.VerticalContent className={this.decorateCSS("header")}>
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                  {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                </Base.VerticalContent>
+              )}
+
+              {hasButtons && (
+                <div className={this.decorateCSS("button-group")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const buttonTextExist = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon as any).name;
+                    const imageExist = item.image && (item.image as any).url;
+
+                    if (!buttonTextExist && !iconExist && !imageExist) return null;
+
+                    return (
+                      <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
+                        {imageExist ? (
+                          <div className={this.decorateCSS("image-button-wrapper")}>
+                            <Base.Media value={item.image as any} className={this.decorateCSS("button-image")} />
+                          </div>
+                        ) : (
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                            {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("icon")} />}
+                            {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
+                          </Base.Button>
+                        )}
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
             {image && (
               <div className={this.decorateCSS("image-container")}>
-                <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
+                <Base.Media value={image} className={this.decorateCSS("image")} />
               </div>
             )}
           </div>

@@ -8,9 +8,6 @@ $min-height: 500px;
   position: relative;
   min-height: $min-height;
 
-
-
-
   .background-image {
     position: absolute;
     top: 0;
@@ -54,7 +51,6 @@ $min-height: 500px;
             margin-left: 0 !important;
           }
         }
-
       }
 
       .header {
@@ -71,34 +67,37 @@ $min-height: 500px;
         flex-wrap: wrap;
         align-items: center;
         gap: var(--composer-gap-sm);
+        min-height: 60px;
+        height: auto;
 
-        .button-wrapper {
-          .button-full {
-            width: 100% !important;
-            height: 100%;
-            display: flex;
-            align-items: center;
-          }
+        &.center {
+          justify-content: center;
+        }
 
-          .button-image {
-            height: 100%;
-            width: 100%;
-            cursor: pointer;
-            border-radius: var(--composer-border-radius-sm);
-            object-fit: cover;
-          }
+        .button-image {
+          width: 170px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
         }
 
         .button-element {
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: var(--composer-gap-xs);
+          padding: 12px 24px;
 
           .icon,
           .button-text {
             content: "";
           }
-        }
 
-        &.center {
-          justify-content: center;
+          .button-text {
+            margin: 0;
+            white-space: nowrap;
+          }
         }
       }
 
@@ -132,13 +131,7 @@ $min-height: 500px;
       .page {
         width: 55% !important;
 
-        .buttons-container {
-          .button-wrapper {
-            .button-image {
-              width: 100%;
-            }
-          }
-        }
+        .buttons-container {}
       }
 
       .page-no-image {
@@ -163,6 +156,20 @@ $min-height: 500px;
     .max-content {
       .page {
         width: 100% !important;
+
+        .buttons-container {
+          flex-direction: row;
+          flex-wrap: wrap;
+
+          .button-element {
+            height: 40px;
+          }
+
+          .button-image {
+            width: 150px;
+            height: 40px;
+          }
+        }
       }
     }
   }

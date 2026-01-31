@@ -86,15 +86,12 @@
           flex-wrap: wrap;
           justify-content: center;
           gap: var(--composer-gap-sm);
+          min-height: 60px;
+          height: auto;
 
           &.center {
             justify-content: center;
             place-self: center;
-          }
-
-          .button-wrapper {
-            margin: 0;
-            display: flex;
           }
 
           .button-image {
@@ -105,12 +102,12 @@
           }
 
           .button {
-            width: 170px;
             height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
+            padding: 12px 24px;
 
             .button-icon {
               font-size: 1.5rem;
@@ -119,6 +116,7 @@
             .button-text {
               margin: 0;
               text-align: center;
+              white-space: nowrap;
             }
           }
         }
@@ -160,10 +158,9 @@
           }
 
           .buttons-container {
-            justify-content: flex-start;
-            align-items: flex-start;
             flex-direction: row;
             flex-wrap: wrap;
+            justify-content: center;
             gap: var(--composer-gap-sm);
 
             &.center {
@@ -171,21 +168,13 @@
               align-items: center;
             }
 
-            .button-wrapper {
-              margin-left: 0;
+            .button-image {
+              width: 150px;
+              height: 40px;
+            }
 
-              .button-image,
-              .button {
-                width: 150px !important;
-                height: 40px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-              }
-
-              .button-image {
-                object-fit: cover;
-              }
+            .button {
+              height: 40px;
             }
           }
         }

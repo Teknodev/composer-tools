@@ -208,9 +208,7 @@ class Download8 extends BaseDownload {
                       return buttonExist && (
                         <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
                           {imageExist ? (
-                            <div className={this.decorateCSS("image-container")}>
-                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
-                            </div>
+                            <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
                           ) : (
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                               {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
