@@ -280,7 +280,7 @@ class Blog1 extends BaseBlog {
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -292,7 +292,7 @@ class Blog1 extends BaseBlog {
       key: "next-button-icon",
       displayer: "Next Slide Button",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -422,7 +422,7 @@ class Blog1 extends BaseBlog {
                   <ComposerLink path={item.url}>
                     <Base.Button className={this.decorateCSS("button")} buttonType={(item.type as any) || "Link"}>
                       {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                      {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                      {(imageExist || iconExist) && <Base.Media value={imageExist ? item.image : item.icon} className={this.decorateCSS("button-icon")} />}
                     </Base.Button>
                   </ComposerLink>
                 </div>
