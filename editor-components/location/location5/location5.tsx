@@ -45,19 +45,7 @@ class Location5 extends Location {
       value: "",
     });
 
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 3,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
 
     this.addProp({
       type: "array",
@@ -241,6 +229,38 @@ class Location5 extends Location {
           ],
         },
       ] as any,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "centerZoom",
+      displayer: "Center Zoom Value",
+      value: 3,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "markerZoom",
+      displayer: "Marker Zoom Value",
+      value: 15,
+    });
+
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
     });
   }
 

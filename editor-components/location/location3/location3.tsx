@@ -69,19 +69,7 @@ class Location3 extends Location {
       value: "Explore the world with us",
     });
 
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 2,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
 
     this.addProp({
       type: "array",
@@ -313,23 +301,23 @@ class Location3 extends Location {
             : markerImage;
 
         if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
-            const iconName = (markerImage as any).name;
-            let ElementIcon: any = null;
-            for (const lib of iconLibraries) {
-              if (ElementIcon) break;
-              for (const [name, Comp] of Object.entries(lib)) {
-                if (name === iconName) {
-                  ElementIcon = Comp;
-                  break;
-                }
+          const iconName = (markerImage as any).name;
+          let ElementIcon: any = null;
+          for (const lib of iconLibraries) {
+            if (ElementIcon) break;
+            for (const [name, Comp] of Object.entries(lib)) {
+              if (name === iconName) {
+                ElementIcon = Comp;
+                break;
               }
             }
+          }
 
-            if (ElementIcon) {
-              const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
-              iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
-            }
-   
+          if (ElementIcon) {
+            const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+            iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+          }
+
         }
 
         if (lat !== undefined && lng !== undefined) {

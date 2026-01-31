@@ -16,12 +16,15 @@
           align-items: center;
           text-align: center;
 
-          .subtitle-row,
           .title-with-socials,
           .description-container {
             justify-content: center;
             text-align: center;
             width: 100%;
+          }
+
+          .title {
+            margin-bottom: 0 !important;
           }
 
           .socials {
@@ -32,6 +35,7 @@
         &.left {
           align-items: flex-start !important;
           text-align: left !important;
+          gap: var(--composer-gap-sm);
 
           .subtitle-row,
           .title-with-socials,
@@ -41,12 +45,21 @@
             margin: 0 !important;
             width: 100% !important;
 
-            .subtitle,
+            .subtitle {
+              text-align: left !important;
+              margin: 0 !important;
+              width: fit-content !important;
+            }
+
             .title,
             .description-text {
               text-align: left !important;
               margin: 0 !important;
               width: 100% !important;
+            }
+
+            .description-text {
+              margin-top: var(--composer-gap-sm) !important;
             }
           }
 
@@ -64,7 +77,12 @@
           width: 100%;
         }
 
-        .subtitle,
+        .subtitle {
+          margin: 0;
+          text-align: left !important;
+          width: fit-content !important;
+        }
+
         .title,
         .description-text {
           margin: 0;
@@ -73,6 +91,7 @@
 
         .description-text {
           color: var(--composer-tertiary-color);
+          margin-top: var(--composer-gap-sm) !important;
         }
 
         .socials {
@@ -212,10 +231,18 @@
               align-items: center !important;
               text-align: center !important;
 
-              .subtitle,
+              .subtitle {
+                text-align: center !important;
+                width: fit-content !important;
+              }
+
               .title,
               .description-text {
                 text-align: center !important;
+              }
+
+              .description-text {
+                margin-top: var(--composer-gap-sm) !important;
               }
             }
 
@@ -235,12 +262,21 @@
               margin: 0 !important;
               width: 100% !important;
 
-              .subtitle,
+              .subtitle {
+                text-align: left !important;
+                margin: 0 !important;
+                width: fit-content !important;
+              }
+
               .title,
               .description-text {
                 text-align: left !important;
                 margin: 0 !important;
                 width: 100% !important;
+              }
+
+              .description-text {
+                margin-top: var(--composer-gap-sm) !important;
               }
 
               .socials {

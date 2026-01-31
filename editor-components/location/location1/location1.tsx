@@ -66,29 +66,9 @@ class Location1 extends Location {
       displayer: "Line",
       value: true,
     });
-    this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Hover Animation Style",
-      value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1"]
-      }
-    });
 
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 3,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
+
 
     this.addProp({
       type: "array",
@@ -324,6 +304,48 @@ class Location1 extends Location {
           value: "",
         },
       ],
+    });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Animation",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
+    });
+
+    this.addProp({
+      type: "number",
+      key: "centerZoom",
+      displayer: "Center Zoom Value",
+      value: 3,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "markerZoom",
+      displayer: "Marker Zoom Value",
+      value: 15,
+    });
+
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
     });
     this.setComponentState("isCardVisible", true);
   }

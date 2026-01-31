@@ -62,19 +62,7 @@ class Location6 extends Location {
       value: "",
     });
 
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 2,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
 
     this.addProp({
       type: "array",
@@ -478,6 +466,38 @@ class Location6 extends Location {
     });
 
     this.setComponentState("customSelectedMarker", null);
+
+    this.addProp({
+      type: "number",
+      key: "centerZoom",
+      displayer: "Center Zoom Value",
+      value: 2,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "markerZoom",
+      displayer: "Marker Zoom Value",
+      value: 15,
+    });
+
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
+    });
   }
 
   static getName(): string {

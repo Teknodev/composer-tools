@@ -34,6 +34,26 @@ class Location4 extends Location {
 
     this.addProp({
       type: "media",
+      key: "media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
       key: "logo",
       displayer: "Logo",
       additionalParams: {
@@ -44,6 +64,8 @@ class Location4 extends Location {
         name: "",
       },
     });
+
+
 
 
     this.addProp({
@@ -93,39 +115,9 @@ class Location4 extends Location {
       },
     });
 
-    this.addProp({
-      type: "media",
-      key: "media",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
-      },
-    });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 3,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
 
     this.addProp({
       type: "array",
@@ -185,6 +177,38 @@ class Location4 extends Location {
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "number",
+      key: "centerZoom",
+      displayer: "Center Zoom Value",
+      value: 3,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "markerZoom",
+      displayer: "Marker Zoom Value",
+      value: 15,
+    });
+
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
     });
   }
 

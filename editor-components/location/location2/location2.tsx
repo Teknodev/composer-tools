@@ -70,19 +70,7 @@ class Location2 extends Location {
         "Each template in our ever growing studio library can be added and moved around within any page effortlessly with one click. Combine them, rearrange them and customize them further as much as you desire. Welcome to the future of building with WordPress.",
     });
 
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 2,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
 
     this.addProp({
       type: "array",
@@ -382,6 +370,13 @@ class Location2 extends Location {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemsInRow",
+      displayer: "Item Count In A Row",
+      value: 4,
+    });
+
+    this.addProp({
       type: "array",
       displayer: "addresses",
       key: "addresses",
@@ -445,12 +440,39 @@ class Location2 extends Location {
         },
       ],
     });
+
     this.addProp({
       type: "number",
-      key: "itemsInRow",
-      displayer: "Item Count In A Row",
-      value: 4,
+      key: "centerZoom",
+      displayer: "Center Zoom Value",
+      value: 2,
     });
+
+    this.addProp({
+      type: "number",
+      key: "markerZoom",
+      displayer: "Marker Zoom Value",
+      value: 15,
+    });
+
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
+    });
+
 
   }
 
