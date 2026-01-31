@@ -468,9 +468,9 @@ class Portfolio1 extends BasePortfolio {
       const icon = item?.icon;
       const icon2 = item?.icon2;
 
-      const hasSubtitle = !!subtitle;
-      const hasTitle = !!title;
-      const hasDescription = !!description;
+      const hasSubtitle = this.castToString(subtitle);
+      const hasTitle = this.castToString(title);
+      const hasDescription = this.castToString(description);
       const hasMedia = media;
 
       const hasAnyButton = hasAnyButtonInItem(buttons);
@@ -539,9 +539,9 @@ class Portfolio1 extends BasePortfolio {
       const icon = item?.icon;
       const icon2 = item?.icon2;
 
-      const hasSubtitle = !!subtitle;
-      const hasTitle = !!title;
-      const hasDescription = !!description;
+      const hasSubtitle = this.castToString(subtitle);
+      const hasTitle = this.castToString(title);
+      const hasDescription = this.castToString(description);
       const hasAnyButton = hasAnyButtonInItem(buttons);
 
       if (!hasContentInItem(item)) {
