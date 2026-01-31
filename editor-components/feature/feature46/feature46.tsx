@@ -7,6 +7,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type ServiceCard = {
     media: TypeMediaInputValue;
+    subtitle: Element;
     title: Element;
     description: Element;
     buttons: {
@@ -20,29 +21,55 @@ type PrimaryButton = {
     type: TypeButton;
     text: Element;
     url: string;
-};
+}[];
 
 class Feature46 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
 
         this.addProp({
+            type: "icon",
+            key: "alignment",
+            displayer: "Alignment",
+            value: "center"
+        });
+
+        this.addProp({
             type: "string",
-            key: "baseTitle",
-            displayer: "Base Title",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: ""
+        });
+
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
             value: "Services We Provide"
         });
 
         this.addProp({
             type: "string",
-            key: "baseDescription",
-            displayer: "Base Description",
+            key: "description",
+            displayer: "Description",
             value: "We help to quickly coordinate e-business applications through revolutionary catalysts."
         });
 
-        this.addProp(
-            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
-        );
+        this.addProp({
+            type: "number",
+            key: "itemsPerRow",
+            displayer: "Item counts in a row",
+            value: 3
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+            ]
+        });
 
         this.addProp({
             type: "array",
@@ -58,6 +85,18 @@ class Feature46 extends BaseFeature {
                     displayer: "Service",
                     value: [
                         {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Web Design"
+                        },
+                        {
                             type: "media",
                             key: "media",
                             displayer: "Media",
@@ -71,12 +110,6 @@ class Feature46 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Web Design"
-                        },
-                        {
-                            type: "string",
                             key: "description",
                             displayer: "Description",
                             value: "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets."
@@ -86,7 +119,7 @@ class Feature46 extends BaseFeature {
                             key: "buttons",
                             displayer: "Buttons",
                             value: [
-                                INPUTS.BUTTON("button", "Button", "Read More", "#", null, null, "Link")
+                                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")
                             ]
                         }
                     ]
@@ -96,6 +129,18 @@ class Feature46 extends BaseFeature {
                     key: "service",
                     displayer: "Service",
                     value: [
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Development"
+                        },
                         {
                             type: "media",
                             key: "media",
@@ -110,12 +155,6 @@ class Feature46 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Development"
-                        },
-                        {
-                            type: "string",
                             key: "description",
                             displayer: "Description",
                             value: "Energistically scale future-proof core competencies. Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness."
@@ -125,7 +164,7 @@ class Feature46 extends BaseFeature {
                             key: "buttons",
                             displayer: "Buttons",
                             value: [
-                                INPUTS.BUTTON("button", "Button", "Read More", "#", null, null, "Link")
+                                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")
                             ]
                         }
                     ]
@@ -135,6 +174,18 @@ class Feature46 extends BaseFeature {
                     key: "service",
                     displayer: "Service",
                     value: [
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "SEO & Analytics"
+                        },
                         {
                             type: "media",
                             key: "media",
@@ -149,12 +200,6 @@ class Feature46 extends BaseFeature {
                         },
                         {
                             type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "SEO & Analytics"
-                        },
-                        {
-                            type: "string",
                             key: "description",
                             displayer: "Description",
                             value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy and overall value proposition."
@@ -164,7 +209,7 @@ class Feature46 extends BaseFeature {
                             key: "buttons",
                             displayer: "Buttons",
                             value: [
-                                INPUTS.BUTTON("button", "Button", "Read More", "#", null, null, "Link")
+                                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")
                             ]
                         }
                     ]
@@ -178,91 +223,111 @@ class Feature46 extends BaseFeature {
     }
 
     render() {
-        const baseSubTitle = this.castToString(this.getPropValue("baseSubtitle"));
-        const baseTitle = this.castToString(this.getPropValue("baseTitle"));
-        const baseDescription = this.castToString(this.getPropValue("baseDescription"));
+        const alignment = this.getPropValue("alignment");
+        const subtitle = this.getPropValue("subtitle");
+        const title = this.getPropValue("title");
+        const description = this.getPropValue("description");
+        const itemsPerRow = Number(this.getPropValue("itemsPerRow")) || 3;
         const services = this.castToObject<ServiceCard[]>("services");
-        const primaryButton = this.castToObject<PrimaryButton>("button");
+        const primaryButtons = this.castToObject<PrimaryButton>("buttons");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("header-section")}>
-                        {baseSubTitle && (
-                            <Base.SectionSubTitle className={this.decorateCSS("base-subtitle")}>
-                                {baseSubTitle}
+                    <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${this.decorateCSS(alignment)}`}>
+                        {this.castToString(subtitle) && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {subtitle}
                             </Base.SectionSubTitle>
                         )}
                         
-                        {baseTitle && (
-                            <Base.SectionTitle className={this.decorateCSS("base-title")}>
-                                {baseTitle}
+                        {this.castToString(title) && (
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                {title}
                             </Base.SectionTitle>
                         )}
                         
-                        {baseDescription && (
-                            <Base.SectionDescription className={this.decorateCSS("base-description")}>
-                                {baseDescription}
+                        {this.castToString(description) && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {description}
                             </Base.SectionDescription>
                         )}
                     </Base.VerticalContent>
 
                     <Base.ListGrid
-                        gridCount={{ pc: services?.length || 1, tablet: 2, phone: 1 }}
+                        gridCount={{ pc: itemsPerRow || 3, tablet: 3, phone: 1 }}
                         className={this.decorateCSS("services-grid")}
                     >
                         {services?.map((service: ServiceCard, index: number) => (
                             <div key={index} className={this.decorateCSS("service-card")}>
-                                {this.castToString(service.title) && (
-                                    <Base.H3 className={this.decorateCSS("service-title")}>
-                                        {this.castToString(service.title) || ""}
-                                    </Base.H3>
-                                )}
+                                <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                    {this.castToString(service.subtitle) && (
+                                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                            {service.subtitle}
+                                        </Base.H6>
+                                    )}
 
-                                {service.media && (
-                                    <div className={this.decorateCSS("media-wrapper")}>
-                                        <Base.Media 
-                                            value={service.media}
-                                            className={this.decorateCSS("media")}
-                                        />
-                                    </div>
-                                )}
+                                    {this.castToString(service.title) && (
+                                        <Base.H3 className={this.decorateCSS("card-title")}>
+                                            {service.title}
+                                        </Base.H3>
+                                    )}
 
-                                {this.castToString(service.description) && (
-                                    <Base.P className={this.decorateCSS("service-description")}>
-                                        {this.castToString(service.description) || ""}
-                                    </Base.P>
-                                )}
+                                    {service.media && (
+                                        <div className={this.decorateCSS("media-wrapper")}>
+                                            <Base.Media 
+                                                value={service.media}
+                                                className={this.decorateCSS("media")}
+                                            />
+                                        </div>
+                                    )}
 
-                                {service.buttons?.map((button, btnIndex) => (
-                                    this.castToString(button.text) && (
-                                        <Base.Button
-                                            className={this.decorateCSS("service-button")}
-                                            key={btnIndex}
-                                            buttonType={button.type}
-                                        >
-                                            <ComposerLink path={button.url}>
-                                                {this.castToString(button.text)}
-                                            </ComposerLink>
-                                        </Base.Button>
-                                    )
-                                ))}
+                                    {this.castToString(service.description) && (
+                                        <Base.P className={this.decorateCSS("card-description")}>
+                                            {service.description}
+                                        </Base.P>
+                                    )}
+
+                                    {service.buttons && service.buttons.length > 0 && (
+                                        <div className={this.decorateCSS("card-buttons")}>
+                                            {service.buttons.map((button, btnIndex) => (
+                                                this.castToString(button.text) && (
+                                                    <Base.Button
+                                                        className={this.decorateCSS("card-button")}
+                                                        key={btnIndex}
+                                                        buttonType={button.type}
+                                                    >
+                                                        <ComposerLink path={button.url}>
+                                                            <Base.P className={this.decorateCSS("card-button-text")}>
+                                                                {button.text}
+                                                            </Base.P>
+                                                        </ComposerLink>
+                                                    </Base.Button>
+                                                )
+                                            ))}
+                                        </div>
+                                    )}
+                                </Base.VerticalContent>
                             </div>
                         ))}
                     </Base.ListGrid>
 
-                    {!!this.castToString(primaryButton.text) && (
-                        <div className={this.decorateCSS("base-buttons-container")}>
-                            <ComposerLink path={primaryButton.url}>
-                                <Base.Button
-                                    buttonType={primaryButton.type}
-                                    className={this.decorateCSS("base-button")}
-                                >
-                                    <Base.P className={this.decorateCSS("base-button-text")}>
-                                        {this.castToString(primaryButton.text)}
-                                    </Base.P>
-                                </Base.Button>
-                            </ComposerLink>
+                    {primaryButtons && primaryButtons.length > 0 && (
+                        <div className={this.decorateCSS("primary-buttons-container")}>
+                            {primaryButtons.map((button, index) => (
+                                this.castToString(button.text) && (
+                                    <ComposerLink key={index} path={button.url}>
+                                        <Base.Button
+                                            buttonType={button.type}
+                                            className={this.decorateCSS("primary-button")}
+                                        >
+                                            <Base.P className={this.decorateCSS("primary-button-text")}>
+                                                {button.text}
+                                            </Base.P>
+                                        </Base.Button>
+                                    </ComposerLink>
+                                )
+                            ))}
                         </div>
                     )}
                 </Base.MaxContent>

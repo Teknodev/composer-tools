@@ -8,61 +8,58 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--composer-gap-xl);
+    gap: var(--composer-gap-lg);
 
     .header-section {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-sm);
-      text-align: center;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
 
-      .base-subtitle {
-        margin: 0;
+      &.left {
+        align-items: flex-start;
+        text-align: left;
       }
+    }
 
-      .base-title {
-        margin: 0;
-        font-size: 43.335px !important;
-        font-weight: 600 !important;
-        color: #0f131f;
-        text-align: center !important;
-        margin-bottom: 10px;
-      }
+    .subtitle {
+      content: "";
+    }
 
-      .base-description {
-        margin: 0;
-        font-size: 20.4px;
-        color: #354152;
-      }
+    .title {
+      content: "";
+    }
+
+    .description {
+      content: "";
     }
 
     .services-grid {
       width: 100%;
-      gap: 4rem;
+      gap: var(--composer-gap-md);
 
       .service-card {
         background-color: var(--composer-html-background);
+        padding: var(--composer-gap-md);
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+        text-align: left;
 
-        .service-title {
-          margin: 0 0 var(--composer-gap-sm) 0 !important;
-          font-size: 25.5px !important;
-          font-weight: 900 !important;
-          color: #0f131f;
-          line-height: 1.3;
-          text-align: left !important;
-          margin-inline-start: 0 !important;
+        .card-content {
+          text-align: left;
+        }
+
+        .card-subtitle {
+          text-align: left;
+        }
+
+        .card-title {
+          text-align: left;
         }
 
         .media-wrapper {
           width: 100%;
-          margin-bottom: var(--composer-gap-sm);
           overflow: hidden;
           border-radius: var(--composer-border-radius-sm);
           
@@ -76,158 +73,93 @@
           }
         }
 
-        .service-description {
-          margin: 0 0 var(--composer-gap-sm) 0 !important;
-          font-size: 17px;
-          color: #35415b;
-          line-height: 1.6;
-          opacity: 0.85;
-          text-align: left !important;
-          margin-inline-start: 0 !important;
+        .card-description {
+          text-align: left;
         }
 
-        // Buttons at the end
-        .service-button {
-          margin-top: var(--composer-gap-xs);
-          padding: 12px 24px !important;
-          border-radius: var(--composer-border-radius-sm);
-          box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
-          border-bottom: none !important;
+        .card-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          align-items: center;
+          width: 100%;
+          text-align: left;
 
-          a {
-            text-decoration: none;
-          }
+          .card-button {
+            content: "";
 
-          .button-text {
-            margin: 0;
+            a {
+              text-decoration: none;
+            }
+
+            .card-button-text {
+              content: "";
+            }
           }
         }
       }
     }
 
-    .base-buttons-container {
+    .primary-buttons-container {
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
       width: 100%;
-      margin-top: var(--composer-gap-lg);
 
-      .base-button {
-        border-radius: var(--composer-border-radius-sm);
-        box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
-        border-bottom: none !important;
-        padding: 12px 24px !important;
+      .primary-button {
+        content: "";
         
-        .base-button-text {
-          margin: 0;
+        .primary-button-text {
+          content: "";
         }
       }
     }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      gap: var(--composer-gap-lg);
-
-      .header-section {
-        max-width: 90%;
-        gap: var(--composer-gap-xs);
-
-        .base-title {
-          font-size: 2rem !important;
-          margin-bottom: 8px;
-        }
-
-        .base-description {
-          font-size: 18px;
-        }
-      }
+    @container (max-width: #{$composer-tablet-width}) {
+      gap: var(--composer-gap-sm);
 
       .services-grid {
-        gap: 3rem;
-
-        .service-card {
-          .service-title {
-            font-size: 1.4rem !important;
-          }
-
-          .media-wrapper {
-            margin-bottom: var(--composer-gap-sm);
-
-            .media {
-              aspect-ratio: 3/2;
-            }
-          }
-
-          .service-description {
-            font-size: 16px;
-          }
-        }
+        gap: var(--composer-gap-sm);
       }
     }
-  }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      gap: var(--composer-gap-md);
-
-      .header-section {
-        max-width: 100%;
-        gap: var(--composer-gap-xs);
-
-        .base-title {
-          font-size: 1.75rem !important;
-          margin-bottom: 6px;
-        }
-
-        .base-description {
-          font-size: 16px;
-        }
-      }
+    @container (max-width: #{$composer-phone-width}) {
+      gap: var(--composer-gap-sm);
 
       .services-grid {
-        gap: 2.5rem;
+        gap: var(--composer-gap-sm);
 
         .service-card {
-          .service-title {
-            font-size: 1.3rem !important;
-            font-weight: 800 !important;
-          }
-
           .media-wrapper {
-            margin-bottom: var(--composer-gap-sm);
-
             .media {
               aspect-ratio: 16/9;
             }
           }
 
-          .service-description {
-            font-size: 15px;
-            line-height: 1.5;
-          }
-
-          .service-button {
+          .card-buttons {
             width: 100%;
+            
+            .card-button {
+              a {
+                display: block;
+                width: 100%;
+              }
 
-            a {
-              display: block;
-              width: 100%;
+              .card-button-text {
+                width: 100%;
+                text-align: center;
+              }
             }
           }
         }
       }
 
-      .base-buttons-container {
-        margin-top: var(--composer-gap-md);
+      .primary-buttons-container {
         flex-direction: column;
         width: 100%;
 
-        .base-button {
+        .primary-button {
           width: 100%;
         }
       }
