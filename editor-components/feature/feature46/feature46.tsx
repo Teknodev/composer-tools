@@ -56,22 +56,6 @@ class Feature46 extends BaseFeature {
         });
 
         this.addProp({
-            type: "number",
-            key: "itemsPerRow",
-            displayer: "Item counts in a row",
-            value: 3
-        });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
-            ]
-        });
-
-        this.addProp({
             type: "array",
             key: "services",
             displayer: "Services",
@@ -119,7 +103,7 @@ class Feature46 extends BaseFeature {
                             key: "buttons",
                             displayer: "Buttons",
                             value: [
-                                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
                             ]
                         }
                     ]
@@ -164,7 +148,7 @@ class Feature46 extends BaseFeature {
                             key: "buttons",
                             displayer: "Buttons",
                             value: [
-                                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
                             ]
                         }
                     ]
@@ -209,11 +193,27 @@ class Feature46 extends BaseFeature {
                             key: "buttons",
                             displayer: "Buttons",
                             value: [
-                                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
                             ]
                         }
                     ]
                 }
+            ]
+        });
+
+        this.addProp({
+            type: "number",
+            key: "itemsPerRow",
+            displayer: "Item counts in a row",
+            value: 3
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
             ]
         });
     }
