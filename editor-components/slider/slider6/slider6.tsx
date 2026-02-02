@@ -33,6 +33,15 @@ class Slider6 extends BaseSlider {
       value: "Latest And Greatest Post",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
+
+    this.addProp({
       type: "array",
       key: "header",
       displayer: "Slider",
@@ -78,7 +87,7 @@ class Slider6 extends BaseSlider {
               displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
           ],
         },
         {
@@ -123,7 +132,7 @@ class Slider6 extends BaseSlider {
               value: "Dsn Grid - March , 17th 2020",
             },
 
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
           ],
         },
         {
@@ -167,7 +176,7 @@ class Slider6 extends BaseSlider {
               displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
             },
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
           ],
         },
         {
@@ -212,7 +221,7 @@ class Slider6 extends BaseSlider {
               value: "Dsn Grid - March , 17th 2020",
             },
 
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "", null, "Link"),
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
           ],
         },
       ],
@@ -299,11 +308,13 @@ class Slider6 extends BaseSlider {
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const button = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || this.castToString(title)) && (
+          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || (button && this.castToString(button.text))) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle
@@ -314,6 +325,7 @@ class Slider6 extends BaseSlider {
                 </Base.SectionSubTitle>
               )}
               {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("slider-parent")}>
@@ -361,7 +373,7 @@ class Slider6 extends BaseSlider {
                             <ComposerLink key={index} path={item.button.url}>
                               <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("button")}>
                                 <span className={this.decorateCSS("button-text")}>{item.button.text}</span>
-                                {item.button.icon && (item.button.icon as any).name && (
+                                {item.button.icon && (
                                   <Base.Media
                                     value={item.button.icon as any}
                                     className={this.decorateCSS("icon")}
@@ -378,6 +390,19 @@ class Slider6 extends BaseSlider {
               })}
             </ComposerSlider>
           </div>
+          {button && this.castToString(button.text) && (
+            <ComposerLink path={button.url}>
+              <Base.Button buttonType={button.type} className={this.decorateCSS("section-button")}>
+                {button.text && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
+                {button.icon && (
+                  <Base.Media
+                    value={button.icon as any}
+                    className={this.decorateCSS("icon")}
+                  />
+                )}
+              </Base.Button>
+            </ComposerLink>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );

@@ -27,14 +27,6 @@ class Slider4 extends BaseSlider {
       displayer: "Title",
       value: "Our dedication to our customer",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
-
-    this.addProp({
-      type: "boolean",
-      key: "hoverAnimation",
-      displayer: "Hover Animation",
-      value: true,
-    });
     this.addProp({
       type: "string",
       key: "description",
@@ -295,6 +287,13 @@ class Slider4 extends BaseSlider {
       slidesToScroll: 1,
       adaptiveHeight: false,
     }));
+    this.addProp({
+      type: "boolean",
+      key: "hoverAnimation",
+      displayer: "Hover Animation",
+      value: true,
+    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
 
     this.setComponentState("slider-ref", React.createRef());
   }

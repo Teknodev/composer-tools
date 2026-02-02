@@ -251,8 +251,8 @@ class Slider3 extends BaseSlider {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || previousArrow || nextArrow) && (
+        {(this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || previousArrow || nextArrow) && (
+          <Base.MaxContent className={this.decorateCSS("header-wrapper")}>
             <div
               className={`${this.decorateCSS("title")} ${this.decorateCSS(alignmentValue)}
             ${!this.castToString(title) && !this.castToString(subtitle) && !this.castToString(description) && this.decorateCSS("no-header-titles")}`}
@@ -293,36 +293,36 @@ class Slider3 extends BaseSlider {
                 </div>
               )}
             </div>
-          )}
+          </Base.MaxContent>
+        )}
 
-          <div className={this.decorateCSS("slider-parent")}>
-            {isCardExist && (
-              <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
-                {items.map((item: SliderItem, index: number) => (
-                  <ComposerLink key={index} path={item.path}>
-                    <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}`}>
-                      <div className={this.decorateCSS("img-container")}>
-                        {item.media && (
-                          <Base.Media value={item.media} className={`${this.decorateCSS("img")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`} />
-                        )}
-                        {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
-                      </div>
-                      {(this.castToString(item.header) || this.castToString(item.description)) && (
-                        <Base.VerticalContent
-                          className={`${this.decorateCSS("content-container")} 
-                      ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}
-                        >
-                          {this.castToString(item.header) && <Base.H2 className={this.decorateCSS("content-title")}>{item.header}</Base.H2>}
-                          {this.castToString(item.description) && <Base.P className={this.decorateCSS("content-description")}>{item.description}</Base.P>}
-                        </Base.VerticalContent>
+        <div className={this.decorateCSS("slider-parent")}>
+          {isCardExist && (
+            <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
+              {items.map((item: SliderItem, index: number) => (
+                <ComposerLink key={index} path={item.path}>
+                  <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}`}>
+                    <div className={this.decorateCSS("img-container")}>
+                      {item.media && (
+                        <Base.Media value={item.media} className={`${this.decorateCSS("img")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`} />
                       )}
+                      {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                     </div>
-                  </ComposerLink>
-                ))}
-              </ComposerSlider>
-            )}
-          </div>
-        </Base.MaxContent>
+                    {(this.castToString(item.header) || this.castToString(item.description)) && (
+                      <Base.VerticalContent
+                        className={`${this.decorateCSS("content-container")} 
+                      ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}
+                      >
+                        {this.castToString(item.header) && <Base.H2 className={this.decorateCSS("content-title")}>{item.header}</Base.H2>}
+                        {this.castToString(item.description) && <Base.P className={this.decorateCSS("content-description")}>{item.description}</Base.P>}
+                      </Base.VerticalContent>
+                    )}
+                  </div>
+                </ComposerLink>
+              ))}
+            </ComposerSlider>
+          )}
+        </div>
       </Base.Container>
     );
   }

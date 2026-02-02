@@ -46,11 +46,11 @@
         gap: var(--composer-gap-sm);
 
         @container (max-width: #{$composer-tablet-width}) {
-          margin: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
+          margin: var(--composer-gap-md) 0 0 0 !important;
         }
 
         @container (max-width: #{$composer-phone-width}) {
-          margin: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+          margin: var(--composer-gap-md) 0 0 0 !important;
         }
 
         .control-title {
@@ -111,7 +111,7 @@
           gap: var(--composer-gap-md);
 
           @container (max-width: #{$composer-tablet-width}) {
-            padding: 0 var(--composer-gap-md);
+            padding: 0;
           }
 
           @container (max-width: #{$composer-phone-width}) {
@@ -135,6 +135,15 @@
                   width: 100%;
                   display: flex;
                 }
+
+                @container (max-width: #{$composer-tablet-width}) {
+                  padding: 0 var(--composer-gap-sm);
+                }
+
+                @container (max-width: #{$composer-phone-width}) {
+                  padding: 0;
+                }
+
               }
             }
           }

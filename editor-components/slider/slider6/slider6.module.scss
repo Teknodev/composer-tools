@@ -17,13 +17,33 @@
     .header {
       width: 100%;
       margin-bottom: var(--composer-gap-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       .title,
       .subtitle,
-      .no-title {
+      .no-title,
+      .section-description {
         content: "";
         margin-bottom: var(--composer-gap-md);
+        text-align: center;
+        justify-content: center;
       }
+
+      .subtitle {
+        transform: translateX(0) !important;
+
+        &::before {
+          display: none;
+        }
+      }
+
+    }
+
+    .section-button {
+      width: fit-content;
+      margin-top: var(--composer-gap-lg);
     }
 
     .slider-parent {
