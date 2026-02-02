@@ -746,6 +746,13 @@ class ECommerce8 extends BaseECommerce {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "hoverAnimation",
+            displayer: "Hover Animation",
+            value: true,
+        });
+
+        this.addProp({
             type: "number",
             key: "itemCount",
             displayer: "Item Count in a Row",
@@ -763,6 +770,7 @@ class ECommerce8 extends BaseECommerce {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const enableOverlay = this.getPropValue("enableOverlay");
+        const hoverAnimation = this.getPropValue("hoverAnimation");
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
         const cards = this.castToObject<ProductCard[]>("cards") || [];
         const itemCount = this.getPropValue("itemCount");
@@ -831,7 +839,7 @@ class ECommerce8 extends BaseECommerce {
                                 return (
                                     <div key={cardIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={navigateTo} isFullWidth={true}>
-                                            <div className={`${this.decorateCSS("image-container")} ${displayHoverImage && this.decorateCSS("has-hover")}`}>
+                                            <div className={`${this.decorateCSS("image-container")} ${displayHoverImage && this.decorateCSS("has-hover-media")} ${hoverAnimation && this.decorateCSS("has-animation")}`}>
                                                 {displayImage && (
                                                     <div className={this.decorateCSS("image-wrapper")}>
                                                         <Base.Media

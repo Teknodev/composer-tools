@@ -64,7 +64,7 @@
                     position: relative;
                     border-radius: var(--composer-border-radius-md);
 
-                    &.has-hover:hover {
+                    &.has-hover-media:hover {
                         .image-wrapper {
                             .image {
                                 opacity: 0;
@@ -72,6 +72,18 @@
 
                             .hover-image {
                                 opacity: 1;
+                            }
+                        }
+                    }
+
+                    &.has-animation:hover {
+                        .image-wrapper {
+                            .image {
+                                transform: scale(1.10);
+                                transition: transform 4s ease;
+                            }
+
+                            .hover-image {
                                 transform: scale(1.10);
                                 transition: transform 4s ease;
                             }
