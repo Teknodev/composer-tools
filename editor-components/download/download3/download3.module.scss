@@ -145,11 +145,13 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          align-items: stretch;
+          align-items: center;
           gap: var(--composer-gap-md);
-          margin-top: var(--composer-gap-md);
 
           .button {
+            width: 180px;
+            height: auto;
+
             .button-logo {
               width: 180px;
               object-fit: contain;
@@ -382,10 +384,11 @@
             .button {
               width: 180px;
               height: 50px;
-            
+
               .button-element {
                 width: 180px;
               }
+
               .button-logo {
                 height: 100%;
                 width: 100%;
