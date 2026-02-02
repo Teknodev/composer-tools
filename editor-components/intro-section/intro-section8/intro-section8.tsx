@@ -122,6 +122,8 @@ class IntroSection8 extends BaseIntroSection {
         const isVideo = media?.type === "video";
         const isPlaying = !!this.getComponentState("isPlaying");
         const hasContent = subtitleExist || titleExist || descriptionExist || visibleButtons.length > 0;
+        const hasMediaUrl = media && "url" in media && media.url;
+        const hasThumbnailUrl = thumbnail && "url" in thumbnail && thumbnail.url;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -147,16 +149,14 @@ class IntroSection8 extends BaseIntroSection {
                             )}
                         </Base.VerticalContent>
                     )}
-                    {media?.url && (
+                    {hasMediaUrl && (
                         <div className={this.decorateCSS("media-wrapper")}>
                             {isVideo ? (
                                 !isPlaying ? (
                                     <div className={this.decorateCSS("thumbnail-container")} onClick={this.handlePlayVideo}>
-                                        {thumbnail?.url && (
-                                            <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />
-                                        )}
+                                        <Base.Media value={hasThumbnailUrl ? thumbnail : media} className={this.decorateCSS("thumbnail-image")} />
                                         {hasOverlay && <div className={this.decorateCSS("overlay")} />}
-                                        {(playIcon?.name || playIcon?.url) && (
+                                        {(playIcon?.name || (playIcon && "url" in playIcon && playIcon.url)) && (
                                             <div className={this.decorateCSS("play-icon-wrapper")}>
                                                 <Base.Media value={playIcon} className={`${this.decorateCSS("play-icon")} ${playIcon?.type === "image" && this.decorateCSS("is-image")}`} />
                                             </div>
