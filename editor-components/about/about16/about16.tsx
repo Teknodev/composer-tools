@@ -40,6 +40,13 @@ class About16 extends BaseAbout {
         });
 
         this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in Row",
+            value: 2,
+        });
+
+        this.addProp({
             type: "array",
             key: "cards",
             displayer: "Cards",
@@ -170,13 +177,6 @@ class About16 extends BaseAbout {
             key: "enableAnimation",
             displayer: "Animation",
             value: true,
-        });
-
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in Row",
-            value: 2,
         });
     }
 
