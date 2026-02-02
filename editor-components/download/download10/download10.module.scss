@@ -100,13 +100,12 @@
 
           .button-image {
             width: 170px;
-            height: 50px;
+            height: 49px;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
 
           .button-element {
-            height: 50px;
 
             .button-icon {
               font-size: 1.25rem;
@@ -187,6 +186,10 @@
             width: 100%;
             min-height: 80px;
             height: auto;
+
+            .button-image {
+              height: 46px;
+            }
           }
         }
 

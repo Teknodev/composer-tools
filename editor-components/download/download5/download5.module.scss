@@ -76,18 +76,16 @@ $min-height: 500px;
 
         .button-image {
           width: 170px;
-          height: 50px;
+          height: 49px;
           object-fit: cover;
           border-radius: var(--composer-border-radius-sm);
         }
 
         .button-element {
-          height: 50px;
           display: flex;
           align-items: center;
           justify-content: center;
           gap: var(--composer-gap-xs);
-          padding: 12px 24px;
 
           .icon,
           .button-text {
@@ -131,7 +129,11 @@ $min-height: 500px;
       .page {
         width: 55% !important;
 
-        .buttons-container {}
+        .buttons-container {
+          .button-image {
+            height: 46px;
+          }
+        }
       }
 
       .page-no-image {
@@ -162,12 +164,12 @@ $min-height: 500px;
           flex-wrap: wrap;
 
           .button-element {
-            height: 40px;
+            width: 100%;
           }
 
           .button-image {
             width: 150px;
-            height: 40px;
+            height: 32px;
           }
         }
       }

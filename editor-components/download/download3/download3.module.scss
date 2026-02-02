@@ -42,20 +42,13 @@
       }
 
       .button-logo {
+        height: 49px;
         width: 170px;
-        height: 50px;
         object-fit: cover;
         border-radius: var(--composer-border-radius-sm);
       }
 
       .button-element {
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--composer-gap-xs);
-        padding: 12px 24px;
-
         .button-icon {
           font-size: 1.25rem;
           width: 1.25rem;
@@ -144,6 +137,12 @@
     }
 
     .max-content .page {
+      .button-group {
+        .button-logo {
+          height: 46px;
+        }
+      }
+
       .group-container {
         padding-left: var(--composer-gap-lg);
         padding-right: var(--composer-gap-lg);
@@ -181,13 +180,9 @@
         justify-content: flex-start;
         flex-direction: row;
 
-        .button-element {
-          height: 40px;
-        }
-
         .button-logo {
+          height: 32px;
           width: 150px;
-          height: 40px;
         }
       }
     }
