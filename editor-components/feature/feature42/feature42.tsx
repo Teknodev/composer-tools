@@ -35,7 +35,7 @@ class Feature42 extends BaseFeature {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Thousands of Agencies Have Chosen Duda as Their White Label Web Design Platform",
+            value: "Everything you need to deploy your app",
         });
 
         this.addProp({
@@ -43,13 +43,6 @@ class Feature42 extends BaseFeature {
             key: "description",
             displayer: "Description",
             value: "",
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
         });
 
         this.addProp({
@@ -181,6 +174,26 @@ class Feature42 extends BaseFeature {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "enableOverlay",
+            displayer: "Overlay",
+            value: false,
+        });
+
+        this.addProp({
+            type: "media",
+            key: "arrowIcon",
+            displayer: "Arrow Icon",
+            additionalParams: {
+                availableTypes: ["icon"],
+            },
+            value: {
+                type: "icon",
+                name: "FiChevronDown"
+            }
+        });
+
+        this.addProp({
             type: "array",
             key: "buttons",
             displayer: "Buttons",
@@ -197,8 +210,10 @@ class Feature42 extends BaseFeature {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableOverlay = this.getPropValue("enableOverlay");
+        const arrowIcon = this.getPropValue("arrowIcon");
         const items = this.castToObject<ListItem[]>("items");
-        const activeIndex = this.getComponentState("activeIndex") || 0;
+        const activeIndex = this.getComponentState("activeIndex");
+        const effectiveIndex = activeIndex === undefined ? 0 : activeIndex;
         const hasItems = items.some((item: ListItem) => this.castToString(item.title));
         const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
@@ -211,7 +226,7 @@ class Feature42 extends BaseFeature {
         );
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={this.decorateCSS("container")} isFull={true}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasContent && (
                         <div className={this.decorateCSS("text-content")}>
@@ -226,7 +241,7 @@ class Feature42 extends BaseFeature {
                         <div className={this.decorateCSS("items-wrapper")}>
                             {items.map((item: ListItem, index: number) => {
                                 const menuTitle = item.title;
-                                const isActive = activeIndex === index;
+                                const isActive = effectiveIndex === index;
                                 return this.castToString(menuTitle) && (
                                     <Base.H5
                                         key={index}
@@ -242,7 +257,7 @@ class Feature42 extends BaseFeature {
                     {hasRightContent && (
                         <div className={this.decorateCSS("card-wrapper")}>
                             {items.map((item: ListItem, index: number) => {
-                                const isActive = activeIndex === index;
+                                const isActive = effectiveIndex === index;
                                 const cardTitleExist = this.castToString(item.cardTitle);
                                 const text1Exist = this.castToString(item.text1);
                                 const text2Exist = this.castToString(item.text2);
@@ -251,6 +266,22 @@ class Feature42 extends BaseFeature {
                                         key={index}
                                         className={`${this.decorateCSS("card-content")} ${isActive && this.decorateCSS("active-item")}`}
                                     >
+                                        <div
+                                            className={this.decorateCSS("mobile-title-wrapper")}
+                                            onClick={() => {
+                                                const newIndex = activeIndex === index ? -1 : index;
+                                                this.setComponentState("activeIndex", newIndex);
+                                            }}
+                                        >
+                                            <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>
+                                                {item.title}
+                                            </Base.H3>
+                                            <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
+                                                {arrowIcon && (
+                                                    <Base.Media value={arrowIcon} />
+                                                )}
+                                            </div>
+                                        </div>
                                         {item.image && (
                                             <div className={this.decorateCSS("image-wrapper")}>
                                                 <Base.Media
@@ -265,19 +296,13 @@ class Feature42 extends BaseFeature {
                                         {(cardTitleExist || text1Exist || text2Exist) && (
                                             <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
                                                 {cardTitleExist && (
-                                                    <Base.SectionTitle className={this.decorateCSS("cardTitle")}>
-                                                        {item.cardTitle}
-                                                    </Base.SectionTitle>
+                                                    <Base.H4 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H4>
                                                 )}
                                                 {text1Exist && (
-                                                    <Base.H5 className={this.decorateCSS("sectionText1")}>
-                                                        {item.text1}
-                                                    </Base.H5>
+                                                    <Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>
                                                 )}
                                                 {text2Exist && (
-                                                    <Base.H5 className={this.decorateCSS("sectionText2")}>
-                                                        {item.text2}
-                                                    </Base.H5>
+                                                    <Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>
                                                 )}
                                             </div>
                                         )}

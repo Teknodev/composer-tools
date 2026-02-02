@@ -11,7 +11,6 @@
             flex-direction: column;
 
             .vertical-content {
-
                 .subtitle {
                     margin-left: auto;
                     margin-right: auto;
@@ -40,7 +39,7 @@
             .itemTitle {
                 cursor: pointer;
                 text-align: left;
-                color: var(--composer-font-color-primary);
+                color: var(--composer-tertiary-color);
                 transition: color 0.3s ease;
                 position: relative;
                 width: auto;
@@ -93,6 +92,10 @@
                 width: 100%;
                 height: 100%;
 
+                .mobile-title-wrapper {
+                    display: none;
+                }
+
                 &.active-item {
                     display: flex;
                     position: relative;
@@ -134,10 +137,7 @@
                         flex: 1;
                     }
 
-                    .cardTitle {
-                        text-align: left;
-                    }
-
+                    .cardTitle,
                     .sectionText1,
                     .sectionText2 {
                         text-align: left;
@@ -169,16 +169,76 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            gap: var(--composer-gap-md);
+
+            .items-wrapper {
+                display: none;
+            }
+
             .card-wrapper {
+                flex-direction: column;
+                gap: 0;
+
                 .card-content {
+                    gap: var(--composer-gap-md);
                     flex-direction: column;
+                    display: flex;
+                    position: relative;
+                    opacity: 1;
+                    height: auto;
+
+                    .mobile-title-wrapper {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: var(--composer-gap-sm);
+                        padding: var(--composer-gap-md) 0;
+                        cursor: pointer;
+
+                        .mobile-title {
+                            color: var(--composer-font-color-primary);
+                            transition: color 0.3s ease;
+                            width: fit-content;
+
+                            &.active {
+                                color: var(--composer-primary-color);
+                            }
+                        }
+
+                        .arrow-icon {
+                            color: var(--composer-font-color-primary);
+                            transition: transform 0.3s ease, color 0.3s ease;
+                            font-size: calc(var(--composer-font-size-sm) * 2);
+                            line-height: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            &.active {
+                                transform: rotate(180deg);
+                                color: var(--composer-primary-color);
+                            }
+                        }
+                    }
 
                     .image-wrapper {
                         margin-left: 0;
+                        display: none;
                     }
 
-                    .items-wrapper {
-                        gap: var(--composer-gap-md);
+                    .sectionsWrapper {
+                        display: none;
+                        padding-bottom: var(--composer-gap-md);
+                    }
+
+                    &.active-item {
+                        .image-wrapper {
+                            display: block;
+                        }
+
+                        .sectionsWrapper {
+                            display: flex;
+                        }
                     }
                 }
             }
