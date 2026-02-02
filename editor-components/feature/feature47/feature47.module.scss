@@ -10,10 +10,6 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: var(--composer-gap-lg);
-
-    @media (max-width: $composer-tablet-width) {
-      gap: var(--composer-gap-md);
-    }
   }
 
   .subtitle {
@@ -88,6 +84,12 @@
         content: "";
       }
     }
+  }
+}
+
+@container (max-width: $composer-tablet-width) {
+  .container .max-content {
+    gap: var(--composer-gap-md);
   }
 }
 
