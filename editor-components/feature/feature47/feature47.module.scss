@@ -93,18 +93,6 @@
   }
 }
 
-@container (min-width: #{$composer-tablet-width}) {
-  .container .cards-list .card {
-    .card-title {
-      max-width: 300px;
-    }
-
-    .card-description {
-      max-width: 320px;
-    }
-  }
-}
-
 @container (min-width: #{$composer-phone-width}) and (max-width: #{$composer-tablet-width}) {
   .container .cards-list .card {
     padding: var(--composer-gap-md);
