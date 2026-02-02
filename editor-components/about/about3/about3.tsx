@@ -46,6 +46,19 @@ class About3 extends BaseAbout {
     });
 
     this.addProp({
+      type: "media",
+      key: "phoneIcon",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "BsTelephoneOutbound",
+      },
+    });
+
+    this.addProp({
       type: "string",
       key: "rightWeakText",
       displayer: "Upper Text",
@@ -57,19 +70,6 @@ class About3 extends BaseAbout {
       key: "rightBoldText",
       displayer: "Lower Text",
       value: "1995",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "phoneIcon",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "BsTelephoneOutbound",
-      },
     });
 
     this.addProp({

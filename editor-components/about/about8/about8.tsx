@@ -53,6 +53,13 @@ class About8 extends BaseAbout {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "array",
       key: "texts",
       displayer: "Texts",
@@ -86,13 +93,6 @@ class About8 extends BaseAbout {
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
     });
 
     this.addProp({
