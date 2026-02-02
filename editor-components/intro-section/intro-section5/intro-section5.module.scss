@@ -72,6 +72,8 @@
       width: 100%;
       flex-wrap: wrap;
       align-items: center;
+      padding-top: calc(5rem + var(--composer-gap-lg));
+      padding-bottom: calc(5rem + var(--composer-gap-lg));
 
       .subtitle {
         margin-left: auto;
@@ -91,6 +93,7 @@
 
     .button-wrapper {
       position: absolute;
+      align-items: center;
       bottom: 0;
       left: 0;
       right: 0;
