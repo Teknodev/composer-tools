@@ -40,13 +40,6 @@ class About16 extends BaseAbout {
         });
 
         this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in Row",
-            value: 2,
-        });
-
-        this.addProp({
             type: "array",
             key: "cards",
             displayer: "Cards",
@@ -157,15 +150,6 @@ class About16 extends BaseAbout {
         });
 
         this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-            ],
-        });
-
-        this.addProp({
             type: "boolean",
             key: "enableOverlay",
             displayer: "Overlay",
@@ -173,10 +157,26 @@ class About16 extends BaseAbout {
         });
 
         this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in Row",
+            value: 2,
+        });
+
+        this.addProp({
             type: "boolean",
             key: "enableAnimation",
             displayer: "Animation",
             value: true,
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
     }
 
