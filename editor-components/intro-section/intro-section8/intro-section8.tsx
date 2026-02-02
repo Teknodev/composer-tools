@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseIntroSection, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseIntroSection, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./intro-section8.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
@@ -11,43 +11,20 @@ type ButtonTypeObj = {
     type: TypeButton;
 }
 
+interface ContentType {
+    media: TypeMediaInputValue;
+    thumbnail: TypeMediaInputValue;
+    overlay: boolean;
+}
+
 class IntroSection8 extends BaseIntroSection {
     constructor(props?: TypeUsableComponentProps) {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "media",
-            displayer: "Media",
-            value: {
-                type: "video",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
-            },
-            additionalParams: { availableTypes: ["image", "video"] },
-        });
-
-        this.addProp({
-            type: "media",
-            key: "thumbnail",
-            displayer: "Thumbnail",
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6936735a496aa1002ca98cfa?alt=media",
-            },
-            additionalParams: { availableTypes: ["image"] },
-        });
-
-        this.addProp({
             type: "boolean",
             key: "background",
             displayer: "Background",
-            value: true,
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
             value: true,
         });
 
@@ -80,6 +57,40 @@ class IntroSection8 extends BaseIntroSection {
         });
 
         this.addProp({
+            type: "object",
+            key: "content",
+            displayer: "Content",
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    value: {
+                        type: "video",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] },
+                },
+                {
+                    type: "media",
+                    key: "thumbnail",
+                    displayer: "Thumbnail",
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6936735a496aa1002ca98cfa?alt=media",
+                    },
+                    additionalParams: { availableTypes: ["image"] },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
+                }
+            ]
+        });
+
+        this.addProp({
             type: "media",
             key: "playIcon",
             displayer: "Play Icon",
@@ -103,9 +114,10 @@ class IntroSection8 extends BaseIntroSection {
         const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
         const hasBackground = !!this.getPropValue("background");
-        const hasOverlay = !!this.getPropValue("overlay");
-        const media = this.getPropValue("media");
-        const thumbnail = this.getPropValue("thumbnail");
+        const content = this.castToObject<ContentType>("content");
+        const hasOverlay = !!content?.overlay;
+        const media = content?.media;
+        const thumbnail = content?.thumbnail;
         const playIcon = this.getPropValue("playIcon");
         const isVideo = media?.type === "video";
         const isPlaying = !!this.getComponentState("isPlaying");
