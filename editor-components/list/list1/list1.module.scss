@@ -26,7 +26,7 @@ as *;
       position: relative;
 
       :global(.slick-slide) {
-        padding: 0 calc(var(--composer-gap-md) / 2);
+        padding: 0 calc(var(--composer-gap-lg) / 4 + 5px);
         margin-bottom: calc(2 * var(--composer-gap-md));
         box-sizing: border-box;
         height: auto;
@@ -136,15 +136,30 @@ as *;
       flex-direction: column;
       align-items: flex-start;
       padding: var(--composer-gap-lg);
-      background-color: color-mix(in srgb,
-          var(--composer-html-background),
-          var(--composer-font-color-primary) 5%);
-      border-radius: var(--composer-border-radius-md);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: color-mix(in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%);
+        border-radius: var(--composer-border-radius-md);
+        z-index: -1;
+      }
+
+      padding: var(--composer-gap-lg);
+
       gap: var(--composer-gap-md);
       flex: 1 1 auto;
       height: 100%;
       min-height: 0;
       width: 100% !important;
+
+
 
       .image-container {
         margin: 0;
@@ -236,15 +251,17 @@ as *;
       }
 
       &.active {
+        z-index: 1;
+
         .active-after {
           content: "";
           position: absolute;
-          width: calc(100% + var(--composer-gap-lg));
+          width: calc(100% + var(--composer-gap-lg) + 20px);
           height: 85%;
           bottom: calc(-2 * var(--composer-gap-md));
-          left: calc(-0.5 * var(--composer-gap-lg));
+          left: calc(-0.5 * var(--composer-gap-lg) - 10px);
           background-color: var(--composer-primary-color);
-          z-index: -1;
+          z-index: -2;
           border-bottom-left-radius: var(--composer-border-radius-lg);
           border-bottom-right-radius: var(--composer-border-radius-lg);
         }
