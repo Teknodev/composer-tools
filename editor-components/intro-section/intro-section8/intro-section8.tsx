@@ -152,10 +152,8 @@ class IntroSection8 extends BaseIntroSection {
                             {isVideo ? (
                                 !isPlaying ? (
                                     <div className={this.decorateCSS("thumbnail-container")} onClick={this.handlePlayVideo}>
-                                        {thumbnail?.url ? (
+                                        {thumbnail?.url && (
                                             <Base.Media value={thumbnail} className={this.decorateCSS("thumbnail-image")} />
-                                        ) : (
-                                            <Base.Media value={{ ...media, settings: { autoplay: false, controls: false, muted: true } }} className={this.decorateCSS("thumbnail-image")} />
                                         )}
                                         {hasOverlay && <div className={this.decorateCSS("overlay")} />}
                                         {(playIcon?.name || playIcon?.url) && (
