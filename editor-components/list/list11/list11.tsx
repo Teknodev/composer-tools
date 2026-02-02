@@ -34,7 +34,6 @@ class List11 extends BaseList {
             displayer: "Description",
             value: "We focus on helping you to make useful content more accessible with an utlimate goal for a good sharing profit as a content creator."
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
         this.addProp({
             type: "array",
             key: "listItems",
@@ -228,6 +227,7 @@ class List11 extends BaseList {
             displayer: "Item Count in a Row",
             value: 3,
         });
+        this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
     }
 
     static getName(): string {

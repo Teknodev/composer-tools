@@ -39,7 +39,6 @@ class List7 extends BaseList {
       displayer: "Description",
       value: "",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -187,6 +186,7 @@ class List7 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
   }
   render() {
     const ListItems = this.castToObject<listItem[]>("list-items");

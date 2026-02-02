@@ -35,7 +35,6 @@ class List4 extends BaseList {
       displayer: "Description",
       value: "",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -163,6 +162,7 @@ class List4 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
   }
 
   static getName(): string {

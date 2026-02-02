@@ -74,15 +74,16 @@ as *;
 
       .dots {
         display: flex !important;
-        width: 100%;
+        width: fit-content;
         gap: calc(var(--composer-gap-sm) * 1.5);
         list-style-type: none;
         padding: 0;
-        bottom: var(--composer-gap-xs);
+        bottom: 2px;
         position: absolute;
-        left: 0;
-        right: 0;
+        left: 50%;
+        transform: translateX(-50%);
         justify-content: center;
+        align-items: center;
         z-index: 2 !important;
 
         .dot-button {
@@ -100,7 +101,6 @@ as *;
         :global(.slick-active) .dot-button {
           width: 40px;
           border-radius: var(--composer-border-radius-md);
-          transform: none;
         }
 
 
@@ -240,8 +240,8 @@ as *;
           content: "";
           position: absolute;
           width: calc(100% + var(--composer-gap-lg));
-          height: 100%;
-          bottom: calc(-2 * var(--composer-gap-md));
+          height: 90%;
+          bottom: calc(-3 * var(--composer-gap-md));
           left: calc(-0.5 * var(--composer-gap-lg));
           background-color: var(--composer-primary-color);
           z-index: -1;

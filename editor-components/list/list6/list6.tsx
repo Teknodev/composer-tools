@@ -46,12 +46,6 @@ class List6 extends BaseList {
       value: true,
     });
     this.addProp({
-      type: "boolean",
-      key: "lineActive",
-      displayer: "Line Active",
-      value: true,
-    });
-    this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
@@ -60,7 +54,6 @@ class List6 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
 
     this.addProp({
       type: "array",
@@ -221,6 +214,13 @@ class List6 extends BaseList {
         },
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "lineActive",
+      displayer: "Line Active",
+      value: true,
+    });
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
   }
 
   render() {
