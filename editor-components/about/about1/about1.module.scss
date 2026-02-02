@@ -144,12 +144,26 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
+            .heading {
+                .button {
+                    &.button-bare {
+                        .icon {
+                            font-size: 5rem;
+                            width: 5rem;
+                            height: 5rem;
+                        }
+                    }
+                }
+            }
+
             &.center {
                 .heading {
                     align-items: center;
                     text-align: center;
                     gap: var(--composer-gap-xs);
                     margin-bottom: var(--composer-gap-sm);
+
+
 
                     .subtitle,
                     .section-title,
@@ -214,6 +228,25 @@
 
             .content {
                 flex-direction: column;
+            }
+        }
+    }
+}
+
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .heading {
+                .button {
+                    &.button-bare {
+                        .icon {
+                            font-size: 3.5rem;
+                            width: 3.5rem;
+                            height: 3.5rem;
+                        }
+                    }
+                }
             }
         }
     }
