@@ -29,7 +29,7 @@
                     display: flex;
                     justify-content: center;
 
-                    .image-container {
+                    .media-container {
                         &.animated {
                             .text-content .icon-wrapper {
                                 max-width: 0;
@@ -60,7 +60,7 @@
                         border-radius: var(--composer-border-radius-sm);
                         position: relative;
 
-                        .image {
+                        .media {
                             position: absolute;
                             inset: 0;
                             width: 100%;
@@ -157,7 +157,7 @@
         .max-content {
             .list-container {
                 .list-item {
-                    .image-container {
+                    .media-container {
                         .text-content {
                             .icon-wrapper {
                                 .icon {
@@ -182,7 +182,7 @@
         .max-content {
             .list-container {
                 .list-item {
-                    .image-container {
+                    .media-container {
                         .text-content {
                             .icon-wrapper {
                                 .icon {

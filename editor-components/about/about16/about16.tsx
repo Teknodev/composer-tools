@@ -218,12 +218,12 @@ class About16 extends BaseAbout {
                                     const hasMedia = card.video && "url" in card.video && card.video.url;
                                     return (
                                         <div key={index} className={this.decorateCSS("list-item")}>
-                                            <div className={`${this.decorateCSS("image-container")} ${enableAnimation && this.decorateCSS("animated")} ${!hasMedia && this.decorateCSS("no-media")}`}>
+                                            <div className={`${this.decorateCSS("media-container")} ${enableAnimation && this.decorateCSS("animated")} ${!hasMedia && this.decorateCSS("no-media")}`}>
                                                 <ComposerLink path={card.navigateTo} isFullWidth={true}>
                                                     {hasMedia && (
                                                         <Base.Media
                                                             value={card.video}
-                                                            className={this.decorateCSS("image")}
+                                                            className={this.decorateCSS("media")}
                                                             autoPlay={true}
                                                             muted={true}
                                                             loop={true}
