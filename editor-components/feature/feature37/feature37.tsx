@@ -16,21 +16,41 @@ class Feature37 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "image",
-            displayer: "Media",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
+            type: "object",
+            key: "content",
+            displayer: "Content",
+            value: [
+                {
+                    type: "object",
+                    key: "media",
+                    displayer: "Media",
+                    value: [
+                        {
+                            type: "media",
+                            key: "image",
+                            displayer: "Image",
+                            value: {
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
+                                type: "image",
+                            },
+                            additionalParams: { availableTypes: ["image", "video"] }
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: [
+                        {
+                            type: "boolean",
+                            key: "enableOverlay",
+                            displayer: "Enable Overlay",
+                            value: false,
+                        }
+                    ]
+                }
+            ]
         });
 
         this.addProp({
@@ -141,17 +161,17 @@ class Feature37 extends BaseFeature {
         });
 
         this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-        });
-
-        this.addProp({
             type: "number",
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 1,
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
         });
     }
 
@@ -160,9 +180,10 @@ class Feature37 extends BaseFeature {
     }
 
     render() {
-        const image = this.getPropValue("image");
+        const content = this.castToObject<any>("content");
+        const image = content?.media?.image;
         const isImageExist = !!image?.url;
-        const enableOverlay = this.getPropValue("enableOverlay");
+        const enableOverlay = content?.overlay?.enableOverlay;
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
