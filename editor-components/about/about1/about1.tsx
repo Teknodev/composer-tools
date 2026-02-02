@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -11,7 +11,7 @@ interface ListItem {
   description: React.JSX.Element;
 }
 interface Icon {
-  icon: { type: string; name: string };
+  icon: TypeMediaInputValue;
   link: string;
 }
 class About1 extends BaseAbout {
@@ -279,13 +279,20 @@ class About1 extends BaseAbout {
               <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}
               </Base.SectionDescription>
-              {(icon?.image?.url || icon?.icon?.name) && (
+              {(icon?.image?.url || icon?.icon?.name || this.castToString(icon.text)) && (
                 <ComposerLink path={icon.url}>
-                  <Base.Button buttonType={icon.type} className={this.decorateCSS("button")}>
-                    <Base.Media
-                      value={icon.image?.url ? { type: "image", url: icon.image.url } : { type: "icon", name: icon.icon?.name }}
-                      className={this.decorateCSS("icon")}
-                    />
+                  <Base.Button buttonType={icon.type} className={`${this.decorateCSS("button")} ${icon.type === "Bare" && this.decorateCSS("button-bare")}`}>
+                    {(icon.image?.url || icon.icon?.name) && (
+                      <Base.Media
+                        value={icon.image?.url ? { type: "image", url: icon.image.url } : { type: "icon", name: icon.icon?.name }}
+                        className={this.decorateCSS("icon")}
+                      />
+                    )}
+                    {this.castToString(icon.text) && (
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {icon.text}
+                      </Base.P>
+                    )}
                   </Base.Button>
                 </ComposerLink>
               )}
@@ -304,7 +311,7 @@ class About1 extends BaseAbout {
                 {this.getPropValue("overlay") && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
-                <div className={this.decorateCSS("hover-effect")} />
+
               </Base.GridCell>
             )}
             {textContent.length > 0 && (
@@ -317,7 +324,7 @@ class About1 extends BaseAbout {
                       </Base.H4>
                     )}
                     {this.castToString(item.description) && (
-                      <Base.P className={this.decorateCSS("description")}>
+                      <Base.P className={this.decorateCSS("item-description")}>
                         {item.description}
                       </Base.P>
                     )}

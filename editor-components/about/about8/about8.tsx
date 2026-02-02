@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BaseAbout } from "../../EditorComponent";
 import styles from "./about8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -11,6 +12,13 @@ type Text = {
 class About8 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -108,6 +116,7 @@ class About8 extends BaseAbout {
   }
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const image1 = this.getPropValue("image-1");
     const image2 = this.getPropValue("image-2");
@@ -133,8 +142,13 @@ class About8 extends BaseAbout {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(descriptionExist || hasTitle) && (
+          {(descriptionExist || hasTitle || this.castToString(subtitle)) && (
             <Base.VerticalContent className={`${this.decorateCSS("title-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {hasTitle && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {title}
@@ -203,7 +217,7 @@ class About8 extends BaseAbout {
                 {buttons.length > 0 && (
                   <div className={`${this.decorateCSS("buttons-container")} ${this.decorateCSS(alignment)}`}>
                     {buttons.map((button: INPUTS.CastedButton, index: number) => (
-                      <div key={index} className={this.decorateCSS("button-wrapper")}>
+                      <React.Fragment key={index}>
                         {this.castToString(button.text) && (
                           <ComposerLink path={button.url}>
                             <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
@@ -211,7 +225,7 @@ class About8 extends BaseAbout {
                             </Base.Button>
                           </ComposerLink>
                         )}
-                      </div>
+                      </React.Fragment>
                     ))}
                   </div>
                 )}
