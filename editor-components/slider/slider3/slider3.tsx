@@ -206,7 +206,6 @@ class Slider3 extends BaseSlider {
     const isOverlayActive = this.getPropValue("overlay");
     const nextArrow = this.getPropValue("nextArrow");
     const previousArrow = this.getPropValue("previousArrow");
-    const cardNumber = String(3);
     const visibleItemCount = Math.min(items.length, 1.2);
     const sliderRef = this.getComponentState("slider-ref");
     const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
@@ -221,7 +220,7 @@ class Slider3 extends BaseSlider {
       centerMode: true,
       centerPadding: "0px",
       slidesToScroll: 1,
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_current: number, next: number) => {
         this.setComponentState("centerSlide", next);
       },
       responsive: [
@@ -246,7 +245,8 @@ class Slider3 extends BaseSlider {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const carouselClass = cardNumber === "1" ? "carousel--singleCard" : "carousel--multipleCards";
+    const alignmentValue = Base.getContentAlignment();
+    const carouselClass = items.length === 1 ? "carousel--singleCard" : "carousel--multipleCards";
     const arrowsExist = items.length > 1 && (previousArrow || nextArrow) && sliderSettings.arrows;
 
     return (
@@ -254,7 +254,7 @@ class Slider3 extends BaseSlider {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || previousArrow || nextArrow) && (
             <div
-              className={`${this.decorateCSS("title")}
+              className={`${this.decorateCSS("title")} ${this.decorateCSS(alignmentValue)}
             ${!this.castToString(title) && !this.castToString(subtitle) && !this.castToString(description) && this.decorateCSS("no-header-titles")}`}
             >
               {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
@@ -271,22 +271,24 @@ class Slider3 extends BaseSlider {
               {arrowsExist && (
                 <div className={this.decorateCSS("arrows")}>
                   {previousArrow && (
-                    <Base.Media
-                      value={this.getPropValue("previousArrow")}
+                    <div
                       className={this.decorateCSS("prevArrow")}
                       onClick={() => {
                         sliderRef.current.slickPrev();
                       }}
-                    />
+                    >
+                      <Base.Media value={this.getPropValue("previousArrow")} />
+                    </div>
                   )}
                   {nextArrow && (
-                    <Base.Media
-                      value={this.getPropValue("nextArrow")}
+                    <div
                       className={this.decorateCSS("nextArrow")}
                       onClick={() => {
                         sliderRef.current.slickNext();
                       }}
-                    />
+                    >
+                      <Base.Media value={this.getPropValue("nextArrow")} />
+                    </div>
                   )}
                 </div>
               )}

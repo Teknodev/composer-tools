@@ -84,7 +84,7 @@
           :global(.slick-track) {
             :global(.slick-slide) {
               :global(.slick-slide)>div {
-                padding: 0 var(--composer-gap-xl);
+                padding: 0 10rem;
 
                 @container (max-width: #{$composer-tablet-width}) {
                   padding: 0 var(--composer-gap-lg);
@@ -113,13 +113,13 @@
             transform: translate(0, -50%);
             z-index: 2;
             -webkit-text-stroke: 1px white;
-            text-transform: uppercase;
+            text-transform: capitalize;
             transition: var(--composer-transition-duration-normal) ease-out;
             display: flex;
             align-items: flex-start;
             justify-content: center;
             width: 100%;
-            margin-right: var(--composer-gap-xl) !important;
+            margin-right: 70px !important;
 
             &:hover {
               color: white;
@@ -139,6 +139,7 @@
               display: flex;
               align-items: flex-start;
               justify-content: center;
+              gap: var(--composer-gap-sm);
             }
 
             .number {
@@ -147,12 +148,14 @@
               align-self: flex-start;
               margin: 0;
               margin-top: var(--composer-gap-xs);
+              font-weight: 100;
             }
 
             .title-text {
               white-space: nowrap;
               flex-shrink: 0;
               width: max-content;
+              font-weight: 400;
 
               &.active {
                 color: white;
@@ -270,6 +273,80 @@
 
         &.visible {
           opacity: 1;
+        }
+      }
+    }
+
+    .footer {
+      position: absolute;
+      bottom: var(--composer-gap-xl);
+      left: 0;
+      width: 100%;
+      padding: 0 var(--composer-gap-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      color: white;
+
+      @container (max-width: #{$composer-tablet-width}) {
+        padding: 0 var(--composer-gap-lg);
+        bottom: var(--composer-gap-lg);
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
+        padding: 0 var(--composer-gap-md);
+        bottom: var(--composer-gap-md);
+      }
+
+      .page-numbers {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-md);
+        font-size: 0.875rem;
+        font-weight: 300;
+
+        .separator {
+          width: 40px;
+          height: auto;
+          color: rgba(255, 255, 255, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          i,
+          svg {
+            width: 100%;
+            height: auto;
+          }
+        }
+      }
+
+      .follow-us {
+        display: flex;
+        align-items: center;
+        gap: var(--composer-gap-md);
+
+        .follow-text {
+          font-size: 0.875rem;
+          font-weight: 300;
+        }
+
+        .social-icons {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .social-icon {
+            width: 18px;
+            height: 18px;
+            color: white;
+            transition: opacity var(--composer-transition-duration-normal);
+
+            &:hover {
+              opacity: 0.7;
+            }
+          }
         }
       }
     }

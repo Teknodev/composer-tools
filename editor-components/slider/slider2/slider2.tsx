@@ -14,6 +14,11 @@ type SliderItem = {
   number: React.JSX.Element;
 };
 
+type SocialItem = {
+  media: any;
+  path: string;
+};
+
 class Slider2 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
@@ -243,6 +248,116 @@ class Slider2 extends BaseSlider {
     });
 
     this.addProp({
+      type: "array",
+      key: "socials",
+      displayer: "Social Media",
+      value: [
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BiLogoFacebook",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaSquareXTwitter",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "string",
+      key: "followUsText",
+      displayer: "Bottom Text",
+      value: "Follow us",
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showPageNumbers",
+      displayer: "Show Page Numbers",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
+      key: "pageNumbersSeparator",
+      displayer: "Line",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FiMinus",
+      },
+    });
+
+    this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
@@ -262,6 +377,11 @@ class Slider2 extends BaseSlider {
   render() {
     const slider = this.castToObject<SliderItem[]>("slider");
     const isOverlayActive = this.getPropValue("overlay");
+    const icons = this.castToObject<SocialItem[]>("socials");
+    const followUsText = this.getPropValue("followUsText");
+    const showPageNumbers = this.getPropValue("showPageNumbers");
+    const pageNumbersSeparator = this.getPropValue("pageNumbersSeparator");
+
     const settings = {
       ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: slider.length > 2,
@@ -297,6 +417,9 @@ class Slider2 extends BaseSlider {
         }, 200);
       },
     };
+
+    const activeIndex = this.getComponentState("active_index");
+    const totalSlides = slider.length;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -361,6 +484,32 @@ class Slider2 extends BaseSlider {
                 );
               })}
             </ComposerSlider>
+          </div>
+          <div className={this.decorateCSS("footer")}>
+            {showPageNumbers && (
+              <div className={this.decorateCSS("page-numbers")}>
+                <span className={this.decorateCSS("current")}>{(activeIndex + 1).toString().padStart(2, "0")}</span>
+                {pageNumbersSeparator && <Base.Media value={pageNumbersSeparator} className={this.decorateCSS("separator")} />}
+                <span className={this.decorateCSS("total")}>{totalSlides.toString().padStart(2, "0")}</span>
+              </div>
+            )}
+
+            {(followUsText || (icons && icons.length > 0)) && (
+              <div className={this.decorateCSS("follow-us")}>
+                {followUsText && <Base.P className={this.decorateCSS("follow-text")}>{followUsText}</Base.P>}
+                {icons && icons.length > 0 && (
+                  <div className={this.decorateCSS("social-icons")}>
+                    {icons.map((social: SocialItem, index: number) => (
+                      social.media && (
+                        <ComposerLink key={index} path={social.path}>
+                          <Base.Media value={social.media} className={this.decorateCSS("social-icon")} />
+                        </ComposerLink>
+                      )
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
