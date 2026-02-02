@@ -54,13 +54,6 @@ class ECommerce8 extends BaseECommerce {
         });
 
         this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
-        });
-
-        this.addProp({
             type: "array",
             key: "buttons",
             displayer: "Buttons",
@@ -743,6 +736,13 @@ class ECommerce8 extends BaseECommerce {
                     ]
                 },
             ]
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "enableOverlay",
+            displayer: "Overlay",
+            value: false,
         });
 
         this.addProp({
