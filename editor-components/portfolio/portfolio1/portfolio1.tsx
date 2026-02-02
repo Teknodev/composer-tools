@@ -149,7 +149,7 @@ class Portfolio1 extends BasePortfolio {
           key: "buttons",
           displayer: "Buttons",
           value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
           ],
         },
         {
@@ -230,7 +230,7 @@ class Portfolio1 extends BasePortfolio {
           key: "buttons",
           displayer: "Buttons",
           value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
           ],
         },
         {
@@ -438,14 +438,17 @@ class Portfolio1 extends BasePortfolio {
 
     const getButtonsFromItem = (item: PortfolioItem) => {
       const buttonsArray = item?.buttons;
-      if (!buttonsArray) return [];
+      if (!Array.isArray(buttonsArray)) return [];
 
-      return buttonsArray.map((btn: INPUTS.CastedButton) => {
+      return buttonsArray.map((btn: any) => {
+        const parent = btn?.value ?? btn;
+        const icon = this.getPropValue("icon", { parent_object: parent });
+        const media = icon || null;
         return {
-          text: btn.text,
-          type: btn.type,
-          url: btn.url,
-          media: btn.icon,
+          text: this.getPropValue("text", { parent_object: parent }),
+          type: this.getPropValue("type", { parent_object: parent }),
+          url: this.getPropValue("url", { parent_object: parent }),
+          media,
         };
       });
     };
@@ -602,7 +605,7 @@ class Portfolio1 extends BasePortfolio {
                   const buttonUrl = btn.url || "#";
                   const buttonType = btn.type;
 
-                  const btnTextExist = !!buttonText;
+                  const btnTextExist = this.castToString(buttonText);
                   const buttonMediaExist =
                     buttonMedia && (buttonMedia.name || buttonMedia.url);
 
@@ -614,7 +617,7 @@ class Portfolio1 extends BasePortfolio {
                       key={`portfolio-btn-${index}`}
                     >
                       <Base.Button
-                        buttonType={buttonType}
+                        buttonType={buttonType as any}
                         className={this.decorateCSS("button")}
                       >
                         {buttonMediaExist && (

@@ -48,10 +48,10 @@ class Portfolio2 extends BasePortfolio {
             INPUTS.BUTTON(
               "button",
               "Button",
-              "READ MORE",
               "",
-              "BsArrowRight",
+              "",
               null,
+              "",
               "Tertiary"
             ),
           ],
@@ -111,10 +111,10 @@ class Portfolio2 extends BasePortfolio {
             INPUTS.BUTTON(
               "button",
               "Button",
-              "READ MORE",
               "",
-              "BsArrowRight",
+              "",
               null,
+              "",
               "Tertiary"
             ),
           ],
@@ -169,7 +169,7 @@ class Portfolio2 extends BasePortfolio {
           const buttonUrl = btn.url || "#";
           const buttonType = btn.type;
 
-          const btnTextExist = this.castToString(buttonText);
+          const btnTextExist = !!buttonText;
           const buttonMediaExist =
             buttonMedia &&
             ((buttonMedia as any).name || (buttonMedia as any).url);
@@ -179,7 +179,7 @@ class Portfolio2 extends BasePortfolio {
           return (
             <ComposerLink path={buttonUrl} key={`${keyPrefix}-btn-${btnIndex}`}>
               <Base.Button
-                buttonType={buttonType}
+                buttonType={buttonType as any}
                 className={this.decorateCSS("button")}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
