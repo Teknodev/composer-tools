@@ -14,16 +14,16 @@ class Download6 extends BaseDownload {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Create amazing posts and share with the world.",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let's start now!",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Let's start now!",
+      key: "title",
+      displayer: "Title",
+      value: "Create amazing posts and share with the world.",
     });
 
     this.addProp({

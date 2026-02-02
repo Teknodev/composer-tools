@@ -24,17 +24,17 @@ class Download1 extends BaseDownload {
     });
 
     this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Eleifend morbi velit porttitor sed ipsum imperdiet ac ullamcorper fusce.",
-    });
-
-    this.addProp({
       type: "boolean",
       key: "line",
       displayer: "Enable Line",
       value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Eleifend morbi velit porttitor sed ipsum imperdiet ac ullamcorper fusce.",
     });
 
     this.addProp({

@@ -64,8 +64,9 @@ $min-height: 500px;
 
       .buttons-container {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: stretch;
         gap: var(--composer-gap-sm);
         min-height: 60px;
         height: auto;

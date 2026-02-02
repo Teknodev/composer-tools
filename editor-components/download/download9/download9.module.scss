@@ -163,6 +163,8 @@
 
       .buttons-container {
         display: flex;
+        flex-direction: row;
+        align-items: stretch;
         flex-wrap: wrap;
         justify-content: center;
         gap: var(--composer-gap-sm);

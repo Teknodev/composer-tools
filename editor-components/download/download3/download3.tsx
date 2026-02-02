@@ -11,13 +11,6 @@ class Download3 extends BaseDownload {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Online Yoga, from Home",
-    });
-
-    this.addProp({
       type: "media",
       key: "image",
       displayer: "Media",
@@ -35,6 +28,13 @@ class Download3 extends BaseDownload {
       key: "overlay",
       displayer: "Overlay",
       value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Online Yoga, from Home",
     });
 
     this.addProp({

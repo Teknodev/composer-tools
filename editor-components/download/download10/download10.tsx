@@ -31,32 +31,6 @@ class Download10 extends BaseDownload {
     });
 
     this.addProp({
-      type: "string",
-      key: "text1",
-      displayer: "Review Title",
-      value: "Trustes by 2M+ customers",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "text2",
-      displayer: "Review Score",
-      value: "4.3/5 (55k Reviews)",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67438ea6506a40002c2dca7f?alt=media&timestamp=1732480731550",
-      },
-    });
-    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -64,6 +38,13 @@ class Download10 extends BaseDownload {
         INPUTS.BUTTON("button", "Button", "Download", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
       ]
     })
+
+    this.addProp({
+      type: "string",
+      key: "text1",
+      displayer: "Review Title",
+      value: "Trustes by 2M+ customers",
+    });
 
     this.addProp({
       type: "array",
@@ -166,6 +147,26 @@ class Download10 extends BaseDownload {
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "string",
+      key: "text2",
+      displayer: "Review Score",
+      value: "4.3/5 (55k Reviews)",
+    });
+
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67438ea6506a40002c2dca7f?alt=media&timestamp=1732480731550",
+      },
     });
   }
 

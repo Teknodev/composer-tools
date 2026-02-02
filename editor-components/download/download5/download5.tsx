@@ -10,6 +10,26 @@ class Download5 extends BaseDownload {
     super(props, styles);
 
     this.addProp({
+      type: "media",
+      key: "backgroundImage",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb0c0a3292c6002b23e266?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -28,26 +48,6 @@ class Download5 extends BaseDownload {
       key: "description",
       value: "Download now & enjoy app with unlimited features",
       displayer: "Description",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "backgroundImage",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb0c0a3292c6002b23e266?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
     });
 
     this.addProp({

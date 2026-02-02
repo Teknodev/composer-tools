@@ -105,8 +105,8 @@
       transition: all 0.5s;
       overflow: auto;
       height: auto;
-      width: 50vw;
-      min-width: 50vw;
+      width: 40vw;
+      min-width: 40vw;
       position: absolute;
       padding: var(--composer-gap-xl) 0;
 
@@ -170,6 +170,8 @@
 
           .buttons-container {
             display: flex;
+            flex-direction: row;
+            align-items: stretch;
             flex-wrap: wrap;
             gap: var(--composer-gap-sm);
             margin: var(--composer-gap-sm);
