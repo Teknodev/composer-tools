@@ -276,7 +276,7 @@ class List6 extends BaseList {
                 <div className={this.decorateCSS("item-content")}>
                   {(listItem.itemIcon ||
                     this.castToString(listItem.itemTitle)) && (
-                      <div className={this.decorateCSS("item-header")}>
+                      <div className={`${this.decorateCSS("item-header")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
                         {listItem.itemIcon && (
                           <div className={this.decorateCSS("icon-wrapper")}>
                             <Base.Media

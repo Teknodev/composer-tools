@@ -78,7 +78,7 @@ as *;
         gap: calc(var(--composer-gap-sm) * 1.5);
         list-style-type: none;
         padding: 0;
-        bottom: 2px;
+        bottom: var(--composer-gap-xs);
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -240,14 +240,13 @@ as *;
           content: "";
           position: absolute;
           width: calc(100% + var(--composer-gap-lg));
-          height: 90%;
-          bottom: calc(-3 * var(--composer-gap-md));
+          height: 85%;
+          bottom: calc(-2 * var(--composer-gap-md));
           left: calc(-0.5 * var(--composer-gap-lg));
           background-color: var(--composer-primary-color);
           z-index: -1;
           border-bottom-left-radius: var(--composer-border-radius-lg);
           border-bottom-right-radius: var(--composer-border-radius-lg);
-
         }
       }
 

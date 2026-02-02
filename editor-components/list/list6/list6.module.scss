@@ -298,12 +298,15 @@ as *;
             gap: var(--composer-gap-md);
 
             .item-header {
-              width: 100%;
               display: flex;
               flex-direction: row;
               justify-content: flex-start;
               align-items: center;
               gap: var(--composer-gap-sm);
+
+              &.align-center {
+                justify-content: flex-start;
+              }
 
               .icon-wrapper {
                 flex: 0 0 auto;
@@ -321,7 +324,6 @@ as *;
               }
 
               .title {
-                width: 100%;
                 margin: 0;
                 padding: 0;
                 display: inline-flex;
