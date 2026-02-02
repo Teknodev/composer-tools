@@ -59,6 +59,10 @@
               height: 25px;
             }
 
+            .button-text {
+              content: "";
+            }
+
             &[data-animation~="animate2"] {
               border-radius: var(--composer-border-radius-sm);
               position: relative;

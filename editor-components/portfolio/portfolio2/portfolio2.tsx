@@ -48,9 +48,9 @@ class Portfolio2 extends BasePortfolio {
             INPUTS.BUTTON(
               "button",
               "Button",
+              "READ MORE",
               "",
-              "",
-              null,
+              "MdArrowForward",
               "",
               "Tertiary"
             ),
@@ -111,9 +111,9 @@ class Portfolio2 extends BasePortfolio {
             INPUTS.BUTTON(
               "button",
               "Button",
+              "READ MORE",
               "",
-              "",
-              null,
+              "MdArrowForward",
               "",
               "Tertiary"
             ),
@@ -184,7 +184,7 @@ class Portfolio2 extends BasePortfolio {
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 {btnTextExist && (
-                  <Base.P className={this.decorateCSS("navigate-text")}>
+                  <Base.P className={this.decorateCSS("button-text")}>
                     {buttonText}
                   </Base.P>
                 )}
@@ -221,9 +221,12 @@ class Portfolio2 extends BasePortfolio {
     const hasDescription = this.castToString(description);
     const hasButtons = buttons.some((b) => b.text || b.media);
 
+
+    const hasButtonText = buttons.some((b) => b.text);
+
     const hasContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
-    if (!hasContent) return null;
+    if (!hasContent || !hasButtonText) return null;
 
     return (
       <div className={this.decorateCSS("left-side-container")}>
@@ -262,9 +265,12 @@ class Portfolio2 extends BasePortfolio {
     const hasDescription = this.castToString(description);
     const hasButtons = buttons.some((b) => b.text || b.media);
 
+
+    const hasButtonText = buttons.some((b) => b.text);
+
     const hasContent = hasSubtitle || hasTitle || hasDescription || hasButtons;
 
-    if (!hasContent) return null;
+    if (!hasContent || !hasButtonText) return null;
 
     return (
       <div className={this.decorateCSS("right-side-container")}>
