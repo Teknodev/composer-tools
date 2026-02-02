@@ -34,19 +34,10 @@
 
   &.has-media {
     .max-content {
-      display: flex;
-      min-height: 90vh !important;
-      justify-content: space-evenly;
-      gap: 0;
-
       .vertical-content {
         .subtitle {
           padding: 0 !important;
           background: transparent !important;
-
-          &::before {
-            display: none !important;
-          }
         }
 
         .subtitle,
@@ -69,11 +60,13 @@
   }
 
   .max-content {
+    display: flex;
     position: relative;
     z-index: 2;
-    display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-xl);
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
 
     .vertical-content {
       width: 100%;
@@ -97,10 +90,13 @@
     }
 
     .button-wrapper {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
       justify-content: center !important;
       flex-wrap: wrap;
-      width: 100%;
       gap: var(--composer-gap-sm);
 
       .button {
@@ -161,13 +157,9 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    &.has-media {
-      .max-content {
-        min-height: 60vh !important;
-      }
-    }
-
     .max-content {
+      min-height: 40vh !important;
+
       .button-wrapper {
         .button {
 

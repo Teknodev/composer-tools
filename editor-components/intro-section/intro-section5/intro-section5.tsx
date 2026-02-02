@@ -19,21 +19,27 @@ class IntroSection5 extends BaseIntroSection {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "cover-image",
-      displayer: "Media",
-      value: {
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
-        type: "image",
-      },
-      additionalParams: { availableTypes: ["image", "video"] }
-    })
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "cover-image",
+          displayer: "Media",
+          value: {
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691db9e13596a1002b2b69de?alt=media",
+            type: "image",
+          },
+          additionalParams: { availableTypes: ["image", "video"] }
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        }
+      ]
     });
 
     this.addProp({
@@ -79,7 +85,8 @@ class IntroSection5 extends BaseIntroSection {
   }
 
   render() {
-    const coverImage = this.getPropValue("cover-image");
+    const background = this.castToObject<{ "cover-image": TypeMediaInputValue; overlay: boolean }>("background");
+    const coverImage = background?.["cover-image"];
     const buttons = this.castToObject<ButtonItem[]>("buttons");
     const visibleButtons = buttons.filter(btn => {
       const hasText = this.castToString(btn.text);
@@ -89,8 +96,8 @@ class IntroSection5 extends BaseIntroSection {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const hasMedia = !!coverImage?.url;
-    const enableOverlay = hasMedia && this.getPropValue("overlay");
+    const hasMedia = !!(coverImage && "url" in coverImage && coverImage.url);
+    const enableOverlay = hasMedia && background?.overlay;
     const buttonAnimation = this.getPropValue("buttonAnimation");
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
