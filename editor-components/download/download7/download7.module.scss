@@ -34,9 +34,7 @@
 
       .content-container {
         height: 100%;
-        justify-content: center;
-        position: relative;
-        z-index: 2;
+        padding: 0;
 
         &.has-image {
           min-height: 600px;
@@ -125,11 +123,11 @@
     .max-content {
       .wrapper {
         .content-container {
-          min-height: 600px;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          padding: 0;
 
           &.has-image {
             min-height: 600px;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
           }
 
           .buttons-container {
@@ -148,10 +146,11 @@
     .max-content {
       .wrapper {
         .content-container {
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          padding: 0;
 
           &.has-image {
             min-height: 600px;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
           }
 
           .description {

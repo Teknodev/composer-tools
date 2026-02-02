@@ -194,7 +194,7 @@ class Download10 extends BaseDownload {
     const alignmentValue = Base.getContentAlignment();
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("with-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div

@@ -1,7 +1,9 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding-bottom: 0px !important;
+  &.with-image {
+    padding-bottom: 0px !important;
+  }
 
   .max-content {
     .page {
