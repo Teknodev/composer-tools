@@ -33,10 +33,6 @@
       border-radius: var(--composer-border-radius-md);
       padding: var(--composer-gap-lg);
 
-      @media (min-width: $composer-phone-width) and (max-width: $composer-tablet-width) {
-        padding: var(--composer-gap-md);
-      }
-
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -59,16 +55,10 @@
 
       .card-title {
         margin-inline-start: 0;
-        @media (min-width: $composer-tablet-width) {
-          max-width: 300px;
-        }
       }
 
       .card-description {
         margin-inline-start: 0;
-        @media (min-width: $composer-tablet-width) {
-          max-width: 320px;
-        }
         opacity: 0.9;
       }
 
@@ -98,5 +88,23 @@
         content: "";
       }
     }
+  }
+}
+
+@container (min-width: $composer-tablet-width) {
+  .container .cards-list .card {
+    .card-title {
+      max-width: 300px;
+    }
+
+    .card-description {
+      max-width: 320px;
+    }
+  }
+}
+
+@media (min-width: $composer-phone-width) and (max-width: $composer-tablet-width) {
+  .container .cards-list .card {
+    padding: var(--composer-gap-md);
   }
 }
