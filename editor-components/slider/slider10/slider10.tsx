@@ -484,15 +484,17 @@ class Slider10 extends BaseSlider {
                         <div className={this.decorateCSS("max-content")}>
                           <Base.VerticalContent className={this.decorateCSS("slider-item-content")}>
                             {this.castToString(item.subtitle as any) && (
-                              <Base.SectionSubTitle
-                                className={`
-                                ${this.decorateCSS("slider-item-subtitle")}
-                                ${item.media && this.decorateCSS("slider-item-subtitle-with-media")}
-                                ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}
-                              `}
-                              >
-                                {item.subtitle}
-                              </Base.SectionSubTitle>
+                              <div className={this.decorateCSS("slider-item-subtitle-wrapper")}>
+                                <Base.SectionSubTitle
+                                  className={`
+                                  ${this.decorateCSS("slider-item-subtitle")}
+                                  ${item.media && this.decorateCSS("slider-item-subtitle-with-media")}
+                                  ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}
+                                `}
+                                >
+                                  {item.subtitle}
+                                </Base.SectionSubTitle>
+                              </div>
                             )}
                             {this.castToString(item.title as any) && (
                               <Base.SectionTitle

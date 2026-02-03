@@ -58,7 +58,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
           ],
         },
         {
@@ -252,7 +252,7 @@ class Slider8 extends BaseSlider {
     };
 
     return (
-      <Base.Container isFull={anyImagesExist ? true : false} className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (
@@ -370,7 +370,7 @@ class Slider8 extends BaseSlider {
             <div className={`${this.decorateCSS(anyImagesExist ? "dots" : "dots-2")}`}>
               {cards.map((_, index) => (
                 <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("slick-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
-                  <Base.Button className={this.decorateCSS("dot-button")} />
+                  <button className={this.decorateCSS("dot-button")} />
                 </div>
               ))}
             </div>

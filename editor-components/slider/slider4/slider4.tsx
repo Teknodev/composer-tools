@@ -51,16 +51,28 @@ class Slider4 extends BaseSlider {
           value: "Experience top-notch features with our services",
         },
         {
-          type: "icon",
+          type: "media",
           key: "previousArrow",
           displayer: "Previous Arrow Icon",
-          value: "RiArrowLeftSLine",
+          additionalParams: {
+            availableTypes: ["image", "icon"],
+          },
+          value: {
+            type: "icon",
+            name: "RiArrowLeftSLine",
+          },
         },
         {
-          type: "icon",
+          type: "media",
           key: "nextArrow",
           displayer: "Next Arrow Icon",
-          value: "RiArrowRightSLine",
+          additionalParams: {
+            availableTypes: ["image", "icon"],
+          },
+          value: {
+            type: "icon",
+            name: "RiArrowRightSLine",
+          },
         },
       ],
     });
@@ -362,29 +374,19 @@ class Slider4 extends BaseSlider {
                 {(previousArrow || nextArrow) && (
                   <div className={this.decorateCSS("arrows")}>
                     {previousArrow && (
-                      <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon
-                          name={previousArrow}
-                          propsIcon={{
-                            className: this.decorateCSS("prevArrow"),
-                            onClick: () => {
-                              sliderRef.current.slickPrev();
-                            },
-                          }}
+                      <div className={this.decorateCSS("icon-wrapper")} onClick={() => sliderRef.current.slickPrev()}>
+                        <Base.Media
+                          value={previousArrow}
+                          className={this.decorateCSS("prevArrow")}
                         />
                       </div>
                     )}
 
                     {nextArrow && (
-                      <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon
-                          name={nextArrow}
-                          propsIcon={{
-                            className: this.decorateCSS("nextArrow"),
-                            onClick: () => {
-                              sliderRef.current.slickNext();
-                            },
-                          }}
+                      <div className={this.decorateCSS("icon-wrapper")} onClick={() => sliderRef.current.slickNext()}>
+                        <Base.Media
+                          value={nextArrow}
+                          className={this.decorateCSS("nextArrow")}
                         />
                       </div>
                     )}

@@ -93,14 +93,18 @@
               }
             }
 
-            .slider-item-subtitle {
+            .slider-item-subtitle-wrapper {
               width: 100%;
+              display: flex;
+            }
+
+            .slider-item-subtitle {
               transition: 700ms;
               opacity: 0;
-              background: transparent;
 
               &.slider-item-subtitle-with-media {
                 color: white;
+                background: transparent;
 
                 &::before {
                   background: white;
@@ -108,7 +112,6 @@
               }
 
               &.show {
-                margin-bottom: var(--composer-gap-sm);
                 opacity: 1;
               }
             }

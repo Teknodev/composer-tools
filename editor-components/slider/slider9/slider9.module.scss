@@ -526,13 +526,16 @@
         .text-wrapper {
           justify-content: flex-start;
           text-align: left;
-          gap: var(--composer-gap-lg);
 
           .header {
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-sm);
             width: 100%;
+
+            .subtitle {
+              margin-left: 0px;
+            }
 
             .title {
               text-align: left;
@@ -541,8 +544,7 @@
             .price {
               color: var(--composer-font-color-primary);
               text-align: left;
-              font-size: 1.5rem;
-              font-weight: 600;
+              font-size: 3rem;
             }
           }
 
@@ -563,6 +565,8 @@
                 .star {
                   color: #ebbc00;
                   font-size: 1rem !important;
+                  width: 1rem;
+                  height: 1rem;
                 }
               }
 
@@ -592,6 +596,8 @@
           .inputs {
             display: flex;
             width: 100%;
+            margin-top: var(--composer-gap-md);
+            margin-bottom: var(--composer-gap-md);
 
             .count-input {
               display: flex;
@@ -617,11 +623,19 @@
               .right-icon {
                 flex: 1;
                 font-size: 1.5rem !important;
-                min-width: 1.5rem;
-                height: 22px;
                 color: var(--composer-tertiary-color);
                 cursor: pointer;
                 transition: opacity 0.3s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .arrow-icon {
+                  width: 1.5rem;
+                  height: 1.5rem;
+                  object-fit: contain;
+                  display: block;
+                }
 
                 &:hover {
                   opacity: 0.5;
@@ -643,9 +657,11 @@
               border-top-left-radius: 0;
               border-bottom-left-radius: 0;
               height: 100%;
+              background-color: var(--composer-primary-color);
 
               .button-text {
                 text-align: center;
+                color: var(--composer-font-color-secondary);
               }
             }
           }
@@ -666,8 +682,9 @@
 
               .heart-icon {
                 color: var(--composer-font-color-primary);
-                min-width: 14px;
-                min-height: 14px;
+                width: 1rem;
+                height: 1rem;
+                object-fit: contain;
               }
 
               .cart-title {

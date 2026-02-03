@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  height: 100%;
+  height: 100dvh;
   position: relative;
   padding: 0 !important;
   overflow: hidden;
@@ -100,7 +100,7 @@
 
         .card {
           width: 100%;
-          height: 100vh;
+          height: 100dvh;
           position: relative;
 
           .button-wrapper {
@@ -175,6 +175,10 @@
       overflow: hidden;
 
       @container (max-width: #{$composer-tablet-width}) {
+        width: 65%;
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
         width: 100%;
       }
 
@@ -279,7 +283,7 @@
 
     .footer {
       position: absolute;
-      bottom: var(--composer-gap-xl);
+      bottom: 50px;
       left: 0;
       width: 100%;
       padding: 0 var(--composer-gap-xl);
@@ -291,12 +295,12 @@
 
       @container (max-width: #{$composer-tablet-width}) {
         padding: 0 var(--composer-gap-lg);
-        bottom: var(--composer-gap-lg);
+        bottom: 40px;
       }
 
       @container (max-width: #{$composer-phone-width}) {
         padding: 0 var(--composer-gap-md);
-        bottom: var(--composer-gap-md);
+        bottom: 50px;
       }
 
       .page-numbers {
@@ -362,7 +366,18 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    height: 80dvh;
     padding: 0 !important;
     overflow: hidden;
+
+    .max-content {
+      .carousel-wrapper {
+        .carousel {
+          .card {
+            height: 80dvh;
+          }
+        }
+      }
+    }
   }
 }

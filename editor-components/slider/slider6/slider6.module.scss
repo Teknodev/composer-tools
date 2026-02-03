@@ -25,8 +25,6 @@
       .subtitle,
       .no-title,
       .section-description {
-        content: "";
-        margin-bottom: var(--composer-gap-md);
         text-align: center;
         justify-content: center;
       }
@@ -139,7 +137,7 @@
 
             .right-part {
               flex: 1;
-              gap: var(--composer-gap-md);
+              gap: var(--composer-gap-sm);
               padding: var(--composer-gap-lg) var(--composer-gap-md);
               height: fit-content;
               align-items: flex-start;
@@ -172,6 +170,80 @@
           &.nextSlide,
           &.prevSlide {
             filter: blur(var(--composer-gap-xs));
+          }
+        }
+
+        :global(.slick-prev),
+        :global(.slick-next) {
+          position: absolute;
+          display: block;
+          height: 20px;
+          width: 20px;
+          line-height: 0px;
+          font-size: 0px;
+          cursor: pointer;
+          background: transparent;
+          color: transparent;
+          top: auto;
+          bottom: -40px;
+          padding: 0;
+          border: none;
+          outline: none;
+          z-index: 10;
+
+          &:hover,
+          &:focus {
+            outline: none;
+            background: transparent;
+            color: transparent;
+
+            &:before {
+              opacity: 1;
+            }
+          }
+
+          &:before {
+            font-family: "slick";
+            font-size: 20px;
+            line-height: 1;
+            color: var(--composer-font-color-primary);
+            opacity: 0.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: 20px;
+
+          [dir="rtl"] & {
+            left: auto;
+            right: 20px;
+          }
+
+          &:before {
+            content: "←";
+
+            [dir="rtl"] & {
+              content: "→";
+            }
+          }
+        }
+
+        :global(.slick-next) {
+          right: 20px;
+
+          [dir="rtl"] & {
+            left: 20px;
+            right: auto;
+          }
+
+          &:before {
+            content: "→";
+
+            [dir="rtl"] & {
+              content: "←";
+            }
           }
         }
 

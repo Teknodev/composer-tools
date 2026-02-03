@@ -45,6 +45,13 @@ class Slider9 extends BaseSlider {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Studio Headphones",
@@ -96,7 +103,7 @@ class Slider9 extends BaseSlider {
           key: "starIcon",
           displayer: "Rated Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -108,7 +115,7 @@ class Slider9 extends BaseSlider {
           key: "starIconBorder",
           displayer: "Unrated Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -134,7 +141,7 @@ class Slider9 extends BaseSlider {
           key: "leftArrow",
           displayer: "Left Arrow",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -146,7 +153,7 @@ class Slider9 extends BaseSlider {
           key: "rightArrow",
           displayer: "Right Arrow",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -164,7 +171,7 @@ class Slider9 extends BaseSlider {
               key: "wishlistIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -378,6 +385,13 @@ class Slider9 extends BaseSlider {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.addProp({
@@ -464,13 +478,6 @@ class Slider9 extends BaseSlider {
       displayer: "Fullscreen Right Arrow",
       additionalParams: { availableTypes: ["icon", "image"] },
       value: { type: "icon", name: "BiRightArrowAlt" },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
     });
 
     this.setComponentState("count", 0);
@@ -608,6 +615,8 @@ class Slider9 extends BaseSlider {
   };
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
     const price = this.getPropValue("price");
@@ -903,6 +912,11 @@ class Slider9 extends BaseSlider {
             {RightContentExist && (
               <div className={this.decorateCSS("right-content")}>
                 <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
+                  {(subtitleExist) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
                   {(titleExist || price.value) && (
                     <div className={this.decorateCSS("header")}>
                       {titleExist && (
@@ -994,6 +1008,7 @@ class Slider9 extends BaseSlider {
                                 <div onClick={this.handleLeftClick} className={this.decorateCSS("left-icon")}>
                                   <Base.Media
                                     value={quantitySection.leftArrow}
+                                    className={this.decorateCSS("arrow-icon")}
                                   />
                                 </div>
                               )}
@@ -1024,6 +1039,7 @@ class Slider9 extends BaseSlider {
                                 <div onClick={this.handleRightClick} className={this.decorateCSS("right-icon")}>
                                   <Base.Media
                                     value={quantitySection.rightArrow}
+                                    className={this.decorateCSS("arrow-icon")}
                                   />
                                 </div>
                               )}
