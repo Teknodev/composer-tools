@@ -8,9 +8,23 @@
     gap: var(--composer-gap-lg);
 
     .heading {
+      .subtitle,
       .title,
       .description {
         content: "";
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
       }
     }
 
@@ -31,6 +45,8 @@
       display: flex;
       flex-direction: column;
       cursor: pointer;
+      text-align: left;
+      align-items: flex-start;
     }
 
     .tab-title {
@@ -38,6 +54,7 @@
       margin: 0;
       color: var(--composer-font-color-primary);
       margin-bottom: var(--composer-gap-md);
+      text-align: left;
     }
 
     .tab-desc {
@@ -45,19 +62,14 @@
       margin: 0;
       color: var(--composer-tertiary-color);
       margin-bottom: var(--composer-gap-md);
+      text-align: left;
     }
 
     .link-wrapper {
       display: flex;
       align-items: center;
       gap: var(--composer-gap-xs);
-
-      &.center {
-        justify-content: center;
-      }
-      &.left {
-        justify-content: flex-start;
-      }
+      justify-content: flex-start;
       .tab-link {
         font-size: 1rem;
         color: var(--composer-font-color-primary);
@@ -86,6 +98,8 @@
 
     .progress-container {
       margin-top: var(--composer-gap-md);
+      align-self: flex-start;
+      width: 100%;
 
       transform: translateZ(0);
       will-change: transform;
@@ -157,7 +171,7 @@
     }
 
     @container (max-width : #{$composer-phone-width}) {
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-lg);
 
       .tabs-layout {
         flex-direction: column;

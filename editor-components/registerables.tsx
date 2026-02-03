@@ -107,9 +107,11 @@ import HeroSection35 from "./hero-section/hero-section35/hero-section35";
 import HeroSection38 from "./hero-section/hero-section38/hero-section38";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
+import IntroSection3 from "./intro-section/intro-section3/intro-section3";
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
 import IntroSection6 from "./intro-section/intro-section6/intro-section6";
 import IntroSection7 from "./intro-section/intro-section7/intro-section7";
+import IntroSection8 from "./intro-section/intro-section8/intro-section8";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
 import IntroSection10 from "./intro-section/intro-section10/intro-section10";
 import IntroSection11 from "./intro-section/intro-section11/intro-section11";
@@ -150,6 +152,9 @@ import FeatureComponent35 from "./feature/feature35/feature35";
 import FeatureComponent36 from "./feature/feature36/feature36";
 import FeatureComponent38 from "./feature/feature38/feature38";
 import FeatureComponent42 from "./feature/feature42/feature42";
+import FeatureComponent39 from "./feature/feature39/feature39";
+import FeatureComponent40 from "./feature/feature40/feature40";
+import FeatureComponent41 from "./feature/feature41/feature41";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -437,9 +442,11 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection38,
     IntroSection1,
     IntroSection2,
+    IntroSection3,
     IntroSection4,
     IntroSection6,
     IntroSection7,
+    IntroSection8,
     IntroSection9,
     IntroSection10,
     IntroSection11,
@@ -501,6 +508,9 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent36,
     FeatureComponent38,
     FeatureComponent42,
+    FeatureComponent39,
+    FeatureComponent40,
+    FeatureComponent41,
     CallToAction1,
     CallToAction2,
     CallToAction3,

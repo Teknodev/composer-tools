@@ -1,7 +1,20 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 .container {
   min-height: 100vh;
+  height: 100vh;
   position: relative;
+  padding: 0 !important;
+  
+  .background-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
   .overlay {
     position: absolute;
     left: 0;
@@ -9,16 +22,18 @@
     width: 100%;
     height: 100%;
     background: var(--composer-overlay-color);
-    z-index: 0;
+    z-index: 1;
   }
   .max-content {
-    background-repeat: no-repeat;
-    background-size: cover;
     height: 100vh;
     display: flex;
     position: relative;
+    z-index: 2;
     .wrapper {
       display: flex;
+      height: 100%;
+      max-width: 100%;
+      
       .left {
         display: flex;
         align-items: center;
@@ -30,20 +45,61 @@
         }
         .content-wrapper {
           width: 100%;
+          padding: 80px var(--composer-gap-xl);
           .content {
-            .title {
-              font-size: 4rem;
+            align-items: baseline;
 
-              &.title-with-image {
-                color: white;
+            .logo-wrapper {
+              margin-bottom: var(--composer-gap-md);
+              width: auto;
+              max-width: 200px;
+
+              .logo {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: contain;
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
+                &.logo-with-image {
+                  color: black;
+                }
               }
             }
 
-            .description {
-              font-size: 1.5rem;
+            .title {
+              text-align: left;
+              &.title-with-image {
+                color: black;
+              }
+            }
 
+            .subtitle {
+              text-align: left;
+              margin-left: 0;
+            }
+
+            .subtitle-with-image {
+              color: black;
+               &::before{
+                  background: black;
+                }
+            }
+            .subtitle-badge-with-image {
+              transform: translateX(0);
+              padding: 0;
+              &.subtitle-with-image {
+                color: black;
+                background: transparent;
+
+              }
+            }
+            
+
+            .description {
+              text-align: left;
               &.description-with-image {
-                color: white;
+                color: black;
               }
             }
 
@@ -56,7 +112,7 @@
               padding: var(--composer-gap-md);
               max-width: 75%;
               width: fit-content;
-              min-width: 30%;
+              min-width: 100%;
 
               &.form-display-no-image {
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -77,17 +133,17 @@
                       width: 100%;
                       height: 100%;
                       margin: 0px;
-                      border: 1px solid #e5e5e5;
-                      border-radius: var(--composer-border-radius-md);
+                      border: 1px solid gray;
+                      border-radius: var(--composer-border-radius-sm);
                       padding: var(--composer-gap-sm);
                       background-color: transparent;
                       color: black;
 
                       &.placeholder-no-image {
-                        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+                        border: 1px solid var(--composer-tertiary-color);
                         color: var(--composer-font-color-primary);
                         &::placeholder {
-                          color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+                          color: var(--composer-tertiary-color);
                         }
                         &:focus {
                           border: 1px solid var(--composer-font-color-primary);
@@ -115,7 +171,9 @@
                   .button-box {
                     min-width: fit-content;
                     .button {
-                      content: "";
+                      .button-text{
+                        content: "";
+                      }
                     }
                   }
                 }
@@ -124,22 +182,82 @@
           }
         }
       }
+      
+      .right {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 50%;
+        
+        .image-wrapper {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
+  &.no-image {
+    min-height: 100%;
+
+    .max-content {
+      height: 100%;
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    min-height: fit-content !important;
+    height: fit-content !important;
     .max-content {
+      height: 100% !important;
       .wrapper {
+        align-items: stretch;
+        .left {
+          padding: 0;
+        }
         .left,
         .left-no-image {
           max-width: 100%;
           .content-wrapper {
+            padding: 80px var(--composer-gap-lg);
             .content {
               .form-display {
                 min-width: 75%;
+                .form-wrapper {
+                  .form {
+                    flex-direction: column;
+                  }
+                }
               }
+            }
+          }
+        }
+        .right {
+          max-width: 100%;
+          height: auto;
+          display: flex;
+          align-items: stretch;
+          overflow: hidden;
+          .image-wrapper {
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: stretch;
+            .image {
+              max-height: 100%;
+              height: 100%;
             }
           }
         }
@@ -150,10 +268,14 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      height: auto;
       .wrapper {
+        flex-direction: column;
+        
         .left {
           max-width: 100%;
           .content-wrapper {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
             .content {
               .form-display {
                 gap: var(--composer-gap-sm);
@@ -171,9 +293,34 @@
                         min-height: 50px;
                       }
                     }
+                    .button-box {
+                      width: 100%;
+                      .button {
+                        width: 100%;
+                      }
+                    }
                   }
                 }
               }
+            }
+          }
+        }
+        
+        .right {
+          max-width: 100%;
+          .image-wrapper {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+
+            .image {
+              width: 100%;
+              height: auto;
+              object-fit: cover;
+              max-height: 40vh;
             }
           }
         }

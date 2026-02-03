@@ -107,15 +107,19 @@
 }
 
 .container.hasBackground {
-  .subtitle,
-  .title {
-    color: var(--composer-font-color-primary) !important;
+  .subtitle {
+    color: white !important;
     background: transparent !important;
   }
 
   .subtitle {
     &::before {
-      background: var(--composer-font-color-primary) !important;
+      background: white !important;
     }
+  }
+
+  .title,
+  .description {
+    color: white !important;
   }
 }
