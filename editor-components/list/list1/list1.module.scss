@@ -26,7 +26,7 @@ as *;
       position: relative;
 
       :global(.slick-slide) {
-        padding: 0 calc(var(--composer-gap-lg) / 4 + 5px);
+        padding: 0 calc(var(--composer-gap-xl) / 2 + 1px);
         margin-bottom: calc(2 * var(--composer-gap-md));
         box-sizing: border-box;
         height: auto;
@@ -256,10 +256,10 @@ as *;
         .active-after {
           content: "";
           position: absolute;
-          width: calc(100% + var(--composer-gap-lg) + 20px);
+          width: calc(100% + var(--composer-gap-lg) + 70px);
           height: 85%;
           bottom: calc(-2 * var(--composer-gap-md));
-          left: calc(-0.5 * var(--composer-gap-lg) - 10px);
+          left: calc(-0.5 * var(--composer-gap-lg) - 35px);
           background-color: var(--composer-primary-color);
           z-index: -2;
           border-bottom-left-radius: var(--composer-border-radius-lg);
