@@ -210,7 +210,9 @@ class Feature47 extends BaseFeature {
     const itemCountPerRow = this.getPropValue("itemCount");
 
     const sectionButtons = this.castToObject<PrimaryButton[]>("sectionButtons");
-    console.log(sectionButtons);
+    const sectionButtonsExist = sectionButtons.some(
+      (sectionButton) => !!this.castToString(sectionButton.text),
+    );
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -302,37 +304,39 @@ class Feature47 extends BaseFeature {
             ))}
           </Base.ListGrid>
 
-          <div className={this.decorateCSS("section-buttons-wrapper")}>
-            {sectionButtons.map((sectionButton, index) => {
-              const buttonText = this.castToString(sectionButton.text);
-              const buttonExist = buttonText || sectionButton.icon;
-              return (
-                buttonExist && (
-                  <ComposerLink path={sectionButton.url}>
-                    <Base.Button
-                      className={this.decorateCSS("section-button")}
-                      key={index}
-                      buttonType={sectionButton.type}
-                    >
-                      {sectionButton.icon && (
-                        <Base.Media
-                          value={sectionButton.icon}
-                          className={this.decorateCSS("section-button-icon")}
-                        />
-                      )}
-                      {buttonText && (
-                        <Base.P
-                          className={this.decorateCSS("section-button-text")}
-                        >
-                          {sectionButton.text}
-                        </Base.P>
-                      )}
-                    </Base.Button>
-                  </ComposerLink>
-                )
-              );
-            })}
-          </div>
+          {sectionButtonsExist && (
+            <div className={this.decorateCSS("section-buttons-wrapper")}>
+              {sectionButtons.map((sectionButton, index) => {
+                const buttonText = this.castToString(sectionButton.text);
+                const buttonExist = buttonText || sectionButton.icon;
+                return (
+                  buttonExist && (
+                    <ComposerLink path={sectionButton.url}>
+                      <Base.Button
+                        className={this.decorateCSS("section-button")}
+                        key={index}
+                        buttonType={sectionButton.type}
+                      >
+                        {sectionButton.icon && (
+                          <Base.Media
+                            value={sectionButton.icon}
+                            className={this.decorateCSS("section-button-icon")}
+                          />
+                        )}
+                        {buttonText && (
+                          <Base.P
+                            className={this.decorateCSS("section-button-text")}
+                          >
+                            {sectionButton.text}
+                          </Base.P>
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                );
+              })}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
