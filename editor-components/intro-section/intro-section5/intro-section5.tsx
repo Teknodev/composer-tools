@@ -125,7 +125,7 @@ class IntroSection5 extends BaseIntroSection {
                 return (hasIcon || hasText) && (
                   <ComposerLink path={btn.url || ""} key={`btn-${i}`}>
                     <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
-                      {hasText && <span className={this.decorateCSS("button-text")}>{btn.text}</span>}
+                      {hasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
                       {hasIcon && <Base.Media value={btn.icon} className={this.decorateCSS("button-icon")} />}
                     </Base.Button>
                   </ComposerLink>

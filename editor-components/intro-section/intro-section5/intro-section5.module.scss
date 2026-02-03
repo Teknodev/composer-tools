@@ -43,7 +43,7 @@
         .subtitle,
         .title,
         .description {
-          color: var(--composer-font-color-secondary) !important;
+          color: #fff !important;
         }
       }
 
@@ -52,7 +52,7 @@
 
           .button-icon,
           .button-text {
-            color: var(--color-white) !important;
+            color: #fff !important;
           }
         }
       }
@@ -109,7 +109,6 @@
         }
 
         .button-text {
-          white-space: nowrap;
           font-size: 4rem;
         }
       }
