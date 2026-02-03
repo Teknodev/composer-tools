@@ -300,6 +300,9 @@
                   transition: transform 0.2s ease;
                   color: var(--composer-font-color-primary);
                   font-size: 1.75rem;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
 
                   .button-icon {
                     width: 100%;
@@ -725,7 +728,7 @@
     .max-content {
       .content {
         height: auto;
-        flex-direction: column;
+        flex-direction: row;
 
         .sliders-parent {
           .vertical-parent {

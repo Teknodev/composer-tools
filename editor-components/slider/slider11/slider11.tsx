@@ -43,15 +43,6 @@ class Slider11 extends BaseSlider {
         "Create beautiful sites with ultimate design flexibility, backed by ultra-reliable infrastructure and unbeatable performance.",
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings"));
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
     this.addProp({
       type: "array",
       key: "buttons",
@@ -238,6 +229,15 @@ class Slider11 extends BaseSlider {
       ] as any,
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings"));
+
     this.setComponentState("activeTab", 0);
   }
 
@@ -399,9 +399,9 @@ class Slider11 extends BaseSlider {
                     )}
 
                     {itemTitleExist && (
-                      <Base.H4 className={this.decorateCSS("tab-title")}>
+                      <Base.H5 className={this.decorateCSS("tab-title")}>
                         {item.title}
-                      </Base.H4>
+                      </Base.H5>
                     )}
                     {itemDescExist && (
                       <Base.P className={this.decorateCSS("tab-desc")}>

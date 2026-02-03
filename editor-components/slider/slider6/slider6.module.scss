@@ -200,7 +200,7 @@
               &::before {
                 content: "";
                 display: block;
-                background-color: var(--composer-font-color-primary);
+                background-color: var(--composer-primary-color);
                 height: 2px;
                 width: 100%;
               }
@@ -209,7 +209,7 @@
             &.slick-active {
               :global(button) {
                 &::before {
-                  background-color: var(--composer-font-color-primary);
+                  background-color: var(--composer-primary-color);
                   opacity: 1;
                 }
               }

@@ -3,6 +3,7 @@ import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider7.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
@@ -12,6 +13,29 @@ type SliderItem = {
 class Slider7 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
 
     this.addProp({
       type: "array",
@@ -289,10 +313,48 @@ class Slider7 extends BaseSlider {
     };
 
 
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const button = this.castToObject<INPUTS.CastedButton>("button");
+
     return (
       <Base.Container isFull={true} className={`${this.decorateCSS("container")}
       ${items.length === 1 && this.decorateCSS("one-card")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+
+          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || (button && this.castToString(button.text))) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {this.castToString(description) && (
+                <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+              {button && this.castToString(button.text) && (
+                <ComposerLink path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("section-button")}>
+                    {button.text && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
+                    {button.icon && (
+                      <Base.Media
+                        value={button.icon as any}
+                        className={this.decorateCSS("icon")}
+                      />
+                    )}
+                  </Base.Button>
+                </ComposerLink>
+              )}
+            </Base.VerticalContent>
+          )}
 
           {previousArrow && sliderSettings.arrows && (
             <div className={this.decorateCSS("prevArrow")} onClick={() => sliderRef.current.slickPrev()}>

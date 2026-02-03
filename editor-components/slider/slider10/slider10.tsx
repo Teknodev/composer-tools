@@ -8,7 +8,9 @@ import styles from "./slider10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type SliderItem = {
-  title: React.JSX.Element;
+  subtitle?: string;
+  title: string;
+  description?: string;
   media: any;
   index: number;
 };
@@ -36,9 +38,21 @@ class Slider10 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "The Petronas Twin Towers",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "media",
@@ -61,9 +75,21 @@ class Slider10 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Multi-Family Housing",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "media",
@@ -86,9 +112,21 @@ class Slider10 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "The Lighthouse",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "media",
@@ -111,9 +149,21 @@ class Slider10 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "The Arches",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "media",
@@ -136,9 +186,21 @@ class Slider10 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Riverside Residence",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "media",
@@ -161,9 +223,21 @@ class Slider10 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Dream House",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             {
               type: "media",
@@ -309,7 +383,7 @@ class Slider10 extends BaseSlider {
       key: "previousButtonIcon",
       displayer: "Previous Slide Button Icon",
       additionalParams: {
-        availableTypes: ["icon","image"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -321,7 +395,7 @@ class Slider10 extends BaseSlider {
       key: "nextButtonIcon",
       displayer: "Next Slide Button Icon",
       additionalParams: {
-        availableTypes: ["icon","image"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -334,7 +408,7 @@ class Slider10 extends BaseSlider {
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
 
-        this.addProp({
+    this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
@@ -408,17 +482,41 @@ class Slider10 extends BaseSlider {
                           />
                         )}
                         <div className={this.decorateCSS("max-content")}>
-                          {item.title && (
-                            <Base.SectionTitle
-                              className={`
-                              ${this.decorateCSS("slider-item-title")}
-                              ${item.media && this.decorateCSS("slider-item-title-with-media")}
-                              ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}
-                            `}
-                            >
-                              {item.title}
-                            </Base.SectionTitle>
-                          )}
+                          <Base.VerticalContent className={this.decorateCSS("slider-item-content")}>
+                            {this.castToString(item.subtitle as any) && (
+                              <Base.SectionSubTitle
+                                className={`
+                                ${this.decorateCSS("slider-item-subtitle")}
+                                ${item.media && this.decorateCSS("slider-item-subtitle-with-media")}
+                                ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}
+                              `}
+                              >
+                                {item.subtitle}
+                              </Base.SectionSubTitle>
+                            )}
+                            {this.castToString(item.title as any) && (
+                              <Base.SectionTitle
+                                className={`
+                                ${this.decorateCSS("slider-item-title")}
+                                ${item.media && this.decorateCSS("slider-item-title-with-media")}
+                                ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}
+                              `}
+                              >
+                                {item.title}
+                              </Base.SectionTitle>
+                            )}
+                            {this.castToString(item.description as any) && (
+                              <Base.SectionDescription
+                                className={`
+                                ${this.decorateCSS("slider-item-description")}
+                                ${item.media && this.decorateCSS("slider-item-description-with-media")}
+                                ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}
+                              `}
+                              >
+                                {item.description}
+                              </Base.SectionDescription>
+                            )}
+                          </Base.VerticalContent>
                         </div>
                         {overlay && <div className={this.decorateCSS("slider-item-overlay")} />}
                       </div>
@@ -465,7 +563,7 @@ class Slider10 extends BaseSlider {
                 {(prevIcon || nextIcon) && (
                   <div className={this.decorateCSS("slider-buttons")}>
                     {prevIcon && (
-                      <div 
+                      <div
                         className={this.decorateCSS("slider-button")}
                         onClick={() => {
                           sliderRef.current.slickPrev();
@@ -478,7 +576,7 @@ class Slider10 extends BaseSlider {
                       </div>
                     )}
                     {nextIcon && (
-                      <div 
+                      <div
                         className={this.decorateCSS("slider-button")}
                         onClick={() => {
                           sliderRef.current.slickNext();

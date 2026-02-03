@@ -236,7 +236,7 @@ class Slider6 extends BaseSlider {
 
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
       dots: true,
-      arrows: false,
+      arrows: true,
       infinite: true,
       speed: 500,
       autoplay: true,
@@ -367,7 +367,7 @@ class Slider6 extends BaseSlider {
                       {(this.castToString(item.card_subtitle) || this.castToString(item.card_title) || this.castToString(item.card_description) || this.castToString(item.button.text)) && (
                         <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
                           {this.castToString(item.card_subtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.card_subtitle}</Base.P>}
-                          {this.castToString(item.card_title) && <Base.P className={this.decorateCSS("card-title")}>{item.card_title}</Base.P>}
+                          {this.castToString(item.card_title) && <Base.H5 className={this.decorateCSS("card-title")}>{item.card_title}</Base.H5>}
                           {this.castToString(item.card_description) && <Base.P className={this.decorateCSS("card-description")}>{item.card_description}</Base.P>}
                           {this.castToString(item.button.text) && (
                             <ComposerLink key={index} path={item.button.url}>

@@ -84,7 +84,7 @@
               width: 100%;
               z-index: 1;
               height: 100%;
-              gap: var(--composer-gap-xl);
+              gap: var(--composer-gap-lg);
 
               &.with-transition {
                 transition: 2500ms;
@@ -201,8 +201,7 @@
               .nav-buttons,
               .nav-buttons2 {
                 position: absolute;
-                top: 80%;
-                transform: translateY(-50%);
+                top: 75%;
                 display: flex;
                 gap: var(--composer-gap-md);
                 z-index: 5;
@@ -406,7 +405,22 @@
         .dots,
         .dots-2 {
           .dot-item {
-            transform: scale(0.6);
+            .dot-button {
+              width: 10px !important;
+              height: 10px !important;
+              min-width: 10px !important;
+              min-height: 10px !important;
+              padding: 0 !important;
+            }
+
+            &.slick-active {
+              .dot-button {
+                width: 12px !important;
+                height: 12px !important;
+                min-width: 12px !important;
+                min-height: 12px !important;
+              }
+            }
           }
         }
 
@@ -505,127 +519,129 @@
   }
 
   @container (max-width: #{$composer-phone-width}) {
-    .container {
-      .max-content {
+    .max-content {
 
-        .dots,
-        .dots-2 {
-          margin-left: 0;
-          top: 80%;
-          left: 50%;
-          transform: translateX(-50%);
-          flex-direction: row;
-          width: max-content;
-          align-items: center;
-          justify-content: center;
+      .dots,
+      .dots-2 {
+        margin-left: 0;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        width: max-content;
+        align-items: center;
+        justify-content: center;
 
-          .dot-item {
-            margin-bottom: 0;
-            margin-right: var(--composer-gap-sm);
+        .dot-item {
+          margin-bottom: 0;
+          margin-right: var(--composer-gap-sm);
 
+          .dot-button {
+            width: 10px !important;
+            height: 10px !important;
+            min-width: 10px !important;
+            min-height: 10px !important;
+            border-radius: 50% !important;
+            padding: 0 !important;
+            aspect-ratio: 1 / 1;
+          }
+
+          &.slick-active {
             .dot-button {
-              transform: scale(0.4);
-              width: var(--composer-gap-sm) !important;
-              height: var(--composer-gap-md) !important;
-              min-width: var(--composer-gap-sm) !important;
-              min-height: var(--composer-gap-md) !important;
-              border-radius: 50% !important;
-            }
-
-            &.slick-active {
-              .dot-button {
-                transform: scale(0.7);
-              }
+              width: 12px !important;
+              height: 12px !important;
+              min-width: 12px !important;
+              min-height: 12px !important;
             }
           }
         }
+      }
 
-        .dots-2 {
-          left: 50%;
-          bottom: -18px;
-          right: unset;
-          top: unset;
-          margin: 0;
-          transform: translateX(-50%);
-        }
+      .dots-2 {
+        left: 50%;
+        bottom: -18px;
+        right: unset;
+        top: unset;
+        margin: 0;
+        transform: translateX(-50%);
+      }
 
-        .slider-parent {
-          .carousel {
-            .slider-inner-div {
-              .content {
-                padding: var(--composer-gap-md);
-                height: 45vh;
+      .slider-parent {
+        .carousel {
+          .slider-inner-div {
+            .content {
+              padding: var(--composer-gap-md);
+              height: 45vh;
 
-                .content-div {
-                  margin: 0;
-                  padding: var(--composer-gap-md) 0;
-                  gap: var(--composer-gap-sm);
+              .content-div {
+                margin: 0;
+                padding: var(--composer-gap-md) 0;
+                gap: var(--composer-gap-sm);
 
 
-                  .image {
-                    width: 80%;
-                    height: 80%;
+                .image {
+                  width: 80%;
+                  height: 80%;
+                }
+
+                .lines-container,
+                .lines-container2 {
+                  margin-top: 0;
+                  margin-bottom: 0;
+
+                  .line-1 {
+                    width: 140px;
                   }
 
-                  .lines-container,
-                  .lines-container2 {
-                    margin-top: 0;
-                    margin-bottom: 0;
-
-                    .line-1 {
-                      width: 140px;
-                    }
-
-                    .line-2 {
-                      width: 80px;
-                    }
-                  }
-
-                  .title-wrapper {
-                    margin-top: 0;
-                    margin-bottom: 0;
-
-                    .title {
-                      font-size: 3rem;
-                      margin: 0;
-                    }
-                  }
-
-                  .buttons,
-                  .buttons2 {
-                    margin-top: 0;
-                    margin-bottom: var(--composer-gap-sm);
-                  }
-
-                  .nav-buttons,
-                  .nav-buttons2 {
-                    display: none;
+                  .line-2 {
+                    width: 80px;
                   }
                 }
+
+                .title-wrapper {
+                  margin-top: 0;
+                  margin-bottom: 0;
+
+                  .title {
+                    font-size: 3rem;
+                    margin: 0;
+                  }
+                }
+
+                .buttons,
+                .buttons2 {
+                  margin-top: 0;
+                  margin-bottom: var(--composer-gap-sm);
+                }
+
+                .nav-buttons,
+                .nav-buttons2 {
+                  display: none;
+                }
               }
+            }
 
-              .no-img {
-                padding: 0;
-                padding-bottom: var(--composer-gap-md);
+            .no-img {
+              padding: 0;
+              padding-bottom: var(--composer-gap-md);
 
-                .content-div {
-                  padding: var(--composer-gap-md) 0;
-                  gap: var(--composer-gap-sm);
+              .content-div {
+                padding: var(--composer-gap-md) 0;
+                gap: var(--composer-gap-sm);
 
-                  .title-wrapper {
-                    max-width: calc(100% - var(--composer-gap-md));
-                    margin-top: 0;
-                    margin-bottom: 0;
+                .title-wrapper {
+                  max-width: calc(100% - var(--composer-gap-md));
+                  margin-top: 0;
+                  margin-bottom: 0;
 
-                    .title {
-                      margin: 0;
-                    }
+                  .title {
+                    margin: 0;
                   }
+                }
 
-                  .center {
-                    max-width: 100%;
-                    padding: 0 var(--composer-gap-lg);
-                  }
+                .center {
+                  max-width: 100%;
+                  padding: 0 var(--composer-gap-lg);
                 }
               }
             }

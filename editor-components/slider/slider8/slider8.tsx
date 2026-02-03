@@ -58,7 +58,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "", null, "White"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
           ],
         },
         {
@@ -96,7 +96,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "", null, "White"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
           ],
         },
         {
@@ -134,7 +134,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "", null, "White"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
           ],
         },
       ],

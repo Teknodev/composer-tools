@@ -8,6 +8,45 @@
   .max-content {
     position: relative;
 
+    .header {
+      width: 100%;
+      margin-bottom: var(--composer-gap-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .subtitle,
+      .title,
+      .section-description {
+        text-align: center;
+      }
+
+      .section-button {
+        width: fit-content;
+        margin: 0 auto;
+      }
+
+      .subtitle {
+        transform: translateX(0);
+
+        &::before {
+          display: none;
+        }
+      }
+
+      .button-text,
+      .icon {
+        content: "";
+      }
+
+      .icon {
+        font-size: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
     .nextArrow,
     .prevArrow {
       display: block;

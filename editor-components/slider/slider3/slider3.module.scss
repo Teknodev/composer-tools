@@ -64,7 +64,7 @@
 
         .title {
           word-break: break-word;
-          
+
           @container (max-width: #{$composer-phone-width}) {
             margin-bottom: 0;
           }
@@ -117,6 +117,10 @@
       @container (max-width: #{$composer-phone-width}) {
         display: none;
       }
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+      padding: 0;
     }
   }
 

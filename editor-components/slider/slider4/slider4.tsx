@@ -399,30 +399,31 @@ class Slider4 extends BaseSlider {
             >
               <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
                 {cards.map((item: SliderItem, index: number) => (
-                  <Base.VerticalContent
-                    className={`${this.decorateCSS("card")} 
+                  <div className={this.decorateCSS("slide-wrapper")} key={index}>
+                    <Base.VerticalContent
+                      className={`${this.decorateCSS("card")} 
                     ${carouselClass === "carousel--singleCard" && this.decorateCSS("for-single-card")}
                     ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`}
-                    key={index}
-                  >
-                    <Base.Row className={this.decorateCSS("icon-row")}>
-                      {item.media && (
-                        <Base.Media value={item.media} className={this.decorateCSS("play-icon")} />
+                    >
+                      <Base.Row className={this.decorateCSS("icon-row")}>
+                        {item.media && (
+                          <Base.Media value={item.media} className={this.decorateCSS("play-icon")} />
+                        )}
+                      </Base.Row>
+                      <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
+                      <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>
+                      {item.button && this.castToString(item.button.text) && (
+                        <div className={this.decorateCSS("button")}>
+                          <Base.Button buttonType={item.button.type}>
+                            {item.button.text && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}
+                            {item.button.icon && (
+                              <Base.Media value={item.button.icon as any} className={this.decorateCSS("button-icon")} />
+                            )}
+                          </Base.Button>
+                        </div>
                       )}
-                    </Base.Row>
-                    <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
-                    <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>
-                    {item.button && this.castToString(item.button.text) && (
-                      <div className={this.decorateCSS("button")}>
-                        <Base.Button buttonType={item.button.type}>
-                          {item.button.text && <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>}
-                          {item.button.icon && (
-                            <Base.Media value={item.button.icon as any} className={this.decorateCSS("button-icon")} />
-                          )}
-                        </Base.Button>
-                      </div>
-                    )}
-                  </Base.VerticalContent>
+                    </Base.VerticalContent>
+                  </div>
                 ))}
               </ComposerSlider>
 

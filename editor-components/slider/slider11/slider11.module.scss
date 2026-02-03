@@ -15,6 +15,10 @@
         width: 100%;
       }
 
+      .subtitle {
+        width: fit-content;
+      }
+
       .button-container {
         display: flex;
         flex-direction: row;
@@ -22,8 +26,11 @@
         flex-wrap: wrap;
 
         .button {
+          display: flex;
+          align-items: center;
+
           .button-text {
-            width: auto;
+            content: "";
           }
 
           :global(.icon),
@@ -39,7 +46,7 @@
     .tabs-layout {
       position: relative;
       display: flex;
-      gap: var(--composer-gap-lg);
+      gap: var(--composer-gap-md);
 
       .arrow-prev,
       .arrow-next {
@@ -102,7 +109,7 @@
       display: flex;
       min-width: 0;
       flex-direction: column;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
       text-align: left;
 
       &.full-width {
@@ -220,6 +227,7 @@
 
     .progress-container {
       margin-top: var(--composer-gap-md);
+      margin-bottom: var(--composer-gap-md);
       transform: translateZ(0);
       will-change: transform;
 

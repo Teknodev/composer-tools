@@ -390,6 +390,10 @@
                                 transform: unset;
                             }
                         }
+
+                        .content:has(.box.center) .socials {
+                            justify-content: center;
+                        }
                     }
 
                     &.has-arrows {
