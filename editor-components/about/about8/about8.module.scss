@@ -33,10 +33,11 @@ as *;
       gap: var(--composer-gap-lg);
 
       .images-section {
-        flex: 0 0 auto;
+        flex: 1;
         display: flex;
-        width: 65%;
+        min-width: 0;
         gap: var(--composer-gap-xl);
+        flex-wrap: wrap;
 
         .image-box {
           flex: 1;
@@ -109,7 +110,32 @@ as *;
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
 
+      .main-content {
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .images-section {
+          width: 100%;
+          flex-direction: row;
+          gap: var(--composer-gap-md);
+
+          .image-box {
+            width: 100%;
+          }
+        }
+
+        .content-section {
+          gap: var(--composer-gap-md);
+        }
+      }
+    }
+  }
+}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
