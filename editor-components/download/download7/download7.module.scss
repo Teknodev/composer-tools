@@ -20,6 +20,9 @@
       background-position: center;
       border-radius: var(--composer-border-radius-md);
       position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
 
       .overlay {
         position: absolute;
@@ -35,12 +38,15 @@
       .content-container {
         height: 100%;
         padding: 0;
+        position: relative;
+        z-index: 2;
 
         &.has-image {
           min-height: 600px;
           padding: var(--composer-gap-md) var(--composer-gap-md);
           align-items: center;
           text-align: center;
+          justify-content: center;
         }
 
         &.center {
@@ -86,7 +92,6 @@
           flex-wrap: wrap;
           justify-content: center;
           gap: var(--composer-gap-sm);
-          min-height: 60px;
           height: auto;
 
           &.center {
