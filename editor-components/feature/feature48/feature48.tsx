@@ -66,7 +66,7 @@ class Feature48 extends BaseFeature {
             {
               type: "string",
               key: "content",
-              displayer: "Content",
+              displayer: "Title",
               value:
                 "Unlimited <br/><span style='color: var(--composer-font-color-primary)'>Everything</span>",
             },
@@ -100,7 +100,7 @@ class Feature48 extends BaseFeature {
             {
               type: "string",
               key: "content",
-              displayer: "Content",
+              displayer: "Title",
               value:
                 "Tailored <br/><span style='color: var(--composer-font-color-primary)'>Onboarding</span>",
             },
@@ -134,7 +134,7 @@ class Feature48 extends BaseFeature {
             {
               type: "string",
               key: "content",
-              displayer: "Content",
+              displayer: "Title",
               value:
                 "Full Access <br/><span style='color: var(--composer-font-color-primary)'>Control</span>",
             },
@@ -154,7 +154,7 @@ class Feature48 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemsPerRow",
-      displayer: "Item counts in a row",
+      displayer: "Item Count in a Row",
       value: 3,
     });
 
@@ -243,7 +243,7 @@ class Feature48 extends BaseFeature {
           {cards && cards.length > 0 && (
             <Base.ListGrid
               className={this.decorateCSS("cards-container")}
-              gridCount={{ pc: itemsPerRow, tablet: 2, phone: 1 }}
+              gridCount={{ pc: itemsPerRow, tablet: 3, phone: 1 }}
             >
               {cards.map((card: Card, index: number) => (
                 <div
