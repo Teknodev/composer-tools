@@ -16,7 +16,7 @@ type CardType = {
   image: { type: "image"; url: string };
   url: string;
 };
-type RightTextItem = {
+type sectionButtonItem = {
   text: string;
   icon: { type: "icon"; name: string };
   image?: { type: "image"; url: string };
@@ -52,7 +52,7 @@ class Blog1 extends BaseBlog {
 
     this.addProp({
       type: "array",
-      key: "rightText",
+      key: "sectionButton",
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Latest News", "", "LuArrowUpRight", "", "Link"),
@@ -390,7 +390,7 @@ class Blog1 extends BaseBlog {
     const subtitleExist = this.castToString(subtitle);
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
-    const rightTextItems = this.castToObject<RightTextItem[]>("rightText");
+    const sectionButtonItems = this.castToObject<sectionButtonItem[]>("sectionButton");
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
@@ -399,7 +399,7 @@ class Blog1 extends BaseBlog {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.decorateCSS("header-left")}`}>
+          <Base.VerticalContent className={this.decorateCSS("header")}>
             {subtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
             )}
@@ -411,7 +411,7 @@ class Blog1 extends BaseBlog {
 
           </Base.VerticalContent>
           <div className={this.decorateCSS("button-container")}>
-            {rightTextItems.map((item: RightTextItem, index: number) => {
+            {sectionButtonItems.map((item: sectionButtonItem, index: number) => {
               const buttonTextExist = this.castToString(item.text as any);
               const iconExist = item.icon && item.icon.name;
               const imageExist = item.image && item.image.url;
