@@ -8,7 +8,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ButtonTypeObj = {
     text: React.JSX.Element;
-    url: string;
+    url?: string;
     type: TypeButton;
 }
 
@@ -182,8 +182,8 @@ class Feature42 extends BaseFeature {
 
         this.addProp({
             type: "media",
-            key: "arrowIcon",
-            displayer: "Arrow Icon",
+            key: "mobileIcon",
+            displayer: "Mobile Icon",
             additionalParams: {
                 availableTypes: ["icon"],
             },
@@ -210,7 +210,7 @@ class Feature42 extends BaseFeature {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableOverlay = this.getPropValue("enableOverlay");
-        const arrowIcon = this.getPropValue("arrowIcon");
+        const mobileIcon = this.getPropValue("mobileIcon");
         const items = this.castToObject<ListItem[]>("items");
         const activeIndex = this.getComponentState("activeIndex");
         const effectiveIndex = activeIndex === undefined ? 0 : activeIndex;
@@ -224,38 +224,41 @@ class Feature42 extends BaseFeature {
             this.castToString(item.text1) ||
             this.castToString(item.text2)
         );
+        const hasAnyImage = items.some((item: ListItem) => item.image);
 
         return (
             <Base.Container className={this.decorateCSS("container")} isFull={true}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasContent && (
-                        <div className={this.decorateCSS("text-content")}>
-                            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                                {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                                {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                                {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                            </Base.VerticalContent>
-                        </div>
-                    )}
-                    {hasItems && (
-                        <div className={this.decorateCSS("items-wrapper")}>
-                            {items.map((item: ListItem, index: number) => {
-                                const menuTitle = item.title;
-                                const isActive = effectiveIndex === index;
-                                return this.castToString(menuTitle) && (
-                                    <Base.H5
-                                        key={index}
-                                        className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
-                                        onClick={() => this.setComponentState("activeIndex", index)}
-                                    >
-                                        {menuTitle}
-                                    </Base.H5>
-                                );
-                            })}
-                        </div>
-                    )}
+                    <div className={this.decorateCSS("wrapper")}>
+                        {hasContent && (
+                            <div className={this.decorateCSS("text-content")}>
+                                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                                    {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                                    {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                                </Base.VerticalContent>
+                            </div>
+                        )}
+                        {hasItems && (
+                            <div className={this.decorateCSS("items-wrapper")}>
+                                {items.map((item: ListItem, index: number) => {
+                                    const menuTitle = item.title;
+                                    const isActive = effectiveIndex === index;
+                                    return this.castToString(menuTitle) && (
+                                        <Base.H5
+                                            key={index}
+                                            className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
+                                            onClick={() => this.setComponentState("activeIndex", index)}
+                                        >
+                                            {menuTitle}
+                                        </Base.H5>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
                     {hasRightContent && (
-                        <div className={this.decorateCSS("card-wrapper")}>
+                        <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")}`}>
                             {items.map((item: ListItem, index: number) => {
                                 const isActive = effectiveIndex === index;
                                 const cardTitleExist = this.castToString(item.cardTitle);
@@ -277,13 +280,13 @@ class Feature42 extends BaseFeature {
                                                 {item.title}
                                             </Base.H3>
                                             <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
-                                                {arrowIcon && (
-                                                    <Base.Media value={arrowIcon} />
+                                                {mobileIcon && (
+                                                    <Base.Media value={mobileIcon} />
                                                 )}
                                             </div>
                                         </div>
                                         {item.image && (
-                                            <div className={this.decorateCSS("image-wrapper")}>
+                                            <div className={`${this.decorateCSS("image-wrapper")} ${!(cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
                                                 <Base.Media
                                                     value={item.image}
                                                     className={this.decorateCSS("itemImage")}
