@@ -53,13 +53,10 @@
             .subtitle {
               text-align: left;
               width: fit-content;
-              margin-bottom: var(--composer-gap-sm);
             }
           }
 
           .title {
-            margin: 0;
-
             &.full {
               width: 100%;
             }
@@ -121,11 +118,16 @@
         align-items: center;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
 
+        .vertical-content-center {
+          width: 100%;
+          align-items: center;
+          text-align: center;
+        }
+
         .subtitle-wrapper {
           width: 100%;
           display: flex;
           justify-content: center;
-          margin-bottom: var(--composer-gap-sm) !important;
 
           .subtitle {
             width: fit-content;
@@ -138,7 +140,6 @@
 
         .description {
           color: var(--composer-font-color-primary);
-          margin-top: var(--composer-gap-sm);
         }
 
         .button-group {
@@ -213,7 +214,6 @@
             }
 
             .title {
-              margin: 0;
               text-align: center;
               width: 100%;
 
