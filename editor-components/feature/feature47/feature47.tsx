@@ -210,7 +210,9 @@ class Feature47 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent>
+          <Base.VerticalContent
+            className={this.decorateCSS("header-container")}
+          >
             {sectionSubtitle && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
@@ -241,49 +243,50 @@ class Feature47 extends BaseFeature {
             className={this.decorateCSS("cards-list")}
           >
             {cards?.map((card, index) => (
-              <div key={index} className={this.decorateCSS("card")}>
-                <Base.VerticalContent>
-                  <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                    {card.subtitle || ""}
-                  </Base.H6>
-                  <Base.H3 className={this.decorateCSS("card-title")}>
-                    {card.title || ""}
-                  </Base.H3>
-                  <Base.P className={this.decorateCSS("card-description")}>
-                    {card.description || ""}
-                  </Base.P>
-                  <div className={this.decorateCSS("card-buttons-wrapper")}>
-                    {card.buttons.map((button, index) => {
-                      const buttonText = this.castToString(button.text);
-                      if (buttonText)
-                        return (
-                          <ComposerLink path={button.url}>
-                            <Base.Button
-                              className={this.decorateCSS("card-button")}
-                              key={index}
-                              buttonType={button.type}
+              <Base.VerticalContent
+                key={index}
+                className={this.decorateCSS("card")}
+              >
+                <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                  {card.subtitle || ""}
+                </Base.H6>
+                <Base.H3 className={this.decorateCSS("card-title")}>
+                  {card.title || ""}
+                </Base.H3>
+                <Base.P className={this.decorateCSS("card-description")}>
+                  {card.description || ""}
+                </Base.P>
+                <div className={this.decorateCSS("card-buttons-wrapper")}>
+                  {card.buttons.map((button, index) => {
+                    const buttonText = this.castToString(button.text);
+                    if (buttonText)
+                      return (
+                        <ComposerLink path={button.url}>
+                          <Base.Button
+                            className={this.decorateCSS("card-button")}
+                            key={index}
+                            buttonType={button.type}
+                          >
+                            {button.icon && (
+                              <Base.Icon
+                                name={button.icon.name}
+                                propsIcon={{
+                                  className:
+                                    this.decorateCSS("card-button-icon"),
+                                }}
+                              />
+                            )}
+                            <Base.P
+                              className={this.decorateCSS("card-button-text")}
                             >
-                              {button.icon && (
-                                <Base.Icon
-                                  name={button.icon.name}
-                                  propsIcon={{
-                                    className:
-                                      this.decorateCSS("card-button-icon"),
-                                  }}
-                                />
-                              )}
-                              <Base.P
-                                className={this.decorateCSS("card-button-text")}
-                              >
-                                {button.text}
-                              </Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        );
-                    })}
-                  </div>
-                </Base.VerticalContent>
-              </div>
+                              {button.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                  })}
+                </div>
+              </Base.VerticalContent>
             ))}
           </Base.ListGrid>
 
