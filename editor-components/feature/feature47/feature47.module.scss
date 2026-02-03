@@ -1,10 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
-.container {
-  background-color: var(--composer-html-background);
-  color: var(--composer-font-color-primary);
+.buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--composer-gap-sm);
+}
 
+.container {
   .max-content {
     display: flex;
     flex-direction: column;
@@ -24,16 +27,14 @@
 
     .cards-list {
       .card {
-        min-width: 220px;
-        background-color: var(--composer-html-background);
         box-shadow: var(--box-shadow-active);
         border-radius: var(--composer-border-radius-md);
         padding: var(--composer-gap-lg);
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
+        .card-title,
+        .card-description {
+          color: var(--composer-font-color-primary);
+        }
 
         .card-subtitle,
         .card-title,
@@ -44,26 +45,11 @@
         .card-subtitle {
           width: 100%;
           color: var(--composer-primary-color);
-          font-weight: bold;
-          font-size: 1.2rem;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-        }
-
-        .card-title {
-          margin-inline-start: 0;
-        }
-
-        .card-description {
-          margin-inline-start: 0;
-          opacity: 0.9;
         }
 
         .card-buttons-wrapper {
+          @extend .buttons-wrapper;
           width: 100%;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
 
           .card-button {
             .card-button-icon,
@@ -75,9 +61,9 @@
       }
     }
 
-    .section-button-wrapper {
+    .section-buttons-wrapper {
+      @extend .buttons-wrapper;
       margin-inline: auto;
-      width: fit-content;
 
       .section-button {
         .section-button-icon,
@@ -95,8 +81,8 @@
   }
 }
 
-@container (min-width: #{$composer-phone-width}) and (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .container .cards-list .card {
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-md) !important;
   }
 }
