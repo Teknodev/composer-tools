@@ -244,17 +244,17 @@ class About7 extends BaseAbout {
                     {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
                         <Base.VerticalContent className={this.decorateCSS("top-content")}>
                             {this.castToString(this.getPropValue("subtitle")) && (
-                                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
+                                <Base.SectionSubTitle className={`${this.decorateCSS("top-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
                                     {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}
                             {this.castToString(this.getPropValue("title")) && (
-                                <Base.SectionTitle className={`${this.decorateCSS("title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
+                                <Base.SectionTitle className={`${this.decorateCSS("top-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
                                     {this.getPropValue("title")}
                                 </Base.SectionTitle>
                             )}
                             {this.castToString(this.getPropValue("description")) && (
-                                <Base.SectionDescription className={`${this.decorateCSS("description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
+                                <Base.SectionDescription className={`${this.decorateCSS("top-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
                                     {this.getPropValue("description")}
                                 </Base.SectionDescription>
                             )}
@@ -296,9 +296,9 @@ class About7 extends BaseAbout {
                                 )}
                                 {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
                                     <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
-                                        {this.castToString(item.subtitle) && (<Base.H3 className={`${this.decorateCSS("subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.H3>)}
-                                        {this.castToString(item.title) && (<Base.H2 className={`${this.decorateCSS("title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H2>)}
-                                        {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
+                                        {this.castToString(item.subtitle) && (<Base.H3 className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.H3>)}
+                                        {this.castToString(item.title) && (<Base.H2 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H2>)}
+                                        {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("item-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
                                     </Base.VerticalContent>
                                 )}
                             </div>

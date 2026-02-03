@@ -1,8 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.center-alignment.row-reverse .subtitle,
-.center-alignment.row-reverse .description,
-.center-alignment.row-reverse .title {
+.center-alignment.row-reverse .item-subtitle,
+.center-alignment.row-reverse .item-description,
+.center-alignment.row-reverse .item-title {
     text-align: center !important;
 }
 
@@ -48,7 +48,7 @@
             align-items: center;
             text-align: center;
 
-            .subtitle {
+            .top-subtitle {
                 justify-content: center;
                 transform: translateX(0);
                 color: var(--composer-font-color-primary);
@@ -63,7 +63,7 @@
                 }
             }
 
-            .title {
+            .top-title {
                 text-align: center;
                 color: var(--composer-font-color-primary);
 
@@ -72,7 +72,7 @@
                 }
             }
 
-            .description {
+            .top-description {
                 text-align: center;
                 color: var(--composer-font-color-primary);
 
@@ -92,13 +92,13 @@
 
             &.row-reverse {
                 .right-container {
-                    .subtitle {
+                    .item-subtitle {
                         text-align: end !important;
                         margin-right: 0px !important;
                     }
 
-                    .description,
-                    .title {
+                    .item-description,
+                    .item-title {
                         text-align: end !important;
                         margin-right: 0px !important;
                     }
@@ -240,9 +240,9 @@
                 justify-content: center;
                 align-items: start;
 
-                .subtitle,
-                .description,
-                .title {
+                .item-subtitle,
+                .item-description,
+                .item-title {
                     color: var(--composer-font-color-primary);
 
                     &.with-image {
@@ -255,7 +255,7 @@
                     margin-left: 0px !important;
                 }
 
-                .subtitle {
+                .item-subtitle {
                     transform: translateX(0);
 
                     &.with-image {
@@ -265,8 +265,8 @@
                     }
                 }
 
-                &:has(.description) {
-                    .subtitle {
+                &:has(.item-description) {
+                    .item-subtitle {
                         &::before {
                             display: none !important;
                         }
@@ -276,15 +276,15 @@
                 &.row-reverse {
                     align-items: end;
 
-                    .subtitle {
+                    .item-subtitle {
                         transform: none;
                         align-self: flex-end !important;
                         text-align: end !important;
                         margin-right: 0px !important;
                     }
 
-                    .description,
-                    .title {
+                    .item-description,
+                    .item-title {
                         text-align: end !important;
                         margin-right: 0px !important;
                     }
@@ -293,28 +293,28 @@
                 &.center-alignment.row-reverse {
                     align-items: center !important;
 
-                    .subtitle {
+                    .item-subtitle {
                         transform: none !important;
                     }
 
-                    .subtitle,
-                    .description,
-                    .title {
+                    .item-subtitle,
+                    .item-description,
+                    .item-title {
                         text-align: center !important;
                     }
                 }
 
                 &.center-alignment {
-                    .subtitle {
+                    .item-subtitle {
                         text-align: start !important;
                         margin-left: 0px !important;
                         align-self: flex-start !important;
                     }
                 }
 
-                &.center-alignment.row-reverse .subtitle,
-                &.center-alignment.row-reverse .description,
-                &.center-alignment.row-reverse .title {
+                &.center-alignment.row-reverse .item-subtitle,
+                &.center-alignment.row-reverse .item-description,
+                &.center-alignment.row-reverse .item-title {
                     text-align: center !important;
                 }
             }
@@ -357,24 +357,24 @@
                     &.row-reverse {
                         align-items: flex-start !important;
 
-                        .subtitle {
+                        .item-subtitle {
                             transform: none !important;
                             align-self: flex-start !important;
                             text-align: left !important;
                             margin-right: 0 !important;
                         }
 
-                        .subtitle,
-                        .description,
-                        .title {
+                        .item-subtitle,
+                        .item-description,
+                        .item-title {
                             text-align: left !important;
                             margin-right: 0 !important;
                         }
                     }
 
-                    .subtitle,
-                    .description,
-                    .title {
+                    .item-subtitle,
+                    .item-description,
+                    .item-title {
                         text-align: left !important;
                     }
                 }
@@ -404,9 +404,9 @@
                     align-items: center;
                     gap: 0px !important;
 
-                    .subtitle,
-                    .title,
-                    .description {
+                    .item-subtitle,
+                    .item-title,
+                    .item-description {
                         text-align: left !important;
                         margin-right: auto !important;
                         margin-left: 0px !important;
@@ -415,9 +415,9 @@
                     &.row-reverse {
                         align-items: center;
 
-                        .subtitle,
-                        .description,
-                        .title {
+                        .item-subtitle,
+                        .item-description,
+                        .item-title {
                             align-self: flex-start !important;
                             text-align: left !important;
                             margin-right: auto !important;
