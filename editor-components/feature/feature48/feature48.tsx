@@ -77,15 +77,7 @@ class Feature48 extends BaseFeature {
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "",
-              "",
-              null,
-              null,
-              "Primary",
-            ),
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
@@ -119,15 +111,7 @@ class Feature48 extends BaseFeature {
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "",
-              "",
-              null,
-              null,
-              "Primary",
-            ),
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
@@ -161,15 +145,7 @@ class Feature48 extends BaseFeature {
               value:
                 "Quickly cultivate optimal processes and tactical architectures. Completely iterate covalent strategic theme areas via accurate e-markets.",
             },
-            INPUTS.BUTTON(
-              "button",
-              "Button",
-              "",
-              "",
-              null,
-              null,
-              "Primary",
-            ),
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
       ],
@@ -186,17 +162,7 @@ class Feature48 extends BaseFeature {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "",
-          "",
-          null,
-          null,
-          "Primary",
-        ),
-      ],
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
   }
 
@@ -221,7 +187,9 @@ class Feature48 extends BaseFeature {
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const buttonsRaw = this.castToObject<any[]>("buttons") || [];
-    const buttons = buttonsRaw.filter((btn: any) => this.hasButtonText(btn?.text));
+    const buttons = buttonsRaw.filter((btn: any) =>
+      this.hasButtonText(btn?.text),
+    );
     const itemsPerRow = this.castToNumber("itemsPerRow");
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
@@ -247,7 +215,11 @@ class Feature48 extends BaseFeature {
                   alignment === "center" && subtitleType === "badge";
                 return (
                   <Base.SectionSubTitle
-                    styles={isCenteredBadge ? { width: "fit-content", margin: "0 auto" } : { textAlign: "left" }}
+                    styles={
+                      isCenteredBadge
+                        ? { width: "fit-content", margin: "0 auto" }
+                        : { textAlign: "left" }
+                    }
                     className={this.decorateCSS("subtitle")}
                   >
                     {this.getPropValue("subtitle")}
@@ -269,9 +241,9 @@ class Feature48 extends BaseFeature {
           </Base.VerticalContent>
 
           {cards && cards.length > 0 && (
-            <div
+            <Base.ListGrid
               className={this.decorateCSS("cards-container")}
-              style={{ "--items-per-row": itemsPerRow } as React.CSSProperties}
+              gridCount={{ pc: itemsPerRow, tablet: 2, phone: 1 }}
             >
               {cards.map((card: Card, index: number) => (
                 <div
@@ -283,49 +255,49 @@ class Feature48 extends BaseFeature {
                       : "transparent",
                   }}
                 >
-                  <div className={this.decorateCSS("card-content")}>
-                    <div className={this.decorateCSS("text-content")}>
-                      {card.icon && (
-                        <div className={this.decorateCSS("icon-container")}>
-                          <Base.Media
-                            value={card.icon}
-                            className={this.decorateCSS("icon")}
-                          />
-                        </div>
-                      )}
-                      {this.castToString(card.content) && (
-                        <Base.H3
-                          className={this.decorateCSS("card-content-text")}
-                        >
-                          {card.content}
-                        </Base.H3>
-                      )}
-                      {this.castToString(card.description) && (
-                        <Base.P
-                          className={this.decorateCSS("card-description")}
-                        >
-                          {this.castToString(card.description)}
-                        </Base.P>
-                      )}
-                      {card.button && this.hasButtonText(card.button.text) && (
-                        <div className={this.decorateCSS("card-button-wrap")}>
-                          <ComposerLink path={this.castToString(card.button.url)}>
-                            <Base.Button
-                              className={this.decorateCSS("card-button")}
-                              buttonType={card.button.type}
+                  <Base.VerticalContent
+                    className={this.decorateCSS("card-content")}
+                  >
+                    {card.icon && (
+                      <div className={this.decorateCSS("icon-container")}>
+                        <Base.Media
+                          value={card.icon}
+                          className={this.decorateCSS("icon")}
+                        />
+                      </div>
+                    )}
+                    {this.castToString(card.content) && (
+                      <Base.H3
+                        className={this.decorateCSS("card-content-text")}
+                      >
+                        {card.content}
+                      </Base.H3>
+                    )}
+                    {this.castToString(card.description) && (
+                      <Base.P className={this.decorateCSS("card-description")}>
+                        {card.description}
+                      </Base.P>
+                    )}
+                    {card.button && this.hasButtonText(card.button.text) && (
+                      <div className={this.decorateCSS("card-button-wrap")}>
+                        <ComposerLink path={card.button.url}>
+                          <Base.Button
+                            className={this.decorateCSS("card-button")}
+                            buttonType={card.button.type}
+                          >
+                            <Base.P
+                              className={this.decorateCSS("card-button-text")}
                             >
-                              <Base.P className={this.decorateCSS("card-button-text")}>
-                                {this.castToString(card.button.text)}
-                              </Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                              {card.button.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      </div>
+                    )}
+                  </Base.VerticalContent>
                 </div>
               ))}
-            </div>
+            </Base.ListGrid>
           )}
 
           {buttons.length > 0 && (
@@ -337,7 +309,7 @@ class Feature48 extends BaseFeature {
                     buttonType={btn.type || "Primary"}
                   >
                     <Base.P className={this.decorateCSS("button-text")}>
-                      {this.castToString(btn.text)}
+                      {btn.text}
                     </Base.P>
                   </Base.Button>
                 </ComposerLink>
