@@ -301,7 +301,7 @@ class Feature46 extends BaseFeature {
                         ))}
                     </Base.ListGrid>
 
-                    {primaryButtons && primaryButtons.length > 0 && (
+                    {primaryButtons && primaryButtons.filter(b => this.castToString(b.text)).length > 0 && (
                         <div className={this.decorateCSS("primary-buttons-container")}>
                             {primaryButtons.map((button, index) => (
                                 this.castToString(button.text) && (
