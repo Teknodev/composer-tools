@@ -1,6 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  padding: 80px 0px !important;
+
   .max-content {
     display: flex;
     flex-direction: column;
@@ -8,6 +10,8 @@
     position: relative;
 
     .heading {
+      padding-left: 50px;
+      padding-right: 50px;
 
       .subtitle,
       .title,
@@ -46,7 +50,7 @@
     .tabs-layout {
       position: relative;
       display: flex;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .arrow-prev,
       .arrow-next {
@@ -68,14 +72,6 @@
           color: var(--composer-font-color-primary);
           opacity: 0.7;
           line-height: 1;
-
-          @container (max-width: #{$composer-tablet-width}) {
-            font-size: 1.25rem;
-          }
-
-          @container (max-width: #{$composer-phone-width}) {
-            font-size: 1rem;
-          }
         }
 
         &:hover:before {
@@ -102,8 +98,6 @@
       }
     }
 
-
-
     .tabs-left {
       flex: 1;
       display: flex;
@@ -111,6 +105,7 @@
       flex-direction: column;
       gap: var(--composer-gap-sm);
       text-align: left;
+      padding-left: 50px;
 
       &.full-width {
         flex: 1;
@@ -124,8 +119,6 @@
       cursor: pointer;
       position: relative;
       border-radius: var(--composer-border-radius-sm);
-
-
     }
 
     .tab-background {
@@ -145,9 +138,8 @@
     }
 
     .tab-title {
-      margin: 0;
+      margin: 0 0 var(--composer-gap-md);
       color: var(--composer-font-color-primary);
-      margin-bottom: var(--composer-gap-md);
       width: 100%;
       text-align: left;
 
@@ -157,9 +149,8 @@
     }
 
     .tab-desc {
-      margin: 0;
+      margin: 0 0 var(--composer-gap-md);
       color: var(--composer-tertiary-color);
-      margin-bottom: var(--composer-gap-md);
       width: 100%;
       text-align: left;
 
@@ -195,64 +186,40 @@
 
       .icon {
         flex: 0 0 30px;
-        will-change: transform;
-        backface-visibility: hidden;
         color: var(--composer-font-color-primary);
         width: 30px;
         height: 30px;
         transform: rotate(-45deg);
         transition: transform 0.2s ease;
         font-size: 1.5rem;
-
-        @container (max-width: #{$composer-tablet-width}) {
-          width: 25px;
-          height: 25px;
-          font-size: 1.25rem;
-        }
-
-        @container (max-width: #{$composer-phone-width}) {
-          width: 20px;
-          height: 20px;
-          font-size: 1rem;
-        }
       }
 
       &:hover {
         .icon {
           transform: rotate(0deg);
-          transition: transform 0.2s ease;
         }
       }
     }
 
     .progress-container {
-      margin-top: var(--composer-gap-md);
-      margin-bottom: var(--composer-gap-md);
-      transform: translateZ(0);
-      will-change: transform;
+      margin: var(--composer-gap-md) 0;
 
       .progress-track {
         width: 100%;
         height: var(--composer-border-radius-xs);
-        background-color: color-mix(in srgb,
-            var(--composer-font-color-primary) 25%,
-            transparent 0%);
+        background-color: color-mix(in srgb, var(--composer-font-color-primary) 25%, transparent 0%);
         border-radius: var(--composer-border-radius-sm);
         overflow: hidden;
-        position: relative;
       }
 
       .progress-fill {
         height: 100%;
         background-color: var(--composer-font-color-primary);
         border-radius: var(--composer-border-radius-sm);
-        position: relative;
         width: 0%;
 
         &.animate {
-          animation-name: progressFill;
-          animation-timing-function: linear;
-          animation-fill-mode: forwards;
+          animation: progressFill linear forwards;
         }
       }
 
@@ -270,6 +237,7 @@
     .tabs-right {
       flex: 1;
       min-width: 0;
+      width: 50vw;
       position: relative;
       overflow: hidden;
       min-height: 150px;
@@ -278,10 +246,7 @@
 
     .tab-image-wrapper {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       opacity: 0;
       transition: opacity 0.5s ease;
       border-radius: var(--composer-border-radius-sm);
@@ -295,16 +260,12 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: var(--composer-border-radius-sm);
       }
     }
 
     .overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       pointer-events: none;
       background-color: var(--composer-overlay-color);
       border-radius: var(--composer-border-radius-sm);
@@ -323,59 +284,55 @@
         cursor: pointer;
 
         .dot-button {
-          color: transparent;
-          position: relative;
-          width: var(--composer-gap-md);
-          height: var(--composer-gap-md);
-          border: none;
+          width: var(--composer-gap-xs);
+          height: var(--composer-gap-xs);
           border-radius: 50%;
+          border: none;
           background: var(--composer-font-color-secondary);
           opacity: 0.5;
-          transition: all 0.3s ease;
           padding: 0;
-          min-width: unset;
-
-          &::before {
-            content: "";
-          }
+          transition: all 0.3s ease;
         }
 
-        &.active {
-          .dot-button {
-            opacity: 1;
-            transform: scale(1.2);
-            background: var(--composer-font-color-primary);
-          }
-        }
-
-        &:hover .dot-button {
-          opacity: 0.8;
+        &.active .dot-button {
+          opacity: 1;
+          transform: scale(1.2);
+          background: var(--composer-font-color-primary);
         }
       }
     }
 
-    @container (max-width : #{$composer-tablet-width}) {
-
-      .arrow-prev,
-      .arrow-next {
-        display: none;
-      }
-    }
-
-    @container (max-width : #{$composer-phone-width}) {
-      gap: var(--composer-gap-lg);
-
-      .tabs-layout {
-        flex-direction: column;
-      }
-
-      .arrow-prev,
-      .arrow-next {
-        display: none;
+    @container (max-width: #{$composer-tablet-width}) {
+      .heading {
+        padding-left: 40px;
+        padding-right: 40px;
       }
 
       .tabs-left {
+        padding-left: 40px;
+      }
+
+      .arrow-prev,
+      .arrow-next {
+        display: none;
+      }
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+      gap: var(--composer-gap-lg);
+
+      .heading {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .tabs-left {
+        padding-left: 20px;
         gap: var(--composer-gap-md);
+      }
+
+      .tabs-layout {
+        flex-direction: column;
       }
 
       .tab-item {
