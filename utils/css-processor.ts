@@ -107,9 +107,9 @@ export function processBasePreferences(
       const selector = baseElementSelectors[elementType as keyof typeof baseElementSelectors];
       if (selector && styles) {
         const fullSelector = playgroundSelector ? `${playgroundSelector} ${selector}` : selector;
-        processStyles(fullSelector, GUI_QUERIES.desktop, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.tablet, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.mobile, styles, textRef);
+        processStyles(fullSelector, GUI_QUERIES.desktop, styles['desktop'], textRef);
+        processStyles(fullSelector, GUI_QUERIES.tablet, styles['tablet'], textRef);
+        processStyles(fullSelector, GUI_QUERIES.mobile, styles['mobile'], textRef);
       }
     });
   } catch (error) {
