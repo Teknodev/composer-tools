@@ -16,6 +16,27 @@ class Feature37 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "Why Choose Us?",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+
+        this.addProp({
             type: "object",
             key: "content",
             displayer: "Content",
@@ -51,27 +72,6 @@ class Feature37 extends BaseFeature {
                     ]
                 }
             ]
-        });
-
-        this.addProp({
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: "",
-        });
-
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Why Choose Us?",
-        });
-
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "",
         });
 
         this.addProp({
