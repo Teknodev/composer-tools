@@ -136,31 +136,6 @@
               aspect-ratio: 16/9;
             }
           }
-
-          .card-buttons {
-            width: 100%;
-            
-            .card-button {
-              a {
-                display: block;
-                width: 100%;
-              }
-
-              .card-button-text {
-                width: 100%;
-                text-align: center;
-              }
-            }
-          }
-        }
-      }
-
-      .primary-buttons-container {
-        flex-direction: column;
-        width: 100%;
-
-        .primary-button {
-          width: 100%;
         }
       }
     }

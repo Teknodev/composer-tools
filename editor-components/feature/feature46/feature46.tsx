@@ -28,13 +28,6 @@ class Feature46 extends BaseFeature {
         super(props, styles);
 
         this.addProp({
-            type: "icon",
-            key: "alignment",
-            displayer: "Alignment",
-            value: "center"
-        });
-
-        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -59,9 +52,6 @@ class Feature46 extends BaseFeature {
             type: "array",
             key: "services",
             displayer: "Services",
-            additionalParams: {
-                maxElementCount: 6,
-            },
             value: [
                 {
                     type: "object",
@@ -204,7 +194,7 @@ class Feature46 extends BaseFeature {
         this.addProp({
             type: "number",
             key: "itemsPerRow",
-            displayer: "Item counts in a row",
+            displayer: "Item Count in a Row",
             value: 3
         });
 
@@ -223,7 +213,6 @@ class Feature46 extends BaseFeature {
     }
 
     render() {
-        const alignment = this.getPropValue("alignment");
         const subtitle = this.getPropValue("subtitle");
         const title = this.getPropValue("title");
         const description = this.getPropValue("description");
@@ -234,7 +223,7 @@ class Feature46 extends BaseFeature {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${this.decorateCSS(alignment)}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("header-section")}`}>
                         {this.castToString(subtitle) && (
                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                 {subtitle}
