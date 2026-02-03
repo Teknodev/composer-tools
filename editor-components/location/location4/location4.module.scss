@@ -192,6 +192,8 @@
     .map-container {
       width: 100%;
       height: 500px;
+      border-radius: var(--composer-border-radius-sm);
+      overflow: hidden;
 
       .map {
         width: 100%;

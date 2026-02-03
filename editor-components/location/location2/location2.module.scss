@@ -23,9 +23,6 @@
             width: 100%;
           }
 
-          .title {
-            margin-bottom: 0 !important;
-          }
 
           .socials {
             justify-content: center !important;
@@ -35,32 +32,28 @@
         &.left {
           align-items: flex-start !important;
           text-align: left !important;
-          gap: var(--composer-gap-sm);
 
           .subtitle-row,
           .title-with-socials,
           .description-container {
             justify-content: flex-start !important;
             text-align: left !important;
-            margin: 0 !important;
             width: 100% !important;
+            gap: var(--composer-gap-md);
+
 
             .subtitle {
               text-align: left !important;
-              margin: 0 !important;
               width: fit-content !important;
             }
 
             .title,
             .description-text {
               text-align: left !important;
-              margin: 0 !important;
               width: 100% !important;
             }
 
-            .description-text {
-              margin-top: var(--composer-gap-sm) !important;
-            }
+
           }
 
           .socials {
@@ -78,20 +71,18 @@
         }
 
         .subtitle {
-          margin: 0;
           text-align: left !important;
           width: fit-content !important;
+          margin-left: 0px !important;
         }
 
         .title,
         .description-text {
-          margin: 0;
           text-align: left !important;
         }
 
         .description-text {
           color: var(--composer-tertiary-color);
-          margin-top: var(--composer-gap-sm) !important;
         }
 
         .socials {
@@ -141,7 +132,7 @@
       max-width: var(--composer-content-width);
       margin: auto;
       width: 100%;
-      padding: 40px var(--composer-gap-md);
+      padding: var(--composer-gap-md);
       box-sizing: border-box;
     }
 
@@ -168,7 +159,7 @@
 
       .description-wrapper {
         .content-description {
-          margin-top: 0;
+          margin-top: var(--composer-gap-sm);
           color: var(--composer-tertiary-color);
           text-align: center;
           display: flex;
@@ -183,6 +174,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+    border-radius: var(--composer-border-radius-sm);
+    overflow: hidden;
 
     .map {
       width: 100%;
@@ -234,6 +227,7 @@
               .subtitle {
                 text-align: center !important;
                 width: fit-content !important;
+                margin-left: auto !important;
               }
 
               .title,
@@ -241,9 +235,6 @@
                 text-align: center !important;
               }
 
-              .description-text {
-                margin-top: var(--composer-gap-sm) !important;
-              }
             }
 
             .socials {
@@ -259,25 +250,22 @@
             .description-container {
               align-items: flex-start !important;
               text-align: left !important;
-              margin: 0 !important;
+              margin-left: 0px !important;
               width: 100% !important;
+              gap: var(--composer-gap-md);
 
               .subtitle {
                 text-align: left !important;
-                margin: 0 !important;
                 width: fit-content !important;
+                margin-left: 0px !important;
               }
 
               .title,
               .description-text {
                 text-align: left !important;
-                margin: 0 !important;
                 width: 100% !important;
               }
 
-              .description-text {
-                margin-top: var(--composer-gap-sm) !important;
-              }
 
               .socials {
                 justify-content: flex-start !important;
