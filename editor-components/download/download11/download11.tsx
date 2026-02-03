@@ -24,13 +24,13 @@ class Download11 extends BaseDownload {
           type: "media",
           key: "image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image","video"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759ab4b0655f8002ca5eca4?alt=media",
           },
-          displayer: "Image",
+          displayer: "Media",
         },
         {
           type: "string",
@@ -86,13 +86,13 @@ class Download11 extends BaseDownload {
           type: "media",
           key: "image",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image","video"],
           },
           value: {
             type: "image",
             url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759ac1d0655f8002ca5ecee?alt=media",
           },
-          displayer: "Image",
+          displayer: "Media",
         },
         INPUTS.BUTTON("buttonRight", "Button", "More", "", "", "", "Primary"),
       ],

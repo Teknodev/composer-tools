@@ -18,7 +18,16 @@ class Feature16 extends BaseFeature {
             displayer: "Title",
             value: "We provide more than crypto"
 
+        })     
+
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: ""
+
         })
+
         this.addProp({
             type: "object",
             key: "topLeftSide",
@@ -33,9 +42,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topLeftSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                        availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -70,9 +79,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomLeftSideImage",
-                    displayer: "Left Side Bottom Image",
+                    displayer: "Left Side Bottom Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -107,9 +116,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -144,9 +153,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "topRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -181,9 +190,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "middleRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","video"],
                     },
                     value: {
                         type: "image",
@@ -218,9 +227,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "middleRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -255,9 +264,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomRightSideImage",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                         availableTypes: ["image","icon"],
                     },
                     value: {
                         type: "image",
@@ -292,9 +301,9 @@ class Feature16 extends BaseFeature {
                 {
                     type: "media",
                     key: "bottomRightSide2Image",
-                    displayer: "Image",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["image"],
+                    availableTypes: ["image", "icon"],
                     },
                     value: {
                         type: "image",
@@ -338,7 +347,7 @@ class Feature16 extends BaseFeature {
 
         return (
             <Base.VerticalContent className={className} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                {cardData[`${prefix}Image`]?.url && (
+                {cardData[`${prefix}Image`] && (
                     <div className={this.decorateCSS("card-image")}>
                         <Base.Media value={cardData[`${prefix}Image`]} className={this.decorateCSS("image")} />
                     </div>
@@ -371,7 +380,8 @@ class Feature16 extends BaseFeature {
         const middleRightSide = this.castToObject<any>("middleRightSide");
         const middleRightSide2 = this.castToObject<any>("middleRightSide2");
 
-        // Check if card has content (title, description, or image)
+        const description = this.castToString(this.getPropValue("description"));
+
         const hasTopLeftContent = topLeftSide.visibility && (
             this.castToString(topLeftSide.topLeftSideTitle) || 
             this.castToString(topLeftSide.topLeftSideDescription) || 
@@ -443,6 +453,11 @@ class Feature16 extends BaseFeature {
                             <Base.SectionTitle className={this.decorateCSS("title")}>
                                 {this.getPropValue("title")}
                             </Base.SectionTitle>
+                        )}
+                        {description && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                                {description}
+                            </Base.SectionDescription>
                         )}
                     </Base.VerticalContent>
                     <div className={this.decorateCSS("side-container")}>

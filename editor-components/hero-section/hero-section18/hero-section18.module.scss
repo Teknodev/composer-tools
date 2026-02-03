@@ -2,12 +2,32 @@
 
 .container {
   padding: 0 !important; // need
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  position: relative;
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--composer-overlay-color);
+    z-index: 1;
+  }
 
   .max-content {
     height: 100%;
+    position: relative;
+    z-index: 2;
 
     .slider {
       height: 100%;
@@ -30,17 +50,33 @@
           top: 0;
           z-index: 2;
 
-          .image {
-            width: 600px;
-            height: 500px;
-            object-fit: cover;
+          .image-wrapper {
+            position: relative;
+            width: 900px;
+            height: 700px;
+
+            .image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+
+            .slide-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: var(--composer-overlay-color);
+              pointer-events: none;
+            }
           }
 
           .content {
             display: flex;
             flex-direction: column;
             position: absolute;
-            left: 25%;
+            left: 15%;
             top: 20%;
             gap: var(--composer-gap-md);
 
@@ -53,6 +89,8 @@
                 margin: 0;
                 font-size: 1rem;
                 color: black;
+                z-index: 10;
+                text-align: left;
 
                 &.subtitle-no-image {
                   color: var(--composer-font-color-primary);
@@ -68,6 +106,8 @@
                 line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                line-height: normal;
+                z-index: 10;
 
                 &.title-no-image {
                   color: var(--composer-font-color-primary);
@@ -80,6 +120,11 @@
               place-items: center;
               gap: var(--composer-gap-sm);
               color: black;
+              z-index: 10;
+
+              .active-slide{
+                width: fit-content;
+              }
 
               &.pagination-no-image {
                 color: var(--composer-font-color-primary);
@@ -107,20 +152,24 @@
                   }
                 }
               }
+
+              .slide-count {
+                text-align: left;
+              }
             }
           }
 
           .description-div {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-xs);
             background: black;
             color: white;
-            width: 300px;
+            width: 350px;
             padding: var(--composer-gap-md);
             position: absolute;
-            right: 25%;
-            bottom: 15%;
+            right: 15%;
+            bottom: 20%;
 
             &.description-div-no-image {
               color: var(--composer-font-color-primary);
@@ -130,7 +179,7 @@
             .description-title {
               margin: 0;
               font-size: 1rem;
-
+              text-align: left;
               display: -webkit-box;
               -webkit-line-clamp: 2;
               line-clamp: 2;
@@ -141,7 +190,7 @@
             .item-description {
               margin: 0;
               font-size: 1rem;
-
+              text-align: left;
               display: -webkit-box;
               -webkit-line-clamp: 4;
               line-clamp: 4;
@@ -157,7 +206,6 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
       padding: var(--composer-gap-md) 0;
 
       .socials {
@@ -170,12 +218,26 @@
         color: var(--composer-font-color-primary);
         width: calc(100% - var(--composer-gap-lg) * 3);
         width: 85%;
-        .name {
+
+        .social-item {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+        }
+
+        .name, .social-icon {
           color: black;
 
           &.name-no-image {
             color: var(--composer-font-color-primary);
           }
+        }
+
+        .social-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 1.25rem;
+          object-fit: covers;
         }
       }
 
@@ -183,9 +245,13 @@
         cursor: pointer;
         left: var(--composer-gap-xl);
         position: absolute;
-        width: var(--composer-gap-lg);
-        height: var(--composer-gap-lg);
         color: black;
+        font-size: 2rem;
+
+        .icon{
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+        }
 
         &.prev-icon-no-image {
           color: var(--composer-font-color-primary);
@@ -196,9 +262,13 @@
         cursor: pointer;
         right: var(--composer-gap-xl);
         position: absolute;
-        width: var(--composer-gap-lg);
-        height: var(--composer-gap-lg);
         color: black;
+        font-size: 2rem;
+       
+        .icon{
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+        }
 
         &.next-icon-no-image {
           color: var(--composer-font-color-primary);
@@ -215,8 +285,14 @@
         .slide {
           .card {
             .image {
-              width: calc(100% - var(--composer-gap-lg) * 2);
-              height: calc(100% - var(--composer-gap-xl) * 2 - var(--composer-gap-lg));
+              width: 90% !important;
+              height: 90% !important;
+              margin: 0 auto;
+            }
+
+            .image-wrapper {
+              width: 900px !important;
+              height: 800px !important;
             }
 
             .content {
@@ -230,6 +306,7 @@
 
                 .title {
                   font-size: 4rem;
+                  text-align: left;
                 }
               }
             }
@@ -249,10 +326,12 @@
         }
         .prev-icon {
           left: var(--composer-gap-lg);
+          font-size: 1.5rem;
         }
 
         .next-icon {
           right: var(--composer-gap-lg);
+          font-size: 1.5rem;
         }
       }
     }

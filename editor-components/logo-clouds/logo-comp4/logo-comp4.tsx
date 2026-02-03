@@ -47,7 +47,7 @@ class LogoComp4Page extends LogoClouds {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -59,7 +59,7 @@ class LogoComp4Page extends LogoClouds {
     this.addProp({
       type: "array",
       key: "image-items",
-      displayer: "Images",
+      displayer: "Media Items",
       value: [
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),

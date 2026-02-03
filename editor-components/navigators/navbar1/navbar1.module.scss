@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .navbarContainer {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
@@ -44,9 +48,7 @@
         }
 
         .menuItemTitle {
-          font-weight: normal;
           transition: all 0.8s ease;
-          font-weight: 500;
           color: var(--composer-font-color-primary);
           &.animation1{
             &:hover{
@@ -56,9 +58,12 @@
         }
 
         .dropdownIcon {
-          font-size: calc(1.5 * var(--composer-font-size-md));
+          font-size: 2rem;
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
+          width: 25px;
+          height: 30px;
+          object-fit: cover;
         }
 
         &:hover {
@@ -104,7 +109,6 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: all 0.8s ease;
                   &.animation1{
@@ -139,9 +143,12 @@
               }  
             }
             .rightIcon {
-              font-size: calc(1.5 * var(--composer-font-size-md));
+              font-size: 2rem;
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 15px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -166,7 +173,6 @@
                 position: relative;
                 color: var(--composer-font-color-primary);
                 .subdropdownItemTitle{
-                  font-weight: normal;
                   transition: all 0.8s ease;                  
                   &.animation1{
                     &:hover{
@@ -203,7 +209,7 @@
     height: 1px;
     width: 100%;
     background-color: var(--composer-primary-color);
-    margin-top: var(--composer-gap-md);
+    margin: var(--composer-gap-md) 0;
   }
   .hamburgerNav {
     display: none;
@@ -227,7 +233,7 @@
     }
 
     .hamburgerNavContainer {
-      padding: var(--composer-gap-md) var(--composer-gap-lg);
+      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
       .hamburgerNavMaxContent {
         .hamburgerMenu {
           .hamburgerMenuItem {
@@ -241,7 +247,6 @@
 
               .hamburgerMenuItemTitle {
                 margin: 0;
-                font-weight: 500;
                 color: var(--composer-font-color-primary);
                 transition: all 0.8s ease;
                 &.animation1{
@@ -298,7 +303,6 @@
 
                   .hamburgerMenuItemTitle {
                     margin: 0;
-                    font-weight: 400;
                     color: var(--composer-font-color-primary);
                     transition: all 0.8s ease;
                     &.animation1{
@@ -311,7 +315,7 @@
                     margin: 0;
                   }
                   .rightIcon {
-                    font-size: calc(1.5 * var(--composer-font-size-md));
+                    font-size: 2rem;
                     transition: all 0.3s ease;
                     color: var(--composer-font-color-primary);
                     &.active {
@@ -359,7 +363,6 @@
 
                     .hamburgerSubSubmenuItemTitle {
                       margin: 0;
-                      font-weight: 400;
                       color: var(--composer-font-color-primary);
                       cursor: pointer;
                       transition: all 0.8s ease;
@@ -398,7 +401,7 @@
             }
           }
           .dropdownIcon {
-            font-size: calc(1.5 * var(--composer-font-size-md));
+            font-size: 2rem;
             transition: all 0.3s ease;
             color: var(--composer-font-color-primary);
             transform: rotate(0deg);
@@ -415,16 +418,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-sm);
 
     .buttons{
       display: flex;
       gap: var(--composer-gap-sm);
+      .button {
+        .button-text {
+          content: "";
+        }
+      }
     }
     .localization{
       transition: all 0.3s ease;
       .localizationLabel{
-        font-weight: normal;
+        &.animation1{
+          &:hover{
+            font-weight: bold;
+          }
+        }
+      }
+      .languageIcon{
+        width: 20px;
+        height: 15px;
+        object-fit: cover;
+        
         &.animation1{
           &:hover{
             font-weight: bold;
@@ -432,7 +450,6 @@
         }
       }
       .localizationContent{
-        font-weight: normal;
         &.animation1{
           &:hover{
             font-weight: bold;
@@ -445,8 +462,11 @@
   .closeIcon {
     display: none;
     cursor: pointer;
-    font-size: calc(1.5 * var(--composer-font-size-md));
+    font-size: 2rem;
     color: var(--composer-font-color-primary);
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
   }
 
   .overlay {
@@ -463,7 +483,6 @@
     .localization {
       color: var(--composer-font-color-primary);
       .localizationTitle{
-        font-weight: normal;
         transition: all 0.3s ease;
         &.animation1{
           &:hover{
@@ -473,7 +492,6 @@
       }
     }
     .localizationItem {
-      font-weight: normal;
       transition: all 0.3s ease;
       &.animation1{
         &:hover{
@@ -483,12 +501,6 @@
     }
   }
 }
-}
-.maxContent {
-  p {
-    padding: 0;
-    margin: 0;
-  }
 }
 
 .filledBackground {
@@ -515,23 +527,24 @@
       color: white !important;
     }
     .languageIcon {
-      color: white;
+      color: white !important;
     }
     .localizationContent {
       content: "";
     }
 
-    .button{
-      &.Tertiary,
-      &.Link {
-        color: white !important;
-        border-color: white !important;
-       }
+    &.hamburgerActive {
+      .localizationLabel {
+        color: var(--composer-font-color-primary) !important;
+      }
+      .languageIcon {
+        color: var(--composer-font-color-primary) !important;
+      }
     }
   }
 
   .hamburgerIcon {
-    color: white;
+    color: white !important;
   }
 }
 
@@ -543,6 +556,9 @@
         display: none;
       }
       .rightSide {
+        .buttons {
+          display: none;
+        }
         .localization {
           display: none;
           &.active{
@@ -552,6 +568,9 @@
         .hamburgerIcon,
         .closeIcon {
           display: flex;
+          font-size: 1.5rem;
+          height: 20px;
+          width: 20px;
         }
     
       }
@@ -565,6 +584,22 @@
 
     .hamburgerNav {
       display: flex;
+      .hamburgerNavContainer {
+        .hamburgerNavMaxContent {
+          .hamburgerMenu {
+            .hamburgerButtons {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-sm);
+              margin-top: var(--composer-gap-md);
+              width: 100%;
+              .hamburgerButton {
+                content: "";
+              }
+            }
+          }
+        }
+      }
     }
 
     &.filledBackground {
@@ -581,6 +616,11 @@
       .logo {
         .logoImage {
           max-height: 40px;
+        }
+      }
+      .rightSide {
+        .buttons {
+          display: none;
         }
       }
     }

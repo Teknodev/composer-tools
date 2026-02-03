@@ -4,12 +4,12 @@
   transition: $property $duration $timing-function $delay;
 }
 
-
 .container {
   position: relative;
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  background: var(--composer-html-background);
 
   .image-container {
     width: 100% !important;
@@ -35,10 +35,14 @@
     }
   }
 
+  :global(.slick-vertical .slick-slide) {
+    border: none !important;
+  }
+
   .max-content {
     display: flex;
     overflow: hidden;
-    max-width: var(--composer-content-width);
+    max-width: 100%;
     margin: 0 auto;
     height: 100%;
     width: 100%;
@@ -62,7 +66,7 @@
         justify-content: space-between;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         z-index: 1;
-        max-width: var(--composer-content-width);
+        max-width: 100%;
 
         .title-container {
           height: 50%;
@@ -70,6 +74,68 @@
           padding: calc(var(--composer-gap-lg) * 3) calc(var(--composer-gap-lg) * 3);
           color: white;
           text-align: center;
+
+          :global(.slick-track) {
+            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+          }
+
+          :global(.slick-slide) {
+            transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+          }
+
+          .title-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            max-width: 100%;
+
+            .title-stroke {
+              padding-bottom: calc(var(--composer-gap-md) * 3);
+              margin: 0;
+              display: flex;
+              font-size: 5.5rem;
+              color: transparent;
+              -webkit-text-stroke: 1px #777;
+              max-width: fit-content; 
+            }
+
+            .title-solid {
+              position: absolute;
+              top: 0;
+              left: 0;
+              padding-bottom: calc(var(--composer-gap-md) * 3);
+              margin: 0;
+              display: flex;
+              font-size: 5.5rem;
+              color: white;
+              -webkit-text-stroke: none;
+              width: fit-content;
+              clip-path: inset(100% 0 0 0);
+              transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            }
+
+            &.current .title-solid {
+              clip-path: inset(0 0 0 0);
+            }
+
+            &.leaving-down .title-solid {
+              clip-path: inset(0 0 100% 0);
+              transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            }
+
+            &.entering-up .title-solid {
+              clip-path: inset(0 0 0 0);
+              transition: clip-path 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            }
+
+            &.imageless-title {
+              .title-stroke,
+              .title-solid {
+                color: black !important;
+                -webkit-text-stroke: none !important;
+              }
+            }
+          }
 
           .title {
             padding-bottom: calc(var(--composer-gap-md) * 3);
@@ -85,32 +151,12 @@
               color: transparent;
               -webkit-text-stroke: 1px #777;
               max-width: 90%;
-
-              > blinkpage {
-                width: 100%;
-
-                > p {
-                  text-overflow: ellipsis;
-                  overflow: hidden;
-                  white-space: nowrap;
-                }
-              }
             }
 
             &.current {
               opacity: 1;
               -webkit-text-stroke: none;
               max-width: 90%;
-
-              > blinkpage {
-                width: 100%;
-
-                > p {
-                  text-overflow: ellipsis;
-                  overflow: hidden;
-                  white-space: nowrap;
-                }
-              }
             }
           }
 
@@ -157,6 +203,12 @@
               .icon {
                 z-index: 10;
                 font-size: 2.5rem;
+                cursor: pointer;
+
+                .icon-element{
+                  width: 30px;
+                  height: 30px;
+                }
               }
             }
 
@@ -165,21 +217,6 @@
               display: flex;
               word-break: break-word;
               width: 100%;
-
-              > blinkpage {
-                height: 100%;
-                width: 100%;
-
-                > p {
-                  width: 100%;
-                  max-height: 100%;
-                  overflow: hidden;
-                  text-overflow: ellipsis;
-                  display: -webkit-box;
-                  -webkit-line-clamp: 1;
-                  -webkit-box-orient: vertical;
-                }
-              }
             }
           }
 
@@ -223,19 +260,6 @@
                 display: flex;
                 align-items: center;
                 height: 100%;
-
-                > blinkpage {
-                  height: 100%;
-
-                  > p {
-                    max-height: 100%;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    display: -webkit-box;
-                    -webkit-line-clamp: 1;
-                    -webkit-box-orient: vertical;
-                  }
-                }
               }
 
               .social-icons {
@@ -252,7 +276,7 @@
                 @include smooth-transition($delay: 0.05s);
 
                 .icon {
-                  font-size: 1.5rem;
+                  font-size: 1rem;
                   z-index: 10;
                   align-items: center;
                   @include smooth-transition();
@@ -265,7 +289,9 @@
               }
 
               .icon-next-to-text {
-                font-size: 1.5rem;
+                font-size: 1rem;
+                width: 15px;
+                height: 15px;
                 min-width: 4%;
                 @include smooth-transition($delay: 0.05s);
               }
@@ -308,6 +334,7 @@
   }
 }
 
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
@@ -320,6 +347,13 @@
 
             .title {
               font-size: 3.5rem;
+            }
+
+            .title-wrapper {
+              .title-stroke,
+              .title-solid {
+                font-size: 3.5rem;
+              }
             }
 
             .number {
@@ -370,11 +404,18 @@
             width: 100vw;
 
             .title {
-              font-size: 2.5rem;
+              font-size: 2rem;
+            }
+
+            .title-wrapper {
+              .title-stroke,
+              .title-solid {
+                font-size: 2rem;
+              }
             }
 
             .number {
-              font-size: 1rem;
+              font-size: 0.75rem;
             }
           }
 

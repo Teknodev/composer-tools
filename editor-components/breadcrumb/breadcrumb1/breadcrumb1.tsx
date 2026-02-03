@@ -19,12 +19,20 @@ class Breadcrumb1 extends BaseBreadcrumb {
             displayer: "Title",
             value: "Home",
         });
+
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+          });
+
         this.addProp({
             type: "media",
             key: "image",
-            displayer: "Background Image",
+            displayer: "Background Media",
             additionalParams: { availableTypes: ["image", "video"] },
-            value: { type: "image", url: "https://cafert.templatekit.co/wp-content/uploads/sites/10/2021/10/flat-lay-food.jpg" },
+            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694543ec875e15002c68e5f0?alt=media" },
         });
         this.addProp({
             type: "array",
@@ -122,6 +130,8 @@ class Breadcrumb1 extends BaseBreadcrumb {
     render() {
         const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
         const isTitleExist = this.castToString(this.getPropValue("title"));
+        const isDescriptionExist = this.castToString(this.getPropValue("description"));
+        const description = this.getPropValue("description");
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
         const currentPage = this.castToObject("currentPage");
         const currentPageTitle = currentPage?.title || "";
@@ -146,12 +156,21 @@ class Breadcrumb1 extends BaseBreadcrumb {
 
                         {isTitleExist && (
                             <Base.MaxContent className={this.decorateCSS("max-content")}>
+                            <Base.VerticalContent className={this.decorateCSS("left")}>
                                 <Base.SectionTitle
                                     className={`${this.decorateCSS("title-main")} ${bgImage?.url && this.decorateCSS("title-with-bg")
                                         } }`}
                                 >
                                     {this.getPropValue("title")}
                                 </Base.SectionTitle>
+                                {isDescriptionExist && (
+                                    <Base.MaxContent className={this.decorateCSS("max-content")}>
+                                        <Base.SectionDescription className={`${this.decorateCSS("description")} ${bgImage?.url && this.decorateCSS("title-with-bg")}`}>
+                                        {description}
+                                        </Base.SectionDescription>
+                                    </Base.MaxContent>
+                                )}
+                            </Base.VerticalContent>
                             </Base.MaxContent>
                         )}
                     </Base.Container>
@@ -214,3 +233,4 @@ class Breadcrumb1 extends BaseBreadcrumb {
 }
 
 export default Breadcrumb1;
+

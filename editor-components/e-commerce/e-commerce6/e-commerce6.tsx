@@ -88,7 +88,7 @@ class ECommerce6 extends BaseECommerce {
               {
                 type: "media",
                 key: "image",
-                displayer: "Image",
+                displayer: "Media",
                 additionalParams: {
                   availableTypes: ["image", "video"],
                 },

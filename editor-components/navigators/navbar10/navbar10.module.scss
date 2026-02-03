@@ -1,6 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .navbarContainer {
   padding: 0 var(--composer-gap-xl) !important;
   transition: all 0.3s ease !important;
@@ -78,13 +82,14 @@
           font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
+          height: 24px;
+          width: 24px;
+          object-fit: cover;
           
           &.active {
             transform: rotate(180deg);
           }
         }
-
-
 
         .dropdown {
           position: absolute;
@@ -103,7 +108,7 @@
           transition: max-height 0.5s ease;
           
           &.visible {
-            max-height: 1000px;
+            max-height: 100vh;
             border-top: 1px solid var(--composer-tertiary-color);
             border-bottom: 1px solid var(--composer-tertiary-color);
           }
@@ -115,11 +120,11 @@
           .dropdownGrid {
             margin: auto;
           }
-                     .dropdownContentContainer {
+            .dropdownContentContainer {
               display: flex;
               align-items: stretch;
               width: 100%;
-              padding: 0px 0px 0px 40px;
+              padding: 0px 0px 0px var(--composer-gap-lg);
               margin: auto;
               gap: var(--composer-gap-sm);
               opacity: 0;
@@ -136,14 +141,13 @@
             gap: var(--composer-gap-sm);
           }
 
-                     .dropdownRightColumn {
+            .dropdownRightColumn {
               display: flex;
               flex-direction: column;
               width: 430px;
               gap: var(--composer-gap-sm);
               background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
               min-height: 100%;
-              padding: var(--composer-gap-sm);
               border-radius: var(--composer-border-radius-sm);
               align-self: stretch;
             }
@@ -157,10 +161,10 @@
             .dropdownItemTitle {
               display: flex;
               justify-content: space-between;
-              font-size: 1rem;
               color: var(--composer-tertiary-color);
               text-transform: capitalize;
-              margin-bottom: var(--composer-gap-md);
+              margin-bottom: var(--composer-gap-sm);
+              margin-top: var(--composer-gap-sm);
               transition: all 0.4s ease;
               padding: 0 var(--composer-gap-xs);
               &.animation1 {
@@ -174,7 +178,7 @@
               margin-top: var(--composer-gap-sm);
               text-align: center;
               overflow: hidden;
-              border-radius: var(--composer-border-radius-lg);
+              border-radius: var(--composer-border-radius-sm);
             }
 
             .categoryImage {
@@ -182,7 +186,7 @@
               height: auto;
               object-fit: contain;
               transition: all 0.4s ease;
-              border-radius: var(--composer-border-radius-lg);
+              border-radius: var(--composer-border-radius-sm);
               cursor: pointer;
               &:hover{
                 transform: scale(1.05);
@@ -194,13 +198,11 @@
             }
 
             .DropdownSectionTitle {
-              font-size: 1.5rem;
               font-weight: 500;
               color: var(--composer-font-color-primary);
               margin: var(--composer-gap-xs);
             }
             .DropdownSectionItemDescription {
-              font-size: 1rem;
               color: var(--composer-tertiary-color);
               transition: all 0.4s ease;
               &.animation1 {
@@ -222,7 +224,6 @@
                  justify-content: space-between;
                  align-items: center;
                  font-weight: 600;
-                 font-size: 1.25rem;
                  color: var(--composer-font-color-primary);
                  transition: all 0.4s ease;
                  &.animation1 {
@@ -286,6 +287,9 @@
               font-size: calc(1.5 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -423,7 +427,6 @@
               position: relative;
 
               .hamburgerMenuItemTitle {
-                font-size: 1.25rem;
                 margin: 0;
                 font-weight: 500;
                 color: var(--composer-font-color-primary);
@@ -435,7 +438,6 @@
                 }
               }
               .hamburgerCategoryTitle {
-                font-size: 1rem;
                 color: #000;
               }
               &::after {
@@ -602,6 +604,7 @@
         justify-content: center;
         gap: var(--composer-gap-sm);
         padding: var(--composer-gap-md);
+        margin: var(--composer-gap-sm) 0;
 
         .hamburgerButton {
           width: 100%;
@@ -622,9 +625,13 @@
       gap: var(--composer-gap-md);
       flex-wrap: wrap;
       justify-content: flex-end;
-      .buttonText {
-        content: "";
+      margin: var(--composer-gap-sm) 0;
+      .button{
+        .buttonText {
+          content: "";
+        }
       }
+      
     }
     .localization {
       transition: all 0.3s ease;
@@ -652,6 +659,9 @@
       cursor: pointer;
       font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
 
 
@@ -695,14 +705,6 @@
 
 .overlay {
   content: "";
-  width: 100% !important;
-}
-
-.maxContent {
-  p {
-    padding: 0;
-    margin: 0;
-  }
 }
 
 .filledBackground {
@@ -751,10 +753,10 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .navbarContainer {
-    padding: 0 var(--composer-gap-xl) !important;
+    padding: 0 var(--composer-gap-lg) !important;
     .maxContent {
       z-index: 101;
-             .leftSection {
+        .leftSection {
          .pcNavbar {
            display: flex;
            gap: var(--composer-gap-sm);
@@ -784,16 +786,7 @@
           gap: var(--composer-gap-xs);
           max-width: 300px;
           justify-content: flex-end;
-          
-          .button {
-            padding: var(--composer-gap-sm) var(--composer-gap-sm);
-            font-size: 1rem;
-            white-space: nowrap;
-            min-width: auto;
-            max-width: 150px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-          }
+          margin: var(--composer-gap-sm) 0;
         }
         .hamburgerIcon,
         .closeIcon {
@@ -861,6 +854,9 @@
 
     .hamburgerCategorySection {
       &:last-child {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border-radius: var(--composer-border-radius-sm);
         padding: var(--composer-gap-sm);

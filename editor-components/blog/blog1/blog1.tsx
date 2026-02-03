@@ -119,7 +119,7 @@ class Blog1 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image" , "video"],
               },
@@ -156,7 +156,7 @@ class Blog1 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image" , "video"],
               },
@@ -193,7 +193,7 @@ class Blog1 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image" , "video"],
               },
@@ -230,7 +230,7 @@ class Blog1 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image" , "video"],
               },
@@ -267,7 +267,7 @@ class Blog1 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
                 availableTypes: ["image" , "video"],
               },

@@ -1,10 +1,17 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
+.hamburgerActive {
+  background: inherit !important;
+}
+
+.navbarContainer {
   z-index: 101;
   &.filledBackground {
     background: transparent !important;
     transition: all 0.3s ease;
+  }
+  &.filledBackground.hamburgerActive {
+    background: inherit !important;
   }
 }
 
@@ -73,6 +80,9 @@
           font-size: calc(1.5 * var(--composer-font-size-md));
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
+          height: 24px;
+          width: 24px;
+          object-fit: cover;
         }
 
         &:hover {
@@ -159,6 +169,9 @@
               font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -220,6 +233,8 @@
 }
   .mobileRight{
     display: none;
+    align-items: center;
+    gap: var(--composer-gap-sm);
   }
   .iconsContainer {
     display: flex;
@@ -292,12 +307,18 @@
     display: none;
     font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
   }
 
   .closeIcon {
     display: none;
     font-size: calc(1.5 * var(--composer-font-size-md));
     color: var(--composer-font-color-primary);
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
   }
 
     .mobileMenu {
@@ -434,7 +455,6 @@
       margin: 0;
       font-weight: normal;
       transition: all 0.3s ease;
-      font-size: calc(1 * var(--composer-font-size-md));
       &.animation1{
         &:hover{
           font-weight: bold;
@@ -480,6 +500,9 @@
       }
       .languageIcon {
         color: white;
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
       }
       .divider {
         background-color: white;

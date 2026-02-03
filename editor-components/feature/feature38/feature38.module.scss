@@ -1,0 +1,174 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+
+            .text-content {
+
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
+                }
+            }
+
+            .cards-container {
+                gap: var(--composer-gap-md);
+                align-items: stretch;
+                justify-items: stretch;
+                --dynamic-card-height: 300px;
+
+                .card {
+                    position: relative;
+                    width: 100%;
+                    height: var(--dynamic-card-height);
+                    cursor: pointer;
+                    background-color: transparent !important;
+                    box-shadow: none !important;
+                    padding: 0 !important;
+                    border-radius: 0 !important;
+
+                    .card-inner {
+                        position: relative;
+                        width: 100%;
+                        height: 100%;
+                        text-align: center;
+                        transition: transform 0.4s;
+                        transform-style: preserve-3d;
+                    }
+
+                    &:hover .card-inner {
+                        transform: rotateX(-90deg);
+                    }
+
+                    .face {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: var(--composer-border-radius-sm);
+                        box-shadow: var(--box-shadow-active);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        padding: var(--composer-gap-lg);
+                        box-sizing: border-box;
+                        backface-visibility: hidden;
+                        overflow: hidden;
+
+                        .face-inner {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            height: 100%;
+                        }
+                    }
+
+                    .front {
+                        transform: translateZ(calc(var(--dynamic-card-height) / 2));
+                        background-color: var(--composer-primary-color);
+                        z-index: 2;
+
+                        .card-title {
+                            color: var(--composer-font-color-secondary);
+                        }
+
+                        .icon-wrapper {
+                            .card-icon {
+                                color: var(--composer-font-color-secondary);
+                            }
+                        }
+                    }
+
+                    .top {
+                        transform: rotateX(90deg) translateZ(calc(var(--dynamic-card-height) / 2));
+                        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        z-index: 1;
+                    }
+
+                    .card-title,
+                    .card-hover-title,
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left !important;
+                    }
+
+                    .icon-wrapper {
+                        display: flex;
+
+                        .card-icon {
+                            color: var(--composer-font-color-secondary);
+                            font-size: 5rem;
+
+                            &.is-image {
+                                width: 5rem;
+                                height: 5rem;
+                                object-fit: contain;
+                                display: block;
+                                margin-bottom: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center !important;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: var(--composer-gap-sm);
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .content-wrapper {
+                gap: var(--composer-gap-md);
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            gap: calc(var(--composer-gap-sm) * 3);
+
+            .content-wrapper {
+                .cards-container {
+                    --dynamic-card-height: 200px;
+
+                    .card {
+                        .icon-wrapper {
+                            .card-icon {
+                                font-size: 3rem;
+
+                                &.is-image {
+                                    width: 3rem;
+                                    height: 3rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

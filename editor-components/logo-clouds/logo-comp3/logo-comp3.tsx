@@ -49,7 +49,7 @@ class LogoComp3Page extends LogoClouds {
     this.addProp({
       type: "array",
       key: "items",
-      displayer: "Items",
+      displayer: "Media Items",
       value: [
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),

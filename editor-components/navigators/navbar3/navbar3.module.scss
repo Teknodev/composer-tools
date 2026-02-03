@@ -1,19 +1,22 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.hamburgerActive {
+  background: inherit !important;
+}
+
 .laneContainer {
   background-color: color-mix(
     in srgb,
     var(--composer-html-background),
     var(--composer-font-color-primary) 5%);
-    padding-top: var(--composer-gap-sm);
-    padding-bottom: var(--composer-gap-sm);
+    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
+    
 
   .lane {
     display: flex;
     align-items: center;
 
     .laneContact {
-      font-size: calc(1 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -21,7 +24,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: calc(1 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
     }
 
@@ -33,7 +35,13 @@
     .laneContact, .laneNews, .loacalizationContainer{
       flex:1;
     }
-    .languageIcon, .localizationItem{
+    .languageIcon {
+      content: "";
+      width: 14px;
+      height: 14px;
+      object-fit: cover;
+    }
+    .localizationItem{
       content: "";
     }
     .localizationLabel, .localizationContent{
@@ -87,6 +95,10 @@
         font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
         transition: all 0.3s ease;
+        width: 25px;
+        height: 25px;
+        object-fit: cover;
+        display: flex;
       }
 
          .localization{
@@ -115,6 +127,12 @@
             }
           }
         }
+
+    .mobileRight {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+    }
 
   }
 }
@@ -174,7 +192,9 @@
       .dropdownIcon {
         font-size: calc(1.5 * var(--composer-font-size-md));
         color: var(--composer-font-color-primary);
-
+        width: 20px;
+        height: 20px;
+        object-fit: cover;
       }
 
       &:hover {
@@ -260,6 +280,9 @@
             font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: all 0.3s ease;
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
           }
 
           .subdropdown {
@@ -360,6 +383,15 @@
     }
   }
 
+  .localization {
+    .localizationLabel {
+      color: white !important;
+    }
+    .languageIcon {
+      color: white !important;
+    }
+  }
+
   .icons{
     .icon-element{
       .icon{
@@ -399,7 +431,7 @@
   }
 
   .hamburgerNavContainer {
-    padding: var(--composer-gap-md) var(--composer-gap-lg);
+    padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
     .hamburgerNavMaxContent {
       .hamburgerMenu {
         .hamburgerMenuItem {
@@ -500,12 +532,17 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .laneContainer{
+  .pcNavbarContainer{
     display: none;
   }
 
-  .pcNavbarContainer{
-    display: none;
+  .laneContainer {
+    .loacalizationContainer {
+      display: none !important;
+    }
+    .laneNews {
+      justify-content: flex-end !important;
+    }
   }
 
   .smallDeviceNavbarContainer{
@@ -518,7 +555,7 @@
       }
     }
 
-    &.filledBackground {
+    &.transparentBackground {
       background: var(--composer-html-background) !important;
       color: var(--composer-font-color-primary) !important;
       transition: all 0.3s ease !important;
@@ -533,10 +570,13 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
+  .laneContainer {
+    display: none !important;
+  }
   .hamburgerNav{
     .hamburgerNavContainer{
-      padding-left: var(--composer-gap-md);
-      padding-right: var(--composer-gap-md);
+      padding-left: var(--composer-gap-md) !important;
+      padding-right: var(--composer-gap-md) !important;
     }
   }
 
