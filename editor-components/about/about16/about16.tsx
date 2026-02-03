@@ -232,7 +232,7 @@ class About16 extends BaseAbout {
                                                         />
                                                     )}
                                                     {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
-                                                    <div className={this.decorateCSS("text-content")}>
+                                                    <div className={this.decorateCSS("card-overlay")}>
                                                         {card.icon && (
                                                             <div className={this.decorateCSS("icon-wrapper")}>
                                                                 <Base.Media value={card.icon} className={`${this.decorateCSS("icon")} ${isImage && this.decorateCSS("is-image")}`} />
