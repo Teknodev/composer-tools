@@ -262,7 +262,7 @@ as *;
           position: absolute;
           width: calc(100% + var(--composer-gap-lg) + 70px);
           height: 85%;
-          bottom: calc(-1 * (var(--composer-gap-lg) * 0.5 + 35px));
+          bottom: calc(-1.2 * (var(--composer-gap-lg) * 0.5 + 35px));
           left: calc(-0.5 * var(--composer-gap-lg) - 35px);
           background-color: var(--composer-primary-color);
           z-index: -2;
