@@ -68,7 +68,7 @@ class Feature48 extends BaseFeature {
               key: "content",
               displayer: "Title",
               value:
-                "Unlimited <br/><span style='color: var(--composer-font-color-primary)'>Everything</span>",
+                "Unlimited <br/><span class='card-content-span' style='color: var(--composer-font-color-primary)'>Everything</span>",
             },
             {
               type: "string",
@@ -102,7 +102,7 @@ class Feature48 extends BaseFeature {
               key: "content",
               displayer: "Title",
               value:
-                "Tailored <br/><span style='color: var(--composer-font-color-primary)'>Onboarding</span>",
+                "Tailored <br/><span class='card-content-span' style='color: var(--composer-font-color-primary)'>Onboarding</span>",
             },
             {
               type: "string",
@@ -136,7 +136,7 @@ class Feature48 extends BaseFeature {
               key: "content",
               displayer: "Title",
               value:
-                "Full Access <br/><span style='color: var(--composer-font-color-primary)'>Control</span>",
+                "Full Access <br/><span class='card-content-span' style='color: var(--composer-font-color-primary)'>Control</span>",
             },
             {
               type: "string",

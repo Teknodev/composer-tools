@@ -1,10 +1,7 @@
 @import "../../../composer-base-components/base/utitilities/viewports.module.scss";
 
 .container {
-  content: "";
-
   .max-content {
-    content: "";
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
@@ -23,7 +20,6 @@
       content: "";
 
       .card {
-        content: "";
         background-color: color-mix(
           in srgb,
           var(--composer-html-background),
@@ -38,11 +34,9 @@
           content: "";
 
           .icon-container {
-            content: "";
             align-self: flex-start;
 
             .icon {
-              content: "";
               color: var(--composer-primary-color);
               font-size: 6rem;
               width: 6rem;
@@ -51,19 +45,17 @@
           }
 
           .card-content-text {
-            content: "";
             color: var(--composer-primary-color);
             font-weight: 500;
             text-align: left !important;
 
-            span {
+            .card-content-span {
               width: auto !important;
               display: inline !important;
             }
           }
 
           .card-description {
-            content: "";
             color: var(--composer-font-color-primary);
             flex: 1;
             line-height: 1.6;
@@ -71,7 +63,6 @@
           }
 
           .card-button-wrap {
-            content: "";
             align-self: flex-start;
 
             .card-button {
@@ -87,14 +78,12 @@
     }
 
     .buttons-container {
-      content: "";
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
 
       .button {
-        content: "";
         display: inline-block;
 
         .button-text {
