@@ -4,7 +4,6 @@
   width: 100%;
 
   .content-container {
-    padding-bottom: var(--composer-gap-lg) !important;
 
     .max-content {
       .header {
@@ -39,7 +38,6 @@
             justify-content: flex-start !important;
             text-align: left !important;
             width: 100% !important;
-            gap: var(--composer-gap-md);
 
 
             .subtitle {
@@ -252,7 +250,6 @@
               text-align: left !important;
               margin-left: 0px !important;
               width: 100% !important;
-              gap: var(--composer-gap-md);
 
               .subtitle {
                 text-align: left !important;

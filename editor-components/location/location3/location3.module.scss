@@ -64,15 +64,15 @@
             white-space: nowrap;
 
             .continent-name {
-              color: var(--composer-primary-color);
+              color: var(--composer-tertiary-color);
               text-align: justify !important;
-              font-size: var(--composer-font-size-xs);
+              font-size: var(--composer-font-size-md);
             }
 
             .continent-count {
               color: var(--composer-font-color-primary);
               text-align: justify !important;
-
+              font-size: var(--composer-font-size-md);
             }
           }
         }
@@ -103,6 +103,16 @@
           .continents-wrapper {
             min-width: 400px;
             padding: var(--composer-gap-md);
+
+            .continent-name {
+              color: var(--composer-tertiary-color);
+              font-size: var(--composer-font-size-sm) !important;
+            }
+
+
+            .continent-count {
+              font-size: var(--composer-font-size-sm) !important;
+            }
           }
         }
       }
@@ -136,14 +146,12 @@
               gap: var(--composer-gap-xs);
 
               .continent-name {
-                color: var(--composer-primary-color);
+                color: var(--composer-tertiary-color);
+                font-size: var(--composer-font-size-xs) !important;
               }
 
               .continent-count {
-                color: var(--composer-font-color-primary);
-                text-align: center !important;
-                width: auto;
-                display: inline-block;
+                font-size: var(--composer-font-size-xs) !important;
               }
             }
           }
