@@ -48,8 +48,8 @@ class Feature37 extends BaseFeature {
                     value: [
                         {
                             type: "media",
-                            key: "image",
-                            displayer: "Image",
+                            key: "media",
+                            displayer: "Media",
                             value: {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
                                 type: "image",
@@ -66,7 +66,7 @@ class Feature37 extends BaseFeature {
                         {
                             type: "boolean",
                             key: "enableOverlay",
-                            displayer: "Enable Overlay",
+                            displayer: "Overlay",
                             value: false,
                         }
                     ]
@@ -181,7 +181,7 @@ class Feature37 extends BaseFeature {
 
     render() {
         const content = this.castToObject<any>("content");
-        const image = content?.media?.image;
+        const image = content?.media?.media;
         const isImageExist = !!image?.url;
         const enableOverlay = content?.overlay?.enableOverlay;
         const subtitle = this.castToString(this.getPropValue("subtitle"));

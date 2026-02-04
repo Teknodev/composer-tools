@@ -20,7 +20,7 @@
             gap: var(--composer-gap-lg);
 
             .cards-content {
-                gap: var(--composer-gap-lg);
+                gap: inherit;
                 align-items: center;
                 width: 50%;
 
@@ -34,9 +34,9 @@
                     align-items: flex-start;
 
                     .card-icon {
+                        display: flex;
                         font-size: 4rem;
                         color: var(--composer-primary-color);
-                        display: flex;
 
                         &.is-image {
                             width: var(--composer-gap-xl);
@@ -45,7 +45,6 @@
                     }
 
                     .card-content {
-
                         .card-title {
                             color: var(--composer-font-color-primary);
                             text-align: left;
@@ -110,8 +109,14 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
+            gap: var(--composer-gap-md);
+
             .cards-wrapper {
+                gap: var(--composer-gap-md);
+
                 .cards-content {
+                    gap: inherit;
+
                     .card-container {
                         .card-icon {
                             font-size: 3rem;
@@ -126,15 +131,10 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-md);
-
             .cards-wrapper {
                 flex-direction: column;
 
-                .cards-content {
-                    width: 100%;
-                }
-
+                .cards-content,
                 .right-content {
                     width: 100%;
                 }
