@@ -214,14 +214,12 @@ class Feature48 extends BaseFeature {
                   const subtitleType = Base.getSectionSubTitleType();
                   const isCenteredBadge =
                     alignment === "center" && subtitleType === "badge";
+                  const subtitleClass = isCenteredBadge
+                    ? "subtitle-centered"
+                    : "subtitle-left";
                   return (
                     <Base.SectionSubTitle
-                      styles={
-                        isCenteredBadge
-                          ? { width: "fit-content", margin: "0 auto" }
-                          : { textAlign: "left" }
-                      }
-                      className={this.decorateCSS("subtitle")}
+                      className={this.decorateCSS(`subtitle ${subtitleClass}`)}
                     >
                       {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>

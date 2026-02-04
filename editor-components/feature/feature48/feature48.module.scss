@@ -8,12 +8,21 @@
 
     .header-section {
       content: "";
-    }
 
-    .subtitle,
-    .title,
-    .description {
-      content: "";
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
+      .subtitle-centered {
+        width: fit-content;
+        margin: 0 auto;
+      }
+
+      .subtitle-left {
+        text-align: left;
+      }
     }
 
     .cards-container {
@@ -80,11 +89,11 @@
     .buttons-container {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: var(--composer-gap-sm);
       flex-wrap: wrap;
 
       .button {
-        display: inline-block;
+        content: "";
 
         .button-text {
           content: "";
