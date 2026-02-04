@@ -21,7 +21,7 @@ as *;
     .carousel {
       width: calc(100% + var(--composer-gap-md));
       overflow: hidden;
-      padding: 0;
+      padding: 0 0 var(--composer-gap-xl) 0;
       margin-left: calc(var(--composer-gap-md) / -2);
       position: relative;
 
@@ -32,6 +32,10 @@ as *;
         height: auto;
         display: flex;
         align-items: stretch;
+      }
+
+      :global(.slick-list) {
+        overflow: visible;
       }
 
       :global(.slick-list),
@@ -78,7 +82,7 @@ as *;
         gap: calc(var(--composer-gap-sm) * 1.5);
         list-style-type: none;
         padding: 0;
-        bottom: var(--composer-gap-xs);
+        bottom: 45px;
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -258,7 +262,7 @@ as *;
           position: absolute;
           width: calc(100% + var(--composer-gap-lg) + 70px);
           height: 85%;
-          bottom: calc(-2 * var(--composer-gap-md));
+          bottom: calc(-1 * (var(--composer-gap-lg) * 0.5 + 35px));
           left: calc(-0.5 * var(--composer-gap-lg) - 35px);
           background-color: var(--composer-primary-color);
           z-index: -2;
