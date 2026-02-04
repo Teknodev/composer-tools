@@ -215,7 +215,7 @@
                 gap: 0;
 
                 .card-content {
-                    flex-direction: column-reverse;
+                    flex-direction: column;
                     display: flex;
                     position: relative;
                     opacity: 1;
@@ -228,6 +228,7 @@
                         gap: var(--composer-gap-sm);
                         padding: var(--composer-gap-md) 0;
                         cursor: pointer;
+                        order: 1;
 
                         &.line {
                             border-top: 1px solid var(--composer-tertiary-color);
@@ -237,6 +238,7 @@
                             color: var(--composer-font-color-primary);
                             transition: color 0.3s ease;
                             width: fit-content;
+                            margin: 0;
 
                             &.active {
                                 color: var(--composer-primary-color);
@@ -264,6 +266,7 @@
                     }
 
                     .image-wrapper {
+                        order: 2;
                         margin-left: calc(-1 * var(--composer-gap-md));
                         width: calc(100% + 2 * var(--composer-gap-md));
                         border-radius: 0;
@@ -271,6 +274,7 @@
                     }
 
                     .sectionsWrapper {
+                        order: 3;
                         display: none;
                         padding-bottom: var(--composer-gap-md);
                     }

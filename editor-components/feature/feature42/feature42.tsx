@@ -197,7 +197,7 @@ class Feature42 extends BaseFeature {
             type: "boolean",
             key: "enableLine",
             displayer: "Mobile Line",
-            value: false,
+            value: true,
         });
 
         this.addProp({
