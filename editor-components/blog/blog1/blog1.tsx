@@ -472,7 +472,7 @@ class Blog1 extends BaseBlog {
                           : ""
                         }`}
                       key={index}
-                      data-animation={Array.isArray(this.getPropValue("hoverAnimation")) ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       <div className={this.decorateCSS("card")}>
                         <div className={this.decorateCSS("gradient-overlay")} />

@@ -65,7 +65,7 @@
           color: var(--composer-font-color-primary);
 
           .button-text {
-            margin: 0;
+            content: "";
           }
 
           .button-icon {
@@ -122,14 +122,6 @@
         flex-direction: column;
         justify-content: space-between;
         gap: var(--composer-gap-md);
-
-        // &:has(.card:nth-child(1).mini):not(:has(.card:nth-child(2).mini)) {
-        //   height: auto;
-        //   .card:nth-child(1).mini {
-        //     min-height: calc(50% - var(--composer-gap-md) / 2);
-        //     height: auto;
-        //   }
-        // }
 
         .card {
           background-color: color-mix(in srgb,

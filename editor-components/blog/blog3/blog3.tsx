@@ -638,12 +638,22 @@ class Blog3 extends BaseBlog {
       );
     };
 
+    const hasContent = (item: any) =>
+      item.text ||
+      item.icon?.name ||
+      item.icon?.url ||
+      item.image?.name ||
+      item.image?.url;
+
+    const hasLeftText = descriptionExist || subtitleExist || isTitleExist;
+    const hasRightText = rightTextItems.some(hasContent);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(descriptionExist || subtitleExist || isTitleExist || rightTextItems.some(item => item.text || (item.icon && (typeof item.icon === 'string' || item.icon.name || item.icon.url)) || (item.image && (typeof item.image === 'string' || item.image.name || item.image.url)))) && (
+          {(hasLeftText || hasRightText) && (
             <React.Fragment>
-              <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.decorateCSS("header-left")}`}>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
                 )}
@@ -657,13 +667,7 @@ class Blog3 extends BaseBlog {
               <div className={this.decorateCSS("button-container")}>
                 {rightTextItems.map((item: any, index: number) => {
                   const buttonTextExist = this.castToString(item.text);
-                  let iconValue = item.icon || item.image;
-                  if (typeof iconValue === "string") {
-                    iconValue = { type: "icon", name: iconValue };
-                  }
-                  if (iconValue && iconValue.url && !iconValue.type) {
-                    iconValue = { ...iconValue, type: "image" };
-                  }
+                  const iconValue = item.icon || (item.image?.url ? { ...item.image, type: "image" } : item.image);
 
                   const iconExist = iconValue && (iconValue.name || iconValue.url);
                   const buttonExist = buttonTextExist || iconExist;
