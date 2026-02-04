@@ -194,6 +194,13 @@ class Feature42 extends BaseFeature {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "enableLine",
+            displayer: "Mobile Line",
+            value: false,
+        });
+
+        this.addProp({
             type: "array",
             key: "buttons",
             displayer: "Buttons",
@@ -210,6 +217,7 @@ class Feature42 extends BaseFeature {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableOverlay = this.getPropValue("enableOverlay");
+        const enableLine = this.getPropValue("enableLine");
         const mobileIcon = this.getPropValue("mobileIcon");
         const items = this.castToObject<ListItem[]>("items");
         const activeIndex = this.getComponentState("activeIndex");
@@ -270,7 +278,7 @@ class Feature42 extends BaseFeature {
                                         className={`${this.decorateCSS("card-content")} ${isActive && this.decorateCSS("active-item")}`}
                                     >
                                         <div
-                                            className={this.decorateCSS("mobile-title-wrapper")}
+                                            className={`${this.decorateCSS("mobile-title-wrapper")} ${enableLine && this.decorateCSS("line")}`}
                                             onClick={() => {
                                                 const newIndex = activeIndex === index ? -1 : index;
                                                 this.setComponentState("activeIndex", newIndex);
@@ -309,7 +317,6 @@ class Feature42 extends BaseFeature {
                                                 )}
                                             </div>
                                         )}
-
                                     </div>
                                 );
                             })}
