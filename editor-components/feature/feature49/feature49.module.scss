@@ -1,0 +1,97 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .text-content {
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+        }
+
+        .cards-container {
+            display: grid;
+            gap: var(--composer-gap-lg);
+            
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                gap: var(--composer-gap-md);
+                padding: var(--composer-gap-lg);
+                background-color: var(--composer-html-background);
+                border-radius: var(--composer-border-radius-md);
+                box-shadow: var(--box-shadow-active);
+                height: 100%;
+                width: 100%;
+            
+                .card-content {
+                    .card-title,
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left !important;
+                    }
+                }
+    
+                .icon-container {
+                    width: 80px;
+                    height: 80px;
+                    background-color: var(--composer-primary-color);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: var(--composer-gap-sm);
+    
+                    .card-icon {
+                        font-size: 2.5rem;
+                        color: white;
+                        display: flex;
+                    }
+                } 
+            }
+        }
+
+        
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .card {
+                .icon-container {
+                    width: 70px;
+                    height: 70px;
+
+                    .card-icon {
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .card {
+                .icon-container {
+                    width: 60px;
+                    height: 60px;
+
+                    .card-icon {
+                        font-size: 1.75rem;
+                    }
+                }
+            }
+        }
+    }
+}
