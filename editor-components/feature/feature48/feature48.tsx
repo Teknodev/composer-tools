@@ -206,39 +206,41 @@ class Feature48 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("header-section")}>
-            {subtitle &&
-              (() => {
-                const alignment = Base.getContentAlignment();
-                const subtitleType = Base.getSectionSubTitleType();
-                const isCenteredBadge =
-                  alignment === "center" && subtitleType === "badge";
-                return (
-                  <Base.SectionSubTitle
-                    styles={
-                      isCenteredBadge
-                        ? { width: "fit-content", margin: "0 auto" }
-                        : { textAlign: "left" }
-                    }
-                    className={this.decorateCSS("subtitle")}
-                  >
-                    {this.getPropValue("subtitle")}
-                  </Base.SectionSubTitle>
-                );
-              })()}
-            {title && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {description && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
-          </Base.VerticalContent>
+          {(subtitle || title || description) && (
+            <Base.VerticalContent className={this.decorateCSS("header-section")}>
+              {subtitle &&
+                (() => {
+                  const alignment = Base.getContentAlignment();
+                  const subtitleType = Base.getSectionSubTitleType();
+                  const isCenteredBadge =
+                    alignment === "center" && subtitleType === "badge";
+                  return (
+                    <Base.SectionSubTitle
+                      styles={
+                        isCenteredBadge
+                          ? { width: "fit-content", margin: "0 auto" }
+                          : { textAlign: "left" }
+                      }
+                      className={this.decorateCSS("subtitle")}
+                    >
+                      {this.getPropValue("subtitle")}
+                    </Base.SectionSubTitle>
+                  );
+                })()}
+              {title && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {description && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
 
           {cards && cards.length > 0 && (
             <Base.ListGrid
