@@ -35,6 +35,8 @@
   &.has-media {
     .max-content {
       .vertical-content {
+        padding-top: calc(5rem + var(--composer-gap-lg));
+
         .subtitle {
           padding: 0 !important;
           background: transparent !important;
@@ -72,7 +74,6 @@
       width: 100%;
       flex-wrap: wrap;
       align-items: center;
-      padding-top: calc(5rem + var(--composer-gap-lg));
       padding-bottom: calc(5rem + var(--composer-gap-lg));
 
       .subtitle {
