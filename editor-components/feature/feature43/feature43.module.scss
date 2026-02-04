@@ -27,6 +27,18 @@
             }
         }
 
+        .button-container {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+
         .card-wrapper {
             display: flex;
             flex-direction: column;
@@ -62,7 +74,7 @@
                 }
 
                 .image-wrapper {
-                    flex: 0.5;
+                    flex: 0.4;
                     position: relative;
 
                     .card-image {
@@ -85,19 +97,6 @@
                 }
             }
         }
-
-        .button-container {
-            display: flex;
-            gap: var(--composer-gap-sm);
-            justify-content: center;
-            flex-wrap: wrap;
-
-            .button {
-                .button-text {
-                    content: "";
-                }
-            }
-        }
     }
 }
 
@@ -107,10 +106,10 @@
             gap: var(--composer-gap-md);
 
             .card-wrapper {
-                gap: var(--composer-gap-md);
+                gap: inherit;
 
                 .card-content {
-                    gap: var(--composer-gap-md);
+                    gap: inherit;
                 }
             }
         }
@@ -121,8 +120,6 @@
     .container {
         .max-content {
             .card-wrapper {
-                gap: var(--composer-gap-lg);
-
                 .card-content {
                     flex-direction: column-reverse;
 

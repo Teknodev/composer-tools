@@ -49,6 +49,13 @@ class Feature43 extends BaseFeature {
 
         this.addProp({
             type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+        });
+
+        this.addProp({
+            type: "array",
             key: "cards",
             displayer: "Cards",
             value: [
@@ -74,12 +81,6 @@ class Feature43 extends BaseFeature {
                             value: false,
                         },
                         {
-                            type: "boolean",
-                            key: "rowReverse",
-                            displayer: "Row Reverse",
-                            value: false,
-                        },
-                        {
                             type: "string",
                             key: "cardSubtitle",
                             displayer: "Card Subtitle",
@@ -98,8 +99,15 @@ class Feature43 extends BaseFeature {
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "boolean",
+                            key: "rowReverse",
+                            displayer: "Row Reverse",
+                            value: false,
+                        },
                     ]
-                }, {
+                },
+                {
                     type: "object",
                     key: "card",
                     displayer: "Card",
@@ -121,12 +129,6 @@ class Feature43 extends BaseFeature {
                             value: false,
                         },
                         {
-                            type: "boolean",
-                            key: "rowReverse",
-                            displayer: "Row Reverse",
-                            value: true,
-                        },
-                        {
                             type: "string",
                             key: "cardSubtitle",
                             displayer: "Card Subtitle",
@@ -145,8 +147,15 @@ class Feature43 extends BaseFeature {
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "boolean",
+                            key: "rowReverse",
+                            displayer: "Row Reverse",
+                            value: true,
+                        },
                     ]
-                }, {
+                },
+                {
                     type: "object",
                     key: "card",
                     displayer: "Card",
@@ -168,12 +177,6 @@ class Feature43 extends BaseFeature {
                             value: false,
                         },
                         {
-                            type: "boolean",
-                            key: "rowReverse",
-                            displayer: "Row Reverse",
-                            value: false,
-                        },
-                        {
                             type: "string",
                             key: "cardSubtitle",
                             displayer: "Card Subtitle",
@@ -192,16 +195,15 @@ class Feature43 extends BaseFeature {
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
                         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                        {
+                            type: "boolean",
+                            key: "rowReverse",
+                            displayer: "Row Reverse",
+                            value: false,
+                        },
                     ]
                 },
             ]
-        });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
         });
     }
 
@@ -227,6 +229,19 @@ class Feature43 extends BaseFeature {
                             {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                             {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                         </Base.VerticalContent>
+                    )}
+                    {visibleButtons.length > 0 && (
+                        <div className={this.decorateCSS("button-container")}>
+                            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
+                                return this.castToString(item.text) && (
+                                    <ComposerLink key={`button-${index}`} path={item.url}>
+                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                        </Base.Button>
+                                    </ComposerLink>
+                                );
+                            })}
+                        </div>
                     )}
                     {cards.length > 0 && (
                         <div className={this.decorateCSS("card-wrapper")}>
@@ -275,19 +290,6 @@ class Feature43 extends BaseFeature {
                                             </Base.VerticalContent>
                                         )}
                                     </div>
-                                );
-                            })}
-                        </div>
-                    )}
-                    {visibleButtons.length > 0 && (
-                        <div className={this.decorateCSS("button-container")}>
-                            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                return this.castToString(item.text) && (
-                                    <ComposerLink key={`button-${index}`} path={item.url}>
-                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                        </Base.Button>
-                                    </ComposerLink>
                                 );
                             })}
                         </div>
