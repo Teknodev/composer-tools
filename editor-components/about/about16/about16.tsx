@@ -159,7 +159,7 @@ class About16 extends BaseAbout {
         this.addProp({
             type: "number",
             key: "itemCount",
-            displayer: "Item Count in Row",
+            displayer: "Item Count in a Row",
             value: 2,
         });
 
