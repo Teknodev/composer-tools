@@ -6,39 +6,47 @@
       display: flex;
       gap: var(--composer-gap-md);
       min-height: 100%;
+      align-items: stretch;
 
-      .left-card{
-        &.no-full{
+      .left-card {
+        flex-shrink: 0;
+        
+        &.no-full {
           width: 35%;
           display: flex;
           flex-direction: column;
         }
-        &.full{
+        &.full {
           width: 100%;
-        }  
+        }
+
         .card {
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-lg);
-          height: 100%;
-          justify-content: center;
           padding: var(--composer-gap-md);
           box-shadow: var(--box-shadow-active);
+          
           display: flex;
           flex-direction: column;
+          height: 100%; 
+          
           .image {
             width: 100%;
-            height: 400px;
-            margin: 0 auto;
+            flex: 1; 
             object-fit: cover;
             border-radius: var(--composer-border-radius-md);
-            &.no-full{
+            margin: 0 auto;
+
+            &.no-full {
               margin-bottom: var(--composer-gap-lg);
             }
-            &.full{
+            &.full {
               height: 100%;
             }
           }
+          
           .button-wrapper {
+            flex-shrink: 0; 
             .button-image {
               width: 200px;
               height: 40px;
@@ -46,16 +54,13 @@
               object-fit: cover;
             }
             .button-element {
-              .icon {
-                font-size: 1.5rem;
-              }
-              .button-text {
-                content: "";
-              }
+              .icon { font-size: 1.5rem; }
+              .button-text { content: ""; }
             }
           }
         }
       }
+
       .right-cards {
         width: 100%;
         display: flex;
@@ -65,7 +70,7 @@
 
         .upper-card {
           width: 100%;
-          flex: 1;
+          flex: 1; 
           display: flex;
 
           .card {
@@ -78,6 +83,7 @@
             gap: var(--composer-gap-xl);
             box-shadow: var(--box-shadow-active);
             width: 100%;
+            height: 100%;
 
             .left {
               .button-wrapper {
@@ -88,30 +94,23 @@
                   object-fit: cover;
                 }
                 .button-element {
-                  .icon {
-                    font-size: 1.5rem;
-                  }
-                  .button-text {
-                    content: "";
-                  }
+                  .icon { font-size: 1.5rem; }
+                  .button-text { content: ""; }
                 }
               }
             }
             .image {
               width: 40%;
-              min-height: 400px;
+              height: 100%; 
               object-fit: cover;
               border-radius: var(--composer-border-radius-md);
-              &.full {
-                width: 100%;
-                height: 300px;
-              }
+              &.full { width: 100%; }
             }
           }
         }
 
         .buttom-card {
-          flex: 1;
+          flex: 1; 
           display: flex;
 
           .card {
@@ -123,6 +122,8 @@
             align-items: center;
             box-shadow: var(--box-shadow-active);
             width: 100%;
+            height: 100%;
+
             .button-wrapper {
               .button-image {
                 width: 200px;
@@ -131,24 +132,16 @@
                 object-fit: cover;
               }
               .button-element {
-                .icon, .button-text {
-                  content: "";
-                }
+                .icon, .button-text { content: ""; }
               }
             }
 
-            .title {
-              width: fit-content;
-            }
+            .title { width: fit-content; }
             &.center {
               flex-direction: column;
               justify-content: center;
               gap: var(--composer-gap-md);
-  
-              .title {
-                margin: 0;
-                width: fit-content;
-              }
+              .title { margin: 0; width: fit-content; }
             }
           }
         }
@@ -158,39 +151,68 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container{
-    .max-content{
-      .cards{
-        flex-direction: column;
+  .container {
+    .max-content {
+      .cards {
+        flex-direction: column; 
+        align-items: stretch;
         gap: var(--composer-gap-md);
-        .left-card{
-          width: 100%;
-          &.no-full{
-            width: 100%;
-          }
-          .image{
-            &.full {
-              height: 200px;
+
+        .left-card {
+          width: 100%; 
+          &.no-full { width: 100%; }
+
+          .card {
+            height: auto; 
+            
+            .image {
+              flex: none; 
+              width: 100%;
+              height: 300px; 
+              margin-bottom: var(--composer-gap-md); 
+
+              &.full { height: 250px; }
             }
           }
         }
-        .right-cards{
-          .upper-card{
-            .card{
-              flex-direction: column;
+
+        .right-cards {
+          width: 100%;
+          flex: none; 
+
+          .upper-card {
+            flex: none; 
+            width: 100%;
+            
+            .card {
+              flex-direction: column; 
               gap: var(--composer-gap-md);
-              .image{
+              height: auto; 
+
+              .left { width: 100%; } 
+              
+              .image {
                 width: 100%;
-                height: 200px;
+                height: 250px; 
+                order: -1; 
               }
             }
           }
-          .buttom-card{
-            .card{
+
+          .buttom-card {
+            flex: none;
+            width: 100%;
+            
+            .card {
               flex-direction: column;
               gap: var(--composer-gap-md);
-              .title{
-                margin: 0;
+              height: auto;
+              align-items: flex-start; 
+              
+              .title { margin: 0; }
+              
+              &.center {
+                 align-items: center;
               }
             }
           }

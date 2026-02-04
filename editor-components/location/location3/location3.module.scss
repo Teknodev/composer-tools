@@ -1,12 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
   width: 100%;
 
   .container {
-    padding-bottom: 0;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+
     .max-content {
       .header {
         text-align: center;
@@ -19,41 +19,60 @@
           .icon {
             width: var(--composer-gap-xl);
             height: var(--composer-gap-xl);
+            font-size: 2rem;
+          }
+
+          .icon.icon-img {
+            aspect-ratio: 3 / 1;
+            width: calc(var(--composer-gap-xl) * 3) !important;
+            height: auto !important;
+            object-fit: cover;
+            display: block;
           }
         }
 
-        .title {
+        .subtitle,
+        .title,
+        .description {
           text-align: center;
         }
 
-        .description {
-          text-align: center;
+        .subtitle {
+          transform: translateX(0);
+
+          &::before {
+            display: none;
+          }
         }
 
         .continents-wrapper {
           display: flex;
           justify-content: center;
           column-gap: var(--composer-gap-lg);
+          row-gap: var(--composer-gap-md);
           border-bottom: var(--composer-gap-sm) solid var(--composer-primary-color);
           padding-bottom: var(--composer-gap-md);
-          width: auto;
-          padding-left: 15%;
-          padding-right: 15%;
+          width: 50%;
+          padding-left: 0;
+          padding-right: 0;
           flex-wrap: wrap;
 
           .continent-item {
             display: flex;
             column-gap: var(--composer-gap-sm);
             align-items: center;
+            white-space: nowrap;
 
             .continent-name {
-              font-size: 1rem;
-              color: var(--composer-primary-color);
+              color: var(--composer-tertiary-color);
+              text-align: justify !important;
+              font-size: var(--composer-font-size-md);
             }
 
             .continent-count {
-              font-size: 1rem;
               color: var(--composer-font-color-primary);
+              text-align: justify !important;
+              font-size: var(--composer-font-size-md);
             }
           }
         }
@@ -66,7 +85,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-bottom: var(--composer-gap-md);
+    border-radius: var(--composer-border-radius-sm);
+    overflow: hidden;
 
     .map {
       width: 100%;
@@ -83,6 +103,16 @@
           .continents-wrapper {
             min-width: 400px;
             padding: var(--composer-gap-md);
+
+            .continent-name {
+              color: var(--composer-tertiary-color);
+              font-size: var(--composer-font-size-sm) !important;
+            }
+
+
+            .continent-count {
+              font-size: var(--composer-font-size-sm) !important;
+            }
           }
         }
       }
@@ -102,8 +132,28 @@
       .max-content {
         .header {
           .continents-wrapper {
-            min-width: 200px;
+            width: 100%;
+            justify-content: center;
+            min-width: 0;
             padding: 0;
+            gap: var(--composer-gap-sm);
+
+            .continent-item {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              text-align: center;
+              gap: var(--composer-gap-xs);
+
+              .continent-name {
+                color: var(--composer-tertiary-color);
+                font-size: var(--composer-font-size-xs) !important;
+              }
+
+              .continent-count {
+                font-size: var(--composer-font-size-xs) !important;
+              }
+            }
           }
         }
       }

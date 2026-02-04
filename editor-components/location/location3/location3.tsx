@@ -4,6 +4,8 @@ import styles from "./location3.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
   type: string;
@@ -34,10 +36,23 @@ class Location3 extends Location {
     super(props, styles);
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
-      displayer: "Icon",
-      value: "BiWorld",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BiWorld",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
 
     this.addProp({
@@ -54,19 +69,7 @@ class Location3 extends Location {
       value: "Explore the world with us",
     });
 
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 2,
-    });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
 
     this.addProp({
       type: "array",
@@ -89,10 +92,16 @@ class Location3 extends Location {
             },
 
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "",
+              },
             },
           ],
         },
@@ -111,10 +120,16 @@ class Location3 extends Location {
               },
             },
             {
-              type: "image",
+              type: "media",
               key: "marker-image",
-              displayer: "Marker Image",
-              value: "",
+              displayer: "Marker Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "image",
+                url: "",
+              },
             },
           ],
         },
@@ -124,12 +139,12 @@ class Location3 extends Location {
     this.addProp({
       type: "array",
       key: "continents",
-      displayer: "Continents",
+      displayer: "Label",
       value: [
         {
           type: "object",
           key: "continent",
-          displayer: "Continent",
+          displayer: "Label",
           value: [
             {
               type: "string",
@@ -252,13 +267,15 @@ class Location3 extends Location {
     const addresses: Address[] = this.getPropValue("addresses");
     const continents = this.getPropValue("continents");
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const hasSubtitle = this.castToString(subtitle);
 
     const description = this.getPropValue("description");
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
+    const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
 
     const theme = this.getPropValue("theme");
 
@@ -278,15 +295,45 @@ class Location3 extends Location {
         const width = address.getPropValue("marker-width") || 32;
         const height = address.getPropValue("marker-height") || 32;
 
+        let iconUrl: string | undefined =
+          markerImage && typeof markerImage === "object" && markerImage.type === "image"
+            ? markerImage.url
+            : markerImage;
+
+        if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+          const iconName = (markerImage as any).name;
+          let ElementIcon: any = null;
+          for (const lib of iconLibraries) {
+            if (ElementIcon) break;
+            for (const [name, Comp] of Object.entries(lib)) {
+              if (name === iconName) {
+                ElementIcon = Comp;
+                break;
+              }
+            }
+          }
+
+          if (ElementIcon) {
+            const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+            iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+          }
+
+        }
+
         if (lat !== undefined && lng !== undefined) {
-          const content = <></>;
+          const finalIconUrl = iconUrl || defaultMarkerIcon;
+          const content = markerImage ? (
+            <Base.Media value={markerImage} className={this.decorateCSS("icon")} />
+          ) : (
+            <></>
+          );
 
           acc.push({
             content,
             lat,
             lng,
             icon: {
-              url: markerImage,
+              url: finalIconUrl,
               scaledSize: new google.maps.Size(width, height),
               width,
               height,
@@ -299,31 +346,35 @@ class Location3 extends Location {
 
     const iconExist = this.getPropValue("icon");
 
-    const topExist = iconExist || titleExist || descriptionExist || continents.length > 0;
+    const topExist = iconExist || hasTitle || hasDescription || continents.length > 0;
     return (
-      <div className={this.decorateCSS("wrapper")}>
+      <Base.VerticalContent className={this.decorateCSS("wrapper")}>
         {topExist && (
           <Base.Container className={this.decorateCSS("container")}>
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {this.getPropValue("icon") && (
                   <div className={this.decorateCSS("icon-wrapper")}>
-                    <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue("icon")} />
+                    <Base.Media
+                      value={this.getPropValue("icon")}
+                      className={`${this.decorateCSS("icon")} ${this.getPropValue("icon")?.type === "image" && this.decorateCSS("icon-img")}`}
+                    />
                   </div>
                 )}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+                {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+                {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
 
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+                {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
 
                 {continents.length > 0 && (
-                  <div className={styles["continents-wrapper"]}>
+                  <div className={this.decorateCSS("continents-wrapper")}>
                     {continents.map((continentObj: any, index: number) => {
                       const name = this.castToString(continentObj.getPropValue("name"));
                       const count = continentObj.getPropValue("count");
 
                       return (
                         (name || count) && (
-                          <div key={index} className={styles["continent-item"]}>
+                          <div key={index} className={this.decorateCSS("continent-item")}>
                             <Base.P className={this.decorateCSS("continent-name")}>{continentObj.getPropValue("name")}</Base.P>
                             <Base.P className={this.decorateCSS("continent-count")}>{count}</Base.P>
                           </div>
@@ -337,9 +388,9 @@ class Location3 extends Location {
           </Base.Container>
         )}
         <section className={this.decorateCSS("map-container")}>
-          <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle.colors} />
+          <ComposerMap defaultMarkerIcon={defaultMarkerIcon} handleMarkerZoom={markerZoom} defaultZoom={centerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
         </section>
-      </div>
+      </Base.VerticalContent>
     );
   }
 }

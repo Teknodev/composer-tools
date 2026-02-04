@@ -2,32 +2,50 @@ import React from "react";
 import { Location } from "../../EditorComponent";
 import styles from "./location5.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { renderToStaticMarkup } from "react-dom/server";
 
 class Location5 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "image",
+        url: "",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
       type: "string",
       key: "title",
-      displayer: "Header Title",
+      displayer: "Title",
       value: "Offices",
     });
 
     this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 3,
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
+
 
     this.addProp({
       type: "array",
@@ -36,7 +54,6 @@ class Location5 extends Location {
       value: [
         {
           type: "object",
-          key: "firstadress",
           displayer: "First Location",
           value: [
             {
@@ -53,14 +70,14 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "adress",
-              displayer: "Enter the address",
+              key: "address",
+              displayer: "Address",
               value: "Rua Fernando Palha, 47A, 1950-130",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Enter the description",
+              displayer: "Description",
               value: "(We work by appointment)",
             },
             {
@@ -70,7 +87,6 @@ class Location5 extends Location {
               value: [
                 {
                   type: "object",
-                  key: "loca",
                   displayer: "Location",
                   value: [
                     {
@@ -83,20 +99,49 @@ class Location5 extends Location {
                       },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "marker-image",
-                      displayer: "Marker Image",
-                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      displayer: "Marker Media",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      },
+                    },
+                    {
+                      type: "string",
+                      displayer: "Marker Popup",
+                      key: "popupTitle",
+                      value: "Lisbon Office",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Popup Description",
+                      key: "popupDescription",
+                      value: "Rua Fernando Palha, 47A, 1950-130",
+                    },
+                    {
+                      type: "string",
+                      key: "popupButtonText",
+                      displayer: "Popup Button Text",
+                      value: "View Map",
+                    },
+                    {
+                      type: "page",
+                      key: "popupButtonUrl",
+                      displayer: "Popup Button URL",
+                      value: "",
                     },
                   ],
                 },
-              ],
+              ] as any,
             },
           ],
         },
         {
           type: "object",
-          key: "secondadress",
           displayer: "Second Location",
           value: [
             {
@@ -113,14 +158,14 @@ class Location5 extends Location {
             },
             {
               type: "string",
-              key: "adress",
-              displayer: "Enter the address",
+              key: "address",
+              displayer: "Address",
               value: "Lermontovsky prospect, 35A",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Enter the description",
+              displayer: "Description",
               value: "(We work by appointment)",
             },
             {
@@ -130,7 +175,6 @@ class Location5 extends Location {
               value: [
                 {
                   type: "object",
-                  key: "loca",
                   displayer: "Location",
                   value: [
                     {
@@ -143,18 +187,80 @@ class Location5 extends Location {
                       },
                     },
                     {
-                      type: "image",
+                      type: "media",
                       key: "marker-image",
-                      displayer: "Marker Image",
-                      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      displayer: "Marker Media",
+                      additionalParams: {
+                        availableTypes: ["image", "icon"],
+                      },
+                      value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710dfcc97fe08002c76d871?alt=media",
+                      },
+                    },
+                    {
+                      type: "string",
+                      displayer: "Marker Popup",
+                      key: "popupTitle",
+                      value: "St. Petersburg Office",
+                    },
+                    {
+                      type: "string",
+                      displayer: "Popup Description",
+                      key: "popupDescription",
+                      value: "Lermontovsky prospect, 35A",
+                    },
+                    {
+                      type: "string",
+                      key: "popupButtonText",
+                      displayer: "Popup Button Text",
+                      value: "View Map",
+                    },
+                    {
+                      type: "page",
+                      key: "popupButtonUrl",
+                      displayer: "Popup Button URL",
+                      value: "",
                     },
                   ],
                 },
-              ],
+              ] as any,
             },
           ],
         },
-      ],
+      ] as any,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "centerZoom",
+      displayer: "Center Zoom Value",
+      value: 3,
+    });
+
+    this.addProp({
+      type: "number",
+      key: "markerZoom",
+      displayer: "Marker Zoom Value",
+      value: 15,
+    });
+
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
     });
   }
 
@@ -165,6 +271,10 @@ class Location5 extends Location {
   render() {
     const locationAddresses = this.getPropValue("locationAddresses") || [];
 
+    const subtitle = this.getPropValue("subtitle");
+    const hasSubtitle = this.castToString(subtitle);
+    const title = this.getPropValue("title");
+    const hasTitle = this.castToString(title);
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
@@ -173,6 +283,15 @@ class Location5 extends Location {
     const selectedTheme = theme || "Theme-2";
 
     const mapStyle = this.selectTheme(selectedTheme);
+    const description = this.getPropValue("description");
+    const hasDescription = this.castToString(description);
+    const logo = this.getPropValue("logo");
+    const logoExist = Boolean(
+      (logo as any)?.url ||
+      (logo as any)?.name ||
+      (logo as any)?.icon
+    );
+    const alignmentValue = Base.getContentAlignment();
 
     const createMarkers = (address: any) => {
       const locData = address.getPropValue("loc");
@@ -183,18 +302,82 @@ class Location5 extends Location {
         .map((loc: any) => {
           const coordinateData = loc.getPropValue("coordinate");
           const markerImage = loc.getPropValue("marker-image");
+          const popupTitle = this.castToString(loc.getPropValue("popupTitle"));
+          const popupDescription = this.castToString(loc.getPropValue("popupDescription"));
+          const popupButtonText = this.castToString(loc.getPropValue("popupButtonText"));
+          const popupButtonUrl = loc.getPropValue("popupButtonUrl");
 
           const lat = coordinateData?.lat;
           const lng = coordinateData?.lng;
           const width = 32;
           const height = 32;
 
+          let iconUrl: string | undefined =
+            markerImage && typeof markerImage === "object" && markerImage.type === "image"
+              ? markerImage.url
+              : markerImage;
+
+          if (markerImage && typeof markerImage === "object" && markerImage.type === "icon") {
+            try {
+              const iconName = (markerImage as any).name;
+              if (iconName) {
+                let ElementIcon: any = null;
+                for (const lib of iconLibraries) {
+                  if (ElementIcon) break;
+                  for (const [name, Comp] of Object.entries(lib)) {
+                    if (name === iconName) {
+                      ElementIcon = Comp;
+                      break;
+                    }
+                  }
+                }
+
+                if (ElementIcon) {
+                  const svgString = renderToStaticMarkup(<ElementIcon size={Math.max(width, height)} />);
+                  iconUrl = `data:image/svg+xml;utf8,${encodeURIComponent(svgString)}`;
+                }
+              }
+            } catch (e) {
+              iconUrl = undefined;
+            }
+          }
+
           if (lat !== undefined && lng !== undefined) {
+            const finalIconUrl = iconUrl || defaultMarkerIcon;
+            const content =
+              (popupTitle || popupDescription || popupButtonText) ? (
+                <div className={this.decorateCSS("popup")}>
+                  {(popupTitle || popupDescription) && (
+                    <div className={this.decorateCSS("popup-header")}>
+                      {popupTitle && (
+                        <Base.P className={this.decorateCSS("popup-title")}>
+                          {typeof popupTitle === "string" ? popupTitle.charAt(0).toUpperCase() + popupTitle.slice(1) : popupTitle}
+                        </Base.P>
+                      )}
+                      {popupDescription && (
+                        <Base.P className={this.decorateCSS("popup-content")}>
+                          {typeof popupDescription === "string" ? popupDescription.charAt(0).toUpperCase() + popupDescription.slice(1) : popupDescription}
+                        </Base.P>
+                      )}
+                    </div>
+                  )}
+                  {popupButtonText && (
+                    <div className={this.decorateCSS("popup-link")}>
+                      <ComposerLink path={popupButtonUrl}>
+                        <div className={this.decorateCSS("popup-button")}>
+                          {typeof popupButtonText === "string" ? popupButtonText.charAt(0).toUpperCase() + popupButtonText.slice(1) : popupButtonText}
+                        </div>
+                      </ComposerLink>
+                    </div>
+                  )}
+                </div>
+              ) : null;
             return {
+              content,
               lat,
               lng,
               icon: {
-                url: markerImage,
+                url: finalIconUrl,
                 scaledSize: new google.maps.Size(width, height),
               },
             };
@@ -209,37 +392,47 @@ class Location5 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+          <Base.VerticalContent className={`${this.decorateCSS("title-block")} ${alignmentValue === "center" && this.decorateCSS("center")} ${alignmentValue === "left" && this.decorateCSS("left")}`}>
+            {logoExist && (
+              <Base.Media
+                value={logo}
+                className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`}
+              />
+            )}
+            {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
+            {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+            {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+          </Base.VerticalContent>
           <div className={this.decorateCSS("wrapper")}>
             <section className={this.decorateCSS("map-container")}>
               {locationAddresses.map((location: any, index: number) => {
                 const markers = createMarkers(location);
 
                 const city = location.getPropValue("city");
-                const adress = location.getPropValue("adress");
+                const address = location.getPropValue("address");
                 const description = location.getPropValue("description");
                 const locationIndex = location.getPropValue("index");
 
-                const cityExist = this.castToString(city);
-                const adressExist = this.castToString(adress);
-                const descriptionExist = this.castToString(description);
+                const hasCity = this.castToString(city);
+                const hasAddress = this.castToString(address);
+                const hasDescription = this.castToString(description);
 
-                const hasItemsExist = cityExist || adressExist || descriptionExist || locationIndex;
+                const hasItemsExist = hasCity || hasAddress || hasDescription || locationIndex;
 
                 return (
                   <div key={index} className={this.decorateCSS("location-item")}>
                     {hasItemsExist && (
                       <Base.VerticalContent className={this.decorateCSS("location-items")}>
                         {locationIndex && <Base.H2 className={this.decorateCSS("location-index")}>{locationIndex}</Base.H2>}
-                        {cityExist && <Base.P className={this.decorateCSS("location-city")}>{city}</Base.P>}
-                        {adressExist && <Base.P className={this.decorateCSS("location-adress")}>{adress}</Base.P>}
-                        {descriptionExist && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
+                        {hasCity && <Base.H6 className={this.decorateCSS("location-city")}>{city}</Base.H6>}
+                        {hasAddress && <Base.P className={this.decorateCSS("location-address")}>{address}</Base.P>}
+                        {hasDescription && <Base.P className={this.decorateCSS("location-description")}>{description}</Base.P>}
                       </Base.VerticalContent>
                     )}
                     <ComposerMap
                       defaultMarkerIcon={defaultMarkerIcon}
                       markers={markers}
-                      styles={mapStyle.colors}
+                      styles={mapStyle?.colors}
                       className={`${this.decorateCSS("location-map")} ${!hasItemsExist && this.decorateCSS("full-width")}`}
                       defaultZoom={centerZoom}
                       handleMarkerZoom={markerZoom}
