@@ -146,39 +146,37 @@ class About8 extends BaseAbout {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleText || hasTitle || descriptionExist) && (
-            <Base.VerticalContent className={this.decorateCSS("subtitle-container")}>
+            <Base.VerticalContent className={this.decorateCSS("header-container")}>
               {subtitleText && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {subtitle}
-              </Base.SectionSubTitle>
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
               )}
               {hasTitle && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {title}
-            </Base.SectionTitle>
-          )}
-          {descriptionExist && (
-            <Base.SectionDescription className={this.decorateCSS("description")}>
-              {description}
-            </Base.SectionDescription>
-          )}
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
             </Base.VerticalContent>
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${
-              !hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
-            }`}
+            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
+              }`}
           >
             {hasImages && (
               <div className={this.decorateCSS("images-section")}>
                 {hasImage1 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${
-                      this.getPropValue("overlay")
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
                         ? this.decorateCSS("overlay")
                         : ""
-                    }`}
+                      }`}
                   >
                     <Base.Media
                       value={image1}
@@ -188,11 +186,10 @@ class About8 extends BaseAbout {
                 )}
                 {hasImage2 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${
-                      this.getPropValue("overlay")
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
                         ? this.decorateCSS("overlay")
                         : ""
-                    }`}
+                      }`}
                   >
                     <Base.Media
                       value={image2}
