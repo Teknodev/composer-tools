@@ -102,7 +102,7 @@
             background: color-mix(in srgb, var(--composer-primary-color), #fff 80%);
             color: var(--composer-primary-color);
             padding: var(--composer-gap-xs) var(--composer-gap-md);
-            margin-left: var(--composer-gap-lg);
+            margin-left: var(--composer-gap-md);
             border-radius: var(--composer-border-radius-xl);
             transition-duration: 0.8s;
             width: unset;

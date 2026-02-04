@@ -140,6 +140,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
                 .price-title1 {
                   color: var(--composer-font-color-primary);
+                  text-align: center;
                 }
 
                 .price-title2 {
@@ -150,6 +151,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 .price-pricing {
                   margin-top: var(--composer-gap-md);
                   color: var(--composer-font-color-primary);
+                  text-align: center;
                 }
               }
             }
