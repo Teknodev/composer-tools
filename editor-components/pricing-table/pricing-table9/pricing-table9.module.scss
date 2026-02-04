@@ -85,7 +85,6 @@
           }
 
           .content-item {
-            padding: var(--composer-gap-md);
             border-bottom: 1px solid
               rgba(var(--composer-font-color-primary-rgb), 0.2);
             min-height: var(--composer-gap-xl);
@@ -112,6 +111,8 @@
               font-size: 1.5rem;
               width: 25px;
               height: 25px;
+              margin-left: auto;
+              margin-right: auto;
               .icon {
                 width: var(--composer-gap-md);
                 height: var(--composer-gap-md);
