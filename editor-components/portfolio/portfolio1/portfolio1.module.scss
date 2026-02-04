@@ -257,6 +257,8 @@
         .item {
           padding: var(--composer-gap-xl);
           min-height: 450px;
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
         }
       }
 
@@ -267,6 +269,11 @@
         .top,
         .bottom {
           gap: var(--composer-gap-md);
+
+          .item:first-child {
+             border-top-left-radius: 0 !important;
+             border-bottom-left-radius: 0 !important;
+          }
         }
       }
 

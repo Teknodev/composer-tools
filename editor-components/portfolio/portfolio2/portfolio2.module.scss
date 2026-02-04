@@ -10,7 +10,8 @@
     .left-side-container,
     .right-side-container,
     .middle-container {
-      flex: 1;
+      min-width: 30%;
+      flex: 1 1 30%;
       display: flex;
     }
 
@@ -28,6 +29,7 @@
         .title,
         .description {
           text-align: center;
+          word-break: break-all;
         }
 
         .sub-title {
