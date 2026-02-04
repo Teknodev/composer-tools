@@ -35,7 +35,7 @@
 
     .services-grid {
       width: 100%;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .service-card {
         background-color: var(--composer-html-background);
@@ -116,18 +116,18 @@
       }
     }
     @container (max-width: #{$composer-tablet-width}) {
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-md);
 
       .services-grid {
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
       }
     }
 
     @container (max-width: #{$composer-phone-width}) {
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-md);
 
       .services-grid {
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
 
         .service-card {
           .media-wrapper {

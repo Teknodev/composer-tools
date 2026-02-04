@@ -220,28 +220,32 @@ class Feature46 extends BaseFeature {
         const services = this.castToObject<ServiceCard[]>("services");
         const primaryButtons = this.castToObject<PrimaryButton>("buttons");
 
+        const hasHeaderContent = this.castToString(subtitle) || this.castToString(title) || this.castToString(description);
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("header-section")}`}>
-                        {this.castToString(subtitle) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                {subtitle}
-                            </Base.SectionSubTitle>
-                        )}
-                        
-                        {this.castToString(title) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                {title}
-                            </Base.SectionTitle>
-                        )}
-                        
-                        {this.castToString(description) && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {description}
-                            </Base.SectionDescription>
-                        )}
-                    </Base.VerticalContent>
+                    {hasHeaderContent && (
+                        <Base.VerticalContent className={`${this.decorateCSS("header-section")}`}>
+                            {this.castToString(subtitle) && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {subtitle}
+                                </Base.SectionSubTitle>
+                            )}
+                            
+                            {this.castToString(title) && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {title}
+                                </Base.SectionTitle>
+                            )}
+                            
+                            {this.castToString(description) && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {description}
+                                </Base.SectionDescription>
+                            )}
+                        </Base.VerticalContent>
+                    )}
 
                     <Base.ListGrid
                         gridCount={{ pc: itemsPerRow || 3, tablet: 3, phone: 1 }}
@@ -257,9 +261,9 @@ class Feature46 extends BaseFeature {
                                     )}
 
                                     {this.castToString(service.title) && (
-                                        <Base.H3 className={this.decorateCSS("card-title")}>
+                                        <Base.H4 className={this.decorateCSS("card-title")}>
                                             {service.title}
-                                        </Base.H3>
+                                        </Base.H4>
                                     )}
 
                                     {service.media && (
