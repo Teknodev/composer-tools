@@ -2,7 +2,7 @@
 
 .container {
   &.image {
-    padding: 0;
+    padding: 0 !important;
   }
 
   .page {
@@ -59,10 +59,15 @@
           align-items: center;
 
           .title,
-          .description,
+          .description {
+            color: white;
+            text-align: center;
+          }
+
           .subtitle {
             color: white;
             text-align: center;
+            background: transparent !important;
           }
         }
 
