@@ -1,9 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-html-background);
-  color: var(--composer-font-color-primary);
-
   .max-content {
     display: flex;
     flex-direction: column;
@@ -12,8 +9,6 @@
 
     .header-section {
       width: 100%;
-      display: flex;
-      flex-direction: column;
 
       &.left {
         align-items: flex-start;
@@ -21,39 +16,24 @@
       }
     }
 
-    .subtitle {
-      content: "";
-    }
-
-    .title {
-      content: "";
-    }
-
+    .subtitle,
+    .title,
     .description {
       content: "";
     }
 
     .services-grid {
       width: 100%;
-      gap: var(--composer-gap-lg);
 
       .service-card {
-        background-color: var(--composer-html-background);
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
-        text-align: left;
 
-        .card-content {
-          text-align: left;
-        }
-
-        .card-subtitle {
-          text-align: left;
-        }
-
-        .card-title {
+        .card-subtitle,
+        .card-title,
+        .card-description {
           text-align: left;
         }
 
@@ -72,10 +52,6 @@
           }
         }
 
-        .card-description {
-          text-align: left;
-        }
-
         .card-buttons {
           display: flex;
           flex-wrap: wrap;
@@ -86,10 +62,6 @@
 
           .card-button {
             content: "";
-
-            a {
-              text-decoration: none;
-            }
 
             .card-button-text {
               content: "";
@@ -115,15 +87,24 @@
         }
       }
     }
-    @container (max-width: #{$composer-tablet-width}) {
+  }
+  
+}
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
       gap: var(--composer-gap-md);
 
       .services-grid {
         gap: var(--composer-gap-md);
       }
     }
+  }
+}
 
-    @container (max-width: #{$composer-phone-width}) {
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
       gap: var(--composer-gap-md);
 
       .services-grid {

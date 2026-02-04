@@ -252,56 +252,54 @@ class Feature46 extends BaseFeature {
                         className={this.decorateCSS("services-grid")}
                     >
                         {services?.map((service: ServiceCard, index: number) => (
-                            <div key={index} className={this.decorateCSS("service-card")}>
-                                <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                    {this.castToString(service.subtitle) && (
-                                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                            {service.subtitle}
-                                        </Base.H6>
-                                    )}
+                            <Base.VerticalContent key={index} className={this.decorateCSS("service-card")}>
+                                {this.castToString(service.subtitle) && (
+                                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                        {service.subtitle}
+                                    </Base.H6>
+                                )}
 
-                                    {this.castToString(service.title) && (
-                                        <Base.H4 className={this.decorateCSS("card-title")}>
-                                            {service.title}
-                                        </Base.H4>
-                                    )}
+                                {this.castToString(service.title) && (
+                                    <Base.H4 className={this.decorateCSS("card-title")}>
+                                        {service.title}
+                                    </Base.H4>
+                                )}
 
-                                    {service.media && (
-                                        <div className={this.decorateCSS("media-wrapper")}>
-                                            <Base.Media 
-                                                value={service.media}
-                                                className={this.decorateCSS("media")}
-                                            />
-                                        </div>
-                                    )}
+                                {service.media && (
+                                    <div className={this.decorateCSS("media-wrapper")}>
+                                        <Base.Media 
+                                            value={service.media}
+                                            className={this.decorateCSS("media")}
+                                        />
+                                    </div>
+                                )}
 
-                                    {this.castToString(service.description) && (
-                                        <Base.P className={this.decorateCSS("card-description")}>
-                                            {service.description}
-                                        </Base.P>
-                                    )}
+                                {this.castToString(service.description) && (
+                                    <Base.P className={this.decorateCSS("card-description")}>
+                                        {service.description}
+                                    </Base.P>
+                                )}
 
-                                    {service.buttons && service.buttons.length > 0 && (
-                                        <div className={this.decorateCSS("card-buttons")}>
-                                            {service.buttons.map((button, btnIndex) => (
-                                                this.castToString(button.text) && (
-                                                    <Base.Button
-                                                        className={this.decorateCSS("card-button")}
-                                                        key={btnIndex}
-                                                        buttonType={button.type}
-                                                    >
-                                                        <ComposerLink path={button.url}>
-                                                            <Base.P className={this.decorateCSS("card-button-text")}>
-                                                                {button.text}
-                                                            </Base.P>
-                                                        </ComposerLink>
-                                                    </Base.Button>
-                                                )
-                                            ))}
-                                        </div>
-                                    )}
-                                </Base.VerticalContent>
-                            </div>
+                                {service.buttons && service.buttons.length > 0 && (
+                                    <div className={this.decorateCSS("card-buttons")}>
+                                        {service.buttons.map((button, btnIndex) => (
+                                            this.castToString(button.text) && (
+                                                <Base.Button
+                                                    className={this.decorateCSS("card-button")}
+                                                    key={btnIndex}
+                                                    buttonType={button.type}
+                                                >
+                                                    <ComposerLink path={button.url}>
+                                                        <Base.P className={this.decorateCSS("card-button-text")}>
+                                                            {button.text}
+                                                        </Base.P>
+                                                    </ComposerLink>
+                                                </Base.Button>
+                                            )
+                                        ))}
+                                    </div>
+                                )}
+                            </Base.VerticalContent>
                         ))}
                     </Base.ListGrid>
 
