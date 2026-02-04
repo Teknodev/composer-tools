@@ -6,10 +6,6 @@
     background-position: center;
     background-repeat: no-repeat;
     min-height: 800px;
-
-
-
-
   }
 
   &.overlay-active {
@@ -47,14 +43,20 @@
         .subtitle {
           &.with-bg {
             color: white;
-            background: transparent !important;
             padding-left: 0px !important;
+          }
+        }
+
+        .subtitle {
+          &.with-bg {
+            background: transparent !important;
 
             &::before {
               background: white !important;
             }
           }
         }
+
 
         .button-container {
           display: flex;

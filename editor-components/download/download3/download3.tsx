@@ -1,4 +1,3 @@
-import * as React from "react";
 import styles from "./download3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
@@ -98,27 +97,27 @@ class Download3 extends BaseDownload {
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
                     </div>
                   )}
-                  {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${!buttonsExist && this.decorateCSS("full")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 </Base.VerticalContent>
-                <Base.SectionDescription className={`${this.decorateCSS("description")} ${!titleExist && this.decorateCSS("full")}`}>{this.getPropValue("description")}</Base.SectionDescription>
+                <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
                 {buttonsExist && (
                   <div className={this.decorateCSS("button-group")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
-                      const iconExist = item.icon && item.icon.name;
-                      const imageExist = item.image && item.image.url;
+                      const iconExist = item.icon && (item.icon as any).name;
+                      const imageExist = item.image && (item.image as any).url;
                       const buttonExist = buttonTextExist || iconExist || imageExist;
                       return buttonExist && (
                         <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                           <div className={this.decorateCSS("button-link")}>
                             <ComposerLink path={item.url}>
                               {imageExist ? (
-                                <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
+                                <Base.Media value={item.image as any} className={this.decorateCSS("button-logo")} />
                               ) : (
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                                   {iconExist && (
                                     <Base.Media
-                                      value={item.icon}
+                                      value={item.icon as any}
                                       className={this.decorateCSS("button-icon")}
                                     />
                                   )}
@@ -149,22 +148,22 @@ class Download3 extends BaseDownload {
                 <div className={this.decorateCSS("button-group")}>
                   {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                     const buttonTextExist = this.castToString(item.text);
-                    const iconExist = item.icon && item.icon.name;
-                    const imageExist = item.image && item.image.url;
-                    return (
+                    const iconExist = item.icon && (item.icon as any).name;
+                    const imageExist = item.image && (item.image as any).url;
+                    const buttonExist = buttonTextExist || iconExist || imageExist;
+                    return buttonExist && (
                       <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                         <div className={this.decorateCSS("button-link")}>
                           <ComposerLink path={item.url}>
                             {imageExist ? (
-                              <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
+                              <Base.Media value={item.image as any} className={this.decorateCSS("button-logo")} />
                             ) : (
-                              <Base.Button className={this.decorateCSS("button-element")}>
-                                {iconExist && (
-                                  <Base.Media
-                                    value={item.icon}
-                                    className={this.decorateCSS("button-icon")}
-                                  />
-                                )}
+                              <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                {iconExist && <Base.Media
+                                  value={item.icon as any}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                                }
                                 {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                               </Base.Button>
                             )}

@@ -175,12 +175,12 @@ class Download8 extends BaseDownload {
               <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />
             </div>
           )}
-          <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist ? this.decorateCSS("with-image") : this.decorateCSS("no-image")}`}>
+          <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist && this.decorateCSS("with-image")}`}>
             {(subtitleExist || titleExist || descriptionExist) && (
               <Base.VerticalContent id={"left-content"} className={`${this.decorateCSS("left-content")} ${imageExist && this.decorateCSS("center")}`}>
-                {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
           </Base.MaxContent>

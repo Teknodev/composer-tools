@@ -40,6 +40,7 @@
       display: flex;
       position: relative;
       height: auto;
+      min-height: 250px;
 
       .left-content {
         &.center {
@@ -66,10 +67,7 @@
           content: "";
           text-align: center;
 
-          &.with-image {
-            color: white;
-            background: transparent;
-          }
+          color: var(--composer-font-color-primary);
         }
 
         .subtitle {
@@ -86,11 +84,18 @@
 
       &.with-image {
         min-height: 350px;
+
+        .left-content {
+
+          .title,
+          .description,
+          .subtitle {
+            color: white;
+            background: transparent;
+          }
+        }
       }
 
-      &.no-image {
-        min-height: 250px;
-      }
     }
 
 

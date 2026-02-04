@@ -32,15 +32,15 @@
       .group-container {
         display: flex;
         width: 100%;
-        align-items: flex-start;
+        align-items: stretch;
+        justify-content: space-between;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
-        padding-bottom: 80px;
         gap: var(--composer-gap-lg);
 
         .title-block {
           display: flex;
           flex-direction: column;
-          flex: 1;
+          width: 20%;
           min-width: 0;
           align-items: flex-start;
           justify-content: center;
@@ -57,50 +57,41 @@
           }
 
           .title {
-            &.full {
-              width: 100%;
-            }
+            content: "";
+            margin: 0;
           }
         }
 
         .description {
           color: var(--composer-font-color-primary);
-          flex: 1;
-          min-width: 60%;
+          width: 60%;
           align-self: center;
-
-          &.full {
-            max-width: 100%;
-            align-self: flex-start;
-          }
         }
 
         .button-group {
           align-self: center;
           display: flex;
           flex-direction: column;
+          flex-shrink: 0;
 
           .button {
             display: flex;
-            width: fit-content;
 
             .button-link {
               width: 100% !important;
-              height: 40px;
+              height: 100%;
             }
 
             .button-logo {
-              width: 180px;
-              object-fit: contain;
+              width: 170px;
+              height: 50px;
+              object-fit: cover;
               cursor: pointer;
               border-radius: var(--composer-border-radius-sm);
             }
 
             .button-element {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              padding: var(--composer-gap-sm) var(--composer-gap-md);
+              content: "";
 
               .button-text {
                 content: "";
@@ -146,16 +137,19 @@
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          align-items: center;
-          gap: var(--composer-gap-md);
+          align-items: stretch;
+          gap: var(--composer-gap-sm);
 
           .button {
-            width: 180px;
-            height: auto;
+            .button-link {
+              width: 100%;
+              height: 100%;
+            }
 
             .button-logo {
-              width: 180px;
-              object-fit: contain;
+              width: 200px;
+              height: 50px;
+              object-fit: cover;
               border-radius: var(--composer-border-radius-sm);
             }
 
@@ -217,9 +211,6 @@
               text-align: center;
               width: 100%;
 
-              &.full {
-                width: 100%;
-              }
             }
           }
 
@@ -230,43 +221,19 @@
             align-self: center;
             text-align: center;
 
-            &.full {
-              max-width: 100%;
-              align-self: center;
-            }
           }
 
           .button-group {
-            display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: var(--composer-gap-md);
-            margin-top: var(--composer-gap-md);
-            width: 100%;
+            justify-content: center !important;
+            align-items: stretch;
+            gap: var(--composer-gap-sm);
 
             .button {
-              width: 180px;
-
-              .button-link {
-                min-height: 40px !important;
-                height: auto !important;
-              }
-
               .button-logo {
-                height: 100%;
-                width: 100%;
-                object-fit: contain;
-              }
-
-              .button-element {
-                height: 100%;
-                width: 100%;
-                padding: 0 var(--composer-gap-md);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                height: 45px !important;
+                object-fit: cover;
               }
             }
           }
@@ -277,7 +244,15 @@
 
           .button-group {
             justify-content: center;
+            gap: var(--composer-gap-sm);
             margin-bottom: var(--composer-gap-md);
+
+            .button {
+              .button-logo {
+                height: 47px !important;
+                object-fit: cover;
+              }
+            }
           }
         }
       }
@@ -337,30 +312,23 @@
 
           .button-group {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0px !important;
+            flex-direction: row;
+            justify-content: center;
+            align-items: stretch;
+            gap: var(--composer-gap-sm) !important;
             width: 100%;
 
             .button {
-              width: 180px;
-              height: 50px;
               margin: 0px;
 
               .button-logo {
-                height: 100%;
-                width: 100%;
-                object-fit: contain;
+                width: 120px !important;
+                height: 33px !important;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
               }
 
               .button-element {
-                height: 100%;
-                width: 100%;
-                padding: 0 var(--composer-gap-sm);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
                 .button-icon {
                   font-size: 1rem;
                 }
@@ -374,25 +342,18 @@
 
           .button-group {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: center;
             width: 100%;
             gap: var(--composer-gap-sm);
-            align-items: center;
-            margin-bottom: var(--composer-gap-md) !important;
-            margin-top: var(--composer-gap-md) !important;
+            align-items: stretch;
 
             .button {
-              width: 180px;
-              height: 50px;
-
-              .button-element {
-                width: 180px;
-              }
-
               .button-logo {
-                height: 100%;
-                width: 100%;
-                object-fit: contain;
+                width: 120px !important;
+                height: 33px !important;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
               }
             }
           }
