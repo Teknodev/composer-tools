@@ -34,8 +34,11 @@
 
   &.has-media {
     .max-content {
+      gap: 0;
+
       .vertical-content {
         padding-top: calc(5rem + var(--composer-gap-lg));
+        padding-bottom: calc(5rem + var(--composer-gap-lg));
 
         .subtitle {
           padding: 0 !important;
@@ -50,6 +53,11 @@
       }
 
       .button-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
         .button {
 
           .button-icon,
@@ -69,12 +77,12 @@
     justify-content: center;
     align-items: center;
     min-height: 60vh;
+    gap: var(--composer-gap-lg);
 
     .vertical-content {
       width: 100%;
       flex-wrap: wrap;
       align-items: center;
-      padding-bottom: calc(5rem + var(--composer-gap-lg));
 
       .subtitle {
         margin-left: auto;
@@ -93,13 +101,9 @@
     }
 
     .button-wrapper {
-      position: absolute;
-      align-items: center;
-      bottom: 0;
-      left: 0;
-      right: 0;
       display: flex;
-      justify-content: center !important;
+      align-items: center;
+      justify-content: center;
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
 
@@ -143,14 +147,16 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
+
       .button-wrapper {
         .button {
           .button-icon {
-            font-size: 3rem;
+            font-size: 3rem !important;
           }
 
           .button-text {
-            font-size: 1.5rem;
+            font-size: 2rem !important;
           }
         }
       }
@@ -167,7 +173,7 @@
         .button {
 
           .button-text {
-            font-size: 1rem;
+            font-size: 1rem !important;
           }
         }
       }
