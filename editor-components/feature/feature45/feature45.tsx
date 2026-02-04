@@ -1,0 +1,413 @@
+import {
+  BaseFeature,
+  TypeMediaInputValue,
+} from "composer-tools/editor-components/EditorComponent";
+import styles from "./feature45.module.scss";
+import {
+  Base,
+  TypeButton,
+} from "composer-tools/composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+
+type Card = {
+  title: Element;
+  subtitle: Element;
+  description: Element;
+  buttons: PrimaryButton[];
+  media: TypeMediaInputValue;
+};
+
+type PrimaryButton = {
+  type: TypeButton;
+  text: Element;
+  url: string;
+  icon?: any;
+};
+
+class Feature45 extends BaseFeature {
+  constructor(props?: any) {
+    super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Key Advantages",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "cards",
+      displayer: "Cards",
+      value: [
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "12 Years of Development",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "",
+                  "",
+                  null,
+                  null,
+                  "Primary",
+                ),
+              ],
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://i.postimg.cc/bNZwnqLm/luca-bravo-9l-326FISzk-unsplash-1070x713.jpg",
+              },
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Professional Managers",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "",
+                  "",
+                  null,
+                  null,
+                  "Primary",
+                ),
+              ],
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://i.postimg.cc/wxfB3150/evan-dvorkin-FLhn-C9S-UE8-unsplash-600x600-1.jpg",
+              },
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "High Visual Quality",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "",
+                  "",
+                  null,
+                  null,
+                  "Primary",
+                ),
+              ],
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://i.postimg.cc/YqvCFt8X/windows-JW-T2BH5k5E-unsplash-1070x713.jpg",
+              },
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+
+    this.addProp({
+      type: "array",
+      key: "sectionButtons",
+      displayer: "Section Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+  }
+
+  static getName(): string {
+    return "Feature 45";
+  }
+
+  render() {
+    const sectionSubtitle = this.castToString(this.getPropValue("subtitle"));
+    const sectionTitle = this.castToString(this.getPropValue("title"));
+    const sectionDescription = this.castToString(
+      this.getPropValue("description"),
+    );
+    const isSectionHeadingExist =
+      sectionSubtitle || sectionTitle || sectionDescription;
+
+    const cards = this.castToObject<Card[]>("cards");
+    const itemCountPerRow = this.getPropValue("itemCount");
+    const isCardButtonsExist = (cardButtons: PrimaryButton[]) =>
+      cardButtons.some((button) => this.castToString(button.text));
+
+    const sectionButtons = this.castToObject<PrimaryButton[]>("sectionButtons");
+    const sectionButtonsExist = sectionButtons.some(
+      (sectionButton) => !!this.castToString(sectionButton.text),
+    );
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {isSectionHeadingExist && (
+            <Base.VerticalContent
+              className={this.decorateCSS("header-container")}
+            >
+              {sectionSubtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+
+              {sectionTitle && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+
+              {sectionDescription && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+
+          {cards && cards.length > 0 && (
+            <Base.ListGrid
+              gridCount={{
+                pc: itemCountPerRow || 3,
+                tablet: 3,
+                phone: 1,
+              }}
+              className={this.decorateCSS("cards-list")}
+            >
+              {cards?.map((card, index) => (
+                <Base.VerticalContent
+                  key={index}
+                  className={this.decorateCSS("card")}
+                >
+                  <Base.VerticalContent
+                    className={this.decorateCSS("card-header")}
+                  >
+                    {this.castToString(card.subtitle) && (
+                      <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                        {card.subtitle}
+                      </Base.H6>
+                    )}
+                    {this.castToString(card.title) && (
+                      <Base.H3 className={this.decorateCSS("card-title")}>
+                        {card.title}
+                      </Base.H3>
+                    )}
+                    {this.castToString(card.description) && (
+                      <Base.P className={this.decorateCSS("card-description")}>
+                        {card.description}
+                      </Base.P>
+                    )}
+                    {isCardButtonsExist(card.buttons) && (
+                      <div className={this.decorateCSS("card-buttons-wrapper")}>
+                        {card.buttons.map((button, index) => {
+                          const buttonText = this.castToString(button.text);
+                          const buttonExist = buttonText || button.icon;
+                          return (
+                            buttonExist && (
+                              <ComposerLink path={button.url}>
+                                <Base.Button
+                                  className={this.decorateCSS("card-button")}
+                                  key={index}
+                                  buttonType={button.type}
+                                >
+                                  {button.icon && (
+                                    <Base.Media
+                                      value={button.icon}
+                                      className={this.decorateCSS(
+                                        "card-button-icon",
+                                      )}
+                                    />
+                                  )}
+                                  {buttonText && (
+                                    <Base.P
+                                      className={this.decorateCSS(
+                                        "card-button-text",
+                                      )}
+                                    >
+                                      {button.text}
+                                    </Base.P>
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                          );
+                        })}
+                      </div>
+                    )}
+                  </Base.VerticalContent>
+
+                  {(card.media?.type === "image" ||
+                    card.media?.type === "video") &&
+                    "url" in card.media &&
+                    card.media.url && (
+                      <div className={this.decorateCSS("media-wrapper")}>
+                        <Base.Media
+                          value={card.media}
+                          className={this.decorateCSS("media")}
+                        />
+                      </div>
+                    )}
+                </Base.VerticalContent>
+              ))}
+            </Base.ListGrid>
+          )}
+
+          {sectionButtonsExist && (
+            <div className={this.decorateCSS("section-buttons-wrapper")}>
+              {sectionButtons.map((sectionButton, index) => {
+                const buttonText = this.castToString(sectionButton.text);
+                const buttonExist = buttonText || sectionButton.icon;
+                return (
+                  buttonExist && (
+                    <ComposerLink path={sectionButton.url}>
+                      <Base.Button
+                        className={this.decorateCSS("section-button")}
+                        key={index}
+                        buttonType={sectionButton.type}
+                      >
+                        {sectionButton.icon && (
+                          <Base.Media
+                            value={sectionButton.icon}
+                            className={this.decorateCSS("section-button-icon")}
+                          />
+                        )}
+                        {buttonText && (
+                          <Base.P
+                            className={this.decorateCSS("section-button-text")}
+                          >
+                            {sectionButton.text}
+                          </Base.P>
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                );
+              })}
+            </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
+}
+
+export default Feature45;

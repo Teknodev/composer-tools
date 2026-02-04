@@ -1,0 +1,105 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--composer-gap-sm);
+}
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--composer-gap-lg);
+
+    .header-container {
+      .subtitle {
+        width: fit-content;
+      }
+
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
+    .cards-list {
+      .card {
+        justify-content: space-between;
+        border-radius: var(--composer-border-radius-md);
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
+        overflow: hidden;
+        align-items: flex-start !important;
+
+        .card-header {
+          margin-bottom: -2.5em;
+          z-index: 1;
+          margin-inline: 0.5em;
+
+          .card-title,
+          .card-description {
+            color: var(--composer-font-color-primary);
+          }
+
+          .card-subtitle,
+          .card-title,
+          .card-description {
+            text-align: left !important;
+          }
+
+          .card-subtitle {
+            width: 100%;
+            color: var(--composer-primary-color);
+          }
+
+          .card-buttons-wrapper {
+            @extend .buttons-wrapper;
+            width: 100%;
+
+            .card-button {
+              .card-button-icon,
+              .card-button-text {
+                content: "";
+              }
+            }
+          }
+        }
+
+        .media-wrapper {
+          width: 100%;
+          height: 35vh;
+
+          .media {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .section-buttons-wrapper {
+      @extend .buttons-wrapper;
+      margin-inline: auto;
+
+      .section-button {
+        .section-button-icon,
+        .section-button-text {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content {
+    gap: var(--composer-gap-md);
+  }
+}
