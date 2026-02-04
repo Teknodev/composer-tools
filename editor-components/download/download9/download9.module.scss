@@ -74,6 +74,12 @@
         .hover-container {
           align-items: center;
 
+          .hover-subtitle {
+            color: white;
+            text-align: center;
+            background: transparent !important;
+          }
+
           .card-title,
           .card-description {
             color: white;

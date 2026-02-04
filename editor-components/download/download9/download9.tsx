@@ -51,6 +51,13 @@ class Download9 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "hoverSubtitle",
+      displayer: "Hover Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "cardTitle",
       displayer: "Hover Title",
       value: "Download now by clicking the button",
@@ -62,6 +69,7 @@ class Download9 extends BaseDownload {
       displayer: "Hover Description",
       value: " By using clear and concise language, and providing a simple and easy-to-use download button, businesses and developers can increase the chances of users downloading and using their product.",
     });
+
 
     this.addProp({
       type: "array",
@@ -130,6 +138,7 @@ class Download9 extends BaseDownload {
               </Base.VerticalContent>
             )}
             <Base.VerticalContent className={this.decorateCSS("hover-container")}>
+              {this.castToString(this.getPropValue("hoverSubtitle")) && <Base.SectionSubTitle className={`${this.decorateCSS("hover-subtitle")}`}>{this.getPropValue("hoverSubtitle")}</Base.SectionSubTitle>}
               {cardTitleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{this.getPropValue("cardTitle")}</Base.SectionTitle>}
               {cardDescriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{this.getPropValue("cardDescription")}</Base.SectionDescription>}
               {this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0 && <div className={this.decorateCSS("buttons-container")}>{this.renderButtons()}</div>}
