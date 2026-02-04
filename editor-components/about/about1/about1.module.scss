@@ -22,19 +22,15 @@
             .button {
                 width: fit-content;
 
-                &.button-bare {
-                    .icon {
-                        font-size: 7rem;
-                        width: 7rem;
-                        height: 7rem;
-                    }
+                .icon {
+                    font-size: 5rem;
+                    width: 5rem;
+                    height: 5rem;
+                    object-fit: cover;
                 }
 
-                .icon {
-                    font-size: 1.25rem;
-                    width: 1.25rem;
-                    height: 1.25rem;
-                    object-fit: cover;
+                .button-text {
+                    font-size: 5rem;
                 }
             }
         }
@@ -146,12 +142,14 @@
         .max-content {
             .heading {
                 .button {
-                    &.button-bare {
-                        .icon {
-                            font-size: 5rem;
-                            width: 5rem;
-                            height: 5rem;
-                        }
+                    .icon {
+                        font-size: 3rem !important;
+                        width: 3rem !important;
+                        height: 3rem !important;
+                    }
+
+                    .button-text {
+                        font-size: 3rem !important;
                     }
                 }
             }
@@ -162,8 +160,6 @@
                     text-align: center;
                     gap: var(--composer-gap-xs);
                     margin-bottom: var(--composer-gap-sm);
-
-
 
                     .subtitle,
                     .section-title,
@@ -239,12 +235,14 @@
         .max-content {
             .heading {
                 .button {
-                    &.button-bare {
-                        .icon {
-                            font-size: 3.5rem;
-                            width: 3.5rem;
-                            height: 3.5rem;
-                        }
+                    .icon {
+                        font-size: 2rem !important;
+                        width: 2rem !important;
+                        height: 2rem !important;
+                    }
+
+                    .button-text {
+                        font-size: 2rem !important;
                     }
                 }
             }

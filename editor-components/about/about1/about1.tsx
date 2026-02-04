@@ -282,16 +282,16 @@ class About1 extends BaseAbout {
               {(icon?.image?.url || icon?.icon?.name || this.castToString(icon.text)) && (
                 <ComposerLink path={icon.url}>
                   <Base.Button buttonType={icon.type} className={`${this.decorateCSS("button")} ${icon.type === "Bare" && this.decorateCSS("button-bare")}`}>
+                    {this.castToString(icon.text) && (
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {icon.text}
+                      </Base.P>
+                    )}
                     {(icon.image?.url || icon.icon?.name) && (
                       <Base.Media
                         value={icon.image?.url ? { type: "image", url: icon.image.url } : { type: "icon", name: icon.icon?.name }}
                         className={this.decorateCSS("icon")}
                       />
-                    )}
-                    {this.castToString(icon.text) && (
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {icon.text}
-                      </Base.P>
                     )}
                   </Base.Button>
                 </ComposerLink>
