@@ -258,6 +258,8 @@
         gap: 0 !important;
 
         .header-text {
+          gap: var(--composer-gap-sm);
+
           .subtitle {
             margin: 0;
           }
@@ -329,7 +331,7 @@
           text-align: center;
 
           .header-text {
-            gap: var(--composer-gap-xs);
+            gap: 0;
             width: 100%;
 
             .title {
