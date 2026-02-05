@@ -266,15 +266,16 @@
                     }
 
                     .image-wrapper {
-                        order: 2;
+                        order: 3;
                         margin-left: calc(-1 * var(--composer-gap-md));
+                        margin-bottom: var(--composer-gap-md);
                         width: calc(100% + 2 * var(--composer-gap-md));
                         border-radius: 0;
                         display: none;
                     }
 
                     .sectionsWrapper {
-                        order: 3;
+                        order: 2;
                         display: none;
                         padding-bottom: var(--composer-gap-md);
                     }
