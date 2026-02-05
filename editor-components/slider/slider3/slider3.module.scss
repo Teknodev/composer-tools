@@ -54,10 +54,6 @@
         display: flex;
         flex-direction: column;
 
-        @container (max-width: #{$composer-phone-width}) {
-          margin-bottom: 0;
-        }
-
         .subtitle {
           content: "";
         }
@@ -65,9 +61,6 @@
         .title {
           word-break: break-word;
 
-          @container (max-width: #{$composer-phone-width}) {
-            margin-bottom: 0;
-          }
         }
       }
 

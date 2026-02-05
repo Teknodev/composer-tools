@@ -72,6 +72,7 @@
           height: 100%;
           display: flex;
           flex-direction: column;
+          border-radius: var(--composer-border-radius-sm) !important;
 
           .content-div {
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);

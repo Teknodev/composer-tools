@@ -155,7 +155,16 @@
               white-space: nowrap;
               flex-shrink: 0;
               width: max-content;
-              font-weight: 400;
+              font-weight: 500;
+              font-size: 5.75rem;
+
+              @container (max-width: #{$composer-phone-width}) {
+                font-size: 4.75rem;
+              }
+
+              @container (max-width: #{$composer-phone-width}) {
+                font-size: 2.75rem;
+              }
 
               &.active {
                 color: white;
