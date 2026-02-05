@@ -74,17 +74,36 @@
             position: absolute;
             top: 0;
             left: 0.5rem;
+            z-index: 1;
 
             .card-overlay-title,
             .card-overlay-description {
               color: var(--composer-font-color-primary);
+              text-align: start;
             }
           }
 
-          .media {
-            object-fit: cover;
-            width: 100%;
+          .child-media-wrapper {
+            position: relative;
+            display: flex;
             height: 100%;
+
+            .media {
+              object-fit: cover;
+              width: 100%;
+              height: 100%;
+            }
+
+            .overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: var(--composer-overlay-color);
+              z-index: 0;
+              pointer-events: none;
+            }
           }
         }
       }

@@ -17,6 +17,7 @@ type Card = {
   description: Element;
   buttons: PrimaryButton[];
   media: TypeMediaInputValue;
+  overlay: boolean;
 };
 
 type PrimaryButton = {
@@ -62,6 +63,24 @@ class Feature45 extends BaseFeature {
           displayer: "Card",
           value: [
             {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://i.postimg.cc/bNZwnqLm/luca-bravo-9l-326FISzk-unsplash-1070x713.jpg",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -101,6 +120,13 @@ class Feature45 extends BaseFeature {
                 ),
               ],
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
             {
               type: "media",
               key: "media",
@@ -110,16 +136,15 @@ class Feature45 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://i.postimg.cc/bNZwnqLm/luca-bravo-9l-326FISzk-unsplash-1070x713.jpg",
+                url: "https://i.postimg.cc/wxfB3150/evan-dvorkin-FLhn-C9S-UE8-unsplash-600x600-1.jpg",
               },
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
             {
               type: "string",
               key: "subtitle",
@@ -160,6 +185,13 @@ class Feature45 extends BaseFeature {
                 ),
               ],
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
             {
               type: "media",
               key: "media",
@@ -169,16 +201,15 @@ class Feature45 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://i.postimg.cc/wxfB3150/evan-dvorkin-FLhn-C9S-UE8-unsplash-600x600-1.jpg",
+                url: "https://i.postimg.cc/YqvCFt8X/windows-JW-T2BH5k5E-unsplash-1070x713.jpg",
               },
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
             {
               type: "string",
               key: "subtitle",
@@ -218,18 +249,6 @@ class Feature45 extends BaseFeature {
                   "Primary",
                 ),
               ],
-            },
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://i.postimg.cc/YqvCFt8X/windows-JW-T2BH5k5E-unsplash-1070x713.jpg",
-              },
             },
           ],
         },
@@ -330,82 +349,88 @@ class Feature45 extends BaseFeature {
                         {card.title}
                       </Base.H3>
                     )}
-
-                    {isCardButtonsExist(card.buttons) && (
-                      <div className={this.decorateCSS("card-buttons-wrapper")}>
-                        {card.buttons.map((button, index) => {
-                          const buttonText = this.castToString(button.text);
-                          const buttonExist = buttonText || button.icon;
-                          return (
-                            buttonExist && (
-                              <ComposerLink path={button.url}>
-                                <Base.Button
-                                  className={this.decorateCSS("card-button")}
-                                  key={index}
-                                  buttonType={button.type}
-                                >
-                                  {button.icon && (
-                                    <Base.Media
-                                      value={button.icon}
-                                      className={this.decorateCSS(
-                                        "card-button-icon",
-                                      )}
-                                    />
-                                  )}
-                                  {buttonText && (
-                                    <Base.P
-                                      className={this.decorateCSS(
-                                        "card-button-text",
-                                      )}
-                                    >
-                                      {button.text}
-                                    </Base.P>
-                                  )}
-                                </Base.Button>
-                              </ComposerLink>
-                            )
-                          );
-                        })}
-                      </div>
-                    )}
                   </Base.VerticalContent>
 
-                  {(card.media?.type === "image" ||
-                    card.media?.type === "video") &&
-                    "url" in card.media &&
-                    card.media.url && (
-                      <div className={this.decorateCSS("media-wrapper")}>
-                        {true && (
-                          <Base.VerticalContent
-                            className={this.decorateCSS("media-text-wrapper")}
+                  <div className={this.decorateCSS("media-wrapper")}>
+                    {(this.castToString(card.overlayTitle) ||
+                      this.castToString(card.description)) && (
+                      <Base.VerticalContent
+                        className={this.decorateCSS("media-text-wrapper")}
+                      >
+                        {this.castToString(card.overlayTitle) && (
+                          <Base.H3
+                            className={this.decorateCSS("card-overlay-title")}
                           >
-                            {this.castToString(card.overlayTitle) && (
-                              <Base.H3
-                                className={this.decorateCSS(
-                                  "card-overlay-title",
-                                )}
-                              >
-                                {card.overlayTitle}
-                              </Base.H3>
-                            )}
-                            {this.castToString(card.description) && (
-                              <Base.P
-                                className={this.decorateCSS(
-                                  "card-overlay-description",
-                                )}
-                              >
-                                {card.description}
-                              </Base.P>
-                            )}
-                          </Base.VerticalContent>
+                            {card.overlayTitle}
+                          </Base.H3>
                         )}
-
-                        <Base.Media
-                          value={card.media}
-                          className={this.decorateCSS("media")}
-                        />
-                      </div>
+                        {this.castToString(card.description) && (
+                          <Base.P
+                            className={this.decorateCSS(
+                              "card-overlay-description",
+                            )}
+                          >
+                            {card.description}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
                     )}
+
+                    {(card.media?.type === "image" ||
+                      card.media?.type === "video") &&
+                      "url" in card.media &&
+                      card.media.url && (
+                        <div
+                          className={this.decorateCSS("child-media-wrapper")}
+                        >
+                          <Base.Media
+                            value={card.media}
+                            className={this.decorateCSS("media")}
+                          />
+                          {card.overlay && (
+                            <div className={this.decorateCSS("overlay")} />
+                          )}
+                        </div>
+                      )}
+                  </div>
+
+                  {isCardButtonsExist(card.buttons) && (
+                    <div className={this.decorateCSS("card-buttons-wrapper")}>
+                      {card.buttons.map((button, index) => {
+                        const buttonText = this.castToString(button.text);
+                        const buttonExist = buttonText || button.icon;
+                        return (
+                          buttonExist && (
+                            <ComposerLink path={button.url}>
+                              <Base.Button
+                                className={this.decorateCSS("card-button")}
+                                key={index}
+                                buttonType={button.type}
+                              >
+                                {button.icon && (
+                                  <Base.Media
+                                    value={button.icon}
+                                    className={this.decorateCSS(
+                                      "card-button-icon",
+                                    )}
+                                  />
+                                )}
+                                {buttonText && (
+                                  <Base.P
+                                    className={this.decorateCSS(
+                                      "card-button-text",
+                                    )}
+                                  >
+                                    {button.text}
+                                  </Base.P>
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
                 </Base.VerticalContent>
               ))}
             </Base.ListGrid>
