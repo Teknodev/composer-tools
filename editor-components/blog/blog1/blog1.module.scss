@@ -21,24 +21,23 @@
     gap: var(--composer-gap-xs);
     position: relative;
     width: 100%;
-    width: 100%;
 
     .header {
       order: 1;
       width: auto;
       flex: 1;
       margin-bottom: 0;
-    }
 
-    .subtitle,
-    .title,
-    .description {
-      text-align: left;
-      margin-left: 0px;
-    }
+      .subtitle,
+      .title,
+      .description {
+        text-align: left;
+        margin-left: 0px;
+      }
 
-    .subtitle {
-      width: fit-content;
+      .subtitle {
+        width: fit-content;
+      }
     }
 
     .button-container {
