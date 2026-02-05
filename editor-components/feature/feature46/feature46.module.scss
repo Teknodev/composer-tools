@@ -24,12 +24,14 @@
 
     .services-grid {
       width: 100%;
+      gap: var(--composer-gap-lg);
 
       .service-card {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+        color: var(--composer-font-color-primary);
 
         .card-subtitle,
         .card-title,
