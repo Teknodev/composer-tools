@@ -127,7 +127,7 @@
           background-color: color-mix(in srgb,
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           padding: 0;
           height: 100%;
           display: flex;
@@ -371,6 +371,7 @@
             .profile-image {
               width: var(--composer-gap-xl);
               height: var(--composer-gap-xl);
+              border-radius: var(--composer-border-radius-sm);
 
               &:hover {
                 filter: brightness(1.2);

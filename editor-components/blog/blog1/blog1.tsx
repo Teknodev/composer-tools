@@ -304,7 +304,7 @@ class Blog1 extends BaseBlog {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate3"],
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3"]
       }

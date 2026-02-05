@@ -525,6 +525,11 @@
       .wrapper {
         order: 3;
         width: 100%;
+
+        .slider-button-right,
+        .slider-button-left {
+          display: none;
+        }
       }
 
       .button-container {
