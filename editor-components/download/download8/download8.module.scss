@@ -7,6 +7,12 @@
     padding: 0 !important;
   }
 
+  &:not(.with-image) {
+    .page .right-content .card .card-subtitle::before {
+      display: none;
+    }
+  }
+
   .page {
     width: 100%;
     display: flex;
@@ -66,14 +72,12 @@
         .subtitle {
           content: "";
           text-align: center;
-          color: var(--composer-font-color-primary);
         }
 
         .subtitle {
           transform: translateX(0);
           text-align: center;
           align-self: center;
-          color: var(--composer-html-background);
 
 
           &::before {
