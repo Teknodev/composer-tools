@@ -34,6 +34,10 @@
         height: 100%;
         text-align: left !important;
 
+        &.card-empty {
+          background-color: transparent;
+        }
+
         .card-content {
           content: "";
 
@@ -50,7 +54,6 @@
 
           .card-content-text {
             color: var(--composer-primary-color);
-            font-weight: 500;
             text-align: left !important;
 
             .card-content-span {

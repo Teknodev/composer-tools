@@ -150,7 +150,6 @@ class Feature48 extends BaseFeature {
         },
       ],
     });
-    // need to changes here to show items in one row
     this.addProp({
       type: "number",
       key: "itemsPerRow",
@@ -170,27 +169,13 @@ class Feature48 extends BaseFeature {
     return "Feature 48";
   }
 
-  castToNumber(propName: string): number {
-    const prop = this.getProp(propName);
-    return Number(prop?.value) || 0;
-  }
-
-  /** True only when the user has entered real button text (not empty, not placeholder). */
-  hasButtonText(text: any): boolean {
-    const s = (this.castToString(text) ?? "").trim();
-    if (s.length === 0) return false;
-    const lower = s.toLowerCase();
-    if (lower === "button" || lower === "text") return false;
-    return true;
-  }
-
   render() {
     const cards = this.castToObject<Card[]>("cards");
     const buttonsRaw = this.castToObject<any[]>("buttons") || [];
     const buttons = buttonsRaw.filter((btn: any) =>
-      this.hasButtonText(btn?.text),
+      this.castToString(btn?.text),
     );
-    const itemsPerRow = this.castToNumber("itemsPerRow");
+    const itemsPerRow = this.getPropValue("itemsPerRow");
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
@@ -207,11 +192,11 @@ class Feature48 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitle || title || description) && (
-            <Base.VerticalContent className={this.decorateCSS("header-section")}>
+            <Base.VerticalContent
+              className={this.decorateCSS("header-section")}
+            >
               {subtitle && (
-                <Base.SectionSubTitle
-                  className={this.decorateCSS("subtitle")}
-                >
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
@@ -238,12 +223,9 @@ class Feature48 extends BaseFeature {
               {cards.map((card: Card, index: number) => (
                 <div
                   key={index}
-                  className={this.decorateCSS("card")}
-                  style={{
-                    backgroundColor: hasContent(card)
-                      ? undefined
-                      : "transparent",
-                  }}
+                  className={this.decorateCSS(
+                    hasContent(card) ? "card" : "card card-empty",
+                  )}
                 >
                   <Base.VerticalContent
                     className={this.decorateCSS("card-content")}
@@ -268,7 +250,7 @@ class Feature48 extends BaseFeature {
                         {card.description}
                       </Base.P>
                     )}
-                    {card.button && this.hasButtonText(card.button.text) && (
+                    {card.button && this.castToString(card.button.text) && (
                       <div className={this.decorateCSS("card-button-wrap")}>
                         <ComposerLink path={card.button.url}>
                           <Base.Button
@@ -292,18 +274,23 @@ class Feature48 extends BaseFeature {
 
           {buttons.length > 0 && (
             <div className={this.decorateCSS("buttons-container")}>
-              {buttons.map((btn: any, idx: number) => (
-                <ComposerLink key={`feature48-btn-${idx}`} path={btn.url}>
-                  <Base.Button
-                    className={this.decorateCSS("button")}
-                    buttonType={btn.type || "Primary"}
-                  >
-                    <Base.P className={this.decorateCSS("button-text")}>
-                      {btn.text}
-                    </Base.P>
-                  </Base.Button>
-                </ComposerLink>
-              ))}
+              {buttons.map((btn: any, idx: number) => {
+                const buttonTextExists = this.castToString(btn.text);
+                return (
+                  buttonTextExists && (
+                    <ComposerLink key={`feature48-btn-${idx}`} path={btn.url}>
+                      <Base.Button
+                        className={this.decorateCSS("button")}
+                        buttonType={btn.type || "Primary"}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {btn.text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                );
+              })}
             </div>
           )}
         </Base.MaxContent>
