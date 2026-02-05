@@ -39,6 +39,18 @@ type QuantitySection = {
   wishlist: WishlistItem;
 };
 
+type Icons = {
+  verticalNextArrow: TypeMediaInputValue;
+  verticalPreviousArrow: TypeMediaInputValue;
+  horizontalPreviousArrow: TypeMediaInputValue;
+  horizontalNextArrow: TypeMediaInputValue;
+  videoButton: TypeMediaInputValue;
+  fsButton: TypeMediaInputValue;
+  exitButton: TypeMediaInputValue;
+  overlayLeftArrow: TypeMediaInputValue;
+  overlayRightArrow: TypeMediaInputValue;
+};
+
 class Slider9 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
@@ -395,43 +407,74 @@ class Slider9 extends BaseSlider {
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.addProp({
-      type: "media",
-      key: "verticalPreviousArrow",
-      displayer: "Vertical Previous Arrow Icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "MdOutlineKeyboardArrowUp" },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "verticalNextArrow",
-      displayer: "Vertical Next Arrow Icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "MdOutlineKeyboardArrowDown" },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "horizontalPreviousArrow",
-      displayer: "Horizontal Previous Arrow Icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "MdOutlineKeyboardArrowLeft" },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "horizontalNextArrow",
-      displayer: "Horizontal Next Arrow Icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "MdOutlineKeyboardArrowRight" },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "videoButton",
-      displayer: "Video Button Icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "CiPlay1" },
+      type: "object",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "verticalPreviousArrow",
+          displayer: "Vertical Previous Arrow Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "MdOutlineKeyboardArrowUp" },
+        },
+        {
+          type: "media",
+          key: "verticalNextArrow",
+          displayer: "Vertical Next Arrow Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "MdOutlineKeyboardArrowDown" },
+        },
+        {
+          type: "media",
+          key: "horizontalPreviousArrow",
+          displayer: "Horizontal Previous Arrow Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "MdOutlineKeyboardArrowLeft" },
+        },
+        {
+          type: "media",
+          key: "horizontalNextArrow",
+          displayer: "Horizontal Next Arrow Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "MdOutlineKeyboardArrowRight" },
+        },
+        {
+          type: "media",
+          key: "videoButton",
+          displayer: "Video Button Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "CiPlay1" },
+        },
+        {
+          type: "media",
+          key: "fsButton",
+          displayer: "Fullscreen Button Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "TfiFullscreen" },
+        },
+        {
+          type: "media",
+          key: "exitButton",
+          displayer: "Exit Button",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "IoMdClose" },
+        },
+        {
+          type: "media",
+          key: "overlayLeftArrow",
+          displayer: "Fullscreen Left Arrow",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "BiLeftArrowAlt" },
+        },
+        {
+          type: "media",
+          key: "overlayRightArrow",
+          displayer: "Fullscreen Right Arrow",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "BiRightArrowAlt" },
+        },
+      ],
     });
 
     this.addProp({
@@ -442,42 +485,10 @@ class Slider9 extends BaseSlider {
     });
 
     this.addProp({
-      type: "media",
-      key: "fsButton",
-      displayer: "Fullscreen Button Icon",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "TfiFullscreen" },
-    });
-
-    this.addProp({
       type: "string",
       key: "fsButtonText",
       displayer: "Fullscreen Button Text",
       value: "Click To Enlarge",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "exitButton",
-      displayer: "Exit Button",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "IoMdClose" },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "overlayLeftArrow",
-      displayer: "Fullscreen Left Arrow",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "BiLeftArrowAlt" },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "overlayRightArrow",
-      displayer: "Fullscreen Right Arrow",
-      additionalParams: { availableTypes: ["icon", "image"] },
-      value: { type: "icon", name: "BiRightArrowAlt" },
     });
 
     this.setComponentState("count", 0);
@@ -625,18 +636,20 @@ class Slider9 extends BaseSlider {
     const reviewItem = this.castToObject<ReviewItem>("reviewItem");
     const quantitySection = this.castToObject<QuantitySection>("quantitySection");
     const categoriesAndTags = this.castToObject<CategoryOrTag[]>("categoriesAndTags");
+    const icons = this.castToObject<Icons>("icons");
 
-    const verticalNextArrow = this.getPropValue("verticalNextArrow");
-    const verticalPreviousArrow = this.getPropValue("verticalPreviousArrow");
-    const horizontalPreviousArrow = this.getPropValue("horizontalPreviousArrow");
-    const horizontalNextArrow = this.getPropValue("horizontalNextArrow");
-    const videoButton = this.getPropValue("videoButton");
+    const verticalNextArrow = icons.verticalNextArrow;
+    const verticalPreviousArrow = icons.verticalPreviousArrow;
+    const horizontalPreviousArrow = icons.horizontalPreviousArrow;
+    const horizontalNextArrow = icons.horizontalNextArrow;
+    const videoButton = icons.videoButton;
+    const fsButton = icons.fsButton;
+    const exitButton = icons.exitButton;
+    const overlayLeftArrow = icons.overlayLeftArrow;
+    const overlayRightArrow = icons.overlayRightArrow;
+
     const videoButtonText = this.getPropValue("videoButtonText");
-    const fsButton = this.getPropValue("fsButton");
     const fsButtonText = this.getPropValue("fsButtonText");
-    const exitButton = this.getPropValue("exitButton");
-    const overlayLeftArrow = this.getPropValue("overlayLeftArrow");
-    const overlayRightArrow = this.getPropValue("overlayRightArrow");
     const overlay = this.getPropValue("overlay");
 
     const isFullscreen = this.getComponentState("isFullscreen");

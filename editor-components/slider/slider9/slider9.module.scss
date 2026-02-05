@@ -527,22 +527,25 @@
           justify-content: flex-start;
           text-align: left;
 
+          .subtitle {
+            margin-left: 0px !important;
+            text-align: left;
+            width: fit-content;
+
+          }
+
           .header {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-sm);
             width: 100%;
 
-            .subtitle {
-              margin-left: 0px;
-            }
 
             .title {
               text-align: left;
             }
 
             .price {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-primary-color);
               text-align: left;
               font-size: 3rem;
             }
@@ -551,13 +554,14 @@
           .review-and-description {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
             width: 100%;
 
             .review-area {
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
+              margin-top: var(--composer-gap-md);
 
               .stars {
                 display: flex;
@@ -668,6 +672,8 @@
 
           .wishlist-container {
             width: 100%;
+            margin-top: var(--composer-gap-md);
+            margin-bottom: var(--composer-gap-md);
 
             .wishlist {
               display: flex;
@@ -696,7 +702,7 @@
           .categories {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-md);
             width: 100%;
 
             .category {

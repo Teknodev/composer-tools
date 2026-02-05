@@ -11,8 +11,7 @@ type ISliderItem = {
   title: string;
   description: string;
   media: TypeMediaInputValue;
-  linkText: string;
-  path: string;
+  button: Button;
   icon: TypeMediaInputValue;
 };
 
@@ -85,18 +84,7 @@ class Slider11 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
               },
             },
-            {
-              type: "string",
-              key: "linkText",
-              displayer: "Link Text",
-              value: "SEO and Performance",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Link URL",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "SEO and Performance", "", null, null, "Link"),
             {
               type: "media",
               key: "icon",
@@ -109,7 +97,6 @@ class Slider11 extends BaseSlider {
                 name: "GoArrowRight",
               },
             },
-
           ],
         },
         {
@@ -142,18 +129,7 @@ class Slider11 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
               },
             },
-            {
-              type: "string",
-              key: "linkText",
-              displayer: "Link Text",
-              value: "Security and infrastructure",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Link URL",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Security and infrastructure", "", null, null, "Link"),
             {
               type: "media",
               key: "icon",
@@ -166,7 +142,6 @@ class Slider11 extends BaseSlider {
                 name: "GoArrowRight",
               },
             },
-
           ],
         },
         {
@@ -199,18 +174,7 @@ class Slider11 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
               },
             },
-            {
-              type: "string",
-              key: "linkText",
-              displayer: "Link Text",
-              value: "Sell online",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Link URL",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "Sell online", "", null, null, "Link"),
             {
               type: "media",
               key: "icon",
@@ -223,7 +187,6 @@ class Slider11 extends BaseSlider {
                 name: "GoArrowRight",
               },
             },
-
           ],
         },
       ] as any,
@@ -233,6 +196,20 @@ class Slider11 extends BaseSlider {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showDividerLines",
+      displayer: "Show Divider Lines",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "enableLineAnimations",
+      displayer: "Enable Line Animations",
       value: true,
     });
 
@@ -301,6 +278,8 @@ class Slider11 extends BaseSlider {
     const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
     const active = this.getComponentState("activeTab") as number;
     const isOverlayActive = this.getPropValue("overlay");
+    const showDividerLines = this.getPropValue("showDividerLines");
+    const enableLineAnimations = this.getPropValue("enableLineAnimations");
 
     const rawSettings = this.getPropValue("slider-settings");
     const settings = this.transformSliderValues(rawSettings);
@@ -376,8 +355,6 @@ class Slider11 extends BaseSlider {
               {sliderItems.map((item: ISliderItem, index: number) => {
                 const itemTitleExist = !!item.title;
                 const itemDescExist = !!item.description;
-                const linkTextExist = !!item.linkText;
-                const iconValue = item.icon;
 
                 return (
                   <div
@@ -408,17 +385,17 @@ class Slider11 extends BaseSlider {
                         {item.description}
                       </Base.P>
                     )}
-                    {linkTextExist && (
-                      <ComposerLink path={item.path}>
-                        <div
-                          className={`${this.decorateCSS("link-wrapper")} ${this.decorateCSS("left")}`}
-                        >
-                          <Base.P className={this.decorateCSS("tab-link")}>
-                            {item.linkText}
-                          </Base.P>
-                          {iconValue && (
+                    {this.castToString(item.button.text) && (
+                      <ComposerLink path={item.button.url}>
+                        <div className={`${this.decorateCSS("link-wrapper")} ${this.decorateCSS("left")}`}>
+                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("tab-button")}>
+                            <Base.P className={this.decorateCSS("tab-link")}>
+                              {item.button.text}
+                            </Base.P>
+                          </Base.Button>
+                          {item.icon && (
                             <Base.Media
-                              value={iconValue}
+                              value={item.icon}
                               className={this.decorateCSS("icon")}
                             />
                           )}
@@ -426,11 +403,11 @@ class Slider11 extends BaseSlider {
                       </ComposerLink>
                     )}
 
-                    {sliderItems.length > 1 && (
+                    {sliderItems.length > 1 && showDividerLines && (
                       <div className={this.decorateCSS("progress-container")}>
                         <div className={this.decorateCSS("progress-track")}>
                           <div
-                            className={`${this.decorateCSS("progress-fill")} ${active === index && autoplay
+                            className={`${this.decorateCSS("progress-fill")} ${active === index && autoplay && enableLineAnimations
                               ? this.decorateCSS("animate")
                               : ""
                               }`}
