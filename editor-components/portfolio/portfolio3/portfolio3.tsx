@@ -589,8 +589,7 @@ class Portfolio3 extends BasePortfolio {
         const observer = new IntersectionObserver(
           ([entry]) => {
             const isScaled = entry.intersectionRatio === 0;
-            card.className = `${this.decorateCSS("game-card")} ${styles.gameCard
-              } ${isScaled && this.decorateCSS("scaled")}`;
+            card.className = `${this.decorateCSS("game-card")} ${isScaled && this.decorateCSS("scaled")}`;
           },
           {
             threshold: [0],
@@ -774,8 +773,7 @@ class Portfolio3 extends BasePortfolio {
                             }
                             : undefined
                         }
-                        className={`${this.decorateCSS("game-card")} ${styles.gameCard
-                          }`}
+                        className={this.decorateCSS("game-card")}
                         style={
                           enableAnimation ? this.getTopStyle(index) : undefined
                         }

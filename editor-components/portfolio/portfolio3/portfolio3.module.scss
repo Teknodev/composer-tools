@@ -42,7 +42,6 @@
           .title {
             text-transform: uppercase;
             flex: 1;
-            color: var(--composer-font-color-primary);
             font-size: 8rem;
             text-align: left;
           }
@@ -156,7 +155,6 @@
 
                   .genre-badge {
                     display: inline-block;
-                    font-size: 1.5rem;
                     padding: var(--composer-gap-sm) calc(var(--composer-gap-lg));
                     width: fit-content;
                     border-radius: var(--composer-border-radius-sm);

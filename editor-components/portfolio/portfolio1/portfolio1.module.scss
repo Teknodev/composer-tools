@@ -58,24 +58,24 @@
         var(--composer-font-color-primary) 5%);
 
     &.inner-left {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
+      border-top-left-radius: var(--composer-border-radius-md);
+      border-bottom-left-radius: var(--composer-border-radius-md);
     }
 
     &.inner-right {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
+      border-top-right-radius: var(--composer-border-radius-md);
+      border-bottom-right-radius: var(--composer-border-radius-md);
     }
 
     &.left-edge {
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
+      border-top-left-radius: var(--composer-border-radius-md);
+      border-bottom-left-radius: var(--composer-border-radius-md);
     }
 
     &.inner-right,
     &.right-edge {
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
+      border-top-right-radius: var(--composer-border-radius-md);
+      border-bottom-right-radius: var(--composer-border-radius-md);
     }
 
     &.no-media .content {
