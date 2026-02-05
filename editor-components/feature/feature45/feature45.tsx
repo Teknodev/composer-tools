@@ -12,6 +12,7 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type Card = {
   title: Element;
+  overlayTitle: Element;
   subtitle: Element;
   description: Element;
   buttons: PrimaryButton[];
@@ -70,7 +71,13 @@ class Feature45 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "12 Years of Development",
+              value: "12 Years of",
+            },
+            {
+              type: "string",
+              key: "overlayTitle",
+              displayer: "Overlay Title",
+              value: "Development",
             },
             {
               type: "string",
@@ -123,7 +130,13 @@ class Feature45 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Professional Managers",
+              value: "Professional",
+            },
+            {
+              type: "string",
+              key: "overlayTitle",
+              displayer: "Overlay Title",
+              value: "Managers",
             },
             {
               type: "string",
@@ -176,7 +189,13 @@ class Feature45 extends BaseFeature {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "High Visual Quality",
+              value: "High Visual",
+            },
+            {
+              type: "string",
+              key: "overlayTitle",
+              displayer: "Overlay Title",
+              value: "Quality",
             },
             {
               type: "string",
@@ -311,11 +330,7 @@ class Feature45 extends BaseFeature {
                         {card.title}
                       </Base.H3>
                     )}
-                    {this.castToString(card.description) && (
-                      <Base.P className={this.decorateCSS("card-description")}>
-                        {card.description}
-                      </Base.P>
-                    )}
+
                     {isCardButtonsExist(card.buttons) && (
                       <div className={this.decorateCSS("card-buttons-wrapper")}>
                         {card.buttons.map((button, index) => {
@@ -360,6 +375,31 @@ class Feature45 extends BaseFeature {
                     "url" in card.media &&
                     card.media.url && (
                       <div className={this.decorateCSS("media-wrapper")}>
+                        {true && (
+                          <Base.VerticalContent
+                            className={this.decorateCSS("media-text-wrapper")}
+                          >
+                            {this.castToString(card.overlayTitle) && (
+                              <Base.H3
+                                className={this.decorateCSS(
+                                  "card-overlay-title",
+                                )}
+                              >
+                                {card.overlayTitle}
+                              </Base.H3>
+                            )}
+                            {this.castToString(card.description) && (
+                              <Base.P
+                                className={this.decorateCSS(
+                                  "card-overlay-description",
+                                )}
+                              >
+                                {card.description}
+                              </Base.P>
+                            )}
+                          </Base.VerticalContent>
+                        )}
+
                         <Base.Media
                           value={card.media}
                           className={this.decorateCSS("media")}
