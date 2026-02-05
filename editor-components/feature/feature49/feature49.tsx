@@ -9,6 +9,7 @@ type Card = {
     title: string;
     icon: TypeMediaInputValue;
     description: string;
+    button?: ButtonTypeObj
 }
 type ButtonTypeObj = {
     text: string;
@@ -70,6 +71,7 @@ class Feature49 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
+                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
                 ]
             },
             {
@@ -101,6 +103,7 @@ class Feature49 extends BaseFeature {
                         displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
                     },
+                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
                 ]
             },
             {
@@ -129,9 +132,10 @@ class Feature49 extends BaseFeature {
                     {
                         type: "string",
                         key: "description",
-                        displayer: "description",
+                        displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-                    }
+                    },
+                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
                 ]
             },
             {
@@ -160,9 +164,10 @@ class Feature49 extends BaseFeature {
                     {
                         type: "string",
                         key: "description",
-                        displayer: "description",
+                        displayer: "Description",
                         value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-                    }
+                    },
+                    INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
                 ]
             }
             ],
@@ -176,6 +181,16 @@ class Feature49 extends BaseFeature {
             value: 4,
         });
 
+
+        this.addProp({
+            type: "boolean",
+            key: "iconBackgroundEnabled",
+            displayer: "Icon Background Enabled",
+            additionalParams: {
+                availableTypes: ["icon", "image"]
+            },
+            value: true,
+        })
 
         this.addProp({
             type: "array",
@@ -202,7 +217,7 @@ class Feature49 extends BaseFeature {
         const hasContent = subtitle || title || description || (buttons && buttons.length > 0);
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasContent ? this.decorateCSS("no-text-content") : ""}`}>
                     {hasContent && (
                         <Base.VerticalContent className={this.decorateCSS("text-content")}>
                             {subtitle && (
@@ -228,10 +243,11 @@ class Feature49 extends BaseFeature {
                                 const titleExist = !!this.castToString(card.title);
                                 const descExist = !!this.castToString(card.description);
                                 const iconExist = !!card.icon;
+                                const iconBackgroundEnabled = this.getPropValue("iconBackgroundEnabled");
                                 return (iconExist || titleExist || descExist) && (
                                     <div key={index} className={this.decorateCSS("card")}>
                                         {iconExist && (
-                                            <div className={this.decorateCSS("icon-container")}>
+                                            <div className={`${this.decorateCSS("icon-container")} ${iconBackgroundEnabled ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
                                                 <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
                                             </div>
                                         )}
@@ -247,6 +263,13 @@ class Feature49 extends BaseFeature {
                                                 </Base.P>
                                             )}
                                         </Base.VerticalContent>
+                                        {card.button && this.castToString(card.button.text) && (
+                                            <ComposerLink path={card.button.url}>
+                                                <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                                                    <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        )}
                                     </div>
                                 );
                             })}
