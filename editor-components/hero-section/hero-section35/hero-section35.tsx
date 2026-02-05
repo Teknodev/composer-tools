@@ -257,9 +257,11 @@ class HeroSection35 extends BaseHeroSection {
         const customerBoxDescriptionExist = this.castToString(customerBox.customerDesc);
         const customerBoxImageExist = (customerBox.customerImages && customerBox.customerImages.length > 0) || customerBox.customerIcon;
         const customerBoxNumberExist = this.castToString(customerBox.customerNumber);
-        const leftCardExist = leftCard.pattern || leftCard.logo || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || leftCard.smallIcon || leftCard.mainIcon;
+        const hasMedia = (m: { name?: string; url?: string } | null | undefined) => Boolean(m && (m.name || m.url));
+        const leftCardExist = leftCard.pattern || hasMedia(leftCard.logo) || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || hasMedia(leftCard.smallIcon) || hasMedia(leftCard.mainIcon);
         const customerBoxExist = customerBoxImageExist || customerBoxDescriptionExist || customerBoxNumberExist;
         const rightCardExist = rightCard.image || (customerBoxExist && customerBox.visibility);
+        const showCustomerBox = customerBoxExist && customerBox.visibility;
 
         return(
             <Base.Container ref={this.containerRef} className={this.decorateCSS("container")}>
@@ -358,7 +360,8 @@ class HeroSection35 extends BaseHeroSection {
                         )}
                         {rightCardExist && (
                             <div className={leftCardExist ? this.decorateCSS("right-card") : this.decorateCSS("right-card-no-left-card")}>
-                                <div className={this.decorateCSS("image-container")}>
+                                <div className={`${this.decorateCSS("image-container")} ${showCustomerBox && this.decorateCSS("has-customer-box")}`}>
+                                    {rightCard.image && <div className={this.decorateCSS("image-spacer")} />}
                                     {rightCard.image && (
                                         <div className={this.decorateCSS("image-wrapper")}>
                                             <Base.Media
@@ -368,7 +371,7 @@ class HeroSection35 extends BaseHeroSection {
                                             {rightCard.overlay && <div className={this.decorateCSS("image-overlay")} />}
                                         </div>
                                     )}
-                                    {customerBox && customerBox.visibility && Object.keys(customerBox).length > 1 && customerBoxExist && (
+                                    {showCustomerBox && (
                                         <div className={this.decorateCSS("box-area") + (!rightCard.image ? ` ${this.decorateCSS("full-size")}` : "")}>
                                             <svg className={this.decorateCSS("box-corner-left")}>
                                                 <defs>
