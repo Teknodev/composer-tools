@@ -1,31 +1,98 @@
 import * as React from "react";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section34.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
 interface Slider {
+  logo?: TypeMediaInputValue;
   image: string;
+  subtitle?: React.JSX.Element;
   title: React.JSX.Element;
+  description?: React.JSX.Element;
   button: INPUTS.CastedButton;
+  overlay?: boolean;
 }
 
 class HeroSection34 extends BaseHeroSection {
+    autoplayInterval?: ReturnType<typeof setInterval>;
+
+    componentDidMount() {
+      this.setComponentState("slideStatus", "idle");
+      this.setupAutoplay();
+    }
+
+    componentDidUpdate() {
+      this.setupAutoplay();
+    }
+
+    componentWillUnmount() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+      }
+    }
+
+    setupAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+      }
+      if (this.getPropValue("autoplay")) {
+        this.autoplayInterval = setInterval(() => {
+          if (this.getComponentState("slideStatus") === "idle") {
+            this.handleNextAutoplay();
+          }
+        }, 2000);
+      }
+    }
+
+    async handleNextAutoplay() {
+      const slides = this.castToObject<Slider[]>("slider");
+      const activeIndex = this.getComponentState("active-index");
+      const overlayActiveIndex = this.getComponentState("overlay-active-index");
+      const slideStatus = this.getComponentState("slideStatus");
+      if (slideStatus === "sliding") return;
+      this.setComponentState("contentAnimationClass", "animate__fadeOut");
+      await new Promise((r) => setTimeout(r, 500));
+      this.setComponentState("overlay-active-index", (overlayActiveIndex + 1) % slides.length);
+      this.setComponentState("slide-direction", "right");
+      await new Promise((r) => setTimeout(r, 10));
+      this.setComponentState("slideStatus", "sliding");
+      this.setComponentState("contentAnimationClass", "animate__fadeInUp");
+      await new Promise((r) => setTimeout(r, 800));
+      this.setComponentState("active-index", (activeIndex + 1) % slides.length);
+      this.setComponentState("slideStatus", "ended");
+      await new Promise((r) => setTimeout(r, 1000));
+      this.setComponentState("slideStatus", "idle");
+    }
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "prev_icon",
-      displayer: "Prev icon",
-      value: "GrFormPrevious",
+      displayer: "Prev Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: { type: "icon", name: "GrFormPrevious" },  
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "next_icon",
-      displayer: "Next icon",
-      value: "GrFormNext",
+      displayer: "Next Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: { type: "icon", name: "GrFormNext" },  
     });
+
+     this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
       key: "slider",
@@ -37,17 +104,46 @@ class HeroSection34 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value: "Premium Quality Design",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             INPUTS.BUTTON("button", "Button", "PURCHASE INTACT", "", null, null, "White"),
           ],
@@ -58,17 +154,46 @@ class HeroSection34 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cbb?alt=media&timestamp=1719483639151",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cb9?alt=media&timestamp=1719483639151",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value: "Premium Quality Jobs",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             INPUTS.BUTTON("button", "Button", "CONTACT US", "", null, null, "White"),
           ],
@@ -79,17 +204,46 @@ class HeroSection34 extends BaseHeroSection {
           displayer: "Slide",
           value: [
             {
-              type: "image",
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a443bd2970002c626cba?alt=media&timestamp=1719483639151",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
               key: "title",
               displayer: "Title",
               value: "Premium Quality Clothes",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
             },
             INPUTS.BUTTON("button", "Button", "BUY", "", null, null, "White"),
           ],
@@ -119,7 +273,7 @@ class HeroSection34 extends BaseHeroSection {
     const slides = this.castToObject<Slider[]>("slider");
 
     const activeIndex = this.getComponentState("active-index");
-    const activeSlide = slides[activeIndex] || { image: "" };
+    const activeSlide = slides[activeIndex] || { image: "", overlay: false };
     const slideStatus = this.getComponentState("slideStatus");
     const slideDirection = this.getComponentState("slide-direction");
     const overlayActiveIndex = this.getComponentState("overlay-active-index");
@@ -171,9 +325,9 @@ class HeroSection34 extends BaseHeroSection {
     };
 
     return (
-      <div className={`${this.decorateCSS("container")} ${!!activeSlide.image == false && this.decorateCSS("no-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!!activeSlide.image == false && this.decorateCSS("no-image")}`}>
         <div
-          className={this.decorateCSS("max-content")}
+          className={`${this.decorateCSS("max-content")} ${activeSlide.overlay ? this.decorateCSS("overlay-active") : ""}`}
         >
           <div className={this.decorateCSS("slider-container")}>
             <div
@@ -187,40 +341,68 @@ class HeroSection34 extends BaseHeroSection {
                 }`}
             >
               <div className={this.decorateCSS("overlay-image")}>
-                {slides[overlayActiveIndex].image && <img src={slides[overlayActiveIndex].image} alt="" />}
+                {slides[overlayActiveIndex].image && <Base.Media className={this.decorateCSS("image")} value={slides[overlayActiveIndex].image} />}
               </div>
             </div>
 
-            <div className={this.decorateCSS("slider")}>
-              {slides[activeIndex].image &&
-                <img
-                  src={slides[activeIndex].image}
-                  alt=""
-                  className={this.decorateCSS("image")}
-                />}
+            <div className={this.decorateCSS("slider")}> 
+              {slides.map((slide, idx) => (
+                slide.image && (
+                  <Base.Media
+                    key={idx}
+                    value={slide.image}
+                    className={`${this.decorateCSS("image")} ${idx === activeIndex && this.decorateCSS("active")}`}
+                  />
+                )
+              ))}
             </div>
           </div>
           <div
-            className={`${this.decorateCSS(
-              "contentContainer"
-            )} animate__animated ${this.getComponentState(
-              "contentAnimationClass"
-            )}`}
+            className={`${this.decorateCSS("contentContainer")} animate__animated ${this.getComponentState("contentAnimationClass")}`}
           >
-            <Base.MaxContent className={this.decorateCSS("content")}>
-              {this.castToString(slides[overlayActiveIndex].title) && (
-                <Base.H1 className={this.decorateCSS("content-title")}>
-                  {slides[overlayActiveIndex].title}
-                </Base.H1>
-              )}
-              {this.castToString(slides[overlayActiveIndex].button.text) && (
-                <ComposerLink path={slides[overlayActiveIndex].button.url}>
-                  <Base.Button className={this.decorateCSS("button")} buttonType={slides[overlayActiveIndex].button.type}>
-                    {slides[overlayActiveIndex].button.text}
-                  </Base.Button>
-                </ComposerLink>
-              )}
-            </Base.MaxContent>
+            {slides.map((slide, idx) => (
+              <Base.MaxContent key={idx} className={this.decorateCSS("content")} style={{ display: overlayActiveIndex === idx ? "block" : "none" }}> 
+                <Base.VerticalContent data-has-image={slide.image ? "true" : "false"} className={this.decorateCSS("text-content")}> 
+                  {slide.logo && (
+                    <Base.Media
+                      data-has-image={slide.image ? "true" : "false"}
+                      value={slide.logo}
+                      className={this.decorateCSS("logo")}
+                    />
+                  )}
+                  {this.castToString(slide.subtitle) && (
+                    <Base.SectionSubTitle
+                      data-has-image={slide.image ? "true" : "false"}
+                      className={`${this.decorateCSS("subtitle")} ${slide.image && this.decorateCSS("subtitle-with-image")}`}> 
+                      {slide.subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {this.castToString(slide.title) && (
+                    <Base.SectionTitle
+                      data-has-image={slide.image ? "true" : "false"}
+                      className={`${this.decorateCSS("title")} ${slide.image && this.decorateCSS("title-with-image")}`}> 
+                      {slide.title}
+                    </Base.SectionTitle>
+                  )}
+                  {this.castToString(slide.description) && (
+                    <Base.SectionDescription
+                      data-has-image={slide.image ? "true" : "false"}
+                      className={`${this.decorateCSS("description")} ${slide.image && this.decorateCSS("description-with-image")}`}> 
+                      {slide.description}
+                    </Base.SectionDescription>
+                  )}
+                  {this.castToString(slide.button.text) && (
+                    <div className={this.decorateCSS("button-container")}> 
+                      <ComposerLink path={slide.button.url}> 
+                        <Base.Button className={this.decorateCSS("button")} buttonType={slide.button.type}> 
+                          <Base.P className={this.decorateCSS("button-text")}>{slide.button.text}</Base.P> 
+                        </Base.Button> 
+                      </ComposerLink> 
+                    </div> 
+                  )}
+                </Base.VerticalContent> 
+              </Base.MaxContent>
+            ))}
           </div>
 
           <div
@@ -229,7 +411,7 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
             onClick={handlePrev}
           >
-            <Base.Icon name={this.getPropValue("prev_icon")} />
+            <Base.Media className={this.decorateCSS("prev-icon")} value={this.getPropValue("prev_icon")} />
           </div>
 
           <div
@@ -238,7 +420,7 @@ class HeroSection34 extends BaseHeroSection {
             )}`}
             onClick={handleNext}
           >
-            <Base.Icon name={this.getPropValue("next_icon")} />
+            <Base.Media className={this.decorateCSS("next-icon")} value={this.getPropValue("next_icon")} />
           </div>
 
           <div className={this.decorateCSS("dots")}>
@@ -274,7 +456,7 @@ class HeroSection34 extends BaseHeroSection {
             ))}
           </div>
         </div>
-      </div>
+      </Base.Container>
     );
   }
 }
