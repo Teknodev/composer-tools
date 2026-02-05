@@ -26,6 +26,7 @@
 
                 &.cards-full-width {
                     width: 100%;
+                    gap: var(--composer-gap-lg);
                 }
 
                 .card-container {
