@@ -13,7 +13,7 @@
       border-radius: var(--composer-border-radius-sm);
       height: 100%;
       align-items: flex-start;
-      .title-container {
+      .header {
         position: sticky;
         z-index: 2;
         display: flex;
@@ -21,8 +21,11 @@
         align-items: flex-start;
         padding: var(--composer-gap-xl) var(--composer-gap-md);
         width: 100%;
-        .title {
+        .subtitle, .title {
           text-align: left;
+        }
+        .subtitle {
+          margin-left: 0 !important;
         }
       }
       .cards-container {

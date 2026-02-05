@@ -399,78 +399,78 @@
       }
     }
   }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      gap: var(--composer-gap-md);
+  @container (max-width: #{$composer-tablet-width}) {
+    .container {
+      .max-content {
+        gap: var(--composer-gap-md);
 
-      .header {
-        .title {
-          margin-bottom: 0;
+        .header {
+          .title {
+            margin-bottom: 0;
+          }
         }
-      }
 
-      .cards-row {
-        .block {
-          height: auto;
+        .cards-row {
+          .block {
+            height: auto;
 
-          .card {
-            gap: 0;
+            .card {
+              gap: 0;
+            }
           }
         }
       }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      grid-template-columns: 1fr;
-      gap: var(--composer-gap-md);
+  @container (max-width: #{$composer-phone-width}) {
+    .container {
+      .max-content {
+        grid-template-columns: 1fr;
+        gap: var(--composer-gap-md);
 
-      .header {
-        grid-column: 1;
-        grid-row: 1;
-        width: 100%;
-        text-align: center;
-        justify-self: center;
+        .header {
+          grid-column: 1;
+          grid-row: 1;
+          width: 100%;
+          text-align: center;
+          justify-self: center;
 
-        .title,
-        .subtitle {
-          text-align: left !important;
-          margin-left: 0 !important;
+          .title,
+          .subtitle {
+            text-align: left !important;
+            margin-left: 0 !important;
+          }
         }
-      }
 
-      .header-bottom {
-        grid-column: 1;
-        grid-row: 2;
-        width: 100%;
-        margin-left: 0;
-        margin-bottom: 0;
+        .header-bottom {
+          grid-column: 1;
+          grid-row: 2;
+          width: 100%;
+          margin-left: 0;
+          margin-bottom: 0;
 
-        .line,
-        .description {
-          text-align: left !important;
-          margin-left: 0 !important;
+          .line,
+          .description {
+            text-align: left !important;
+            margin-left: 0 !important;
+          }
         }
-      }
 
-      .cards-row {
-        grid-column: 1;
-        grid-row: 3;
-      }
+        .cards-row {
+          grid-column: 1;
+          grid-row: 3;
+        }
 
-      .button-container {
-        grid-column: 1;
-        grid-row: 4;
-        justify-self: center;
-        width: 100%;
-        justify-content: center;
-        display: flex;
+        .button-container {
+          grid-column: 1;
+          grid-row: 4;
+          justify-self: center;
+          width: 100%;
+          justify-content: center;
+          display: flex;
+        }
       }
     }
   }

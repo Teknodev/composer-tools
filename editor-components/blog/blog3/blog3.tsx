@@ -26,7 +26,7 @@ class Blog3 extends BaseBlog {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Featured Posts",
+      value: "",
     });
 
     this.addProp({
@@ -35,8 +35,6 @@ class Blog3 extends BaseBlog {
       displayer: "Title",
       value: "OUR BLOG",
     });
-
-
 
     this.addProp({
       type: "string",
@@ -695,12 +693,13 @@ class Blog3 extends BaseBlog {
                 )}
               </div>
             </React.Fragment>
-          )}
+          )
+          }
           <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
-        </Base.MaxContent>
-      </Base.Container>
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }
