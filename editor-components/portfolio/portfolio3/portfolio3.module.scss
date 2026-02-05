@@ -237,6 +237,10 @@
     }
 
     .button {
+      .button-text {
+        content: "";
+      }
+
       .button-icon {
         display: flex;
         align-items: center;
