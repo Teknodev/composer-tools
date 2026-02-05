@@ -10,6 +10,7 @@ type ServiceCard = {
     subtitle: Element;
     title: Element;
     description: Element;
+    overlay: boolean;
     buttons: {
         type: TypeButton;
         text: Element;
@@ -71,6 +72,12 @@ class Feature46 extends BaseFeature {
                             value: "Web Design"
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false
+                        },
+                        {
                             type: "media",
                             key: "media",
                             displayer: "Media",
@@ -116,6 +123,12 @@ class Feature46 extends BaseFeature {
                             value: "Development"
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false
+                        },
+                        {
                             type: "media",
                             key: "media",
                             displayer: "Media",
@@ -159,6 +172,12 @@ class Feature46 extends BaseFeature {
                             key: "title",
                             displayer: "Title",
                             value: "SEO & Analytics"
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false
                         },
                         {
                             type: "media",
@@ -271,6 +290,9 @@ class Feature46 extends BaseFeature {
                                             value={service.media}
                                             className={this.decorateCSS("media")}
                                         />
+                                        {service.overlay && (
+                                            <div className={this.decorateCSS("overlay")}></div>
+                                        )}
                                     </div>
                                 )}
 

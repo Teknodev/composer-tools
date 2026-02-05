@@ -43,6 +43,7 @@
           width: 100%;
           overflow: hidden;
           border-radius: var(--composer-border-radius-sm);
+          position: relative;
           
           .media {
             width: 100%;
@@ -51,6 +52,16 @@
             object-fit: cover;
             display: block;
             border-radius: var(--composer-border-radius-sm);
+          }
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+            z-index: 1;
           }
         }
 
