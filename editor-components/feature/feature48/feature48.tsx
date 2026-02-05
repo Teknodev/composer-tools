@@ -208,23 +208,13 @@ class Feature48 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitle || title || description) && (
             <Base.VerticalContent className={this.decorateCSS("header-section")}>
-              {subtitle &&
-                (() => {
-                  const alignment = Base.getContentAlignment();
-                  const subtitleType = Base.getSectionSubTitleType();
-                  const isCenteredBadge =
-                    alignment === "center" && subtitleType === "badge";
-                  const subtitleClass = isCenteredBadge
-                    ? "subtitle-centered"
-                    : "subtitle-left";
-                  return (
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS(`subtitle ${subtitleClass}`)}
-                    >
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  );
-                })()}
+              {subtitle && (
+                <Base.SectionSubTitle
+                  className={this.decorateCSS("subtitle")}
+                >
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
               {title && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}

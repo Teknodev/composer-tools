@@ -7,21 +7,16 @@
     gap: var(--composer-gap-lg);
 
     .header-section {
-      content: "";
+      .subtitle {
+        width: fit-content;
+      }
 
-      .subtitle,
-      .title,
-      .description {
+      .title {
         content: "";
       }
 
-      .subtitle-centered {
-        width: fit-content;
-        margin: 0 auto;
-      }
-
-      .subtitle-left {
-        text-align: left;
+      .description {
+        content: "";
       }
     }
 
@@ -65,9 +60,9 @@
           }
 
           .card-description {
+            content: "";
             color: var(--composer-font-color-primary);
             flex: 1;
-            line-height: 1.6;
             text-align: left !important;
           }
 
@@ -87,17 +82,14 @@
     }
 
     .buttons-container {
+      content: "";
       display: flex;
       justify-content: center;
       gap: var(--composer-gap-sm);
       flex-wrap: wrap;
 
-      .button {
+      .button-text {
         content: "";
-
-        .button-text {
-          content: "";
-        }
       }
     }
   }
