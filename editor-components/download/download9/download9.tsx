@@ -137,7 +137,7 @@ class Download9 extends BaseDownload {
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
-            <Base.VerticalContent className={this.decorateCSS("hover-container")}>
+            <Base.VerticalContent className={`${this.decorateCSS("hover-container")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`}>
               {this.castToString(this.getPropValue("hoverSubtitle")) && <Base.SectionSubTitle className={`${this.decorateCSS("hover-subtitle")}`}>{this.getPropValue("hoverSubtitle")}</Base.SectionSubTitle>}
               {cardTitleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{this.getPropValue("cardTitle")}</Base.SectionTitle>}
               {cardDescriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{this.getPropValue("cardDescription")}</Base.SectionDescription>}

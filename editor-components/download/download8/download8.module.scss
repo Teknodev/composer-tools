@@ -1,17 +1,13 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: var(--composer-gap-xl) 0;
+  padding: 80px 0px !important;
 
   &.with-image {
     padding: 0 !important;
   }
 
-  &:not(.with-image) {
-    .page .right-content .card .card-subtitle::before {
-      display: none;
-    }
-  }
+
 
   .page {
     width: 100%;
@@ -153,10 +149,6 @@
 
           .card-subtitle {
             margin-left: var(--composer-gap-md);
-
-            &::before {
-              color: white !important;
-            }
           }
 
           .list-group {

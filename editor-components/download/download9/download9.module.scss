@@ -148,6 +148,17 @@
       flex-direction: column;
       transform: translateX(-100%);
       width: fit-content;
+
+      &.left {
+        .hover-subtitle {
+          transform: translateX(0);
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+
       align-items: center;
       transition: opacity 0.5s ease;
 
