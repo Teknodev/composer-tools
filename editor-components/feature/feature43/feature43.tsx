@@ -218,7 +218,7 @@ class Feature43 extends BaseFeature {
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
-        const hasContent = subtitle || title || description;
+        const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -228,20 +228,20 @@ class Feature43 extends BaseFeature {
                             {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                             {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                             {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                            {visibleButtons.length > 0 && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {visibleButtons.map((item: ButtonTypeObj, index: number) => {
+                                        return this.castToString(item.text) && (
+                                            <ComposerLink key={`button-${index}`} path={item.url}>
+                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
+                            )}
                         </Base.VerticalContent>
-                    )}
-                    {visibleButtons.length > 0 && (
-                        <div className={this.decorateCSS("button-container")}>
-                            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                return this.castToString(item.text) && (
-                                    <ComposerLink key={`button-${index}`} path={item.url}>
-                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                        </Base.Button>
-                                    </ComposerLink>
-                                );
-                            })}
-                        </div>
                     )}
                     {cards.length > 0 && (
                         <div className={this.decorateCSS("card-wrapper")}>
@@ -259,7 +259,7 @@ class Feature43 extends BaseFeature {
                                         className={`${this.decorateCSS("card-content")} ${(card.rowReverse !== undefined ? card.rowReverse : index % 2 !== 0) && this.decorateCSS("row-reverse")}`}
                                     >
                                         {hasImage && (
-                                            <div className={`${this.decorateCSS("image-wrapper")} ${!(cardTitleExist || cardDescriptionExist) && this.decorateCSS("full-width")}`}>
+                                            <div className={`${this.decorateCSS("image-wrapper")} ${!(cardTitleExist || cardDescriptionExist || cardSubtitleExist) && this.decorateCSS("full-width")}`}>
                                                 <Base.Media
                                                     value={card.image}
                                                     className={this.decorateCSS("card-image")}
@@ -281,11 +281,13 @@ class Feature43 extends BaseFeature {
                                                     <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
                                                 )}
                                                 {hasButton && (
-                                                    <ComposerLink path={card.button?.url || ""}>
-                                                        <Base.Button buttonType={card.button?.type} className={this.decorateCSS("card-button")}>
-                                                            {buttonTextExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
-                                                        </Base.Button>
-                                                    </ComposerLink>
+                                                    <div className={this.decorateCSS("card-button-container")}>
+                                                        <ComposerLink path={card.button?.url || ""}>
+                                                            <Base.Button buttonType={card.button?.type} className={this.decorateCSS("card-button")}>
+                                                                {buttonTextExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    </div>
                                                 )}
                                             </Base.VerticalContent>
                                         )}

@@ -61,14 +61,19 @@
                         color: var(--composer-font-color-primary);
                     }
 
-                    .card-button {
+                    &.no-image {
+                        flex: 1;
+                    }
+
+                    .card-button-container {
                         display: flex;
                         justify-content: left;
-                        gap: var(--composer-gap-sm);
                         width: 100%;
 
-                        .card-button-text {
-                            content: "";
+                        .card-button {
+                            .card-button-text {
+                                content: "";
+                            }
                         }
                     }
                 }
@@ -89,6 +94,11 @@
                         background-color: var(--composer-overlay-color);
                         position: absolute;
                         inset: 0;
+                    }
+
+                    &.full-width {
+                        height: 500px;
+                        flex: 1;
                     }
                 }
 
