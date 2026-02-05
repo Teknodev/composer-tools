@@ -7,7 +7,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      ;
       gap: var(--composer-gap-xl);
 
       .left-container {
@@ -125,6 +124,11 @@
           .left-container {
             align-items: center;
             text-align: center;
+          }
+
+          .subtitle {
+            margin-left: auto !important;
+            text-align: center !important;
           }
 
           .features-list {
