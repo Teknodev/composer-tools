@@ -11,6 +11,11 @@ type Card = {
     description: React.JSX.Element;
 };
 
+type Background = {
+    "cover-image": TypeMediaInputValue;
+    overlay: boolean;
+};
+
 class Feature37 extends BaseFeature {
     constructor(props?: any) {
         super(props, styles);
@@ -38,38 +43,24 @@ class Feature37 extends BaseFeature {
 
         this.addProp({
             type: "object",
-            key: "content",
-            displayer: "Content",
+            key: "background",
+            displayer: "Background",
             value: [
                 {
-                    type: "object",
-                    key: "media",
+                    type: "media",
+                    key: "cover-image",
                     displayer: "Media",
-                    value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            value: {
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
-                                type: "image",
-                            },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        }
-                    ]
+                    value: {
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
+                        type: "image",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] }
                 },
                 {
-                    type: "object",
+                    type: "boolean",
                     key: "overlay",
                     displayer: "Overlay",
-                    value: [
-                        {
-                            type: "boolean",
-                            key: "enableOverlay",
-                            displayer: "Overlay",
-                            value: false,
-                        }
-                    ]
+                    value: false,
                 }
             ]
         });
@@ -180,17 +171,17 @@ class Feature37 extends BaseFeature {
     }
 
     render() {
-        const content = this.castToObject<any>("content");
-        const image = content?.media?.media;
+        const background = this.castToObject<Background>("background");
+        const image = background?.["cover-image"];
         const isImageExist = !!image?.url;
-        const enableOverlay = content?.overlay?.enableOverlay;
+        const enableOverlay = background?.overlay;
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const cards = this.castToObject<Card[]>("cards");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const hasContent = subtitle || title || description || visibleButtons.length > 0;
+        const hasContent = subtitle || title || description;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
