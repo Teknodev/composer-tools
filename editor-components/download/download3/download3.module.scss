@@ -63,7 +63,6 @@
         }
 
         .description {
-          color: var(--composer-font-color-primary);
           width: 60%;
           align-self: center;
         }
@@ -128,10 +127,6 @@
 
         .title {
           content: "";
-        }
-
-        .description {
-          color: var(--composer-font-color-primary);
         }
 
         .button-group {
