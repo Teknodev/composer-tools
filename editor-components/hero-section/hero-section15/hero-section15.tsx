@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section15.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { Form, Formik } from "formik";
@@ -18,14 +18,53 @@ class HeroSection15 extends BaseHeroSection {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background-image",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6765394d0655f8002ca9e088?alt=media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1ef875e15002c5eb402?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937d1d3875e15002c5eb3e2?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
 
     this.addProp({
@@ -57,7 +96,7 @@ class HeroSection15 extends BaseHeroSection {
             {
               type: "string",
               key: "placeholder",
-              displayer: "Placeholder",
+              displayer: "Placeholder Text",
               value: "Your Order",
             },
           ],
@@ -70,7 +109,7 @@ class HeroSection15 extends BaseHeroSection {
             {
               type: "string",
               key: "placeholder",
-              displayer: "Placeholder",
+              displayer: "Placeholder Text",
               value: "Your Address",
             },
           ],
@@ -89,26 +128,49 @@ class HeroSection15 extends BaseHeroSection {
     const inputs = this.castToObject<InputItem[]>("inputs");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const backgroundImageExist = this.getPropValue("background-image");
+    const backgroundImageValue = this.getPropValue("background-image") as TypeMediaInputValue | undefined;
+    const backgroundImageExist = backgroundImageValue;
+    const imageValue = this.getPropValue("image") as TypeMediaInputValue | undefined;
+    const logoValue = this.getPropValue("logo") as TypeMediaInputValue | undefined;
 
     function getInitialValue() {
       let value: any = {};
       inputs.map((_: any, indexOfItem: number) => (value["input_" + indexOfItem] = ""));
       return value;
     }
+    const imagesExist = !!(backgroundImageValue || imageValue);
+
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: `url(${this.getPropValue("background-image")})`,
-        }}
-      >
+      <Base.Container className={`${this.decorateCSS("container")} ${!imagesExist ? this.decorateCSS("no-image") : ""}`}>
+        {backgroundImageValue && (
+          <Base.Media
+            value={backgroundImageValue}
+            className={this.decorateCSS("background-image")}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        )}
         {this.getPropValue("overlay") && <div className={this.decorateCSS("overlay")}></div>}
         <div className={this.decorateCSS("max-content")}>
           <Base.MaxContent className={`${this.decorateCSS("wrapper")} ${this.getPropValue("true") && this.decorateCSS("wrapper-reverse")}`}>
             <div className={`${this.decorateCSS("left")} ${!backgroundImageExist && this.decorateCSS("left-no-image")}`}>
               <div className={this.decorateCSS("content-wrapper")}>
                 <Base.VerticalContent className={this.decorateCSS("content")}>
+                  {logoValue && (
+                    <div className={this.decorateCSS("logo-wrapper")}>
+                      <Base.Media value={logoValue} className={`${this.decorateCSS("logo")} ${backgroundImageExist && this.decorateCSS("logo-with-image")}`} />
+                    </div>
+                  )}
+                  {this.castToString(this.getPropValue("subtitle")) && (() => {
+                    const subtitleAlignment = Base.getSectionSubTitleType();
+                    return (
+                      <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageExist && this.decorateCSS("subtitle-with-image")} ${subtitleAlignment === "badge" && backgroundImageExist ? this.decorateCSS("subtitle-badge-with-image") : ""}`}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
+                    );
+                  })()}
                   {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageExist && this.decorateCSS("title-with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                   {this.castToString(this.getPropValue("description")) && (
                     <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageExist && this.decorateCSS("description-with-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>
@@ -145,7 +207,7 @@ class HeroSection15 extends BaseHeroSection {
                               {this.castToString(button.text) && (
                                 <div className={this.decorateCSS("button-box")}>
                                   <Base.Button buttonType={button.type} className={this.decorateCSS("button")} type="submit">
-                                    {button.text}
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                   </Base.Button>
                                 </div>
                               )}
@@ -159,7 +221,7 @@ class HeroSection15 extends BaseHeroSection {
                     <div className={this.decorateCSS("button-box")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {button.text}
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     </div>
@@ -167,6 +229,20 @@ class HeroSection15 extends BaseHeroSection {
                 </Base.VerticalContent>
               </div>
             </div>
+            {imageValue && (
+              <div className={this.decorateCSS("right")}>
+                    <div className={this.decorateCSS("image-wrapper")}>
+                      <Base.Media
+                        value={imageValue}
+                        className={this.decorateCSS("image")}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    </div>
+              </div>
+            )}
           </Base.MaxContent>
         </div>
       </Base.Container>

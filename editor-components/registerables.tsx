@@ -107,9 +107,11 @@ import HeroSection35 from "./hero-section/hero-section35/hero-section35";
 import HeroSection38 from "./hero-section/hero-section38/hero-section38";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
+import IntroSection3 from "./intro-section/intro-section3/intro-section3";
 import IntroSection4 from "./intro-section/intro-section4/intro-section4";
 import IntroSection6 from "./intro-section/intro-section6/intro-section6";
 import IntroSection7 from "./intro-section/intro-section7/intro-section7";
+import IntroSection8 from "./intro-section/intro-section8/intro-section8";
 import IntroSection9 from "./intro-section/intro-section9/intro-section9";
 import IntroSection10 from "./intro-section/intro-section10/intro-section10";
 import IntroSection11 from "./intro-section/intro-section11/intro-section11";
@@ -149,6 +151,10 @@ import FeatureComponent34 from "./feature/feature34/feature34";
 import FeatureComponent35 from "./feature/feature35/feature35";
 import FeatureComponent36 from "./feature/feature36/feature36";
 import FeatureComponent38 from "./feature/feature38/feature38";
+import FeatureComponent39 from "./feature/feature39/feature39";
+import FeatureComponent40 from "./feature/feature40/feature40";
+import FeatureComponent41 from "./feature/feature41/feature41";
+import FeatureComponent47 from "./feature/feature47/feature47";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -276,6 +282,7 @@ import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ECommerce5 from "./e-commerce/e-commerce5/e-commerce5";
 import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
 import ECommerce7 from "./e-commerce/e-commerce7/e-commerce7";
+import ECommerce8 from "./e-commerce/e-commerce8/e-commerce8";
 import SocialComponent1 from "./social/social1/social1";
 import SocialComponent2 from "./social/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
@@ -308,6 +315,7 @@ import About12 from "./about/about12/about12";
 import About13 from "./about/about13/about13";
 import About14 from "./about/about14/about14";
 import About15 from "./about/about15/about15";
+import About16 from "./about/about16/about16";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
@@ -436,9 +444,11 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection38,
     IntroSection1,
     IntroSection2,
+    IntroSection3,
     IntroSection4,
     IntroSection6,
     IntroSection7,
+    IntroSection8,
     IntroSection9,
     IntroSection10,
     IntroSection11,
@@ -499,6 +509,10 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent35,
     FeatureComponent36,
     FeatureComponent38,
+    FeatureComponent39,
+    FeatureComponent40,
+    FeatureComponent41,
+    FeatureComponent47,
     CallToAction1,
     CallToAction2,
     CallToAction3,
@@ -597,6 +611,7 @@ function Registerables(composer: ComponentsRegistery) {
     ECommerce5,
     ECommerce6,
     ECommerce7,
+    ECommerce8,
     SocialComponent2,
     SocialComponent3,
     SocialComponent4,
@@ -624,6 +639,7 @@ function Registerables(composer: ComponentsRegistery) {
     About13,
     About14,
     About15,
+    About16,
     Portfolio1,
     Portfolio2,
     Portfolio3,
@@ -632,5 +648,3 @@ function Registerables(composer: ComponentsRegistery) {
 }
 
 export default Registerables;
-
-
