@@ -1,7 +1,9 @@
+import * as React from "react";
 import { BaseAbout } from "../../EditorComponent";
 import styles from "./about8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Text = {
   description: React.JSX.Element;
@@ -22,7 +24,7 @@ class About8 extends BaseAbout {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Our Technologies Encircle the World",
+      value: "Our Technologies Encircle World",
     });
 
     this.addProp({
@@ -56,6 +58,13 @@ class About8 extends BaseAbout {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efdd3596a1002b23ad71?alt=media",
       },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
     });
 
     this.addProp({
@@ -95,23 +104,11 @@ class About8 extends BaseAbout {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
     });
-
-    this.addProp(
-      INPUTS.BUTTON(
-        "button",
-        "Button",
-        "Learn More",
-        "",
-        null,
-        null,
-        "Primary"
-      )
-    );
   }
 
   static getName(): string {
@@ -119,15 +116,16 @@ class About8 extends BaseAbout {
   }
 
   render() {
+    const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const image1 = this.getPropValue("image-1");
     const image2 = this.getPropValue("image-2");
     const texts = this.castToObject<Text[]>("texts");
-    const button: INPUTS.CastedButton =
-      this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const alignment = Base.getContentAlignment();
 
     const hasTitle = !!this.castToString(title);
-    const hasButton = !!this.castToString(button?.text);
+    const hasButton = buttons.length > 0;
     const validTexts =
       texts?.filter((t) => !!this.castToString(t.description)) || [];
     const hasTexts = validTexts.length > 0;
@@ -137,16 +135,15 @@ class About8 extends BaseAbout {
 
     const description = this.getPropValue("sectionDescription");
     const descriptionExist = this.castToString(description);
-    const subtitle = this.getPropValue("subtitle");
     const subtitleText = this.castToString(subtitle);
 
     if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionExist) return null;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasImages ? this.decorateCSS("no-image") : ""}`}>
           {(subtitleText || hasTitle || descriptionExist) && (
-            <Base.VerticalContent className={this.decorateCSS("header-container")}>
+            <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS(alignment)}`}>
               {subtitleText && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
@@ -166,42 +163,37 @@ class About8 extends BaseAbout {
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
-              }`}
+            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS("no-image")}`}
           >
             {hasImages && (
               <div className={this.decorateCSS("images-section")}>
                 {hasImage1 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
-                        ? this.decorateCSS("overlay")
-                        : ""
-                      }`}
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
                   >
                     <Base.Media
                       value={image1}
                       className={this.decorateCSS("image")}
                     />
+                    <div className={this.decorateCSS("overlay-layer")} />
                   </div>
                 )}
                 {hasImage2 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
-                        ? this.decorateCSS("overlay")
-                        : ""
-                      }`}
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
                   >
                     <Base.Media
                       value={image2}
                       className={this.decorateCSS("image")}
                     />
+                    <div className={this.decorateCSS("overlay-layer")} />
                   </div>
                 )}
               </div>
             )}
 
-            {(hasTexts || hasButton) && (
-              <div className={this.decorateCSS("content-section")}>
+            {(hasTexts || buttons.length > 0) && (
+              <div className={`${this.decorateCSS("content-section")} ${hasImages ? this.decorateCSS("left") : this.decorateCSS(alignment)}`}>
                 {hasTexts && (
                   <div className={this.decorateCSS("texts-wrapper")}>
                     {validTexts.map((text, index) => (
@@ -215,16 +207,19 @@ class About8 extends BaseAbout {
                   </div>
                 )}
 
-                {hasButton && (
-                  <div className={this.decorateCSS("button-wrapper")}>
-                    <Base.Button
-                      buttonType={button.type}
-                      className={this.decorateCSS("button")}
-                    >
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {button.text}
-                      </Base.P>
-                    </Base.Button>
+                {buttons.length > 0 && (
+                  <div className={`${this.decorateCSS("buttons-container")} ${this.decorateCSS(alignment)}`}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                      <React.Fragment key={index}>
+                        {this.castToString(button.text) && (
+                          <ComposerLink path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </React.Fragment>
+                    ))}
                   </div>
                 )}
               </div>
@@ -237,4 +232,3 @@ class About8 extends BaseAbout {
 }
 
 export default About8;
-

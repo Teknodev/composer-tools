@@ -1,7 +1,8 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -10,7 +11,7 @@ interface ListItem {
   description: React.JSX.Element;
 }
 interface Icon {
-  icon: { type: string; name: string };
+  icon: TypeMediaInputValue;
   link: string;
 }
 class About1 extends BaseAbout {
@@ -32,17 +33,15 @@ class About1 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
-      key: "icon",
-      displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "GoChevronDown",
-      },
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "We are a creative agency distinctively defined by our commitment to design excellence and innovation.",
     });
+
+    this.addProp(
+      INPUTS.BUTTON("icon", "Button", "", "", "GoChevronDown", "", "Bare")
+    );
 
     this.addProp({
       type: "media",
@@ -145,9 +144,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -170,9 +169,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -195,9 +194,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -220,9 +219,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -257,13 +256,14 @@ class About1 extends BaseAbout {
     const image = this.getPropValue("image");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("sectionTitle");
-    const icon = this.getPropValue("icon");
+    const description = this.getPropValue("description");
+    const icon = this.castToObject<any>("icon");
     const rightItems = this.castToObject<Icon[]>("right-items")
     const textContent = this.castToObject<ListItem[]>("items");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
           {(this.castToString(subtitle) || this.castToString(title) || icon) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
               {this.castToString(subtitle) && (
@@ -276,17 +276,31 @@ class About1 extends BaseAbout {
                   {title}
                 </Base.SectionTitle>
               )}
-              {icon && (
-                  <Base.Media
-                    value={this.getPropValue("icon")}
-                    className={this.decorateCSS("icon")}
-                  />
-                )}
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
+              {(icon?.image?.url || icon?.icon?.name || this.castToString(icon.text)) && (
+                <ComposerLink path={icon.url}>
+                  <Base.Button buttonType={icon.type} className={`${this.decorateCSS("button")} ${icon.type === "Bare" && this.decorateCSS("button-bare")}`}>
+                    {this.castToString(icon.text) && (
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {icon.text}
+                      </Base.P>
+                    )}
+                    {(icon.image?.url || icon.icon?.name) && (
+                      <Base.Media
+                        value={icon.image?.url ? { type: "image", url: icon.image.url } : { type: "icon", name: icon.icon?.name }}
+                        className={this.decorateCSS("icon")}
+                      />
+                    )}
+                  </Base.Button>
+                </ComposerLink>
+              )}
             </Base.VerticalContent>
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {image && (
-              <Base.GridCell 
+              <Base.GridCell
                 className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
@@ -297,6 +311,7 @@ class About1 extends BaseAbout {
                 {this.getPropValue("overlay") && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
+
               </Base.GridCell>
             )}
             {textContent.length > 0 && (
@@ -304,12 +319,12 @@ class About1 extends BaseAbout {
                 {textContent.map((item) => (
                   <Base.VerticalContent className={this.decorateCSS("item")}>
                     {this.castToString(item.title) && (
-                      <Base.H2 className={this.decorateCSS("title")}>
+                      <Base.H4 className={this.decorateCSS("title")}>
                         {item.title}
-                      </Base.H2>
+                      </Base.H4>
                     )}
                     {this.castToString(item.description) && (
-                      <Base.P className={this.decorateCSS("description")}>
+                      <Base.P className={this.decorateCSS("item-description")}>
                         {item.description}
                       </Base.P>
                     )}
