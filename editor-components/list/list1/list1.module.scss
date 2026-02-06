@@ -341,9 +341,13 @@ as *;
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .carousel {
-
+      :global(.slick-slide) {
+        padding: 0 var(--composer-gap-sm) !important;
+      }
 
       .dots {
+        bottom: 55px !important;
+
         .dot-button {
           width: 10px;
           height: 10px;
@@ -367,6 +371,14 @@ as *;
           }
         }
 
+        &.active {
+          .active-after {
+            width: calc(100% + var(--composer-gap-md) + 20px);
+            left: calc(-0.5 * var(--composer-gap-md) - 10px);
+            bottom: calc(-1.2 * (var(--composer-gap-md) * 0.5 + 20px));
+            height: 80%;
+          }
+        }
       }
     }
 
@@ -384,11 +396,11 @@ as *;
       }
 
       :global(.slick-slide) {
-        padding: 0 !important;
+        padding: 0 calc(var(--composer-gap-md) / 1.5) !important;
       }
 
       .dots {
-        bottom: -10px !important;
+        bottom: 55px !important;
 
         .dot-button {
           width: var(--composer-gap-sm) !important;
@@ -414,11 +426,15 @@ as *;
     }
   }
 
-  .image-container {
-    width: 150px !important;
+  .card {
+    padding: var(--composer-gap-md);
 
-    &.no-round .image {
-      font-size: 10rem;
+    .image-container {
+      width: 150px !important;
+
+      &.no-round .image {
+        font-size: 10rem;
+      }
     }
   }
 }
