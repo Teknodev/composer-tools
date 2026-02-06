@@ -77,7 +77,7 @@
             z-index: 1;
             color: var(--composer-font-color-primary);
 
-            &:has(~ div img) {
+            &:has(~ div .media) {
               color: white;
             }
 
