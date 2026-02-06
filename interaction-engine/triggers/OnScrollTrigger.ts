@@ -212,6 +212,12 @@ export class OnScrollTrigger extends BaseTrigger {
         scrollContainer instanceof Window
           ? window.scrollY
           : (scrollContainer as HTMLElement).scrollTop;
+      
+      // Skip if scroll position hasn't changed
+      if (currentOffset === this.lastScrollY) {
+        return;
+      }
+      
       const direction = currentOffset > this.lastScrollY ? "down" : "up";
 
       // Only trigger if the target is at least partially visible in the viewport.
@@ -291,9 +297,14 @@ export class OnScrollTrigger extends BaseTrigger {
     // can vary. Capturing ensures we still receive scroll events reliably.
     this.addEventListener(document, "scroll", debouncedScrollHandler, true);
     
+    // Initialize lastScrollY to current scroll position to detect direction correctly from the start
+    this.lastScrollY = scrollContainer instanceof Window
+      ? window.scrollY
+      : (scrollContainer as HTMLElement).scrollTop;
+
     // Use RAF polling as fallback if scroll events don't fire reliably
     let rafId: number | null = null;
-    let lastCheckedOffset = scrollContainer instanceof Window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
+    let lastCheckedOffset = this.lastScrollY;
     
     const rafCheck = () => {
       if (!this.target) return;
