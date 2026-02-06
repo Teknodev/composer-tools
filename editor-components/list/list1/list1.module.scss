@@ -341,16 +341,20 @@ as *;
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .carousel {
+      padding: 0px !important;
       :global(.slick-slide) {
         padding: 0 var(--composer-gap-sm) !important;
       }
 
       .dots {
-        bottom: 55px !important;
+        bottom: 7px !important;
 
         .dot-button {
-          width: 10px;
-          height: 10px;
+          width: 9px !important;
+          height: 9px !important;
+        }
+        :global(.slick-active) .dot-button {
+          width: 23px !important;
         }
       }
 
@@ -396,11 +400,11 @@ as *;
       }
 
       :global(.slick-slide) {
-        padding: 0 calc(var(--composer-gap-md) / 1.5) !important;
+        padding: 0 var(--composer-gap-md) !important;
       }
 
       .dots {
-        bottom: 55px !important;
+        bottom: -15px !important;
 
         .dot-button {
           width: var(--composer-gap-sm) !important;
