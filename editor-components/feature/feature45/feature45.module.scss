@@ -75,10 +75,14 @@
             top: 0;
             left: 0.5rem;
             z-index: 1;
+            color: var(--composer-font-color-primary);
+
+            &:has(~ div img) {
+              color: white;
+            }
 
             .card-overlay-title,
             .card-overlay-description {
-              color: var(--composer-font-color-primary);
               text-align: start;
             }
           }
