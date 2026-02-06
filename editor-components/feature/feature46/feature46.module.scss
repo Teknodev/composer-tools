@@ -27,9 +27,6 @@
       gap: var(--composer-gap-lg);
 
       .service-card {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
         width: 100%;
         color: var(--composer-font-color-primary);
 
@@ -118,10 +115,8 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
 
       .services-grid {
-        gap: var(--composer-gap-md);
 
         .service-card {
           .media-wrapper {
