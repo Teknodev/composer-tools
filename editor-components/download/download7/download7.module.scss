@@ -1,6 +1,8 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
+
   .background-image {
     position: absolute;
     top: 0;
@@ -85,7 +87,7 @@
           place-self: center;
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
+          align-items: stretch;
           gap: var(--composer-gap-md);
 
           .button-wrapper {
@@ -117,6 +119,17 @@
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
+
+          .buttons-container {
+            justify-content: center;
+            align-items: stretch;
+
+            .button-wrapper {
+              .button-image {
+                height: 47px !important;
+              }
+            }
+          }
         }
       }
     }
@@ -137,12 +150,12 @@
 
           .buttons-container {
             justify-content: center;
-            flex-direction: column;
+            flex-direction: row;
 
             .button-wrapper {
               .button-image {
                 width: 150px;
-                height: 40px;
+                height: 33px !important;
               }
             }
           }

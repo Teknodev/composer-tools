@@ -19,7 +19,7 @@
     }
 
     &.no-image {
-      min-height: 350px;
+      min-height: auto;
     }
 
     .background-image {
@@ -48,7 +48,7 @@
       overflow: hidden;
       position: relative;
       height: auto;
-      min-height: 350px;
+      min-height: auto;
       width: 100%;
 
       &.image {
@@ -227,9 +227,15 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: var(--composer-gap-lg) 0px !important;
+
+    &.has-image {
+      padding: 0 !important;
+    }
+
     .page {
       .max-content {
-        min-height: 500px;
+        min-height: auto;
 
         .middle-container {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
@@ -241,7 +247,7 @@
           .buttons-container {
             .image-container {
               width: 152px;
-              height: 45px;
+              height: 47px;
 
               .card-image {
                 width: 100%;
@@ -260,6 +266,12 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: var(--composer-gap-md) 0px !important;
+
+    &.has-image {
+      padding: 0 !important;
+    }
+
     .page {
       .max-content {
         .middle-container {

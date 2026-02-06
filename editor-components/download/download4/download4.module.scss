@@ -8,20 +8,17 @@
       justify-content: center;
       align-items: center;
       margin: 0 auto;
-      gap: var(--composer-gap-md);
 
       .content {
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: var(--composer-gap-md);
         width: 100%;
       }
 
       .header {
         align-items: center;
         width: 100%;
-        gap: var(--composer-gap-sm);
 
         .subtitle {
           text-align: center;
@@ -109,7 +106,11 @@
       padding: 0 !important;
 
       .page {
-        gap: var(--composer-gap-md);
+        gap: 0px !important;
+
+        .header {
+          gap: 0px !important;
+        }
 
         .button-group {
           flex-direction: row;

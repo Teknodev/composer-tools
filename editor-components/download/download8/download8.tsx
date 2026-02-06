@@ -156,14 +156,7 @@ class Download8 extends BaseDownload {
     const cardSubtitleExist = this.castToString(cardSubtitle);
     const listExist = this.castToObject<any[]>("list").length > 0;
 
-    const rightContent = document.getElementById("right-content");
-    const leftContent = document.getElementById("left-content");
     const alignment = Base.getContentAlignment();
-
-    if (rightContent && leftContent) {
-      const rightHeight = rightContent.clientHeight;
-      leftContent.setAttribute("style", `min-height: ${rightHeight}px`);
-    }
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("with-image")}`}>

@@ -200,7 +200,7 @@ class Download10 extends BaseDownload {
             <div
               className={`${this.decorateCSS("left-container")} ${!image && this.decorateCSS("no-image")} ${alignmentValue === "center" && !image && this.decorateCSS("center")}`}
             >
-              <Base.VerticalContent>
+              <Base.VerticalContent className={this.decorateCSS("content-container")}>
                 {subtitleExist && (
                   <div className={this.decorateCSS("subtitle-container")}>
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>
@@ -208,29 +208,29 @@ class Download10 extends BaseDownload {
                 )}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                {buttons.length > 0 && (
-                  <Base.Row className={this.decorateCSS("button-group")}>
-                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
-                      const buttonTextExist = this.castToString(item.text);
-                      const iconExist = item.icon && (item.icon as any).name;
-                      const imageExist = item.image && (item.image as any).url;
-                      const buttonExist = buttonTextExist || iconExist || imageExist;
-                      return buttonExist && (
-                        <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
-                          {imageExist ? (
-                            <Base.Media value={item.image as any} className={this.decorateCSS("button-image")} />
-                          ) : (
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                              {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("button-icon")} />}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
-                      );
-                    })}
-                  </Base.Row>
-                )}
               </Base.VerticalContent>
+              {buttons.length > 0 && (
+                <Base.Row className={this.decorateCSS("button-group")}>
+                  {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
+                    const buttonTextExist = this.castToString(item.text);
+                    const iconExist = item.icon && (item.icon as any).name;
+                    const imageExist = item.image && (item.image as any).url;
+                    const buttonExist = buttonTextExist || iconExist || imageExist;
+                    return buttonExist && (
+                      <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
+                        {imageExist ? (
+                          <Base.Media value={item.image as any} className={this.decorateCSS("button-image")} />
+                        ) : (
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                            {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("button-icon")} />}
+                            {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          </Base.Button>
+                        )}
+                      </ComposerLink>
+                    );
+                  })}
+                </Base.Row>
+              )}
               {(reviewTitle || reviewScore || icons.length > 0) && (
                 <Base.VerticalContent className={this.decorateCSS("stats")}>
                   {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
