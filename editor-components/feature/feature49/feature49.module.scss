@@ -49,6 +49,10 @@
                 height: 100%;
                 width: 100%;
 
+                &.only-button{
+                    gap: 0;
+                }
+
                 .card-button {
                     content: "";
 
@@ -85,6 +89,7 @@
 
                     &.no-background {
                         background-color: transparent;
+                        margin-bottom: var(--composer-gap-xs);
 
                         .card-icon {
                             color: var(--composer-primary-color);

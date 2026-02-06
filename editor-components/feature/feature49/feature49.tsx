@@ -244,13 +244,15 @@ class Feature49 extends BaseFeature {
                                 const descExist = !!this.castToString(card.description);
                                 const iconExist = !!card.icon;
                                 const iconBackground = this.getPropValue("iconBackground");
-                                return (iconExist || titleExist || descExist) && (
-                                    <div key={index} className={this.decorateCSS("card")}>
+                                const buttonExist = card.button && this.castToString(card.button.text);
+                                const onlyButton = !iconExist && !titleExist && !descExist && buttonExist;
+                                return (iconExist || titleExist || descExist || buttonExist) && (
+                                    <div key={index} className={`${this.decorateCSS("card")} ${onlyButton ? this.decorateCSS("only-button") : ""}`}>
                                         {iconExist && (
-                                            <div className={`${this.decorateCSS("icon-container")} ${iconBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
-                                                <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
-                                            </div>
-                                        )}
+                                        <div className={`${this.decorateCSS("icon-container")} ${iconBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
+                                            <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
+                                        </div>
+                                    )}
                                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                             {titleExist && (
                                                 <Base.H4 className={this.decorateCSS("card-title")}>
