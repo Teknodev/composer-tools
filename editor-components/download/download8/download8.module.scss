@@ -1,9 +1,9 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding-right: 0 !important;
+  padding: 80px 0px !important;
 
-  &.has-image {
+  &.with-image {
     padding: 0 !important;
   }
 
@@ -19,26 +19,26 @@
       inset: 0;
       overflow: hidden;
       z-index: 0;
+    }
 
-      .background-image {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        min-width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        z-index: 0;
-      }
+    .background-image {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 0;
+    }
 
-      .overlay {
-        position: absolute;
-        inset: 0;
-        background-color: var(--composer-overlay-color);
-        z-index: 1;
-        pointer-events: none;
-      }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: var(--composer-overlay-color);
+      z-index: 1;
+      pointer-events: none;
     }
 
     .max-content {
@@ -46,6 +46,7 @@
       position: relative;
       z-index: 2;
       height: auto;
+      min-height: 250px;
 
       .left-content {
         &.center {
@@ -59,7 +60,7 @@
         opacity: 1;
         transition: opacity 0.5s,
         height 0.5s;
-        padding: var(--composer-gap-md) var(--composer-gap-md);
+        padding: var(--composer-gap-md) var(--composer-gap-xl);
         overflow: auto;
         z-index: 3;
         min-height: 100%;
@@ -67,32 +68,41 @@
         position: relative;
 
         .title,
-        .description {
+        .description,
+        .subtitle {
           content: "";
           text-align: center;
+        }
 
-          &.image {
+        .subtitle {
+          transform: translateX(0);
+          text-align: center;
+          align-self: center;
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+
+      &.with-image {
+        min-height: 350px;
+
+        .left-content {
+
+          .title,
+          .description {
+            color: white;
+            background: transparent;
+          }
+
+          .subtitle {
+            background: transparent;
             color: white;
           }
         }
-
-      }
-
-      &.image {
-        min-height: 350px;
-      }
-
-      &.no-image {
-        min-height: 0px;
-        overflow: visible;
-
-        .left-content {
-          padding: initial;
-        }
       }
     }
-
-
 
     .right-content {
       width: fit-content;
@@ -112,7 +122,8 @@
 
       .card {
         width: 100%;
-        height: 100%;
+        height: auto;
+        min-height: 100%;
         display: flex;
         flex-direction: column;
         border-top-left-radius: var(--composer-border-radius-md);
@@ -121,17 +132,22 @@
 
         .card-up {
           width: 100%;
-          height: 90%;
+          height: auto;
+          flex: 1;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
-          margin: 0px;
+          margin: 0;
+          padding-top: var(--composer-gap-sm);
 
           .cardTitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
-            margin: 0;
+            padding-top: 0;
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+          }
+
+          .card-subtitle {
+            margin-left: var(--composer-gap-md);
           }
 
           .list-group {
@@ -145,7 +161,7 @@
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
-              margin: 0px;
+              margin: 0;
 
               .icon {
                 color: var(--composer-font-color-primary);
@@ -163,7 +179,7 @@
 
         .card-down {
           width: 100%;
-          height: 20%;
+          height: auto;
           display: flex;
           align-items: center;
           border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
@@ -183,20 +199,22 @@
               object-fit: cover;
             }
 
-            .button {
-              .icon {
-                font-size: 1rem;
-                width: 1rem;
-                height: 1rem;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-              }
+            .image-container {
+              width: 120px;
+              height: 35px;
 
+              .image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+
+            .button {
+
+              .icon,
               .text {
-                margin: 0;
-                text-align: center;
-                white-space: nowrap;
+                content: "";
               }
             }
           }
@@ -204,10 +222,12 @@
       }
     }
 
-    &:hover {
+    .card-up .card-subtitle.center-badge {
+      margin: 0px 0px var(--composer-gap-sm) !important;
+    }
 
-      .left-content,
-      .left-content-no-image {
+    &:hover {
+      .left-content {
         opacity: 0;
 
         .title {
@@ -215,6 +235,10 @@
         }
 
         .description {
+          opacity: 0;
+        }
+
+        .subtitle {
           opacity: 0;
         }
       }
@@ -261,7 +285,7 @@
     .page {
       .max-content {
         .left-content {
-          content: "";
+          padding: var(--composer-gap-md) !important;
         }
       }
 
@@ -271,7 +295,8 @@
 
         .card {
           width: 20vw;
-          height: 100%;
+          height: auto;
+          min-height: 100%;
 
           .card-up {
             .list-group {
@@ -290,12 +315,17 @@
 
           .card-down {
             .buttons-container {
-              flex-direction: row;
-              flex-wrap: wrap;
+              align-items: baseline;
 
-              .button-image {
-                height: 32px;
-                width: 150px;
+              .image-container {
+                width: 120px;
+                height: 35px;
+
+                .image {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
               }
             }
           }

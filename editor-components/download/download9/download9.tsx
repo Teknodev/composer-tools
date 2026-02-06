@@ -1,13 +1,19 @@
-import * as React from "react";
 import styles from "./download9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseDownload } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 class Download9 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
 
     this.addProp({
       type: "media",
@@ -20,13 +26,6 @@ class Download9 extends BaseDownload {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c88ebd2970002c629244?alt=media&timestamp=1719564433798",
       },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
     });
 
     this.addProp({
@@ -52,6 +51,13 @@ class Download9 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "hoverSubtitle",
+      displayer: "Hover Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "cardTitle",
       displayer: "Hover Title",
       value: "Download now by clicking the button",
@@ -63,6 +69,7 @@ class Download9 extends BaseDownload {
       displayer: "Hover Description",
       value: " By using clear and concise language, and providing a simple and easy-to-use download button, businesses and developers can increase the chances of users downloading and using their product.",
     });
+
 
     this.addProp({
       type: "array",
@@ -82,16 +89,18 @@ class Download9 extends BaseDownload {
   renderButtons() {
     return this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
       const buttonTextExist = this.castToString(item.text);
-      const iconExist = item.icon && item.icon.name;
-      const imageExist = item.image && item.image.url;
+      const iconExist = item.icon && (item.icon as any).name;
+      const imageExist = item.image && (item.image as any).url;
       const buttonExist = buttonTextExist || iconExist || imageExist;
       return buttonExist && (
         <ComposerLink key={`dw-9-btn-${index}`} path={item.url}>
           {imageExist ? (
-            <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+            <div className={this.decorateCSS("image-container")}>
+              <Base.Media value={item.image as any} className={this.decorateCSS("card-image")} />
+            </div>
           ) : (
             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
+              {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("icon")} />}
               {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
             </Base.Button>
           )}
@@ -114,23 +123,26 @@ class Download9 extends BaseDownload {
     const descriptionExist = this.castToString(description);
     const cardTitleExist = this.castToString(cardTitle);
     const cardDescriptionExist = this.castToString(cardDescription);
+    const subtitleType = Base.getSectionSubTitleType();
+    const hideBadge = imageExist && subtitleType === "badge";
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("has-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${imageExist ? this.decorateCSS("has-image") : ""}`}>
         <div className={`${this.decorateCSS("page")} ${imageExist ? this.decorateCSS("image") : this.decorateCSS("no-image")}`}>
           {imageExist && <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />}
           {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
           <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist && this.decorateCSS("image")}`}>
             {(titleExist || subtitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("middle-container")}>
-                {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("with-image")} ${hideBadge ? this.decorateCSS("no-badge") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
-            <Base.VerticalContent className={this.decorateCSS("hover-container")}>
-              {cardTitleExist && <Base.SectionTitle className={`${this.decorateCSS("card-title")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("cardTitle")}</Base.SectionTitle>}
-              {cardDescriptionExist && <Base.SectionDescription className={`${this.decorateCSS("card-description")} ${imageExist && this.decorateCSS("with-image")}`}>{this.getPropValue("cardDescription")}</Base.SectionDescription>}
+            <Base.VerticalContent className={`${this.decorateCSS("hover-container")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`}>
+              {this.castToString(this.getPropValue("hoverSubtitle")) && <Base.SectionSubTitle className={`${this.decorateCSS("hover-subtitle")}`}>{this.getPropValue("hoverSubtitle")}</Base.SectionSubTitle>}
+              {cardTitleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{this.getPropValue("cardTitle")}</Base.SectionTitle>}
+              {cardDescriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{this.getPropValue("cardDescription")}</Base.SectionDescription>}
               {this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0 && <div className={this.decorateCSS("buttons-container")}>{this.renderButtons()}</div>}
             </Base.VerticalContent>
           </Base.MaxContent>
@@ -141,3 +153,5 @@ class Download9 extends BaseDownload {
 }
 
 export default Download9;
+
+

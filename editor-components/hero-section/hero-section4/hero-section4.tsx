@@ -4,80 +4,100 @@ import styles from "./hero-section4.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { BaseNavigator } from "../../EditorComponent";
 
 class HeroSection4 extends BaseHeroSection {
-  imageRef: React.RefObject<HTMLDivElement>;
+  imageRef: React.RefObject<HTMLDivElement | null>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  rafId: number | null = null;
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "object",
-      key: "card",
-      displayer: "Card",
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Build perfect websites",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Unlimited power",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Most of our writings have centered on implementing strategies for business units, with their unique <br /><br /> geeza arse it's your round grub sloshed burke, my good sir chancer he legged it he lost his bottle pear shaped bugger all mate",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "note",
+      displayer: "Note",
+      value: "NOTE: Some details are very important.",
+    });
+
+    
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "",
+      },
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      additionalParams: {
+        maxElementCount: 2,
+      },
       value: [
-        {
-          type: "boolean",
-          key: "subtitle_line",
-          displayer: "Subtitle Line",
-          value: true,
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "Build perfect websites",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Unlimited power",
-        },
-        {
-          type: "string",
-          key: "desc",
-          displayer: "Description",
-          value:
-            "Most of our writings have centered on implementing strategies for business units, with their unique <br /><br /> geeza arse it's your round grub sloshed burke, my good sir chancer he legged it he lost his bottle pear shaped bugger all mate",
-        },
-        {
-          type: "string",
-          key: "note",
-          displayer: "Note",
-          value: "NOTE: Some details are very important.",
-        },
+        INPUTS.BUTTON("button", "Button", "More Projects", "", "FaArrowRightLong", null, "Tertiary")
       ],
     });
 
-    this.addProp(
-      INPUTS.BUTTON("button", 
-        "Button", 
-        "More Projects", 
-        "", 
-        null, 
-        null, 
-        "Tertiary")
-    );
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617f0abd2970002c62451a?alt=media&timestamp=1719483639150",
+      },
     });
 
     this.addProp({
       type: "boolean",
       key: "image-anm",
-      displayer: "Image Animation",
+      displayer: "Animation",
       value: true,
     });
 
     this.setComponentState("scrollY", 0);
     this.setComponentState("animate", false);
     this.imageRef = React.createRef<HTMLDivElement>();
+    this.containerRef = React.createRef<HTMLDivElement>();
   }
 
   onComponentDidMount() {
@@ -96,28 +116,52 @@ class HeroSection4 extends BaseHeroSection {
     if (wrapper && typeof wrapper.removeEventListener === "function") {
       wrapper.removeEventListener("scroll", this.handleScroll);
     }
+    
+    if (this.rafId !== null) {
+      cancelAnimationFrame(this.rafId);
+      this.rafId = null;
+    }
   }
 
 handleScroll = () => {
-  const scrollY = Base.Navigator.getWrapperContainer()?.scrollY || 0;
-  this.setComponentState("scrollY", scrollY);
-
-  const targetEl = this.imageRef.current;
-  if (!targetEl) return;
-
-  const rect = targetEl.getBoundingClientRect();
-  const windowHeight = window.innerHeight;
-  const isVisible = rect.top < windowHeight && rect.bottom > 0;
-  
-  let progress = 0;
-  if (isVisible) {
-    const elementHeight = rect.height;
-    const visibleDistance = windowHeight - rect.top;
-    progress = Math.min(Math.max(visibleDistance / (windowHeight + elementHeight), 0), 1);
+  if (this.rafId !== null) {
+    return;
   }
-  
-  this.setComponentState("animate", isVisible);
-  this.setComponentState("animationProgress", progress);
+
+  this.rafId = requestAnimationFrame(() => {
+    this.rafId = null;
+    
+    const scrollY = Base.Navigator.getWrapperContainer()?.scrollY || 0;
+    const currentScrollY = this.getComponentState("scrollY");
+    if (currentScrollY !== scrollY) {
+      this.setComponentState("scrollY", scrollY);
+    }
+
+    const targetEl = this.imageRef.current;
+    if (!targetEl) return;
+
+    const rect = targetEl.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    const isVisible = rect.top < windowHeight && rect.bottom > 0;
+    
+    let progress = 0;
+    if (isVisible) {
+      const elementHeight = rect.height;
+      const visibleDistance = windowHeight - rect.top;
+      progress = Math.min(Math.max(visibleDistance / (windowHeight + elementHeight), 0), 1);
+    }
+    
+    const currentAnimate = this.getComponentState("animate");
+    const currentProgress = this.getComponentState("animationProgress");
+    
+    if (currentAnimate !== isVisible) {
+      this.setComponentState("animate", isVisible);
+    }
+    
+    if (Math.abs((currentProgress || 0) - progress) > 0.01) {
+      this.setComponentState("animationProgress", progress);
+    }
+  });
 };
 
   static getName(): string {
@@ -125,18 +169,19 @@ handleScroll = () => {
   }
 
   render() {
-    const button = this.castToObject("button") as INPUTS.CastedButton;
-    const card: any = this.castToObject("card");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const imageAnm = this.getPropValue("image-anm");
     const image = this.getPropValue("image");
-    const buttonText = this.castToString(button.text);
-    const showCard = this.castToString(card.subtitle) || 
-                    this.castToString(card.title) || 
-                    this.castToString(card.desc) || 
-                    buttonText || 
-                    this.castToString(card.note);
-    const scrollY = this.getComponentState("scrollY");
+    const overlay = this.getPropValue("overlay");
+    const logo = this.getPropValue("logo");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const note = this.castToString(this.getPropValue("note"));
+    const hasButtons = buttons && buttons.length > 0 && buttons.some(btn => this.castToString(btn.text) || btn.icon);
+    const showCard = subtitle || title || description || hasButtons || note;
+    const alignment = Base.getContentAlignment();
 
 const getStyle = (direction: "up" | "down") => {
   const isAnimating = this.getComponentState("animate");
@@ -152,7 +197,10 @@ const getStyle = (direction: "up" | "down") => {
   }
 
   if (direction === "down") {
-    const translateY = 100 - 200 * progress;
+    const containerWidth = this.containerRef.current?.offsetWidth || window.innerWidth;
+    const isMobile = containerWidth <= 640;
+    const multiplier = isMobile ? 100: 400;
+    const translateY = 100 - multiplier * progress;
     return {
       transform: `translate3d(0px, ${translateY}px, 0px)`,
     };
@@ -163,59 +211,79 @@ const getStyle = (direction: "up" | "down") => {
 
     return (
       <Base.Container
+        ref={this.containerRef}
         className={`${this.decorateCSS("container")} ${
           !imageAnm && this.decorateCSS("no-image-anm")
-        }`}
-        isFull={true}
+        } ${!image && this.decorateCSS("no-background-image")} ${alignment === "center" && this.decorateCSS("center-alignment")}`}
       >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <div className={`${this.decorateCSS("max-content")} ${!image && this.decorateCSS("no-image-wrapper")}`}>
           {image && (
             <div 
-            ref={this.imageRef} className={this.decorateCSS("image-container")}>
-              <img
-                alt="Header visual"
-                className={`${this.decorateCSS("image")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
-                src={image}
-                style={getStyle("up")}
+              ref={this.imageRef}
+              className={`${this.decorateCSS("image-container")} ${!imageAnm && this.decorateCSS("no-img-anm")}`}
+            >
+              <Base.Media
+                className={this.decorateCSS("image-element")}
+                value={image?.type === "video" ? {
+                  ...image,
+                  settings: {
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    controls: false
+                  }
+                } : image}
               />
+              {overlay && image && (image.type === "image" || image.type === "video") && image.url && <div className={this.decorateCSS("overlay")} />}
             </div>
           )}
 
+         <div className={`${this.decorateCSS("card-container")} ${!image && this.decorateCSS("no-image")} ${!image ? this.decorateCSS("without-image") : ""}`}>
           {showCard && (
-            <div className={this.decorateCSS("card")} style={getStyle("down")}>
-              <div className={this.decorateCSS("box")}>
-                {(this.castToString(card.subtitle) || this.castToString(card.title)) && (
-                  <div className={this.decorateCSS("heading")}>
-                    {this.castToString(card.subtitle) && (
-                      <div className={this.decorateCSS("sub-heading-container")}>
-                        {card.subtitle_line && (
-                          <hr className={this.decorateCSS("sub-heading-line")} />
-                        )}
-                        <span className={this.decorateCSS("sub-heading-title")}>
-                          {card.subtitle}
-                        </span>
-                      </div>
-                    )}
-                    {this.castToString(card.title) && <h2 className={this.decorateCSS("title")}>{card.title}</h2>}
-                  </div>
+              <Base.VerticalContent className={this.decorateCSS("card")} style={getStyle("down")}>
+                {logo && (
+                  <Base.Media 
+                    value={logo} 
+                    className={`${this.decorateCSS("logo")} ${logo?.type === "image" ? this.decorateCSS("logo-image") : this.decorateCSS("logo-icon")}`} 
+                  />
                 )}
-                {this.castToString(card.desc) && <p className={this.decorateCSS("desc")}>{card.desc}</p>}
-                {buttonText && (
+                {subtitle && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {hasButtons && (
                   <div className={this.decorateCSS("button-container")}>
-                    <ComposerLink path={button?.url || '#'}>
-                      <Base.Button 
-                        buttonType={button?.type || "Tertiary"} 
-                        className={this.decorateCSS("button")}>
-                        {buttonText}
-                      </Base.Button>
-                    </ComposerLink>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      const buttonText = this.castToString(button.text);
+                      if (!buttonText && !button.icon) return null;
+                      return (
+                        <ComposerLink key={index} path={button?.url || '#'}>
+                          <Base.Button 
+                            buttonType={button?.type || "Tertiary"} 
+                            className={this.decorateCSS("button")}>
+                            {buttonText && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                            {button.icon && (() => {
+                              const iconValue = typeof button.icon === "string" ? { type: "icon" as const, name: button.icon } : button.icon;
+                              return iconValue.name && 
+                              <Base.Media
+                                value={iconValue}
+                                className={this.decorateCSS("button-icon")}
+                              />;
+                            })()}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
                 )}
-                {this.castToString(card.note) && <p className={this.decorateCSS("note")}>{this.castToString(card.note)}</p>}
-              </div>
-            </div>
-          )}
-        </Base.MaxContent>
+                {note && <Base.P className={this.decorateCSS("note")}>{this.getPropValue("note")}</Base.P>}
+            </Base.VerticalContent>
+            )}
+          </div>
+        </div>
       </Base.Container>
     );
   }

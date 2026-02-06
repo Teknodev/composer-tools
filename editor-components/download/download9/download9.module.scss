@@ -19,18 +19,17 @@
     }
 
     &.no-image {
-      min-height: fit-content;
+      min-height: 350px;
     }
 
     .background-image {
+      width: 100%;
+      object-fit: cover;
+      height: 100%;
       position: absolute;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
+      left: 0;
+      z-index: 1;
     }
 
     .overlay {
@@ -44,14 +43,12 @@
     }
 
     .max-content {
-      position: relative;
-      z-index: 2;
       width: 100vw;
       display: flex;
       overflow: hidden;
       position: relative;
       height: auto;
-      min-height: 250px;
+      min-height: 350px;
       width: 100%;
 
       &.image {
@@ -63,12 +60,35 @@
 
           .title,
           .description {
+            color: white;
             text-align: center;
+          }
+
+          .subtitle {
+            color: white;
+            text-align: center;
+            background: transparent !important;
           }
         }
 
         .hover-container {
           align-items: center;
+
+          .hover-subtitle {
+            color: white;
+            text-align: center;
+            background: transparent !important;
+
+            &::before {
+              display: none;
+            }
+          }
+
+          .card-title,
+          .card-description {
+            color: white;
+            text-align: center;
+          }
         }
 
         .card-title,
@@ -78,23 +98,6 @@
 
         .buttons-container {
           align-items: center;
-        }
-      }
-    }
-
-    &.no-image {
-      .max-content {
-        height: fit-content !important;
-        min-height: fit-content !important;
-
-        .middle-container,
-        .hover-container {
-          padding: 0 !important;
-        }
-
-        .middle-container {
-          min-height: fit-content !important;
-          height: fit-content !important;
         }
       }
     }
@@ -121,59 +124,66 @@
         &::before {
           display: none;
         }
-
-        &.with-image {
-          color: white;
-          background: transparent !important;
-        }
       }
 
       .title,
       .description {
         content: "";
         text-align: center;
-
-        &.with-image {
-          color: white;
-        }
       }
     }
 
     .hover-container {
-      position: absolute;
-      inset: 0;
-      z-index: 3;
+      padding: var(--composer-gap-md) var(--composer-gap-xl);
+      z-index: 2;
+      width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+      height: auto;
+      justify-content: center;
+      top: 0;
+      opacity: 0;
+      transition: opacity 0.5s;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      transform: translateX(-100%);
+      width: fit-content;
+
+      &.left {
+        .hover-subtitle {
+          transform: translateX(0);
+
+          &::before {
+            display: none;
+          }
+        }
+      }
+
       align-items: center;
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.5s ease;
 
       .card-title,
       .card-description {
         text-align: center;
-
-        &.with-image {
-          color: white;
-        }
       }
 
       .buttons-container {
         display: flex;
-        flex-direction: row;
-        align-items: stretch;
         flex-wrap: wrap;
         justify-content: center;
         gap: var(--composer-gap-sm);
 
-        .button-image {
-          height: 49px;
+        .image-container {
           width: 170px;
-          border-radius: var(--composer-border-radius-sm);
-          object-fit: cover;
+          height: 50px;
+
+          .card-image {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-sm);
+          }
         }
 
         .button {
@@ -181,11 +191,6 @@
           .icon,
           .text {
             content: "";
-          }
-
-          .text {
-            margin: 0;
-            white-space: nowrap;
           }
         }
       }
@@ -212,8 +217,6 @@
 
       .hover-container {
         opacity: 1;
-        pointer-events: auto;
-        transform: none;
         transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
       }
     }
@@ -224,10 +227,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    &.has-image {
-      padding: 0 !important;
-    }
-
     .page {
       .max-content {
         min-height: 500px;
@@ -240,8 +239,17 @@
           padding: var(--composer-gap-md) var(--composer-gap-lg);
 
           .buttons-container {
-            .button-image {
-              height: 46px;
+            .image-container {
+              width: 152px;
+              height: 45px;
+
+              .card-image {
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
+              }
             }
           }
         }
@@ -262,13 +270,11 @@
           padding: var(--composer-gap-md);
 
           .buttons-container {
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: var(--composer-gap-sm);
+            flex-direction: column;
 
-            .button-image {
-              height: 32px;
+            .image-container {
               width: 150px;
+              height: 45px;
             }
           }
         }

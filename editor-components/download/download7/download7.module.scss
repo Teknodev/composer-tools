@@ -1,9 +1,6 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  position: relative;
-  overflow: hidden;
-
   .background-image {
     position: absolute;
     top: 0;
@@ -20,9 +17,6 @@
       background-position: center;
       border-radius: var(--composer-border-radius-md);
       position: relative;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
 
       .overlay {
         position: absolute;
@@ -37,45 +31,47 @@
 
       .content-container {
         height: 100%;
-        padding: 0;
+        justify-content: center;
         position: relative;
         z-index: 2;
 
-        &.has-image {
+        &.image {
           min-height: 600px;
           padding: var(--composer-gap-md) var(--composer-gap-md);
           align-items: center;
           text-align: center;
-          justify-content: center;
-        }
 
-        &.center {
-          align-items: center;
-          text-align: center;
-
-          .subtitle {
-            place-self: center;
+          .subtitle,
+          .title,
+          .description {
+            color: white;
+            background: transparent;
+            text-align: center;
           }
         }
 
         .subtitle {
           content: "";
+          transform: translateX(0);
+
+          place-self: center;
+
+          &::before {
+            display: none;
+          }
 
           &.with-image {
             color: white;
-            transform: translateX(0);
-            place-self: center;
+          }
 
-            &::before {
-              display: none;
-            }
-
+          &.no-badge {
             background: transparent !important;
           }
         }
 
         .title,
         .description {
+          text-align: center;
           content: "";
 
           &.with-image {
@@ -86,35 +82,26 @@
 
 
         .buttons-container {
+          place-self: center;
           display: flex;
-          flex-direction: row;
-          align-items: stretch;
           flex-wrap: wrap;
-          justify-content: center;
-          gap: var(--composer-gap-sm);
-          height: auto;
+          align-items: center;
+          gap: var(--composer-gap-md);
 
-          &.center {
-            justify-content: center;
-            place-self: center;
-          }
-
-          .button-image {
-            height: 49px;
-            width: 170px;
-            border-radius: var(--composer-border-radius-sm);
-            object-fit: cover;
-          }
-
-          .button {
-            .button-icon {
-              font-size: 1.5rem;
+          .button-wrapper {
+            .button-image {
+              width: 170px;
+              height: 50px;
+              border-radius: var(--composer-border-radius-sm);
+              object-fit: cover;
             }
 
-            .button-text {
-              margin: 0;
-              text-align: center;
-              white-space: nowrap;
+            .button-element {
+
+              .button-icon,
+              .button-text {
+                content: "";
+              }
             }
           }
         }
@@ -128,18 +115,8 @@
     .max-content {
       .wrapper {
         .content-container {
-          padding: 0;
-
-          &.has-image {
-            min-height: 600px;
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-          }
-
-          .buttons-container {
-            .button-image {
-              height: 46px;
-            }
-          }
+          min-height: 600px;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
         }
       }
     }
@@ -151,33 +128,22 @@
     .max-content {
       .wrapper {
         .content-container {
-          padding: 0;
-
-          &.has-image {
-            min-height: 600px;
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-          }
+          min-height: 600px;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
 
           .description {
             text-align: center;
           }
 
           .buttons-container {
-            flex-direction: row;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: var(--composer-gap-sm);
-            align-items: stretch;
+            flex-direction: column;
 
-            &.center {
-              justify-content: center;
-              place-self: center;
-              align-items: stretch;
-            }
-
-            .button-image {
-              height: 32px;
-              width: 150px;
+            .button-wrapper {
+              .button-image {
+                width: 150px;
+                height: 40px;
+              }
             }
           }
         }
