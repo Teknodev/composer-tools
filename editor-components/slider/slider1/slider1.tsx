@@ -271,7 +271,7 @@ class Slider1 extends BaseSlider {
           {sliderItems.length > 1 && !!settings.dots && (
             <div className={`${this.decorateCSS("dots")} ${!ImagesExist && this.decorateCSS("dots-no-image")}`}>
               {sliderItems.map((_, index) => (
-                <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index && this.decorateCSS("dot-active")}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
+                <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${this.getComponentState("activeSlide") === index ? this.decorateCSS("active") : ""}`} onClick={() => this.getComponentState("slider-ref").current.slickGoTo(index)}>
                   <Base.Button className={this.decorateCSS("dot-button")} />
                 </div>
               ))}

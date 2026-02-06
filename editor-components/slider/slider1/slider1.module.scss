@@ -210,7 +210,8 @@
                     border: none;
                     border-radius: var(--composer-border-radius-full);
                     background: var(--composer-font-color-secondary);
-                    transition: background var(--composer-transition-duration-normal) ease, transform var(--composer-transition-duration-normal) ease, box-shadow var(--composer-transition-duration-normal) ease;
+                    opacity: 0.5;
+                    transition: background var(--composer-transition-duration-normal) ease, transform var(--composer-transition-duration-normal) ease, box-shadow var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
                     transform: scale(0.8);
                     padding: 0;
                     min-width: unset;
@@ -220,9 +221,10 @@
                     }
                 }
 
-                &.dot-active {
+                &.active {
                     .dot-button {
                         transform: scale(1.2);
+                        opacity: 1;
                     }
                 }
             }

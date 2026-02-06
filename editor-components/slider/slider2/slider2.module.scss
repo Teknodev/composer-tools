@@ -48,317 +48,334 @@
         :global(.slick-dots) {
           position: absolute;
           bottom: var(--composer-gap-lg);
+          left: 0;
           display: flex !important;
           justify-content: center;
-          width: 100%;
+          align-items: center;
+          list-style: none;
           padding: 0;
           margin: 0;
-          list-style: none;
+          width: 100% !important;
           z-index: 10;
 
           li {
-            margin: 0 5px;
+            margin: 0 var(--composer-gap-sm);
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
 
             button {
-              font-size: 0;
-              line-height: 0;
-              display: block;
-              width: 10px;
-              height: 10px;
-              padding: 5px;
+              width: var(--composer-gap-sm);
+              height: var(--composer-gap-sm);
+              padding: 0;
+              background: transparent;
+              border: none;
               cursor: pointer;
-              color: transparent;
-              border: 0;
-              outline: none;
-              background: rgba(255, 255, 255, 0.5);
-              border-radius: 50%;
+              position: relative;
+
+              &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: var(--composer-gap-sm);
+                height: var(--composer-gap-sm);
+                border-radius: var(--composer-border-radius-full);
+                background: var(--composer-font-color-secondary);
+                opacity: 0.5;
+                transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
+                transform: scale(0.8);
+                line-height: unset;
+              }
             }
 
-            &.slick-active button {
-              background: white;
-            }
-          }
-        }
-
-        :global(.slick-list) {
-          :global(.slick-track) {
-            :global(.slick-slide) {
-              :global(.slick-slide)>div {
-                padding: 0 10rem;
-
-                @container (max-width: #{$composer-tablet-width}) {
-                  padding: 0 var(--composer-gap-lg);
-                }
-
-                @container (max-width: #{$composer-phone-width}) {
-                  padding: 0 var(--composer-gap-md);
-                }
+            &.slick-active {
+              button:before {
+                transform: scale(1.2);
+                opacity: 1;
               }
             }
           }
         }
+      }
 
-        .card {
-          width: 100%;
-          height: 100dvh;
+      :global(.slick-list) {
+        :global(.slick-track) {
+          :global(.slick-slide) {
+            :global(.slick-slide)>div {
+              padding: 0 10rem;
+
+              @container (max-width: #{$composer-tablet-width}) {
+                padding: 0 var(--composer-gap-lg);
+              }
+
+              @container (max-width: #{$composer-phone-width}) {
+                padding: 0 var(--composer-gap-md);
+              }
+            }
+          }
+        }
+      }
+
+      .card {
+        width: 100%;
+        height: 100dvh;
+        position: relative;
+
+        .button-wrapper {
+          font-size: 6rem;
+          background-color: transparent;
+          color: transparent;
           position: relative;
+          cursor: pointer;
+          top: 45%;
+          transform: translate(0, -50%);
+          z-index: 2;
+          -webkit-text-stroke: 1px white;
+          text-transform: capitalize;
+          transition: var(--composer-transition-duration-normal) ease-out;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          width: 100%;
+          margin-right: 100px !important;
 
-          .button-wrapper {
-            font-size: 6rem;
-            background-color: transparent;
-            color: transparent;
-            position: relative;
-            cursor: pointer;
-            top: 45%;
-            transform: translate(0, -50%);
-            z-index: 2;
+          &:hover {
+            color: white;
             -webkit-text-stroke: 1px white;
-            text-transform: capitalize;
-            transition: var(--composer-transition-duration-normal) ease-out;
+          }
+
+          @container (max-width: #{$composer-tablet-width}) {
+            font-size: 3rem;
+          }
+
+          @container (max-width: #{$composer-phone-width}) {
+            font-size: 2rem;
+          }
+
+          .link-wrapper {
+            width: 100%;
             display: flex;
             align-items: flex-start;
             justify-content: center;
-            width: 100%;
-            margin-right: 70px !important;
+            gap: var(--composer-gap-sm);
+          }
 
-            &:hover {
-              color: white;
-              -webkit-text-stroke: 1px white;
-            }
+          .number {
+            font-size: 1rem;
+            color: white;
+            align-self: flex-start;
+            margin: 0;
+            margin-top: var(--composer-gap-xs);
+            font-weight: 100;
+          }
 
-            @container (max-width: #{$composer-tablet-width}) {
-              font-size: 3rem;
+          .title-text {
+            white-space: nowrap;
+            flex-shrink: 0;
+            width: max-content;
+            font-weight: 500;
+            font-size: 6.5rem;
+
+            @container (max-width: #{$composer-phone-width}) {
+              font-size: 4.75rem;
             }
 
             @container (max-width: #{$composer-phone-width}) {
-              font-size: 2rem;
+              font-size: 2.75rem;
             }
 
-            .link-wrapper {
-              width: 100%;
-              display: flex;
-              align-items: flex-start;
-              justify-content: center;
-              gap: var(--composer-gap-sm);
-            }
-
-            .number {
-              font-size: 1rem;
+            &.active {
               color: white;
-              align-self: flex-start;
-              margin: 0;
-              margin-top: var(--composer-gap-xs);
-              font-weight: 100;
-            }
-
-            .title-text {
-              white-space: nowrap;
-              flex-shrink: 0;
-              width: max-content;
-              font-weight: 500;
-              font-size: 5.75rem;
-
-              @container (max-width: #{$composer-phone-width}) {
-                font-size: 4.75rem;
-              }
-
-              @container (max-width: #{$composer-phone-width}) {
-                font-size: 2.75rem;
-              }
-
-              &.active {
-                color: white;
-              }
             }
           }
         }
       }
     }
+  }
 
-    .image-box {
-      position: absolute;
-      height: 100%;
-      right: 0;
+  .image-box {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    width: 65%;
+    z-index: 0;
+    overflow: hidden;
+
+    @container (max-width: #{$composer-tablet-width}) {
       width: 65%;
-      z-index: 0;
-      overflow: hidden;
-
-      @container (max-width: #{$composer-tablet-width}) {
-        width: 65%;
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        width: 100%;
-      }
-
-      .image-overlay {
-        background-color: var(--composer-overlay-color);
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        z-index: 3;
-      }
-
-      .overlay {
-        width: 100%;
-        height: 100%;
-        position: relative;
-
-        .image {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          transition: var(--composer-transition-duration-normal) ease-in-out;
-          opacity: 0;
-          transform: scale(1.05);
-
-          &.active {
-            opacity: 1;
-            transform: scale(1);
-            z-index: 2;
-          }
-        }
-      }
     }
 
-    .text-box {
+    @container (max-width: #{$composer-phone-width}) {
       width: 100%;
-      margin: auto;
+    }
+
+    .image-overlay {
+      background-color: var(--composer-overlay-color);
+      width: 100%;
+      height: 100%;
       position: absolute;
-      top: 63%;
-      left: 50%;
-      transform: translateX(-50%);
-      height: calc(37vh - var(--composer-gap-md));
-      z-index: 5;
+      left: 0px;
+      top: 0px;
+      z-index: 3;
+    }
 
-      @container (max-width: #{$composer-tablet-width}) {
-        top: 58%;
-        height: calc(42vh - var(--composer-gap-md));
-      }
+    .overlay {
+      width: 100%;
+      height: 100%;
+      position: relative;
 
-      @container (max-width: #{$composer-phone-width}) {
-        height: calc(40vh - var(--composer-gap-md));
-        top: 55%;
-      }
-
-      .decorator-line {
-        background-color: white;
-        width: 20px;
-        height: 2px;
+      .image {
         position: absolute;
-        top: -15px;
-        left: var(--composer-gap-xl);
-
-        @container (max-width: #{$composer-tablet-width}) {
-          left: var(--composer-gap-lg);
-        }
-
-        @container (max-width: #{$composer-phone-width}) {
-          left: var(--composer-gap-md);
-          top: calc(-1 * var(--composer-gap-sm));
-        }
-      }
-
-      .text {
-        color: white;
-        transition: var(--composer-transition-duration-normal);
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        transition: var(--composer-transition-duration-normal) ease-in-out;
         opacity: 0;
-        width: 100%;
-        max-width: 35%;
-        padding: 0 var(--composer-gap-xl);
-        overflow: hidden;
-        max-height: 100%;
-        margin: 0;
-        text-align: left;
+        transform: scale(1.05);
 
-        @container (max-width: #{$composer-tablet-width}) {
-          padding: 0 var(--composer-gap-lg);
-          max-width: 100%;
-        }
-
-        @container (max-width: #{$composer-phone-width}) {
-          padding: 0 var(--composer-gap-md);
-          max-width: 100%;
-        }
-
-        &.visible {
+        &.active {
           opacity: 1;
+          transform: scale(1);
+          z-index: 2;
         }
       }
     }
+  }
 
-    .footer {
+  .text-box {
+    width: 100%;
+    margin: auto;
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: calc(37vh - var(--composer-gap-md));
+    z-index: 5;
+
+    @container (max-width: #{$composer-tablet-width}) {
+      top: 58%;
+      height: calc(42vh - var(--composer-gap-md));
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+      height: calc(40vh - var(--composer-gap-md));
+      top: 55%;
+    }
+
+    .decorator-line {
+      background-color: white;
+      width: 20px;
+      height: 2px;
       position: absolute;
-      bottom: 50px;
-      left: 0;
-      width: 100%;
-      padding: 0 var(--composer-gap-xl);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 10;
+      top: -15px;
+      left: var(--composer-gap-xl);
+
+      @container (max-width: #{$composer-tablet-width}) {
+        left: var(--composer-gap-lg);
+      }
+
+      @container (max-width: #{$composer-phone-width}) {
+        left: var(--composer-gap-md);
+        top: calc(-1 * var(--composer-gap-sm));
+      }
+    }
+
+    .text {
       color: white;
+      transition: var(--composer-transition-duration-normal);
+      opacity: 0;
+      width: 100%;
+      max-width: 35%;
+      padding: 0 var(--composer-gap-xl);
+      overflow: hidden;
+      max-height: 100%;
+      margin: 0;
+      text-align: left;
 
       @container (max-width: #{$composer-tablet-width}) {
         padding: 0 var(--composer-gap-lg);
-        bottom: 40px;
+        max-width: 100%;
       }
 
       @container (max-width: #{$composer-phone-width}) {
         padding: 0 var(--composer-gap-md);
-        bottom: 50px;
+        max-width: 100%;
       }
 
-      .page-numbers {
+      &.visible {
+        opacity: 1;
+      }
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    padding: 0 var(--composer-gap-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    color: white;
+
+    @container (max-width: #{$composer-tablet-width}) {
+      padding: 0 var(--composer-gap-lg);
+      bottom: 40px;
+    }
+
+    @container (max-width: #{$composer-phone-width}) {
+      padding: 0 var(--composer-gap-md);
+      bottom: 50px;
+    }
+
+    .page-numbers {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-md);
+      font-size: 0.875rem;
+      font-weight: 300;
+
+      .separator {
+        width: 40px;
+        height: auto;
+        color: rgba(255, 255, 255, 0.3);
         display: flex;
         align-items: center;
-        gap: var(--composer-gap-md);
+        justify-content: center;
+
+        i,
+        svg {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .follow-us {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-md);
+
+      .follow-text {
         font-size: 0.875rem;
         font-weight: 300;
-
-        .separator {
-          width: 40px;
-          height: auto;
-          color: rgba(255, 255, 255, 0.3);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          i,
-          svg {
-            width: 100%;
-            height: auto;
-          }
-        }
       }
 
-      .follow-us {
+      .social-icons {
         display: flex;
         align-items: center;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
 
-        .follow-text {
-          font-size: 0.875rem;
-          font-weight: 300;
-        }
+        .social-icon {
+          width: 18px;
+          height: 18px;
+          color: white;
+          transition: opacity var(--composer-transition-duration-normal);
 
-        .social-icons {
-          display: flex;
-          align-items: center;
-          gap: var(--composer-gap-sm);
-
-          .social-icon {
-            width: 18px;
-            height: 18px;
-            color: white;
-            transition: opacity var(--composer-transition-duration-normal);
-
-            &:hover {
-              opacity: 0.7;
-            }
+          &:hover {
+            opacity: 0.7;
           }
         }
       }

@@ -172,35 +172,53 @@
       }
 
       :global(.slick-dots) {
+        position: absolute;
         bottom: calc(-1 * var(--composer-gap-lg));
+        left: 0;
         display: flex !important;
         justify-content: center;
-        width: 100%;
+        align-items: center;
+        list-style: none;
         padding: 0;
         margin: 0;
-        list-style: none;
+        width: 100% !important;
         z-index: 10;
 
         li {
-          margin: 0 5px;
+          margin: 0 var(--composer-gap-sm);
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
 
           button {
-            font-size: 0;
-            line-height: 0;
-            display: block;
-            width: 10px;
-            height: 10px;
-            padding: 5px;
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
+            padding: 0;
+            background: transparent;
+            border: none;
             cursor: pointer;
-            color: transparent;
-            border: 0;
-            outline: none;
-            background: rgba(var(--composer-font-color-primary-rgb), 0.5);
-            border-radius: 50%;
+            position: relative;
+
+            &:before {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: var(--composer-gap-sm);
+              height: var(--composer-gap-sm);
+              border-radius: var(--composer-border-radius-full);
+              background: var(--composer-font-color-primary);
+              opacity: 0.5;
+              transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
+              transform: scale(0.8);
+              line-height: unset;
+            }
           }
 
-          &.slick-active button {
-            background: var(--composer-font-color-primary);
+          &.slick-active {
+            button:before {
+              transform: scale(1.2);
+              opacity: 1;
+            }
           }
         }
       }

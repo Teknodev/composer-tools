@@ -20,26 +20,69 @@
         }
 
         :global(.slick-dots) {
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
+          bottom: auto;
+          top: 70%;
+          left: 70px;
+          transform: translateY(-50%);
+          width: auto !important;
+          display: flex !important;
+          flex-direction: column;
           z-index: 100;
+          list-style: none;
+          padding: 0;
+          margin: 0;
 
-          li button:before {
-            color: white !important;
+          li {
+            margin: var(--composer-gap-sm) 0;
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
+
+            button {
+              width: var(--composer-gap-sm);
+              height: var(--composer-gap-sm);
+              padding: 0;
+              background: transparent;
+              border: none;
+              cursor: pointer;
+              position: relative;
+
+              &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: var(--composer-gap-sm);
+                height: var(--composer-gap-sm);
+                border-radius: var(--composer-border-radius-full);
+                background: var(--composer-font-color-secondary);
+                opacity: 0.5;
+                transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
+                transform: scale(0.8);
+                line-height: unset;
+              }
+            }
+
+            &.slick-active {
+              button:before {
+                transform: scale(1.2);
+                opacity: 1;
+              }
+            }
           }
 
           @container (max-width: #{$composer-phone-width}) {
-            li {
-              width: 10px !important;
-              height: 10px !important;
+            flex-direction: row;
+            bottom: 20px;
+            top: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100% !important;
+            justify-content: center;
 
-              button:before {
-                font-size: 10px !important;
-                width: 10px !important;
-                height: 10px !important;
-                line-height: 10px !important;
-              }
+            li {
+              margin: 0 var(--composer-gap-sm);
+              width: var(--composer-gap-sm) !important;
+              height: var(--composer-gap-sm) !important;
             }
           }
         }
