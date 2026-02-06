@@ -6,23 +6,27 @@
         flex-direction: column;
         gap: var(--composer-gap-lg);
 
-        &.no-text-content{
-            gap:0;
+        &.no-text-content {
+            gap: 0;
         }
-        
+
         .text-content {
+
             .subtitle,
             .title,
             .description {
                 content: "";
             }
         }
+
         .button-container {
             display: flex;
             justify-content: center;
-            .button{
+
+            .button {
                 content: "";
-                .button-text{
+
+                .button-text {
                     content: "";
                 }
             }
@@ -31,7 +35,7 @@
         .cards-container {
             display: grid;
             gap: var(--composer-gap-lg);
-            
+
 
             .card {
                 display: flex;
@@ -44,22 +48,24 @@
                 box-shadow: var(--box-shadow-active);
                 height: 100%;
                 width: 100%;
-                
-                .card-button{
+
+                .card-button {
                     content: "";
-                    .card-button-text{
+
+                    .card-button-text {
                         content: "";
                     }
                 }
-                
+
                 .card-content {
+
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left !important;
                     }
                 }
-    
+
                 .icon-container {
                     width: 80px;
                     height: 80px;
@@ -69,27 +75,36 @@
                     justify-content: center;
                     margin-bottom: var(--composer-gap-sm);
 
-                    &.with-background{
+                    &.with-background {
                         background-color: var(--composer-primary-color);
-                    }
-    
-                    .card-icon {
-                        font-size: 2.5rem;
-                        color: white;
-                        display: flex;
-                        img{
-                            width: 100%;
-                            height: 100%;
-                            max-width: 80px;
-                            max-height: 80px;
-                            object-fit: contain;
+
+                        .card-icon {
+                            color: white;
                         }
                     }
-                } 
+
+                    &.no-background {
+                        background-color: transparent;
+
+                        .card-icon {
+                            color: var(--composer-primary-color);
+                        }
+                    }
+
+                    .card-icon {
+                        font-size: 2.5rem;
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        object-fit: contain;
+                    }
+                }
             }
         }
 
-        
+
     }
 }
 
@@ -97,25 +112,22 @@
     .container {
         .max-content {
             gap: var(--composer-gap-md);
-           .cards-container{
-            .card {
-                .icon-container {
-                    width: 70px;
-                    height: 70px;
-                    &.with-background{
-                        background-color: var(--composer-primary-color);
-                    }
-                    .card-icon {
-                        font-size: 2rem;
-                        img{
-                            max-width: 70px;
-                            max-height: 70px;
+
+            .cards-container {
+                .card {
+                    .icon-container {
+                        width: 70px;
+                        height: 70px;
+
+                        .card-icon {
+                            font-size: 2rem;
+                            width: 2rem;
+                            height: 2rem;
                         }
                     }
                 }
             }
         }
-    }
     }
 }
 
@@ -123,24 +135,21 @@
     .container {
         .max-content {
             gap: var(--composer-gap-md);
-           .cards-container{
-            .card {
-                .icon-container {
-                    width: 60px;
-                    height: 60px;
-                    &.with-background{
-                        background-color: var(--composer-primary-color);
-                    }
-                    .card-icon {
-                        font-size: 1.75rem;
-                        img{
-                            max-width: 60px;
-                            max-height: 60px;
+
+            .cards-container {
+                .card {
+                    .icon-container {
+                        width: 60px;
+                        height: 60px;
+
+                        .card-icon {
+                            font-size: 1.75rem;
+                            width: 1.75rem;
+                            height: 1.75rem;
                         }
                     }
                 }
             }
         }
-    }
     }
 }
