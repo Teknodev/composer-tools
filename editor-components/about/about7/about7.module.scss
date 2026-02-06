@@ -51,10 +51,9 @@
             .top-subtitle {
                 justify-content: center;
                 transform: translateX(0);
-                color: var(--composer-font-color-primary);
 
                 &.with-image {
-                    color: var(--composer-font-color-white);
+                    color: black;
                     background: transparent;
 
                     &::before {

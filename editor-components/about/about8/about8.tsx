@@ -141,9 +141,9 @@ class About8 extends BaseAbout {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasImages ? this.decorateCSS("no-image") : ""}`}>
           {(subtitleText || hasTitle || descriptionExist) && (
-            <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS(alignment)}`}>
               {subtitleText && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
@@ -163,7 +163,7 @@ class About8 extends BaseAbout {
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : ""}`}
+            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS("no-image")}`}
           >
             {hasImages && (
               <div className={this.decorateCSS("images-section")}>
@@ -193,7 +193,7 @@ class About8 extends BaseAbout {
             )}
 
             {(hasTexts || buttons.length > 0) && (
-              <div className={this.decorateCSS("content-section")}>
+              <div className={`${this.decorateCSS("content-section")} ${hasImages ? this.decorateCSS("left") : this.decorateCSS(alignment)}`}>
                 {hasTexts && (
                   <div className={this.decorateCSS("texts-wrapper")}>
                     {validTexts.map((text, index) => (
