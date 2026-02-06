@@ -101,7 +101,7 @@
       .max-content {
         .header {
           .continents-wrapper {
-            min-width: 400px;
+            min-width: 800px;
             padding: var(--composer-gap-md);
 
             .continent-name {
@@ -160,6 +160,8 @@
     }
 
     .map-container {
+      margin-top: var(--composer-gap-lg);
+
       .map {
         height: 350px;
       }
