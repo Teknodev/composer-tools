@@ -54,7 +54,7 @@ class Download2 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -92,7 +92,7 @@ class Download2 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -130,7 +130,7 @@ class Download2 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon","image"],
               },
               value: {
                 type: "icon",
@@ -192,7 +192,7 @@ class Download2 extends BaseDownload {
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("cards-container")}>
-            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards")}>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards")}>
               {this.castToObject<any[]>("cards").map((card: Card, index: number) => {
                 const deviceExist = this.castToString(card.device);
                 const platformExist = this.castToString(card.platform);
@@ -214,7 +214,7 @@ class Download2 extends BaseDownload {
 
                     {platformExist && <Base.H2 className={this.decorateCSS("platform")}>{card.platform}</Base.H2>}
 
-                    {descriptionExist && <Base.H4 className={this.decorateCSS("card-description")}>{card.description}</Base.H4>}
+                    {descriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
 
                    {buttonExist && 
                     <div className={this.decorateCSS("button-container")}>

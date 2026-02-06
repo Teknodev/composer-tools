@@ -24,17 +24,17 @@ class Download1 extends BaseDownload {
     });
 
     this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Eleifend morbi velit porttitor sed ipsum imperdiet ac ullamcorper fusce.",
-    });
-
-    this.addProp({
       type: "boolean",
       key: "line",
       displayer: "Enable Line",
       value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Eleifend morbi velit porttitor sed ipsum imperdiet ac ullamcorper fusce.",
     });
 
     this.addProp({
@@ -69,8 +69,18 @@ class Download1 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${line && this.decorateCSS("line")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {subtitleExist && (
+                <div className={this.decorateCSS("subtitle-wrapper")}>
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+                </div>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={`${this.decorateCSS("title")}`}>
+                  {this.getPropValue("title")}
+                  <div className={this.decorateCSS("title-underline")}></div>
+                </Base.SectionTitle>
+              )}
+              {line && <div className={this.decorateCSS("title-line")}></div>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
             </Base.VerticalContent>
           )}

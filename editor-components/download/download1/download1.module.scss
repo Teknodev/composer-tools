@@ -7,20 +7,35 @@
     gap: var(--composer-gap-lg);
 
     .header {
-      align-items: center;
+      align-items: flex-start;
+
+      .subtitle-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: var(--composer-gap-sm);
+      }
+
       .subtitle {
         text-align: center;
         transform: translateX(0);
-        &::before{
+
+        &::before {
           display: none;
         }
       }
+
       .title {
-        &.line{
+        text-align: center;
+        margin: 0 0 var(--composer-gap-xs) 0;
+
+        &.title-variant {
           position: relative;
           margin-bottom: var(--composer-gap-lg);
           text-align: center;
-          &::after {
+
+          .title-underline {
             content: "";
             position: absolute;
             bottom: calc(-1 * var(--composer-gap-md));
@@ -31,8 +46,24 @@
           }
         }
       }
+
+      .title-line {
+        width: 100px;
+        border-bottom: var(--composer-gap-xs) solid;
+        margin: var(--composer-gap-md) auto var(--composer-gap-md);
+        margin-bottom: 0px;
+        color: var(--composer-primary-color);
+      }
+
+      .subtitle,
+      .title,
+      .description {
+        margin: 0;
+      }
+
       .description {
         text-align: center;
+        margin-top: var(--composer-gap-md);
       }
     }
 
@@ -46,20 +77,22 @@
       .button-wrapper {
         .image-container {
           .image {
-            content: "";
-            width: 200px;
-            height: 70px;
+            width: 150px;
+            height: 50px;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
         }
+
         .button {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-          .button-text{
+
+
+          .button-text {
             content: "";
           }
-          .icon{
-            font-size:1.5rem;
+
+          .icon {
+            font-size: 1.5rem;
           }
         }
       }
@@ -72,12 +105,9 @@
     .max-content {
       .box {
         justify-content: space-between;
+
         .button-wrapper {
           .button {
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-            .button-text {              
-              content: "";
-            }
             .icon {
               font-size: 1rem;
             }
@@ -92,16 +122,24 @@
   .container {
     .max-content {
       gap: var(--composer-gap-sm);
-      .header{
+
+      .header {
         align-items: center !important;
       }
+
       .box {
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
+        flex-wrap: wrap;
+
         .button-wrapper {
-          width: 100%;
+          width: auto;
           display: flex;
           justify-content: center;
+
+          .button {
+            content: "";
+          }
         }
       }
     }
