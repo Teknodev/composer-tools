@@ -184,8 +184,8 @@ class Feature49 extends BaseFeature {
 
         this.addProp({
             type: "boolean",
-            key: "iconBackgroundEnabled",
-            displayer: "Icon Background Enabled",
+            key: "iconBackground",
+            displayer: "Icon Background",
             additionalParams: {
                 availableTypes: ["icon", "image"]
             },
@@ -243,11 +243,11 @@ class Feature49 extends BaseFeature {
                                 const titleExist = !!this.castToString(card.title);
                                 const descExist = !!this.castToString(card.description);
                                 const iconExist = !!card.icon;
-                                const iconBackgroundEnabled = this.getPropValue("iconBackgroundEnabled");
+                                const iconBackground = this.getPropValue("iconBackground");
                                 return (iconExist || titleExist || descExist) && (
                                     <div key={index} className={this.decorateCSS("card")}>
                                         {iconExist && (
-                                            <div className={`${this.decorateCSS("icon-container")} ${iconBackgroundEnabled ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
+                                            <div className={`${this.decorateCSS("icon-container")} ${iconBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
                                                 <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
                                             </div>
                                         )}
