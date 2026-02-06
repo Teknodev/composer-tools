@@ -255,6 +255,7 @@ class Slider6 extends BaseSlider {
   }
   render() {
     const sliderItems = this.castToObject<SliderItem[]>("header");
+    const button = this.castToObject<INPUTS.CastedButton>("button");
     const isMultipleItems = sliderItems.length > 1;
     const isOverlayActive = this.getPropValue("overlay");
     const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
@@ -304,28 +305,31 @@ class Slider6 extends BaseSlider {
         this.setComponentState("activeSlide", next);
         this.setComponentState("nextSlide", next + 1 > sliderItems.length - 1 ? 0 : next + 1);
       },
+
     };
 
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const button = this.castToObject<INPUTS.CastedButton>("button");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} 
+        ${!(this.getPropValue("subtitle") || this.getPropValue("title") || this.getPropValue("description") || (button && this.castToString(button.text))) && this.decorateCSS("no-header")}`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || (button && this.castToString(button.text))) && (
+          {(this.getPropValue("subtitle") || this.getPropValue("title") || this.getPropValue("description") || (button && this.castToString(button.text))) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.castToString(subtitle) && (
+              {this.getPropValue("subtitle") && (
                 <Base.SectionSubTitle
                   className={`${this.decorateCSS("subtitle")} 
-                ${!this.castToString(title) && this.decorateCSS("no-title")}`}
+                ${!this.getPropValue("title") && this.decorateCSS("no-title")}`}
                 >
                   {subtitle}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
+              {this.getPropValue("title") && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
+              {this.getPropValue("description") && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("slider-parent")}>

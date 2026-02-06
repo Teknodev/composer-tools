@@ -1,9 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px 50px;
+  padding: 80px 0px 80px 0px;
   width: 100%;
-  background-color: var(--composer-html-background);
 
   .max-content {
     display: flex;
@@ -13,6 +12,7 @@
     align-items: center;
     margin: auto;
     width: 100%;
+    overflow: visible;
 
     .header {
       width: 100%;
@@ -45,11 +45,10 @@
     }
 
     .slider-parent {
-      width: calc(100% + 100px);
+      width: 100%;
       margin: auto;
-      margin-bottom: var(--composer-gap-md);
-      margin-left: -50px;
-      margin-right: -50px;
+      margin-bottom: 0;
+      overflow: visible;
 
       .carousel {
         width: 100%;
@@ -177,26 +176,28 @@
         :global(.slick-prev),
         :global(.slick-next) {
           position: absolute;
-          display: block;
-          height: 20px;
-          width: 20px;
-          line-height: 0px;
-          font-size: 0px;
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          height: 48px;
+          width: 48px;
           cursor: pointer;
           background: transparent;
           color: transparent;
           top: auto;
-          bottom: -40px;
+          bottom: -98px;
           padding: 0;
           border: none;
           outline: none;
           z-index: 10;
+          transition: transform 0.3s ease;
 
           &:hover,
           &:focus {
             outline: none;
-            background: transparent;
+            background: rgba(var(--composer-font-color-primary-rgb), 0.1);
             color: transparent;
+            border-radius: 50%;
 
             &:before {
               opacity: 1;
@@ -205,70 +206,53 @@
 
           &:before {
             font-family: "slick";
-            font-size: 20px;
+            font-size: 32px;
             line-height: 1;
             color: var(--composer-font-color-primary);
             opacity: 0.75;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
           }
         }
 
         :global(.slick-prev) {
-          left: 20px;
-
-          [dir="rtl"] & {
-            left: auto;
-            right: 20px;
-          }
+          left: 0;
 
           &:before {
             content: "←";
-
-            [dir="rtl"] & {
-              content: "→";
-            }
           }
         }
 
         :global(.slick-next) {
-          right: 20px;
-
-          [dir="rtl"] & {
-            left: 20px;
-            right: auto;
-          }
+          right: 0;
 
           &:before {
             content: "→";
-
-            [dir="rtl"] & {
-              content: "←";
-            }
           }
         }
 
         :global(.slick-dots) {
-          position: relative;
+          position: absolute;
+          bottom: -80px;
+          padding-bottom: 10px;
           display: flex !important;
           justify-content: center;
           align-items: center;
           list-style: none;
-          padding: 0;
-          margin: var(--composer-gap-md) 0 0 0;
           width: 100%;
+          pointer-events: none;
 
           :global(li) {
-            height: 10px;
-            margin: 0 var(--composer-gap-xs);
+            margin: 0 8px;
+            pointer-events: auto;
 
             :global(button) {
-              height: inherit;
-              width: 100%;
               padding: 0;
               border: none;
               background: transparent;
               font-size: 0;
+              width: 12px;
+              height: 12px;
+              display: flex;
+              align-items: center;
 
               &::before {
                 content: "";
@@ -276,68 +260,141 @@
                 background-color: var(--composer-primary-color);
                 height: 2px;
                 width: 100%;
+                opacity: 0.3;
+                transition: opacity 0.3s ease;
               }
             }
 
-            &.slick-active {
-              :global(button) {
-                &::before {
-                  background-color: var(--composer-primary-color);
-                  opacity: 1;
-                }
-              }
+            &.slick-active :global(button)::before {
+              opacity: 1;
+              height: 3px;
             }
           }
         }
-      }
 
-      .no-header {
+        .carousel--multipleCards {
+          width: auto;
+        }
+      }
+    }
+
+    &.no-header {
+      padding-top: 20px;
+
+      .header {
         margin-bottom: 0;
+        display: none;
       }
+    }
 
-      .single-item {
-        :global(.slick-list) {
-          :global(.slick-track) {
-            margin-left: unset !important;
-          }
+    .dots-container {
+      display: none;
+    }
+
+    .section-button {
+      width: fit-content;
+      margin: -10px auto 0 auto !important;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+    }
+
+
+
+    .single-item {
+      :global(.slick-list) {
+        :global(.slick-track) {
+          margin-left: unset !important;
         }
       }
-    }
-
-    .button,
-    .button-text {
-      content: "";
-    }
-
-    .icon {
-      font-size: 1.5rem;
-      width: 1.5rem;
-      height: 1.5rem;
     }
   }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
+  .button,
+  .button-text {
+    content: "";
+  }
+
+  .icon {
+    font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+
+  @container (max-width: #{$composer-tablet-width}) {
     .max-content {
       .icon {
         font-size: 1.25rem;
         width: 1.25rem;
         height: 1.25rem;
       }
+
+      .slider-parent .carousel {
+
+        :global(.slick-prev),
+        :global(.slick-next) {
+          height: 36px;
+          width: 36px;
+
+          &:before {
+            font-size: 24px;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: calc(50% - 100px);
+        }
+
+        :global(.slick-next) {
+          right: calc(50% - 100px);
+        }
+      }
     }
   }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .slider-parent .carousel {
+
+        :global(.slick-prev),
+        :global(.slick-next) {
+          height: 36px;
+          width: 36px;
+          bottom: -72px;
+
+          &:before {
+            font-size: 24px;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: 0;
+        }
+
+        :global(.slick-next) {
+          right: 0;
+        }
+
+        :global(.slick-dots) {
+          bottom: -60px;
+        }
+      }
+    }
+  }
+
+  @container (max-width: #{$composer-phone-width}) {
+    .container {
+      padding: 40px 20px 20px 20px;
+    }
+
     .max-content {
       .slider-parent {
         width: 100%;
-        margin-left: 0;
-        margin-right: 0;
 
         .carousel {
+          margin-bottom: 80px;
+
           :global(.slick-list) {
             :global(.slick-track) {
               gap: 0;
@@ -370,7 +427,29 @@
 
           :global(.slick-prev),
           :global(.slick-next) {
-            display: none !important;
+            height: 32px;
+            width: 32px;
+            bottom: -64px;
+            z-index: 20;
+
+            &:before {
+              font-size: 20px;
+            }
+          }
+
+          :global(.slick-prev) {
+            left: -10px;
+          }
+
+          :global(.slick-next) {
+            right: -10px;
+          }
+
+          :global(.slick-dots) {
+            bottom: -54px;
+            width: calc(100% - 120px);
+            margin: 0 60px;
+            z-index: 10;
           }
         }
       }

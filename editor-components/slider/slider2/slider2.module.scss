@@ -240,7 +240,7 @@
       }
 
       @container (max-width: #{$composer-phone-width}) {
-        height: calc(45vh - var(--composer-gap-md));
+        height: calc(40vh - var(--composer-gap-md));
         top: 55%;
       }
 

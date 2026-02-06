@@ -1,4 +1,3 @@
-import * as React from "react";
 import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -296,7 +295,10 @@ class Slider11 extends BaseSlider {
     const noMediaAtAll = sliderItems.every(item => !(item.media as any)?.url);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} 
+        ${!this.castToString(subtitle) && !titleExist && !descriptionExist && this.decorateCSS("no-header")}`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(this.castToString(subtitle) || titleExist || descriptionExist || buttons.length > 0) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
@@ -385,7 +387,7 @@ class Slider11 extends BaseSlider {
                         {item.description}
                       </Base.P>
                     )}
-                    {this.castToString(item.button.text) && (
+                    {item.button && this.castToString(item.button.text) && (
                       <ComposerLink path={item.button.url}>
                         <div className={`${this.decorateCSS("link-wrapper")} ${this.decorateCSS("left")}`}>
                           <Base.Button buttonType={item.button.type} className={this.decorateCSS("tab-button")}>

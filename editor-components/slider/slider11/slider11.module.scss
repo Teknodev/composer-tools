@@ -353,4 +353,8 @@
       }
     }
   }
+
+  &.no-header {
+    padding-top: 0 !important;
+  }
 }
