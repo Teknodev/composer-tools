@@ -51,6 +51,7 @@
 
                 &.only-button{
                     gap: 0;
+                    padding-top: 0;
                 }
 
                 .card-button {
@@ -118,6 +119,10 @@
         .max-content {
             gap: var(--composer-gap-md);
 
+            &.no-text-content {
+                gap: 0;
+            }
+
             .cards-container {
                 .card {
                     .icon-container {
@@ -140,6 +145,10 @@
     .container {
         .max-content {
             gap: var(--composer-gap-md);
+
+            &.no-text-content {
+                gap: 0;
+            }
 
             .cards-container {
                 .card {

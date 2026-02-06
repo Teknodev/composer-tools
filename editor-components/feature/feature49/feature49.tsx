@@ -214,10 +214,11 @@ class Feature49 extends BaseFeature {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const itemCount = this.getPropValue("itemCount");
-        const hasContent = subtitle || title || description || (buttons && buttons.length > 0);
+        const hasTextContent = subtitle || title || description;
+        const hasContent = hasTextContent || (buttons && buttons.length > 0);
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasContent ? this.decorateCSS("no-text-content") : ""}`}>
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasTextContent ? this.decorateCSS("no-text-content") : ""}`}>
                     {hasContent && (
                         <Base.VerticalContent className={this.decorateCSS("text-content")}>
                             {subtitle && (
