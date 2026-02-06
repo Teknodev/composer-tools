@@ -38,6 +38,7 @@
         justify-content: space-between;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         gap: var(--composer-gap-lg);
+        padding-bottom: 80px;
 
         .title-block {
           display: flex;
@@ -110,6 +111,7 @@
       .group-container-center {
         align-items: center;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
+        padding-bottom: 80px !important;
 
         .vertical-content-center {
           width: 100%;
@@ -137,6 +139,7 @@
           justify-content: center;
           align-items: stretch;
           gap: var(--composer-gap-sm);
+          margin-bottom: 0px !important;
 
           .button {
             .button-link {
@@ -167,6 +170,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: 80px 0px !important;
+
     .image-container {
       height: 300px;
     }
@@ -175,10 +180,19 @@
       .page {
         .group-container {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
+
+          .title-block {
+            width: 35%;
+          }
+
+          .description {
+            width: 45%;
+          }
         }
 
         .group-container-center {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
+          padding-bottom: 0px !important;
 
           .button-group {
             justify-content: center;
@@ -200,6 +214,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: 50px 20px !important;
+
     .image-container {
       height: 250px;
     }
@@ -278,6 +294,7 @@
 
         .group-container-center {
           padding: var(--composer-gap-md);
+          padding-bottom: 0px !important;
 
           .button-group {
             display: flex;

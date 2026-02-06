@@ -247,7 +247,7 @@
           .buttons-container {
             .image-container {
               width: 152px;
-              height: 47px;
+              height: 46px;
 
               .card-image {
                 width: 100%;
@@ -282,11 +282,11 @@
           padding: var(--composer-gap-md);
 
           .buttons-container {
-            flex-direction: column;
+            flex-direction: row !important;
 
             .image-container {
               width: 150px;
-              height: 45px;
+              height: 33px;
             }
           }
         }
