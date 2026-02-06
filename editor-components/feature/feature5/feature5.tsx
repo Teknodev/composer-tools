@@ -12,6 +12,13 @@ class Feature5 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Life Hacks",
@@ -228,6 +235,8 @@ class Feature5 extends BaseFeature {
       title: React.JSX.Element;
       link: string;
     }>("row1");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const row2 = this.castToObject<{
       first_item: {
         description: React.JSX.Element;
@@ -307,11 +316,18 @@ class Feature5 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.VerticalContent className={this.decorateCSS("header")}>
+          {subtitleExist && (
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {subtitle}
+            </Base.SectionSubTitle>
+          )}
           {this.castToString(this.getPropValue("title")) && (
             <Base.SectionTitle className={this.decorateCSS("section-title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
           )}
+          </Base.VerticalContent>
           {isRow1Visible && (
             <ComposerLink path={row1.link} isFullWidth={true}>
               <div className={this.decorateCSS("row1")}>

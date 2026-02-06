@@ -22,23 +22,19 @@ as *;
       .top-container {
         display: flex;
         gap: var(--composer-gap-md);
-        align-items: stretch;
+        align-items: center;
 
-        &.with-image {
-
-          .subtitle,
-          .title {
-            text-align: left !important;
-          }
-        }
-
-        .title {
+        .title-container {
           flex: 1;
           width: 100%;
-          margin: 0;
           text-align: left;
           display: flex;
           align-items: center;
+
+          .subtitle,
+          .title {
+            content: "";
+          }
         }
 
         .image-1,
@@ -57,6 +53,14 @@ as *;
             height: 100%;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
+          }
+        }
+
+        &.with-image {
+
+          .subtitle,
+          .title {
+            text-align: left !important;
           }
         }
       }
@@ -89,12 +93,24 @@ as *;
 
 @container (max-width: #{$composer-phone-width}) {
   .side-container {
+    gap: 0px !important;
+
     .top-container {
       flex-direction: column;
+      gap: var(--composer-gap-sm);
+
+      .image-1,
+      .image-2 {
+        width: 100%;
+        max-width: 100%;
+        min-height: 150px;
+        flex: none;
+      }
     }
 
     .bottom-container {
       flex-direction: column;
+      gap: var(--composer-gap-sm);
 
       .text-1 {
         margin-bottom: 1rem;

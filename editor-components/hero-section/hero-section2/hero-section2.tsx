@@ -1,14 +1,14 @@
 import * as React from "react";
 import styles from "./hero-section2.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItemType = {
-  image: string;
+  image: TypeMediaInputValue;
+  logo: TypeMediaInputValue;
   category: React.JSX.Element;
   title: React.JSX.Element;
   author: React.JSX.Element;
@@ -19,6 +19,10 @@ type SliderItemType = {
 };
 
 class HeroSection2 extends BaseHeroSection {
+    componentDidMount() {
+      // İlk açılışta activeDot'ın görünmesi için
+      this.setComponentState("activeTab", 0);
+    }
   constructor(props?: any) {
     super(props, styles);
 
@@ -33,11 +37,26 @@ class HeroSection2 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+              displayer: "Background Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710cfaa97fe08002c76ce44?alt=media",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "string",
@@ -61,7 +80,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "boolean",
               key: "dot",
               value: true,
-              displayer: "Dot Enabled",
+              displayer: "Dot",
             },
             {
               type: "string",
@@ -85,11 +104,26 @@ class HeroSection2 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d06f97fe08002c76cf1c?alt=media",
+              displayer: "Background Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d06f97fe08002c76cf1c?alt=media",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "string",
@@ -113,7 +147,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "boolean",
               key: "dot",
               value: true,
-              displayer: "Dot Enabled",
+              displayer: "Dot",
             },
             {
               type: "string",
@@ -137,11 +171,26 @@ class HeroSection2 extends BaseHeroSection {
           key: "item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Background Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
+              displayer: "Background Media",
+              additionalParams: { availableTypes: ["image", "video"] },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6710d0b497fe08002c76cf66?alt=media",
+              },
+            },
+            {
+              type: "media",
+              key: "logo",
+              displayer: "Logo",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
             },
             {
               type: "string",
@@ -165,7 +214,7 @@ class HeroSection2 extends BaseHeroSection {
               type: "boolean",
               key: "dot",
               value: true,
-              displayer: "Dot Enabled",
+              displayer: "Dot",
             },
             {
               type: "string",
@@ -185,6 +234,20 @@ class HeroSection2 extends BaseHeroSection {
         },
       ],
     });
+    
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -192,15 +255,27 @@ class HeroSection2 extends BaseHeroSection {
   }
 
   render() {
+    const autoplay = this.getPropValue("autoplay");
     const settings = {
       dots: true,
       infinite: true,
       speed: 500,
-      autoplay: false,
+      autoplay: autoplay,
       autoplaySpeed: 5000,
       slidesToShow: 1,
       slidesToScroll: 1,
-      dotsClass: `slick-dots ${this.decorateCSS("customDots")}`,
+      customPaging: (i: number) => {
+        const isActive = this.getComponentState("activeTab") === i;
+        return (
+          <div
+            className={`${this.decorateCSS("dot")}${isActive ? ' ' + this.decorateCSS("activeDot") : ''}`}
+          ></div>
+        );
+      },
+      dotsClass: `slick-dots ${this.decorateCSS("dots")}`,
+      beforeChange: (current: number, next: number) => {
+        this.setComponentState("activeTab", next);
+      },
     };
 
     const sliderItems = this.castToObject<SliderItemType[]>("slider");
@@ -227,54 +302,73 @@ class HeroSection2 extends BaseHeroSection {
                     isTitleExist ||
                     isCategoryExist;
 
+                  const imageWithSettings = item.image?.type === "video" ? {
+                    ...item.image,
+                    settings: {
+                      autoplay: true,
+                      loop: true,
+                      muted: true,
+                      controls: false
+                    }
+                  } : item.image;
+
                   return (
                     <div className={this.decorateCSS("slider-item")} key={idx}>
-                      <div
-                        className={this.decorateCSS("slider-item-inner-container")}
-                        style={{
-                          backgroundImage: `url("${item.image}")`,
-                        }}
-                      >
+                      <div className={this.decorateCSS("slider-item-container")}>
+                        {item.image && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
+                          <Base.Media 
+                            value={imageWithSettings} 
+                            className={this.decorateCSS("background-image")}
+                          />
+                        )}
+                        {this.getPropValue("overlay") && item.image && (item.image.type === "image" || item.image.type === "video") && item.image.url && (
+                          <div className={this.decorateCSS("overlay")} />
+                        )}
                         <div className={this.decorateCSS("content-max-width")}>
                           {cardValues && (
                             <div className={this.decorateCSS("card")}>
+                              {(item.logo?.url || item.logo?.name) && (
+                                <Base.Media 
+                                  value={item.logo} 
+                                  className={this.decorateCSS("logo")} 
+                                />
+                              )}
                               {isCategoryExist && (
-                                <h3 className={this.decorateCSS("category")}>{item.category}</h3>
+                                <Base.P className={this.decorateCSS("category")}>{item.category}</Base.P>
                               )}
                               {isTitleExist && (
-                                <h1 className={this.decorateCSS("title")}>{item.title}</h1>
+                                <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>
                               )}
                               {(isAuthorExist || isDateExist) && (
                                 <div className={this.decorateCSS("date-author")}>
                                   {isAuthorExist && (
-                                    <span className={this.decorateCSS("author")}>
+                                    <Base.P className={this.decorateCSS("author")}>
                                       {item.author}
-                                    </span>
+                                    </Base.P>
                                   )}
                                   {isAuthorExist && isDateExist && item.dot && (
                                     <span className={this.decorateCSS("dot")}>{item.dot}</span>
                                   )}
                                   {isDateExist && (
-                                    <span className={this.decorateCSS("date")}>{item.date}</span>
+                                    <Base.P className={this.decorateCSS("date")}>{item.date}</Base.P>
                                   )}
                                 </div>
                               )}
                               {isDescExist && (
-                                <p className={this.decorateCSS("description")}>
+                                <Base.P className={this.decorateCSS("description")}>
                                   {item.description}
-                                </p>
+                                </Base.P>
                               )}
                               {isLinkTextExist && (
-                                <div className={this.decorateCSS("link-container")}>
+                                <div className={this.decorateCSS("button-container")}>
                                   <ComposerLink path={item.button.url}>
-                                    <Base.Button buttonType={item.button.type} className={this.decorateCSS("link-text")}>
-                                      {item.button.text}
-                                      {item.button.icon && (
-                                        <Base.Icon
-                                          name={item.button.icon}
-                                          propsIcon={{ className: this.decorateCSS("icon") }}
-                                        />
-                                      )}
+                                    <Base.Button buttonType={item.button.type} className={this.decorateCSS("button")}>
+                                      <Base.P className={this.decorateCSS("button-text")}>{item.button.text}</Base.P>
+                                      {item.button.icon && 
+                                      <Base.Media
+                                        value={typeof item.button.icon === "string" ? { type: "icon", name: item.button.icon } : item.button.icon}
+                                        className={this.decorateCSS("button-icon")}
+                                      />}
                                     </Base.Button>
                                   </ComposerLink>
                                 </div>

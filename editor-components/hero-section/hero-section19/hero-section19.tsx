@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section19.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -21,26 +21,43 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
+          displayer: "Subtitle",
+          key: "subtitle",
+          value: "MATTIS LAOREET SAPIEN",
+        },
+        {
+          type: "string",
           displayer: "Title",
           key: "title",
-          value: "MATTIS LAOREET SAPIEN",
+          value: "Porta Consectetur Imperdiet Frigilla",
         },
         {
           type: "string",
           displayer: "Description",
           key: "description",
-          value: "Porta Consectetur Imperdiet Frigilla",
+          value: "",
         },
         {
-          type: "image",
-          displayer: "Image",
+          type: "media",
+          displayer: "Media",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f79?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f79?alt=media&timestamp=1719483639150",
+          },
         },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
+        },
+       INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button1", "Button", "READ MORE", "", null, null, "Primary"));
 
     this.addProp({
       type: "object",
@@ -55,26 +72,43 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
+          displayer: "Subtitle",
+          key: "subtitle",
+          value: "SEMPER",
+        },
+        {
+          type: "string",
           displayer: "Title",
           key: "title",
-          value: "SEMPER",
+          value: "Feugiat Scelerisque Imperdiet",
         },
         {
           type: "string",
           displayer: "Description",
           key: "description",
-          value: "Feugiat Scelerisque Imperdiet",
+          value: "",
         },
         {
-          type: "image",
-          displayer: "Image",
+          type: "media",
+          displayer: "Media",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f78?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f78?alt=media&timestamp=1719483639150",
+          },
         },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
+        },
+        INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button2", "Button", "READ MORE", "", null, null, "Primary"));
 
     this.addProp({
       type: "object",
@@ -89,27 +123,43 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
+          displayer: "Subtitle",
+          key: "subtitle",
+          value: "SEMPER",
+        },
+        {
+          type: "string",
           displayer: "Title",
           key: "title",
-          value: "SEMPER",
+          value: "Adipiscing Sodales",
         },
         {
           type: "string",
           displayer: "Description",
           key: "description",
-          value: "Adipiscing Sodales",
+          value: "",
         },
-
         {
-          type: "image",
-          displayer: "Image",
+          type: "media",
+          displayer: "Media",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7a?alt=media&timestamp=1719483639150",
+          },
         },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
+        },
+       INPUTS.BUTTON("button", "Button", "READ MORE", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button3", "Button", "READ MORE", "", null, null, "Primary"));
 
     this.addProp({
       type: "object",
@@ -124,6 +174,12 @@ class HeroSection19 extends BaseHeroSection {
         },
         {
           type: "string",
+          displayer: "Subtitle",
+          key: "subtitle",
+          value: "",
+        },
+        {
+          type: "string",
           displayer: "Title",
           key: "title",
           value: "",
@@ -134,17 +190,33 @@ class HeroSection19 extends BaseHeroSection {
           key: "description",
           value: "",
         },
-
         {
-          type: "image",
-          displayer: "Image",
+          type: "media",
+          displayer: "Media",
           key: "image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7b?alt=media&timestamp=1719483639150",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661958fbd2970002c625f7b?alt=media&timestamp=1719483639150",
+          },
         },
+        {
+          type: "boolean",
+          displayer: "Overlay",
+          key: "overlay",
+          value: false,
+        },
+       INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
       ],
     });
-
-    this.addProp(INPUTS.BUTTON("button4", "Button", "", "", null, null, "Primary"));
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -157,31 +229,28 @@ class HeroSection19 extends BaseHeroSection {
     const itemBottomLeft = this.castToObject<any>("item-right-bottom-left");
     const itemBottomRight = this.castToObject<any>("item-right-bottom-right");
 
-    const button1: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button1");
-    const button2: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button2");
-    const button3: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button3");
-    const button4: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button4");
+    const getButton = (parentButton) => ({
+      text: this.getPropValue("text", { parent_object: parentButton }),
+      type: this.getPropValue("type", { parent_object: parentButton }),
+      url: this.getPropValue("url", { parent_object: parentButton }),
+    });
+
+    const buttonLeft = getButton(itemLeft.button);
+    const buttonRightTop = getButton(itemRightTop.button);
+    const buttonBottomLeft = getButton(itemBottomLeft.button);
+    const buttonBottomRight = getButton(itemBottomRight.button);
 
     const items = [
-      { name: "Left", data: itemLeft },
-      { name: "RightTop", data: itemRightTop },
-      { name: "BottomLeft", data: itemBottomLeft },
-      { name: "BottomRight", data: itemBottomRight },
+      { name: "Left", data: itemLeft, button: buttonLeft },
+      { name: "RightTop", data: itemRightTop, button: buttonRightTop },
+      { name: "BottomLeft", data: itemBottomLeft, button: buttonBottomLeft },
+      { name: "BottomRight", data: itemBottomRight, button: buttonBottomRight },
     ];
 
     let visibleContents: any = {};
 
-    items.forEach(({ name, data }) => {
-      let isVisible = Boolean(this.castToString(data.title) || this.castToString(data.description));
-
-      const buttons = ["button1", "button2", "button3", "button4"];
-      buttons.forEach((buttonName) => {
-        const button = this.castToObject<INPUTS.CastedButton>(buttonName);
-        if (this.castToString(button.text)) {
-          isVisible = true;
-        }
-      });
-
+    items.forEach(({ name, data, button }) => {
+      let isVisible = Boolean(this.castToString(data.subtitle) || this.castToString(data.title) || this.castToString(data.description) || this.castToString(button.text));
       visibleContents[`isContentVisible${name}`] = isVisible;
     });
 
@@ -190,25 +259,29 @@ class HeroSection19 extends BaseHeroSection {
     const isContentVisibleBottomLeft = visibleContents["isContentVisibleBottomLeft"];
     const isContentVisibleBottomRight = visibleContents["isContentVisibleBottomRight"];
 
+    const animationActive = this.getPropValue("animation");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${animationActive && this.decorateCSS("has-animation")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {itemLeft.visibility && (
             <div className={this.decorateCSS("left")}>
               <div className={this.decorateCSS("item")}>
                 {itemLeft.image && (
                   <div className={this.decorateCSS("background-image")}>
-                    <img src={itemLeft.image} alt={itemLeft.title} className={this.decorateCSS("image")} />
+                    <Base.Media value={itemLeft.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                    {itemLeft.overlay && <div className={this.decorateCSS("overlay")} />}
                   </div>
                 )}
                 {isContentVisibleLeft && (
                   <div className={`${this.decorateCSS("content")} ${!itemLeft.image && this.decorateCSS("no-bg-img")}`}>
+                    {this.castToString(itemLeft.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemLeft.subtitle}</div>}
                     {this.castToString(itemLeft.title) && <div className={this.decorateCSS("title")}>{itemLeft.title}</div>}
                     {this.castToString(itemLeft.description) && <div className={this.decorateCSS("description")}>{itemLeft.description}</div>}
-                    {this.castToString(button1.text) && (
-                      <ComposerLink path={button1.url}>
-                        <Base.Button buttonType={button1.type} className={this.decorateCSS("button")}>
-                          {button1.text}
+                    {this.castToString(buttonLeft.text) && (
+                      <ComposerLink path={buttonLeft.url}>
+                        <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{buttonLeft.text}</Base.P>
                         </Base.Button>
                       </ComposerLink>
                     )}
@@ -225,17 +298,19 @@ class HeroSection19 extends BaseHeroSection {
                   <div className={this.decorateCSS("item")}>
                     {itemRightTop.image && (
                       <div className={this.decorateCSS("background-image")}>
-                        <img src={itemRightTop.image} alt={itemRightTop.title} className={this.decorateCSS("image")} />
+                        <Base.Media value={itemRightTop.image} className={this.decorateCSS("image")} autoPlay muted loop playsInline />
+                        {itemRightTop.overlay && <div className={this.decorateCSS("overlay")} />}
                       </div>
                     )}
                     {isContentVisibleRightTop && (
                       <div className={`${this.decorateCSS("content")} ${!itemRightTop.image && this.decorateCSS("no-bg-img")}`}>
+                        {this.castToString(itemRightTop.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemRightTop.subtitle}</div>}
                         {this.castToString(itemRightTop.title) && <div className={this.decorateCSS("title")}>{itemRightTop.title}</div>}
                         {this.castToString(itemRightTop.description) && <div className={this.decorateCSS("description")}>{itemRightTop.description}</div>}
-                        {this.castToString(button2.text) && (
-                          <ComposerLink path={button2.url}>
-                            <Base.Button buttonType={button2.type} className={this.decorateCSS("button")}>
-                              {button2.text}
+                        {this.castToString(buttonRightTop.text) && (
+                          <ComposerLink path={buttonRightTop.url}>
+                            <Base.Button buttonType={buttonRightTop.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{buttonRightTop.text}</Base.P>
                             </Base.Button>
                           </ComposerLink>
                         )}
@@ -251,17 +326,19 @@ class HeroSection19 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-left")}`}>
                       {itemBottomLeft.image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <img src={itemBottomLeft.image} alt={itemBottomLeft.title} className={this.decorateCSS("image")} />
+                          <Base.Media value={itemBottomLeft.image} className={this.decorateCSS("image")} autoPlay loop />
+                          {itemBottomLeft.overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
                       {isContentVisibleBottomLeft && (
                         <div className={`${this.decorateCSS("content")} ${!itemBottomLeft.image && this.decorateCSS("no-bg-img")}`}>
+                          {this.castToString(itemBottomLeft.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomLeft.subtitle}</div>}
                           {this.castToString(itemBottomLeft.title) && <div className={this.decorateCSS("title")}>{itemBottomLeft.title}</div>}
                           {this.castToString(itemBottomLeft.description) && <div className={this.decorateCSS("description")}>{itemBottomLeft.description}</div>}
-                          {this.castToString(button3.text) && (
-                            <ComposerLink path={button3.url}>
-                              <Base.Button buttonType={button3.type} className={this.decorateCSS("button")}>
-                                {button3.text}
+                          {this.castToString(buttonBottomLeft.text) && (
+                            <ComposerLink path={buttonBottomLeft.url}>
+                              <Base.Button buttonType={buttonBottomLeft.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{buttonBottomLeft.text}</Base.P>
                               </Base.Button>
                             </ComposerLink>
                           )}
@@ -273,17 +350,19 @@ class HeroSection19 extends BaseHeroSection {
                     <div className={`${this.decorateCSS("item")} ${this.decorateCSS("bottom-right")}`}>
                       {itemBottomRight.image && (
                         <div className={this.decorateCSS("background-image")}>
-                          <img src={itemBottomRight.image} alt={itemBottomRight.title} className={this.decorateCSS("image")} />
+                          <Base.Media value={itemBottomRight.image} className={this.decorateCSS("image")} autoPlay loop />
+                          {itemBottomRight.overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       )}
                       {isContentVisibleBottomRight && (
                         <div className={`${this.decorateCSS("content")} ${!itemBottomRight.image && this.decorateCSS("no-bg-img")}`}>
+                          {this.castToString(itemBottomRight.subtitle) && <div className={this.decorateCSS("subtitle")}>{itemBottomRight.subtitle}</div>}
                           {this.castToString(itemBottomRight.title) && <div className={this.decorateCSS("title")}>{itemBottomRight.title}</div>}
                           {this.castToString(itemBottomRight.description) && <div className={this.decorateCSS("description")}>{itemBottomRight.description}</div>}
-                          {this.castToString(button4.text) && (
-                            <ComposerLink path={button4.url}>
-                              <Base.Button buttonType={button4.type} className={this.decorateCSS("button")}>
-                                {button4.text}
+                          {this.castToString(buttonBottomRight.text) && (
+                            <ComposerLink path={buttonBottomRight.url}>
+                              <Base.Button buttonType={buttonBottomRight.type} className={this.decorateCSS("button")}>
+                                {buttonBottomRight.text}
                               </Base.Button>
                             </ComposerLink>
                           )}

@@ -24,12 +24,12 @@ class About8 extends BaseAbout {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Our Technologies Encircle the World",
+      value: "Our Technologies Encircle World",
     });
 
     this.addProp({
       type: "string",
-      key: "description",
+      key: "sectionDescription",
       displayer: "Description",
       value: "",
     });
@@ -124,7 +124,6 @@ class About8 extends BaseAbout {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const alignment = Base.getContentAlignment();
 
-
     const hasTitle = !!this.castToString(title);
     const hasButton = buttons.length > 0;
     const validTexts =
@@ -134,17 +133,18 @@ class About8 extends BaseAbout {
     const hasImage2 = !!image2?.url;
     const hasImages = hasImage1 || hasImage2;
 
-    const description = this.getPropValue("description");
+    const description = this.getPropValue("sectionDescription");
     const descriptionExist = this.castToString(description);
+    const subtitleText = this.castToString(subtitle);
 
-    if (!hasTitle && !hasImages && !hasTexts && !hasButton) return null;
+    if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionExist) return null;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(descriptionExist || hasTitle || this.castToString(subtitle)) && (
-            <Base.VerticalContent className={`${this.decorateCSS("title-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
-              {this.castToString(subtitle) && (
+          {(subtitleText || hasTitle || descriptionExist) && (
+            <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
+              {subtitleText && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {subtitle}
                 </Base.SectionSubTitle>
@@ -163,17 +163,13 @@ class About8 extends BaseAbout {
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
-              } ${hasImages ? this.decorateCSS("with-image") : ""}`}
+            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : ""}`}
           >
             {hasImages && (
               <div className={this.decorateCSS("images-section")}>
                 {hasImage1 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
-                      ? this.decorateCSS("overlay")
-                      : ""
-                      }`}
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
                   >
                     <Base.Media
                       value={image1}
@@ -184,10 +180,7 @@ class About8 extends BaseAbout {
                 )}
                 {hasImage2 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
-                      ? this.decorateCSS("overlay")
-                      : ""
-                      }`}
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
                   >
                     <Base.Media
                       value={image2}
@@ -239,4 +232,3 @@ class About8 extends BaseAbout {
 }
 
 export default About8;
-

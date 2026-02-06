@@ -6,6 +6,14 @@ import { BaseAbout } from "composer-tools/editor-components/EditorComponent";
 class About9 extends BaseAbout {
     constructor(props?: any) {
         super(props, styles);
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+
         this.addProp({
             type: "string",
             key: "title",
@@ -64,6 +72,8 @@ class About9 extends BaseAbout {
 
     render() {
         const title = this.getPropValue("title");
+        const subtitle = this.getPropValue("subtitle");
+        const subtitleText = this.castToString(subtitle);
         const image1 = this.getPropValue("image1");
         const image2 = this.getPropValue("image2");
         const text1 = this.getPropValue("text1");
@@ -83,12 +93,19 @@ class About9 extends BaseAbout {
                     {showSideContainer && (
                         <div className={`${this.decorateCSS("side-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
                             {showTopContainer && (
-                                <div className={`${this.decorateCSS("top-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
-                                    {this.castToString(title) && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {title}
-                                        </Base.SectionTitle>
-                                    )}
+                                <div className={this.decorateCSS("top-container")}>
+                                    <Base.VerticalContent className={this.decorateCSS("title-container")}>
+                                        {subtitleText && (
+                                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                                {subtitle}
+                                            </Base.SectionSubTitle>
+                                        )}
+                                        {this.castToString(title) && (
+                                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                                {title}
+                                            </Base.SectionTitle>
+                                        )}
+                                    </Base.VerticalContent>
                                     {image1?.url && (
                                         <div className={this.decorateCSS("image-1")}>
                                             <Base.Media value={image1} className={this.decorateCSS("image")} />
