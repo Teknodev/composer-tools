@@ -20,12 +20,12 @@
 
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: 0px;
 
         .content-container {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-sm);
+          gap: 0px;
         }
 
         .title,
@@ -103,8 +103,9 @@
           display: flex;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
-          min-height: 60px;
+          min-height: 0px !important;
           height: auto;
+          margin-bottom: var(--composer-gap-sm);
 
           .button-image {
             width: 170px;
@@ -193,11 +194,14 @@
 
           .button-group {
             width: 100%;
-            min-height: 80px;
+            min-height: 0px !important;
             height: auto;
+            margin-bottom: var(--composer-gap-sm);
+            align-items: stretch;
 
             .button-image {
               height: 46px;
+              width: 150px;
             }
           }
         }
@@ -227,6 +231,9 @@
           align-items: flex-start;
 
           .button-group {
+            min-height: 0px !important;
+            margin-bottom: var(--composer-gap-sm);
+
             .button-element {
               height: 40px;
             }
