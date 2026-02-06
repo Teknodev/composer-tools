@@ -86,7 +86,7 @@ class Feature46 extends BaseFeature {
                             },
                             value: {
                                 type: "image",
-                                url: "https://ownit-images.s3.us-east-1.amazonaws.com/william-hook-9e9PD9blAto-unsplash-1070x713.jpg"
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859a132631ba002c00804f?alt=media"
                             }
                         },
                         {
@@ -137,7 +137,7 @@ class Feature46 extends BaseFeature {
                             },
                             value: {
                                 type: "image",
-                                url: "https://ownit-images.s3.us-east-1.amazonaws.com/windows-JW-T2BH5k5E-unsplash-1070x713.jpg"
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859a782631ba002c0080a5?alt=media"
                             }
                         },
                         {
@@ -188,7 +188,7 @@ class Feature46 extends BaseFeature {
                             },
                             value: {
                                 type: "image",
-                                url: "https://ownit-images.s3.us-east-1.amazonaws.com/balazs-ketyi-sScmok4Iq1o-unsplash-1070x803.jpg"
+                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69859aaf2631ba002c0080f9?alt=media"
                             }
                         },
                         {
