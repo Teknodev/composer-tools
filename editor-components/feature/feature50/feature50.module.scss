@@ -40,17 +40,24 @@
           text-align: left;
         }
 
-        .media-wrapper {
-          width: 100%;
+        .card-content {
           display: flex;
-          justify-content: flex-end;
-          align-items: flex-end;
-          margin-top: auto;
-          
-          .media {
-            font-size: 8rem;
-            width: auto;
-            height: auto;
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: space-between;
+          width: 100%;
+          gap: var(--composer-gap-md);
+
+          .media-wrapper {
+            display: flex;
+            margin-left: auto;
+            
+            .media {
+              font-size: 8rem;
+              width: 8rem;
+              height: 8rem;
+              object-fit: contain;
+            }
           }
         }
 
@@ -64,7 +71,8 @@
 
           .card-button {
             content: "";
-
+            color: var(--composer-html-background);
+            border-bottom-color: var(--composer-html-background);
             .card-button-text {
               content: "";
             }
@@ -87,6 +95,19 @@
         .primary-button-text {
           content: "";
         }
+      }
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .cards-grid {
+        gap: var(--composer-gap-md);
       }
     }
   }

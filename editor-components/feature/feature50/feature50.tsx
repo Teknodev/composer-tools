@@ -92,7 +92,9 @@ class Feature50 extends BaseFeature {
                             type: "array",
                             key: "buttons",
                             displayer: "Buttons",
-                            value: []
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
+                            ]
                         }
                     ]
                 },
@@ -135,7 +137,9 @@ class Feature50 extends BaseFeature {
                             type: "array",
                             key: "buttons",
                             displayer: "Buttons",
-                            value: []
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
+                            ]
                         }
                     ]
                 },
@@ -178,7 +182,9 @@ class Feature50 extends BaseFeature {
                             type: "array",
                             key: "buttons",
                             displayer: "Buttons",
-                            value: []
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
+                            ]
                         }
                     ]
                 },
@@ -221,7 +227,9 @@ class Feature50 extends BaseFeature {
                             type: "array",
                             key: "buttons",
                             displayer: "Buttons",
-                            value: []
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Link")
+                            ]
                         }
                     ]
                 }
@@ -239,7 +247,9 @@ class Feature50 extends BaseFeature {
             type: "array",
             key: "buttons",
             displayer: "Buttons",
-            value: []
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+            ]
         });
     }
 
@@ -300,20 +310,22 @@ class Feature50 extends BaseFeature {
                                     </Base.H4>
                                 )}
 
-                                {card.media && (
-                                    <div className={this.decorateCSS("media-wrapper")}>
-                                        <Base.Media 
-                                            value={card.media}
-                                            className={this.decorateCSS("media")}
-                                        />
-                                    </div>
-                                )}
+                                <div className={this.decorateCSS("card-content")}>
+                                    {this.castToString(card.description) && (
+                                        <Base.P className={this.decorateCSS("card-description")}>
+                                            {card.description}
+                                        </Base.P>
+                                    )}
 
-                                {this.castToString(card.description) && (
-                                    <Base.P className={this.decorateCSS("card-description")}>
-                                        {card.description}
-                                    </Base.P>
-                                )}
+                                    {card.media && (
+                                        <div className={this.decorateCSS("media-wrapper")}>
+                                            <Base.Media 
+                                                value={card.media}
+                                                className={this.decorateCSS("media")}
+                                            />
+                                        </div>
+                                    )}
+                                </div>
 
                                 {card.buttons && card.buttons.length > 0 && (
                                     <div className={this.decorateCSS("card-buttons")}>
