@@ -44,7 +44,7 @@ class Feature37 extends BaseFeature {
         this.addProp({
             type: "object",
             key: "background",
-            displayer: "Background",
+            displayer: "Media",
             value: [
                 {
                     type: "media",
