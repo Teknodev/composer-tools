@@ -185,7 +185,7 @@ class Feature42 extends BaseFeature {
             key: "mobileIcon",
             displayer: "Mobile Icon",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
             },
             value: {
                 type: "icon",
@@ -289,7 +289,10 @@ class Feature42 extends BaseFeature {
                                             </Base.H3>
                                             <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
                                                 {mobileIcon && (
-                                                    <Base.Media value={mobileIcon} />
+                                                    <Base.Media
+                                                        value={mobileIcon}
+                                                        className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`}
+                                                    />
                                                 )}
                                             </div>
                                         </div>

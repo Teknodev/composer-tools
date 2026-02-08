@@ -258,6 +258,12 @@
                                 transform: rotate(180deg);
                                 color: var(--composer-primary-color);
                             }
+
+                            .is-image {
+                                width: 30px;
+                                height: 30px;
+                                object-fit: contain;
+                            }
                         }
                     }
 
