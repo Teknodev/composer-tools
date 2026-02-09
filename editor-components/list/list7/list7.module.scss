@@ -1,50 +1,63 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+as *;
+
 .container {
   .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-lg);
-    
-    .card-titles {
-      .subtitle {
+    .header-section {
+      width: 100%;
+      margin-bottom: var(--composer-gap-md);
+
+      .subtitle,
+      .title {
         content: "";
       }
     }
-    
-    .card {
-      .all-card {
+
+    .items-wrapper {
+      .list-item {
         height: 100%;
+
         .item-content {
           height: 100%;
           border: var(--composer-border-width-xs) solid var(--composer-primary-color);
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           padding: var(--composer-gap-lg);
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-md);
           transition: all var(--composer-transition-duration-normal) ease;
           position: relative;
+          user-select: text;
+          box-sizing: border-box;
+
+          .border-layer-1,
+          .border-layer-2 {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--composer-border-radius-sm);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--composer-transition-duration-normal) ease;
+          }
 
           &[data-animation="animate1"]:hover {
             border-color: transparent;
 
-            &::before,
-            &::after {
-              content: "";
-              position: absolute;
+            .border-layer-1,
+            .border-layer-2 {
+              opacity: 1;
               inset: calc(-1 * var(--composer-border-width-sm));
-              border-radius: var(--composer-border-radius-md);
               padding: var(--composer-border-width-sm);
-              background: linear-gradient(
-                45deg,
-                transparent 0%,
-                transparent 40%,
-                var(--composer-primary-color) 45%,
-                var(--composer-primary-color) 55%,
-                transparent 60%,
-                transparent 100%
-              );
+              background: linear-gradient(45deg,
+                  transparent 0%,
+                  transparent 40%,
+                  var(--composer-primary-color) 45%,
+                  var(--composer-primary-color) 55%,
+                  transparent 60%,
+                  transparent 100%);
               background-size: 300% 300%;
               animation: rotatingBorder 2s linear 1 forwards;
+
               -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
                 linear-gradient(var(--color-white) 0 0);
               -webkit-mask-composite: xor;
@@ -59,19 +72,16 @@
           &[data-animation="animate3"]:hover {
             border-color: transparent;
 
-            &::before {
-              content: "";
+            .border-layer-1 {
               position: absolute;
               inset: calc(-1 * var(--composer-border-width-sm));
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
               padding: var(--composer-border-width-sm);
-              background: conic-gradient(
-                from var(--angle),
-                rgba(var(--composer-primary-color-rgb), 1) 0deg 90deg,
-                rgba(var(--composer-primary-color-rgb), 0.3) 90deg 180deg,
-                rgba(var(--composer-primary-color-rgb), 1) 180deg 270deg,
-                rgba(var(--composer-primary-color-rgb), 0.3) 270deg 360deg
-              );
+              background: conic-gradient(from var(--angle),
+                  var(--composer-primary-color) 0deg 90deg,
+                  color-mix(in srgb, var(--composer-primary-color), transparent 70%) 90deg 180deg,
+                  var(--composer-primary-color) 180deg 270deg,
+                  color-mix(in srgb, var(--composer-primary-color), transparent 70%) 270deg 360deg);
               animation: rotate 3s linear infinite;
               -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
                 linear-gradient(var(--color-white) 0 0);
@@ -91,14 +101,40 @@
             color: var(--composer-primary-color);
             margin: 0;
           }
-          .title {
+
+          .item-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            font-size: 2.5rem;
+            color: var(--composer-primary-color);
+          }
+
+          .item-subtitle {
+            margin: 0;
+            color: var(--composer-font-color-primary)
+          }
+
+          .item-title {
             color: var(--composer-font-color-primary);
             margin: 0;
           }
+
           .description {
             color: var(--composer-font-color-primary);
             margin: 0;
           }
+        }
+      }
+    }
+
+    .button-wrapper {
+      margin-top: var(--composer-gap-md);
+      display: flex;
+      justify-content: center;
+
+      .button {
+        .button-text {
+          content: "";
         }
       }
     }
@@ -109,6 +145,7 @@
   0% {
     background-position: 0% 0%;
   }
+
   100% {
     background-position: 100% 0%;
   }
@@ -123,5 +160,37 @@
 @keyframes rotate {
   to {
     --angle: 360deg;
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .items-wrapper {
+        gap: var(--composer-gap-sm);
+
+        .list-item {
+          .item-content {
+            padding: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .items-wrapper {
+        gap: var(--composer-gap-sm);
+
+        .list-item {
+          .item-content {
+            padding: var(--composer-gap-md);
+          }
+        }
+      }
+    }
   }
 }
