@@ -5,11 +5,6 @@
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-lg);
-
-        &.no-text-content {
-            gap: 0;
-        }
-
         .text-content {
 
             .subtitle,
@@ -78,7 +73,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    
+
                     &.with-background {
                         background-color: var(--composer-primary-color);
 
@@ -117,11 +112,6 @@
     .container {
         .max-content {
             gap: var(--composer-gap-md);
-
-            &.no-text-content {
-                gap: 0;
-            }
-
             .cards-container {
                 .card {
                     .icon-container {
@@ -143,12 +133,6 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-md);
-
-            &.no-text-content {
-                gap: 0;
-            }
-
             .cards-container {
                 .card {
                     .icon-container {
