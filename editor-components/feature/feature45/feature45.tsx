@@ -71,7 +71,7 @@ class Feature45 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://i.postimg.cc/bNZwnqLm/luca-bravo-9l-326FISzk-unsplash-1070x713.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6986010b2631ba002c0126f7?alt=media",
               },
             },
             {
@@ -136,7 +136,7 @@ class Feature45 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://i.postimg.cc/wxfB3150/evan-dvorkin-FLhn-C9S-UE8-unsplash-600x600-1.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698601752631ba002c012777?alt=media",
               },
             },
             {
@@ -201,7 +201,7 @@ class Feature45 extends BaseFeature {
               },
               value: {
                 type: "image",
-                url: "https://i.postimg.cc/YqvCFt8X/windows-JW-T2BH5k5E-unsplash-1070x713.jpg",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6986019a2631ba002c0127a6?alt=media",
               },
             },
             {
@@ -363,7 +363,7 @@ class Feature45 extends BaseFeature {
                     {(this.castToString(card.overlayTitle) ||
                       this.castToString(card.description)) && (
                       <Base.VerticalContent
-                        className={`${this.decorateCSS("media-text-wrapper")} ${isCardHasMedia(card) ? this.decorateCSS("with-image") : ""}`}
+                        className={this.decorateCSS("media-text-wrapper")}
                       >
                         {this.castToString(card.overlayTitle) && (
                           <Base.H3
