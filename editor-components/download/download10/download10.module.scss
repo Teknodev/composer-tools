@@ -191,6 +191,7 @@
         .left-container {
           width: 100%;
           gap: 0px !important;
+          padding-bottom: var(--composer-gap-xl);
 
           .button-group {
             width: 100%;
@@ -234,13 +235,9 @@
             min-height: 0px !important;
             margin-bottom: var(--composer-gap-sm);
 
-            .button-element {
-              height: 40px;
-            }
-
             .button-image {
               width: 120px;
-              height: 40px;
+              height: 32px;
             }
           }
         }
