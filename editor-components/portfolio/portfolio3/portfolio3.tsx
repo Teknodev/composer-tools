@@ -16,34 +16,57 @@ interface Game {
   genreBadge: string;
   image: TypeMediaInputValue;
   platforms: { platform: Platform }[];
+  overlay?: boolean;
 }
 
 class Portfolio3 extends BasePortfolio {
   private intersectionObservers: IntersectionObserver[] = [];
   private gameCardRefs: (HTMLDivElement | null)[] = [];
   private sentinelRefs: (HTMLDivElement | null)[] = [];
-  
+
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-        type:"string",
-        key:"title",
-        displayer:"Title",
-        value:"OUR <span style='color: transparent; -webkit-text-stroke: 2px var(--composer-font-color-primary); text-stroke: 2px var(--composer-font-color-primary);'>GAMES</span>",
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Explore Our Collection",
     });
-    
-    this.addProp(
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value:
+        "OUR <span style='color: transparent; -webkit-text-stroke: 2px var(--composer-font-color-primary); text-stroke: 2px var(--composer-font-color-primary);'>GAMES</span>",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Explore our curated collection of immersive worlds and handcrafted adventures designed to inspire discovery, strategy, and unforgettable gaming moments.",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+
+      value: [
         INPUTS.BUTTON(
-            "button", 
-            "Button", 
-            "VIEW ALL GAMES", 
-            "", 
-            "MdArrowOutward", 
-            null, 
-            "Tertiary"
-        )
-    );
+          "button",
+          "Button",
+          "VIEW ALL GAMES",
+          "",
+          "MdArrowOutward",
+          null,
+          "Tertiary"
+        ),
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -64,7 +87,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -76,12 +99,20 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
+              additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_14.jpg"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3339f959f6002d79abb7?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+
             {
               type: "array",
               key: "platforms",
@@ -93,15 +124,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "BsAndroid2",
+                      value: {
+                        type: "icon",
+                        name: "BsAndroid2",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -112,15 +147,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaApple",
+                      value: {
+                        type: "icon",
+                        name: "FaApple",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -131,15 +170,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaXbox",
+                      value: {
+                        type: "icon",
+                        name: "FaXbox",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -162,7 +205,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -174,11 +217,18 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
+              additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_13.jpg"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6979b9778ea13f002c01b334?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "array",
@@ -191,15 +241,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaApple",
+                      value: {
+                        type: "icon",
+                        name: "FaApple",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -210,15 +264,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaPlaystation",
+                      value: {
+                        type: "icon",
+                        name: "FaPlaystation",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -229,15 +287,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaSteam",
+                      value: {
+                        type: "icon",
+                        name: "FaSteam",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -260,7 +322,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -272,11 +334,18 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
+              additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_12.jpg"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e34ccf959f6002d79b18e?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "array",
@@ -289,15 +358,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "BsNintendoSwitch",
+                      value: {
+                        type: "icon",
+                        name: "BsNintendoSwitch",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -308,15 +381,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaSteam",
+                      value: {
+                        type: "icon",
+                        name: "FaSteam",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -327,15 +404,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaXbox",
+                      value: {
+                        type: "icon",
+                        name: "FaXbox",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -358,7 +439,7 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "page",
               key: "titlePage",
-              displayer: "Title Page",
+              displayer: "Navigate To",
               value: "",
             },
             {
@@ -370,11 +451,18 @@ class Portfolio3 extends BasePortfolio {
             {
               type: "media",
               key: "image",
-              displayer: "Game Image",
+              displayer: "Game Media",
+              additionalParams: { availableTypes: ["image", "video"] },
               value: {
                 type: "image",
-                url: "https://demo2.wpopal.com/gamico/wp-content/uploads/2023/12/project_11.jpg"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e34dbf959f6002d79b1b0?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
             {
               type: "array",
@@ -387,15 +475,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "BsNintendoSwitch",
+                      value: {
+                        type: "icon",
+                        name: "BsNintendoSwitch",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -406,15 +498,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaPlaystation",
+                      value: {
+                        type: "icon",
+                        name: "FaPlaystation",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -425,15 +521,19 @@ class Portfolio3 extends BasePortfolio {
                   displayer: "Platform",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
                       displayer: "Platform Icon",
-                      value: "FaSteam",
+                      value: {
+                        type: "icon",
+                        name: "FaSteam",
+                      },
                     },
                     {
                       type: "page",
                       key: "page",
-                      displayer: "Platform Page",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -444,6 +544,12 @@ class Portfolio3 extends BasePortfolio {
         },
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "enableAnimation",
+      displayer: "Animation",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -451,7 +557,17 @@ class Portfolio3 extends BasePortfolio {
   }
 
   onComponentDidMount() {
-    this.initializeStickyObservers();
+    const enableAnimation = this.getPropValue("enableAnimation");
+    if (enableAnimation) {
+      this.initializeStickyObservers();
+    }
+  }
+
+  onComponentDidUpdate() {
+    const enableAnimation = this.getPropValue("enableAnimation");
+    if (enableAnimation) {
+      this.initializeStickyObservers();
+    }
   }
 
   onComponentWillUnmount() {
@@ -460,7 +576,7 @@ class Portfolio3 extends BasePortfolio {
   }
 
   initializeStickyObservers() {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
     this.intersectionObservers.forEach((obs) => obs.disconnect());
     this.intersectionObservers = [];
@@ -473,11 +589,11 @@ class Portfolio3 extends BasePortfolio {
         const observer = new IntersectionObserver(
           ([entry]) => {
             const isScaled = entry.intersectionRatio === 0;
-            card.className = `${this.decorateCSS("game-card")} ${styles.gameCard} ${isScaled ? this.decorateCSS("scaled") : ''}`.trim();
+            card.className = `${this.decorateCSS("game-card")} ${isScaled && this.decorateCSS("scaled")}`;
           },
           {
             threshold: [0],
-            rootMargin: '-1px 0px 0px 0px',
+            rootMargin: "-1px 0px 0px 0px",
           }
         );
 
@@ -491,114 +607,290 @@ class Portfolio3 extends BasePortfolio {
     return { top: `${index * 40}px` };
   }
 
+  renderButtons(buttons: INPUTS.CastedButton[], keyPrefix: string) {
+    return buttons.map((item: INPUTS.CastedButton, index: number) => {
+      const buttonText = item.text;
+      let buttonIcon = item.icon as any;
+
+      if (typeof buttonIcon === "string") {
+        buttonIcon = { type: "icon", name: buttonIcon };
+      }
+
+      const buttonUrl = item.url;
+      const buttonType = item.type;
+
+      const btnTextExist = this.castToString(buttonText);
+      const buttonIconExist = buttonIcon?.name || buttonIcon?.url;
+
+      if (!btnTextExist && !buttonIconExist) {
+        return null;
+      }
+
+      const url = buttonUrl || "#";
+      return (
+        <ComposerLink path={url} key={`${keyPrefix}-${index}`}>
+          <Base.Button
+            buttonType={buttonType}
+            className={this.decorateCSS("button")}
+          >
+            {btnTextExist && (
+              <Base.P className={this.decorateCSS("button-text")}>
+                {buttonText}
+              </Base.P>
+            )}
+            {buttonIconExist && (
+              <Base.Media
+                value={buttonIcon}
+                className={this.decorateCSS("button-icon")}
+              />
+            )}
+          </Base.Button>
+        </ComposerLink>
+      );
+    });
+  }
+
   render() {
-    const title = this.castToString(this.getPropValue("title"));
-    const viewAllButton = this.castToObject("button") as INPUTS.CastedButton;
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const games = this.castToObject<Game[]>("games") || [];
+
+    const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
+
+    const hasAnyButton =
+      buttons &&
+      buttons.some(
+        (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
+      );
+
+    const hasHeaderContent =
+      hasSubtitle || hasTitle || hasDescription || hasAnyButton;
+    const alignmentValue = Base.getContentAlignment();
+    const enableAnimation = this.getPropValue("enableAnimation");
+
     this.gameCardRefs = Array(games.length).fill(null);
     this.sentinelRefs = Array(games.length).fill(null);
 
     return (
       <div className={this.decorateCSS("container-bg")}>
-        <Base.Container className={this.decorateCSS("container")}>
+        <Base.Container
+          className={this.decorateCSS("container")}
+        >
           <div className={this.decorateCSS("content-wrapper")}>
-            {(title || viewAllButton?.text) && (
-              <div className={this.decorateCSS("header-section")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                  <div className={this.decorateCSS("header-content")}>
-                    <span className={this.decorateCSS("section-title")}>
-                      {this.getPropValue("title")}
-                    </span>
-                    {viewAllButton?.text && (
-                      <ComposerLink path={viewAllButton.url || "#"}>
-                        <Base.Button
-                          buttonType={viewAllButton.type}
-                          className={this.decorateCSS("view-all-button")}
-                        >
-                          {viewAllButton.text}
-                          {viewAllButton.icon && (
-                            <Base.Icon
-                              name={viewAllButton.icon}
-                              propsIcon={{ className: "button-icon", style: { marginLeft: 8 } }}
-                            />
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
+            {hasHeaderContent && (
+              <Base.MaxContent className={this.decorateCSS("max-content")}>
+                <Base.ListGrid
+                  gridCount={{ pc: 2, tablet: 2, phone: 1 }}
+                  className={`${this.decorateCSS("header-content")} ${alignmentValue === "center" && this.decorateCSS("center")}`}
+                >
+                  <Base.VerticalContent
+                    className={this.decorateCSS("header-text")}
+                  >
+                    {hasSubtitle && (
+                      <Base.SectionSubTitle
+                        className={this.decorateCSS("subtitle")}
+                      >
+                        {subtitle}
+                      </Base.SectionSubTitle>
                     )}
-                  </div>
-                </Base.MaxContent>
-              </div>
+                    {hasTitle && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {hasDescription && (
+                      <Base.SectionDescription
+                        className={this.decorateCSS("description")}
+                      >
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
+                  {hasAnyButton && (
+                    <div className={this.decorateCSS("header-buttons")}>
+                      {this.renderButtons(buttons, "header-btn")}
+                    </div>
+                  )}
+                </Base.ListGrid>
+              </Base.MaxContent>
             )}
+
             <Base.MaxContent className={this.decorateCSS("max-content")}>
               <div className={this.decorateCSS("games-section")}>
                 {games.map((game: Game, index: number) => {
-                  const gameTitle = game?.title || "";
-                  const gamePage = game?.titlePage || "#";
-                  const gameImage = game?.image?.url || "";
-                  const genreBadge = game?.genreBadge || "";
-                  const platforms = Array.isArray(game?.platforms) ? game.platforms : [];
+                  const title = game?.title;
+                  const titlePage = game?.titlePage;
+                  const image = game?.image;
+                  const badge = game?.genreBadge;
+                  const gamePlatforms = game?.platforms;
+                  const overlay = game?.overlay;
+
+                  const gameTitle = this.castToString(title);
+                  const gamePage = titlePage || "#";
+                  const gameImageValue = image;
+                  const genreBadge = this.castToString(badge);
+                  const platforms = Array.isArray(gamePlatforms)
+                    ? gamePlatforms
+                    : [];
+
+                  const hasGameImage = !!gameImageValue;
+
+                  const validPlatforms = platforms.filter(
+                    (platformWrapper: any) =>
+                      platformWrapper?.platform?.icon || platformWrapper?.icon
+                  );
+                  const hasPlatforms = validPlatforms.length > 0;
+
+                  const hasOverlayContent = !!(
+                    genreBadge ||
+                    gameTitle ||
+                    hasPlatforms
+                  );
+
+                  if (!hasGameImage && !hasOverlayContent) {
+                    return null;
+                  }
 
                   return (
                     <React.Fragment key={`game-${index}`}>
-                      <div ref={(el) => {(this.sentinelRefs[index] = el)}} className={styles.sentinel} />
+                      {enableAnimation && (
+                        <div
+                          ref={(el) => {
+                            this.sentinelRefs[index] = el;
+                          }}
+                          className={styles.sentinel}
+                        />
+                      )}
                       <div
-                        ref={(el) => {
-                          this.gameCardRefs[index] = el;
-                        }}
-                        className={`${this.decorateCSS("game-card")} ${styles.gameCard}`}
-                        style={this.getTopStyle(index)}
+                        ref={
+                          enableAnimation
+                            ? (el) => {
+                              this.gameCardRefs[index] = el;
+                            }
+                            : undefined
+                        }
+                        className={this.decorateCSS("game-card")}
+                        style={
+                          enableAnimation ? this.getTopStyle(index) : undefined
+                        }
                       >
                         <div className={this.decorateCSS("game-content")}>
-                          {gameImage ? (
-                            <div className={this.decorateCSS("game-image-container")}>
-                              <img src={gameImage} alt={gameTitle} className={this.decorateCSS("game-image")} />
-                              <div className={this.decorateCSS("game-overlay")}>
-                                <div className={this.decorateCSS("game-info")}>
-                                  {game?.genreBadge && (
-                                    <span className={this.decorateCSS("genre-badge")}>
-                                      <span className={this.decorateCSS("badge-text")}>
-                                        {genreBadge}
-                                      </span>
-                                    </span>
+                          {hasGameImage ? (
+                            <div
+                              className={this.decorateCSS("game-image-container")}
+                            >
+                              <Base.Media
+                                value={image}
+                                className={this.decorateCSS("game-image")}
+                              />
+                              {overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
                                   )}
-                                  <div className={this.decorateCSS("title-platforms-row")}>
-                                    <ComposerLink path={gamePage}>
-                                      <h3 className={this.decorateCSS("game-title")}>{gameTitle}</h3>
-                                    </ComposerLink>
-                                    <div className={this.decorateCSS("platforms")}>
-                                      {platforms.length > 0 && (
-                                        platforms.map((platformWrapper: any, platformIndex: number) => {
-                                          const platformIcon = platformWrapper.icon;
-                                          const platformPage = platformWrapper.page || '#';
-                                          
-                                          if (!platformIcon) {
-                                            return null;
-                                          }
-                                          
-                                          return (
-                                            <ComposerLink 
-                                              key={`platform-${index}-${platformIndex}`} 
-                                              path={platformPage}
+                                />
+                              )}
+                              {hasOverlayContent && (
+                                <div className={this.decorateCSS("game-overlay")}>
+                                  <div className={this.decorateCSS("game-info")}>
+                                    {genreBadge && (
+                                      <Base.P
+                                        className={this.decorateCSS(
+                                          "genre-badge"
+                                        )}
+                                      >
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "badge-text"
+                                          )}
+                                        >
+                                          {genreBadge}
+                                        </Base.P>
+                                      </Base.P>
+                                    )}
+
+                                    {(gameTitle || hasPlatforms) && (
+                                      <div
+                                        className={this.decorateCSS(
+                                          "title-platforms-row"
+                                        )}
+                                      >
+                                        {gameTitle && (
+                                          <ComposerLink path={gamePage}>
+                                            <Base.H3
+                                              className={this.decorateCSS(
+                                                "game-title"
+                                              )}
                                             >
-                                              <div className={this.decorateCSS("platform-icon")}>
-                                                <Base.Icon 
-                                                  name={platformIcon} 
-                                                  propsIcon={{ 
-                                                    className: this.decorateCSS("platform-icon-element") 
-                                                  }} 
-                                                />
-                                              </div>
-                                            </ComposerLink>
-                                          );
-                                        })
-                                      )}
-                                    </div>
+                                              {gameTitle}
+                                            </Base.H3>
+                                          </ComposerLink>
+                                        )}
+
+                                        {hasPlatforms && (
+                                          <div
+                                            className={this.decorateCSS(
+                                              "platforms"
+                                            )}
+                                          >
+                                            {validPlatforms.map(
+                                              (
+                                                platformWrapper: any,
+                                                platformIndex: number
+                                              ) => {
+                                                const icon =
+                                                  platformWrapper?.platform
+                                                    ?.icon ||
+                                                  platformWrapper?.icon;
+                                                const page =
+                                                  platformWrapper?.platform
+                                                    ?.page ||
+                                                  platformWrapper?.page;
+
+                                                const platformIcon = icon;
+                                                const platformPage = page || "#";
+
+                                                return (
+                                                  <ComposerLink
+                                                    key={`platform-${index}-${platformIndex}`}
+                                                    path={platformPage}
+                                                  >
+                                                    <div
+                                                      className={this.decorateCSS(
+                                                        "platform-icon"
+                                                      )}
+                                                    >
+                                                      <Base.Media
+                                                        value={platformIcon}
+                                                        className={this.decorateCSS(
+                                                          "platform-icon-element"
+                                                        )}
+                                                      />
+                                                    </div>
+                                                  </ComposerLink>
+                                                );
+                                              }
+                                            )}
+                                          </div>
+                                        )}
+                                      </div>
+                                    )}
                                   </div>
                                 </div>
-                              </div>
+                              )}
                             </div>
                           ) : (
-                            <div className={this.decorateCSS("game-placeholder")}>No image for {gameTitle}</div>
+                            hasOverlayContent && (
+                              <Base.P
+                                className={this.decorateCSS("game-placeholder")}
+                              >
+                                No image for {gameTitle}
+                              </Base.P>
+                            )
                           )}
                         </div>
                       </div>
@@ -607,23 +899,10 @@ class Portfolio3 extends BasePortfolio {
                 })}
               </div>
             </Base.MaxContent>
-            
-            {this.castToString(viewAllButton?.text) && (
+
+            {hasAnyButton && (
               <div className={this.decorateCSS("mobile-button-section")}>
-                <ComposerLink path={viewAllButton.url || "#"}>
-                  <Base.Button
-                    buttonType={viewAllButton.type || "Tertiary"}
-                    className={this.decorateCSS("view-all-button")}
-                  >
-                    <span>{viewAllButton.text}</span>
-                    {viewAllButton.icon && (
-                      <Base.Icon
-                        name={viewAllButton.icon}
-                        propsIcon={{ className: "button-icon" }}
-                      />
-                    )}
-                  </Base.Button>
-                </ComposerLink>
+                {this.renderButtons(buttons, "mobile-btn")}
               </div>
             )}
           </div>
