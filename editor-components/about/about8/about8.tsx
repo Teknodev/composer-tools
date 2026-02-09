@@ -13,17 +13,31 @@ class About8 extends BaseAbout {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Our Technologies Encircle the World",
     });
 
     this.addProp({
+      type: "string",
+      key: "sectionDescription",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "media",
       key: "image-1",
-      displayer: "Image 1",
+      displayer: "Media 1",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -34,9 +48,9 @@ class About8 extends BaseAbout {
     this.addProp({
       type: "media",
       key: "image-2",
-      displayer: "Image 2",
+      displayer: "Media 2",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image", "video"],
       },
       value: {
         type: "image",
@@ -121,31 +135,48 @@ class About8 extends BaseAbout {
     const hasImage2 = !!image2?.url;
     const hasImages = hasImage1 || hasImage2;
 
-    if (!hasTitle && !hasImages && !hasTexts && !hasButton) return null;
+    const description = this.getPropValue("sectionDescription");
+    const descriptionExist = this.castToString(description);
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleText = this.castToString(subtitle);
+
+    if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionExist) return null;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {hasTitle && (
-            <Base.SectionTitle className={this.decorateCSS("title")}>
-              {title}
-            </Base.SectionTitle>
+          {(subtitleText || hasTitle || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header-container")}>
+              {subtitleText && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {hasTitle && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${
-              !hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
-            }`}
+            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""
+              }`}
           >
             {hasImages && (
               <div className={this.decorateCSS("images-section")}>
                 {hasImage1 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${
-                      this.getPropValue("overlay")
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
                         ? this.decorateCSS("overlay")
                         : ""
-                    }`}
+                      }`}
                   >
                     <Base.Media
                       value={image1}
@@ -155,11 +186,10 @@ class About8 extends BaseAbout {
                 )}
                 {hasImage2 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${
-                      this.getPropValue("overlay")
+                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay")
                         ? this.decorateCSS("overlay")
                         : ""
-                    }`}
+                      }`}
                   >
                     <Base.Media
                       value={image2}
@@ -207,3 +237,4 @@ class About8 extends BaseAbout {
 }
 
 export default About8;
+

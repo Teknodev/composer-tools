@@ -34,7 +34,13 @@
       .title, .description {
         text-align: center;
       }
-      
+      .subtitle {
+        transform: translateX(0);
+        text-align: center  !important;
+        &::before {
+          display: none;
+        }
+      }
       .line {
         width: 5rem;
         height: 2.5px;
@@ -79,6 +85,7 @@
         .image {
           width: 100%;
           min-width: 480px;
+          max-width: 480px;
           border-radius: var(--composer-border-radius-sm);
           box-shadow: var(--composer-box-shadow);
           object-fit: cover;

@@ -1,11 +1,22 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
+
+    .header-container {
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
+
 
     .main-content {
       display: flex;

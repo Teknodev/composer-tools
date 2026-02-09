@@ -6,6 +6,14 @@ import { BaseAbout } from "composer-tools/editor-components/EditorComponent";
 class About9 extends BaseAbout {
     constructor(props?: any) {
         super(props, styles);
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+
         this.addProp({
             type: "string",
             key: "title",
@@ -15,9 +23,9 @@ class About9 extends BaseAbout {
         this.addProp({
             type: "media",
             key: "image1",
-            displayer: "First Image",
+            displayer: "First Media",
             additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
             },
             value: {
                 type: "image",
@@ -27,9 +35,9 @@ class About9 extends BaseAbout {
         this.addProp({
             type: "media",
             key: "image2",
-            displayer: "Second Image",
+            displayer: "Second Media",
             additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
             },
             value: {
                 type: "image",
@@ -64,6 +72,8 @@ class About9 extends BaseAbout {
 
     render() {
         const title = this.getPropValue("title");
+        const subtitle = this.getPropValue("subtitle");
+        const subtitleText = this.castToString(subtitle);
         const image1 = this.getPropValue("image1");
         const image2 = this.getPropValue("image2");
         const text1 = this.getPropValue("text1");
@@ -81,11 +91,18 @@ class About9 extends BaseAbout {
                         <div className={this.decorateCSS("side-container")}>
                             {showTopContainer && (
                                 <div className={this.decorateCSS("top-container")}>
+                                    <Base.VerticalContent className={this.decorateCSS("title-container")}>
+                                    {subtitleText && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {subtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
                                     {this.castToString(title) && (
                                         <Base.SectionTitle className={this.decorateCSS("title")}>
                                             {title}
                                         </Base.SectionTitle>
                                     )}
+                                    </Base.VerticalContent>
                                     {image1?.url && (
                                         <div className={this.decorateCSS("image-1")}>
                                             <Base.Media value={image1} className={this.decorateCSS("image")} />

@@ -1,6 +1,10 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
+.hamburgerActive {
+  background: inherit !important;
+}
+
+.navbarContainer {
   padding-top: var(--composer-gap-sm);
   padding-bottom: var(--composer-gap-sm);
   z-index: 101;
@@ -11,7 +15,7 @@
     align-items: center;
 
     .logo {
-      .logoImg {
+      .image {
         width: 100%;
         max-height: 60px;
         object-fit: contain;
@@ -38,10 +42,10 @@
         .menuItem {
           display: flex;
           align-items: center;
+          gap: var(--composer-gap-xs);
         }
 
         .menuItemTitle {
-          font-weight: 500;
           transition: all 0.3s ease;
           color: var(--composer-font-color-primary);
           &.animation1{
@@ -53,8 +57,11 @@
 
         .dropdownIcon {
           font-size: calc(1.5 * var(--composer-font-size-md));
+          width: 20px;
+          height: 24px;
           color: var(--composer-font-color-primary);
           transition: all 0.3s ease;
+          object-fit: cover;
         }
 
         &:hover {
@@ -81,7 +88,7 @@
           visibility: hidden;
           transform: translateY(10px);
           padding: var(--composer-gap-xs);
-          transition: all 0.3s ease;
+          transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
           z-index: 100;
 
           .dropdownItemContainer {
@@ -100,8 +107,6 @@
                 align-items: center;
 
                 .dropdownItemTitle {
-                  font-size: calc(1 * var(--composer-font-size-md));
-                  font-weight: 400;
                   color: var(--composer-font-color-primary);
                   transition: color 0.3s ease;
                   &.animation1{
@@ -146,6 +151,9 @@
               font-size: calc(1 * var(--composer-font-size-md));
               color: var(--composer-font-color-primary);
               transition: all 0.3s ease;
+              width: 20px;
+              height: 20px;
+              object-fit: cover;
             }
 
             .subdropdown {
@@ -160,7 +168,7 @@
               visibility: hidden;
               padding: var(--composer-gap-xs);
               transform: translateX(10px);
-              transition: all 0.3s ease;
+              transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
               z-index: 101;
 
               .subdropdownItem {
@@ -171,7 +179,6 @@
                 color: var(--composer-font-color-primary);
                 .dropdownItemTitle{
                   color: var(--composer-font-color-primary);
-                  font-weight: normal;
                   transition: all 0.3s ease;
                   &.animation1{
                     &:hover{
@@ -203,7 +210,6 @@
       .localization{
         transition: all 0.3s ease;
         .localizationLabel{
-          font-weight: normal;
           &.animation1{
             &:hover{
               font-weight: bold;
@@ -211,7 +217,6 @@
           }
         }
         .localizationContent{
-          font-weight: normal;
           &.animation1{
             &:hover{
               font-weight: bold;
@@ -228,6 +233,9 @@
       display: none;
       font-size: calc(1.5 * var(--composer-font-size-md));
       color: var(--composer-font-color-primary);
+      width: 20px;
+      height: 20px;
+      object-fit: cover;
     }
 
     .closeIcon {
@@ -241,16 +249,20 @@
         top: 0;
         right: 0;
         height: 100vh;
-        transform: translateX(100%);
-        transition: all 0.3s ease-in-out;
+        transform: translateX(100vw);
+        opacity: 0;
+        visibility: hidden;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         z-index: 100;
         background: var(--composer-html-background);
         width: 90%;
-        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--box-shadow-active);
         padding: var(--composer-gap-md) var(--composer-gap-xl);
 
         &.open {
           transform: translateX(0);
+          opacity: 1;
+          visibility: visible;
         }
         &.overflowShow{
           overflow-y: auto;
@@ -288,8 +300,6 @@
               .hamburgerMenuItemTitle {
                 margin: 0;
                 color: var(--composer-font-color-primary);
-                font-size: 1.5rem;
-                font-weight: normal;
                 transition: all 0.8s ease;
                 &.animation1{
                   &:hover{
@@ -329,9 +339,7 @@
 
                   .hamburgerMenuItemTitle {
                     color: var(--composer-font-color-primary);
-                    font-weight: 400;
                     margin: 0;
-                    font-size: 1rem;
                     transition: all 0.8s ease;
                     &.animation1{
                       &:hover{
@@ -365,7 +373,6 @@
 
                     .hamburgerSubSubmenuItemTitle {
                       color: var(--composer-font-color-primary);
-                      font-weight: 400;
                       margin: 0;
                       &.animation1{
                         &:hover{
@@ -389,7 +396,6 @@
 
     .languageDropdownLabel {
       color: var(--composer-font-color-primary);
-      font-size: calc(1 * var(--composer-font-size-md));
     }
 
     .languageAccordion,
@@ -400,7 +406,6 @@
 
     .languageAccordionTitle {
       color: var(--composer-font-color-primary);
-      font-size: calc(1 * var(--composer-font-size-md));
     }
   }
 
@@ -412,36 +417,40 @@
     width: 100%;
     height: 100vh;
     background: var(--composer-overlay-color);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    visibility: hidden;
+    border-radius: var(--composer-border-radius-sm);
   }
 
   .transparentBackground {
     .pcNavbar {
       .menuItemContainer {
         .menuItemTitle {
-          color: white;
+          color: white !important;
         }
         .dropdownIcon {
-          color: white;
+          color: white !important;
         }
       }
 
       .divider {
-        background-color: white;
-      }
-      .localization {
-        .localizationLabel {
-          color: white;
-        }
-        .languageIcon {
-          color: white;
-        }
-        .localizationItem, .localizationContent {
-          content: "";
-        }
+        background-color: white !important;
       }
     }
+    
+    .localization,
+    .localizationMobile {
+      .localizationLabel {
+        color: white !important;
+      }
+      .languageIcon {
+        color: white !important;
+      }
+    }
+
     .menuIcon {
-      color: white;
+      color: white !important;
     }
 
     .languageAccordionItem {
@@ -450,15 +459,20 @@
   }
 }
 
+.filledBackground {
+  background: var(--composer-html-background);
+  z-index: 101;
+}
+
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
+  .navbarContainer {
     .maxContent {
       .mobileRight{
         display: flex;
         gap: var(--composer-gap-sm);
       }
       .logo {
-        .logoImg {
+        .image {
           width: fit-content;
           max-height: 50px;
         }
@@ -480,17 +494,15 @@
       .menuIcon,
       .closeIcon {
         display: block;
+        font-size: 1.5rem;
       }
         .mobileMenu {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
           .mobileMenuItems {
             margin-top: calc(2 * var(--composer-gap-xl));
           }
           .languageAccordionTitle {
-            font-size: 1.5rem;
-            font-weight: normal;
             transition: all 0.3s ease;
             &.animation1{
               &:hover{
@@ -499,23 +511,17 @@
             }
           }
           .languageAccordionItem{
-            font-size: calc(1 * var(--composer-font-size-md));
-            font-weight: bold;
             transition: all 0.3s ease;
             &.animation1{
               &:hover{
                 font-weight:bold
               }
             }
-
-            font-size: calc(1.5 * var(--composer-font-size-md));
-            font-weight: bold;
           }
           .languageAccordionIcon {
             font-size: calc(1.5 * var(--composer-font-size-md));
             color: var(--composer-font-color-primary);
             transition: transform 0.3s ease;
-            font-weight: bold;
           }
         }
    
@@ -524,25 +530,23 @@
       &.overlayActive {
         z-index: 10;
         display: block;
+        opacity: 1;
+        visibility: visible;
       }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
+  .navbarContainer {
     .maxContent {
         .mobileMenu {
           padding-left: var(--composer-gap-md);
           padding-right: var(--composer-gap-md);
-          .languageAccordionTitle {
-            font-size: calc(1 * var(--composer-font-size-md));
-            font-weight: bold;
-          }
         }
     
       .logo {
-        .logoImg {
+        .image {
           max-height: 40px;
         }
       }

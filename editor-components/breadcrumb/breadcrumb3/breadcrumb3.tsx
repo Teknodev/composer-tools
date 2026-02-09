@@ -16,7 +16,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media" },
     });
@@ -25,6 +25,12 @@ class Breadcrumb3 extends BaseBreadcrumb {
       key: "title",
       displayer: "Title",
       value: "About",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
     this.addProp({
       type: "array",
@@ -121,6 +127,8 @@ class Breadcrumb3 extends BaseBreadcrumb {
 
   render() {
     const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const showBreadcrumb = this.getPropValue("showBreadcrumb");
     const currentPage = this.castToObject("currentPage");
@@ -153,6 +161,11 @@ class Breadcrumb3 extends BaseBreadcrumb {
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
+              )}
+              {isDescriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
               )}
               {showBreadcrumb && <div className={this.decorateCSS("breadcrumb-items")}>
                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (

@@ -39,7 +39,7 @@ class Blog2 extends BaseBlog {
         {
           type: "media",
           key: "video",
-          displayer: "Video Link",
+          displayer: "Video",
           additionalParams: {
             availableTypes: ["video"],
           },
@@ -51,9 +51,9 @@ class Blog2 extends BaseBlog {
         {
           type: "media",
           key: "videoImage",
-          displayer: "Video Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",
@@ -64,14 +64,14 @@ class Blog2 extends BaseBlog {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
         {
           type: "media",
           key: "closeIcon",
           displayer: "Close Button Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -83,7 +83,7 @@ class Blog2 extends BaseBlog {
           key: "playIcon",
           displayer: "Play Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -105,7 +105,7 @@ class Blog2 extends BaseBlog {
       key: "author-icon",
       displayer: "Author Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -179,12 +179,13 @@ class Blog2 extends BaseBlog {
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid>
+          <Base.ContainerGrid className={this.decorateCSS("content-grid")}>
             {videoSection && videoSection.videoImage && videoSection.videoImage.url && (
-              <div 
+              <div
                 className={`${this.decorateCSS("video-part")} ${!displayContent ? this.decorateCSS("video-only") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
+                <div className={this.decorateCSS("gradient-overlay")} />
                 <Base.Media
                   value={videoSection.videoImage}
                   className={this.decorateCSS("video-image")}
@@ -245,18 +246,18 @@ class Blog2 extends BaseBlog {
                   )}
                   {(this.castToString(authorDescription) || this.castToString(authorName)) && (
                     <div className={this.decorateCSS("author-info")}>
-                    {this.castToString(authorDescription) && (
-                      <Base.P
-                        className={this.decorateCSS("author-description")}
-                      >
-                        {authorDescription}
-                      </Base.P>
-                    )}
-                    {this.castToString(authorName) && (
-                      <Base.H5 className={this.decorateCSS("author-name")}>
-                        {authorName}
-                      </Base.H5>
-                    )}  
+                      {this.castToString(authorDescription) && (
+                        <Base.P
+                          className={this.decorateCSS("author-description")}
+                        >
+                          {authorDescription}
+                        </Base.P>
+                      )}
+                      {this.castToString(authorName) && (
+                        <Base.H5 className={this.decorateCSS("author-name")}>
+                          {authorName}
+                        </Base.H5>
+                      )}
                     </div>
                   )}
                 </Base.Row>
@@ -265,13 +266,13 @@ class Blog2 extends BaseBlog {
                     {buttonItem.map(
                       (buttonObj, index: number) => {
                         const buttonText = this.castToString(buttonObj.text);
-                          return buttonText && (
-                            <ComposerLink key={index} path={buttonObj.url}>
-                              <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
-                                <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
-                              </Base.Button>
-                            </ComposerLink>
-                          );
+                        return buttonText && (
+                          <ComposerLink key={index} path={buttonObj.url}>
+                            <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
+                        );
                       }
                     )}
                   </Base.Row>

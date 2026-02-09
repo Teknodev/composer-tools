@@ -17,9 +17,23 @@ class Stats14 extends BaseStats {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Super Simple & Quick Way",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -93,12 +107,16 @@ class Stats14 extends BaseStats {
   render() {
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const FeaturesItem = this.castToObject<featuresItem[]>("features-item");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
     const alignment = Base.getContentAlignment();
     const isLeftContainerExist = isTitleExist || FeaturesItem.length > 0 || buttons.length > 0;
+    const description = this.getPropValue("description");
+    const descriptionExist = this.castToString(description);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -112,6 +130,11 @@ class Stats14 extends BaseStats {
           >
             {isLeftContainerExist && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
                 {isTitleExist && (
                   <Base.SectionTitle
                     className={`${this.decorateCSS("title")} ${
@@ -121,7 +144,11 @@ class Stats14 extends BaseStats {
                     {title}
                   </Base.SectionTitle>
                 )}
-
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
                 {FeaturesItem.length > 0 && (
                   <Base.Row
                     className={`${this.decorateCSS("features-list")} ${
@@ -190,5 +217,6 @@ class Stats14 extends BaseStats {
 
 export default Stats14;
  
+
 
 

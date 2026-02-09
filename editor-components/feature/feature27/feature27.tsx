@@ -10,6 +10,13 @@ class Feature27Component extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "#1 SEO Agency to Improve Your Business",
@@ -43,8 +50,8 @@ class Feature27Component extends BaseFeature {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
-      additionalParams: { availableTypes: ["image"] },
+      displayer: "Media",
+      additionalParams: { availableTypes: ["image","video"] },
       value: {
         type: "image",
         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6908b7c52d05c1002bf4d35e?alt=media",
@@ -59,6 +66,8 @@ class Feature27Component extends BaseFeature {
   render() {
     const title = this.getPropValue("title");
     const isTitleExist = this.castToString(title);
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const image = this.getPropValue("image");
@@ -78,6 +87,11 @@ class Feature27Component extends BaseFeature {
           >
             {isLeftContainerExist && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
                 {isTitleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}

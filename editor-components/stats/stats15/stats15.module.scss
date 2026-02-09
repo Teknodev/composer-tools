@@ -7,8 +7,10 @@
     background-repeat: no-repeat;
     min-height: 800px;
   }
+
   &.overlay-active {
     position: relative;
+
     &::before {
       content: "";
       position: absolute;
@@ -18,10 +20,11 @@
       pointer-events: none;
     }
   }
-  
+
   .max-content {
     position: relative;
     z-index: 1;
+
     .wrapper {
       position: relative;
       display: flex;
@@ -33,14 +36,28 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: white;
         justify-content: center;
-        .title , .description {
-          text-align: center;
+
+        .title,
+        .description,
+        .subtitle {
           &.with-bg {
             color: white;
+            padding-left: 0px !important;
           }
         }
+
+        .subtitle {
+          &.with-bg {
+            background: transparent !important;
+
+            &::before {
+              background: white !important;
+            }
+          }
+        }
+
+
         .button-container {
           display: flex;
           flex-wrap: wrap;
@@ -48,12 +65,15 @@
           justify-content: center;
           margin-bottom: var(--composer-gap-lg);
         }
+
         .button {
           content: "";
         }
+
         .button-text {
           content: "";
         }
+
         .stats-row {
           display: flex;
           flex-wrap: wrap;
@@ -61,47 +81,57 @@
           justify-content: center;
           color: inherit;
         }
+
         .stat {
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-xs);
           align-items: center;
         }
+
         .stat-value {
           margin: 0;
           color: var(--composer-font-color-primary);
           font-size: 2.5rem;
+
           &.with-bg {
             color: white;
           }
         }
+
         .stat-label {
           margin: 0;
           color: var(--composer-tertiary-color);
+
           &.with-bg {
             color: white;
           }
         }
       }
-      
+
       &.alignment-left {
         justify-content: flex-start;
+
         .content {
           align-items: flex-start;
           justify-content: center;
           text-align: left;
+
           .title,
           .description {
             text-align: left;
           }
+
           .button-container {
             justify-content: flex-start;
           }
+
           .stats-row {
             justify-content: flex-start;
           }
         }
       }
+
       &.alignment-center {
         .content {
           align-items: center;
@@ -142,6 +172,3 @@
     }
   }
 }
-
-
-

@@ -19,6 +19,13 @@ class Feature10 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Moving to the cloud, made simple"
@@ -75,9 +82,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -112,9 +119,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -149,9 +156,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -186,9 +193,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -223,9 +230,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -260,9 +267,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -306,7 +313,7 @@ class Feature10 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
 
     const title = this.getPropValue("title");
-
+    const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
@@ -350,6 +357,11 @@ class Feature10 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <Base.VerticalContent className={this.decorateCSS("section-wrapper")}>
+            {this.castToString(subtitle) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
               {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
                   {title}

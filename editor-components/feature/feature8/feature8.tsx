@@ -23,9 +23,23 @@ class Feature8 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Collections are your most important pages, but are frustrating to manage",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -220,7 +234,7 @@ class Feature8 extends BaseFeature {
     const container = this.cardsRootRef.current?.parentElement?.parentElement;
     if (!container) return false;
     const containerWidth = container.offsetWidth;
-    return containerWidth <= 1024; 
+    return containerWidth <= 1024;
   };
 
   private applyCardState = (element: HTMLElement, index: number, middle: number, isVisible: boolean) => {
@@ -252,7 +266,7 @@ class Feature8 extends BaseFeature {
     const decrementLeft = 150;
     const calculatedMarginTop = Math.max(0, distanceFromMiddle * distanceFromMiddle * 50);
     const calculatedMarginLeft = Math.max(0, distanceFromMiddle * decrementLeft);
-    
+
     const rotateAngle = distanceFromMiddle === 1 ? 25 : 30;
 
     if (index > middle) {
@@ -283,7 +297,7 @@ class Feature8 extends BaseFeature {
     const cards = this.getCardElements();
     const visibleTokens = this.getTokens("visible");
     const shiftedTokens = this.getTokens("shifted");
-    
+
     cards.forEach((element) => {
       element.classList.remove(...visibleTokens, ...shiftedTokens);
       element.dataset.position = "";
@@ -298,7 +312,7 @@ class Feature8 extends BaseFeature {
     if (this.resizeTimeout) {
       clearTimeout(this.resizeTimeout);
     }
-    
+
     this.resizeTimeout = setTimeout(() => {
       this.cleanupCardStates();
       this.scheduleInit();
@@ -335,12 +349,12 @@ class Feature8 extends BaseFeature {
     if (this.observer) {
       this.observer.disconnect();
     }
-    
+
     if (!this.getPropValue("animationEnable") || this.isMobileOrTablet()) {
       this.cleanupCardStates();
       return;
     }
-    
+
     const root = this.cardsRootRef.current;
     if (!root) return;
 
@@ -360,7 +374,7 @@ class Feature8 extends BaseFeature {
     }
 
     cardElements.forEach((card) => {
-      try { observer.observe(card); } catch {}
+      try { observer.observe(card); } catch { }
     });
 
     this.setComponentState("cardsCount", cardElements.length);
@@ -392,18 +406,36 @@ class Feature8 extends BaseFeature {
   render() {
     const titleExist = this.castToString(this.getPropValue("title"));
     const title = this.getPropValue("title");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const subtitle = this.getPropValue("subtitle");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const cards = this.castToObject<Card[]>("cards");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {titleExist && (
-            <Base.SectionTitle className={this.decorateCSS("section-title")}>
-              {title}
-            </Base.SectionTitle>
+          {(titleExist || descriptionExist || subtitleExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
           )}
           {cards?.length > 0 && (
-            <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5 , tablet: 3 }} className={this.decorateCSS("cards-container")}>
+            <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 5, tablet: 3 }} className={this.decorateCSS("cards-container")}>
               {cards.map((card: Card) => {
                 const titleExist = this.castToString(card.title);
                 const descExist = this.castToString(card.description);

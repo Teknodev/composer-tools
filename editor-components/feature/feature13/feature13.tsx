@@ -29,6 +29,13 @@ class Feature13 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Discover Our Story",
@@ -49,7 +56,7 @@ class Feature13 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "slider-images",
-      displayer: "Slider Images",
+      displayer: "Slider Media",
       additionalParams: {
         maxElementCount: 4,
       },
@@ -57,7 +64,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "image",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "number",
@@ -68,9 +75,9 @@ class Feature13 extends BaseFeature {
             {
               type: "media",
               key: "imageSource",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -82,7 +89,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "image",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "number",
@@ -93,9 +100,9 @@ class Feature13 extends BaseFeature {
             {
               type: "media",
               key: "imageSource",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -107,7 +114,7 @@ class Feature13 extends BaseFeature {
         {
           type: "object",
           key: "image",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "number",
@@ -118,9 +125,9 @@ class Feature13 extends BaseFeature {
             {
               type: "media",
               key: "imageSource",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -502,6 +509,8 @@ class Feature13 extends BaseFeature {
     const sliderImages = this.castToObject<SliderImage[]>("slider-images");
     const titleExist = this.getPropValue("title", { as_string: true });
     const dividerExist = this.getPropValue("divider");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const descExist = this.getPropValue("description", { as_string: true });
     const tabList = this.castToObject<Tab[]>("tab-items");
     const activeTab = this.getComponentState("activeTab");
@@ -513,6 +522,11 @@ class Feature13 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}

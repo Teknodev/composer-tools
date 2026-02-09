@@ -3,6 +3,7 @@ import { BaseBlog } from "../../EditorComponent";
 import styles from "./blog3.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type CardData = {
   image: { type: "image"; url: string };
@@ -23,23 +24,39 @@ class Blog3 extends BaseBlog {
 
     this.addProp({
       type: "string",
-      key: "leftSideText",
-      displayer: "Title",
-      value: "Featured Posts",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
 
     this.addProp({
       type: "string",
-      key: "rightSideText",
-      displayer: "Right Side Text",
-      value: "Featured Posts",
+      key: "title",
+      displayer: "Title",
+      value: "OUR BLOG",
     });
 
     this.addProp({
-      type: "page",
-      key: "url",
-      displayer: "Navigate To",
+      type: "string",
+      key: "description",
+      displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "rightText",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Featured Posts", "", "MdArrowOutward", "", "Link"),
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -49,22 +66,10 @@ class Blog3 extends BaseBlog {
       value: [
         {
           type: "media",
-          key: "rightSideIcon",
-          displayer: "Right Side Icon",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "MdArrowOutward",
-          },
-        },
-        {
-          type: "media",
           key: "dateIcon",
           displayer: "Date Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -76,7 +81,7 @@ class Blog3 extends BaseBlog {
           key: "timeIcon",
           displayer: "Time Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -105,9 +110,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -141,9 +146,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -184,9 +189,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -221,9 +226,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -264,9 +269,10 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image", 
+
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -301,9 +307,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -344,9 +350,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -381,9 +387,9 @@ class Blog3 extends BaseBlog {
             {
               type: "media",
               key: "profileImage",
-              displayer: "Profile Image",
+              displayer: "Profile Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -421,13 +427,16 @@ class Blog3 extends BaseBlog {
       max: 4
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "underlineAnimation",
-      displayer: "Animation",
-      value: true
-    });
 
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: [""],
+      additionalParams: {
+        selectItems: ["animate1", "animate2"]
+      }
+    });
   }
 
   static getName(): string {
@@ -438,15 +447,19 @@ class Blog3 extends BaseBlog {
   render() {
     const itemCountInARow = this.getPropValue("itemCountInARow");
 
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const line = this.getPropValue("line");
     const underlineAnimation = !!this.getPropValue("underlineAnimation");
+    const hoverAnimation = this.getPropValue("hoverAnimation");
 
-    const leftSideTextExist = this.castToString(this.getPropValue("leftSideText"));
-
-    const rightSideTextExist = this.castToString(this.getPropValue("rightSideText"));
-    const rightSideUrl = this.getPropValue("url");
+    const subtitleExist = this.castToString(subtitle);
+    const isTitleExist = this.castToString(title);
+    const rightTextItems = this.castToObject<any[]>("rightText");
+    const description = this.getPropValue("description");
+    const descriptionExist = this.castToString(description);
 
     const icons = this.castToObject<{
-      rightSideIcon: { type: "icon"; name: string };
       dateIcon: { type: "icon"; name: string };
       timeIcon: { type: "icon"; name: string };
     }>("icons");
@@ -459,6 +472,7 @@ class Blog3 extends BaseBlog {
       const fullNameExist = !!this.castToString(data.fullname);
       const readTimeExist = !!this.castToString(data.readTime);
       const dateExist = !!this.castToString(data.date);
+      const isHoverAnimation = Array.isArray(hoverAnimation) ? hoverAnimation.length > 0 : !!hoverAnimation;
 
       return (
         <div
@@ -467,12 +481,17 @@ class Blog3 extends BaseBlog {
               ${this.decorateCSS(data.mini ? "mini" : "")}
             `}
           style={style}
+          data-animation={Array.isArray(hoverAnimation) ? hoverAnimation.join(" ") : ""}
         >
+          <div className={this.decorateCSS("gradient-overlay")} />
           {data.image &&
             <div className={this.decorateCSS("image-container")}>
               <Base.Media
                 value={data.image}
-                className={this.decorateCSS("image")}
+                className={`
+                  ${this.decorateCSS("image")}
+                  ${isHoverAnimation && this.decorateCSS("hover-animation")}
+                `}
               />
             </div>
           }
@@ -509,20 +528,21 @@ class Blog3 extends BaseBlog {
             )}
             {title && (
               <ComposerLink path={data.url}>
-                <Base.H2
+                <Base.H5
                   className={`
-                    ${this.decorateCSS("title")}
+                    ${this.decorateCSS("card-title")}
                     ${underlineAnimation ? this.decorateCSS("underline-animation") : ""}
                   `}
                 >
                   {data.title}
-                </Base.H2>
+                  <div className={this.decorateCSS("title-underline")} />
+                </Base.H5>
               </ComposerLink>
             )}
             {description && (
-              <Base.P className={this.decorateCSS("description")}>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {data.description}
-              </Base.P>
+              </Base.SectionDescription>
             )}
 
             {(data.profileImage || description || fullNameExist) && (
@@ -616,63 +636,74 @@ class Blog3 extends BaseBlog {
       );
     };
 
+    const hasContent = (item: any) =>
+      item.text ||
+      item.icon?.name ||
+      item.icon?.url ||
+      item.image?.name ||
+      item.image?.url;
+
+    const hasLeftText = descriptionExist || subtitleExist || isTitleExist;
+    const hasRightText = rightTextItems.some(hasContent);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(leftSideTextExist || !!icons.rightSideIcon || rightSideTextExist) && (
-            <header className={this.decorateCSS("header")}>
-              {leftSideTextExist && (
-                <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {this.getPropValue("leftSideText")}
-                </Base.SectionTitle>
-              )}
-              {(rightSideTextExist || !!icons.rightSideIcon) && (
-                <div className={this.decorateCSS("right-side")}>
-                  <ComposerLink path={rightSideUrl}>
-                    <div className={this.decorateCSS("link-container")}>
-                      <Base.H4 className={this.decorateCSS("link-text")}>
-                        {rightSideTextExist && (
-                          this.getPropValue("rightSideText")
-                        )}
-                        {!!icons.rightSideIcon && (
-                          <Base.Media
-                            value={icons.rightSideIcon}
-                            className={this.decorateCSS("right-side-icon")}
-                          />
-                        )}
-                      </Base.H4>
+          {(hasLeftText || hasRightText) && (
+            <React.Fragment>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
+                )}
+                {isTitleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+
+              </Base.VerticalContent>
+              <div className={this.decorateCSS("button-container")}>
+                {rightTextItems.map((item: any, index: number) => {
+                  const buttonTextExist = this.castToString(item.text);
+                  const iconValue = item.icon || (item.image?.url ? { ...item.image, type: "image" } : item.image);
+
+                  const iconExist = iconValue && (iconValue.name || iconValue.url);
+                  const buttonExist = buttonTextExist || iconExist;
+
+
+                  return buttonExist && (
+                    <div key={`blog-3-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
+                      <ComposerLink path={item.url}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={item.type || "Link"}>
+                          {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          {iconExist && <Base.Media value={iconValue} className={this.decorateCSS("button-icon")} />}
+                        </Base.Button>
+                      </ComposerLink>
                     </div>
-                  </ComposerLink>
-                </div>
-              )}
-            </header>
-          )}
-          <Base.ListGrid gridCount={{ pc: itemCountInARow , tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
+                  );
+                })}
+              </div>
+
+              <div className={this.decorateCSS("header-bottom")}>
+                {line && <hr className={this.decorateCSS("line")} />}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </div>
+            </React.Fragment>
+          )
+          }
+          <Base.ListGrid gridCount={{ pc: itemCountInARow, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-row")}>
             <Blocks cards={this.castToObject<CardData[]>("cards")} />
           </Base.ListGrid>
-          {(rightSideTextExist || !!icons.rightSideIcon) && (
-            <div className={this.decorateCSS("mobile-right-side")}>
-              <ComposerLink path={rightSideUrl}>
-                <div className={this.decorateCSS("link-container")}>
-                  <Base.H4 className={this.decorateCSS("link-text")}>
-                    {rightSideTextExist && (
-                      this.getPropValue("rightSideText")
-                    )}
-                    {!!icons.rightSideIcon && (
-                      <Base.Media
-                        value={icons.rightSideIcon}
-                        className={this.decorateCSS("right-side-icon")}
-                      />
-                    )}
-                  </Base.H4>
-                </div>
-              </ComposerLink>
-            </div>
-          )}
-        </Base.MaxContent>
-      </Base.Container>
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }
 
 export default Blog3;
+
+
