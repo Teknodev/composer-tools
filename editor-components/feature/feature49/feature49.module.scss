@@ -82,12 +82,6 @@
                         }
                     }
 
-                    &:not(.with-background) {
-                        .card-icon {
-                            color: var(--composer-primary-color);
-                        }
-                    }
-
                     .card-icon {
                         font-size: 2.5rem;
                         width: 2.5rem;
@@ -96,6 +90,7 @@
                         align-items: center;
                         justify-content: center;
                         object-fit: contain;
+                        color: var(--composer-primary-color);
                     }
                 }
             }
