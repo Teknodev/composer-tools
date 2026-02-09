@@ -19,22 +19,10 @@
                 justify-content: center;
                 gap: var(--composer-gap-sm);
 
-                button {
+                .button {
                     .button-text {
                         content: "";
                     }
-                }
-            }
-        }
-
-        .button-container {
-            display: flex;
-            gap: var(--composer-gap-sm);
-            flex-wrap: wrap;
-
-            .button {
-                .button-text {
-                    content: "";
                 }
             }
         }
