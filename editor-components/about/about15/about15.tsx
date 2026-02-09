@@ -35,7 +35,7 @@ class About15 extends BaseAbout {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
@@ -54,7 +54,7 @@ class About15 extends BaseAbout {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
@@ -73,7 +73,7 @@ class About15 extends BaseAbout {
                         {
                             type: "media",
                             key: "image",
-                            displayer: "Image",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
