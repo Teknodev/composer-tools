@@ -247,7 +247,7 @@ class List11 extends BaseList {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
-                        <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                        <div className={this.decorateCSS("vertical-content")}>
                             <Base.VerticalContent className={this.decorateCSS("card-titles")}>
                                 {this.castToString(subtitle) && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -267,7 +267,7 @@ class List11 extends BaseList {
                                     </Base.SectionDescription>
                                 </div>
                             )}
-                        </Base.VerticalContent>
+                        </div>
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => (
                                 <div key={index} className={this.decorateCSS("card")}
