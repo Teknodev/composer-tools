@@ -398,7 +398,9 @@ class Feature45 extends BaseFeature {
                   </div>
 
                   {isCardButtonsExist(card.buttons) && (
-                    <div className={this.decorateCSS("card-buttons-wrapper")}>
+                    <Base.Row
+                      className={this.decorateCSS("card-buttons-wrapper")}
+                    >
                       {card.buttons.map((button, index) => {
                         const buttonText = this.castToString(button.text);
                         const buttonExist = buttonText || button.icon;
@@ -432,7 +434,7 @@ class Feature45 extends BaseFeature {
                           )
                         );
                       })}
-                    </div>
+                    </Base.Row>
                   )}
                 </Base.VerticalContent>
               ))}
@@ -440,7 +442,7 @@ class Feature45 extends BaseFeature {
           )}
 
           {sectionButtonsExist && (
-            <div className={this.decorateCSS("section-buttons-wrapper")}>
+            <Base.Row className={this.decorateCSS("section-buttons-wrapper")}>
               {sectionButtons.map((sectionButton, index) => {
                 const buttonText = this.castToString(sectionButton.text);
                 const buttonExist = buttonText || sectionButton.icon;
@@ -470,7 +472,7 @@ class Feature45 extends BaseFeature {
                   )
                 );
               })}
-            </div>
+            </Base.Row>
           )}
         </Base.MaxContent>
       </Base.Container>
