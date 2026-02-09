@@ -1,0 +1,33 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container{
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    .max-content{
+        display: flex;
+        flex-direction: column;
+        .header{
+            align-items: center; 
+            width: 100%;
+            .subtitle{
+                text-align: center;
+                &::before{
+                    display: none;
+                }
+            }
+            .title, .description{
+                text-align: center;
+            }
+        }
+       
+    }
+    .button-container{
+        display: flex;
+        gap: var(--composer-gap-sm);
+        justify-content: center;
+        .button{
+            .button-text{
+                content: "";
+            }
+        }
+    }
+}
