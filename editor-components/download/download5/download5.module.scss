@@ -82,21 +82,9 @@ $min-height: 500px;
         }
 
         .button-element {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: var(--composer-gap-xs);
-
-          .icon,
-          .button-text {
-            content: "";
-          }
-
-          .button-text {
-            margin: 0;
-            white-space: nowrap;
-          }
+          content: "";
         }
+
       }
 
     }
@@ -159,6 +147,7 @@ $min-height: 500px;
     .max-content {
       .page {
         width: 100% !important;
+        padding: var(--composer-gap-md) 0;
 
         .buttons-container {
           flex-direction: row;

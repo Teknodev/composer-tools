@@ -274,7 +274,11 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding-right: 0 !important;
+    padding: var(--composer-gap-md) 0;
+
+    &.with-image {
+      padding: 0 !important;
+    }
 
     .page {
       .max-content {

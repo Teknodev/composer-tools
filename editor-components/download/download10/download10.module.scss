@@ -193,6 +193,10 @@
           gap: 0px !important;
           padding-bottom: var(--composer-gap-xl);
 
+          &.no-image {
+            padding-bottom: 0px !important;
+          }
+
           .button-group {
             width: 100%;
             min-height: 0px !important;
@@ -226,6 +230,7 @@
       .page {
         flex-direction: column !important;
         gap: var(--composer-gap-md);
+        padding: var(--composer-gap-md) 0;
 
         .left-container {
           width: 100%;
