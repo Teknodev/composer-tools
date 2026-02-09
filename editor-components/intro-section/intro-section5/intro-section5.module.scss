@@ -148,6 +148,18 @@
   .container {
     .max-content {
       gap: var(--composer-gap-md);
+
+      .button-wrapper {
+        .button {
+          .button-icon {
+            font-size: 4rem !important;
+          }
+
+          .button-text {
+            font-size: 3rem !important;
+          }
+        }
+      }
     }
   }
 }
@@ -156,6 +168,18 @@
   .container {
     .max-content {
       min-height: 40vh !important;
+
+      .button-wrapper {
+        .button {
+          .button-icon {
+            font-size: 3rem !important;
+          }
+
+          .button-text {
+            font-size: 2rem !important;
+          }
+        }
+      }
     }
   }
 }
