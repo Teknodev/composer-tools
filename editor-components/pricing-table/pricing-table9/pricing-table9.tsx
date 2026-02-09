@@ -165,8 +165,8 @@ class PricingTable9 extends BasePricingTable {
                     },
                     {
                       type: "page",
-                      key: "link",
-                      displayer: "Link",
+                      key: "navigateTo",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -857,6 +857,9 @@ class PricingTable9 extends BasePricingTable {
           },
         },
       ],
+      customPaging: (_i: number) => (
+        <button className={this.decorateCSS("pulse-wrapper")}></button>
+      ),
     };
 
     const title = this.getPropValue("title");
@@ -904,12 +907,11 @@ class PricingTable9 extends BasePricingTable {
                     <div
                       key={`column-${index}`}
                       className={`${this.decorateCSS("column-item")}
-                   ${
-                     index !== 0 && this.getPropValue("animations") &&
-                     this.getPropValue("animations")
-                       .map((animation: string) => this.decorateCSS(animation))
-                       .join(" ")
-                   } `}
+                   ${index !== 0 && this.getPropValue("animations") &&
+                        this.getPropValue("animations")
+                          .map((animation: string) => this.decorateCSS(animation))
+                          .join(" ")
+                        } `}
                     >
                       {this.hasAnyColumnTitle() && (
                         <div className={this.decorateCSS("title-container")}>
@@ -922,7 +924,7 @@ class PricingTable9 extends BasePricingTable {
                         {column?.contents.map(
                           (content: any, contentIndex: any) => {
                             const firstColumnContent = this.castToObject<any[]>("columns")[0]?.contents?.[contentIndex];
-                            
+
                             if (!firstColumnContent) return null;
 
                             const iconExist = this.hasMediaContent(
@@ -948,6 +950,7 @@ class PricingTable9 extends BasePricingTable {
                                     {content?.text}
                                   </Base.P>
                                 )}
+                                <div className={this.decorateCSS("hover-line")} />
                               </div>
                             );
                           }
@@ -970,32 +973,34 @@ class PricingTable9 extends BasePricingTable {
                             );
 
                             return (
-                            <Base.Button
-                                  buttonType={button.type}
-                                  className={this.decorateCSS("column-button")}
-                                >
-                              <ComposerLink
-                                path={button.url || "#"}
-                                key={btnIndex}
+                              <Base.Button
+                                buttonType={button.type}
+                                className={this.decorateCSS("column-button")}
                               >
-                                  {buttonIconExist && (
-                                    <Base.Media
-                                      value={button.icon}
-                                      className={this.decorateCSS(
-                                        "button-icon"
-                                      )}
-                                    />
-                                  )}
-                                  {buttonTextExist && (
-                                    <Base.P
-                                      className={this.decorateCSS(
-                                        "button-text"
-                                      )}
-                                    >
-                                      {button.text}
-                                    </Base.P>
-                                  )}
-                              </ComposerLink>
+                                <div className={this.decorateCSS("pulse-wrapper")}>
+                                  <ComposerLink
+                                    path={button.url || "#"}
+                                    key={btnIndex}
+                                  >
+                                    {buttonIconExist && (
+                                      <Base.Media
+                                        value={button.icon}
+                                        className={this.decorateCSS(
+                                          "button-icon"
+                                        )}
+                                      />
+                                    )}
+                                    {buttonTextExist && (
+                                      <Base.P
+                                        className={this.decorateCSS(
+                                          "button-text"
+                                        )}
+                                      >
+                                        {button.text}
+                                      </Base.P>
+                                    )}
+                                  </ComposerLink>
+                                </div>
                               </Base.Button>
                             );
                           })}
@@ -1035,7 +1040,7 @@ class PricingTable9 extends BasePricingTable {
                           {column?.contents.map(
                             (content: any, contentIndex: any) => {
                               const firstColumnContent = this.castToObject<any[]>("columns")[0]?.contents?.[contentIndex];
-                              
+
                               if (!firstColumnContent) return null;
 
                               const iconExist = this.hasMediaContent(
@@ -1065,6 +1070,7 @@ class PricingTable9 extends BasePricingTable {
                                       {content?.text}
                                     </Base.P>
                                   )}
+                                  <div className={this.decorateCSS("hover-line")} />
                                 </div>
                               );
                             }
@@ -1095,23 +1101,25 @@ class PricingTable9 extends BasePricingTable {
                                     buttonType={button.type}
                                     className={this.decorateCSS("column-button")}
                                   >
-                                    {buttonIconExist && (
-                                      <Base.Media
-                                        value={button.icon}
-                                        className={this.decorateCSS(
-                                          "button-icon"
-                                        )}
-                                      />
-                                    )}
-                                    {buttonTextExist && (
-                                      <Base.P
-                                        className={this.decorateCSS(
-                                          "button-text"
-                                        )}
-                                      >
-                                        {button.text}
-                                      </Base.P>
-                                    )}
+                                    <div className={this.decorateCSS("pulse-wrapper")}>
+                                      {buttonIconExist && (
+                                        <Base.Media
+                                          value={button.icon}
+                                          className={this.decorateCSS(
+                                            "button-icon"
+                                          )}
+                                        />
+                                      )}
+                                      {buttonTextExist && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "button-text"
+                                          )}
+                                        >
+                                          {button.text}
+                                        </Base.P>
+                                      )}
+                                    </div>
                                   </Base.Button>
                                 </ComposerLink>
                               );
