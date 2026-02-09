@@ -24,7 +24,7 @@ type PrimaryButton = {
   type: TypeButton;
   text: Element;
   url: string;
-  icon?: any;
+  icon?: TypeMediaInputValue;
 };
 
 class Feature45 extends BaseFeature {
@@ -293,6 +293,14 @@ class Feature45 extends BaseFeature {
       (sectionButton) => !!this.castToString(sectionButton.text),
     );
 
+    const isCardHasMedia = (card: Card) => {
+      return (
+        (card.media?.type === "image" || card.media?.type === "video") &&
+        "url" in card.media &&
+        card.media.url
+      );
+    };
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -355,7 +363,7 @@ class Feature45 extends BaseFeature {
                     {(this.castToString(card.overlayTitle) ||
                       this.castToString(card.description)) && (
                       <Base.VerticalContent
-                        className={this.decorateCSS("media-text-wrapper")}
+                        className={`${this.decorateCSS("media-text-wrapper")} ${isCardHasMedia(card) ? this.decorateCSS("with-image") : ""}`}
                       >
                         {this.castToString(card.overlayTitle) && (
                           <Base.H3
@@ -376,22 +384,17 @@ class Feature45 extends BaseFeature {
                       </Base.VerticalContent>
                     )}
 
-                    {(card.media?.type === "image" ||
-                      card.media?.type === "video") &&
-                      "url" in card.media &&
-                      card.media.url && (
-                        <div
-                          className={this.decorateCSS("child-media-wrapper")}
-                        >
-                          <Base.Media
-                            value={card.media}
-                            className={this.decorateCSS("media")}
-                          />
-                          {card.overlay && (
-                            <div className={this.decorateCSS("overlay")} />
-                          )}
-                        </div>
-                      )}
+                    {isCardHasMedia(card) && (
+                      <div className={this.decorateCSS("child-media-wrapper")}>
+                        <Base.Media
+                          value={card.media}
+                          className={this.decorateCSS("media")}
+                        />
+                        {card.overlay && (
+                          <div className={this.decorateCSS("overlay")} />
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   {isCardButtonsExist(card.buttons) && (
