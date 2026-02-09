@@ -28,26 +28,22 @@
         }
 
         .cards-container {
-            display: grid;
             gap: var(--composer-gap-lg);
-
-
             .card {
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 gap: var(--composer-gap-md);
                 padding: var(--composer-gap-lg);
-                background-color: var(--composer-html-background);
                 border-radius: var(--composer-border-radius-md);
                 box-shadow: var(--box-shadow-active);
                 height: 100%;
                 width: 100%;
 
-                &.only-button{
+                 &.only-button{
                     gap: 0;
                     padding-top: 0;
-                }
+                } 
 
                 .card-button {
                     content: "";
@@ -79,15 +75,6 @@
 
                         .card-icon {
                             color: white;
-                        }
-                    }
-
-                    &.no-background {
-                        background-color: transparent;
-                        margin-bottom: var(--composer-gap-xs);
-
-                        .card-icon {
-                            color: var(--composer-primary-color);
                         }
                     }
 

@@ -186,9 +186,6 @@ class Feature49 extends BaseFeature {
             type: "boolean",
             key: "iconBackground",
             displayer: "Icon Background",
-            additionalParams: {
-                availableTypes: ["icon", "image"]
-            },
             value: true,
         })
 
@@ -247,9 +244,9 @@ class Feature49 extends BaseFeature {
                                 const buttonExist = card.button && this.castToString(card.button.text);
                                 const onlyButton = !iconExist && !titleExist && !descExist && buttonExist;
                                 return (iconExist || titleExist || descExist || buttonExist) && (
-                                    <div key={index} className={`${this.decorateCSS("card")} ${onlyButton ? this.decorateCSS("only-button") : ""}`}>
+                                    <div key={index} className={`${this.decorateCSS("card")}  ${onlyButton ? this.decorateCSS("only-button") : ""}`}>
                                         {iconExist && (
-                                        <div className={`${this.decorateCSS("icon-container")} ${iconBackground ? this.decorateCSS("with-background") : this.decorateCSS("no-background")}`}>
+                                        <div className={`${this.decorateCSS("icon-container")} ${iconBackground && this.decorateCSS("with-background")}`}>
                                             <Base.Media value={card.icon} className={this.decorateCSS("card-icon")} />
                                         </div>
                                     )}
