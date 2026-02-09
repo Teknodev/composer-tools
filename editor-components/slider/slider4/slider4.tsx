@@ -290,7 +290,7 @@ class Slider4 extends BaseSlider {
 
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
       dots: true,
-      arrows: false,
+      arrows: true,
       infinite: true,
       speed: 500,
       autoplay: true,

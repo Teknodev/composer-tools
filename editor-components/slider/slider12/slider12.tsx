@@ -52,7 +52,7 @@ class Slider12 extends BaseSlider {
       value: false,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Config"));
 
     this.addProp({
       type: "array",
