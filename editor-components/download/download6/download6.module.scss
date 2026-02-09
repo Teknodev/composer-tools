@@ -1,6 +1,8 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  padding: 80px 50px;
+
   .max-content {
     display: flex;
     justify-content: space-between;
@@ -29,10 +31,6 @@
         }
 
         .button-element {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-sizing: border-box;
 
           .icon,
           .button-text {
@@ -82,6 +80,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: 80px 40px !important;
+
     .max-content {
       .right-column {
         .image {
@@ -94,6 +94,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: 50px 20px !important;
+
     .max-content {
       flex-direction: column;
       gap: var(--composer-gap-lg);

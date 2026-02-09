@@ -221,6 +221,17 @@
   .container {
     padding: 50px 20px !important;
 
+    &.has-image {
+      .max-content .page {
+
+        .group-container,
+        .group-container-center {
+          padding: 0 !important;
+          margin-top: var(--composer-gap-md);
+        }
+      }
+    }
+
     .image-container {
       height: 250px;
       margin-left: -20px;
@@ -235,7 +246,7 @@
           flex-direction: column;
           width: 100%;
           gap: var(--composer-gap-md);
-          padding: var(--composer-gap-md) 0;
+          padding: 0;
           align-items: flex-start;
 
           .title-block {
@@ -301,7 +312,7 @@
         }
 
         .group-container-center {
-          padding: var(--composer-gap-md);
+          padding: 0;
           padding-bottom: 0px !important;
 
           .button-group {

@@ -117,8 +117,10 @@
     .max-content {
       .wrapper {
         .content-container {
-          min-height: 600px;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          &.image {
+            min-height: 600px;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
+          }
 
           .buttons-container {
             justify-content: center;
@@ -142,8 +144,10 @@
     .max-content {
       .wrapper {
         .content-container {
-          min-height: 600px;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          &.image {
+            min-height: 600px;
+            padding: var(--composer-gap-sm) var(--composer-gap-md);
+          }
 
           .description {
             text-align: center;
