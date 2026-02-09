@@ -259,14 +259,13 @@ class List11 extends BaseList {
                                         {title}
                                     </Base.SectionTitle>
                                 )}
-                            </Base.VerticalContent>
-                            {this.castToString(description) && (
-                                <div className={this.decorateCSS("description-container")}>
+                                {this.castToString(description) && (
                                     <Base.SectionDescription className={this.decorateCSS("section-description")}>
                                         {description}
                                     </Base.SectionDescription>
-                                </div>
-                            )}
+                                )}
+                            </Base.VerticalContent>
+
                         </div>
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => (
