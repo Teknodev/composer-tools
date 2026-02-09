@@ -307,6 +307,7 @@ class Slider4 extends BaseSlider {
     });
     this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
 
+    this.setComponentState("active_index", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
 
@@ -318,8 +319,17 @@ class Slider4 extends BaseSlider {
     const cardNumber = cards.length;
     const carouselClass = cardNumber === 1 ? "carousel--singleCard" : "carousel--multipleCards";
 
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings") || []);
+    const showDots = sliderSettings.dots !== false;
+    const showArrows = sliderSettings.arrows !== false;
+
     const settings = {
-      ...this.transformSliderValues(this.getPropValue("settings") || []),
+      ...sliderSettings,
+      dots: false,
+      arrows: false,
+      beforeChange: (_current: number, next: number) => {
+        this.setComponentState("active_index", next);
+      },
       responsive: [
         {
           breakpoint: 1024,
@@ -349,7 +359,6 @@ class Slider4 extends BaseSlider {
     const previousArrow = controls["previousArrow"];
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
-    const contentAlignment = Base.getContentAlignment();
 
     const sliderRef = this.getComponentState("slider-ref");
 
@@ -371,7 +380,7 @@ class Slider4 extends BaseSlider {
               <Base.VerticalContent className={this.decorateCSS("control-part")}>
                 {this.castToString(controlTitle) && <Base.H3 className={this.decorateCSS("control-title")}>{controlTitle}</Base.H3>}
                 {this.castToString(controlDescription) && <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
-                {(previousArrow || nextArrow) && (
+                {showArrows && (previousArrow || nextArrow) && (
                   <div className={this.decorateCSS("arrows")}>
                     {previousArrow && (
                       <div className={this.decorateCSS("icon-wrapper")} onClick={() => sliderRef.current.slickPrev()}>
@@ -431,8 +440,23 @@ class Slider4 extends BaseSlider {
 
             </div>
           </Base.ContainerGrid>
+
+          {cards.length > 1 && showDots && (
+            <div className={this.decorateCSS("custom-dots")}>
+              {cards.map((_, index) => (
+                <div
+                  key={index}
+                  className={`${this.decorateCSS("dot-item")} ${this.getComponentState("active_index") === index ? this.decorateCSS("active") : ""}`}
+                  onClick={() => sliderRef.current.slickGoTo(index)}
+                >
+                  <button className={this.decorateCSS("dot-button")} />
+                </div>
+              ))}
+            </div>
+          )}
+
           {button && this.castToString(button.text) && (
-            <div className={`${this.decorateCSS("global-button")} ${contentAlignment === "center" && this.decorateCSS("center")}`}>
+            <div className={`${this.decorateCSS("global-button")} ${this.decorateCSS("center")}`}>
               <Base.Button buttonType={button.type}>
                 {button.text && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
                 {button.icon && (

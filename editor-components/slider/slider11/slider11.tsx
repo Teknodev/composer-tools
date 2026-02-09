@@ -456,7 +456,7 @@ class Slider11 extends BaseSlider {
                     }`}
                   onClick={() => this.setActiveTab(index)}
                 >
-                  <Base.Button className={this.decorateCSS("dot-button")} />
+                  <button className={this.decorateCSS("dot-button")} />
                 </div>
               ))}
             </div>

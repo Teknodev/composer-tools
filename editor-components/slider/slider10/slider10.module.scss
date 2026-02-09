@@ -21,7 +21,7 @@
 
         :global(.slick-dots) {
           bottom: auto;
-          top: 70%;
+          top: 75%;
           left: 70px;
           transform: translateY(-50%);
           width: auto !important;
@@ -62,7 +62,7 @@
               }
             }
 
-            &.slick-active {
+            &:global(.slick-active) {
               button:before {
                 transform: scale(1.2);
                 opacity: 1;

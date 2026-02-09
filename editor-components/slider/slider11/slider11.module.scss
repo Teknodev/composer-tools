@@ -290,6 +290,8 @@
         .dot-button {
           width: var(--composer-gap-sm);
           height: var(--composer-gap-sm);
+          min-width: unset !important;
+          min-height: unset !important;
           border-radius: var(--composer-border-radius-full);
           border: none;
           background: var(--composer-font-color-primary);
@@ -297,6 +299,7 @@
           padding: 0;
           transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
           transform: scale(0.8);
+          flex-shrink: 0;
         }
 
         &.active .dot-button {
@@ -316,9 +319,13 @@
         padding-left: 40px;
       }
 
-      .arrow-prev,
-      .arrow-next {
-        display: none;
+      .dot-item {
+        padding: 0 var(--composer-gap-xs);
+
+        .dot-button {
+          width: 8px !important;
+          height: 8px !important;
+        }
       }
     }
 
@@ -355,6 +362,15 @@
 
       .tabs-right {
         display: none;
+      }
+
+      .dot-item {
+        padding: 0 6px;
+
+        .dot-button {
+          width: 6px !important;
+          height: 6px !important;
+        }
       }
     }
   }

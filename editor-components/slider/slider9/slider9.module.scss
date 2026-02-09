@@ -128,26 +128,30 @@
           width: 75%;
           height: 100%;
           position: relative;
-          overflow: hidden;
           border-radius: var(--composer-border-radius-sm);
+          overflow: hidden;
 
           &:hover .horizontalArrows {
             .horizontalPreviousArrow {
-              animation: moveRight 0.3s forwards;
+              animation: moveRight 0.3s forwards ease-in-out;
+              opacity: 1;
             }
 
             .horizontalNextArrow {
-              animation: moveLeft 0.3s forwards;
+              animation: moveLeft 0.3s forwards ease-in-out;
+              opacity: 1;
             }
           }
 
           &:not(:hover) .horizontalArrows {
             .horizontalPreviousArrow {
-              animation: moveLeft 0.3s forwards;
+              animation: moveLeft 0.3s forwards ease-in-out;
+              opacity: 0;
             }
 
             .horizontalNextArrow {
-              animation: moveRight 0.3s forwards;
+              animation: moveRight 0.3s forwards ease-in-out;
+              opacity: 0;
             }
           }
 
@@ -160,7 +164,7 @@
 
             :global(.slick-dots) {
               position: absolute;
-              bottom: 10px;
+              bottom: -50px;
               left: 50%;
               transform: translateX(-50%);
               display: flex !important;
@@ -200,7 +204,7 @@
                   }
                 }
 
-                &.slick-active {
+                &:global(.slick-active) {
                   button:before {
                     transform: scale(1.2);
                     opacity: 1;
@@ -287,8 +291,9 @@
               justify-content: center;
               align-items: center;
               cursor: pointer;
-              transition: color 0.3s ease, transform 0.3s ease;
+              transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
               font-size: 2rem;
+              opacity: 0;
 
               &:hover {
                 color: var(--composer-primary-color);

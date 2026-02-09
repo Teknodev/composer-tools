@@ -692,6 +692,7 @@ class Slider9 extends BaseSlider {
       slidesToShow: 3,
       slidesToScroll: 1,
       vertical: true,
+      arrows: false,
       afterChange: (current: number) => {
         this.setComponentState("currentSlideIndex", current);
         if (horizontalSliderRef.current) {
@@ -704,6 +705,7 @@ class Slider9 extends BaseSlider {
       ...this.transformSliderValues(this.getPropValue("settings")),
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows: false,
       afterChange: (currentIndex: number) => {
         this.setComponentState("currentSlideIndex", currentIndex);
       },
