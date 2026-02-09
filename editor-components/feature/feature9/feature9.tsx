@@ -22,6 +22,13 @@ class Feature9 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Our process of building a successful digital product."
@@ -262,6 +269,7 @@ class Feature9 extends BaseFeature {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const cardElements = document.querySelectorAll("." + this.decorateCSS("card"));
     const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
 
     const cardsLengthIsChanged = this.getComponentState("cardLength") != cardElements.length;
 
@@ -269,17 +277,24 @@ class Feature9 extends BaseFeature {
       this.setupObserver();
     }
 
-    const wrapperExist = this.castToString(title) || cards?.length > 0;
+    const wrapperExist = this.castToString(title) || this.castToString(subtitle) || cards?.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {wrapperExist && <div className={this.decorateCSS("wrapper")}>
-            {this.castToString(title) &&
-              <Base.VerticalContent className={this.decorateCSS("title-container")}>
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
+            {(this.castToString(title) || this.castToString(subtitle)) &&
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {this.castToString(subtitle) &&
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                }
+                {this.castToString(title) &&
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                }
               </Base.VerticalContent>
             }
             {cards?.length > 0 &&

@@ -18,6 +18,13 @@ class Feature6 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Case Studies",
@@ -168,6 +175,7 @@ class Feature6 extends BaseFeature {
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const descExist = this.castToString(this.getPropValue("description"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     const overlay: boolean = this.getPropValue("overlay");
 
@@ -175,8 +183,13 @@ class Feature6 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {(titleExist || descExist) && (
+            {(titleExist || descExist || subtitleExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("header-subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
                 {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("header-title")}>
                     {this.getPropValue("title")}

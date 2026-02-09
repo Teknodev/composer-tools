@@ -29,6 +29,13 @@ class Feature13 extends BaseFeature {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Discover Our Story",
@@ -502,6 +509,8 @@ class Feature13 extends BaseFeature {
     const sliderImages = this.castToObject<SliderImage[]>("slider-images");
     const titleExist = this.getPropValue("title", { as_string: true });
     const dividerExist = this.getPropValue("divider");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const descExist = this.getPropValue("description", { as_string: true });
     const tabList = this.castToObject<Tab[]>("tab-items");
     const activeTab = this.getComponentState("activeTab");
@@ -513,6 +522,11 @@ class Feature13 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {this.getPropValue("title")}
