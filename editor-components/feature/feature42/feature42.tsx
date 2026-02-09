@@ -14,10 +14,12 @@ type ButtonTypeObj = {
 
 interface ListItem {
     title: React.JSX.Element;
+    cardSubTitle: React.JSX.Element;
     cardTitle: React.JSX.Element;
     text1: React.JSX.Element;
     text2: React.JSX.Element;
     image: TypeMediaInputValue;
+    button: ButtonTypeObj;
 }
 
 class Feature42 extends BaseFeature {
@@ -72,6 +74,12 @@ class Feature42 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "cardSubTitle",
+                            displayer: "Card subTitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "cardTitle",
                             displayer: "Card Title",
                             value: "Tools and software for every business"
@@ -88,6 +96,7 @@ class Feature42 extends BaseFeature {
                             displayer: "Text 2",
                             value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
                         },
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
                     ],
                 },
                 {
@@ -112,6 +121,12 @@ class Feature42 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "cardSubTitle",
+                            displayer: "Card subTitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "cardTitle",
                             displayer: "Card Title",
                             value: "Smart data analytics dashboards"
@@ -128,6 +143,7 @@ class Feature42 extends BaseFeature {
                             displayer: "Text 2",
                             value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
                         },
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
                     ],
                 },
                 {
@@ -152,6 +168,12 @@ class Feature42 extends BaseFeature {
                         },
                         {
                             type: "string",
+                            key: "cardSubTitle",
+                            displayer: "Card subTitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
                             key: "cardTitle",
                             displayer: "Card Title",
                             value: "Visual component of the project"
@@ -168,6 +190,7 @@ class Feature42 extends BaseFeature {
                             displayer: "Text 2",
                             value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
                         },
+                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
                     ],
                 },
             ],
@@ -269,6 +292,7 @@ class Feature42 extends BaseFeature {
                         <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")}`}>
                             {items.map((item: ListItem, index: number) => {
                                 const isActive = effectiveIndex === index;
+                                const cardSubTitleExist = this.castToString(item.cardSubTitle);
                                 const cardTitleExist = this.castToString(item.cardTitle);
                                 const text1Exist = this.castToString(item.text1);
                                 const text2Exist = this.castToString(item.text2);
@@ -297,7 +321,7 @@ class Feature42 extends BaseFeature {
                                             </div>
                                         </div>
                                         {item.image && (
-                                            <div className={`${this.decorateCSS("image-wrapper")} ${!(cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
+                                            <div className={`${this.decorateCSS("image-wrapper")} ${!(cardSubTitleExist || cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
                                                 <Base.Media
                                                     value={item.image}
                                                     className={this.decorateCSS("itemImage")}
@@ -309,6 +333,9 @@ class Feature42 extends BaseFeature {
                                         )}
                                         {(cardTitleExist || text1Exist || text2Exist) && (
                                             <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
+                                                {cardSubTitleExist && (
+                                                    <Base.H3 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H3>
+                                                )}
                                                 {cardTitleExist && (
                                                     <Base.H4 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H4>
                                                 )}
@@ -318,29 +345,39 @@ class Feature42 extends BaseFeature {
                                                 {text2Exist && (
                                                     <Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>
                                                 )}
+                                                {item.button && this.castToString(item.button.text) && (
+                                                    <ComposerLink path={item.button.url}>
+                                                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
+                                                            <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                )}
                                             </div>
                                         )}
                                     </div>
                                 );
                             })}
                         </div>
-                    )}
-                    {visibleButtons.length > 0 && (
-                        <div className={this.decorateCSS("button-container")}>
-                            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                const buttonTextExist = this.castToString(item.text);
-                                return (
-                                    buttonTextExist && (
-                                        <ComposerLink key={`button-${index}`} path={item.url}>
-                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    )
-                                );
-                            })}
-                        </div>
-                    )}
+                    )
+                    }
+                    {
+                        visibleButtons.length > 0 && (
+                            <div className={this.decorateCSS("button-container")}>
+                                {visibleButtons.map((item: ButtonTypeObj, index: number) => {
+                                    const buttonTextExist = this.castToString(item.text);
+                                    return (
+                                        buttonTextExist && (
+                                            <ComposerLink key={`button-${index}`} path={item.url}>
+                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        )
+                                    );
+                                })}
+                            </div>
+                        )
+                    }
                 </Base.MaxContent>
             </Base.Container>
         );

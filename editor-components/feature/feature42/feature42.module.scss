@@ -142,11 +142,18 @@
                         padding-left: var(--composer-gap-xl);
                     }
 
+                    .cardSubTitle,
                     .cardTitle,
                     .sectionText1,
                     .sectionText2 {
                         text-align: left;
                         color: var(--composer-font-color-primary);
+                    }
+
+                    .card-button {
+                        .card-button-text {
+                            content: "";
+                        }
                     }
                 }
             }
