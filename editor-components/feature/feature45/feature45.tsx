@@ -363,7 +363,7 @@ class Feature45 extends BaseFeature {
                     {(this.castToString(card.overlayTitle) ||
                       this.castToString(card.description)) && (
                       <Base.VerticalContent
-                        className={this.decorateCSS("media-text-wrapper")}
+                        className={`${this.decorateCSS("media-text-wrapper")} ${isCardHasMedia(card) ? this.decorateCSS("with-image") : ""}`}
                       >
                         {this.castToString(card.overlayTitle) && (
                           <Base.H3
