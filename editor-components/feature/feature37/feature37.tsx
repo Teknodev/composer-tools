@@ -12,7 +12,7 @@ type Card = {
 };
 
 type Background = {
-    "cover-image": TypeMediaInputValue;
+    cover_image: TypeMediaInputValue;
     overlay: boolean;
 };
 
@@ -48,7 +48,7 @@ class Feature37 extends BaseFeature {
             value: [
                 {
                     type: "media",
-                    key: "cover-image",
+                    key: "cover_image",
                     displayer: "Media",
                     value: {
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
@@ -172,7 +172,7 @@ class Feature37 extends BaseFeature {
 
     render() {
         const background = this.castToObject<Background>("background");
-        const image = background?.["cover-image"];
+        const image = background?.cover_image;
         const isImageExist = !!image?.url;
         const enableOverlay = background?.overlay;
         const subtitle = this.castToString(this.getPropValue("subtitle"));
