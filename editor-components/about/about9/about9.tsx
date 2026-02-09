@@ -87,18 +87,22 @@ class About9 extends BaseAbout {
         const showBottomContainer = this.castToString(text1) || this.castToString(text2);
         const showSideContainer = showTopContainer || showBottomContainer;
 
+        const alignmentValue = Base.getContentAlignment();
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showSideContainer && (
-                        <div className={`${this.decorateCSS("side-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
+                        <div className={`${this.decorateCSS("side-container")} ${hasImages && this.decorateCSS("with-image")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                             {showTopContainer && (
                                 <div className={this.decorateCSS("top-container")}>
                                     <Base.VerticalContent className={this.decorateCSS("title-container")}>
                                         {subtitleText && (
-                                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                                {subtitle}
-                                            </Base.SectionSubTitle>
+                                            <div className={this.decorateCSS("subtitle-wrapper")}>
+                                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                                    {subtitle}
+                                                </Base.SectionSubTitle>
+                                            </div>
                                         )}
                                         {this.castToString(title) && (
                                             <Base.SectionTitle className={this.decorateCSS("title")}>

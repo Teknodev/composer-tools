@@ -31,9 +31,22 @@ as *;
           display: flex;
           align-items: center;
 
-          .subtitle,
           .title {
             content: "";
+            text-align: left;
+          }
+
+          .subtitle-wrapper {
+            width: 100%;
+            display: flex;
+
+            .subtitle {
+              content: "";
+            }
+          }
+
+          .subtitle {
+            margin-left: 0px !important;
           }
         }
 
@@ -58,9 +71,38 @@ as *;
 
         &.with-image {
 
-          .subtitle,
-          .title {
+          .title,
+          .subtitle {
             text-align: left !important;
+          }
+        }
+      }
+
+      &.center {
+        &:not(.with-image) {
+          .top-container {
+            justify-content: center;
+
+            .title-container {
+              justify-content: center;
+              text-align: center;
+
+              .title,
+              .subtitle {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+              }
+            }
+          }
+
+          .bottom-container {
+            text-align: center;
+
+            .text-1,
+            .text-2 {
+              text-align: center;
+            }
           }
         }
       }
@@ -92,28 +134,28 @@ as *;
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .side-container {
-    gap: 0px !important;
+  .container {
+    .max-content {
+      .side-container {
+        gap: var(--composer-gap-md) !important;
 
-    .top-container {
-      flex-direction: column;
-      gap: var(--composer-gap-sm);
+        .top-container {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
 
-      .image-1,
-      .image-2 {
-        width: 100%;
-        max-width: 100%;
-        min-height: 150px;
-        flex: none;
-      }
-    }
+          .image-1,
+          .image-2 {
+            width: 100%;
+            max-width: 100%;
+            min-height: 150px;
+            flex: none;
+          }
+        }
 
-    .bottom-container {
-      flex-direction: column;
-      gap: var(--composer-gap-sm);
-
-      .text-1 {
-        margin-bottom: 1rem;
+        .bottom-container {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+        }
       }
     }
   }
