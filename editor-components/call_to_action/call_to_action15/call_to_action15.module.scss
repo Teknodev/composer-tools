@@ -10,11 +10,22 @@
             width: 100%;
             .subtitle{
                 text-align: center;
+                transform: translateX(0) !important;
+                margin: 0 auto;
                 &::before{
                     display: none;
                 }
             }
-            .title, .description{
+            .title{
+                text-align: center;
+                width: 100%;
+                span{
+                    &:not([style]){
+                        color: var(--composer-font-color-secondary);
+                    }
+                }
+            }
+            .description{
                 text-align: center;
             }
         }
