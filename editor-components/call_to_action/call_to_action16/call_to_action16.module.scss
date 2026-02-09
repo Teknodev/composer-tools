@@ -6,34 +6,40 @@
         flex-direction: column;
         gap: var(--composer-gap-lg);
 
-        .header {
-            align-items: center;
+        .content {
+            .header {
+                align-items: center;
 
-            .subtitle {
-                transform: none;
-                text-align: center;
+                .subtitle {
+                    transform: none;
+                    text-align: center;
 
-                &::before {
-                    display: none;
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                .title {
+                    text-align: center;
+                    color: var(--composer-primary-color);
+                }
+
+                .description {
+                    text-align: center;
                 }
             }
 
-            .title,
-            .description {
-                text-align: center;
-            }
-        }
+            .button-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
 
-        .button-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: var(--composer-gap-sm);
-
-            .button {
-                .button-text {
-                    content: "";
+                .button {
+                    .button-text {
+                        content: "";
+                    }
                 }
             }
         }
