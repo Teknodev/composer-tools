@@ -381,6 +381,47 @@ class Feature45 extends BaseFeature {
                             {card.description}
                           </Base.P>
                         )}
+                        {isCardButtonsExist(card.buttons) && (
+                          <Base.Row
+                            className={this.decorateCSS("card-buttons-wrapper")}
+                          >
+                            {card.buttons.map((button, index) => {
+                              const buttonText = this.castToString(button.text);
+                              const buttonExist = buttonText || button.icon;
+                              return (
+                                buttonExist && (
+                                  <ComposerLink path={button.url}>
+                                    <Base.Button
+                                      className={this.decorateCSS(
+                                        "card-button",
+                                      )}
+                                      key={index}
+                                      buttonType={button.type}
+                                    >
+                                      {button.icon && (
+                                        <Base.Media
+                                          value={button.icon}
+                                          className={this.decorateCSS(
+                                            "card-button-icon",
+                                          )}
+                                        />
+                                      )}
+                                      {buttonText && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "card-button-text",
+                                          )}
+                                        >
+                                          {button.text}
+                                        </Base.P>
+                                      )}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                )
+                              );
+                            })}
+                          </Base.Row>
+                        )}
                       </Base.VerticalContent>
                     )}
 
@@ -396,46 +437,6 @@ class Feature45 extends BaseFeature {
                       </div>
                     )}
                   </div>
-
-                  {isCardButtonsExist(card.buttons) && (
-                    <Base.Row
-                      className={this.decorateCSS("card-buttons-wrapper")}
-                    >
-                      {card.buttons.map((button, index) => {
-                        const buttonText = this.castToString(button.text);
-                        const buttonExist = buttonText || button.icon;
-                        return (
-                          buttonExist && (
-                            <ComposerLink path={button.url}>
-                              <Base.Button
-                                className={this.decorateCSS("card-button")}
-                                key={index}
-                                buttonType={button.type}
-                              >
-                                {button.icon && (
-                                  <Base.Media
-                                    value={button.icon}
-                                    className={this.decorateCSS(
-                                      "card-button-icon",
-                                    )}
-                                  />
-                                )}
-                                {buttonText && (
-                                  <Base.P
-                                    className={this.decorateCSS(
-                                      "card-button-text",
-                                    )}
-                                  >
-                                    {button.text}
-                                  </Base.P>
-                                )}
-                              </Base.Button>
-                            </ComposerLink>
-                          )
-                        );
-                      })}
-                    </Base.Row>
-                  )}
                 </Base.VerticalContent>
               ))}
             </Base.ListGrid>
