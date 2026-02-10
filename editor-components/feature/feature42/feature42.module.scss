@@ -12,17 +12,14 @@
             flex-direction: column;
             gap: var(--composer-gap-lg);
 
-            .text-content {
+            .vertical-content {
                 display: flex;
                 flex-direction: column;
 
-                .vertical-content {
-
-                    .subtitle,
-                    .title,
-                    .description {
-                        content: "";
-                    }
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
                 }
             }
 
@@ -204,11 +201,9 @@
             padding: 0px var(--composer-gap-md);
 
             .wrapper {
-                .text-content {
-                    .vertical-content {
-                        .subtitle {
-                            padding-right: var(--composer-gap-xl);
-                        }
+                .vertical-content {
+                    .subtitle {
+                        padding-right: var(--composer-gap-xl);
                     }
                 }
 

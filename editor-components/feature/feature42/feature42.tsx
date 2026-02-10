@@ -248,7 +248,7 @@ class Feature42 extends BaseFeature {
         const hasItems = items.some((item: ListItem) => this.castToString(item.title));
         const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const hasContent = subtitleExist || titleExist || descriptionExist || hasItems;
+        const hasContent = subtitleExist || titleExist || descriptionExist;
         const hasRightContent = items.some((item: ListItem) =>
             item.image ||
             this.castToString(item.cardTitle) ||
