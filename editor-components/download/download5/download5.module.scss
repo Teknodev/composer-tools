@@ -1,12 +1,10 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
-$min-height: 500px;
-
 .container {
   background-size: cover;
   background-position: center;
   position: relative;
-  min-height: $min-height;
+  min-height: 500px;
 
   .background-image {
     position: absolute;
@@ -22,7 +20,7 @@ $min-height: 500px;
     align-items: center;
     position: relative;
     z-index: 2;
-    min-height: $min-height;
+    min-height: 500px;
 
     &.single {
       min-height: 0 !important;
@@ -76,13 +74,17 @@ $min-height: 500px;
 
         .button-image {
           width: 170px;
-          height: 49px;
+          height: 50px;
           object-fit: cover;
           border-radius: var(--composer-border-radius-sm);
         }
 
         .button-element {
-          content: "";
+
+          .button-icon,
+          .button-text {
+            content: "";
+          }
         }
 
       }
@@ -159,7 +161,7 @@ $min-height: 500px;
 
           .button-image {
             width: 120px;
-            height: 32px;
+            height: 30px;
           }
         }
       }
