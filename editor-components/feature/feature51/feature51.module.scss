@@ -1,0 +1,115 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.buttons-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--composer-gap-sm);
+}
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--composer-gap-lg);
+
+    .header-container {
+      .subtitle {
+        width: fit-content;
+      }
+
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
+    .items-container {
+      row-gap: 0 !important;
+      .item {
+        align-items: flex-start;
+        height: fit-content;
+        color: var(--composer-font-color-primary);
+        transition: all 0.3s easeas;
+        border-bottom: 1px solid
+          rgba(var(--composer-font-color-primary-rgb), 0.2);
+
+        &.active {
+          .item-header {
+            color: var(--composer-primary-color);
+          }
+
+          .item-icon {
+            rotate: 45deg;
+          }
+
+          .item-description {
+            margin-top: var(--composer-gap-sm);
+            margin-bottom: var(--composer-gap-md);
+          }
+        }
+
+        .item-header {
+          width: 100%;
+          align-items: center;
+          justify-content: space-between;
+          padding-block: var(--composer-gap-md);
+          cursor: pointer;
+          margin-bottom: 0;
+        }
+
+        .item-title,
+        .item-description {
+          text-align: left !important;
+          transition: all 0.3s line;
+        }
+
+        .item-description {
+          animation: openItem 0.3s forwards;
+        }
+
+        .item-icon {
+          transition: all 0.3s ease;
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
+      }
+    }
+
+    .section-buttons-wrapper {
+      @extend .buttons-wrapper;
+      margin-inline: auto;
+
+      .section-button {
+        .section-button-icon,
+        .section-button-text {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content {
+    gap: var(--composer-gap-md);
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .cards-list .card {
+    padding: var(--composer-gap-md) !important;
+  }
+}
+
+@keyframes openItem {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
