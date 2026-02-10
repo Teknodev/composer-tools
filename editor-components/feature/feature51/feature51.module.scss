@@ -72,8 +72,8 @@
         .item-icon {
           transition: all 0.3s ease;
           svg {
-            width: 16px;
-            height: 16px;
+            width: 24px;
+            height: 24px;
           }
         }
       }
@@ -100,8 +100,9 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .cards-list .card {
-    padding: var(--composer-gap-md) !important;
+  .container .items-container .item .item-icon svg {
+    width: 20px !important;
+    height: 20px !important;
   }
 }
 
