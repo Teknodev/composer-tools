@@ -1,13 +1,18 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  padding: 80px 50px;
+
   .max-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     @mixin column-styles {
-      .title, .description, .subtitle {
+
+      .title,
+      .description,
+      .subtitle {
         content: "";
       }
 
@@ -16,27 +21,45 @@
         flex-wrap: wrap;
         align-items: center;
         gap: var(--composer-gap-md);
-          .button-image {
-            width: 200px;
-            height: 50px;
-            cursor: pointer;
-            border-radius: var(--composer-border-radius-sm);
-            object-fit: cover;
+
+        .button-image {
+          width: 170px;
+          height: 50px;
+          cursor: pointer;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+        }
+
+        .button-element {
+
+          .icon,
+          .button-text {
+            content: "";
           }
-          .button-element {
-            height: 50px;
-            .icon, .button-text{
-              content: "";
-            }
         }
       }
     }
 
     .left-column {
-      width: 70%;
+      width: 100%;
       @include column-styles;
-      &.no-image{
-        width: 100%;
+
+      &.has-image {
+        width: 70%;
+        align-items: flex-start;
+        text-align: left;
+
+        .title,
+        .description,
+        .subtitle {
+          text-align: left !important;
+          margin-left: 0 !important;
+        }
+
+        .buttons-container {
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
       }
     }
 
@@ -57,6 +80,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: 80px 40px !important;
+
     .max-content {
       .right-column {
         .image {
@@ -69,12 +94,16 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: 50px 20px !important;
+
     .max-content {
       flex-direction: column;
       gap: var(--composer-gap-lg);
+
       .left-column {
-        width: 100%;
+        width: 100% !important;
       }
+
       .right-column {
         width: 100%;
       }

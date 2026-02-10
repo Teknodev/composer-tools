@@ -7,30 +7,25 @@
     gap: var(--composer-gap-lg);
 
     .header {
-      align-items: center;
       .subtitle {
+        margin-left: auto;
+        margin-right: auto;
         text-align: center;
-        transform: translateX(0);
-        &::before{
+        transform: none;
+
+        &::before {
           display: none;
         }
       }
-      .title {
-        &.line{
-          position: relative;
-          margin-bottom: var(--composer-gap-lg);
-          text-align: center;
-          &::after {
-            content: "";
-            position: absolute;
-            bottom: calc(-1 * var(--composer-gap-md));
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            border-bottom: var(--composer-gap-xs) solid var(--composer-primary-color);
-          }
-        }
+
+      .title-line {
+        width: 100px;
+        border-bottom: var(--composer-gap-xs) solid;
+        margin: 0 auto var(--composer-gap-md);
+        color: var(--composer-primary-color);
       }
+
+      .title,
       .description {
         text-align: center;
       }
@@ -46,20 +41,20 @@
       .button-wrapper {
         .image-container {
           .image {
-            content: "";
-            width: 200px;
-            height: 70px;
+            width: 150px;
+            height: var(--composer-gap-xl);
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
         }
+
         .button {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-          .button-text{
+          .button-text {
             content: "";
           }
-          .icon{
-            font-size:1.5rem;
+
+          .icon {
+            font-size: 1.5rem;
           }
         }
       }
@@ -72,12 +67,9 @@
     .max-content {
       .box {
         justify-content: space-between;
+
         .button-wrapper {
           .button {
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-            .button-text {              
-              content: "";
-            }
             .icon {
               font-size: 1rem;
             }
@@ -92,16 +84,24 @@
   .container {
     .max-content {
       gap: var(--composer-gap-sm);
-      .header{
+
+      .header {
         align-items: center !important;
       }
+
       .box {
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
+        flex-wrap: wrap;
+
         .button-wrapper {
-          width: 100%;
+          width: auto;
           display: flex;
           justify-content: center;
+
+          .button {
+            content: "";
+          }
         }
       }
     }

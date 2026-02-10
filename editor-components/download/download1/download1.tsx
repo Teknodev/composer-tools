@@ -24,6 +24,13 @@ class Download1 extends BaseDownload {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
@@ -31,16 +38,9 @@ class Download1 extends BaseDownload {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "line",
-      displayer: "Enable Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "array",
       key: "buttons",
-      displayer: "Button ",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "PLAYSTORE", "", "ImAndroid", "", "Primary"),
         INPUTS.BUTTON("button", "Button", "APPSTORE", "", "GrApple", "", "Primary"),
@@ -55,26 +55,23 @@ class Download1 extends BaseDownload {
 
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const subtitle = this.getPropValue("subtitle");
-
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
-    const subtitleExist = this.castToString(subtitle);
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const hasContent = title || subtitle || description;
     const line = this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist || descriptionExist) && (
+          {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${line && this.decorateCSS("line")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>}
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && (<Base.SectionTitle className={`${this.decorateCSS("title")}`}>{this.getPropValue("title")}</Base.SectionTitle>)}
+              {line && (<div className={this.decorateCSS("title-line")}></div>)}
+              {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
             </Base.VerticalContent>
           )}
-
           {buttons.length > 0 && (
             <div className={this.decorateCSS("box")}>
               {buttons.map((item: INPUTS.CastedButton, index: number) => {

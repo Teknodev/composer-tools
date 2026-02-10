@@ -1,11 +1,10 @@
+import * as React from "react";
 import styles from "./download8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { BaseDownload } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-
-
 
 class Download8 extends BaseDownload {
   constructor(props?: any) {
@@ -49,7 +48,7 @@ class Download8 extends BaseDownload {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "By offering a clear call-to-action, businesses and developers can increase the chances that users will download and use their product.",
+      value: "By offering a clear call-to-action, businesses and developers can increase to chances that users will download and use their product.",
     });
 
     this.addProp({
@@ -63,7 +62,7 @@ class Download8 extends BaseDownload {
       type: "string",
       key: "cardTitle",
       displayer: "Card Title",
-      value: "Download now by clicking the button",
+      value: "Download now by clicking to button",
     });
 
     this.addProp({
@@ -87,7 +86,7 @@ class Download8 extends BaseDownload {
               key: "itemIcon",
               displayer: "Item Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -112,7 +111,7 @@ class Download8 extends BaseDownload {
               key: "itemIcon",
               displayer: "Item Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -157,14 +156,7 @@ class Download8 extends BaseDownload {
     const cardSubtitleExist = this.castToString(cardSubtitle);
     const listExist = this.castToObject<any[]>("list").length > 0;
 
-    const rightContent = document.getElementById("right-content");
-    const leftContent = document.getElementById("left-content");
     const alignment = Base.getContentAlignment();
-
-    if (rightContent && leftContent) {
-      const rightHeight = rightContent.clientHeight;
-      leftContent.setAttribute("style", `min-height: ${rightHeight}px`);
-    }
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("with-image")}`}>
@@ -216,8 +208,8 @@ class Download8 extends BaseDownload {
                   <div className={this.decorateCSS("buttons-container")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
-                      const iconExist = item.icon && (item.icon as any).name;
-                      const imageExist = item.image && (item.image as any).url;
+                      const iconExist = item.icon && typeof item.icon === 'object' && item.icon !== null;
+                      const imageExist = item.image && typeof item.image === 'object' && item.image !== null;
                       const buttonExist = buttonTextExist || iconExist || imageExist;
                       return buttonExist && (
                         <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
