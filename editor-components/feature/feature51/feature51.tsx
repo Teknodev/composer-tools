@@ -191,13 +191,13 @@ class Feature51 extends BaseFeature {
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 1,
+      value: 2,
     });
 
     this.addProp({
       type: "array",
       key: "sectionButtons",
-      displayer: "Section Buttons",
+      displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
   }
@@ -289,9 +289,9 @@ class Feature51 extends BaseFeature {
                       className={`${this.decorateCSS("item-header")}`}
                     >
                       {itemTitle && (
-                        <Base.H3 className={this.decorateCSS("item-title")}>
+                        <Base.H4 className={this.decorateCSS("item-title")}>
                           {itemTitle}
-                        </Base.H3>
+                        </Base.H4>
                       )}
                       {itemIcon && (
                         <Base.Media
