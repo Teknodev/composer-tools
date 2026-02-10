@@ -5,6 +5,8 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+type Button = INPUTS.CastedButton;
+
 class CallToAction18 extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -30,7 +32,14 @@ class CallToAction18 extends BaseCallToAction {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Start Now", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Start Now", "", null, null, "Primary"),
+      ],
+    });
   }
 
   static getName(): string {
@@ -38,7 +47,7 @@ class CallToAction18 extends BaseCallToAction {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<Button[]>("buttons");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -65,12 +74,18 @@ class CallToAction18 extends BaseCallToAction {
               )}
             </Base.VerticalContent>
           )}
-          {this.castToString(button.text) && (
-            <ComposerLink path={button.url}>
-              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-              </Base.Button>
-            </ComposerLink>
+          {buttons.length > 0 && (
+            <div className={this.decorateCSS("buttons")}>
+              {buttons.map((button: Button, index: number) => (
+                <ComposerLink path={button.url} key={index}>
+                  {this.castToString(button.text) && (
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    </Base.Button>
+                  )}
+                </ComposerLink>
+              ))}
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>
