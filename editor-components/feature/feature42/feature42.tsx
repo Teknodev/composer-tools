@@ -334,10 +334,10 @@ class Feature42 extends BaseFeature {
                                         {(cardTitleExist || text1Exist || text2Exist) && (
                                             <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
                                                 {cardSubTitleExist && (
-                                                    <Base.H3 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H3>
+                                                    <Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>
                                                 )}
                                                 {cardTitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H4>
+                                                    <Base.H2 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H2>
                                                 )}
                                                 {text1Exist && (
                                                     <Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>
