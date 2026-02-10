@@ -1,12 +1,10 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
-$min-height: 500px;
-
 .container {
   background-size: cover;
   background-position: center;
   position: relative;
-  min-height: $min-height;
+  min-height: 500px;
 
   .background-image {
     position: absolute;
@@ -22,18 +20,39 @@ $min-height: 500px;
     align-items: center;
     position: relative;
     z-index: 2;
-    min-height: $min-height;
+    min-height: 500px;
+
+    &.single {
+      min-height: 0 !important;
+    }
 
     .page {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-md);
       width: 58%;
-      &.no-image{
-        width: 100%;
+
+      &.no-image {
+        width: 100% !important;
+        min-height: 0 !important;
+      }
+
+      &.image-center {
+        align-items: flex-start;
+
+        .header {
+
+          .title,
+          .description,
+          .subtitle {
+            text-align: left !important;
+            margin-left: 0 !important;
+          }
+        }
       }
 
       .header {
+
         .title,
         .description,
         .subtitle {
@@ -43,35 +62,31 @@ $min-height: 500px;
 
       .buttons-container {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
-        align-items: center;
+        align-items: stretch;
         gap: var(--composer-gap-sm);
-        .button-wrapper {
-          width: 170px;
-          height: 50px;
-          >div, >a{
-            width: 100% !important;
-            height: 100%;
-            display: flex;
-            align-items: center;
-          }
-          .button-image {
-            height: 100%;
-            width: 100%;
-            cursor: pointer;
-            border-radius: var(--composer-border-radius-sm);
-            object-fit: cover;
-          }
-        }
-          .button-element {
-            .icon, .button-text {
-              content: "";
-            }
-          }
-    
+        height: auto;
+
         &.center {
           justify-content: center;
         }
+
+        .button-image {
+          width: 170px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
+        }
+
+        .button-element {
+
+          .button-icon,
+          .button-text {
+            content: "";
+          }
+        }
+
       }
 
     }
@@ -86,27 +101,32 @@ $min-height: 500px;
     z-index: 1;
     background-color: var(--composer-overlay-color);
   }
-  &.single{
+
+  &.single {
+    min-height: 0 !important;
     height: auto;
-    .max-content{
+
+    .max-content {
+      min-height: 0 !important;
       height: auto;
     }
   }
 }
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .page {
         width: 55% !important;
 
-        .buttons-container{
-          .button-wrapper {
-            .button-image {
-              width: 100%;
-            }
+        .buttons-container {
+          .button-image {
+            height: 46px;
+            width: 150px;
           }
         }
       }
+
       .page-no-image {
         width: 100%;
       }
@@ -129,6 +149,21 @@ $min-height: 500px;
     .max-content {
       .page {
         width: 100% !important;
+        padding: var(--composer-gap-md) 0;
+
+        .buttons-container {
+          flex-direction: row;
+          flex-wrap: wrap;
+
+          .button-element {
+            width: 100%;
+          }
+
+          .button-image {
+            width: 120px;
+            height: 30px;
+          }
+        }
       }
     }
   }

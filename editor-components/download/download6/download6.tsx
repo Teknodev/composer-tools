@@ -14,16 +14,16 @@ class Download6 extends BaseDownload {
 
     this.addProp({
       type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Create amazing posts and share with the world.",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let's start now!",
     });
 
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Let's start now!",
+      key: "title",
+      displayer: "Title",
+      value: "Create amazing posts and share with the world.",
     });
 
     this.addProp({
@@ -73,7 +73,7 @@ class Download6 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isLeftColumnVisible && (
-            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!isRightColumnVisible && this.decorateCSS("no-image")}`} >
+            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${image && this.decorateCSS("has-image")}`} >
               {this.castToString(subtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
               {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
               {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
@@ -86,21 +86,21 @@ class Download6 extends BaseDownload {
                     const imageExist = item.image && item.image.url;
                     const buttonExist = buttonTextExist || iconExist || imageExist;
                     return buttonExist && (
-                        <ComposerLink key={index} path={item.url}>
-                          {imageExist ? (
-                            <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                          ) : (
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                              {iconExist && (
-                                <Base.Media
-                                  value={item.icon}
-                                  className={this.decorateCSS("icon")}
-                                />
-                              )}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
+                      <ComposerLink key={index} path={item.url}>
+                        {imageExist ? (
+                          <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                        ) : (
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                            {iconExist && (
+                              <Base.Media
+                                value={item.icon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            )}
+                            {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          </Base.Button>
+                        )}
+                      </ComposerLink>
                     );
                   })}
                 </Base.Row>

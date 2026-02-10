@@ -83,6 +83,8 @@ class Download7 extends BaseDownload {
 
     const backgroundImage = this.getPropValue("image");
     const backgroundImageUrl = backgroundImage && backgroundImage.url ? backgroundImage.url : null;
+    const subtitleType = Base.getSectionSubTitleType();
+    const hideBadge = backgroundImageUrl && subtitleType === "badge";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -92,44 +94,47 @@ class Download7 extends BaseDownload {
             {overlay && backgroundImageUrl && <div className={this.decorateCSS("overlay")}></div>}
 
             <Base.VerticalContent className={`${this.decorateCSS("content-container")} ${backgroundImageUrl && this.decorateCSS("image")}`}>
-              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {descExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-              {buttons?.length > 0 && (
-                <div className={`${this.decorateCSS("buttons-container")} ${(backgroundImageUrl || (!backgroundImageUrl && alignmentValue === "center")) && this.decorateCSS("center")}`}>
-                  {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                    const buttonTextExist = this.castToString(button.text);
-                    const iconExist = button.icon && (button.icon as any).name;
-                    const imageExist = button.image && (button.image as any).url;
-                    const buttonExist = buttonTextExist || iconExist || imageExist;
-                    return buttonExist && (
-                      <div className={this.decorateCSS("button-wrapper")} key={index}>
-                        <ComposerLink path={button.url}>
-                          {imageExist ? (
-                            <Base.Media value={button.image as any} className={this.decorateCSS("button-image")} />
-                          ) : (
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                              {iconExist && (
-                                <Base.Media
-                                  value={button.icon as any}
-                                  className={this.decorateCSS("button-icon")}
-                                />
-                              )}
-                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </Base.VerticalContent>
-          </div>
-        </Base.MaxContent>
-      </Base.Container>
+              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImageUrl && this.decorateCSS("with-image")} ${hideBadge ? this.decorateCSS("no-badge") : ""}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{title}</Base.SectionTitle>}
+              {descExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${backgroundImageUrl && this.decorateCSS("with-image")}`}>{description}</Base.SectionDescription>}
+              {
+                buttons?.length > 0 && (
+                  <div className={`${this.decorateCSS("buttons-container")} ${(backgroundImageUrl || (!backgroundImageUrl && alignmentValue === "center")) && this.decorateCSS("center")}`}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      const buttonTextExist = this.castToString(button.text);
+                      const iconExist = button.icon && (button.icon as any).name;
+                      const imageExist = button.image && (button.image as any).url;
+                      const buttonExist = buttonTextExist || iconExist || imageExist;
+                      return buttonExist && (
+                        <div className={this.decorateCSS("button-wrapper")} key={index}>
+                          <ComposerLink path={button.url}>
+                            {imageExist ? (
+                              <Base.Media value={button.image as any} className={this.decorateCSS("button-image")} />
+                            ) : (
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                {iconExist && (
+                                  <Base.Media
+                                    value={button.icon as any}
+                                    className={this.decorateCSS("button-icon")}
+                                  />
+                                )}
+                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                              </Base.Button>
+                            )}
+                          </ComposerLink>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )
+              }
+            </Base.VerticalContent >
+          </div >
+        </Base.MaxContent >
+      </Base.Container >
     );
   }
 }
 
 export default Download7;
+
