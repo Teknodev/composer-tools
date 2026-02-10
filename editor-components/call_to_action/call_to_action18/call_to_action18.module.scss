@@ -30,16 +30,8 @@
     }
 
     .button {
-      content: "";
-      flex-shrink: 0;
-      &:hover {
-        background-color: var(--composer-html-background);
-        border-color: var(--composer-html-background);
-        color: var(--composer-primary-color);
-      }
       .button-text {
         content: "";
-        white-space: nowrap;
       }
     }
   }
