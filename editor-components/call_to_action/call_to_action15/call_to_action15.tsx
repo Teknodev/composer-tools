@@ -17,15 +17,9 @@ class CallToAction15 extends BaseCallToAction {
         });
         this.addProp({
             type: "string",
-            key: "titlePrimary",
-            displayer: "Title Primary",
-            value: "Lets Talk",
-        });
-        this.addProp({
-            type: "string",
-            key: "titleHighlight",
-            displayer: "Title Highlight",
-            value: " & Grow Your Business",
+            key: "title",
+            displayer: "Title",
+            value: "<span style='color: var( --composer-primary-color)'>Lets Talk</span> & Grow Your Business",
         });
         this.addProp({
             type: "string",
@@ -49,8 +43,7 @@ class CallToAction15 extends BaseCallToAction {
     render() {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const titlePrimary = this.castToString(this.getPropValue("titlePrimary"));
-        const titleHighlight = this.castToString(this.getPropValue("titleHighlight"));
+        const titleValue = this.castToString(this.getPropValue("title"));
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -60,15 +53,11 @@ class CallToAction15 extends BaseCallToAction {
                                 {this.getPropValue("subtitle")}
                             </Base.SectionSubTitle>
                         )}
-                        {(titlePrimary || titleHighlight) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                <span className={this.decorateCSS("title-primary")}>
-                                    {titlePrimary}
-                                </span>
-                                <span className={this.decorateCSS("title-highlight")}>
-                                    {titleHighlight}
-                                </span>
-                            </Base.SectionTitle>
+                        {titleValue && (
+                            <Base.SectionTitle
+                                className={this.decorateCSS("title")}
+                                dangerouslySetInnerHTML={{ __html: titleValue }}
+                            />
                         )}
                         {this.castToString(this.getPropValue("description")) && (
                             <Base.SectionDescription className={this.decorateCSS("description")}>
