@@ -30,6 +30,7 @@
       .card {
         border-radius: var(--composer-border-radius-md);
         align-items: flex-start !important;
+        padding: var(--composer-gap-sm);
 
         .card-header {
           margin-inline: 0.5rem;
@@ -47,6 +48,7 @@
         }
 
         .card-buttons-wrapper {
+          justify-content: flex-start;
           @extend .buttons-wrapper;
           width: 100%;
           margin-bottom: 0.5rem;
