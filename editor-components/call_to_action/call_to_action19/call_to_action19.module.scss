@@ -1,0 +1,158 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: var(--composer-html-background);
+    .max-content { 
+        background-color: var(--composer-primary-color);
+        border-radius: var(--composer-border-radius-md);
+        padding: calc(2* var(--composer-gap-lg));
+        .content {
+            display: flex;
+            gap: var(--composer-gap-xl);
+            .left-section {
+                flex:1;
+                display: flex;
+                gap: var(--composer-gap-md);
+                flex-direction: column;
+                .header{
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-sm);
+                    .subtitle, .title, .description {
+                        text-align: left;
+                        color: var(--composer-font-color-secondary);
+                    }
+                    .subtitle {
+                        transform: translateX(0);
+                        &::before{
+                            display: none;
+                        }
+                    }
+                }
+                .bottom-row {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--composer-gap-md);
+                    flex-wrap: wrap;
+                }
+                .button {
+                    content: "";
+                    .button-text {
+                        content: "";
+                    }
+                }
+                .rating {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-xs);
+                    text-align: left;
+                    color: var(--composer-font-color-secondary);
+                    .rating-value {
+                        margin: 0;
+                        font-size: var(--composer-font-size-lg);
+                    }
+                    .rating-text {
+                        margin: 0;
+                        opacity: 0.7;
+                        
+                    }
+                }
+            }
+            .right-section {
+                flex:1;
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
+                color: var(--composer-font-color-secondary); 
+
+                .features-title {
+                    color: var(--composer-font-color-secondary);
+                    padding-left: 0;
+                    transform: translateX(0);
+                    &::before{
+                        display: none;
+                    }
+                }
+                .cards{
+                    display: flex;
+                    flex-direction: column;
+                }
+                .card{
+                    display: flex;
+                    align-items: center;
+                    gap: var(--composer-gap-sm);
+                    padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) 0;
+                    text-align: left !important;
+                    .icon-wrapper {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .icon{
+                        font-size: 1.25rem;
+                    }
+                    .card-text{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+       
+    }
+}
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            padding: var(--composer-gap-lg);
+
+            .content {
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
+
+                .left-section {
+                    width: 100%;
+                    align-items: flex-start;
+                    justify-content: flex-start;
+                    gap: var(--composer-gap-md);
+
+                    .header {
+                        align-items: flex-start;
+                        width: 100%;
+
+                        .subtitle,
+                        .title,
+                        .description {
+                            text-align: left;
+                        }
+                    }
+
+                    .bottom-row {
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: var(--composer-gap-sm);
+                    }
+
+                    .rating {
+                        align-items: flex-start;
+                        text-align: left;
+                    }
+                }
+
+                .right-section {
+                    width: 100%;
+                    align-items: flex-start;
+
+                    .features-title {
+                        text-align: left;
+                        padding-left: 0;
+                        width: 100%;
+                    }
+
+                    .cards {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
