@@ -75,7 +75,7 @@ class Feature42 extends BaseFeature {
                         {
                             type: "string",
                             key: "cardSubTitle",
-                            displayer: "Card subTitle",
+                            displayer: "Card Subtitle",
                             value: ""
                         },
                         {
@@ -122,7 +122,7 @@ class Feature42 extends BaseFeature {
                         {
                             type: "string",
                             key: "cardSubTitle",
-                            displayer: "Card subTitle",
+                            displayer: "Card Subtitle",
                             value: ""
                         },
                         {
@@ -169,7 +169,7 @@ class Feature42 extends BaseFeature {
                         {
                             type: "string",
                             key: "cardSubTitle",
-                            displayer: "Card subTitle",
+                            displayer: "Card Subtitle",
                             value: ""
                         },
                         {
