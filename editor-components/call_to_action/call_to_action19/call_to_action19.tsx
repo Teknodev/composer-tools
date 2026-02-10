@@ -31,6 +31,12 @@ class CallToAction19 extends BaseCallToAction {
             displayer: "Description",
             value: "",
         });
+        this.addProp({
+            type: "string",
+            key: "buttonTitle",
+            displayer: "Button Title",
+            value: "",
+        });
         this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"));
         this.addProp({
             type: "string",
@@ -55,7 +61,7 @@ class CallToAction19 extends BaseCallToAction {
             key: "icon",
             displayer: "Card Icon",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
             },
             value: {
                 type: "icon",
@@ -143,6 +149,12 @@ class CallToAction19 extends BaseCallToAction {
                                 )}
                             </Base.VerticalContent>
 
+                            {this.castToString(this.getPropValue("buttonTitle")) && (
+                                <Base.H5 className={this.decorateCSS("button-title")}>
+                                    {this.getPropValue("buttonTitle")}
+                                </Base.H5>
+                            )}
+
                             <div className={this.decorateCSS("bottom-row")}>
                                 {this.castToString(button.text) && (
                                     <ComposerLink path={button.url}>
@@ -157,9 +169,9 @@ class CallToAction19 extends BaseCallToAction {
                                 {(this.castToString(ratingValue) || this.castToString(ratingText)) && (
                                     <div className={this.decorateCSS("rating")}>
                                         {this.castToString(ratingValue) && (
-                                            <Base.H4 className={this.decorateCSS("rating-value")}>
+                                            <Base.H5 className={this.decorateCSS("rating-value")}>
                                                 {ratingValue}
-                                            </Base.H4>
+                                            </Base.H5>
                                         )}
                                         {this.castToString(ratingText) && (
                                             <Base.P className={this.decorateCSS("rating-text")}>
@@ -174,9 +186,9 @@ class CallToAction19 extends BaseCallToAction {
                         {features.length > 0 && (
                             <div className={this.decorateCSS("right-section")}>
                                 {this.castToString(this.getPropValue("featureTitle")) && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("features-title")}>
+                                    <Base.H5 className={this.decorateCSS("features-title")}>
                                         {this.getPropValue("featureTitle")}
-                                    </Base.SectionSubTitle>
+                                    </Base.H5>
                                 )}
 
                                 <div className={this.decorateCSS("cards")}>

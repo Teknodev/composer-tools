@@ -3,6 +3,8 @@
 .container {
     background-color: var(--composer-html-background);
     .max-content { 
+        margin-left: 0;
+        margin-right: auto;
         background-color: var(--composer-primary-color);
         border-radius: var(--composer-border-radius-md);
         padding: calc(2* var(--composer-gap-lg));
@@ -14,6 +16,7 @@
                 display: flex;
                 gap: var(--composer-gap-md);
                 flex-direction: column;
+                align-items: flex-start;
                 .header{
                     display: flex;
                     flex-direction: column;
@@ -23,11 +26,15 @@
                         color: var(--composer-font-color-secondary);
                     }
                     .subtitle {
-                        transform: translateX(0);
+                        transform:none;
                         &::before{
                             display: none;
                         }
                     }
+                }
+                .button-title {
+                    color: var(--composer-font-color-secondary);
+                    margin: 0;
                 }
                 .bottom-row {
                     display: flex;
@@ -49,7 +56,8 @@
                     color: var(--composer-font-color-secondary);
                     .rating-value {
                         margin: 0;
-                        font-size: var(--composer-font-size-lg);
+                        display: flex;  
+                        justify-content: flex-start;
                     }
                     .rating-text {
                         margin: 0;
@@ -62,13 +70,14 @@
                 flex:1;
                 display: flex;
                 flex-direction: column;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-sm);
                 color: var(--composer-font-color-secondary); 
 
                 .features-title {
                     color: var(--composer-font-color-secondary);
                     padding-left: 0;
                     transform: translateX(0);
+                    text-align: left;
                     &::before{
                         display: none;
                     }
@@ -76,13 +85,15 @@
                 .cards{
                     display: flex;
                     flex-direction: column;
+                    gap: var(--composer-gap-xs);
                 }
                 .card{
                     display: flex;
                     align-items: center;
-                    gap: var(--composer-gap-sm);
-                    padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) 0;
+                    gap: var(--composer-gap-xs);
+                    padding: var(--composer-gap-sm) 0;
                     text-align: left !important;
+                    width: fit-content;
                     .icon-wrapper {
                         display: flex;
                         align-items: center;
@@ -90,6 +101,8 @@
                     }
                     .icon{
                         font-size: 1.25rem;
+                        width: 1.25rem;
+                        height: 1.25rem;
                     }
                     .card-text{
                         margin: 0;
