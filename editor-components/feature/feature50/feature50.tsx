@@ -298,52 +298,52 @@ class Feature50 extends BaseFeature {
                     >
                         {cards?.map((card: Card, index: number) => (
                             <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                                {this.castToString(card.subtitle) && (
-                                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                                        {card.subtitle}
-                                    </Base.H6>
-                                )}
-
-                                {this.castToString(card.title) && (
-                                    <Base.H4 className={this.decorateCSS("card-title")}>
-                                        {card.title}
-                                    </Base.H4>
-                                )}
-
                                 <div className={this.decorateCSS("card-content")}>
+                                    {this.castToString(card.subtitle) && (
+                                        <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                            {card.subtitle}
+                                        </Base.H6>
+                                    )}
+
+                                    {this.castToString(card.title) && (
+                                        <Base.H4 className={this.decorateCSS("card-title")}>
+                                            {card.title}
+                                        </Base.H4>
+                                    )}
+
                                     {this.castToString(card.description) && (
                                         <Base.P className={this.decorateCSS("card-description")}>
                                             {card.description}
                                         </Base.P>
                                     )}
 
-                                    {card.media && (
-                                        <div className={this.decorateCSS("media-wrapper")}>
-                                            <Base.Media 
-                                                value={card.media}
-                                                className={this.decorateCSS("media")}
-                                            />
+                                    {card.buttons && card.buttons.length > 0 && (
+                                        <div className={this.decorateCSS("card-buttons")}>
+                                            {card.buttons.map((button, btnIndex) => (
+                                                this.castToString(button.text) && (
+                                                    <Base.Button
+                                                        className={this.decorateCSS("card-button")}
+                                                        key={btnIndex}
+                                                        buttonType={button.type}
+                                                    >
+                                                        <ComposerLink path={button.url}>
+                                                            <Base.P className={this.decorateCSS("card-button-text")}>
+                                                                {button.text}
+                                                            </Base.P>
+                                                        </ComposerLink>
+                                                    </Base.Button>
+                                                )
+                                            ))}
                                         </div>
                                     )}
                                 </div>
 
-                                {card.buttons && card.buttons.length > 0 && (
-                                    <div className={this.decorateCSS("card-buttons")}>
-                                        {card.buttons.map((button, btnIndex) => (
-                                            this.castToString(button.text) && (
-                                                <Base.Button
-                                                    className={this.decorateCSS("card-button")}
-                                                    key={btnIndex}
-                                                    buttonType={button.type}
-                                                >
-                                                    <ComposerLink path={button.url}>
-                                                        <Base.P className={this.decorateCSS("card-button-text")}>
-                                                            {button.text}
-                                                        </Base.P>
-                                                    </ComposerLink>
-                                                </Base.Button>
-                                            )
-                                        ))}
+                                {card.media && (
+                                    <div className={this.decorateCSS("media-wrapper")}>
+                                        <Base.Media 
+                                            value={card.media}
+                                            className={this.decorateCSS("media")}
+                                        />
                                     </div>
                                 )}
                             </Base.VerticalContent>

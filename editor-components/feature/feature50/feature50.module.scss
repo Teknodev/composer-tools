@@ -25,10 +25,11 @@
 
       .card {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: stretch;
         width: 100%;
+        min-height: 250px;
         background-color: var(--composer-font-color-primary);
         color: var(--composer-html-background);
         border-radius: var(--composer-border-radius-md);
@@ -42,22 +43,22 @@
 
         .card-content {
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
           align-items: flex-start;
-          justify-content: space-between;
-          width: 100%;
+          justify-content: flex-start;
+          flex: 1;
           gap: var(--composer-gap-md);
+        }
 
-          .media-wrapper {
-            display: flex;
-            margin-left: auto;
-            
-            .media {
-              font-size: 8rem;
-              width: 8rem;
-              height: 8rem;
-              object-fit: contain;
-            }
+        .media-wrapper {
+          display: flex;
+          align-items: flex-end;
+          
+          .media {
+            font-size: 8rem;
+            width: 8rem;
+            height: 8rem;
+            object-fit: contain;
           }
         }
 
@@ -107,6 +108,17 @@
 
       .cards-grid {
         gap: var(--composer-gap-md);
+
+        .card {
+          min-height: 200px;
+          .media-wrapper {
+            .media {
+              font-size: 8vw;
+              width: 8vw;
+              height: 8vw;
+            }
+          }
+        }
       }
     }
   }
