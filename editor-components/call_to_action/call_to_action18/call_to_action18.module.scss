@@ -32,13 +32,17 @@
 
     .buttons {
       display: flex;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
       flex-shrink: 0;
       flex-wrap: wrap;
+      align-items: center;
 
       .button {
         .button-text {
           content: "";
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
@@ -51,6 +55,15 @@
       flex-direction: column;
       align-items: flex-start;
       gap: var(--composer-gap-sm);
+      padding: var(--composer-gap-lg);
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      padding: var(--composer-gap-md);
     }
   }
 }
