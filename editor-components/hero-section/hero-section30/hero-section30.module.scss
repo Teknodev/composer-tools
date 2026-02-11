@@ -4,7 +4,7 @@
   min-height: 900px;
   position: relative;
   overflow: hidden;
-  color: #fff;
+  color: white;
 
   &.withoutVideoContainer {
     color: var(--composer-font-color-primary);
@@ -28,12 +28,18 @@
       top: 0;
     }
 
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--composer-overlay-color);
+      pointer-events: none;
+      z-index: 0;
+    }
+
     .content {
       width: 100%;
       height: 100%;
       min-height: 900px;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: start;
       animation: content-move 1s forwards cubic-bezier(0.38, 0.005, 0.215, 1);
@@ -41,10 +47,45 @@
       flex-wrap: wrap;
       margin: auto 0;
 
+      
+        .logo {
+          font-size: 2rem;
+          aspect-ratio: 3 / 1;
+          object-fit: cover;
+          max-width: 250px;
+          color: white;
+          display: block;
+
+          &.logo-no-image {
+            color: var(--composer-font-color-primary);
+          }
+        }
+
+        .up-text {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+          .subtitle {
+            color: white;
+            width: fit-content;
+          }
+          .subtitle-transparent {
+            background: transparent !important;
+            padding: 0;
+          }
+          .subtitle-transparent::before {
+            background: white !important;
+          }
+        }
+
       .titles {
         font-size: 12.5rem;
         font-weight: bolder;
         margin: 0;
+      }
+
+      .first-title {
+        content: "";
       }
 
 
@@ -66,38 +107,54 @@
       .title-with-image {
         display: flex;
         align-items: center;
-        margin-bottom: var(--composer-gap-md);
         width: 100%;
         gap: var(--composer-gap-md);
 
-        .title-image {
-          max-width: 370px;
-          width: 370px;
-          height: 180px;
-          border-radius: var(--composer-border-radius-xl);
+        .title-image-wrapper {
+          position: relative;
 
-          img {
-            width: 100%;
-            height: 100%;
+          .title-image {
+            max-width: 370px;
+            width: 370px;
+            height: 180px;
+            border-radius: var(--composer-border-radius-xl);
             overflow: hidden;
+            object-fit: cover;
+            display: block;
+          }
+
+          .title-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--composer-overlay-color);
+            pointer-events: none;
+            border-radius: var(--composer-border-radius-xl);
+            z-index: 2;
           }
         }
       }
 
       .description {
-        font-size: 1.5rem;
-        font-weight: 500;
         max-width: 640px;
-        margin: 0 0 var(--composer-gap-lg) 0;
+        text-align: left;
+        margin-left: 0;
       }
 
       .buttons {
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
+        margin-top: var(--composer-gap-md);
 
         .button {
-          content: "";
+          .button-text {
+            content: "";
+          }
+
+          .button-icon-right {
+            display: flex;
+            font-size: 1.5rem;
+          }
         }
       }
     }
@@ -117,16 +174,19 @@
         }
 
         .title-with-image {
-          flex-direction: column;
           align-items: flex-start;
-          gap: 0;
 
           .title-image {
-            width: 100%;
-            height: 100px;
-            max-width: 370px;
+            width: 340px !important;
+            max-width: 340px !important;
+            aspect-ratio: 3 / 1 !important;
+            height: auto !important;
             object-fit: cover;
           }
+        }
+
+        .buttons {
+          margin-top: var(--composer-gap-sm);
         }
       }
     }
@@ -141,15 +201,19 @@
           font-size: 4rem;
         }
 
+        .first-title {
+          margin-bottom: var(--composer-gap-sm);
+        }
+
         .title-with-image {
           flex-direction: column;
           align-items: start;
           width: 100%;
+          gap: var(--composer-gap-sm);
 
           .title-image {
-            width: 100%;
-            height: 100px;
-            object-fit: cover;
+              width: 300px !important;
+              max-width: 300px !important;
           }
         }
       }

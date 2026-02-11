@@ -10,12 +10,38 @@ class HeroSection30 extends BaseHeroSection {
     super(props, styles);
 
     this.addProp({
-      type: "video",
+      type: "media",
       key: "video",
-      displayer: "Background Video",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151",
+      displayer: "Background Media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "video",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a35bbd2970002c626c45?alt=media&timestamp=1719483639151",
+      },
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "bg-overlay",
+      displayer: "Background Overlay",
+      value: false,
+    });
+    
+    this.addProp({
+      type: "media",
+      key: "logo",
+      displayer: "Logo",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "" },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
 
     this.addProp({
       type: "string",
@@ -23,19 +49,32 @@ class HeroSection30 extends BaseHeroSection {
       displayer: "First Title",
       value: "WE MAKE",
     });
+
     this.addProp({
       type: "string",
       key: "title_second",
       displayer: "Second Title",
       value: "GAMES",
     });
+
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
+      displayer: "Media",
+      additionalParams: { availableTypes: ["image", "video"] },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661a311bd2970002c626c17?alt=media&timestamp=1719483639151",
+      },
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
     this.addProp({
       type: "string",
       key: "description",
@@ -50,7 +89,7 @@ class HeroSection30 extends BaseHeroSection {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "OUR PROJECTS", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "OUR PROJECTS", "", "FiArrowRight", null, "Primary"),
       ],
     });
   }
@@ -72,16 +111,36 @@ class HeroSection30 extends BaseHeroSection {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {video && (
-            <video
-              src={video}
-              autoPlay
-              loop
-              muted
-              className={this.decorateCSS("video-section")}
-            />
+            <>
+              <Base.Media
+                value={video}
+                autoPlay
+                loop
+                muted
+                controls={false}
+                className={this.decorateCSS("video-section")}
+              />
+              {this.getPropValue("bg-overlay") && (
+                <div className={this.decorateCSS("video-overlay")} />
+              )}
+            </>
           )}
 
-          <div className={this.decorateCSS("content")}>
+          <Base.VerticalContent className={this.decorateCSS("content")}>
+             {this.getPropValue("logo") && (
+                <Base.Media
+                  value={this.getPropValue("logo")}
+                  className={`${this.decorateCSS("logo")} ${!video && this.decorateCSS("logo-no-image")}`}
+                />
+              )}
+
+              {this.castToString(this.getPropValue("subtitle")) && (
+                <div className={this.decorateCSS("up-text")}>
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${video ? this.decorateCSS("subtitle-transparent") : ""}`}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                </div>
+              )}
             {this.castToString(this.getPropValue("title_first")) && (
               <h1
                 className={`${this.decorateCSS("titles")} ${this.decorateCSS(
@@ -94,11 +153,15 @@ class HeroSection30 extends BaseHeroSection {
 
             <div className={this.decorateCSS("title-with-image")}>
               {image && (
-                <img
-                  className={this.decorateCSS("title-image")}
-                  src={image}
-                  alt=""
-                />
+                <div className={this.decorateCSS("title-image-wrapper")}>
+                  <Base.Media
+                    value={image}
+                    className={this.decorateCSS("title-image")}
+                  />
+                  {this.getPropValue("overlay") && (
+                    <div className={this.decorateCSS("title-image-overlay")} />
+                  )}
+                </div>
               )}
 
               {this.castToString(this.getPropValue("title_second")) && (
@@ -113,23 +176,28 @@ class HeroSection30 extends BaseHeroSection {
             </div>
 
             {this.castToString(this.getPropValue("description")) && (
-              <p className={this.decorateCSS("description")}>
+              <Base.P className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
-              </p>
+              </Base.P>
             )}
 
-            {buttons.length > 0 &&
+            {buttons.length > 0 && (
               <div className={this.decorateCSS("buttons")}>
-                {buttons.map((button: INPUTS.CastedButton) => (
-                  <ComposerLink path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      {button.text}
-                    </Base.Button>
-                  </ComposerLink>
-                ))}
+                {buttons.map((button: INPUTS.CastedButton, i: number) =>
+                  this.castToString(button.text) && (
+                    <ComposerLink path={button.url} key={i}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        {button.icon && (
+                          <Base.Media value={button.icon} className={this.decorateCSS("button-icon-right")} />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                )}
               </div>
-            }
-          </div>
+            )}
+          </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
     );

@@ -13,6 +13,13 @@ class Form9 extends BaseContacts {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Get Started with Apcopay",
@@ -449,6 +456,10 @@ class Form9 extends BaseContacts {
     const consentLinkText = this.castToString(consent?.link_text) || "";
     const consentLinkUrl = this.castToString(consent?.link_url) || "";
     const showConsent = !!(consent && (consentLabelPrefix || consentLinkText));
+
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleText = this.castToString(subtitle);
+
     const hasAnyFeature =
       Array.isArray(features) &&
       features.some((item: any) => {
@@ -607,6 +618,11 @@ class Form9 extends BaseContacts {
               <Base.VerticalContent
                 className={this.decorateCSS("left-vertical-content")}
               >
+                {subtitleText && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
                 {titleStr && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}
