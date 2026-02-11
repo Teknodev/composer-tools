@@ -190,7 +190,7 @@ class Feature51 extends BaseFeature {
     this.addProp({
       type: "boolean",
       key: "withLines",
-      displayer: "Show Lines Between Items",
+      displayer: "Line",
       value: true,
     });
 
