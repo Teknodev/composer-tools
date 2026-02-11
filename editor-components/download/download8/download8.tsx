@@ -1,33 +1,54 @@
 import * as React from "react";
 import styles from "./download8.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseDownload } from "../../EditorComponent";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type Background = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+type ListItem = {
+  itemText: string;
+  itemIcon: TypeMediaInputValue;
+};
+
+type CardText = {
+  cardSubtitle: React.JSX.Element;
+  cardTitle: React.JSX.Element;
+  cardDescription: React.JSX.Element;
+};
 
 class Download8 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6436af8368c3c2002cd2fa67?alt=media&timestamp=1719564433794",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -52,17 +73,29 @@ class Download8 extends BaseDownload {
     });
 
     this.addProp({
-      type: "string",
-      key: "cardSubtitle",
-      displayer: "Card Subtitle",
-      value: "",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "cardTitle",
-      displayer: "Card Title",
-      value: "Download now by clicking to button",
+      type: "object",
+      key: "cardText",
+      displayer: "Card Text",
+      value: [
+        {
+          type: "string",
+          key: "cardSubtitle",
+          displayer: "Card Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "cardTitle",
+          displayer: "Card Title",
+          value: "Download now by clicking to button",
+        },
+        {
+          type: "string",
+          key: "cardDescription",
+          displayer: "Card Description",
+          value: "",
+        },
+      ],
     });
 
     this.addProp({
@@ -142,62 +175,58 @@ class Download8 extends BaseDownload {
   }
 
   render() {
-    const imageExist = this.getPropValue("image");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const cardTitle = this.getPropValue("cardTitle");
-    const overlay = this.getPropValue("overlay");
-    const subtitle = this.getPropValue("subtitle");
-    const cardSubtitle = this.getPropValue("cardSubtitle");
-    const titleExist = this.castToString(title);
-    const subtitleExist = this.castToString(subtitle);
-    const descriptionExist = this.castToString(description);
-    const cardTitleExist = this.castToString(cardTitle);
-    const cardSubtitleExist = this.castToString(cardSubtitle);
-    const listExist = this.castToObject<any[]>("list").length > 0;
-
+    const background = this.castToObject<Background>("media");
+    const backgroundImage = background?.media;
+    const overlay = background?.overlay;
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
+    const cardText = this.castToObject<CardText>("cardText");
+    const cardSubtitle = this.castToString(cardText?.cardSubtitle);
+    const cardTitle = this.castToString(cardText?.cardTitle);
+    const cardDescription = this.castToString(cardText?.cardDescription);
+    const listExist = this.castToObject<ListItem[]>("list").length > 0;
     const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${imageExist && this.decorateCSS("with-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${backgroundImage && this.decorateCSS("with-image")}`}>
         <div className={this.decorateCSS("page")}>
-          {imageExist && (
+          {backgroundImage && (
             <div className={this.decorateCSS("image-child")}>
-              <div className={overlay && this.decorateCSS("overlay")}></div>
-              <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("background-image")} />
+              {overlay && <div className={this.decorateCSS("overlay")}></div>}
+              <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
             </div>
           )}
-          <Base.MaxContent className={`${this.decorateCSS("max-content")} ${imageExist && this.decorateCSS("with-image")}`}>
-            {(subtitleExist || titleExist || descriptionExist) && (
-              <Base.VerticalContent id={"left-content"} className={`${this.decorateCSS("left-content")} ${imageExist && this.decorateCSS("center")}`}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+          <Base.MaxContent className={`${this.decorateCSS("max-content")} ${backgroundImage && this.decorateCSS("with-image")}`}>
+            {hasContent && (
+              <Base.VerticalContent id={"left-content"} className={`${this.decorateCSS("left-content")} ${backgroundImage && this.decorateCSS("center")}`}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
           </Base.MaxContent>
           <div id={"right-content"} className={this.decorateCSS("right-content")}>
             <Base.VerticalContent className={this.decorateCSS("card")}>
               <Base.VerticalContent className={this.decorateCSS("card-up")}>
-                {cardSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("card-subtitle")} ${alignment === "center" && this.decorateCSS("center-badge")}`}>{this.getPropValue("cardSubtitle")}</Base.SectionSubTitle>}
-                {cardTitleExist && <Base.H3 className={this.decorateCSS("cardTitle")}>{this.getPropValue("cardTitle")}</Base.H3>}
+                {cardSubtitle && <Base.SectionSubTitle className={`${this.decorateCSS("card-subtitle")} ${alignment === "center" && this.decorateCSS("center-badge")}`}>{cardSubtitle}</Base.SectionSubTitle>}
+                {cardTitle && <Base.H3 className={this.decorateCSS("cardTitle")}>{cardTitle}</Base.H3>}
+                {cardDescription && <Base.SectionDescription className={this.decorateCSS("cardDescription")}>{cardDescription}</Base.SectionDescription>}
                 {listExist && (
                   <Base.VerticalContent className={this.decorateCSS("list-group")}>
-                    {this.castToObject<any[]>("list").map((item: any, index: number) => {
+                    {this.castToObject<ListItem[]>("list").map((item: ListItem, index: number) => {
                       const itemTextExist = this.castToString(item.itemText);
-                      const hasItemExist = itemTextExist || item.itemIcon;
-                      return (
-                        hasItemExist && (
-                          <Base.Row key={`list-item-${index}`} className={this.decorateCSS("list-element")}>
-                            {item.itemIcon && (
-                              <Base.Media
-                                value={item.itemIcon}
-                                className={this.decorateCSS("icon")}
-                              />
-                            )}
-                            {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
-                          </Base.Row>
-                        )
+                      return (itemTextExist || item.itemIcon) && (
+                        <Base.Row key={`list-item-${index}`} className={this.decorateCSS("list-element")}>
+                          {item.itemIcon && (
+                            <Base.Media
+                              value={item.itemIcon}
+                              className={this.decorateCSS("icon")}
+                            />
+                          )}
+                          {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
+                        </Base.Row>
                       );
                     })}
                   </Base.VerticalContent>
@@ -208,18 +237,18 @@ class Download8 extends BaseDownload {
                   <div className={this.decorateCSS("buttons-container")}>
                     {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                       const buttonTextExist = this.castToString(item.text);
-                      const iconExist = item.icon && typeof item.icon === 'object' && item.icon !== null;
-                      const imageExist = item.image && typeof item.image === 'object' && item.image !== null;
+                      const iconExist = item.icon && item.icon.name;
+                      const imageExist = item.image && item.image.url;
                       const buttonExist = buttonTextExist || iconExist || imageExist;
                       return buttonExist && (
                         <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
                           {imageExist ? (
                             <div className={this.decorateCSS("image-container")}>
-                              <Base.Media value={item.image as any} className={this.decorateCSS("image")} />
+                              <Base.Media value={item.image} className={this.decorateCSS("image")} />
                             </div>
                           ) : (
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                              {iconExist && <Base.Media value={item.icon as any} className={this.decorateCSS("icon")} />}
+                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
                               {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
                             </Base.Button>
                           )}

@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Background = {
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -15,12 +15,12 @@ class Download3 extends BaseDownload {
 
     this.addProp({
       type: "object",
-      key: "background",
-      displayer: "Background",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -79,8 +79,8 @@ class Download3 extends BaseDownload {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const background = this.castToObject<Background>("background");
-    const image = background?.image;
+    const background = this.castToObject<Background>("media");
+    const image = background?.media;
     const overlay = background?.overlay;
     const imageExist = image && 'url' in image && image.url;
     const buttonsExist = this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0;
@@ -117,8 +117,8 @@ class Download3 extends BaseDownload {
                               <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
                             ) : (
                               <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                                {iconExist && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
                                 {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                {iconExist && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
                               </Base.Button>
                             )}
                           </ComposerLink>

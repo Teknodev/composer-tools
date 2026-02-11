@@ -220,10 +220,8 @@ class Download2 extends BaseDownload {
                             </div>
                           ) : (
                             <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
-                              {card.button.icon && card.button.icon.name && (
-                                <Base.Media value={card.button.icon} className={this.decorateCSS("button-icon")} />
-                              )}
                               {this.castToString(card.button.text) && <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P>}
+                              {card.button.icon && card.button.icon.name && (<Base.Media value={card.button.icon} className={this.decorateCSS("button-icon")} />)}
                             </Base.Button>
                           )}
                         </ComposerLink>

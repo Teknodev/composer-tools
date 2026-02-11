@@ -46,6 +46,7 @@
           min-width: 0;
           align-items: flex-start;
           justify-content: center;
+          flex-shrink: 0;
 
           .subtitle-wrapper {
             width: 100%;
@@ -67,18 +68,16 @@
         .description {
           width: 60%;
           align-self: center;
+          flex-shrink: 0;
         }
 
         .button-group {
-          align-self: center;
           display: flex;
-          flex-direction: column;
-          flex-shrink: 0;
+          align-self: center;
+          flex-wrap: wrap;
           gap: var(--composer-gap-sm);
 
           .button {
-            display: flex;
-
             .button-logo {
               width: 170px;
               height: 50px;
@@ -234,14 +233,12 @@
             text-align: left !important;
             width: 100%;
           }
-        }
 
-        .group-container-center {
           .button-group {
             .button {
               .button-logo {
+                width: 120px;
                 height: 35px;
-                width: 140px;
               }
             }
           }

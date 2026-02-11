@@ -74,14 +74,12 @@
         .title,
         .description,
         .subtitle {
-          content: "";
           text-align: center;
         }
 
         .subtitle {
-          transform: translateX(0);
+          transform: none;
           text-align: center;
-          align-self: center;
 
           &::before {
             display: none;
@@ -97,10 +95,10 @@
           .title,
           .description {
             color: white;
-            background: transparent;
           }
 
           .subtitle {
+            padding: 0;
             background: transparent;
             color: white;
           }
@@ -143,6 +141,12 @@
           padding-top: var(--composer-gap-sm);
 
           .cardTitle {
+            color: var(--composer-font-color-primary);
+            padding: var(--composer-gap-md);
+            padding-top: 0;
+          }
+
+          .cardDescription {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
             padding-top: 0;
@@ -196,14 +200,14 @@
             margin: var(--composer-gap-sm);
 
             .button-image {
-              height: 49px;
+              height: 50px;
               width: 170px;
               border-radius: var(--composer-border-radius-sm);
               object-fit: cover;
             }
 
             .image-container {
-              height: 47px;
+              height: 45px;
               width: 150px;
 
               .image {
@@ -214,8 +218,10 @@
             }
 
             .button {
+              .icon {
+                line-height: 0s;
+              }
 
-              .icon,
               .text {
                 content: "";
               }
