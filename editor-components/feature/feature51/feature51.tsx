@@ -308,7 +308,7 @@ class Feature51 extends BaseFeature {
                       )}
                     </Base.Row>
 
-                    {itemDescription && isActiveItem(index) && (
+                    {itemDescription && (
                       <Base.P className={this.decorateCSS("item-description")}>
                         {itemDescription}
                       </Base.P>

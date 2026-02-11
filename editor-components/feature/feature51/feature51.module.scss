@@ -32,7 +32,7 @@
         align-items: flex-start;
         height: fit-content;
         color: var(--composer-font-color-primary);
-        transition: all 0.3s easeas;
+        transition: all 0.3s ease;
 
         &.with-lines {
           border-bottom: 1px solid
@@ -49,8 +49,9 @@
           }
 
           .item-description {
-            margin-top: var(--composer-gap-sm);
-            margin-bottom: var(--composer-gap-md);
+            max-height: 500px;
+            padding: 0px var(--composer-gap-md) var(--composer-gap-md) 0;
+            opacity: 1;
           }
         }
 
@@ -66,11 +67,17 @@
         .item-title,
         .item-description {
           text-align: left !important;
-          transition: all 0.3s line;
         }
 
         .item-description {
-          animation: openItem 0.3s forwards;
+          overflow: hidden;
+          padding: 0px;
+          max-height: 0px;
+          opacity: 0;
+          transition:
+            max-height,
+            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .item-icon {
@@ -113,14 +120,5 @@
   .container .items-container .item :where(svg, img) {
     width: 18px !important;
     height: 18px !important;
-  }
-}
-
-@keyframes openItem {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
