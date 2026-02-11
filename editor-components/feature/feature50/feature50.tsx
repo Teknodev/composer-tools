@@ -322,7 +322,11 @@ class Feature50 extends BaseFeature {
                                             {card.buttons.map((button, btnIndex) => (
                                                 this.castToString(button.text) && (
                                                     <Base.Button
-                                                        className={this.decorateCSS("card-button")}
+                                                        className={this.decorateCSS(
+                                                            button.type === "Link" 
+                                                                ? "card-button-link" 
+                                                                : "card-button"
+                                                        )}
                                                         key={btnIndex}
                                                         buttonType={button.type}
                                                     >

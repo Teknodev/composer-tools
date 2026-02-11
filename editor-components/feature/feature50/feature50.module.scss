@@ -72,9 +72,16 @@
 
           .card-button {
             content: "";
-            color: var(--composer-html-background);
             .card-button-text {
               content: "";
+            }
+          }
+          .card-button-link {
+            color: var(--composer-html-background);
+            border-bottom-color: var(--composer-html-background);
+            &:hover {
+              color: var(--composer-primary-color);
+              border-bottom-color: var(--composer-primary-color);
             }
           }
         }
@@ -113,9 +120,27 @@
           min-height: 200px;
           .media-wrapper {
             .media {
-              font-size: 8vw;
-              width: 8vw;
-              height: 8vw;
+              font-size: 6rem;
+              width: 6rem;
+              height: 6rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .cards-grid {
+        .card {
+          .media-wrapper {
+            .media {
+              font-size: 4rem;
+              width: 4rem;
+              height: 4rem;
             }
           }
         }
