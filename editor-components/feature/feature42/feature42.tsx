@@ -259,36 +259,36 @@ class Feature42 extends BaseFeature {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <div className={this.decorateCSS("wrapper")}>
-                    <Base.MaxContent className={this.decorateCSS("max-content")}>
+                {(hasContent || hasItems) && (
+                    <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
-                            <div className={this.decorateCSS("text-content")}>
+                            <Base.MaxContent className={this.decorateCSS("max-content")}>
                                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                                     {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                     {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                                     {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                                 </Base.VerticalContent>
+                            </Base.MaxContent>
+                        )}
+                        {hasItems && (
+                            <div className={this.decorateCSS("items-wrapper")}>
+                                {items.map((item: ListItem, index: number) => {
+                                    const menuTitle = item.title;
+                                    const isActive = effectiveIndex === index;
+                                    return this.castToString(menuTitle) && (
+                                        <Base.H5
+                                            key={index}
+                                            className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
+                                            onClick={() => this.setComponentState("activeIndex", index)}
+                                        >
+                                            {menuTitle}
+                                        </Base.H5>
+                                    );
+                                })}
                             </div>
                         )}
-                    </Base.MaxContent>
-                    {hasItems && (
-                        <div className={this.decorateCSS("items-wrapper")}>
-                            {items.map((item: ListItem, index: number) => {
-                                const menuTitle = item.title;
-                                const isActive = effectiveIndex === index;
-                                return this.castToString(menuTitle) && (
-                                    <Base.H5
-                                        key={index}
-                                        className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
-                                        onClick={() => this.setComponentState("activeIndex", index)}
-                                    >
-                                        {menuTitle}
-                                    </Base.H5>
-                                );
-                            })}
-                        </div>
-                    )}
-                </div>
+                    </div>
+                )}
                 {hasRightContent && (
                     <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")}`}>
                         {items.map((item: ListItem, index: number) => {
