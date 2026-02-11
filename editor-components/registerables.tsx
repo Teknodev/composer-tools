@@ -151,6 +151,7 @@ import FeatureComponent33 from "./feature/feature33/feature33";
 import FeatureComponent34 from "./feature/feature34/feature34";
 import FeatureComponent35 from "./feature/feature35/feature35";
 import FeatureComponent36 from "./feature/feature36/feature36";
+import FeatureComponent37 from "./feature/feature37/feature37";
 import FeatureComponent38 from "./feature/feature38/feature38";
 import FeatureComponent39 from "./feature/feature39/feature39";
 import FeatureComponent40 from "./feature/feature40/feature40";
@@ -173,6 +174,7 @@ import CallToAction12 from "./call_to_action/call_to_action12/call_to_action12";
 import CallToAction13 from "./call_to_action/call_to_action13/call_to_action13";
 import CallToAction14 from "./call_to_action/call_to_action14/call_to_action14";
 import CallToAction16 from "./call_to_action/call_to_action16/call_to_action16";
+import CallToAction17 from "./call_to_action/call_to_action17/call_to_action17";
 import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
 import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
 import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
@@ -498,7 +500,6 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent18,
     FeatureComponent19,
     FeatureComponent20,
-
     FeatureComponent21,
     FeatureComponent22,
     FeatureComponent24,
@@ -514,6 +515,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent34,
     FeatureComponent35,
     FeatureComponent36,
+    FeatureComponent37,
     FeatureComponent38,
     FeatureComponent39,
     FeatureComponent40,
@@ -536,6 +538,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction13,
     CallToAction14,
     CallToAction16,
+    CallToAction17,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
