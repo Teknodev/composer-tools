@@ -6,7 +6,7 @@ import { Base } from '../../../composer-base-components/base/base';
 import { INPUTS } from 'composer-tools/custom-hooks/input-templates';
 
 interface FeatureItem {
-    description: React.JSX.Element;
+    description: React.ReactNode;
 }
 type Button = INPUTS.CastedButton;
 
@@ -17,24 +17,18 @@ class CallToAction19 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Start your 7-day free trial today.",
+            value: "",
         });
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
+            value: "Start your 7-day free trial today.",
         });
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
-        });
-        this.addProp({
-            type: "string",
-            key: "buttonTitle",
-            displayer: "Button Title",
             value: "",
         });
         this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"));
@@ -67,6 +61,12 @@ class CallToAction19 extends BaseCallToAction {
                 type: "icon",
                 name: "FaCheck"
             }
+        });
+        this.addProp({
+            type: "number",
+            key: "itemCountPerRow",
+            displayer: "Item Count Per Row",
+            value: 1,
         });
         this.addProp({
             type: "array",
@@ -125,6 +125,9 @@ class CallToAction19 extends BaseCallToAction {
         const features = this.castToObject<FeatureItem[]>("features");
         const ratingValue = this.getPropValue("ratingValue");
         const ratingText = this.getPropValue("ratingText");
+        const itemCountPerRow = this.getPropValue("itemCountPerRow");
+        const itemsPerRow = itemCountPerRow > 0 ? itemCountPerRow : 1;
+
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -132,15 +135,15 @@ class CallToAction19 extends BaseCallToAction {
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("left-section")}>
                             <Base.VerticalContent className={this.decorateCSS("header")}>
-                                {this.castToString(this.getPropValue("subtitle")) && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {this.getPropValue("subtitle")}
-                                    </Base.SectionSubTitle>
-                                )}
                                 {this.castToString(this.getPropValue("title")) && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
                                         {this.getPropValue("title")}
                                     </Base.SectionTitle>
+                                )}
+                                {this.castToString(this.getPropValue("subtitle")) && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
                                 )}
                                 {this.castToString(this.getPropValue("description")) && (
                                     <Base.SectionDescription className={this.decorateCSS("description")}>
@@ -148,12 +151,6 @@ class CallToAction19 extends BaseCallToAction {
                                     </Base.SectionDescription>
                                 )}
                             </Base.VerticalContent>
-
-                            {this.castToString(this.getPropValue("buttonTitle")) && (
-                                <Base.H5 className={this.decorateCSS("button-title")}>
-                                    {this.getPropValue("buttonTitle")}
-                                </Base.H5>
-                            )}
 
                             <div className={this.decorateCSS("bottom-row")}>
                                 {this.castToString(button.text) && (
@@ -191,7 +188,10 @@ class CallToAction19 extends BaseCallToAction {
                                     </Base.H5>
                                 )}
 
-                                <div className={this.decorateCSS("cards")}>
+                                <div
+                                    className={this.decorateCSS("cards")}
+                                    style={{ ["--cta19-cols" as any]: itemsPerRow }}
+                                >
                                     {features.map((item: FeatureItem, index: number) => (
                                         <div key={index} className={this.decorateCSS("card")}>
                                             {this.getPropValue("icon") && (
@@ -217,5 +217,5 @@ class CallToAction19 extends BaseCallToAction {
             </Base.Container>
         );
     }
-} 
+}
 export default CallToAction19;

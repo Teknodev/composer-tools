@@ -20,9 +20,10 @@
                 .header{
                     display: flex;
                     flex-direction: column;
+                    align-items: flex-start;
                     gap: var(--composer-gap-sm);
                     .subtitle, .title, .description {
-                        text-align: left;
+                        text-align: left !important;
                         color: var(--composer-font-color-secondary);
                     }
                     .subtitle {
@@ -31,10 +32,6 @@
                             display: none;
                         }
                     }
-                }
-                .button-title {
-                    color: var(--composer-font-color-secondary);
-                    margin: 0;
                 }
                 .bottom-row {
                     display: flex;
@@ -83,8 +80,9 @@
                     }
                 }
                 .cards{
-                    display: flex;
-                    flex-direction: column;
+                    display: grid;
+                    align-items: center;
+                    grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
                     gap: var(--composer-gap-xs);
                 }
                 .card{
@@ -135,7 +133,7 @@
                         .subtitle,
                         .title,
                         .description {
-                            text-align: left;
+                            text-align: left !important;
                         }
                     }
 
@@ -162,7 +160,7 @@
                     }
 
                     .cards {
-                        width: 100%;
+                        grid-template-columns: 1fr;
                     }
                 }
             }
