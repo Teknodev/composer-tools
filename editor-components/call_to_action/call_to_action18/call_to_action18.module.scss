@@ -2,7 +2,6 @@
 
 .container {
   .max-content {
-    background-color: var(--composer-font-color-primary);
     border-radius: var(--composer-border-radius-md);
     padding: var(--composer-gap-xl);
     display: flex;
@@ -14,19 +13,52 @@
       align-items: flex-start;
 
       .subtitle {
-        color: var(--composer-html-background);
         text-align: left;
         margin-left: 0;
         transform: translateX(0);
-        &::before {
-          display: none;
-        }
       }
 
       .title,
       .description {
-        color: var(--composer-html-background);
         text-align: left;
+      }
+    }
+
+    // When card background is enabled
+    &.card-background-enabled {
+      background-color: var(--composer-font-color-primary);
+
+      .header {
+        .subtitle {
+          color: var(--composer-font-color-secondary);
+
+          &::before {
+            display: none;
+          }
+
+          // Disable badge feature when background is enabled
+          &.no-badge {
+            padding: 0;
+            background: transparent;
+            border-radius: 0;
+          }
+        }
+
+        .title,
+        .description {
+          color: var(--composer-font-color-secondary);
+        }
+      }
+    }
+
+    // When card background is disabled - all text uses font-color-primary
+    &:not(.card-background-enabled) {
+      .header {
+        .subtitle,
+        .title,
+        .description {
+          color: var(--composer-font-color-primary);
+        }
       }
     }
 
@@ -67,4 +99,3 @@
     }
   }
 }
-

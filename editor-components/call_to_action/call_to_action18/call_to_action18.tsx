@@ -12,6 +12,13 @@ class CallToAction18 extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "cardBackgroundEnabled",
+      displayer: "Enable Card Background",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -51,14 +58,15 @@ class CallToAction18 extends BaseCallToAction {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+    const cardBackgroundEnabled = this.getPropValue("cardBackgroundEnabled");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${cardBackgroundEnabled ? this.decorateCSS("card-background-enabled") : ""}`}>
           {(subtitleExist || titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${cardBackgroundEnabled ? this.decorateCSS("no-badge") : ""}`}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
