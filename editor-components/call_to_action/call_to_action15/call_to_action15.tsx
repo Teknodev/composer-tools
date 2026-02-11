@@ -19,7 +19,7 @@ class CallToAction15 extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "<span style='color: var( --composer-primary-color)'>Lets Talk</span> & Grow Your Business",
+            value: "<span style='color: var(--composer-primary-color)'>Lets Talk</span> & Grow Your Business",
         });
         this.addProp({
             type: "string",
@@ -56,8 +56,9 @@ class CallToAction15 extends BaseCallToAction {
                         {titleValue && (
                             <Base.SectionTitle
                                 className={this.decorateCSS("title")}
-                                dangerouslySetInnerHTML={{ __html: titleValue }}
-                            />
+                            >
+                                {this.getPropValue("title")}
+                            </Base.SectionTitle>
                         )}
                         {this.castToString(this.getPropValue("description")) && (
                             <Base.SectionDescription className={this.decorateCSS("description")}>
