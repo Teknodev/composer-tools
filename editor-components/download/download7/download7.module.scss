@@ -20,6 +20,29 @@
       border-radius: var(--composer-border-radius-md);
       position: relative;
 
+      &.has-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        min-height: 600px;
+        padding: var(--composer-gap-md) var(--composer-gap-md);
+
+        .text-content {
+
+          .subtitle {
+            color: white;
+            padding: 0;
+            background: transparent;
+          }
+
+          .title,
+          .description {
+            color: white;
+          }
+        }
+      }
+
       .overlay {
         position: absolute;
         left: 0;
@@ -31,80 +54,50 @@
         z-index: 1;
       }
 
-      .content-container {
+      .text-content {
         height: 100%;
         justify-content: center;
         position: relative;
         z-index: 2;
 
-        &.image {
-          min-height: 600px;
-          padding: var(--composer-gap-md) var(--composer-gap-md);
-          align-items: center;
-          text-align: center;
-
-          .subtitle,
-          .title,
-          .description {
-            color: white;
-            background: transparent;
-            text-align: center;
-          }
-        }
-
         .subtitle {
-          content: "";
-          transform: translateX(0);
-
+          transform: none;
           place-self: center;
+          text-align: center;
 
           &::before {
             display: none;
-          }
-
-          &.with-image {
-            color: white;
-          }
-
-          &.no-badge {
-            background: transparent !important;
           }
         }
 
         .title,
         .description {
           text-align: center;
-          content: "";
+        }
+      }
 
-          &.with-image {
-            color: white;
-            text-align: center;
-          }
+      .buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        z-index: 2;
+
+        .button-image {
+          width: 170px;
+          height: 50px;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
         }
 
+        .button-element {
 
-        .buttons-container {
-          place-self: center;
-          display: flex;
-          flex-wrap: wrap;
-          align-items: stretch;
-          gap: var(--composer-gap-md);
+          .icon {
+            line-height: 0;
+          }
 
-          .button-wrapper {
-            .button-image {
-              width: 170px;
-              height: 50px;
-              border-radius: var(--composer-border-radius-sm);
-              object-fit: cover;
-            }
-
-            .button-element {
-
-              .button-icon,
-              .button-text {
-                content: "";
-              }
-            }
+          .button-text {
+            content: "";
           }
         }
       }
@@ -116,22 +109,17 @@
   .container {
     .max-content {
       .wrapper {
-        .content-container {
+        .text-content {
           &.image {
             min-height: 600px;
             padding: var(--composer-gap-sm) var(--composer-gap-md);
           }
+        }
 
-          .buttons-container {
-            justify-content: center;
-            align-items: stretch;
-
-            .button-wrapper {
-              .button-image {
-                height: 47px !important;
-                width: 150px;
-              }
-            }
+        .buttons-container {
+          .button-image {
+            height: 45px;
+            width: 150px;
           }
         }
       }
@@ -143,26 +131,14 @@
   .container {
     .max-content {
       .wrapper {
-        .content-container {
-          &.image {
-            min-height: 600px;
-            padding: var(--composer-gap-sm) var(--composer-gap-md);
-          }
+        &.has-image {
+          min-height: 400px;
+        }
 
-          .description {
-            text-align: center;
-          }
-
-          .buttons-container {
-            justify-content: center;
-            flex-direction: row;
-
-            .button-wrapper {
-              .button-image {
-                width: 120px;
-                height: 33px !important;
-              }
-            }
+        .buttons-container {
+          .button-image {
+            width: 130px;
+            height: 35px;
           }
         }
       }

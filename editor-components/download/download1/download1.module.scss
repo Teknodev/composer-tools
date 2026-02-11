@@ -69,6 +69,12 @@
         justify-content: space-between;
 
         .button-wrapper {
+          .image-container {
+            .image {
+              width: 125px;
+            }
+          }
+
           .button {
             .icon {
               font-size: 1rem;
@@ -98,6 +104,12 @@
           width: auto;
           display: flex;
           justify-content: center;
+
+          .image-container {
+            .image {
+              height: 30px;
+            }
+          }
 
           .button {
             content: "";

@@ -2,7 +2,7 @@
 
 .container {
   &.with-image {
-    padding-bottom: 0px !important;
+    padding-bottom: 0;
   }
 
   .max-content {
@@ -20,30 +20,23 @@
 
         display: flex;
         flex-direction: column;
-        gap: 0px;
+        gap: 0;
 
         .content-container {
           display: flex;
           flex-direction: column;
-          gap: 0px;
         }
 
         .title,
         .description {
-          width: 100%;
-          text-align: left !important;
-          margin-left: 0 !important;
+          text-align: left;
+          margin-left: 0;
         }
 
-        .subtitle-container {
-          margin-left: 0 !important;
-          width: 100%;
-
-          .subtitle {
-            text-align: left !important;
-            margin-left: 0 !important;
-            width: fit-content;
-          }
+        .subtitle {
+          text-align: left;
+          margin-left: 0;
+          width: fit-content;
         }
 
         .button-group,
@@ -55,26 +48,21 @@
         }
 
         .info {
-          text-align: left !important;
+          text-align: left;
         }
-
 
         &.center {
           align-items: center;
           text-align: center;
 
           .title,
-          .description {
-            text-align: center !important;
+          .description,
+          .subtitle {
+            text-align: center;
           }
 
-          .subtitle-container {
-            justify-content: center;
-
-            .subtitle {
-              text-align: center !important;
-              margin-left: auto !important;
-            }
+          .subtitle {
+            margin-left: auto;
           }
 
           .button-group {
@@ -84,7 +72,7 @@
 
           .stats {
             .stats-title {
-              text-align: center !important;
+              text-align: center;
             }
 
             .down-description {
@@ -92,7 +80,7 @@
               width: auto;
 
               .info {
-                text-align: center !important;
+                text-align: center;
               }
             }
           }
@@ -103,26 +91,18 @@
           display: flex;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
-          min-height: 0px !important;
           height: auto;
-          margin-bottom: var(--composer-gap-sm);
 
           .button-image {
             width: 170px;
-            height: 49px;
+            height: 50px;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
 
           .button-element {
-
             .button-icon {
-              font-size: 1.25rem;
-              width: 1.25rem;
-              height: 1.25rem;
-              display: inline-flex;
-              align-items: center;
-              justify-content: center;
+              line-height: 0;
             }
 
             .button-text {
@@ -190,22 +170,21 @@
 
         .left-container {
           width: 100%;
-          gap: 0px !important;
+          gap: 0;
           padding-bottom: var(--composer-gap-xl);
 
           &.no-image {
-            padding-bottom: 0px !important;
+            padding-bottom: 0;
           }
 
           .button-group {
             width: 100%;
-            min-height: 0px !important;
             height: auto;
             margin-bottom: var(--composer-gap-sm);
             align-items: stretch;
 
             .button-image {
-              height: 46px;
+              height: 45px;
               width: 150px;
             }
           }
@@ -231,22 +210,20 @@
   .container {
     .max-content {
       .page {
-        flex-direction: column !important;
-        gap: var(--composer-gap-md);
-        gap: var(--composer-gap-md);
+        flex-direction: column;
         padding: var(--composer-gap-md) 0 0 0;
+        gap: var(--composer-gap-md);
 
         .left-container {
           width: 100%;
           align-items: flex-start;
 
           .button-group {
-            min-height: 0px !important;
             margin-bottom: var(--composer-gap-sm);
 
             .button-image {
               width: 120px;
-              height: 32px;
+              height: 30px;
             }
           }
         }

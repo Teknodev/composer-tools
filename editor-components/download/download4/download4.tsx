@@ -47,8 +47,8 @@ class Download4 extends BaseDownload {
 
     this.addProp({
       type: "object",
-      key: "background",
-      displayer: "Background",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "media",
@@ -80,7 +80,7 @@ class Download4 extends BaseDownload {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const background = this.castToObject<Background>("background");
+    const background = this.castToObject<Background>("media");
     const media = background?.media;
     const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -113,8 +113,8 @@ class Download4 extends BaseDownload {
                           </div>
                         ) : (
                           <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                            {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
                             {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
                           </Base.Button>
                         )}
                       </ComposerLink>

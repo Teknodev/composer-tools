@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Background = {
-  backgroundImage: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -15,13 +15,13 @@ class Download5 extends BaseDownload {
 
     this.addProp({
       type: "object",
-      key: "background",
-      displayer: "Background",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "media",
-          key: "backgroundImage",
-          displayer: "Background Media",
+          key: "media",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -80,8 +80,8 @@ class Download5 extends BaseDownload {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const hasContent = subtitle || title || description;
-    const background = this.castToObject<Background>("background");
-    const backgroundImage = background?.backgroundImage;
+    const background = this.castToObject<Background>("media");
+    const backgroundImage = background?.media;
     const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const alignmentValue = Base.getContentAlignment();
@@ -98,7 +98,6 @@ class Download5 extends BaseDownload {
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>}
-
             {buttons.length > 0 && (
               <div className={`${this.decorateCSS("buttons-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
@@ -112,8 +111,8 @@ class Download5 extends BaseDownload {
                         <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
                       ) : (
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
                           {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       )}
                     </ComposerLink>
