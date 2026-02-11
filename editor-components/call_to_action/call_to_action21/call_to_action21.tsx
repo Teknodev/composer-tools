@@ -13,7 +13,7 @@ class CallToAction21 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "asdasd",
         });
 
         this.addProp({
@@ -29,6 +29,13 @@ class CallToAction21 extends BaseCallToAction {
             displayer: "Description",
             value:
                 "Capitalize on low hanging fruit to identify a value added activity to beta test with additional from DevOps.",
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "enable_card",
+            displayer: "Enable Card",
+            value: true,
         });
 
         this.addProp({
@@ -50,11 +57,14 @@ class CallToAction21 extends BaseCallToAction {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const enable_card = this.getPropValue("enable_card");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("card")}>
+                    <div
+                        className={`${this.decorateCSS("card")} ${enable_card && this.decorateCSS("has-background")}`}
+                    >
                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                             {subtitle && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -71,26 +81,26 @@ class CallToAction21 extends BaseCallToAction {
                                     {this.getPropValue("description")}
                                 </Base.SectionDescription>
                             )}
+                            {buttons.length > 0 && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {buttons.map(
+                                        (item: INPUTS.CastedButton, index: number) =>
+                                            this.castToString(item.text) && (
+                                                <ComposerLink key={index} path={item.url}>
+                                                    <Base.Button
+                                                        buttonType={item.type}
+                                                        className={this.decorateCSS("button")}
+                                                    >
+                                                        <Base.P className={this.decorateCSS("button-text")}>
+                                                            {item.text}
+                                                        </Base.P>
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            )
+                                    )}
+                                </div>
+                            )}
                         </Base.VerticalContent>
-                        {buttons.length > 0 && (
-                            <div className={this.decorateCSS("button-container")}>
-                                {buttons.map(
-                                    (item: INPUTS.CastedButton, index: number) =>
-                                        this.castToString(item.text) && (
-                                            <ComposerLink key={index} path={item.url}>
-                                                <Base.Button
-                                                    buttonType={item.type}
-                                                    className={this.decorateCSS("button")}
-                                                >
-                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                        {item.text}
-                                                    </Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
-                                        )
-                                )}
-                            </div>
-                        )}
                     </div>
                 </Base.MaxContent>
             </Base.Container>

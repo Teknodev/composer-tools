@@ -1,6 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    background: var(--composer-html-background);
 
     .max-content {
         display: flex;
@@ -8,51 +9,68 @@
         align-items: center;
 
         .card {
-            background: var(--composer-font-color-primary);
-            border-radius: var(--composer-border-radius-md);
-            padding: var(--composer-gap-xl);
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: var(--composer-gap-md);
-            width: 100%;
-
+            padding: var(--composer-gap-xl);
 
             .card-content {
+                display: flex;
+                flex-direction: column;
                 align-items: center;
-                padding-top: var(--composer-gap-md);
+                width: 100%;
+                gap: var(--composer-gap-md);
 
                 .title,
                 .subtitle,
                 .description {
                     text-align: center;
-                    color: var(--composer-html-background);
                     width: 100%;
+                    margin: 0;
                 }
 
                 .subtitle {
-                    margin: 0 auto;
                     width: fit-content;
-                    transform: translateX(0) !important;
                     padding: 0 var(--composer-gap-md);
+                    transform: none;
 
                     &::before {
                         display: none;
                     }
                 }
 
+                .description {
+                    padding: 0 var(--composer-gap-md);
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: var(--composer-gap-sm);
+                    margin-top: var(--composer-gap-sm);
+                }
             }
 
-            .button-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: var(--composer-gap-sm);
+            &.has-background {
+                background: var(--composer-primary-color);
+                border-radius: var(--composer-border-radius-md);
 
-                .button {
-                    .button-text {
-                        content: "";
+                .card-content {
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        color: var(--composer-font-color-secondary);
+                    }
+
+                    .subtitle {
+                        background: transparent !important;
+                        padding: 0 var(--composer-gap-md) !important;
+                        border: none !important;
+                        border-radius: 0 !important;
                     }
                 }
             }
@@ -61,29 +79,17 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .card {
-                width: 100%;
-
-                .button-container {
-                    .button {
-                        width: 100%;
-                    }
-                }
-            }
-        }
+    .container .max-content .card .card-content .button-container .button {
+        width: 100%;
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            .card {
-                width: 100%;
-                padding: var(--composer-gap-lg);
-                gap: var(--composer-gap-md);
-            }
+    .container .max-content .card {
+        padding: var(--composer-gap-lg);
+
+        &.card-disabled {
+            padding: var(--composer-gap-lg) 0;
         }
     }
 }
