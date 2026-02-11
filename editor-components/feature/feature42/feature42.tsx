@@ -258,9 +258,9 @@ class Feature42 extends BaseFeature {
         const hasAnyImage = items.some((item: ListItem) => item.image);
 
         return (
-            <Base.Container className={this.decorateCSS("container")} isFull={true}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("wrapper")}>
+            <Base.Container className={this.decorateCSS("container")}>
+                <div className={this.decorateCSS("wrapper")}>
+                    <Base.MaxContent className={this.decorateCSS("max-content")}>
                         {hasContent && (
                             <div className={this.decorateCSS("text-content")}>
                                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
@@ -270,115 +270,112 @@ class Feature42 extends BaseFeature {
                                 </Base.VerticalContent>
                             </div>
                         )}
-                        {hasItems && (
-                            <div className={this.decorateCSS("items-wrapper")}>
-                                {items.map((item: ListItem, index: number) => {
-                                    const menuTitle = item.title;
-                                    const isActive = effectiveIndex === index;
-                                    return this.castToString(menuTitle) && (
-                                        <Base.H5
-                                            key={index}
-                                            className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
-                                            onClick={() => this.setComponentState("activeIndex", index)}
-                                        >
-                                            {menuTitle}
-                                        </Base.H5>
-                                    );
-                                })}
-                            </div>
-                        )}
-                    </div>
-                    {hasRightContent && (
-                        <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")}`}>
+                    </Base.MaxContent>
+                    {hasItems && (
+                        <div className={this.decorateCSS("items-wrapper")}>
                             {items.map((item: ListItem, index: number) => {
+                                const menuTitle = item.title;
                                 const isActive = effectiveIndex === index;
-                                const cardSubTitleExist = this.castToString(item.cardSubTitle);
-                                const cardTitleExist = this.castToString(item.cardTitle);
-                                const text1Exist = this.castToString(item.text1);
-                                const text2Exist = this.castToString(item.text2);
-                                return (
-                                    <div
+                                return this.castToString(menuTitle) && (
+                                    <Base.H5
                                         key={index}
-                                        className={`${this.decorateCSS("card-content")} ${isActive && this.decorateCSS("active-item")}`}
+                                        className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
+                                        onClick={() => this.setComponentState("activeIndex", index)}
                                     >
-                                        <div
-                                            className={`${this.decorateCSS("mobile-title-wrapper")} ${enableLine && this.decorateCSS("line")}`}
-                                            onClick={() => {
-                                                const newIndex = activeIndex === index ? -1 : index;
-                                                this.setComponentState("activeIndex", newIndex);
-                                            }}
-                                        >
-                                            <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>
-                                                {item.title}
-                                            </Base.H3>
-                                            <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
-                                                {mobileIcon && (
-                                                    <Base.Media
-                                                        value={mobileIcon}
-                                                        className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`}
-                                                    />
-                                                )}
-                                            </div>
-                                        </div>
-                                        {item.image && (
-                                            <div className={`${this.decorateCSS("image-wrapper")} ${!(cardSubTitleExist || cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
-                                                <Base.Media
-                                                    value={item.image}
-                                                    className={this.decorateCSS("itemImage")}
-                                                />
-                                                {enableOverlay && (
-                                                    <div className={this.decorateCSS("overlay")}></div>
-                                                )}
-                                            </div>
-                                        )}
-                                        {(cardTitleExist || text1Exist || text2Exist) && (
-                                            <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
-                                                {cardSubTitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>
-                                                )}
-                                                {cardTitleExist && (
-                                                    <Base.H2 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H2>
-                                                )}
-                                                {text1Exist && (
-                                                    <Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>
-                                                )}
-                                                {text2Exist && (
-                                                    <Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>
-                                                )}
-                                                {item.button && this.castToString(item.button.text) && (
-                                                    <ComposerLink path={item.button.url}>
-                                                        <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
-                                                            <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                )}
-                                            </div>
-                                        )}
-                                    </div>
+                                        {menuTitle}
+                                    </Base.H5>
                                 );
                             })}
                         </div>
-                    )
-                    }
-                    {
-                        visibleButtons.length > 0 && (
-                            <div className={this.decorateCSS("button-container")}>
-                                {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                    const buttonTextExist = this.castToString(item.text);
-                                    return (
-                                        buttonTextExist && (
-                                            <ComposerLink key={`button-${index}`} path={item.url}>
-                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
-                                        )
-                                    );
-                                })}
-                            </div>
-                        )
-                    }
-                </Base.MaxContent>
+                    )}
+                </div>
+                {hasRightContent && (
+                    <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")}`}>
+                        {items.map((item: ListItem, index: number) => {
+                            const isActive = effectiveIndex === index;
+                            const cardSubTitleExist = this.castToString(item.cardSubTitle);
+                            const cardTitleExist = this.castToString(item.cardTitle);
+                            const text1Exist = this.castToString(item.text1);
+                            const text2Exist = this.castToString(item.text2);
+                            return (
+                                <div
+                                    key={index}
+                                    className={`${this.decorateCSS("card-content")} ${isActive && this.decorateCSS("active-item")}`}
+                                >
+                                    <div
+                                        className={`${this.decorateCSS("mobile-title-wrapper")} ${enableLine && this.decorateCSS("line")}`}
+                                        onClick={() => {
+                                            const newIndex = activeIndex === index ? -1 : index;
+                                            this.setComponentState("activeIndex", newIndex);
+                                        }}
+                                    >
+                                        <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>
+                                            {item.title}
+                                        </Base.H3>
+                                        <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
+                                            {mobileIcon && (
+                                                <Base.Media
+                                                    value={mobileIcon}
+                                                    className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`}
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
+                                    {item.image && (
+                                        <div className={`${this.decorateCSS("image-wrapper")} ${!(cardSubTitleExist || cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
+                                            <Base.Media
+                                                value={item.image}
+                                                className={this.decorateCSS("itemImage")}
+                                            />
+                                            {enableOverlay && (
+                                                <div className={this.decorateCSS("overlay")}></div>
+                                            )}
+                                        </div>
+                                    )}
+                                    {(cardTitleExist || text1Exist || text2Exist) && (
+                                        <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
+                                            {cardSubTitleExist && (
+                                                <Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>
+                                            )}
+                                            {cardTitleExist && (
+                                                <Base.H2 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H2>
+                                            )}
+                                            {text1Exist && (
+                                                <Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>
+                                            )}
+                                            {text2Exist && (
+                                                <Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>
+                                            )}
+                                            {item.button && this.castToString(item.button.text) && (
+                                                <ComposerLink path={item.button.url}>
+                                                    <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
+                                                        <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
+                {visibleButtons.length > 0 && (
+                    <div className={this.decorateCSS("button-container")}>
+                        {visibleButtons.map((item: ButtonTypeObj, index: number) => {
+                            const buttonTextExist = this.castToString(item.text);
+                            return (
+                                buttonTextExist && (
+                                    <ComposerLink key={`button-${index}`} path={item.url}>
+                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                        </Base.Button>
+                                    </ComposerLink>
+                                )
+                            );
+                        })}
+                    </div>
+                )}
             </Base.Container>
         );
     }

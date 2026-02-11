@@ -1,17 +1,17 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+
+    .wrapper {
         display: flex;
         flex-direction: column;
-        padding: 0 var(--composer-gap-xl);
-        gap: var(--composer-gap-lg);
+        gap: var(--composer-gap-md);
 
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-lg);
-
+        .max-content {
             .vertical-content {
                 display: flex;
                 flex-direction: column;
@@ -22,150 +22,150 @@
                     content: "";
                 }
             }
-
-            .items-wrapper {
-                display: flex;
-                flex-direction: row;
-                gap: var(--composer-gap-xl);
-                width: fit-content;
-                margin: 0 auto;
-
-                .itemTitle {
-                    cursor: pointer;
-                    text-align: left;
-                    color: var(--composer-tertiary-color);
-                    transition: color 0.3s ease;
-                    position: relative;
-                    padding-bottom: var(--composer-gap-sm);
-                    width: auto;
-
-                    &:hover {
-                        color: var(--composer-primary-color);
-                    }
-
-                    &.active {
-                        color: var(--composer-primary-color);
-
-                        &::after {
-                            content: '';
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            height: 4px;
-                            background-color: var(--composer-primary-color);
-                            animation: expandWidth 0.4s ease forwards;
-                        }
-                    }
-                }
-            }
-
-            @keyframes expandWidth {
-                from {
-                    width: 0;
-                }
-
-                to {
-                    width: 100%;
-                }
-            }
         }
 
-        .card-wrapper {
+        .items-wrapper {
             display: flex;
-            position: relative;
-            min-width: 0;
+            flex-direction: row;
+            gap: var(--composer-gap-xl);
+            width: fit-content;
+            margin: 0 auto;
 
-            .card-content {
-                display: none;
-                flex-direction: row;
-                gap: var(--composer-gap-xl);
-                flex: 1;
-                min-width: 0;
-                opacity: 0;
-                transition: opacity 0.2s ease;
-                position: absolute;
-                width: 100%;
-                height: 100%;
+            .itemTitle {
+                cursor: pointer;
+                text-align: left;
+                color: var(--composer-tertiary-color);
+                transition: color 0.3s ease;
+                position: relative;
+                padding-bottom: var(--composer-gap-sm);
+                width: auto;
 
-                .mobile-title-wrapper {
-                    display: none;
+                &:hover {
+                    color: var(--composer-primary-color);
                 }
 
-                &.active-item {
-                    display: flex;
-                    position: relative;
-                    opacity: 1;
-                }
+                &.active {
+                    color: var(--composer-primary-color);
 
-                .image-wrapper {
-                    position: relative;
-                    border-top-right-radius: var(--composer-border-radius-sm);
-                    border-bottom-right-radius: var(--composer-border-radius-sm);
-                    margin-left: calc(-1 * var(--composer-gap-xl));
-                    overflow: hidden;
-                    width: 100%;
-                    height: 500px;
-                    flex: 0.5;
-
-                    &.full-width {
-                        margin-right: calc(-1 * var(--composer-gap-xl));
-                        border-radius: 0;
-                        flex: 1;
-                    }
-
-                    .itemImage {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        display: block;
-                    }
-
-                    .overlay {
-                        background-color: var(--composer-overlay-color);
+                    &::after {
+                        content: '';
                         position: absolute;
-                        inset: 0;
-                        border-radius: inherit;
-                    }
-                }
-
-                .sectionsWrapper {
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-md);
-                    flex: 0.5;
-
-                    &.no-image {
-                        flex: 1;
-                        padding-left: var(--composer-gap-xl);
-                    }
-
-                    .cardSubTitle,
-                    .cardTitle,
-                    .sectionText1,
-                    .sectionText2 {
-                        text-align: left;
-                        color: var(--composer-font-color-primary);
-                    }
-
-                    .card-button {
-                        .card-button-text {
-                            content: "";
-                        }
+                        bottom: 0;
+                        left: 0;
+                        height: 4px;
+                        background-color: var(--composer-primary-color);
+                        animation: expandWidth 0.4s ease forwards;
                     }
                 }
             }
         }
 
-        .button-container {
-            display: flex;
-            gap: var(--composer-gap-sm);
-            justify-content: center;
-            flex-wrap: wrap;
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
 
-            .button {
-                .button-text {
-                    content: "";
+            to {
+                width: 100%;
+            }
+        }
+    }
+
+    .card-wrapper {
+        display: flex;
+        position: relative;
+        min-width: 0;
+
+        .card-content {
+            display: none;
+            flex-direction: row;
+            gap: var(--composer-gap-xl);
+            flex: 1;
+            min-width: 0;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            .mobile-title-wrapper {
+                display: none;
+            }
+
+            &.active-item {
+                display: flex;
+                position: relative;
+                opacity: 1;
+            }
+
+            .image-wrapper {
+                position: relative;
+                border-top-right-radius: var(--composer-border-radius-sm);
+                border-bottom-right-radius: var(--composer-border-radius-sm);
+                margin-left: calc(-1 * var(--composer-gap-xl));
+                overflow: hidden;
+                width: 100%;
+                height: 500px;
+                flex: 0.5;
+
+                &.full-width {
+                    margin-right: calc(-1 * var(--composer-gap-xl));
+                    border-radius: 0;
+                    flex: 1;
                 }
+
+                .itemImage {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                .overlay {
+                    background-color: var(--composer-overlay-color);
+                    position: absolute;
+                    inset: 0;
+                    border-radius: inherit;
+                }
+            }
+
+            .sectionsWrapper {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
+                flex: 0.5;
+
+                &.no-image {
+                    flex: 1;
+                    padding-left: var(--composer-gap-xl);
+                }
+
+                .cardSubTitle,
+                .cardTitle,
+                .sectionText1,
+                .sectionText2 {
+                    text-align: left;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .card-button {
+                    .card-button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+
+    .button-container {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .button {
+            .button-text {
+                content: "";
             }
         }
     }
@@ -173,22 +173,15 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        .max-content {
-            padding: 0 var(--composer-gap-lg);
-            gap: var(--composer-gap-md);
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
-            .wrapper {
+        .card-wrapper {
+            .card-content {
                 gap: var(--composer-gap-md);
-            }
 
-            .card-wrapper {
-                .card-content {
-                    gap: var(--composer-gap-md);
-
-                    .image-wrapper {
-                        margin-left: calc(-1 * var(--composer-gap-lg));
-                        height: 400px;
-                    }
+                .image-wrapper {
+                    margin-left: calc(-1 * var(--composer-gap-lg));
+                    height: 400px;
                 }
             }
         }
@@ -197,105 +190,105 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        .max-content {
-            padding: 0px var(--composer-gap-md);
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
 
-            .wrapper {
+        .wrapper {
+            .max-content {
                 .vertical-content {
                     .subtitle {
                         padding-right: var(--composer-gap-xl);
                     }
                 }
-
-                .items-wrapper {
-                    display: none;
-                }
             }
 
-            .card-wrapper {
+            .items-wrapper {
+                display: none;
+            }
+        }
+
+        .card-wrapper {
+            flex-direction: column;
+            gap: 0;
+
+            .card-content {
                 flex-direction: column;
-                gap: 0;
+                display: flex;
+                position: relative;
+                opacity: 1;
+                height: auto;
 
-                .card-content {
-                    flex-direction: column;
+                .mobile-title-wrapper {
                     display: flex;
-                    position: relative;
-                    opacity: 1;
-                    height: auto;
+                    justify-content: center;
+                    align-items: center;
+                    gap: var(--composer-gap-sm);
+                    padding: var(--composer-gap-md) 0;
+                    cursor: pointer;
+                    order: 1;
 
-                    .mobile-title-wrapper {
+                    &.line {
+                        border-top: 1px solid var(--composer-tertiary-color);
+                    }
+
+                    .mobile-title {
+                        color: var(--composer-font-color-primary);
+                        transition: color 0.3s ease;
+                        width: fit-content;
+                        margin: 0;
+
+                        &.active {
+                            color: var(--composer-primary-color);
+                        }
+                    }
+
+                    .arrow-icon {
                         display: flex;
-                        justify-content: center;
                         align-items: center;
-                        gap: var(--composer-gap-sm);
-                        padding: var(--composer-gap-md) 0;
-                        cursor: pointer;
-                        order: 1;
+                        justify-content: center;
+                        color: var(--composer-font-color-primary);
+                        transition: transform 0.3s ease, color 0.3s ease;
+                        font-size: calc(var(--composer-font-size-sm) * 2);
+                        line-height: 0;
 
-                        &.line {
-                            border-top: 1px solid var(--composer-tertiary-color);
+                        &.active {
+                            transform: rotate(180deg);
+                            color: var(--composer-primary-color);
                         }
 
-                        .mobile-title {
-                            color: var(--composer-font-color-primary);
-                            transition: color 0.3s ease;
-                            width: fit-content;
-                            margin: 0;
-
-                            &.active {
-                                color: var(--composer-primary-color);
-                            }
-                        }
-
-                        .arrow-icon {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            color: var(--composer-font-color-primary);
-                            transition: transform 0.3s ease, color 0.3s ease;
-                            font-size: calc(var(--composer-font-size-sm) * 2);
-                            line-height: 0;
-
-                            &.active {
-                                transform: rotate(180deg);
-                                color: var(--composer-primary-color);
-                            }
-
-                            .is-image {
-                                width: 30px;
-                                height: 30px;
-                                object-fit: contain;
-                            }
+                        .is-image {
+                            width: 30px;
+                            height: 30px;
+                            object-fit: contain;
                         }
                     }
+                }
 
-                    &:last-child .mobile-title-wrapper.line {
-                        border-bottom: 1px solid var(--composer-tertiary-color);
-                    }
+                &:last-child .mobile-title-wrapper.line {
+                    border-bottom: 1px solid var(--composer-tertiary-color);
+                }
 
+                .image-wrapper {
+                    order: 3;
+                    margin-left: calc(-1 * var(--composer-gap-md));
+                    margin-bottom: var(--composer-gap-md);
+                    width: calc(100% + 2 * var(--composer-gap-md));
+                    border-radius: 0;
+                    display: none;
+                }
+
+                .sectionsWrapper {
+                    order: 2;
+                    display: none;
+                    padding-bottom: var(--composer-gap-md);
+                }
+
+                &.active-item {
                     .image-wrapper {
-                        order: 3;
-                        margin-left: calc(-1 * var(--composer-gap-md));
-                        margin-bottom: var(--composer-gap-md);
-                        width: calc(100% + 2 * var(--composer-gap-md));
-                        border-radius: 0;
-                        display: none;
+                        display: block;
                     }
 
                     .sectionsWrapper {
-                        order: 2;
-                        display: none;
-                        padding-bottom: var(--composer-gap-md);
-                    }
-
-                    &.active-item {
-                        .image-wrapper {
-                            display: block;
-                        }
-
-                        .sectionsWrapper {
-                            display: flex;
-                        }
+                        display: flex;
                     }
                 }
             }
