@@ -89,6 +89,10 @@
             .card-overlay-description {
               text-align: start;
             }
+
+            .card-overlay-description {
+              padding-inline: var(--composer-gap-sm);
+            }
           }
 
           .child-media-wrapper {
