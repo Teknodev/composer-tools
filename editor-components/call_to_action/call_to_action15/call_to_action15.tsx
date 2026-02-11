@@ -65,20 +65,20 @@ class CallToAction15 extends BaseCallToAction {
                                 {this.getPropValue("description")}
                             </Base.SectionDescription>
                         )}
+                        {visibleButtons.length > 0 && (
+                            <div className={this.decorateCSS("button-container")}>
+                                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                                    return this.castToString(item.text) && (
+                                        <ComposerLink key={`button-${index}`} path={item.url}>
+                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </Base.VerticalContent>
-                    {visibleButtons.length > 0 && (
-                        <div className={this.decorateCSS("button-container")}>
-                            {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
-                                return this.castToString(item.text) && (
-                                    <ComposerLink key={`button-${index}`} path={item.url}>
-                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                        </Base.Button>
-                                    </ComposerLink>
-                                );
-                            })}
-                        </div>
-                    )}
                 </Base.MaxContent>
             </Base.Container>
         );
