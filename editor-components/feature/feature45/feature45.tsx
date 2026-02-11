@@ -265,7 +265,7 @@ class Feature45 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "sectionButtons",
-      displayer: "Section Buttons",
+      displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
   }
