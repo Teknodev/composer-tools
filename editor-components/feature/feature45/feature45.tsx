@@ -167,7 +167,8 @@ class Feature45 extends BaseFeature {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "",
+              value:
+                "Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description Description ",
             },
             {
               type: "array",

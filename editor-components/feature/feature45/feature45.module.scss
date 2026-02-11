@@ -33,7 +33,7 @@
         padding: var(--composer-gap-sm);
 
         .card-header {
-          margin-inline: 0.5rem;
+          margin-inline: var(--composer-gap-sm);
           margin-bottom: var(--composer-gap-xs);
 
           .card-subtitle,
@@ -51,7 +51,7 @@
           justify-content: flex-start;
           @extend .buttons-wrapper;
           width: 100%;
-          margin-bottom: 0.5rem;
+          margin-bottom: var(--composer-gap-sm);
 
           .card-button {
             .card-button-icon,
@@ -76,7 +76,8 @@
 
           .media-text-wrapper {
             position: relative;
-            margin-inline: 0.5rem;
+            padding-inline: var(--composer-gap-sm);
+            padding-block: var(--composer-gap-xs);
             z-index: 1;
             color: var(--composer-font-color-primary);
 
