@@ -17,7 +17,7 @@ class CallToAction19 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "TEST",
         });
         this.addProp({
             type: "string",
@@ -63,9 +63,15 @@ class CallToAction19 extends BaseCallToAction {
             }
         });
         this.addProp({
+            type: "boolean",
+            key: "cardBackgroundEnabled",
+            displayer: "Card Background",
+            value: true,
+        });
+        this.addProp({
             type: "number",
-            key: "itemCountPerRow",
-            displayer: "Item Count Per Row",
+            key: "itemCountInARow",
+            displayer: "Item Count in a Row",
             value: 1,
         });
         this.addProp({
@@ -125,25 +131,27 @@ class CallToAction19 extends BaseCallToAction {
         const features = this.castToObject<FeatureItem[]>("features");
         const ratingValue = this.getPropValue("ratingValue");
         const ratingText = this.getPropValue("ratingText");
-        const itemCountPerRow = this.getPropValue("itemCountPerRow");
-        const itemsPerRow = itemCountPerRow > 0 ? itemCountPerRow : 1;
-
+        const itemCountInARow = this.getPropValue("itemCountInARow");
+        const itemsPerRow = itemCountInARow > 0 ? itemCountInARow : 1;
+        const cardBackgroundEnabled = this.getPropValue("cardBackgroundEnabled") !== false;
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container
+                className={`${this.decorateCSS("container")}${!cardBackgroundEnabled ? ` ${this.decorateCSS("has-background")}` : ""}`}
+            >
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("left-section")}>
                             <Base.VerticalContent className={this.decorateCSS("header")}>
-                                {this.castToString(this.getPropValue("title")) && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                )}
                                 {this.castToString(this.getPropValue("subtitle")) && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
+                                )}
+                                {this.castToString(this.getPropValue("title")) && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
                                 )}
                                 {this.castToString(this.getPropValue("description")) && (
                                     <Base.SectionDescription className={this.decorateCSS("description")}>
@@ -166,9 +174,9 @@ class CallToAction19 extends BaseCallToAction {
                                 {(this.castToString(ratingValue) || this.castToString(ratingText)) && (
                                     <div className={this.decorateCSS("rating")}>
                                         {this.castToString(ratingValue) && (
-                                            <Base.H5 className={this.decorateCSS("rating-value")}>
+                                            <Base.P className={this.decorateCSS("rating-value")}>
                                                 {ratingValue}
-                                            </Base.H5>
+                                            </Base.P>
                                         )}
                                         {this.castToString(ratingText) && (
                                             <Base.P className={this.decorateCSS("rating-text")}>
