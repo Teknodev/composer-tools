@@ -338,7 +338,7 @@ class Feature42 extends BaseFeature {
                                                 <Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>
                                             )}
                                             {cardTitleExist && (
-                                                <Base.H2 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H2>
+                                                <Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>
                                             )}
                                             {text1Exist && (
                                                 <Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>
