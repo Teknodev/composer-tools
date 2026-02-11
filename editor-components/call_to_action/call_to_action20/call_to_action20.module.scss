@@ -1,9 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+  background-color: var(--composer-primary-color);
+
   .max-content {
-    background-color: var(--composer-primary-color);
-    border-radius: var(--composer-border-radius-md);
     padding: var(--composer-gap-xl);
     display: flex;
     align-items: flex-end;
@@ -17,6 +17,11 @@
         color: var(--composer-font-color-secondary);
         text-align: left;
         margin-left: 0;
+        
+
+        &::before {
+          background: var(--composer-font-color-secondary);
+        }
       }
 
       .title,
