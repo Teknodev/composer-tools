@@ -188,6 +188,13 @@ class Feature51 extends BaseFeature {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "withLines",
+      displayer: "Show Lines Between Items",
+      value: true,
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
@@ -281,7 +288,7 @@ class Feature51 extends BaseFeature {
                   <Base.VerticalContent
                     className={`${this.decorateCSS("item")} ${
                       isActiveItem(index) ? this.decorateCSS("active") : ""
-                    }`}
+                    } ${this.getPropValue("withLines") ? this.decorateCSS("with-lines") : ""}`}
                     key={index}
                   >
                     <Base.Row
