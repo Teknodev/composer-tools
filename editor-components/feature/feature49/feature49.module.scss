@@ -34,13 +34,10 @@
             gap: var(--composer-gap-lg);
 
             .card {
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                gap: var(--composer-gap-md);
                 padding: var(--composer-gap-lg);
                 border-radius: var(--composer-border-radius-md);
                 box-shadow: var(--box-shadow-active);
+                justify-content: flex-start;
                 height: 100%;
                 width: 100%;
 
@@ -56,16 +53,11 @@
                         content: "";
                     }
                 }
-
-                .card-content {
-
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left !important;
                     }
-                }
-
                 .icon-container {
                     width: 80px;
                     height: 80px;
@@ -78,7 +70,8 @@
                         background-color: var(--composer-primary-color);
 
                         .card-icon {
-                            color: white;
+                            color: var(--composer-font-color-secondary);;
+                           
                         }
                     }
 
