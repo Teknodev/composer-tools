@@ -4,7 +4,7 @@
   background-color: var(--composer-primary-color);
 
   .max-content {
-    padding: var(--composer-gap-xl);
+    
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -17,7 +17,8 @@
         color: var(--composer-font-color-secondary);
         text-align: left;
         margin-left: 0;
-        
+        padding: 0;
+        background: transparent;
 
         &::before {
           background: var(--composer-font-color-secondary);
