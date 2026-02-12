@@ -50,21 +50,9 @@
           text-align: center;
         }
 
-        .buttons-wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: center;
-          gap: var(--composer-gap-sm);
-
-          .button {
-            .button-icon {
-              content: "";
-            }
-
-            .button-text {
-              content: "";
-            }
+        .button {
+          .button-text {
+            content: "";
           }
         }
       }
