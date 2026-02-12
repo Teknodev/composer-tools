@@ -49,14 +49,24 @@
         .description {
           text-align: center;
         }
-      }
 
-      .button-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: var(--composer-gap-sm);
+        .buttons-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .button {
+            .button-icon {
+              content: "";
+            }
+
+            .button-text {
+              content: "";
+            }
+          }
+        }
       }
     }
   }
