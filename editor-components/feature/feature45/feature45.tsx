@@ -264,8 +264,8 @@ class Feature45 extends BaseFeature {
 
     this.addProp({
       type: "array",
-      key: "sectionButtons",
-      displayer: "Section Buttons",
+      key: "buttons",
+      displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
   }
@@ -288,9 +288,9 @@ class Feature45 extends BaseFeature {
     const isCardButtonsExist = (cardButtons: PrimaryButton[]) =>
       cardButtons.some((button) => this.castToString(button.text));
 
-    const sectionButtons = this.castToObject<PrimaryButton[]>("sectionButtons");
-    const sectionButtonsExist = sectionButtons.some(
-      (sectionButton) => !!this.castToString(sectionButton.text),
+    const buttons = this.castToObject<PrimaryButton[]>("buttons");
+    const buttonsExist = buttons.some(
+      (button) => !!this.castToString(button.text),
     );
 
     const isCardHasMedia = (card: Card) => {
@@ -442,30 +442,28 @@ class Feature45 extends BaseFeature {
             </Base.ListGrid>
           )}
 
-          {sectionButtonsExist && (
-            <Base.Row className={this.decorateCSS("section-buttons-wrapper")}>
-              {sectionButtons.map((sectionButton, index) => {
-                const buttonText = this.castToString(sectionButton.text);
-                const buttonExist = buttonText || sectionButton.icon;
+          {buttonsExist && (
+            <Base.Row className={this.decorateCSS("buttons-wrapper")}>
+              {buttons.map((button, index) => {
+                const buttonText = this.castToString(button.text);
+                const buttonExist = buttonText || button.icon;
                 return (
                   buttonExist && (
-                    <ComposerLink path={sectionButton.url}>
+                    <ComposerLink path={button.url}>
                       <Base.Button
-                        className={this.decorateCSS("section-button")}
+                        className={this.decorateCSS("button")}
                         key={index}
-                        buttonType={sectionButton.type}
+                        buttonType={button.type}
                       >
-                        {sectionButton.icon && (
+                        {button.icon && (
                           <Base.Media
-                            value={sectionButton.icon}
-                            className={this.decorateCSS("section-button-icon")}
+                            value={button.icon}
+                            className={this.decorateCSS("button-icon")}
                           />
                         )}
                         {buttonText && (
-                          <Base.P
-                            className={this.decorateCSS("section-button-text")}
-                          >
-                            {sectionButton.text}
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
                           </Base.P>
                         )}
                       </Base.Button>
