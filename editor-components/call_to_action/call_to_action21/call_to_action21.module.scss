@@ -48,6 +48,12 @@
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
                 }
             }
 
