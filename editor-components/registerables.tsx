@@ -178,6 +178,7 @@ import CallToAction13 from "./call_to_action/call_to_action13/call_to_action13";
 import CallToAction14 from "./call_to_action/call_to_action14/call_to_action14";
 import CallToAction16 from "./call_to_action/call_to_action16/call_to_action16";
 import CallToAction17 from "./call_to_action/call_to_action17/call_to_action17";
+import CallToAction24 from "./call_to_action/call_to_action24/call_to_action24";
 import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
 import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
 import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
@@ -527,7 +528,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent43,
     FeatureComponent46,
     FeatureComponent47,
-    FeatureComponent48, 
+    FeatureComponent48,
     FeatureComponent49,
     CallToAction1,
     CallToAction2,
@@ -545,6 +546,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction14,
     CallToAction16,
     CallToAction17,
+    CallToAction24,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
