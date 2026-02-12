@@ -27,7 +27,7 @@ class Feature51 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
 
-    this.setComponentState("activeItem", null);
+    this.setComponentState("activeItem", 0);
 
     this.addProp({
       type: "string",
@@ -203,7 +203,7 @@ class Feature51 extends BaseFeature {
 
     this.addProp({
       type: "array",
-      key: "sectionButtons",
+      key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
@@ -225,10 +225,11 @@ class Feature51 extends BaseFeature {
     const items = this.castToObject<Item[]>("items");
     console.log(items);
     const itemCountPerRow = this.getPropValue("itemCount");
+    const pcGridCount = Math.min(4, itemCountPerRow);
 
-    const sectionButtons = this.castToObject<PrimaryButton[]>("sectionButtons");
-    const sectionButtonsExist = sectionButtons.some(
-      (sectionButton) => !!this.castToString(sectionButton.text),
+    const buttons = this.castToObject<PrimaryButton[]>("buttons");
+    const buttonsExist = buttons.some(
+      (button) => !!this.castToString(button.text),
     );
 
     const isActiveItem = (itemIndex: number) =>
@@ -240,8 +241,8 @@ class Feature51 extends BaseFeature {
     };
 
     const gridCount = {
-      pc: Math.min(4, itemCountPerRow),
-      tablet: Math.min(2, itemCountPerRow),
+      pc: pcGridCount,
+      tablet: 1,
       phone: 1,
     };
 
@@ -286,9 +287,11 @@ class Feature51 extends BaseFeature {
 
                 return (
                   <Base.VerticalContent
-                    className={`${this.decorateCSS("item")} ${
-                      isActiveItem(index) ? this.decorateCSS("active") : ""
-                    } ${this.getPropValue("withLines") ? this.decorateCSS("with-lines") : ""}`}
+                    className={`${this.decorateCSS("item")} 
+                    ${isActiveItem(index) ? this.decorateCSS("active") : ""} 
+                    ${this.getPropValue("withLines") ? this.decorateCSS("with-lines") : ""}
+                    ${pcGridCount === 1 ? this.decorateCSS("one-column") : ""}
+                    `}
                     key={index}
                   >
                     <Base.Row
@@ -309,9 +312,15 @@ class Feature51 extends BaseFeature {
                     </Base.Row>
 
                     {itemDescription && (
-                      <Base.P className={this.decorateCSS("item-description")}>
-                        {itemDescription}
-                      </Base.P>
+                      <div
+                        className={this.decorateCSS("item-description-wrapper")}
+                      >
+                        <Base.P
+                          className={this.decorateCSS("item-description")}
+                        >
+                          {itemDescription}
+                        </Base.P>
+                      </div>
                     )}
                   </Base.VerticalContent>
                 );
@@ -319,30 +328,28 @@ class Feature51 extends BaseFeature {
             </Base.ListGrid>
           )}
 
-          {sectionButtonsExist && (
-            <div className={this.decorateCSS("section-buttons-wrapper")}>
-              {sectionButtons.map((sectionButton, index) => {
-                const buttonText = this.castToString(sectionButton.text);
-                const buttonExist = buttonText || sectionButton.icon;
+          {buttonsExist && (
+            <Base.Row className={this.decorateCSS("buttons-wrapper")}>
+              {buttons.map((button, index) => {
+                const buttonText = this.castToString(button.text);
+                const buttonExist = buttonText || button.icon;
                 return (
                   buttonExist && (
-                    <ComposerLink path={sectionButton.url}>
+                    <ComposerLink path={button.url}>
                       <Base.Button
-                        className={this.decorateCSS("section-button")}
+                        className={this.decorateCSS("button")}
                         key={index}
-                        buttonType={sectionButton.type}
+                        buttonType={button.type}
                       >
-                        {sectionButton.icon && (
+                        {button.icon && (
                           <Base.Media
-                            value={sectionButton.icon}
-                            className={this.decorateCSS("section-button-icon")}
+                            value={button.icon}
+                            className={this.decorateCSS("button-icon")}
                           />
                         )}
                         {buttonText && (
-                          <Base.P
-                            className={this.decorateCSS("section-button-text")}
-                          >
-                            {sectionButton.text}
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
                           </Base.P>
                         )}
                       </Base.Button>
@@ -350,7 +357,7 @@ class Feature51 extends BaseFeature {
                   )
                 );
               })}
-            </div>
+            </Base.Row>
           )}
         </Base.MaxContent>
       </Base.Container>
