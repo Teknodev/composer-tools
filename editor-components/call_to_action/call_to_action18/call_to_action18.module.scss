@@ -35,14 +35,12 @@
       .header {
         .subtitle {
           color: var(--composer-html-background);
+          background: transparent !important;
+          padding: 0 !important;
+          border-radius: 0 !important;
 
           &::before {
             background: var(--composer-html-background) !important;
-          }
-
-          &.card-badge {
-            background: var(--composer-html-background) !important;
-            color: var(--composer-font-color-primary) !important;
           }
         }
 
