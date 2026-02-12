@@ -14,6 +14,12 @@ class CallToAction19 extends BaseCallToAction {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
+            type: "boolean",
+            key: "background",
+            displayer: "Card Background",
+            value: true,
+        });
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -31,7 +37,14 @@ class CallToAction19 extends BaseCallToAction {
             displayer: "Description",
             value: "",
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"));
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"),
+            ],
+        });
         this.addProp({
             type: "string",
             key: "ratingValue",
@@ -61,18 +74,6 @@ class CallToAction19 extends BaseCallToAction {
                 type: "icon",
                 name: "FaCheck"
             }
-        });
-        this.addProp({
-            type: "boolean",
-            key: "cardBackgroundEnabled",
-            displayer: "Card Background",
-            value: true,
-        });
-        this.addProp({
-            type: "number",
-            key: "itemCountInARow",
-            displayer: "Item Count in a Row",
-            value: 1,
         });
         this.addProp({
             type: "array",
@@ -120,6 +121,12 @@ class CallToAction19 extends BaseCallToAction {
                 },
             ],
         });
+        this.addProp({
+            type: "number",
+            key: "itemCountInARow",
+            displayer: "Item Count in a Row",
+            value: 1,
+        });
     }
 
     static getName(): string {
@@ -127,24 +134,26 @@ class CallToAction19 extends BaseCallToAction {
     }
 
     render() {
-        const button: Button = this.castToObject<Button>("button");
+        const buttons = this.castToObject<Button[]>("buttons");
         const features = this.castToObject<FeatureItem[]>("features");
         const ratingValue = this.getPropValue("ratingValue");
         const ratingText = this.getPropValue("ratingText");
         const itemCountInARow = this.getPropValue("itemCountInARow");
         const itemsPerRow = itemCountInARow > 0 ? itemCountInARow : 1;
-        const cardBackgroundEnabled = this.getPropValue("cardBackgroundEnabled") !== false;
+        const backgroundEnabled = this.getPropValue("background") !== false;
 
         return (
             <Base.Container
-                className={`${this.decorateCSS("container")}${!cardBackgroundEnabled ? ` ${this.decorateCSS("has-background")}` : ""}`}
+                className={`${this.decorateCSS("container")}${!backgroundEnabled ? ` ${this.decorateCSS("has-background")}` : ""}`}
             >
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
                         <div className={this.decorateCSS("left-section")}>
                             <Base.VerticalContent className={this.decorateCSS("header")}>
                                 {this.castToString(this.getPropValue("subtitle")) && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    <Base.SectionSubTitle
+                                        className={`${this.decorateCSS("subtitle")} ${Base.getSectionSubTitleType() === "line" ? this.decorateCSS("subtitle-line") : ""}`}
+                                    >
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
@@ -161,14 +170,16 @@ class CallToAction19 extends BaseCallToAction {
                             </Base.VerticalContent>
 
                             <div className={this.decorateCSS("bottom-row")}>
-                                {this.castToString(button.text) && (
-                                    <ComposerLink path={button.url}>
-                                        <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                {button.text}
-                                            </Base.P>
-                                        </Base.Button>
-                                    </ComposerLink>
+                                {Array.isArray(buttons) && buttons.map((button: Button, index: number) =>
+                                    this.castToString(button?.text) ? (
+                                        <ComposerLink key={index} path={button.url}>
+                                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                    {button.text}
+                                                </Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    ) : null
                                 )}
 
                                 {(this.castToString(ratingValue) || this.castToString(ratingText)) && (

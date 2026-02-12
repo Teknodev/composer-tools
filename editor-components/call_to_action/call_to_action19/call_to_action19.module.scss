@@ -1,47 +1,55 @@
-@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {    
-    background-color: var(--composer-html-background);
+.container {
     .max-content {
         margin-right: auto;
         background-color: var(--composer-primary-color);
         border-radius: var(--composer-border-radius-md);
-        padding: calc(2* var(--composer-gap-lg));
+        padding: calc(2 * var(--composer-gap-lg));
         .content {
             display: flex;
             gap: var(--composer-gap-xl);
             .left-section {
-                flex:1;
+                flex: 1;
                 display: flex;
                 flex-direction: column;
-                align-items: flex-start;
-                .header{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
+                align-items: flex-start !important;
+                .header {
+                    width: 100%;
+                    max-width: 100%;
+                    align-items: flex-start !important;
                     gap: var(--composer-gap-sm);
                     .subtitle, .title, .description {
-                        text-align: left !important;
                         color: var(--composer-font-color-secondary);
+                        text-align: left !important;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                        display: flex;
+                        justify-content: flex-start !important;
                     }
                     .subtitle {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        max-width: 100%;
                         transform: none;
-                        margin-left: 0;
-                        &::before {
-                            background: currentColor !important;
-                        }
+                    }
+                    .subtitle-line::before {
+                        content: "";
+                        position: static;
+                        flex-shrink: 0;
+                        width: 2rem;
+                        height: 2px;
+                        margin-right: var(--composer-gap-sm);
+                        background: currentColor !important;
                     }
                 }
                 .bottom-row {
                     display: flex;
                     align-items: center;
+                    justify-content: flex-start !important;
                     gap: var(--composer-gap-md);
-                    flex-wrap: wrap; .button {
-                    content: "";
-                    .button-text {
-                        content: "";
-                    }
-                }
+                    flex-wrap: wrap;
                 }
                
                 .rating {
@@ -63,21 +71,19 @@
                 }
             }
             .right-section {
-                flex:1;
+                flex: 1;
                 display: flex;
                 flex-direction: column;
                 gap: var(--composer-gap-sm);
                 color: var(--composer-font-color-secondary);
 
                 .features-title {
-                    color: var(--composer-font-color-secondary);
                     padding-left: 0;
                     transform: translateX(0);
-                    text-align: left;
-                    &::before{
+                    text-align: left !important;
+                    &::before {
                         display: none;
                     }
-                   
                 }
                 .cards {
                     display: grid;
@@ -86,50 +92,48 @@
                     grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
                     gap: var(--composer-gap-xs);
                 }
-                .card{
+                .card {
                     display: flex;
                     align-items: center;
                     gap: var(--composer-gap-xs);
                     padding: var(--composer-gap-sm) 0;
-                    text-align: left !important;
                     width: fit-content;
                     .icon-wrapper {
                         display: flex;
                         align-items: center;
                         justify-content: center;
                     }
-                    .icon{
+                    .icon {
                         font-size: 1.25rem;
                         width: 1.25rem;
                         height: 1.25rem;
-                        color: var(--composer-font-color-secondary);
                     }
-                    .card-text{
+                    .card-text {
                         margin: 0;
-                        color: var(--composer-font-color-secondary);
                     }
                 }
             }
         }
     }
-    
+
+    &:not(.has-background) .max-content .content .left-section .header .subtitle {
+        padding: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        color: var(--composer-font-color-secondary) !important;
+    }
+
     &.has-background {
-     .max-content {
-        padding: 0;
-        background: transparent;
+        .max-content {
+            background: transparent;
         .content{
             .left-section{
-                .header{
-                    .subtitle{
-                        color: var(--composer-font-color-secondary);
+                .header {
+                    .subtitle {
+                        color: var(--composer-font-color-primary);
                         padding: 0;
                         background: transparent;
-
-                        &:before {
-                            background: currentColor !important;
-                        } 
                     }
-
                     .title, .description {
                         color: var(--composer-font-color-primary);
                     }
@@ -156,12 +160,11 @@
         }   
     }
 }
-}
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            padding: var(--composer-gap-xl) !important;
+            padding: var(--composer-gap-md);
         }
     }
 }
@@ -169,28 +172,13 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            padding: var(--composer-gap-lg) !important;
-
+            padding: var(--composer-gap-sm);
             .content {
                 flex-direction: column;
-                gap: var(--composer-gap-lg);
-
+                gap: var(--composer-gap-xl);
                 .left-section {
                     width: 100%;
-                    align-items: flex-start;
-                    justify-content: flex-start;
                     gap: var(--composer-gap-md);
-
-                    .header {
-                        align-items: flex-start;
-                        width: 100%;
-
-                        .subtitle,
-                        .title,
-                        .description {
-                            text-align: left !important;
-                        }
-                    }
 
                     .bottom-row {
                         flex-direction: column;
@@ -200,17 +188,13 @@
 
                     .rating {
                         align-items: flex-start;
-                        text-align: left;
                     }
                 }
 
                 .right-section {
                     width: 100%;
-                    align-items: flex-start;
 
                     .features-title {
-                        text-align: left;
-                        padding-left: 0;
                         width: 100%;
                     }
 
@@ -224,4 +208,4 @@
             padding: 0;
         }
     }
-}
+}}
