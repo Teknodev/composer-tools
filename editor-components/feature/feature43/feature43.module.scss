@@ -1,0 +1,133 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--composer-gap-lg) * 2);
+
+        .text-content {
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+
+            .button-container {
+                display: flex;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: calc(var(--composer-gap-xl) * 2);
+
+            .card-content {
+                display: flex;
+                gap: var(--composer-gap-lg);
+
+                .text-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    flex: 0.5;
+
+                    .card-subtitle,
+                    .card-title,
+                    .card-description {
+                        text-align: left;
+                        color: var(--composer-font-color-primary);
+                    }
+
+                    &.no-image {
+                        flex: 1;
+                    }
+
+                    .card-button-container {
+                        display: flex;
+                        justify-content: left;
+                        width: 100%;
+
+                        .card-button {
+                            .card-button-text {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+
+                .image-wrapper {
+                    flex: 0.4;
+                    position: relative;
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
+                    box-shadow: var(--box-shadow-active);
+
+                    .card-image {
+                        object-fit: cover;
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    .overlay {
+                        background-color: var(--composer-overlay-color);
+                        position: absolute;
+                        inset: 0;
+                    }
+
+                    &.full-width {
+                        height: 500px;
+                        flex: 1;
+                    }
+                }
+
+                &.row-reverse {
+                    flex-direction: row-reverse;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-lg);
+
+            .card-wrapper {
+                gap: inherit;
+
+                .card-content {
+                    gap: inherit;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .card-wrapper {
+                .card-content {
+                    flex-direction: column-reverse;
+
+                    &.row-reverse {
+                        flex-direction: column-reverse !important;
+                    }
+                }
+            }
+        }
+    }
+}
