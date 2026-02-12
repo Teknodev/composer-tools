@@ -1,4 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {    
     background-color: var(--composer-html-background);
@@ -156,11 +156,12 @@
         }   
     }
 }
+}
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            padding: var(--composer-gap-lg);
+            padding: var(--composer-gap-xl) !important;
         }
     }
 }
@@ -168,7 +169,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            padding: var(--composer-gap-lg);
+            padding: var(--composer-gap-lg) !important;
 
             .content {
                 flex-direction: column;
@@ -223,4 +224,4 @@
             padding: 0;
         }
     }
-}}
+}
