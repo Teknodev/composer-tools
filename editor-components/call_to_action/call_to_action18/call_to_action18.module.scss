@@ -3,7 +3,6 @@
 .container {
   .max-content {
     border-radius: var(--composer-border-radius-md);
-    padding: var(--composer-gap-xl);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -15,7 +14,6 @@
       .subtitle {
         text-align: left;
         margin-left: 0;
-        transform: translateX(0);
       }
 
       .title {
@@ -32,48 +30,28 @@
     // When card background is enabled
     &.card-background-enabled {
       background-color: var(--composer-font-color-primary);
+      padding: var(--composer-gap-xl);
 
       .header {
         .subtitle {
           color: var(--composer-html-background);
 
           &::before {
-            display: none;
+            background: var(--composer-html-background) !important;
           }
 
-          // Disable badge feature when background is enabled
-          &.no-badge {
-            padding: 0;
-            background: transparent;
-            border-radius: 0;
+          &.card-badge {
+            background: var(--composer-html-background) !important;
+            color: var(--composer-font-color-primary) !important;
           }
         }
 
         .title {
           color: var(--composer-html-background);
-          margin-left: 0;
         }
 
         .description {
           color: var(--composer-html-background);
-          margin-left: 0;
-        }
-      }
-    }
-
-    // When card background is disabled - all text uses font-color-primary
-    &:not(.card-background-enabled) {
-      .header {
-        .subtitle {
-          color: var(--composer-font-color-primary);
-        }
-
-        .title {
-          color: var(--composer-font-color-primary);
-        }
-
-        .description {
-          color: var(--composer-font-color-primary);
         }
       }
     }
@@ -103,7 +81,10 @@
       flex-direction: column;
       align-items: flex-start;
       gap: var(--composer-gap-sm);
-      padding: var(--composer-gap-lg);
+
+      &.card-background-enabled {
+        padding: var(--composer-gap-lg);
+      }
     }
   }
 }
@@ -111,7 +92,9 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      padding: var(--composer-gap-md);
+      &.card-background-enabled {
+        padding: var(--composer-gap-md);
+      }
     }
   }
 }

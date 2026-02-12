@@ -59,6 +59,7 @@ class CallToAction18 extends BaseCallToAction {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const cardBackgroundEnabled = this.getPropValue("cardBackgroundEnabled");
+    const subtitleType = Base.getSectionSubTitleType();
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -66,7 +67,7 @@ class CallToAction18 extends BaseCallToAction {
           {(subtitleExist || titleExist || descriptionExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
-                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${cardBackgroundEnabled ? this.decorateCSS("no-badge") : ""}`}>
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${cardBackgroundEnabled && subtitleType === "badge" ? this.decorateCSS("card-badge") : ""}`}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
