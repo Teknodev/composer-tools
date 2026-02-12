@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: var(--composer-html-background);
 
     .max-content {
         display: flex;
@@ -14,14 +13,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: var(--composer-gap-xl);
+            padding: 0;
 
             .card-content {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
-                gap: var(--composer-gap-md);
 
                 .title,
                 .subtitle,
@@ -60,6 +58,7 @@
             &.has-background {
                 background: var(--composer-primary-color);
                 border-radius: var(--composer-border-radius-md);
+                padding: var(--composer-gap-xl);
 
                 .card-content {
 
@@ -88,11 +87,7 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .card {
+    .container .max-content .card.has-background {
         padding: var(--composer-gap-lg);
-
-        &.card-disabled {
-            padding: var(--composer-gap-lg) 0;
-        }
     }
 }
