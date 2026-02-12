@@ -35,7 +35,7 @@ class CallToAction24 extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Get Started Now", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Get Started Now", "", "FaArrowRight", null, "Primary"),
             ],
         });
     }
@@ -75,17 +75,33 @@ class CallToAction24 extends BaseCallToAction {
                                 {buttons.length > 0 && (
                                     <div className={this.decorateCSS("button-container")}>
                                         {buttons.map(
-                                            (item: INPUTS.CastedButton, index: number) =>
-                                                this.castToString(item.text) && (
+                                            (item: INPUTS.CastedButton, index: number) => {
+                                                const buttonText = this.castToString(item.text);
+                                                const iconExist = (item.icon as any)?.name;
+
+                                                if (!buttonText && !iconExist) return null;
+
+                                                return (
                                                     <ComposerLink key={index} path={item.url}>
                                                         <Base.Button
                                                             buttonType={item.type}
                                                             className={this.decorateCSS("button")}
                                                         >
-                                                            {item.text}
+                                                            {buttonText && (
+                                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                                    {buttonText}
+                                                                </Base.P>
+                                                            )}
+                                                            {iconExist && (
+                                                                <Base.Media
+                                                                    value={item.icon as any}
+                                                                    className={this.decorateCSS("button-icon")}
+                                                                />
+                                                            )}
                                                         </Base.Button>
                                                     </ComposerLink>
-                                                )
+                                                );
+                                            }
                                         )}
                                     </div>
                                 )}

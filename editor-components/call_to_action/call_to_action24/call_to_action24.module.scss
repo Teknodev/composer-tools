@@ -67,6 +67,22 @@
                         gap: var(--composer-gap-md);
                         justify-content: center;
                         width: 100%;
+
+                        .button {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: var(--composer-gap-xs);
+
+                            .button-text {
+                                content: "";
+                            }
+
+                            .button-icon {
+                                display: flex;
+                                align-items: center;
+                            }
+                        }
                     }
                 }
             }
