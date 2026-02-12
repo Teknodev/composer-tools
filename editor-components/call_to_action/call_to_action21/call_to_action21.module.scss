@@ -28,7 +28,6 @@
                 .description {
                     text-align: center;
                     width: 100%;
-                    margin: 0;
                 }
 
                 .subtitle {
@@ -49,8 +48,6 @@
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: center;
-                    gap: var(--composer-gap-sm);
-                    margin-top: var(--composer-gap-sm);
                 }
             }
 
