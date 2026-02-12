@@ -16,8 +16,6 @@
             padding: 0;
 
             .card-content {
-                display: flex;
-                flex-direction: column;
                 align-items: center;
                 width: 100%;
 
@@ -25,21 +23,15 @@
                 .subtitle,
                 .description {
                     text-align: center;
-                    width: 100%;
                 }
 
                 .subtitle {
                     width: fit-content;
-                    padding: 0 var(--composer-gap-md);
                     transform: none;
 
                     &::before {
                         display: none;
                     }
-                }
-
-                .description {
-                    padding: 0 var(--composer-gap-md);
                 }
 
                 .button-container {
@@ -70,10 +62,8 @@
                     }
 
                     .subtitle {
-                        background: transparent !important;
-                        padding: 0 var(--composer-gap-md) !important;
-                        border: none !important;
-                        border-radius: 0 !important;
+                        background: transparent;
+                        padding: 0 var(--composer-gap-md);
                     }
                 }
             }
@@ -81,14 +71,8 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .card .card-content .button-container .button {
-        width: 100%;
-    }
-}
-
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .card.has-background {
-        padding: var(--composer-gap-lg);
+        padding: var(--composer-gap-md);
     }
 }
