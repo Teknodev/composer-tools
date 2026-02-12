@@ -157,6 +157,7 @@ import FeatureComponent39 from "./feature/feature39/feature39";
 import FeatureComponent40 from "./feature/feature40/feature40";
 import FeatureComponent41 from "./feature/feature41/feature41";
 import FeatureComponent43 from "./feature/feature43/feature43";
+import FeatureComponent44 from "./feature/feature44/feature44";
 import FeatureComponent45 from "./feature/feature45/feature45";
 import FeatureComponent46 from "./feature/feature46/feature46";
 import FeatureComponent47 from "./feature/feature47/feature47";
@@ -524,6 +525,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent40,
     FeatureComponent41,
     FeatureComponent43,
+    FeatureComponent44,
     FeatureComponent45,
     FeatureComponent46,
     FeatureComponent47,
