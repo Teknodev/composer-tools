@@ -27,7 +27,7 @@
 
     .items-container {
       row-gap: 0 !important;
-      column-gap: var(--composer-gap-xl);
+      column-gap: var(--composer-gap-lg);
       .item {
         align-items: flex-start;
         height: fit-content;
@@ -36,6 +36,11 @@
 
         &.with-lines {
           border-bottom: 1px solid
+            rgba(var(--composer-font-color-primary-rgb), 0.2);
+        }
+
+        &.one-column:first-child {
+          border-top: 1px solid
             rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
 
@@ -48,10 +53,13 @@
             rotate: 45deg;
           }
 
-          .item-description {
+          .item-description-wrapper {
             max-height: 500px;
-            padding: 0px var(--composer-gap-md) var(--composer-gap-md) 0;
-            opacity: 1;
+            padding-bottom: var(--composer-gap-md);
+
+            .item-description {
+              opacity: 1;
+            }
           }
         }
 
@@ -64,20 +72,24 @@
           margin-bottom: 0;
         }
 
-        .item-title,
-        .item-description {
+        .item-title {
           text-align: left !important;
         }
 
-        .item-description {
+        .item-description-wrapper {
           overflow: hidden;
-          padding: 0px;
+          padding: 0;
+          display: flex;
           max-height: 0px;
-          opacity: 0;
           transition:
             max-height,
-            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+          .item-description {
+            text-align: left !important;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          }
         }
 
         .item-icon {
@@ -91,13 +103,13 @@
       }
     }
 
-    .section-buttons-wrapper {
+    .buttons-wrapper {
       @extend .buttons-wrapper;
       margin-inline: auto;
 
-      .section-button {
-        .section-button-icon,
-        .section-button-text {
+      .button {
+        .button-icon,
+        .button-text {
           content: "";
         }
       }
@@ -114,9 +126,17 @@
     width: 22px !important;
     height: 22px !important;
   }
+
+  .container .items-container .item:first-child {
+    border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
+  .container .max-content {
+    gap: var(--composer-gap-sm);
+  }
+
   .container .items-container .item :where(svg, img) {
     width: 18px !important;
     height: 18px !important;
