@@ -13,7 +13,7 @@ class CallToAction21 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "asdasd",
+            value: "",
         });
 
         this.addProp({
