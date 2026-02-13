@@ -62,6 +62,11 @@
                             .button-text {
                                 content: "";
                             }
+
+                            > :not(.button-text) {
+                                display: flex;
+                                align-items: center;
+                            }
                         }
                     }
                 }
@@ -76,6 +81,7 @@
                         .subtitle {
                             background: transparent;
                             padding: 0;
+                            color: var(--composer-font-color-primary) !important;
                         }
                     }
                 }
