@@ -9,7 +9,7 @@
       background-color: var(--composer-html-background);
       box-shadow: var(--box-shadow-active);
       border-radius: var(--composer-border-radius-md);
-      padding: var(--composer-gap-xl);
+      padding: 80px var(--composer-gap-xl);
       gap: var(--composer-gap-md);
       width: 100%;
 
@@ -33,9 +33,17 @@
           text-align: center;
         }
 
-        .button {
-          .button-text {
-            content: "";
+        .buttons-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .button {
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -47,7 +55,7 @@
   .container {
     .max-content {
       .card {
-        padding: var(--composer-gap-xl);
+        padding: 80px var(--composer-gap-lg);
         gap: var(--composer-gap-sm);
       }
     }
@@ -58,7 +66,7 @@
   .container {
     .max-content {
       .card {
-        padding: var(--composer-gap-lg);
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
         gap: var(--composer-gap-sm);
       }
     }
