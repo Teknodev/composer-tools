@@ -16,18 +16,13 @@
         margin-left: 0;
       }
 
-      .title {
-        text-align: left;
-        margin-left: 0;
-      }
-
-      .description {
+      .title, .description {
         text-align: left;
         margin-left: 0;
       }
     }
 
-    // When card background is enabled
+    
     &.card-background-enabled {
       background-color: var(--composer-font-color-primary);
       padding: 80px var(--composer-gap-xl);
@@ -44,11 +39,7 @@
           }
         }
 
-        .title {
-          color: var(--composer-html-background);
-        }
-
-        .description {
+        .title, .description {
           color: var(--composer-html-background);
         }
       }
@@ -63,7 +54,6 @@
 
       .button {
         .button-text {
-          content: "";
           display: flex;
           align-items: center;
           justify-content: center;
