@@ -12,6 +12,13 @@ class CallToAction22 extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "card",
+      displayer: "Card",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -57,10 +64,11 @@ class CallToAction22 extends BaseCallToAction {
       this.castToString(btn.text)
     );
     const hasContent = subtitleExist || titleExist || descriptionExist;
+    const isCardEnabled = this.getPropValue("card");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("card")}>
+          <div className={`${this.decorateCSS("card")} ${isCardEnabled ? this.decorateCSS("card-enabled") : ""}`}>
             {(hasContent || visibleButtons.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
