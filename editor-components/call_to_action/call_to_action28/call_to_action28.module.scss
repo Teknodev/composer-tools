@@ -1,0 +1,69 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    position: relative;
+
+    .max-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .content {
+            align-items: center;
+            width: 100%;
+
+            .media {
+                width: 300px;
+                height: 300px;
+                margin-bottom: var(--composer-gap-md);
+                border-radius: 50%;
+                box-shadow: var(--composer-shadow-md);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: var(--composer-html-background);
+                overflow: hidden;
+
+                img,
+                video {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                @container (max-width: #{$composer-phone-width}) {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+
+            .title,
+            .subtitle,
+            .description {
+                text-align: center;
+            }
+
+            .subtitle {
+                width: fit-content;
+                transform: none;
+
+                &::before {
+                    display: none;
+                }
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+}
