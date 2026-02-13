@@ -5,10 +5,10 @@
         margin-right: auto;
         background-color: var(--composer-primary-color);
         border-radius: var(--composer-border-radius-md);
-        padding: calc(2 * var(--composer-gap-lg));
+        padding: 80px 50px;
         .content {
             display: flex;
-            gap: var(--composer-gap-xl);
+            gap: calc(2 * var(--composer-gap-xl));
             .left-section {
                 flex: 1;
                 display: flex;
@@ -126,6 +126,7 @@
     &.has-background {
         .max-content {
             background: transparent;
+            padding: 0;
         .content{
             .left-section{
                 .header {
@@ -160,52 +161,46 @@
         }   
     }
 }
+}
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        .max-content {
-            padding: var(--composer-gap-md);
+    .max-content {
+            padding: 80px 40px;
+        }
+        .content{
+            display: block !important;
+            & > .right-section {
+                margin-top: var(--composer-gap-lg);
+            }
+            .bottom-row{
+                display: block !important;
+                gap: var(--composer-gap-sm) !important;
+                .rating-value{
+                    margin-top: var(--composer-gap-sm) !important;
+                }
+            }
         }
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        .max-content {
-            padding: var(--composer-gap-sm);
-            .content {
-                flex-direction: column;
-                gap: var(--composer-gap-xl);
-                .left-section {
-                    width: 100%;
-                    gap: var(--composer-gap-md);
-
-                    .bottom-row {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        gap: var(--composer-gap-sm);
-                    }
-
-                    .rating {
-                        align-items: flex-start;
-                    }
+        .max-content{
+            padding: 50px 20px;
+            .content{
+                display: block !important;
+                & > .right-section {
+                    margin-top: var(--composer-gap-lg);
                 }
-
-                .right-section {
-                    width: 100%;
-
-                    .features-title {
-                        width: 100%;
-                    }
-
-                    .cards {
-                        grid-template-columns: 1fr;
+                .bottom-row{
+                    display: block !important;
+                    gap: var(--composer-gap-sm) !important;
+                    .rating-value{
+                        margin-top: var(--composer-gap-sm) !important;
                     }
                 }
             }
         }
-        &.has-background .max-content {
-            padding: 0;
-        }
     }
-}}
+}
