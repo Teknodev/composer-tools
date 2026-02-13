@@ -60,7 +60,9 @@ class CallToAction24 extends BaseCallToAction {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <div className={this.decorateCSS("background-top")}></div>
+                {enable_card && (
+                    <div className={this.decorateCSS("background-top")}></div>
+                )}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("card-container")}>
                         <div className={`${this.decorateCSS("card")} ${enable_card && this.decorateCSS("has-background")}`}>
@@ -103,7 +105,6 @@ class CallToAction24 extends BaseCallToAction {
                                                             {iconExist && (
                                                                 <Base.Media
                                                                     value={item.icon as any}
-                                                                    className={this.decorateCSS("button-icon")}
                                                                 />
                                                             )}
                                                         </Base.Button>
