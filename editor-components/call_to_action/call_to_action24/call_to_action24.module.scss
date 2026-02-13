@@ -59,13 +59,10 @@
                         gap: var(--composer-gap-sm);
 
                         .button {
-                            .button-text {
-                                content: "";
-                            }
 
-                            > :not(.button-text) {
-                                display: flex;
-                                align-items: center;
+                            .button-text,
+                            .button-icon {
+                                content: "";
                             }
                         }
                     }
@@ -74,7 +71,7 @@
                 &.has-background {
                     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-md);
-                    padding: 80px 50px;
+                    padding: 80px var(--composer-gap-xl);
 
                     .card-content {
 
@@ -91,13 +88,13 @@
 
     @container (max-width: #{$composer-tablet-width}) {
         .max-content .card-container .card.has-background {
-            padding: 80px 40px;
+            padding: 80px var(--composer-gap-lg);
         }
     }
 
     @container (max-width: #{$composer-phone-width}) {
         .max-content .card-container .card.has-background {
-            padding: 50px 20px;
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
     }
 }

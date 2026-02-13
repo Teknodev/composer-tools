@@ -10,6 +10,13 @@ class CallToAction24 extends BaseCallToAction {
         super(props, styles);
 
         this.addProp({
+            type: "boolean",
+            key: "enable_card",
+            displayer: "Colored Background",
+            value: true,
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -28,13 +35,6 @@ class CallToAction24 extends BaseCallToAction {
             key: "description",
             displayer: "Description",
             value: "Join thousands of satisfied customers who trust us with their business needs.",
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enable_card",
-            displayer: "Colored Background",
-            value: true,
         });
 
         this.addProp({
@@ -104,6 +104,7 @@ class CallToAction24 extends BaseCallToAction {
                                                             )}
                                                             {iconExist && (
                                                                 <Base.Media
+                                                                    className={this.decorateCSS("button-icon")}
                                                                     value={item.icon as any}
                                                                 />
                                                             )}
