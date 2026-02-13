@@ -14,7 +14,7 @@ class CallToAction18 extends BaseCallToAction {
     this.addProp({
       type: "boolean",
       key: "cardBackgroundEnabled",
-      displayer: "Enable Card Background",
+      displayer: "Colored Background",
       value: true,
     });
 
