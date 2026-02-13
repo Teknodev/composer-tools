@@ -10,18 +10,9 @@
       width: 100%;
 
       &.card-enabled {
-        background-color: var(--composer-html-background);
         box-shadow: var(--box-shadow-active);
         border-radius: var(--composer-border-radius-md);
         padding: 80px var(--composer-gap-xl);
-
-        .header {
-          .subtitle {
-            &::before {
-              display: none;
-            }
-          }
-        }
       }
 
       .header {
@@ -30,6 +21,11 @@
         .subtitle {
           text-align: center;
           transform: translateX(0);
+
+          /* No subtitle line for both card-enabled and card-disabled */
+          &::before {
+            display: none;
+          }
         }
 
         .title {
