@@ -13,6 +13,7 @@ type Button = INPUTS.CastedButton;
 class CallToAction19 extends BaseCallToAction {
     constructor(props?: any) {
         super(props, styles);
+        
         this.addProp({
             type: "boolean",
             key: "background",
@@ -44,6 +45,9 @@ class CallToAction19 extends BaseCallToAction {
             value: [
                 INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"),
             ],
+            additionalParams: {
+                maxElementCount: 4,
+            },
         });
         this.addProp({
             type: "string",
