@@ -183,6 +183,7 @@ import CallToAction17 from "./call_to_action/call_to_action17/call_to_action17";
 import CallToAction18 from "./call_to_action/call_to_action18/call_to_action18";
 import CallToAction20 from "./call_to_action/call_to_action20/call_to_action20";
 import CallToAction21 from "./call_to_action/call_to_action21/call_to_action21";
+import CallToAction22 from "./call_to_action/call_to_action22/call_to_action22";
 import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
 import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
 import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
@@ -334,6 +335,7 @@ import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
 import Comparison1 from "./comparison/comparison1/comparison1";
+
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -555,6 +557,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction18,
     CallToAction20,
     CallToAction21,
+    CallToAction22,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
