@@ -15,7 +15,7 @@ class CallToAction22 extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "jkjhf",
+      value: "",
     });
 
     this.addProp({
@@ -57,8 +57,6 @@ class CallToAction22 extends BaseCallToAction {
       this.castToString(btn.text)
     );
     const hasContent = subtitleExist || titleExist || descriptionExist;
-    const subtitleType = Base.getSectionSubTitleType();
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -67,11 +65,7 @@ class CallToAction22 extends BaseCallToAction {
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle
-                    className={`${this.decorateCSS("subtitle")} ${
-                      subtitleType === "line"
-                        ? this.decorateCSS("subtitle-line")
-                        : ""
-                    }`}
+                    className={this.decorateCSS("subtitle")}
                   >
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>

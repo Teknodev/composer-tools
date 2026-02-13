@@ -23,23 +23,6 @@
           &::before {
             display: none;
           }
-
-          &.subtitle-line {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--composer-gap-sm);
-
-            &::before {
-              content: "";
-              display: block;
-              position: static;
-              width: 2rem;
-              height: 2px;
-              background: currentColor;
-              flex-shrink: 0;
-            }
-          }
         }
 
         .title {
@@ -64,7 +47,7 @@
   .container {
     .max-content {
       .card {
-        padding: var(--composer-gap-lg);
+        padding: var(--composer-gap-xl);
         gap: var(--composer-gap-sm);
       }
     }
@@ -75,7 +58,7 @@
   .container {
     .max-content {
       .card {
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-lg);
         gap: var(--composer-gap-sm);
       }
     }
