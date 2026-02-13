@@ -51,7 +51,7 @@
             &.has-background {
                 background: var(--composer-primary-color);
                 border-radius: var(--composer-border-radius-md);
-                padding: var(--composer-gap-xl);
+                padding: 80px 50px;
 
                 .card-content {
 
@@ -63,7 +63,7 @@
 
                     .subtitle {
                         background: transparent;
-                        padding: 0 var(--composer-gap-md);
+                        padding: 0;
                     }
                 }
             }
@@ -71,8 +71,14 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card.has-background {
+        padding: 80px 40px;
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .card.has-background {
-        padding: var(--composer-gap-md);
+        padding: 50px 20px;
     }
 }
