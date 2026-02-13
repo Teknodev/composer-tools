@@ -18,7 +18,7 @@ class CallToAction28 extends BaseCallToAction {
             },
             value: {
                 type: "image",
-                url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
             },
         });
 
