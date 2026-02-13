@@ -6,9 +6,16 @@
         .header{
             align-items: center; 
             .subtitle{
+                transform: none !important;
+                height: calc(2.75rem + 2 * var(--composer-gap-xs)) !important; 
+                display: flex;
+                align-items: center;
                 &::before{
-                    display: none;
+                    display: none !important
                 }
+            }
+            .title{
+                color: var(--composer-font-color-primary);
             }
             .title, .description{
                 text-align: center;
