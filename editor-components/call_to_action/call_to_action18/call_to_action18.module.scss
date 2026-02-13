@@ -30,7 +30,7 @@
     // When card background is enabled
     &.card-background-enabled {
       background-color: var(--composer-font-color-primary);
-      padding: var(--composer-gap-xl);
+      padding: 80px var(--composer-gap-xl);
 
       .header {
         .subtitle {
@@ -81,7 +81,7 @@
       gap: var(--composer-gap-sm);
 
       &.card-background-enabled {
-        padding: var(--composer-gap-lg);
+        padding: 80px var(--composer-gap-lg);
       }
     }
   }
@@ -94,7 +94,7 @@
       align-items: flex-start;
 
       &.card-background-enabled {
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
       }
     }
   }
