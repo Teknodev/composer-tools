@@ -70,6 +70,13 @@ class Feature52 extends BaseFeature {
       max: 3,
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
 
     this.addProp({
       type: "array",
@@ -245,6 +252,13 @@ class Feature52 extends BaseFeature {
     this.setComponentState("activeItemIndex", activeItemIndex === index ? -1 : index);
   }
 
+  private onItemKeyDown(event: React.KeyboardEvent<HTMLDivElement>, index: number): void {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      this.onItemClick(index);
+    }
+  }
+
   render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
@@ -256,15 +270,16 @@ class Feature52 extends BaseFeature {
     const rawItemCount = this.getPropValue("itemCount");
     const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
     const tabletItemCount = itemCount === 3 ? 2 : itemCount;
+    const line = this.getPropValue("line") as boolean;
 
     const buttons = this.castToObject<ButtonItemType[]>("buttons") || [];
     const services = this.castToObject<ServiceItemType[]>("services") || [];
     const contentAlignment = Base.getContentAlignment();
     const forceLeftClass =
-      contentAlignment === "center" && this.decorateCSS("force-left");
+      contentAlignment === "center" ? this.decorateCSS("force-left") : "";
 
-    const collapseIcon = this.getPropValue("collapseIcon");
-    const expandIcon = this.getPropValue("expandIcon");
+    const collapseIcon = this.getPropValue("collapseIcon") as TypeMediaInputValue;
+    const expandIcon = this.getPropValue("expandIcon") as TypeMediaInputValue;
 
     const hasHeaderContent =
       !!subtitleExist || !!titleExist || !!descriptionExist || buttons.length > 0;
@@ -358,19 +373,26 @@ class Feature52 extends BaseFeature {
                     return (
                       <div
                         key={`feature52-service-${index}`}
-                        className={`${this.decorateCSS("item-container")} ${isActive ? this.decorateCSS("active-item") : ""}`}
+                        className={`${this.decorateCSS("item-container")} ${isActive ? this.decorateCSS("active-item") : ""} ${!line ? this.decorateCSS("line-disabled") : ""}`}
                       >
                         {itemHeaderExist && (
                           <div
                             className={this.decorateCSS("item-header")}
                             onClick={() => this.onItemClick(index)}
+                            onKeyDown={(event) => this.onItemKeyDown(event, index)}
+                            role="button"
+                            tabIndex={0}
+                            aria-expanded={isActive}
                           >
                             <div className={this.decorateCSS("item-left")}>
                               {itemIconExist && (
-                                <Base.Media className={this.decorateCSS("item-icon")} value={item.icon} />
+                                <Base.Media
+                                  className={`${this.decorateCSS("item-icon")} ${isActive ? this.decorateCSS("item-icon-active") : ""}`}
+                                  value={item.icon}
+                                />
                               )}
                               {itemTitleExist && (
-                                <Base.H4 className={this.decorateCSS("item-title")}>
+                                <Base.H4 className={`${this.decorateCSS("item-title")} ${isActive ? this.decorateCSS("item-title-active") : ""}`}>
                                   {item.title}
                                 </Base.H4>
                               )}
