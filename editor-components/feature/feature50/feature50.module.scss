@@ -42,12 +42,9 @@
         }
 
         .card-content {
-          display: flex;
-          flex-direction: column;
           align-items: flex-start;
           justify-content: flex-start;
           flex: 1;
-          gap: var(--composer-gap-md);
         }
 
         .media-wrapper {
@@ -136,6 +133,8 @@
     .max-content {
       .cards-grid {
         .card {
+          padding: var(--composer-gap-md);
+          
           .media-wrapper {
             .media {
               font-size: 4rem;

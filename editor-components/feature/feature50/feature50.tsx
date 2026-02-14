@@ -298,7 +298,7 @@ class Feature50 extends BaseFeature {
                     >
                         {cards?.map((card: Card, index: number) => (
                             <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                                <div className={this.decorateCSS("card-content")}>
+                                <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                     {this.castToString(card.subtitle) && (
                                         <Base.H6 className={this.decorateCSS("card-subtitle")}>
                                             {card.subtitle}
@@ -340,7 +340,7 @@ class Feature50 extends BaseFeature {
                                             ))}
                                         </div>
                                     )}
-                                </div>
+                                </Base.VerticalContent>
 
                                 {card.media && (
                                     <div className={this.decorateCSS("media-wrapper")}>
