@@ -100,13 +100,34 @@ export function processBasePreferences(
       'baseButtonBlack': '[class*="baseButton"][class*="black"]'
     };
 
-    Object.entries(parsedPreferences).forEach(([elementType, styles]) => {
+    Object.entries(parsedPreferences).forEach(([elementType, elementStyles]) => {
       const selector = baseElementSelectors[elementType as keyof typeof baseElementSelectors];
-      if (selector && styles) {
+      if (selector && elementStyles) {
         const fullSelector = playgroundSelector ? `${playgroundSelector} ${selector}` : selector;
-        processStyles(fullSelector, GUI_QUERIES.desktop, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.tablet, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.mobile, styles, textRef);
+        const styles = elementStyles as Record<string, any>;
+
+        // Check if styles use breakpoint format (desktop/tablet/mobile keys)
+        if (styles.desktop || styles.tablet || styles.mobile) {
+          if (styles.desktop) processStyles(fullSelector, GUI_QUERIES.desktop, styles.desktop, textRef);
+          if (styles.tablet) processStyles(fullSelector, GUI_QUERIES.tablet, styles.tablet, textRef);
+          if (styles.mobile) processStyles(fullSelector, GUI_QUERIES.mobile, styles.mobile, textRef);
+
+          // Handle pseudo styles (e.g. :hover, :focus) per breakpoint
+          if (styles.pseudos) {
+            TABS.forEach((tab) => {
+              const query = GUI_QUERIES[tab as keyof typeof GUI_QUERIES];
+              const pseudoStyles = styles.pseudos[tab];
+              if (pseudoStyles) {
+                processPseudoStyles(fullSelector, query, pseudoStyles, textRef);
+              }
+            });
+          }
+        } else {
+          // Legacy flat format — apply the same styles to all breakpoints
+          processStyles(fullSelector, GUI_QUERIES.desktop, styles, textRef);
+          processStyles(fullSelector, GUI_QUERIES.tablet, styles, textRef);
+          processStyles(fullSelector, GUI_QUERIES.mobile, styles, textRef);
+        }
       }
     });
   } catch (error) {
