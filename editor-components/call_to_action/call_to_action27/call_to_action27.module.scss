@@ -4,62 +4,61 @@
   position: relative;
   padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
   background-color: var(--composer-html-background);
-  border-radius: var(--composer-border-radius-md);
   &.colored-background {
     background-color: var(--composer-font-color-primary);
+    border-radius: 0;
   }
   .max-content {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    background-color: var(--composer-html-background);
   }
   .card {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: stretch;
     gap: var(--composer-gap-lg);
     width: 100%;
     max-width: 100%;
+    padding: 80px 50px;
+    background-color: var(--composer-font-color-primary);
+
+    .subtitle {
+      transform: none;
+      text-align: center !important;
+      margin: 0;
+      color: var(--composer-html-background);
+
+      &::before {
+        display: none;
+      }
+    }
 
     .title {
       margin: 0;
-      text-align: left !important;
+      text-align: center !important;
+      color: var(--composer-html-background);
     }
+
+    .description {
+      text-align: left !important;
+      margin: 0;
+      color: var(--composer-html-background);
+    }
+
+    .button-container .button .button-text {
+      color: var(--composer-html-background);
+    }
+
 
     .subtitle-button-row {
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
       gap: var(--composer-gap-lg);
-      flex: 1 1 auto;
       min-width: 0;
-    }
-
-    .subtitle-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-xs);
-      flex: 1 1 auto;
-      min-width: 0;
-
-      .subtitle {
-        transform: none;
-        text-align: left !important;
-        margin: 0;
-
-        &::before {
-          display: none;
-        }
-      }
-
-      .description {
-        text-align: left !important;
-        margin: 0;
-      }
     }
 
     .button-container {
@@ -84,9 +83,14 @@
 
 .container {
   &.colored-background .card {
+    background-color: var(--composer-font-color-primary);
+    &::after {
+      border-radius: var(--composer-border-radius-md);
+    }
+
+    .subtitle,
     .title,
-    .subtitle-wrap .subtitle,
-    .subtitle-wrap .description {
+    .description {
       color: var(--composer-html-background);
     }
 
@@ -99,12 +103,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-
     .card {
-      .title,
-      .subtitle-wrap .subtitle,
-      .subtitle-wrap .description {
+      padding: 80px 40px;
+
+      .subtitle,
+      .title {
+        text-align: center !important;
+      }
+      .description {
         text-align: left !important;
       }
     }
@@ -114,11 +120,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
-
     .card {
-      flex-direction: column;
-      align-items: stretch;
+      padding: 50px 20px;
       gap: var(--composer-gap-md);
 
       .subtitle-button-row {
