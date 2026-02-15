@@ -19,6 +19,9 @@
                     max-width: 100%;
                     align-items: flex-start !important;
                     gap: 0;
+                    & > *:not(:last-child) {
+                        margin-bottom: var(--composer-gap-md);
+                    }
                     .subtitle, .title, .description {
                         color: var(--composer-font-color-secondary);
                         text-align: left !important;
@@ -50,11 +53,16 @@
                     gap: var(--composer-gap-md);
                     flex-wrap: wrap;
                 }
+                .button-group {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    margin-top: var(--composer-gap-sm);
+                }
                
                 .rating {
                     display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-xs);
+                    flex-direction: column; 
                     text-align: left;
                     color: var(--composer-font-color-secondary);
                     .rating-value {
@@ -64,8 +72,6 @@
                     }
                     .rating-text {
                         margin: 0;
-                        opacity: 0.7;
-                        font-size: inherit;
                     }
                 }
             }

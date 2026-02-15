@@ -7,6 +7,7 @@ import { INPUTS } from 'composer-tools/custom-hooks/input-templates';
 
 interface FeatureItem {
     description: React.ReactNode;
+    icon?: any;
 }
 type Button = INPUTS.CastedButton;
 
@@ -17,7 +18,7 @@ class CallToAction19 extends BaseCallToAction {
         this.addProp({
             type: "boolean",
             key: "background",
-            displayer: "Card Background",
+            displayer: "Colored Background",
             value: true,
         });
         this.addProp({
@@ -68,18 +69,6 @@ class CallToAction19 extends BaseCallToAction {
             value: "EXCLUSIVE FEATURES"
         });
         this.addProp({
-            type: "media",
-            key: "icon",
-            displayer: "Card Icon",
-            additionalParams: {
-                availableTypes: ["icon", "image"],
-            },
-            value: {
-                type: "icon",
-                name: "FaCheck"
-            }
-        });
-        this.addProp({
             type: "array",
             key: "features",
             displayer: "Feature Items",
@@ -89,6 +78,18 @@ class CallToAction19 extends BaseCallToAction {
                     key: "feature",
                     displayer: "Feature",
                     value: [
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "List Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "FaCheck"
+                            }
+                        },
                         {
                             type: "string",
                             key: "description",
@@ -103,6 +104,18 @@ class CallToAction19 extends BaseCallToAction {
                     displayer: "Feature",
                     value: [
                         {
+                            type: "media",
+                            key: "icon",
+                            displayer: "List Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "FaCheck"
+                            }
+                        },
+                        {
                             type: "string",
                             key: "description",
                             displayer: "Description",
@@ -115,6 +128,18 @@ class CallToAction19 extends BaseCallToAction {
                     key: "feature",
                     displayer: "Feature",
                     value: [
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "List Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "FaCheck"
+                            }
+                        },
                         {
                             type: "string",
                             key: "description",
@@ -174,17 +199,19 @@ class CallToAction19 extends BaseCallToAction {
                             </Base.VerticalContent>
 
                             <div className={this.decorateCSS("bottom-row")}>
-                                {Array.isArray(buttons) && buttons.map((button: Button, index: number) =>
-                                    this.castToString(button?.text) ? (
-                                        <ComposerLink key={index} path={button.url}>
-                                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                    {button.text}
-                                                </Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    ) : null
-                                )}
+                                <div className={this.decorateCSS("button-group")}>
+                                    {Array.isArray(buttons) && buttons.map((button: Button, index: number) =>
+                                        this.castToString(button?.text) ? (
+                                            <ComposerLink key={index} path={button.url}>
+                                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                        {button.text}
+                                                    </Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        ) : null
+                                    )}
+                                </div>
 
                                 {(this.castToString(ratingValue) || this.castToString(ratingText)) && (
                                     <div className={this.decorateCSS("rating")}>
@@ -217,10 +244,10 @@ class CallToAction19 extends BaseCallToAction {
                                 >
                                     {features.map((item: FeatureItem, index: number) => (
                                         <div key={index} className={this.decorateCSS("card")}>
-                                            {this.getPropValue("icon") && (
+                                            {item.icon && (
                                                 <div className={this.decorateCSS("icon-wrapper")}>
                                                     <Base.Media
-                                                        value={this.getPropValue("icon")}
+                                                        value={item.icon}
                                                         className={this.decorateCSS("icon")}
                                                     />
                                                 </div>
