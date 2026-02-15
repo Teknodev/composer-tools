@@ -54,6 +54,13 @@ class CallToAction23Page extends BaseCallToAction {
         INPUTS.BUTTON("button", "Button", "Get started", "", null, null, "Primary"),
       ],
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "removeCardStyle",
+      displayer: "Remove card background and centering",
+      value: false,
+    });
   }
 
   static getName(): string {
@@ -67,9 +74,12 @@ class CallToAction23Page extends BaseCallToAction {
     const description = this.castToString(this.getPropValue("description"));
     const priceLabel = this.castToString(this.getPropValue("priceLabel"));
     const price = this.castToString(this.getPropValue("price"));
+    const removeCardStyle = this.getPropValue("removeCardStyle");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${removeCardStyle ? this.decorateCSS("no-card-style") : ""}`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("content-row")}>
