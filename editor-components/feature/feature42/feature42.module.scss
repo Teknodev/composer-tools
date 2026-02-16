@@ -3,7 +3,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-xl);
+    gap: 80px;
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
 
     .wrapper {
@@ -173,7 +173,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        gap: var(--composer-gap-lg);
+        gap: 70px;
         padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
         .card-wrapper {
@@ -192,6 +192,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         padding: var(--composer-gap-xl) var(--composer-gap-md);
+        gap: var(--composer-gap-xl);
 
         .wrapper {
             .max-content {
