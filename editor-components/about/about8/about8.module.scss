@@ -1,5 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   .max-content {
@@ -7,14 +7,16 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
-    .title-container {
+    .header-container {
+
+      .subtitle,
+      .title,
       .description {
         content: "";
       }
-      .title {
-        content: "";
-      }
     }
+
+
 
     .main-content {
       display: flex;
@@ -155,4 +157,3 @@
     }
   }
 }
-
