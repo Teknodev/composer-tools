@@ -11,9 +11,9 @@
         }
 
         .subtitle {
-            text-align: center;
+            text-align: center !important;
             color: var(--composer-font-color-secondary, #fff);
-            width: 100%;
+            width: 100% !important;
             overflow-wrap: break-word;
             word-wrap: break-word;
 
