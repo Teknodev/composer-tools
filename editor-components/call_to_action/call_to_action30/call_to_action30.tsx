@@ -134,7 +134,7 @@ class CallToAction30 extends BaseCallToAction {
                 <div className={this.decorateCSS("media-container")}>
                   <Base.Media
                     value={media}
-                    className={this.decorateCSS("media")}
+                    className={`${this.decorateCSS("media")} ${media?.type === "icon" ? this.decorateCSS("media-icon") : ""}`}
                   />
                   {mediaOverlay && (
                     <div className={this.decorateCSS("media-overlay")} />
