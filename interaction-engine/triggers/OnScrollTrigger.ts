@@ -71,7 +71,6 @@ export class OnScrollTrigger extends BaseTrigger {
     this.cleanup = cleanup;
 
     const config = this.getConfig(target);
-    console.log("OnScrollTrigger: attach", config);
     if (config.type === "section") {
       this.attachSectionMode();
     } else if (config.type === "layer") {
@@ -228,33 +227,14 @@ export class OnScrollTrigger extends BaseTrigger {
       const requiredVisible = config.threshold ?? 0;
       const isVisible = visibleHeight > requiredVisible;
 
-      console.log("[OnScrollTrigger][direction] scrollHandler", {
-        instanceId: this.target.id || 'no-id',
-        direction,
-        currentOffset,
-        lastScrollY: this.lastScrollY,
-        isVisible,
-        hasTriggered: this.hasTriggered,
-        configDirection: config.direction,
-        configOpacity: config.opacity,
-        scrollContainer: scrollContainer instanceof Window ? 'window' : scrollContainer.id || 'unknown',
-      });
-
       if (isVisible) {
         if (config.direction === "both" || config.direction === direction) {
           // Correct direction - trigger animation
           if (!this.hasTriggered) {
-            console.log("[OnScrollTrigger][direction] FIRE", {
-              instanceId: this.target.id || 'no-id',
-              configOpacity: config.opacity,
-            });
             this.hasTriggered = true;
             if (this.fire) this.fire();
           } else {
-            console.log("[OnScrollTrigger][direction] SKIP_ALREADY_TRIGGERED", {
-              instanceId: this.target.id || 'no-id',
-              configOpacity: config.opacity,
-            });
+            // Already triggered - skip to avoid re-triggering on every scroll event while visible
           }
         } else if (config.replay && this.hasTriggered) {
           // Visible but scrolling in the opposite direction and replay enabled:
@@ -286,10 +266,8 @@ export class OnScrollTrigger extends BaseTrigger {
     // Attach to scroll container (playground) if available, otherwise fallback to window
     if (scrollContainer instanceof Window) {
       this.addEventListener(window, "scroll", debouncedScrollHandler);
-      console.log("[OnScrollTrigger][direction] attached to window");
     } else {
       this.addEventListener(scrollContainer, "scroll", debouncedScrollHandler);
-      console.log("[OnScrollTrigger][direction] attached to", scrollContainer.id || 'container');
     }
 
     // Also attach a capturing scroll listener at the document level.

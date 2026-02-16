@@ -8,7 +8,6 @@ import { logger } from '../utils/Logger';
 export class AnimateCommand extends BaseAnimationCommand {
 
   async execute(context: InteractionContext): Promise<void> {
-    console.log("AnimateCommand: execute", context);
     // Cancel any existing animations for THIS interaction only
     // Don't cancel animations from other interactions on the same element
     this.cancelAllAnimations();
