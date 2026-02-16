@@ -6,9 +6,7 @@
       display: flex;
       align-items: center;
       gap: var(--composer-gap-lg);
-      width: 100%;
       padding: var(--composer-gap-md);
-      overflow: visible;
 
       &.card-enabled {
         background-color: color-mix(
@@ -23,16 +21,20 @@
       .header {
         flex: 1;
         min-width: 0;
+        align-items: flex-start;
 
-        .subtitle {
+        .subtitle,
+        .title,
+        .description {
+          text-align: left;
           margin-left: 0;
+          margin-right: 0;
         }
 
         .buttons-wrapper {
           display: flex;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
-          align-self: flex-start;
 
           .button {
             flex-shrink: 0;
@@ -46,9 +48,6 @@
 
       .media-wrapper {
         flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         margin: -20px 0;
       }
 
@@ -82,6 +81,8 @@
   .container {
     .max-content {
       .card {
+        flex-direction: column;
+        align-items: flex-start;
         gap: var(--composer-gap-md);
 
         .header .description {
@@ -90,6 +91,10 @@
 
         &.card-enabled {
           padding: var(--composer-gap-lg);
+        }
+
+        .media-wrapper {
+          margin: 0;
         }
 
         .media-container {
@@ -106,6 +111,7 @@
     .max-content {
       .card {
         flex-direction: column;
+        align-items: flex-start;
         gap: var(--composer-gap-md);
 
         &.card-enabled {
@@ -117,7 +123,7 @@
         }
 
         .media-wrapper {
-          order: -1;
+          margin: 0;
         }
 
         .media-container {
