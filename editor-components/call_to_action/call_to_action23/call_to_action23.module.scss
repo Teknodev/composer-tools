@@ -11,13 +11,15 @@
     color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%
   );
 
+  /* Arka plan TRUE → kart: html-background, metin/ikon: font-color-primary */
   .content {
     padding: 80px 50px;
-    background-color: var(--composer-font-color-primary);
+    background-color: var(--composer-html-background);
     border-radius: var(--composer-border-radius-md);
     text-align: left !important;
     overflow-x: hidden;
     box-sizing: border-box;
+    align-items: center;
 
     .content-row {
       display: flex;
@@ -43,10 +45,20 @@
           .subtitle,
           .title,
           .description {
-            color: var(--composer-html-background);
+            color: var(--composer-font-color-primary) !important;
             text-align: left !important;
-            margin-left: 0;
-            margin-right: 0;
+          }
+          /* Subtitle type "line" veya alignment left/center olsa da hep sola sabit */
+          .subtitle {
+            text-align: left !important;
+            margin-left: 0 !important;
+            margin-right: auto !important;
+            width: fit-content !important;
+            justify-content: flex-start !important;
+            transform: none !important;
+            &::before {
+              transform: none !important;
+            }
           }
         }
 
@@ -59,15 +71,13 @@
           text-align: left !important;
           padding: var(--composer-gap-sm);
 
-          .price-label {
-            color: var(--composer-html-background);
-            text-align: left !important;
+          .price-label,
+          .price-value {
+            color: var(--composer-font-color-primary) !important;
             margin: 0;
           }
-
-          .price-value {
-            color: var(--composer-primary-color);
-            margin: 0;
+          .price-label {
+            text-align: left !important;
           }
         }
       }
@@ -85,27 +95,48 @@
     }
   }
 
+  /* Arka plan FALSE: kart koyu, yazılar açık - varsayılan kuralları kesin ez */
   &.no-card-style {
-    background: transparent;
-
     .max-content {
       max-width: 100%;
     }
 
     .content {
-      background-color: transparent;
-      border-radius: 0;
+      background-color: var(--composer-font-color-primary) !important;
+      border-radius: var(--composer-border-radius-md);
 
-      .content-text .subtitle,
-      .content-text .title,
-      .content-text .description,
-      .pricing .price-label {
-        color: var(--composer-font-color-primary);
+      .content-row .content-left .content-text {
+        .subtitle,
+        .title,
+        .description {
+          color: var(--composer-html-background) !important;
+          
+        }
+        .subtitle {
+          text-align: left !important;
+          margin-left: 0 !important;
+          margin-right: auto !important;
+          width: fit-content !important;
+          transform: none !important;
+          &::before {
+            transform: none !important;
+          }
+        }
+        .title{
+          align-items: center !important;
+        }
       }
 
-      .pricing .price-value {
-        color: var(--composer-primary-color);
+      .content-row .content-left .pricing {
+        .price-label,
+        .price-value {
+          color: var(--composer-html-background) !important;
+        }
+        .price-value{
+          color: var(--composer-primary-color) !important;
+        }
       }
+
     }
   }
 }
@@ -136,8 +167,14 @@
 
     .content-text .subtitle {
       text-align: left !important;
-      margin-left: 0;
-      margin-right: auto;
+      margin-left: 0 !important;
+      margin-right: auto !important;
+      width: fit-content !important;
+      transform: none !important;
+      justify-content: flex-start !important;
+      &::before {
+        transform: none !important;
+      }
     }
 
     .content-text .title,

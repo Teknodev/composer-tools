@@ -13,7 +13,7 @@ class CallToAction23Page extends BaseCallToAction {
 
     this.addProp({
       type: "boolean",
-      key: "removeCardStyle",
+      key: "cardBackground",
       displayer: "Card Background",
       value: false,
     });
@@ -21,8 +21,9 @@ class CallToAction23Page extends BaseCallToAction {
     this.addProp({
       type: "string",
       key: "subtitle",
-      value: "",
       displayer: "Subtitle",
+      value: "",
+      
     });
 
     this.addProp({
@@ -74,15 +75,18 @@ class CallToAction23Page extends BaseCallToAction {
     const description = this.castToString(this.getPropValue("description"));
     const priceLabel = this.castToString(this.getPropValue("priceLabel"));
     const price = this.castToString(this.getPropValue("price"));
-    const removeCardStyle = this.getPropValue("removeCardStyle");
-    const hasCardBackground = removeCardStyle === false;
+    const cardBackground = this.getPropValue("cardBackground");
+    const hasCardBackground = cardBackground === true;
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${!hasCardBackground ? this.decorateCSS("no-card-style") : ""}`}
+        className={`${this.decorateCSS("container")} ${hasCardBackground ? "" : this.decorateCSS("no-card-style")}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+          <div
+            className={`${this.decorateCSS("content")} ${alignment === "center" ? this.decorateCSS("content-center") : ""}`}
+          >
             <div className={this.decorateCSS("content-row")}>
               <div className={this.decorateCSS("content-left")}>
                 {(subtitle || title || description) && (
@@ -106,12 +110,12 @@ class CallToAction23Page extends BaseCallToAction {
                 )}
                 <div className={this.decorateCSS("pricing")}>
                   {priceLabel && (
-                    <Base.H5 className={this.decorateCSS("price-label")}>
+                    <Base.P className={this.decorateCSS("price-label")}>
                       {priceLabel}
-                    </Base.H5>
+                    </Base.P>
                   )}
                   {price && (
-                    <Base.H2 className={this.decorateCSS("price-value")}>{price}</Base.H2>
+                    <Base.H4 className={this.decorateCSS("price-value")}>{price}</Base.H4>
                   )}
                 </div>
               </div>
