@@ -20,7 +20,7 @@ class CallToAction29 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "lorem",
+            value: "",
         });
 
         this.addProp({

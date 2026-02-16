@@ -12,6 +12,7 @@
             &.active {
                 background-color: var(--composer-html-background);
                 border-radius: var(--composer-border-radius-lg);
+                color: var(--composer-font-color-primary);
             }
 
             .content-wrapper {
@@ -34,10 +35,6 @@
                         margin-left: 0 !important;
                         margin-right: auto !important;
                         width: fit-content !important;
-
-                        &::before {
-                            display: none;
-                        }
                     }
 
                     .title {
