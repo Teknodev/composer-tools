@@ -44,7 +44,7 @@ class CallToAction27 extends BaseCallToAction {
       type: "boolean",
       key: "coloredBackground",
       displayer: "Colored Background",
-      value: true,
+      value: false,
     });
   }
 

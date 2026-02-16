@@ -8,20 +8,11 @@
     background-color: var(--composer-font-color-primary);
     border-radius: 0;
   }
-  .max-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: var(--composer-html-background);
-  }
   .card {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     gap: var(--composer-gap-lg);
     width: 100%;
-    max-width: 100%;
     padding: 80px 50px;
     background-color: var(--composer-font-color-primary);
 
@@ -30,7 +21,6 @@
       text-align: center !important;
       margin: 0;
       color: var(--composer-html-background);
-
       &::before {
         display: none;
       }
@@ -48,26 +38,19 @@
       color: var(--composer-html-background);
     }
 
-    .button-container .button .button-text {
-      color: var(--composer-html-background);
-    }
-
-
     .subtitle-button-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: var(--composer-gap-lg);
       min-width: 0;
     }
 
     .button-container {
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      text-align: left !important;
       gap: var(--composer-gap-sm);
-      align-items: center;
       flex-shrink: 0;
 
       .button {
@@ -77,6 +60,10 @@
       }
     }
   }
+
+  &:not(.colored-background) .card {
+    border-radius: var(--composer-border-radius-md);
+  }
 }
 
 
@@ -84,10 +71,6 @@
 .container {
   &.colored-background .card {
     background-color: var(--composer-font-color-primary);
-    &::after {
-      border-radius: var(--composer-border-radius-md);
-    }
-
     .subtitle,
     .title,
     .description {
@@ -130,7 +113,8 @@
       }
 
       .button-container {
-        justify-content: center;
+        display: flex;
+        gap: var(--composer-gap-xl);
       }
     }
   }
