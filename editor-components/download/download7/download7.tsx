@@ -65,8 +65,8 @@ class Download7 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download for IOS", "", "FaAppel", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
-        INPUTS.BUTTON("button", "Button", "Download for Android", "", "FaAndroid", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6759e80e0655f8002ca61199?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download for IOS", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download for Android", "", "IoLogoAndroid", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257", "Primary"),
       ],
     });
   }
@@ -87,14 +87,12 @@ class Download7 extends BaseDownload {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("wrapper")} ${backgroundImage && this.decorateCSS("has-image")}`}>
-            {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
-            <Base.VerticalContent className={this.decorateCSS("text-content")}>
-              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-            </Base.VerticalContent >
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${backgroundImage && this.decorateCSS("has-image")}`}>
+          {overlay && backgroundImage && <div className={this.decorateCSS("overlay")}></div>}
+          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+            {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             {buttons?.length > 0 && (
               <Base.Row className={this.decorateCSS("buttons-container")}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
@@ -116,7 +114,7 @@ class Download7 extends BaseDownload {
                 })}
               </Base.Row>
             )}
-          </div >
+          </Base.VerticalContent >
         </Base.MaxContent >
       </Base.Container >
     );

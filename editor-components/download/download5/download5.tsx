@@ -49,15 +49,15 @@ class Download5 extends BaseDownload {
     this.addProp({
       type: "string",
       key: "title",
-      value: "Available On All App Store",
       displayer: "Title",
+      value: "Available On All App Store",
     });
 
     this.addProp({
       type: "string",
       key: "description",
-      value: "Download now & enjoy app with unlimited features",
       displayer: "Description",
+      value: "Download now & enjoy app with unlimited features",
     });
 
     this.addProp({
@@ -84,45 +84,41 @@ class Download5 extends BaseDownload {
     const backgroundImage = background?.media;
     const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const alignmentValue = Base.getContentAlignment();
-    const backgroundImageUrl = backgroundImage && 'url' in backgroundImage && backgroundImage.url ? backgroundImage.url : null;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${backgroundImage && this.decorateCSS("has-background")}`}>
         <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={`${this.decorateCSS("page")} ${!backgroundImageUrl && this.decorateCSS("no-image")} ${backgroundImageUrl && alignmentValue === "center" ? this.decorateCSS("image-center") : ""}`}>
-            {hasContent &&
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-              </Base.VerticalContent>}
-            {buttons.length > 0 && (
-              <div className={`${this.decorateCSS("buttons-container")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
-                {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                  const buttonTextExist = this.castToString(item?.text);
-                  const iconExist = item.icon && (item.icon)?.name;
-                  const imageExist = item.image && (item.image)?.url;
-                  const buttonExist = buttonTextExist || iconExist || imageExist;
-                  return buttonExist && (
-                    <ComposerLink key={index} path={item.url}>
-                      {imageExist ? (
-                        <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                      ) : (
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                          {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                        </Base.Button>
-                      )}
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {buttons.length > 0 && (
+                <div className={this.decorateCSS("buttons-container")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const buttonTextExist = this.castToString(item?.text);
+                    const iconExist = item.icon && (item.icon)?.name;
+                    const imageExist = item.image && (item.image)?.url;
+                    return (buttonTextExist || iconExist || imageExist) && (
+                      <ComposerLink key={index} path={item.url}>
+                        {imageExist ? (
+                          <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                        ) : (
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                            {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                          </Base.Button>
+                        )}
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
+            </Base.VerticalContent>
+          )}
         </Base.MaxContent>
-        {overlay && <div className={this.decorateCSS("overlay")} />}
+        {backgroundImage && overlay && <div className={this.decorateCSS("overlay")} />}
       </Base.Container>
     );
   }

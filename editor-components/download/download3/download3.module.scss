@@ -1,5 +1,13 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
+@mixin button-logo($w, $h) {
+  width: $w;
+  height: $h;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: var(--composer-border-radius-sm);
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -32,7 +40,7 @@
 
   .max-content {
     .page {
-      .group-container {
+      .group-container-left {
         display: flex;
         width: 100%;
         align-items: stretch;
@@ -43,24 +51,16 @@
           display: flex;
           flex-direction: column;
           width: 20%;
-          min-width: 0;
           align-items: flex-start;
           justify-content: center;
-          flex-shrink: 0;
 
-          .subtitle-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-
-            .subtitle {
-              text-align: left;
-              width: fit-content;
-            }
+          .subtitle {
+            margin-left: 0;
+            text-align: left;
+            width: fit-content;
           }
 
           .title {
-            content: "";
             margin: 0;
           }
         }
@@ -68,7 +68,6 @@
         .description {
           width: 60%;
           align-self: center;
-          flex-shrink: 0;
         }
 
         .button-group {
@@ -76,62 +75,55 @@
           align-self: center;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
+          width: 20%;
 
-          .button {
-            .button-logo {
-              width: 170px;
-              height: 50px;
-              object-fit: cover;
-              cursor: pointer;
-              border-radius: var(--composer-border-radius-sm);
-            }
+          .button-logo {
+            @include button-logo(170px, 50px);
+          }
 
-            .button-element {
-              .button-text {
-                content: "";
-              }
+          .button-element {
+
+            .button-icon,
+            .button-text {
+              content: "";
             }
           }
         }
       }
+    }
 
-      .group-container-center {
-        align-items: center;
+    .group-container-center {
+      .vertical-content-center {
+        width: 100%;
+      }
 
-        .vertical-content-center {
-          width: 100%;
-          align-items: center;
-          text-align: center;
-        }
+      .subtitle {
+        margin-left: 0;
+        margin-right: 0;
+        width: fit-content;
+      }
 
-        .subtitle-wrapper {
-          width: 100%;
-          display: flex;
-          justify-content: center;
+      .title,
+      .description {
+        content: "";
+      }
 
-          .subtitle {
-            width: fit-content;
+      .button-group {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+
+        .button {
+          .button-logo {
+            @include button-logo(170px, 50px);
           }
-        }
 
-        .title {
-          content: "";
-        }
+          .button-element {
 
-        .button-group {
-          display: flex;
-          gap: var(--composer-gap-sm);
-          flex-wrap: wrap;
-          justify-content: center;
-          align-items: stretch;
-
-          .button {
-
-            .button-logo {
-              width: 200px;
-              height: 45px;
-              object-fit: cover;
-              border-radius: var(--composer-border-radius-sm);
+            .button-icon,
+            .button-text {
+              content: "";
             }
           }
         }
@@ -140,40 +132,39 @@
   }
 }
 
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    .max-content .page {
-      .image-container {
-        height: 300px;
-        margin-left: -40px;
-        margin-right: -40px;
-        width: calc(100% + 80px);
-      }
+    .image-container {
+      height: 300px;
+      margin-left: -40px;
+      margin-right: -40px;
+      width: calc(100% + 80px);
+    }
 
-      .max-content {
-        .page {
-          .group-container {
-            .title-block {
-              width: 35%;
-            }
-
-            .description {
-              width: 45%;
-            }
+    .max-content {
+      .page {
+        .group-container-left {
+          .title-block {
+            width: 35%;
           }
 
-          .group-container-center {
-            .button-group {
-              justify-content: center;
-              gap: var(--composer-gap-sm);
-              margin-bottom: var(--composer-gap-md);
+          .description {
+            width: 45%;
+          }
 
-              .button {
-                .button-logo {
-                  height: var(--composer-gap-xl) !important;
-                  width: 150px;
-                  object-fit: cover;
-                }
+          .button-group {
+            .button-logo {
+              @include button-logo(140px, var(--composer-gap-lg));
+            }
+          }
+        }
+
+        .group-container-center {
+          .button-group {
+            .button {
+              .button-logo {
+                @include button-logo(140px, var(--composer-gap-lg));
               }
             }
           }
@@ -189,56 +180,43 @@
       height: 250px;
       margin-left: -20px;
       margin-right: -20px;
-      width: calc(100% + 40px);
+      width: calc(100% + var(--composer-gap-lg));
     }
 
     .max-content {
       .page {
-        .group-container {
-          display: flex;
+        .group-container-left {
           flex-direction: column;
-          width: 100%;
           gap: var(--composer-gap-md);
           align-items: flex-start;
 
           .title-block {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
 
-            .subtitle-wrapper {
-              width: 100%;
-              display: flex;
-              justify-content: flex-start;
-
-              .subtitle {
-                text-align: left !important;
-                transform: none;
-
-                &::before {
-                  display: none;
-                }
-              }
-            }
-
+            .subtitle,
             .title {
-              text-align: left !important;
-              width: 100%;
+              content: "";
             }
           }
 
           .description {
-            text-align: left !important;
             width: 100%;
           }
 
           .button-group {
+            width: 100%;
+
+            .button-logo {
+              @include button-logo(125px, 30px);
+            }
+          }
+        }
+
+        .group-container-center {
+          .button-group {
             .button {
               .button-logo {
-                width: 120px;
-                height: 35px;
+                @include button-logo(125px, 30px);
               }
             }
           }

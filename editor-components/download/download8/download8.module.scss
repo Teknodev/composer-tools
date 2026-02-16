@@ -22,8 +22,8 @@
 
     .image-child {
       position: absolute;
-      inset: 0;
       overflow: hidden;
+      inset: 0;
       z-index: 0;
     }
 
@@ -58,11 +58,6 @@
       transition: opacity 0.5s;
 
       .left-content {
-        &.center {
-          align-items: center;
-          text-align: center;
-        }
-
         width: 100%;
         justify-content: center;
         opacity: 1;
@@ -71,19 +66,20 @@
         height: auto;
         position: relative;
 
-        .title,
-        .description,
         .subtitle {
-          text-align: center;
-        }
-
-        .subtitle {
+          margin-left: auto;
+          margin-right: auto;
           transform: none;
           text-align: center;
 
           &::before {
             display: none;
           }
+        }
+
+        .title,
+        .description {
+          text-align: center;
         }
       }
 
@@ -162,7 +158,7 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-xs);
-            padding: var(--composer-gap-md);
+            padding: 0 var(--composer-gap-md) var(--composer-gap-md);
 
             .list-element {
               display: flex;
@@ -219,7 +215,7 @@
 
             .button {
               .icon {
-                line-height: 0s;
+                line-height: 0;
               }
 
               .text {
@@ -308,10 +304,6 @@
                 .icon {
                   width: var(--composer-gap-sm);
                   height: var(--composer-gap-sm);
-                }
-
-                .text {
-                  content: "";
                 }
               }
             }

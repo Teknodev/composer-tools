@@ -219,12 +219,7 @@ class Download8 extends BaseDownload {
                       const itemTextExist = this.castToString(item.itemText);
                       return (itemTextExist || item.itemIcon) && (
                         <Base.Row key={`list-item-${index}`} className={this.decorateCSS("list-element")}>
-                          {item.itemIcon && (
-                            <Base.Media
-                              value={item.itemIcon}
-                              className={this.decorateCSS("icon")}
-                            />
-                          )}
+                          {item.itemIcon && <Base.Media value={item.itemIcon} className={this.decorateCSS("icon")} />}
                           {itemTextExist && <Base.P className={this.decorateCSS("text")}>{item.itemText}</Base.P>}
                         </Base.Row>
                       );
@@ -239,8 +234,7 @@ class Download8 extends BaseDownload {
                       const buttonTextExist = this.castToString(item.text);
                       const iconExist = item.icon && item.icon.name;
                       const imageExist = item.image && item.image.url;
-                      const buttonExist = buttonTextExist || iconExist || imageExist;
-                      return buttonExist && (
+                      return (buttonTextExist || iconExist || imageExist) && (
                         <ComposerLink key={`dw-8-btn-${index}`} path={item.url}>
                           {imageExist ? (
                             <div className={this.decorateCSS("image-container")}>
@@ -248,8 +242,8 @@ class Download8 extends BaseDownload {
                             </div>
                           ) : (
                             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
                               {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
+                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
                             </Base.Button>
                           )}
                         </ComposerLink>

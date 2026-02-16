@@ -4,7 +4,6 @@
   background-size: cover;
   background-position: center;
   position: relative;
-  min-height: 500px;
 
   .background-image {
     position: absolute;
@@ -13,83 +12,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .max-content {
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-    min-height: 500px;
-
-    &.single {
-      min-height: 0 !important;
-    }
-
-    .page {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
-      width: 58%;
-
-      &.no-image {
-        width: 100% !important;
-        min-height: 0 !important;
-      }
-
-      &.image-center {
-        align-items: flex-start;
-
-        .header {
-
-          .title,
-          .description,
-          .subtitle {
-            text-align: left !important;
-            margin-left: 0 !important;
-          }
-        }
-      }
-
-      .header {
-
-        .title,
-        .description,
-        .subtitle {
-          content: "";
-        }
-      }
-
-      .buttons-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: stretch;
-        gap: var(--composer-gap-sm);
-        height: auto;
-
-        &.center {
-          justify-content: center;
-        }
-
-        .button-image {
-          width: 170px;
-          height: 50px;
-          object-fit: cover;
-          border-radius: var(--composer-border-radius-sm);
-        }
-
-        .button-element {
-
-          .button-icon,
-          .button-text {
-            content: "";
-          }
-        }
-
-      }
-
-    }
   }
 
   .overlay {
@@ -102,13 +24,66 @@
     background-color: var(--composer-overlay-color);
   }
 
-  &.single {
-    min-height: 0 !important;
-    height: auto;
-
+  &.has-background {
     .max-content {
-      min-height: 0 !important;
-      height: auto;
+      min-height: 500px;
+
+      .header {
+        width: 60%;
+
+        .subtitle,
+        .title,
+        .description {
+          margin-left: 0;
+          text-align: left;
+        }
+
+        .buttons-container {
+          justify-content: left !important;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+
+    .header {
+
+      .title,
+      .description,
+      .subtitle {
+        content: "";
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button-image {
+          width: 170px;
+          height: var(--composer-gap-xl);
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
+        }
+
+        .button-element {
+          .button-icon {
+            line-height: 0;
+          }
+
+          .button-text {
+            content: "";
+          }
+        }
+      }
     }
   }
 }
@@ -116,30 +91,14 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .page {
-        width: 55% !important;
-
+      .header {
         .buttons-container {
           .button-image {
-            height: 45px;
             width: 150px;
+            height: 45px;
           }
         }
       }
-
-      .page-no-image {
-        width: 100%;
-      }
-    }
-
-    .overlay {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background-color: var(--composer-overlay-color);
     }
   }
 }
@@ -147,17 +106,11 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .page {
+      .header {
         width: 100% !important;
-        padding: var(--composer-gap-md) 0;
 
         .buttons-container {
-          flex-direction: row;
-          flex-wrap: wrap;
-
-          .button-element {
-            width: 100%;
-          }
+          justify-content: var(--composer-content-alignment);
 
           .button-image {
             width: 120px;
