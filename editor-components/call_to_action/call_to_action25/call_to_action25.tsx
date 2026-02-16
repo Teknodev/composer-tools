@@ -35,23 +35,9 @@ class CallToAction25Page extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Download", "", null, null, "White"),
+                INPUTS.BUTTON("button", "Button", "Download", "", "IoArrowDown", null, "White"),
             ],
         });
-
-        this.addProp({
-            type: "media",
-            key: "button-icon",
-            displayer: "Button Icon",
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
-            value: {
-                type: "icon",
-                name: "IoArrowDown",
-            },
-        });
-
 
     }
 
@@ -92,7 +78,9 @@ class CallToAction25Page extends BaseCallToAction {
                                         this.castToString(button.text) && (
                                             <ComposerLink key={index} path={button.url}>
                                                 <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                                                    <Base.Media value={this.getPropValue("button-icon")} className={this.decorateCSS("button-icon")}></Base.Media>
+                                                    {button.icon && (
+                                                        <Base.Media value={button.icon as any} className={this.decorateCSS("button-icon")}></Base.Media>
+                                                    )}
                                                     <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                                 </Base.Button>
                                             </ComposerLink>

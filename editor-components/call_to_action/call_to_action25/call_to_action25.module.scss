@@ -8,17 +8,23 @@
         .content {
             align-items: center;
             justify-content: center;
-
+            padding: 2rem;
         }
 
         .subtitle {
             text-align: center;
             color: var(--composer-font-color-secondary, #fff);
             width: 100%;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
 
             &::before {
                 display: none;
             }
+
+            background: none;
+            border:none;
+            padding:0;
         }
 
         .title {
@@ -58,7 +64,7 @@
 
         .button-container {
             display: flex;
-
+            gap: 0.5rem;
 
 
             .button {
@@ -66,7 +72,9 @@
                 align-items: center;
 
 
-                .button-text {}
+                .button-text {
+                    margin: 0px;
+                }
 
                 .button-icon {
 
