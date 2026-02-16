@@ -19,13 +19,13 @@ class CallToAction19 extends BaseCallToAction {
             type: "boolean",
             key: "background",
             displayer: "Colored Background",
-            value: true,
+            value: false,
         });
         this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "TEST",
         });
         this.addProp({
             type: "string",
@@ -197,40 +197,42 @@ class CallToAction19 extends BaseCallToAction {
                                         {this.getPropValue("description")}
                                     </Base.SectionDescription>
                                 )}
-                                {Array.isArray(buttons) && buttons.some((b: Button) => this.castToString(b?.text)) && (
-                                    <div className={this.decorateCSS("button-group")}>
-                                        {buttons.map((button: Button, index: number) =>
-                                            this.castToString(button?.text) ? (
-                                                <ComposerLink key={index} path={button.url}>
-                                                    <Base.Button className={`${this.decorateCSS("button")} ${this.decorateCSS(`button-${index}`)}`}
-                                                        buttonType={button.type}>
-                                                        <Base.P className={`${this.decorateCSS("button-text")} ${this.decorateCSS(`button-text-${index}`)}`}>
-                                                            {button.text}
-                                                        </Base.P>
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            ) : null
-                                        )}
-                                    </div>
-                                )}
                             </Base.VerticalContent>
 
-                            {(this.castToString(ratingValue) || this.castToString(ratingText)) && (
+                            {(Array.isArray(buttons) && buttons.some((b: Button) => this.castToString(b?.text))) || this.castToString(ratingValue) || this.castToString(ratingText) ? (
                                 <div className={this.decorateCSS("bottom-row")}>
-                                    <div className={this.decorateCSS("rating")}>
-                                        {this.castToString(ratingValue) && (
-                                            <Base.P className={this.decorateCSS("rating-value")}>
-                                                {ratingValue}
-                                            </Base.P>
-                                        )}
-                                        {this.castToString(ratingText) && (
-                                            <Base.P className={this.decorateCSS("rating-text")}>
-                                                {ratingText}
-                                            </Base.P>
-                                        )}
-                                    </div>
+                                    {Array.isArray(buttons) && buttons.some((b: Button) => this.castToString(b?.text)) && (
+                                        <div className={this.decorateCSS("button-group")}>
+                                            {buttons.map((button: Button, index: number) =>
+                                                this.castToString(button?.text) ? (
+                                                    <ComposerLink key={index} path={button.url}>
+                                                        <Base.Button className={`${this.decorateCSS("button")} ${this.decorateCSS(`button-${index}`)}`}
+                                                            buttonType={button.type}>
+                                                            <Base.P className={`${this.decorateCSS("button-text")} ${this.decorateCSS(`button-text-${index}`)}`}>
+                                                                {button.text}
+                                                            </Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                ) : null
+                                            )}
+                                        </div>
+                                    )}
+                                    {(this.castToString(ratingValue) || this.castToString(ratingText)) && (
+                                        <div className={this.decorateCSS("rating")}>
+                                            {this.castToString(ratingValue) && (
+                                                <Base.P className={this.decorateCSS("rating-value")}>
+                                                    {ratingValue}
+                                                </Base.P>
+                                            )}
+                                            {this.castToString(ratingText) && (
+                                                <Base.P className={this.decorateCSS("rating-text")}>
+                                                    {ratingText}
+                                                </Base.P>
+                                            )}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
+                            ) : null}
                         </div>
 
                         {features.length > 0 && (
