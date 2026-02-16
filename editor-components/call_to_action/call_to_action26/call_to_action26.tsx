@@ -22,7 +22,7 @@ class CallToAction26 extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "sagadg",
     });
 
     this.addProp({
@@ -36,7 +36,7 @@ class CallToAction26 extends BaseCallToAction {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "gdsag",
     });
 
     this.addProp({
@@ -59,41 +59,47 @@ class CallToAction26 extends BaseCallToAction {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const cardEnabled = this.getPropValue("cardEnabled");
+    const hasHeader = subtitleExist || titleExist || descriptionExist;
 
-    const content = (
+    const header = hasHeader && (
+      <Base.VerticalContent className={this.decorateCSS("header")}>
+        {subtitleExist && (
+          <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+            {this.getPropValue("subtitle")}
+          </Base.SectionSubTitle>
+        )}
+        {titleExist && (
+          <Base.SectionTitle className={this.decorateCSS("title")}>
+            {this.getPropValue("title")}
+          </Base.SectionTitle>
+        )}
+        {descriptionExist && (
+          <Base.SectionDescription className={this.decorateCSS("description")}>
+            {this.getPropValue("description")}
+          </Base.SectionDescription>
+        )}
+      </Base.VerticalContent>
+    );
+
+    const buttonsEl =
+      buttons.length > 0 && (
+        <div className={this.decorateCSS("buttons")}>
+          {buttons.map((button: Button, index: number) => (
+            <ComposerLink path={button.url} key={index}>
+              {this.castToString(button.text) && (
+                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                </Base.Button>
+              )}
+            </ComposerLink>
+          ))}
+        </div>
+      );
+
+    const inner = (
       <>
-        {(subtitleExist || titleExist || descriptionExist) && (
-          <Base.VerticalContent className={this.decorateCSS("header")}>
-            {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
-          </Base.VerticalContent>
-        )}
-        {buttons.length > 0 && (
-          <div className={this.decorateCSS("buttons")}>
-            {buttons.map((button: Button, index: number) => (
-              <ComposerLink path={button.url} key={index}>
-                {this.castToString(button.text) && (
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                  </Base.Button>
-                )}
-              </ComposerLink>
-            ))}
-          </div>
-        )}
+        {header}
+        {buttonsEl}
       </>
     );
 
@@ -101,9 +107,9 @@ class CallToAction26 extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {cardEnabled ? (
-            <div className={this.decorateCSS("card")}>{content}</div>
+            <div className={this.decorateCSS("card")}>{inner}</div>
           ) : (
-            <div className={this.decorateCSS("content-wrapper")}>{content}</div>
+            inner
           )}
         </Base.MaxContent>
       </Base.Container>
