@@ -60,9 +60,14 @@
 
                         .button {
 
-                            .button-text,
-                            .button-icon {
+                            .button-text {
                                 content: "";
+                            }
+
+                            .button-icon {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
                             }
                         }
                     }
@@ -72,15 +77,6 @@
                     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-md);
                     padding: 80px var(--composer-gap-xl);
-
-                    .card-content {
-
-                        .subtitle {
-                            background: transparent;
-                            padding: 0;
-                            color: var(--composer-font-color-primary) !important;
-                        }
-                    }
                 }
             }
         }
@@ -97,4 +93,5 @@
             padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
     }
+
 }
