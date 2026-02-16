@@ -34,6 +34,7 @@
           .arrows {
             display: flex;
             gap: var(--composer-gap-xs);
+            margin-bottom: var(--composer-gap-sm);
 
             .prevArrow,
             .nextArrow {
@@ -92,6 +93,35 @@
       width: auto !important;
     }
 
+    :global(.slick-prev),
+    :global(.slick-next) {
+      z-index: 100;
+    }
+
+    :global(.slick-dots) {
+      display: flex !important;
+      justify-content: center;
+      margin-bottom: var(--composer-gap-md);
+      padding: var(--composer-gap-xs) !important;
+      position: relative;
+      width: 100%;
+
+      li {
+        margin: 0 4px;
+
+        button:before {
+          font-size: 10px;
+          color: var(--composer-font-color-primary) !important;
+          opacity: 0.5;
+        }
+
+        &.slick-active button:before {
+          opacity: 1;
+          color: var(--composer-font-color-primary) !important;
+        }
+      }
+    }
+
     .slide {
       width: 390px;
       flex: 0 0 auto;
@@ -132,6 +162,10 @@
       .card-header {
         color: var(--composer-font-color-primary);
         text-align: left;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
       }
 
       .card-description {
@@ -139,6 +173,10 @@
 
         .card-description-text {
           text-align: left !important;
+
+          &::first-letter {
+            text-transform: uppercase;
+          }
         }
       }
     }
@@ -150,6 +188,7 @@
   inset: 0;
   background: var(--composer-overlay-color);
   pointer-events: none;
+  border-radius: var(--composer-border-radius-sm);
 }
 
 .button-container {
@@ -162,7 +201,12 @@
   .button {
     .button-text {
       content: "";
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
+
     .button-icon {
       font-size: 1.5rem;
     }
@@ -201,6 +245,8 @@
         justify-content: flex-start;
       }
 
+
+
       .slide,
       .slide.wide {
         width: 440px !important;
@@ -215,6 +261,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-sm);
+
     .upper-container {
       padding: var(--composer-gap-xl) var(--composer-gap-md) 0 !important;
 
@@ -227,6 +274,8 @@
 
             .arrows {
               justify-content: flex-start !important;
+              position: relative;
+              z-index: 20;
 
               .prevArrow,
               .nextArrow {
@@ -250,6 +299,17 @@
       :global(.slick-track) {
         gap: var(--composer-gap-sm);
       }
+
+
+
+      :global(.slick-next) {
+        right: -5px !important;
+      }
+
+      :global(.slick-prev) {
+        left: -5px !important;
+      }
+
 
       .slide,
       .slide.wide {
