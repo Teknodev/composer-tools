@@ -206,14 +206,13 @@ class Download10 extends BaseDownload {
     const image = background?.media;
     const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const alignmentValue = Base.getContentAlignment();
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("with-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
             <div
-              className={`${this.decorateCSS("left-container")} ${!image && this.decorateCSS("no-image")} ${alignmentValue === "center" && !image && this.decorateCSS("center")}`}
+              className={`${this.decorateCSS("left-container")} ${!image && this.decorateCSS("no-image")}`}
             >
               {hasContent && (
                 <Base.VerticalContent className={this.decorateCSS("content-container")}>

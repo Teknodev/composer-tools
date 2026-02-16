@@ -44,8 +44,8 @@ class Download6 extends BaseDownload {
 
     this.addProp({
       type: "object",
-      key: "background",
-      displayer: "Background",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "media",
@@ -74,10 +74,10 @@ class Download6 extends BaseDownload {
   }
 
   render() {
-    const title = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const background = this.castToObject<Background>("background");
+    const background = this.castToObject<Background>("media");
     const media = background?.media;
     const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -87,12 +87,10 @@ class Download6 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
-            <div className={`${this.decorateCSS("wrapper")} ${media && this.decorateCSS("has-image")}`}>
-              <Base.VerticalContent className={this.decorateCSS("left-content")}>
-                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-              </Base.VerticalContent>
+            <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${media && this.decorateCSS("has-image")}`}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               {buttons?.length > 0 && (
                 <Base.Row className={this.decorateCSS("buttons-container")}>
                   {buttons.map((item: INPUTS.CastedButton, index: number) => {
@@ -114,7 +112,7 @@ class Download6 extends BaseDownload {
                   })}
                 </Base.Row>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
           {media && (
             <div className={this.decorateCSS("right-content")}>

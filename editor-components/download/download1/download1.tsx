@@ -2,9 +2,9 @@ import * as React from "react";
 import styles from "./download1.module.scss";
 import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
 class Download1 extends BaseDownload {
   constructor(props?: any) {
     super(props, styles);
@@ -88,8 +88,8 @@ class Download1 extends BaseDownload {
                         </div>
                       ) : (
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {iconExist && (<Base.Media value={item.icon} className={this.decorateCSS("icon")} />)}
                           {buttonTitleExist && (<Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>)}
+                          {iconExist && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
                         </Base.Button>
                       )}
                     </ComposerLink>

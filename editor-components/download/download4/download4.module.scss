@@ -2,93 +2,82 @@
 
 .container {
   .max-content {
-    .page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--composer-gap-md);
+
+    .content {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      gap: var(--composer-gap-md);
+      width: 100%;
+    }
 
-      .content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-      }
+    .header {
+      align-items: center;
+      width: 100%;
 
-      .header {
-        align-items: center;
-        width: 100%;
+      .subtitle {
+        text-align: center;
+        transform: none;
 
-        .subtitle {
-          text-align: center;
-          transform: none;
-
-          &::before {
-            display: none;
-          }
-        }
-
-        .title {
-          text-align: center;
-        }
-
-        .description {
-          text-align: center;
+        &::before {
+          display: none;
         }
       }
 
-      .button-group {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--composer-gap-sm);
-        min-height: 0px;
-        height: auto;
-
-        .button-image {
-          height: 50px;
-          width: 170px;
-          object-fit: cover;
-          border-radius: var(--composer-border-radius-sm);
-        }
-
-        .button-element {
-          .button-icon {
-            line-height: 0;
-          }
-
-          .button-text {
-            content: "";
-          }
-        }
+      .title,
+      .description {
+        text-align: center;
       }
+    }
 
-      .image-container {
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+
+      .button-image {
+        height: 50px;
+        width: 170px;
+        object-fit: cover;
         border-radius: var(--composer-border-radius-sm);
-        position: relative;
-        overflow: hidden;
+      }
 
-        .image {
-          display: block;
-          height: 400px;
-          object-fit: cover;
-          border-radius: var(--composer-border-radius-sm);
+      .button-element {
+        .button-icon {
+          line-height: 0;
         }
 
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-          border-radius: var(--composer-border-radius-sm);
-          z-index: 1;
+        .button-text {
+          content: "";
         }
+      }
+    }
+
+    .image-container {
+      position: relative;
+      overflow: hidden;
+
+      .image {
+        display: block;
+        height: 400px;
+        object-fit: cover;
+        border-radius: var(--composer-border-radius-sm);
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--composer-overlay-color);
+        border-radius: var(--composer-border-radius-sm);
+        z-index: 1;
       }
     }
   }
@@ -97,12 +86,10 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .page {
-        .button-group {
-          .button-image {
-            height: 45px;
-            width: 150px;
-          }
+      .button-group {
+        .button-image {
+          height: 45px;
+          width: 150px;
         }
       }
     }
@@ -112,27 +99,16 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .page {
-
-        .button-group {
-          min-height: 0 !important;
-          flex-direction: row;
-          align-items: stretch;
-
-          .button-element {
-            width: 100%;
-          }
-
-          .button-image {
-            height: 30px;
-            width: 120px;
-          }
+      .button-group {
+        .button-image {
+          height: 33px;
+          width: 120px;
         }
+      }
 
-        .image-container {
-          .image {
-            height: 200px;
-          }
+      .image-container {
+        .image {
+          height: 200px;
         }
       }
     }

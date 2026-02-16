@@ -99,7 +99,7 @@ class Download9 extends BaseDownload {
           type: "string",
           key: "cardDescription",
           displayer: "Hover Description",
-          value: " By using clear and concise language, and providing a simple and easy-to-use download button, businesses and developers can increase the chances of users downloading and using their product.",
+          value: "By using clear and concise language, and providing a simple and easy-to-use download button, businesses and developers can increase the chances of users downloading and using their product.",
         },
       ],
     });
@@ -124,8 +124,7 @@ class Download9 extends BaseDownload {
       const buttonTextExist = this.castToString(item?.text);
       const iconExist = item.icon && item.icon.name;
       const imageExist = item.image && item.image.url;
-      const buttonExist = buttonTextExist || iconExist || imageExist;
-      return buttonExist && (
+      return (buttonTextExist || iconExist || imageExist) && (
         <ComposerLink key={`dw-9-btn-${index}`} path={item.url}>
           {imageExist ? (
             <div className={this.decorateCSS("image-container")}>
@@ -133,8 +132,8 @@ class Download9 extends BaseDownload {
             </div>
           ) : (
             <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
               {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
+              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
             </Base.Button>
           )}
         </ComposerLink>
@@ -147,7 +146,6 @@ class Download9 extends BaseDownload {
     const imageExist = background?.media;
     const overlay = background?.overlay;
     const textContent = this.castToObject<TextContent>("textContent");
-
     const subtitle = textContent?.subtitle;
     const title = textContent?.title;
     const description = textContent?.description;
