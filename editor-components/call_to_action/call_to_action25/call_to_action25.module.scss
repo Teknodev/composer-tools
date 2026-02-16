@@ -8,7 +8,6 @@
         .content {
             align-items: center;
             justify-content: center;
-            padding: 2rem;
         }
 
         .subtitle {
@@ -22,9 +21,10 @@
                 display: none;
             }
 
-            background: none;
-            border:none;
-            padding:0;
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
         }
 
         .title {
