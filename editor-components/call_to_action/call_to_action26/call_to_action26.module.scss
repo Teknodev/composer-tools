@@ -8,8 +8,8 @@
     align-items: center;
 
     .card {
-      width: min(600px, 85vw) !important;
-      height: min(600px, 85vw) !important;
+      width: min(800px, 85vw) !important;
+      height: min(800px, 85vw) !important;
       border-radius: var(--composer-border-radius-full) !important;
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
@@ -23,12 +23,24 @@
       align-items: center;
       width: 100%;
 
+      .subtitle {
+        &::before {
+          display: none !important;
+        }
+      }
+
       .subtitle,
       .title,
       .description {
         color: var(--composer-font-color-primary);
         text-align: center;
       }
+    }
+
+    .card .header .subtitle {
+      padding: 0 !important;
+      background: transparent !important;
+      border-radius: 0 !important;
     }
 
     .buttons {
@@ -50,14 +62,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .card {
-    width: min(500px, 85vw) !important;
-    height: min(500px, 85vw) !important;
+    width: min(600px, 85vw) !important;
+    height: min(600px, 85vw) !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .card {
-    width: min(320px, 90vw) !important;
-    height: min(320px, 90vw) !important;
+    width: min(400px, 90vw) !important;
+    height: min(400px, 90vw) !important;
   }
 }
