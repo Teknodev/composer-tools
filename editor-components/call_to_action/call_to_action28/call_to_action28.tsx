@@ -23,6 +23,13 @@ class CallToAction28 extends BaseCallToAction {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "mediaOverlay",
+            displayer: "Media Overlay",
+            value: false,
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -63,16 +70,24 @@ class CallToAction28 extends BaseCallToAction {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const image = this.getPropValue("image");
+        const mediaOverlay = this.getPropValue("mediaOverlay");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("content")}>
                         {image && (
-                            <Base.Media
-                                value={image}
-                                className={`${this.decorateCSS("media")} ${image.type === "icon" && this.decorateCSS("is-icon")}`}
-                            />
+                            <div className={this.decorateCSS("media-wrapper")}>
+                                <div className={this.decorateCSS("media-container")}>
+                                    <Base.Media
+                                        value={image}
+                                        className={`${this.decorateCSS("media")} ${image.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                                    />
+                                    {mediaOverlay && (
+                                        <div className={this.decorateCSS("media-overlay")} />
+                                    )}
+                                </div>
+                            </div>
                         )}
                         {subtitle && (
                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
