@@ -1,0 +1,79 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container {
+    background-color: var(--composer-primary-color, );
+
+
+    .max-content {
+        .content {
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--composer-font-color-secondary, #fff);
+            width: 100%;
+
+            &::before {
+                display: none;
+            }
+        }
+
+        .title {
+            text-align: center;
+            color: var(--composer-font-color-secondary, #fff);
+        }
+
+        .description {
+            text-align: center;
+            color: var(--composer-font-color-secondary, #fff);
+
+        }
+
+        .card-container {
+            width: 100%;
+            margin-top: 2rem;
+
+            .card {
+                align-items: center;
+                text-align: center;
+
+
+                .card-icon {
+
+                    color: var(--composer-font-color-secondary, #fff);
+                }
+
+                .card-title {
+                    color: var(--composer-font-color-secondary, #fff);
+                }
+
+                .card-description {
+                    color: var(--composer-font-color-secondary, #fff);
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+
+
+
+            .button {
+                display: flex;
+                align-items: center;
+
+
+                .button-text {}
+
+                .button-icon {
+
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
