@@ -16,9 +16,13 @@
             width: 100% !important;
             overflow-wrap: break-word;
             word-wrap: break-word;
+            transform: none !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            justify-content: center !important;
 
             &::before {
-                display: none;
+                display: none !important;
             }
 
             background: none !important;
