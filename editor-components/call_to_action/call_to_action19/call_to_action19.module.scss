@@ -14,11 +14,11 @@
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start !important;
+                gap: var(--composer-gap-md);
                 .header {
                     width: 100%;
                     max-width: 100%;
                     align-items: flex-start !important;
-                    gap: 0;
                     & > *:not(:last-child) {
                         margin-bottom: var(--composer-gap-md);
                     }
@@ -30,7 +30,6 @@
                         justify-content: flex-start !important;
                     }
                     .subtitle {
-                        display: flex;
                         align-items: center;
                         width: 100%;
                         max-width: 100%;
@@ -57,9 +56,16 @@
                     display: flex;
                     flex-wrap: wrap;
                     align-items: center;
-                    margin-top: var(--composer-gap-sm);
+                    gap: var(--composer-gap-sm);
+                    .button {
+                        .button-icon {
+                            content: "";
+                        }
+                        .button-text {
+                            content: "";
+                        }
+                    }
                 }
-               
                 .rating {
                     display: flex;
                     flex-direction: column; 
@@ -121,11 +127,18 @@
         }
     }
 
-    &:not(.has-background) .max-content .content .left-section .header .subtitle {
+    &:not(.has-background) .max-content .content .left-section .header .subtitle:not(.subtitle-badge) {
         padding: 0 !important;
         border-radius: 0 !important;
         background: transparent !important;
         color: var(--composer-font-color-secondary) !important;
+    }
+
+    &.has-background .max-content .content .left-section .header .subtitle.subtitle-badge {
+        padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
+        border-radius: var(--composer-border-radius-xl) !important;
+        background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%) !important;
+        color: var(--composer-primary-color) !important;
     }
 
     &.has-background {
@@ -168,20 +181,26 @@
 }
 }
 
+@container (min-width: 641px) and (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content .content .left-section .bottom-row {
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap;
+            align-items: center;
+            gap: var(--composer-gap-md);
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        .max-content{
+        .max-content {
             padding: 50px 20px;
-            .content{
+            .content {
                 display: block !important;
                 & > .right-section {
                     margin-top: var(--composer-gap-lg);
-                }
-                .bottom-row{
-                    display: flex !important;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    gap: var(--composer-gap-md);
                 }
             }
         }
