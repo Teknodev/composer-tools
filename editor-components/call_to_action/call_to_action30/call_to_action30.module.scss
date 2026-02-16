@@ -1,0 +1,130 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .card {
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+      padding: var(--composer-gap-md);
+      overflow: visible;
+
+      &.card-enabled {
+        background-color: color-mix(
+          in srgb,
+          var(--composer-html-background),
+          var(--composer-font-color-primary) 5%
+        );
+        border-radius: var(--composer-border-radius-lg);
+        padding: var(--composer-gap-xl);
+      }
+
+      .header {
+        flex: 1;
+        min-width: 0;
+
+        .subtitle {
+          margin-left: 0;
+        }
+
+        .buttons-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+          align-self: flex-start;
+
+          .button {
+            flex-shrink: 0;
+
+            .button-text {
+              content: "";
+            }
+          }
+        }
+      }
+
+      .media-wrapper {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: -20px 0;
+      }
+
+      .media-container {
+        position: relative;
+        width: 280px;
+        height: 280px;
+        border-radius: var(--composer-border-radius-full);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .media {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .media-overlay {
+          position: absolute;
+          inset: 0;
+          background: var(--composer-overlay-color);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .card {
+        gap: var(--composer-gap-md);
+
+        .header .description {
+          margin-bottom: var(--composer-gap-sm);
+        }
+
+        &.card-enabled {
+          padding: var(--composer-gap-lg);
+        }
+
+        .media-container {
+          width: 220px;
+          height: 220px;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .card {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        &.card-enabled {
+          padding: var(--composer-gap-xl) var(--composer-gap-md);
+        }
+
+        .header .description {
+          margin-bottom: var(--composer-gap-sm);
+        }
+
+        .media-wrapper {
+          order: -1;
+        }
+
+        .media-container {
+          width: 200px;
+          height: 200px;
+        }
+      }
+    }
+  }
+}
