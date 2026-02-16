@@ -12,7 +12,7 @@ class CallToAction29 extends BaseCallToAction {
         this.addProp({
             type: "boolean",
             key: "enable_card",
-            displayer: "Enable Card",
+            displayer: "Card Background",
             value: true,
         });
 
@@ -42,7 +42,7 @@ class CallToAction29 extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Black"),
             ],
         });
     }
