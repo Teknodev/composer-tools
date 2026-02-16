@@ -14,13 +14,17 @@
     gap: var(--composer-gap-lg);
     width: 100%;
     padding: 80px 50px;
-    background-color: var(--composer-font-color-primary);
+    background-color: transparent;
+
+    .subtitle,
+    .title,
+    .description {
+      color: var(--composer-font-color-primary);
+    }
 
     .subtitle {
-      transform: none;
-      text-align: center !important;
-      margin: 0;
-      color: var(--composer-html-background);
+      margin-left: 0;
+      text-align: left !important;
       &::before {
         display: none;
       }
@@ -29,24 +33,22 @@
     .title {
       margin: 0;
       text-align: center !important;
-      color: var(--composer-html-background);
     }
 
     .description {
       text-align: left !important;
       margin: 0;
-      color: var(--composer-html-background);
     }
 
     .subtitle-button-row {
       display: flex;
       align-items: center;
       min-width: 0;
+      gap: var(--composer-gap-xl);
     }
 
     .button-container {
       display: flex;
-      flex-direction: row;
       flex-wrap: wrap;
       align-items: flex-start;
       text-align: left !important;
@@ -62,44 +64,39 @@
   }
 
   &:not(.colored-background) .card {
+    align-items: flex-start;
+    .subtitle {
+      text-align: left !important;
+      transform: none;
+    }
+  }
+
+  &.card-has-bg .card {
+    background-color: var(--composer-font-color-primary);
+  }
+
+  &:not(.colored-background).card-has-bg .card {
     border-radius: var(--composer-border-radius-md);
   }
-}
 
-
-
-.container {
+  &.card-has-bg .card,
   &.colored-background .card {
-    background-color: var(--composer-font-color-primary);
     .subtitle,
     .title,
     .description {
       color: var(--composer-html-background);
     }
-
     .button-container .button .button-text {
       color: var(--composer-html-background);
     }
   }
 }
 
-
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .card {
-      padding: 80px 40px;
-
-      .subtitle,
-      .title {
-        text-align: center !important;
-      }
-      .description {
-        text-align: left !important;
-      }
-    }
+  .container .card {
+    padding: 80px 40px;
   }
 }
-
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
@@ -113,7 +110,6 @@
       }
 
       .button-container {
-        display: flex;
         gap: var(--composer-gap-xl);
       }
     }

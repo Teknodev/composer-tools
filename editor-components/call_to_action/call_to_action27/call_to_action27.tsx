@@ -10,7 +10,12 @@ type Button = INPUTS.CastedButton;
 class CallToAction27 extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
-
+    this.addProp({
+      type: "boolean",
+      key: "cardBackground",
+      displayer: "Card Background",
+      value: false,
+    });
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -40,12 +45,7 @@ class CallToAction27 extends BaseCallToAction {
       value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "coloredBackground",
-      displayer: "Colored Background",
-      value: false,
-    });
+    
   }
 
     static getName(): string {
@@ -59,11 +59,12 @@ class CallToAction27 extends BaseCallToAction {
     const buttons = this.castToObject<Button[]>("buttons") || [];
     const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
     const coloredBackground = this.getPropValue("coloredBackground");
+    const cardBackground = this.getPropValue("cardBackground");
 
     const alignment = Base.getContentAlignment() || "left";
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${coloredBackground ? this.decorateCSS("colored-background") : ""}`}
+        className={`${this.decorateCSS("container")} ${coloredBackground ? this.decorateCSS("colored-background") : ""} ${cardBackground ? this.decorateCSS("card-has-bg") : ""}`}
         data-alignment={alignment}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
