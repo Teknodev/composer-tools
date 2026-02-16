@@ -12,6 +12,13 @@ class CallToAction23Page extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "removeCardStyle",
+      displayer: "Card Background",
+      value: false,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       value: "",
@@ -54,13 +61,6 @@ class CallToAction23Page extends BaseCallToAction {
         INPUTS.BUTTON("button", "Button", "Get started", "", null, null, "Primary"),
       ],
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "removeCardStyle",
-      displayer: "Remove card background and centering",
-      value: false,
-    });
   }
 
   static getName(): string {
@@ -75,10 +75,11 @@ class CallToAction23Page extends BaseCallToAction {
     const priceLabel = this.castToString(this.getPropValue("priceLabel"));
     const price = this.castToString(this.getPropValue("price"));
     const removeCardStyle = this.getPropValue("removeCardStyle");
+    const hasCardBackground = removeCardStyle === false;
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${removeCardStyle ? this.decorateCSS("no-card-style") : ""}`}
+        className={`${this.decorateCSS("container")} ${!hasCardBackground ? this.decorateCSS("no-card-style") : ""}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
@@ -105,12 +106,12 @@ class CallToAction23Page extends BaseCallToAction {
                 )}
                 <div className={this.decorateCSS("pricing")}>
                   {priceLabel && (
-                    <Base.P className={this.decorateCSS("price-label")}>
+                    <Base.H5 className={this.decorateCSS("price-label")}>
                       {priceLabel}
-                    </Base.P>
+                    </Base.H5>
                   )}
                   {price && (
-                    <Base.P className={this.decorateCSS("price-value")}>{price}</Base.P>
+                    <Base.H2 className={this.decorateCSS("price-value")}>{price}</Base.H2>
                   )}
                 </div>
               </div>

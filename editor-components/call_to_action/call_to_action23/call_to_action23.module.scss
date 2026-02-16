@@ -57,24 +57,17 @@
           gap: var(--composer-gap-sm);
           flex-shrink: 0;
           text-align: left !important;
-          padding: var(--composer-gap-lg);
-          min-width: 160px;
+          padding: var(--composer-gap-sm);
 
           .price-label {
             color: var(--composer-html-background);
             text-align: left !important;
             margin: 0;
-            font-size: var(--composer-font-size-md);
-            font-weight: 600;
-            letter-spacing: 0.05em;
           }
 
           .price-value {
             color: var(--composer-primary-color);
             margin: 0;
-            font-size: calc(1.5 * var(--composer-font-size-xl));
-            font-weight: 700;
-            line-height: 1.2;
           }
         }
       }
@@ -91,7 +84,6 @@
       }
     }
   }
-
 
   &.no-card-style {
     background: transparent;
@@ -110,61 +102,60 @@
       .pricing .price-label {
         color: var(--composer-font-color-primary);
       }
+
+      .pricing .price-value {
+        color: var(--composer-primary-color);
+      }
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .content {
-      padding: 80px 40px;
-      .content-row{
-        .content-left{
-          gap: var(--composer-gap-sm);
-        }
-      }
+  .container .content {
+    padding: 80px 40px;
+
+    .content-row .content-left {
+      gap: var(--composer-gap-sm);
     }
   }
 }
 
-
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .content {
-      padding: 50px 20px;
+  .container .content {
+    .content-row {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-      .content-row {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--composer-gap-xs);
+    .content-left {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-        .content-left {
-          flex-direction: column;
-          align-items: center;
-          gap: var(--composer-gap-xs);
+    .content-text .subtitle {
+      text-align: left !important;
+      margin-left: 0;
+      margin-right: auto;
+    }
 
-          .content-text .subtitle,
-          .content-text .title,
-          .content-text .description {
-            text-align: center !important;
-            margin-left: auto;
-            margin-right: auto;
-          }
-        }
+    .content-text .title,
+    .content-text .description {
+      text-align: center !important;
+    }
 
-        .content-left .pricing {
-          align-items: center;
+    .content-left .pricing {
+      align-items: center;
 
-          .price-label,
-          .price-value {
-            text-align: center;
-          }
-        }
-
-        .button-wrap {
-          justify-content: center;
-        }
+      .price-label,
+      .price-value {
+        text-align: center;
       }
+    }
+
+    .button-wrap {
+      justify-content: center;
     }
   }
 }
