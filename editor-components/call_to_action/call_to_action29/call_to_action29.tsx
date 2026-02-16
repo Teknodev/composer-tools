@@ -11,7 +11,7 @@ class CallToAction29 extends BaseCallToAction {
 
         this.addProp({
             type: "boolean",
-            key: "enable_card",
+            key: "card_background",
             displayer: "Card Background",
             value: true,
         });
@@ -56,12 +56,12 @@ class CallToAction29 extends BaseCallToAction {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const enable_card = this.getPropValue("enable_card");
+        const card_background = this.getPropValue("card_background");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("card")} ${enable_card ? this.decorateCSS("active") : ""}`}>
+                    <div className={`${this.decorateCSS("card")} ${card_background ? this.decorateCSS("active") : ""}`}>
                         <div className={this.decorateCSS("content-wrapper")}>
                             <div className={this.decorateCSS("left-column")}>
                                 {subtitle && (
