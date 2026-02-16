@@ -71,7 +71,7 @@ class CallToAction28 extends BaseCallToAction {
                         {image && (
                             <Base.Media
                                 value={image}
-                                className={this.decorateCSS("media")}
+                                className={`${this.decorateCSS("media")} ${image.type === "icon" && this.decorateCSS("is-icon")}`}
                             />
                         )}
                         {subtitle && (

@@ -23,6 +23,7 @@
                 align-items: center;
                 background-color: var(--composer-html-background);
                 overflow: hidden;
+                object-fit: cover;
 
                 img,
                 video,
@@ -36,6 +37,16 @@
                 @container (max-width: #{$composer-phone-width}) {
                     width: 200px;
                     height: 200px;
+                }
+
+                &.is-icon {
+                    background-color: transparent;
+                    color: var(--composer-font-color-primary);
+
+                    i,
+                    svg {
+                        color: var(--composer-font-color-primary);
+                    }
                 }
             }
 
