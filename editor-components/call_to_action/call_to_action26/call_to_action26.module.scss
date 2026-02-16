@@ -1,0 +1,84 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .max-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    width: min(600px, 85vw) !important;
+    height: min(600px, 85vw) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: var(--composer-border-radius-full) !important;
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--composer-gap-xl);
+    gap: var(--composer-gap-lg);
+  }
+
+  .card,
+  .content-wrapper {
+    .header {
+      align-items: center;
+      text-align: center;
+
+      .subtitle {
+        color: var(--composer-font-color-primary);
+
+        &::before {
+          display: none;
+        }
+      }
+
+      .title,
+      .description {
+        color: var(--composer-font-color-primary);
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      justify-content: center;
+
+      .button .button-text {
+        content: "";
+      }
+    }
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--composer-gap-lg);
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .card {
+    width: min(500px, 85vw) !important;
+    height: min(500px, 85vw) !important;
+    padding: 0;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .card {
+    width: min(320px, 90vw) !important;
+    height: min(320px, 90vw) !important;
+    padding: 0;
+  }
+}
