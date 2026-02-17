@@ -17,7 +17,7 @@ class CallToAction28 extends BaseCallToAction {
         this.addProp({
             type: "object",
             key: "image",
-            displayer: "Image",
+            displayer: "Media",
             value: [
                 {
                     type: "media",
@@ -66,7 +66,7 @@ class CallToAction28 extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Let's Start", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Let's Start", "", null, null, "Black"),
             ],
         });
     }
