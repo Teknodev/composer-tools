@@ -10,23 +10,29 @@ class CallToAction28 extends BaseCallToAction {
         super(props, styles);
 
         this.addProp({
-            type: "media",
+            type: "object",
             key: "image",
-            displayer: "Media",
-            additionalParams: {
-                availableTypes: ["image", "icon", "video"],
-            },
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
-            },
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "mediaOverlay",
-            displayer: "Media Overlay",
-            value: false,
+            displayer: "Image",
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "icon", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp({
@@ -69,19 +75,21 @@ class CallToAction28 extends BaseCallToAction {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const image = this.getPropValue("image");
-        const mediaOverlay = this.getPropValue("mediaOverlay");
+
+        const imageProps = this.castToObject<any>("image");
+        const media = imageProps?.media;
+        const mediaOverlay = imageProps?.overlay;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("content")}>
-                        {image && (
+                        {media && (
                             <div className={this.decorateCSS("media-wrapper")}>
                                 <div className={this.decorateCSS("media-container")}>
                                     <Base.Media
-                                        value={image}
-                                        className={`${this.decorateCSS("media")} ${image.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                                        value={media}
+                                        className={`${this.decorateCSS("media")} ${media.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
                                     />
                                     {mediaOverlay && (
                                         <div className={this.decorateCSS("media-overlay")} />
