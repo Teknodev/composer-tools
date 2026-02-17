@@ -17,45 +17,45 @@ class CallToAction31Page extends BaseCallToAction {
         });
 
         this.addProp({
-            type: "boolean",
-            key: "enable_card",
-            displayer: "Enable Card",
-            value: true
-        });
-
-        this.addProp({
             type: "image",
             key: "media",
             displayer: "Media",
-            value: "https://storage.googleapis.com/composer-4c632.appspot.com/v1/composer/666/695/1722923982855-man-standing-on-rock-3000x2000.jpeg"
+            value: "null"
         });
 
         this.addProp({
             type: "boolean",
             key: "overlay",
             displayer: "Overlay",
-            value: true
+            value: false
         });
 
         this.addProp({
-            type: "number",
-            key: "overlay_opacity",
-            displayer: "Overlay Opacity (0-1)",
-            value: 0.2
+            type: "boolean",
+            key: "isActive",
+            displayer: "Active",
+            value: true
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "What Are You Waiting For?",
+            value: "Use one tool instead of five.",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "title2",
+            displayer: "Title 2",
+            value: "lorem ipsum dolor sit of five guys.",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            value: "",
         });
 
         this.addProp({
@@ -63,10 +63,17 @@ class CallToAction31Page extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Download", "", "IoArrowDown", null, "White"),
+                INPUTS.BUTTON(
+                    "button",
+                    "Button",
+                    "Get Started",
+                    "",
+                    "",
+                    null,
+                    "White"
+                )
             ],
         });
-
     }
 
     static getName(): string {
@@ -74,64 +81,81 @@ class CallToAction31Page extends BaseCallToAction {
     }
 
     render() {
+        if (!this.getPropValue("isActive")) return null;
+
+        const media = this.getPropValue("media");
+        const overlay = this.getPropValue("overlay");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("content")} ${this.getPropValue("enable_card") ? this.decorateCSS("with-card") : ""}`}>
 
-                        {this.castToString(this.getPropValue("media")) && (
+                    <div className={this.decorateCSS("header-row")}>
+                        <div className={this.decorateCSS("text-column")}>
+                            {this.castToString(this.getPropValue("subtitle")) && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+
+                            {this.castToString(this.getPropValue("title")) && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+
+                            {this.castToString(this.getPropValue("title2")) && (
+                                <Base.SectionTitle className={this.decorateCSS("title2")}>
+                                    {this.getPropValue("title2")}
+                                </Base.SectionTitle>
+                            )}
+
+                            {this.castToString(this.getPropValue("description")) && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                        </div>
+
+                        {media && (
                             <div className={this.decorateCSS("media-wrapper")}>
                                 <Base.Media
-                                    value={this.getPropValue("media")}
+                                    value={media}
                                     className={this.decorateCSS("media")}
                                 />
-                                {this.getPropValue("overlay") && (
-                                    <div
-                                        className={this.decorateCSS("overlay")}
-                                        style={{ opacity: this.getPropValue("overlay_opacity") }}
-                                    ></div>
+                                {overlay && (
+                                    <div className={this.decorateCSS("overlay")} />
                                 )}
                             </div>
                         )}
 
-                        {this.castToString(this.getPropValue("subtitle")) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                {this.getPropValue("subtitle")}
-                            </Base.SectionSubTitle>
-                        )}
-
-                        {this.castToString(this.getPropValue("title")) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                {this.getPropValue("title")}
-                            </Base.SectionTitle>
-                        )}
-
-                        {this.castToString(this.getPropValue("description")) && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {this.getPropValue("description")}
-                            </Base.SectionDescription>
-                        )}
-
                         {this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0 && (
-                            <div className={this.decorateCSS("button-container")}>
+                            <div className={this.decorateCSS("button-column")}>
                                 {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
                                     (button: INPUTS.CastedButton, index: number) =>
                                         this.castToString(button.text) && (
                                             <ComposerLink key={index} path={button.url}>
-                                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                                                <Base.Button
+                                                    className={this.decorateCSS("button")}
+                                                    buttonType={button.type}
+                                                >
                                                     {button.icon && (
-                                                        <Base.Media value={button.icon as any} className={this.decorateCSS("button-icon")}></Base.Media>
+                                                        <Base.Media
+                                                            value={button.icon as any}
+                                                            className={this.decorateCSS("button-icon")}
+                                                        />
                                                     )}
-                                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                        {button.text}
+                                                    </Base.P>
                                                 </Base.Button>
                                             </ComposerLink>
                                         )
                                 )}
                             </div>
                         )}
+                    </div>
 
-                    </Base.VerticalContent>
                 </Base.MaxContent>
             </Base.Container>
         );
