@@ -22,7 +22,7 @@ class CallToAction26 extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "sagadg",
+      value: "",
     });
 
     this.addProp({
@@ -36,7 +36,7 @@ class CallToAction26 extends BaseCallToAction {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "gdsag",
+      value: "",
     });
 
     this.addProp({
@@ -87,7 +87,7 @@ class CallToAction26 extends BaseCallToAction {
           {buttons.map((button: Button, index: number) => (
             <ComposerLink path={button.url} key={index}>
               {this.castToString(button.text) && (
-                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                <Base.Button buttonType={cardEnabled ? "White" : button.type} className={this.decorateCSS("button")}>
                   <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                 </Base.Button>
               )}

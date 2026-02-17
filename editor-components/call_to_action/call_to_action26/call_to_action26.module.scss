@@ -9,14 +9,15 @@
 
     .card {
       width: min(800px, 85vw) !important;
-      height: min(800px, 85vw) !important;
+      min-height: min(800px, 85vw) !important;
+      height: auto !important;
       border-radius: var(--composer-border-radius-full) !important;
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: var(--composer-gap-sm);
+      padding: var(--composer-gap-xl);
     }
 
     .header {
@@ -32,7 +33,6 @@
       .subtitle,
       .title,
       .description {
-        color: var(--composer-font-color-primary);
         text-align: center;
       }
     }
@@ -63,13 +63,13 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .card {
     width: min(600px, 85vw) !important;
-    height: min(600px, 85vw) !important;
+    min-height: min(600px, 85vw) !important;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .card {
     width: min(400px, 90vw) !important;
-    height: min(400px, 90vw) !important;
+    min-height: min(400px, 90vw) !important;
   }
 }
