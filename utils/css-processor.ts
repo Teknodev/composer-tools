@@ -119,10 +119,10 @@ export function processBasePreferences(
         processStyles(fullSelector, GUI_QUERIES.desktop, desktopStyles, textRef);
       }
       if (hasStyles(tabletStyles)) {
-        processStyles(fullSelector, GUI_QUERIES.tablet, tabletStyles, textRef);
+          processStyles(fullSelector, GUI_QUERIES.tablet, tabletStyles, textRef);
       }
       if (hasStyles(mobileStyles)) {
-        processStyles(fullSelector, GUI_QUERIES.mobile, mobileStyles, textRef);
+          processStyles(fullSelector, GUI_QUERIES.mobile, mobileStyles, textRef);
       }
     });
   } catch (error) {
