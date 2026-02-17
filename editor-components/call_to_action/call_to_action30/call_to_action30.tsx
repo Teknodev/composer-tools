@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action30.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -49,23 +49,29 @@ class CallToAction30 extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "media",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "icon", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "mediaOverlay",
-      displayer: "Media Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "value",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "icon", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
   }
 
@@ -81,8 +87,9 @@ class CallToAction30 extends BaseCallToAction {
     const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
     const hasContent = subtitleExist || titleExist || descriptionExist;
     const isCardEnabled = this.getPropValue("card");
-    const media = this.getPropValue("media");
-    const mediaOverlay = this.getPropValue("mediaOverlay");
+    const mediaSection = this.castToObject<{ value?: TypeMediaInputValue; overlay?: boolean } & Partial<TypeMediaInputValue>>("media");
+    const media = (mediaSection?.value ?? (mediaSection?.type ? (mediaSection as TypeMediaInputValue) : undefined)) as TypeMediaInputValue | undefined;
+    const overlay = !!(mediaSection?.overlay ?? this.getPropValue("mediaOverlay"));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -136,7 +143,7 @@ class CallToAction30 extends BaseCallToAction {
                     value={media}
                     className={`${this.decorateCSS("media")} ${media?.type === "icon" ? this.decorateCSS("media-icon") : ""}`}
                   />
-                  {mediaOverlay && (
+                  {overlay && (
                     <div className={this.decorateCSS("media-overlay")} />
                   )}
                 </div>

@@ -14,7 +14,7 @@
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
-        border-radius: var(--composer-border-radius-lg);
+        border-radius: var(--composer-border-radius-md);
         padding: 80px var(--composer-gap-xl);
       }
 
@@ -103,17 +103,23 @@
       .card {
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-xl);
 
         &.card-enabled {
           padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
 
-        .header .description {
-          margin-bottom: var(--composer-gap-sm);
+        .header {
+          width: 100%;
+          min-width: 0;
+
+          .description {
+            margin-bottom: var(--composer-gap-sm);
+          }
         }
 
         .media-wrapper {
+          width: 100%;
           margin: 0;
         }
 
