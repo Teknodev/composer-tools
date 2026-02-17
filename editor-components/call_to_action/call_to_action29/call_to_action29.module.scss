@@ -34,9 +34,6 @@
 
                 .left-column {
                     flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-md);
                     text-align: left;
 
                     .subtitle {
@@ -53,10 +50,6 @@
 
                 .right-column {
                     flex: 1;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    gap: var(--composer-gap-lg);
                     text-align: left;
 
                     .description {

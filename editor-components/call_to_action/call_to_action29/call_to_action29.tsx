@@ -67,7 +67,7 @@ class CallToAction29 extends BaseCallToAction {
                     <div className={`${this.decorateCSS("card")} ${card_background ? this.decorateCSS("active") : ""}`}>
                         <div className={this.decorateCSS("content-wrapper")}>
                             {hasLeftContent && (
-                                <div className={this.decorateCSS("left-column")}>
+                                <Base.VerticalContent className={this.decorateCSS("left-column")}>
                                     {subtitle && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                             {subtitle}
@@ -78,11 +78,11 @@ class CallToAction29 extends BaseCallToAction {
                                             {title}
                                         </Base.SectionTitle>
                                     )}
-                                </div>
+                                </Base.VerticalContent>
                             )}
 
                             {hasRightContent && (
-                                <div className={this.decorateCSS("right-column")}>
+                                <Base.VerticalContent className={this.decorateCSS("right-column")}>
                                     {description && (
                                         <Base.SectionDescription className={this.decorateCSS("description")}>
                                             {description}
@@ -110,7 +110,7 @@ class CallToAction29 extends BaseCallToAction {
                                             })}
                                         </div>
                                     )}
-                                </div>
+                                </Base.VerticalContent>
                             )}
                         </div>
                     </div>
