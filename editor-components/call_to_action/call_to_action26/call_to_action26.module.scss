@@ -58,11 +58,6 @@
       }
     }
 
-    .card .content .subtitle {
-      padding: 0;
-      background: transparent;
-      border-radius: 0;
-    }
   }
 }
 
@@ -75,8 +70,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .card {
-    width: min(400px, 85vw);
+    width: min(350px, 85vw);
     max-width: 100%;
-    min-height: min(400px, 85vw);
+    min-height: min(350px, 85vw);
   }
 }
