@@ -8,10 +8,10 @@
     align-items: center;
 
     .card {
-      width: min(800px, 85vw) !important;
-      min-height: min(800px, 85vw) !important;
-      height: auto !important;
-      border-radius: var(--composer-border-radius-full) !important;
+      width: min(800px, 85vw);
+      min-height: min(800px, 85vw);
+      height: auto;
+      border-radius: var(--composer-border-radius-full);
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
       flex-direction: column;
@@ -26,7 +26,7 @@
 
       .subtitle {
         &::before {
-          display: none !important;
+          display: none;
         }
       }
 
@@ -38,9 +38,9 @@
     }
 
     .card .header .subtitle {
-      padding: 0 !important;
-      background: transparent !important;
-      border-radius: 0 !important;
+      padding: 0;
+      background: transparent;
+      border-radius: 0;
     }
 
     .buttons {
@@ -62,14 +62,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .card {
-    width: min(600px, 85vw) !important;
-    min-height: min(600px, 85vw) !important;
+    width: min(600px, 85vw);
+    min-height: min(600px, 85vw);
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .card {
-    width: min(400px, 90vw) !important;
-    min-height: min(400px, 90vw) !important;
+    width: min(400px, 90vw);
+    min-height: min(400px, 90vw);
   }
 }
