@@ -12,9 +12,9 @@ class CallToAction27 extends BaseCallToAction {
     super(props, styles);
     this.addProp({
       type: "boolean",
-      key: "cardBackground",
-      displayer: "Card Background",
-      value: false,
+      key: "coloredBackground",
+      displayer: "Colored Background",
+      value: true,
     });
     this.addProp({
       type: "string",
@@ -35,7 +35,7 @@ class CallToAction27 extends BaseCallToAction {
       key: "description",
       displayer: "Description",
       value:
-        "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies",
+        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness. Energistically scale future-proof core competencies",
     });
 
     this.addProp({
@@ -44,11 +44,9 @@ class CallToAction27 extends BaseCallToAction {
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
     });
-
-    
   }
 
-    static getName(): string {
+  static getName(): string {
     return "Call To Action 27";
   }
 
@@ -58,49 +56,55 @@ class CallToAction27 extends BaseCallToAction {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons") || [];
     const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
-    const coloredBackground = this.getPropValue("coloredBackground");
-    const cardBackground = this.getPropValue("cardBackground");
+    const hasBackground = this.getPropValue("coloredBackground");
+    const hasHeader = subtitleExist || titleExist;
+    const hasDescriptionOrButtons = descriptionExist || visibleButtons.length > 0;
 
-    const alignment = Base.getContentAlignment() || "left";
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${coloredBackground ? this.decorateCSS("colored-background") : ""} ${cardBackground ? this.decorateCSS("card-has-bg") : ""}`}
-        data-alignment={alignment}
+        className={`${this.decorateCSS("container")} ${hasBackground ? this.decorateCSS("has-background") : ""}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("card")}>
-            {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-         
-            {(descriptionExist || visibleButtons.length > 0) && (
-              <div className={this.decorateCSS("subtitle-button-row")}>
-                {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </Base.SectionDescription>
-                )}
-                {visibleButtons.length > 0 && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {visibleButtons.map((item: Button, index: number) =>
-                      this.castToString(item.text) ? (
-                        <ComposerLink key={`button-${index}`} path={item.url}>
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      ) : null
+          <div className={this.decorateCSS("content")}>
+            {(hasHeader || hasDescriptionOrButtons) && (
+              <Base.VerticalContent className={this.decorateCSS("left-section")}>
+                {hasHeader && (
+                  <Base.VerticalContent className={this.decorateCSS("header")}>
+                    {subtitleExist && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {this.getPropValue("subtitle")}
+                      </Base.SectionSubTitle>
                     )}
-                  </div>
+                    {titleExist && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {this.getPropValue("title")}
+                      </Base.SectionTitle>
+                    )}
+                  </Base.VerticalContent>
                 )}
-              </div>
+                {hasDescriptionOrButtons && (
+                  <Base.VerticalContent className={this.decorateCSS("description-button-row")}>
+                    {descriptionExist && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {this.getPropValue("description")}
+                      </Base.SectionDescription>
+                    )}
+                    {visibleButtons.length > 0 && (
+                      <Base.VerticalContent className={this.decorateCSS("button-group")}>
+                        {visibleButtons.map((item: Button, index: number) =>
+                          this.castToString(item.text) ? (
+                            <ComposerLink key={`button-${index}`} path={item.url}>
+                              <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          ) : null
+                        )}
+                      </Base.VerticalContent>
+                    )}
+                  </Base.VerticalContent>
+                )}
+              </Base.VerticalContent>
             )}
           </div>
         </Base.MaxContent>
