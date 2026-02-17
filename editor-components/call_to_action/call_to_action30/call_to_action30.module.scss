@@ -67,13 +67,18 @@
           object-fit: cover;
 
           &.media-icon {
-            width: auto;
-            height: auto;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            color: var(--composer-primary-color);
+            color: var(--composer-font-color-primary);
+
+            svg {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
           }
         }
 
@@ -124,8 +129,9 @@
         }
 
         .media-container {
-          width: 200px;
-          height: 200px;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          max-width: 100%;
         }
       }
     }
