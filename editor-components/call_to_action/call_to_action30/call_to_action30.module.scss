@@ -6,7 +6,7 @@
       display: flex;
       align-items: center;
       gap: var(--composer-gap-lg);
-      padding: var(--composer-gap-md);
+      padding: 0;
 
       &.card-enabled {
         background-color: color-mix(
@@ -132,6 +132,7 @@
           width: 100%;
           aspect-ratio: 1 / 1;
           max-width: 100%;
+          height: auto;
         }
       }
     }
