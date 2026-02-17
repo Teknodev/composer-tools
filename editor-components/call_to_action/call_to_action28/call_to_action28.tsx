@@ -1,9 +1,14 @@
 import * as React from "react";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action28.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type Background = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+}
 
 class CallToAction28 extends BaseCallToAction {
     constructor(props?: any) {
@@ -76,7 +81,7 @@ class CallToAction28 extends BaseCallToAction {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-        const imageProps = this.castToObject<any>("image");
+        const imageProps = this.castToObject<Background>("image");
         const media = imageProps?.media;
         const mediaOverlay = imageProps?.overlay;
 
@@ -117,11 +122,8 @@ class CallToAction28 extends BaseCallToAction {
                                 {buttons.map(
                                     (item: INPUTS.CastedButton, index: number) => {
                                         const buttonText = this.castToString(item.text);
-                                        const iconExist = (item.icon as any)?.name;
 
-                                        if (!buttonText && !iconExist) return null;
-
-                                        return (
+                                        return buttonText && (
                                             <ComposerLink key={index} path={item.url}>
                                                 <Base.Button
                                                     buttonType={item.type}
@@ -131,11 +133,6 @@ class CallToAction28 extends BaseCallToAction {
                                                         <Base.P className={this.decorateCSS("button-text")}>
                                                             {buttonText}
                                                         </Base.P>
-                                                    )}
-                                                    {iconExist && (
-                                                        <Base.Media
-                                                            value={item.icon as any}
-                                                        />
                                                     )}
                                                 </Base.Button>
                                             </ComposerLink>
