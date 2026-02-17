@@ -17,9 +17,9 @@ class CallToAction19 extends BaseCallToAction {
 
         this.addProp({
             type: "boolean",
-            key: "background",
-            displayer: "Colored Background",
-            value: false,
+            key: "cardBackground",
+            displayer: "Card Background",
+            value: true,
         });
         this.addProp({
             type: "string",
@@ -172,12 +172,12 @@ class CallToAction19 extends BaseCallToAction {
         const ratingText = this.getPropValue("ratingText");
         const itemCountInARow = this.getPropValue("itemCountInARow");
         const itemsPerRow = itemCountInARow > 0 ? itemCountInARow : 1;
-        const backgroundEnabled = this.getPropValue("background");
+        const cardBackground = this.getPropValue("cardBackground");
         const subtitleType = Base.getSectionSubTitleType();
         const hasHeader = subtitle || title || description;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${backgroundEnabled ? this.decorateCSS("has-background") : ""}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${cardBackground ? this.decorateCSS("has-card-background") : ""}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
                         {(hasHeader || ((Array.isArray(buttons) && buttons.some((b: Button) => this.castToString(b?.text))) || this.castToString(ratingValue) || this.castToString(ratingText))) && (
