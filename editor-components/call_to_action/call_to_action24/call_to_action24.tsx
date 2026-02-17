@@ -69,17 +69,17 @@ class CallToAction24 extends BaseCallToAction {
                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                 {subtitle && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {subtitle}
+                                        {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
                                 {title && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {title}
+                                        {this.getPropValue("title")}
                                     </Base.SectionTitle>
                                 )}
                                 {description && (
                                     <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {description}
+                                        {this.getPropValue("description")}
                                     </Base.SectionDescription>
                                 )}
                                 {buttons.length > 0 && (
@@ -99,7 +99,7 @@ class CallToAction24 extends BaseCallToAction {
                                                         >
                                                             {buttonText && (
                                                                 <Base.P className={this.decorateCSS("button-text")}>
-                                                                    {buttonText}
+                                                                    {item.text}
                                                                 </Base.P>
                                                             )}
                                                             {iconExist && (
