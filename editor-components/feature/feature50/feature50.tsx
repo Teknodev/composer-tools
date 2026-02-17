@@ -355,7 +355,7 @@ class Feature50 extends BaseFeature {
                     </Base.ListGrid>
 
                     {primaryButtons && primaryButtons.filter(b => this.castToString(b.text)).length > 0 && (
-                        <div className={this.decorateCSS("primary-buttons-container")}>
+                        <div className={this.decorateCSS("buttons-container")}>
                             {primaryButtons.map((button, index) => (
                                 this.castToString(button.text) && (
                                     <ComposerLink key={index} path={button.url}>

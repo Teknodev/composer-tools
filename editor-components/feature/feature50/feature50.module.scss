@@ -36,9 +36,12 @@
         padding: var(--composer-gap-lg);
 
         .card-subtitle,
-        .card-title,
+        .card-title {
+          text-align: left;
+        }
         .card-description {
           text-align: left;
+          padding-right: var(--composer-gap-md);
         }
 
         .card-content {
@@ -85,7 +88,7 @@
       }
     }
 
-    .primary-buttons-container {
+    .buttons-container {
       display: flex;
       align-items: center;
       justify-content: center;
