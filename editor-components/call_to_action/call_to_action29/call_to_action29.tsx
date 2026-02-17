@@ -13,7 +13,7 @@ class CallToAction29 extends BaseCallToAction {
             type: "boolean",
             key: "card_background",
             displayer: "Card Background",
-            value: false,
+            value: true,
         });
 
         this.addProp({
