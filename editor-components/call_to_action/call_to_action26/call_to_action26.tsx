@@ -59,10 +59,10 @@ class CallToAction26 extends BaseCallToAction {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const cardEnabled = this.getPropValue("cardEnabled");
-    const hasHeader = subtitleExist || titleExist || descriptionExist;
+    const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
-    const header = hasHeader && (
-      <Base.VerticalContent className={this.decorateCSS("header")}>
+    const content = hasContent && (
+      <Base.VerticalContent className={this.decorateCSS("content")}>
         {subtitleExist && (
           <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
             {this.getPropValue("subtitle")}
@@ -78,38 +78,29 @@ class CallToAction26 extends BaseCallToAction {
             {this.getPropValue("description")}
           </Base.SectionDescription>
         )}
+        {buttons.length > 0 && (
+          <div className={this.decorateCSS("buttons")}>
+            {buttons.map((button: Button, index: number) => (
+              <ComposerLink path={button.url} key={index}>
+                {this.castToString(button.text) && (
+                  <Base.Button buttonType="White" className={this.decorateCSS("button")}>
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
+                )}
+              </ComposerLink>
+            ))}
+          </div>
+        )}
       </Base.VerticalContent>
-    );
-
-    const buttonsEl =
-      buttons.length > 0 && (
-        <div className={this.decorateCSS("buttons")}>
-          {buttons.map((button: Button, index: number) => (
-            <ComposerLink path={button.url} key={index}>
-              {this.castToString(button.text) && (
-                <Base.Button buttonType={cardEnabled ? "White" : button.type} className={this.decorateCSS("button")}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                </Base.Button>
-              )}
-            </ComposerLink>
-          ))}
-        </div>
-      );
-
-    const inner = (
-      <>
-        {header}
-        {buttonsEl}
-      </>
     );
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {cardEnabled ? (
-            <div className={this.decorateCSS("card")}>{inner}</div>
+            <div className={this.decorateCSS("card")}>{content}</div>
           ) : (
-            inner
+            content
           )}
         </Base.MaxContent>
       </Base.Container>
