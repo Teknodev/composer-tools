@@ -51,12 +51,25 @@ export class AnimateCommand extends BaseAnimationCommand {
         ? animationName
         : `animate__${animationName}`;
 
+      // Sanitize playback direction to avoid passing semantic directions (e.g. 'up')
+      const rawCssDirection =
+        context.config.animateCssDirection ?? context.config.animationDirection ?? context.config.direction;
+      const allowedPlaybackDirections = [
+        'normal',
+        'reverse',
+        'alternate',
+        'alternate-reverse',
+      ];
+      const sanitizedCssDirection = allowedPlaybackDirections.includes(rawCssDirection)
+        ? rawCssDirection
+        : undefined;
+
       const animationConfig = {
         // support both new `animateCss*` keys and legacy keys
         animation: formattedAnimationName,
         delay: context.config.animateCssDelay ?? context.config.delay,
         iterationCount: context.config.animateCssIterationCount ?? context.config.iterationCount,
-        direction: context.config.animateCssDirection ?? context.config.direction,
+        direction: sanitizedCssDirection,
         fillMode: context.config.animateCssFillMode ?? context.config.fillMode,
         triggerType: context.triggerType, // Pass trigger type for cleanup logic
       };
@@ -81,8 +94,16 @@ export class AnimateCommand extends BaseAnimationCommand {
       easing = "ease",
       delay = 0,
       iterationCount = 1,
-      direction = "normal",
     } = context.config;
+
+    // Sanitize playback direction coming from config; prefer explicit `animationDirection`,
+    // then `animateCssDirection`, then legacy `direction` (which may be used by scroll triggers).
+    const rawDirection =
+      context.config.animationDirection ?? context.config.animateCssDirection ?? context.config.direction;
+    const allowedPlaybackDirections = ['normal', 'reverse', 'alternate', 'alternate-reverse'];
+    const sanitizedDirection = allowedPlaybackDirections.includes(rawDirection as string)
+      ? (rawDirection as any)
+      : undefined;
 
     // Check if using loop/transform mode (Framer-style)
     // Only treat as loop mode if transform-related values are actually non-default
@@ -117,7 +138,8 @@ export class AnimateCommand extends BaseAnimationCommand {
         [property]: targetValue,
         delay,
         iterationCount,
-        direction,
+        // only include direction when it's a valid playback direction
+        ...(sanitizedDirection && { direction: sanitizedDirection }),
         triggerType: context.triggerType, // Pass trigger type for cleanup logic
       };
 

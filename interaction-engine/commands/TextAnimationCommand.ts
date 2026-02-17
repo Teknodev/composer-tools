@@ -151,7 +151,7 @@ export class TextAnimationCommand extends BaseAnimationCommand {
       const animationName = config.animation || "bounce";
       const duration = config.duration || 1000;
       const iterationCount = config.iterationCount || 1;
-      const direction = config.direction || "normal";
+      const direction = config.animationDirection || config.animateCssDirection || config.direction || "normal";
       const fillMode = config.fillMode || "both";
 
       span.style.animationName = animationName;

@@ -84,6 +84,29 @@ export const ConfigSchemas = {
       }
       return value;
     },
+    // Also accept explicit animationDirection and animateCssDirection keys
+    animationDirection: (value: string, context) => {
+      if (value) {
+        return Validator.oneOf(
+          value,
+          ['normal', 'reverse', 'alternate', 'alternate-reverse'] as const,
+          'animationDirection',
+          context
+        );
+      }
+      return value;
+    },
+    animateCssDirection: (value: string, context) => {
+      if (value) {
+        return Validator.oneOf(
+          value,
+          ['normal', 'reverse', 'alternate', 'alternate-reverse'] as const,
+          'animateCssDirection',
+          context
+        );
+      }
+      return value;
+    },
   }),
 
   /**
