@@ -13,7 +13,7 @@ class CallToAction29 extends BaseCallToAction {
             type: "boolean",
             key: "card_background",
             displayer: "Card Background",
-            value: true,
+            value: false,
         });
 
         this.addProp({
@@ -27,7 +27,7 @@ class CallToAction29 extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "New Edge of the Theme Experience With Impreza",
+            value: "New Edge of the Theme Experience With BlinkPage",
         });
 
         this.addProp({
@@ -58,56 +58,63 @@ class CallToAction29 extends BaseCallToAction {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const card_background = this.getPropValue("card_background");
 
+        const hasLeftContent = subtitle || title;
+        const hasRightContent = description || buttons.length > 0;
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={`${this.decorateCSS("card")} ${card_background ? this.decorateCSS("active") : ""}`}>
                         <div className={this.decorateCSS("content-wrapper")}>
-                            <div className={this.decorateCSS("left-column")}>
-                                {subtitle && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {subtitle}
-                                    </Base.SectionSubTitle>
-                                )}
-                                {title && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {title}
-                                    </Base.SectionTitle>
-                                )}
-                            </div>
+                            {hasLeftContent && (
+                                <div className={this.decorateCSS("left-column")}>
+                                    {subtitle && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {subtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {title && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
+                                </div>
+                            )}
 
-                            <div className={this.decorateCSS("right-column")}>
-                                {description && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {description}
-                                    </Base.SectionDescription>
-                                )}
-                                {buttons.length > 0 && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                            const buttonText = this.castToString(item.text);
-                                            const iconExist = (item.icon as any)?.name;
+                            {hasRightContent && (
+                                <div className={this.decorateCSS("right-column")}>
+                                    {description && (
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {description}
+                                        </Base.SectionDescription>
+                                    )}
+                                    {buttons.length > 0 && (
+                                        <div className={this.decorateCSS("button-container")}>
+                                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                                const buttonText = this.castToString(item.text);
+                                                const iconExist = (item.icon as any)?.name;
 
-                                            if (!buttonText && !iconExist) return null;
+                                                if (!buttonText && !iconExist) return null;
 
-                                            return (
-                                                <ComposerLink key={index} path={item.url}>
-                                                    <Base.Button
-                                                        buttonType={item.type}
-                                                        className={this.decorateCSS("button")}
-                                                    >
-                                                        {buttonText && (
-                                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                                {buttonText}
-                                                            </Base.P>
-                                                        )}
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            );
-                                        })}
-                                    </div>
-                                )}
-                            </div>
+                                                return (
+                                                    <ComposerLink key={index} path={item.url}>
+                                                        <Base.Button
+                                                            buttonType={item.type}
+                                                            className={this.decorateCSS("button")}
+                                                        >
+                                                            {buttonText && (
+                                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                                    {buttonText}
+                                                                </Base.P>
+                                                            )}
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
                         </div>
                     </div>
                 </Base.MaxContent>
