@@ -25,23 +25,22 @@
                     .subtitle, .title, .description {
                         color: var(--composer-font-color-secondary);
                         text-align: left !important;
-                        margin: 0 !important;
                         display: flex;
                         justify-content: flex-start !important;
                     }
                     .subtitle {
                         align-items: center;
-                        width: 100%;
-                        max-width: 100%;
+                        width: fit-content;
                         transform: none;
                     }
-                    .subtitle-line::before {
-                        content: "";
-                        display: none;
-                    }
+                     .subtitle-line::before {
+                        
+                        
+                    } 
                 }
                 .bottom-row {
                     display: flex;
+                    flex-direction: column;
                     justify-content: flex-start !important;
                     gap: var(--composer-gap-md);
                     flex-wrap: wrap;
@@ -128,11 +127,16 @@
         color: var(--composer-font-color-secondary) !important;
     }
 
+
     &.has-background .max-content .content .left-section .header .subtitle.subtitle-badge {
         padding: var(--composer-gap-xs) var(--composer-gap-md) !important;
         border-radius: var(--composer-border-radius-xl) !important;
         background: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 80%) !important;
         color: var(--composer-primary-color) !important;
+        &::before {
+            content: "" !important;
+            display: block;
+        }
     }
 
     &.has-background {
@@ -142,10 +146,13 @@
         .content{
             .left-section{
                 .header {
-                    .subtitle {
+                    .subtitle:not(.subtitle-badge) {
                         color: var(--composer-font-color-primary);
                         padding: 0;
                         background: transparent;
+                        &::before {
+                            content: "";
+                        }
                     }
                     .title, .description {
                         color: var(--composer-font-color-primary);
@@ -200,6 +207,11 @@
                 gap: var(--composer-gap-lg);
                 .left-section {
                    gap: var(--composer-gap-lg);
+                   .header{
+                    .subtitle{
+                        align-items: center;
+                    }
+                   }
                 }
             }
         }

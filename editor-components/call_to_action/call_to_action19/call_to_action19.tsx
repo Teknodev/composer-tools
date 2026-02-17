@@ -25,7 +25,7 @@ class CallToAction19 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "TEST",
+            value: "test",
         });
         this.addProp({
             type: "string",
