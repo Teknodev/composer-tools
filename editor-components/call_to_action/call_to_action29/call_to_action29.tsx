@@ -70,12 +70,12 @@ class CallToAction29 extends BaseCallToAction {
                                 <Base.VerticalContent className={this.decorateCSS("left-column")}>
                                     {subtitle && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                            {subtitle}
+                                            {this.getPropValue("subtitle")}
                                         </Base.SectionSubTitle>
                                     )}
                                     {title && (
                                         <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {title}
+                                            {this.getPropValue("title")}
                                         </Base.SectionTitle>
                                     )}
                                 </Base.VerticalContent>
@@ -85,29 +85,25 @@ class CallToAction29 extends BaseCallToAction {
                                 <Base.VerticalContent className={this.decorateCSS("right-column")}>
                                     {description && (
                                         <Base.SectionDescription className={this.decorateCSS("description")}>
-                                            {description}
+                                            {this.getPropValue("description")}
                                         </Base.SectionDescription>
                                     )}
                                     {buttons.length > 0 && (
                                         <div className={this.decorateCSS("button-container")}>
-                                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                                const buttonText = this.castToString(item.text);
-
-                                                return buttonText && (
+                                            {buttons.map((item: INPUTS.CastedButton, index: number) =>
+                                                this.castToString(item.text) && (
                                                     <ComposerLink key={index} path={item.url}>
                                                         <Base.Button
                                                             buttonType={item.type}
                                                             className={this.decorateCSS("button")}
                                                         >
-                                                            {buttonText && (
-                                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                                    {buttonText}
-                                                                </Base.P>
-                                                            )}
+                                                            <Base.P className={this.decorateCSS("button-text")}>
+                                                                {item.text}
+                                                            </Base.P>
                                                         </Base.Button>
                                                     </ComposerLink>
-                                                );
-                                            })}
+                                                )
+                                            )}
                                         </div>
                                     )}
                                 </Base.VerticalContent>
