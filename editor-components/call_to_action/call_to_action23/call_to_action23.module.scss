@@ -1,25 +1,32 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   display: flex;
   flex-direction: column;
   gap: var(--composer-gap-xl);
-  background: linear-gradient(
-    to bottom,
-    var(--composer-html-background) 0%,
-    var(--composer-html-background) 50%,
-    color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
-    color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%
-  );
+  width: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom,
+      var(--composer-html-background) 0%,
+      var(--composer-html-background) 50%,
+      color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
+      color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
 
-  /* Arka plan TRUE → kart: html-background, metin/ikon: font-color-primary */
+  .max-content {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   .content {
+    width: 100%;
     padding: 80px 50px;
     background-color: var(--composer-html-background);
     border-radius: var(--composer-border-radius-md);
-    text-align: left !important;
     overflow-x: hidden;
     box-sizing: border-box;
-    align-items: center;
+    text-align: left !important;
+
 
     .content-row {
       display: flex;
@@ -28,115 +35,127 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--composer-gap-lg);
+      width: 100%;
+    }
+
+
+    .content-left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: var(--composer-gap-xl);
+      flex: 1;
       min-width: 0;
+      max-width: 30%;
 
-      .content-left {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: var(--composer-gap-xl);
-        flex: 1;
-        min-width: 0;
+      .content-text {
 
-        .content-text {
-          min-width: 0;
-          overflow-wrap: break-word;
 
-          .subtitle,
-          .title,
-          .description {
-            color: var(--composer-font-color-primary) !important;
-            text-align: left !important;
-          }
-          /* Subtitle type "line" veya alignment left/center olsa da hep sola sabit */
-          .subtitle {
-            text-align: left !important;
-            margin-left: 0 !important;
-            margin-right: auto !important;
-            width: fit-content !important;
-            justify-content: flex-start !important;
-            transform: none !important;
-            &::before {
-              transform: none !important;
-            }
-          }
-        }
-
-        .pricing {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start !important;
-          gap: var(--composer-gap-sm);
-          flex-shrink: 0;
-          text-align: left !important;
-          padding: var(--composer-gap-sm);
-
-          .price-label,
-          .price-value {
-            color: var(--composer-font-color-primary) !important;
-            margin: 0;
-          }
-          .price-label {
-            text-align: left !important;
-          }
-        }
-      }
-
-      .button-wrap {
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        gap: var(--composer-gap-sm);
-
-        .button .button-text {
-          margin: 0;
-        }
-      }
-    }
-  }
-
-  /* Arka plan FALSE: kart koyu, yazılar açık - varsayılan kuralları kesin ez */
-  &.no-card-style {
-    .max-content {
-      max-width: 100%;
-    }
-
-    .content {
-      background-color: var(--composer-font-color-primary) !important;
-      border-radius: var(--composer-border-radius-md);
-
-      .content-row .content-left .content-text {
         .subtitle,
         .title,
         .description {
-          color: var(--composer-html-background) !important;
-          
+          color: var(--composer-font-color-primary) !important;
+          text-align: left !important;
         }
+
+
         .subtitle {
           text-align: left !important;
           margin-left: 0 !important;
           margin-right: auto !important;
           width: fit-content !important;
+          justify-content: flex-start !important;
           transform: none !important;
-          &::before {
-            transform: none !important;
+
+          &::before,
+          &::after {
+            display: none !important;
           }
         }
-        .title{
+      }
+
+      .pricing {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: var(--composer-gap-sm);
+        flex-shrink: 0;
+        text-align: left !important;
+
+        .price-label,
+        .price-value {
+          margin: 0;
+        }
+
+        .price-label {
+          color: var(--composer-font-color-primary) !important;
+          text-align: left !important;
+        }
+
+        .price-value {
+          color: var(--composer-primary-color) !important;
+        }
+      }
+    }
+
+    .button-wrap {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-sm);
+
+      .button .button-text {
+        margin: 0;
+      }
+    }
+  }
+
+
+  &.no-card-style {
+    background: linear-gradient(to bottom,
+        var(--composer-html-background) 0%,
+        var(--composer-html-background) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
+    padding: 80px 50px;
+
+    .max-content {
+      max-width: 100%;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      padding: 80px 50px;
+      width: 100%;
+      overflow-x: hidden;
+      box-sizing: border-box;
+      background-color: var(--composer-font-color-primary) !important;
+      border-radius: var(--composer-border-radius-md);
+      text-align: left !important;
+
+      .content-row .content-left .content-text {
+
+        .subtitle,
+        .title,
+        .description {
+          color: var(--composer-html-background) !important;
+        }
+
+        .title {
           align-items: center !important;
         }
       }
 
       .content-row .content-left .pricing {
-        .price-label,
-        .price-value {
+        .price-label {
           color: var(--composer-html-background) !important;
         }
-        .price-value{
+
+        .price-value {
           color: var(--composer-primary-color) !important;
         }
       }
-
     }
   }
 }
@@ -146,53 +165,143 @@
     padding: 80px 40px;
 
     .content-row .content-left {
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-md);
     }
+  }
+
+  .container.no-card-style .content {
+    padding: 80px 40px;
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .content {
-    .content-row {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
+  .container {
+    .max-content {
+      padding: 50px 20px;
     }
 
-    .content-left {
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .content {
+      padding: 50px 20px;
 
-    .content-text .subtitle {
-      text-align: left !important;
-      margin-left: 0 !important;
-      margin-right: auto !important;
-      width: fit-content !important;
-      transform: none !important;
-      justify-content: flex-start !important;
-      &::before {
-        transform: none !important;
+      .content-row {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-xl);
+
+        .content-left {
+          flex-direction: column;
+          align-items: center !important;
+          gap: var(--composer-gap-xl);
+          max-width: 100%;
+          width: 100%;
+
+          .content-text {
+            align-items: center !important;
+
+            .subtitle {
+              text-align: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+              width: fit-content !important;
+              transform: none !important;
+              justify-content: center !important;
+              &::before,
+              &::after {
+                transform: none !important;
+              }
+            }
+
+            .title {
+              white-space: normal;
+              text-align: center !important;
+              align-items: center !important;
+              justify-content: center !important;
+              margin-left: auto !important;
+              margin-right: auto !important;
+            }
+
+            .description {
+              text-align: center !important;
+            }
+          }
+
+          .pricing {
+            align-items: center;
+
+            .price-label,
+            .price-value {
+              text-align: center;
+            }
+          }
+        }
+
+        .button-wrap {
+          justify-content: center;
+        }
       }
     }
 
-    .content-text .title,
-    .content-text .description {
-      text-align: center !important;
-    }
+    &.no-card-style {
+      padding: 50px 20px;
 
-    .content-left .pricing {
-      align-items: center;
-
-      .price-label,
-      .price-value {
-        text-align: center;
+      .max-content {
+        padding: 0;
       }
-    }
 
-    .button-wrap {
-      justify-content: center;
+      .content {
+        padding: 50px 20px;
+
+        .content-row {
+          flex-direction: column;
+          align-items: center;
+          gap: var(--composer-gap-xl);
+
+          .content-left {
+            flex-direction: column;
+            align-items: center;
+            gap: var(--composer-gap-xl);
+            max-width: 100%;
+            width: 100%;
+
+            .content-text {
+              align-items: center !important;
+
+              .subtitle {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                width: fit-content !important;
+              }
+
+              .title {
+                white-space: normal;
+                text-align: center !important;
+                align-items: center !important;
+                justify-content: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+              }
+
+              .description {
+                text-align: center !important;
+              }
+            }
+
+            .pricing {
+              align-items: center;
+
+              .price-label,
+              .price-value {
+                text-align: center;
+              }
+            }
+          }
+
+          .button-wrap {
+            justify-content: center;
+          }
+        }
+      }
     }
   }
 }
