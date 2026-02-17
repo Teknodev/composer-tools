@@ -92,11 +92,8 @@ class CallToAction29 extends BaseCallToAction {
                                         <div className={this.decorateCSS("button-container")}>
                                             {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                                 const buttonText = this.castToString(item.text);
-                                                const iconExist = (item.icon as any)?.name;
 
-                                                if (!buttonText && !iconExist) return null;
-
-                                                return (
+                                                return buttonText && (
                                                     <ComposerLink key={index} path={item.url}>
                                                         <Base.Button
                                                             buttonType={item.type}
