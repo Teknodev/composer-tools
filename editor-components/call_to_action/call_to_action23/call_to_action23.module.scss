@@ -21,7 +21,6 @@
   .content {
     width: 100%;
     padding: 80px 50px;
-    background-color: var(--composer-html-background);
     border-radius: var(--composer-border-radius-md);
     overflow-x: hidden;
     box-sizing: border-box;
@@ -39,6 +38,7 @@
     }
 
 
+  
     .content-left {
       display: flex;
       flex-direction: row;
@@ -49,13 +49,17 @@
       max-width: 30%;
 
       .content-text {
-
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
 
         .subtitle,
         .title,
         .description {
           color: var(--composer-font-color-primary) !important;
           text-align: left !important;
+          overflow-wrap: break-word;
+          word-break: break-word;
         }
 
 
@@ -100,7 +104,10 @@
 
     .button-wrap {
       flex-shrink: 0;
+      max-width: 30%;
+      min-width: 0;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: var(--composer-gap-sm);
 
@@ -111,13 +118,13 @@
   }
 
 
+  
   &.no-card-style {
     background: linear-gradient(to bottom,
         var(--composer-html-background) 0%,
         var(--composer-html-background) 50%,
         color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
         color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
-    padding: 80px 50px;
 
     .max-content {
       max-width: 100%;
@@ -130,18 +137,16 @@
       width: 100%;
       overflow-x: hidden;
       box-sizing: border-box;
-      background-color: var(--composer-font-color-primary) !important;
+      background-color: var(--composer-font-color-primary) !important; 
       border-radius: var(--composer-border-radius-md);
       text-align: left !important;
 
       .content-row .content-left .content-text {
-
         .subtitle,
         .title,
         .description {
           color: var(--composer-html-background) !important;
         }
-
         .title {
           align-items: center !important;
         }
@@ -151,7 +156,6 @@
         .price-label {
           color: var(--composer-html-background) !important;
         }
-
         .price-value {
           color: var(--composer-primary-color) !important;
         }
@@ -186,12 +190,12 @@
       .content-row {
         flex-direction: column;
         align-items: center;
-        gap: var(--composer-gap-xl);
+        gap: var(--composer-gap-md);
 
         .content-left {
           flex-direction: column;
           align-items: center !important;
-          gap: var(--composer-gap-xl);
+          gap: var(--composer-gap-md);
           max-width: 100%;
           width: 100%;
 
@@ -242,8 +246,6 @@
     }
 
     &.no-card-style {
-      padding: 50px 20px;
-
       .max-content {
         padding: 0;
       }

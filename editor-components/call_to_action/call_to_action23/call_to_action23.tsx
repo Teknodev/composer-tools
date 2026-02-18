@@ -51,7 +51,7 @@ class CallToAction23Page extends BaseCallToAction {
       type: "string",
       key: "price",
       displayer: "Info Text",
-      value: "$2.95/mo",
+      value: "$2.95/mo ",
     });
 
     this.addProp({
@@ -143,53 +143,53 @@ class CallToAction23Page extends BaseCallToAction {
             <div className={this.decorateCSS("content")}>
               <div className={this.decorateCSS("content-row")}>
                 <div className={this.decorateCSS("content-left")}>
-                {(subtitle || title || description) && (
-                  <Base.VerticalContent className={this.decorateCSS("content-text")}>
-                    {subtitle && (
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {this.getPropValue("subtitle")}
-                      </Base.SectionSubTitle>
+                  {(subtitle || title || description) && (
+                    <Base.VerticalContent className={this.decorateCSS("content-text")}>
+                      {subtitle && (
+                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                          {this.getPropValue("subtitle")}
+                        </Base.SectionSubTitle>
+                      )}
+                      {title && (
+                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                          {title}
+                        </Base.SectionTitle>
+                      )}
+                      {description && (
+                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                          {this.getPropValue("description")}
+                        </Base.SectionDescription>
+                      )}
+                    </Base.VerticalContent>
+                  )}
+                  <div className={this.decorateCSS("pricing")}>
+                    {priceLabel && (
+                      <Base.P className={this.decorateCSS("price-label")}>
+                        {priceLabel}
+                      </Base.P>
                     )}
-                    {title && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
-                      </Base.SectionTitle>
+                    {price && (
+                      <Base.H4 className={this.decorateCSS("price-value")}>{price}</Base.H4>
                     )}
-                    {description && (
-                      <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {this.getPropValue("description")}
-                      </Base.SectionDescription>
+                  </div>
+                </div>
+                {buttons?.length > 0 && (
+                  <div className={this.decorateCSS("button-wrap")}>
+                    {buttons.map((button: Button, index: number) =>
+                      this.castToString(button.text) ? (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button
+                            className={this.decorateCSS("button")}
+                          >
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {button.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      ) : null
                     )}
-                  </Base.VerticalContent>
+                  </div>
                 )}
-                <div className={this.decorateCSS("pricing")}>
-                  {priceLabel && (
-                    <Base.P className={this.decorateCSS("price-label")}>
-                      {priceLabel}
-                    </Base.P>
-                  )}
-                  {price && (
-                    <Base.H4 className={this.decorateCSS("price-value")}>{price}</Base.H4>
-                  )}
-                </div>
-              </div>
-              {buttons?.length > 0 && (
-                <div className={this.decorateCSS("button-wrap")}>
-                  {buttons.map((button: Button, index: number) =>
-                    this.castToString(button.text) ? (
-                      <ComposerLink key={index} path={button.url}>
-                        <Base.Button
-                          className={this.decorateCSS("button")}
-                        >
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {button.text}
-                          </Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    ) : null
-                  )}
-                </div>
-              )}
               </div>
             </div>
           )}
