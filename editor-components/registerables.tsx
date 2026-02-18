@@ -561,6 +561,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction21,
     CallToAction22,
     CallToAction24,
+    CallToAction31,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
