@@ -1,26 +1,21 @@
-import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Button = INPUTS.CastedButton;
 
-
-type ITabs = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-  image: string;
-  text: React.JSX.Element;
-  url: string;
-  icon: string;
+type ISliderItem = {
+  title: string;
+  description: string;
+  media: TypeMediaInputValue;
+  button: Button;
+  icon: TypeMediaInputValue;
 };
 
 class Slider11 extends BaseSlider {
   private progressIntervalId?: NodeJS.Timeout;
-  private readonly ANIMATION_DURATION = 10000;
 
   constructor(props?: any) {
     super(props, styles);
@@ -37,6 +32,7 @@ class Slider11 extends BaseSlider {
       displayer: "Title",
       value: "Design eye-catching websites with next generation performance",
     });
+
     this.addProp({
       type: "string",
       key: "description",
@@ -54,149 +50,169 @@ class Slider11 extends BaseSlider {
 
     this.addProp({
       type: "array",
-      key: "tabs",
-      displayer: "Tabs",
+      key: "sliderItems",
+      displayer: "Slider Items",
       value: [
         {
           type: "object",
-          key: "tabs1",
-          displayer: "Tabs 1",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Tab Title",
+              displayer: "Title",
               value: "Unbeatable performance",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Tab Description",
+              displayer: "Description",
               value:
                 "Grow your clients' businesses with reliable, high-performance sites born to rank and built to convert—no maintenance needed.",
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Link Title",
-              value: "SEO and Performance",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+              },
             },
+            INPUTS.BUTTON("button", "Button", "SEO and Performance", "", null, null, "Link"),
             {
-              type: "page",
-              key: "url",
-              displayer: "Link URL",
-              value: "",
-            },
-            {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "GoArrowRight",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image URL",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "GoArrowRight",
+              },
             },
           ],
         },
         {
           type: "object",
-          key: "tabs2",
-          displayer: "Tabs 2",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Tab Title",
+              displayer: "Title",
               value: "Rock-solid infrastructure",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Tab Description",
+              displayer: "Description",
               value:
                 "Build sites that can weather any storm with reliable 99.95% uptime SLA, automatic backups, free SSL encryption, and more.",
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Link Title",
-              value: "Security and infrastructure",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
+              },
             },
-
+            INPUTS.BUTTON("button", "Button", "Security and infrastructure", "", null, null, "Link"),
             {
-              type: "page",
-              key: "url",
-              displayer: "Link URL",
-              value: "",
-            },
-            {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "GoArrowRight",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image URL",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "GoArrowRight",
+              },
             },
           ],
         },
         {
           type: "object",
-          key: "tabs3",
-          displayer: "Tabs 3",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
               type: "string",
               key: "title",
-              displayer: "Tab Title",
+              displayer: "Title",
               value: "Sell anything, anytime",
             },
             {
               type: "string",
               key: "description",
-              displayer: "Tab Description",
+              displayer: "Description",
               value:
                 "Create highly customizable, SEO-ready eCommerce sites for clients with all the features you need to sell anything to anyone.",
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Link Title",
-              value: "Sell online",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+              },
             },
+            INPUTS.BUTTON("button", "Button", "Sell online", "", null, null, "Link"),
             {
-              type: "page",
-              key: "url",
-              displayer: "Link URL",
-              value: "",
-            },
-            {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "GoArrowRight",
-            },
-
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image URL",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "GoArrowRight",
+              },
             },
           ],
         },
-      ],
+      ] as any,
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showDividerLines",
+      displayer: "Show Divider Lines",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "enableLineAnimations",
+      displayer: "Enable Line Animations",
+      value: true,
+    });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings"));
 
     this.setComponentState("activeTab", 0);
   }
@@ -206,22 +222,36 @@ class Slider11 extends BaseSlider {
   }
 
   private startProgressAnimation() {
+    const rawSettings = this.getPropValue("slider-settings");
+    const settings = this.transformSliderValues(rawSettings);
+    const speed = settings.autoplaySpeed || 5000;
+    const autoplay = settings.autoplay ?? true;
+
     if (this.progressIntervalId) {
       clearInterval(this.progressIntervalId);
     }
 
-    this.progressIntervalId = setTimeout(() => {
-      this.advanceToNextTab();
-    }, this.ANIMATION_DURATION);
+    if (autoplay) {
+      this.progressIntervalId = setTimeout(() => {
+        this.nextSlide();
+      }, speed);
+    }
   }
 
-  private advanceToNextTab() {
-    const tabs = this.castToObject<ITabs[]>("tabs");
+  private nextSlide() {
+    const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
     const current = (this.getComponentState("activeTab") as number) || 0;
-    const next = (current + 1) % tabs.length;
+    const next = (current + 1) % sliderItems.length;
 
-    this.setComponentState("activeTab", next);
-    this.startProgressAnimation();
+    this.setActiveTab(next);
+  }
+
+  private prevSlide() {
+    const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
+    const current = (this.getComponentState("activeTab") as number) || 0;
+    const prev = (current - 1 + sliderItems.length) % sliderItems.length;
+
+    this.setActiveTab(prev);
   }
 
   onComponentWillUnmount() {
@@ -244,13 +274,33 @@ class Slider11 extends BaseSlider {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const buttons = this.castToObject<Button[]>("buttons");
-    const tabs = this.castToObject<ITabs[]>("tabs");
+    const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
     const active = this.getComponentState("activeTab") as number;
+    const isOverlayActive = this.getPropValue("overlay");
+    const showDividerLines = this.getPropValue("showDividerLines");
+    const enableLineAnimations = this.getPropValue("enableLineAnimations");
+
+    const rawSettings = this.getPropValue("slider-settings");
+    const settings = this.transformSliderValues(rawSettings);
+    const speed = settings.autoplaySpeed || 5000;
+    const autoplay = settings.autoplay ?? true;
+    const showArrows = settings.arrows ?? true;
+    const showDots = settings.dots ?? true;
+
+    const titleExist = !!title;
+    const descriptionExist = !!description;
+
+    const activeItem = sliderItems[active];
+    const activeItemHasMedia = !!(activeItem?.media as any)?.url;
+    const noMediaAtAll = sliderItems.every(item => !(item.media as any)?.url);
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} 
+        ${!this.castToString(subtitle) && !titleExist && !descriptionExist && this.decorateCSS("no-header")}`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || buttons.length > 0) && (
+          {(this.castToString(subtitle) || titleExist || descriptionExist || buttons.length > 0) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -258,13 +308,13 @@ class Slider11 extends BaseSlider {
                 </Base.SectionSubTitle>
               )}
 
-              {this.castToString(title) && (
+              {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
                   {title}
                 </Base.SectionTitle>
               )}
 
-              {this.castToString(description) && (
+              {descriptionExist && (
                 <Base.SectionDescription
                   className={this.decorateCSS("description")}
                 >
@@ -288,75 +338,129 @@ class Slider11 extends BaseSlider {
             </Base.VerticalContent>
           )}
 
-          <div className={this.decorateCSS("tabs-layout")}>
-            <div className={this.decorateCSS("tabs-left")}>
-              {tabs.map((tab: ITabs, index: number) => (
-                                 <div
-                   key={index}
-                   className={`${this.decorateCSS("tab-item")} ${
-                     active === index ? this.decorateCSS("active") : ""
-                   }`}
-                   onClick={() => this.setActiveTab(index)}
-                 >
-                   <div
-                     className={this.decorateCSS("tab-background")}
-                     style={{
-                       backgroundImage: `url(${tab.image})`,
-                     }}
-                   />
-                  {this.castToString(tab.title) && (
-                    <Base.H3 className={this.decorateCSS("tab-title")}>
-                      {tab.title}
-                    </Base.H3>
-                  )}
-                  {this.castToString(tab.description) && (
-                    <Base.P className={this.decorateCSS("tab-desc")}>
-                      {tab.description}
-                    </Base.P>
-                  )}
-                  {this.castToString(tab.text) && (
-                    <ComposerLink path={tab.url}>
-                      <div className={this.decorateCSS("link-wrapper")}>
-                        <Base.P className={this.decorateCSS("tab-link")}>
-                          {tab.text}
-                        </Base.P>
-                        <Base.Icon
-                          name={tab.icon}
-                          propsIcon={{
-                            className: this.decorateCSS("icon"),
-                          }}
-                        />
-                      </div>
-                    </ComposerLink>
-                  )}
-
-                  {tabs.length > 1 && (
-                    <div className={this.decorateCSS("progress-container")}>
-                      <div className={this.decorateCSS("progress-track")}>
-                                                 <div
-                           className={`${this.decorateCSS("progress-fill")} ${
-                             active === index ? this.decorateCSS("animate") : ""
-                           }`}
-                         />
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <div className={this.decorateCSS("tabs-right")}>
-              {tabs.map((tab: ITabs, index: number) => (
+          <div className={`${this.decorateCSS("tabs-layout")} ${activeItemHasMedia ? "" : this.decorateCSS("no-media")} ${noMediaAtAll ? this.decorateCSS("all-no-media") : ""}`}>
+            {sliderItems.length > 1 && showArrows && (
+              <>
                 <div
-                  key={index}
-                  className={`${this.decorateCSS("tab-image")} 
-                    ${active === index ? this.decorateCSS("visible") : ""}`}
+                  className={this.decorateCSS("arrow-prev")}
+                  onClick={() => this.prevSlide()}
+                />
+                <div
+                  className={this.decorateCSS("arrow-next")}
+                  onClick={() => this.nextSlide()}
+                />
+              </>
+            )}
+
+
+            <div className={`${this.decorateCSS("tabs-left")} ${(!activeItemHasMedia || noMediaAtAll) ? this.decorateCSS("full-width") : ""}`}>
+              {sliderItems.map((item: ISliderItem, index: number) => {
+                const itemTitleExist = !!item.title;
+                const itemDescExist = !!item.description;
+
+                return (
+                  <div
+                    key={index}
+                    className={`${this.decorateCSS("tab-item")} ${active === index ? this.decorateCSS("active") : ""
+                      }`}
+                    onClick={() => this.setActiveTab(index)}
+                  >
+                    {(item.media as any)?.url && (
+                      <div className={this.decorateCSS("tab-background")}>
+                        <Base.Media
+                          value={item.media}
+                          className={this.decorateCSS("tab-bg-media")}
+                        />
+                        {isOverlayActive && (
+                          <div className={this.decorateCSS("overlay")} />
+                        )}
+                      </div>
+                    )}
+
+                    {itemTitleExist && (
+                      <Base.H5 className={this.decorateCSS("tab-title")}>
+                        {item.title}
+                      </Base.H5>
+                    )}
+                    {itemDescExist && (
+                      <Base.P className={this.decorateCSS("tab-desc")}>
+                        {item.description}
+                      </Base.P>
+                    )}
+                    {item.button && this.castToString(item.button.text) && (
+                      <ComposerLink path={item.button.url}>
+                        <div className={`${this.decorateCSS("link-wrapper")} ${this.decorateCSS("left")}`}>
+                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("tab-button")}>
+                            <Base.P className={this.decorateCSS("tab-link")}>
+                              {item.button.text}
+                            </Base.P>
+                          </Base.Button>
+                          {item.icon && (
+                            <Base.Media
+                              value={item.icon}
+                              className={this.decorateCSS("icon")}
+                            />
+                          )}
+                        </div>
+                      </ComposerLink>
+                    )}
+
+                    {sliderItems.length > 1 && showDividerLines && (
+                      <div className={this.decorateCSS("progress-container")}>
+                        <div className={this.decorateCSS("progress-track")}>
+                          <div
+                            className={`${this.decorateCSS("progress-fill")} ${active === index && autoplay && enableLineAnimations
+                              ? this.decorateCSS("animate")
+                              : ""
+                              }`}
+                            style={{
+                              animationDuration: autoplay ? `${speed}ms` : undefined,
+                              width: !autoplay && active === index ? "100%" : undefined,
+                            }}
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {activeItemHasMedia && !noMediaAtAll && (
+              <div className={this.decorateCSS("tabs-right")}>
+                {sliderItems.map((item: ISliderItem, index: number) => (
+                  <div
+                    key={index}
+                    className={`${this.decorateCSS("tab-image-wrapper")} 
+                      ${active === index ? this.decorateCSS("visible") : ""}`}
+                  >
+                    <Base.Media
+                      value={item.media}
+                      className={this.decorateCSS("tab-image")}
+                    />
+                    {isOverlayActive && (
+                      <div className={this.decorateCSS("overlay")} />
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {sliderItems.length > 1 && showDots && (
+            <div className={this.decorateCSS("dots")}>
+              {sliderItems.map((_, index) => (
+                <div
+                  key={`dot-${index}`}
+                  className={`${this.decorateCSS("dot-item")} ${active === index ? this.decorateCSS("active") : ""
+                    }`}
+                  onClick={() => this.setActiveTab(index)}
                 >
-                  <img src={tab.image} alt={this.castToString(tab.title)} />
+                  <button className={this.decorateCSS("dot-button")} />
                 </div>
               ))}
             </div>
-          </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
