@@ -1,0 +1,98 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    padding: var(--composer-gap-lg) 0;
+    background-color: var(--composer-primary-color);
+
+    .max-content {
+        .card-wrapper {
+            display: flex;
+            flex-direction: row;
+            background-color: var(--composer-html-background);
+            border-radius: var(--composer-border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--composer-box-shadow-lg);
+            transform: none;
+            transition: all 0.3s ease;
+
+            .left-column {
+                flex: 1;
+                padding: var(--composer-gap-xl);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: var(--composer-gap-md);
+
+                .title {
+                    margin: 0;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .description {
+                    margin: 0;
+                    color: var(--composer-font-color-secondary);
+                    line-height: 1.6;
+                }
+
+                .button-container {
+                    margin-top: var(--composer-gap-sm);
+
+                    .button {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: var(--composer-gap-xs);
+                        padding: 0.8rem 1.5rem;
+                        border-radius: var(--composer-border-radius-sm);
+
+                        .button-text {
+                            margin: 0;
+                        }
+
+                        .button-icon {
+                            display: flex;
+                            align-items: center;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+
+            .right-column {
+                flex: 1;
+                overflow: hidden;
+                min-height: 300px;
+                position: relative;
+
+                .image-container {
+                    width: 100%;
+                    height: 100%;
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .card-wrapper {
+                flex-direction: column;
+
+                .left-column {
+                    padding: var(--composer-gap-lg);
+                }
+
+                .right-column {
+                    min-height: 250px;
+                }
+            }
+        }
+    }
+}
