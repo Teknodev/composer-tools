@@ -61,13 +61,18 @@
           }
         }
 
+        .subtitle-badge {
+          color: var(--composer-font-color-primary);
+          background-color: var(--composer-html-background);
+        }
+
         
 
         .button-container {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
 
           .button {
             .button-text {
