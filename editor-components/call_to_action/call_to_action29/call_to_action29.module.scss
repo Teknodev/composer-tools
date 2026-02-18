@@ -10,15 +10,6 @@
 
             &.active {
                 padding: 80px var(--composer-gap-xl);
-
-                @container (max-width: #{$composer-tablet-width}) {
-                    padding: 80px var(--composer-gap-lg);
-                }
-
-                @container (max-width: #{$composer-phone-width}) {
-                    padding: var(--composer-gap-xl) var(--composer-gap-md);
-                }
-
                 background-color: var(--composer-html-background);
                 border-radius: var(--composer-border-radius-lg);
                 color: var(--composer-font-color-primary);
@@ -61,6 +52,7 @@
                         flex-wrap: wrap;
                         gap: var(--composer-gap-sm);
                         justify-content: flex-start;
+                        width: 100%;
 
                         .button {
                             .button-text {
@@ -78,11 +70,21 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card.active {
+        padding: 80px var(--composer-gap-lg);
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
+    .container .max-content .card.active {
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
+    }
+
     .container .max-content .card {
         .content-wrapper {
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: 0;
 
             .left-column,
             .right-column {
