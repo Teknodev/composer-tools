@@ -239,7 +239,7 @@ class HeroSection29 extends BaseHeroSection {
                     validationSchema={this.validationSchema}
                     onSubmit={(data, { resetForm }) => {
                       this.setComponentState("placeholderText", this.castToString(submitText));
-                      this.insertForm("Header 29 - NewsletterForm", data);
+                      this.insertForm("HS9 - NewsletterForm", data);
                       setTimeout(() => {
                         const defaultPlaceholder = this.getPropValue("placeholder");
                         this.setComponentState(
