@@ -15,14 +15,14 @@ class CallToAction23Page extends BaseCallToAction {
       type: "boolean",
       key: "cardBackground",
       displayer: "Colored Background",
-      value: true,
+      value: false,
     });
 
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "sssss",
+      value: "",
       
     });
 
