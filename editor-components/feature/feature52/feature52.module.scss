@@ -158,7 +158,7 @@
               font-size: 2rem;
               color: var(--composer-font-color-primary);
               transform: rotate(0deg);
-              transition: transform var(--composer-transition-duration-fast) var(--composer-transition-easing);
+              transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
               &.toggle-icon-active {
                 color: var(--composer-primary-color);
@@ -169,20 +169,24 @@
         }
 
         .item-description-container {
-          max-height: 0px;
           overflow: hidden;
-          padding: 0px;
-          transition: max-height, padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          padding: 0;
+          display: flex;
+          max-height: 0px;
+          transition:
+            max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
           &.item-description-active {
             max-height: 500px;
-            padding: 0px 0px var(--composer-gap-md) 0px;
+            padding: 0 0 var(--composer-gap-md) 0;
           }
 
           .item-description {
+            padding: 0;
             opacity: 0;
             color: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 25%);
-            text-align: left !important;
+            text-align: left;
             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
           }
 

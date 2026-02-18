@@ -302,12 +302,12 @@ class Feature52 extends BaseFeature {
                       </Base.SectionSubTitle>
                     )}
                     {titleExist && (
-                      <Base.SectionTitle className={`${this.decorateCSS("title")} ${forceLeftClass}`}>
+                      <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.decorateCSS("force-left")}`}>
                         {title}
                       </Base.SectionTitle>
                     )}
                     {descriptionExist && (
-                      <Base.SectionDescription className={`${this.decorateCSS("description")} ${forceLeftClass}`}>
+                      <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.decorateCSS("force-left")}`}>
                         {description}
                       </Base.SectionDescription>
                     )}
