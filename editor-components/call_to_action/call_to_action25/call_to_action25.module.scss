@@ -8,83 +8,49 @@
         .content {
             align-items: center;
             justify-content: center;
-        }
 
-        .subtitle {
-            text-align: center !important;
-            color: var(--composer-font-color-secondary, #fff) !important;
-            width: 100% !important;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            transform: none !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            justify-content: center !important;
+            .subtitle {
+                text-align: center !important;
+                color: var(--composer-font-color-secondary) !important;
+                transform: none !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                justify-content: center !important;
 
-            &::before {
-                display: none !important;
+                &::before {
+                    display: none !important;
+                }
+
+                background: none !important;
+                border: none !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
             }
 
-            background: none !important;
-            border: none !important;
-            padding: 0 !important;
-            border-radius: 0 !important;
-        }
-
-        .title {
-            text-align: center;
-            color: var(--composer-font-color-secondary, #fff);
-        }
-
-        .description {
-            text-align: center;
-            color: var(--composer-font-color-secondary, #fff);
-
-        }
-
-        .card-container {
-            width: 100%;
-            margin-top: 2rem;
-
-            .card {
-                align-items: center;
+            .title {
                 text-align: center;
-
-
-                .card-icon {
-
-                    color: var(--composer-font-color-secondary, #fff);
-                }
-
-                .card-title {
-                    color: var(--composer-font-color-secondary, #fff);
-                }
-
-                .card-description {
-                    color: var(--composer-font-color-secondary, #fff);
-                }
+                color: var(--composer-font-color-secondary);
             }
-        }
 
-        .button-container {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            .description {
+                text-align: center;
+                color: var(--composer-font-color-secondary);
 
-            .button {
+            }
+
+            .button-container {
                 display: flex;
-                align-items: center;
+                gap: var(--composer-gap-xs);
+                flex-wrap: wrap;
+                justify-content: center;
 
+                .button {
 
-                .button-text {
-                    margin: 0px;
-                }
+                    .button-icon {
 
-                .button-icon {
-
-                    display: flex;
-                    align-items: center;
+                        display: flex;
+                        align-items: center;
+                    }
                 }
             }
         }
