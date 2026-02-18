@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   BaseFeature,
   TypeMediaInputValue,
@@ -24,10 +25,13 @@ type PrimaryButton = {
 };
 
 class Feature51 extends BaseFeature {
+  private containerRef = React.createRef<HTMLDivElement>();
+
   constructor(props?: any) {
     super(props, styles);
 
-    this.setComponentState("activeItem", 0);
+    this.setComponentState("activeIndices", [0]);
+    this.setComponentState("isMobile", true);
 
     this.addProp({
       type: "string",
@@ -213,6 +217,71 @@ class Feature51 extends BaseFeature {
     return "Feature 51";
   }
 
+  onComponentDidMount() {
+    this.handleResize();
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  onComponentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+
+  private handleResize = () => {
+    const width = window.innerWidth;
+    const desktopPx = 1140;
+    const isMobile = width <= desktopPx;
+
+    const wasMobile = this.getComponentState("isMobile");
+    this.setComponentState("isMobile", isMobile);
+
+    if (isMobile && !wasMobile) {
+      this.setComponentState("activeIndices", [0]);
+    } else if (!isMobile && wasMobile) {
+      this.setComponentState("activeIndices", this.initializeActiveIndices());
+    }
+  };
+
+  private getColumnCounts(isMobileOverride?: boolean) {
+    const items = this.castToObject<Item[]>("items");
+    const isMobile =
+      isMobileOverride !== undefined
+        ? isMobileOverride
+        : this.getComponentState("isMobile");
+
+    if (isMobile) {
+      return [items.length];
+    }
+
+    const itemCount = this.getPropValue("itemCount") as number;
+    const columnCount = Math.min(itemCount, items.length);
+    const total = items.length;
+    const perColBase = Math.floor(total / columnCount);
+    const rem = total % columnCount;
+    const counts = new Array(columnCount).fill(perColBase);
+    for (let i = 0; i < rem; i++) counts[i]++;
+    return counts;
+  }
+
+  private initializeActiveIndices(isMobileOverride?: boolean) {
+    const columnCounts = this.getColumnCounts(isMobileOverride);
+    return columnCounts.map(() => 0);
+  }
+
+  private handleItemClick = (
+    columnIndex: number,
+    itemIndexInColumn: number,
+  ) => {
+    const activeIndices = this.getComponentState("activeIndices") as number[];
+
+    if (activeIndices[columnIndex] === itemIndexInColumn) {
+      return;
+    }
+
+    const updatedIndices = [...activeIndices];
+    updatedIndices[columnIndex] = itemIndexInColumn;
+    this.setComponentState("activeIndices", updatedIndices);
+  };
+
   render() {
     const sectionSubtitle = this.castToString(this.getPropValue("subtitle"));
     const sectionTitle = this.castToString(this.getPropValue("title"));
@@ -223,31 +292,41 @@ class Feature51 extends BaseFeature {
       sectionSubtitle || sectionTitle || sectionDescription;
 
     const items = this.castToObject<Item[]>("items");
-    console.log(items);
     const itemCountPerRow = this.getPropValue("itemCount");
-    const pcGridCount = Math.min(4, itemCountPerRow);
+
+    const isMobile = this.getComponentState("isMobile");
+
+    const pcGridCount = isMobile ? 1 : Math.min(4, itemCountPerRow);
 
     const buttons = this.castToObject<PrimaryButton[]>("buttons");
     const buttonsExist = buttons.some(
       (button) => !!this.castToString(button.text),
     );
 
-    const isActiveItem = (itemIndex: number) =>
-      this.getComponentState("activeItem") === itemIndex;
-    const changeActiveItem = (itemIndex: number) => {
-      isActiveItem(itemIndex)
-        ? this.setComponentState("activeItem", null)
-        : this.setComponentState("activeItem", itemIndex);
-    };
+    let activeIndices = this.getComponentState("activeIndices") as number[];
+    const counts = this.getColumnCounts(isMobile);
 
-    const gridCount = {
-      pc: pcGridCount,
-      tablet: 1,
-      phone: 1,
-    };
+    if (!activeIndices || activeIndices.length !== counts.length) {
+      activeIndices = this.initializeActiveIndices(isMobile);
+      this.setComponentState("activeIndices", activeIndices);
+    }
+
+    const columns: Item[][] = [];
+    if (isMobile) {
+      columns.push(items);
+    } else {
+      let offset = 0;
+      for (const count of counts) {
+        columns.push(items.slice(offset, offset + count));
+        offset += count;
+      }
+    }
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={this.decorateCSS("container")}
+        ref={this.containerRef}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {isSectionHeadingExist && (
             <Base.VerticalContent
@@ -277,54 +356,67 @@ class Feature51 extends BaseFeature {
 
           {items?.length > 0 && (
             <Base.ListGrid
-              gridCount={gridCount}
               className={this.decorateCSS("items-container")}
+              gridCount={{ pc: pcGridCount, tablet: 1, phone: 1 }}
             >
-              {items.map((item, index) => {
-                const itemTitle = this.castToString(item.itemTitle);
-                const itemDescription = this.castToString(item.itemDescription);
-                const itemIcon = item.itemIcon;
+              {columns.map((columnItems, colIdx) => (
+                <div key={colIdx} className={this.decorateCSS("column")}>
+                  {columnItems.map((item, idxInCol) => {
+                    const globalIndex =
+                      columns
+                        .slice(0, colIdx)
+                        .reduce((sum, col) => sum + col.length, 0) + idxInCol;
+                    const isActive = activeIndices[colIdx] === idxInCol;
+                    const itemTitle = this.castToString(item.itemTitle);
+                    const itemDescription = this.castToString(
+                      item.itemDescription,
+                    );
+                    const itemIcon = item.itemIcon;
 
-                return (
-                  <Base.VerticalContent
-                    className={`${this.decorateCSS("item")} 
-                    ${isActiveItem(index) ? this.decorateCSS("active") : ""} 
-                    ${this.getPropValue("withLines") ? this.decorateCSS("with-lines") : ""}
-                    ${pcGridCount === 1 ? this.decorateCSS("one-column") : ""}
-                    `}
-                    key={index}
-                  >
-                    <Base.Row
-                      onClick={() => changeActiveItem(index)}
-                      className={`${this.decorateCSS("item-header")}`}
-                    >
-                      {itemTitle && (
-                        <Base.H4 className={this.decorateCSS("item-title")}>
-                          {itemTitle}
-                        </Base.H4>
-                      )}
-                      {itemIcon && (
-                        <Base.Media
-                          value={itemIcon}
-                          className={this.decorateCSS("item-icon")}
-                        />
-                      )}
-                    </Base.Row>
-
-                    {itemDescription && (
-                      <div
-                        className={this.decorateCSS("item-description-wrapper")}
+                    return (
+                      <Base.VerticalContent
+                        className={`${this.decorateCSS("item")} 
+                        ${isActive ? this.decorateCSS("active") : ""} 
+                        ${this.getPropValue("withLines") ? this.decorateCSS("with-lines") : ""}
+                        ${pcGridCount === 1 ? this.decorateCSS("one-column") : ""}
+                        `}
+                        key={globalIndex}
                       >
-                        <Base.P
-                          className={this.decorateCSS("item-description")}
+                        <Base.Row
+                          onClick={() => this.handleItemClick(colIdx, idxInCol)}
+                          className={`${this.decorateCSS("item-header")}`}
                         >
-                          {itemDescription}
-                        </Base.P>
-                      </div>
-                    )}
-                  </Base.VerticalContent>
-                );
-              })}
+                          {itemTitle && (
+                            <Base.H4 className={this.decorateCSS("item-title")}>
+                              {itemTitle}
+                            </Base.H4>
+                          )}
+                          {itemIcon && (
+                            <Base.Media
+                              value={itemIcon}
+                              className={this.decorateCSS("item-icon")}
+                            />
+                          )}
+                        </Base.Row>
+
+                        {itemDescription && (
+                          <div
+                            className={this.decorateCSS(
+                              "item-description-wrapper",
+                            )}
+                          >
+                            <Base.P
+                              className={this.decorateCSS("item-description")}
+                            >
+                              {itemDescription}
+                            </Base.P>
+                          </div>
+                        )}
+                      </Base.VerticalContent>
+                    );
+                  })}
+                </div>
+              ))}
             </Base.ListGrid>
           )}
 
