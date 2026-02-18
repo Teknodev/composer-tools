@@ -119,13 +119,13 @@
       }
     }
 
-    .section-buttons-wrapper {
+    .buttons-wrapper {
       @extend .buttons-wrapper;
       margin-inline: auto;
 
-      .section-button {
-        .section-button-icon,
-        .section-button-text {
+      .button {
+        .button-icon,
+        .button-text {
           content: "";
         }
       }
