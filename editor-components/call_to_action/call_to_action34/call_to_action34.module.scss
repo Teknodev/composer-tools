@@ -13,7 +13,7 @@
             overflow: hidden;
             box-shadow: var(--composer-box-shadow-lg);
             transform: none;
-            transition: all 0.3s ease;
+            // transition: all 0.3s ease;
 
             .left-column {
                 flex: 1;
@@ -31,7 +31,7 @@
                 .description {
                     margin: 0;
                     color: var(--composer-font-color-secondary);
-                    line-height: 1.6;
+                    // line-height: 1.6;
                 }
 
                 .button-container {
@@ -41,7 +41,7 @@
                         display: inline-flex;
                         align-items: center;
                         gap: var(--composer-gap-xs);
-                        padding: 0.8rem 1.5rem;
+                        // padding: 0.8rem 1.5rem;
                         border-radius: var(--composer-border-radius-sm);
 
                         .button-text {
@@ -51,7 +51,7 @@
                         .button-icon {
                             display: flex;
                             align-items: center;
-                            font-size: 1.2rem;
+                            // font-size: 1.2rem;
                         }
                     }
                 }
@@ -60,7 +60,7 @@
             .right-column {
                 flex: 1;
                 overflow: hidden;
-                min-height: 300px;
+                // min-height: 300px;
                 position: relative;
 
                 .image-container {
@@ -89,9 +89,9 @@
                     padding: var(--composer-gap-lg);
                 }
 
-                .right-column {
-                    min-height: 250px;
-                }
+                // .right-column {
+                //     // min-height: 250px;
+                // }
             }
         }
     }
