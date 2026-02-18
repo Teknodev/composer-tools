@@ -54,13 +54,13 @@ class CallToAction19 extends BaseCallToAction {
             type: "string",
             key: "ratingValue",
             displayer: "Rating Value",
-            value: "4.8/5"
+            value: "4.8/5 ",
         });
         this.addProp({
             type: "string",
             key: "ratingText",
             displayer: "Rating Text",
-            value: "from 300+ Reviews"
+            value: "from 300+ Reviews ",
         });
         this.addProp({
             type: "string",

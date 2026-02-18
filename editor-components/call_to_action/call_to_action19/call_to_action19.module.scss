@@ -34,7 +34,6 @@
                     flex-direction: row;
                     justify-content: flex-start !important;
                     gap: var(--composer-gap-md);
-                    flex-wrap: wrap;
                 }
 
                 .button-group {
@@ -42,7 +41,7 @@
                     flex-wrap: wrap;
                     align-items: center;
                     gap: var(--composer-gap-sm);
-
+                    flex-shrink: 0 !important;
                     .button {
 
                         .button-icon,
@@ -87,7 +86,7 @@
                     align-items: center;
                     justify-items: start;
                     grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
-                    gap: var(--composer-gap-sm);
+                   
                 }
 
                 .card {
