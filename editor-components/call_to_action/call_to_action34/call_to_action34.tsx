@@ -13,7 +13,7 @@ class CallToAction34Page extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Start your journey today with our theme",
+            value: "TRY IMPREZA",
         });
 
         this.addProp({
@@ -31,7 +31,7 @@ class CallToAction34Page extends BaseCallToAction {
             displayer: "Image",
             value: {
                 type: "image",
-                url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000",
+                url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000"
             },
         });
     }
