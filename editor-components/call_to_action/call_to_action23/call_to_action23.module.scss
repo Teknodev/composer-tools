@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: var(--composer-gap-xl);
   width: 100%;
-  box-sizing: border-box;
+
   background: linear-gradient(to bottom,
       var(--composer-html-background) 0%,
       var(--composer-html-background) 50%,
@@ -15,17 +15,13 @@
   .max-content {
     width: 100%;
     max-width: 100%;
-    box-sizing: border-box;
   }
 
   .content {
     width: 100%;
     padding: 80px 50px;
     border-radius: var(--composer-border-radius-md);
-    overflow-x: hidden;
-    box-sizing: border-box;
-    text-align: left !important;
-
+    text-align: left !important; 
 
     .content-row {
       display: flex;
@@ -33,92 +29,79 @@
       flex-wrap: nowrap;
       align-items: center;
       justify-content: space-between;
-      gap: var(--composer-gap-lg);
-      width: 100%;
-    }
-
-
-  
-    .content-left {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: var(--composer-gap-xl);
       flex: 1;
-      min-width: 0;
-      max-width: 30%;
 
-      .content-text {
-        min-width: 0;
-        overflow-wrap: break-word;
-        word-break: break-word;
+      .content-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--composer-gap-xl);
+        flex: 0.6;
 
-        .subtitle,
-        .title,
-        .description {
-          color: var(--composer-font-color-primary) !important;
-          text-align: left !important;
-          overflow-wrap: break-word;
-          word-break: break-word;
+        &.no-buttons {
+          flex: 1;
+          width: 100%;
         }
 
+        .content-text {
+          flex: 1;
+          min-width: 0;
 
-        .subtitle {
-          text-align: left !important;
-          margin-left: 0 !important;
-          margin-right: auto !important;
-          width: fit-content !important;
-          justify-content: flex-start !important;
-          transform: none !important;
+          .subtitle,
+          .title,
+          .description {
+            color: var(--composer-font-color-primary) !important;
+            text-align: left !important;
+          }
 
-          &::before,
-          &::after {
-            display: none !important;
+
+          .subtitle {
+            margin-left: 0 !important;
+            width: fit-content !important;
+            transform: none !important;
+            &::before,
+            &::after {
+              display: none !important;
+            }
+          }
+        }
+
+        .pricing {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start !important;
+          gap: var(--composer-gap-sm);
+          flex: 1;
+          min-width: 0;
+          
+          .price-label {
+            color: var(--composer-font-color-primary) !important;
+            text-align: left !important;
+          }
+
+          .price-value {
+            color: var(--composer-primary-color) !important;
+            text-align: left !important;
           }
         }
       }
 
-      .pricing {
+      .button-wrap {
         display: flex;
-        flex-direction: column;
-        align-items: flex-start !important;
+        flex-wrap: wrap;
+        align-items: center;
         gap: var(--composer-gap-sm);
-        flex-shrink: 0;
-        text-align: left !important;
+        flex: 0.3;
 
-        .price-label,
-        .price-value {
+        .button .button-text {
           margin: 0;
         }
-
-        .price-label {
-          color: var(--composer-font-color-primary) !important;
-          text-align: left !important;
-        }
-
-        .price-value {
-          color: var(--composer-primary-color) !important;
-        }
-      }
-    }
-
-    .button-wrap {
-      flex-shrink: 0;
-      max-width: 30%;
-      min-width: 0;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--composer-gap-sm);
-
-      .button .button-text {
-        margin: 0;
       }
     }
   }
 
 
-  
+
   &.no-card-style {
     background: linear-gradient(to bottom,
         var(--composer-html-background) 0%,
@@ -131,33 +114,18 @@
     }
 
     .content {
-      display: flex;
-      align-items: center;
-      padding: 80px 50px;
       width: 100%;
-      overflow-x: hidden;
-      box-sizing: border-box;
-      background-color: var(--composer-font-color-primary) !important; 
-      border-radius: var(--composer-border-radius-md);
-      text-align: left !important;
-
+      background-color: var(--composer-font-color-primary) !important;
       .content-row .content-left .content-text {
         .subtitle,
         .title,
         .description {
           color: var(--composer-html-background) !important;
         }
-        .title {
-          align-items: center !important;
-        }
       }
-
       .content-row .content-left .pricing {
         .price-label {
           color: var(--composer-html-background) !important;
-        }
-        .price-value {
-          color: var(--composer-primary-color) !important;
         }
       }
     }
@@ -180,10 +148,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .max-content {
-      padding: 50px 20px;
-    }
-
     .content {
       padding: 50px 20px;
 
@@ -194,21 +158,12 @@
 
         .content-left {
           flex-direction: column;
-          align-items: center !important;
-          gap: var(--composer-gap-md);
-          max-width: 100%;
-          width: 100%;
 
           .content-text {
-            align-items: center !important;
-
             .subtitle {
-              text-align: center !important;
               margin-left: auto !important;
-              margin-right: auto !important;
               width: fit-content !important;
-              transform: none !important;
-              justify-content: center !important;
+
               &::before,
               &::after {
                 transform: none !important;
@@ -216,12 +171,7 @@
             }
 
             .title {
-              white-space: normal;
               text-align: center !important;
-              align-items: center !important;
-              justify-content: center !important;
-              margin-left: auto !important;
-              margin-right: auto !important;
             }
 
             .description {
@@ -229,13 +179,8 @@
             }
           }
 
-          .pricing {
-            align-items: center;
-
-            .price-label,
-            .price-value {
-              text-align: center;
-            }
+          .price-value {
+            text-align: center;
           }
         }
 
@@ -246,63 +191,8 @@
     }
 
     &.no-card-style {
-      .max-content {
-        padding: 0;
-      }
-
       .content {
         padding: 50px 20px;
-
-        .content-row {
-          flex-direction: column;
-          align-items: center;
-          gap: var(--composer-gap-xl);
-
-          .content-left {
-            flex-direction: column;
-            align-items: center;
-            gap: var(--composer-gap-xl);
-            max-width: 100%;
-            width: 100%;
-
-            .content-text {
-              align-items: center !important;
-
-              .subtitle {
-                text-align: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-                width: fit-content !important;
-              }
-
-              .title {
-                white-space: normal;
-                text-align: center !important;
-                align-items: center !important;
-                justify-content: center !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
-              }
-
-              .description {
-                text-align: center !important;
-              }
-            }
-
-            .pricing {
-              align-items: center;
-
-              .price-label,
-              .price-value {
-                text-align: center;
-              }
-            }
-          }
-
-          .button-wrap {
-            justify-content: center;
-          }
-        }
       }
     }
   }
