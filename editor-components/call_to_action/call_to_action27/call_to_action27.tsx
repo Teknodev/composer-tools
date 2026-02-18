@@ -13,14 +13,14 @@ class CallToAction27 extends BaseCallToAction {
     this.addProp({
       type: "boolean",
       key: "coloredBackground",
-      displayer: "Colored Background",
+      displayer: "Card Background",
       value: true,
     });
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "safas",
     });
 
     this.addProp({
@@ -43,6 +43,7 @@ class CallToAction27 extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
+
     });
   }
 

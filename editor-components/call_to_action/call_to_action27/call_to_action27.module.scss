@@ -22,44 +22,48 @@
 
   .header {
     width: 100%;
-    align-items: center;
 
     .title {
       text-align: center !important;
     }
 
     .subtitle {
-      margin-left: 0;
-      text-align: center !important;
+      width: fit-content !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+
+      &::before,
+      &::after {
+        display: none !important;
+        transform: none !important;
+      }
     }
   }
 
   .description-button-row {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    gap: var(--composer-gap-md);
     flex-wrap: wrap;
     width: 100%;
-    > * {
+    align-items: center !important;
+
+    >* {
       margin-bottom: 0 !important;
       margin-top: 0 !important;
     }
 
     .description {
       flex: 1 1 50%;
-      min-width: 50%;
-      text-align: left !important;
+      min-width: 50% !important;
     }
   }
 
   .button-group {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     gap: var(--composer-gap-sm);
-    justify-content: flex-end;
-    > * {
+
+    >* {
       margin-bottom: 0 !important;
       margin-top: 0 !important;
     }
@@ -67,6 +71,7 @@
     .description-button-row & {
       flex: 1 1 50%;
       max-width: 50%;
+
     }
 
     .button {
@@ -87,14 +92,9 @@
     .content .left-section .header {
       .subtitle {
         color: var(--composer-html-background);
-        padding: 0 !important;
-        background: transparent !important;
         transform: none !important;
-        border-radius: 0 !important;
-        &::before {
-          display: none !important;
-        }
       }
+
       .title {
         color: var(--composer-html-background);
       }
@@ -102,6 +102,8 @@
 
     .description-button-row .description {
       color: var(--composer-html-background);
+      text-align: left !important;
+      margin: 0 !important;
     }
   }
 }
@@ -111,9 +113,11 @@
     &.has-background .max-content {
       padding: 80px 40px;
     }
+
     &:not(.has-background) .content {
       padding: 80px 40px;
     }
+
     .max-content .content {
       gap: var(--composer-gap-xl);
     }
@@ -123,38 +127,24 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: 50px 20px;
+
     &.has-background .max-content {
       padding: 50px 20px;
     }
+
     &:not(.has-background) .content {
       padding: 50px 20px;
     }
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-lg);
-    }
-    .left-section {
-      align-items: center !important;
-    }
-    .header {
-      align-items: center !important;
-      .subtitle,
-      .title {
-        text-align: center !important;
-      }
-    }
+
     .description-button-row {
       flex-direction: column;
-      align-items: center !important;
+
       .description {
-        text-align: center !important;
-        min-width: 0;
+        min-width: 50% !important;
       }
     }
+
     .button-group {
-      gap: var(--composer-gap-sm);
-      justify-content: center !important;
       max-width: 100% !important;
       flex: 0 1 auto !important;
     }
