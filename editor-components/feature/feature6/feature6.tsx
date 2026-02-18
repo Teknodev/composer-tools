@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature6.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,7 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   overlay: boolean;
   link: string;
 };
@@ -15,6 +15,13 @@ type Card = {
 class Feature6 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -40,19 +47,24 @@ class Feature6 extends BaseFeature {
     this.addProp({
       type: "array",
       key: "cards",
-      displayer: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "card",
+          displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668561f10181a1002c33af0e?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668561f10181a1002c33af0e?alt=media",
+              },
             },
             {
               type: "string",
@@ -63,7 +75,7 @@ class Feature6 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -71,14 +83,19 @@ class Feature6 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "card",
+          displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562190181a1002c33af16?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562190181a1002c33af16?alt=media",
+              },
             },
             {
               type: "string",
@@ -89,7 +106,7 @@ class Feature6 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -97,14 +114,19 @@ class Feature6 extends BaseFeature {
         {
           type: "object",
           key: "card",
-          displayer: "card",
+          displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562330181a1002c33af23?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/668562330181a1002c33af23?alt=media",
+              },
             },
             {
               type: "string",
@@ -115,7 +137,7 @@ class Feature6 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -125,7 +147,7 @@ class Feature6 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 3,
       max: 4,
     });
@@ -153,6 +175,7 @@ class Feature6 extends BaseFeature {
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const descExist = this.castToString(this.getPropValue("description"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     const overlay: boolean = this.getPropValue("overlay");
 
@@ -160,8 +183,13 @@ class Feature6 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {(titleExist || descExist) && (
+            {(titleExist || descExist || subtitleExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("header-subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
                 {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("header-title")}>
                     {this.getPropValue("title")}
@@ -176,7 +204,7 @@ class Feature6 extends BaseFeature {
             )}
 
             {cards?.length > 0 && (
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("cards-container")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("cards-container")}>
                 {cards.map((card: Card, index: number) => {
                   const titleExist = !!this.castToString(card.title);
                   const imageExist = !!card.image;
@@ -192,22 +220,21 @@ class Feature6 extends BaseFeature {
                     >
                       <div className={this.decorateCSS("listed")}>
                         {!!card.image && (
-                          <img
+                          <Base.Media
+                            value={card.image}
                             className={this.decorateCSS("image")}
-                            src={card.image}
-                            alt={"item" + index}
                           />
                         )}
                         <div
                           className={`
                             ${this.decorateCSS("image-shadow")}
-                            ${overlay ? this.decorateCSS("overlay") : ""}
+                            ${overlay && card.image ? this.decorateCSS("overlay") : ""}
                           `}
                         >
                           {titleExist && (
-                            <Base.H3 className={this.decorateCSS("title")}>
+                            <Base.H5 className={this.decorateCSS("title")}>
                               {card.title}
-                            </Base.H3>
+                            </Base.H5>
                           )}
                         </div>
                       </div>
@@ -224,7 +251,7 @@ class Feature6 extends BaseFeature {
                   return (
                     <ComposerLink path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                        {item.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
                   );

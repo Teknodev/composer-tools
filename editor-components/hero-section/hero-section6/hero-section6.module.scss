@@ -1,0 +1,339 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+@mixin textEllipsis($line, $important: "") {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line#{$important};
+}
+
+.container {
+  background-color: var(--composer-html-background);
+  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
+
+  &.center-alignment {
+    .max-content {
+      .left-content {
+        &.without-images {
+          align-items: center;
+
+          .logo-container {
+            justify-content: center;
+          }
+
+          .subtitle {
+            text-align: center;
+          }
+
+          .title-container {
+            .title {
+              text-align: center;
+            }
+
+            .title2 {
+              text-align: center;
+            }
+          }
+
+          .description {
+            text-align: center;
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
+
+        .subtitle {
+          content: "";
+        }
+      }
+    }
+  }
+
+  .max-content {
+    width: 100%;
+    display: flex;
+    gap: var(--composer-gap-md);
+    justify-content: space-between;
+    .left-content,
+    .right-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-content {
+      word-wrap: break-word;
+      align-items: baseline;
+      padding-top: var(--composer-gap-md);
+      .logo-container {
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: baseline;
+        margin-bottom: var(--composer-gap-sm);
+        .logo {
+          &.logo-icon {
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
+          }
+
+          &.logo-image {
+            aspect-ratio: 3/1;
+            object-fit: contain;
+            width: 150px;
+            height: 50px;
+          }
+        }
+      }
+      .subtitle {
+        text-align: left;
+        margin-left: 0;
+      }
+      
+      &.without-images {
+        .subtitle {
+          margin: inherit;
+        }
+      }
+      .title-container {
+        .title {
+          @include textEllipsis(2);
+          font-size: 8rem;
+          color: var(--composer-font-color-primary);
+          line-height: 1.1;
+          font-weight: bold;
+          opacity: 0;
+          animation: fade-in 1s ease-in-out 0.7s forwards;
+          text-align: left;
+          &.noanimation{
+            opacity: 1 ;
+            animation: none ;
+          }
+        }
+
+        .title2 {
+          @include textEllipsis(2);
+          font-weight: 400;
+          line-height: 1.1;
+          font-size: 8rem;
+          color: transparent;
+          -webkit-text-stroke: 1px var(--composer-font-color-primary);
+          opacity: 0;
+          animation: fade-in 1s ease-in-out 0.7s forwards;
+          text-align: left;
+          &.noanimation{
+            opacity: 1 ;
+            animation: none ;
+          }
+        }
+      }
+      .description{
+        @include textEllipsis(3);
+        color: var(--composer-font-color-primary);
+        line-height: 1;
+        opacity: 0;
+        animation: fade-in 1s ease-in-out 1s forwards;
+        text-align: left;
+        &.noanimation{
+          opacity: 1 ;
+          animation: none ;
+        }
+      }
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        gap: var(--composer-gap-md);
+        flex-wrap: wrap;
+        z-index: 1;
+
+        .button{
+          opacity: 0;
+          animation: fade-in 1s ease-in-out 1.2s forwards;
+          .button-text{
+            content: "";
+          }
+          &.noanimation{
+            opacity: 1 ;
+            animation: none ;
+          }
+        }
+      }
+    }
+    .right-content {
+      position: relative;
+      align-items: center;
+      word-wrap: break-word;
+
+      .image1-wrapper {
+        position: relative;
+        max-width: 100%;
+
+        .image1 {
+          position: relative;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
+          max-width: 100%;
+          height: 100%;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-color: var(--composer-overlay-color);
+          border-radius: var(--composer-border-radius-sm);
+        }
+      }
+      .image2{
+        position: absolute;
+        object-fit: cover;
+        border-radius: var(--composer-border-radius-sm);
+        z-index: 1;
+        max-width: 100%;
+        max-height: 100%;
+        scale: 0.8;
+        opacity: 0;
+        animation: fade-in 1s ease-in-out 1.2s forwards, scaleUp 0.5s ease-in-out 1.2s forwards;
+        &.without-image1{
+          content: "";
+        }
+        &.noanimation{
+          opacity: 1 ;
+          scale: 1 ;
+          animation: none ;
+        }
+      }
+    }
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleUp {
+  to {
+    scale: 1;
+  }
+}
+
+@mixin textFull {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  word-break: break-word;
+}
+@container (max-width: #{$composer-tablet-width}) {
+  .container{
+    padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
+    .max-content {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: relative;
+      .left-content {
+        align-self: center;
+        max-width: 100%;
+        .title-container {
+          @include textFull;
+          .title,
+          .title2 {
+            font-size: 4rem !important;
+            line-height: 1.2 !important;
+            @include textFull;
+          }
+        }
+        .description {
+          @include textFull;
+        }
+      }
+      .right-content {
+        align-items: center;
+        word-wrap: break-word;
+        position: relative;
+        width: 100%;
+        min-height: 200px;
+        .image1-wrapper {
+          .image1 {
+            border-radius: var(--composer-border-radius-sm);
+            max-width: 100%;
+          }
+        }
+        .image2 {
+          animation: fade-in 1s ease-in-out 0.5s forwards;
+          max-width: 100%;
+          position: absolute;
+          &.without-image1{
+            position: static;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
+    .max-content {
+      max-height: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-md);
+      .left-content {
+        min-width: fit-content;
+
+        .title,
+        .title2 {
+          font-size: 3rem !important;
+        }
+        .title {
+          line-height: 40px !important;
+        }
+        .description {
+          line-height: 20px !important;
+          z-index: 2;
+        }
+        .button-container {
+          position: relative;
+          z-index: 2;
+        }
+      }
+      .right-content {
+        position: relative;
+
+        .image1-wrapper {
+          .image1 {
+            width: 100%;
+            max-width: 100%;
+            right: -40%;
+          }
+        }
+        .image2 {
+          animation: fade-in 1s ease-in-out 0.5s forwards;
+          max-width: 100%;
+          scale: 1;
+        }
+      }
+    }
+  }
+}

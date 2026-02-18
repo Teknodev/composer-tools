@@ -1,17 +1,24 @@
-import { LogoClouds } from "../../EditorComponent";
+import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp9.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
 type TTextImageItem = {
-  text: string;
-  image: string;
+  text: React.JSX.Element;
+  image: TypeMediaInputValue;
   link: string;
 };
 
 class LogoComp9Page extends LogoClouds {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "rotate",
+      displayer: "Rotate Animation",
+      value: true,
+    });
 
     this.addProp({
       type: "array",
@@ -30,15 +37,21 @@ class LogoComp9Page extends LogoClouds {
               value: "Game Design",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              displayer: "Media",
+              additionalParams: { 
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -55,15 +68,21 @@ class LogoComp9Page extends LogoClouds {
               value: "Art Direction",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              displayer: "Media",
+              additionalParams: { 
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -80,15 +99,21 @@ class LogoComp9Page extends LogoClouds {
               value: "Multiplatform development",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              displayer: "Media",
+              additionalParams: { 
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -105,15 +130,21 @@ class LogoComp9Page extends LogoClouds {
               value: "Game development",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              displayer: "Media",
+              additionalParams: { 
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6890c667d3784c002c8238f3?alt=media&timestamp=1754318447679",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "Link",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -129,8 +160,11 @@ class LogoComp9Page extends LogoClouds {
   render() {
     const originalItemsArray = this.castToObject<TTextImageItem[]>("text-image-items");
     let lineOfItems = [];
-    for (let x = 0; x < Math.round(14 / originalItemsArray.length); x++) {
-      lineOfItems.push(...originalItemsArray);
+    
+    if (originalItemsArray.length > 0) {
+      for (let x = 0; x < Math.round(14 / originalItemsArray.length); x++) {
+        lineOfItems.push(...originalItemsArray);
+      }
     }
     const items = [...lineOfItems, ...lineOfItems];
 
@@ -148,16 +182,16 @@ class LogoComp9Page extends LogoClouds {
               {items.map((item: TTextImageItem, index: number) => (
                 <ComposerLink path={item.link}>
                   <div className={this.decorateCSS("item-child")}>
-                   {item.text && <span className={this.decorateCSS("text")}>
-                      {item.text}
-                    </span>}
-                    {item.image && <div className={this.decorateCSS("image")}>
-                      <img 
-                        src={item.image}
-                        alt={item.text}
-                        className={this.decorateCSS("image-element")}
-                      />
-                    </div>}
+                   {this.castToString(item.text) && 
+                      <Base.H1 className={this.decorateCSS("text")}>
+                        {item.text}
+                      </Base.H1>
+                    }
+                    {item.image && 
+                      <div className={`${this.decorateCSS("image")} ${this.getPropValue("rotate") ? this.decorateCSS("rotate") : ""}`}>
+                        <Base.Media value={item.image} className={this.decorateCSS("image-element")} />
+                      </div>
+                    }
                   </div>
                 </ComposerLink>
               ))}

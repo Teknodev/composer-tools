@@ -1,0 +1,329 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+@mixin cardStyle {
+  top: unset;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: max-content !important;
+  max-width: unset;
+  right: 0;
+  transform: unset;
+
+  .description {
+    display: none !important;
+  }
+}
+
+@mixin textEllipsis($line, $important: "") {
+  * {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: $line#{$important};
+  }
+}
+
+.container {
+  padding: 0px var(--composer-gap-xl) 80px var(--composer-gap-xl) !important;
+  .max-content {
+    .slider {
+      height: 43vw;
+      overflow: hidden;
+
+      .slider-item-container {
+        height: 40vw;
+      }
+
+      div {
+        height: 100%;
+      }
+      
+      .slider-item {
+        .slider-item-container {
+          position: relative;
+          overflow: hidden;
+          border-bottom-left-radius: var(--composer-border-radius-lg);
+          border-bottom-right-radius: var(--composer-border-radius-lg);
+
+          .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            
+            video {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            z-index: 1;
+          }
+        }
+      }
+      .content-max-width {
+        position: relative;
+        z-index: 2;
+        .card {
+          height: auto !important;
+          bottom: var(--composer-gap-xl);
+          width: 30%;
+          position: absolute;
+          right: 100px;
+          top: 50%;
+          transform: translateY(-50%);
+          max-width: 40%;
+          padding: var(--composer-gap-lg);
+          max-height: fit-content;
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-html-background);
+            z-index: -1;
+            top: 0;
+            left: 0;
+            border-radius: var(--composer-border-radius-md);
+          }
+
+          .logo {
+            margin-bottom: var(--composer-gap-sm);
+            font-size: 3rem;
+            color: var(--composer-font-color-primary);
+            aspect-ratio: 3/1;
+            object-fit: cover;
+            max-width: 150px;
+          }
+
+          .category {
+            border-radius: var(--composer-border-radius-md);
+            background-color: var(--composer-primary-color);
+            color: var(--composer-font-color-secondary);
+            position: absolute;
+            top: -2.25rem;
+            left: 1.2rem;
+            padding: var(--composer-gap-sm);
+            text-transform: uppercase;
+            margin-left: 0;
+            max-width: 90%;
+            width: fit-content;
+            @include textEllipsis(1);
+          }
+          .title {
+            max-width: 100%;
+            margin-bottom: var(--composer-gap-xs);
+            color: var(--composer-font-color-primary);
+            @include textEllipsis(3);
+            text-align: left;
+          }
+          .description {
+            width: 100%;
+            color: var(--composer-font-color-primary);
+            max-width: 100%;
+            @include textEllipsis(5);
+            text-align: left;
+          }
+          .date-author {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+            color: var(--composer-font-color-primary);
+            .author {
+              display: flex;
+              gap: var(--composer-gap-xs);
+              max-width: 50%;
+              width: fit-content;
+              margin: 0;
+              font-size: 0.75rem;
+            }
+            .dot::before {
+              content: "•";
+              font-size: 1.25rem;
+            }
+            .date {
+              text-transform: uppercase;
+              max-width: 50%;
+              width: fit-content;
+              margin: 0;
+              font-size: 0.75rem;
+            }
+          }
+          .button-container {
+            color: var(--composer-font-color-primary);
+            .button {
+              .button-text, .button-icon{
+                content: "";
+              }
+              .icon {
+                transition: all 0.2s linear;
+              }
+
+              &:hover {
+                .icon {
+                  margin-left: var(--composer-gap-xs);
+                }
+              }
+            }
+          }
+        }
+      }
+      .bottom-card {
+        display: none;
+      }
+    }
+  }
+
+  .customDots {
+    bottom: -5px;
+    z-index: 20;
+
+    li {
+      button:before {
+        color: var(--composer-font-color-primary);
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+
+.dots {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  z-index: 100;
+  pointer-events: auto;
+
+  li {
+    width: 20px !important;
+    height: 40px !important;
+  }
+
+    .dot {
+      width: 12px !important;
+      height: 12px !important;
+      border-radius: 50%;
+      background: var(--composer-font-color-primary);
+      opacity: 0.3;
+      margin: 0 10px;
+      transition: opacity 0.2s, box-shadow 0.2s;
+      display: inline-block;
+      box-shadow: var(--box-shadow-active);
+      cursor: pointer;
+    }
+}
+
+
+.activeDot {
+  opacity: 1 !important;
+}
+
+
+
+@container (max-width : #{$composer-tablet-width}) {
+  .container {
+    padding: 0px var(--composer-gap-lg) 80px var(--composer-gap-lg) !important;
+    .max-content {
+      .slider {
+        .content-max-width {
+          .card {
+            right: 40px;
+            max-width: 50%;
+            width: 35%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width : #{$composer-phone-width}) {
+  .container {
+    padding: 0px var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) !important;
+    .max-content {
+      .slider {
+        width: 100%;
+        height: auto;
+
+        .slider-item-container {
+          display: flex !important;
+          flex-direction: column !important;
+          height: auto !important;
+          background-color: var(--composer-html-background) !important;
+          position: relative;
+          
+          .background-image {
+            position: static !important;
+            width: 100%;
+            height: 35vw;
+            object-fit: cover;
+            flex-shrink: 0;
+            order: -1;
+            border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md);
+            
+            video {
+              width: 100%;
+              height: 35vw;
+              object-fit: cover;
+            }
+          }
+
+          .overlay {
+            display: none;
+          }
+        }
+
+        .content-max-width {
+          position: static !important;
+          width: 100% !important;
+          order: 1;
+          
+          .card {
+            position: static !important;
+            gap: var(--composer-gap-sm);
+            z-index: 1;
+            padding: var(--composer-gap-sm) var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
+            width: 100% !important;
+            max-width: 100% !important;
+            transform: unset !important;
+            border-radius: var(--composer-border-radius-md) !important;
+            
+            &::before {
+              display: none !important;
+            }
+          }
+          .category {
+            position: static !important;
+            bottom: var(--composer-gap-sm) !important;
+            left: unset !important;
+            top: unset !important;
+          }
+          .title {
+            @include textEllipsis(2, !important);
+          }
+        }
+      }
+    }
+  }
+}
+

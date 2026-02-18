@@ -1,0 +1,333 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    height: 100vh;
+    display: flex;
+    gap: var(--composer-gap-md);
+
+    .left {
+      flex: 1;
+      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      border-radius: var(--composer-border-radius-md);
+
+      .item {
+        align-items: flex-start;
+        padding: var(--composer-gap-md);
+
+        .background-image {
+          border-radius: var(--composer-border-radius-md);
+        }
+
+        .content {
+          text-overflow: ellipsis;
+          padding: var(--composer-gap-md);
+
+          .subtitle {
+            font-size: 1rem;
+            overflow: hidden;
+          }
+
+          .title {
+            font-size: 3rem;
+            overflow: hidden;
+          }
+
+          .description {
+            font-size: 1rem;
+            overflow: hidden;
+          }
+
+          .button {
+            .button-text {
+              content: "";
+            }
+          }
+
+          &.no-bg-img {
+            .title {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-md);
+      height: 100%;
+
+      .content {
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+
+      .top {
+        flex: 2;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        height: 50%;
+        border-radius: var(--composer-border-radius-md);
+
+        .item {
+          .background-image {
+            border-radius: var(--composer-border-radius-md);
+          }
+
+          .no-bg-img {
+            .title {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+
+      .bottom {
+        display: flex;
+        gap: var(--composer-gap-md);
+        flex: 2;
+        height: 50%;
+        border-radius: var(--composer-border-radius-md);
+
+        .item {
+          flex: 1;
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-md);
+
+          .background-image {
+            border-radius: var(--composer-border-radius-md);
+          }
+
+          .no-bg-img {
+            .title {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+
+    .item {
+      padding: var(--composer-gap-md);
+      display: flex;
+      justify-content: flex-start;
+      position: relative;
+      height: 100%;
+      width: 100%;
+
+
+      .background-image {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        .image {
+          transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+          transform: scale(1);
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+          z-index: 1;
+        }
+      }
+
+      .content {
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
+        color: black;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+
+        :last-child {
+          overflow: hidden;
+        }
+
+        .subtitle {
+          font-size: 1rem;
+          color: var(--composer-primary-color);
+          overflow: hidden;
+        }
+
+        .title {
+          font-size: 2rem;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .bottom-left,
+    .bottom-right {
+      width: 50%;
+    }
+  }
+
+  &.has-animation {
+    .max-content {
+      .item {
+        &:hover {
+          .background-image {
+            .image {
+              transform: scale(1.1);
+              border-radius: var(--composer-border-radius-md);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      height: 50vh;
+      .left {
+        .item {
+          align-items: flex-start;
+
+          .content {
+            width: 100%;
+
+            .title {
+              font-size: 2rem;
+            }
+          }
+        }
+      }
+
+      .right {
+        flex-direction: column;
+
+        .top {
+          width: auto;
+        }
+
+        .bottom {
+          flex-direction: row;
+
+          .item {
+            flex: 1;
+          }
+        }
+      }
+
+      .item {
+        justify-content: flex-start;
+
+        .content {
+          width: 100%;
+
+          .title {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      flex-direction: column;
+      height: auto;
+
+      .left {
+        width: 100%;
+        aspect-ratio: 1;
+
+        .item {
+          width: 100%;
+          padding: var(--composer-gap-md);
+          height: 100%;
+
+          .content {
+            .title {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
+
+      .right {
+        flex: 1;
+        flex-direction: column;
+        height: 100%;
+
+        .top {
+          flex: 1;
+          width: auto;
+          height: auto;
+
+          .item {
+            .content {
+              .title {
+                font-size: 1.5rem;
+              }
+            }
+          }
+        }
+
+        .bottom {
+          flex-direction: column;
+          align-items: stretch !important;
+          height: auto;
+
+          .item {
+            flex: 1 !important;
+          }
+        }
+      }
+
+      .item {
+        padding: var(--composer-gap-md);
+        min-height: 150px;
+
+        .content {
+          flex-direction: column;
+
+          .subtitle {
+            font-size: 1rem;
+          }
+
+          .title {
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .bottom-left,
+      .bottom-right {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

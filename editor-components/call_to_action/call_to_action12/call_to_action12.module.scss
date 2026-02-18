@@ -15,16 +15,16 @@
 
     .header {
       align-items: center;
-      gap: var(--composer-gap-sm);
 
-      .title {
+      .title, .subtitle, .description {
         text-align: center;
       }
 
-      .description {
-        text-align: center;
-        font-size: 1rem;
-        color: var(--composer-tertiary-color);
+      .subtitle {
+        transform: translateX(0);
+        &::before {
+          display: none;
+        }
       }
     }
 
@@ -73,6 +73,9 @@
           content: "";
           border-radius: var(--composer-border-radius-sm);
           padding: var(--composer-gap-sm) calc(var(--composer-gap-lg) * 3 );
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -88,6 +91,9 @@
         &.button-no-item {
           border-radius: var(--composer-border-radius-xs);
         }
+        .button-text {
+          content: "";
+        }
       }
   }
 }
@@ -97,16 +103,6 @@
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
 
     .max-content {
-      .header {
-        .title {
-          font-size: 2rem;
-        }
-
-        .description {
-          font-size: 1.5rem;
-        }
-      }
-
       .form {
         .newsletter {
           width: 60%;
@@ -121,16 +117,6 @@
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
 
     .max-content {
-      .header {
-        .title {
-          font-size: 2rem;
-        }
-
-        .description {
-          font-size: 1rem;
-        }
-      }
-
       .form {
         flex-direction: column;
           gap: var(--composer-gap-sm);
@@ -149,6 +135,9 @@
            .submit-button {
           padding: var(--composer-gap-sm);
           justify-content: center;
+          .button-text {
+            content: "";
+          }
         }
         }
       }

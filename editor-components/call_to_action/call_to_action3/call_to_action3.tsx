@@ -12,6 +12,13 @@ class CallToAction3Page extends BaseCallToAction {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      value: "Our Services",
+      displayer: "Subtitle",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Protecting Your People , Property & Life",
@@ -33,16 +40,21 @@ class CallToAction3Page extends BaseCallToAction {
       ],
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      displayer: "Media",
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
+      },
     });
     this.addProp({
       type: "boolean",
       key: "overlayActive",
-      displayer: "Overlay Active",
+      displayer: "Overlay",
       value: true,
     });
   }
@@ -52,12 +64,23 @@ class CallToAction3Page extends BaseCallToAction {
 
   render() {
     const buttons = this.castToObject<Button[]>("buttons");
+    const image = this.getPropValue("image");
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.decorateCSS("overlay-active")}`}
-        style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
+        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.getPropValue("image") && this.decorateCSS("overlay-active")}`}>
+        {image && (
+          <Base.Media
+            value={image}
+            className={this.decorateCSS("image")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
                 {this.getPropValue("title")}
@@ -79,7 +102,7 @@ class CallToAction3Page extends BaseCallToAction {
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type}
                             className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         )}
                       </ComposerLink>

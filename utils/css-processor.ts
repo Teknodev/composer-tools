@@ -1,13 +1,19 @@
 export type GuiQueries = {
-  desktop: string;
+  // TODO: Remove 'all' in future updates
+  all: null;
+  desktop: string | null;
   tablet: string;
   mobile: string;
 };
-
+// NOTE: "desktop" currently behaves as "all" (no container query).
+// This may revert to the original @container playground(min-width: 1280px) behavior in the future.
 export const GUI_QUERIES: GuiQueries = {
-  desktop: "@container (min-width: 1280px)",
-  tablet: "@container (min-width: 641px) and (max-width: 1279px)",
-  mobile: "@container (max-width: 640px)"
+  // TODO: Remove 'all' in future updates
+  all: null,
+  desktop: null,
+   // desktop: "@container playground (min-width: 1280px)",
+  tablet: "@container playground (min-width: 641px) and (max-width: 1279px)",
+  mobile: "@container playground (max-width: 640px)"
 };
 
 export const TABS = ['desktop', 'tablet', 'mobile'] as const;
@@ -98,11 +104,25 @@ export function processBasePreferences(
 
     Object.entries(parsedPreferences).forEach(([elementType, styles]) => {
       const selector = baseElementSelectors[elementType as keyof typeof baseElementSelectors];
-      if (selector && styles) {
-        const fullSelector = playgroundSelector ? `${playgroundSelector} ${selector}` : selector;
-        processStyles(fullSelector, GUI_QUERIES.desktop, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.tablet, styles, textRef);
-        processStyles(fullSelector, GUI_QUERIES.mobile, styles, textRef);
+      if (!selector || !styles) return;
+
+      const fullSelector = playgroundSelector ? `${playgroundSelector} ${selector}` : selector;
+      const stylesObj = styles as Record<string, any>;
+      
+      const desktopStyles = stylesObj.desktop || {};
+      const tabletStyles = stylesObj.tablet || {};
+      const mobileStyles = stylesObj.mobile || {};
+      
+      const hasStyles = (styleObj: Record<string, any>) => Object.keys(styleObj).length > 0;
+      
+      if (hasStyles(desktopStyles)) {
+        processStyles(fullSelector, GUI_QUERIES.desktop, desktopStyles, textRef);
+      }
+      if (hasStyles(tabletStyles)) {
+        processStyles(fullSelector, GUI_QUERIES.tablet, tabletStyles, textRef);
+      }
+      if (hasStyles(mobileStyles)) {
+        processStyles(fullSelector, GUI_QUERIES.mobile, mobileStyles, textRef);
       }
     });
   } catch (error) {

@@ -4,10 +4,18 @@ import styles from "./feature5.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../../types/declarative";
 
 class Feature5 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -19,14 +27,19 @@ class Feature5 extends BaseFeature {
     this.addProp({
       type: "object",
       key: "row1",
-      displayer: "first-row",
+      displayer: "First Row",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "left_image",
-          displayer: "Left Image",
-          value:
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2642f8a5b002ce6c032?alt=media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image","video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2642f8a5b002ce6c032?alt=media",
+          },
         },
         {
           type: "string",
@@ -37,7 +50,7 @@ class Feature5 extends BaseFeature {
         {
           type: "page",
           key: "link",
-          displayer: "URL",
+          displayer: "Navigate To",
           value: "",
         },
       ],
@@ -46,12 +59,12 @@ class Feature5 extends BaseFeature {
     this.addProp({
       type: "object",
       key: "row2",
-      displayer: "second-row",
+      displayer: "Second Row",
       value: [
         {
           type: "object",
           key: "first_item",
-          displayer: "Description and Link 1",
+          displayer: "First Item",
           value: [
             {
               type: "string",
@@ -66,7 +79,7 @@ class Feature5 extends BaseFeature {
         {
           type: "object",
           key: "second_item",
-          displayer: "Description and Link 2",
+          displayer: "Second Item",
           value: [
             {
               type: "string",
@@ -77,7 +90,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -85,19 +98,24 @@ class Feature5 extends BaseFeature {
         {
           type: "object",
           key: "third_item",
-          displayer: "Additional Content",
+          displayer: "Third Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Additional Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2a22f8a5b002ce6c03e?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2a22f8a5b002ce6c03e?alt=media",
+              },
             },
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -108,19 +126,24 @@ class Feature5 extends BaseFeature {
     this.addProp({
       type: "object",
       key: "row3",
-      displayer: "third-row",
+      displayer: "Third Row",
       value: [
         {
           type: "object",
           key: "image_and_subtitle_1",
-          displayer: "Image and Subtitle 1",
+          displayer: "First Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Left Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2cc2f8a5b002ce6c04a?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2cc2f8a5b002ce6c04a?alt=media",
+              },
             },
             {
               type: "string",
@@ -131,7 +154,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -139,14 +162,19 @@ class Feature5 extends BaseFeature {
         {
           type: "object",
           key: "image_and_subtitle_2",
-          displayer: "Image and Subtitle 2",
+          displayer: "Second Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Middle Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2ea2f8a5b002ce6c056?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c2ea2f8a5b002ce6c056?alt=media",
+              },
             },
             {
               type: "string",
@@ -157,7 +185,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -165,14 +193,19 @@ class Feature5 extends BaseFeature {
         {
           type: "object",
           key: "image_and_subtitle_3",
-          displayer: "Image and Subtitle 3",
+          displayer: "Third Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Right Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c3032f8a5b002ce6c062?alt=media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image","video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a4c3032f8a5b002ce6c062?alt=media",
+              },
             },
             {
               type: "string",
@@ -183,7 +216,7 @@ class Feature5 extends BaseFeature {
             {
               type: "page",
               key: "link",
-              displayer: "URL",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -197,12 +230,13 @@ class Feature5 extends BaseFeature {
   }
 
   render() {
-    const title = this.getPropValue("title", { as_string: true });
     const row1 = this.castToObject<{
-      left_image: string;
+      left_image: { type: "image"; url: string };
       title: React.JSX.Element;
       link: string;
     }>("row1");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const row2 = this.castToObject<{
       first_item: {
         description: React.JSX.Element;
@@ -213,60 +247,60 @@ class Feature5 extends BaseFeature {
         link: string;
       };
       third_item: {
-        image: string;
+        image: { type: "image"; url: string };
         link: string;
       };
     }>("row2");
 
     const row3 = this.castToObject<{
       image_and_subtitle_1: {
-        image: string;
+        image: { type: "image"; url: string };
         sub_title: React.JSX.Element;
         link: string;
       };
       image_and_subtitle_2: {
-        image: string;
+        image: { type: "image"; url: string };
         sub_title: React.JSX.Element;
         link: string;
       };
       image_and_subtitle_3: {
-        image: string;
+        image: { type: "image"; url: string };
         sub_title: React.JSX.Element;
         link: string;
       };
     }>("row3");
 
-    const isRow1Visible = row1.left_image || this.castToString(row1.title);
+    const isRow1Visible = row1.left_image?.url || this.castToString(row1.title);
 
     const isFirstColumnVisible =
       this.castToString(row2.first_item.description) ||
       this.castToString(row2.first_item.button.text) ||
       row2.first_item.button.url;
     const isSecondColumnVisible = this.castToString(row2.second_item.text);
-    const isThirdColumnVisible = row2.third_item.image;
+    const isThirdColumnVisible = row2.third_item.image?.url;
 
     const isRow2Visible =
       isFirstColumnVisible || isSecondColumnVisible || isThirdColumnVisible;
 
     const subtitle1 = this.castToString(row3.image_and_subtitle_1.sub_title);
-    const imageOrSubtitleExist1 = row3.image_and_subtitle_1.image || subtitle1;
+    const imageOrSubtitleExist1 = row3.image_and_subtitle_1.image?.url || subtitle1;
 
     const subtitle2 = this.castToString(row3.image_and_subtitle_2.sub_title);
-    const imageOrSubtitleExist2 = row3.image_and_subtitle_2.image || subtitle2;
+    const imageOrSubtitleExist2 = row3.image_and_subtitle_2.image?.url || subtitle2;
 
     const subtitle3 = this.castToString(row3.image_and_subtitle_3.sub_title);
-    const imageOrSubtitleExist3 = row3.image_and_subtitle_3.image || subtitle3;
+    const imageOrSubtitleExist3 = row3.image_and_subtitle_3.image?.url || subtitle3;
 
     const isRow3Visible =
-      row3.image_and_subtitle_1.image ||
-      row3.image_and_subtitle_2.image ||
-      row3.image_and_subtitle_3.image ||
+      row3.image_and_subtitle_1.image?.url ||
+      row3.image_and_subtitle_2.image?.url ||
+      row3.image_and_subtitle_3.image?.url ||
       subtitle1 ||
       subtitle2 ||
       subtitle3;
-    const isFirstImageExist = row3.image_and_subtitle_1.image;
-    const isSecondImageExist = row3.image_and_subtitle_2.image;
-    const isThirdImageExist = row3.image_and_subtitle_3.image;
+    const isFirstImageExist = row3.image_and_subtitle_1.image?.url;
+    const isSecondImageExist = row3.image_and_subtitle_2.image?.url;
+    const isThirdImageExist = row3.image_and_subtitle_3.image?.url;
     const row3Status =
       !isFirstImageExist || !isSecondImageExist || !isThirdImageExist;
 
@@ -282,11 +316,18 @@ class Feature5 extends BaseFeature {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {title && (
+        <Base.VerticalContent className={this.decorateCSS("header")}>
+          {subtitleExist && (
+            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              {subtitle}
+            </Base.SectionSubTitle>
+          )}
+          {this.castToString(this.getPropValue("title")) && (
             <Base.SectionTitle className={this.decorateCSS("section-title")}>
               {this.getPropValue("title")}
             </Base.SectionTitle>
           )}
+          </Base.VerticalContent>
           {isRow1Visible && (
             <ComposerLink path={row1.link} isFullWidth={true}>
               <div className={this.decorateCSS("row1")}>
@@ -297,9 +338,9 @@ class Feature5 extends BaseFeature {
                       ${!this.castToString(row1.title) ? this.decorateCSS("row1-image-only") : ""}
                     `}
                   >
-                    <img
+                    <Base.Media
+                      value={row1.left_image}
                       className={this.decorateCSS("left-image")}
-                      src={row1.left_image}
                     />
                   </div>
                 )}
@@ -307,7 +348,7 @@ class Feature5 extends BaseFeature {
                   <Base.H2
                     className={`
                       ${this.decorateCSS("title")}
-                      ${!row1.left_image ? this.decorateCSS("row1-title-only") : ""} 
+                      ${!row1.left_image?.url ? this.decorateCSS("row1-title-only") : ""} 
                     `}
                   >
                     {row1.title}
@@ -363,10 +404,9 @@ class Feature5 extends BaseFeature {
                 >
                   {row2.third_item.image && (
                     <ComposerLink path={row2.third_item.link}>
-                      <img
+                      <Base.Media
+                        value={row2.third_item.image}
                         className={this.decorateCSS("image")}
-                        src={row2.third_item.image}
-                        alt="Third Column Image"
                       />
                     </ComposerLink>
                   )}
@@ -378,9 +418,9 @@ class Feature5 extends BaseFeature {
             <div
               className={`
                   ${this.decorateCSS("row3")} 
-                  ${!row3.image_and_subtitle_1.image &&
-                  !row3.image_and_subtitle_2.image &&
-                  !row3.image_and_subtitle_3.image
+                  ${!row3.image_and_subtitle_1.image?.url &&
+                  !row3.image_and_subtitle_2.image?.url &&
+                  !row3.image_and_subtitle_3.image?.url
                   ? this.decorateCSS("row3-no-image")
                   : ""
                 }`}
@@ -392,20 +432,20 @@ class Feature5 extends BaseFeature {
                 >
                   <div className={this.decorateCSS("image_and_subtitle_1")}>
                     {row3.image_and_subtitle_1.image && (
-                      <img
+                      <Base.Media
+                        value={row3.image_and_subtitle_1.image}
                         className={`
                           ${this.decorateCSS("image")} 
                           ${row3Status ? this.decorateCSS("row3-images-less") : ""} 
                           ${noSubtitleFirstImage ? this.decorateCSS("row3-no-subtitle") : ""}
                         `}
-                        src={row3.image_and_subtitle_1.image}
                       />
                     )}
 
                     {!!this.castToString(row3.image_and_subtitle_1.sub_title) && (
-                      <Base.H3 className={this.decorateCSS("subtitle")}>
+                      <Base.H4 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_1.sub_title}
-                      </Base.H3>
+                      </Base.H4>
                     )}
                   </div>
                 </ComposerLink>
@@ -417,19 +457,19 @@ class Feature5 extends BaseFeature {
                 >
                   <div className={this.decorateCSS("image_and_subtitle_2")}>
                     {row3.image_and_subtitle_2.image && (
-                      <img
+                      <Base.Media
+                        value={row3.image_and_subtitle_2.image}
                         className={`
                           ${this.decorateCSS("image")} 
                           ${row3Status ? this.decorateCSS("row3-images-less") : ""}
                           ${noSubtitleSecondImage ? this.decorateCSS("row3-no-subtitle") : ""}
                         `}
-                        src={row3.image_and_subtitle_2.image}
                       />
                     )}
                     {!!this.castToString(row3.image_and_subtitle_2.sub_title) && (
-                      <Base.H3 className={this.decorateCSS("subtitle")}>
+                      <Base.H4 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_2.sub_title}
-                      </Base.H3>
+                      </Base.H4>
                     )}
                   </div>
                 </ComposerLink>
@@ -441,19 +481,19 @@ class Feature5 extends BaseFeature {
                 >
                   <div className={this.decorateCSS("image_and_subtitle_3")}>
                     {!!row3.image_and_subtitle_3.image && (
-                      <img
+                      <Base.Media
+                        value={row3.image_and_subtitle_3.image}
                         className={`
                           ${this.decorateCSS("image")} 
                           ${row3Status ? this.decorateCSS("row3-images-less") : ""}
                           ${noSubtitleThirdImage ? this.decorateCSS("row3-no-subtitle") : ""}
                         `}
-                        src={row3.image_and_subtitle_3.image}
                       />
                     )}
                     {!!this.castToString(row3.image_and_subtitle_3.sub_title) && (
-                      <Base.H3 className={this.decorateCSS("subtitle")}>
+                      <Base.H4 className={this.decorateCSS("subtitle")}>
                         {row3.image_and_subtitle_3.sub_title}
-                      </Base.H3>
+                      </Base.H4>
                     )}
                   </div>
                 </ComposerLink>

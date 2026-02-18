@@ -10,16 +10,12 @@
   }
 }
 .container {
-  background-color: var(--composer-html-background);
   .max-content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-md);
     .header {
-      .upper-title {
-        content: "";
-      }
-      .header-title {
+      .subtitle, .title, .description {
         content: "";
       }
     }
@@ -27,10 +23,11 @@
       gap: 0;
       .card-item-first,
       .card-item-count {
-        padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+        padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
       }
 
       .card-item-first {
+        position: relative;
         align-items: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -40,16 +37,46 @@
         align-content: center;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         gap: var(--composer-gap-md);
+        border-radius: var(--composer-border-radius-md) 0 0 var(--composer-border-radius-md);
 
-        .title {
+        .background-media {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          display: block;
+        }
+        .background-overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background: var(--composer-overlay-color);
+          pointer-events: none;
+        }
+        .background-media-element {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
 
+        .first-card-title {
+          position: relative;
+          z-index: 2;
           color: var(--composer-font-color-primary);
           text-align: center;
           margin: 0px;
         }
 
         .button {
-          content: "";
+          position: relative;
+          z-index: 2;
+          .button-text {
+            content: "";
+          }
         }
       }
       .card-item-count {
@@ -59,7 +86,11 @@
         animation-duration: 0.5s;
         animation-timing-function: ease;
         animation-fill-mode: forwards;
-        animation-delay: var(--animation-delay); 
+        animation-delay: var(--animation-delay);
+
+        &:last-child {
+          border-radius: 0 var(--composer-border-radius-md) var(--composer-border-radius-md) 0;
+        } 
         .message {
           color: var(--composer-font-color-primary);
           width: 100%;
@@ -74,23 +105,63 @@
           .icon-container{
             .icon {
               color: var(--composer-primary-color);
-              width: var(--composer-gap-xl);
-              height: var(--composer-gap-xl);
+              font-size: 3rem;
             }
           }
-          .title,
-          .long-text {
+          .card-title,
+          .card-description {
             color: var(--composer-font-color-primary);
             text-align: center;
           }
-      
-          .title {
+        }
+      }
+    }
+  }
 
-          }
-      
-          .long-text {
+  @container (max-width: #{$composer-tablet-width}) {
+    .max-content {
+      .wrapper {
+        > *:nth-child(1) {
+          border-radius: var(--composer-border-radius-md) 0 0 0 !important;
+        }
+        
+        > *:nth-child(2) {
+          border-radius: 0 var(--composer-border-radius-md) 0 0 !important;
+        }
+        
+        > *:nth-last-child(2) {
+          border-radius: 0 0 0 var(--composer-border-radius-md) !important;
+        }
+        
+        > *:last-child {
+          border-radius: 0 0 var(--composer-border-radius-md) 0 !important;
+        }
+        
+        > *:last-child:not(:nth-last-child(2)) {
+          border-radius: 0 0 var(--composer-border-radius-md) 0 !important;
+        }
+      }
+    }
+  }
 
-          }
+  @container (max-width: #{$composer-phone-width}) {
+    .max-content {
+      .wrapper {
+        > *:first-child {
+          border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0 !important;
+        }
+        
+        > *:last-child {
+          border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md) !important;
+        }
+        
+        > *:not(:first-child):not(:last-child) {
+          border-radius: 0 !important;
+        }
+        
+        .card-item-first:last-child,
+        .card-item-count:last-child {
+          border-radius: 0 0 var(--composer-border-radius-md) var(--composer-border-radius-md) !important;
         }
       }
     }

@@ -58,9 +58,9 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
   );
 
   useEffect(() => {
-    restartSlider();
-
-    if (!memoizedProps.responsive) return;
+    if (!memoizedProps.responsive) {
+      restartSlider();return;
+    }
 
     const sortedBreakpoints = [...memoizedProps.responsive].sort((a, b) => a.breakpoint - b.breakpoint);
 
@@ -100,6 +100,15 @@ const ComposerSlider = forwardRef<Slider, Settings>((props, ref) => {
       observer.disconnect();
     };
   }, [memoizedProps, restartSlider]);
+
+  useEffect(() => {
+    setSliderSettings({ ...memoizedProps, responsive: [] });
+    if (memoizedProps.autoplay) {
+      sliderRef.current?.slickPlay?.();
+    } else {
+      sliderRef.current?.slickPause?.();
+    }
+  }, [memoizedProps.autoplay]);
 
   return (
     <Slider ref={setRef} {...sliderSettings}>

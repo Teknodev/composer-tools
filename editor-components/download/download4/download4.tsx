@@ -12,6 +12,13 @@ class Download4 extends BaseDownload {
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Let's start now!",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Download app",
@@ -26,10 +33,16 @@ class Download4 extends BaseDownload {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6748510e506a40002c2f0943?alt=media&timestamp=1732792647249",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6748510e506a40002c2f0943?alt=media&timestamp=1732792647249",
+      },
     });
 
     this.addProp({
@@ -37,7 +50,7 @@ class Download4 extends BaseDownload {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67586eb80655f8002ca57e58?alt=media", "Primary"),
+        INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
         INPUTS.BUTTON("button", "Button", "Download", "", "", "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/673f51e4506a40002c2cf6eb?alt=media&timestamp=1732203035257", "Primary"),
       ],
     });
@@ -51,7 +64,8 @@ class Download4 extends BaseDownload {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const image = this.getPropValue("image");
-
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
@@ -59,8 +73,9 @@ class Download4 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(titleExist || descriptionExist) && (
+            {(titleExist || subtitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
               </Base.VerticalContent>
@@ -69,19 +84,20 @@ class Download4 extends BaseDownload {
               <div className={this.decorateCSS("buttons-container")}>
                 {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
                   const buttonTextExist = this.castToString(item.text);
-                  return (
+                  const iconExist = item.icon && item.icon.name;
+                  const imageExist = item.image && item.image.url;
+                  const buttonExist = buttonTextExist || iconExist || imageExist;
+                  return buttonExist && (
                     <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
-                      {item.image ? (
-                        <div className={this.decorateCSS("image-container")}>
-                          <img src={item.image} className={this.decorateCSS("image")} />
+                      {imageExist ? (
+                        <div className={this.decorateCSS("image-wrapper")}>
+                          <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
                         </div>
                       ) : (
-                        (item.icon || buttonTextExist) && (
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                            {item.icon && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />}
-                            {buttonTextExist && item.text && <div className={this.decorateCSS("text")}>{item.text}</div>}
-                          </Base.Button>
-                        )
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
+                          {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
+                        </Base.Button>
                       )}
                     </ComposerLink>
                   );
@@ -90,7 +106,7 @@ class Download4 extends BaseDownload {
             )}
             {image && (
               <div className={this.decorateCSS("image-container")}>
-                <img className={this.decorateCSS("image")} src={this.getPropValue("image")} />
+                <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
               </div>
             )}
           </div>

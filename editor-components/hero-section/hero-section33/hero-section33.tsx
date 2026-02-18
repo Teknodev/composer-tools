@@ -1,0 +1,471 @@
+import * as React from "react";
+import styles from "./hero-section33.module.scss";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base } from "composer-tools/composer-base-components/base/base";
+
+type Slide = {
+  centered: boolean;
+  backgroundImage: TypeMediaInputValue;
+  image: TypeMediaInputValue;
+  subtitle?: React.JSX.Element;
+  title: React.JSX.Element;
+  description?: React.JSX.Element;
+  rotate_icon: string;
+  rotate_text: React.JSX.Element;
+  buttons: Button[];
+};
+
+type Button = {
+  button_text: React.JSX.Element;
+  button_link: string;
+};
+
+class HeroSection33 extends BaseHeroSection {
+  constructor(props?: any) {
+    super(props, styles);
+
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "rotate",
+      displayer: "Rotate Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "array",
+      key: "slider",
+      displayer: "Slider",
+      value: [
+        {
+          type: "object",
+          key: "slide",
+          displayer: "Slide",
+          value: [
+            {
+              type: "boolean",
+              key: "centered",
+              displayer: "Center",
+              value: false,
+            },
+            {
+              type: "media",
+              key: "backgroundImage",
+              displayer: "Background Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7a?alt=media&timestamp=1719502103059",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "icon"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: `<p><span style="white-space: pre-wrap;">Cloria</span></p><p><span style="white-space: pre-wrap;">by Wood</span></p>`,
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "button_text",
+                      displayer: "Button Text",
+                      value: "Shop Now",
+                    },
+                    {
+                      type: "page",
+                      key: "button_link",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slide",
+          displayer: "Slide",
+          value: [
+            {
+              type: "boolean",
+              key: "centered",
+              displayer: "Center",
+              value: true,
+            },
+            {
+              type: "media",
+              key: "backgroundImage",
+              displayer: "Background Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7b?alt=media&timestamp=1719502103059",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "icon"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Kento - Chair",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "button_text",
+                      displayer: "Button Text",
+                      value: "Shop Now",
+                    },
+                    {
+                      type: "page",
+                      key: "button_link",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "slide",
+          displayer: "Slide",
+          value: [
+            {
+              type: "boolean",
+              key: "centered",
+              displayer: "Center",
+              value: false,
+            },
+            {
+              type: "media",
+              key: "backgroundImage",
+              displayer: "Background Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667d85040181a1002c334c7c?alt=media&timestamp=1719502103058",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66c89648e0b009002c3725f0?alt=media",
+              },
+              additionalParams: { availableTypes: ["image", "icon"] },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: `<p><span style="white-space: pre-wrap;">Wooden </span></p><p dir="ltr"><span style="white-space: pre-wrap;">Floor Lamp</span></p>`,
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                {
+                  type: "object",
+                  key: "button",
+                  displayer: "Button",
+                  value: [
+                    {
+                      type: "string",
+                      key: "button_text",
+                      displayer: "Button Text",
+                      value: "Shop Now",
+                    },
+                    {
+                      type: "page",
+                      key: "button_link",
+                      displayer: "Navigate To",
+                      value: "",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+
+    this.setComponentState("activeSlide", 0);
+    this.setComponentState("slider-ref", React.createRef());
+  }
+
+  static getName(): string {
+    return "Hero Section 33";
+  }
+
+  render() {
+
+    const slides = this.castToObject<Slide[]>("slider") || [];
+    const activeSlide: number = this.getComponentState("activeSlide");
+    const currentSlide: Slide = slides[activeSlide] || {
+      centered: false,
+      backgroundImage: { type: "image", url: "" },
+      image: { type: "image", url: "" },
+      title: <></>,
+      description: <></>,
+      rotate_icon: "",
+      rotate_text: <></>,
+      buttons: []
+    };
+
+    const settings = {
+      dots: true,
+      arrows: false,
+      infinite: true,
+      accessibility: false,
+      speed: 500,
+      autoplay: this.getPropValue("autoplay"),
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      beforeChange: (current9: number, next: number) => {
+        if (slides.length > 0) {
+          this.setComponentState("activeSlide", next);
+        }
+      },
+      dotsClass: this.decorateCSS("dotContainer"),
+      appendDots: (dots: any[]) => (
+        slides.length > 0 && (
+          <div className={this.decorateCSS("dotContainer")}>
+            {dots.map((dot, index) => (
+              <div
+                key={index}
+                className={`
+                ${this.decorateCSS("dotBullet")} 
+              ${activeSlide == index && this.decorateCSS("withCenterDot")}
+              ${!currentSlide.backgroundImage?.url && this.decorateCSS("primaryBackground")}
+              `}
+              >
+                <div>{dot}</div>
+              </div>
+            ))}
+          </div>)
+      ),
+    };
+
+    const animation: boolean = this.getPropValue("animation");
+    const rotateActive: boolean = this.getPropValue("rotate");
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <div className={this.decorateCSS("max-content")}>
+          {slides.length > 0 && (
+            <ComposerSlider
+              {...settings}
+              ref={this.getComponentState("slider-ref")}
+              className={this.decorateCSS("carousel")}
+            >
+              {slides.map((item: Slide, index: number) => {
+                const buttons = item.buttons;
+                const titleExist = this.castToString(item.title);
+                const render = buttons?.length > 0 || titleExist || item.image?.url;
+
+                if (!render) return null;
+                return (
+                  <div className={this.decorateCSS("content")} key={index}>
+                    {item.backgroundImage?.url && (
+                      <div className={this.decorateCSS("background-wrapper")}>
+                        <Base.Media
+                          value={item.backgroundImage}
+                          className={this.decorateCSS("background-image")}
+                        />
+                        {item.overlay && <div className={this.decorateCSS("background-overlay")} />}
+                      </div>
+                    )}
+                    <div className={this.decorateCSS("carousel-content-div")}>
+                      <Base.VerticalContent
+                        className={`
+                            ${this.decorateCSS("carousel-content")}
+                            ${animation && this.decorateCSS("with-transition")
+                          }
+                            ${activeSlide === index && this.decorateCSS("fix-location")
+                          }
+                            ${item.centered && this.decorateCSS("centered")}
+                          `}
+                      >
+                        {item.image && (() => {
+                          const isIcon = item.image?.type === "icon";
+                          return (
+                            <div className={`${this.decorateCSS(isIcon ? "icon-wrapper" : "circle")} ${!isIcon && rotateActive ? this.decorateCSS("rotate") : ""}`}>
+                              <Base.Media
+                                value={item.image}
+                                className={`${this.decorateCSS(isIcon ? "icon-media" : "circle-image")} ${item.backgroundImage && this.decorateCSS("blackColor")}`}
+                              />
+                            </div>
+                          );
+                        })()}
+                        {this.castToString(item.subtitle) && (
+                          <Base.SectionSubTitle className={`${this.decorateCSS("content-subtitle")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")} ${item.backgroundImage?.url && this.decorateCSS("subtitle-has-bg")}`}>
+                            {item.subtitle}
+                          </Base.SectionSubTitle>
+                        )}
+                        {titleExist && (
+                          <Base.SectionTitle
+                            className={`${this.decorateCSS("content-title")} ${item.backgroundImage?.url &&
+                              this.decorateCSS("blackColor")
+                              }`}
+                          >
+                            {item.title}
+                          </Base.SectionTitle>
+                        )}
+                        {this.castToString(item.description) && (
+                          <Base.SectionDescription className={`${this.decorateCSS("content-description")} ${item.backgroundImage?.url && this.decorateCSS("blackColor")}`}>
+                            {item.description}
+                          </Base.SectionDescription>
+                        )}
+                        {buttons?.length > 0 && (
+                          <div className={this.decorateCSS("buttons-div")}>
+                            {buttons.map((button: Button, index: number) => {
+                              if (!this.castToString(button.button_text))
+                                return null;
+                              return (
+                                <ComposerLink
+                                  key={index}
+                                  path={button.button_link}
+                                >
+                                  <button
+                                    className={`${this.decorateCSS("button")} ${item.backgroundImage?.url &&
+                                      this.decorateCSS("blackColor")
+                                      }`}
+                                  >
+                                    <Base.P className={this.decorateCSS("button-text")}>{button.button_text}</Base.P>
+                                  </button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  </div>
+                );
+              })}
+            </ComposerSlider>
+          )}
+        </div>
+      </Base.Container>
+    );
+  }
+}
+
+export default HeroSection33;
+

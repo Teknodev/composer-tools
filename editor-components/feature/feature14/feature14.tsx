@@ -1,13 +1,13 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type CardItem = {
-  icon: React.JSX.Element,
+  icon: TypeMediaInputValue,
   title: string,
   description: string,
 };
@@ -15,6 +15,13 @@ type CardItem = {
 class Feature14 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -46,10 +53,16 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "IoPricetagsOutline",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoPricetagsOutline"
+              },
             },
             {
               type: "string",
@@ -71,10 +84,16 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "MdSupportAgent",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdSupportAgent"
+              },
             },
             {
               type: "string",
@@ -96,10 +115,16 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "CiStar",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "CiStar"
+              },
             },
             {
               type: "string",
@@ -121,10 +146,16 @@ class Feature14 extends BaseFeature {
           displayer: "Card Item",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Card Icon",
-              value: "GrUserManager",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "GrUserManager"
+              },
             },
             {
               type: "string",
@@ -145,7 +176,7 @@ class Feature14 extends BaseFeature {
     this.addProp({
       type: "number",
       key: "itemCount",
-      displayer: "Item count in a row",
+      displayer: "Item Count in a Row",
       value: 4,
     });
   }
@@ -162,30 +193,38 @@ class Feature14 extends BaseFeature {
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
 
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("linkTitle"))
+          {(this.castToString(this.getPropValue("title")) || this.castToString(button.text)
             || this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && (
               <div className={`${this.decorateCSS("title-wrapper")} ${alignment == "center" && this.decorateCSS("center")}`}>
-                <Base.VerticalContent className={this.decorateCSS("title-left")}>
+                {(this.castToString(this.getPropValue("title")) || this.castToString(button.text)) && <Base.VerticalContent className={this.decorateCSS("title-left")}>
+                  {subtitleExist && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
                   {this.castToString(this.getPropValue("title")) && (
                     <Base.SectionTitle className={this.decorateCSS("header")}>
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
-                  {(alignment == "left" && this.castToString(button.text)) && (
+                  {(alignment == "left" && (this.castToString(button.text) || button.icon)) && (
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {button.text}
-                          <Base.Icon name={button.icon} />
+                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
                     </div>
                   )}
-                </Base.VerticalContent>
-                <Base.VerticalContent className={this.decorateCSS("title-right")}>
+                </Base.VerticalContent>}
+                {(this.castToString(this.getPropValue("firstdescription")) || this.castToString(this.getPropValue("seconddescription"))) && <Base.VerticalContent className={this.decorateCSS("title-right")}>
                   {this.castToString(this.getPropValue("firstdescription")) && (
                     <Base.SectionDescription className={this.decorateCSS("description-1")}>
                       {this.getPropValue("firstdescription")}
@@ -197,17 +236,17 @@ class Feature14 extends BaseFeature {
                       {this.getPropValue("seconddescription")}
                     </Base.SectionDescription>
                   )}
-                  {(alignment == "center" && this.castToString(button.text)) && (
+                  {(alignment == "center" && (this.castToString(button.text) || button.icon)) && (
                     <div className={this.decorateCSS("link")}>
                       <ComposerLink path={button.url}>
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          {button.text}
-                          <Base.Icon name={button.icon} />
+                          {this.castToString(button.text) && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          {button.icon && <Base.Media value={typeof button.icon === "string" ? {type: "icon", name: button.icon} : button.icon} className={this.decorateCSS("button-icon")} />}
                         </Base.Button>
                       </ComposerLink>
                     </div>
                   )}
-                </Base.VerticalContent>
+                </Base.VerticalContent>}
               </div>
             )
           }
@@ -216,10 +255,10 @@ class Feature14 extends BaseFeature {
             <Base.ListGrid className={this.decorateCSS("cards")} gridCount={{ pc: this.getPropValue("itemCount") }}>
               {cardItems.map((item: any, index: number) => {
                 return (
-                  <div className={this.decorateCSS("card")}>
+                  <Base.VerticalContent className={this.decorateCSS("card")}>
                     {item.icon && (
                       <div className={this.decorateCSS("icon-box")}>
-                        <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
+                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
                       </div>
                     )}
 
@@ -231,7 +270,7 @@ class Feature14 extends BaseFeature {
                         <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>
                       )}
                     </div>
-                  </div>
+                  </Base.VerticalContent>
                 );
               })}
             </Base.ListGrid>

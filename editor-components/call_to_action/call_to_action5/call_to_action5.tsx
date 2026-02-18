@@ -11,16 +11,28 @@ class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
+      },
     });
     this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
       value: true,
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Subscribe for now",
     });
     this.addProp({
       type: "string",
@@ -75,22 +87,28 @@ class CallToAction5Page extends BaseCallToAction {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const titleExist = this.castToString(this.getPropValue("title"));
-    const subtitleExist = this.castToString(this.getPropValue("description"));
-
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.decorateCSS("overlay-active")}`}
-        style={{ backgroundImage: `url(${this.getPropValue("background")})` }}
+        ${this.getPropValue("overlay") && this.getPropValue("background") && this.decorateCSS("overlay-active")}`}
       >
+        {this.getPropValue("background") && (
+          <Base.Media
+            value={this.getPropValue("background")}
+            className={this.decorateCSS("background")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist) && (
+          {(titleExist || descriptionExist || subtitleExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-              {subtitleExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
           {this.castToString(button.text) && this.castToString(this.getPropValue("placeholder")) && (
@@ -125,7 +143,7 @@ class CallToAction5Page extends BaseCallToAction {
                     )}
                     {this.castToString(button.text) && (
                       <Base.Button className={this.decorateCSS("submit-button")} buttonType={button.type}>
-                        {button.text}
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
                     )}
                   </Form>
@@ -137,7 +155,7 @@ class CallToAction5Page extends BaseCallToAction {
             <div className={this.decorateCSS("button-container")}>
               <ComposerLink path={button.url}>
                 <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${!this.castToString(this.getPropValue("placeholder")) && this.decorateCSS("button-no-item")}`}>
-                  {button.text}
+                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                 </Base.Button>
               </ComposerLink>
             </div>

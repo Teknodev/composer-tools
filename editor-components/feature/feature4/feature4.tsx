@@ -1,24 +1,20 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import styles from "./feature4.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type Card = {
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
-  icon: string;
+  icon: TypeMediaInputValue;
   description: React.JSX.Element;
-  image: string;
-  buttons: Button[];
+  image: TypeMediaInputValue;
+  buttons: TypeButton[];
 };
 
-type Button = {
-  text: React.JSX.Element,
-  page: string,
-}
 
 class Feature4 extends BaseFeature {
   constructor(props?: any) {
@@ -30,18 +26,31 @@ class Feature4 extends BaseFeature {
       value: 3,
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "backgroundImage",
       displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6724ecef7acba6002c5dc76a?alt=media",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6724ecef7acba6002c5dc76a?alt=media",
+      },
     });
     this.addProp({
       type: "boolean",
       key: "imageOverlay",
-      displayer: "Image Overlay",
+      displayer: "Overlay",
       value: true,
     });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Empower Solutions",
+    });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -50,10 +59,11 @@ class Feature4 extends BaseFeature {
     });
     this.addProp({
       type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "Empower Solutions",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
+
     this.addProp(INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link"));
     this.addProp({
       type: "array",
@@ -72,10 +82,16 @@ class Feature4 extends BaseFeature {
               value: "Customer Center",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaClipboardUser",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaClipboardUser",
+              },
             },
             {
               type: "string",
@@ -91,11 +107,16 @@ class Feature4 extends BaseFeature {
                 "From exotic beaches to bustling cities, our website offers.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a7acba6bbe002b63bb00?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a7acba6bbe002b63bb00?alt=media",
+              },
             },
             {
               type: "array",
@@ -105,25 +126,7 @@ class Feature4 extends BaseFeature {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "URL",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "Navigating possibilities", "", null, null, "Link")
               ],
             },
           ],
@@ -140,10 +143,16 @@ class Feature4 extends BaseFeature {
               value: "Assistance",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "MdAssistant",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdAssistant",
+              },
             },
             {
               type: "string",
@@ -159,11 +168,16 @@ class Feature4 extends BaseFeature {
                 "From exotic beaches to bustling cities, our website offers.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a820ba6bbe002b63bb80?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a820ba6bbe002b63bb80?alt=media",
+              },
             },
             {
               type: "array",
@@ -173,25 +187,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "URL",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -208,10 +204,16 @@ class Feature4 extends BaseFeature {
               value: "Solutions Hub",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "RiQuestionAnswerFill",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "RiQuestionAnswerFill",
+              },
             },
             {
               type: "string",
@@ -227,11 +229,16 @@ class Feature4 extends BaseFeature {
                 "From exotic beaches to bustling cities, our website offers.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a84aba6bbe002b63bb93?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a84aba6bbe002b63bb93?alt=media",
+              },
             },
             {
               type: "array",
@@ -241,25 +248,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "URL",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -276,10 +265,16 @@ class Feature4 extends BaseFeature {
               value: "Performance",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "GrDocumentPerformance",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "GrDocumentPerformance",
+              },
             },
             {
               type: "string",
@@ -295,11 +290,16 @@ class Feature4 extends BaseFeature {
                 "From exotic beaches to bustling cities, our website offers.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a86aba6bbe002b63bbb3?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a86aba6bbe002b63bbb3?alt=media",
+              },
             },
             {
               type: "array",
@@ -309,25 +309,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "URL",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -344,10 +326,16 @@ class Feature4 extends BaseFeature {
               value: "Operational",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaNetworkWired",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaNetworkWired",
+              },
             },
             {
               type: "string",
@@ -363,11 +351,16 @@ class Feature4 extends BaseFeature {
                 "From exotic beaches to bustling cities, our website offers.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a887ba6bbe002b63bbcc?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6687a887ba6bbe002b63bbcc?alt=media",
+              },
             },
             {
               type: "array",
@@ -377,25 +370,7 @@ class Feature4 extends BaseFeature {
               },
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Text",
-                      value: "More Info",
-                    },
-                    {
-                      type: "page",
-                      key: "page",
-                      displayer: "URL",
-                      value: ""
-                    }
-                  ]
-                }
+                INPUTS.BUTTON("link", "Link Button", "More Info", "", null, null, "Link")
               ],
             },
           ],
@@ -422,18 +397,22 @@ class Feature4 extends BaseFeature {
 
     const subtitleType = Base.getSectionSubTitleType();
 
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
-        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")})` }}>
+        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")?.url})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid gridCount={{ pc: itemCount }} className={this.decorateCSS("content")}>
+          <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1 }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist || linkTextExist) && (
               <Base.VerticalContent className={this.decorateCSS("featured-card")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
-                    ${this.getPropValue("backgroundImage") && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage")?.url && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage")?.url && (subtitleType === "badge") ? this.decorateCSS("badge-with-bg") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
@@ -441,15 +420,20 @@ class Feature4 extends BaseFeature {
                 {titleExist && (
                   <Base.SectionTitle className={`
                     ${this.decorateCSS("section-title")}
-                    ${this.getPropValue("backgroundImage") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("black") : ""}
                   `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("backgroundImage")?.url && this.decorateCSS("black")}`}>                    
+                  {description}
+                  </Base.SectionDescription>
+                )}
                 {linkTextExist && (
                   <Base.Row className={this.decorateCSS("card-link-container")} >
                     <ComposerLink path={linkButton.url}>
-                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
+                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
                         {linkButton.text}
                       </Base.Button>
                     </ComposerLink>
@@ -461,8 +445,8 @@ class Feature4 extends BaseFeature {
               const titleExist = !!this.castToString(card.title);
               const subtitleExist = !!this.castToString(card.subtitle);
               const descExist = !!this.castToString(card.description);
-              const iconExist = !!card.icon;
-              const imageExist = !!card.image;
+              const iconExist = !!card.icon?.name;
+              const imageExist = !!card.image?.url;
               const buttonsExist = card.buttons?.length > 0;
 
               const shouldRender = (titleExist || subtitleExist || descExist || iconExist || imageExist || buttonsExist);
@@ -471,14 +455,14 @@ class Feature4 extends BaseFeature {
                 return (
                   <div
                     key={index}
-                    className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
+                    className={`${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
 
-                        <div className={`${this.getPropValue("backgroundImage") ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
-                          <Base.Icon
-                            propsIcon={{ className: this.decorateCSS("icon") }}
-                            name={card.icon}
+                        <div className={`${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
+                          <Base.Media
+                            value={card.icon}
+                            className={this.decorateCSS("icon")}
                           />
                         </div>
                       )
@@ -486,7 +470,7 @@ class Feature4 extends BaseFeature {
                       {
                         titleExist && (
                           <Base.H3 className={`${this.decorateCSS("title")}
-                    ${this.getPropValue("backgroundImage") && this.decorateCSS("title-with-bg")} } `}>
+                    ${this.getPropValue("backgroundImage")?.url && this.decorateCSS("title-with-bg")} } `}>
                             {card.title}
                           </Base.H3>
                         )
@@ -494,7 +478,7 @@ class Feature4 extends BaseFeature {
                       {
                         subtitleExist && (
                           <Base.P className={`${this.decorateCSS("subtitle")} 
-                        ${this.getPropValue("backgroundImage") && this.decorateCSS("subtitle-with-bg")} }`}>
+                        ${this.getPropValue("backgroundImage")?.url && this.decorateCSS("subtitle-with-bg")} }`}>
                             {card.subtitle}
                           </Base.P>
                         )
@@ -505,14 +489,14 @@ class Feature4 extends BaseFeature {
                       (descExist || card?.buttons?.length > 0) && (
                         <div
                           className={this.decorateCSS("overlay")}
-                          style={{ backgroundImage: `url(${card.image})` }}>
+                          style={{ backgroundImage: `url(${card.image?.url})` }}>
                           <Base.VerticalContent className={`${this.decorateCSS("overlay-content")}
                             ${imageOverlay ? this.decorateCSS("apply-overlay") : ""}`}>
                             {descExist && (
                               <Base.P
                                 className={`
                                 ${this.decorateCSS("long-text")}
-                                ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
+                                ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}
                               `}
                               >
                                 {card.description}
@@ -522,15 +506,15 @@ class Feature4 extends BaseFeature {
                             {card?.buttons?.length > 0 && (
                               <div className={this.decorateCSS("overlay-links-container")}>
                                 {card?.buttons.map(
-                                  (item: Button, index: number) => {
+                                  (item: TypeButton, index: number) => {
                                     if (!this.castToString(item.text)) return null;
                                     {
                                       return (
                                         <Base.Button
-                                          buttonType={"Tertiary"}
+                                          buttonType={item.type}
                                           key={index}
-                                          className={`${this.decorateCSS("overlay-link")} 
-                                              ${card.image || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
+                                          className={`${this.decorateCSS("overlay-button")} 
+                                              ${card.image?.url || imageOverlay ? this.decorateCSS("image-or-overlay-exist") : ""}`}>
                                           <ComposerLink path={item.page}>
                                             {item.text}
                                           </ComposerLink>

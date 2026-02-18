@@ -11,11 +11,23 @@ class CallToAction6Page extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
+      },
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Subscribe for now",
     });
 
     this.addProp({
@@ -27,8 +39,15 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "placeholder",
-      displayer: "Place Holder",
+      displayer: "Placeholder",
       value: "Enter E-mail Address",
     });
 
@@ -91,10 +110,12 @@ class CallToAction6Page extends BaseCallToAction {
 
   render() {
     const spaceLineExist = this.getPropValue("spaceLine");
-
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const placeholderExist = this.castToString(this.getPropValue("placeholder"));
     const commentExist = this.castToString(this.getPropValue("comment"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -103,19 +124,31 @@ class CallToAction6Page extends BaseCallToAction {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") ? this.decorateCSS("overlay-active") : ""}`}
-        style={{
-          backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
-        }}
+        ${this.getPropValue("overlay") && this.getPropValue("backgroundImage") ? this.decorateCSS("overlay-active") : ""}`}
       >
+        {this.getPropValue("backgroundImage") && (
+          <Base.Media
+            value={this.getPropValue("backgroundImage")}
+            className={this.decorateCSS("background-image")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
+            {subtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {this.getPropValue("subtitle")}
+              </Base.SectionSubTitle>
+            )}
             {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </Base.SectionTitle>
+            )}  
+            {descriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
             )}
-
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
                 <div className={this.decorateCSS("space")} />
@@ -173,13 +206,13 @@ class CallToAction6Page extends BaseCallToAction {
                     {(commentExist || this.castToString(button.text)) && (
                       <div className={this.decorateCSS("bottom-container")}>
                         {commentExist && (
-                          <h4 className={this.decorateCSS("comment")}>
+                          <Base.P className={this.decorateCSS("comment")}>
                             {this.getPropValue("comment")}
-                          </h4>
+                          </Base.P>
                         )}
                         {this.castToString(button.text) && (
                           <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         )}
                       </div>

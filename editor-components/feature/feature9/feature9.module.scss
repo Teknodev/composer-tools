@@ -2,16 +2,18 @@
 
 .container {
   position: relative;
+  padding-bottom: 100px !important;
   .max-content {
     height: 100vh;
+    padding-bottom: calc(2* var(--composer-gap-xl));
     .wrapper {
       background-color: color-mix(in srgb,var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
       gap: var(--composer-gap-xl);
-      border-radius: var(--composer-border-radius-md);
+      border-radius: var(--composer-border-radius-sm);
       height: 100%;
       align-items: flex-start;
-      .title-container {
+      .header {
         position: sticky;
         z-index: 2;
         display: flex;
@@ -19,8 +21,11 @@
         align-items: flex-start;
         padding: var(--composer-gap-xl) var(--composer-gap-md);
         width: 100%;
-        .title {
-          content: "";
+        .subtitle, .title {
+          text-align: left;
+        }
+        .subtitle {
+          margin-left: 0 !important;
         }
       }
       .cards-container {
@@ -59,7 +64,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 .icon{
-
+                  font-size: 2.5rem;
                   color: var(--composer-font-color-primary);
                 }
               }
@@ -69,11 +74,15 @@
                 align-items: center;
                 gap: var(--composer-gap-md);
                 .card-title {
-
+                  width: fit-content;
+                  text-align: left;
+                  margin: 0;
                   color: var(--composer-font-color-primary);
                 }
                 .card-number {
-
+                  text-align: left;
+                  width: fit-content;
+                  margin: 0;
                   color: var(--composer-font-color-primary);
                 }
               }
@@ -81,8 +90,13 @@
           
             .description-container {
               .description {
-
+                text-align: left;
                 color: var(--composer-font-color-primary);
+                display: -webkit-box;
+                -webkit-line-clamp: 16;
+                -webkit-box-orient: vertical;
+                line-clamp: 16;
+                overflow: hidden;
               }
             }
           
@@ -96,9 +110,11 @@
       position:absolute;
       display: flex;
       justify-content: center;
-      bottom: 30px;
+      bottom: 100px;
       .button {
-        content: "";
+        .button-text {
+          content: "";
+        }
       }
     }
   }
@@ -109,9 +125,21 @@
     .max-content{
       .wrapper {
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: 0;
         .title-container {
           padding: var(--composer-gap-md);
+        }
+        .cards-container {
+          .card {
+            .card-inner {
+              .description-container {
+                .description {
+                  -webkit-line-clamp: 16;
+                  line-clamp: 16;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -124,13 +152,18 @@
       .wrapper{
         .title-container {
           padding: var(--composer-gap-sm);
-          .title {
-
-          }
         }
         .cards-container{
           .card{
             padding: var(--composer-gap-md);
+            .card-inner {
+              .description-container {
+                .description {
+                  -webkit-line-clamp: 22;
+                  line-clamp: 22;
+                }
+              }
+            }
           }
         }
       }

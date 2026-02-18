@@ -43,6 +43,7 @@ export namespace INPUTS {
               "Link",
               "White",
               "Black",
+              "Bare"
             ],
           },
         },
@@ -53,26 +54,38 @@ export namespace INPUTS {
       button.value.push({
         type: "page",
         key: "url",
-        displayer: "URL",
+        displayer: "Navigate To",
         value: url,
       });
     }
 
     if (icon !== null) {
       button.value.push({
-        type: "icon",
+        type: "media",
         key: "icon",
         displayer: "Icon",
-        value: icon,
+        additionalParams: {
+          availableTypes: ["icon"],
+        },
+        value: {
+          type: "icon",
+          name: icon,
+        },
       });
     }
 
     if (image !== null) {
       button.value.push({
-        type: "image",
+        type: "media",
         key: "image",
         displayer: "Image",
-        value: image,
+        additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+          type: "image",
+          url: image,
+        },
       });
     }
 
@@ -92,18 +105,24 @@ export namespace INPUTS {
       displayer: displayer,
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
-          value:
-            defaultImage ||
-            "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
-          displayer: "Image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url:
+              defaultImage ||
+              "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645515d3f72de2002caaefff?alt=media&timestamp=1719584962573",
+          },
         },
         {
           type: "page",
           key: "imageLink",
           value: "",
-          displayer: "Image Link",
+          displayer: "Navigate To",
         },
       ],
     } as TypeUsableComponentProps;

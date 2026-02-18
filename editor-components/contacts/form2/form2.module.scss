@@ -1,24 +1,30 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
-  height: 100vh;
+  height: 120vh;
+
+  .background-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: cover;
+  }
 
   .overlay {
     position: absolute;
     left: 0;
     top: 0;
-    z-index: 100;
+    z-index: 1;
     width: 100%;
     height: 100%;
     background-color: var(--composer-overlay-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
     width: 100%;
   }
 
@@ -26,19 +32,6 @@
     height: 100%;
     z-index: 5;
     .input-items {
-      .background-image {
-        width: 100%;
-        height: max-content;
-        position: relative;
-        height: 100%;
-
-        .img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
       .input-item {
         width: 100%;
         z-index: 1;
@@ -53,7 +46,6 @@
         padding: var(--composer-gap-xl);
         gap: var(--composer-gap-md);
         border-radius: var(--composer-border-radius-md);
-
         background: rgba(0, 0, 0, 0.52);
         backdrop-filter: blur(4.1px);
         -webkit-backdrop-filter: blur(4.1px);
@@ -62,38 +54,51 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         }
 
-        .title {
-          margin: 0;
-          padding: 0 var(--composer-gap-xl);
-
-          &.title-with-image {
+       .header {
+        margin: 0;
+        padding: 0 var(--composer-gap-xl);
+        .subtitle, .title {
+          &.subtitle-with-image, &.title-with-image {
             color: white;
+            background: transparent;
+            &::before {
+              background: white;
+            }
+          }
+
+          &.subtitle-badge {
+            transform: translateX(0);
+            
+            &.subtitle-with-image {
+              padding: 0;
+            }
           }
         }
-
+       }
         .form {
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
-          padding: var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg) var(--composer-gap-xl);
+          padding: 0 var(--composer-gap-xl);
 
           .input-container {
             position: relative;
 
             .error-message {
-              text-align: end;
+              text-align: left;
               margin-top: var(--composer-gap-xs);
               color: var(--composer-danger-color);
             }
 
             .placeholder {
-              font-size: 0.75rem;
               position: absolute;
               top: var(--composer-gap-xs);
               left: var(--composer-gap-sm);
               transition: all 0.3s ease;
               pointer-events: none;
               color: white;
+              width: fit-content;
+              font-size: 0.75rem;
 
               &.placeholder-no-image {
                 color: var(--composer-font-color-primary);
@@ -103,14 +108,14 @@
             .input {
               width: 100%;
               min-height: var(--composer-gap-xl);
-              border-radius: var(--composer-border-radius-md);
-              font-size: 1rem;
+              border-radius: var(--composer-border-radius-sm);
               transition: border-color 0.3s ease;
               background-color: rgba(255, 255, 255, 0);
               padding-left: var(--composer-gap-sm);
               outline: none;
               border: 1px solid gray;
               color: white;
+              padding-top: var(--composer-gap-sm);
 
               &.input-no-image {
                 color: var(--composer-font-color-primary);
@@ -128,18 +133,11 @@
           }
         }
 
-        .button-div {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-sm);
-          justify-content: space-between;
-          width: 100%;
-        }
-
-        .button-div .submit-button:nth-child(odd):last-child {
-          flex-basis: 100%;
-          justify-content: center;
-        }
+          .button {
+            .button-text {
+              text-align: center;
+            }
+          }
       }
     }
   }
@@ -152,13 +150,9 @@
         .input-item {
           max-width: 700px;
           max-height: 700px;
-
-          .title {
-            padding: 0 var(--composer-gap-lg);
-          }
-
+          gap: 0;
           .form {
-            padding: var(--composer-gap-lg);
+            padding: var(--composer-gap-md) var(--composer-gap-lg);
           }
         }
       }
@@ -175,7 +169,7 @@
           padding: var(--composer-gap-md);
           gap: 0;
 
-          .title {
+          .header {
             padding: 0 var(--composer-gap-md);
           }
 

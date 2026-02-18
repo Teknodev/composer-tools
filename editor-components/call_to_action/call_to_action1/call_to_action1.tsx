@@ -10,10 +10,22 @@ class CallToAction1Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "icon",
       displayer: "Icon",
-      value: "IoLogoFirefox",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "IoLogoFirefox",
+      },
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -42,7 +54,10 @@ class CallToAction1Page extends BaseCallToAction {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            <Base.Icon name={this.getPropValue("icon")} propsIcon={{ className: this.decorateCSS("icon") }}></Base.Icon>
+            <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")}></Base.Media>
+            {this.castToString(this.getPropValue("subtitle")) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
+            )}
             {this.castToString(this.getPropValue("title")) && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
             )}
@@ -53,7 +68,7 @@ class CallToAction1Page extends BaseCallToAction {
               <div className={this.decorateCSS("button-container")}>
                 <ComposerLink path={button.url}>
                   <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                    {button.text}
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                   </Base.Button>
                 </ComposerLink>
               </div>

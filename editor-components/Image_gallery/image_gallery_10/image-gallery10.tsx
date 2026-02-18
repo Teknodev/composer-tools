@@ -22,10 +22,18 @@ class ImageGallery10 extends BaseImageGallery {
 
     constructor(props?: any) {
         super(props, styles);
+
         this.addProp({
             type: "string",
-            key: "header",
-            displayer: "Header",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "Our Projects",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
             value: "We are creative agency that specializes in making customers",
         });
         this.addProp({
@@ -93,7 +101,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -111,15 +119,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-16-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-16-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -131,7 +150,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -149,15 +168,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-21-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-21-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -169,7 +199,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -187,15 +217,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-27-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-27-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -207,7 +248,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -225,15 +266,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-18-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-18-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -245,7 +297,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -263,15 +315,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-23-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-23-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -283,7 +346,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -301,15 +364,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-25-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-25-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -321,7 +395,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -339,15 +413,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-6-1000x1000.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-6-1000x1000.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -359,7 +444,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -377,15 +462,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-19-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -397,7 +493,7 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "cardLink",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
@@ -415,15 +511,26 @@ class ImageGallery10 extends BaseImageGallery {
                         {
                             type: "page",
                             key: "link",
-                            displayer: "URL",
+                            displayer: "Navigate To",
                             value: "",
                         },
                         {
-                            type: "image",
+                            type: "media",
                             key: "image",
-                            displayer: "Background Image",
-                            value:
-                                "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-22-768x768.jpg",
+                            displayer: "Background Media",
+                            value: {
+                                type: "image",
+                                url: "https://gradastudio.com/ozark/wp-content/uploads/sites/4/2020/07/portfolio-list-img-22-768x768.jpg",
+                            },
+                            additionalParams: {
+                                availableTypes: ["image", "video"],
+                            },
+                        },
+                        {
+                            type: "boolean",
+                            key: "active",
+                            displayer: "Active",
+                            value: false,
                         },
                     ],
                 },
@@ -503,53 +610,59 @@ class ImageGallery10 extends BaseImageGallery {
 
     render() {
         const cardList = this.castToObject<CardType[]>("card-items");
-        const header = this.castToString(this.getPropValue("header"));
-        const currentText = this.getComponentState("currentText") as string;
+        const title = this.castToString(this.getPropValue("title"));
+        const currentText = this.getComponentState("currentText");
         const showAnimateText = this.getPropValue("showAnimateText");
 
         return (
             <Base.Container
                 className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {header && (
-                        <div className={this.decorateCSS("header-wrapper")}>
-                            <Base.SectionTitle
-                                className={this.decorateCSS("header-title")}>
-                                <div className={this.decorateCSS("title-content")}>
-                                    {this.getPropValue("header")}
+                    {(title || this.castToString(this.getPropValue("subtitle"))) && (
+                        <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
+                            {this.castToString(this.getPropValue("subtitle")) && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {title && <Base.SectionTitle className={this.decorateCSS("title-content")}>
+                                <div className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
                                 </div>
                                 {showAnimateText && currentText && (
                                     <div className={this.decorateCSS("animated-text")}>
                                         {this.castToString(currentText)}
                                     </div>
                                 )}
-                            </Base.SectionTitle>
-                        </div>
+                            </Base.SectionTitle>}
+                        </Base.VerticalContent>
                     )}
                     {
                         cardList.length > 0 && (
                             <Base.ListGrid
                                 className={this.decorateCSS("grid")}
-                                gridCount={{ pc: this.getPropValue("itemCount") }}>
+                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
                                 {cardList.map((cardItem: any, index: number) => (
                                     <ComposerLink path={cardItem.cardLink} isFullWidth={true}>
                                         <div className={this.decorateCSS("item-box")} key={index}>
-                                            <div className={this.decorateCSS("item-container")}
-                                                style={{ backgroundImage: `url(${cardItem.image})` }}>
-                                                <div className={this.decorateCSS("overlay-content")}>
+                                            <div className={this.decorateCSS("item-container")}>
+                                                <div className={this.decorateCSS("background-media")}>
+                                                    <Base.Media value={cardItem.image} className={this.decorateCSS("background-media-element")} />
+                                                </div>
+                                                <div className={`${this.decorateCSS("overlay-content")} ${cardItem.active ? this.decorateCSS("active") : ""}`}>
                                                     {this.castToString(cardItem.title) && (
-                                                        <div
-                                                            className={this.decorateCSS("card-item-value-h1")}>
+                                                        <Base.H4
+                                                            className={this.decorateCSS("card-title")}>
                                                             {cardItem.title}
-                                                        </div>
+                                                        </Base.H4>
                                                     )}
                                                     {this.castToString(cardItem.text) && (
                                                         <ComposerLink
                                                             path={cardItem.link}>
-                                                            <div
-                                                                className={this.decorateCSS("card-item-value-p")}>
+                                                            <Base.H3
+                                                                className={this.decorateCSS("card-text")}>
                                                                 {cardItem.text}
-                                                            </div>
+                                                            </Base.H3>
                                                         </ComposerLink>
                                                     )}
                                                 </div>

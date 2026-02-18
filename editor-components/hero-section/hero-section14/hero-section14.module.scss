@@ -1,0 +1,210 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *; 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.container {
+  padding: 0px !important;
+  height: 100%;
+  .max-content {
+    width: 100%;
+    .carousel {
+      height: 100%;
+      .slide {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        .bg-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: var(--composer-overlay-color);
+          z-index: 1;
+        }
+        .content-wrapper{
+          position: absolute;
+          top: 0;
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+          &.fade-in {
+            animation: fade-in 3s ease-in-out forwards;
+          }
+          .content {
+            width : 95%;
+            align-items: baseline;
+            &.no-bg {
+              .description {
+                width: 100%;
+              }
+            }
+
+            .logo-wrapper {
+              margin-bottom: var(--composer-gap-md);
+              width: auto;
+              max-width: 200px;
+
+              .logo {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: contain;
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
+                &.logo-with-image {
+                  color: black;
+                }
+              }
+            }
+
+            .subtitle {
+              width: 50%;
+              text-align: left;
+              margin-left: 0;
+              width: fit-content;
+              &.subtitle-badge-with-image {
+                transform: translateX(0) !important;
+                padding: 0;
+
+              }
+              &.subtitle-with-image {
+                color: black;
+                background: transparent;
+
+                &::before {
+                  background-color: black;
+                }
+              }
+            }
+  
+            .title {
+              width: 50%;
+              text-align: left;
+              margin-left: 0;
+              &.title-with-image{
+              color: black;
+
+              }
+            }
+            .description {
+              width:50%;
+              text-align: left;
+              margin-left: 0;
+              &.description-with-image{
+                color: black;
+              }
+            }
+            .buttons-container {
+              display: flex;
+              gap: var(--composer-gap-sm);
+              flex-wrap: wrap;
+              width: 50%;
+              .button {
+                .button-text {
+                  content: "";
+                }
+              }
+            }
+          }
+        }
+      }
+      .customDots {
+        bottom: 60px;
+
+        li button::before {
+          font-size: 1rem;
+        }
+        
+        &.noDots-img li button::before {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .carousel {
+        .slide {
+          .content-wrapper{
+            .content {
+              width: 100%;
+              padding: var(--composer-gap-md) var(--composer-gap-lg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    height: auto;
+    .max-content {
+      .carousel {
+        .slide {
+          .content-wrapper{
+            .content {
+              padding: var(--composer-gap-md);
+              .logo-wrapper {
+                max-width: 150px;
+                margin: 0 auto;
+              }
+              .title {
+                width: 100%;
+                text-align: center;
+              }
+              .description {
+                width: 100%;
+                text-align: center;
+              }
+
+              .subtitle {
+                text-align: center;
+                margin: 0 auto;
+                transform: translateX(0);
+
+                &::before{
+                  display: none;
+                }
+              }
+  
+              .buttons-container {
+                width: 100%;
+                justify-content: center;
+              }
+            }
+          }
+        }
+        .customDots {
+          bottom: var(--composer-gap-md);
+        }
+      }
+    }
+  }
+}

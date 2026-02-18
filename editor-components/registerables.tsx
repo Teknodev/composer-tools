@@ -22,33 +22,6 @@ import ListComponent9 from "./list/list9/list9";
 import ListComponent10 from "./list/list10/list10";
 import ListComponent11 from "./list/list11/list11";
 import ListComponent12 from "./list/list12/list12";
-import LocationComponent1 from "./location/location1/location1";
-import LocationComponent3 from "./location/location3/location3";
-import ContentComponent1 from "./content/content1/content1";
-import ContentComponent2 from "./content/content2/content2";
-import ContentComponent3 from "./content/content3/content3";
-import ContentComponent4 from "./content/content4/content4";
-import ContentComponent5 from "./content/content5/content5";
-import ContentComponent6 from "./content/content6/content6";
-import ContentComponent7 from "./content/content7/content7";
-import ContentComponent8 from "./content/content8/content8";
-import ContentComponent9 from "./content/content9/content9";
-import ContentComponent10 from "./content/content10/content10";
-import ContentComponent11 from "./content/content11/content11";
-import ContentComponent12 from "./content/content12/content12";
-import ContentComponent13 from "./content/content13/content13";
-import ContentComponent14 from "./content/content14/content14";
-import ContentComponent15 from "./content/content15/content15";
-import ContentComponent16 from "./content/content16/content16";
-import ContentComponent17 from "./content/content17/content17";
-import ContentComponent18 from "./content/content18/content18";
-import ContentComponent19 from "./content/content19/content19";
-import ContentComponent20 from "./content/content20/content20";
-import ContentComponent21 from "./content/content21/content21";
-import ContentComponent22 from "./content/content22/content22";
-import ContentComponent23 from "./content/content23/content23";
-import ContentComponent24 from "./content/content24/content24";
-import ContentComponent26 from "./content/content26/content26";
 import SliderComponent1 from "./slider/slider1/slider1";
 import SliderComponent2 from "./slider/slider2/slider2";
 import SliderComponent3 from "./slider/slider3/slider3";
@@ -60,6 +33,7 @@ import SliderComponent8 from "./slider/slider8/slider8";
 import SliderComponent9 from "./slider/slider9/slider9";
 import SliderComponent10 from "./slider/slider10/slider10";
 import SliderComponent11 from "./slider/slider11/slider11";
+import SliderComponent12 from "./slider/slider12/slider12";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -95,41 +69,53 @@ import TeamComponent13 from "./team/team-13/team13";
 import TeamComponent14 from "./team/team-14/team14";
 import TeamComponent15 from "./team/team-15/team15";
 import TeamComponent16 from "./team/team-16/team16";
-import HeaderComponent1 from "./header/header1/header1";
-import HeaderComponent2 from "./header/header2/header2";
-import HeaderComponent3 from "./header/header3/header3";
-import HeaderComponent4 from "./header/header4/header4";
-import HeaderComponent5 from "./header/header5/header5";
-import HeaderComponent6 from "./header/header6/header6";
-import HeaderComponent7 from "./header/header7/header7";
-import HeaderComponent8 from "./header/header8/header8";
-import HeaderComponent9 from "./header/header9/header9";
-import HeaderComponent10 from "./header/header10/header10";
-import HeaderComponent11 from "./header/header11/header11";
-import HeaderComponent12 from "./header/header12/header12";
-import HeaderComponent13 from "./header/header13/header13";
-import HeaderComponent14 from "./header/header14/header14";
-import HeaderComponent15 from "./header/header15/header15";
-import HeaderComponent16 from "./header/header16/header16";
-import HeaderComponent17 from "./header/header17/header17";
-import HeaderComponent18 from "./header/header18/header18";
-import HeaderComponent19 from "./header/header19/header19";
-import HeaderComponent20 from "./header/header20/header20";
-import HeaderComponent21 from "./header/header21/header21";
-import HeaderComponent22 from "./header/header22/header22";
-import HeaderComponent23 from "./header/header23/header23";
-import HeaderComponent24 from "./header/header24/header24";
-import HeaderComponent25 from "./header/header25/header25";
-import HeaderComponent26 from "./header/header26/header26";
-import HeaderComponent27 from "./header/header27/header27";
-import HeaderComponent28 from "./header/header28/header28";
-import HeaderComponent29 from "./header/header29/header29";
-import HeaderComponent30 from "./header/header30/header30";
-import HeaderComponent31 from "./header/header31/header31";
-import HeaderComponent32 from "./header/header32/header32";
-import HeaderComponent33 from "./header/header33/header33";
-import HeaderComponent34 from "./header/header34/header34";
-import HeaderComponent35 from "./header/header35/header35";
+import HeroSection1 from "./hero-section/hero-section1/hero-section1";
+import HeroSection2 from "./hero-section/hero-section2/hero-section2";
+import HeroSection3 from "./hero-section/hero-section3/hero-section3";
+import HeroSection4 from "./hero-section/hero-section4/hero-section4";
+import HeroSection5 from "./hero-section/hero-section5/hero-section5";
+import HeroSection6 from "./hero-section/hero-section6/hero-section6";
+import HeroSection7 from "./hero-section/hero-section7/hero-section7";
+import HeroSection8 from "./hero-section/hero-section8/hero-section8";
+import HeroSection9 from "./hero-section/hero-section9/hero-section9";
+import HeroSection10 from "./hero-section/hero-section10/hero-section10";
+import HeroSection11 from "./hero-section/hero-section11/hero-section11";
+import HeroSection12 from "./hero-section/hero-section12/hero-section12";
+import HeroSection13 from "./hero-section/hero-section13/hero-section13";
+import HeroSection14 from "./hero-section/hero-section14/hero-section14";
+import HeroSection15 from "./hero-section/hero-section15/hero-section15";
+import HeroSection16 from "./hero-section/hero-section16/hero-section16";
+import HeroSection17 from "./hero-section/hero-section17/hero-section17";
+import HeroSection18 from "./hero-section/hero-section18/hero-section18";
+import HeroSection19 from "./hero-section/hero-section19/hero-section19";
+import HeroSection20 from "./hero-section/hero-section20/hero-section20";
+import HeroSection21 from "./hero-section/hero-section21/hero-section21";
+import HeroSection22 from "./hero-section/hero-section22/hero-section22";
+import HeroSection23 from "./hero-section/hero-section23/hero-section23";
+import HeroSection24 from "./hero-section/hero-section24/hero-section24";
+import HeroSection25 from "./hero-section/hero-section25/hero-section25";
+import HeroSection26 from "./hero-section/hero-section26/hero-section26";
+import HeroSection27 from "./hero-section/hero-section27/hero-section27";
+import HeroSection28 from "./hero-section/hero-section28/hero-section28";
+import HeroSection29 from "./hero-section/hero-section29/hero-section29";
+import HeroSection30 from "./hero-section/hero-section30/hero-section30";
+import HeroSection31 from "./hero-section/hero-section31/hero-section31";
+import HeroSection32 from "./hero-section/hero-section32/hero-section32";
+import HeroSection33 from "./hero-section/hero-section33/hero-section33";
+import HeroSection34 from "./hero-section/hero-section34/hero-section34";
+import HeroSection35 from "./hero-section/hero-section35/hero-section35";
+import HeroSection38 from "./hero-section/hero-section38/hero-section38";
+import IntroSection1 from "./intro-section/intro-section1/intro-section1";
+import IntroSection2 from "./intro-section/intro-section2/intro-section2";
+import IntroSection5 from "./intro-section/intro-section5/intro-section5";
+import IntroSection3 from "./intro-section/intro-section3/intro-section3";
+import IntroSection4 from "./intro-section/intro-section4/intro-section4";
+import IntroSection6 from "./intro-section/intro-section6/intro-section6";
+import IntroSection7 from "./intro-section/intro-section7/intro-section7";
+import IntroSection8 from "./intro-section/intro-section8/intro-section8";
+import IntroSection9 from "./intro-section/intro-section9/intro-section9";
+import IntroSection10 from "./intro-section/intro-section10/intro-section10";
+import IntroSection11 from "./intro-section/intro-section11/intro-section11";
 import FeatureComponent1 from "./feature/feature1/feature1";
 import FeatureComponent2 from "./feature/feature2/feature2";
 import FeatureComponent3 from "./feature/feature3/feature3";
@@ -146,6 +132,37 @@ import FeatureComponent13 from "./feature/feature13/feature13";
 import FeatureComponent14 from "./feature/feature14/feature14";
 import FeatureComponent15 from "./feature/feature15/feature15";
 import FeatureComponent16 from "./feature/feature16/feature16";
+import FeatureComponent17 from "./feature/feature17/feature17";
+import FeatureComponent18 from "./feature/feature18/feature18";
+import FeatureComponent19 from "./feature/feature19/feature19";
+import FeatureComponent20 from "./feature/feature20/feature20";
+import FeatureComponent21 from "./feature/feature21/feature21";
+import FeatureComponent22 from "./feature/feature22/feature22";
+import FeatureComponent24 from "./feature/feature24/feature24";
+import FeatureComponent25 from "./feature/feature25/feature25";
+import FeatureComponent26 from "./feature/feature26/feature26";
+import FeatureComponent27 from "./feature/feature27/feature27";
+import FeatureComponent28 from "./feature/feature28/feature28";
+import FeatureComponent29 from "./feature/feature29/feature29";
+import FeatureComponent30 from "./feature/feature30/feature30";
+import FeatureComponent31 from "./feature/feature31/feature31";
+import FeatureComponent32 from "./feature/feature32/feature32";
+import FeatureComponent33 from "./feature/feature33/feature33";
+import FeatureComponent34 from "./feature/feature34/feature34";
+import FeatureComponent35 from "./feature/feature35/feature35";
+import FeatureComponent36 from "./feature/feature36/feature36";
+import FeatureComponent37 from "./feature/feature37/feature37";
+import FeatureComponent38 from "./feature/feature38/feature38";
+import FeatureComponent39 from "./feature/feature39/feature39";
+import FeatureComponent40 from "./feature/feature40/feature40";
+import FeatureComponent41 from "./feature/feature41/feature41";
+import FeatureComponent43 from "./feature/feature43/feature43";
+import FeatureComponent44 from "./feature/feature44/feature44";
+import FeatureComponent45 from "./feature/feature45/feature45";
+import FeatureComponent46 from "./feature/feature46/feature46";
+import FeatureComponent47 from "./feature/feature47/feature47";
+import FeatureComponent48 from "./feature/feature48/feature48";
+import FeatureComponent49 from "./feature/feature49/feature49";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -159,6 +176,15 @@ import CallToAction10 from "./call_to_action/call_to_action10/call_to_action10";
 import CallToAction11 from "./call_to_action/call_to_action11/call_to_action11";
 import CallToAction12 from "./call_to_action/call_to_action12/call_to_action12";
 import CallToAction13 from "./call_to_action/call_to_action13/call_to_action13";
+import CallToAction14 from "./call_to_action/call_to_action14/call_to_action14";
+import CallToAction15 from "./call_to_action/call_to_action15/call_to_action15";
+import CallToAction16 from "./call_to_action/call_to_action16/call_to_action16";
+import CallToAction17 from "./call_to_action/call_to_action17/call_to_action17";
+import CallToAction18 from "./call_to_action/call_to_action18/call_to_action18";
+import CallToAction20 from "./call_to_action/call_to_action20/call_to_action20";
+import CallToAction21 from "./call_to_action/call_to_action21/call_to_action21";
+import CallToAction22 from "./call_to_action/call_to_action22/call_to_action22";
+import CallToAction24 from "./call_to_action/call_to_action24/call_to_action24";
 import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
 import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
 import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
@@ -168,6 +194,7 @@ import LogoComponent6 from "./logo-clouds/logo-comp6/logo-comp6";
 import LogoComponent7 from "./logo-clouds/logo-comp7/logo-comp7";
 import LogoComponent8 from "./logo-clouds/logo-comp8/logo-comp8";
 import LogoComponent9 from "./logo-clouds/logo-comp9/logo-comp9";
+import LogoComponent10 from "./logo-clouds/logo-comp10/logo-comp10";
 import TestimonialsComponent1 from "./testimonials/testimonials1/testimonials1";
 import TestimonialsComponent2 from "./testimonials/testimonials2/testimonials2";
 import TestimonialsComponent3 from "./testimonials/testimonials3/testimonials3";
@@ -182,6 +209,8 @@ import TestimonialsComponent11 from "./testimonials/testimonials11/testimonials1
 import TestimonialsComponent12 from "./testimonials/testimonials12/testimonials12";
 import TestimonialsComponent13 from "./testimonials/testimonials13/testimonials13";
 import TestimonialsComponent14 from "./testimonials/testimonials14/testimonials14";
+import TestimonialsComponent15 from "./testimonials/testimonials15/testimonials15";
+import TestimonialsComponent16 from "./testimonials/testimonials16/testimonials16";
 import StatsComponent1 from "./stats/stats1/stats1";
 import StatsComponent2 from "./stats/stats2/stats2";
 import StatsComponent3 from "./stats/stats3/stats3";
@@ -191,6 +220,12 @@ import StatsComponent6 from "./stats/stats6/stats6";
 import StatsComponent7 from "./stats/stats7/stats7";
 import StatsComponent8 from "./stats/stats8/stats8";
 import StatsComponent9 from "./stats/stats9/stats9";
+import StatsComponent10 from "./stats/stats10/stats10";
+import StatsComponent11 from "./stats/stats11/stats11";
+import StatsComponent12 from "./stats/stats12/stats12";
+import StatsComponent13 from "./stats/stats13/stats13";
+import StatsComponent14 from "./stats/stats14/stats14";
+import StatsComponent15 from "./stats/stats15/stats15";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -199,6 +234,7 @@ import Form5 from "./contacts/form5/form5";
 import Form6 from "./contacts/form6/form6";
 import Form7 from "./contacts/form7/form7";
 import Form8 from "./contacts/form8/form8";
+import Form9 from "./contacts/form9/form9";
 import FooterComponent1 from "./footer/footer1/footer1";
 import FooterComponent2 from "./footer/footer2/footer2";
 import FooterComponent3 from "./footer/footer3/footer3";
@@ -231,6 +267,7 @@ import ImageGalleryCompanent7 from "./Image_gallery/image_gallery_7/image-galler
 import ImageGalleryCompanent8 from "./Image_gallery/image_gallery_8/image-gallery8";
 import ImageGalleryCompanent9 from "./Image_gallery/image_gallery_9/image-gallery9";
 import ImageGalleryComponent10 from "./Image_gallery/image_gallery_10/image-gallery10";
+import ImageGalleryComponent11 from "./Image_gallery/image_gallery_11/image-gallery11";
 import NotificationModal1 from "./modal/notification-modal1/notificationmodal1";
 import ConfirmationModal1 from "./modal/confirmation-modal1/confirmationmodal1";
 import TermsOfUseModal from "./modal/terms-of-use/terms-of-use";
@@ -248,16 +285,22 @@ import Location5 from "./location/location5/location5";
 import Location6 from "./location/location6/location6";
 import Location7 from "./location/location7/location7";
 import ConfirmationModal2 from "./modal/confirmation-modal-2/confirmation-modal-2";
-import ECommerce5 from "./e-commerce/e-commerce5";
-import BannerComponent1 from "./banner/banner1/banner1";
-import BannerComponent2 from "./banner/banner2/banner2";
-import BannerComponent4 from "./banner/banner4/banner4";
-import BannerComponent5 from "./banner/banner5/banner5";
-import BannerComponent6 from "../editor-components/banner/banner6/banner6";
-import BannerComponent7 from "./banner/banner7/banner7";
+import BreadcrumbComponent1 from "./breadcrumb/breadcrumb1/breadcrumb1";
+import BreadcrumbComponent3 from "./breadcrumb/breadcrumb3/breadcrumb3";
+import BreadcrumbComponent2 from "./breadcrumb/breadcrumb2/breadcrumb2";
+import BreadcrumbComponent4 from "./breadcrumb/breadcrumb4/breadcrumb4";
+import BreadcrumbComponent5 from "./breadcrumb/breadcrumb5/breadcrumb5";
+import BreadcrumbComponent6 from "./breadcrumb/breadcrumb6/breadcrumb6";
 import ECommerce1 from "./e-commerce/e-commerce1/e-commerce1";
+import ECommerce2 from "./e-commerce/e-commerce2/e-commerce2";
+import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
+import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
+import ECommerce5 from "./e-commerce/e-commerce5/e-commerce5";
+import ECommerce6 from "./e-commerce/e-commerce6/e-commerce6";
+import ECommerce7 from "./e-commerce/e-commerce7/e-commerce7";
+import ECommerce8 from "./e-commerce/e-commerce8/e-commerce8";
 import SocialComponent1 from "./social/social1/social1";
-import SocialComponent2 from "../editor-components/socials/social2/social2";
+import SocialComponent2 from "./social/social2/social2";
 import SocialComponent3 from "./social/social3/social3";
 import SocialComponent4 from "../editor-components/social/social4/social4";
 import SocialWidget1 from "./social_widget/social_widget1/social_widget1";
@@ -265,15 +308,35 @@ import SocialWidget2 from "../editor-components/social_widget/social_widget2/soc
 import SocialWidget3 from "./social_widget/social_widget3/social_widget3";
 import SocialWidget4 from "./social_widget/social_widget4/social_widget4";
 import SocialWidget5 from "../editor-components/social_widget/social_widget5/social_widget5";
-import ECommerce2 from "./e-commerce/e-commerce2/e-commerce2";
-import ECommerce3 from "./e-commerce/e-commerce3/e-commerce3";
 import ComingSoon3 from "./coming-soon/coming-soon3/coming-soon3";
-import ECommerce4 from "./e-commerce/e-commerce4/e-commerce4";
 import ComingSoon1 from "./coming-soon/coming-soon1/coming-soon1";
-import PrivacyPolicyPage from "./privacy-policy/privacy-policy";
+import PrivacyPolicyPage from "./legal/privacy-policy";
 import ComingSoon2 from "./coming-soon/coming-soon2/coming-soon2";
 import ComingSoon4 from "./coming-soon/coming-soon4/coming-soon4";
-import ECommerce6 from "./e_commerce/e_commerce6/e_commerce6";
+import Blog1 from "./blog/blog1/blog1";
+import Blog2 from "./blog/blog2/blog2";
+import Blog3 from "./blog/blog3/blog3";
+import About1 from "./about/about1/about1";
+import About2 from "./about/about2/about2";
+import About3 from "./about/about3/about3";
+import About4 from "./about/about4/about4";
+import About5 from "./about/about5/about5";
+import About6 from "./about/about6/about6";
+import About7 from "./about/about7/about7";
+import About8 from "./about/about8/about8";
+import About9 from "./about/about9/about9";
+import About10 from "./about/about10/about10";
+import About11 from "./about/about11/about11";
+import About12 from "./about/about12/about12";
+import About13 from "./about/about13/about13";
+import About14 from "./about/about14/about14";
+import About15 from "./about/about15/about15";
+import About16 from "./about/about16/about16";
+import Portfolio1 from "./portfolio/portfolio1/portfolio1";
+import Portfolio2 from "./portfolio/portfolio2/portfolio2";
+import Portfolio3 from "./portfolio/portfolio3/portfolio3";
+import Comparison1 from "./comparison/comparison1/comparison1";
+
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -291,6 +354,12 @@ function Registerables(composer: ComponentsRegistery) {
     DownloadComponent9,
     DownloadComponent10,
     DownloadComponent11,
+    BreadcrumbComponent1,
+    BreadcrumbComponent2,
+    BreadcrumbComponent3,
+    BreadcrumbComponent4,
+    BreadcrumbComponent5,
+    BreadcrumbComponent6,
     PrivacyPolicyPage,
     ListComponent1,
     ListComponent2,
@@ -304,31 +373,9 @@ function Registerables(composer: ComponentsRegistery) {
     ListComponent10,
     ListComponent11,
     ListComponent12,
-    ContentComponent1,
-    ContentComponent2,
-    ContentComponent3,
-    ContentComponent4,
-    ContentComponent5,
-    ContentComponent6,
-    ContentComponent7,
-    ContentComponent8,
-    ContentComponent9,
-    ContentComponent10,
-    ContentComponent11,
-    ContentComponent12,
-    ContentComponent13,
-    ContentComponent14,
-    ContentComponent15,
-    ContentComponent16,
-    ContentComponent17,
-    ContentComponent18,
-    ContentComponent19,
-    ContentComponent20,
-    ContentComponent21,
-    ContentComponent22,
-    ContentComponent23,
-    ContentComponent24,
-    ContentComponent26,
+    Blog1,
+    Blog2,
+    Blog3,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
@@ -340,6 +387,7 @@ function Registerables(composer: ComponentsRegistery) {
     SliderComponent9,
     SliderComponent10,
     SliderComponent11,
+    SliderComponent12,
     PricingComponent1,
     PricingComponent2,
     PricingComponent3,
@@ -375,41 +423,53 @@ function Registerables(composer: ComponentsRegistery) {
     TeamComponent14,
     TeamComponent15,
     TeamComponent16,
-    HeaderComponent1,
-    HeaderComponent2,
-    HeaderComponent3,
-    HeaderComponent4,
-    HeaderComponent5,
-    HeaderComponent6,
-    HeaderComponent7,
-    HeaderComponent8,
-    HeaderComponent9,
-    HeaderComponent10,
-    HeaderComponent11,
-    HeaderComponent12,
-    HeaderComponent13,
-    HeaderComponent14,
-    HeaderComponent15,
-    HeaderComponent16,
-    HeaderComponent17,
-    HeaderComponent18,
-    HeaderComponent19,
-    HeaderComponent20,
-    HeaderComponent21,
-    HeaderComponent22,
-    HeaderComponent23,
-    HeaderComponent24,
-    HeaderComponent25,
-    HeaderComponent26,
-    HeaderComponent27,
-    HeaderComponent28,
-    HeaderComponent29,
-    HeaderComponent30,
-    HeaderComponent31,
-    HeaderComponent32,
-    HeaderComponent33,
-    HeaderComponent34,
-    HeaderComponent35,
+    HeroSection1,
+    HeroSection2,
+    HeroSection3,
+    HeroSection4,
+    HeroSection5,
+    HeroSection6,
+    HeroSection7,
+    HeroSection8,
+    HeroSection9,
+    HeroSection10,
+    HeroSection11,
+    HeroSection12,
+    HeroSection13,
+    HeroSection14,
+    HeroSection15,
+    HeroSection16,
+    HeroSection17,
+    HeroSection18,
+    HeroSection19,
+    HeroSection20,
+    HeroSection21,
+    HeroSection22,
+    HeroSection23,
+    HeroSection24,
+    HeroSection25,
+    HeroSection26,
+    HeroSection27,
+    HeroSection28,
+    HeroSection29,
+    HeroSection30,
+    HeroSection31,
+    HeroSection32,
+    HeroSection33,
+    HeroSection34,
+    HeroSection35,
+    HeroSection38,
+    IntroSection1,
+    IntroSection2,
+    IntroSection3,
+    IntroSection4,
+    IntroSection5,
+    IntroSection6,
+    IntroSection7,
+    IntroSection8,
+    IntroSection9,
+    IntroSection10,
+    IntroSection11,
     NavbarComponent1,
     NavbarComponent2,
     NavbarComponent3,
@@ -430,6 +490,7 @@ function Registerables(composer: ComponentsRegistery) {
     ImageGalleryCompanent8,
     ImageGalleryCompanent9,
     ImageGalleryComponent10,
+    ImageGalleryComponent11,
     FeatureComponent1,
     FeatureComponent2,
     FeatureComponent3,
@@ -446,6 +507,37 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent14,
     FeatureComponent15,
     FeatureComponent16,
+    FeatureComponent17,
+    FeatureComponent18,
+    FeatureComponent19,
+    FeatureComponent20,
+    FeatureComponent21,
+    FeatureComponent22,
+    FeatureComponent24,
+    FeatureComponent25,
+    FeatureComponent26,
+    FeatureComponent27,
+    FeatureComponent28,
+    FeatureComponent29,
+    FeatureComponent30,
+    FeatureComponent31,
+    FeatureComponent32,
+    FeatureComponent33,
+    FeatureComponent34,
+    FeatureComponent35,
+    FeatureComponent36,
+    FeatureComponent37,
+    FeatureComponent38,
+    FeatureComponent39,
+    FeatureComponent40,
+    FeatureComponent41,
+    FeatureComponent43,
+    FeatureComponent44,
+    FeatureComponent45,
+    FeatureComponent46,
+    FeatureComponent47,
+    FeatureComponent48,
+    FeatureComponent49,
     CallToAction1,
     CallToAction2,
     CallToAction3,
@@ -459,6 +551,15 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction11,
     CallToAction12,
     CallToAction13,
+    CallToAction14,
+    CallToAction15,
+    CallToAction16,
+    CallToAction17,
+    CallToAction18,
+    CallToAction20,
+    CallToAction21,
+    CallToAction22,
+    CallToAction24,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
@@ -468,6 +569,7 @@ function Registerables(composer: ComponentsRegistery) {
     LogoComponent7,
     LogoComponent8,
     LogoComponent9,
+    LogoComponent10,
     TestimonialsComponent1,
     TestimonialsComponent2,
     TestimonialsComponent3,
@@ -482,6 +584,8 @@ function Registerables(composer: ComponentsRegistery) {
     TestimonialsComponent12,
     TestimonialsComponent13,
     TestimonialsComponent14,
+    TestimonialsComponent15,
+    TestimonialsComponent16,
     StatsComponent1,
     StatsComponent2,
     StatsComponent3,
@@ -491,6 +595,12 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent7,
     StatsComponent8,
     StatsComponent9,
+    StatsComponent10,
+    StatsComponent11,
+    StatsComponent12,
+    StatsComponent13,
+    StatsComponent14,
+    StatsComponent15,
     Form1,
     Form2,
     Form3,
@@ -499,6 +609,7 @@ function Registerables(composer: ComponentsRegistery) {
     Form6,
     Form7,
     Form8,
+    Form9,
     FooterComponent1,
     FooterComponent2,
     FooterComponent3,
@@ -526,30 +637,46 @@ function Registerables(composer: ComponentsRegistery) {
     Location6,
     Location7,
     ConfirmationModal2,
-    BannerComponent1,
-    BannerComponent2,
-    ECommerce2,
-    BannerComponent4,
-    BannerComponent5,
-    BannerComponent6,
-    BannerComponent7,
-    SocialComponent2,
     ECommerce1,
-    SocialComponent3,
+    ECommerce2,
+    ECommerce3,
+    ECommerce4,
     ECommerce5,
+    ECommerce6,
+    ECommerce7,
+    ECommerce8,
+    SocialComponent2,
+    SocialComponent3,
     SocialComponent4,
     SocialWidget1,
     SocialWidget2,
     SocialWidget3,
     SocialWidget4,
     SocialWidget5,
-    ECommerce3,
-    ComingSoon4,
-    ComingSoon3,
     ComingSoon1,
-    ECommerce4,
     ComingSoon2,
-    ECommerce6,
+    ComingSoon3,
+    ComingSoon4,
+    About1,
+    About2,
+    About3,
+    About4,
+    About5,
+    About6,
+    About7,
+    About8,
+    About9,
+    About10,
+    About11,
+    About12,
+    About13,
+    About14,
+    About15,
+    About16,
+    Portfolio1,
+    Portfolio2,
+    Portfolio3,
+    Comparison1,
   ]);
 }
 

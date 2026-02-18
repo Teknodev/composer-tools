@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseFooter } from "../../EditorComponent";
+import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -21,17 +21,39 @@ class Footer8Page extends BaseFooter {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
-      key: "logo",
-      displayer: "Logo",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+      type: "select",
+      key: "position",
+      displayer: "Position",
+      value: "Default",
+      additionalParams: {
+        selectItems: ["Default", "Absolute"],
+      },
     });
 
     this.addProp({
-      type: "page",
-      key: "logoUrl",
-      displayer: "Logo Url",
-      value:""
+      type: "object",
+      key: "logo",
+      displayer: "Logo",
+      value: [
+        {
+          type: "media",
+          key: "logo",
+          displayer: "Logo",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/676e80240655f8002cadb8be?alt=media",
+          },
+        },
+        {
+          type: "page",
+          key: "logoUrl",
+          displayer: "Navigate To",
+          value: ""
+        },
+      ],
     });
 
     this.addProp({
@@ -75,7 +97,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -97,7 +119,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -117,7 +139,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -137,7 +159,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -175,7 +197,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -197,7 +219,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -217,7 +239,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -237,7 +259,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -275,7 +297,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -295,7 +317,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -314,7 +336,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -352,7 +374,7 @@ class Footer8Page extends BaseFooter {
                     },
                     {
                       type: "page",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       key: "nav_navigate_to",
                       value: "",
                     },
@@ -372,7 +394,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -391,7 +413,7 @@ class Footer8Page extends BaseFooter {
                     {
                       type: "page",
                       key: "nav_navigate_to",
-                      displayer: "Path",
+                      displayer: "Navigate To",
                       value: "",
                     },
                   ],
@@ -429,7 +451,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -448,7 +470,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -467,10 +489,16 @@ class Footer8Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaFacebookF",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaFacebookF",
+              },
             },
             {
               type: "string",
@@ -481,7 +509,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -492,10 +520,16 @@ class Footer8Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaInstagram",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
             },
             {
               type: "string",
@@ -506,7 +540,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -517,10 +551,16 @@ class Footer8Page extends BaseFooter {
           displayer: "Content Elements",
           value: [
             {
-              type: "icon",
+              type: "media",
               key: "icon",
               displayer: "Icon",
-              value: "FaXTwitter",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaXTwitter",
+              },
             },
             {
               type: "string",
@@ -531,7 +571,7 @@ class Footer8Page extends BaseFooter {
             {
               type: "page",
               key: "url",
-              displayer: "Url",
+              displayer: "Navigate To",
               value: "",
             },
           ],
@@ -559,23 +599,26 @@ class Footer8Page extends BaseFooter {
     const footer = this.castToObject<any[]>("footer");
     const socials = this.castToObject<any[]>("socials");
 
-    const logo = this.getPropValue("logo");
-    const logoUrl = this.getPropValue("logoUrl");
+    const logoObject = this.castToObject<any>("logo");
+    const logo = logoObject?.logo;
+    const logoUrl = logoObject?.logoUrl;
 
     const bottomTextExist = this.castToString(this.getPropValue("bottomText"));
 
+    const position = this.getPropValue("position");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${position === "Absolute" ? this.decorateCSS("absolute") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("footer-page")}>
             {
               <div className={this.decorateCSS("items")}>
-                {logo && (
-                  <ComposerLink path={logoUrl}>
-                    <div className={this.decorateCSS("header")}>
-                      <img src={logo} className={this.decorateCSS("image")} alt="" />
-                    </div>
-                  </ComposerLink>
+                {logo?.url && (
+                  <div className={this.decorateCSS("header")}>
+                    <ComposerLink path={logoUrl}>
+                      <Base.Media value={logo} className={this.decorateCSS("image")} />
+                    </ComposerLink>
+                  </div>
                 )}
 
                 {footer.length > 0 &&
@@ -586,7 +629,7 @@ class Footer8Page extends BaseFooter {
                     return (
                       listExist && (
                         <div key={indexFooter} className={this.decorateCSS("list-group")}>
-                          {footerTitleExist && <Base.H2 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H2>}
+                          {footerTitleExist && <Base.H3 className={this.decorateCSS("title")}>{item.footerTitle}</Base.H3>}
                           {item.footerText.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("text-container")}>
                               {item.footerText.map((v: FooterTextValues, indexFooterText: number) => {
@@ -614,49 +657,52 @@ class Footer8Page extends BaseFooter {
               </div>
             }
 
-            {(bottomTextExist || links.length > 0) && (
+            {(bottomTextExist || links.length > 0 || socials.length > 0) && (
               <div className={this.decorateCSS("footer-bottom")}>
-                {links.length > 0 && (
-                  <div className={this.decorateCSS("links")}>
-                    {links.map((item: any, index: number) => {
-                      const textExist = this.castToString(item.text);
-                      return (
-                        textExist && (
-                          <div 
-                            className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
-                            data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
-                          >
-                            <ComposerLink key={index} path={item.url}>
-                              <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
-                            </ComposerLink>
-                          </div>
-                        )
-                      );
-                    })}
-                  </div>
-                )}
                 {bottomTextExist && <Base.P className={this.decorateCSS("bottom-text")}>{this.getPropValue("bottomText")}</Base.P>}
 
-                {socials.length > 0 && (
-                  <div className={this.decorateCSS("socials-container")}>
-                    {socials.map((item: any, index: number) => {
-                      const textExist = this.castToString(item.text);
-                      return (
-                        (item.icon || textExist) && (
-                          <ComposerLink key={index} path={item.url}>
+                <div className={this.decorateCSS("right-wrapper")}>
+                  {links.length > 0 && (
+                    <div className={this.decorateCSS("links")}>
+                      {links.map((item: any, index: number) => {
+                        const textExist = this.castToString(item.text);
+                        return (
+                          textExist && (
                             <div 
-                              className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
+                              className={`${this.decorateCSS("link-element")} ${item.url && this.decorateCSS("has-path")}`}
                               data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
                             >
-                              <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={item.icon} />
-                              <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
+                              <ComposerLink key={index} path={item.url}>
+                                <Base.P className={this.decorateCSS("link-text")}>{item.text}</Base.P>
+                              </ComposerLink>
                             </div>
-                          </ComposerLink>
-                        )
-                      );
-                    })}
-                  </div>
-                )}
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {socials.length > 0 && (
+                    <div className={this.decorateCSS("socials-container")}>
+                      {socials.map((item: any, index: number) => {
+                        const textExist = this.castToString(item.text);
+                        return (
+                          (item.icon || textExist) && (
+                            <ComposerLink key={index} path={item.url}>
+                              <div 
+                                className={`${this.decorateCSS("socials-element")} ${this.decorateCSS("socials-element")}`}
+                                data-animation={item.url ? this.getPropValue("hoverAnimation").join(" ") : ""}
+                              >
+                                <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                                <Base.P className={this.decorateCSS("socials-text")}>{item.text}</Base.P>
+                              </div>
+                            </ComposerLink>
+                          )
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>

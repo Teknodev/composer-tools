@@ -24,6 +24,12 @@ class CallToAction2Page extends BaseCallToAction {
       displayer: "Title",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -31,32 +37,54 @@ class CallToAction2Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f51c3292c6002b23c4f6?alt=media",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f51c3292c6002b23c4f6?alt=media",
+      },
     });
 
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "playIcon",
       displayer: "Play Button Icon",
-      value: "FaPlay",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FaPlay",
+      },
     });
     this.addProp({
-      type: "icon",
+      type: "media",
       key: "closeIcon",
       displayer: "Close Button Icon",
-      value: "RxCross2",
+      additionalParams: {
+        availableTypes: ["icon"],
+      },
+      value: {
+        type: "icon",
+        name: "RxCross2",
+      },
     });
 
     this.addProp({
-      type: "page",
+      type: "media",
       displayer: "Video",
       key: "video",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
+      additionalParams: {
+        availableTypes: ["video"],
+      },
+      value: {
+        type: "video",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
+      },
     });
     this.setComponentState("isVideoVisible", false);
   }
@@ -83,17 +111,19 @@ class CallToAction2Page extends BaseCallToAction {
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
         <div className={`${this.decorateCSS("background")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(titleExist || subtitleExist || (buttons.length > 0)) && (
+            {(titleExist || subtitleExist || descriptionExist || (buttons.length > 0)) && (
               <div
                 className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")}`}
               >
-                {(titleExist || subtitleExist) && (
+                {(titleExist || subtitleExist || descriptionExist) && (
                   <Base.VerticalContent className={this.decorateCSS("titles")}>
                     {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -105,16 +135,21 @@ class CallToAction2Page extends BaseCallToAction {
                         {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
+                    {descriptionExist && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
+                    )}
                   </Base.VerticalContent>
                 )}
                 {buttons?.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map((button: Button, index: number) => {
 
-                      return (
+                      return this.castToString(button.text) && (
                         <ComposerLink path={button.url}>
                           <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                            {button.text}
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       )
@@ -125,20 +160,21 @@ class CallToAction2Page extends BaseCallToAction {
             )}
             {image && (
               <div
-                style={{
-                  backgroundImage: `url(${this.getPropValue("image")})`,
-                }}
                 className={this.decorateCSS("image-container")}
                 onClick={this.showVideo}
               >
+                <Base.Media
+                  value={image}
+                  className={this.decorateCSS("image")}
+                />
                 {playIcon && (
                   <div
                     className={this.decorateCSS("play-icon-box")}
                     onClick={this.showVideo}
                   >
-                    <Base.Icon
-                      name={playIcon}
-                      propsIcon={{ className: this.decorateCSS("play-icon") }}
+                    <Base.Media
+                      value={this.getPropValue("playIcon")}
+                      className={this.decorateCSS("play-icon")}
                     />
                   </div>
                 )}
@@ -155,11 +191,10 @@ class CallToAction2Page extends BaseCallToAction {
                     className={this.decorateCSS("video")}
                     onClick={this.hideVideo}
                   >
-                    <video
-                      controls
-                      className={this.decorateCSS("player")}
-                      src={this.getPropValue("video")}
-                    ></video>
+                      <Base.Media
+                        value={this.getPropValue("video")}
+                        className={this.decorateCSS("player")}
+                      />
                   </div>
                 </div>
                 {closeIcon && (
@@ -167,11 +202,9 @@ class CallToAction2Page extends BaseCallToAction {
                     className={this.decorateCSS("close-icon-box")}
                     onClick={this.hideVideo}
                   >
-                    <Base.Icon
-                      propsIcon={{
-                        className: this.decorateCSS("close-icon"),
-                      }}
-                      name={closeIcon}
+                    <Base.Media
+                      value={this.getPropValue("closeIcon")}
+                      className={this.decorateCSS("close-icon")}
                     />
                   </div>
                 )}

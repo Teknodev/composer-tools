@@ -1,19 +1,26 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
   as *;
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
   .max-content {
-    .call-to-action9-page {
+    .content {
       gap: var(--composer-gap-lg);
       align-items: center;
-      .title {
-        margin: 0px;
-        text-align: center;
+      .header {
+        .title,
+        .subtitle,
+        .description {
+          text-align: center;
+        }
+
+        .subtitle {
+          width: 100%;
+          transform: translateX(0);
+          &::before {
+            display: none;
+          }
+        }
       }
+
       .button {
         content: "";
 
@@ -25,7 +32,11 @@
       }
       .description {
         content: "";
-        color: var(--composer-font-color-primary);
+        text-align: center;
+      }
+      .item-description {
+        content: "";
+        text-align: center;
       }
       .image-container {
         width: fit-content;
@@ -44,6 +55,16 @@
             object-fit: cover;
           }
         }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .content {
+        gap: var(--composer-gap-md);
       }
     }
   }

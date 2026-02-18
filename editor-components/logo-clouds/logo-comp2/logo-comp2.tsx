@@ -1,12 +1,12 @@
 import * as React from "react";
-import { LogoClouds } from "../../EditorComponent";
+import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp2.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type TImage = {
-  image: string;
+  image: TypeMediaInputValue;
   imageLink: string;
 };
 
@@ -31,7 +31,7 @@ class LogoComp2Page extends LogoClouds {
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     });
@@ -39,7 +39,7 @@ class LogoComp2Page extends LogoClouds {
     this.addProp({
       type: "array",
       key: "image-items",
-      displayer: "Images",
+      displayer: "Media Items",
       value: [
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),
@@ -61,44 +61,46 @@ class LogoComp2Page extends LogoClouds {
   render() {
     const originalImageArray = this.castToObject<TImage[]>("image-items");
     let lineOfLogos: any[] = [];
-    for (let x = 0; x < Math.round(14 / originalImageArray.length); x++) {
-      lineOfLogos.push(...originalImageArray);
+    
+    if (originalImageArray.length > 0) {
+      for (let x = 0; x < Math.round(14 / originalImageArray.length); x++) {
+        lineOfLogos.push(...originalImageArray);
+      }
     }
     const images = [...lineOfLogos, ...lineOfLogos];
 
     const isSubtitleExists = this.castToString(this.getPropValue("subtitle"));
     const isTitleExists = this.castToString(this.getPropValue("title"));
-    const isDescriptionExists = this.castToString(
-      this.getPropValue("description")
-    );
+    const isDescriptionExists = this.castToString(this.getPropValue("description"));
 
     return (
       <Base.Container
-        isFull={true}
         className={this.decorateCSS("container")}
       >
         {(isSubtitleExists || isTitleExists || isDescriptionExists) && (
-          <Base.VerticalContent className={this.decorateCSS("heading")}>
-            {isSubtitleExists && (
-              <Base.SectionSubTitle
-                className={this.decorateCSS("subtitle")}
-              >
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {isTitleExists && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {isDescriptionExists && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
-          </Base.VerticalContent>
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {isSubtitleExists && (
+                <Base.SectionSubTitle
+                  className={this.decorateCSS("subtitle")}
+                >
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {isTitleExists && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {isDescriptionExists && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          </Base.MaxContent>
         )}
 
         {images.length > 0 && (
@@ -107,15 +109,10 @@ class LogoComp2Page extends LogoClouds {
               className={this.decorateCSS("images-container")}
               style={{ animationDuration: `${images.length * 2}s` }}
             >
-              {images.map((imageItem: TImage, index: number) => (
+              {images.map((imageItem: TImage, index: number) => imageItem.image && (
                 <ComposerLink path={imageItem.imageLink}>
                   <div className={this.decorateCSS("image-child")}>
-                    <img
-                      key={index}
-                      className={this.decorateCSS("image")}
-                      src={imageItem.image}
-                      alt={imageItem.imageLink || ""}
-                    />
+                    <Base.Media value={imageItem.image} className={this.decorateCSS("image")} />
                   </div>
                 </ComposerLink>
               ))}
@@ -124,15 +121,10 @@ class LogoComp2Page extends LogoClouds {
               className={`${this.decorateCSS("images-container")} ${this.decorateCSS("reverse")}`}
               style={{ animationDuration: `${images.length * 2}s` }}
             >
-              {images.map((imageItem: TImage, index: number) => (
+              {images.map((imageItem: TImage, index: number) => imageItem.image && (
                 <ComposerLink path={imageItem.imageLink}>
                   <div className={this.decorateCSS("image-child")}>
-                    <img
-                      key={index}
-                      className={this.decorateCSS("image")}
-                      src={imageItem.image}
-                      alt={imageItem.imageLink || ""}
-                    />
+                    <Base.Media value={imageItem.image} className={this.decorateCSS("image")} />
                   </div>
                 </ComposerLink>
               ))}

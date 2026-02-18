@@ -1,0 +1,488 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+@keyframes textBottomToUp {
+  from {
+    transform: translateY(80%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideDownUp {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0%);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes imageTitleRight {
+  from {
+    transform: translate(-30%, -50%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+}
+
+@keyframes imageTitleRightPhone {
+  from {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOutToIn {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(2);
+    right: -200%;
+    bottom: -200%;
+  }
+}
+
+.container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: var(--composer-html-background);
+  .max-content {
+    .wrapper {
+      position: relative;
+      .slider-parent {
+        position: relative;
+        width: 100%;
+        .dots {
+          display: flex !important;
+          flex-direction: row;
+          rotate: 90deg;
+          gap: var(--composer-gap-sm);
+          padding: 0;
+          list-style-type: none;
+          position: absolute;
+          bottom: var(--composer-gap-xl);
+          left: var(--composer-gap-xl);
+          animation: ease-out;
+          max-width: 70px;
+          margin: 0;
+          li {
+            .dot {
+              display: inline-block;
+              transition: 0.3s;
+              width: 4px;
+              height: 4px;
+              background: white;
+              border: none;
+              border: 1px solid white;
+              border-color: white;
+              border-radius: 100px;
+              margin: 0;
+              padding: 0;
+              &.colored{
+                background: var(--composer-font-color-primary);
+                background-color: var(--composer-font-color-primary);
+                border-color: var(--composer-font-color-primary);
+              }
+            }
+
+           
+            .dotIndex {
+              display: none;
+              color: white;
+              font-size: 1.25rem;
+              margin-top: -30px;
+              transform: translateY(-15%);
+              rotate: 270deg;
+              padding-left: var(--composer-gap-sm);
+              &.colored{
+                color: var(--composer-font-color-primary);
+              }
+            }
+          }
+        }
+
+        .dots :global(li.slick-active) {
+          .dot {
+            padding: 0px 10px;
+          }
+          .dotIndex {
+            display: block;
+          }
+        }
+
+        :global(div.slick-active) {
+          z-index: 1;
+        }
+
+        .carousel {
+          .slide-inner {
+            height: 100vh;
+            width: 100%;
+            .content {
+              height: 100%;
+              width: 100%;
+              background-size: cover !important;
+              background-position: center !important;
+              position: relative;
+              object-fit: cover;
+              overflow: hidden;
+              .backgroundImage {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                object-fit: cover;
+                &.zoomInAnimation {
+                  transform: scale(2);
+                  animation: zoomOutToIn 25s;
+                }
+              }
+              .content-inner {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                color: white;
+                width: 100%;
+                height: 100%;
+
+                &.background-overlay {
+                  background: var(--composer-overlay-color);
+                }
+
+                .slideShape {
+                  position: absolute;
+                  width: 30%;
+                  height: 70%;
+                  left: 20%;
+                  background: var(--composer-overlay-color);
+                }
+                .shapeAnimate {
+                  animation: slideDownUp 1s ease-out;
+                }
+
+                .imageTitle {
+                  font-size: 7rem;
+                  line-height: normal !important;
+                  width: auto;
+                  position: absolute;
+                  text-align: center;
+                  top: 40%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  z-index: 1;
+                  opacity: 1;
+
+                  &.primaryColor{
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+                .imageTitleAnimation {
+                  animation: imageTitleRight 0.5s ease-in-out;
+                }
+                .image-details {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: start;
+                  width: 50%;
+                  position: absolute;
+                  padding: var(--composer-gap-md) var(--composer-gap-sm);
+                  bottom: -5px;
+                  right: 0;
+                  background-color: var(--composer-html-background);
+                  color: var(--composer-font-color-primary);
+                  gap: var(--composer-gap-md);
+                  min-height: calc(100px + (var(--composer-gap-md) * 2));
+
+                  .description {
+                    width: 100%;
+                    font-size: 1rem;
+                    text-align: start;
+                    margin: 0;
+                    line-height: 1.5;
+                    padding-left: var(--composer-gap-md);
+                    opacity: 1;
+                  }
+                  .animate {
+                    animation: textBottomToUp 0.5s ease-out;
+                  }
+
+                  .stick {
+                    width: 0.5px;
+                    background-color: var(--composer-font-color-primary);
+                    height: 100px;
+                    align-self: center;
+                  }
+
+                  .url-container {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    > div {
+                      display: flex;
+                      justify-content: center;
+                      width: 100% !important;
+                    }
+                    .urlTitles {
+                      max-width: 100%;
+                      text-align: left;
+                      margin: 0;
+                      opacity: 1;
+                      padding-right: var(--composer-gap-md);
+                    }
+
+                    &.withoutDescription {
+                      justify-content: unsafe;
+                      width: fit-content;
+                      .urlTitles {
+                        text-align: left !important;
+                      }
+                    }
+
+                    .urlTitleAnimation {
+                      animation: textBottomToUp 0.5s ease-out;
+                    }
+                  }
+                }
+
+                .nav-buttons {
+                  display: flex;
+                  gap: var(--composer-gap-md);
+                  flex-direction: column;
+                  position: absolute;
+                  right: var(--composer-gap-xl);
+                  top: 50%;
+                  transform: translateY(-50%);
+                  opacity: 0.7;
+
+                  .nav-button {
+                    border: none;
+                    border: 2px solid white;
+                    background-color: rgba(0, 0, 0, 0.1);
+                    color: white;
+                    border-color: white;
+                    width: 60px;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    overflow: hidden;
+                    transition: color 0.3s ease;
+
+                    .icon {
+                      font-size: 1rem;
+                      width: 14px;
+                      height: 14px;
+                    }
+
+                    &.enable-before::before {
+                      content: "";
+                      position: absolute;
+                      left: -100%;
+                      top: 0;
+                      width: 100%;
+                      height: 100%;
+                      background-color: white;
+                      color: var(--composer-font-color-secondary);
+                      transition: left 0.3s ease;
+                      z-index: -1;
+                    }
+
+                   
+
+                    &:hover {
+                      color: black;
+
+                      &.enable-before::before {
+                        left: 0;
+                      }
+                    }
+                    &.primaryColor{
+                      border-color: var(--composer-font-color-primary);
+                      &:hover::before{
+                        background-color: var(--composer-font-color-primary);
+                        color: var(--composer-font-color-secondary);
+                      }
+
+                      &:hover{
+                        color: var(--composer-font-color-secondary);
+                      }
+                      
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content .wrapper .slider-parent .dots {
+    bottom: 60px;
+    left: 30px;
+  }
+
+  .container .max-content .wrapper .slider-parent .carousel .slide-inner .content .content-inner {
+    background-size: cover !important;
+    background-position: center !important;
+    .slideShape {
+      width: 30%;
+      height: 70%;
+      left: 20%;
+    }
+    .imageTitle {
+      font-size: 4rem !important;
+    }
+    .image-details {
+      width: 70%;
+      height: 15%;
+      .description {
+        content: "";
+      }
+      .stick {
+        height: 80px;
+        min-height: 100%;
+        margin-left: 2.5rem;
+      }
+      .url-container {
+        .urlTitles {
+          content: "";
+        }
+      }
+    }
+    .nav-buttons {
+      gap: var(--composer-gap-sm);
+      .nav-button {
+        width: 40px;
+        height: 40px;
+        .icon{
+          font-size: 1rem;
+          width: 30px;
+          height: 15px;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .wrapper .slider-parent .dots {
+    content-visibility: hidden;
+  }
+
+  .container .max-content .wrapper .slider-parent .carousel .slide-inner .content .content-inner {
+    background-size: cover !important;
+    background-position: center !important;
+    transform: none;
+    top: unset;
+    left: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: var(--composer-gap-md);
+
+    .slideShape {
+      display: none;
+    }
+
+    .imageTitle {
+      font-size: 2.5rem !important;
+      position: static;
+      transform: none;
+      top: unset;
+      left: unset;
+      margin-bottom: var(--composer-gap-sm);
+      text-align: center;
+      width: 100%;
+    }
+
+    .imageTitleAnimation {
+      animation: imageTitleRightPhone 0.5s ease-in-out !important;
+    }
+
+    .image-details {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      bottom: unset;
+      right: unset;
+      background-color: transparent;
+      color: white;
+      gap: var(--composer-gap-sm);
+      padding: var(--composer-gap-md) var(--composer-gap-sm);
+      min-height: auto;
+
+      .description {
+        width: 100%;
+        font-size: 1rem;
+        text-align: center;
+        margin: 0;
+        line-height: 1.5;
+        padding-left: 0;
+        opacity: 1;
+      }
+
+      .stick {
+        display: none;
+      }
+
+      .url-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: var(--composer-gap-sm);
+
+        .urlTitles {
+          max-width: 100%;
+          text-align: center;
+          margin: 0;
+          opacity: 1;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .nav-buttons {
+      gap: var(--composer-gap-xs);
+      flex-direction: row;
+      justify-content: flex-end;
+      bottom: var(--composer-gap-lg);
+      top: auto;
+      left: 45%;
+      transform: translateX(-50%);
+      right: auto;
+      width: 100%;
+      .nav-button {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+}

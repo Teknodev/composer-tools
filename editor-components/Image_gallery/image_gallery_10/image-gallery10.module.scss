@@ -3,7 +3,7 @@
 @keyframes fadeInUpAndDisappear {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(var(--composer-gap-md));
   }
   50% {
     opacity: 1;
@@ -11,17 +11,11 @@
   }
   100% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(calc(var(--composer-gap-md) * -1));
   }
 }
 
 .container {
-  background: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
-
   .max-content {
     overflow: hidden;
     background-size: cover;
@@ -30,14 +24,21 @@
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    min-height: 600px;
     justify-content: center;
+    gap: var(--composer-gap-lg);
 
     .header-wrapper {
-      width: 100%;
+      .subtitle {
+        text-align: center;
+        transform: translateX(0);
+        margin: 0 auto;
+        &::before {
+          display: none;
+        }
+      }
     }
 
-    .header-title {
+    .title-content {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -45,16 +46,15 @@
       text-align: center;
       width: 100%;
       position: relative;
-      gap: var(--composer-gap-sm);
+      gap: var(--composer-gap-md);
 
-      .title-content {
+      .title {
         display: flex;
       }
     }
 
     .animated-text {
       animation: fadeInUpAndDisappear 4s ease infinite;
-      margin-top: 0.5rem;
     }
 
     .grid {
@@ -69,6 +69,8 @@
         .item-container {
           width: 100%;
           height: 100%;
+          position: relative;
+          overflow: hidden;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center;
@@ -78,6 +80,22 @@
           border-radius: var(--border-radius-sm);
           color: var(--composer-primary-color);
           transition: all 0.2s ease-in-out;
+ 
+          .background-media {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+
+            .background-media-element {
+              width: 100%;
+              height: 100%;
+              display: block;
+              object-fit: cover;
+            }
+          }
 
           .overlay-content {
             width: 100%;
@@ -90,21 +108,23 @@
             border-radius: var(--composer-border-radius-md);
             transition: background-color 0.2s ease-in-out;
             color: var(--composer-font-color-primary);
+            z-index: 2;
 
             .home-link {
               content: "";
             }
-            .card-item-value-h1,
-            .card-item-value-p {
+            .card-title,
+            .card-text {
               opacity: 0;
-              transform: translateY(20px);
+              transform: translateY(var(--composer-gap-sm));
               transition: opacity 0.2s ease, transform 0.3s ease;
             }
 
-            &:hover {
+            &:hover,
+            &.active {
               background-color: var(--composer-font-color-primary);
-              .card-item-value-h1,
-              .card-item-value-p {
+              .card-title,
+              .card-text {
                 opacity: 1;
                 color: var(--composer-html-background);
                 transform: translateY(0);
@@ -113,14 +133,11 @@
           }
         }
 
-        .card-item-value-h1 {
+        .card-title {
           text-align: center;
-          font-size: 1rem;
         }
 
-        .card-item-value-p {
-          font-size: 1.5rem;
-          font-weight: bold;
+        .card-text {
           position: relative;
           display: inline-block;
 
@@ -154,7 +171,7 @@
     .max-content {
       display: block;
       flex-direction: column;
-      .header-title {
+      .title-content {
         display: block;
       }
     }
