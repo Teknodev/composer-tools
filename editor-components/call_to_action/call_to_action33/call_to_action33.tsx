@@ -46,7 +46,7 @@ class CallToAction33 extends BaseCallToAction {
           },
           value: {
             type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6996c59b771c03002cc51260?alt=media",
           },
         },
         {
