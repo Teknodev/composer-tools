@@ -98,10 +98,10 @@ class CallToAction32 extends BaseCallToAction {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("card")} ${enable_card ? this.decorateCSS("active") : ""}`}>
+                    <div className={`${this.decorateCSS("card")} ${enable_card ? this.decorateCSS("active") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
                         <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
                             {hasLeftContent && (
-                                <Base.VerticalContent className={this.decorateCSS("left-column")}>
+                                <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!media ? this.decorateCSS("no-media") : ""}`}>
                                     {subtitle && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                             {this.getPropValue("subtitle")}

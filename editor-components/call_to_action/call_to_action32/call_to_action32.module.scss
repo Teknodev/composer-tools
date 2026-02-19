@@ -13,8 +13,16 @@
                 border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 var(--composer-border-radius-md);
                 overflow: hidden;
 
+                &.no-media {
+                    border-radius: var(--composer-border-radius-md);
+                }
+
                 .content-wrapper .left-column {
                     padding: var(--composer-gap-xl) 0 var(--composer-gap-xl) 80px;
+
+                    &.no-media {
+                        padding-right: var(--composer-gap-xl);
+                    }
 
                     .title,
                     .subtitle,
