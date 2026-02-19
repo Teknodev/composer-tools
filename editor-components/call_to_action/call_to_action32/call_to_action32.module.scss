@@ -18,7 +18,7 @@
                 }
 
                 .content-wrapper .left-column {
-                    padding: var(--composer-gap-xl) 0 var(--composer-gap-xl) 80px;
+                    padding: 80px 0 80px var(--composer-gap-xl);
 
                     &.no-media {
                         padding-right: var(--composer-gap-xl);
@@ -42,6 +42,10 @@
 
                 .content-wrapper .media-column {
                     padding-top: var(--composer-gap-xl);
+
+                    .media-container {
+                        border-radius: var(--composer-border-radius-sm) 0 0 0;
+                    }
                 }
             }
 
@@ -95,9 +99,8 @@
                     width: 50%;
 
                     .media-container {
-                        border-top-left-radius: var(--composer-border-radius-sm);
+                        border-radius: var(--composer-border-radius-sm);
                         position: relative;
-                        width: 100%;
                         overflow: hidden;
 
                         .media {
@@ -129,7 +132,11 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .card.active {
         .content-wrapper .left-column {
-            padding: var(--composer-gap-lg) 0 var(--composer-gap-lg) var(--composer-gap-lg);
+            padding: 80px 0 80px var(--composer-gap-lg);
+
+            &.no-media {
+                padding-right: var(--composer-gap-lg);
+            }
         }
     }
 }
@@ -140,11 +147,19 @@
         border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
 
         .content-wrapper .left-column {
-            padding: var(--composer-gap-lg) var(--composer-gap-md) 0 var(--composer-gap-md);
+            padding: var(--composer-gap-xl) var(--composer-gap-md) 0 var(--composer-gap-md);
         }
 
         .content-wrapper .media-column {
             padding-top: 0;
+        }
+
+        &.no-media {
+            border-radius: var(--composer-border-radius-md);
+
+            .content-wrapper .left-column {
+                padding: var(--composer-gap-xl) var(--composer-gap-md);
+            }
         }
     }
 
@@ -163,7 +178,6 @@
                 flex: auto;
 
                 .media-container {
-                    margin-top: 0;
                     border-top-left-radius: 0;
                 }
             }
