@@ -17,7 +17,7 @@ class CallToAction32 extends BaseCallToAction {
         this.addProp({
             type: "boolean",
             key: "enable_card",
-            displayer: "Colored Background",
+            displayer: "Card Background",
             value: true,
         });
 
