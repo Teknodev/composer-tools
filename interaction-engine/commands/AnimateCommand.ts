@@ -183,6 +183,7 @@ export class AnimateCommand extends BaseAnimationCommand {
     this.storeOriginalStyles(context.target, ['opacity', 'transform']);
 
     // Build keyframes based on config using the element's current computed styles
+    const hasExplicitLoopType = Boolean(config.loopType);
     const { keyframes, hasAnimated } = this.buildLoopKeyframes(config, context.target);
 
     if (!hasAnimated) {
@@ -195,9 +196,13 @@ export class AnimateCommand extends BaseAnimationCommand {
     const loopType = config.loopType || "loop";
     
     // Use configured iterationCount. If this is a loop-type config, default to infinite.
-    const iterations = config.iterationCount === "infinite" || Boolean(config.loopType)
+    const iterations = config.iterationCount === "infinite" || hasExplicitLoopType
       ? Infinity
       : (config.iterationCount || 1);
+
+    // One-shot transforms (no explicit loopType, finite iterations) should play
+    // from initial → target and stay there, not loop back.
+    const isOneShotTransform = !hasExplicitLoopType && iterations !== Infinity;
 
     // For Web Animations API, we need to animate with proper keyframes
     const animation = context.target.animate(keyframes, {
@@ -205,7 +210,7 @@ export class AnimateCommand extends BaseAnimationCommand {
       easing: config.easing || "ease",
       iterations: iterations,
       direction: loopType === "mirror" ? "alternate" : "normal",
-      fill: "both",
+      fill: isOneShotTransform ? "forwards" : "both",
       delay: config.delay || 0,
     });
 
@@ -224,6 +229,27 @@ export class AnimateCommand extends BaseAnimationCommand {
     if (iterations !== Infinity) {
       animation.finished.then(() => {
         this.isAnimating = false;
+        // For one-shot transforms, commit the final values as inline styles
+        // so the animation state persists permanently (survives re-renders,
+        // GC of Animation object, etc.)
+        if (isOneShotTransform && context.target) {
+          try {
+            animation.commitStyles();
+            animation.cancel();
+          } catch (_e) {
+            // commitStyles may fail in some browsers; fall back to manual inline style setting
+            try {
+              const computed = getComputedStyle(context.target);
+              ['opacity', 'transform'].forEach((prop) => {
+                const val = computed.getPropertyValue(prop);
+                if (val) context.target.style.setProperty(prop, val);
+              });
+              animation.cancel();
+            } catch (_e2) {
+              // leave fill:forwards as final fallback
+            }
+          }
+        }
       }).catch(() => {
         // If animation is cancelled, immediately set isAnimating to false
         this.isAnimating = false;
@@ -290,8 +316,12 @@ export class AnimateCommand extends BaseAnimationCommand {
     // Return keyframes based on loop type
     if (config.loopType === "mirror") {
       return { keyframes: [initialState, animatedState], hasAnimated };
-    } else {
+    } else if (config.loopType) {
+      // Explicit loop: animate to target then back to initial (one full cycle)
       return { keyframes: [initialState, animatedState, initialState], hasAnimated };
+    } else {
+      // One-shot transform (no loopType): animate from initial → target and stay
+      return { keyframes: [initialState, animatedState], hasAnimated };
     }
   }
 

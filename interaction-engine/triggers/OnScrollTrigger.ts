@@ -33,6 +33,9 @@ export interface OnScrollConfig {
   customScaleEnd?: number;
   customRotate?: number;
   customBlur?: number;
+  // Minimum element height (px) to use interpolated scroll progress.
+  // Elements shorter than this snap to final state immediately. Default: 150.
+  minProgressHeight?: number;
   // Direct animation properties (mapped to custom* internally)
   opacity?: number;
   scale?: number;
@@ -317,12 +320,19 @@ export class OnScrollTrigger extends BaseTrigger {
         viewportProgress = 0;
       } else if (elementHeight <= viewportHeight) {
         // Element smaller than viewport
+
+        // Short-element guard: if the element is too short to produce
+        // meaningful scroll progress, snap directly to final state.
+        const minHeight = config.minProgressHeight ?? 150;
+        if (minHeight > 0 && elementHeight < minHeight) {
+          // Element is visible (we already excluded fully-outside above),
+          // so jump straight to the end threshold to complete the animation.
+          viewportProgress = (config.progressEnd ?? 1) + 0.01;
+        } else if (elementBottom <= viewportHeight && elementTop >= 0) {
         // Progress calculation:
         // 0 -> 1: Element entering until fully visible
         // 1 -> 2: Element moving from fully visible position to viewport top
         // 2+: Element exiting from top
-
-        if (elementBottom <= viewportHeight && elementTop >= 0) {
           // Element is fully visible in viewport
           // When element first becomes fully visible: top = (viewportHeight - elementHeight)
           // When element reaches viewport top: top = 0
@@ -587,6 +597,7 @@ export class OnScrollTrigger extends BaseTrigger {
       if (config.threshold === undefined) config.threshold = 0;
       if (config.replay === undefined) config.replay = false;
       if (config.debounceDelay === undefined) config.debounceDelay = 50;
+      if (config.minProgressHeight === undefined) config.minProgressHeight = 150;
 
       // Map direct animation properties to custom* properties for progress effects
       if (config.opacity !== undefined) {
@@ -754,12 +765,19 @@ export class OnScrollTrigger extends BaseTrigger {
       config.customBlur = isNaN(parsed) ? undefined : parsed;
     }
 
+    const minProgressHeightAttr = target.getAttribute("data-scroll-min-progress-height");
+    if (minProgressHeightAttr) {
+      const parsed = parseFloat(minProgressHeightAttr);
+      config.minProgressHeight = isNaN(parsed) ? undefined : parsed;
+    }
+
     // Set defaults
     if (!config.type) config.type = "direction";
     if (!config.direction) config.direction = "both";
     if (config.threshold === undefined) config.threshold = 0;
     if (config.replay === undefined) config.replay = false;
     if (config.debounceDelay === undefined) config.debounceDelay = 50;
+    if (config.minProgressHeight === undefined) config.minProgressHeight = 80;
 
     return config;
   }
