@@ -195,7 +195,6 @@ export class OnScrollTrigger extends BaseTrigger {
         }
         element = element.parentElement;
       }
-      // Check for playground specifically
       const playground = document.getElementById("playground");
       if (playground && playground.scrollHeight > playground.clientHeight) {
         return playground;
@@ -206,96 +205,83 @@ export class OnScrollTrigger extends BaseTrigger {
     const scrollContainer = findScrollContainer();
 
     const scrollHandler = () => {
-      // Determine scroll direction based on the scroll container's offset
       const currentOffset =
         scrollContainer instanceof Window
           ? window.scrollY
           : (scrollContainer as HTMLElement).scrollTop;
-      
-      // Skip if scroll position hasn't changed
-      if (currentOffset === this.lastScrollY) {
-        return;
-      }
-      
+
+      if (currentOffset === this.lastScrollY) return;
+
       const direction = currentOffset > this.lastScrollY ? "down" : "up";
 
-      // Only trigger if the target is at least partially visible in the viewport.
       if (!this.target) return;
       const rect = this.target.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-      const requiredVisible = config.threshold ?? 0;
+
+      const rawThreshold = config.threshold ?? 0;
+      let requiredVisible: number;
+      if (rect.height <= rawThreshold) {
+        requiredVisible = 1;
+      } else if (rawThreshold > 0 && rawThreshold <= 1) {
+        requiredVisible = rect.height * rawThreshold;
+      } else {
+        requiredVisible = rawThreshold;
+      }
+
       const isVisible = visibleHeight > requiredVisible;
 
       if (isVisible) {
         if (config.direction === "both" || config.direction === direction) {
-          // Correct direction - trigger animation
           if (!this.hasTriggered) {
             this.hasTriggered = true;
             if (this.fire) this.fire();
-          } else {
-            // Already triggered - skip to avoid re-triggering on every scroll event while visible
           }
         } else if (config.replay && this.hasTriggered) {
-          // Visible but scrolling in the opposite direction and replay enabled:
-          // immediately remove the animation so it can be re‑triggered on the next
-          // correct-direction scroll.
           if (this.cleanup) this.cleanup();
           this.hasTriggered = false;
         }
-      } else {
-        // If the element is not visible and replay is enabled, ensure animation can be replayed later
-        if (config.replay && this.hasTriggered) {
-          if (this.cleanup) this.cleanup();
-          this.hasTriggered = false;
-        }
+      } else if (config.replay && this.hasTriggered) {
+        if (this.cleanup) this.cleanup();
+        this.hasTriggered = false;
       }
 
-      // Store last scroll offset so that direction detection is based on
-      // actual scroll movement (of window or playground), not element position.
       this.lastScrollY = currentOffset;
     };
 
     const debouncedScrollHandler = () => {
-      if (this.debounceTimeout) {
-        clearTimeout(this.debounceTimeout);
-      }
+      if (this.debounceTimeout) clearTimeout(this.debounceTimeout);
       this.debounceTimeout = setTimeout(scrollHandler, config.debounceDelay || 50);
     };
 
-    // Attach to scroll container (playground) if available, otherwise fallback to window
     if (scrollContainer instanceof Window) {
       this.addEventListener(window, "scroll", debouncedScrollHandler);
     } else {
       this.addEventListener(scrollContainer, "scroll", debouncedScrollHandler);
     }
 
-    // Also attach a capturing scroll listener at the document level.
-    // Scroll events don't bubble, and in preview the actual scrollable element
-    // can vary. Capturing ensures we still receive scroll events reliably.
     this.addEventListener(document, "scroll", debouncedScrollHandler, true);
-    
-    // Initialize lastScrollY to current scroll position to detect direction correctly from the start
-    this.lastScrollY = scrollContainer instanceof Window
-      ? window.scrollY
-      : (scrollContainer as HTMLElement).scrollTop;
 
-    // Use RAF polling as fallback if scroll events don't fire reliably
-    let rafId: number | null = null;
+    this.lastScrollY =
+      scrollContainer instanceof Window
+        ? window.scrollY
+        : (scrollContainer as HTMLElement).scrollTop;
+
+    // RAF fallback
     let lastCheckedOffset = this.lastScrollY;
-    
     const rafCheck = () => {
       if (!this.target) return;
-      const currentOffset = scrollContainer instanceof Window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
+      const currentOffset =
+        scrollContainer instanceof Window ? window.scrollY : (scrollContainer as HTMLElement).scrollTop;
       if (currentOffset !== lastCheckedOffset) {
         lastCheckedOffset = currentOffset;
         scrollHandler();
       }
-      rafId = requestAnimationFrame(rafCheck);
+      this.directionRAF = requestAnimationFrame(rafCheck);
     };
-    
     this.directionRAF = requestAnimationFrame(rafCheck);
   }
+
 
   private attachProgressMode(): void {
     if (!this.target) return;
@@ -598,7 +584,7 @@ export class OnScrollTrigger extends BaseTrigger {
       // Set defaults for scroll trigger config
       if (!config.type) config.type = "direction";
       if (!config.direction) config.direction = "both";
-      if (config.threshold === undefined) config.threshold = 50;
+      if (config.threshold === undefined) config.threshold = 0;
       if (config.replay === undefined) config.replay = false;
       if (config.debounceDelay === undefined) config.debounceDelay = 50;
 
@@ -648,8 +634,8 @@ export class OnScrollTrigger extends BaseTrigger {
 
     const thresholdAttr = target.getAttribute("data-scroll-threshold");
     if (thresholdAttr) {
-      const parsed = parseInt(thresholdAttr, 10);
-      config.threshold = isNaN(parsed) ? 50 : parsed;
+      const parsed = parseFloat(thresholdAttr);
+      config.threshold = isNaN(parsed) ? 0 : parsed;
     }
 
     const replayAttr = target.getAttribute("data-scroll-replay");
@@ -771,7 +757,7 @@ export class OnScrollTrigger extends BaseTrigger {
     // Set defaults
     if (!config.type) config.type = "direction";
     if (!config.direction) config.direction = "both";
-    if (config.threshold === undefined) config.threshold = 50;
+    if (config.threshold === undefined) config.threshold = 0;
     if (config.replay === undefined) config.replay = false;
     if (config.debounceDelay === undefined) config.debounceDelay = 50;
 
