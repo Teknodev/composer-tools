@@ -2,16 +2,12 @@
 
 .container {
   .max-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     .card {
       position: relative;
       width: 100%;
       overflow: hidden;
       border-radius: var(--composer-border-radius-md);
-      min-height: 400px;
+      min-height: 650px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -36,7 +32,7 @@
         content: "";
         position: absolute;
         inset: 0;
-        background-color: color-mix(in srgb, var(--composer-font-color-primary) 70%, transparent);
+        background: var(--composer-overlay-color);
         z-index: 1;
       }
 
@@ -50,23 +46,18 @@
         .title,
         .description {
           text-align: center;
-          color: var(--composer-html-background);
-          
+          color: var(--composer-font-color-secondary);
         }
 
         .subtitle {
           transform: none;
+          background: transparent;
+          padding: 0;
+          border-radius: 0;
           &::before {
             display: none;
           }
         }
-
-        .subtitle-badge {
-          color: var(--composer-font-color-primary);
-          background-color: var(--composer-html-background);
-        }
-
-        
 
         .button-container {
           display: flex;
@@ -74,11 +65,15 @@
           justify-content: center;
           gap: var(--composer-gap-sm);
 
-          .button {
-            .button-text {
-              content: "";
-            }
+          .button .button-text {
+            content: "";
           }
+        }
+
+        &.without-media .subtitle {
+          padding: var(--composer-gap-xs) var(--composer-gap-md);
+          border-radius: var(--composer-border-radius-xl);
+          background: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 20%);
         }
       }
     }
@@ -94,6 +89,5 @@
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .card {
     padding: var(--composer-gap-xl) var(--composer-gap-md);
-    min-height: 350px;
   }
 }

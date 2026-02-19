@@ -15,7 +15,7 @@ class CallToAction33 extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "default subtitle",
     });
 
     this.addProp({
@@ -82,7 +82,7 @@ class CallToAction33 extends BaseCallToAction {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons");
 
-    const hasMedia = !!mediaValue;
+    const hasMedia = !!(mediaValue && (("url" in mediaValue && mediaValue.url) || ("name" in mediaValue && mediaValue.name)));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -95,7 +95,9 @@ class CallToAction33 extends BaseCallToAction {
                 <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
               )}
             </div>
-            <Base.VerticalContent className={this.decorateCSS("content")}>
+            <Base.VerticalContent
+              className={`${this.decorateCSS("content")} ${!hasMedia ? this.decorateCSS("without-media") : ""}`}
+            >
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
