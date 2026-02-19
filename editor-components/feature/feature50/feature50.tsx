@@ -361,9 +361,9 @@ class Feature50 extends BaseFeature {
                                     <ComposerLink key={index} path={button.url}>
                                         <Base.Button
                                             buttonType={button.type}
-                                            className={this.decorateCSS("primary-button")}
+                                            className={this.decorateCSS("button")}
                                         >
-                                            <Base.P className={this.decorateCSS("primary-button-text")}>
+                                            <Base.P className={this.decorateCSS("button-text")}>
                                                 {button.text}
                                             </Base.P>
                                         </Base.Button>
