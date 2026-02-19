@@ -1,140 +1,91 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
 
 .container {
     background-color: var(--composer-primary-color);
 
+
     .max-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--composer-gap-xl);
-
-        .header {
+        .content {
             align-items: center;
-            width: 100%;
-
-            .subtitle {
-                text-align: center;
-                transform: translateX(0);
-                max-width: 100%;
-                overflow-wrap: break-word;
-                word-break: break-word;
-
-                /* Always center — not affected by alignment changes */
-                display: flex;
-                justify-content: center;
-
-                /* Hide badge decoration line */
-                &::before {
-                    display: none;
-                }
-
-                /* Prevent badge background/color override */
-                background: transparent !important;
-                border-radius: 0 !important;
-                padding: 0 !important;
-                color: inherit !important;
-            }
-
-            .title,
-            .description {
-                text-align: center;
-            }
+            justify-content: center;
         }
 
-        .cards-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: flex-start;
-            gap: var(--composer-gap-lg);
+        .subtitle {
+            text-align: center !important;
+            color: var(--composer-font-color-secondary) !important;
+            width: 100% !important;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            transform: none !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            justify-content: center !important;
+
+            &::before {
+                display: none !important;
+            }
+
+            background: none !important;
+            border: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
+
+        .title {
+            text-align: center;
+            color: var(--composer-font-color-secondary);
+        }
+
+        .description {
+            text-align: center;
+            color: var(--composer-font-color-secondary);
+
+        }
+
+        .card-container {
             width: 100%;
+            margin-top: 2rem;
 
             .card {
-                display: flex;
-                flex-direction: column;
                 align-items: center;
                 text-align: center;
-                gap: var(--composer-gap-sm);
-                flex: 1;
+
 
                 .card-icon {
+
                     color: var(--composer-font-color-secondary);
-                    font-size: 2rem;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
                 }
 
                 .card-title {
                     color: var(--composer-font-color-secondary);
-                    text-align: center;
                 }
 
                 .card-description {
                     color: var(--composer-font-color-secondary);
-                    text-align: center;
                 }
             }
         }
 
         .button-container {
             display: flex;
+            gap: 0.5rem;
             flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
-            gap: var(--composer-gap-sm);
 
             .button {
                 display: flex;
-                flex-direction: row;
                 align-items: center;
-                gap: var(--composer-gap-xs);
 
-                .button-icon {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                }
 
                 .button-text {
-                    content: "";
+                    margin: 0px;
                 }
-            }
-        }
-    }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container .max-content {
-        .header {
-            .subtitle {
-                max-width: 100%;
-                overflow-wrap: break-word;
-                word-break: break-word;
-            }
-        }
+                .button-icon {
 
-        .cards-container {
-            flex-direction: column;
-            align-items: center;
-
-            .card {
-                width: 100%;
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container .max-content {
-        gap: var(--composer-gap-lg);
-
-        .header {
-            .subtitle {
-                max-width: 100%;
-                overflow-wrap: break-word;
-                word-break: break-word;
+                    display: flex;
+                    align-items: center;
+                }
             }
         }
     }
