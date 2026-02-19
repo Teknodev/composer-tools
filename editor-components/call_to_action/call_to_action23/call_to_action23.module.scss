@@ -5,7 +5,6 @@
   flex-direction: column;
   gap: var(--composer-gap-xl);
   width: 100%;
-
   background: linear-gradient(to bottom,
       var(--composer-html-background) 0%,
       var(--composer-html-background) 50%,
@@ -19,7 +18,6 @@
 
   .content {
     width: 100%;
-    padding: 80px 50px;
     border-radius: var(--composer-border-radius-md);
     text-align: left !important; 
 
@@ -90,8 +88,10 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: flex-end;
         gap: var(--composer-gap-sm);
         flex: 0.3;
+        margin-left: auto;
 
         .button .button-text {
           margin: 0;
@@ -103,19 +103,15 @@
 
 
   &.no-card-style {
-    background: linear-gradient(to bottom,
-        var(--composer-html-background) 0%,
-        var(--composer-html-background) 50%,
-        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
-        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
-
     .max-content {
       max-width: 100%;
     }
 
     .content {
       width: 100%;
+      padding: 80px 50px;
       background-color: var(--composer-font-color-primary) !important;
+
       .content-row .content-left .content-text {
         .subtitle,
         .title,
@@ -123,35 +119,59 @@
           color: var(--composer-html-background) !important;
         }
       }
-      .content-row .content-left .pricing {
-        .price-label {
-          color: var(--composer-html-background) !important;
+      .content-row .content-left .pricing .price-label {
+        color: var(--composer-html-background) !important;
+      }
+      .content-row .content-left .pricing .price-value {
+        color: var(--composer-secondary-color) !important;
+      }
+    }
+  }
+
+  &:not(.no-card-style) {
+    background: var(--composer-html-background);
+
+    .max-content {
+      padding: 0;
+    }
+
+    .content {
+      padding: 0 !important;
+      background-color: transparent;
+      .content-row .content-left .content-text {
+        .subtitle,
+        .title,
+        .description {
+          color: var(--composer-font-color-primary) !important;
         }
+      }
+      .content-row .content-left .pricing .price-label {
+        color: var(--composer-font-color-primary) !important;
+      }
+      .content-row .content-left .pricing .price-value {
+        color: var(--composer-primary-color) !important;
       }
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .content {
-    padding: 80px 40px;
-
-    .content-row .content-left {
-      gap: var(--composer-gap-md);
-    }
-  }
-
   .container.no-card-style .content {
     padding: 80px 40px;
+  }
+
+  .container .content .content-row .content-left {
+    gap: var(--composer-gap-md);
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    .content {
+    &.no-card-style .content {
       padding: 50px 20px;
+    }
 
-      .content-row {
+    .content .content-row {
         flex-direction: column;
         align-items: center;
         gap: var(--composer-gap-md);
@@ -190,10 +210,4 @@
       }
     }
 
-    &.no-card-style {
-      .content {
-        padding: 50px 20px;
-      }
-    }
   }
-}

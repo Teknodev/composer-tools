@@ -15,7 +15,7 @@ class CallToAction23Page extends BaseCallToAction {
       type: "boolean",
       key: "cardBackground",
       displayer: "Colored Background",
-      value: false,
+      value: true,
     });
 
     this.addProp({
@@ -82,7 +82,7 @@ class CallToAction23Page extends BaseCallToAction {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${hasCardBackground ? "" : this.decorateCSS("no-card-style")}`}
+        className={`${this.decorateCSS("container")} ${hasCardBackground ? this.decorateCSS("no-card-style") : ""}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasCardBackground ? (
