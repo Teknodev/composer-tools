@@ -220,10 +220,18 @@
                     }
 
                     .bottom-row {
-                        display: flex !important;
-                        flex-direction: column !important;
+                        display: flex;
+                        flex-direction: column ;
                         align-items: flex-start;
                         gap: var(--composer-gap-md);
+                    }
+                }
+                .right-section {
+                    .cards {
+                        .card,
+                        .card-text {
+                            text-align: left !important;
+                        }
                     }
                 }
             }

@@ -235,7 +235,7 @@ class CallToAction19 extends BaseCallToAction {
                                 )}
                                 <div
                                     className={this.decorateCSS("cards")}
-                                    style={{ ["--cta19-cols" as any]: itemsPerRow }}
+                                    data-cols={itemsPerRow.toString()}
                                 >
                                     {features.map((item: FeatureItem, index: number) => (
                                         <div key={index} className={this.decorateCSS("card")}>
