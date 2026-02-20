@@ -317,7 +317,7 @@ class FeedbackModal1 extends BaseModal {
             }}
             validationSchema={this.createValidationSchema(minLenght, minLengthMessage, requiredMessage)}
             onSubmit={(data, { resetForm }) => {
-              this.insertForm("Contact Us", {
+              this.insertForm("Feedback Modal 1 - FeedbackForm", {
                 input0: data.message,
                 input1: data.selectedEmojiLabel,
               });
