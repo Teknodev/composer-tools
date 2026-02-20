@@ -159,9 +159,13 @@ class Stats17 extends BaseStats {
 
     return (
       <div ref={ref} className={this.decorateCSS("card")}>
-        <Base.H3 className={this.decorateCSS("stat-value")}>{valueDisplay}</Base.H3>
+        <Base.H3 className={this.decorateCSS("stat-value")}>
+          {valueDisplay}
+        </Base.H3>
         {hasLabel && (
-          <Base.P className={this.decorateCSS("stat-label")}>{label}</Base.P>
+          <Base.SectionDescription className={this.decorateCSS("stat-label")}>
+            {label}
+          </Base.SectionDescription>
         )}
       </div>
     );
@@ -178,9 +182,9 @@ class Stats17 extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {hasHeader && (
-              <div className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitle && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {this.getPropValue("subtitle")}
@@ -198,13 +202,10 @@ class Stats17 extends BaseStats {
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
             {statItems.length > 0 && (
-              <Base.ListGrid
-                gridCount={{ pc: Math.min(statItems.length, 4), tablet: 2, phone: 1 }}
-                className={this.decorateCSS("stats-grid")}
-              >
+              <div className={this.decorateCSS("stats-grid")}>
                 {statItems.map((item, index) => {
                   const valueStr = this.castToString(item.value);
                   const labelStr = this.castToString(item.label);
@@ -218,9 +219,9 @@ class Stats17 extends BaseStats {
                     />
                   );
                 })}
-              </Base.ListGrid>
+              </div>
             )}
-          </div>
+          </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
     );
