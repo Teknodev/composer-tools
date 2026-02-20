@@ -14,16 +14,13 @@
                 transform: none !important;
                 margin-left: auto !important;
                 margin-right: auto !important;
-                justify-content: center !important;
 
                 &::before {
                     display: none !important;
                 }
 
                 background: none !important;
-                border: none !important;
                 padding: 0 !important;
-                border-radius: 0 !important;
             }
 
             .title {
@@ -43,16 +40,9 @@
                 justify-content: center;
 
                 .button {
-                    display: flex;
-                    align-items: center;
-
                     .button-icon {
                         display: flex;
                         align-items: center;
-                    }
-
-                    .button-text {
-                        margin: 0px;
                     }
                 }
             }

@@ -38,13 +38,10 @@ class CallToAction25Page extends BaseCallToAction {
                 INPUTS.BUTTON("button", "Button", "Download", "", "IoArrowDown", null, "White"),
             ],
         });
-
     }
-
     static getName(): string {
         return "Call To Action 25";
     }
-
     render() {
 
         return (
@@ -88,7 +85,6 @@ class CallToAction25Page extends BaseCallToAction {
                                 )}
                             </div>
                         )}
-
                     </Base.VerticalContent>
                 </Base.MaxContent>
             </Base.Container>
