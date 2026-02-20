@@ -240,7 +240,7 @@ class Testimonials2Page extends Testimonials {
       slidesToScroll: 1,
       responsive: [
         {
-          breakpoint: 850,
+          breakpoint: 1024,
           settings: {
             slidesToShow: 1.65,
           },

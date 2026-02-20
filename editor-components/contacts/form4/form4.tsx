@@ -523,7 +523,7 @@ class Form4 extends BaseContacts {
                   validationSchema={getSchema}
                   onSubmit={(data, { resetForm }) => {
                     const formData = getFormDataWithConvertedKeys(data);
-                    this.insertForm("Contact Me", formData);
+                    this.insertForm("Form 4 - ContactUsForm", formData);
                     resetForm();
                   }}
                 >
