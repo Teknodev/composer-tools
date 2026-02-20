@@ -3,88 +3,57 @@
 .container {
     background-color: var(--composer-primary-color);
 
-
     .max-content {
         .content {
             align-items: center;
             justify-content: center;
-        }
 
-        .subtitle {
-            text-align: center !important;
-            color: var(--composer-font-color-secondary) !important;
-            width: 100% !important;
-            overflow-wrap: break-word;
-            word-wrap: break-word;
-            transform: none !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            justify-content: center !important;
+            .subtitle {
+                text-align: center !important;
+                color: var(--composer-font-color-secondary) !important;
+                transform: none !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+                justify-content: center !important;
 
-            &::before {
-                display: none !important;
+                &::before {
+                    display: none !important;
+                }
+
+                background: none !important;
+                border: none !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
             }
 
-            background: none !important;
-            border: none !important;
-            padding: 0 !important;
-            border-radius: 0 !important;
-        }
-
-        .title {
-            text-align: center;
-            color: var(--composer-font-color-secondary);
-        }
-
-        .description {
-            text-align: center;
-            color: var(--composer-font-color-secondary);
-
-        }
-
-        .card-container {
-            width: 100%;
-            margin-top: 2rem;
-
-            .card {
-                align-items: center;
+            .title {
                 text-align: center;
-
-
-                .card-icon {
-
-                    color: var(--composer-font-color-secondary);
-                }
-
-                .card-title {
-                    color: var(--composer-font-color-secondary);
-                }
-
-                .card-description {
-                    color: var(--composer-font-color-secondary);
-                }
+                color: var(--composer-font-color-secondary);
             }
-        }
 
-        .button-container {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            .description {
+                text-align: center;
+                color: var(--composer-font-color-secondary);
+            }
 
-            .button {
+            .button-container {
                 display: flex;
-                align-items: center;
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
+                justify-content: center;
 
-
-                .button-text {
-                    margin: 0px;
-                }
-
-                .button-icon {
-
+                .button {
                     display: flex;
                     align-items: center;
+
+                    .button-icon {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .button-text {
+                        margin: 0px;
+                    }
                 }
             }
         }
