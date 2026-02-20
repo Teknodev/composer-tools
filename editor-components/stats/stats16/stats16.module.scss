@@ -1,0 +1,95 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: var(--composer-html-background);
+
+    .max-content {
+        .content-wrapper {
+            align-items: center;
+            text-align: center;
+
+            .stats-section {
+                align-items: center;
+                text-align: center;
+
+                .header-container {
+
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+                }
+
+                .stats-grid {
+                    margin-top: var(--composer-gap-xl);
+                    align-items: center;
+                    text-align: center;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-xl);
+                    width: 100%;
+
+                    .stat-item {
+                        flex: 1 1 0%;
+                        gap: var(--composer-gap-xs);
+                        align-items: center;
+                        text-align: center;
+
+                        .stat-value {
+                            align-items: center;
+                            text-align: center;
+                            color: var(--composer-primary-color);
+                        }
+
+                        .stat-label {
+                            align-items: center;
+                            text-align: center;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content-wrapper {
+        padding: 80px var(--composer-gap-lg);
+
+        .stats-section .stats-grid {
+            justify-content: center;
+
+            .stat-item {
+                flex: 0 0 calc(50% - var(--composer-gap-xl));
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content-wrapper {
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
+
+        .stats-section {
+            gap: var(--composer-gap-lg);
+
+            .stats-grid {
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
+
+                .stat-item {
+                    width: 100%;
+                    flex: none;
+
+                    .stat-value {
+                        font-size: 4rem;
+                    }
+                }
+            }
+        }
+    }
+}
