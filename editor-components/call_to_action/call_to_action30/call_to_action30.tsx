@@ -139,10 +139,18 @@ class CallToAction30 extends BaseCallToAction {
             {media && (
               <div className={this.decorateCSS("media-wrapper")}>
                 <div className={this.decorateCSS("media-container")}>
-                  <Base.Media
-                    value={media}
-                    className={`${this.decorateCSS("media")} ${media?.type === "icon" ? this.decorateCSS("media-icon") : ""}`}
-                  />
+                  {media?.type === "icon" ? (
+                    <span
+                      className={`${this.decorateCSS("media")} ${this.decorateCSS("media-icon")}`}
+                    >
+                      <Base.Icon
+                        name={media.name}
+                        propsIcon={{ className: this.decorateCSS("media-icon-svg") }}
+                      />
+                    </span>
+                  ) : (
+                    <Base.Media value={media} className={this.decorateCSS("media")} />
+                  )}
                   {overlay && (
                     <div className={this.decorateCSS("media-overlay")} />
                   )}

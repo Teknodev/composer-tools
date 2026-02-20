@@ -37,8 +37,6 @@
           gap: var(--composer-gap-sm);
 
           .button {
-            flex-shrink: 0;
-
             .button-text {
               content: "";
             }
@@ -47,7 +45,6 @@
       }
 
       .media-wrapper {
-        flex-shrink: 0;
         margin: -20px 0;
       }
 
@@ -75,7 +72,7 @@
             justify-content: center;
             color: var(--composer-font-color-primary);
 
-            svg {
+            .media-icon-svg {
               width: 100%;
               height: 100%;
               object-fit: contain;
@@ -118,10 +115,6 @@
         .header {
           width: 100%;
           min-width: 0;
-
-          .description {
-            margin-bottom: var(--composer-gap-sm);
-          }
         }
 
         .media-wrapper {
