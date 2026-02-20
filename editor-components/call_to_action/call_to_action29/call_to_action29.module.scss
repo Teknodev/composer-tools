@@ -2,7 +2,6 @@
 
 .container {
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    width: 100%;
 
     .max-content {
         .card {
@@ -64,10 +63,6 @@
             }
         }
     }
-
-    &[class*="colorful"] .max-content .card.active .content-wrapper .left-column .subtitle {
-        color: var(--composer-primary-color) !important;
-    }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -77,11 +72,11 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .card.active {
-        padding: var(--composer-gap-xl) var(--composer-gap-md);
-    }
-
     .container .max-content .card {
+        &.active {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
+        }
+
         .content-wrapper {
             flex-direction: column;
             gap: 0;
