@@ -26,12 +26,7 @@ class CallToAction31Page extends BaseCallToAction {
             }
         });
 
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false
-        });
+
 
         this.addProp({
             type: "boolean",
@@ -44,16 +39,16 @@ class CallToAction31Page extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Use one tool instead of the five.",
+            value: "<span style='color: var(--composer-primary-color)'>Lets Talk</span><br> & Grow Your Business",
         });
 
 
-        this.addProp({
-            type: "string",
-            key: "title2",
-            displayer: "Title2",
-            value: "Use one tool instead of five.",
-        });
+        // this.addProp({
+        //     type: "string",
+        //     key: "title2",
+        //     displayer: "Title2",
+        //     value: "Use one tool instead of five.",
+        // });
 
 
         this.addProp({
@@ -89,7 +84,6 @@ class CallToAction31Page extends BaseCallToAction {
         if (!this.getPropValue("isActive")) return null;
 
         const media = this.getPropValue("media");
-        const overlay = this.getPropValue("overlay");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -103,18 +97,25 @@ class CallToAction31Page extends BaseCallToAction {
                                 </Base.SectionSubTitle>
                             )}
 
-                            {this.castToString(this.getPropValue("title2")) && (
+                            {/* {this.castToString(this.getPropValue("title2")) && (
                                 <Base.SectionTitle className={this.decorateCSS("title2")}>
                                     {this.getPropValue("title2")}
                                 </Base.SectionTitle>
-                            )}
+                            )} */}
 
                             {this.castToString(this.getPropValue("title")) && (
                                 <Base.SectionTitle className={this.decorateCSS("title")}>
                                     {this.getPropValue("title")}
                                 </Base.SectionTitle>
                             )}
-
+                            {/* 
+                            {this.castToString(this.getPropValue("title")) && (
+                                <Base.SectionTitle
+                                    className={this.decorateCSS("title")}
+                                >
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )} */}
 
                             {this.castToString(this.getPropValue("description")) && (
                                 <Base.SectionDescription className={this.decorateCSS("description")}>
@@ -153,9 +154,7 @@ class CallToAction31Page extends BaseCallToAction {
                                 value={media}
                                 className={this.decorateCSS("media")}
                             />
-                            {overlay && (
-                                <div className={this.decorateCSS("overlay")} />
-                            )}
+                            <div className={this.decorateCSS("overlay")} />
                         </div>
                     )}
 
