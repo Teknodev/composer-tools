@@ -35,21 +35,14 @@
                     height: 100%;
                     object-fit: cover;
 
-                    img,
-                    video,
-                    svg,
-                    i {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
-
                     &.is-icon {
                         background-color: transparent;
                         color: var(--composer-font-color-primary);
 
-                        i,
-                        svg {
+                        &>* {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
                             color: var(--composer-font-color-primary);
                         }
                     }
@@ -61,10 +54,6 @@
                     background: var(--composer-overlay-color);
                 }
 
-                @container (max-width: #{$composer-phone-width}) {
-                    width: 200px;
-                    height: 200px;
-                }
             }
 
             .title,
@@ -95,5 +84,12 @@
                 }
             }
         }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content .media-container {
+        width: 200px;
+        height: 200px;
     }
 }
