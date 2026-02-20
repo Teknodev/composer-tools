@@ -237,7 +237,7 @@ class SurveyModal extends BaseModal {
               initialValues={{ rating: 0, foundWhatLookingFor: "", message: "" }}
               validationSchema={validationSchema}
               onSubmit={(data, { resetForm }) => {
-                this.insertForm("Notice", data);
+                this.insertForm("Survey Modal - NewsletterForm", data);
                 resetForm();
               }}
             >
