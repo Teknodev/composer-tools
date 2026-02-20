@@ -392,11 +392,16 @@ export class OnScrollTrigger extends BaseTrigger {
       }
 
       if (viewportProgress < startThreshold) {
-        // Before this interaction's range - don't apply anything
+        // Before this interaction's range - reset to pre-animation state
         if (lastRange !== "before") {
           lastRange = "before";
           if (config.engine === 'animateCss') {
             this.removeAnimateCssClasses(this.target);
+          } else {
+            // Clear inline styles so the element returns to its original CSS state
+            this.target.style.opacity = '';
+            this.target.style.transform = '';
+            this.target.style.filter = '';
           }
         }
       } else if (viewportProgress > endThreshold) {
@@ -421,6 +426,10 @@ export class OnScrollTrigger extends BaseTrigger {
           lastRange = "during";
           if (config.engine === 'animateCss') {
             this.addAnimateCssClasses(this.target, config);
+          } else {
+            // Cancel any running Web Animations API instances (e.g. fill:forwards
+            // from other interactions) that would override our inline styles.
+            this.target.getAnimations().forEach((anim) => anim.cancel());
           }
         }
 
@@ -452,8 +461,15 @@ export class OnScrollTrigger extends BaseTrigger {
             if (config.replay) {
               animationCompleted = false;
               lastRange = null;
-              if (config.engine === 'animateCss') {
-                this.removeAnimateCssClasses(this.target);
+              if (this.target) {
+                if (config.engine === 'animateCss') {
+                  this.removeAnimateCssClasses(this.target);
+                } else {
+                  // Reset inline styles to original CSS state
+                  this.target.style.opacity = '';
+                  this.target.style.transform = '';
+                  this.target.style.filter = '';
+                }
               }
             }
           }
@@ -540,13 +556,13 @@ export class OnScrollTrigger extends BaseTrigger {
 
     // TranslateX
     if (config.customTranslateX !== undefined && config.customTranslateX !== 0) {
-      const translateX = config.customTranslateX * (1 - progress);
+      const translateX = config.customTranslateX * progress;
       transforms.push(`translateX(${translateX}px)`);
     }
 
     // TranslateY
     if (config.customTranslateY !== undefined && config.customTranslateY !== 0) {
-      const translateY = config.customTranslateY * (1 - progress);
+      const translateY = config.customTranslateY * progress;
       transforms.push(`translateY(${translateY}px)`);
     }
 
@@ -560,20 +576,18 @@ export class OnScrollTrigger extends BaseTrigger {
 
     // Rotate
     if (config.customRotate !== undefined && config.customRotate !== 0) {
-      const rotate = config.customRotate * (1 - progress);
+      const rotate = config.customRotate * progress;
       transforms.push(`rotate(${rotate}deg)`);
     }
 
     // Blur
     if (config.customBlur !== undefined && config.customBlur !== 0) {
-      const blur = config.customBlur * (1 - progress);
+      const blur = config.customBlur * progress;
       element.style.filter = `blur(${blur}px)`;
     }
 
-    // Apply all transforms
-    if (transforms.length > 0) {
-      element.style.transform = transforms.join(" ");
-    }
+    // Apply transforms or clear stale ones so no previous transform persists
+    element.style.transform = transforms.length > 0 ? transforms.join(" ") : '';
   }
 
   private addAnimateCssClasses(element: HTMLElement, config: OnScrollConfig): void {
@@ -599,12 +613,15 @@ export class OnScrollTrigger extends BaseTrigger {
       if (config.debounceDelay === undefined) config.debounceDelay = 50;
       if (config.minProgressHeight === undefined) config.minProgressHeight = 150;
 
-      // Map direct animation properties to custom* properties for progress effects
-      if (config.opacity !== undefined) {
+      // Map direct animation properties to custom* properties for progress effects.
+      // Only map when the value represents actual user intent — skip identity/default
+      // values (opacity: 1, scale: 1, rotate.z: 0) that are injected by
+      // DEFAULT_BASE_CONFIG so only explicitly configured properties animate.
+      if (config.opacity !== undefined && config.opacity !== 1) {
         config.customOpacityEnd = config.opacity;
         config.customOpacityStart = 0;
       }
-      if (config.scale !== undefined) {
+      if (config.scale !== undefined && config.scale !== 1) {
         config.customScaleEnd = config.scale;
         config.customScaleStart = 0.8; // Default start scale
       }
@@ -614,8 +631,27 @@ export class OnScrollTrigger extends BaseTrigger {
       if (config.translateY !== undefined) {
         config.customTranslateY = typeof config.translateY === 'string' ? parseFloat(config.translateY) : config.translateY;
       }
-      if (config.rotate?.z !== undefined) {
+      if (config.rotate?.z !== undefined && config.rotate.z !== 0) {
         config.customRotate = config.rotate.z;
+      }
+
+      // Auto-promote progressEffect to "custom" when direct animation
+      // properties were mapped to custom* but no explicit effect was chosen.
+      // Without this, applyProgressEffect defaults to "fade" and never
+      // calls applyCustomEffect, silently discarding transform values.
+      if (config.type === "progress" && !config.progressEffect) {
+        const hasCustomProps =
+          config.customTranslateX !== undefined ||
+          config.customTranslateY !== undefined ||
+          config.customScaleStart !== undefined ||
+          config.customScaleEnd !== undefined ||
+          config.customOpacityStart !== undefined ||
+          config.customOpacityEnd !== undefined ||
+          config.customRotate !== undefined ||
+          config.customBlur !== undefined;
+        if (hasCustomProps) {
+          config.progressEffect = "custom";
+        }
       }
 
       return config;

@@ -15,6 +15,7 @@ export class PressTrigger extends BaseTrigger {
   }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
+    console.log('Attaching PressTrigger with config:', this.config);
     this.fire = fire;
     this.cleanup = cleanup;
     
