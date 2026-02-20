@@ -2,8 +2,8 @@ import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "../../../custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 class CallToAction31Page extends BaseCallToAction {
     constructor(props?: any) {
@@ -17,6 +17,21 @@ class CallToAction31Page extends BaseCallToAction {
         });
 
         this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "<span style='color: var(--composer-primary-color)'>Lets Talk</span><br> & Grow Your Business",
+        });
+
+
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+
+        this.addProp({
             type: "media",
             key: "media",
             displayer: "Media",
@@ -26,8 +41,6 @@ class CallToAction31Page extends BaseCallToAction {
             }
         });
 
-
-
         this.addProp({
             type: "boolean",
             key: "isActive",
@@ -35,28 +48,7 @@ class CallToAction31Page extends BaseCallToAction {
             value: true
         });
 
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "<span style='color: var(--composer-primary-color)'>Lets Talk</span><br> & Grow Your Business",
-        });
 
-
-        // this.addProp({
-        //     type: "string",
-        //     key: "title2",
-        //     displayer: "Title2",
-        //     value: "Use one tool instead of five.",
-        // });
-
-
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "",
-        });
 
         this.addProp({
             type: "array",
@@ -97,25 +89,11 @@ class CallToAction31Page extends BaseCallToAction {
                                 </Base.SectionSubTitle>
                             )}
 
-                            {/* {this.castToString(this.getPropValue("title2")) && (
-                                <Base.SectionTitle className={this.decorateCSS("title2")}>
-                                    {this.getPropValue("title2")}
-                                </Base.SectionTitle>
-                            )} */}
-
                             {this.castToString(this.getPropValue("title")) && (
                                 <Base.SectionTitle className={this.decorateCSS("title")}>
                                     {this.getPropValue("title")}
                                 </Base.SectionTitle>
                             )}
-                            {/* 
-                            {this.castToString(this.getPropValue("title")) && (
-                                <Base.SectionTitle
-                                    className={this.decorateCSS("title")}
-                                >
-                                    {this.getPropValue("title")}
-                                </Base.SectionTitle>
-                            )} */}
 
                             {this.castToString(this.getPropValue("description")) && (
                                 <Base.SectionDescription className={this.decorateCSS("description")}>
