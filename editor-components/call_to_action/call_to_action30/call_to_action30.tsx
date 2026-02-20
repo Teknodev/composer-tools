@@ -61,8 +61,8 @@ class CallToAction30 extends BaseCallToAction {
             availableTypes: ["image", "icon", "video"],
           },
           value: {
-            type: "icon",
-            name: "FaRocket",
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
           },
         },
         {
