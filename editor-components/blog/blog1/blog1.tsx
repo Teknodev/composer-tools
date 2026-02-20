@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseBlog } from "../../EditorComponent";
 import styles from "./blog1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -13,50 +13,20 @@ type CardType = {
   imageSubtitle: React.JSX.Element;
   imageTitle: React.JSX.Element;
   imageDescription: React.JSX.Element;
-  image: { type: string; url: string };
+  image: { type: "image"; url: string };
   url: string;
 };
-type RightTextItem = {
-  text: React.JSX.Element
-  textUrl: string;
-  arrow: { type: string; name: string };
+type sectionButtonItem = {
+  text: string;
+  icon: { type: "icon"; name: string };
+  image?: { type: "image"; url: string };
+  url: string;
+  type?: string;
 };
 
 class Blog1 extends BaseBlog {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "object",
-      key: "rightText",
-      displayer: "Right Text",
-      value: [
-        {
-          type: "page",
-          key: "textUrl",
-          displayer: "URL",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "text",
-          displayer: "Text",
-          value: "Latest News",
-        },
-        {
-          type: "media",
-          key: "arrow",
-          displayer: "Arrow",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "LuArrowUpRight",
-          },
-        },
-      ],
-    });
 
     this.addProp({
       type: "string",
@@ -73,19 +43,30 @@ class Blog1 extends BaseBlog {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "line",
-      displayer: "Line",
-      value: true,
-    });
-
-    this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value:
         "Our team is comprised of experienced architects, designers, and project managers who share a common goal of creating exceptional spaces.",
     });
+
+    this.addProp({
+      type: "array",
+      key: "sectionButton",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Latest News", "", "LuArrowUpRight", "", "Link"),
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
+
 
     this.addProp({
       type: "boolean",
@@ -121,7 +102,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -158,7 +139,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -195,7 +176,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -232,7 +213,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -269,7 +250,7 @@ class Blog1 extends BaseBlog {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image" , "video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
@@ -295,17 +276,11 @@ class Blog1 extends BaseBlog {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "disableAnimation",
-      displayer: "Animation",
-      value: true,
-    });
-    this.addProp({
       type: "media",
       key: "prev-button-icon",
       displayer: "Previous Slide Button",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -317,7 +292,7 @@ class Blog1 extends BaseBlog {
       key: "next-button-icon",
       displayer: "Next Slide Button",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -329,12 +304,13 @@ class Blog1 extends BaseBlog {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate3"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
+        selectItems: ["animate1", "animate2", "animate3"]
       }
     });
 
+    this.setComponentState("activeSlideIndex", 0);
     this.setComponentState(
       "prevSlide",
       this.castToObject<CardType[]>("items").length - 1
@@ -342,10 +318,6 @@ class Blog1 extends BaseBlog {
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
     this.setComponentState("activeSlideIndex", 0);
-    this.setComponentState(
-      "disableAnimation",
-      this.getPropValue("disableAnimation")
-    );
   }
 
   static getName(): string {
@@ -357,14 +329,13 @@ class Blog1 extends BaseBlog {
 
     return (
       <ul className={this.decorateCSS("custom-dots")}>
-        {items.map((item, index) => (
+        {items.map((_item, index) => (
           <li
             key={index}
-            className={
-              index === activeSlideIndex ? this.decorateCSS("slick-active") : ""
-            }
+            className={`${this.decorateCSS("dot-item")} ${index === activeSlideIndex ? this.decorateCSS("slick-active") : ""
+              }`}
           >
-            <button>
+            <button className={this.decorateCSS("dot-button")}>
               <span></span>
             </button>
           </li>
@@ -407,7 +378,7 @@ class Blog1 extends BaseBlog {
           },
         },
       ],
-      beforeChange: (current: number, next: number) => {
+      beforeChange: (_current: number, next: number) => {
         this.setComponentState("active", next);
         this.setComponentState("activeSlideIndex", next);
       },
@@ -419,52 +390,54 @@ class Blog1 extends BaseBlog {
     const subtitleExist = this.castToString(subtitle);
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
-    const rightText = this.castToObject<RightTextItem>("rightText");
+    const sectionButtonItems = this.castToObject<sectionButtonItem[]>("sectionButton");
     const sliderRef = this.getComponentState("slider-ref");
     const prevIcon: string = this.getPropValue("prev-button-icon");
     const nextIcon: string = this.getPropValue("next-button-icon");
     const line = this.getPropValue("line");
-    const disableAnimation = this.getPropValue("disableAnimation");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(rightText.arrow || this.castToString(rightText.text)) && (
-            <div className={this.decorateCSS("right-link")}>
-              <ComposerLink path={rightText.textUrl}>
-                <div className={this.decorateCSS("inner-right-link")}>
-                  <Base.P
-                    className={
-                      `${this.decorateCSS("inner-div")} ${!disableAnimation ? this.decorateCSS("no-animation") : ""
-                      }`
-                    }>
-                    <Base.P className={this.decorateCSS("text")}>{rightText.text}</Base.P>
-                  </Base.P>
-                  <Base.Media
-                    value={rightText.arrow}
-                    className={`${this.decorateCSS("icon")} ${!disableAnimation && this.decorateCSS("no-animation")}`}
-                  />
-                </div>
-              </ComposerLink>
-            </div>
-          )}
           <Base.VerticalContent className={this.decorateCSS("header")}>
             {subtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
             )}
             {isTitleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
+                {title as any}
               </Base.SectionTitle>
             )}
+
+          </Base.VerticalContent>
+          <div className={this.decorateCSS("button-container")}>
+            {sectionButtonItems.map((item: sectionButtonItem, index: number) => {
+              const buttonTextExist = this.castToString(item.text as any);
+              const iconExist = item.icon && item.icon.name;
+              const imageExist = item.image && item.image.url;
+              const buttonExist = buttonTextExist || iconExist || imageExist;
+
+              return buttonExist && (
+                <div key={`blog-1-btn-${index}`} className={this.decorateCSS("button-wrapper")}>
+                  <ComposerLink path={item.url}>
+                    <Base.Button className={this.decorateCSS("button")} buttonType={(item.type as any) || "Link"}>
+                      {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                      {(imageExist || iconExist) && <Base.Media value={imageExist ? item.image : item.icon} className={this.decorateCSS("button-icon")} />}
+                    </Base.Button>
+                  </ComposerLink>
+                </div>
+              );
+            })}
+          </div>
+
+          <div className={this.decorateCSS("header-bottom")}>
             {line && <hr className={this.decorateCSS("line")} />}
             {isDescriptionExist && (
               <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}
               </Base.SectionDescription>
             )}
-          </Base.VerticalContent>
-
+          </div>
           <main
             className={`${this.decorateCSS("wrapper")} ${items.length <= 3 ? this.decorateCSS("no-slider") : ""
               }`}
@@ -491,19 +464,18 @@ class Blog1 extends BaseBlog {
                 >
                   {items.map((item: CardType, index: number) => (
                     <article
-                      className={`${this.decorateCSS("slider-item")} ${
-                        this.getComponentState("prevSlide") === index
+                      className={`${this.decorateCSS("slider-item")} ${this.getComponentState("prevSlide") === index
                         ? this.decorateCSS("prevSlide")
                         : ""
-                      } ${
-                        this.getComponentState("nextSlide") === index
-                        ? this.decorateCSS("nextSlide")
-                        : ""
-                      }`}
+                        } ${this.getComponentState("nextSlide") === index
+                          ? this.decorateCSS("nextSlide")
+                          : ""
+                        }`}
                       key={index}
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       <div className={this.decorateCSS("card")}>
+                        <div className={this.decorateCSS("gradient-overlay")} />
                         {item.image?.url && (
                           <div className={this.decorateCSS("media-wrapper")}>
                             <ComposerLink path={item.url}>
@@ -530,18 +502,12 @@ class Blog1 extends BaseBlog {
                                 </Base.P>
                               )}
                               {this.castToString(item.imageTitle) && (
-                                <Base.H2
-                                  className={`${this.decorateCSS(
-                                    "card-title"
-                                  )} ${!disableAnimation
-                                    ? this.decorateCSS(
-                                      "no-animation-card-title"
-                                    )
-                                    : ""
-                                    }`}
+                                <Base.H5
+                                  className={this.decorateCSS("card-title")}
                                 >
                                   {item.imageTitle}
-                                </Base.H2>
+                                  <div className={this.decorateCSS("title-underline")} />
+                                </Base.H5>
                               )}
                             </Base.VerticalContent>
                           )}

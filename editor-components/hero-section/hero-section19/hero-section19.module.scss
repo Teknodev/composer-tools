@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
-
   .max-content {
     height: 100vh;
     display: flex;
@@ -11,31 +9,43 @@
     .left {
       flex: 1;
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-      border-radius: var(--composer-border-radius-xs);
+      border-radius: var(--composer-border-radius-md);
 
       .item {
         align-items: flex-start;
         padding: var(--composer-gap-md);
 
         .background-image {
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-md);
         }
 
         .content {
           text-overflow: ellipsis;
+          padding: var(--composer-gap-md);
 
-          .title {
+          .subtitle {
             font-size: 1rem;
             overflow: hidden;
           }
 
-          .description {
+          .title {
             font-size: 3rem;
             overflow: hidden;
           }
 
+          .description {
+            font-size: 1rem;
+            overflow: hidden;
+          }
+
+          .button {
+            .button-text {
+              content: "";
+            }
+          }
+
           &.no-bg-img {
-            .description {
+            .title {
               color: var(--composer-font-color-primary);
             }
           }
@@ -50,19 +60,27 @@
       gap: var(--composer-gap-md);
       height: 100%;
 
+      .content {
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+
       .top {
         flex: 2;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         height: 50%;
-        border-radius: var(--composer-border-radius-xs);
+        border-radius: var(--composer-border-radius-md);
 
         .item {
           .background-image {
-            border-radius: var(--composer-border-radius-xs);
+            border-radius: var(--composer-border-radius-md);
           }
 
           .no-bg-img {
-            .description {
+            .title {
               color: var(--composer-font-color-primary);
             }
           }
@@ -74,19 +92,19 @@
         gap: var(--composer-gap-md);
         flex: 2;
         height: 50%;
-        border-radius: var(--composer-border-radius-xs);
+        border-radius: var(--composer-border-radius-md);
 
         .item {
           flex: 1;
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-xs);
+          border-radius: var(--composer-border-radius-md);
 
           .background-image {
-            border-radius: var(--composer-border-radius-xs);
+            border-radius: var(--composer-border-radius-md);
           }
 
           .no-bg-img {
-            .description {
+            .title {
               color: var(--composer-font-color-primary);
             }
           }
@@ -102,14 +120,6 @@
       height: 100%;
       width: 100%;
 
-      &:hover {
-        .background-image {
-          .image {
-            transform: scale(1.1);
-            border-radius: var(--composer-border-radius-xs);
-          }
-        }
-      }
 
       .background-image {
         position: absolute;
@@ -126,10 +136,20 @@
           width: 100%;
           object-fit: cover;
         }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-overlay-color);
+          z-index: 1;
+        }
       }
 
       .content {
-        z-index: 1;
+        z-index: 2;
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-sm);
@@ -139,17 +159,23 @@
         height: 100%;
         overflow: hidden;
 
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+
         :last-child {
           overflow: hidden;
         }
 
-        .title {
+        .subtitle {
           font-size: 1rem;
           color: var(--composer-primary-color);
           overflow: hidden;
         }
 
-        .description {
+        .title {
           font-size: 2rem;
           overflow: hidden;
         }
@@ -161,13 +187,27 @@
       width: 50%;
     }
   }
+
+  &.has-animation {
+    .max-content {
+      .item {
+        &:hover {
+          .background-image {
+            .image {
+              transform: scale(1.1);
+              border-radius: var(--composer-border-radius-md);
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0 var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg);
-
     .max-content {
+      height: 50vh;
       .left {
         .item {
           align-items: flex-start;
@@ -175,7 +215,7 @@
           .content {
             width: 100%;
 
-            .description {
+            .title {
               font-size: 2rem;
             }
           }
@@ -204,7 +244,7 @@
         .content {
           width: 100%;
 
-          .description {
+          .title {
             font-size: 1.5rem;
           }
         }
@@ -215,23 +255,21 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 0 var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
-
     .max-content {
       flex-direction: column;
       height: auto;
 
       .left {
         width: 100%;
-        height: auto;
+        aspect-ratio: 1;
 
         .item {
           width: 100%;
           padding: var(--composer-gap-md);
-          height: auto;
+          height: 100%;
 
           .content {
-            .description {
+            .title {
               font-size: 1.5rem;
             }
           }
@@ -250,7 +288,7 @@
 
           .item {
             .content {
-              .description {
+              .title {
                 font-size: 1.5rem;
               }
             }
@@ -275,11 +313,11 @@
         .content {
           flex-direction: column;
 
-          .title {
+          .subtitle {
             font-size: 1rem;
           }
 
-          .description {
+          .title {
             font-size: 1.5rem;
           }
         }

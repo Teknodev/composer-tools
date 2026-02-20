@@ -13,12 +13,14 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+
+    .subtitle, .heading,
+    .subheading {
+      content: "";
+    }
   }
 
-  .heading,
-  .subheading {
-    content: "";
-  }
+ 
 
   .features-grid {
     width: 100%;
