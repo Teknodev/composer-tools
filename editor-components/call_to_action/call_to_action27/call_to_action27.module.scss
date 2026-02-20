@@ -4,39 +4,24 @@
   position: relative;
   padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
   background-color: var(--composer-html-background);
-  container-type: inline-size;
-
-  .content {
-    display: flex;
-    gap: calc(2 * var(--composer-gap-xl));
-  }
-
-  &:not(.has-background) .content {
-    padding: 80px 50px;
-  }
 
   .left-section {
     flex: 1;
+    display: flex;
+    flex-direction: column;
     align-items: stretch;
+    gap: var(--composer-gap-md);
   }
 
   .header {
-    width: 100%;
-
     .title {
-      text-align: center !important;
+      text-align: center;
     }
 
     .subtitle {
-      width: fit-content !important;
-      margin-left: auto !important;
-      margin-right: auto !important;
-
-      &::before,
-      &::after {
-        display: none !important;
-        transform: none !important;
-      }
+      width: fit-content ;
+      margin-left: auto ;
+      margin-right: auto ;
     }
   }
 
@@ -60,7 +45,7 @@
 
   .button-group {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
     gap: var(--composer-gap-sm);
 
     >* {
@@ -92,7 +77,10 @@
     .content .left-section .header {
       .subtitle {
         color: var(--composer-html-background);
-        transform: none !important;
+
+        &::before {
+          background: var(--composer-html-background);
+        }
       }
 
       .title {
@@ -105,6 +93,12 @@
       text-align: left !important;
       margin: 0 !important;
     }
+    &:not(.has-background) {
+      padding: 80px 50px;
+      .content {
+        padding: 0;
+      }
+    }
   }
 }
 
@@ -114,13 +108,20 @@
       padding: 80px 40px;
     }
 
-    &:not(.has-background) .content {
+    &:not(.has-background) {
       padding: 80px 40px;
+      .content {
+        padding: 0;
+      }
     }
 
     .max-content .content {
       gap: var(--composer-gap-xl);
     }
+
+     .description-button-row {
+      gap:  calc(var(--composer-gap-md) * 2); 
+    } 
   }
 }
 
@@ -132,21 +133,24 @@
       padding: 50px 20px;
     }
 
-    &:not(.has-background) .content {
+    &:not(.has-background) {
       padding: 50px 20px;
+      .content {
+        padding: 0;
+      }
     }
 
     .description-button-row {
-      flex-direction: column;
-
       .description {
-        min-width: 50% !important;
+        min-width: 100%;
       }
     }
 
     .button-group {
-      max-width: 100% !important;
-      flex: 0 1 auto !important;
+      max-width: 100%;
+      flex: 1 1 auto;
+      justify-content: center;
+      width: 100%;
     }
   }
 }

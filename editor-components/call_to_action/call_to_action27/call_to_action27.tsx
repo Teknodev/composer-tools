@@ -13,21 +13,21 @@ class CallToAction27 extends BaseCallToAction {
     this.addProp({
       type: "boolean",
       key: "coloredBackground",
-      displayer: "Card Background",
+      displayer: "Colored Background",
       value: true,
     });
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "safas",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "New Edge of the Theme Experience with Impreza",
+      value: "New Edge of the Theme Experience with Blinkpage",
     });
 
     this.addProp({
@@ -43,7 +43,6 @@ class CallToAction27 extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
-
     });
   }
 
@@ -68,7 +67,7 @@ class CallToAction27 extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(hasHeader || hasDescriptionOrButtons) && (
-              <Base.VerticalContent className={this.decorateCSS("left-section")}>
+              <div className={this.decorateCSS("left-section")}>
                 {hasHeader && (
                   <Base.VerticalContent className={this.decorateCSS("header")}>
                     {subtitleExist && (
@@ -84,14 +83,14 @@ class CallToAction27 extends BaseCallToAction {
                   </Base.VerticalContent>
                 )}
                 {hasDescriptionOrButtons && (
-                  <Base.VerticalContent className={this.decorateCSS("description-button-row")}>
+                  <div className={this.decorateCSS("description-button-row")}>
                     {descriptionExist && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
                         {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
                     {visibleButtons.length > 0 && (
-                      <Base.VerticalContent className={this.decorateCSS("button-group")}>
+                      <div className={this.decorateCSS("button-group")}>
                         {visibleButtons.map((item: Button, index: number) =>
                           this.castToString(item.text) ? (
                             <ComposerLink key={`button-${index}`} path={item.url}>
@@ -101,11 +100,11 @@ class CallToAction27 extends BaseCallToAction {
                             </ComposerLink>
                           ) : null
                         )}
-                      </Base.VerticalContent>
+                      </div>
                     )}
-                  </Base.VerticalContent>
+                  </div>
                 )}
-              </Base.VerticalContent>
+              </div>
             )}
           </div>
         </Base.MaxContent>
