@@ -10,7 +10,7 @@
             &.active {
                 padding: 0;
                 background-color: var(--composer-primary-color);
-                border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 var(--composer-border-radius-md);
+                border-radius: var(--composer-border-radius-md);
                 overflow: hidden;
 
                 &.no-media {
@@ -137,7 +137,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .card.active {
         padding: 0;
-        border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
+        border-radius: var(--composer-border-radius-md);
 
         .content-wrapper .left-column {
             padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md);
@@ -145,6 +145,10 @@
 
         .content-wrapper .media-column {
             padding-top: 0;
+
+            .media-container {
+                border-radius: 0;
+            }
         }
 
         &.no-media {
@@ -172,7 +176,7 @@
                 flex: auto;
 
                 .media-container {
-                    border-top-left-radius: 0;
+                    border-radius: var(--composer-border-radius-sm);
                 }
             }
         }
