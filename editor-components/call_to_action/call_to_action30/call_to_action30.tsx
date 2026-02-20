@@ -61,8 +61,8 @@ class CallToAction30 extends BaseCallToAction {
             availableTypes: ["image", "icon", "video"],
           },
           value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+            type: "icon",
+            name: "FaRocket",
           },
         },
         {
@@ -139,18 +139,10 @@ class CallToAction30 extends BaseCallToAction {
             {media && (
               <div className={this.decorateCSS("media-wrapper")}>
                 <div className={this.decorateCSS("media-container")}>
-                  {media?.type === "icon" ? (
-                    <span
-                      className={`${this.decorateCSS("media")} ${this.decorateCSS("media-icon")}`}
-                    >
-                      <Base.Icon
-                        name={media.name}
-                        propsIcon={{ className: this.decorateCSS("media-icon-svg") }}
-                      />
-                    </span>
-                  ) : (
-                    <Base.Media value={media} className={this.decorateCSS("media")} />
-                  )}
+                  <Base.Media
+                    value={media}
+                    className={`${this.decorateCSS("media")} ${media.type === "icon" ? this.decorateCSS("is-icon") : ""}`}
+                  />
                   {overlay && (
                     <div className={this.decorateCSS("media-overlay")} />
                   )}
