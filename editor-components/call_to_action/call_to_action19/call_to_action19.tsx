@@ -19,7 +19,7 @@ class CallToAction19 extends BaseCallToAction {
             type: "boolean",
             key: "cardBackground",
             displayer: "Colored Background",
-            value: true,
+            value: false,
         });
         this.addProp({
             type: "string",
@@ -54,13 +54,13 @@ class CallToAction19 extends BaseCallToAction {
             type: "string",
             key: "ratingValue",
             displayer: "Rating Value",
-            value: "4.8/5 ",
+            value: "4.8/5",
         });
         this.addProp({
             type: "string",
             key: "ratingText",
             displayer: "Rating Text",
-            value: "from 300+ Reviews ",
+            value: "from 300+ Reviews",
         });
         this.addProp({
             type: "string",
@@ -173,7 +173,6 @@ class CallToAction19 extends BaseCallToAction {
         const itemCountInARow = this.getPropValue("itemCountInARow");
         const itemsPerRow = itemCountInARow > 0 ? itemCountInARow : 1;
         const cardBackground = this.getPropValue("cardBackground");
-        const subtitleType = Base.getSectionSubTitleType();
         const hasHeader = subtitle || title || description;
 
         return (
