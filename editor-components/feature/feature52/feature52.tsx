@@ -294,7 +294,7 @@ class Feature52 extends BaseFeature {
           <div className={contentContainerClass}>
             {hasHeaderContent && (
               <div className={`${this.decorateCSS("heading-container")} ${forceLeftClass}`}>
-                {(subtitleExist || titleExist || descriptionExist) && (
+                {(subtitleExist || titleExist || descriptionExist || buttons.length > 0) && (
                   <Base.VerticalContent className={`${this.decorateCSS("heading-text-content")} ${forceLeftClass}`}>
                     {subtitleExist && (
                       <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${forceLeftClass}`}>
@@ -311,46 +311,46 @@ class Feature52 extends BaseFeature {
                         {description}
                       </Base.SectionDescription>
                     )}
-                  </Base.VerticalContent>
-                )}
-                {buttons.length > 0 && (
-                  <Base.Row className={`${this.decorateCSS("button-row")} ${forceLeftClass}`}>
-                    {buttons.map((button: ButtonItemType, index: number) => {
-                      const buttonText = this.castToString(button.text || "");
-                      const buttonImageMedia = button.image;
-                      const buttonIconMedia = button.icon;
-                      const imageExists = buttonImageMedia?.type === "image" && !!buttonImageMedia?.url;
-                      const iconExists = buttonIconMedia?.type === "icon" && !!buttonIconMedia?.name;
-                      const selectedButtonMedia =
-                      (imageExists && buttonImageMedia) ||
-                      (iconExists && buttonIconMedia);
-                      const hasButtonMedia = !!selectedButtonMedia;
-                      const buttonUrl = button.url;
-                      const hasButtonContent = !!buttonText || hasButtonMedia;
+                    {buttons.length > 0 && (
+                      <Base.Row className={`${this.decorateCSS("button-row")} ${forceLeftClass}`}>
+                        {buttons.map((button: ButtonItemType, index: number) => {
+                          const buttonText = this.castToString(button.text || "");
+                          const buttonImageMedia = button.image;
+                          const buttonIconMedia = button.icon;
+                          const imageExists = buttonImageMedia?.type === "image" && !!buttonImageMedia?.url;
+                          const iconExists = buttonIconMedia?.type === "icon" && !!buttonIconMedia?.name;
+                          const selectedButtonMedia =
+                          (imageExists && buttonImageMedia) ||
+                          (iconExists && buttonIconMedia);
+                          const hasButtonMedia = !!selectedButtonMedia;
+                          const buttonUrl = button.url;
+                          const hasButtonContent = !!buttonText || hasButtonMedia;
 
-                      return hasButtonContent && (
-                        <ComposerLink key={`feature52-button-${index}`} path={buttonUrl || "#"}>
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            {hasButtonMedia && (
-                              <Base.Media
-                                className={
-                                  selectedButtonMedia?.type === "image"
-                                    ? this.decorateCSS("button-image")
-                                    : this.decorateCSS("button-icon")
-                                }
-                                value={selectedButtonMedia}
-                              />
-                            )}
-                            {buttonText && (
-                              <Base.P className={this.decorateCSS("button-text")}>
-                                {button.text}
-                              </Base.P>
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
-                  </Base.Row>
+                          return hasButtonContent && (
+                            <ComposerLink key={`feature52-button-${index}`} path={buttonUrl || "#"}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                {hasButtonMedia && (
+                                  <Base.Media
+                                    className={
+                                      selectedButtonMedia?.type === "image"
+                                        ? this.decorateCSS("button-image")
+                                        : this.decorateCSS("button-icon")
+                                    }
+                                    value={selectedButtonMedia}
+                                  />
+                                )}
+                                {buttonText && (
+                                  <Base.P className={this.decorateCSS("button-text")}>
+                                    {button.text}
+                                  </Base.P>
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
+                      </Base.Row>
+                    )}
+                  </Base.VerticalContent>
                 )}
               </div>
             )}
