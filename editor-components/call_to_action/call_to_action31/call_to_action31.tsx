@@ -20,7 +20,7 @@ class CallToAction31Page extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "<span style='color: var(--composer-primary-color)'>Lets Talk</span><br> & Grow Your Business",
+            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with Impreza.",
         });
 
 

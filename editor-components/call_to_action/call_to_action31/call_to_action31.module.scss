@@ -6,11 +6,11 @@
 
     .max-content {
         display: flex;
+        justify-content: center;
+
         flex-direction: column;
         gap: 3rem;
-        padding: 3rem;
-        box-sizing: border-box;
-        overflow: hidden;
+        padding: 10rem;
         border-radius: 1rem;
         background-color: color-mix(in srgb,
                 var(--composer-html-background),
@@ -27,12 +27,6 @@
             }
 
             .text-column {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem !important;
-                align-items: flex-start !important;
-                max-width: 40% !important;
-
                 @container (max-width: #{$composer-tablet-width}) {
                     max-width: 100% !important;
                 }
@@ -44,7 +38,7 @@
 
                 .title {
                     text-align: left !important;
-                    font-size: 2.5rem;
+                    font-size: 3rem;
                     font-weight: 700;
                     color: var(--composer-font-color-primary);
                 }
@@ -52,39 +46,15 @@
                 .description {
                     text-align: left !important;
                     color: var(--composer-font-color-secondary);
-                    font-size: 1.2rem !important;
                 }
             }
 
-            .button-column {
-                display: flex;
-                justify-content: flex-end;
-                box-sizing: border-box;
-                flex: 1;
-
-                @container (max-width: #{$composer-tablet-width}) {
-                    width: 100%;
-                }
-
+            .button-container {
                 .button {
-                    padding: 1.5rem 3rem;
-                    width: 100%;
-                    background-color: var(--composer-button-background);
-
-                    @container (max-width: #{$composer-tablet-width}) {
-                        width: 100%;
-                    }
-
-                    &:hover {
-                        opacity: 0.9;
-                    }
 
                     .button-text {
-                        color: var(--composer-font-color-primary);
                         text-align: center;
-                        font-size: 2rem;
-                        font-weight: 700;
-                        width: 100%;
+                        content: "";
                     }
                 }
             }
