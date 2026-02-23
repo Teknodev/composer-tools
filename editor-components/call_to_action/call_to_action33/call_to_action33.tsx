@@ -15,7 +15,7 @@ class CallToAction33 extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "default subtitle",
+      value: "",
     });
 
     this.addProp({
@@ -90,13 +90,13 @@ class CallToAction33 extends BaseCallToAction {
           <div
             className={`${this.decorateCSS("card")} ${hasMedia && overlayEnabled ? this.decorateCSS("overlay-active") : ""}`}
           >
-            <div className={this.decorateCSS("media-container")}>
-              {hasMedia && (
+            {hasMedia && (
+              <div className={this.decorateCSS("media-container")}>
                 <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
-              )}
-            </div>
+              </div>
+            )}
             <Base.VerticalContent
-              className={`${this.decorateCSS("content")} ${!hasMedia ? this.decorateCSS("without-media") : ""}`}
+              className={`${this.decorateCSS("content")} ${hasMedia ? this.decorateCSS("with-media") : ""}`}
             >
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>

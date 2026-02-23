@@ -46,17 +46,6 @@
         .title,
         .description {
           text-align: center;
-          color: var(--composer-font-color-secondary);
-        }
-
-        .subtitle {
-          transform: none;
-          background: transparent;
-          padding: 0;
-          border-radius: 0;
-          &::before {
-            display: none;
-          }
         }
 
         .button-container {
@@ -70,10 +59,22 @@
           }
         }
 
-        &.without-media .subtitle {
-          padding: var(--composer-gap-xs) var(--composer-gap-md);
-          border-radius: var(--composer-border-radius-xl);
-          background: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 20%);
+        &.with-media {
+          .subtitle,
+          .title,
+          .description {
+            color: var(--composer-font-color-secondary);
+          }
+
+          .subtitle {
+            transform: none;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            &::before {
+              display: none;
+            }
+          }
         }
       }
     }
