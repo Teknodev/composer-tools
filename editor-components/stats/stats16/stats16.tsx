@@ -6,9 +6,12 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type StatItem = {
-    number: number;
+    number: string;
     suffix: string;
     label: string;
+    labelElement: JSX.Element;
+    statsAnimation: boolean;
+    animationDuration: number;
 };
 
 class Stats16 extends BaseStats {
@@ -116,10 +119,9 @@ class Stats16 extends BaseStats {
         return "Stats 16";
     }
 
-    private AnimatedStat = ({ stat, item, animationDuration = 2000, statsAnimation }: { stat: StatItem; item: any; animationDuration?: number; statsAnimation: boolean }) => {
-        const titleProp = item.getPropValue("number");
-        const originalString = String(this.castToString(titleProp) || "0");
-        const targetNumber = parseFloat(originalString.replace(/[^\d.]/g, '')) || 0;
+    private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
+        const originalString = stat.number;
+        const targetNumber = parseFloat(originalString) || 0;
 
         const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -178,14 +180,14 @@ class Stats16 extends BaseStats {
                         {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
                         {stat.suffix && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix.replace(/<[^>]*>/g, '')}
+                                {stat.suffix}
                             </span>
                         )}
                     </span>
                 )}
                 {labelExist && (
                     <Base.SectionDescription className={this.decorateCSS("stat-label")}>
-                        {item.getPropValue("label")}
+                        {stat.labelElement}
                     </Base.SectionDescription>
                 )}
             </Base.VerticalContent>
@@ -197,15 +199,16 @@ class Stats16 extends BaseStats {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const statsProp = this.getPropValue("stats");
         const itemCount = this.getPropValue("itemCount");
 
-        const stats = statsProp.map((item: any) => {
-            const numberString = String(this.castToString(item.getPropValue("number") || "0"));
-            const number = parseFloat(numberString.replace(/[^\d.]/g, '')) || 0;
-            const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
-            const label = String(this.castToString(item.getPropValue("label")) || "");
-            return { number, suffix, label };
+        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element; statsAnimation: boolean; animationDuration: number }[]>("stats");
+        const stats: StatItem[] = statsItems.map((item) => {
+            const number = String(this.castToString(item.number) || "0");
+            const suffix = String(this.castToString(item.suffix) || "");
+            const label = String(this.castToString(item.label) || "");
+            const statsAnimation = !!item.statsAnimation;
+            const animationDuration = item.animationDuration || 2000;
+            return { number, suffix, label, labelElement: item.label, statsAnimation, animationDuration };
         });
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
@@ -258,22 +261,16 @@ class Stats16 extends BaseStats {
                             </Base.VerticalContent>
 
                             {stats.length > 0 && (
-                                <div className={this.decorateCSS("stats-grid")}>
-                                    {statsProp.map((item: any, index: number) => {
-                                        const stat = stats[index];
-                                        const statsAnimation = item.getPropValue("statsAnimation");
-                                        const animationDuration = item.getPropValue("animationDuration") || 2000;
-                                        return (
-                                            <this.AnimatedStat
-                                                key={`stat16-${index}`}
-                                                stat={stat}
-                                                item={item}
-                                                animationDuration={animationDuration}
-                                                statsAnimation={statsAnimation}
-                                            />
-                                        );
-                                    })}
-                                </div>
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                    {stats.map((stat: StatItem, index: number) => (
+                                        <this.AnimatedStat
+                                            key={`stat16-${index}`}
+                                            stat={stat}
+                                            animationDuration={stat.animationDuration}
+                                            statsAnimation={stat.statsAnimation}
+                                        />
+                                    ))}
+                                </Base.ListGrid>
                             )}
                         </Base.VerticalContent>
                     )}
