@@ -48,6 +48,22 @@ class Stats20 extends BaseStats {
 
         this.addProp({
             type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+            ],
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "enable_divider",
+            displayer: "Divider",
+            value: true,
+        });
+
+        this.addProp({
+            type: "array",
             key: "stats",
             displayer: "Stats",
             value: [
@@ -79,13 +95,6 @@ class Stats20 extends BaseStats {
                     ]
                 },
             ],
-        });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [],
         });
 
         this.addProp({
@@ -182,6 +191,7 @@ class Stats20 extends BaseStats {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const enable_card = this.getPropValue("enable_card");
+        const enable_divider = this.getPropValue("enable_divider");
         const itemCount = this.getPropValue("itemCount");
 
         const alignment = Base.getContentAlignment();
@@ -248,7 +258,7 @@ class Stats20 extends BaseStats {
                                 </Base.VerticalContent>
                             )}
 
-                            {(hasTopSection && hasStats) && (
+                            {(hasTopSection && hasStats && enable_divider) && (
                                 <div className={this.decorateCSS("divider")} />
                             )}
 
