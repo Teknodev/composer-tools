@@ -13,14 +13,14 @@ class CallToAction31Page extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: ""
+            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with Impreza."
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with Impreza.",
+            value: "",
         });
 
 
@@ -48,8 +48,6 @@ class CallToAction31Page extends BaseCallToAction {
             value: true
         });
 
-
-
         this.addProp({
             type: "array",
             key: "buttons",
@@ -62,7 +60,6 @@ class CallToAction31Page extends BaseCallToAction {
                     "",
                     "",
                     null,
-                    "White"
                 )
             ],
         });
@@ -106,16 +103,11 @@ class CallToAction31Page extends BaseCallToAction {
                                 (button: INPUTS.CastedButton, index: number) =>
                                     this.castToString(button.text) && (
                                         <ComposerLink key={index} path={button.url}>
+
                                             <Base.Button
                                                 className={this.decorateCSS("button")}
-                                                buttonType={button.type}
-                                            >
-                                                {button.icon && (
-                                                    <Base.Media
-                                                        value={button.icon as any}
-                                                        className={this.decorateCSS("button-icon")}
-                                                    />
-                                                )}
+                                                buttonType={button.type}>
+
                                                 <Base.P className={this.decorateCSS("button-text")}>
                                                     {button.text}
                                                 </Base.P>

@@ -7,51 +7,62 @@
     .max-content {
         display: flex;
         justify-content: center;
-
         flex-direction: column;
-        gap: 3rem;
-        padding: 10rem;
+        gap: var(--composer-gap-md);
+        padding: var(--composer-gap-xl);
         border-radius: 1rem;
         background-color: color-mix(in srgb,
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 5%);
+
+
+        @container (max-width: #{$composer-tablet-width}) {
+            // padding: 4rem;
+            gap: var(--composer-gap-md);
+        }
+
+        @container (max-width: #{$composer-phone-width}) {
+            // padding: 2rem;
+            gap: var(--composer-gap-md);
+        }
 
         .header-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
 
+
             @container (max-width: #{$composer-tablet-width}) {
                 flex-direction: column;
-                align-items: center;
+                text-align: center;
+                gap: var(--composer-gap-md);
             }
 
             .text-column {
                 @container (max-width: #{$composer-tablet-width}) {
                     max-width: 100% !important;
+                    display: flex;
+                    flex-direction: column;
                 }
 
                 .subtitle {
-                    text-align: left !important;
-                    color: var(--composer-font-color-secondary);
+                    &::before {
+                        display: none !important;
+                    }
+
+                    padding-left: 0 !important;
                 }
 
-                .title {
-                    text-align: left !important;
-                    font-size: 3rem;
-                    font-weight: 700;
-                    color: var(--composer-font-color-primary);
-                }
-
+                .title,
                 .description {
-                    text-align: left !important;
-                    color: var(--composer-font-color-secondary);
+                    padding: 0 !important;
                 }
             }
 
             .button-container {
-                .button {
 
+                .button {
+                    min-width: auto;
 
                     .button-text {
                         text-align: center;
@@ -63,14 +74,10 @@
 
         .media-wrapper {
             position: relative;
-            width: 100%;
             overflow: hidden;
 
             .media {
-                width: 100%;
-                height: auto;
-                display: block;
-                object-fit: cover;
+                max-width: 100%;
             }
 
             .overlay {
