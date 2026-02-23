@@ -21,7 +21,7 @@ class CallToAction27 extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "TEST",
     });
 
     this.addProp({
@@ -58,8 +58,6 @@ class CallToAction27 extends BaseCallToAction {
     const buttons = this.castToObject<Button[]>("buttons") || [];
     const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
     const hasBackground = this.getPropValue("cardBackground");
-    const hasHeader = subtitleExist || titleExist;
-    const hasFooter = descriptionExist || visibleButtons.length > 0;
 
     return (
       <Base.Container
@@ -67,7 +65,7 @@ class CallToAction27 extends BaseCallToAction {
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {hasHeader && (
+            {(subtitleExist || titleExist) && (
               <div className={this.decorateCSS("header-group")}>
                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                   {subtitleExist && (
@@ -83,7 +81,7 @@ class CallToAction27 extends BaseCallToAction {
                 </Base.VerticalContent>
               </div>
             )}
-            {hasFooter && (
+            {(descriptionExist || visibleButtons.length > 0) && (
               <div className={this.decorateCSS("footer-group")}>
                 {descriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
@@ -92,15 +90,13 @@ class CallToAction27 extends BaseCallToAction {
                 )}
                 {visibleButtons.length > 0 && (
                   <div className={this.decorateCSS("button-group")}>
-                    {visibleButtons.map((item: Button, index: number) =>
-                      this.castToString(item.text) ? (
-                        <ComposerLink key={`button-${index}`} path={item.url}>
-                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      ) : null
-                    )}
+                    {visibleButtons.map((item: Button, index: number) => (
+                      <ComposerLink key={`button-${index}`} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    ))}
                   </div>
                 )}
               </div>
