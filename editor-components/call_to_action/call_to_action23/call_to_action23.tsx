@@ -22,7 +22,7 @@ class CallToAction23Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "SAFFASD",
+      value: "",
     });
 
     this.addProp({
@@ -76,56 +76,61 @@ class CallToAction23Page extends BaseCallToAction {
     const price = this.castToString(this.getPropValue("price"));
     const coloredBackground = this.getPropValue("coloredBackground");
     const hasColoredBackground = !!coloredBackground;
-    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${hasColoredBackground ? this.decorateCSS("card-style") : ""}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("content")} ${alignment === "center" ? this.decorateCSS("content-center") : ""}`}
-          >
-            <div className={this.decorateCSS("content-row")}>
-              <div className={this.decorateCSS("content-left")}>
-                {(subtitle || title || description) && (
-                  <Base.VerticalContent className={this.decorateCSS("content-text")}>
-                    {subtitle && (
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {this.getPropValue("subtitle")}
-                      </Base.SectionSubTitle>
-                    )}
-                    {title && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
-                      </Base.SectionTitle>
-                    )}
-                    {description && (
-                      <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {this.getPropValue("description")}
-                      </Base.SectionDescription>
-                    )}
-                  </Base.VerticalContent>
-                )}
+          <div className={this.decorateCSS("content")}>
+            {(subtitle || title || description) && (
+              <div className={this.decorateCSS("content-section")}>
+                <Base.VerticalContent className={this.decorateCSS("content-text")}>
+                  {subtitle && (
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("subtitle")}
+                    >
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {title && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
+                  )}
+                  {description && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              </div>
+            )}
+
+            {(priceLabel || price) && (
+              <div className={this.decorateCSS("content-section")}>
                 <div className={this.decorateCSS("pricing")}>
                   {priceLabel && (
-                    <Base.H4 className={this.decorateCSS("price-label")}>
+                    <Base.P className={this.decorateCSS("price-label")}>
                       {priceLabel}
-                    </Base.H4>
+                    </Base.P>
                   )}
                   {price && (
-                    <Base.H2 className={this.decorateCSS("price-value")}>{price}</Base.H2>
+                    <Base.H4 className={this.decorateCSS("price-value")}>
+                      {price}
+                    </Base.H4>
                   )}
                 </div>
               </div>
-              {buttons?.length > 0 && (
+            )}
+
+            {buttons?.length > 0 && (
+              <div className={this.decorateCSS("content-section")}>
                 <div className={this.decorateCSS("button-wrap")}>
                   {buttons.map((button: Button, index: number) =>
                     this.castToString(button.text) ? (
                       <ComposerLink key={index} path={button.url}>
-                        <Base.Button
-                          className={this.decorateCSS("button")}
-                        >
+                        <Base.Button className={this.decorateCSS("button")}>
                           <Base.P className={this.decorateCSS("button-text")}>
                             {button.text}
                           </Base.P>
@@ -134,8 +139,8 @@ class CallToAction23Page extends BaseCallToAction {
                     ) : null
                   )}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
