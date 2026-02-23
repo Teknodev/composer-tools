@@ -3,7 +3,7 @@
 .container .max-content .wrapper {
   align-items: center;
   text-align: center;
-  padding: var(--composer-gap-xl) 0;
+  
 
   .header {
     align-items: center;
@@ -56,6 +56,22 @@
       }
     }
   }
+
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--composer-gap-sm);
+    justify-content: center;
+    margin-top: var(--composer-gap-lg);
+
+    .button {
+      content: "";
+    }
+
+    .button-text {
+      content: "";
+    }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -66,7 +82,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .wrapper {
-    padding: var(--composer-gap-lg) 0;
+    
 
     .header {
       margin-bottom: var(--composer-gap-lg);

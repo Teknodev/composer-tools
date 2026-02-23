@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats17.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
   value: React.ReactNode;
@@ -70,6 +72,12 @@ class Stats17 extends BaseStats {
       key: "animationDuration",
       displayer: "Number Animation Duration (ms)",
       value: 2000,
+    });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [],
     });
   }
 
@@ -159,9 +167,9 @@ class Stats17 extends BaseStats {
 
     return (
       <div ref={ref} className={this.decorateCSS("card")}>
-        <Base.H3 className={this.decorateCSS("stat-value")}>
+        <Base.SectionTitle className={this.decorateCSS("stat-value")}>
           {valueDisplay}
-        </Base.H3>
+        </Base.SectionTitle>
         {hasLabel && (
           <Base.SectionDescription className={this.decorateCSS("stat-label")}>
             {label}
@@ -177,6 +185,7 @@ class Stats17 extends BaseStats {
     const description = this.castToString(this.getPropValue("description"));
     const statItems = this.castToObject<StatItem[]>("statItems");
     const animationDuration = this.getPropValue("animationDuration") || 2000;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasHeader = subtitle || title || description;
 
     return (
@@ -221,6 +230,23 @@ class Stats17 extends BaseStats {
                 })}
               </div>
             )}
+            {buttons.length > 0 && (() => {
+              const validButtons = buttons.filter((item) => {
+                const buttonText = this.castToString(item.text || "");
+                return buttonText;
+              });
+              return validButtons.length > 0 ? (
+                <div className={this.decorateCSS("button-container")}>
+                  {validButtons.map((item, index) => (
+                    <ComposerLink key={`stats17-btn-${index}`} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  ))}
+                </div>
+              ) : null;
+            })()}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
