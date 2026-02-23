@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  height: 100dvh;
+  height: 100vh;
   position: relative;
   padding: 0 !important;
   overflow: hidden;
@@ -10,6 +10,83 @@
     max-width: unset;
     position: relative;
     background: black;
+
+    .image-box {
+      position: absolute;
+      height: 100%;
+      right: 0;
+      width: 65%;
+      z-index: 0;
+      overflow: hidden;
+
+      .image-overlay {
+        background-color: var(--composer-overlay-color);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 3;
+      }
+
+      .overlay {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        .image {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          transition: var(--composer-transition-duration-normal) ease-in-out;
+          opacity: 0;
+          transform: scale(1.05);
+
+          &.active {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+          }
+        }
+      }
+    }
+
+    .text-box {
+      width: 100%;
+      margin: auto;
+      position: absolute;
+      top: 63%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+
+      .decorator-line {
+        background-color: var(--color-white);
+        width: var(--composer-gap-md);
+        height: 2px;
+        position: absolute;
+        top: -15px;
+        left: var(--composer-gap-xl);
+      }
+
+      .text {
+        color: var(--color-white);
+        transition: var(--composer-transition-duration-normal);
+        opacity: 0;
+        width: 100%;
+        max-width: 35%;
+        padding: 0 var(--composer-gap-xl);
+        overflow: hidden;
+        max-height: 100%;
+        margin: 0;
+        text-align: left;
+
+        &.visible {
+          opacity: 1;
+        }
+      }
+    }
 
     .carousel-wrapper {
       position: relative;
@@ -22,17 +99,13 @@
         :global(.slick-prev),
         :global(.slick-next) {
           z-index: 20;
-          width: 40px;
-          height: 40px;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
           top: 55%;
 
-          @container (max-width: #{$composer-tablet-width}) {
-            top: 50%;
-          }
-
           &:before {
-            font-size: 40px;
-            color: white;
+            font-size: var(--composer-gap-lg);
+            color: var(--color-white);
             opacity: 1;
           }
         }
@@ -103,14 +176,6 @@
           :global(.slick-slide) {
             :global(.slick-slide)>div {
               padding: 0 10rem;
-
-              @container (max-width: #{$composer-tablet-width}) {
-                padding: 0 var(--composer-gap-lg);
-              }
-
-              @container (max-width: #{$composer-phone-width}) {
-                padding: 0 var(--composer-gap-md);
-              }
             }
           }
         }
@@ -118,7 +183,7 @@
 
       .card {
         width: 100%;
-        height: 100dvh;
+        height: 100vh;
         position: relative;
 
         .button-wrapper {
@@ -130,7 +195,7 @@
           top: 45%;
           transform: translate(0, -50%);
           z-index: 2;
-          -webkit-text-stroke: 1px white;
+          -webkit-text-stroke: 1px var(--color-white);
           text-transform: capitalize;
           transition: var(--composer-transition-duration-normal) ease-out;
           display: flex;
@@ -140,16 +205,8 @@
           margin-right: 100px !important;
 
           &:hover {
-            color: white;
-            -webkit-text-stroke: 1px white;
-          }
-
-          @container (max-width: #{$composer-tablet-width}) {
-            font-size: 3rem;
-          }
-
-          @container (max-width: #{$composer-phone-width}) {
-            font-size: 2rem;
+            color: var(--color-white);
+            -webkit-text-stroke: 1px var(--color-white);
           }
 
           .link-wrapper {
@@ -162,7 +219,7 @@
 
           .number {
             font-size: 1rem;
-            color: white;
+            color: var(--color-white);
             align-self: flex-start;
             margin: 0;
             margin-top: var(--composer-gap-xs);
@@ -176,206 +233,73 @@
             font-weight: 500;
             font-size: 6.5rem;
 
-            @container (max-width: #{$composer-phone-width}) {
-              font-size: 4.75rem;
-            }
-
-            @container (max-width: #{$composer-phone-width}) {
-              font-size: 2.75rem;
-            }
-
             &.active {
-              color: white;
+              color: var(--color-white);
             }
           }
         }
       }
     }
-  }
 
-  .image-box {
-    position: absolute;
-    height: 100%;
-    right: 0;
-    width: 65%;
-    z-index: 0;
-    overflow: hidden;
-
-    @container (max-width: #{$composer-tablet-width}) {
-      width: 65%;
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
-      width: 100%;
-    }
-
-    .image-overlay {
-      background-color: var(--composer-overlay-color);
-      width: 100%;
-      height: 100%;
+    .footer {
       position: absolute;
-      left: 0px;
-      top: 0px;
-      z-index: 3;
-    }
-
-    .overlay {
+      bottom: var(--composer-gap-xl);
+      left: 0;
       width: 100%;
-      height: 100%;
-      position: relative;
-
-      .image {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        transition: var(--composer-transition-duration-normal) ease-in-out;
-        opacity: 0;
-        transform: scale(1.05);
-
-        &.active {
-          opacity: 1;
-          transform: scale(1);
-          z-index: 2;
-        }
-      }
-    }
-  }
-
-  .text-box {
-    width: 100%;
-    margin: auto;
-    position: absolute;
-    top: 63%;
-    left: 50%;
-    transform: translateX(-50%);
-    height: calc(37vh - var(--composer-gap-md));
-    z-index: 5;
-
-    @container (max-width: #{$composer-tablet-width}) {
-      top: 58%;
-      height: calc(42vh - var(--composer-gap-md));
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
-      height: calc(40vh - var(--composer-gap-md));
-      top: 55%;
-    }
-
-    .decorator-line {
-      background-color: white;
-      width: 20px;
-      height: 2px;
-      position: absolute;
-      top: -15px;
-      left: var(--composer-gap-xl);
-
-      @container (max-width: #{$composer-tablet-width}) {
-        left: var(--composer-gap-lg);
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        left: var(--composer-gap-md);
-        top: calc(-1 * var(--composer-gap-sm));
-      }
-    }
-
-    .text {
-      color: white;
-      transition: var(--composer-transition-duration-normal);
-      opacity: 0;
-      width: 100%;
-      max-width: 35%;
       padding: 0 var(--composer-gap-xl);
-      overflow: hidden;
-      max-height: 100%;
-      margin: 0;
-      text-align: left;
-
-      @container (max-width: #{$composer-tablet-width}) {
-        padding: 0 var(--composer-gap-lg);
-        max-width: 100%;
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        padding: 0 var(--composer-gap-md);
-        max-width: 100%;
-      }
-
-      &.visible {
-        opacity: 1;
-      }
-    }
-  }
-
-  .footer {
-    position: absolute;
-    bottom: 50px;
-    left: 0;
-    width: 100%;
-    padding: 0 var(--composer-gap-xl);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10;
-    color: white;
-
-    @container (max-width: #{$composer-tablet-width}) {
-      padding: 0 var(--composer-gap-lg);
-      bottom: 40px;
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
-      padding: 0 var(--composer-gap-md);
-      bottom: 50px;
-    }
-
-    .page-numbers {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: var(--composer-gap-md);
-      font-size: 0.875rem;
-      font-weight: 300;
+      z-index: 10;
+      color: var(--color-white);
 
-      .separator {
-        width: 40px;
-        height: auto;
-        color: rgba(255, 255, 255, 0.3);
+      .page-numbers {
         display: flex;
         align-items: center;
-        justify-content: center;
-
-        i,
-        svg {
-          width: 100%;
-          height: auto;
-        }
-      }
-    }
-
-    .follow-us {
-      display: flex;
-      align-items: center;
-      gap: var(--composer-gap-md);
-
-      .follow-text {
+        gap: var(--composer-gap-md);
         font-size: 0.875rem;
         font-weight: 300;
+
+        .separator {
+          width: var(--composer-gap-lg);
+          height: auto;
+          color: rgba(255, 255, 255, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          i,
+          svg {
+            width: 100%;
+            height: auto;
+          }
+        }
       }
 
-      .social-icons {
+      .follow-us {
         display: flex;
         align-items: center;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
 
-        .social-icon {
-          width: 18px;
-          height: 18px;
-          color: white;
-          transition: opacity var(--composer-transition-duration-normal);
+        .follow-text {
+          font-size: 0.875rem;
+          font-weight: 300;
+        }
 
-          &:hover {
-            opacity: 0.7;
+        .social-icons {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+
+          .social-icon {
+            width: 18px;
+            height: 18px;
+            color: var(--color-white);
+            transition: opacity var(--composer-transition-duration-normal);
+
+            &:hover {
+              opacity: 0.7;
+            }
           }
         }
       }
@@ -385,24 +309,104 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 0 !important;
-    overflow: hidden;
+
+    .max-content {
+      .text-box {
+        top: 58%;
+
+        .decorator-line {
+          left: var(--composer-gap-lg);
+        }
+
+        .text {
+          padding: 0 var(--composer-gap-lg);
+          max-width: 100%;
+        }
+      }
+
+      .carousel-wrapper {
+        .carousel {
+
+          :global(.slick-prev),
+          :global(.slick-next) {
+            top: 50%;
+          }
+        }
+
+        :global(.slick-list) {
+          :global(.slick-track) {
+            :global(.slick-slide) {
+              :global(.slick-slide)>div {
+                padding: 0 var(--composer-gap-lg);
+              }
+            }
+          }
+        }
+
+        .card {
+          .button-wrapper {
+            font-size: 3rem;
+          }
+        }
+      }
+
+      .footer {
+        padding: 0 var(--composer-gap-lg);
+        bottom: var(--composer-gap-lg);
+      }
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    height: 80dvh;
-    padding: 0 !important;
-    overflow: hidden;
+    height: 80vh;
 
     .max-content {
+      .image-box {
+        width: 100%;
+      }
+
+      .text-box {
+        top: 55%;
+
+        .decorator-line {
+          left: var(--composer-gap-md);
+          top: calc(-1 * var(--composer-gap-sm));
+        }
+
+        .text {
+          padding: 0 var(--composer-gap-md);
+        }
+      }
+
       .carousel-wrapper {
-        .carousel {
-          .card {
-            height: 80dvh;
+        :global(.slick-list) {
+          :global(.slick-track) {
+            :global(.slick-slide) {
+              :global(.slick-slide)>div {
+                padding: 0 var(--composer-gap-md);
+              }
+            }
           }
         }
+
+        .card {
+          height: 80vh;
+
+          .button-wrapper {
+            font-size: 2rem;
+
+            .title-text {
+              font-size: 2.75rem;
+            }
+          }
+        }
+      }
+
+      .footer {
+        padding: 0 var(--composer-gap-md);
+        bottom: var(--composer-gap-xl);
       }
     }
   }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,15 +7,15 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
-  media: any;
+  media: TypeMediaInputValue;
   text: React.JSX.Element;
-  button: React.JSX.Element;
+  title: React.JSX.Element;
   path: string;
   number: React.JSX.Element;
 };
 
 type SocialItem = {
-  media: any;
+  media: TypeMediaInputValue;
   path: string;
 };
 
@@ -30,26 +30,27 @@ class Slider2 extends BaseSlider {
       value: [
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 2",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "button",
+              key: "title",
               displayer: "Title",
               value: "Sonya",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Navigate To",
-              value: "",
             },
             {
               type: "string",
               key: "number",
               displayer: "Number",
               value: "01",
+            },
+
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Assumenda voluptatum eveniet possimus modi illo.",
             },
             {
               type: "media",
@@ -64,35 +65,35 @@ class Slider2 extends BaseSlider {
               },
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Assumenda voluptatum eveniet possimus modi illo.",
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 0",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "button",
+              key: "title",
               displayer: "Title",
               value: "Baseball",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Navigate To",
-              value: "",
             },
             {
               type: "string",
               key: "number",
               displayer: "Number",
               value: "02",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Commodi necessitatibus perspiciatis quae labore!",
             },
             {
               type: "media",
@@ -107,35 +108,35 @@ class Slider2 extends BaseSlider {
               },
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Commodi necessitatibus perspiciatis quae labore!",
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 0",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "button",
+              key: "title",
               displayer: "Title",
               value: "Kitchen",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Navigate To",
-              value: "",
             },
             {
               type: "string",
               key: "number",
               displayer: "Number",
               value: "03",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Commodi necessitatibus perspiciatis quae labore!",
             },
             {
               type: "media",
@@ -150,35 +151,35 @@ class Slider2 extends BaseSlider {
               },
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Commodi necessitatibus perspiciatis quae labore!",
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 1",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "button",
+              key: "title",
               displayer: "Title",
               value: "biker",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Navigate To",
-              value: "",
             },
             {
               type: "string",
               key: "number",
               displayer: "Number",
               value: "04",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Praesentium cumque saepe dignissimos incidunt.",
             },
             {
               type: "media",
@@ -193,36 +194,36 @@ class Slider2 extends BaseSlider {
               },
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Praesentium cumque saepe dignissimos incidunt.",
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
 
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 3",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
-              key: "button",
+              key: "title",
               displayer: "Title",
               value: "Born Wild",
-            },
-            {
-              type: "page",
-              key: "path",
-              displayer: "Navigate To",
-              value: "",
             },
             {
               type: "string",
               key: "number",
               displayer: "Number",
               value: "05",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Impedit ad animi quae nobis voluptate! Rerum, enim.",
             },
             {
               type: "media",
@@ -237,14 +238,21 @@ class Slider2 extends BaseSlider {
               },
             },
             {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Impedit ad animi quae nobis voluptate! Rerum, enim.",
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "string",
+      key: "followUsText",
+      displayer: "Bottom Text",
+      value: "Follow us",
     });
 
     this.addProp({
@@ -331,13 +339,6 @@ class Slider2 extends BaseSlider {
     });
 
     this.addProp({
-      type: "string",
-      key: "followUsText",
-      displayer: "Bottom Text",
-      value: "Follow us",
-    });
-
-    this.addProp({
       type: "boolean",
       key: "showPageNumbers",
       displayer: "Show Page Numbers",
@@ -366,7 +367,7 @@ class Slider2 extends BaseSlider {
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.setComponentState("active_index", 0);
-    this.setComponentState("text", this.castToObject<SliderItem[]>("slider")[0].text);
+    this.setComponentState("text", this.castToObject<SliderItem[]>("slider")[0].title);
     this.setComponentState("text_visibility", true);
   }
 
@@ -424,93 +425,88 @@ class Slider2 extends BaseSlider {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("image-box")}>
-            {isOverlayActive && <div className={this.decorateCSS("image-overlay")}></div>}
-            <div className={this.decorateCSS("overlay")}>
-              {this.castToObject<SliderItem[]>("slider").map((slide, index) => {
-                const isActive = this.getComponentState("active_index") === index;
-                return (
-                  slide.media && (
-                    <Base.Media
-                      key={index}
-                      value={slide.media}
-                      className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`}
-                    />
-                  )
-                );
-              })}
+          {slider.some((slide) => slide.media) && (
+            <div className={this.decorateCSS("image-box")}>
+              {isOverlayActive && <div className={this.decorateCSS("image-overlay")}></div>}
+              <div className={this.decorateCSS("overlay")}>
+                {slider.map((slide, index) => {
+                  const isActive = this.getComponentState("active_index") === index;
+                  return slide.media && (
+                    <Base.Media key={index} value={slide.media} className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`} />
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
           {this.getComponentState("text") && (
             <div className={this.decorateCSS("text-box")}>
               <div className={this.decorateCSS("decorator-line")}></div>
-              <Base.P
-                className={`${this.decorateCSS("text")} 
-              ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}
-              >
+              <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>
                 {this.getComponentState("text")}
               </Base.P>
             </div>
           )}
-          <div className={this.decorateCSS("carousel-wrapper")}>
-            <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-              {this.castToObject<SliderItem[]>("slider").map((item: SliderItem, indexSlider: number) => {
-                const isActive = this.getComponentState("active_index") === indexSlider;
+          {slider.length > 0 && (
+            <div className={this.decorateCSS("carousel-wrapper")}>
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+                {slider.map((item: SliderItem, indexSlider: number) => {
+                  const isActive = this.getComponentState("active_index") === indexSlider;
+                  return (
+                    <div key={indexSlider} className={this.decorateCSS("card")}>
+                      <div
+                        className={this.decorateCSS("button-wrapper")}
+                        onMouseOver={() => {
+                          const isIndexSame = this.getComponentState("active_index") === indexSlider;
+                          if (isIndexSame) return;
 
-                return (
-                  <div key={indexSlider} className={this.decorateCSS("card")}>
-                    <div
-                      className={this.decorateCSS("button-wrapper")}
-                      onMouseOver={() => {
-                        const isIndexSame = this.getComponentState("active_index") === indexSlider;
-                        if (isIndexSame) return;
-
-                        this.setComponentState("active_index", indexSlider);
-                        this.setComponentState("text_visibility", false);
-                        setTimeout(() => {
-                          this.setComponentState("text_visibility", true);
-                          this.setComponentState("text", item.text);
-                        }, 200);
-                      }}
-                    >
-                      <ComposerLink key={indexSlider} path={item.path}>
-                        <div className={this.decorateCSS("link-wrapper")}>
-                          {this.castToString(item.number) && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
-                          {this.castToString(item.button) && <div className={`${this.decorateCSS("title-text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</div>}
-                        </div>
-                      </ComposerLink>
-                    </div>
-                  </div>
-                );
-              })}
-            </ComposerSlider>
-          </div>
-          <div className={this.decorateCSS("footer")}>
-            {showPageNumbers && (
-              <div className={this.decorateCSS("page-numbers")}>
-                <span className={this.decorateCSS("current")}>{(activeIndex + 1).toString().padStart(2, "0")}</span>
-                {pageNumbersSeparator && <Base.Media value={pageNumbersSeparator} className={this.decorateCSS("separator")} />}
-                <span className={this.decorateCSS("total")}>{totalSlides.toString().padStart(2, "0")}</span>
-              </div>
-            )}
-
-            {(followUsText || (icons && icons.length > 0)) && (
-              <div className={this.decorateCSS("follow-us")}>
-                {followUsText && <Base.P className={this.decorateCSS("follow-text")}>{followUsText}</Base.P>}
-                {icons && icons.length > 0 && (
-                  <div className={this.decorateCSS("social-icons")}>
-                    {icons.map((social: SocialItem, index: number) => (
-                      social.media && (
-                        <ComposerLink key={index} path={social.path}>
-                          <Base.Media value={social.media} className={this.decorateCSS("social-icon")} />
+                          this.setComponentState("active_index", indexSlider);
+                          this.setComponentState("text_visibility", false);
+                          setTimeout(() => {
+                            this.setComponentState("text_visibility", true);
+                            this.setComponentState("text", item.text);
+                          }, 200);
+                        }}
+                      >
+                        <ComposerLink key={indexSlider} path={item.path}>
+                          <div className={this.decorateCSS("link-wrapper")}>
+                            {this.castToString(item.number) && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
+                            {this.castToString(item.title) && <div className={`${this.decorateCSS("title-text")} ${isActive && this.decorateCSS("active")}`}>{item.title}</div>}
+                          </div>
                         </ComposerLink>
-                      )
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </ComposerSlider>
+            </div>
+          )}
+          {(showPageNumbers || followUsText || icons) && (
+            <div className={this.decorateCSS("footer")}>
+              {showPageNumbers && (
+                <div className={this.decorateCSS("page-numbers")}>
+                  <span className={this.decorateCSS("current")}>{(activeIndex + 1).toString().padStart(2, "0")}</span>
+                  {pageNumbersSeparator && <Base.Media value={pageNumbersSeparator} className={this.decorateCSS("separator")} />}
+                  <span className={this.decorateCSS("total")}>{totalSlides.toString().padStart(2, "0")}</span>
+                </div>
+              )}
+              {(followUsText || icons) && (
+                <div className={this.decorateCSS("follow-us")}>
+                  {followUsText && <Base.P className={this.decorateCSS("follow-text")}>{followUsText}</Base.P>}
+                  {icons && (
+                    <div className={this.decorateCSS("social-icons")}>
+                      {icons.map((social: SocialItem, index: number) => (
+                        social.media && (
+                          <ComposerLink key={index} path={social.path}>
+                            <Base.Media value={social.media} className={this.decorateCSS("social-icon")} />
+                          </ComposerLink>
+                        )
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
