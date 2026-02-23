@@ -49,6 +49,8 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "98" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "label", displayer: "Label", value: "Positive Feedback" },
+                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
                 {
@@ -59,6 +61,8 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "146" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "label", displayer: "Label", value: "Project Completed" },
+                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
                 {
@@ -69,6 +73,8 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "$" },
                         { type: "string", key: "label", displayer: "Label", value: "Average Cost Per Hour" },
+                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
                 {
@@ -79,17 +85,21 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "543" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "label", displayer: "Label", value: "Pizzas Ordered" },
+                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
             ],
         });
 
-        this.addProp({ type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true });
+
+
         this.addProp({
             type: "number",
-            key: "animationDuration",
-            displayer: "Stat Animation Duration (ms)",
-            value: 2000,
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 4,
+            max: 4,
         });
 
         this.addProp({
@@ -188,8 +198,7 @@ class Stats16 extends BaseStats {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const statsProp = this.getPropValue("stats");
-        const statsAnimation = !!this.getPropValue("statsAnimation");
-        const animationDuration = this.getPropValue("animationDuration") || 2000;
+        const itemCount = this.getPropValue("itemCount");
 
         const stats = statsProp.map((item: any) => {
             const numberString = String(this.castToString(item.getPropValue("number") || "0"));
@@ -252,6 +261,8 @@ class Stats16 extends BaseStats {
                                 <div className={this.decorateCSS("stats-grid")}>
                                     {statsProp.map((item: any, index: number) => {
                                         const stat = stats[index];
+                                        const statsAnimation = item.getPropValue("statsAnimation");
+                                        const animationDuration = item.getPropValue("animationDuration") || 2000;
                                         return (
                                             <this.AnimatedStat
                                                 key={`stat16-${index}`}

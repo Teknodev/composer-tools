@@ -43,9 +43,6 @@
 
             .stats-grid {
                 margin-top: var(--composer-gap-lg);
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-evenly;
                 width: 100%;
 
                 .stat-item {
@@ -72,13 +69,20 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content .stats-grid {
+        .stat-item .stat-value {
+            font-size: 4rem;
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content .stats-grid {
         margin-top: var(--composer-gap-sm);
-        flex-direction: column;
 
         .stat-item .stat-value {
-            font-size: 4rem;
+            font-size: 3rem;
         }
     }
 }
