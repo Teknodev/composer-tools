@@ -1,95 +1,84 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-html-background);
-
     .max-content {
-        .content-wrapper {
+        align-items: center;
+        width: 100%;
+
+        .content {
             align-items: center;
-            text-align: center;
 
-            .stats-section {
+            .header-container {
                 align-items: center;
-                text-align: center;
 
-                .header-container {
+                .title,
+                .subtitle,
+                .description {
+                    text-align: center;
+                }
 
-                    .title,
-                    .description {
-                        text-align: center;
+                .subtitle {
+                    width: fit-content;
+                    transform: none;
+                    margin-left: 0 auto;
+
+                    &::before {
+                        display: none;
                     }
                 }
 
-                .stats-grid {
-                    margin-top: var(--composer-gap-xl);
-                    align-items: center;
-                    text-align: center;
+                .button-container {
                     display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: flex-start;
                     flex-wrap: wrap;
-                    gap: var(--composer-gap-xl);
-                    width: 100%;
+                    justify-content: center;
+                    gap: var(--composer-gap-sm);
 
-                    .stat-item {
-                        flex: 1 1 0%;
-                        gap: var(--composer-gap-xs);
-                        align-items: center;
-                        text-align: center;
-
-                        .stat-value {
-                            align-items: center;
-                            text-align: center;
-                            color: var(--composer-primary-color);
-                        }
-
-                        .stat-label {
-                            align-items: center;
-                            text-align: center;
-                            color: var(--composer-font-color-primary);
+                    .button {
+                        .button-text {
+                            content: "";
                         }
                     }
                 }
             }
-        }
-    }
-}
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .content-wrapper {
-        padding: 80px var(--composer-gap-lg);
+            .stats-grid {
+                margin-top: var(--composer-gap-lg);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                width: 100%;
 
-        .stats-section .stats-grid {
-            justify-content: center;
+                .stat-item {
+                    align-items: center;
+                    text-align: center;
 
-            .stat-item {
-                flex: 0 0 calc(50% - var(--composer-gap-xl));
+                    .stat-value {
+                        color: var(--composer-primary-color);
+                        display: flex;
+                        font-size: 5rem;
+
+                        .stat-suffix {
+                            color: inherit;
+                        }
+                    }
+
+                    .stat-label {
+                        text-align: center;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
             }
         }
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .content-wrapper {
-        padding: var(--composer-gap-xl) var(--composer-gap-md);
+    .container .max-content .content .stats-grid {
+        margin-top: var(--composer-gap-sm);
+        flex-direction: column;
 
-        .stats-section {
-            gap: var(--composer-gap-lg);
-
-            .stats-grid {
-                flex-direction: column;
-                gap: var(--composer-gap-lg);
-
-                .stat-item {
-                    width: 100%;
-                    flex: none;
-
-                    .stat-value {
-                        font-size: 4rem;
-                    }
-                }
-            }
+        .stat-item .stat-value {
+            font-size: 4rem;
         }
     }
 }
