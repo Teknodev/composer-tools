@@ -11,6 +11,13 @@ class CallToAction34Page extends BaseCallToAction {
 
         this.addProp({
             type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+
+        this.addProp({
+            type: "string",
             key: "title",
             displayer: "Title",
             value: "TRY IMPREZA",
@@ -23,7 +30,7 @@ class CallToAction34Page extends BaseCallToAction {
             value: "Elevate your web presence with a professionally designed theme that fits all your needs.",
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Buy this theme", "", "IoArrowForward", null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Sing Up Online", "", "IoArrowForward", null, "Primary"));
 
         this.addProp({
             type: "media",
@@ -48,6 +55,12 @@ class CallToAction34Page extends BaseCallToAction {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("card-wrapper")}>
                         <div className={this.decorateCSS("left-column")}>
+                            {this.castToString(this.getPropValue("subtitle")) && (
+                                <Base.SectionTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionTitle>
+                            )}
+
                             {this.castToString(this.getPropValue("title")) && (
                                 <Base.SectionTitle className={this.decorateCSS("title")}>
                                     {this.getPropValue("title")}
