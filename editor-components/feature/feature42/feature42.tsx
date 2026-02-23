@@ -205,8 +205,8 @@ class Feature42 extends BaseFeature {
 
         this.addProp({
             type: "media",
-            key: "mobileIcon",
-            displayer: "Mobile Icon",
+            key: "toggleIcon",
+            displayer: "Toggle Icon",
             additionalParams: {
                 availableTypes: ["icon", "image"],
             },
@@ -218,8 +218,8 @@ class Feature42 extends BaseFeature {
 
         this.addProp({
             type: "boolean",
-            key: "enableLine",
-            displayer: "Mobile Line",
+            key: "toggleLine",
+            displayer: "Toggle Line",
             value: true,
         });
 
@@ -240,8 +240,8 @@ class Feature42 extends BaseFeature {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const enableOverlay = this.getPropValue("enableOverlay");
-        const enableLine = this.getPropValue("enableLine");
-        const mobileIcon = this.getPropValue("mobileIcon");
+        const enableLine = this.getPropValue("toggleLine");
+        const mobileIcon = this.getPropValue("toggleIcon");
         const items = this.castToObject<ListItem[]>("items");
         const activeIndex = this.getComponentState("activeIndex");
         const effectiveIndex = activeIndex === undefined ? 0 : activeIndex;
