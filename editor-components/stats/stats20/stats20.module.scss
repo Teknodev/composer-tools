@@ -1,0 +1,156 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .card {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+
+            .card-content {
+                width: 100%;
+
+                .header-container {
+
+                    .button-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        gap: var(--composer-gap-sm);
+
+                        .button {
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
+
+                    &.alignment-center {
+                        align-items: center;
+
+                        .title,
+                        .subtitle,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin: 0 auto;
+                            margin-bottom: var(--composer-gap-sm);
+                        }
+
+                        .button-container {
+                            justify-content: center;
+                        }
+                    }
+                }
+
+                .divider {
+                    width: 100%;
+                    height: 1px;
+                    background-color: var(--composer-font-color-primary);
+                    opacity: 0.2;
+                    margin: var(--composer-gap-md) 0;
+                }
+
+                .stats-grid {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    column-gap: var(--composer-gap-lg);
+                    row-gap: var(--composer-gap-md);
+                    width: 100%;
+
+                    .stat-item {
+                        display: flex;
+                        flex-direction: column;
+                        flex: 1;
+
+                        .stat-value {
+                            color: var(--composer-primary-color);
+                            font-size: 4rem;
+
+                            .stat-suffix {
+                                color: inherit;
+                            }
+                        }
+
+                        .stat-label {
+                            text-align: left;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+            }
+
+            &.has-background {
+                background: var(--composer-primary-color);
+                border-radius: var(--composer-border-radius-md);
+                padding: 80px var(--composer-gap-xl);
+
+                .card-content {
+                    .header-container {
+
+                        .title,
+                        .subtitle,
+                        .description {
+                            color: var(--composer-font-color-secondary);
+                        }
+
+                        .subtitle {
+                            background: transparent;
+                            padding: 0;
+
+                            &::before {
+                                background-color: var(--composer-font-color-secondary);
+                            }
+                        }
+                    }
+
+                    .divider {
+                        background-color: var(--composer-font-color-secondary);
+                    }
+
+                    .stats-grid {
+                        .stat-item {
+
+                            .stat-value,
+                            .stat-label {
+                                color: var(--composer-font-color-secondary);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card.has-background {
+        padding: 80px var(--composer-gap-lg);
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .card {
+        &.has-background {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
+        }
+
+        .card-content {
+            .stats-grid {
+                flex-direction: column;
+
+                .stat-value {
+                    font-size: 3rem;
+                }
+            }
+        }
+    }
+}
