@@ -10,8 +10,6 @@ type StatItem = {
     suffix: string;
     label: string;
     labelElement: JSX.Element;
-    statsAnimation: boolean;
-    animationDuration: number;
 };
 
 class Stats20 extends BaseStats {
@@ -72,8 +70,6 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Experienced people on the team" },
-                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ]
                 },
                 {
@@ -81,8 +77,6 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "20" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Cities where employees work" },
-                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ]
                 },
                 {
@@ -90,10 +84,18 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Days of product development" },
-                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ]
                 },
+            ],
+        });
+
+        this.addProp({
+            type: "object",
+            key: "animation",
+            displayer: "Animation",
+            value: [
+                { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
 
@@ -168,7 +170,9 @@ class Stats20 extends BaseStats {
             <div className={this.decorateCSS("stat-item")}>
                 {(numberExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
-                        {displayNumber}
+                        <span className={this.decorateCSS("stat-number")}>
+                            {displayNumber}
+                        </span>
                         {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
                                 {stat.suffix}
@@ -196,15 +200,17 @@ class Stats20 extends BaseStats {
 
         const alignment = Base.getContentAlignment();
 
-        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element; statsAnimation: boolean; animationDuration: number }[]>("stats");
+        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const number = String(this.castToString(item.number) || "0");
             const suffix = String(this.castToString(item.suffix) || "");
             const label = String(this.castToString(item.label) || "");
-            const statsAnimation = !!item.statsAnimation;
-            const animationDuration = item.animationDuration || 2000;
-            return { number, suffix, label, labelElement: item.label, statsAnimation, animationDuration };
+            return { number, suffix, label, labelElement: item.label };
         });
+
+        const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
+        const statsAnimation = !!animationProps?.statsAnimation;
+        const animationDuration = animationProps?.animationDuration || 2000;
 
         const hasTopSection = subtitle || title || description || buttons.length > 0;
         const hasStats = stats.length > 0;
@@ -268,8 +274,8 @@ class Stats20 extends BaseStats {
                                         <this.AnimatedStat
                                             key={`stat20-${index}`}
                                             stat={stat}
-                                            animationDuration={stat.animationDuration}
-                                            statsAnimation={stat.statsAnimation}
+                                            animationDuration={animationDuration}
+                                            statsAnimation={statsAnimation}
                                         />
                                     ))}
                                 </Base.ListGrid>
