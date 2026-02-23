@@ -37,7 +37,7 @@ class CallToAction31Page extends BaseCallToAction {
             displayer: "Media",
             value: {
                 type: "image",
-                url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=2072"
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/699c5a24771c03002cc6b0ca?alt=media",
             }
         });
 
