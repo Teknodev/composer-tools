@@ -48,6 +48,13 @@
           text-align: center;
         }
 
+        .subtitle {
+          transform: none;
+          &::before {
+            display: none;
+          }
+        }
+
         .button-container {
           display: flex;
           flex-wrap: wrap;
@@ -64,16 +71,6 @@
           .title,
           .description {
             color: var(--composer-font-color-secondary);
-          }
-
-          .subtitle {
-            transform: none;
-            background: transparent;
-            padding: 0;
-            border-radius: 0;
-            &::before {
-              display: none;
-            }
           }
         }
       }
