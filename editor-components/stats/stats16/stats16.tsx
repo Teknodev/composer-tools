@@ -10,8 +10,6 @@ type StatItem = {
     suffix: string;
     label: string;
     labelElement: JSX.Element;
-    statsAnimation: boolean;
-    animationDuration: number;
 };
 
 class Stats16 extends BaseStats {
@@ -52,8 +50,6 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "98" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "label", displayer: "Label", value: "Positive Feedback" },
-                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
                 {
@@ -64,8 +60,6 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "146" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "label", displayer: "Label", value: "Project Completed" },
-                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
                 {
@@ -76,8 +70,6 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "$" },
                         { type: "string", key: "label", displayer: "Label", value: "Average Cost Per Hour" },
-                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
                 {
@@ -88,14 +80,20 @@ class Stats16 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "543" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "label", displayer: "Label", value: "Pizzas Ordered" },
-                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ],
                 },
             ],
         });
 
-
+        this.addProp({
+            type: "object",
+            key: "animation",
+            displayer: "Animation",
+            value: [
+                { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
+            ],
+        });
 
         this.addProp({
             type: "number",
@@ -177,7 +175,9 @@ class Stats16 extends BaseStats {
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 {valueExist && (
                     <span className={this.decorateCSS("stat-value")}>
-                        {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                        <span className={this.decorateCSS("stat-number")}>
+                            {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                        </span>
                         {stat.suffix && (
                             <span className={this.decorateCSS("stat-suffix")}>
                                 {stat.suffix}
@@ -201,15 +201,17 @@ class Stats16 extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const itemCount = this.getPropValue("itemCount");
 
-        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element; statsAnimation: boolean; animationDuration: number }[]>("stats");
+        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const number = String(this.castToString(item.number) || "0");
             const suffix = String(this.castToString(item.suffix) || "");
             const label = String(this.castToString(item.label) || "");
-            const statsAnimation = !!item.statsAnimation;
-            const animationDuration = item.animationDuration || 2000;
-            return { number, suffix, label, labelElement: item.label, statsAnimation, animationDuration };
+            return { number, suffix, label, labelElement: item.label };
         });
+
+        const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
+        const statsAnimation = !!animationProps?.statsAnimation;
+        const animationDuration = animationProps?.animationDuration || 2000;
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
@@ -266,8 +268,8 @@ class Stats16 extends BaseStats {
                                         <this.AnimatedStat
                                             key={`stat16-${index}`}
                                             stat={stat}
-                                            animationDuration={stat.animationDuration}
-                                            statsAnimation={stat.statsAnimation}
+                                            animationDuration={animationDuration}
+                                            statsAnimation={statsAnimation}
                                         />
                                     ))}
                                 </Base.ListGrid>
