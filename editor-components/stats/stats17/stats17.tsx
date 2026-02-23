@@ -214,7 +214,7 @@ class Stats17 extends BaseStats {
               </Base.VerticalContent>
             )}
             {statItems.length > 0 && (
-              <div className={this.decorateCSS("stats-grid")}>
+              <Base.Row className={this.decorateCSS("stats-grid")}>
                 {statItems.map((item, index) => {
                   const valueStr = this.castToString(item.value);
                   const labelStr = this.castToString(item.label);
@@ -228,7 +228,7 @@ class Stats17 extends BaseStats {
                     />
                   );
                 })}
-              </div>
+              </Base.Row>
             )}
             {buttons.length > 0 && (() => {
               const validButtons = buttons.filter((item) => {

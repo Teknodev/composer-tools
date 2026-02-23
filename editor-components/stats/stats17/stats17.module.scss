@@ -1,9 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container .max-content .wrapper {
-  align-items: center;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: stretch;
   text-align: center;
-  
 
   .header {
     align-items: center;
@@ -28,22 +30,19 @@
   }
 
   .stats-grid {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--composer-gap-lg);
-    
+    width: 100%;
 
     .card {
-      flex: 1 1 auto;
-      min-width: 120px;
-      max-width: 280px;
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: var(--composer-gap-lg);
+    
 
       .stat-value {
         margin-bottom: var(--composer-gap-xs);
@@ -82,20 +81,14 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .wrapper {
-    
-
     .header {
       margin-bottom: var(--composer-gap-lg);
     }
 
     .stats-grid {
       flex-direction: column;
-      align-items: center;
+      align-items: stretch;
       gap: var(--composer-gap-md);
-
-      .card {
-        max-width: 100%;
-      }
     }
   }
 }
