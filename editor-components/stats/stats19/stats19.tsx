@@ -40,7 +40,9 @@ class Stats19 extends BaseStats {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [],
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -165,10 +167,7 @@ class Stats19 extends BaseStats {
             )}
 
             {stats.length > 0 && (
-              <Base.ListGrid
-                gridCount={{ pc: 3, tablet: 1, phone: 1 }}
-                className={this.decorateCSS("stats-grid")}
-              >
+              <Base.Row className={this.decorateCSS("stats-grid")}>
                 {stats.map((stat: StatItem, index: number) => {
                   const isValueExist = this.castToString(stat.value);
                   const isLabelExist = this.castToString(stat.label);
@@ -180,9 +179,9 @@ class Stats19 extends BaseStats {
                     <div key={index} className={this.decorateCSS("stat-item")}>
                       <div className={this.decorateCSS("stat-header")}>
                         {isValueExist && (
-                          <Base.SectionTitle className={this.decorateCSS("stat-value")}>
+                          <Base.H3 className={this.decorateCSS("stat-value")}>
                             {stat.value}
-                          </Base.SectionTitle>
+                          </Base.H3>
                         )}
                         {isLabelExist && (
                           <Base.P className={this.decorateCSS("stat-label")}>
@@ -191,14 +190,14 @@ class Stats19 extends BaseStats {
                         )}
                       </div>
                       {isStatDescExist && (
-                        <Base.SectionDescription className={this.decorateCSS("stat-desc")}>
+                        <Base.P className={this.decorateCSS("stat-desc")}>
                           {stat.description}
-                        </Base.SectionDescription>
+                        </Base.P>
                       )}
                     </div>
                   );
                 })}
-              </Base.ListGrid>
+              </Base.Row>
             )}
 
             {buttons.length > 0 && (() => {
