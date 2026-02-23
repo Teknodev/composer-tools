@@ -59,9 +59,6 @@
                 }
 
                 .stats-grid {
-                    display: flex;
-                    flex-wrap: wrap;
-                    justify-content: space-between;
                     column-gap: var(--composer-gap-lg);
                     row-gap: var(--composer-gap-md);
                     width: 100%;
@@ -69,11 +66,10 @@
                     .stat-item {
                         display: flex;
                         flex-direction: column;
-                        flex: 1;
 
                         .stat-value {
                             color: var(--composer-primary-color);
-                            font-size: 4rem;
+                            font-size: 5rem;
 
                             .stat-suffix {
                                 color: inherit;
@@ -132,8 +128,14 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .card.has-background {
-        padding: 80px var(--composer-gap-lg);
+    .container .max-content .card {
+        &.has-background {
+            padding: 80px var(--composer-gap-lg);
+        }
+
+        .card-content .stats-grid .stat-item .stat-value {
+            font-size: 4rem;
+        }
     }
 }
 
@@ -143,14 +145,8 @@
             padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
 
-        .card-content {
-            .stats-grid {
-                flex-direction: column;
-
-                .stat-value {
-                    font-size: 3rem;
-                }
-            }
+        .card-content .stats-grid .stat-item .stat-value {
+            font-size: 3rem;
         }
     }
 }

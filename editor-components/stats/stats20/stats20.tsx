@@ -6,9 +6,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
-    number: number;
-    suffix?: string;
+    number: string;
+    suffix: string;
     label: string;
+    labelElement: JSX.Element;
+    statsAnimation: boolean;
+    animationDuration: number;
 };
 
 class Stats20 extends BaseStats {
@@ -53,6 +56,8 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Experienced people on the team" },
+                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ]
                 },
                 {
@@ -60,6 +65,8 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "20" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Cities where employees work" },
+                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ]
                 },
                 {
@@ -67,6 +74,8 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Days of product development" },
+                        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                        { type: "number", key: "animationDuration", displayer: "Stat Animation Duration (ms)", value: 2000 },
                     ]
                 },
             ],
@@ -79,25 +88,32 @@ class Stats20 extends BaseStats {
             value: [],
         });
 
-        this.addProp({ type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true });
-        this.addProp({ type: "number", key: "animationDuration", displayer: "Number Animation Duration (ms)", value: 2000 });
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 3,
+            max: 4,
+        });
     }
 
     static getName(): string { return "Stats 20"; }
 
-    private AnimatedStat = ({ stat, item, animationDuration = 2000, statsAnimation }: { stat: StatItem; item: any; animationDuration?: number; statsAnimation: boolean }) => {
-        const formatNumber = (num: number, originalString: string): string => {
-            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
+    private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
+        const originalNumberString = stat.number;
+        const targetNumber = parseFloat(originalNumberString) || 0;
+
+        const formatNumber = (num: number): string => {
+            const decimals = originalNumberString.includes(".") ? (originalNumberString.split(".")[1]?.length || 0) : 0;
             return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
         };
 
-        const originalNumberString = String(this.castToString(item.getPropValue("number") || "0"));
-        const [animatedNumber, setAnimatedNumber] = React.useState<string>(statsAnimation ? "0" : formatNumber(stat.number, originalNumberString));
+        const [animatedNumber, setAnimatedNumber] = React.useState<string>(statsAnimation ? "0" : formatNumber(targetNumber));
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
         React.useEffect(() => {
             if (!statsAnimation) {
-                setAnimatedNumber(formatNumber(stat.number, originalNumberString));
+                setAnimatedNumber(formatNumber(targetNumber));
                 return;
             }
 
@@ -108,14 +124,12 @@ class Stats20 extends BaseStats {
                     clearInterval(intervalRef.current);
                 }
             };
-        }, [stat.number, statsAnimation, animationDuration, originalNumberString]);
+        }, [targetNumber, statsAnimation, animationDuration, originalNumberString]);
 
         const animateNumber = () => {
             if (intervalRef.current) {
                 clearInterval(intervalRef.current);
             }
-
-            const targetNumber = stat.number;
 
             const steps = animationDuration / 30;
             let currentNumber = 0;
@@ -130,32 +144,32 @@ class Stats20 extends BaseStats {
                         clearInterval(intervalRef.current);
                     }
                 }
-                setAnimatedNumber(formatNumber(currentNumber, originalNumberString));
+                setAnimatedNumber(formatNumber(currentNumber));
             }, 30);
         };
 
         const suffixExist = stat.suffix && stat.suffix !== "";
-        const numberExist = stat.number != null && !isNaN(stat.number) && (stat.number !== 0 || suffixExist);
+        const numberExist = originalNumberString && originalNumberString !== "" && originalNumberString !== "0";
         const labelExist = stat.label && stat.label !== "";
-        const displayNumber = statsAnimation ? animatedNumber : (numberExist ? formatNumber(stat.number, originalNumberString) : "0");
+        const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
         if (!numberExist && !suffixExist && !labelExist) return null;
 
         return (
             <div className={this.decorateCSS("stat-item")}>
-                {numberExist && (
+                {(numberExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
                         {displayNumber}
-                        {stat.suffix && (
+                        {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix.replace(/<[^>]*>/g, '')}
+                                {stat.suffix}
                             </span>
                         )}
                     </span>
                 )}
                 {labelExist && (
                     <Base.SectionDescription className={this.decorateCSS("stat-label")}>
-                        {item.getPropValue("label")}
+                        {stat.labelElement}
                     </Base.SectionDescription>
                 )}
             </div>
@@ -168,18 +182,18 @@ class Stats20 extends BaseStats {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const enable_card = this.getPropValue("enable_card");
+        const itemCount = this.getPropValue("itemCount");
 
-        const statsProp = this.getPropValue("stats");
-        const statsAnimation = !!this.getPropValue("statsAnimation");
-        const animationDuration = this.getPropValue("animationDuration") || 2000;
         const alignment = Base.getContentAlignment();
 
-        const stats = statsProp.map((item: any) => {
-            const numberString = String(this.castToString(item.getPropValue("number") || "0"));
-            const number = parseFloat(numberString.replace(/[^\d.]/g, '')) || 0;
-            const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
-            const label = String(this.castToString(item.getPropValue("label")) || "");
-            return { number, suffix, label };
+        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element; statsAnimation: boolean; animationDuration: number }[]>("stats");
+        const stats: StatItem[] = statsItems.map((item) => {
+            const number = String(this.castToString(item.number) || "0");
+            const suffix = String(this.castToString(item.suffix) || "");
+            const label = String(this.castToString(item.label) || "");
+            const statsAnimation = !!item.statsAnimation;
+            const animationDuration = item.animationDuration || 2000;
+            return { number, suffix, label, labelElement: item.label, statsAnimation, animationDuration };
         });
 
         const hasTopSection = subtitle || title || description || buttons.length > 0;
@@ -239,20 +253,16 @@ class Stats20 extends BaseStats {
                             )}
 
                             {hasStats && (
-                                <div className={this.decorateCSS("stats-grid")}>
-                                    {statsProp.map((item: any, index: number) => {
-                                        const stat = stats[index];
-                                        return (
-                                            <this.AnimatedStat
-                                                key={`stat20-${index}`}
-                                                stat={stat}
-                                                item={item}
-                                                animationDuration={animationDuration}
-                                                statsAnimation={statsAnimation}
-                                            />
-                                        );
-                                    })}
-                                </div>
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                    {stats.map((stat: StatItem, index: number) => (
+                                        <this.AnimatedStat
+                                            key={`stat20-${index}`}
+                                            stat={stat}
+                                            animationDuration={stat.animationDuration}
+                                            statsAnimation={stat.statsAnimation}
+                                        />
+                                    ))}
+                                </Base.ListGrid>
                             )}
 
                         </Base.VerticalContent>
