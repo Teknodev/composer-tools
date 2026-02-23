@@ -1,0 +1,43 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .wrapper {
+      gap: var(--composer-gap-xl);
+
+      .header {
+        .subtitle, .title, .description {
+          content: "";
+        }
+      }
+
+      .stats-grid {
+        .stat-item {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
+
+          .stat-header {
+            display: flex;
+            align-items: baseline;
+            gap: var(--composer-gap-sm);
+
+            .stat-value,
+            .stat-label {
+              width: auto;
+              font-weight: var(--composer-font-weight-bold);
+            }
+
+            .stat-label {
+              color: var(--composer-font-color-primary);
+            }
+          }
+
+          .stat-desc {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+}
