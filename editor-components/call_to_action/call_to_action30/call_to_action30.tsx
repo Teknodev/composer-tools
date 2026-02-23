@@ -120,14 +120,14 @@ class CallToAction30 extends BaseCallToAction {
                 )}
                 {visibleButtons.length > 0 && (
                   <div className={this.decorateCSS("buttons-wrapper")}>
-                    {visibleButtons.map((item: Button, index: number) => (
+                    {visibleButtons.map((item: Button, index: number) => this.castToString(item.text) && (
                       <ComposerLink key={`button-${index}`} path={item.url}>
                         <Base.Button
                           buttonType={item.type}
                           className={this.decorateCSS("button")}
                         >
                           <Base.P className={this.decorateCSS("button-text")}>
-                            {item.text}
+                            {this.castToString(item.text)}
                           </Base.P>
                         </Base.Button>
                       </ComposerLink>
