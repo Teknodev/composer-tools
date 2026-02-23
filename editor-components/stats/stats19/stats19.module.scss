@@ -3,12 +3,10 @@
 .container {
   .max-content {
     .wrapper {
-      gap: var(--composer-gap-xl);
-
-      .header {
-        .subtitle, .title, .description {
-          content: "";
-        }
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
       }
 
       .stats-grid {
@@ -31,10 +29,6 @@
             .stat-label {
               color: var(--composer-font-color-primary);
             }
-          }
-
-          .stat-desc {
-            content: "";
           }
         }
       }

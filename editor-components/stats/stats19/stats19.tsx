@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats19.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
   value: React.JSX.Element;
@@ -32,6 +34,13 @@ class Stats19 extends BaseStats {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [],
     });
 
     this.addProp({
@@ -132,32 +141,27 @@ class Stats19 extends BaseStats {
     const isTitleExist = this.castToString(title);
     const description = this.getPropValue("description");
     const isDescriptionExist = this.castToString(description);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const stats = this.castToObject<StatItem[]>("stats");
-
-    const isHeaderExist = isSubtitleExist || isTitleExist || isDescriptionExist;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {isHeaderExist && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {isSubtitleExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {isTitleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {isDescriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
+            {isSubtitleExist && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
+            {isTitleExist && (
+              <Base.SectionTitle className={this.decorateCSS("title")}>
+                {title}
+              </Base.SectionTitle>
+            )}
+            {isDescriptionExist && (
+              <Base.SectionDescription className={this.decorateCSS("description")}>
+                {description}
+              </Base.SectionDescription>
             )}
 
             {stats.length > 0 && (
@@ -181,9 +185,9 @@ class Stats19 extends BaseStats {
                           </Base.SectionTitle>
                         )}
                         {isLabelExist && (
-                          <Base.SectionSubTitle className={this.decorateCSS("stat-label")}>
+                          <Base.P className={this.decorateCSS("stat-label")}>
                             {stat.label}
-                          </Base.SectionSubTitle>
+                          </Base.P>
                         )}
                       </div>
                       {isStatDescExist && (
@@ -196,6 +200,35 @@ class Stats19 extends BaseStats {
                 })}
               </Base.ListGrid>
             )}
+
+            {buttons.length > 0 && (() => {
+              const validButtons = buttons.filter((item) => {
+                const buttonText = this.castToString(item.text || "");
+                const iconName = (item.icon as { name?: string })?.name;
+                const hasValidIcon = iconName && iconName !== "";
+                return buttonText || hasValidIcon;
+              });
+              return validButtons.length > 0 ? (
+                <Base.Row className={this.decorateCSS("button-container")}>
+                  {validButtons.map((item, index) => {
+                    const buttonText = this.castToString(item.text || "");
+                    const buttonUrl = item.url || "#";
+                    const iconName = (item.icon as { name?: string })?.name;
+                    const hasValidIcon = iconName && iconName !== "";
+                    return (
+                      <ComposerLink key={`stats19-btn-${index}`} path={buttonUrl}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {hasValidIcon && (
+                            <Base.Media className={this.decorateCSS("icon")} value={{ type: "icon", name: iconName }} />
+                          )}
+                          {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </Base.Row>
+              ) : null;
+            })()}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
