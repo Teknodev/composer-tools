@@ -29,7 +29,7 @@
         .left-container {
           padding-bottom: 80px;
           width: 60%;
-          gap: 60px;
+          gap: var(--composer-gap-lg);
 
           .vertical-content {
 

@@ -72,6 +72,7 @@
 
         .button-group {
           display: flex;
+          flex-direction: column;
           align-self: center;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
@@ -155,7 +156,7 @@
 
           .button-group {
             .button-logo {
-              @include button-logo(140px, var(--composer-gap-lg));
+              @include button-logo(175px, var(--composer-gap-xl));
             }
           }
         }
@@ -164,7 +165,7 @@
           .button-group {
             .button {
               .button-logo {
-                @include button-logo(140px, var(--composer-gap-lg));
+                @include button-logo(175px, var(--composer-gap-xl));
               }
             }
           }
