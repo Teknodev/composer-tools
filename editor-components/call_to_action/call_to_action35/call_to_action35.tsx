@@ -19,12 +19,12 @@ class CallToAction35 extends BaseCallToAction {
             type: "boolean",
             key: "overlay",
             displayer: "Overlay",
-            value: true,
+            value: false,
         });
         this.addProp({
             type: "media",
             key: "backgroundImage",
-            displayer: "Background Image",
+            displayer: "Media",
             additionalParams: {
                 availableTypes: ["image", "video"],
             },
@@ -72,11 +72,14 @@ class CallToAction35 extends BaseCallToAction {
         const buttons = this.castToObject<Button[]>("buttons");
         const hasHeader = subtitle || title || description;
         const background = this.getPropValue("cardBackground") !== false;
-        const showOverlay = !this.getPropValue("overlay") && !background;
+        const backgroundImage = this.getPropValue("backgroundImage");
+        const hasBackgroundImage = backgroundImage && backgroundImage.url && backgroundImage.url.length > 0;
+        const showOverlay = this.getPropValue("overlay") && hasBackgroundImage;
         const alignment = Base.getContentAlignment();
+        const noAssets = !background && !hasBackgroundImage;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!background ? this.decorateCSS("no-background") : ""}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!background ? this.decorateCSS("no-background") : ""} ${noAssets ? this.decorateCSS("no-assets") : ""}`}>
                 <div className={this.decorateCSS("background-section")}>
                     <div className={this.decorateCSS("background-wrapper")}>
                         <Base.Media

@@ -6,9 +6,11 @@
     flex-direction: column;
     padding: 0 !important;
     width: 100%;
+
     .background-section {
         position: relative;
         min-height: 380px;
+        z-index: 1;
 
         .background-wrapper {
             position: absolute;
@@ -28,14 +30,14 @@
             inset: 0;
             z-index: 1;
             background: var(--composer-overlay-color);
-            pointer-events: none;
         }
     }
 
     .bottom-strip {
         width: 100%;
-        min-height: 100px;
+        min-height: 180px;
         background-color: var(--composer-html-background);
+        z-index: 0;
 
         &.transparent {
             background-color: transparent;
@@ -44,7 +46,7 @@
 
     .max-content {
         position: absolute;
-        bottom: 0;
+        bottom: 80px;
         left: 0;
         right: 0;
         z-index: 2;
@@ -62,6 +64,17 @@
         background-color: var(--composer-primary-color);
         border-radius: var(--composer-border-radius-md);
         padding: 80px 50px;
+        margin-bottom: 0;
+        margin-top: -190px;
+
+        .text-block .subtitle {
+            background: none !important;
+            padding: 0 !important;
+
+            &::before {
+                background-color: currentColor !important;
+            }
+        }
     }
 
     .content-wrapper {
@@ -73,10 +86,6 @@
         .text-block .description {
             color: var(--composer-font-color-secondary) !important;
         }
-    }
-
-    .content {
-        width: 100%;
     }
 
     .header {
@@ -107,14 +116,14 @@
         }
 
         .subtitle {
-            transform: none !important;
             width: fit-content;
-
-            &::before,
-            &::after {
-                display: none !important;
+            &::before {
+                content: "";
+                display: block !important;
+                background-color: currentColor !important;
             }
         }
+
     }
 
     .button-wrapper {
@@ -139,12 +148,34 @@
             }
         }
     }
+
+
+    &.no-assets {
+        .background-section {
+            display: none;
+        }
+
+        .bottom-strip {
+            display: none;
+        }
+
+        .max-content {
+            position: relative;
+            padding: 0;
+            bottom: auto;
+        }
+
+        .content-wrapper {
+            padding: 40px 0;
+        }
+    }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .card {
-            padding: 80px 40px;
+            padding: 50px 30px;
+            margin-top: -150px;
         }
 
         .text-block {
@@ -162,12 +193,14 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            padding: var(--composer-gap-lg);
+            padding: 0;
+            bottom: 60px;
         }
 
         .card,
         .content-wrapper {
-            padding: 50px 20px;
+            padding: 40px 20px;
+            margin-top: -100px;
         }
 
         .header {
