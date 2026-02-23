@@ -9,8 +9,6 @@
 
   .header {
     align-items: center;
-    gap: var(--composer-gap-md);
-    margin-bottom: var(--composer-gap-xl);
     .subtitle {
       &::before {
         display: none;
@@ -46,12 +44,13 @@
 
       .stat-value {
         margin-bottom: var(--composer-gap-xs);
-        font-weight: var(--composer-font-weight-bold);
         text-align: center;
+        color: var(--composer-font-color-primary);
       }
 
       .stat-label {
         text-align: center;
+        color: var(--composer-font-color-primary);
       }
     }
   }
@@ -81,10 +80,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .wrapper {
-    .header {
-      margin-bottom: var(--composer-gap-lg);
-    }
-
     .stats-grid {
       flex-direction: column;
       align-items: stretch;

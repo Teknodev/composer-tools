@@ -77,7 +77,9 @@ class Stats17 extends BaseStats {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [],
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
   }
 
@@ -167,13 +169,13 @@ class Stats17 extends BaseStats {
 
     return (
       <div ref={ref} className={this.decorateCSS("card")}>
-        <Base.SectionTitle className={this.decorateCSS("stat-value")}>
+        <Base.H3 className={this.decorateCSS("stat-value")}>
           {valueDisplay}
-        </Base.SectionTitle>
+        </Base.H3>
         {hasLabel && (
-          <Base.SectionDescription className={this.decorateCSS("stat-label")}>
+          <Base.P className={this.decorateCSS("stat-label")}>
             {label}
-          </Base.SectionDescription>
+          </Base.P>
         )}
       </div>
     );
