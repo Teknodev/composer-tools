@@ -6,7 +6,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
-  value: React.ReactNode;
+  number: number;
+  suffix: string;
   label: React.ReactNode;
 };
 
@@ -43,7 +44,8 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
-            { type: "string", key: "value", displayer: "Value", value: "100%" },
+            { type: "number", key: "number", displayer: "Number", value: 100 },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "label", displayer: "Label", value: "Satisfaction" },
           ],
         },
@@ -52,7 +54,8 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
-            { type: "string", key: "value", displayer: "Value", value: "75K" },
+            { type: "number", key: "number", displayer: "Number", value: 75 },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
             { type: "string", key: "label", displayer: "Label", value: "Happy Users" },
           ],
         },
@@ -61,7 +64,8 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
-            { type: "string", key: "value", displayer: "Value", value: "125k+" },
+            { type: "number", key: "number", displayer: "Number", value: 125 },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
             { type: "string", key: "label", displayer: "Label", value: "Downloads" },
           ],
         },
@@ -78,7 +82,7 @@ class Stats17 extends BaseStats {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
       ],
     });
   }
@@ -88,32 +92,18 @@ class Stats17 extends BaseStats {
   }
 
   private AnimatedStat = ({
-    value,
-    label,
+    stat,
     animationDuration = 2000,
   }: {
-    value: string;
-    label: string;
+    stat: StatItem;
     animationDuration?: number;
   }) => {
-    const prefix = value.match(/^\D*/)?.[0] || "";
-    const suffix = value.match(/\D+$/)?.[0] || "";
-    const numericStr = value.replace(/[^\d.]/g, "");
-    const targetNumber = parseFloat(numericStr) || 0;
-    const hasDecimals = numericStr.includes(".");
-
-    const [animatedValue, setAnimatedValue] = React.useState<string>(
-      numericStr ? prefix + "0" + suffix : value
-    );
+    const targetNumber = stat.number || 0;
+    const [animatedNumber, setAnimatedNumber] = React.useState<string>("0");
     const ref = React.useRef<HTMLDivElement>(null);
     const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
     React.useEffect(() => {
-      if (!numericStr) {
-        setAnimatedValue(value);
-        return;
-      }
-
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -138,7 +128,7 @@ class Stats17 extends BaseStats {
           clearInterval(intervalRef.current);
         }
       };
-    }, [value, animationDuration]);
+    }, [targetNumber, animationDuration]);
 
     const animateValue = () => {
       if (intervalRef.current) {
@@ -157,24 +147,33 @@ class Stats17 extends BaseStats {
           if (intervalRef.current) clearInterval(intervalRef.current);
         }
 
-        const formatted = hasDecimals
-          ? currentNumber.toFixed(1)
-          : Math.floor(currentNumber).toString();
-        setAnimatedValue(prefix + formatted + suffix);
+        setAnimatedNumber(Math.floor(currentNumber).toString());
       }, 30);
     };
 
-    const valueDisplay = numericStr ? animatedValue : value;
-    const hasLabel = label && label.trim() !== "";
+    const hasLabel = stat.label && this.castToString(stat.label);
+    const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
+    const hasNumber = targetNumber !== 0 || hasSuffix;
+
+    if (!hasNumber && !hasSuffix && !hasLabel) return null;
 
     return (
       <div ref={ref} className={this.decorateCSS("card")}>
-        <Base.H3 className={this.decorateCSS("stat-value")}>
-          {valueDisplay}
-        </Base.H3>
+        {hasNumber && (
+          <div className={this.decorateCSS("stat-value")}>
+            <span className={this.decorateCSS("stat-number")}>
+              {animatedNumber}
+            </span>
+            {hasSuffix && (
+              <span className={this.decorateCSS("stat-suffix")}>
+                {stat.suffix.replace(/<[^>]*>/g, "").trim()}
+              </span>
+            )}
+          </div>
+        )}
         {hasLabel && (
           <Base.P className={this.decorateCSS("stat-label")}>
-            {label}
+            {stat.label}
           </Base.P>
         )}
       </div>
@@ -185,7 +184,13 @@ class Stats17 extends BaseStats {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const statItems = this.castToObject<StatItem[]>("statItems");
+    const statItemsProp = this.getPropValue("statItems");
+    const statItems: StatItem[] = statItemsProp.map((item: any) => {
+      const number = parseFloat(item.getPropValue("number")) || 0;
+      const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
+      const label = item.getPropValue("label");
+      return { number, suffix, label };
+    });
     const animationDuration = this.getPropValue("animationDuration") || 2000;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasHeader = subtitle || title || description;
@@ -218,14 +223,14 @@ class Stats17 extends BaseStats {
             {statItems.length > 0 && (
               <Base.Row className={this.decorateCSS("stats-grid")}>
                 {statItems.map((item, index) => {
-                  const valueStr = this.castToString(item.value);
-                  const labelStr = this.castToString(item.label);
-                  if (!valueStr && !labelStr) return null;
+                  const hasLabel = this.castToString(item.label);
+                  const hasSuffix = item.suffix && item.suffix.trim() !== "";
+                  const hasNumber = item.number !== 0 || hasSuffix;
+                  if (!hasNumber && !hasSuffix && !hasLabel) return null;
                   return (
                     <this.AnimatedStat
                       key={index}
-                      value={valueStr}
-                      label={labelStr}
+                      stat={item}
                       animationDuration={animationDuration}
                     />
                   );

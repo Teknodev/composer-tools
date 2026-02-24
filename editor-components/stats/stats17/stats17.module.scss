@@ -1,73 +1,74 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container .max-content .wrapper {
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: stretch;
-  text-align: center;
+.container {
+  background-color: var(--composer-primary-color);
 
-  .header {
+  .max-content .wrapper {
     align-items: center;
-    .subtitle {
-      &::before {
-        display: none;
-      }
-      transform: none;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
 
-    .title,
-    .description {
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
-    }
-  }
-
-  .stats-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--composer-gap-lg);
-    width: 100%;
-
-    .card {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+    .header {
       align-items: center;
-      text-align: center;
-    
 
-      .stat-value {
-        margin-bottom: var(--composer-gap-xs);
-        text-align: center;
-        color: var(--composer-font-color-primary);
+      .subtitle {
+        color: var(--composer-font-color-secondary);
+        transform: none;
+        background: transparent;
+        padding: 0;
+        border-radius: 0;
+        &::before {
+          display: none;
+        }
       }
 
-      .stat-label {
+      .title,
+      .description {
         text-align: center;
-        color: var(--composer-font-color-primary);
+        color: var(--composer-font-color-secondary);
       }
     }
-  }
 
-  .button-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--composer-gap-sm);
-    justify-content: center;
-    margin-top: var(--composer-gap-lg);
+    .stats-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--composer-gap-lg);
+      width: 100%;
 
-    .button {
-      content: "";
+      .card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .stat-value {
+          display: flex;
+          align-items: baseline;
+
+          .stat-number,
+          .stat-suffix {
+            font-size: 5rem;
+            color: var(--composer-font-color-secondary);
+          }
+        }
+
+        .stat-label {
+          text-align: center;
+          color: var(--composer-font-color-secondary);
+        }
+      }
     }
 
-    .button-text {
-      content: "";
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      justify-content: center;
+
+      .button,
+      .button-text {
+        content: "";
+      }
     }
   }
 }
@@ -75,15 +76,23 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .wrapper .stats-grid {
     gap: var(--composer-gap-md);
+
+    .card .stat-value .stat-number,
+    .card .stat-value .stat-suffix {
+      font-size: 4rem;
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .max-content .wrapper {
-    .stats-grid {
-      flex-direction: column;
-      align-items: stretch;
-      gap: var(--composer-gap-md);
+  .container .max-content .wrapper .stats-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--composer-gap-md);
+
+    .card .stat-value .stat-number,
+    .card .stat-value .stat-suffix {
+      font-size: 3rem;
     }
   }
 }
