@@ -227,33 +227,35 @@ class CallToAction19 extends BaseCallToAction {
 
                         {features.length > 0 && (
                             <div className={this.decorateCSS("right-section")}>
-                                {this.castToString(this.getPropValue("featureTitle")) && (
-                                    <Base.H5 className={this.decorateCSS("features-title")}>
-                                        {this.getPropValue("featureTitle")}
-                                    </Base.H5>
-                                )}
-                                <div
-                                    className={this.decorateCSS("cards")}
-                                    data-cols={itemsPerRow.toString()}
-                                >
-                                    {features.map((item: FeatureItem, index: number) => (
-                                        <div key={index} className={this.decorateCSS("card")}>
-                                            {item.icon && (
-                                                <div className={this.decorateCSS("icon-wrapper")}>
-                                                    <Base.Media
-                                                        value={item.icon}
-                                                        className={this.decorateCSS("icon")}
-                                                    />
-                                                </div>
-                                            )}
-                                            {this.castToString(item.description) && (
-                                                <Base.P className={this.decorateCSS("card-text")}>
-                                                    {item.description}
-                                                </Base.P>
-                                            )}
-                                        </div>
-                                    ))}
-                                </div>
+                                <Base.VerticalContent className={this.decorateCSS("right-vertical-content")}>
+                                    {this.castToString(this.getPropValue("featureTitle")) && (
+                                        <Base.H5 className={this.decorateCSS("features-title")}>
+                                            {this.getPropValue("featureTitle")}
+                                        </Base.H5>
+                                    )}
+                                    <div
+                                        className={this.decorateCSS("cards")}
+                                        data-cols={itemsPerRow.toString()}
+                                    >
+                                        {features.map((item: FeatureItem, index: number) => (
+                                            <div key={index} className={this.decorateCSS("card")}>
+                                                {item.icon && (
+                                                    <div className={this.decorateCSS("icon-wrapper")}>
+                                                        <Base.Media
+                                                            value={item.icon}
+                                                            className={this.decorateCSS("icon")}
+                                                        />
+                                                    </div>
+                                                )}
+                                                {this.castToString(item.description) && (
+                                                    <Base.P className={this.decorateCSS("card-text")}>
+                                                        {item.description}
+                                                    </Base.P>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </Base.VerticalContent>
                             </div>
                         )}
                     </div>

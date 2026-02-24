@@ -6,6 +6,7 @@
     .max-content {
         .content {
             display: flex;
+
             .left-section,
             .right-section {
                 flex: 1;
@@ -52,8 +53,10 @@
                         gap: var(--composer-gap-sm);
                         flex-shrink: 0;
 
-                        .button-text {
-                            color: inherit;
+                        .button {
+                            .button-text {
+                                color: inherit;
+                            }
                         }
                     }
 
@@ -73,41 +76,43 @@
             }
 
             .right-section {
-                gap: var(--composer-gap-md);
-
-                .features-title {
-                    margin: 0;
-                    text-align: left;
-                    color: var(--composer-font-color-primary);
-                }
-
-                .cards {
-                    display: grid;
-                    grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
-                    gap: var(--composer-gap-sm);
+                .right-vertical-content {
                     width: 100%;
 
-                    .card {
-                        display: flex;
-                        align-items: center;
-                        gap: var(--composer-gap-sm);
-                        padding: 4px 0;
+                    .features-title {
+                        margin: 0;
+                        text-align: left;
                         color: var(--composer-font-color-primary);
+                    }
 
-                        .icon-wrapper {
+                    .cards {
+                        display: grid;
+                        grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
+                        gap: var(--composer-gap-sm);
+                        width: 100%;
+
+                        .card {
                             display: flex;
-                            flex-shrink: 0;
-                        }
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+                            padding: 4px 0;
+                            color: var(--composer-font-color-primary);
 
-                        .icon {
-                            width: 1.25rem;
-                            height: 1.25rem;
-                        }
+                            .icon-wrapper {
+                                display: flex;
+                                flex-shrink: 0;
+                            }
 
-                        .card-text {
-                            margin: 0;
-                            text-align: left;
-                            color: inherit;
+                            .icon {
+                                width: 1.25rem;
+                                height: 1.25rem;
+                            }
+
+                            .card-text {
+                                margin: 0;
+                                text-align: left;
+                                color: inherit;
+                            }
                         }
                     }
                 }
@@ -137,8 +142,8 @@
                 .header .title,
                 .header .description,
                 .bottom-row .rating,
-                .right-section .features-title,
-                .cards .card {
+                .right-section .right-vertical-content .features-title,
+                .right-section .right-vertical-content .cards .card {
                     color: inherit;
                 }
             }
