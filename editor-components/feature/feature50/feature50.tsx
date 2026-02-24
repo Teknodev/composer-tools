@@ -10,6 +10,7 @@ type Card = {
     subtitle: Element;
     title: Element;
     description: Element;
+    overlay: boolean;
     buttons: {
         type: TypeButton;
         text: Element;
@@ -71,6 +72,12 @@ class Feature50 extends BaseFeature {
                             value: "Digital Products"
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false
+                        },
+                        {
                             type: "media",
                             key: "media",
                             displayer: "Media",
@@ -114,6 +121,12 @@ class Feature50 extends BaseFeature {
                             key: "title",
                             displayer: "Title",
                             value: "Interactive Design"
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false
                         },
                         {
                             type: "media",
@@ -161,6 +174,12 @@ class Feature50 extends BaseFeature {
                             value: "Design Systems"
                         },
                         {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false
+                        },
+                        {
                             type: "media",
                             key: "media",
                             displayer: "Media",
@@ -204,6 +223,12 @@ class Feature50 extends BaseFeature {
                             key: "title",
                             displayer: "Title",
                             value: "Visual Identity"
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false
                         },
                         {
                             type: "media",
@@ -348,6 +373,9 @@ class Feature50 extends BaseFeature {
                                             value={card.media}
                                             className={this.decorateCSS("media")}
                                         />
+                                        {card.overlay && (
+                                            <div className={this.decorateCSS("overlay")}></div>
+                                        )}
                                     </div>
                                 )}
                             </Base.VerticalContent>
