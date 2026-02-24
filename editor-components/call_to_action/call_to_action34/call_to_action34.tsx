@@ -30,7 +30,7 @@ class CallToAction34Page extends BaseCallToAction {
             value: "Elevate your web presence with a professionally designed theme that fits all your needs.",
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Sing Up Online", "", "IoArrowForward", null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Sing Up Online", "", null, null, "Primary"));
 
         this.addProp({
             type: "media",
@@ -70,43 +70,39 @@ class CallToAction34Page extends BaseCallToAction {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("card-wrapper")}>
                         <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""}`}>
-                            {this.castToString(this.getPropValue("subtitle")) && (
-                                <Base.SectionTitle className={this.decorateCSS("subtitle")}>
-                                    {this.getPropValue("subtitle")}
-                                </Base.SectionTitle>
-                            )}
+                            <Base.VerticalContent>
+                                {this.castToString(this.getPropValue("subtitle")) && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
+                                )}
 
-                            {this.castToString(this.getPropValue("title")) && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </Base.SectionTitle>
-                            )}
+                                {this.castToString(this.getPropValue("title")) && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                )}
 
-                            {this.castToString(this.getPropValue("description")) && (
-                                <Base.SectionDescription className={this.decorateCSS("description")}>
-                                    {this.getPropValue("description")}
-                                </Base.SectionDescription>
-                            )}
+                                {this.castToString(this.getPropValue("description")) && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.SectionDescription>
+                                )}
 
-                            {(this.castToString(button.text) || button.icon) && (
-                                <div className={this.decorateCSS("button-container")}>
-                                    <ComposerLink path={button.url}>
-                                        <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                                            {this.castToString(button.text) && (
-                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                    {button.text}
-                                                </Base.P>
-                                            )}
-                                            {button.icon && (
-                                                <Base.Media
-                                                    value={button.icon as any}
-                                                    className={this.decorateCSS("button-icon")}
-                                                />
-                                            )}
-                                        </Base.Button>
-                                    </ComposerLink>
-                                </div>
-                            )}
+                                {(this.castToString(button.text) || button.icon) && (
+                                    <div className={this.decorateCSS("button-container")}>
+                                        <ComposerLink path={button.url}>
+                                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                                                {this.castToString(button.text) && (
+                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                        {button.text}
+                                                    </Base.P>
+                                                )}
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    </div>
+                                )}
+                            </Base.VerticalContent>
                         </div>
 
                         {this.getPropValue("media")?.url && (
