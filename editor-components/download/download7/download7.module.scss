@@ -30,14 +30,14 @@
       .vertical-content {
 
         .subtitle {
-          color: white;
+          color: #ffffff;
           padding: 0;
           background: transparent;
         }
 
         .title,
         .description {
-          color: white;
+          color: #ffffff;
         }
 
       }
@@ -73,15 +73,15 @@
         z-index: 2;
 
         .button-image {
+          height: 50px;
           width: 170px;
-          height: var(--composer-gap-xl);
           border-radius: var(--composer-border-radius-sm);
           object-fit: cover;
         }
 
         .button-element {
 
-          .icon {
+          .button-icon {
             line-height: 0;
           }
 
@@ -116,8 +116,8 @@
 
         .buttons-container {
           .button-image {
-            height: 45px;
-            width: 150px;
+            height: 45px !important;
+            width: 150px !important;
           }
         }
       }
@@ -135,8 +135,8 @@
 
         .buttons-container {
           .button-image {
-            width: 130px;
-            height: 35px;
+            height: 32px !important;
+            width: 120px !important;
           }
         }
       }

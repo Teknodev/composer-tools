@@ -106,7 +106,7 @@ class Download7 extends BaseDownload {
                       ) : (
                         <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                           {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                          {iconExist && (<Base.Media value={item.icon} className={this.decorateCSS("icon")} />)}
+                          {iconExist && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
                         </Base.Button>
                       )}
                     </ComposerLink>
