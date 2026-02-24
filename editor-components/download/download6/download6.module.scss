@@ -37,8 +37,8 @@
         width: 100%;
 
         .button-image {
+          height: 50px;
           width: 170px;
-          height: 46px;
           border-radius: var(--composer-border-radius-sm);
           object-fit: cover;
         }
@@ -87,6 +87,15 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      .left-content {
+        .buttons-container {
+          .button-image {
+            width: 150px !important;
+            height: 45px !important;
+          }
+        }
+      }
+
       .right-content {
         .image {
           height: auto;
@@ -121,8 +130,8 @@
 
         .buttons-container {
           .button-image {
-            width: 130px;
-            height: 35px;
+            height: 32px !important;
+            width: 120px !important;
           }
         }
       }
