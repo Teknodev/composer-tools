@@ -48,17 +48,29 @@
       gap: var(--composer-gap-xl);
       width: 100%;
 
+      .footer-left,
+      .footer-right {
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - (var(--composer-gap-xl) / 2));
+      }
+
+      .footer-right {
+        align-items: flex-end;
+      }
+
       .description {
-        flex: 1;
-        max-width: 100%;
+        width: 100%;
         text-align: left;
         margin: 0;
       }
 
       .button-group {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: var(--composer-gap-sm);
+        justify-content: flex-end;
 
         .button {
           .button-text {
@@ -140,6 +152,12 @@
       .footer-group {
         gap: var(--composer-gap-md);
         align-items: var(--composer-content-alignment) !important;
+
+        .footer-left,
+        .footer-right {
+          width: 100%;
+          align-items: var(--composer-content-alignment) !important;
+        }
 
         .description {
           text-align: var(--composer-content-alignment) !important;

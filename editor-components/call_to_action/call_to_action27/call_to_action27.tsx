@@ -85,22 +85,26 @@ class CallToAction27 extends BaseCallToAction {
             )}
             {(descriptionExist || visibleButtons.length > 0) && (
               <div className={this.decorateCSS("footer-group")}>
-                {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                  </Base.SectionDescription>
-                )}
-                {visibleButtons.length > 0 && (
-                  <div className={this.decorateCSS("button-group")}>
-                    {visibleButtons.map((item: Button, index: number) => (
-                      <ComposerLink key={`button-${index}`} path={item.url}>
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    ))}
-                  </div>
-                )}
+                <div className={this.decorateCSS("footer-left")}>
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </Base.SectionDescription>
+                  )}
+                </div>
+                <div className={this.decorateCSS("footer-right")}>
+                  {visibleButtons.length > 0 && (
+                    <div className={this.decorateCSS("button-group")}>
+                      {visibleButtons.map((item: Button, index: number) => (
+                        <ComposerLink key={`button-${index}`} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>
