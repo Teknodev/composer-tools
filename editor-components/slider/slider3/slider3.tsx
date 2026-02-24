@@ -1,17 +1,16 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider3.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
-  media: any;
-  subtitle: string;
-  title: string;
-  description: string;
+  media: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
   path: string;
 };
 
@@ -25,18 +24,21 @@ class Slider3 extends BaseSlider {
       displayer: "Subtitle",
       value: "What's new at Store",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Effective tools are critical to the success of a small business.",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "",
     });
+
     this.addProp({
       type: "array",
       key: "slider",
@@ -47,18 +49,6 @@ class Slider3 extends BaseSlider {
           key: "item",
           displayer: "Slider Item",
           value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629525?alt=media&timestamp=1719584962578",
-              },
-            },
             {
               type: "string",
               key: "subtitle",
@@ -83,13 +73,6 @@ class Slider3 extends BaseSlider {
               displayer: "Navigate To",
               value: "",
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Slider Item",
-          value: [
             {
               type: "media",
               key: "media",
@@ -99,9 +82,16 @@ class Slider3 extends BaseSlider {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629526?alt=media&timestamp=1719584962578",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629525?alt=media&timestamp=1719584962578",
               },
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
             {
               type: "string",
               key: "subtitle",
@@ -126,13 +116,6 @@ class Slider3 extends BaseSlider {
               displayer: "Navigate To",
               value: "",
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Slider Item",
-          value: [
             {
               type: "media",
               key: "media",
@@ -142,9 +125,16 @@ class Slider3 extends BaseSlider {
               },
               value: {
                 type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629527?alt=media&timestamp=1719584962578",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629526?alt=media&timestamp=1719584962578",
               },
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Slider Item",
+          value: [
             {
               type: "string",
               key: "subtitle",
@@ -169,10 +159,23 @@ class Slider3 extends BaseSlider {
               displayer: "Navigate To",
               value: "",
             },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629527?alt=media&timestamp=1719584962578",
+              },
+            },
           ],
         },
       ],
     });
+
     this.addProp({
       type: "media",
       key: "previousArrow",
@@ -185,6 +188,7 @@ class Slider3 extends BaseSlider {
         name: "BsArrowLeftCircle",
       },
     });
+
     this.addProp({
       type: "media",
       key: "nextArrow",
@@ -197,20 +201,22 @@ class Slider3 extends BaseSlider {
         name: "BsArrowRightCircle",
       },
     });
+
     this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
       value: false,
     });
+
     this.addProp({
       type: "boolean",
       key: "hoverAnimation",
       displayer: "Hover Animation",
       value: true,
     });
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
@@ -218,9 +224,9 @@ class Slider3 extends BaseSlider {
   static getName(): string {
     return "Slider 3";
   }
+
   render() {
     const items = this.castToObject<SliderItem[]>("slider");
-
     const isCardExist = items.length > 0;
     const isOverlayActive = this.getPropValue("overlay");
     const nextArrow = this.getPropValue("nextArrow");
@@ -262,54 +268,34 @@ class Slider3 extends BaseSlider {
       ],
     };
 
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const alignmentValue = Base.getContentAlignment();
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasHeader = subtitle || title || description;
     const carouselClass = items.length === 1 ? "carousel--singleCard" : "carousel--multipleCards";
     const arrowsExist = items.length > 1 && (previousArrow || nextArrow) && sliderSettings.arrows;
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} 
-        ${!this.castToString(title) && !this.castToString(subtitle) && !this.castToString(description) && this.decorateCSS("no-header")}`}
-      >
-        {(this.castToString(title) || this.castToString(subtitle) || this.castToString(description) || previousArrow || nextArrow) && (
-          <Base.MaxContent className={this.decorateCSS("header-wrapper")}>
-            <div
-              className={`${this.decorateCSS("title")} ${this.decorateCSS(alignmentValue)}
-            ${!this.castToString(title) && !this.castToString(subtitle) && !this.castToString(description) && this.decorateCSS("no-header-titles")}`}
-            >
-              {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-                <Base.VerticalContent
-                  className={`${this.decorateCSS("header-content")} 
-                ${!arrowsExist && this.decorateCSS("no-arrows")}`}
-                >
-                  {this.castToString(subtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                  {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+      <Base.Container className={`${this.decorateCSS("container")} ${!hasHeader && this.decorateCSS("no-header")}`} >
+        {(hasHeader || previousArrow || nextArrow) && (
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <div className={`${this.decorateCSS("header")} ${!hasHeader && this.decorateCSS("no-header-titles")}`} >
+              {hasHeader && (
+                <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!arrowsExist && this.decorateCSS("no-arrows")}`} >
+                  {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 </Base.VerticalContent>
               )}
-
               {arrowsExist && (
                 <div className={this.decorateCSS("arrows")}>
                   {previousArrow && (
-                    <div
-                      className={this.decorateCSS("prevArrow")}
-                      onClick={() => {
-                        sliderRef.current.slickPrev();
-                      }}
-                    >
+                    <div className={`${this.decorateCSS("prevArrow")} ${previousArrow.type === "image" && this.decorateCSS("has-image")}`} onClick={() => { sliderRef.current.slickPrev(); }}>
                       <Base.Media value={this.getPropValue("previousArrow")} />
                     </div>
                   )}
                   {nextArrow && (
-                    <div
-                      className={this.decorateCSS("nextArrow")}
-                      onClick={() => {
-                        sliderRef.current.slickNext();
-                      }}
-                    >
+                    <div className={`${this.decorateCSS("nextArrow")} ${nextArrow.type === "image" && this.decorateCSS("has-image")}`} onClick={() => { sliderRef.current.slickNext(); }}>
                       <Base.Media value={this.getPropValue("nextArrow")} />
                     </div>
                   )}
@@ -318,7 +304,6 @@ class Slider3 extends BaseSlider {
             </div>
           </Base.MaxContent>
         )}
-
         <div className={this.decorateCSS("slider-parent")}>
           {isCardExist && (
             <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
@@ -330,20 +315,16 @@ class Slider3 extends BaseSlider {
                       ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}
                       ${!item.media && this.decorateCSS("no-media")}`}
                   >
-                    <div className={this.decorateCSS("img-container")}>
-                      {item.media && (
-                        <Base.Media value={item.media} className={`${this.decorateCSS("img")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`} />
-                      )}
+                    <div className={this.decorateCSS("image-container")}>
+                      {item.media && (<Base.Media value={item.media} className={`${this.decorateCSS("image")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`} />)}
                       {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                     </div>
                     {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
-                      <Base.VerticalContent
-                        className={`${this.decorateCSS("content-container")} 
-                      ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}
-                      >
-                        {this.castToString(item.subtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.SectionSubTitle>}
-                        {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("content-title")}>{item.title}</Base.H2>}
-                        {this.castToString(item.description) && <Base.P className={this.decorateCSS("content-description")}>{item.description}</Base.P>}
+                      <Base.VerticalContent className={`${this.decorateCSS("content-container")} 
+                      ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}>
+                        {this.castToString(item.subtitle) && <Base.H3 className={this.decorateCSS("slider-subtitle")}>{item.subtitle}</Base.H3>}
+                        {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("slider-title")}>{item.title}</Base.H2>}
+                        {this.castToString(item.description) && <Base.P className={this.decorateCSS("slider-description")}>{item.description}</Base.P>}
                       </Base.VerticalContent>
                     )}
                   </div>
