@@ -1,0 +1,155 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: var(--composer-gap-xl);
+
+            .left-column,
+            .right-column {
+                flex: 1;
+                flex-basis: 0;
+                min-width: 0;
+
+            }
+
+            .left-column {
+                &.alignment-center {
+                    align-items: center;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .subtitle {
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: fit-content;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
+
+                &.alignment-left {
+                    align-items: flex-start;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: left;
+                    }
+
+                    .subtitle {
+                        margin-left: 0;
+                        margin-right: auto;
+                        width: fit-content;
+                    }
+
+                    .button-container {
+                        justify-content: flex-start;
+                    }
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .right-column {
+                .stats-grid {
+                    width: 100%;
+                    gap: var(--composer-gap-lg);
+
+                    .stat-item {
+                        align-items: flex-start;
+                        text-align: left;
+
+                        .stat-value {
+                            color: var(--composer-primary-color);
+                            display: flex;
+                            align-items: center;
+                            font-size: 5rem;
+
+                            .stat-number,
+                            .stat-suffix {
+                                color: inherit;
+                            }
+                        }
+
+                        .stat-label {
+                            text-align: left;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content {
+        .content-wrapper {
+            gap: var(--composer-gap-lg);
+            align-items: flex-start;
+
+            .right-column {
+                .stats-grid {
+                    .stat-item {
+                        .stat-value {
+                            font-size: 4rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content {
+        .content-wrapper {
+            flex-direction: column;
+            gap: 0;
+
+            .left-column,
+            .right-column {
+                width: 100%;
+                flex: auto;
+            }
+
+            .left-column {
+                .button-container {
+                    padding-bottom: var(--composer-gap-md);
+                }
+            }
+
+            .right-column {
+                .stats-grid {
+                    gap: var(--composer-gap-md);
+
+                    .stat-item {
+                        .stat-value {
+                            font-size: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
