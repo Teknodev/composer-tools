@@ -241,7 +241,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
 
         .wrapper {
             .items-wrapper {
