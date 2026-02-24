@@ -5,7 +5,9 @@
 
     .max-content {
         .content {
+            gap: var(--composer-gap-xl);
             display: flex;
+
             .left-section,
             .right-section {
                 flex: 1;
@@ -16,6 +18,7 @@
                 .header {
                     width: 100%;
                     align-items: flex-start;
+
                     .title,
                     .description {
                         text-align: left;
@@ -150,6 +153,15 @@
 
         .content {
             gap: var(--composer-gap-xl);
+
+            .left-section {
+                .header {
+                    .bottom-row {
+                        gap: var(--composer-gap-md);
+                    }
+                }
+
+            }
         }
     }
 }
