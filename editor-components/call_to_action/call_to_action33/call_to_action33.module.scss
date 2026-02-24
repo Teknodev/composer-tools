@@ -11,7 +11,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
 
       .media-container {
         position: absolute;
@@ -48,13 +47,6 @@
           text-align: center;
         }
 
-        .subtitle {
-          transform: none;
-          &::before {
-            display: none;
-          }
-        }
-
         .button-container {
           display: flex;
           flex-wrap: wrap;
@@ -72,20 +64,18 @@
           .description {
             color: var(--composer-font-color-secondary);
           }
+
+          .subtitle {
+            transform: none;
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            &::before {
+              display: none;
+            }
+          }
         }
       }
     }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .card {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-  }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-  .container .max-content .card {
-    padding: var(--composer-gap-xl) var(--composer-gap-md);
   }
 }
