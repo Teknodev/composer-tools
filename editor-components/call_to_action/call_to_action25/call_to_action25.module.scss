@@ -23,11 +23,7 @@
                 padding: 0 !important;
             }
 
-            .title {
-                text-align: center;
-                color: var(--composer-font-color-secondary);
-            }
-
+            .title,
             .description {
                 text-align: center;
                 color: var(--composer-font-color-secondary);
@@ -46,7 +42,7 @@
                     }
 
                     .button-text {
-                        margin: 0;
+                        content: "";
                     }
                 }
             }

@@ -337,6 +337,8 @@ import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
 import Comparison1 from "./comparison/comparison1/comparison1";
+
+
 function Registerables(composer: ComponentsRegistery) {
     composer.register([
         SocialComponent1,
