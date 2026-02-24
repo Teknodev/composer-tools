@@ -7,14 +7,22 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type CardData = {
-    cardValue: React.JSX.Element;
-    cardLabel: React.JSX.Element;
+    prefix: string;
+    value: number;
+    suffix: string;
+    cardLabel: string;
 };
 
 class Stats18Page extends BaseStats {
     constructor(props?: any) {
-        super(props, styles);
+        super(props, styles)
 
+        this.addProp({
+            type: "boolean",
+            key: "showLine",
+            displayer: "Show Separator Line",
+            value: true,
+        });
         this.addProp({
             type: "string",
             key: "subtitle",
@@ -49,9 +57,21 @@ class Stats18Page extends BaseStats {
                     value: [
                         {
                             type: "string",
-                            key: "cardValue",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "$",
+                        },
+                        {
+                            type: "number",
+                            key: "value",
                             displayer: "Value",
-                            value: "$50M+",
+                            value: 50,
+                        },
+                        {
+                            type: "string",
+                            key: "suffix",
+                            displayer: "Suffix",
+                            value: "M+",
                         },
                         {
                             type: "string",
@@ -68,9 +88,21 @@ class Stats18Page extends BaseStats {
                     value: [
                         {
                             type: "string",
-                            key: "cardValue",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "number",
+                            key: "value",
                             displayer: "Value",
-                            value: "5000+",
+                            value: 5000,
+                        },
+                        {
+                            type: "string",
+                            key: "suffix",
+                            displayer: "Suffix",
+                            value: "+",
                         },
                         {
                             type: "string",
@@ -87,9 +119,21 @@ class Stats18Page extends BaseStats {
                     value: [
                         {
                             type: "string",
-                            key: "cardValue",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "number",
+                            key: "value",
                             displayer: "Value",
-                            value: "12x",
+                            value: 12,
+                        },
+                        {
+                            type: "string",
+                            key: "suffix",
+                            displayer: "Suffix",
+                            value: "x",
                         },
                         {
                             type: "string",
@@ -106,9 +150,21 @@ class Stats18Page extends BaseStats {
                     value: [
                         {
                             type: "string",
-                            key: "cardValue",
+                            key: "prefix",
+                            displayer: "Prefix",
+                            value: "",
+                        },
+                        {
+                            type: "number",
+                            key: "value",
                             displayer: "Value",
-                            value: "99%",
+                            value: 99,
+                        },
+                        {
+                            type: "string",
+                            key: "suffix",
+                            displayer: "Suffix",
+                            value: "%",
                         },
                         {
                             type: "string",
@@ -120,6 +176,8 @@ class Stats18Page extends BaseStats {
                 },
             ],
         });
+
+
 
         this.addProp({
             type: "object",
@@ -162,15 +220,8 @@ class Stats18Page extends BaseStats {
         return "Stats 18";
     }
 
-    private parseValue(valueStr: string) {
-        const numericMatch = valueStr.match(/(\d+)/);
-        const numericPart = numericMatch ? parseInt(numericMatch[0], 10) : 0;
-        const prefix = valueStr.split(/\d+/)[0] || "";
-        const suffix = valueStr.split(/\d+/).slice(1).join("") || "";
-        return { numericPart, prefix, suffix };
-    }
 
-    private renderAnimatedCard(card: CardData, animationSettings: any, index: number) {
+    private renderAnimatedCard(card: CardData, animationSettings: any, showLine: boolean, index: number) {
         const getNestedValue = (key: string) => {
             if (Array.isArray(animationSettings)) {
                 const prop = animationSettings.find((p: any) => p.key === key);
@@ -187,7 +238,9 @@ class Stats18Page extends BaseStats {
             const ref = React.useRef<HTMLDivElement>(null);
             const hasAnimated = React.useRef(false);
 
-            const { numericPart, prefix, suffix } = this.parseValue(this.castToString(card.cardValue));
+            const numericPart = Number(card.value) || 0;
+            const prefix = this.castToString(card.prefix);
+            const suffix = this.castToString(card.suffix);
 
             React.useEffect(() => {
                 const observer = new IntersectionObserver(
@@ -205,7 +258,7 @@ class Stats18Page extends BaseStats {
                 }
 
                 return () => observer.disconnect();
-            }, [card.cardValue]);
+            }, [card.value]);
 
             const animate = () => {
                 if (numericPart === 0) {
@@ -231,11 +284,11 @@ class Stats18Page extends BaseStats {
 
             return (
                 <div ref={ref} className={this.decorateCSS("card")}>
-                    <Base.H2 className={this.decorateCSS("card-value")}>
+                    <div className={`${this.decorateCSS("card-value")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
                         {prefix && <span className={this.decorateCSS("card-value-prefix")}>{prefix}</span>}
-                        {displayValue}
+                        <span className={this.decorateCSS("display-value")}>{displayValue}</span>
                         {suffix && <span className={this.decorateCSS("card-value-suffix")}>{suffix}</span>}
-                    </Base.H2>
+                    </div>
                     <Base.P className={this.decorateCSS("card-label")}>{card.cardLabel}</Base.P>
                 </div>
             );
@@ -251,6 +304,7 @@ class Stats18Page extends BaseStats {
         const cardList = this.castToObject<CardData[]>("card-list");
         const animationSettings = this.getPropValue("animationSettings");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const showLine = !!this.getPropValue("showLine");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -275,7 +329,7 @@ class Stats18Page extends BaseStats {
                             <div className={this.decorateCSS("button-container")}>
                                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                     return (
-                                        <div>
+                                        <div key={index}>
                                             {this.castToString(item.text) && (
                                                 <ComposerLink path={item.url}>
                                                     <Base.Button
@@ -295,10 +349,10 @@ class Stats18Page extends BaseStats {
 
                     {cardList.length > 0 && (
                         <Base.ListGrid
-                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }}
+                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
-                            {cardList.map((card, index) => this.renderAnimatedCard(card, animationSettings, index))}
+                            {cardList.map((card, index) => this.renderAnimatedCard(card, animationSettings, showLine, index))}
                         </Base.ListGrid>
                     )}
                 </Base.MaxContent>
