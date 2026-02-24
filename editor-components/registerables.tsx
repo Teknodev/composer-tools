@@ -177,9 +177,18 @@ import CallToAction11 from "./call_to_action/call_to_action11/call_to_action11";
 import CallToAction12 from "./call_to_action/call_to_action12/call_to_action12";
 import CallToAction13 from "./call_to_action/call_to_action13/call_to_action13";
 import CallToAction14 from "./call_to_action/call_to_action14/call_to_action14";
+import CallToAction15 from "./call_to_action/call_to_action15/call_to_action15";
 import CallToAction16 from "./call_to_action/call_to_action16/call_to_action16";
 import CallToAction17 from "./call_to_action/call_to_action17/call_to_action17";
 import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
+import CallToAction18 from "./call_to_action/call_to_action18/call_to_action18";
+import CallToAction20 from "./call_to_action/call_to_action20/call_to_action20";
+import CallToAction21 from "./call_to_action/call_to_action21/call_to_action21";
+import CallToAction22 from "./call_to_action/call_to_action22/call_to_action22";
+import CallToAction24 from "./call_to_action/call_to_action24/call_to_action24";
+import CallToAction28 from "./call_to_action/call_to_action28/call_to_action28";
+import CallToAction29 from "./call_to_action/call_to_action29/call_to_action29";
+import CallToAction32 from "./call_to_action/call_to_action32/call_to_action32";
 import LogoComponent1 from "./logo-clouds/logo-comp1/logo-comp1";
 import LogoComponent2 from "./logo-clouds/logo-comp2/logo-comp2";
 import LogoComponent3 from "./logo-clouds/logo-comp3/logo-comp3";
@@ -331,6 +340,7 @@ import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
 import Comparison1 from "./comparison/comparison1/comparison1";
+
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -530,7 +540,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent45,
     FeatureComponent46,
     FeatureComponent47,
-    FeatureComponent48, 
+    FeatureComponent48,
     FeatureComponent49,
     CallToAction1,
     CallToAction2,
@@ -546,9 +556,18 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction12,
     CallToAction13,
     CallToAction14,
+    CallToAction15,
     CallToAction16,
     CallToAction17,
     CallToAction27,
+    CallToAction18,
+    CallToAction20,
+    CallToAction21,
+    CallToAction22,
+    CallToAction24,
+    CallToAction28,
+    CallToAction29,
+    CallToAction32,
     LogoComponent1,
     LogoComponent2,
     LogoComponent3,
