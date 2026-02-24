@@ -309,43 +309,23 @@ class Feature42 extends BaseFeature {
                                             this.setComponentState("activeIndex", newIndex);
                                         }}
                                     >
-                                        <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>
-                                            {item.title}
-                                        </Base.H3>
+                                        <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>{item.title}</Base.H3>
                                         <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
-                                            {mobileIcon && (
-                                                <Base.Media
-                                                    value={mobileIcon}
-                                                    className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`}
-                                                />
-                                            )}
+                                            {mobileIcon && (<Base.Media value={mobileIcon} className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`} />)}
                                         </div>
                                     </div>
                                     {item.image && (
                                         <div className={`${this.decorateCSS("image-wrapper")} ${!(cardSubTitleExist || cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
-                                            <Base.Media
-                                                value={item.image}
-                                                className={this.decorateCSS("itemImage")}
-                                            />
-                                            {enableOverlay && (
-                                                <div className={this.decorateCSS("overlay")}></div>
-                                            )}
+                                            <Base.Media value={item.image} className={this.decorateCSS("itemImage")} />
+                                            {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                         </div>
                                     )}
                                     {(cardTitleExist || text1Exist || text2Exist) && (
                                         <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
-                                            {cardSubTitleExist && (
-                                                <Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>
-                                            )}
-                                            {cardTitleExist && (
-                                                <Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>
-                                            )}
-                                            {text1Exist && (
-                                                <Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>
-                                            )}
-                                            {text2Exist && (
-                                                <Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>
-                                            )}
+                                            {cardSubTitleExist && (<Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>)}
+                                            {cardTitleExist && (<Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>)}
+                                            {text1Exist && (<Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>)}
+                                            {text2Exist && (<Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>)}
                                             {item.button && this.castToString(item.button.text) && (
                                                 <ComposerLink path={item.button.url}>
                                                     <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>

@@ -3,13 +3,12 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 80px;
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
+    gap: 60px;
 
     .wrapper {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
 
         .max-content {
             .vertical-content {
@@ -50,7 +49,7 @@
                 width: auto;
 
                 &:hover {
-                    color: var(--composer-primary-color);
+                    color: var(--composer-font-color-primary);
                 }
 
                 &.active {
@@ -143,11 +142,19 @@
                 display: flex;
                 flex-direction: column;
                 gap: var(--composer-gap-md);
+                align-items: flex-start;
                 flex: 0.5;
 
                 &.no-image {
                     flex: 1;
-                    padding-left: var(--composer-gap-xl);
+                    align-items: var(--composer-content-alignment);
+
+                    .cardSubTitle,
+                    .cardTitle,
+                    .sectionText1,
+                    .sectionText2 {
+                        text-align: var(--composer-content-alignment);
+                    }
                 }
 
                 .cardSubTitle,
@@ -183,8 +190,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: var(--composer-gap-xl) var(--composer-gap-md);
-        gap: var(--composer-gap-xl);
+        gap: var(--composer-gap-lg);
 
         .wrapper {
             .max-content {
@@ -194,7 +200,50 @@
                     }
                 }
             }
+        }
 
+        .card-wrapper {
+            .card-content {
+                flex-direction: column;
+
+                .mobile-title-wrapper {
+                    display: none;
+                }
+
+                .image-wrapper {
+                    order: 2;
+                    border-radius: 0;
+                    min-height: 350px;
+                    margin-left: calc(-1 * var(--composer-gap-lg));
+                    margin-bottom: var(--composer-gap-lg);
+                    width: calc(100% + 2 * var(--composer-gap-lg));
+
+                    &.full-width {
+                        margin-right: 0;
+                    }
+                }
+
+                .sectionsWrapper {
+                    order: 1;
+                    flex: unset;
+
+                    .cardSubTitle,
+                    .cardTitle,
+                    .sectionText1,
+                    .sectionText2 {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        gap: var(--composer-gap-md);
+
+        .wrapper {
             .items-wrapper {
                 display: none;
             }
@@ -264,10 +313,10 @@
 
                 .image-wrapper {
                     order: 3;
-                    margin-left: calc(-1 * var(--composer-gap-lg));
-                    margin-bottom: var(--composer-gap-lg);
-                    width: calc(100% + 2 * var(--composer-gap-lg));
-                    min-height: auto;
+                    margin-left: calc(-1 * var(--composer-gap-md));
+                    margin-bottom: var(--composer-gap-md);
+                    width: calc(100% + 2 * var(--composer-gap-md));
+                    min-height: 240px;
                     border-radius: 0;
                     display: none;
                 }
@@ -282,13 +331,12 @@
                     order: 2;
                     display: none;
                     padding-bottom: var(--composer-gap-md);
-                    align-items: center;
 
                     .cardSubTitle,
                     .cardTitle,
                     .sectionText1,
                     .sectionText2 {
-                        text-align: center;
+                        text-align: left;
                     }
                 }
 
@@ -299,33 +347,6 @@
 
                     .sectionsWrapper {
                         display: flex;
-                    }
-                }
-            }
-        }
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container {
-        gap: var(--composer-gap-md);
-
-        .card-wrapper {
-            .card-content {
-                .image-wrapper {
-                    margin-left: calc(-1 * var(--composer-gap-md));
-                    margin-bottom: var(--composer-gap-md);
-                    width: calc(100% + 2 * var(--composer-gap-md));
-                }
-
-                .sectionsWrapper {
-                    align-items: flex-start;
-
-                    .cardSubTitle,
-                    .cardTitle,
-                    .sectionText1,
-                    .sectionText2 {
-                        text-align: left;
                     }
                 }
             }
