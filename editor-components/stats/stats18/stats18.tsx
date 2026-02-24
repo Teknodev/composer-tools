@@ -295,7 +295,7 @@ class Stats18Page extends BaseStats {
 
                     {cardList.length > 0 && (
                         <Base.ListGrid
-                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}
+                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
                             {cardList.map((card, index) => this.renderAnimatedCard(card, animationSettings, index))}
