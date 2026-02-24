@@ -31,18 +31,12 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
         width: 100%;
 
         .button-wrapper {
-          display: flex;
-          align-items: center;
-
           .image-container {
-            line-height: 0;
-
             .button-image {
-              display: block;
               height: 50px;
               width: 170px;
               object-fit: cover;
