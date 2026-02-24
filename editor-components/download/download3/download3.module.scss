@@ -1,8 +1,8 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
-@mixin button-logo($w, $h) {
-  width: $w;
-  height: $h;
+@mixin button-image($w, $h) {
+  width: $w !important;
+  height: $h !important;
   object-fit: cover;
   cursor: pointer;
   border-radius: var(--composer-border-radius-sm);
@@ -76,18 +76,22 @@
           align-self: center;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
+          align-items: flex-end;
           width: 20%;
 
-          .button-logo {
-            @include button-logo(170px, 50px);
+          .button-image {
+            @include button-image(170px, 50px);
           }
 
           .button-element {
-
-            .button-icon,
             .button-text {
               content: "";
             }
+
+            .button-icon {
+              line-height: 0;
+            }
+
           }
         }
       }
@@ -116,16 +120,19 @@
         justify-content: center;
 
         .button {
-          .button-logo {
-            @include button-logo(170px, 50px);
+          .button-image {
+            @include button-image(170px, 50px);
           }
 
           .button-element {
-
-            .button-icon,
             .button-text {
               content: "";
             }
+
+            .button-icon {
+              line-height: 0;
+            }
+
           }
         }
       }
@@ -155,8 +162,8 @@
           }
 
           .button-group {
-            .button-logo {
-              @include button-logo(175px, var(--composer-gap-xl));
+            .button-image {
+              @include button-image(150px, 45px);
             }
           }
         }
@@ -164,8 +171,8 @@
         .group-container-center {
           .button-group {
             .button {
-              .button-logo {
-                @include button-logo(175px, var(--composer-gap-xl));
+              .button-image {
+                @include button-image(150px, 45px);
               }
             }
           }
@@ -207,8 +214,8 @@
           .button-group {
             width: 100%;
 
-            .button-logo {
-              @include button-logo(125px, 30px);
+            .button-image {
+              @include button-image(120px, 32px);
             }
           }
         }
@@ -216,8 +223,8 @@
         .group-container-center {
           .button-group {
             .button {
-              .button-logo {
-                @include button-logo(125px, 30px);
+              .button-image {
+                @include button-image(120px, 32px);
               }
             }
           }

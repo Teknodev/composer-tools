@@ -116,7 +116,7 @@ class Download3 extends BaseDownload {
                           <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
                             <ComposerLink path={item.url}>
                               {imageExist ? (
-                                <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
+                                <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
                               ) : (
                                 <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                                   {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
@@ -152,7 +152,7 @@ class Download3 extends BaseDownload {
                             <ComposerLink path={item.url}>
                               <div className={this.decorateCSS("button-link")}>
                                 {imageExist ? (
-                                  <Base.Media value={item.image} className={this.decorateCSS("button-logo")} />
+                                  <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
                                 ) : (
                                   <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
                                     {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
