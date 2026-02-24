@@ -211,7 +211,7 @@ class Stats18Page extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "White")
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
             ],
         });
     }
