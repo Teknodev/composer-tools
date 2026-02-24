@@ -13,6 +13,17 @@
 .header-section {
     align-items: flex-start;
     text-align: left;
+
+    .button-container {
+        margin-bottom: var(--composer-gap-md);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+            content: "";
+        }
+    }
 }
 
 .subtitle {

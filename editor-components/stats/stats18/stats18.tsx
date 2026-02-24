@@ -3,6 +3,8 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats18.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type CardData = {
     cardValue: React.JSX.Element;
@@ -120,17 +122,23 @@ class Stats18Page extends BaseStats {
         });
 
         this.addProp({
-            type: "number",
-            key: "animationDuration",
-            displayer: "Animation Duration (ms)",
-            value: 2000,
-        });
-
-        this.addProp({
-            type: "number",
-            key: "incrementValue",
-            displayer: "Increment Value",
-            value: 10,
+            type: "object",
+            key: "animationSettings",
+            displayer: "Animation Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "duration",
+                    displayer: "Animation Duration (ms)",
+                    value: 2000,
+                },
+                {
+                    type: "number",
+                    key: "incrementValue",
+                    displayer: "Increment Value",
+                    value: 10,
+                },
+            ],
         });
 
         this.addProp({
@@ -140,24 +148,46 @@ class Stats18Page extends BaseStats {
             value: 4,
             max: 4,
         });
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White")
+            ],
+        });
     }
 
     static getName(): string {
         return "Stats 18";
     }
 
-    render() {
-        const subtitle = this.getPropValue("subtitle");
-        const title = this.getPropValue("title");
-        const boldTitle = this.getPropValue("boldTitle");
-        const description = this.getPropValue("description");
-        const cardList = this.castToObject<CardData[]>("card-list");
-        const animationDuration = this.getPropValue("animationDuration");
+    private parseValue(valueStr: string) {
+        const numericMatch = valueStr.match(/(\d+)/);
+        const numericPart = numericMatch ? parseInt(numericMatch[0], 10) : 0;
+        const prefix = valueStr.split(/\d+/)[0] || "";
+        const suffix = valueStr.split(/\d+/).slice(1).join("") || "";
+        return { numericPart, prefix, suffix };
+    }
+
+    private renderAnimatedCard(card: CardData, animationSettings: any, index: number) {
+        const getNestedValue = (key: string) => {
+            if (Array.isArray(animationSettings)) {
+                const prop = animationSettings.find((p: any) => p.key === key);
+                return prop ? prop.value : undefined;
+            }
+            return undefined;
+        };
+
+        const animationDuration = Number(getNestedValue("duration")) || 2000;
+        const propIncrementValue = Number(getNestedValue("incrementValue")) || 10;
 
         const AnimatedCard = ({ card }: { card: CardData }) => {
-            const [displayValue, setDisplayValue] = React.useState<string>("0");
+            const [displayValue, setDisplayValue] = React.useState<number>(0);
             const ref = React.useRef<HTMLDivElement>(null);
             const hasAnimated = React.useRef(false);
+
+            const { numericPart, prefix, suffix } = this.parseValue(this.castToString(card.cardValue));
 
             React.useEffect(() => {
                 const observer = new IntersectionObserver(
@@ -178,39 +208,49 @@ class Stats18Page extends BaseStats {
             }, [card.cardValue]);
 
             const animate = () => {
-                const valueStr = this.castToString(card.cardValue) as string;
-                const numericPart = parseInt(valueStr.replace(/[^\d]/g, ""), 10) || 0;
-                const prefix = valueStr.match(/^[^\d]+/)?.[0] || "";
-                const suffix = valueStr.match(/[^\d]+$/)?.[0] || "";
-
                 if (numericPart === 0) {
-                    setDisplayValue(valueStr);
+                    setDisplayValue(0);
                     return;
                 }
 
                 let start = 0;
-                const stepTime = Math.abs(Math.floor(animationDuration / numericPart));
-                const effectiveStepTime = Math.max(stepTime, 20); // Performans için minimum 20ms
-                const increment = Math.ceil(numericPart / (animationDuration / effectiveStepTime));
+                const totalSteps = Math.ceil(numericPart / propIncrementValue);
+                const stepTime = Math.max(Math.floor(animationDuration / totalSteps), 20);
+                const increment = propIncrementValue;
 
                 const timer = setInterval(() => {
                     start += increment;
                     if (start >= numericPart) {
-                        setDisplayValue(valueStr);
+                        setDisplayValue(numericPart);
                         clearInterval(timer);
                     } else {
-                        setDisplayValue(`${prefix}${start}${suffix}`);
+                        setDisplayValue(start);
                     }
-                }, effectiveStepTime);
+                }, stepTime);
             };
 
             return (
                 <div ref={ref} className={this.decorateCSS("card")}>
-                    <Base.H2 className={this.decorateCSS("card-value")}>{displayValue}</Base.H2>
+                    <Base.H2 className={this.decorateCSS("card-value")}>
+                        {prefix && <span className={this.decorateCSS("card-value-prefix")}>{prefix}</span>}
+                        {displayValue}
+                        {suffix && <span className={this.decorateCSS("card-value-suffix")}>{suffix}</span>}
+                    </Base.H2>
                     <Base.P className={this.decorateCSS("card-label")}>{card.cardLabel}</Base.P>
                 </div>
             );
         };
+
+        return <AnimatedCard key={index} card={card} />;
+    }
+
+    render() {
+        const subtitle = this.getPropValue("subtitle");
+        const title = this.getPropValue("title");
+        const description = this.getPropValue("description");
+        const cardList = this.castToObject<CardData[]>("card-list");
+        const animationSettings = this.getPropValue("animationSettings");
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -221,16 +261,35 @@ class Stats18Page extends BaseStats {
                                 {subtitle}
                             </Base.SectionSubTitle>
                         )}
-                        {(this.castToString(title) || this.castToString(boldTitle)) && (
+                        {(this.castToString(title)) && (
                             <Base.SectionTitle className={this.decorateCSS("title")}>
                                 {title}
-                                <span className={this.decorateCSS("bold-title")}>{boldTitle}</span>
                             </Base.SectionTitle>
                         )}
                         {this.castToString(description) && (
                             <Base.SectionDescription className={this.decorateCSS("description")}>
                                 {description}
                             </Base.SectionDescription>
+                        )}
+                        {buttons.length > 0 && (
+                            <div className={this.decorateCSS("button-container")}>
+                                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                    return (
+                                        <div>
+                                            {this.castToString(item.text) && (
+                                                <ComposerLink path={item.url}>
+                                                    <Base.Button
+                                                        buttonType={item.type}
+                                                        className={this.decorateCSS("button")}
+                                                    >
+                                                        {item.text}
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         )}
                     </Base.VerticalContent>
 
@@ -239,9 +298,7 @@ class Stats18Page extends BaseStats {
                             gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
-                            {cardList.map((card, index) => (
-                                <AnimatedCard key={index} card={card} />
-                            ))}
+                            {cardList.map((card, index) => this.renderAnimatedCard(card, animationSettings, index))}
                         </Base.ListGrid>
                     )}
                 </Base.MaxContent>
