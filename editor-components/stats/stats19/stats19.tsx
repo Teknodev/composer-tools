@@ -45,6 +45,13 @@ class Stats19 extends BaseStats {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 6,
+    });
 
     this.addProp({
       type: "array",
@@ -115,6 +122,7 @@ class Stats19 extends BaseStats {
     const description = this.getPropValue("description");
     const isDescriptionExist = this.castToString(description);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const itemCount = this.getPropValue("itemCount");
     const statsProp = this.getPropValue("stats");
     const stats: StatItem[] = statsProp.map((item: any) => {
       const number = parseFloat(item.getPropValue("number")) || 0;
@@ -145,7 +153,10 @@ class Stats19 extends BaseStats {
             )}
 
             {stats.length > 0 && (
-              <Base.Row className={this.decorateCSS("stats-grid")}>
+              <Base.ListGrid
+                gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
+                className={this.decorateCSS("stats-grid")}
+              >
                 {stats.map((stat: StatItem, index: number) => {
                   const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
                   const hasNumber = stat.number !== 0 || hasSuffix;
@@ -183,7 +194,7 @@ class Stats19 extends BaseStats {
                     </div>
                   );
                 })}
-              </Base.Row>
+              </Base.ListGrid>
             )}
 
             {buttons.length > 0 && (() => {
@@ -194,7 +205,7 @@ class Stats19 extends BaseStats {
                 return buttonText || hasValidIcon;
               });
               return validButtons.length > 0 ? (
-                <Base.Row className={this.decorateCSS("button-container")}>
+                <div className={this.decorateCSS("button-container")}>
                   {validButtons.map((item, index) => {
                     const buttonText = this.castToString(item.text || "");
                     const buttonUrl = item.url || "#";
@@ -211,7 +222,7 @@ class Stats19 extends BaseStats {
                       </ComposerLink>
                     );
                   })}
-                </Base.Row>
+                </div>
               ) : null;
             })()}
           </Base.VerticalContent>
