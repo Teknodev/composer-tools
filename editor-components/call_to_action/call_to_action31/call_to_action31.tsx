@@ -13,22 +13,35 @@ class CallToAction31Page extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with Impreza."
+            value: ""
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
+            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with Impreza.",
         });
-
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
             value: "",
+        });
+
+        this.addProp({
+            type: "string",
+            key: "imageWidth",
+            displayer: "Image Width",
+            value: "100%"
+        });
+
+        this.addProp({
+            type: "string",
+            key: "imageHeight",
+            displayer: "Image Height",
+            value: "auto"
         });
 
         this.addProp({
@@ -45,6 +58,13 @@ class CallToAction31Page extends BaseCallToAction {
             type: "boolean",
             key: "isActive",
             displayer: "Active",
+            value: true
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "card",
+            displayer: "Card",
             value: true
         });
 
@@ -73,10 +93,11 @@ class CallToAction31Page extends BaseCallToAction {
         if (!this.getPropValue("isActive")) return null;
 
         const media = this.getPropValue("media");
+        const isCard = this.getPropValue("card");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!isCard ? this.decorateCSS("no-card") : ""}`}>
 
                     <div className={this.decorateCSS("header-row")}>
                         <div className={this.decorateCSS("text-column")}>
@@ -119,7 +140,11 @@ class CallToAction31Page extends BaseCallToAction {
                     </div>
 
                     {media && (
-                        <div className={this.decorateCSS("media-wrapper")}>
+                        <div className={this.decorateCSS("media-wrapper")}
+                            style={{
+                                width: this.getPropValue("imageWidth"),
+                                height: this.getPropValue("imageHeight"),
+                            }}>
                             <Base.Media
                                 value={media}
                                 className={this.decorateCSS("media")}
