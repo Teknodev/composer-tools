@@ -36,14 +36,16 @@ class CallToAction27 extends BaseCallToAction {
       key: "description",
       displayer: "Description",
       value:
-        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness. Energistically scale future-proof core competencies",
+        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness."
+
     });
 
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")]
+
     });
   }
 

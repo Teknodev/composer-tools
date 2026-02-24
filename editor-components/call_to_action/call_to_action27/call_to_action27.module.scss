@@ -50,17 +50,15 @@
 
       .description {
         flex: 1;
-        max-width: 60%;
-        min-width: 50%;
+        max-width: 100%;
         text-align: left;
         margin: 0;
       }
 
       .button-group {
         display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: var(--composer-gap-md);
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
 
         .button {
           .button-text {
@@ -113,22 +111,6 @@
         padding: 80px 40px;
       }
     }
-
-    .content {
-      .footer-group {
-        gap: var(--composer-gap-lg);
-
-        .description {
-          max-width: 100%;
-          min-width: 100%;
-        }
-
-        .button-group {
-          justify-content: flex-start;
-          width: 100%;
-        }
-      }
-    }
   }
 }
 
@@ -143,7 +125,7 @@
     }
 
     .content {
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-sm);
 
       .header-group .vertical-content {
         align-items: var(--composer-content-alignment) !important;
