@@ -56,6 +56,7 @@
 
     &.no-background .max-content {
         bottom: 0;
+
     }
 
     .card {
@@ -69,6 +70,7 @@
         .text-block .subtitle {
             background: none !important;
             padding: 0 !important;
+            color: var(--composer-font-color-secondary) !important;
 
             &::before {
                 background-color: currentColor !important;
@@ -83,7 +85,7 @@
         .text-block .subtitle,
         .text-block .title,
         .text-block .description {
-            color: var(--composer-font-color-secondary) !important;
+            color: var(--composer-font-color-primary) !important;
         }
     }
 
@@ -116,6 +118,7 @@
 
         .subtitle {
             width: fit-content;
+
             &::before {
                 content: "";
                 display: block !important;
@@ -160,12 +163,7 @@
 
         .max-content {
             position: relative;
-            padding: 0;
             bottom: auto;
-        }
-
-        .content-wrapper {
-            padding: 40px 0;
         }
     }
 }
@@ -192,38 +190,37 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            padding: 0;
-            bottom: 60px;
-        }
+            padding: var(--composer-gap-md);
 
-        .card,
-        .content-wrapper {
-            padding: 40px 20px;
-            margin-top: -100px;
-        }
-
-        .header {
-            gap: var(--composer-gap-md);
-        }
-
-        .text-block {
-            align-items: center;
-            flex: 0 1 auto;
-            text-align: center !important;
-            gap: var(--composer-gap-md);
-
-            .subtitle,
-            .title,
-            .description {
-                text-align: center;
+            .card,
+            .content-wrapper {
+                padding: 40px 20px;
+                margin-top: -100px;
             }
-        }
 
-        .button-wrapper {
-            width: 100%;
+            .header {
+                gap: var(--composer-gap-md);
+            }
 
-            .button-group {
-                margin-left: 0;
+            .text-block {
+                align-items: center;
+                flex: 0 1 auto;
+                text-align: center !important;
+                gap: var(--composer-gap-md);
+
+                .subtitle,
+                .title,
+                .description {
+                    text-align: center;
+                }
+            }
+
+            .button-wrapper {
+                width: 100%;
+
+                .button-group {
+                    margin-left: 0;
+                }
             }
         }
     }

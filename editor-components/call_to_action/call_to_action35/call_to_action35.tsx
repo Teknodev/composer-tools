@@ -37,7 +37,7 @@ class CallToAction35 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "TEST",
         });
         this.addProp({
             type: "string",
