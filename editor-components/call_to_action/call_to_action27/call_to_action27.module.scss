@@ -21,14 +21,9 @@
       width: 100%;
 
       .vertical-content {
-        display: flex;
-        flex-direction: column;
         align-items: center;
-        text-align: center;
-        gap: var(--composer-gap-md);
 
         .subtitle {
-          width: fit-content;
           text-align: center;
           transform: none;
         }
@@ -75,7 +70,6 @@
   &.has-background {
     .max-content {
       background-color: var(--composer-font-color-primary);
-      color: var(--composer-html-background);
       border-radius: var(--composer-border-radius-md);
       padding: 80px 50px;
 
@@ -85,7 +79,7 @@
             background: transparent !important;
             padding: 0 !important;
             border-radius: 0 !important;
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-html-background);
 
             &::before {
               display: none !important;
@@ -93,12 +87,12 @@
           }
 
           .title {
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-html-background);
           }
         }
 
         .description {
-          color: var(--composer-font-color-secondary);
+          color: var(--composer-html-background);
         }
 
       }
@@ -148,30 +142,25 @@
       gap: var(--composer-gap-md);
 
       .header-group .vertical-content {
-        align-items: center;
-        text-align: center;
+        align-items: var(--composer-content-alignment) !important;
+        text-align: var(--composer-content-alignment) !important;
+
+        .subtitle,
+        .title {
+          text-align: var(--composer-content-alignment) !important;
+        }
       }
 
       .footer-group {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
         gap: var(--composer-gap-md);
+        align-items: var(--composer-content-alignment) !important;
 
         .description {
-          max-width: 100%;
-          text-align: center;
+          text-align: var(--composer-content-alignment) !important;
         }
 
         .button-group {
-          justify-content: space-between;
-          width: 100%;
-          gap: var(--composer-gap-sm);
-
-          .button {
-            flex: 1;
-            justify-content: center;
-          }
+          justify-content: var(--composer-content-alignment) !important;
         }
       }
     }
