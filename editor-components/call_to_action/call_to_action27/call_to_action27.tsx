@@ -12,8 +12,8 @@ class CallToAction27 extends BaseCallToAction {
     super(props, styles);
     this.addProp({
       type: "boolean",
-      key: "cardBackground",
-      displayer: "Card Background",
+      key: "coloredBackground",
+      displayer: "Colored Background",
       value: true,
     });
 
@@ -57,7 +57,7 @@ class CallToAction27 extends BaseCallToAction {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<Button[]>("buttons") || [];
     const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
-    const hasBackground = this.getPropValue("cardBackground");
+    const hasBackground = this.getPropValue("coloredBackground");
 
     return (
       <Base.Container

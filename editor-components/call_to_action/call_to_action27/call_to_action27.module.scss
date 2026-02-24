@@ -26,6 +26,10 @@
         .subtitle {
           text-align: center;
           transform: none;
+
+          &::before {
+            display: none;
+          }
         }
 
         .title {
