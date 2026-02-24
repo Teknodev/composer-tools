@@ -34,6 +34,13 @@
 
         .subtitle {
           text-align: left;
+          transform: none;
+          width: fit-content;
+          margin-left: 0;
+
+          &::before {
+            display: none;
+          }
         }
 
         .title {
