@@ -39,6 +39,15 @@ class Stats21 extends BaseStats {
 
         this.addProp({
             type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+
+        this.addProp({
+            type: "array",
             key: "stats",
             displayer: "Stats",
             value: [
@@ -101,15 +110,6 @@ class Stats21 extends BaseStats {
             displayer: "Item Count in a Row",
             value: 2,
             max: 4,
-        });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-            ],
         });
     }
 
