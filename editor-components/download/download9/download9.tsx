@@ -119,27 +119,7 @@ class Download9 extends BaseDownload {
     return "Download 9";
   }
 
-  renderButtons() {
-    return this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
-      const buttonTextExist = this.castToString(item?.text);
-      const iconExist = item.icon && item.icon.name;
-      const imageExist = item.image && item.image.url;
-      return (buttonTextExist || iconExist || imageExist) && (
-        <ComposerLink key={`dw-9-btn-${index}`} path={item.url}>
-          {imageExist ? (
-            <div className={this.decorateCSS("image-container")}>
-              <Base.Media value={item.image} className={this.decorateCSS("card-image")} />
-            </div>
-          ) : (
-            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-              {buttonTextExist && <Base.P className={this.decorateCSS("text")}>{item.text}</Base.P>}
-              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />}
-            </Base.Button>
-          )}
-        </ComposerLink>
-      );
-    });
-  }
+
 
   render() {
     const background = this.castToObject<Background>("media");
@@ -157,10 +137,11 @@ class Download9 extends BaseDownload {
     const hoverSubtitle = hoverTextContent?.hoverSubtitle;
     const cardTitle = hoverTextContent?.cardTitle;
     const cardDescription = hoverTextContent?.cardDescription;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hoverSubtitleExist = this.castToString(hoverSubtitle);
     const cardTitleExist = this.castToString(cardTitle);
     const cardDescriptionExist = this.castToString(cardDescription);
-    const hasHoverTextContent = hoverSubtitleExist || cardTitleExist || cardDescriptionExist;
+    const hasHoverTextContent = hoverSubtitleExist || cardTitleExist || cardDescriptionExist || buttons.length > 0;
     const subtitleType = Base.getSectionSubTitleType();
     const hideBadge = imageExist && subtitleType === "badge";
 
@@ -182,7 +163,27 @@ class Download9 extends BaseDownload {
                 {hoverSubtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("hover-subtitle")}`}>{hoverSubtitle}</Base.SectionSubTitle>}
                 {cardTitleExist && <Base.SectionTitle className={this.decorateCSS("card-title")}>{cardTitle}</Base.SectionTitle>}
                 {cardDescriptionExist && <Base.SectionDescription className={this.decorateCSS("card-description")}>{cardDescription}</Base.SectionDescription>}
-                {this.castToObject<INPUTS.CastedButton[]>("buttons").length > 0 && <div className={this.decorateCSS("buttons-container")}>{this.renderButtons()}</div>}
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("buttons-container")}>
+                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                      const buttonTextExist = this.castToString(item?.text);
+                      const iconExist = item.icon && item.icon.name;
+                      const imageExist = item.image && item.image.url;
+                      return (buttonTextExist || iconExist || imageExist) && (
+                        <ComposerLink key={`dw-9-btn-${index}`} path={item.url}>
+                          {imageExist ? (
+                            <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                          ) : (
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                            </Base.Button>
+                          )}
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
           </Base.MaxContent>
