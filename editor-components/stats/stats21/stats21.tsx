@@ -266,7 +266,7 @@ class Stats21 extends BaseStats {
                             </Base.VerticalContent>
                         )}
                         {stats.length > 0 && (
-                            <div className={this.decorateCSS("right-column")}>
+                            <Base.VerticalContent className={this.decorateCSS("right-column")}>
                                 <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                     {stats.map((stat: StatItem, index: number) => (
                                         <this.AnimatedStat
@@ -277,7 +277,7 @@ class Stats21 extends BaseStats {
                                         />
                                     ))}
                                 </Base.ListGrid>
-                            </div>
+                            </Base.VerticalContent>
                         )}
                     </div>
                 </Base.MaxContent>

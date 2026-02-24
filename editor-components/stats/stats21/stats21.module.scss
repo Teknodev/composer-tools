@@ -11,9 +11,6 @@
             .left-column,
             .right-column {
                 flex: 1;
-                flex-basis: 0;
-                min-width: 0;
-
             }
 
             .left-column {
@@ -72,9 +69,6 @@
 
             .right-column {
                 .stats-grid {
-                    width: 100%;
-                    gap: var(--composer-gap-lg);
-
                     .stat-item {
                         align-items: flex-start;
                         text-align: left;
@@ -141,8 +135,6 @@
 
             .right-column {
                 .stats-grid {
-                    gap: var(--composer-gap-md);
-
                     .stat-item {
                         .stat-value {
                             font-size: 3rem;
