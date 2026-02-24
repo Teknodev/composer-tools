@@ -42,14 +42,14 @@ class CallToAction23Page extends BaseCallToAction {
     this.addProp({
       type: "string",
       key: "priceLabel",
-      displayer: "Price Label",
+      displayer: "Label",
       value: "STARTING AT ONLY",
     });
 
     this.addProp({
       type: "string",
       key: "price",
-      displayer: "Price",
+      displayer: "Info Text",
       value: "$2.95/mo",
     });
 
