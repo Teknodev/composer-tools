@@ -6,9 +6,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
-  value: React.JSX.Element;
-  label: React.JSX.Element;
-  description: React.JSX.Element;
+  number: number;
+  suffix: string;
+  label: React.ReactNode;
+  description: React.ReactNode;
 };
 
 class Stats19 extends BaseStats {
@@ -55,24 +56,14 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "value",
-              displayer: "Value",
-              value: "15K",
-            },
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Covered Injuries",
-            },
+            { type: "number", key: "number", displayer: "Number", value: 15 },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
+            { type: "string", key: "label", displayer: "Label", value: "Covered Injuries" },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
+              value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
             },
           ],
         },
@@ -81,24 +72,14 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "value",
-              displayer: "Value",
-              value: "100%",
-            },
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Guaranteed Issue",
-            },
+            { type: "number", key: "number", displayer: "Number", value: 100 },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
+            { type: "string", key: "label", displayer: "Label", value: "Guaranteed Issue" },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination.",
+              value: "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination.",
             },
           ],
         },
@@ -107,24 +88,14 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            {
-              type: "string",
-              key: "value",
-              displayer: "Value",
-              value: "5X",
-            },
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "More covered conditions",
-            },
+            { type: "number", key: "number", displayer: "Number", value: 5 },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "X" },
+            { type: "string", key: "label", displayer: "Label", value: "More covered conditions" },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value:
-                "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. User generated content in real-time will have multiple touchpoints for offshoring.",
+              value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. User generated content in real-time will have multiple touchpoints for offshoring.",
             },
           ],
         },
@@ -144,7 +115,14 @@ class Stats19 extends BaseStats {
     const description = this.getPropValue("description");
     const isDescriptionExist = this.castToString(description);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const stats = this.castToObject<StatItem[]>("stats");
+    const statsProp = this.getPropValue("stats");
+    const stats: StatItem[] = statsProp.map((item: any) => {
+      const number = parseFloat(item.getPropValue("number")) || 0;
+      const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
+      const label = item.getPropValue("label");
+      const description = item.getPropValue("description");
+      return { number, suffix, label, description };
+    });
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -169,19 +147,27 @@ class Stats19 extends BaseStats {
             {stats.length > 0 && (
               <Base.Row className={this.decorateCSS("stats-grid")}>
                 {stats.map((stat: StatItem, index: number) => {
-                  const isValueExist = this.castToString(stat.value);
+                  const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
+                  const hasNumber = stat.number !== 0 || hasSuffix;
                   const isLabelExist = this.castToString(stat.label);
                   const isStatDescExist = this.castToString(stat.description);
 
-                  if (!isValueExist && !isLabelExist && !isStatDescExist) return null;
+                  if (!hasNumber && !hasSuffix && !isLabelExist && !isStatDescExist) return null;
 
                   return (
                     <div key={index} className={this.decorateCSS("stat-item")}>
                       <div className={this.decorateCSS("stat-header")}>
-                        {isValueExist && (
-                          <Base.H3 className={this.decorateCSS("stat-value")}>
-                            {stat.value}
-                          </Base.H3>
+                        {hasNumber && (
+                          <div className={this.decorateCSS("stat-value")}>
+                            <span className={this.decorateCSS("stat-number")}>
+                              {stat.number}
+                            </span>
+                            {hasSuffix && (
+                              <span className={this.decorateCSS("stat-suffix")}>
+                                {stat.suffix}
+                              </span>
+                            )}
+                          </div>
                         )}
                         {isLabelExist && (
                           <Base.P className={this.decorateCSS("stat-label")}>
