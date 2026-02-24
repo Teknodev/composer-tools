@@ -3,6 +3,13 @@
 .container {
   .max-content {
     .wrapper {
+      gap: var(--composer-gap-sm);
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
       .button-container {
         display: flex;
         flex-wrap: wrap;
@@ -15,6 +22,8 @@
       }
 
       .stats-grid {
+        gap: var(--composer-gap-lg);
+        
         .stat-item {
           display: flex;
           flex-direction: column;
@@ -36,8 +45,12 @@
             }
 
             .stat-label {
-              color: var(--composer-font-color-primary);
+              color: var(--composer-font-color-primary) ;
             }
+          }
+          
+          .stat-desc {
+            color: var(--composer-font-color-primary) ;
           }
         }
       }
@@ -55,10 +68,14 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .max-content .wrapper .stats-grid .stat-item .stat-header .stat-value {
-    .stat-number,
-    .stat-suffix {
-      font-size: 3rem;
+  .container .max-content .wrapper .stats-grid {
+    flex-direction: column;
+
+    .stat-item .stat-header .stat-value {
+      .stat-number,
+      .stat-suffix {
+        font-size: 3rem;
+      }
     }
   }
 }
