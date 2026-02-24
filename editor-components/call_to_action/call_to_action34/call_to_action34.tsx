@@ -37,9 +37,6 @@ class CallToAction34Page extends BaseCallToAction {
             value: "You can purchase ready-made gift certificates for any amount and any service",
         });
 
-        // this.addProp(INPUTS.BUTTON("button", "Button", "Sign Up Online", "", null, null, "Primary"));
-
-
         this.addProp({
             type: "array",
             key: "buttons",
