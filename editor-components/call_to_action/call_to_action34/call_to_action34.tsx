@@ -10,6 +10,13 @@ class CallToAction34Page extends BaseCallToAction {
         super(props, styles);
 
         this.addProp({
+            type: "boolean",
+            key: "isBackgroundColored",
+            displayer: "Colored Background",
+            value: true,
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -20,40 +27,62 @@ class CallToAction34Page extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "TRY BLINKPAGE",
+            value: "Special gifts for your loved ones",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Elevate your web presence with a professionally designed theme that fits all your needs.",
+            value: "You can purchase ready-made gift certificates for any amount and any service",
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Sing Up Online", "", null, null, "Primary"));
+        // this.addProp(INPUTS.BUTTON("button", "Button", "Sign Up Online", "", null, null, "Primary"));
+
 
         this.addProp({
-            type: "media",
-            key: "media",
-            displayer: "Media",
-            value: {
-                type: "image",
-                url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000"
-            },
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Sign Up Online", "", null, null, "Primary")
+            ]
+        })
+
+        this.addProp({
+            type: "object",
+            key: "mediaGroup",
+            displayer: "Media Settings",
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000"
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
+                }
+            ]
         });
 
         this.addProp({
-            type: "boolean",
-            key: "isBackgroundColored",
-            displayer: "Colored Background",
-            value: true,
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: true,
+            type: "select",
+            key: "subtitleType",
+            displayer: "Subtitle Type",
+            value: "line",
+            additionalParams: {
+                selectItems: ["default", "line", "badge"]
+            }
         });
     }
 
@@ -62,17 +91,23 @@ class CallToAction34Page extends BaseCallToAction {
     }
 
     render() {
-        const button = this.castToObject<INPUTS.CastedButton>("button");
         const isColored = this.getPropValue("isBackgroundColored");
-        const showOverlay = this.getPropValue("overlay");
+        const subtitleType = this.getPropValue("subtitleType");
+        const currentSubtitleType = isColored && subtitleType === "badge" ? "default" : subtitleType;
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
+        const mediaGroup = this.castToObject<any>("mediaGroup");
+        const media = mediaGroup.media;
+        const showOverlay = mediaGroup.overlay;
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("card-wrapper")}>
+                    <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""}`}>
                         <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""}`}>
                             <Base.VerticalContent>
                                 {this.castToString(this.getPropValue("subtitle")) && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}
+                                        subtitleType={currentSubtitleType}>
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
@@ -89,28 +124,34 @@ class CallToAction34Page extends BaseCallToAction {
                                     </Base.SectionDescription>
                                 )}
 
-                                {(this.castToString(button.text) || button.icon) && (
+                                {buttons.length > 0 && (
                                     <div className={this.decorateCSS("button-container")}>
-                                        <ComposerLink path={button.url}>
-                                            <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                                                {this.castToString(button.text) && (
-                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                        {button.text}
-                                                    </Base.P>
-                                                )}
-                                            </Base.Button>
-                                        </ComposerLink>
+                                        {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                            return (this.castToString(button.text) || button.icon) && (
+                                                <ComposerLink key={index} path={button.url}>
+                                                    <div className={this.decorateCSS("button")}>
+                                                        {this.castToString(button.text) && (
+                                                            <Base.P className={this.decorateCSS("button-text")}>
+                                                                {button.text}
+                                                            </Base.P>
+                                                        )}
+                                                    </div>
+                                                </ComposerLink>
+                                            );
+                                        })}
                                     </div>
                                 )}
+
+
                             </Base.VerticalContent>
                         </div>
 
-                        {this.getPropValue("media")?.url && (
+                        {media?.url && (
                             <div className={this.decorateCSS("right-column")}>
                                 <div className={this.decorateCSS("media-container")}>
                                     {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                                     <Base.Media
-                                        value={this.getPropValue("media")}
+                                        value={media}
                                         className={this.decorateCSS("media")}
                                     />
                                 </div>
