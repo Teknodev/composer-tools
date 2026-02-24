@@ -273,12 +273,15 @@ class Feature51 extends BaseFeature {
   ) => {
     const activeIndices = this.getComponentState("activeIndices") as number[];
 
+    const updatedIndices = [...activeIndices];
+
+    // If clicking the same item, close it by setting to -1
     if (activeIndices[columnIndex] === itemIndexInColumn) {
-      return;
+      updatedIndices[columnIndex] = -1;
+    } else {
+      updatedIndices[columnIndex] = itemIndexInColumn;
     }
 
-    const updatedIndices = [...activeIndices];
-    updatedIndices[columnIndex] = itemIndexInColumn;
     this.setComponentState("activeIndices", updatedIndices);
   };
 

@@ -39,7 +39,7 @@
             rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
 
-        &.one-column:first-child {
+        &.with-lines.one-column:first-child {
           border-top: 1px solid
             rgba(var(--composer-font-color-primary-rgb), 0.2);
         }
@@ -127,7 +127,7 @@
     height: 22px !important;
   }
 
-  .container .items-container .item:first-child {
+  .container .items-container .item.with-lines:first-child {
     border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
   }
 }
