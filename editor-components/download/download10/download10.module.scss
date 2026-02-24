@@ -7,15 +7,6 @@
     padding-bottom: 0 !important;
   }
 
-  .overlay {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--composer-overlay-color);
-    z-index: 5;
-  }
-
   .max-content {
     position: relative;
 
@@ -164,6 +155,14 @@
           border-radius: var(--composer-border-radius-sm);
           display: block;
         }
+
+        .overlay {
+          position: absolute;
+          inset: 0;
+          background-color: var(--composer-overlay-color);
+          border-radius: var(--composer-border-radius-sm);
+          z-index: 2;
+        }
       }
     }
   }
@@ -193,8 +192,8 @@
               align-items: stretch;
 
               .button-image {
-                height: 45px;
-                width: 150px;
+                height: 45px !important;
+                width: 150px !important;
               }
             }
           }
@@ -239,8 +238,8 @@
               margin-bottom: var(--composer-gap-sm);
 
               .button-image {
-                width: 120px;
-                height: 30px;
+                width: 120px !important;
+                height: 32px !important;
               }
             }
           }

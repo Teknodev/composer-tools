@@ -210,7 +210,6 @@ class Download10 extends BaseDownload {
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("with-image")}`}>
-        {overlay && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("page")} ${image && this.decorateCSS("has-image")}`}>
             {hasLeftContainer && (
@@ -257,6 +256,7 @@ class Download10 extends BaseDownload {
             {image && (
               <div className={`${this.decorateCSS("right-container")} ${!hasContent && this.decorateCSS("no-image")}`}>
                 <Base.Media value={image} className={this.decorateCSS("right-image")} />
+                {overlay && <div className={this.decorateCSS("overlay")} />}
               </div>
             )}
           </div>
