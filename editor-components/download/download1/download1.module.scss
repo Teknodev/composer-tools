@@ -2,11 +2,7 @@
 
 .container {
   .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-lg);
-
-    .header {
+    .vertical-content {
       .subtitle {
         margin-left: auto;
         margin-right: auto;
@@ -29,32 +25,39 @@
       .description {
         text-align: center;
       }
-    }
 
-    .box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--composer-gap-md);
+      .buttons-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-md);
+        width: 100%;
 
-      .button-wrapper {
-        .image-container {
-          .image {
-            width: 150px;
-            height: var(--composer-gap-xl);
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-sm);
+        .button-wrapper {
+          display: flex;
+          align-items: center;
+
+          .image-container {
+            line-height: 0;
+
+            .button-image {
+              display: block;
+              height: 50px;
+              width: 170px;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
+            }
           }
-        }
 
-        .button {
-          .button-text {
-            content: "";
-          }
+          .button {
+            .button-text {
+              content: "";
+            }
 
-          .button-icon {
-            font-size: 1.5rem;
+            .button-icon {
+              line-height: 0;
+            }
           }
         }
       }
@@ -65,19 +68,12 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .box {
-        justify-content: space-between;
-
+      .buttons-container {
         .button-wrapper {
           .image-container {
-            .image {
-              width: 125px;
-            }
-          }
-
-          .button {
-            .button-icon {
-              font-size: 1rem;
+            .button-image {
+              height: 45px !important;
+              width: 150px !important;
             }
           }
         }
@@ -89,25 +85,16 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-sm);
-
-      .header {
-        align-items: center !important;
-      }
-
-      .box {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-
-        .button-wrapper {
-          width: auto;
-          display: flex;
+      .vertical-content {
+        .buttons-container {
           justify-content: center;
 
-          .image-container {
-            .image {
-              height: 30px;
+          .button-wrapper {
+            .image-container {
+              .button-image {
+                height: 32px !important;
+                width: 120px !important;
+              }
             }
           }
         }
