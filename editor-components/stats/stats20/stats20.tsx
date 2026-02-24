@@ -10,6 +10,8 @@ type StatItem = {
     suffix: string;
     label: string;
     labelElement: JSX.Element;
+    infoText: string;
+    infoTextElement: JSX.Element;
 };
 
 class Stats20 extends BaseStats {
@@ -70,6 +72,7 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Experienced people on the team" },
+                        { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
                 {
@@ -77,6 +80,7 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "20" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Cities where employees work" },
+                        { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
                 {
@@ -84,6 +88,7 @@ class Stats20 extends BaseStats {
                         { type: "string", key: "number", displayer: "Number", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "label", displayer: "Label", value: "Days of product development" },
+                        { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
             ],
@@ -162,9 +167,10 @@ class Stats20 extends BaseStats {
         const suffixExist = stat.suffix && stat.suffix !== "";
         const numberExist = originalNumberString && originalNumberString !== "" && originalNumberString !== "0";
         const labelExist = stat.label && stat.label !== "";
+        const infoTextExist = stat.infoText && stat.infoText !== "";
         const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!numberExist && !suffixExist && !labelExist) return null;
+        if (!numberExist && !suffixExist && !labelExist && !infoTextExist) return null;
 
         return (
             <div className={this.decorateCSS("stat-item")}>
@@ -185,6 +191,11 @@ class Stats20 extends BaseStats {
                         {stat.labelElement}
                     </Base.SectionDescription>
                 )}
+                {infoTextExist && (
+                    <Base.P className={this.decorateCSS("stat-info-text")}>
+                        {stat.infoTextElement}
+                    </Base.P>
+                )}
             </div>
         );
     };
@@ -194,74 +205,83 @@ class Stats20 extends BaseStats {
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
         const enable_card = this.getPropValue("enable_card");
         const enable_divider = this.getPropValue("enable_divider");
         const itemCount = this.getPropValue("itemCount");
 
         const alignment = Base.getContentAlignment();
 
-        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element; infoText: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const number = String(this.castToString(item.number) || "0");
             const suffix = String(this.castToString(item.suffix) || "");
             const label = String(this.castToString(item.label) || "");
-            return { number, suffix, label, labelElement: item.label };
+            const infoText = String(this.castToString(item.infoText) || "");
+            return { number, suffix, label, labelElement: item.label, infoText, infoTextElement: item.infoText };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const hasTopSection = subtitle || title || description || buttons.length > 0;
+        const hasTopSection = subtitle || title || description || hasValidButtons;
         const hasStats = stats.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={`${this.decorateCSS("card")} ${enable_card ? this.decorateCSS("has-background") : ""}`}>
-                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        <Base.VerticalContent className={`${this.decorateCSS("card-content")} ${(hasTopSection && hasStats && enable_divider) ? this.decorateCSS("has-divider") : ""}`}>
 
                             {hasTopSection && (
-                                <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}`}>
-                                    {subtitle && (
-                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                            {this.getPropValue("subtitle")}
-                                        </Base.SectionSubTitle>
-                                    )}
-                                    {title && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {this.getPropValue("title")}
-                                        </Base.SectionTitle>
-                                    )}
-                                    {description && (
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
-                                            {this.getPropValue("description")}
-                                        </Base.SectionDescription>
-                                    )}
-                                    {buttons.length > 0 && (
-                                        <div className={this.decorateCSS("button-container")}>
-                                            {buttons.map(
-                                                (item: INPUTS.CastedButton, index: number) => {
-                                                    const buttonText = this.castToString(item.text);
-                                                    if (!buttonText) return null;
+                                <div className={`${this.decorateCSS("header-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}`}>
+                                    <Base.VerticalContent className={this.decorateCSS("left-container")}>
+                                        {subtitle && (
+                                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                                {this.getPropValue("subtitle")}
+                                            </Base.SectionSubTitle>
+                                        )}
+                                        {title && (
+                                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                                {this.getPropValue("title")}
+                                            </Base.SectionTitle>
+                                        )}
+                                    </Base.VerticalContent>
 
-                                                    return (
-                                                        <ComposerLink key={index} path={item.url}>
-                                                            <Base.Button
-                                                                buttonType={item.type}
-                                                                className={this.decorateCSS("button")}
-                                                            >
-                                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                                    {item.text}
-                                                                </Base.P>
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    );
-                                                }
+                                    {(description || hasValidButtons) && (
+                                        <Base.VerticalContent className={this.decorateCSS("right-container")}>
+                                            {description && (
+                                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                                    {this.getPropValue("description")}
+                                                </Base.SectionDescription>
                                             )}
-                                        </div>
+                                            {hasValidButtons && (
+                                                <div className={this.decorateCSS("button-container")}>
+                                                    {buttons.map(
+                                                        (item: INPUTS.CastedButton, index: number) => {
+                                                            const buttonText = this.castToString(item.text);
+                                                            if (!buttonText) return null;
+
+                                                            return (
+                                                                <ComposerLink key={index} path={item.url}>
+                                                                    <Base.Button
+                                                                        buttonType={item.type}
+                                                                        className={this.decorateCSS("button")}
+                                                                    >
+                                                                        <Base.P className={this.decorateCSS("button-text")}>
+                                                                            {item.text}
+                                                                        </Base.P>
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            );
+                                                        }
+                                                    )}
+                                                </div>
+                                            )}
+                                        </Base.VerticalContent>
                                     )}
-                                </Base.VerticalContent>
+                                </div>
                             )}
 
                             {(hasTopSection && hasStats && enable_divider) && (
