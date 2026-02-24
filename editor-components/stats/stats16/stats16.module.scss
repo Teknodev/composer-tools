@@ -52,15 +52,19 @@
                     .stat-value {
                         color: var(--composer-primary-color);
                         display: flex;
+                        align-items: center;
                         font-size: 5rem;
 
+                        .stat-prefix,
                         .stat-number,
                         .stat-suffix {
                             color: inherit;
                         }
                     }
 
-                    .stat-label {
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
                         text-align: center;
                         color: var(--composer-font-color-primary);
                     }
@@ -79,11 +83,19 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .content .stats-grid {
-        margin-top: var(--composer-gap-sm);
+    .container .max-content .content {
+        .header-container {
+            .button-container {
+                padding-bottom: var(--composer-gap-md);
+            }
+        }
 
-        .stat-item .stat-value {
-            font-size: 3rem;
+        .stats-grid {
+            margin-top: var(--composer-gap-sm);
+
+            .stat-item .stat-value {
+                font-size: 4rem;
+            }
         }
     }
 }

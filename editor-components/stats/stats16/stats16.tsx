@@ -6,10 +6,15 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type StatItem = {
+    prefix: string;
     number: string;
     suffix: string;
-    label: string;
-    labelElement: JSX.Element;
+    title: string;
+    titleElement: JSX.Element;
+    subtitle: string;
+    subtitleElement: JSX.Element;
+    description: string;
+    descriptionElement: JSX.Element;
 };
 
 class Stats16 extends BaseStats {
@@ -47,9 +52,12 @@ class Stats16 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Number", value: "98" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "label", displayer: "Label", value: "Positive Feedback" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Positive Feedback" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -57,9 +65,12 @@ class Stats16 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Number", value: "146" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "label", displayer: "Label", value: "Project Completed" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Project Completed" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -67,9 +78,12 @@ class Stats16 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Number", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "$" },
-                        { type: "string", key: "label", displayer: "Label", value: "Average Cost Per Hour" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Average Cost Per Hour" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -77,9 +91,12 @@ class Stats16 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Number", value: "543" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "label", displayer: "Label", value: "Pizzas Ordered" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Pizzas Ordered" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -166,15 +183,22 @@ class Stats16 extends BaseStats {
             return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
         };
 
-        const labelExist = stat.label && stat.label !== "";
+        const titleExist = stat.title && stat.title !== "";
+        const subtitleExist = stat.subtitle && stat.subtitle !== "";
+        const descriptionExist = stat.description && stat.description !== "";
         const valueExist = originalString && originalString !== "";
 
-        if (!valueExist && !labelExist) return null;
+        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 {valueExist && (
                     <span className={this.decorateCSS("stat-value")}>
+                        {stat.prefix && (
+                            <span className={this.decorateCSS("stat-prefix")}>
+                                {stat.prefix}
+                            </span>
+                        )}
                         <span className={this.decorateCSS("stat-number")}>
                             {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
                         </span>
@@ -185,10 +209,20 @@ class Stats16 extends BaseStats {
                         )}
                     </span>
                 )}
-                {labelExist && (
-                    <Base.SectionDescription className={this.decorateCSS("stat-label")}>
-                        {stat.labelElement}
-                    </Base.SectionDescription>
+                {subtitleExist && (
+                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                        {stat.subtitleElement}
+                    </Base.H6>
+                )}
+                {titleExist && (
+                    <Base.H6 className={this.decorateCSS("stat-title")}>
+                        {stat.titleElement}
+                    </Base.H6>
+                )}
+                {descriptionExist && (
+                    <Base.P className={this.decorateCSS("stat-description")}>
+                        {stat.descriptionElement}
+                    </Base.P>
                 )}
             </Base.VerticalContent>
         );
@@ -201,12 +235,15 @@ class Stats16 extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const itemCount = this.getPropValue("itemCount");
 
-        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
+            const prefix = String(this.castToString(item.prefix) || "");
             const number = String(this.castToString(item.number) || "0");
             const suffix = String(this.castToString(item.suffix) || "");
-            const label = String(this.castToString(item.label) || "");
-            return { number, suffix, label, labelElement: item.label };
+            const title = String(this.castToString(item.title) || "");
+            const subtitle = String(this.castToString(item.subtitle) || "");
+            const description = String(this.castToString(item.description) || "");
+            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
