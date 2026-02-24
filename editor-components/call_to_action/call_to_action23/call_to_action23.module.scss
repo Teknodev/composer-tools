@@ -1,204 +1,197 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background: var(--composer-html-background);
+  position: relative;
+  padding: 80px 50px;
+  background-color: var(--composer-html-background);
+  container-type: inline-size;
 
   .max-content {
     width: 100%;
-    max-width: 100%;
-    padding: 0;
+    margin-inline: auto;
   }
 
   .content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--composer-gap-xl);
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
     width: 100%;
-    padding: 0;
-    background-color: transparent;
-    border-radius: var(--composer-border-radius-md);
-    text-align: left !important;
-    align-items: center;
 
-    .content-section {
-      flex: 0 0 30%;
-      max-width: 30%;
-      min-width: 0;
-      word-wrap: break-word;
+    .main-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--composer-gap-xl);
+      width: 100%;
     }
 
-    .content-text {
+    .header-group {
+      flex: 1;
 
-      .subtitle,
-      .title,
-      .description {
-        color: var(--composer-font-color-primary);
-        text-align: left;
-      }
+      .vertical-content {
+        align-items: flex-start;
 
-      .subtitle {
-        margin-left: 0 !important;
-        width: fit-content;
+        .subtitle {
+          text-align: left;
+          transform: none;
+        }
+
+        .title {
+          width: 100%;
+          text-align: left;
+        }
       }
     }
 
-    .pricing {
+    .pricing-group {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: var(--composer-gap-sm);
+      align-items: center;
+      gap: var(--composer-gap-xs);
+      flex: 0 0 auto;
 
       .price-label {
         color: var(--composer-font-color-primary);
-        text-align: left !important;
       }
 
       .price-value {
         color: var(--composer-primary-color);
-        text-align: left !important;
       }
     }
 
-    .button-wrap {
+    .button-group {
       display: flex;
       justify-content: flex-end;
-      align-items: center;
-      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+      flex: 1;
+      gap: var(--composer-gap-md);
 
       .button {
-        margin-left: auto;
+        .button-text {
+          display: inline-block;
+          content: "";
+        }
+      }
+    }
+
+    .description-row {
+      width: 100%;
+
+      .description {
+        text-align: left;
+        margin: 0;
       }
     }
   }
 
-  &.card-style {
-    padding: 80px 50px;
+  &.has-background {
     background: linear-gradient(to bottom,
         var(--composer-html-background) 0%,
         var(--composer-html-background) 50%,
         color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
         color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
 
-    .content {
-      padding: 80px 50px;
+    .max-content {
       background-color: var(--composer-font-color-primary);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-radius: var(--composer-border-radius-md);
+      padding: 60px 80px;
 
-      .content-text {
-        .subtitle {
-          &::before {
-            background-color: var(--composer-html-background);
+      .content {
+        .header-group .vertical-content {
+          .subtitle {
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            color: var(--composer-html-background);
+
+            &::before {
+              display: none !important;
+            }
+          }
+
+          .title {
+            color: var(--composer-html-background);
           }
         }
 
-        .subtitle,
-        .title,
+        .pricing-group {
+          .price-label {
+            color: var(--composer-html-background);
+          }
+
+          .price-value {
+            color: var(--composer-primary-color);
+          }
+        }
+
         .description {
           color: var(--composer-html-background);
-          text-align: left ;
-        }
-      }
-
-      .pricing {
-        .price-label {
-          color: var(--composer-html-background);
-        }
-
-        .price-value {
-          color: var(--composer-primary-color);
-        }
-      }
-
-      .button-wrap {
-        .button {
-          content: "";
         }
       }
     }
   }
 }
 
-
 @container (max-width: #{$composer-tablet-width}) {
-  .container.card-style {
-    padding: 80px 40px;
+  .container {
+    padding: 60px 40px;
+
+    &.has-background {
+      .max-content {
+        padding: 60px 40px;
+      }
+    }
 
     .content {
-      padding: 80px 40px;
+      .main-row {
+        gap: var(--composer-gap-lg);
+      }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    &.card-style {
-      padding: 50px 20px;
+    padding: 40px 20px;
 
-      .content {
-        padding: 50px 20px;
+    &.has-background {
+      .max-content {
+        padding: 40px 20px;
       }
     }
 
     .content {
-      flex-direction: column;
       gap: var(--composer-gap-md);
-      text-align: center !important;
-      align-items: center !important;
 
-      .content-section {
-        flex: 0 0 100%;
-        max-width: 100%;
-        width: 100%;
-        display: flex;
+      .main-row {
         flex-direction: column;
-        align-items: center;
+        gap: var(--composer-gap-lg);
+        text-align: center;
       }
 
-      .content-text {
-        width: 100% !important;
-
-        .title
-        {
+      .header-group .vertical-content {
+        align-items: center !important;
         text-align: center !important;
-        /* width: 100% !important; */
-      }
 
-      .subtitle {
-        margin-left: auto !important;
-        margin-right: auto !important;
-        transform: none !important;
-
-        &::before {
-          display: block;
+        .subtitle,
+        .title {
+          text-align: center !important;
         }
       }
 
+      .pricing-group {
+        align-items: center !important;
+      }
 
-    }
-
-    .pricing {
-      align-items: center !important;
-      width: 100%;
-
-      .price-label,
-      .price-value {
-        text-align: center !important;
+      .button-group {
+        justify-content: center !important;
         width: 100%;
       }
-    }
 
-    .button-wrap {
-      justify-content: center !important;
-      width: 100% !important;
-
-      .button {
-        margin: 0 !important;
+      .description-row .description {
+        text-align: center !important;
       }
     }
   }
-}
 }
