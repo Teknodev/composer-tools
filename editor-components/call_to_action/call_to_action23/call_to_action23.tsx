@@ -28,7 +28,7 @@ class CallToAction23Page extends BaseCallToAction {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "TEST",
+      value: "",
     });
 
     this.addProp({
