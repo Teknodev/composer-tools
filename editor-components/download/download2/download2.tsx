@@ -182,7 +182,7 @@ class Download2 extends BaseDownload {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
               {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
@@ -215,7 +215,7 @@ class Download2 extends BaseDownload {
                           {card?.button.image && card?.button.image.url ? (
                             <div className={this.decorateCSS("button-element")}>
                               <div className={this.decorateCSS("button")}>
-                                <Base.Media value={card?.button.image} className={this.decorateCSS("image")} />
+                                <Base.Media value={card?.button.image} className={this.decorateCSS("button-image")} />
                               </div>
                             </div>
                           ) : (

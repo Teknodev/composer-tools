@@ -6,7 +6,7 @@
     flex-direction: column;
     gap: var(--composer-gap-lg);
 
-    .header {
+    .vertical-content {
 
       .title,
       .description,
@@ -52,17 +52,19 @@
 
           .button-container {
             .button {
+              .button-image {
+                height: 50px;
+                width: 170px;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
+              }
 
-              .button-icon,
               .button-text {
                 content: "";
               }
 
-              .image {
-                width: 170px;
-                height: 50px;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
+              .button-icon {
+                line-height: 0;
               }
             }
           }
@@ -94,6 +96,21 @@
   .container {
     .max-content {
       gap: var(--composer-gap-md);
+
+      .cards-container {
+        .cards {
+          .card {
+            .button-container {
+              .button {
+                .button-image {
+                  height: 45px !important;
+                  width: 150px !important;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -106,9 +123,10 @@
           .card {
             .button-container {
               .button {
-                .image {
-                  width: 120px;
-                  height: 100%;
+                .button-image {
+                  height: 32px !important;
+                  width: 120px !important;
+
                 }
               }
             }
