@@ -28,14 +28,9 @@
     }
 
     .stats-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
       gap: var(--composer-gap-lg);
-      width: 100%;
 
       .card {
-        flex: 1;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -87,7 +82,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .wrapper .stats-grid {
     flex-direction: column;
-    align-items: stretch;
+    
     gap: var(--composer-gap-md);
 
     .card .stat-value .stat-number,

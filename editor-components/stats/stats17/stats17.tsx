@@ -85,6 +85,13 @@ class Stats17 extends BaseStats {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 6,
+    });
   }
 
   static getName(): string {
@@ -192,6 +199,7 @@ class Stats17 extends BaseStats {
       return { number, suffix, label };
     });
     const animationDuration = this.getPropValue("animationDuration") || 2000;
+    const itemCount = this.getPropValue("itemCount");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasHeader = subtitle || title || description;
 
@@ -221,7 +229,10 @@ class Stats17 extends BaseStats {
               </Base.VerticalContent>
             )}
             {statItems.length > 0 && (
-              <Base.Row className={this.decorateCSS("stats-grid")}>
+              <Base.ListGrid
+                gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
+                className={this.decorateCSS("stats-grid")}
+              >
                 {statItems.map((item, index) => {
                   const hasLabel = this.castToString(item.label);
                   const hasSuffix = item.suffix && item.suffix.trim() !== "";
@@ -235,7 +246,7 @@ class Stats17 extends BaseStats {
                     />
                   );
                 })}
-              </Base.Row>
+              </Base.ListGrid>
             )}
             {buttons.length > 0 && (() => {
               const validButtons = buttons.filter((item) => {
