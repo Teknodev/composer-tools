@@ -12,12 +12,17 @@
             overflow: hidden;
 
             .left-column {
-                // flex: 1;
+                flex: 1;
                 padding: var(--composer-gap-lg);
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                gap: var(--composer-gap-md);
+                text-align: left;
+                align-items: flex-start;
+
+                &.colored {
+                    background-color: var(--composer-primary-color);
+                }
 
                 .title,
                 .description {
@@ -39,8 +44,6 @@
                 }
 
                 .button-container {
-                    margin-top: var(--composer-gap-sm);
-
                     .button {
                         background-color: var(--composer-html-background);
                         display: inline-flex;
@@ -51,20 +54,7 @@
                         .button-text {
                             margin: 0;
                         }
-
-                        .button-icon {
-                            display: flex;
-                            align-items: center;
-                        }
                     }
-                }
-            }
-
-            .left-column {
-                flex: 1;
-
-                &.colored {
-                    background-color: var(--composer-primary-color);
                 }
             }
 
