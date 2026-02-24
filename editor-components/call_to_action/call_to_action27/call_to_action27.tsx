@@ -36,7 +36,7 @@ class CallToAction27 extends BaseCallToAction {
       key: "description",
       displayer: "Description",
       value:
-        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness."
+        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness. sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness."
 
     });
 
