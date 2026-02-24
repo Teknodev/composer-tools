@@ -15,7 +15,14 @@ class CallToAction23Page extends BaseCallToAction {
       type: "boolean",
       key: "coloredBackground",
       displayer: "Colored Background",
-      value: false,
+      value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
 
     this.addProp({
@@ -23,12 +30,6 @@ class CallToAction23Page extends BaseCallToAction {
       key: "title",
       displayer: "Title",
       value: "Sign up for web hosting today!",
-    });
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
     });
 
     this.addProp({
@@ -82,7 +83,7 @@ class CallToAction23Page extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             <div className={this.decorateCSS("main-row")}>
-              {(subtitle || title) && (
+              {(subtitle || title || description) && (
                 <div className={this.decorateCSS("header-group")}>
                   <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                     {subtitle && (
@@ -94,6 +95,11 @@ class CallToAction23Page extends BaseCallToAction {
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {title}
                       </Base.SectionTitle>
+                    )}
+                    {description && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
                 </div>
@@ -130,13 +136,6 @@ class CallToAction23Page extends BaseCallToAction {
                 </div>
               )}
             </div>
-            {description && (
-              <div className={this.decorateCSS("description-row")}>
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
-                </Base.SectionDescription>
-              </div>
-            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

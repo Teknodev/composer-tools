@@ -41,6 +41,11 @@
           width: 100%;
           text-align: left;
         }
+
+        .description {
+          text-align: left;
+          margin: 0;
+        }
       }
     }
 
@@ -74,15 +79,6 @@
         }
       }
     }
-
-    .description-row {
-      width: 100%;
-
-      .description {
-        text-align: left;
-        margin: 0;
-      }
-    }
   }
 
   &.has-background {
@@ -113,6 +109,10 @@
           .title {
             color: var(--composer-html-background);
           }
+
+          .description {
+            color: var(--composer-html-background);
+          }
         }
 
         .pricing-group {
@@ -123,10 +123,6 @@
           .price-value {
             color: var(--composer-primary-color);
           }
-        }
-
-        .description {
-          color: var(--composer-html-background);
         }
       }
     }
@@ -175,7 +171,8 @@
         text-align: center !important;
 
         .subtitle,
-        .title {
+        .title,
+        .description {
           text-align: center !important;
         }
       }
@@ -187,10 +184,6 @@
       .button-group {
         justify-content: center !important;
         width: 100%;
-      }
-
-      .description-row .description {
-        text-align: center !important;
       }
     }
   }
