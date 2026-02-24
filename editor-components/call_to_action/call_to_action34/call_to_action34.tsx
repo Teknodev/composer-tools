@@ -39,8 +39,8 @@ class CallToAction34Page extends BaseCallToAction {
 
         // this.addProp(INPUTS.BUTTON("button", "Button", "Sign Up Online", "", null, null, "Primary"));
 
-
         this.addProp({
+
             type: "array",
             key: "buttons",
             displayer: "Buttons",
@@ -48,7 +48,6 @@ class CallToAction34Page extends BaseCallToAction {
                 INPUTS.BUTTON("button", "Button", "Sign Up Online", "", null, null, "Primary")
             ]
         })
-
         this.addProp({
             type: "object",
             key: "mediaGroup",
@@ -73,6 +72,7 @@ class CallToAction34Page extends BaseCallToAction {
                     value: true,
                 }
             ]
+
         });
 
         this.addProp({
