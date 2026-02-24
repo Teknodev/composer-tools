@@ -13,9 +13,8 @@
       display: flex;
 
       .vertical-content {
-        width: 100%;
-        margin-bottom: calc(var(--composer-gap-lg) * 2);
         max-width: var(--composer-content-width);
+        width: 100%;
 
         .subtitle,
         .title,
@@ -25,14 +24,12 @@
       }
 
       .arrows {
-        position: absolute;
-        bottom: var(--composer-gap-md);
-        right: var(--composer-gap-xl);
+        position: static;
         display: flex;
         align-items: center;
         gap: var(--composer-gap-md);
-        flex-wrap: nowrap;
-        width: fit-content;
+        justify-content: flex-end;
+        margin: var(--composer-gap-lg) 0 var(--composer-gap-lg) 0;
 
         .nextArrow,
         .prevArrow {
@@ -87,16 +84,9 @@
       }
 
       :global(.slick-dots) {
-        position: absolute;
-        left: 0;
+        position: static;
         display: flex !important;
         justify-content: center;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100% !important;
-        z-index: 10;
 
         li {
           margin: 0 var(--composer-gap-sm);
@@ -151,13 +141,12 @@
         max-width: 900px;
         height: 100%;
         gap: 60px;
+        padding-bottom: 60px;
         cursor: pointer;
 
         &.no-media {
           .image-container {
-            background-color: color-mix(in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             display: block;
           }
 
@@ -168,11 +157,11 @@
 
         .image-container {
           width: 100%;
-          overflow: hidden;
-          z-index: 1;
           height: 400px;
+          z-index: 1;
           border-radius: var(--composer-border-radius-sm);
           position: relative;
+          overflow: hidden;
 
           .image {
             width: 100%;
@@ -211,17 +200,13 @@
           transition: opacity var(--composer-transition-duration-slow) ease;
           align-items: flex-start !important;
           text-align: left !important;
+          padding: 0 50px;
 
           &.active {
             opacity: 1;
           }
 
-          .slider-subtitle {
-            color: var(--composer-font-color-primary);
-            margin-left: 0px;
-            text-align: left;
-          }
-
+          .slider-subtitle,
           .slider-title,
           .slider-description {
             color: var(--composer-font-color-primary);
@@ -260,10 +245,6 @@
       padding: 0 var(--composer-gap-lg);
 
       .header {
-        .vertical-content {
-          margin-bottom: var(--composer-gap-xl) !important;
-        }
-
         .arrows {
 
           .nextArrow,
@@ -280,15 +261,32 @@
       .carousel {
         :global(.slick-list) {
           :global(.slick-track) {
+            height: auto;
+
             :global(.slick-slide) {
               width: 500px;
+
+              >div {
+                height: auto;
+
+                >div,
+                >a {
+                  height: auto;
+                }
+              }
             }
           }
         }
 
         .card {
           max-width: 500px;
-          gap: var(--composer-gap-xl);
+          gap: var(--composer-gap-lg);
+          padding-bottom: var(--composer-gap-lg);
+          height: auto;
+
+          .container-content {
+            padding: 0 var(--composer-gap-lg);
+          }
         }
       }
     }
@@ -302,17 +300,10 @@
     .max-content {
       padding: 0 var(--composer-gap-md);
 
-
       .header {
-        .vertical-content {
-          margin-bottom: var(--composer-gap-md) !important;
-        }
 
         .arrows {
-          position: relative;
-          right: auto;
-          bottom: auto;
-          margin: 0 0 var(--composer-gap-md) auto;
+          margin: var(--composer-gap-md) 0 var(--composer-gap-md) 0;
         }
       }
 
@@ -323,17 +314,18 @@
 
     .slider-parent {
       .carousel {
+
+        .card {
+          .content-container {
+            padding: 0 var(--composer-gap-md);
+          }
+        }
+
         :global(.slick-list) {
           :global(.slick-track) {
             :global(.slick-slide) {
               width: auto;
             }
-          }
-        }
-
-        .card {
-          .content-container {
-            padding: 0 var(--composer-gap-md) !important;
           }
         }
 
@@ -352,7 +344,7 @@
 
             &:global(.slick-active) {
               button:before {
-                transform: scale(1);
+                transform: scale(0.8);
               }
             }
           }
