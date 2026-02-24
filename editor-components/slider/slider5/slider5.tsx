@@ -1,11 +1,11 @@
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider5.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
-  media: any;
+  media: TypeMediaInputValue;
 };
 
 class Slider5 extends BaseSlider {
