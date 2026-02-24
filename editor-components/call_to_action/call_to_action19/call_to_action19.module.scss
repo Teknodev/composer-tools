@@ -6,25 +6,16 @@
     .max-content {
         .content {
             display: flex;
-
             .left-section,
             .right-section {
                 flex: 1;
-                display: flex;
-                flex-direction: column;
                 align-items: flex-start;
             }
 
             .left-section {
-                gap: var(--composer-gap-md);
-
                 .header {
                     width: 100%;
-                    display: flex;
-                    flex-direction: column;
                     align-items: flex-start;
-                    gap: var(--composer-gap-sm);
-
                     .title,
                     .description {
                         text-align: left;
@@ -35,41 +26,40 @@
                         margin-left: 0;
                         text-align: left;
                     }
-                }
 
-                .bottom-row {
-                    margin-top: var(--composer-gap-sm);
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    flex-wrap: wrap;
-                    gap: var(--composer-gap-xl);
-                    width: 100%;
-
-                    .button-group {
+                    .bottom-row {
                         display: flex;
-                        flex-wrap: wrap;
+                        flex-direction: row;
                         align-items: center;
-                        gap: var(--composer-gap-sm);
-                        flex-shrink: 0;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-xl);
+                        width: 100%;
 
-                        .button {
-                            .button-text {
-                                color: inherit;
+                        .button-group {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+                            flex-shrink: 0;
+
+                            .button {
+                                .button-text {
+                                    color: inherit;
+                                }
                             }
                         }
-                    }
 
-                    .rating {
-                        display: flex;
-                        flex-direction: column;
-                        align-items: flex-start;
-                        color: var(--composer-font-color-primary);
+                        .rating {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            color: var(--composer-font-color-primary);
 
-                        .rating-value,
-                        .rating-text {
-                            margin: 0;
-                            text-align: left;
+                            .rating-value,
+                            .rating-text {
+                                margin: 0;
+                                text-align: left;
+                            }
                         }
                     }
                 }
@@ -141,7 +131,7 @@
 
                 .header .title,
                 .header .description,
-                .bottom-row .rating,
+                .header .bottom-row .rating,
                 .right-section .right-vertical-content .features-title,
                 .right-section .right-vertical-content .cards .card {
                     color: inherit;
@@ -180,7 +170,7 @@
                 flex: none;
             }
 
-            .left-section .bottom-row {
+            .left-section .header .bottom-row {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: var(--composer-gap-md);
