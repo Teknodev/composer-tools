@@ -41,14 +41,14 @@ class CallToAction23Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
-      key: "priceLabel",
+      key: "infoLabel",
       displayer: "Label",
       value: "STARTING AT ONLY",
     });
 
     this.addProp({
       type: "string",
-      key: "price",
+      key: "infoText",
       displayer: "Info Text",
       value: "$2.95/mo",
     });
@@ -71,8 +71,8 @@ class CallToAction23Page extends BaseCallToAction {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const priceLabel = this.castToString(this.getPropValue("priceLabel"));
-    const price = this.castToString(this.getPropValue("price"));
+    const infoLabel = this.castToString(this.getPropValue("infoLabel"));
+    const infoText = this.castToString(this.getPropValue("infoText"));
     const coloredBackground = this.getPropValue("coloredBackground");
     const hasColoredBackground = !!coloredBackground;
 
@@ -105,16 +105,16 @@ class CallToAction23Page extends BaseCallToAction {
                 </div>
               )}
 
-              {(priceLabel || price) && (
-                <div className={this.decorateCSS("pricing-group")}>
-                  {priceLabel && (
-                    <Base.P className={this.decorateCSS("price-label")}>
-                      {priceLabel}
+              {(infoLabel || infoText) && (
+                <div className={this.decorateCSS("info-group")}>
+                  {infoLabel && (
+                    <Base.P className={this.decorateCSS("info-label")}>
+                      {infoLabel}
                     </Base.P>
                   )}
-                  {price && (
-                    <Base.H3 className={this.decorateCSS("price-value")}>
-                      {price}
+                  {infoText && (
+                    <Base.H3 className={this.decorateCSS("info-text")}>
+                      {infoText}
                     </Base.H3>
                   )}
                 </div>

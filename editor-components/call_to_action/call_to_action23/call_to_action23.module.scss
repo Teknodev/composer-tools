@@ -22,7 +22,6 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      gap: var(--composer-gap-xl);
       width: 100%;
     }
 
@@ -34,13 +33,7 @@
 
         .subtitle {
           text-align: left;
-          transform: none;
           width: fit-content;
-          margin-left: 0;
-
-          &::before {
-            display: none;
-          }
         }
 
         .title {
@@ -55,26 +48,24 @@
       }
     }
 
-    .pricing-group {
+    .info-group {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: var(--composer-gap-xs);
-      flex: 0 0 auto;
-      max-width: 300px;
+      align-items: center;
+      flex: 1;
 
-      .price-label,
-      .price-value {
+      .info-label,
+      .info-text {
         width: 100%;
-        text-align: left;
+        text-align: center;
         word-wrap: break-word;
       }
 
-      .price-label {
+      .info-label {
         color: var(--composer-font-color-primary);
       }
 
-      .price-value {
+      .info-text {
         color: var(--composer-primary-color);
       }
     }
@@ -114,6 +105,8 @@
             padding: 0 !important;
             border-radius: 0 !important;
             color: var(--composer-html-background);
+            transform: none;
+            margin-left: 0 !important;
 
             &::before {
               display: none !important;
@@ -129,12 +122,12 @@
           }
         }
 
-        .pricing-group {
-          .price-label {
+        .info-group {
+          .info-label {
             color: var(--composer-html-background);
           }
 
-          .price-value {
+          .info-text {
             color: var(--composer-primary-color);
           }
         }
@@ -191,17 +184,16 @@
         }
       }
 
-      .pricing-group {
+      .info-group {
         align-items: center !important;
         margin-bottom: calc(-1 * var(--composer-gap-md));
-        max-width: 100%;
 
-        .price-label,
-        .price-value {
+        .info-label,
+        .info-text {
           text-align: center !important;
         }
 
-        .price-value {
+        .info-text {
           font-size: var(--composer-font-size-xl) !important;
         }
       }
