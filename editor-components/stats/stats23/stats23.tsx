@@ -138,7 +138,18 @@ class Stats23 extends BaseStats {
                 return;
             }
 
-            animateNumber();
+            const steps = animationDuration / 30;
+            let currentNumber = 0;
+            const increment = targetNumber / steps;
+
+            intervalRef.current = setInterval(() => {
+                currentNumber += increment;
+                if (currentNumber >= targetNumber) {
+                    currentNumber = targetNumber;
+                    clearInterval(intervalRef.current!);
+                }
+                setAnimatedNumber(formatNumber(currentNumber));
+            }, 30);
 
             return () => {
                 if (intervalRef.current) {
@@ -146,28 +157,6 @@ class Stats23 extends BaseStats {
                 }
             };
         }, [targetNumber, statsAnimation, animationDuration, originalNumberString]);
-
-        const animateNumber = () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current);
-            }
-
-            const steps = animationDuration / 30;
-            let currentNumber = 0;
-            const increment = targetNumber / steps;
-
-            intervalRef.current = setInterval(() => {
-                currentNumber += increment;
-
-                if (currentNumber >= targetNumber) {
-                    currentNumber = targetNumber;
-                    if (intervalRef.current) {
-                        clearInterval(intervalRef.current);
-                    }
-                }
-                setAnimatedNumber(formatNumber(currentNumber));
-            }, 30);
-        };
 
         const titleExist = stat.title && stat.title !== "";
         const subtitleExist = stat.subtitle && stat.subtitle !== "";
@@ -226,12 +215,12 @@ class Stats23 extends BaseStats {
 
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
-            const prefix = String(this.castToString(item.prefix) || "");
-            const number = String(this.castToString(item.number) || "0");
-            const suffix = String(this.castToString(item.suffix) || "");
-            const title = String(this.castToString(item.title) || "");
-            const subtitle = String(this.castToString(item.subtitle) || "");
-            const description = String(this.castToString(item.description) || "");
+            const prefix = this.castToString(item.prefix) || "";
+            const number = this.castToString(item.number) || "0";
+            const suffix = this.castToString(item.suffix) || "";
+            const title = this.castToString(item.title) || "";
+            const subtitle = this.castToString(item.subtitle) || "";
+            const description = this.castToString(item.description) || "";
             return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
