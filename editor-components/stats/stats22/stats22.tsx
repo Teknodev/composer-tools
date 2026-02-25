@@ -19,7 +19,7 @@ class Stats22 extends BaseStats {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "dsfdsafdsaf",
     });
     this.addProp({
       type: "string",
@@ -173,7 +173,7 @@ class Stats22 extends BaseStats {
             </span>
             {hasSuffix && (
               <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffix.replace(/<[^>]*>/g, "").trim()}
+                {stat.suffix}
               </span>
             )}
           </div>
