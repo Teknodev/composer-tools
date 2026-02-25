@@ -1,0 +1,84 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    .wrapper {
+      align-items: center;
+
+      .left {
+        .subtitle,
+        .title,
+        .description {
+          content: "";
+        }
+
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
+          .button,
+          .button-text {
+            content: "";
+          }
+        }
+      }
+
+      .right {
+        .description {
+          content: "";
+        }
+
+        .stats-grid {
+          gap: var(--composer-gap-lg);
+
+          .card {
+            display: flex;
+            flex-direction: column;
+
+            .stat-value {
+              display: flex;
+              align-items: baseline;
+
+              .stat-number,
+              .stat-suffix {
+                font-size: 5rem;
+                color: var(--composer-font-color-primary);
+              }
+            }
+
+            .stat-label {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content .wrapper .right .stats-grid {
+    gap: var(--composer-gap-md);
+
+    .card .stat-value {
+      .stat-number,
+      .stat-suffix {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .wrapper .right .stats-grid {
+    gap: var(--composer-gap-md);
+
+    .card .stat-value {
+      .stat-number,
+      .stat-suffix {
+        font-size: 2rem;
+      }
+    }
+  }
+}
