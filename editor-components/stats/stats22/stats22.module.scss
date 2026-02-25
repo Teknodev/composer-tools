@@ -6,6 +6,7 @@
       align-items: center;
 
       .left {
+        
         .subtitle,
         .title,
         .description {
@@ -31,6 +32,7 @@
 
         .stats-grid {
           gap: var(--composer-gap-lg);
+          margin-bottom: var(--composer-gap-lg);
 
           .card {
             display: flex;
@@ -40,6 +42,7 @@
               display: flex;
               align-items: baseline;
 
+              .stat-prefix,
               .stat-number,
               .stat-suffix {
                 font-size: 5rem;
@@ -47,7 +50,15 @@
               }
             }
 
-            .stat-label {
+            .stat-subtitle {
+              color: var(--composer-font-color-primary);
+            }
+
+            .stat-title {
+              color: var(--composer-font-color-primary);
+            }
+
+            .stat-description {
               color: var(--composer-font-color-primary);
             }
           }
@@ -65,6 +76,7 @@
       gap: var(--composer-gap-md);
 
       .card .stat-value {
+        .stat-prefix,
         .stat-number,
         .stat-suffix {
           font-size: 4rem;
@@ -79,6 +91,7 @@
     gap: var(--composer-gap-md);
 
     .card .stat-value {
+      .stat-prefix,
       .stat-number,
       .stat-suffix {
         font-size: 3rem;
