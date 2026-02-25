@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider7.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
-  media: any;
+  media: TypeMediaInputValue;
 };
 
 class Slider7 extends BaseSlider {
@@ -35,17 +35,22 @@ class Slider7 extends BaseSlider {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null)],
+    });
 
     this.addProp({
       type: "array",
-      key: "slider",
-      displayer: "Slider",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -63,8 +68,8 @@ class Slider7 extends BaseSlider {
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -83,8 +88,8 @@ class Slider7 extends BaseSlider {
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -102,8 +107,8 @@ class Slider7 extends BaseSlider {
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -121,8 +126,8 @@ class Slider7 extends BaseSlider {
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -140,8 +145,8 @@ class Slider7 extends BaseSlider {
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -159,8 +164,8 @@ class Slider7 extends BaseSlider {
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -178,8 +183,8 @@ class Slider7 extends BaseSlider {
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Header",
+          key: "card",
+          displayer: "Card",
           value: [
             {
               type: "media",
@@ -260,9 +265,7 @@ class Slider7 extends BaseSlider {
   }
 
   render() {
-    let items = this.castToObject<SliderItem[]>("slider").filter(
-      (item: SliderItem) => item.media
-    );
+    let items = this.castToObject<SliderItem[]>("cards").filter((item: SliderItem) => item.media);
     const isCardExist = items.length > 0;
     const isOverlayActive = this.getPropValue("overlay");
     const isHoverActive = this.getPropValue("hoverAnimation");
@@ -312,62 +315,48 @@ class Slider7 extends BaseSlider {
       },
     };
 
-
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const button = this.castToObject<INPUTS.CastedButton>("button");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
       <Base.Container isFull={true} className={`${this.decorateCSS("container")}
       ${items.length === 1 && this.decorateCSS("one-card")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-
-          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || (button && this.castToString(button.text))) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.castToString(subtitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
-              )}
-              {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
-              {this.castToString(description) && (
-                <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                  {description}
-                </Base.SectionDescription>
-              )}
-              {button && this.castToString(button.text) && (
-                <ComposerLink path={button.url}>
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("section-button")}>
-                    {button.text && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
-                    {button.icon && (
-                      <Base.Media
-                        value={button.icon as any}
-                        className={this.decorateCSS("icon")}
-                      />
-                    )}
-                  </Base.Button>
-                </ComposerLink>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {visibleButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                    return this.castToString(item.text) && (
+                      <ComposerLink key={`button-${index}`} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          {item.icon && (item.icon)?.name && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
-
           {previousArrow && sliderSettings.arrows && (
             <div className={this.decorateCSS("prevArrow")} onClick={() => sliderRef.current.slickPrev()}>
               <Base.Media value={previousArrow} className={this.decorateCSS("arrow-icon")} />
             </div>
           )}
-
           {nextArrow && sliderSettings.arrows && (
             <div className={this.decorateCSS("nextArrow")} onClick={() => sliderRef.current.slickNext()}>
               <Base.Media value={nextArrow} className={this.decorateCSS("arrow-icon")} />
             </div>
           )}
-
           {isCardExist && (
             <div className={this.decorateCSS("carousel-wrapper")}>
               <ComposerSlider
@@ -376,18 +365,9 @@ class Slider7 extends BaseSlider {
                 ref={sliderRef}
               >
                 {items.map((item: SliderItem, index: number) => (
-                  <div
-                    key={index}
-                    className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")} ${isHoverActive && this.decorateCSS("hover-active")
-                      }`}
-                  >
+                  <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")} ${isHoverActive && this.decorateCSS("hover-active")}`}>
                     <div className={this.decorateCSS("imgContainer")}>
-                      {item.media && (
-                        <Base.Media
-                          value={item.media}
-                          className={this.decorateCSS("img")}
-                        />
-                      )}
+                      {item.media && <Base.Media value={item.media} className={this.decorateCSS("image")} />}
                       {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
                     </div>
                   </div>

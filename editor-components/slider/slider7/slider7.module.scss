@@ -8,55 +8,54 @@
   }
 
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
     position: relative;
 
-    .header {
-      width: 100%;
-      margin-bottom: var(--composer-gap-md);
-      display: flex;
-      flex-direction: column;
+    .vertical-content {
       align-items: center;
-      text-align: center;
-
-      .subtitle,
-      .title,
-      .section-description {
-        text-align: center;
-      }
-
-      .section-button {
-        width: fit-content;
-        margin: 0 auto;
-      }
+      padding: 0 var(--composer-gap-xl);
 
       .subtitle {
-        transform: translateX(0);
+        transform: translateY(0);
 
         &::before {
-          display: none;
+          background: none;
         }
       }
 
-      .button-text,
-      .icon {
-        content: "";
+      .title,
+      .description {
+        text-align: center;
       }
 
-      .icon {
-        font-size: 1.5rem;
-        width: 1.5rem;
-        height: 1.5rem;
+      .button-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text {
+            content: "";
+          }
+
+          .button-icon {
+            line-height: 0;
+          }
+        }
       }
     }
 
     .nextArrow,
     .prevArrow {
-      display: block;
       position: absolute;
       cursor: pointer;
       top: 50%;
       z-index: 10;
-      color: white;
+      bottom: 90px;
+      color: #ffffff;
       padding: var(--composer-gap-md) var(--composer-gap-xl);
       display: flex;
       justify-content: center;
@@ -83,7 +82,6 @@
 
     .carousel-wrapper {
       width: 100%;
-      padding-bottom: var(--composer-gap-md);
     }
 
     .carousel {
@@ -101,11 +99,6 @@
         display: flex !important;
         justify-content: center;
         align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        margin-top: var(--composer-gap-md);
 
         li {
           margin: 0 var(--composer-gap-sm);
@@ -165,7 +158,7 @@
           overflow: hidden;
           z-index: 1;
 
-          .img {
+          .image {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -189,14 +182,14 @@
 
         &.hover-active {
           &:hover {
-            .img {
+            .image {
               transform: scale(1);
               filter: brightness(80%);
             }
           }
 
           &:not(:hover) {
-            .img {
+            .image {
               transform: scale(1.1);
               filter: brightness(100%);
             }
@@ -214,6 +207,9 @@
     }
 
     .max-content {
+      .vertical-content {
+        padding: 0 var(--composer-gap-lg);
+      }
 
       .nextArrow,
       .prevArrow {
@@ -244,6 +240,10 @@
 
     .max-content {
 
+      .vertical-content {
+        padding: 0 var(--composer-gap-md);
+      }
+
       .nextArrow,
       .prevArrow {
         padding: var(--composer-gap-md);
@@ -259,6 +259,22 @@
         .card {
           .imgContainer {
             width: 100%;
+          }
+        }
+
+        :global(.slick-dots) {
+          li {
+            margin: 0 var(--composer-gap-xs);
+
+            button:before {
+              transform: scale(0.6);
+            }
+
+            &:global(.slick-active) {
+              button:before {
+                transform: scale(0.8);
+              }
+            }
           }
         }
       }

@@ -197,6 +197,7 @@
       gap: var(--composer-gap-sm);
 
       .dot-item {
+        margin: 0 var(--composer-gap-sm);
         cursor: pointer;
 
         .dot-button {
@@ -298,6 +299,8 @@
 
       .custom-dots {
         .dot-item {
+          margin: 0 var(--composer-gap-xs);
+
           .dot-button {
             transform: scale(0.6);
           }
