@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider6.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,11 +7,11 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
-  card_subtitle: React.JSX.Element;
-  card_title: React.JSX.Element;
+  Slidersubtitle: React.JSX.Element;
+  Slidertitle: React.JSX.Element;
+  Sliderdescription: React.JSX.Element;
   vertText: React.JSX.Element;
-  card_description: React.JSX.Element;
-  media: any;
+  media: TypeMediaInputValue;
   button: INPUTS.CastedButton;
   path: string;
 };
@@ -26,12 +26,14 @@ class Slider6 extends BaseSlider {
       displayer: "Subtitle",
       value: "Lasts post",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Latest And Greatest Post",
     });
+
     this.addProp({
       type: "string",
       key: "description",
@@ -39,7 +41,12 @@ class Slider6 extends BaseSlider {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", "", null));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
 
     this.addProp({
       type: "array",
@@ -51,24 +58,6 @@ class Slider6 extends BaseSlider {
           key: "slidercontent",
           displayer: "Slider Content",
           value: [
-            {
-              type: "string",
-              key: "card_subtitle",
-              displayer: "Card Subtitle",
-              value: "LIFESTYLE",
-            },
-            {
-              type: "string",
-              key: "card_title",
-              displayer: "Card Title",
-              value: "Extreme Athleticism Is the New Midlife Crisis",
-            },
-            {
-              type: "string",
-              key: "card_description",
-              displayer: "Card Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
-            },
             {
               type: "media",
               key: "media",
@@ -83,6 +72,24 @@ class Slider6 extends BaseSlider {
             },
             {
               type: "string",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "LIFESTYLE",
+            },
+            {
+              type: "string",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "Extreme Athleticism Is the New Midlife Crisis",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
+              displayer: "Description",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
+            },
+            {
+              type: "string",
               key: "vertText",
               displayer: "Vertical Text",
               value: "Dsn Grid - March , 17th 2020",
@@ -96,24 +103,6 @@ class Slider6 extends BaseSlider {
           displayer: "Slider Content",
           value: [
             {
-              type: "string",
-              key: "card_subtitle",
-              displayer: "Card Subtitle",
-              value: "TRAVEL",
-            },
-            {
-              type: "string",
-              key: "card_title",
-              displayer: "Card Title",
-              value: "The Day I Lost My Child in Charles de Gaulle Airport",
-            },
-            {
-              type: "string",
-              key: "card_description",
-              displayer: "Card Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
-            },
-            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -124,6 +113,24 @@ class Slider6 extends BaseSlider {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3ab506a40002c2f7b36?alt=media",
               },
+            },
+            {
+              type: "string",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "TRAVEL",
+            },
+            {
+              type: "string",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "The Day I Lost My Child in Charles de Gaulle Airport",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
+              displayer: "Description",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
               type: "string",
@@ -141,24 +148,6 @@ class Slider6 extends BaseSlider {
           displayer: "Slider Content",
           value: [
             {
-              type: "string",
-              key: "card_subtitle",
-              displayer: "Card Subtitle",
-              value: "HEALTH",
-            },
-            {
-              type: "string",
-              key: "card_title",
-              displayer: "Card Title",
-              value: "Relationships Aren’t Easy, But They’re Worth It",
-            },
-            {
-              type: "string",
-              key: "card_description",
-              displayer: "Card Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
-            },
-            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -169,6 +158,24 @@ class Slider6 extends BaseSlider {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3c5506a40002c2f7b64?alt=media",
               },
+            },
+            {
+              type: "string",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "HEALTH",
+            },
+            {
+              type: "string",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "Relationships Aren’t Easy, But They’re Worth It",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
+              displayer: "Description",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
               type: "string",
@@ -185,24 +192,6 @@ class Slider6 extends BaseSlider {
           displayer: "Slider Content",
           value: [
             {
-              type: "string",
-              key: "card_subtitle",
-              displayer: "Card Subtitle",
-              value: "LIFESTYLE",
-            },
-            {
-              type: "string",
-              key: "card_title",
-              displayer: "Card Title",
-              value: "Extreme Athleticism Is the New Midlife Crisis",
-            },
-            {
-              type: "string",
-              key: "card_description",
-              displayer: "Card Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
-            },
-            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -213,6 +202,24 @@ class Slider6 extends BaseSlider {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3e8506a40002c2f7b7a?alt=media",
               },
+            },
+            {
+              type: "string",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "LIFESTYLE",
+            },
+            {
+              type: "string",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "Extreme Athleticism Is the New Midlife Crisis",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
+              displayer: "Description",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
               type: "string",
@@ -255,7 +262,6 @@ class Slider6 extends BaseSlider {
   }
   render() {
     const sliderItems = this.castToObject<SliderItem[]>("header");
-    const button = this.castToObject<INPUTS.CastedButton>("button");
     const isMultipleItems = sliderItems.length > 1;
     const isOverlayActive = this.getPropValue("overlay");
     const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
@@ -308,104 +314,87 @@ class Slider6 extends BaseSlider {
 
     };
 
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} 
-        ${!(this.getPropValue("subtitle") || this.getPropValue("title") || this.getPropValue("description") || (button && this.castToString(button.text))) && this.decorateCSS("no-header")}`}
-      >
+        className={`${this.decorateCSS("container")}  ${!hasContent && this.decorateCSS("no-header")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.getPropValue("subtitle") || this.getPropValue("title") || this.getPropValue("description") || (button && this.castToString(button.text))) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.getPropValue("subtitle") && (
-                <Base.SectionSubTitle
-                  className={`${this.decorateCSS("subtitle")} 
-                ${!this.getPropValue("title") && this.decorateCSS("no-title")}`}
-                >
-                  {subtitle}
-                </Base.SectionSubTitle>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {visibleButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                    return this.castToString(item.text) && (
+                      <ComposerLink key={`button-${index}`} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
-              {this.getPropValue("title") && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {this.getPropValue("description") && <Base.SectionDescription className={this.decorateCSS("section-description")}>{description}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider
-              {...settings}
-              className={`
-                ${this.decorateCSS("carousel")}
-                ${!this.castToString(subtitle) && !this.castToString(title) && this.decorateCSS("no-header")}
-                ${!isMultipleItems && this.decorateCSS("single-item")}`}
-            >
-              {sliderItems.map((item: SliderItem, index: number) => {
-                const imageElement = document.getElementById(`slider6Image${index}`);
-                const imageHeight = imageElement?.clientHeight || "auto";
-
-                return (
-                  <div
-                    className={`${this.decorateCSS("card")} 
+          {sliderItems.length > 0 && (
+            <div className={this.decorateCSS("slider-parent")}>
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+                {sliderItems.map((item: SliderItem, index: number) => {
+                  const imageElement = document.getElementById(`slider6Image${index}`);
+                  const imageHeight = imageElement?.clientHeight || "auto";
+                  return (
+                    <div
+                      className={`${this.decorateCSS("card")} 
                       ${isMultipleItems && this.getComponentState("prevSlide") == index ? this.decorateCSS("prevSlide") : ""} 
                       ${isMultipleItems && this.getComponentState("nextSlide") == index ? this.decorateCSS("nextSlide") : ""}`}
-                    key={`sld-8-${index}`}
-                  >
-                    <Base.ContainerGrid className={this.decorateCSS("content-div")}>
-                      {(this.castToString(item.vertText) || item.media) && (
-                        <div className={`${this.decorateCSS("left-part")} ${!item.media && this.decorateCSS("no-img")} `}>
-                          {this.castToString(item.vertText) && (
-                            <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
-                              {item.vertText}
-                            </span>
-                          )}
-                          {item.media && (
-                            <div className={this.decorateCSS("image-wrapper")}>
-                              <Base.Media value={item.media} className={this.decorateCSS("image")} />
-                              {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {(this.castToString(item.card_subtitle) || this.castToString(item.card_title) || this.castToString(item.card_description) || this.castToString(item.button.text)) && (
-                        <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
-                          {this.castToString(item.card_subtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.card_subtitle}</Base.P>}
-                          {this.castToString(item.card_title) && <Base.H5 className={this.decorateCSS("card-title")}>{item.card_title}</Base.H5>}
-                          {this.castToString(item.card_description) && <Base.P className={this.decorateCSS("card-description")}>{item.card_description}</Base.P>}
-                          {this.castToString(item.button.text) && (
-                            <ComposerLink key={index} path={item.button.url}>
-                              <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("button")}>
-                                <span className={this.decorateCSS("button-text")}>{item.button.text}</span>
-                                {item.button.icon && (
-                                  <Base.Media
-                                    value={item.button.icon as any}
-                                    className={this.decorateCSS("icon")}
-                                  />
-                                )}
-                              </Base.Button>
-                            </ComposerLink>
-                          )}
-                        </Base.VerticalContent>
-                      )}
-                    </Base.ContainerGrid>
-                  </div>
-                );
-              })}
-            </ComposerSlider>
-          </div>
-          {button && this.castToString(button.text) && (
-            <ComposerLink path={button.url}>
-              <Base.Button buttonType={button.type} className={this.decorateCSS("section-button")}>
-                {button.text && <span className={this.decorateCSS("button-text")}>{button.text}</span>}
-                {button.icon && (
-                  <Base.Media
-                    value={button.icon as any}
-                    className={this.decorateCSS("icon")}
-                  />
-                )}
-              </Base.Button>
-            </ComposerLink>
+                      key={`sld-8-${index}`}
+                    >
+                      <Base.ContainerGrid className={this.decorateCSS("content-div")}>
+                        {(this.castToString(item.vertText) || item.media) && (
+                          <div className={`${this.decorateCSS("left-part")} ${!item.media && this.decorateCSS("no-image")} `}>
+                            {this.castToString(item.vertText) && (
+                              <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
+                                {item.vertText}
+                              </span>
+                            )}
+                            {item.media && (
+                              <div className={this.decorateCSS("image-wrapper")}>
+                                <Base.Media value={item.media} className={this.decorateCSS("image")} />
+                                {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        {(this.castToString(item.Slidersubtitle) || this.castToString(item.Slidertitle) || this.castToString(item.Sliderdescription) || this.castToString(item.button.text)) && (
+                          <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
+                            {this.castToString(item.Slidersubtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.Slidersubtitle}</Base.P>}
+                            {this.castToString(item.Slidertitle) && <Base.H5 className={this.decorateCSS("card-title")}>{item.Slidertitle}</Base.H5>}
+                            {this.castToString(item.Sliderdescription) && <Base.P className={this.decorateCSS("card-description")}>{item.Sliderdescription}</Base.P>}
+                            {this.castToString(item.button.text) && (
+                              <ComposerLink key={index} path={item.button.url}>
+                                <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("card-button")}>
+                                  <span className={this.decorateCSS("card-button-text")}>{item.button.text}</span>
+                                  {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("card-icon")} />)}
+                                </Base.Button>
+                              </ComposerLink>
+                            )}
+                          </Base.VerticalContent>
+                        )}
+                      </Base.ContainerGrid>
+                    </div>
+                  );
+                })}
+              </ComposerSlider>
+            </div>
           )}
         </Base.MaxContent>
       </Base.Container>

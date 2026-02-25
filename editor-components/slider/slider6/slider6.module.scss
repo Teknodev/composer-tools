@@ -1,47 +1,35 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px 0px 80px 0px;
-  width: 100%;
+  padding: calc(var(--composer-gap-lg) * 2) 0px !important;
 
   .max-content {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    width: 100%;
+    gap: var(--composer-gap-lg);
     overflow: visible;
 
-    .header {
-      width: 100%;
-      margin-bottom: var(--composer-gap-md);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .vertical-content {
+      padding: 0 var(--composer-gap-xl);
 
-      .title,
       .subtitle,
-      .no-title,
-      .section-description {
-        text-align: center;
-        justify-content: center;
+      .title,
+      .description {
+        content: "";
       }
 
-      .subtitle {
-        transform: translateX(0) !important;
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
 
-        &::before {
-          display: none;
+        .button {
+          .button-text {
+            content: "";
+          }
         }
       }
-
-    }
-
-    .section-button {
-      width: fit-content;
-      margin-top: var(--composer-gap-lg);
     }
 
     .slider-parent {
@@ -74,7 +62,7 @@
           border-radius: var(--composer-border-radius-sm) !important;
 
           .content-div {
-            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
             transition: transform var(--composer-transition-duration-normal), filter var(--composer-transition-duration-normal);
             min-height: 300px;
             height: 100%;
@@ -94,7 +82,6 @@
                 writing-mode: vertical-rl;
                 text-orientation: mixed;
                 transform: rotate(180deg);
-                font-size: 1rem;
                 color: var(--composer-font-color-primary);
                 text-align: center;
                 margin: var(--composer-gap-sm) var(--composer-gap-md);
@@ -130,39 +117,40 @@
               }
             }
 
-            .no-img {
+            .no-image {
               flex: unset;
               width: auto;
             }
 
             .right-part {
               flex: 1;
-              gap: var(--composer-gap-sm);
               padding: var(--composer-gap-lg) var(--composer-gap-md);
               height: fit-content;
               align-items: flex-start;
 
-              .card-subtitle {
-                margin: 0;
+              .card-subtitle,
+              .card-description {
                 color: var(--composer-tertiary-color);
                 text-align: left;
-                content: "";
               }
 
               .card-title {
-                margin: 0;
                 color: var(--composer-font-color-primary);
-                font-size: 1.5rem;
                 text-align: left;
-                content: "";
               }
 
-              .card-description {
-                margin: 0;
-                color: var(--composer-tertiary-color);
-                font-size: 1.5rem;
-                text-align: left;
-                content: "";
+              .card-button {
+                display: flex;
+                justify-content: left;
+                width: 100%;
+
+                .card-button-text {
+                  content: "";
+                }
+
+                .card-icon {
+                  line-height: 0;
+                }
               }
             }
           }
@@ -179,25 +167,24 @@
           display: flex !important;
           align-items: center;
           justify-content: center;
-          height: 48px;
-          width: 48px;
+          height: 45px;
+          width: 45px;
           cursor: pointer;
-          background: transparent;
-          color: transparent;
           top: auto;
-          bottom: -98px;
+          bottom: -65px;
           padding: 0;
-          border: none;
+          border: 1px solid var(--composer-tertiary-color);
+          border-radius: 50%;
           outline: none;
           z-index: 10;
-          transition: transform 0.3s ease;
+          transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+          transform: translate(0, 0);
 
-          &:hover,
-          &:focus {
+          &:hover {
             outline: none;
-            background: rgba(var(--composer-font-color-primary-rgb), 0.1);
+            background: transparent;
             color: transparent;
-            border-radius: 50%;
+            border-color: transparent;
 
             &:before {
               opacity: 1;
@@ -205,43 +192,47 @@
           }
 
           &:before {
-            font-family: "slick";
-            font-size: 32px;
+            font-family: inherit;
+            font-size: 10px;
             line-height: 1;
             color: var(--composer-font-color-primary);
             opacity: 0.75;
+            transition: opacity 0.3s ease;
           }
         }
 
         :global(.slick-prev) {
-          left: 0;
+          left: 90px;
+
+          &:hover {
+            transform: translate(-20px, 0);
+          }
 
           &:before {
-            content: "←";
+            content: "◀";
           }
         }
 
         :global(.slick-next) {
-          right: 0;
+          right: 90px;
+
+          &:hover {
+            transform: translate(20px, 0);
+          }
 
           &:before {
-            content: "→";
+            content: "▶";
           }
         }
 
         :global(.slick-dots) {
-          position: absolute;
-          bottom: -80px;
-          padding-bottom: 10px;
+          bottom: -70px;
           display: flex !important;
           justify-content: center;
           align-items: center;
-          list-style: none;
-          width: 100%;
           pointer-events: none;
 
           :global(li) {
-            margin: 0 8px;
             pointer-events: auto;
 
             :global(button) {
@@ -265,9 +256,8 @@
               }
             }
 
-            &.slick-active :global(button)::before {
+            &:global(.slick-active) :global(button)::before {
               opacity: 1;
-              height: 3px;
             }
           }
         }
@@ -278,28 +268,9 @@
       }
     }
 
-    &.no-header {
-      padding-top: 20px;
-
-      .header {
-        margin-bottom: 0;
-        display: none;
-      }
-    }
-
     .dots-container {
       display: none;
     }
-
-    .section-button {
-      width: fit-content;
-      margin: -10px auto 0 auto !important;
-      z-index: 20;
-      display: flex;
-      justify-content: center;
-    }
-
-
 
     .single-item {
       :global(.slick-list) {
@@ -309,92 +280,54 @@
       }
     }
   }
+}
 
-  .button,
-  .button-text {
-    content: "";
-  }
-
-  .icon {
-    font-size: 1.5rem;
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-
-  @container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
     .max-content {
-      .icon {
-        font-size: 1.25rem;
-        width: 1.25rem;
-        height: 1.25rem;
+      gap: var(--composer-gap-md);
+
+      .vertical-content {
+        padding: 0 var(--composer-gap-lg);
       }
 
       .slider-parent .carousel {
 
         :global(.slick-prev),
         :global(.slick-next) {
-          height: 36px;
-          width: 36px;
-
-          &:before {
-            font-size: 24px;
-          }
-        }
-
-        :global(.slick-prev) {
-          left: calc(50% - 100px);
-        }
-
-        :global(.slick-next) {
-          right: calc(50% - 100px);
-        }
-      }
-    }
-  }
-
-  @container (max-width: #{$composer-tablet-width}) {
-    .max-content {
-      .slider-parent .carousel {
-
-        :global(.slick-prev),
-        :global(.slick-next) {
-          height: 36px;
-          width: 36px;
-          bottom: -72px;
-
-          &:before {
-            font-size: 24px;
-          }
-        }
-
-        :global(.slick-prev) {
-          left: 0;
-        }
-
-        :global(.slick-next) {
-          right: 0;
-        }
-
-        :global(.slick-dots) {
+          height: 35px;
+          width: 35px;
           bottom: -60px;
+
+          &:before {
+            font-size: 8px;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: 70px !important;
+        }
+
+        :global(.slick-next) {
+          right: 70px !important;
         }
       }
     }
   }
+}
 
-  @container (max-width: #{$composer-phone-width}) {
-    .container {
-      padding: 40px 20px 20px 20px;
-    }
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-xl) 0px !important;
 
     .max-content {
+
+      .vertical-content {
+        padding: 0 var(--composer-gap-md);
+      }
+
       .slider-parent {
-        width: 100%;
-
         .carousel {
-          margin-bottom: 80px;
-
           :global(.slick-list) {
             :global(.slick-track) {
               gap: 0;
@@ -427,37 +360,31 @@
 
           :global(.slick-prev),
           :global(.slick-next) {
-            height: 32px;
-            width: 32px;
-            bottom: -64px;
-            z-index: 20;
-
-            &:before {
-              font-size: 20px;
-            }
+            height: 30px;
+            width: 30px;
+            bottom: -40px;
           }
 
           :global(.slick-prev) {
-            left: -10px;
+            left: var(--composer-gap-lg) !important;
+
+            &:hover {
+              transform: translate(-10px, 0) !important;
+            }
           }
 
           :global(.slick-next) {
-            right: -10px;
+            right: var(--composer-gap-lg) !important;
+
+            &:hover {
+              transform: translate(10px, 0) !important;
+            }
           }
 
           :global(.slick-dots) {
-            bottom: -54px;
-            width: calc(100% - 120px);
-            margin: 0 60px;
-            z-index: 10;
+            bottom: -50px;
           }
         }
-      }
-
-      .icon {
-        font-size: 1rem;
-        width: 1rem;
-        height: 1rem;
       }
     }
   }
