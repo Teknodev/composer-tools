@@ -6,9 +6,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
-  number: number;
+  subtitle: React.ReactNode;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  number: string;
+  prefix: string;
   suffix: string;
-  label: React.ReactNode;
 };
 
 class Stats17 extends BaseStats {
@@ -44,9 +47,12 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
-            { type: "number", key: "number", displayer: "Number", value: 100 },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Satisfaction" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "100" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "label", displayer: "Label", value: "Satisfaction" },
           ],
         },
         {
@@ -54,9 +60,12 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
-            { type: "number", key: "number", displayer: "Number", value: 75 },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Happy Users" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "75" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
-            { type: "string", key: "label", displayer: "Label", value: "Happy Users" },
           ],
         },
         {
@@ -64,9 +73,12 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
-            { type: "number", key: "number", displayer: "Number", value: 125 },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Downloads" },
+            { type: "string", key: "description", displayer: "Description", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "125" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
-            { type: "string", key: "label", displayer: "Label", value: "Downloads" },
           ],
         },
       ],
@@ -105,7 +117,8 @@ class Stats17 extends BaseStats {
     stat: StatItem;
     animationDuration?: number;
   }) => {
-    const targetNumber = stat.number || 0;
+    const cleanNumber = String(stat.number || "0").replace(/[^\d.]/g, "");
+    const targetNumber = parseFloat(cleanNumber) || 0;
     const [animatedNumber, setAnimatedNumber] = React.useState<string>("0");
     const ref = React.useRef<HTMLDivElement>(null);
     const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -158,29 +171,47 @@ class Stats17 extends BaseStats {
       }, 30);
     };
 
-    const hasLabel = stat.label && this.castToString(stat.label);
+    const hasSubtitle = stat.subtitle && this.castToString(stat.subtitle);
+    const hasTitle = stat.title && this.castToString(stat.title);
+    const hasDescription = stat.description && this.castToString(stat.description);
+    const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
     const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
-    const hasNumber = targetNumber !== 0 || hasSuffix;
+    const hasNumber = targetNumber !== 0 || hasPrefix || hasSuffix;
 
-    if (!hasNumber && !hasSuffix && !hasLabel) return null;
+    if (!hasNumber && !hasTitle) return null;
 
     return (
       <div ref={ref} className={this.decorateCSS("card")}>
         {hasNumber && (
           <div className={this.decorateCSS("stat-value")}>
-            <span className={this.decorateCSS("stat-number")}>
+            {hasPrefix && (
+              <Base.P className={this.decorateCSS("stat-prefix")}>
+                {stat.prefix}
+              </Base.P>
+            )}
+            <Base.P className={this.decorateCSS("stat-number")}>
               {animatedNumber}
-            </span>
+            </Base.P>
             {hasSuffix && (
-              <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffix.replace(/<[^>]*>/g, "").trim()}
-              </span>
+              <Base.P className={this.decorateCSS("stat-suffix")}>
+                {stat.suffix}
+              </Base.P>
             )}
           </div>
         )}
-        {hasLabel && (
-          <Base.P className={this.decorateCSS("stat-label")}>
-            {stat.label}
+        {hasSubtitle && (
+          <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+            {stat.subtitle}
+          </Base.H6>
+        )}
+        {hasTitle && (
+          <Base.H6 className={this.decorateCSS("stat-title")}>
+            {stat.title}
+          </Base.H6>
+        )}
+        {hasDescription && (
+          <Base.P className={this.decorateCSS("stat-description")}>
+            {stat.description}
           </Base.P>
         )}
       </div>
@@ -193,10 +224,13 @@ class Stats17 extends BaseStats {
     const description = this.castToString(this.getPropValue("description"));
     const statItemsProp = this.getPropValue("statItems");
     const statItems: StatItem[] = statItemsProp.map((item: any) => {
-      const number = parseFloat(item.getPropValue("number")) || 0;
+      const subtitle = item.getPropValue("subtitle");
+      const itemTitle = item.getPropValue("title");
+      const itemDescription = item.getPropValue("description");
+      const number = String(this.castToString(item.getPropValue("number")) || "0");
+      const prefix = String(this.castToString(item.getPropValue("prefix")) || "");
       const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
-      const label = item.getPropValue("label");
-      return { number, suffix, label };
+      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
     const animationDuration = this.getPropValue("animationDuration") || 2000;
     const itemCount = this.getPropValue("itemCount");
@@ -234,10 +268,11 @@ class Stats17 extends BaseStats {
                 className={this.decorateCSS("stats-grid")}
               >
                 {statItems.map((item, index) => {
-                  const hasLabel = this.castToString(item.label);
+                  const hasTitle = this.castToString(item.title);
+                  const hasPrefix = item.prefix && item.prefix.trim() !== "";
                   const hasSuffix = item.suffix && item.suffix.trim() !== "";
-                  const hasNumber = item.number !== 0 || hasSuffix;
-                  if (!hasNumber && !hasSuffix && !hasLabel) return null;
+                  const hasNumber = (parseFloat(item.number) || 0) !== 0 || hasPrefix || hasSuffix;
+                  if (!hasNumber && !hasTitle) return null;
                   return (
                     <this.AnimatedStat
                       key={index}
@@ -248,23 +283,19 @@ class Stats17 extends BaseStats {
                 })}
               </Base.ListGrid>
             )}
-            {buttons.length > 0 && (() => {
-              const validButtons = buttons.filter((item) => {
-                const buttonText = this.castToString(item.text || "");
-                return buttonText;
-              });
-              return validButtons.length > 0 ? (
-                <div className={this.decorateCSS("button-container")}>
-                  {validButtons.map((item, index) => (
+            {buttons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) =>
+                  this.castToString(item.text) && (
                     <ComposerLink key={`stats17-btn-${index}`} path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                         <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
-                  ))}
-                </div>
-              ) : null;
-            })()}
+                  )
+                )}
+              </div>
+            )}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>

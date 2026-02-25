@@ -29,6 +29,7 @@
 
     .stats-grid {
       gap: var(--composer-gap-lg);
+      margin-bottom: var(--composer-gap-lg);
 
       .card {
         display: flex;
@@ -36,10 +37,16 @@
         align-items: center;
         text-align: center;
 
+        .stat-subtitle {
+          text-align: center;
+          color: var(--composer-font-color-secondary);
+        }
+
         .stat-value {
           display: flex;
           align-items: baseline;
 
+          .stat-prefix,
           .stat-number,
           .stat-suffix {
             font-size: 5rem;
@@ -47,7 +54,12 @@
           }
         }
 
-        .stat-label {
+        .stat-title {
+          text-align: center;
+          color: var(--composer-font-color-secondary);
+        }
+
+        .stat-description {
           text-align: center;
           color: var(--composer-font-color-secondary);
         }
@@ -72,6 +84,7 @@
   .container .max-content .wrapper .stats-grid {
     gap: var(--composer-gap-md);
 
+    .card .stat-value .stat-prefix,
     .card .stat-value .stat-number,
     .card .stat-value .stat-suffix {
       font-size: 4rem;
@@ -80,14 +93,19 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .max-content .wrapper .stats-grid {
-    flex-direction: column;
-    
-    gap: var(--composer-gap-md);
+  .container .max-content .wrapper {
+    .header .subtitle {
+      text-align: center;
+    }
 
-    .card .stat-value .stat-number,
-    .card .stat-value .stat-suffix {
-      font-size: 3rem;
+    .stats-grid {
+      gap: var(--composer-gap-md);
+
+      .card .stat-value .stat-prefix,
+      .card .stat-value .stat-number,
+      .card .stat-value .stat-suffix {
+        font-size: 3rem;
+      }
     }
   }
 }
