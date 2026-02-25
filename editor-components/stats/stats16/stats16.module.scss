@@ -7,6 +7,7 @@
 
         .content {
             align-items: center;
+            gap: var(--composer-gap-lg);
 
             .header-container {
                 align-items: center;
@@ -42,7 +43,6 @@
             }
 
             .stats-grid {
-                margin-top: var(--composer-gap-lg);
                 width: 100%;
 
                 .stat-item {
@@ -84,6 +84,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content {
+        gap: 0;
+
         .header-container {
             .button-container {
                 padding-bottom: var(--composer-gap-md);
@@ -91,8 +93,6 @@
         }
 
         .stats-grid {
-            margin-top: var(--composer-gap-sm);
-
             .stat-item .stat-value {
                 font-size: 4rem;
             }
