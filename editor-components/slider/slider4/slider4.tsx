@@ -7,8 +7,9 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
   media: TypeMediaInputValue;
-  header: React.JSX.Element;
-  content: React.JSX.Element;
+  sliderSubtitle: React.JSX.Element;
+  sliderTitle: React.JSX.Element;
+  sliderDescription: React.JSX.Element;
   button?: INPUTS.CastedButton;
 };
 
@@ -105,13 +106,19 @@ class Slider4 extends BaseSlider {
             },
             {
               type: "string",
-              key: "header",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
               displayer: "Title",
               value: "Customer Experience",
             },
             {
               type: "string",
-              key: "content",
+              key: "sliderDescription",
               displayer: "Description",
               value: "We prioritize our customers' experience, ensuring that every interaction with our platform is not only seamless and intuitive but also consistently exceeds expectations.",
             },
@@ -137,13 +144,19 @@ class Slider4 extends BaseSlider {
             },
             {
               type: "string",
-              key: "header",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
               displayer: "Title",
               value: "Sales and Marketing",
             },
             {
               type: "string",
-              key: "content",
+              key: "sliderDescription",
               displayer: "Description",
               value: "Our sales and marketing team Works together to provide you with a comprehensive solution that is tailored to your needs.",
             },
@@ -169,13 +182,19 @@ class Slider4 extends BaseSlider {
             },
             {
               type: "string",
-              key: "header",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
               displayer: "Title",
               value: "Rating and Reviews",
             },
             {
               type: "string",
-              key: "content",
+              key: "sliderDescription",
               displayer: "Description",
               value: "Our focus on ratings and reviews onsures that you have Access to the most comprehensive and up-to-date information available.",
             },
@@ -201,13 +220,19 @@ class Slider4 extends BaseSlider {
             },
             {
               type: "string",
-              key: "header",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
               displayer: "Title",
               value: "Productivity and Efficiency",
             },
             {
               type: "string",
-              key: "content",
+              key: "sliderDescription",
               displayer: "Description",
               value: "We are committed to fostering innovation and driving growth, providing you with cutting-edge tools and solutions to stay ahead in your industry.",
             },
@@ -233,13 +258,19 @@ class Slider4 extends BaseSlider {
             },
             {
               type: "string",
-              key: "header",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
               displayer: "Title",
               value: "Team Collaboration",
             },
             {
               type: "string",
-              key: "content",
+              key: "sliderDescription",
               displayer: "Description",
               value: "Your trust is our top priority. We ensure reliability in every aspect of our platform, delivering consistent performance and support so you can focus on what matters most.",
             },
@@ -265,13 +296,19 @@ class Slider4 extends BaseSlider {
             },
             {
               type: "string",
-              key: "header",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
               displayer: "Title",
               value: "Customer Support",
             },
             {
               type: "string",
-              key: "content",
+              key: "sliderDescription",
               displayer: "Description",
               value: "Our platform provides data-driven insights and tools to help you make confident decisions, optimize performance, and unlock your potential.",
             },
@@ -373,7 +410,7 @@ class Slider4 extends BaseSlider {
           <Base.ContainerGrid className={this.decorateCSS("down-page")}>
             {(this.castToString(controlTitle) || this.castToString(controlDescription) || previousArrow || nextArrow) && (
               <Base.VerticalContent className={this.decorateCSS("control-part")}>
-                {this.castToString(controlTitle) && <Base.H3 className={this.decorateCSS("control-title")}>{controlTitle}</Base.H3>}
+                {this.castToString(controlTitle) && <Base.H4 className={this.decorateCSS("control-title")}>{controlTitle}</Base.H4>}
                 {this.castToString(controlDescription) && <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
                 {showArrows && (previousArrow || nextArrow) && (
                   <div className={this.decorateCSS("arrows")}>
@@ -399,8 +436,9 @@ class Slider4 extends BaseSlider {
                       <Base.Row className={this.decorateCSS("icon-row")}>
                         {item.media && (<Base.Media value={item.media} className={this.decorateCSS("play-icon")} />)}
                       </Base.Row>
-                      <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
-                      <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>
+                      {this.castToString(item.sliderSubtitle) && <Base.H4 className={this.decorateCSS("item-subtitle")}>{item.sliderSubtitle}</Base.H4>}
+                      {this.castToString(item.sliderTitle) && <Base.H3 className={this.decorateCSS("item-header")}>{item.sliderTitle}</Base.H3>}
+                      {this.castToString(item.sliderDescription) && <Base.P className={this.decorateCSS("item-content")}>{item.sliderDescription}</Base.P>}
                       {item.button && (this.castToString(item.button.text) || (item.button.icon && (item.button.icon)?.name)) && (
                         <div className={this.decorateCSS("card-button")}>
                           <Base.Button buttonType={item.button.type}>
@@ -428,7 +466,7 @@ class Slider4 extends BaseSlider {
               ))}
             </div>
           )}
-          {buttons.length > 0 && (
+          {buttons.filter((button: INPUTS.CastedButton) => this.castToString(button.text) || (button.icon && (button.icon)?.name)).length > 0 && (
             <Base.Row className={this.decorateCSS("button-wrapper")}>
               {buttons.map((button: INPUTS.CastedButton, index: number) => (
                 (this.castToString(button.text) || (button.icon && (button.icon)?.name)) && (

@@ -3,21 +3,25 @@
 .container {
   .max-content {
     display: flex;
-    gap: var(--composer-gap-sm);
+    gap: var(--composer-gap-lg);
     flex-direction: column;
     position: relative;
 
     .vertical-content {
 
       .title,
-      .subtitle,
-      .description {
+      .subtitle {
         content: "";
+      }
+
+      .description {
+        margin-bottom: 0;
       }
     }
 
     .down-page {
       gap: var(--composer-gap-md);
+      align-items: stretch;
 
       .control-part {
         flex: 1;
@@ -26,7 +30,6 @@
         justify-content: start;
         text-align: left;
         padding: var(--composer-gap-md);
-        margin: var(--composer-gap-md) 0;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border-radius: var(--composer-border-radius-lg);
 
@@ -82,7 +85,6 @@
           display: flex;
           gap: var(--composer-gap-md);
           position: relative;
-          margin-bottom: 20px;
 
           :global(.slick-dots) {
             display: none !important;
@@ -90,7 +92,6 @@
 
           :global(.slick-list) {
             :global(.slick-track) {
-              padding: var(--composer-gap-md) 0;
               display: flex;
               align-items: stretch;
               height: 100%;
@@ -115,7 +116,7 @@
             padding: var(--composer-gap-lg);
             transition: transform var(--composer-transition-duration-normal) ease;
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-            border-radius: var(--composer-border-radius-lg);
+            border-radius: var(--composer-border-radius-md);
             height: 100%;
             min-height: 265px;
 
@@ -192,8 +193,6 @@
       justify-content: center;
       align-items: center;
       list-style: none;
-      padding: 0;
-      margin: var(--composer-gap-sm) 0;
       width: 100%;
       gap: var(--composer-gap-sm);
 
@@ -223,7 +222,6 @@
       display: flex;
       gap: var(--composer-gap-sm);
       flex-wrap: wrap;
-      margin-top: 30px;
 
       .button-text {
         content: "";
@@ -239,18 +237,16 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: 0;
+      gap: var(--composer-gap-md);
 
       .down-page {
-        .control-part {
-          margin: var(--composer-gap-md) 0 0 0 !important;
-        }
-
         .slider-parent {
           max-width: 100%;
 
           .carousel {
             :global(.slick-list) {
+              margin: 0 calc(-1 * var(--composer-gap-sm));
+
               :global(.slick-track) {
                 :global(.slick-slide) {
                   padding: 0 var(--composer-gap-sm);
@@ -282,20 +278,8 @@
       .down-page {
         padding: 0;
 
-        .control-part {
-          margin: var(--composer-gap-md) 0 0 0 !important;
-        }
-
         .slider-parent {
           .carousel {
-
-            :global(.slick-list) {
-              :global(.slick-track) {
-                :global(.slick-slide) {
-                  padding: 0;
-                }
-              }
-            }
 
             .card {
               &.hover-active:hover {
