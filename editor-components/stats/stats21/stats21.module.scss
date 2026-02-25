@@ -79,13 +79,16 @@
                             align-items: center;
                             font-size: 5rem;
 
+                            .stat-prefix,
                             .stat-number,
                             .stat-suffix {
                                 color: inherit;
                             }
                         }
 
-                        .stat-label {
+                        .stat-title,
+                        .stat-subtitle,
+                        .stat-description {
                             text-align: left;
                             color: var(--composer-font-color-primary);
                         }
