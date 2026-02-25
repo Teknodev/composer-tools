@@ -105,7 +105,6 @@
         .title,
         .description {
             color: var(--composer-font-color-primary);
-            margin: 0;
             width: 100%;
             text-align: inherit;
         }
@@ -222,7 +221,9 @@
 
             .button-group {
                 margin-left: 0;
-                grid-template-columns: minmax(0, 1fr);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
             }
         }
     }
