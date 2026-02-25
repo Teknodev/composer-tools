@@ -58,13 +58,17 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .wrapper .right .stats-grid {
-    gap: var(--composer-gap-md);
+  .container .max-content .wrapper {
+    flex-direction: column;
 
-    .card .stat-value {
-      .stat-number,
-      .stat-suffix {
-        font-size: 4rem;
+    .right .stats-grid {
+      gap: var(--composer-gap-md);
+
+      .card .stat-value {
+        .stat-number,
+        .stat-suffix {
+          font-size: 4rem;
+        }
       }
     }
   }
