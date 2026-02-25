@@ -12,27 +12,6 @@ class CallToAction33 extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "Creating Websites is Easy with Impreza",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: "Knowledge is limited. Imagination encircles the world.Imagination is more important than knowledge.",
-    });
-
-    this.addProp({
       type: "object",
       key: "cardMedia",
       displayer: "Media",
@@ -56,6 +35,27 @@ class CallToAction33 extends BaseCallToAction {
           value: true,
         },
       ],
+    });
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Creating Websites is Easy with Impreza",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "Knowledge is limited. Imagination encircles the world.Imagination is more important than knowledge.",
     });
 
     this.addProp({
