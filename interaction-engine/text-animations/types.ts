@@ -97,6 +97,8 @@ export interface TextAnimationPreset {
   visibleControls: ControlVisibility;
   restrictions: PropertyRestrictions;
   previewScript: string;
+  /** Whether this preset supports enter-effect animations */
+  supportsEnterEffect?: boolean;
 }
 
 export interface ControlVisibility {

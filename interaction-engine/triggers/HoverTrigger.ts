@@ -22,12 +22,13 @@ export class HoverTrigger extends BaseTrigger {
     // Debug: report attachment
     logger.debug('HoverTrigger: attaching to', { target, config: this.config });
 
-    this.boundEnterHandler = async (event?: Event) => {
+    this.boundEnterHandler = (event?: Event) => {
       // Debug: enter fired
       logger.debug('HoverTrigger: enter handler fired on', { element: event?.currentTarget || event?.target || target });
-      // Reverse any previous animation before starting new one to avoid
-      // mid-animation 'frozen' states when switching between elements.
-      await cleanup?.();
+      // Do NOT await cleanup here — command.execute() will synchronously cancel
+      // any running animations (including in-progress cleanup reverses) via
+      // cancelAllAnimations().  Awaiting cleanup caused race conditions where a
+      // slow reverse animation blocked re-triggering.
       fire();
     };
 
@@ -47,31 +48,16 @@ export class HoverTrigger extends BaseTrigger {
 
     let triggerTarget = target;
     if (this.config?.sectionId) {
-      if (this.config.sectionId.startsWith('.')) {
-        const className = this.config.sectionId.slice(1);
-        try {
-          let elements = document.querySelectorAll(`[class~="${className}"]`);
-          if (elements.length === 0 && !className.startsWith('auto-generate-')) {
-            const prefixed = `auto-generate-${className}`;
-            elements = document.querySelectorAll(`[class~="${prefixed}"]`);
-            logger.debug('HoverTrigger: fallback to prefixed token', { className, prefixed, elements });
-          } else {
-            logger.debug('HoverTrigger: found elements for', { className, elements });
+      const { target: resolved, elements } = this.resolveSectionId(this.config.sectionId, target);
+      triggerTarget = resolved;
+      if (elements) {
+        for (const el of elements) {
+          this.addEventListener(el, 'mouseenter', this.boundEnterHandler);
+          if (cleanup && !this.persistOnLeave) {
+            this.addEventListener(el, 'mouseleave', this.boundLeaveHandler);
           }
-
-          triggerTarget = (elements[0] as HTMLElement) || target;
-          // Attach to all elements with the class token
-          for (let i = 0; i < elements.length; i++) {
-            this.addEventListener(elements[i] as HTMLElement, 'mouseenter', this.boundEnterHandler);
-            if (cleanup && !this.persistOnLeave) {
-              this.addEventListener(elements[i] as HTMLElement, 'mouseleave', this.boundLeaveHandler);
-            }
-          }
-        } catch (error) {
-          logger.error('HoverTrigger: error finding elements', error);
         }
       } else {
-        triggerTarget = document.getElementById(this.config.sectionId) || target;
         this.addEventListener(triggerTarget, 'mouseenter', this.boundEnterHandler);
         if (cleanup && !this.persistOnLeave) {
           this.addEventListener(triggerTarget, 'mouseleave', this.boundLeaveHandler);

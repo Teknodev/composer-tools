@@ -12,14 +12,21 @@ export class LoadTrigger extends BaseTrigger {
   private boundHandler?: () => void;
   private timeoutId?: number;
   private hasTriggered = false;
+  private constructorConfig?: LoadTriggerConfig;
+
+  constructor(config?: LoadTriggerConfig) {
+    super();
+    this.constructorConfig = config;
+  }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
     this.target = target;
     this.fire = fire;
     this.cleanup = cleanup;
 
-    // Get configuration from data attributes or defaults
-    const config = this.getConfig(target);
+    // Merge constructor config over data-attribute config
+    const dataConfig = this.getConfig(target);
+    const config = { ...dataConfig, ...this.constructorConfig };
     const { delay = 0, waitForImages = false, waitForElement = true } = config;
 
     const executeFire = () => {

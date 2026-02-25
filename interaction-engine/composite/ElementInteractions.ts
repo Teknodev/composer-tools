@@ -25,7 +25,6 @@ export class ElementInteractions implements Disposable {
   private interactions: Interaction[] = [];
   private mounted = false;
   private targetElement?: HTMLElement;
-  private interactionExecutionMap: Map<string, boolean> = new Map();
   private performanceMetrics: PerformanceMetrics = {
     executionCount: 0,
     averageExecutionTime: 0,
@@ -247,7 +246,6 @@ export class ElementInteractions implements Disposable {
     
     const clearedCount = this.interactions.length;
     this.interactions = [];
-    this.interactionExecutionMap.clear();
 
     logger.debug('Interactions cleared', {
       component: 'ElementInteractions',

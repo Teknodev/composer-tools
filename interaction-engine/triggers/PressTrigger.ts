@@ -15,18 +15,20 @@ export class PressTrigger extends BaseTrigger {
   }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
-    console.log('Attaching PressTrigger with config:', this.config);
+    logger.debug('PressTrigger: attaching with config:', { config: this.config });
     this.fire = fire;
     this.cleanup = cleanup;
     
-    this.boundPressHandler = async () => {
+    this.boundPressHandler = () => {
       // Check if trigger should only fire once
       if (this.config?.once && this.hasTriggered) {
         return;
       }
 
-      // Reverse any ongoing animation before starting the press animation
-      await cleanup?.();
+      // Do NOT await cleanup here — command.execute() will synchronously cancel
+      // any running animations (including in-progress cleanup reverses) via
+      // cancelAllAnimations().  Awaiting cleanup caused race conditions where a
+      // slow reverse animation blocked re-triggering.
       fire();
       this.hasTriggered = true;
     };
@@ -45,36 +47,18 @@ export class PressTrigger extends BaseTrigger {
 
     let triggerTarget = target;
     if (this.config?.sectionId) {
-      if (this.config.sectionId.startsWith('.')) {
-        const className = this.config.sectionId.slice(1);
-        try {
-          let elements = document.querySelectorAll(`[class~="${className}"]`);
-          if (elements.length === 0 && !className.startsWith('auto-generate-')) {
-            const prefixed = `auto-generate-${className}`;
-            elements = document.querySelectorAll(`[class~="${prefixed}"]`);
-            logger.debug('PressTrigger: fallback to prefixed token', { className, prefixed, elements });
-          } else {
-            logger.debug('PressTrigger: found elements for', { className, elements });
-          }
-
-          triggerTarget = (elements[0] as HTMLElement) || target;
-          // Attach to all elements with the class token
-          for (let i = 0; i < elements.length; i++) {
-            this.addEventListener(elements[i] as HTMLElement, 'mousedown', this.boundPressHandler);
-          }
-          // Attach a single document-level mouseup listener for release handling
-          if (cleanup) {
-            this.addEventListener(document, 'mouseup', this.boundReleaseHandler);
-          }
-        } catch (error) {
-          logger.error('PressTrigger: error finding elements', error);
+      const { target: resolved, elements } = this.resolveSectionId(this.config.sectionId, target);
+      triggerTarget = resolved;
+      if (elements) {
+        for (const el of elements) {
+          this.addEventListener(el, 'mousedown', this.boundPressHandler);
         }
       } else {
-        triggerTarget = document.getElementById(this.config.sectionId) || target;
         this.addEventListener(triggerTarget, 'mousedown', this.boundPressHandler);
-        if (cleanup) {
-          this.addEventListener(document, 'mouseup', this.boundReleaseHandler);
-        }
+      }
+      // Attach a single document-level mouseup listener for release handling
+      if (cleanup) {
+        this.addEventListener(document, 'mouseup', this.boundReleaseHandler);
       }
     } else {
       this.addEventListener(target, 'mousedown', this.boundPressHandler);

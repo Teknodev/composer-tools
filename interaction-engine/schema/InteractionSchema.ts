@@ -1,10 +1,12 @@
 // src/composer-tools/interaction-engine/schema/InteractionSchema.ts
 
+import type { CommandConfig } from '../core/types';
+
 export interface InteractionDefinition {
   id: string;
   trigger: string;
   command: string;
-  config: Record<string, any>;
+  config: CommandConfig | Record<string, any>;
 }
 
 export interface ElementInteractionsSchema {

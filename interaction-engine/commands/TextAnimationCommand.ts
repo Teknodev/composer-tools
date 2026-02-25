@@ -1,6 +1,12 @@
 // src/composer-tools/interaction-engine/commands/TextAnimationCommand.ts
 
-import { BaseAnimationCommand, InteractionContext } from "../core/types";
+import {
+  BaseAnimationCommand,
+  InteractionContext,
+  DEFAULT_ANIMATION_DURATION,
+  DEFAULT_EASING,
+} from "../core/types";
+import { AnimationEngineResolver } from "../core/AnimationEngineResolver";
 import { logger } from "../utils/Logger";
 import { TEXT_ANIMATION_PRESETS } from "../text-animations/presets";
 
@@ -122,9 +128,14 @@ export class TextAnimationCommand extends BaseAnimationCommand {
     // Apply enter effects
     if (enterEffect && preset.supportsEnterEffect) {
       logger.debug("[TextAnimation] using enterEffect branch");
-      await this.applyEnterEffects(animatableSpans, enterEffect, transition);
+      // Resolve engine from config to decide animation strategy
+      if (AnimationEngineResolver.isAnimateCss(fullConfig?.engine)) {
+        await this.applyEnterEffectsWithAnimateCss(animatableSpans, enterEffect, transition, fullConfig);
+      } else {
+        await this.applyEnterEffects(animatableSpans, enterEffect, transition);
+      }
       logger.debug("[TextAnimation] enterEffect complete");
-    } else if (preset.id === "custom" && fullConfig?.engine === "animateCss") {
+    } else if (preset.id === "custom" && AnimationEngineResolver.isAnimateCss(fullConfig?.engine)) {
       // Apply Animate.css for custom preset
       logger.debug("[TextAnimation] using animateCss branch for custom preset");
       await this.applyAnimateCssToSpans(animatableSpans, fullConfig, transition);
@@ -149,7 +160,7 @@ export class TextAnimationCommand extends BaseAnimationCommand {
 
       // Apply Animate.css animation
       const animationName = config.animation || "bounce";
-      const duration = config.duration || 1000;
+      const duration = config.duration || DEFAULT_ANIMATION_DURATION;
       const iterationCount = config.iterationCount || 1;
       const direction = config.animationDirection || config.animateCssDirection || config.direction || "normal";
       const fillMode = config.fillMode || "both";
@@ -229,9 +240,9 @@ export class TextAnimationCommand extends BaseAnimationCommand {
           },
         ],
         {
-          duration: transition?.duration || 1000,
+          duration: transition?.duration || DEFAULT_ANIMATION_DURATION,
           delay,
-          easing: this.mapEasing(transition?.easing || "ease"),
+          easing: this.mapEasing(transition?.easing || DEFAULT_EASING),
           fill: "forwards",
         },
       );
@@ -240,6 +251,73 @@ export class TextAnimationCommand extends BaseAnimationCommand {
       promises.push(
         new Promise((resolve) => {
           animation.addEventListener("finish", () => resolve());
+        }),
+      );
+    });
+
+    await Promise.all(promises);
+  }
+
+  /**
+   * Apply enter effects using Animate.css class-based animations per span.
+   * Falls back to Web Animations API for properties not supported by animate.css.
+   */
+  private async applyEnterEffectsWithAnimateCss(
+    spans: HTMLSpanElement[],
+    enterEffect: any,
+    transition: any,
+    fullConfig?: any,
+  ): Promise<void> {
+    const promises: Promise<void>[] = [];
+    const animationName = fullConfig?.animateCssAnimation || fullConfig?.animation || 'fadeIn';
+    const duration = transition?.duration || fullConfig?.duration || DEFAULT_ANIMATION_DURATION;
+
+    spans.forEach((span, index) => {
+      const delay = index * (transition?.delay || 100);
+
+      // Apply initial hidden state
+      if (enterEffect.opacity?.active) {
+        span.style.opacity = enterEffect.opacity.value.toString();
+      }
+      if (enterEffect.scale?.active) {
+        span.style.transform = `scale(${enterEffect.scale.value})`;
+      }
+      if (enterEffect.blur?.active) {
+        span.style.filter = `blur(${enterEffect.blur.value}px)`;
+      }
+
+      // Apply animate.css classes with stagger delay
+      const formattedName = animationName.startsWith('animate__')
+        ? animationName
+        : `animate__${animationName}`;
+
+      span.style.setProperty('--animate-duration', `${duration}ms`);
+      span.style.setProperty('--animate-delay', `${delay}ms`);
+      span.classList.add('animate__animated', formattedName);
+
+      promises.push(
+        new Promise<void>((resolve) => {
+          const handleEnd = () => {
+            span.removeEventListener('animationend', handleEnd);
+            // Clean up to final state
+            span.style.opacity = '1';
+            span.style.transform = 'none';
+            span.style.filter = 'none';
+            span.classList.remove('animate__animated', formattedName);
+            span.style.removeProperty('--animate-duration');
+            span.style.removeProperty('--animate-delay');
+            resolve();
+          };
+          span.addEventListener('animationend', handleEnd);
+
+          // Fallback timeout
+          setTimeout(() => {
+            span.removeEventListener('animationend', handleEnd);
+            span.style.opacity = '1';
+            span.style.transform = 'none';
+            span.style.filter = 'none';
+            resolve();
+          }, duration + delay + 100);
         }),
       );
     });
@@ -262,10 +340,10 @@ export class TextAnimationCommand extends BaseAnimationCommand {
       const keyframes = this.createKeyframesForPreset(preset, transition, fullConfig);
 
       const animation = span.animate(keyframes, {
-        duration: transition?.duration || preset.defaultConfig?.timing?.duration || 1000,
+        duration: transition?.duration || preset.defaultConfig?.timing?.duration || DEFAULT_ANIMATION_DURATION,
         delay,
         easing: this.mapEasing(
-          transition?.easing || preset.defaultConfig?.timing?.easing || "ease",
+          transition?.easing || preset.defaultConfig?.timing?.easing || DEFAULT_EASING,
         ),
         fill: "forwards",
         iterations: 1,
@@ -378,9 +456,84 @@ export class TextAnimationCommand extends BaseAnimationCommand {
     this.cancelAnimations(context.target);
   }
 
-  cleanup(context: InteractionContext): void {
-    // For text animations, don't interrupt on hover out - let them complete naturally
-    // Only cancel if explicitly requested (e.g., on component unmount)
-    return;
+  /**
+   * Smooth cleanup — fades out animated spans then restores original text.
+   * Supports abort via forceCancel() for rapid re-triggering.
+   */
+  async cleanup(context: InteractionContext): Promise<void> {
+    const target = context.target;
+    const originalText = target.getAttribute("data-original-text");
+
+    // Nothing to revert if text animation was never applied
+    if (!originalText) {
+      return;
+    }
+
+    // Gather all animated spans
+    const spans = Array.from(target.querySelectorAll("span")) as HTMLSpanElement[];
+
+    if (spans.length === 0) {
+      // No spans — restore original text directly
+      target.textContent = originalText;
+      target.removeAttribute("data-original-text");
+      return;
+    }
+
+    // Abort flag — set by _cleanupAbortFn when forceCancel() fires during
+    // the fade-out.  Prevents the post-await text restoration from wiping out
+    // a newly-started execute()'s spans.
+    let aborted = false;
+    this._cleanupAbortFn = () => {
+      aborted = true;
+    };
+
+    // Fade out all spans smoothly
+    const duration = 300;
+    const fadeAnimations: Animation[] = [];
+    const promises: Promise<void>[] = [];
+
+    spans.forEach((span) => {
+      const animation = span.animate(
+        [
+          { opacity: getComputedStyle(span).opacity },
+          { opacity: "0" },
+        ],
+        {
+          duration,
+          easing: "ease-out",
+          fill: "forwards",
+        },
+      );
+      fadeAnimations.push(animation);
+      promises.push(
+        new Promise<void>((resolve) => {
+          animation.onfinish = () => resolve();
+          animation.oncancel = () => resolve();
+        }),
+      );
+    });
+
+    try {
+      await Promise.all(promises);
+    } catch {
+      // Animations cancelled
+    }
+
+    // If a new execute() started while we were fading out, don't touch the DOM
+    if (aborted) {
+      this._cleanupAbortFn = undefined;
+      return;
+    }
+    this._cleanupAbortFn = undefined;
+
+    // Cancel any tracked active animations from the original execute()
+    this.activeAnimations.forEach((animation) => animation.cancel());
+    this.activeAnimations.clear();
+    this.cleanupFunctions.forEach((fn) => fn());
+    this.cleanupFunctions.clear();
+
+    // Restore original text content
+    target.textContent = originalText;
+    target.removeAttribute("data-original-text");
   }
 }

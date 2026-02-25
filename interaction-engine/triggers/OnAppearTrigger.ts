@@ -26,10 +26,8 @@ export class OnAppearTrigger extends BaseTrigger {
     this.fire = fire;
     this.cleanup = cleanup;
 
-    // Get configuration from data attributes or defaults
-    const config = this.getConfig(target);
     const { threshold = 0.1, rootMargin = '0px', once = false, delay = 0 } = this.interactionConfig || {};
-    logger.debug('OnAppearTrigger config:', { config });
+    logger.debug('OnAppearTrigger config:', { threshold, rootMargin, once, delay });
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {

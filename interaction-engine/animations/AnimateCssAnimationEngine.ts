@@ -6,12 +6,48 @@ import { logger } from '../utils/Logger';
 // Global timeout registry for AnimateCss animations
 const activeTimeouts = new Map<HTMLElement, number>();
 
+/** CSS custom properties & styles set during animate.css animations */
+const ANIMATE_STYLE_PROPS = [
+  '--animate-duration',
+  '--animate-delay',
+  '--animate-repeat',
+  'animation-iteration-count',
+  'animation-direction',
+  'animation-fill-mode',
+] as const;
+
+/**
+ * Remove animate.css artefacts from an element and force a reflow.
+ * @param element Target element
+ * @param specificClass Specific animate__ class to remove. When omitted, all animate__ classes are removed.
+ */
+function resetElement(element: HTMLElement, specificClass?: string): void {
+  try {
+    if (specificClass) {
+      element.classList.remove('animate__animated', specificClass);
+    } else {
+      Array.from(element.classList)
+        .filter(c => c.startsWith('animate__'))
+        .forEach(c => element.classList.remove(c));
+    }
+
+    for (const prop of ANIMATE_STYLE_PROPS) {
+      element.style.removeProperty(prop);
+    }
+    element.style.animation = '';
+    // Force reflow so subsequent class additions reliably restart animation
+    void element.offsetWidth;
+  } catch (_) {
+    /* ignore cleanup errors */
+  }
+}
+
 export class AnimateCssAnimationEngine implements AnimationEngine {
   async animate(
     element: HTMLElement,
     properties: Record<string, any>,
     duration: number,
-    easing?: string
+    _easing?: string
   ): Promise<{ cancel?: () => void } | void> {
     const execId = (properties && (properties as any).__executionId) || undefined;
     if (execId) {
@@ -23,7 +59,7 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
     }
 
     try {
-      console.debug('AnimateCssAnimationEngine.animate: started', { execId, elementId: element.id, properties, duration });
+      logger.debug('AnimateCssAnimationEngine.animate: started', { execId, elementId: element.id, properties, duration });
     } catch (err) {
       /* ignore */
     }
@@ -42,23 +78,7 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
 
     // CLEANUP: ensure any previous animate.css artifacts are removed so adding
     // classes below will always restart the animation (handles interrupted/infinite runs)
-    try {
-      Array.from(element.classList)
-        .filter(c => c.startsWith('animate__'))
-        .forEach(c => element.classList.remove(c));
-
-      element.style.removeProperty('--animate-duration');
-      element.style.removeProperty('--animate-delay');
-      element.style.removeProperty('animation-iteration-count');
-      element.style.removeProperty('animation-direction');
-      element.style.removeProperty('animation-fill-mode');
-      element.style.animation = '';
-
-      // Force reflow so subsequent class additions reliably restart animation
-      void element.offsetWidth;
-    } catch (err) {
-      /* ignore cleanup errors */
-    }
+    resetElement(element);
 
     // Optionally observe visibility to pause/resume by re-adding classes on re-entry
     let visibilityObserver: IntersectionObserver | undefined;
@@ -68,7 +88,7 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
       try {
         visibilityObserver = new IntersectionObserver((entries) => {
           entries.forEach((entry) => {
-            try { console.debug('AnimateCssAnimationEngine.visibilityObserver: entry', { execId, elementId: element.id, isIntersecting: entry.isIntersecting }); } catch (e) {}
+            try { logger.debug('AnimateCssAnimationEngine.visibilityObserver: entry', { execId, elementId: element.id, isIntersecting: entry.isIntersecting }); } catch (e) {}
             if (entry.isIntersecting) {
               // Re-add classes to restart animation on re-entry
               element.classList.add('animate__animated', formattedAnimationClass);
@@ -91,7 +111,7 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
     element.classList.add('animate__animated', formattedAnimationClass);
 
     try {
-      console.debug('AnimateCssAnimationEngine.animate: classes added', { execId, elementId: element.id, formattedAnimationClass, offScreenMode, elementClasses: Array.from(element.classList) });
+      logger.debug('AnimateCssAnimationEngine.animate: classes added', { execId, elementId: element.id, formattedAnimationClass, offScreenMode, elementClasses: Array.from(element.classList) });
     } catch (e) {
       /* ignore */
     }
@@ -110,7 +130,7 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
     if (properties.iterationCount && properties.iterationCount !== 1) {
       element.style.setProperty('--animate-repeat', properties.iterationCount.toString());
       element.style.animationIterationCount = properties.iterationCount.toString();
-      try { console.debug('AnimateCssAnimationEngine.animate: set iteration', { iterationCount: properties.iterationCount }); } catch (e) {}
+      try { logger.debug('AnimateCssAnimationEngine.animate: set iteration', { iterationCount: properties.iterationCount }); } catch (e) {}
     }
 
     // Set direction if provided
@@ -131,19 +151,7 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
         // Remove event listener
         element.removeEventListener('animationend', handleAnimationEnd);
         // Clean up classes and styles
-        element.classList.remove('animate__animated', formattedAnimationClass);
-        element.style.removeProperty('--animate-duration');
-        element.style.removeProperty('--animate-delay');
-        element.style.removeProperty('--animate-repeat');
-        element.style.removeProperty('animation-iteration-count');
-        element.style.removeProperty('animation-direction');
-        element.style.removeProperty('animation-fill-mode');
-        try {
-          element.style.animation = '';
-          void element.offsetWidth;
-        } catch (e) {
-          /* ignore */
-        }
+        resetElement(element, formattedAnimationClass);
         if (visibilityObserver) {
           try { visibilityObserver.disconnect(); } catch (e) {}
           visibilityObserver = undefined;
@@ -154,29 +162,16 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
       if (properties.iterationCount === "infinite") {
         // Resolve after delay, leaving the animation running
         setTimeout(() => {
-          try { console.debug('AnimateCssAnimationEngine.animate: finished (infinite)', { execId, elementId: element.id }); } catch (e) {}
+          try { logger.debug('AnimateCssAnimationEngine.animate: finished (infinite)', { execId, elementId: element.id }); } catch (e) {}
           resolve({ cancel });
         }, properties.delay || 0);
         return;
       }
 
       const handleAnimationEnd = () => {
-        try { console.debug('AnimateCssAnimationEngine.animate: finished', { execId, elementId: element.id }); } catch (e) {}
+        try { logger.debug('AnimateCssAnimationEngine.animate: finished', { execId, elementId: element.id }); } catch (e) {}
         
-        element.classList.remove('animate__animated', formattedAnimationClass);
-        element.style.removeProperty('--animate-duration');
-        element.style.removeProperty('--animate-delay');
-        element.style.removeProperty('--animate-repeat');
-        element.style.removeProperty('animation-iteration-count');
-        element.style.removeProperty('animation-direction');
-        element.style.removeProperty('animation-fill-mode');
-        // Ensure any inline animation is cleared so subsequent class additions restart correctly
-        try {
-          element.style.animation = '';
-          void element.offsetWidth;
-        } catch (e) {
-          /* ignore */
-        }
+        resetElement(element, formattedAnimationClass);
         
         if (visibilityObserver) {
           try { visibilityObserver.disconnect(); } catch (e) {}
@@ -195,27 +190,15 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
 
       // Fallback timeout in case animationend doesn't fire
       fallbackTimeoutId = window.setTimeout(() => {
-        try { console.debug('AnimateCssAnimationEngine.animate: fallback finished', { execId, elementId: element.id }); } catch (e) {}
+        try { logger.debug('AnimateCssAnimationEngine.animate: fallback finished', { execId, elementId: element.id }); } catch (e) {}
         
-        element.classList.remove('animate__animated', formattedAnimationClass);
-        element.style.removeProperty('--animate-duration');
-        element.style.removeProperty('--animate-delay');
-        element.style.removeProperty('--animate-repeat');
-        element.style.removeProperty('animation-iteration-count');
-        element.style.removeProperty('animation-direction');
-        element.style.removeProperty('animation-fill-mode');
-        try {
-          element.style.animation = '';
-          void element.offsetWidth;
-        } catch (e) {
-          /* ignore */
-        }
+        resetElement(element, formattedAnimationClass);
         
         if (visibilityObserver) {
           try { visibilityObserver.disconnect(); } catch (e) {}
           visibilityObserver = undefined;
         }
-        this.activeTimeouts.delete(element);
+        activeTimeouts.delete(element);
         resolve({ cancel });
       }, totalDuration + 100);
 
@@ -230,60 +213,6 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
       activeTimeouts.delete(element);
     }
 
-    // Clean up animation classes and styles
-    try {
-      Array.from(element.classList)
-        .filter(c => c.startsWith('animate__'))
-        .forEach(c => element.classList.remove(c));
-
-      element.style.removeProperty('--animate-duration');
-      element.style.removeProperty('--animate-delay');
-      element.style.removeProperty('--animate-repeat');
-      element.style.removeProperty('animation-iteration-count');
-      element.style.removeProperty('animation-direction');
-      element.style.removeProperty('animation-fill-mode');
-      element.style.animation = '';
-      void element.offsetWidth;
-    } catch (e) {
-      /* ignore */
-    }
-  }
-
-  private isAnimateCssLoaded(): boolean {
-    // Check if animate.css is loaded by looking for the animate__animated class in stylesheets
-    try {
-      for (let i = 0; i < document.styleSheets.length; i++) {
-        const sheet = document.styleSheets[i] as CSSStyleSheet;
-        try {
-          const rules = sheet.cssRules || sheet.rules;
-          for (let j = 0; j < rules.length; j++) {
-            const rule = rules[j] as CSSStyleRule;
-            if (rule.selectorText && rule.selectorText.includes('.animate__animated')) {
-              return true;
-            }
-          }
-        } catch (e) {
-          // Cross-origin stylesheet, skip
-          continue;
-        }
-      }
-    } catch (e) {
-      /* ignore */
-    }
-
-    // Fallback: check if the class exists in computed styles
-    try {
-      const testElement = document.createElement('div');
-      testElement.className = 'animate__animated';
-      document.body.appendChild(testElement);
-      const computedStyle = window.getComputedStyle(testElement);
-      const hasAnimation = computedStyle.animationName !== 'none';
-      document.body.removeChild(testElement);
-      return hasAnimation;
-    } catch (e) {
-      /* ignore */
-    }
-
-    return false;
+    resetElement(element);
   }
 }

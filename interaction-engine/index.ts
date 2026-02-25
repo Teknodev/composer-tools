@@ -2,6 +2,7 @@
 
 // Core
 export * from './core/types';
+export { AnimationEngineResolver } from './core/AnimationEngineResolver';
 
 // Utils
 export { Logger, LogLevel, logger } from './utils/Logger';
@@ -16,9 +17,6 @@ export {
   errorHandler,
 } from './utils/ErrorHandler';
 export type { ErrorRecoveryStrategy } from './utils/ErrorHandler';
-export { Validator } from './utils/Validator';
-export type { ValidationRule } from './utils/Validator';
-export { ConfigValidator, ConfigSchemas } from './utils/ConfigValidator';
 export {
   ResourceManager,
   WeakResourceManager,
@@ -61,14 +59,7 @@ export { Interaction } from './models/Interaction';
 // Composite
 export { ElementInteractions } from './composite/ElementInteractions';
 
-// Animation
-export * from './animation/states/AnimationState';
-export { AnimationController } from './animation/AnimationController';
-export { IdleState } from './animation/states/IdleState';
-export { RunningState } from './animation/states/RunningState';
-export { CompletedState } from './animation/states/CompletedState';
-export { CancelledState } from './animation/states/CancelledState';
-export * from './animation/AnimationConfigBuilder';
+// Animation Engines
 export { WebAnimationsAPI } from './animations/WebAnimationsAPI';
 export { AnimateCssAnimationEngine } from './animations/AnimateCssAnimationEngine';
 
@@ -80,8 +71,10 @@ export { BasicModalService } from './services/ModalService';
 export { InteractionFactory } from './factory/InteractionFactory';
 export { TriggerFactory } from './factory/TriggerFactory';
 
-// Schema
+// Schema & Validation
 export * from './schema/InteractionSchema';
+export { ConfigValidator } from './schema/ConfigValidator';
+export type { ValidationResult } from './schema/ConfigValidator';
 
 // Bootstrap
 export { bootstrapInteractions } from './bootstrap/InteractionBootstrap';
@@ -92,6 +85,3 @@ export {
   bootstrapPageInteractions,
   cleanupActiveInteractions,
 } from './bootstrap/EngineManager';
-
-// History
-export { CommandHistory } from './history/CommandHistory';

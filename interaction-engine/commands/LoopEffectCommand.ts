@@ -1,9 +1,21 @@
 // src/composer-tools/interaction-engine/commands/LoopEffectCommand.ts
 
-import { BaseAnimationCommand } from '../core/types';
-import { InteractionContext } from '../core/types';
+import {
+  BaseAnimationCommand,
+  InteractionContext,
+  AnimationEngineType,
+  DEFAULT_LOOP_DURATION,
+  DEFAULT_EASING,
+  DEFAULT_ANIMATE_CSS_ANIMATION,
+} from '../core/types';
+import { AnimationEngineResolver } from '../core/AnimationEngineResolver';
+import { AnimateCssAnimationEngine } from '../animations/AnimateCssAnimationEngine';
+import { buildLoopKeyframesFromDefaults } from './animate/KeyframeBuilder';
+import { AnimationObserverManager } from './animate/AnimationObserverManager';
+import { logger } from '../utils/Logger';
 
 export interface LoopEffectConfig {
+  engine?: AnimationEngineType | string;
   type: 'loop' | 'mirror';
   delay?: number;
   opacity?: number;
@@ -27,11 +39,17 @@ export interface LoopEffectConfig {
     easing: string;
     duration: number;
   };
+  // Animate.css specific
+  animateCssAnimation?: string;
+  animation?: string;
+  animateCssDirection?: string;
+  animateCssFillMode?: string;
+  animateCssDuration?: number;
 }
 
 export class LoopEffectCommand extends BaseAnimationCommand {
   private animation?: Animation;
-  private observer?: IntersectionObserver;
+  private observerManager = new AnimationObserverManager();
 
   async execute(context: InteractionContext): Promise<void> {
     // Cancel any existing animations
@@ -40,16 +58,34 @@ export class LoopEffectCommand extends BaseAnimationCommand {
     const config = context.config as LoopEffectConfig;
     const element = context.target;
 
+    // Resolve animation engine from config
+    const engine = AnimationEngineResolver.resolve(config.engine);
+
     // Store original styles
     this.storeOriginalStyles(element, ['opacity', 'transform']);
 
+    // Route to the correct engine implementation
+    if (AnimationEngineResolver.isAnimateCss(config.engine)) {
+      await this.executeWithAnimateCss(element, config, engine as AnimateCssAnimationEngine);
+    } else {
+      await this.executeWithWebAnimations(element, config);
+    }
+  }
+
+  /**
+   * Execute loop effect using the Web Animations API.
+   */
+  private async executeWithWebAnimations(
+    element: HTMLElement,
+    config: LoopEffectConfig,
+  ): Promise<void> {
     // Create keyframes based on loop type
-    const keyframes = this.createLoopKeyframes(config);
+    const { keyframes } = buildLoopKeyframesFromDefaults(config);
 
     // Configure animation options
     const animationOptions: KeyframeAnimationOptions = {
-      duration: config.transition?.duration || 2000,
-      easing: this.mapEasing(config.transition?.easing || 'ease'),
+      duration: config.transition?.duration || DEFAULT_LOOP_DURATION,
+      easing: this.mapEasing(config.transition?.easing || DEFAULT_EASING),
       iterations: Infinity,
       direction: config.type === 'mirror' ? 'alternate' : 'normal',
       delay: config.delay || 0,
@@ -62,70 +98,45 @@ export class LoopEffectCommand extends BaseAnimationCommand {
 
     // Setup intersection observer for offScreen behavior
     if (config.offScreen === 'pause') {
-      this.setupIntersectionObserver(element);
+      this.observerManager.setup(element, this.animation);
     }
   }
 
-  private createLoopKeyframes(config: LoopEffectConfig): Keyframe[] {
-    const initialState: Keyframe = {
-      opacity: 1,
-      transform: 'translate(0, 0) scale(1) rotate(0deg) skew(0deg, 0deg)',
+  /**
+   * Execute loop effect using Animate.css class-based animations.
+   */
+  private async executeWithAnimateCss(
+    element: HTMLElement,
+    config: LoopEffectConfig,
+    engine: AnimateCssAnimationEngine,
+  ): Promise<void> {
+    const animationName =
+      config.animateCssAnimation || config.animation || DEFAULT_ANIMATE_CSS_ANIMATION;
+    const formattedAnimationName = animationName.startsWith('animate__')
+      ? animationName
+      : `animate__${animationName}`;
+
+    const animationConfig: Record<string, any> = {
+      animation: formattedAnimationName,
+      delay: config.delay,
+      iterationCount: 'infinite',
+      direction: config.type === 'mirror' ? 'alternate' : 'normal',
+      fillMode: config.animateCssFillMode || 'both',
+      offScreen: config.offScreen,
     };
 
-    const animatedState: Keyframe = {};
+    const duration = config.animateCssDuration || config.transition?.duration || DEFAULT_LOOP_DURATION;
 
-    // Apply opacity
-    if (config.opacity !== undefined) {
-      animatedState.opacity = config.opacity;
+    const result = await engine.animate(element, animationConfig, duration);
+
+    if (result && typeof result === 'object' && result.cancel) {
+      this.cancelAnimation = result.cancel;
     }
 
-    // Build transform string
-    const transforms: string[] = [];
-
-    // Apply offset (translate)
-    if (config.offset) {
-      const x = config.offset.x || 0;
-      const y = config.offset.y || 0;
-      transforms.push(`translate(${x}px, ${y}px)`);
-    }
-
-    // Apply scale
-    if (config.scale !== undefined) {
-      transforms.push(`scale(${config.scale})`);
-    }
-
-    // Apply rotation
-    if (config.rotate) {
-      if (config.rotate.mode === '3D') {
-        const x = config.rotate.x || 0;
-        const y = config.rotate.y || 0;
-        const z = config.rotate.z || 0;
-        transforms.push(`rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`);
-      } else {
-        const z = config.rotate.z || 0;
-        transforms.push(`rotate(${z}deg)`);
-      }
-    }
-
-    // Apply skew
-    if (config.skew) {
-      const x = config.skew.x || 0;
-      const y = config.skew.y || 0;
-      transforms.push(`skew(${x}deg, ${y}deg)`);
-    }
-
-    if (transforms.length > 0) {
-      animatedState.transform = transforms.join(' ');
-    }
-
-    // Return keyframes based on loop type
-    if (config.type === 'mirror') {
-      // Mirror mode: animate from initial to animated state (alternate direction will handle the return)
-      return [initialState, animatedState];
-    } else {
-      // Loop mode: animate from initial to animated and back to initial
-      return [initialState, animatedState, initialState];
-    }
+    logger.debug('LoopEffectCommand: animate.css loop started', {
+      animation: formattedAnimationName,
+      type: config.type,
+    });
   }
 
   private mapEasing(easing: string): string {
@@ -140,46 +151,88 @@ export class LoopEffectCommand extends BaseAnimationCommand {
     return easingMap[easing.toLowerCase()] || easing;
   }
 
-  private setupIntersectionObserver(element: HTMLElement): void {
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (this.animation) {
-            if (entry.isIntersecting) {
-              // Element is visible, play animation
-              this.animation.play();
-            } else {
-              // Element is off-screen, pause animation
-              this.animation.pause();
-            }
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1,
-      }
-    );
-
-    this.observer.observe(element);
-  }
-
-  cleanup(context: InteractionContext): void {
+  /**
+   * Smooth cleanup — captures computed mid-loop position, cancels the
+   * infinite animation, then animates back to the original values.
+   * Supports abort via forceCancel() for rapid re-triggering.
+   */
+  async cleanup(context: InteractionContext): Promise<void> {
     // Disconnect observer
-    if (this.observer) {
-      this.observer.disconnect();
-      this.observer = undefined;
-    }
+    this.observerManager.disconnect();
 
-    // Cancel all animations
+    const element = context.target;
+
+    // Capture current computed values BEFORE cancelling — this gives us the
+    // exact mid-loop position so we can smoothly reverse from it.
+    const computedStyle = getComputedStyle(element);
+    const currentOpacity = computedStyle.opacity;
+    const currentTransform = computedStyle.transform;
+
+    // Cancel all running loop animations
     this.cancelAllAnimations();
 
-    // Restore original styles
-    this.restoreOriginalStyles(context.target);
+    // Freeze element at the captured position via inline styles so it
+    // doesn't snap when the Web Animation fill effect is removed.
+    element.style.opacity = currentOpacity;
+    element.style.transform = currentTransform;
+
+    // Build target from stored originals
+    const originalOpacity = this.originalStyles.get('opacity') || '1';
+    const originalTransform = this.originalStyles.get('transform') || 'none';
+
+    // If already at original values, just restore immediately
+    if (currentOpacity === originalOpacity && currentTransform === originalTransform) {
+      this.restoreOriginalStyles(element);
+      return;
+    }
+
+    const config = context.config as LoopEffectConfig;
+    const duration = Math.min(config.transition?.duration || 600, 600);
+
+    return new Promise<void>((resolve) => {
+      const animation = element.animate(
+        [
+          { opacity: currentOpacity, transform: currentTransform },
+          { opacity: originalOpacity, transform: originalTransform },
+        ],
+        {
+          duration,
+          easing: 'ease-out',
+          fill: 'forwards',
+        },
+      );
+
+      this.reverseAnimation = animation;
+
+      // Allow forceCancel() to abort the reverse animation
+      this._cleanupAbortFn = () => {
+        animation.cancel();
+        // oncancel will handle resolve + reference cleanup
+      };
+
+      animation.onfinish = () => {
+        this._cleanupAbortFn = undefined;
+        this.restoreOriginalStyles(element);
+        this.reverseAnimation = undefined;
+        resolve();
+      };
+
+      animation.oncancel = () => {
+        this._cleanupAbortFn = undefined;
+        this.reverseAnimation = undefined;
+        resolve();
+      };
+    });
   }
 
   undo(context: InteractionContext): void {
-    this.cleanup(context);
+    // Undo is immediate (called on unmount) — no smooth reverse needed
+    this.observerManager.disconnect();
+    if (this._cleanupAbortFn) {
+      this._cleanupAbortFn();
+      this._cleanupAbortFn = undefined;
+    }
+    this.cancelAllAnimations();
+    this.restoreOriginalStyles(context.target);
   }
 }

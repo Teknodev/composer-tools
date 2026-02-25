@@ -1,9 +1,138 @@
 // src/composer-tools/interaction-engine/core/types.ts
+//
+// Core interfaces and type definitions for the interaction engine.
+// Class implementations are in separate files and re-exported here
+// for backward compatibility.
+
+export { BaseInteractionCommand } from './BaseInteractionCommand';
+export { BaseAnimationCommand } from './BaseAnimationCommand';
+export { originalStyleRegistry } from './StyleRegistry';
+
+// ── Animation Engine Types ────────────────────────────────────────────
+
+/** Supported animation engine identifiers */
+export enum AnimationEngineType {
+  WebAnimations = 'webAnimations',
+  AnimateCss = 'animateCss',
+}
+
+/** Default animation engine when none is specified */
+export const DEFAULT_ENGINE = AnimationEngineType.WebAnimations;
+
+/** Default animate.css animation name */
+export const DEFAULT_ANIMATE_CSS_ANIMATION = 'bounce';
+
+/** Default CSS property for standard property animations */
+export const DEFAULT_ANIMATION_PROPERTY = 'opacity';
+
+/** Default animation duration in ms */
+export const DEFAULT_ANIMATION_DURATION = 1000;
+
+/** Default loop animation duration in ms */
+export const DEFAULT_LOOP_DURATION = 2000;
+
+/** Default animation easing */
+export const DEFAULT_EASING = 'ease';
+
+/** Valid CSS animation playback directions */
+export const VALID_PLAYBACK_DIRECTIONS = [
+  'normal',
+  'reverse',
+  'alternate',
+  'alternate-reverse',
+] as const;
+
+export type PlaybackDirection = typeof VALID_PLAYBACK_DIRECTIONS[number];
+
+// ── Typed Config Interfaces ───────────────────────────────────────────
+
+/** Base fields shared by all animation configs */
+export interface BaseAnimationConfig {
+  engine?: AnimationEngineType | string;
+  duration?: number;
+  delay?: number;
+  easing?: string;
+}
+
+/** Config for the `animate` command */
+export interface AnimateCommandConfig extends BaseAnimationConfig {
+  // Standard property animation
+  property?: string;
+  value?: any;
+  to?: any;
+  opacity?: number;
+  // Playback
+  iterationCount?: number | 'infinite';
+  animationDirection?: PlaybackDirection;
+  // Animate.css specific
+  animateCssAnimation?: string;
+  animation?: string;
+  animateCssDuration?: number;
+  animateCssDelay?: number;
+  animateCssDirection?: PlaybackDirection;
+  animateCssIterationCount?: number | 'infinite';
+  animateCssFillMode?: string;
+  fillMode?: string;
+  // Loop/transform mode
+  loopType?: 'loop' | 'mirror';
+  scale?: number;
+  rotate?: { mode?: '2D' | '3D'; x?: number; y?: number; z?: number };
+  skew?: { x?: number; y?: number };
+  offset?: { x?: number; y?: number };
+  offScreen?: 'play' | 'pause';
+  // Cleanup behaviour
+  preserveEndState?: boolean;
+  keepEndState?: boolean;
+  // Trigger passthrough
+  triggerType?: string;
+}
+
+/** Config for the `loopEffect` command */
+export interface LoopEffectCommandConfig extends BaseAnimationConfig {
+  type: 'loop' | 'mirror';
+  opacity?: number;
+  scale?: number;
+  rotate?: { mode?: '2D' | '3D'; x?: number; y?: number; z?: number };
+  skew?: { x?: number; y?: number };
+  offset?: { x?: number; y?: number };
+  offScreen?: 'play' | 'pause';
+  transition?: { easing: string; duration: number };
+}
+
+/** Config for the `textAnimate` command */
+export interface TextAnimateCommandConfig extends BaseAnimationConfig {
+  textAnimation: {
+    preset: string;
+    granularity?: 'character' | 'word' | 'layer' | 'element';
+    enterEffect?: Record<string, any>;
+    transition?: Record<string, any>;
+  };
+}
+
+/** Config for the `navigate` command */
+export interface NavigateCommandConfig {
+  url?: string;
+  path?: string;
+  target?: '_self' | '_blank';
+}
+
+/** Config for the `openModal` command */
+export interface OpenModalCommandConfig {
+  modalId: string;
+  config?: Record<string, any>;
+}
+
+/** Discriminated union of all command configs */
+export type CommandConfig =
+  | AnimateCommandConfig
+  | LoopEffectCommandConfig
+  | TextAnimateCommandConfig
+  | NavigateCommandConfig
+  | OpenModalCommandConfig;
 
 /**
  * Context passed to interaction commands during execution
  */
-import { logger } from '../utils/Logger';
 export interface InteractionContext {
   /** Target HTML element for the interaction */
   target: HTMLElement;
@@ -15,8 +144,6 @@ export interface InteractionContext {
   router?: Router;
   /** Optional modal service for modal operations */
   modalService?: ModalService;
-  /** Optional animation engine for animations */
-  animationEngine?: AnimationEngine;
   /** Metadata about the interaction execution */
   metadata?: InteractionMetadata;
 }
@@ -57,20 +184,8 @@ export interface InteractionConfig extends Record<string, any> {
  * Router service interface for navigation
  */
 export interface Router {
-  /**
-   * Navigate to a path
-   * @param path - Target path
-   */
   navigate(path: string): void | Promise<void>;
-  
-  /**
-   * Get current path
-   */
   getCurrentPath?(): string;
-  
-  /**
-   * Check if navigation is supported
-   */
   isSupported?(): boolean;
 }
 
@@ -78,23 +193,8 @@ export interface Router {
  * Modal service interface
  */
 export interface ModalService {
-  /**
-   * Open a modal
-   * @param modalId - Modal identifier
-   * @param config - Modal configuration
-   */
   open(modalId: string, config?: Record<string, any>): void | Promise<void>;
-  
-  /**
-   * Close a modal
-   * @param modalId - Modal identifier
-   */
   close?(modalId: string): void | Promise<void>;
-  
-  /**
-   * Check if a modal is open
-   * @param modalId - Modal identifier
-   */
   isOpen?(modalId: string): boolean;
 }
 
@@ -102,11 +202,8 @@ export interface ModalService {
  * Result from animation execution
  */
 export interface AnimationResult {
-  /** Function to cancel the animation */
   cancel?: () => void;
-  /** Promise that resolves when animation completes */
   finished?: Promise<void>;
-  /** Reference to the animation object */
   animation?: Animation;
 }
 
@@ -114,29 +211,13 @@ export interface AnimationResult {
  * Animation engine interface
  */
 export interface AnimationEngine {
-  /**
-   * Animate an element
-   * @param element - Target element
-   * @param properties - Animation properties
-   * @param duration - Duration in milliseconds
-   * @param easing - Easing function
-   */
   animate(
     element: HTMLElement,
     properties: Record<string, any>,
     duration: number,
     easing?: string
   ): Promise<AnimationResult | void>;
-  
-  /**
-   * Cancel all animations on an element
-   * @param element - Target element
-   */
   cancelAll?(element: HTMLElement): void;
-  
-  /**
-   * Check if engine is supported in current environment
-   */
   isSupported?(): boolean;
 }
 
@@ -144,173 +225,8 @@ export interface AnimationEngine {
  * Interface for interaction commands
  */
 export interface InteractionCommand {
-  /**
-   * Execute the interaction command
-   * @param context - Execution context
-   */
   execute(context: InteractionContext): Promise<void> | void;
-  
-  /**
-   * Cleanup resources after execution. May be asynchronous to allow
-   * animation reversal to finish before callers proceed.
-   * @param context - Execution context
-   */
   cleanup?(context: InteractionContext): void | Promise<void>;
-  
-  /**
-   * Undo the command's effects
-   * @param context - Execution context
-   */
   undo?(context: InteractionContext): void;
-  
-  /**
-   * Validate the command configuration
-   * @param config - Configuration to validate
-   * @throws {ValidationError} If configuration is invalid
-   */
   validate?(config: InteractionConfig): void;
-}
-
-/**
- * Base class for interaction commands with common functionality
- */
-export abstract class BaseInteractionCommand implements InteractionCommand {
-  /**
-   * Execute the interaction command
-   * Must be implemented by subclasses
-   */
-  abstract execute(context: InteractionContext): Promise<void> | void;
-
-  /**
-   * Cleanup resources after execution
-   * Override to add cleanup logic
-   */
-  cleanup?(context: InteractionContext): void {}
-
-  /**
-   * Undo the command's effects
-   * Override to add undo logic
-   */
-  undo?(context: InteractionContext): void {}
-}
-
-/**
- * Base class for animation commands with animation management
- */
-// Registry that holds the *true initial* computed styles for an element.
-// We keep this global (weakly) per-element so multiple command instances
-// animating the same DOM node never overwrite the real initial values.
-const originalStyleRegistry: WeakMap<HTMLElement, Map<string, string>> = new WeakMap();
-
-export abstract class BaseAnimationCommand extends BaseInteractionCommand {
-  protected cancelAnimation?: () => void;
-  protected reverseAnimation?: Animation;
-  protected activeAnimations: Map<string, Animation> = new Map();
-  protected cleanupFunctions: Map<string, () => void> = new Map();
-  protected originalStyles: Map<string, string> = new Map();
-  protected isAnimating: boolean = false;
-  protected animationTarget?: HTMLElement;
-
-  /**
-   * Cancel all active animations for this command
-   */
-  protected cancelAllAnimations(): void {
-    // Cancel Web Animations API animations
-    if (this.cancelAnimation) {
-      try {
-        console.debug('BaseAnimationCommand: cancelling cancelAnimation');
-      } catch (err) {
-        /* ignore */
-      }
-      this.cancelAnimation();
-      this.cancelAnimation = undefined;
-    }
-    if (this.reverseAnimation) {
-      try {
-        console.debug('BaseAnimationCommand: cancelling reverseAnimation');
-      } catch (err) {
-        /* ignore */
-      }
-      this.reverseAnimation.cancel();
-      this.reverseAnimation = undefined;
-    }
-
-    // Cancel all active animations from the map
-    this.activeAnimations.forEach((animation) => {
-      try {
-        console.debug('BaseAnimationCommand: cancelling active animation');
-      } catch (err) {
-        /* ignore */
-      }
-      animation.cancel();
-    });
-    this.activeAnimations.clear();
-
-    // Run cleanup functions
-    this.cleanupFunctions.forEach(cleanup => cleanup());
-    this.cleanupFunctions.clear();
-
-    this.isAnimating = false;
-  }
-
-  /**
-   * Restore element to its original styles
-   * @param target - Target element
-   */
-  protected restoreOriginalStyles(target: HTMLElement): void {
-    const registry = originalStyleRegistry.get(target);
-
-    // Debug: show registry vs. per-command stored originals for this restore
-    logger.debug('restoreOriginalStyles', { registry: registry ? Object.fromEntries(registry) : null, commandStored: Object.fromEntries(this.originalStyles) });
-
-    this.originalStyles.forEach((value, property) => {
-      const original = registry?.get(property) ?? value;
-      try {
-        target.style.setProperty(property, original);
-      } catch (err) {
-        /* ignore */
-      }
-    });
-
-    // Clear per-command stored originals (element registry remains)
-    this.originalStyles.clear();
-  }
-
-  /**
-   * Store original styles before animation
-   * @param target - Target element
-   * @param properties - CSS properties to store
-   */
-  protected storeOriginalStyles(target: HTMLElement, properties: string[]): void {
-    // Ensure an element-scoped registry exists
-    let registry = originalStyleRegistry.get(target);
-    if (!registry) {
-      registry = new Map<string, string>();
-      originalStyleRegistry.set(target, registry);
-    }
-
-    properties.forEach(property => {
-      // Save the true initial value in the registry only once per-element
-      if (!registry!.has(property)) {
-        const initial = getComputedStyle(target).getPropertyValue(property);
-        registry!.set(property, initial);
-        logger.debug('storeOriginalStyles: captured initial for element', { target, property, initial });
-      }
-
-      // Per-command map: only set if this command hasn't stored it yet.
-      // Do NOT overwrite either the per-command or the element registry with
-      // a mid-animation computed value.
-      if (!this.originalStyles.has(property)) {
-        this.originalStyles.set(property, registry!.get(property)!);
-      }
-    });
-  }
-
-  /**
-   * Undo animation and restore original styles
-   */
-  undo(context: InteractionContext): void {
-    this.cancelAllAnimations();
-    this.restoreOriginalStyles(this.animationTarget || context.target);
-  }
 }

@@ -73,9 +73,11 @@ export class Interaction implements Disposable {
 
       // Prevent concurrent execution of the same interaction
       if (this.isExecuting) {
-        // Special handling for animation commands: cancel current execution and start new one
+        // Special handling for animation commands: synchronously cancel current
+        // animations (including any in-progress cleanup reverse) and start fresh.
         if (this.command instanceof BaseAnimationCommand) {
-          this.cleanupCommand();
+          (this.command as BaseAnimationCommand).forceCancel();
+          this.isExecuting = false;
           // Continue to execute new command
         } else if (this.config.queueable) {
           // Queue for later execution if interaction is busy
@@ -267,7 +269,6 @@ export class Interaction implements Disposable {
       triggerType: this.triggerType,
       router: services.router,
       modalService: services.modalService,
-      animationEngine: services.animationEngine,
       metadata,
     };
 
@@ -343,15 +344,15 @@ export class Interaction implements Disposable {
     const context: InteractionContext = {
       target: this.target,
       config: this.config,
+      triggerType: this.triggerType,
       router: services.router,
       modalService: services.modalService,
-      animationEngine: services.animationEngine,
     };
 
     try {
       const result = this.command.cleanup?.(context);
       if (result && typeof (result as Promise<void>).then === 'function') {
-        await result as Promise<void>;
+        await (result as unknown as Promise<void>);
       }
     } catch (error) {
       errorHandler.handle(error as Error, {
@@ -374,9 +375,9 @@ export class Interaction implements Disposable {
     const context: InteractionContext = {
       target: this.target,
       config: this.config,
+      triggerType: this.triggerType,
       router: services.router,
       modalService: services.modalService,
-      animationEngine: services.animationEngine,
     };
 
     try {
