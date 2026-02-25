@@ -28,7 +28,14 @@
                     .subtitle {
                         margin-left: 0;
                         text-align: left;
+                        transform: none;
+
+                        &::before {
+                            display: none;
+                        }
                     }
+
+
 
                     .bottom-row {
                         display: flex;
@@ -78,13 +85,13 @@
                         color: var(--composer-font-color-primary);
                     }
 
-                    .cards {
+                    .featured-list-items {
                         display: grid;
                         grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
                         gap: var(--composer-gap-sm);
                         width: 100%;
 
-                        .card {
+                        .feature-list-item {
                             display: flex;
                             align-items: center;
                             gap: var(--composer-gap-sm);
@@ -101,7 +108,7 @@
                                 height: 1.25rem;
                             }
 
-                            .card-text {
+                            .feature-list {
                                 margin: 0;
                                 text-align: left;
                                 color: inherit;
@@ -136,7 +143,7 @@
                 .header .description,
                 .header .bottom-row .rating,
                 .right-section .right-vertical-content .features-title,
-                .right-section .right-vertical-content .cards .card {
+                .right-section .right-vertical-content .featured-list-items .feature-list-item {
                     color: inherit;
                 }
             }
@@ -157,7 +164,7 @@
             .left-section {
                 .header {
                     .bottom-row {
-                        gap: var(--composer-gap-md);
+                        gap: var(--composer-gap-md) !important;
                     }
                 }
 
@@ -185,7 +192,7 @@
             .left-section .header .bottom-row {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-md) !important;
             }
         }
     }

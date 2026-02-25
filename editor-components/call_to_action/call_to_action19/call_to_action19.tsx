@@ -25,7 +25,7 @@ class CallToAction19 extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "TEST",
         });
         this.addProp({
             type: "string",
@@ -233,11 +233,11 @@ class CallToAction19 extends BaseCallToAction {
                                         </Base.H5>
                                     )}
                                     <div
-                                        className={this.decorateCSS("cards")}
+                                        className={this.decorateCSS("featured-list-items")}
                                         data-cols={itemsPerRow.toString()}
                                     >
                                         {features.map((item: FeatureItem, index: number) => (
-                                            <div key={index} className={this.decorateCSS("card")}>
+                                            <div key={index} className={this.decorateCSS("feature-list-item")}>
                                                 {item.icon && (
                                                     <div className={this.decorateCSS("icon-wrapper")}>
                                                         <Base.Media
@@ -247,7 +247,7 @@ class CallToAction19 extends BaseCallToAction {
                                                     </div>
                                                 )}
                                                 {this.castToString(item.description) && (
-                                                    <Base.P className={this.decorateCSS("card-text")}>
+                                                    <Base.P className={this.decorateCSS("feature-list")}>
                                                         {item.description}
                                                     </Base.P>
                                                 )}
