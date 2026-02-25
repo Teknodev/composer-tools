@@ -15,14 +15,14 @@ class CallToAction23Page extends BaseCallToAction {
       type: "boolean",
       key: "coloredBackground",
       displayer: "Colored Background",
-      value: false,
+      value: true,
     });
 
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "TEST",
+      value: "",
     });
 
     this.addProp({
