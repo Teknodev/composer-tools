@@ -27,7 +27,7 @@ class CallToAction34Page extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Special gifts for your loved ones",
+            value: "Try BlinkPage",
         });
 
         this.addProp({
@@ -42,7 +42,7 @@ class CallToAction34Page extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Sign Up Online", "", null, null, "Primary")
+                INPUTS.BUTTON("button", "Button", "Sign Up Online", null, null, null, "White")
             ]
         })
 
@@ -88,50 +88,58 @@ class CallToAction34Page extends BaseCallToAction {
     }
 
     render() {
+        const subtitle = this.castToString(this.getPropValue("subtitle"));
+        const title = this.castToString(this.getPropValue("title"));
+        const description = this.castToString(this.getPropValue("description"));
         const isColored = this.getPropValue("isBackgroundColored");
         const subtitleType = this.getPropValue("subtitleType");
         const currentSubtitleType = isColored && subtitleType === "badge" ? "default" : subtitleType;
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const mediaGroup = this.castToObject<any>("mediaGroup");
         const media = mediaGroup.media;
         const showOverlay = mediaGroup.overlay;
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""}`}>
-                        <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""}`}>
+                    <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
+                        <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
                             <Base.VerticalContent>
-                                {this.castToString(this.getPropValue("subtitle")) && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}
-                                        subtitleType={currentSubtitleType}>
-                                        {this.getPropValue("subtitle")}
+                                {subtitle && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")} subtitleType={currentSubtitleType}>
+                                        {subtitle}
                                     </Base.SectionSubTitle>
                                 )}
 
-                                {this.castToString(this.getPropValue("title")) && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
+                                {title && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}
+                                    >
+                                        {title}
                                     </Base.SectionTitle>
                                 )}
 
-                                {this.castToString(this.getPropValue("description")) && (
+                                {description && (
                                     <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {this.getPropValue("description")}
+                                        {description}
                                     </Base.SectionDescription>
                                 )}
 
                                 {buttons.length > 0 && (
                                     <div className={this.decorateCSS("button-container")}>
                                         {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                                            return (this.castToString(button.text) || button.icon) && (
+                                            return (button.text || button.icon) && (
                                                 <ComposerLink key={index} path={button.url}>
-                                                    <div className={this.decorateCSS("button")}>
-                                                        {this.castToString(button.text) && (
+                                                    <div
+                                                        className={`${this.decorateCSS("button")} ${this.decorateCSS(button.type.toLowerCase())}`}
+                                                        style={{ backgroundColor: button.type === "White" ? "white" : undefined }}
+                                                    >
+                                                        {button.text && (
                                                             <Base.P className={this.decorateCSS("button-text")}>
                                                                 {button.text}
                                                             </Base.P>
                                                         )}
+
                                                     </div>
                                                 </ComposerLink>
                                             );
