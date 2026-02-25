@@ -21,6 +21,7 @@
 
     .stats-grid {
       gap: var(--composer-gap-lg);
+      margin-bottom: var(--composer-gap-lg);
 
       .stat-item {
         display: flex;
@@ -35,6 +36,7 @@
           .stat-value {
             display: flex;
 
+            .stat-prefix,
             .stat-number,
             .stat-suffix {
               font-size: 5rem;
@@ -42,9 +44,13 @@
             }
           }
 
-          .stat-label {
+          .stat-title {
             color: var(--composer-font-color-primary);
           }
+        }
+
+        .stat-subtitle {
+          color: var(--composer-font-color-primary);
         }
 
         .stat-desc {
@@ -60,6 +66,7 @@
     gap: var(--composer-gap-md);
 
     .stat-item .stat-header .stat-value {
+      .stat-prefix,
       .stat-number,
       .stat-suffix {
         font-size: 4rem;
@@ -73,6 +80,7 @@
     gap: var(--composer-gap-md);
 
     .stat-item .stat-header .stat-value {
+      .stat-prefix,
       .stat-number,
       .stat-suffix {
         font-size: 3rem;

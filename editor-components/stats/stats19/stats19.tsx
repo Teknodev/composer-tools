@@ -6,10 +6,12 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
-  number: number;
-  suffix: string;
-  label: React.ReactNode;
+  subtitle: React.ReactNode;
+  title: React.ReactNode;
   description: React.ReactNode;
+  number: string;
+  prefix: string;
+  suffix: string;
 };
 
 class Stats19 extends BaseStats {
@@ -63,15 +65,12 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            { type: "number", key: "number", displayer: "Number", value: 15 },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Covered Injuries" },
+            { type: "string", key: "description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition." },
+            { type: "string", key: "number", displayer: "Value", value: "15" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
-            { type: "string", key: "label", displayer: "Label", value: "Covered Injuries" },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
-            },
           ],
         },
         {
@@ -79,15 +78,12 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            { type: "number", key: "number", displayer: "Number", value: 100 },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "Guaranteed Issue" },
+            { type: "string", key: "description", displayer: "Description", value: "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination." },
+            { type: "string", key: "number", displayer: "Value", value: "100" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "label", displayer: "Label", value: "Guaranteed Issue" },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination.",
-            },
           ],
         },
         {
@@ -95,15 +91,12 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
-            { type: "number", key: "number", displayer: "Number", value: 5 },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "More covered conditions" },
+            { type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. User generated content in real-time will have multiple touchpoints for offshoring." },
+            { type: "string", key: "number", displayer: "Value", value: "5" },
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "X" },
-            { type: "string", key: "label", displayer: "Label", value: "More covered conditions" },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. User generated content in real-time will have multiple touchpoints for offshoring.",
-            },
           ],
         },
       ],
@@ -125,11 +118,13 @@ class Stats19 extends BaseStats {
     const itemCount = this.getPropValue("itemCount");
     const statsProp = this.getPropValue("stats");
     const stats: StatItem[] = statsProp.map((item: any) => {
-      const number = parseFloat(item.getPropValue("number")) || 0;
+      const subtitle = item.getPropValue("subtitle");
+      const itemTitle = item.getPropValue("title");
+      const itemDescription = item.getPropValue("description");
+      const number = String(this.castToString(item.getPropValue("number")) || "0");
+      const prefix = String(this.castToString(item.getPropValue("prefix")) || "");
       const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
-      const label = item.getPropValue("label");
-      const description = item.getPropValue("description");
-      return { number, suffix, label, description };
+      return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
 
     return (
@@ -158,18 +153,25 @@ class Stats19 extends BaseStats {
                 className={this.decorateCSS("stats-grid")}
               >
                 {stats.map((stat: StatItem, index: number) => {
+                  const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
                   const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
-                  const hasNumber = stat.number !== 0 || hasSuffix;
-                  const isLabelExist = this.castToString(stat.label);
-                  const isStatDescExist = this.castToString(stat.description);
+                  const hasNumber = (parseFloat(stat.number) || 0) !== 0 || hasPrefix || hasSuffix;
+                  const hasSubtitle = this.castToString(stat.subtitle);
+                  const hasTitle = this.castToString(stat.title);
+                  const hasDescription = this.castToString(stat.description);
 
-                  if (!hasNumber && !hasSuffix && !isLabelExist && !isStatDescExist) return null;
+                  if (!hasNumber && !hasTitle) return null;
 
                   return (
                     <div key={index} className={this.decorateCSS("stat-item")}>
                       <div className={this.decorateCSS("stat-header")}>
                         {hasNumber && (
                           <div className={this.decorateCSS("stat-value")}>
+                            {hasPrefix && (
+                              <span className={this.decorateCSS("stat-prefix")}>
+                                {stat.prefix}
+                              </span>
+                            )}
                             <span className={this.decorateCSS("stat-number")}>
                               {stat.number}
                             </span>
@@ -180,13 +182,18 @@ class Stats19 extends BaseStats {
                             )}
                           </div>
                         )}
-                        {isLabelExist && (
-                          <Base.P className={this.decorateCSS("stat-label")}>
-                            {stat.label}
-                          </Base.P>
+                        {hasTitle && (
+                          <Base.H6 className={this.decorateCSS("stat-title")}>
+                            {stat.title}
+                          </Base.H6>
                         )}
                       </div>
-                      {isStatDescExist && (
+                      {hasSubtitle && (
+                        <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                          {stat.subtitle}
+                        </Base.H6>
+                      )}
+                      {hasDescription && (
                         <Base.P className={this.decorateCSS("stat-desc")}>
                           {stat.description}
                         </Base.P>
@@ -197,34 +204,19 @@ class Stats19 extends BaseStats {
               </Base.ListGrid>
             )}
 
-            {buttons.length > 0 && (() => {
-              const validButtons = buttons.filter((item) => {
-                const buttonText = this.castToString(item.text || "");
-                const iconName = (item.icon as { name?: string })?.name;
-                const hasValidIcon = iconName && iconName !== "";
-                return buttonText || hasValidIcon;
-              });
-              return validButtons.length > 0 ? (
-                <div className={this.decorateCSS("button-container")}>
-                  {validButtons.map((item, index) => {
-                    const buttonText = this.castToString(item.text || "");
-                    const buttonUrl = item.url || "#";
-                    const iconName = (item.icon as { name?: string })?.name;
-                    const hasValidIcon = iconName && iconName !== "";
-                    return (
-                      <ComposerLink key={`stats19-btn-${index}`} path={buttonUrl}>
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                          {hasValidIcon && (
-                            <Base.Media className={this.decorateCSS("icon")} value={{ type: "icon", name: iconName }} />
-                          )}
-                          {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
-                </div>
-              ) : null;
-            })()}
+            {buttons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) =>
+                  this.castToString(item.text) && (
+                    <ComposerLink key={`stats19-btn-${index}`} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                )}
+              </div>
+            )}
           </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
