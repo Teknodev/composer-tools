@@ -1,6 +1,6 @@
 import React from 'react';
 import ComposerLink from '../../../../custom-hooks/composer-base-components/Link/link';
-import { BaseCallToAction } from '../../EditorComponent';
+import { BaseCallToAction, TypeMediaInputValue } from '../../EditorComponent';
 import styles from './call_to_action35.module.scss';
 import { Base } from '../../../composer-base-components/base/base';
 import { INPUTS } from 'composer-tools/custom-hooks/input-templates';
@@ -16,28 +16,10 @@ class CallToAction35 extends BaseCallToAction {
             value: true,
         });
         this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
-        });
-        this.addProp({
-            type: "media",
-            key: "backgroundImage",
-            displayer: "Media",
-            additionalParams: {
-                availableTypes: ["image", "video"],
-            },
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
-            },
-        });
-        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "TEST",
+            value: "",
         });
         this.addProp({
             type: "string",
@@ -59,6 +41,33 @@ class CallToAction35 extends BaseCallToAction {
                 INPUTS.BUTTON("button", "Button", "View More", "", null, null, "White"),
             ],
         });
+        this.addProp({
+            type: "object",
+            key: "media",
+            displayer: "Media",
+            value: [
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+                {
+                    type: "media",
+                    key: "backgroundImage",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                    },
+                }
+            ]
+        });
+
+
     }
 
     static getName(): string {
@@ -71,10 +80,11 @@ class CallToAction35 extends BaseCallToAction {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<Button[]>("buttons");
         const hasHeader = subtitle || title || description;
+        const mediaSection = this.castToObject<{ backgroundImage?: TypeMediaInputValue; overlay?: boolean } & Partial<TypeMediaInputValue>>("media");
         const background = this.getPropValue("cardBackground") !== false;
-        const backgroundImage = this.getPropValue("backgroundImage");
-        const hasBackgroundImage = backgroundImage && backgroundImage.url && backgroundImage.url.length > 0;
-        const showOverlay = this.getPropValue("overlay") && hasBackgroundImage;
+        const backgroundImage = (mediaSection?.backgroundImage ?? (mediaSection?.type ? (mediaSection as TypeMediaInputValue) : undefined)) as TypeMediaInputValue | undefined;
+        const hasBackgroundImage = backgroundImage && backgroundImage.type !== "icon" && backgroundImage.url && backgroundImage.url.length > 0;
+        const showOverlay = !!(mediaSection?.overlay ?? false) && hasBackgroundImage;
         const alignment = Base.getContentAlignment();
         const noAssets = !background && !hasBackgroundImage;
 
@@ -83,7 +93,7 @@ class CallToAction35 extends BaseCallToAction {
                 <div className={this.decorateCSS("background-section")}>
                     <div className={this.decorateCSS("background-wrapper")}>
                         <Base.Media
-                            value={this.getPropValue("backgroundImage")}
+                            value={backgroundImage}
                             className={this.decorateCSS("background-image")}
                         />
                     </div>
@@ -94,7 +104,7 @@ class CallToAction35 extends BaseCallToAction {
                     <div className={this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")}>
                         <div className={this.decorateCSS("content")}>
                             <div className={this.decorateCSS("header")}>
-                                <div className={`${this.decorateCSS("text-block")} ${this.decorateCSS(`alignment-${alignment}`)}`}>
+                                <Base.VerticalContent className={`${this.decorateCSS("text-block")} ${this.decorateCSS(`alignment-${alignment}`)}`}>
                                     {subtitle && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                             {this.getPropValue("subtitle")}
@@ -110,7 +120,7 @@ class CallToAction35 extends BaseCallToAction {
                                             {this.getPropValue("description")}
                                         </Base.SectionDescription>
                                     )}
-                                </div>
+                                </Base.VerticalContent>
                                 {Array.isArray(buttons) && (
                                     <div className={this.decorateCSS("button-wrapper")}>
                                         <div className={this.decorateCSS("button-group")}>

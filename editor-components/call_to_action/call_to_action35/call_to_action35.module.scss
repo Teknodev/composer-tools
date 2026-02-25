@@ -46,7 +46,8 @@
 
     .max-content {
         position: absolute;
-        bottom: 80px;
+        top: 380px;
+        transform: translateY(-50%);
         left: 0;
         right: 0;
         z-index: 2;
@@ -54,23 +55,22 @@
         width: 100%;
     }
 
-    &.no-background .max-content {
-        bottom: 0;
-
-    }
-
     .card {
         width: 100%;
         background-color: var(--composer-primary-color);
         border-radius: var(--composer-border-radius-md);
         padding: 80px 50px;
-        margin-bottom: 0;
-        margin-top: -190px;
+        margin: 0;
+
+        .text-block .subtitle,
+        .text-block .title,
+        .text-block .description {
+            color: var(--composer-font-color-secondary) !important;
+        }
 
         .text-block .subtitle {
             background: none !important;
             padding: 0 !important;
-            color: var(--composer-font-color-secondary) !important;
 
             &::before {
                 background-color: currentColor !important;
@@ -81,12 +81,6 @@
     .content-wrapper {
         width: 100%;
         padding: 80px 50px;
-
-        .text-block .subtitle,
-        .text-block .title,
-        .text-block .description {
-            color: var(--composer-font-color-primary) !important;
-        }
     }
 
     .header {
@@ -96,13 +90,13 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        gap: calc(var(--composer-gap-xl) * 2);
     }
 
     .text-block {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--composer-gap-sm);
         flex: 1;
         min-width: 0;
         text-align: left;
@@ -110,7 +104,7 @@
         .subtitle,
         .title,
         .description {
-            color: var(--composer-font-color-secondary);
+            color: var(--composer-font-color-primary);
             margin: 0;
             width: 100%;
             text-align: inherit;
@@ -118,11 +112,13 @@
 
         .subtitle {
             width: fit-content;
+            transform: none !important;
+            text-align: left !important;
+            align-self: flex-start;
 
             &::before {
                 content: "";
-                display: block !important;
-                background-color: currentColor !important;
+                display: none;
             }
         }
 
@@ -137,9 +133,8 @@
     }
 
     .button-group {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
         gap: var(--composer-gap-sm);
 
         .button {
@@ -170,9 +165,11 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        .card {
+
+        .card,
+        .content-wrapper {
             padding: 50px 30px;
-            margin-top: -150px;
+            margin: 0;
         }
 
         .text-block {
@@ -195,7 +192,7 @@
             .card,
             .content-wrapper {
                 padding: 40px 20px;
-                margin-top: -100px;
+                margin: 0;
             }
 
             .header {
@@ -206,7 +203,6 @@
                 align-items: center;
                 flex: 0 1 auto;
                 text-align: center !important;
-                gap: var(--composer-gap-md);
 
                 .subtitle,
                 .title,
@@ -215,12 +211,18 @@
                 }
             }
 
-            .button-wrapper {
-                width: 100%;
+            .card .text-block .subtitle {
+                text-align: center !important;
+                align-self: center;
+            }
+        }
 
-                .button-group {
-                    margin-left: 0;
-                }
+        .button-wrapper {
+            width: 100%;
+
+            .button-group {
+                margin-left: 0;
+                grid-template-columns: minmax(0, 1fr);
             }
         }
     }
