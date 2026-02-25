@@ -48,7 +48,7 @@ class CallToAction33 extends BaseCallToAction {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Creating Websites is Easy with Impreza",
+      value: "Creating Websites is Easy with BlinkPage",
     });
 
     this.addProp({
@@ -87,13 +87,14 @@ class CallToAction33 extends BaseCallToAction {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("card")} ${hasMedia && overlayEnabled ? this.decorateCSS("overlay-active") : ""}`}
-          >
+          <div className={this.decorateCSS("card")}>
             {hasMedia && (
               <div className={this.decorateCSS("media-container")}>
                 <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
               </div>
+            )}
+            {hasMedia && overlayEnabled && (
+              <div className={this.decorateCSS("overlay")} />
             )}
             <Base.VerticalContent
               className={`${this.decorateCSS("content")} ${hasMedia ? this.decorateCSS("with-media") : ""}`}
