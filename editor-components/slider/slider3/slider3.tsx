@@ -274,6 +274,7 @@ class Slider3 extends BaseSlider {
     const hasHeader = subtitle || title || description;
     const carouselClass = items.length === 1 ? "carousel--singleCard" : "carousel--multipleCards";
     const arrowsExist = items.length > 1 && (previousArrow || nextArrow) && sliderSettings.arrows;
+    const showDots = sliderSettings.dots !== false;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!hasHeader && this.decorateCSS("no-header")}`} >
@@ -290,13 +291,13 @@ class Slider3 extends BaseSlider {
               {arrowsExist && (
                 <div className={this.decorateCSS("arrows")}>
                   {previousArrow && (
-                    <div className={`${this.decorateCSS("prevArrow")} ${previousArrow.type === "image" && this.decorateCSS("has-image")}`} onClick={() => { sliderRef.current.slickPrev(); }}>
-                      <Base.Media value={this.getPropValue("previousArrow")} />
+                    <div className={this.decorateCSS("prevArrow")} onClick={() => { sliderRef.current.slickPrev(); }}>
+                      <Base.Media value={this.getPropValue("previousArrow")} className={`${previousArrow.type === "image" && this.decorateCSS("has-image")}`} />
                     </div>
                   )}
                   {nextArrow && (
-                    <div className={`${this.decorateCSS("nextArrow")} ${nextArrow.type === "image" && this.decorateCSS("has-image")}`} onClick={() => { sliderRef.current.slickNext(); }}>
-                      <Base.Media value={this.getPropValue("nextArrow")} />
+                    <div className={this.decorateCSS("nextArrow")} onClick={() => { sliderRef.current.slickNext(); }}>
+                      <Base.Media value={this.getPropValue("nextArrow")} className={`${nextArrow.type === "image" && this.decorateCSS("has-image")}`} />
                     </div>
                   )}
                 </div>
@@ -313,7 +314,8 @@ class Slider3 extends BaseSlider {
                     key={index}
                     className={`${this.decorateCSS("card")} 
                       ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}
-                      ${!item.media && this.decorateCSS("no-media")}`}
+                     ${!item.media && this.decorateCSS("no-media")}
+                      ${showDots && this.decorateCSS("has-dots")}`}
                   >
                     <div className={this.decorateCSS("image-container")}>
                       {item.media && (<Base.Media value={item.media} className={`${this.decorateCSS("image")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`} />)}
@@ -322,8 +324,8 @@ class Slider3 extends BaseSlider {
                     {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
                       <Base.VerticalContent className={`${this.decorateCSS("content-container")} 
                       ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}>
-                        {this.castToString(item.subtitle) && <Base.H3 className={this.decorateCSS("slider-subtitle")}>{item.subtitle}</Base.H3>}
-                        {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("slider-title")}>{item.title}</Base.H2>}
+                        {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("slider-subtitle")}>{item.subtitle}</Base.H5>}
+                        {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("slider-title")}>{item.title}</Base.H4>}
                         {this.castToString(item.description) && <Base.P className={this.decorateCSS("slider-description")}>{item.description}</Base.P>}
                       </Base.VerticalContent>
                     )}
