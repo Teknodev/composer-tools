@@ -6,10 +6,13 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
+    prefix: string;
     number: string;
     suffix: string;
-    label: string;
-    labelElement: JSX.Element;
+    title: string;
+    titleElement: JSX.Element;
+    subtitle: string;
+    subtitleElement: JSX.Element;
     infoText: string;
     infoTextElement: JSX.Element;
 };
@@ -69,25 +72,31 @@ class Stats20 extends BaseStats {
             value: [
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Number", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "label", displayer: "Label", value: "Experienced people on the team" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
                         { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Number", value: "20" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "label", displayer: "Label", value: "Cities where employees work" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
                         { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Number", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "label", displayer: "Label", value: "Days of product development" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
                         { type: "string", key: "infoText", displayer: "Info Text", value: "" },
                     ]
                 },
@@ -166,16 +175,22 @@ class Stats20 extends BaseStats {
 
         const suffixExist = stat.suffix && stat.suffix !== "";
         const numberExist = originalNumberString && originalNumberString !== "" && originalNumberString !== "0";
-        const labelExist = stat.label && stat.label !== "";
+        const titleExist = stat.title && stat.title !== "";
+        const subtitleExist = stat.subtitle && stat.subtitle !== "";
         const infoTextExist = stat.infoText && stat.infoText !== "";
         const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!numberExist && !suffixExist && !labelExist && !infoTextExist) return null;
+        if (!numberExist && !suffixExist && !titleExist && !subtitleExist && !infoTextExist) return null;
 
         return (
-            <div className={this.decorateCSS("stat-item")}>
+            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 {(numberExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
+                        {stat.prefix && (
+                            <span className={this.decorateCSS("stat-prefix")}>
+                                {stat.prefix}
+                            </span>
+                        )}
                         <span className={this.decorateCSS("stat-number")}>
                             {displayNumber}
                         </span>
@@ -186,17 +201,22 @@ class Stats20 extends BaseStats {
                         )}
                     </span>
                 )}
-                {labelExist && (
-                    <Base.SectionDescription className={this.decorateCSS("stat-label")}>
-                        {stat.labelElement}
-                    </Base.SectionDescription>
+                {subtitleExist && (
+                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                        {stat.subtitleElement}
+                    </Base.H6>
+                )}
+                {titleExist && (
+                    <Base.H6 className={this.decorateCSS("stat-title")}>
+                        {stat.titleElement}
+                    </Base.H6>
                 )}
                 {infoTextExist && (
                     <Base.P className={this.decorateCSS("stat-info-text")}>
                         {stat.infoTextElement}
                     </Base.P>
                 )}
-            </div>
+            </Base.VerticalContent>
         );
     };
 
@@ -212,13 +232,15 @@ class Stats20 extends BaseStats {
 
         const alignment = Base.getContentAlignment();
 
-        const statsItems = this.castToObject<{ number: JSX.Element; suffix: JSX.Element; label: JSX.Element; infoText: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; infoText: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
+            const prefix = String(this.castToString(item.prefix) || "");
             const number = String(this.castToString(item.number) || "0");
             const suffix = String(this.castToString(item.suffix) || "");
-            const label = String(this.castToString(item.label) || "");
+            const title = String(this.castToString(item.title) || "");
+            const subtitle = String(this.castToString(item.subtitle) || "");
             const infoText = String(this.castToString(item.infoText) || "");
-            return { number, suffix, label, labelElement: item.label, infoText, infoTextElement: item.infoText };
+            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, infoText, infoTextElement: item.infoText };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");

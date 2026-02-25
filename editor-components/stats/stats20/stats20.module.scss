@@ -2,26 +2,20 @@
 
 .container {
     .max-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
         .card {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-
             .card-content {
                 width: 100%;
+                gap: var(--composer-gap-lg);
 
                 &.has-divider {
+                    gap: 0;
+
                     .divider {
                         width: 100%;
                         height: 1px;
                         background-color: var(--composer-font-color-primary);
                         opacity: 0.2;
-                        margin: 50px 0;
+                        margin: var(--composer-gap-xl) 0;
                     }
                 }
 
@@ -52,6 +46,7 @@
 
                     &.alignment-center {
                         align-items: center;
+                        gap: var(--composer-gap-md);
 
                         .title,
                         .subtitle,
@@ -60,8 +55,7 @@
                         }
 
                         .subtitle {
-                            margin: 0 auto;
-                            margin-bottom: var(--composer-gap-sm);
+                            margin-left: 0 auto;
                         }
 
                         .button-container {
@@ -78,35 +72,30 @@
                         .left-container,
                         .right-container {
                             flex: 1;
-                            flex-basis: 0;
-                            min-width: 0;
                         }
                     }
                 }
 
-
                 .stats-grid {
                     column-gap: var(--composer-gap-lg);
                     row-gap: var(--composer-gap-md);
-                    width: 100%;
 
                     .stat-item {
-                        display: flex;
-                        flex-direction: column;
 
                         .stat-value {
                             color: var(--composer-primary-color);
                             font-size: 5rem;
 
+                            .stat-prefix,
                             .stat-number,
                             .stat-suffix {
                                 color: inherit;
                             }
                         }
 
-                        .stat-label,
+                        .stat-title,
+                        .stat-subtitle,
                         .stat-info-text {
-                            text-align: left;
                             color: var(--composer-font-color-primary);
                         }
                     }
@@ -145,7 +134,8 @@
                         .stat-item {
 
                             .stat-value,
-                            .stat-label,
+                            .stat-title,
+                            .stat-subtitle,
                             .stat-info-text {
                                 color: var(--composer-font-color-secondary);
                             }
@@ -165,7 +155,7 @@
 
         .card-content {
             &.has-divider .divider {
-                margin: 20px 0;
+                margin: var(--composer-gap-md) 0;
             }
 
             .stats-grid .stat-item .stat-value {
@@ -182,12 +172,14 @@
         }
 
         .card-content {
+            gap: var(--composer-gap-md);
+
             &.has-divider .divider {
-                margin: 20px 0;
+                margin: var(--composer-gap-md) 0;
             }
 
             .stats-grid .stat-item .stat-value {
-                font-size: 3rem;
+                font-size: 3.5rem;
             }
 
             .header-container.alignment-left {
