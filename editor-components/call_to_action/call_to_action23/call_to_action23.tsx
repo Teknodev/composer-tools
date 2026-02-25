@@ -15,14 +15,14 @@ class CallToAction23Page extends BaseCallToAction {
       type: "boolean",
       key: "coloredBackground",
       displayer: "Colored Background",
-      value: true,
+      value: false,
     });
 
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "TEST",
     });
 
     this.addProp({
@@ -58,7 +58,8 @@ class CallToAction23Page extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Get started", "", null, null, "Primary"),]
+        INPUTS.BUTTON("button", "Button", "Get started", "", null, null, "Primary"),
+      ]
     });
   }
 
@@ -105,36 +106,38 @@ class CallToAction23Page extends BaseCallToAction {
                 </div>
               )}
 
-              {(infoLabel || infoText) && (
-                <div className={this.decorateCSS("info-group")}>
-                  {infoLabel && (
-                    <Base.P className={this.decorateCSS("info-label")}>
-                      {infoLabel}
-                    </Base.P>
-                  )}
-                  {infoText && (
-                    <Base.H3 className={this.decorateCSS("info-text")}>
-                      {infoText}
-                    </Base.H3>
-                  )}
-                </div>
-              )}
+              <div className={this.decorateCSS("right-group")}>
+                {(infoLabel || infoText) && (
+                  <div className={this.decorateCSS("info-group")}>
+                    {infoLabel && (
+                      <Base.P className={this.decorateCSS("info-label")}>
+                        {infoLabel}
+                      </Base.P>
+                    )}
+                    {infoText && (
+                      <Base.H3 className={this.decorateCSS("info-text")}>
+                        {infoText}
+                      </Base.H3>
+                    )}
+                  </div>
+                )}
 
-              {buttons?.length > 0 && (
-                <div className={this.decorateCSS("button-group")}>
-                  {buttons.map((button: Button, index: number) =>
-                    this.castToString(button.text) ? (
-                      <ComposerLink key={index} path={button.url}>
-                        <Base.Button className={this.decorateCSS("button")}>
-                          <span className={this.decorateCSS("button-text")}>
-                            {button.text}
-                          </span>
-                        </Base.Button>
-                      </ComposerLink>
-                    ) : null
-                  )}
-                </div>
-              )}
+                {buttons?.length > 0 && (
+                  <div className={this.decorateCSS("button-group")}>
+                    {buttons.map((button: Button, index: number) =>
+                      this.castToString(button.text) ? (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button className={this.decorateCSS("button")}>
+                            <span className={this.decorateCSS("button-text")}>
+                              {button.text}
+                            </span>
+                          </Base.Button>
+                        </ComposerLink>
+                      ) : null
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </Base.MaxContent>

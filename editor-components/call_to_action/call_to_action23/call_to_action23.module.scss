@@ -2,14 +2,9 @@
 
 .container {
   position: relative;
-  padding: 80px 50px;
-  background-color: var(--composer-html-background);
-  container-type: inline-size;
+  padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
 
-  .max-content {
-    width: 100%;
-    margin-inline: auto;
-  }
+
 
   .content {
     display: flex;
@@ -33,11 +28,9 @@
 
         .subtitle {
           text-align: left;
-          width: fit-content;
         }
 
         .title {
-          width: 100%;
           text-align: left;
         }
 
@@ -48,39 +41,45 @@
       }
     }
 
-    .info-group {
+    .right-group {
       display: flex;
-      flex-direction: column;
       align-items: center;
       flex: 1;
+      flex-wrap: nowrap;
+      gap: var(--composer-gap-md);
 
-      .info-label,
-      .info-text {
+      .info-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         width: 100%;
-        text-align: center;
-        word-wrap: break-word;
+
+        .info-label,
+        .info-text {
+          text-align: left;
+          word-wrap: break-word;
+        }
+
+        .info-label {
+          color: var(--composer-font-color-primary);
+        }
+
+        .info-text {
+          color: var(--composer-primary-color);
+        }
       }
 
-      .info-label {
-        color: var(--composer-font-color-primary);
-      }
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: var(--composer-gap-sm);
 
-      .info-text {
-        color: var(--composer-primary-color);
-      }
-    }
-
-    .button-group {
-      display: flex;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-      flex: 1;
-      gap: var(--composer-gap-sm);
-
-      .button {
-        .button-text {
-          display: inline-block;
-          content: "";
+        .button {
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -96,7 +95,7 @@
     .max-content {
       background-color: var(--composer-font-color-primary);
       border-radius: var(--composer-border-radius-md);
-      padding: 60px 80px;
+      padding: 60px calc(var(--composer-gap-lg)*2);
 
       .content {
         .header-group .vertical-content {
@@ -122,13 +121,15 @@
           }
         }
 
-        .info-group {
-          .info-label {
-            color: var(--composer-html-background);
-          }
+        .right-group {
+          .info-group {
+            .info-label {
+              color: var(--composer-html-background);
+            }
 
-          .info-text {
-            color: var(--composer-primary-color);
+            .info-text {
+              color: var(--composer-primary-color);
+            }
           }
         }
       }
@@ -138,11 +139,11 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 60px 40px;
+    padding: 60px var(--composer-gap-xl);
 
     &.has-background {
       .max-content {
-        padding: 60px 40px;
+        padding: 60px var(--composer-gap-xl);
       }
     }
 
@@ -156,21 +157,19 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 40px 20px;
+    padding: var(--composer-gap-lg) var(--composer-gap-md);
 
     &.has-background {
       .max-content {
-        padding: 40px 20px;
+        padding: var(--composer-gap-lg) var(--composer-gap-md);
       }
     }
 
     .content {
-      gap: var(--composer-gap-md);
-
       .main-row {
         flex-direction: column;
-        gap: var(--composer-gap-lg);
         text-align: center;
+        gap: var(--composer-gap-md);
       }
 
       .header-group .vertical-content {
@@ -184,23 +183,29 @@
         }
       }
 
-      .info-group {
-        align-items: center !important;
-        margin-bottom: calc(-1 * var(--composer-gap-md));
+      .right-group {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
 
-        .info-label,
-        .info-text {
-          text-align: center !important;
+
+        .info-group {
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .info-label,
+          .info-text {
+            text-align: center;
+          }
+
+          .info-text {
+            font-size: var(--composer-font-size-xl) !important;
+          }
         }
 
-        .info-text {
-          font-size: var(--composer-font-size-xl) !important;
+        .button-group {
+          justify-content: center !important;
         }
-      }
-
-      .button-group {
-        justify-content: center !important;
-        width: 100%;
       }
     }
   }
