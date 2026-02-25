@@ -391,7 +391,7 @@ class Feature51 extends BaseFeature {
                         >
                           {itemTitle && (
                             <Base.H4 className={this.decorateCSS("item-title")}>
-                              {itemTitle}
+                              {item.itemTitle}
                             </Base.H4>
                           )}
                           {itemIcon && (
@@ -411,7 +411,7 @@ class Feature51 extends BaseFeature {
                             <Base.P
                               className={this.decorateCSS("item-description")}
                             >
-                              {itemDescription}
+                              {item.itemDescription}
                             </Base.P>
                           </div>
                         )}
