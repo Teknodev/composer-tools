@@ -25,18 +25,6 @@
                         width: 100%;
                     }
 
-                    .subtitle {
-                        margin-left: 0;
-                        text-align: left;
-                        transform: none;
-
-                        &::before {
-                            display: none;
-                        }
-                    }
-
-
-
                     .bottom-row {
                         display: flex;
                         flex-direction: row;
@@ -90,6 +78,7 @@
                         grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
                         gap: var(--composer-gap-sm);
                         width: 100%;
+                        margin-top: var(--composer-gap-md);
 
                         .feature-list-item {
                             display: flex;
@@ -133,9 +122,9 @@
                     color: inherit;
                     background: transparent;
                     padding: 0;
-
+                    margin-left: 0;
                     &::before {
-                        background-color: currentColor;
+                        display: none;
                     }
                 }
 
