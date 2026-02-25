@@ -185,17 +185,17 @@ class Stats17 extends BaseStats {
         {hasNumber && (
           <div className={this.decorateCSS("stat-value")}>
             {hasPrefix && (
-              <Base.P className={this.decorateCSS("stat-prefix")}>
+              <span className={this.decorateCSS("stat-prefix")}>
                 {stat.prefix}
-              </Base.P>
+              </span>
             )}
-            <Base.P className={this.decorateCSS("stat-number")}>
+            <span className={this.decorateCSS("stat-number")}>
               {animatedNumber}
-            </Base.P>
+            </span>
             {hasSuffix && (
-              <Base.P className={this.decorateCSS("stat-suffix")}>
+              <span className={this.decorateCSS("stat-suffix")}>
                 {stat.suffix}
-              </Base.P>
+              </span>
             )}
           </div>
         )}
