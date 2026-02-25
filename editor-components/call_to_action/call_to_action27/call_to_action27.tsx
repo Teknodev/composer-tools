@@ -36,7 +36,7 @@ class CallToAction27 extends BaseCallToAction {
       key: "description",
       displayer: "Description",
       value:
-        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness. sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness.sources whereas high standards in web-readiness."
+        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness."
 
     });
 
@@ -68,20 +68,18 @@ class CallToAction27 extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist) && (
-              <div className={this.decorateCSS("header-group")}>
-                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                  {subtitleExist && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {titleExist && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                </Base.VerticalContent>
-              </div>
+              <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+              </Base.VerticalContent>
             )}
             {(descriptionExist || visibleButtons.length > 0) && (
               <div className={this.decorateCSS("footer-group")}>
@@ -92,10 +90,10 @@ class CallToAction27 extends BaseCallToAction {
                     </Base.SectionDescription>
                   )}
                 </div>
-                <div className={this.decorateCSS("footer-right")}>
-                  {visibleButtons.length > 0 && (
+                {visibleButtons.length > 0 && (
+                  <div className={this.decorateCSS("footer-right")}>
                     <div className={this.decorateCSS("button-group")}>
-                      {visibleButtons.map((item: Button, index: number) => (
+                      {visibleButtons.map((item: Button, index: number) => this.castToString(item.text) && (
                         <ComposerLink key={`button-${index}`} path={item.url}>
                           <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                             <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
@@ -103,8 +101,8 @@ class CallToAction27 extends BaseCallToAction {
                         </ComposerLink>
                       ))}
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             )}
           </div>

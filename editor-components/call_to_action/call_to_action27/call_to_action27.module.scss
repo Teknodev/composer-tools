@@ -2,40 +2,27 @@
 
 .container {
   position: relative;
-  padding: 80px 50px;
-  background-color: var(--composer-html-background);
-  container-type: inline-size;
-
-  .max-content {
-    width: 100%;
-    margin-inline: auto;
-  }
 
   .content {
     display: flex;
     flex-direction: column;
     gap: var(--composer-gap-lg);
-    width: 100%;
+    gap: var(--composer-gap-lg);
 
-    .header-group {
-      width: 100%;
+    .vertical-content {
+      align-items: center;
 
-      .vertical-content {
-        align-items: center;
+      .subtitle {
+        text-align: center;
+        transform: none;
 
-        .subtitle {
-          text-align: center;
-          transform: none;
-
-          &::before {
-            display: none;
-          }
+        &::before {
+          display: none;
         }
+      }
 
-        .title {
-          width: 100%;
-          text-align: center;
-        }
+      .title {
+        text-align: center;
       }
     }
 
@@ -60,7 +47,6 @@
       }
 
       .description {
-        width: 100%;
         text-align: left;
         margin: 0;
       }
@@ -85,14 +71,13 @@
     .max-content {
       background-color: var(--composer-font-color-primary);
       border-radius: var(--composer-border-radius-md);
-      padding: 80px 50px;
+      padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
 
       .content {
-        .header-group .vertical-content {
+        .vertical-content {
           .subtitle {
             background: transparent !important;
             padding: 0 !important;
-            border-radius: 0 !important;
             color: var(--composer-html-background);
 
             &::before {
@@ -116,11 +101,9 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px 40px;
-
     &.has-background {
       .max-content {
-        padding: 80px 40px;
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
       }
     }
   }
@@ -128,18 +111,16 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 50px 20px;
-
     &.has-background {
       .max-content {
-        padding: 50px 20px;
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
       }
     }
 
     .content {
       gap: var(--composer-gap-sm);
 
-      .header-group .vertical-content {
+      .vertical-content {
         align-items: var(--composer-content-alignment) !important;
         text-align: var(--composer-content-alignment) !important;
 
