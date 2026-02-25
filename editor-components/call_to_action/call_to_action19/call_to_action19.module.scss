@@ -25,6 +25,11 @@
                         width: 100%;
                     }
 
+                    .subtitle {
+                        margin-left: 0;
+                        width: fit-content;
+                    }
+
                     .bottom-row {
                         display: flex;
                         flex-direction: row;
@@ -84,7 +89,6 @@
                             display: flex;
                             align-items: center;
                             gap: var(--composer-gap-sm);
-                            padding: 4px 0;
                             color: var(--composer-font-color-primary);
 
                             .icon-wrapper {
@@ -113,7 +117,7 @@
         .max-content {
             background-color: var(--composer-primary-color);
             border-radius: var(--composer-border-radius-md);
-            padding: 80px 50px;
+            padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
 
             .content {
                 color: var(--composer-font-color-secondary);
@@ -123,6 +127,8 @@
                     background: transparent;
                     padding: 0;
                     margin-left: 0;
+                    width: fit-content;
+
                     &::before {
                         display: none;
                     }
@@ -144,7 +150,7 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         &.has-card-background .max-content {
-            padding: 80px 40px;
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
 
         .content {
@@ -165,7 +171,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         &.has-card-background .max-content {
-            padding: 40px 20px;
+            padding: calc(var(--composer-gap-md)*2) var(--composer-gap-md);
         }
 
         .content {
