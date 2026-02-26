@@ -29,7 +29,7 @@
 
     .stats-grid {
       gap: var(--composer-gap-lg);
-      margin-bottom: var(--composer-gap-lg);
+      margin-block: var(--composer-gap-lg);
 
       .card {
         display: flex;
