@@ -65,12 +65,12 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "15" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Covered Injuries" },
             { type: "string", key: "description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition." },
-            { type: "string", key: "number", displayer: "Value", value: "15" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
           ],
         },
         {
@@ -78,12 +78,12 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "100" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Guaranteed Issue" },
             { type: "string", key: "description", displayer: "Description", value: "Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment. Bring to the table win-win survival strategies to ensure proactive domination." },
-            { type: "string", key: "number", displayer: "Value", value: "100" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
           ],
         },
         {
@@ -91,12 +91,12 @@ class Stats19 extends BaseStats {
           key: "stat",
           displayer: "Stat",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "5" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "X" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "More covered conditions" },
             { type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line. User generated content in real-time will have multiple touchpoints for offshoring." },
-            { type: "string", key: "number", displayer: "Value", value: "5" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "X" },
           ],
         },
       ],
@@ -189,9 +189,9 @@ class Stats19 extends BaseStats {
                         )}
                       </div>
                       {hasSubtitle && (
-                        <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                        <Base.P className={this.decorateCSS("stat-subtitle")}>
                           {stat.subtitle}
-                        </Base.H6>
+                        </Base.P>
                       )}
                       {hasDescription && (
                         <Base.P className={this.decorateCSS("stat-desc")}>
