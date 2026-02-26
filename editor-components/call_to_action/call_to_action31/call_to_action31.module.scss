@@ -14,14 +14,14 @@
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 5%);
 
-        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl) 0;
 
-        @container (max-width: #{$composer-tablet-width}) {
-            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-        }
+        // @container (max-width: #{$composer-tablet-width}) {
+        //     padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg) 0;
+        // }
 
         @container (max-width: #{$composer-phone-width}) {
-            padding: var(--composer-gap-xl) var(--composer-gap-md);
+            padding: var(--composer-gap-xl) var(--composer-gap-md) 0;
         }
 
         &.no-card {
@@ -36,6 +36,7 @@
             justify-content: space-between;
             gap: var(--composer-gap-xl);
             align-items: flex-end;
+            flex-wrap: wrap;
 
             :global(.center) & {
                 flex-direction: column;
@@ -53,9 +54,14 @@
                 }
             }
 
+            @container (max-width: #{$composer-phone-width}) {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: var(--composer-gap-md);
+            }
 
             @container (max-width: #{$composer-tablet-width}) {
-                flex-direction: column;
                 text-align: center;
                 gap: var(--composer-gap-md);
             }
@@ -67,7 +73,6 @@
 
                 @container (max-width: #{$composer-tablet-width}) {
                     flex: 0 0 100%;
-                    max-width: 100% !important;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
@@ -78,18 +83,12 @@
                     flex: 0 0 100%;
                     max-width: 100% !important;
                     justify-content: flex-start;
-                    text-align: left;
+                    text-align: center;
                 }
 
                 .subtitle {
                     text-align: left;
 
-                    // &::before {
-
-                    //     // display: none !important;
-                    // }
-
-                    // padding-left: 0 !important;
                 }
 
                 .title,

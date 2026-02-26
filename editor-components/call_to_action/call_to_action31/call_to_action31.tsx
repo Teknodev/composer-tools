@@ -20,7 +20,7 @@ class CallToAction31Page extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "deneme"
+            value: ""
         });
 
         this.addProp({
@@ -47,6 +47,9 @@ class CallToAction31Page extends BaseCallToAction {
                     type: "media",
                     key: "media",
                     displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
                     value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/699c5a24771c03002cc6b0ca?alt=media",
@@ -60,32 +63,6 @@ class CallToAction31Page extends BaseCallToAction {
                 }
             ]
         });
-
-
-        // this.addProp({
-        //     type: "string",
-        //     key: "imageHeight",
-        //     displayer: "Image Height",
-        //     value: "auto"
-        // });
-
-        // this.addProp({
-        //     type: "media",
-        //     key: "media",
-        //     displayer: "Media",
-        //     value: {
-        //         type: "image",
-        //         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/699c5a24771c03002cc6b0ca?alt=media",
-        //     }
-        // });
-
-        // this.addProp({
-        //     type: "boolean",
-        //     key: "isActive",
-        //     displayer: "Active",
-        //     value: true
-        // });
-
 
 
         this.addProp({
@@ -110,9 +87,6 @@ class CallToAction31Page extends BaseCallToAction {
     }
 
     render() {
-        // if (!this.getPropValue("isActive")) return null;
-        // const media = this.getPropValue("media");
-
         const mediaGroup = this.castToObject<any>("mediaGroup");
         const media = mediaGroup.media;
         const overlay = mediaGroup.overlay;
