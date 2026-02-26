@@ -120,14 +120,6 @@ class Stats21 extends BaseStats {
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
-
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 2,
-            max: 4,
-        });
     }
 
     static getName(): string {
@@ -204,9 +196,9 @@ class Stats21 extends BaseStats {
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-title")}>
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.H6>
+                    </Base.H5>
                 )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
@@ -221,11 +213,7 @@ class Stats21 extends BaseStats {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const itemCount = this.getPropValue("itemCount");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-
-        const alignment = Base.getContentAlignment();
-
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
@@ -249,7 +237,7 @@ class Stats21 extends BaseStats {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content-wrapper")}>
                         {hasLeftSection && (
-                            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}`}>
+                            <Base.VerticalContent className={this.decorateCSS("left-column")}>
                                 {subtitleExist && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {this.getPropValue("subtitle")}
@@ -293,7 +281,7 @@ class Stats21 extends BaseStats {
                         )}
                         {stats.length > 0 && (
                             <Base.VerticalContent className={this.decorateCSS("right-column")}>
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                <Base.ListGrid gridCount={{ pc: 2, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                     {stats.map((stat: StatItem, index: number) => (
                                         <this.AnimatedStat
                                             key={`stat21-${index}`}
