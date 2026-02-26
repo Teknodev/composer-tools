@@ -5,7 +5,18 @@
     display: flex;
     flex-direction: column;
     padding: 0 !important;
-    width: 100%;
+
+    &.has-background {
+        .max-content {
+            position: relative;
+            margin-top: -190px;
+
+            .card {
+                background-color: var(--composer-primary-color);
+                padding: var(--composer-gap-xl);
+            }
+        }
+    }
 
     .background-section {
         position: relative;
@@ -35,7 +46,6 @@
 
     .bottom-strip {
         width: 100%;
-        min-height: 180px;
         background-color: var(--composer-html-background);
         z-index: 0;
 
@@ -45,22 +55,14 @@
     }
 
     .max-content {
-        position: absolute;
-        top: 380px;
-        transform: translateY(-50%);
-        left: 0;
-        right: 0;
-        z-index: 2;
-        padding: var(--composer-gap-xl);
         width: 100%;
+        z-index: 2;
     }
 
     .card {
-        width: 100%;
         background-color: var(--composer-primary-color);
-        border-radius: var(--composer-border-radius-md);
-/*         padding: 80px 50px;
- */        margin: 0;
+        padding: 80px 50px;
+        margin: 0;
 
         .text-block .subtitle,
         .text-block .title,
@@ -94,8 +96,6 @@
     }
 
     .text-block {
-        display: flex;
-        flex-direction: column;
         align-items: flex-start;
         flex: 1;
         min-width: 0;
@@ -144,31 +144,17 @@
             }
         }
     }
-
-
-    &.no-assets {
-        .background-section {
-            display: none;
-        }
-
-        .bottom-strip {
-            display: none;
-        }
-
-        .max-content {
-            position: relative;
-            bottom: auto;
-        }
-    }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-
-        .card,
-        .content-wrapper {
-            padding: 50px 30px;
-            margin: 0;
+        &.has-background {
+            .max-content {
+                .card {
+                    padding: var(--composer-gap-lg);
+                    margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                }
+            }
         }
 
         .text-block {
@@ -185,14 +171,16 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        .max-content {
-            padding: var(--composer-gap-md);
-
-            .card,
-            .content-wrapper {
-                padding: 40px 20px;
-                margin: 0;
+        &.has-background {
+            .max-content {
+                .card {
+                    padding: var(--composer-gap-md);
+                    margin: var(--composer-gap-xl) var(--composer-gap-md) !important;
+                }
             }
+        }
+
+        .max-content {
 
             .header {
                 gap: var(--composer-gap-md);

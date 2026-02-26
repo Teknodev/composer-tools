@@ -25,7 +25,7 @@ class CallToAction35 extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Let's Make it Bigger HSAHHASHF HASHS HA HSHSHA HASHS HSHSH AHSAH SH!",
+            value: "Let's Make it Bigger!",
         });
         this.addProp({
             type: "string",
@@ -66,8 +66,6 @@ class CallToAction35 extends BaseCallToAction {
                 }
             ]
         });
-
-
     }
 
     static getName(): string {
@@ -79,26 +77,19 @@ class CallToAction35 extends BaseCallToAction {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<Button[]>("buttons");
-        const hasHeader = subtitle || title || description;
+        const hasVisibleButtons = Array.isArray(buttons) && buttons.some(button => this.castToString(button?.text));
         const mediaSection = this.castToObject<{ backgroundImage?: TypeMediaInputValue; overlay?: boolean } & Partial<TypeMediaInputValue>>("media");
         const background = this.getPropValue("cardBackground") !== false;
         const backgroundImage = (mediaSection?.backgroundImage ?? (mediaSection?.type ? (mediaSection as TypeMediaInputValue) : undefined)) as TypeMediaInputValue | undefined;
         const hasBackgroundImage = backgroundImage && backgroundImage.type !== "icon" && backgroundImage.url && backgroundImage.url.length > 0;
         const showOverlay = !!(mediaSection?.overlay ?? false) && hasBackgroundImage;
         const alignment = Base.getContentAlignment();
-        const noAssets = !background && !hasBackgroundImage;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${!background ? this.decorateCSS("no-background") : ""} ${noAssets ? this.decorateCSS("no-assets") : ""}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${background && this.decorateCSS("has-background")}`}>
                 <div className={this.decorateCSS("background-section")}>
-                    <div className={this.decorateCSS("background-wrapper")}>
-                        <Base.Media
-                            value={backgroundImage}
-                            className={this.decorateCSS("background-image")}
-                        />
-                    </div>
-                    {showOverlay && <div className={this.decorateCSS("overlay")} />}
-                </div>
+                    {hasBackgroundImage && <div className={this.decorateCSS("background-wrapper")}> <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} /></div>}
+                    {showOverlay && <div className={this.decorateCSS("overlay")} />} </div>
                 <div className={`${this.decorateCSS("bottom-strip")} ${!background ? this.decorateCSS("transparent") : ""}`} />
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")}>
@@ -121,7 +112,7 @@ class CallToAction35 extends BaseCallToAction {
                                         </Base.SectionDescription>
                                     )}
                                 </Base.VerticalContent>
-                                {Array.isArray(buttons) && (
+                                {hasVisibleButtons && (
                                     <div className={this.decorateCSS("button-wrapper")}>
                                         <div className={this.decorateCSS("button-group")}>
                                             {buttons.map((button: Button, index: number) =>
