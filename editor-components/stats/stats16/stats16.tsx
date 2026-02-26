@@ -78,9 +78,9 @@ class Stats16 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "number", displayer: "Number", value: "50" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "$" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Average Cost Per Hour" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
@@ -204,9 +204,9 @@ class Stats16 extends BaseStats {
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-title")}>
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.H6>
+                    </Base.H5>
                 )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
