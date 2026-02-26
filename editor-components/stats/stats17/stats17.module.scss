@@ -3,9 +3,7 @@
 .container {
   background-color: var(--composer-primary-color);
 
-  .max-content .wrapper {
-    align-items: center;
-
+  .max-content {
     .header {
       align-items: center;
 
@@ -27,61 +25,64 @@
       }
     }
 
-    .stats-grid {
-      gap: var(--composer-gap-lg);
-      margin-block: var(--composer-gap-lg);
+    .bottom {
+      align-items: center;
 
-      .card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+      .stats-grid {
+        gap: var(--composer-gap-lg);
 
-        .stat-subtitle {
-          text-align: center;
-          color: var(--composer-font-color-secondary);
-        }
-
-        .stat-value {
+        .card {
           display: flex;
-          align-items: baseline;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
 
-          .stat-prefix,
-          .stat-number,
-          .stat-suffix {
-            font-size: 5rem;
+          .stat-subtitle {
+            text-align: center;
+            color: var(--composer-font-color-secondary);
+          }
+
+          .stat-value {
+            display: flex;
+            align-items: baseline;
+
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+              font-size: 5rem;
+              color: var(--composer-font-color-secondary);
+            }
+          }
+
+          .stat-title {
+            text-align: center;
+            color: var(--composer-font-color-secondary);
+          }
+
+          .stat-description {
+            text-align: center;
             color: var(--composer-font-color-secondary);
           }
         }
-
-        .stat-title {
-          text-align: center;
-          color: var(--composer-font-color-secondary);
-        }
-
-        .stat-description {
-          text-align: center;
-          color: var(--composer-font-color-secondary);
-        }
       }
-    }
 
-    .button-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--composer-gap-sm);
-      justify-content: center;
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        justify-content: center;
 
-      .button,
-      .button-text {
-        content: "";
+        .button,
+        .button-text {
+          content: "";
+        }
       }
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .wrapper .stats-grid {
+  .container .max-content .bottom .stats-grid {
     gap: var(--composer-gap-md);
 
     .card .stat-value .stat-prefix,
@@ -93,12 +94,12 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .max-content .wrapper {
+  .container .max-content {
     .header .subtitle {
       text-align: center;
     }
 
-    .stats-grid {
+    .bottom .stats-grid {
       gap: var(--composer-gap-md);
 
       .card .stat-value .stat-prefix,

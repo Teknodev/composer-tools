@@ -240,28 +240,28 @@ class Stats17 extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {hasHeader && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {subtitle && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
-                  </Base.SectionSubTitle>
-                )}
-                {title && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
-                {description && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
-                  >
-                    {this.getPropValue("description")}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
+          {hasHeader && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {title && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+              {description && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+          <Base.VerticalContent className={this.decorateCSS("bottom")}>
             {statItems.length > 0 && (
               <Base.ListGrid
                 gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
