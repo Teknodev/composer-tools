@@ -40,24 +40,53 @@
             &.alignment-center {
                 .left-container {
                     align-items: center;
-                }
 
-                .title,
-                .subtitle,
-                .description {
-                    text-align: center;
-                }
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                    }
 
-                .subtitle {
-                    margin-left: 0 auto;
-                }
+                    .subtitle {
+                        margin-left: 0 auto;
+                        width: fit-content;
+                    }
 
-                .button-container {
-                    justify-content: center;
+                    .button-container {
+                        justify-content: center;
+                    }
                 }
+            }
 
+            &.alignment-left {
+                .left-container {
+                    align-items: flex-start;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: left;
+                    }
+
+                    .subtitle {
+                        margin-left: 0;
+                        margin-right: auto;
+                        width: fit-content;
+                    }
+
+                    .button-container {
+                        justify-content: flex-start;
+                    }
+                }
+            }
+
+            &.alignment-center {
                 .stat-item {
                     align-items: center;
+
+                    .stat-value {
+                        justify-content: center;
+                    }
 
                     .stat-title,
                     .stat-subtitle,

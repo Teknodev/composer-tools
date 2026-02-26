@@ -237,7 +237,7 @@ class Stats23 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}`}>
 
                         {hasLeftSection && (
                             <Base.VerticalContent className={this.decorateCSS("left-container")}>
@@ -295,7 +295,7 @@ class Stats23 extends BaseStats {
                             </Base.ListGrid>
                         )}
 
-                    </div>
+                    </Base.VerticalContent>
                 </Base.MaxContent>
             </Base.Container>
         );
