@@ -52,7 +52,7 @@
 
         .media-wrapper {
           position: relative;
-          display: flex;
+          display: inline-flex;
           align-self: flex-end;
 
           .media {
@@ -60,6 +60,7 @@
             width: 8rem;
             height: 8rem;
             object-fit: contain;
+            border-radius: var(--composer-border-radius-sm);
           }
 
           .overlay {
@@ -71,6 +72,7 @@
             background-color: var(--composer-overlay-color);
             pointer-events: none;
             z-index: 1;
+            border-radius: var(--composer-border-radius-sm);
           }
         }
 
@@ -111,7 +113,6 @@
 
       .button {
         content: "";
-        
         .button-text {
           content: "";
         }
