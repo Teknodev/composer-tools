@@ -99,13 +99,7 @@ class Stats24 extends BaseStats {
             ],
         });
 
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 1,
-            max: 4,
-        });
+
     }
 
     static getName(): string { return "Stats 24"; }
@@ -180,9 +174,9 @@ class Stats24 extends BaseStats {
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-title")}>
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.H6>
+                    </Base.H5>
                 )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
@@ -199,7 +193,6 @@ class Stats24 extends BaseStats {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
-        const itemCount = this.getPropValue("itemCount");
 
         const alignment = Base.getContentAlignment();
 
@@ -275,7 +268,7 @@ class Stats24 extends BaseStats {
                         )}
 
                         {hasStats && (
-                            <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                            <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                 {stats.map((stat: StatItem, index: number) => (
                                     <this.AnimatedStat
                                         key={`stat24-${index}`}

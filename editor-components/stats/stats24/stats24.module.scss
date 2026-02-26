@@ -22,31 +22,32 @@
             }
 
             &.alignment-center {
+
                 .left-container {
-                    align-items: center;
+                    align-items: flex-start;
                 }
 
                 .title,
                 .subtitle,
                 .description {
-                    text-align: center;
+                    text-align: left;
                 }
 
                 .subtitle {
-                    margin-left: 0 auto;
+                    margin-left: 0;
                 }
 
                 .button-container {
-                    justify-content: center;
+                    justify-content: flex-start;
                 }
 
                 .stat-item {
-                    align-items: center;
+                    align-items: flex-start;
 
                     .stat-title,
                     .stat-subtitle,
                     .stat-description {
-                        text-align: center;
+                        text-align: left;
                     }
                 }
             }
@@ -55,7 +56,7 @@
                 flex: 1.5;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-sm);
-                box-shadow: var(--box-shadow-active);
+                box-shadow: var(--composer-box-shadow-lg);
                 display: flex;
                 align-items: center;
                 margin-bottom: 0;
@@ -72,7 +73,7 @@
                 .stat-item {
                     background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-sm);
-                    box-shadow: var(--box-shadow-active);
+                    box-shadow: var(--composer-box-shadow-lg);
                     padding: var(--composer-gap-lg) var(--composer-gap-md);
 
                     .stat-value {
@@ -114,6 +115,36 @@
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content-wrapper {
         flex-direction: column;
+
+        &.alignment-center {
+            .left-container {
+                align-items: center;
+            }
+
+            .title,
+            .subtitle,
+            .description {
+                text-align: center;
+            }
+
+            .subtitle {
+                margin-inline: auto;
+            }
+
+            .button-container {
+                justify-content: center;
+            }
+
+            .stat-item {
+                align-items: center;
+
+                .stat-title,
+                .stat-subtitle,
+                .stat-description {
+                    text-align: center;
+                }
+            }
+        }
 
         .left-card {
             .left-container {
