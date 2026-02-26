@@ -36,7 +36,7 @@ class CallToAction27 extends BaseCallToAction {
       key: "description",
       displayer: "Description",
       value:
-        "Credibly innovate granular internal or \"organic\" sources whereas high standards in web-readiness."
+        "Credibly innovate granular internal or “organic” sources whereas maintaining high standards in web-readiness. Proactively leverage cross-functional expertise to deliver scalable and sustainable solutions that align with evolving digital ecosystems. Seamlessly integrate emerging technologies with existing infrastructures to maximize operational efficiency and long-term value creation."
 
     });
 
