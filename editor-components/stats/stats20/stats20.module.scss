@@ -4,7 +4,6 @@
     .max-content {
         .card {
             .card-content {
-                width: 100%;
                 gap: var(--composer-gap-lg);
 
                 &.has-divider {
@@ -22,7 +21,6 @@
                 .header-container {
                     display: flex;
                     flex-direction: column;
-                    width: 100%;
 
                     .button-container {
                         display: flex;
@@ -105,7 +103,7 @@
             &.has-background {
                 background: var(--composer-primary-color);
                 border-radius: var(--composer-border-radius-md);
-                padding: 80px var(--composer-gap-xl);
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
 
                 .card-content {
                     .header-container {
@@ -150,7 +148,7 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .card {
         &.has-background {
-            padding: 80px var(--composer-gap-lg);
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
 
         .card-content {
