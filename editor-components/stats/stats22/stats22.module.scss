@@ -80,6 +80,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .wrapper {
+    flex-direction: column;
     .right {
       gap: var(--composer-gap-md);
 
