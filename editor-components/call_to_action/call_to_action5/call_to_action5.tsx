@@ -118,7 +118,7 @@ class CallToAction5Page extends BaseCallToAction {
                 validationSchema={this.validationSchema}
                 onSubmit={(data, { resetForm }) => {
                   this.setComponentState("placeholderText", submitText);
-                  this.insertForm("Call Me Back", data);
+                  this.insertForm("CTA5 – NewsletterForm", data);
                   setTimeout(() => {
                     const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
                     this.setComponentState("placeholderText", defaultPlaceholder);
