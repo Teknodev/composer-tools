@@ -44,13 +44,7 @@ class Stats22 extends BaseStats {
         INPUTS.BUTTON("button", "Button", "ABOUT US", "", null, null, "Black"),
       ],
     });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 6,
-    });
+
     this.addProp({
       type: "array",
       key: "statItems",
@@ -62,12 +56,12 @@ class Stats22 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "350" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Awesome Projects" },
             { type: "string", key: "description", displayer: "Description", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "350" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
           ],
         },
         {
@@ -75,12 +69,12 @@ class Stats22 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "90" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Satisfied Clients" },
             { type: "string", key: "description", displayer: "Description", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "90" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
           ],
         },
         {
@@ -88,12 +82,12 @@ class Stats22 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "5" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Years Experience" },
             { type: "string", key: "description", displayer: "Description", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "5" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
           ],
         },
       ],
@@ -200,9 +194,9 @@ class Stats22 extends BaseStats {
           </div>
         )}
         {hasSubtitle && (
-          <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+          <Base.P className={this.decorateCSS("stat-subtitle")}>
             {stat.subtitle}
-          </Base.H6>
+          </Base.P>
         )}
         {hasTitle && (
           <Base.H6 className={this.decorateCSS("stat-title")}>
@@ -223,7 +217,6 @@ class Stats22 extends BaseStats {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const itemCount = this.getPropValue("itemCount");
     const animationDuration = this.getPropValue("animationDuration") || 2000;
     const statItemsProp = this.getPropValue("statItems");
     const statItems: StatItem[] = statItemsProp.map((item: any) => {
@@ -282,7 +275,7 @@ class Stats22 extends BaseStats {
                   )}
                   {statItems.length > 0 && (
                     <Base.ListGrid
-                      gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
+                      gridCount={{ pc: 3, tablet: 3, phone: 2 }}
                       className={this.decorateCSS("stats-grid")}
                     >
                       {statItems.map((item, index) => {
