@@ -27,7 +27,7 @@ class CallToAction34Page extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Try BlinkPage",
+            value: "Special gifts for your loved ones",
         });
 
         this.addProp({
@@ -49,7 +49,7 @@ class CallToAction34Page extends BaseCallToAction {
         this.addProp({
             type: "object",
             key: "mediaGroup",
-            displayer: "Media Settings",
+            displayer: "Media",
             value: [
                 {
                     type: "media",
@@ -67,7 +67,7 @@ class CallToAction34Page extends BaseCallToAction {
                     type: "boolean",
                     key: "overlay",
                     displayer: "Overlay",
-                    value: true,
+                    value: false,
                 }
             ]
         });
@@ -130,17 +130,17 @@ class CallToAction34Page extends BaseCallToAction {
                                         {buttons.map((button: INPUTS.CastedButton, index: number) => {
                                             return (button.text || button.icon) && (
                                                 <ComposerLink key={index} path={button.url}>
-                                                    <div
-                                                        className={`${this.decorateCSS("button")} ${this.decorateCSS(button.type.toLowerCase())}`}
-                                                        style={{ backgroundColor: button.type === "White" ? "white" : undefined }}
+
+                                                    <Base.Button
+                                                        className={this.decorateCSS("button")}
+                                                        buttonType={button.type}
                                                     >
                                                         {button.text && (
                                                             <Base.P className={this.decorateCSS("button-text")}>
                                                                 {button.text}
                                                             </Base.P>
                                                         )}
-
-                                                    </div>
+                                                    </Base.Button>
                                                 </ComposerLink>
                                             );
                                         })}
