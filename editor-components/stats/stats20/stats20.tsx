@@ -196,9 +196,9 @@ class Stats20 extends BaseStats {
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-title")}>
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.H6>
+                    </Base.H5>
                 )}
                 {infoTextExist && (
                     <Base.P className={this.decorateCSS("stat-info-text")}>
