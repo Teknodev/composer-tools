@@ -35,11 +35,16 @@
       gap: var(--composer-gap-xl);
       width: 100%;
 
-      .footer-left,
+      .footer-left {
+        display: flex;
+        flex-direction: column;
+        width: calc(70% - (var(--composer-gap-xl) / 2));
+      }
+
       .footer-right {
         display: flex;
         flex-direction: column;
-        width: calc(50% - (var(--composer-gap-xl) / 2));
+        width: calc(30% - (var(--composer-gap-xl) / 2));
       }
 
       .footer-right {
@@ -104,6 +109,18 @@
     &.has-background {
       .max-content {
         padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+      }
+    }
+
+    .content {
+      .footer-group {
+        .footer-left {
+          width: calc(70% - (var(--composer-gap-xl) / 2));
+        }
+
+        .footer-right {
+          width: calc(30% - (var(--composer-gap-xl) / 2));
+        }
       }
     }
   }
