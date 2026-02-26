@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    width: 100%;
-
     .max-content {
         .content {
             gap: var(--composer-gap-xl);
@@ -22,7 +20,6 @@
                     .title,
                     .description {
                         text-align: left;
-                        width: 100%;
                     }
 
                     .subtitle {
@@ -79,10 +76,6 @@
                     }
 
                     .featured-list-items {
-                        display: grid;
-                        grid-template-columns: repeat(var(--cta19-cols, 1), minmax(0, 1fr));
-                        gap: var(--composer-gap-sm);
-                        width: 100%;
                         margin-top: var(--composer-gap-md);
 
                         .feature-list-item {
