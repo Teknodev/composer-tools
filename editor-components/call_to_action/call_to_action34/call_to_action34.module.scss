@@ -11,12 +11,25 @@
             overflow: hidden;
             border-radius: var(--composer-border-radius-md);
             padding: 0;
-            gap: 0;
+            gap: var(--composer-gap-xl);
+
+            :global(.center) {
+                flex-direction: row;
+                text-align: left;
+                align-items: flex-start;
+            }
 
             &.colored {
-                padding: 80px 50px;
+                padding: 0 0 0 50px;
                 background-color: var(--composer-primary-color);
 
+                @container (max-width: #{$composer-phone-width}) {
+                    padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) 50px;
+                }
+
+                .right-column {
+                    border-radius: 0 var(--composer-border-radius-md) var(--composer-border-radius-md) 0;
+                }
 
                 .left-column {
 
@@ -40,6 +53,7 @@
             justify-content: center;
             text-align: left;
             align-items: flex-start;
+
 
             .title,
             .subtitle,
@@ -75,6 +89,7 @@
             overflow: hidden;
             position: relative;
             display: flex;
+            border-radius: 0 var(--composer-border-radius-md) var(--composer-border-radius-md) 0;
 
             .media-container {
                 position: relative;
@@ -112,9 +127,13 @@
     .container {
         .max-content {
             .card-wrapper {
-                padding: 50px 20px;
+                padding: 0;
                 flex-direction: column-reverse;
                 gap: 0;
+
+                &.colored {
+                    padding: 0;
+                }
 
                 .left-column {
                     padding: var(--composer-gap-xl);
