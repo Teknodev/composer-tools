@@ -91,10 +91,10 @@ class CallToAction33 extends BaseCallToAction {
             {hasMedia && (
               <div className={this.decorateCSS("media-container")}>
                 <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
+                {overlayEnabled && (
+                  <div className={this.decorateCSS("overlay")} />
+                )}
               </div>
-            )}
-            {hasMedia && overlayEnabled && (
-              <div className={this.decorateCSS("overlay")} />
             )}
             <Base.VerticalContent
               className={`${this.decorateCSS("content")} ${hasMedia ? this.decorateCSS("with-media") : ""}`}

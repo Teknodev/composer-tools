@@ -21,13 +21,13 @@
           height: 100%;
           object-fit: cover;
         }
-      }
 
-      .overlay {
-        position: absolute;
-        inset: 0;
-        background: var(--composer-overlay-color);
-        z-index: 1;
+        .overlay {
+          position: absolute;
+          inset: 0;
+          background: var(--composer-overlay-color);
+          z-index: 1;
+        }
       }
 
       .content {
@@ -38,6 +38,12 @@
           display: flex;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
+
+          .button {
+            .button-text {
+              content: "";
+            }
+          }
         }
 
         &.with-media {
