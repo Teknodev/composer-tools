@@ -47,12 +47,12 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "100" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Satisfaction" },
             { type: "string", key: "description", displayer: "Description", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "100" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
           ],
         },
         {
@@ -60,12 +60,12 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "75" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Happy Users" },
             { type: "string", key: "description", displayer: "Description", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "75" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "K" },
           ],
         },
         {
@@ -73,12 +73,12 @@ class Stats17 extends BaseStats {
           key: "statItem",
           displayer: "Stat Item",
           value: [
+            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+            { type: "string", key: "number", displayer: "Value", value: "125" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
             { type: "string", key: "title", displayer: "Title", value: "Downloads" },
             { type: "string", key: "description", displayer: "Description", value: "" },
-            { type: "string", key: "number", displayer: "Value", value: "125" },
-            { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-            { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
           ],
         },
       ],
@@ -200,9 +200,9 @@ class Stats17 extends BaseStats {
           </div>
         )}
         {hasSubtitle && (
-          <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+          <Base.P className={this.decorateCSS("stat-subtitle")}>
             {stat.subtitle}
-          </Base.H6>
+          </Base.P>
         )}
         {hasTitle && (
           <Base.H6 className={this.decorateCSS("stat-title")}>
@@ -264,7 +264,7 @@ class Stats17 extends BaseStats {
             )}
             {statItems.length > 0 && (
               <Base.ListGrid
-                gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
+                gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
                 className={this.decorateCSS("stats-grid")}
               >
                 {statItems.map((item, index) => {
