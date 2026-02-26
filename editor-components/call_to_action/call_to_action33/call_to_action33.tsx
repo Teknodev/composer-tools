@@ -117,7 +117,7 @@ class CallToAction33 extends BaseCallToAction {
               {buttons.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((button: Button, index: number) =>
-                    this.castToString(button.text) ? (
+                    this.castToString(button.text) && (
                       <ComposerLink key={index} path={button.url}>
                         <Base.Button
                           buttonType={button.type}
@@ -128,7 +128,7 @@ class CallToAction33 extends BaseCallToAction {
                           </Base.P>
                         </Base.Button>
                       </ComposerLink>
-                    ) : null
+                    )
                   )}
                 </div>
               )}
