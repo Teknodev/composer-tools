@@ -10,17 +10,24 @@ class CallToAction31Page extends BaseCallToAction {
         super(props, styles);
 
         this.addProp({
+            type: "boolean",
+            key: "coloredBackground",
+            displayer: "Colored Background",
+            value: true
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: ""
+            value: "deneme"
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with Impreza.",
+            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with BlinkPage.",
         });
 
         this.addProp({
@@ -30,43 +37,56 @@ class CallToAction31Page extends BaseCallToAction {
             value: "",
         });
 
-        this.addProp({
-            type: "string",
-            key: "imageWidth",
-            displayer: "Image Width",
-            value: "100%"
-        });
 
         this.addProp({
-            type: "string",
-            key: "imageHeight",
-            displayer: "Image Height",
-            value: "auto"
+            type: "object",
+            key: "mediaGroup",
+            displayer: "Media Group",
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/699c5a24771c03002cc6b0ca?alt=media",
+                    }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true
+                }
+            ]
         });
 
-        this.addProp({
-            type: "media",
-            key: "media",
-            displayer: "Media",
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/699c5a24771c03002cc6b0ca?alt=media",
-            }
-        });
 
-        this.addProp({
-            type: "boolean",
-            key: "isActive",
-            displayer: "Active",
-            value: true
-        });
+        // this.addProp({
+        //     type: "string",
+        //     key: "imageHeight",
+        //     displayer: "Image Height",
+        //     value: "auto"
+        // });
 
-        this.addProp({
-            type: "boolean",
-            key: "card",
-            displayer: "Card",
-            value: true
-        });
+        // this.addProp({
+        //     type: "media",
+        //     key: "media",
+        //     displayer: "Media",
+        //     value: {
+        //         type: "image",
+        //         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/699c5a24771c03002cc6b0ca?alt=media",
+        //     }
+        // });
+
+        // this.addProp({
+        //     type: "boolean",
+        //     key: "isActive",
+        //     displayer: "Active",
+        //     value: true
+        // });
+
+
 
         this.addProp({
             type: "array",
@@ -90,14 +110,17 @@ class CallToAction31Page extends BaseCallToAction {
     }
 
     render() {
-        if (!this.getPropValue("isActive")) return null;
+        // if (!this.getPropValue("isActive")) return null;
+        // const media = this.getPropValue("media");
 
-        const media = this.getPropValue("media");
-        const isCard = this.getPropValue("card");
+        const mediaGroup = this.castToObject<any>("mediaGroup");
+        const media = mediaGroup.media;
+        const overlay = mediaGroup.overlay;
+        const coloredBackground = this.getPropValue("coloredBackground");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!isCard ? this.decorateCSS("no-card") : ""}`}>
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!coloredBackground ? this.decorateCSS("no-card") : ""}`}>
 
                     <div className={this.decorateCSS("header-row")}>
                         <div className={this.decorateCSS("text-column")}>
@@ -140,16 +163,12 @@ class CallToAction31Page extends BaseCallToAction {
                     </div>
 
                     {media && (
-                        <div className={this.decorateCSS("media-wrapper")}
-                            style={{
-                                width: this.getPropValue("imageWidth"),
-                                height: this.getPropValue("imageHeight"),
-                            }}>
+                        <div className={this.decorateCSS("media-wrapper")}>
                             <Base.Media
                                 value={media}
                                 className={this.decorateCSS("media")}
                             />
-                            <div className={this.decorateCSS("overlay")} />
+                            {overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                     )}
 
