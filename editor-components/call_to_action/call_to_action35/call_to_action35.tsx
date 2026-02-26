@@ -77,7 +77,7 @@ class CallToAction35 extends BaseCallToAction {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<Button[]>("buttons");
-        const hasVisibleButtons = Array.isArray(buttons) && buttons.some(button => this.castToString(button?.text));
+        const hasVisibleButtons = buttons.some(button => this.castToString(button?.text));
         const mediaSection = this.castToObject<{ backgroundImage?: TypeMediaInputValue; overlay?: boolean } & Partial<TypeMediaInputValue>>("media");
         const background = this.getPropValue("cardBackground") !== false;
         const backgroundImage = (mediaSection?.backgroundImage ?? (mediaSection?.type ? (mediaSection as TypeMediaInputValue) : undefined)) as TypeMediaInputValue | undefined;
