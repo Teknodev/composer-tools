@@ -8,10 +8,21 @@
       content: "";
     }
 
+    &.alignment-center {
+      align-items: center;
+
+      .subtitle,
+      .title,
+      .description {
+        text-align: center;
+      }
+    }
+
     .button-container {
       display: flex;
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
+      align-self: center;
 
       .button,
       .button-text {
@@ -21,6 +32,7 @@
 
     .stats-grid {
       gap: var(--composer-gap-lg);
+      margin-top: var(--composer-gap-lg);
       margin-bottom: var(--composer-gap-lg);
 
       .stat-item {
@@ -31,7 +43,7 @@
         .stat-header {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-sm);
+          gap: var(--composer-gap-md);
 
           .stat-value {
             display: flex;
@@ -40,7 +52,7 @@
             .stat-number,
             .stat-suffix {
               font-size: 5rem;
-              color: var(--composer-color-primary);
+              color: var(--composer-primary-color);
             }
           }
 

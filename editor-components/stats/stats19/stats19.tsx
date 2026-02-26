@@ -44,7 +44,7 @@ class Stats19 extends BaseStats {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "fasfasfas", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -116,6 +116,7 @@ class Stats19 extends BaseStats {
     const isDescriptionExist = this.castToString(description);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const itemCount = this.getPropValue("itemCount");
+    const alignment = Base.getContentAlignment();
     const statsProp = this.getPropValue("stats");
     const stats: StatItem[] = statsProp.map((item: any) => {
       const subtitle = item.getPropValue("subtitle");
@@ -130,7 +131,7 @@ class Stats19 extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+          <Base.VerticalContent className={`${this.decorateCSS("wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
             {isSubtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {subtitle}
