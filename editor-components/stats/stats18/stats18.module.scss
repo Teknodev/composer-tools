@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.container {
-    background-color: var(--composer-html-background);
-}
+
 
 .max-content {
     display: flex;
@@ -35,9 +33,6 @@
     }
 }
 
-.description {
-    color: var(--composer-font-color-primary);
-}
 
 .cards-grid {
     gap: var(--composer-gap-lg)
@@ -60,7 +55,7 @@
     width: 100%;
     display: flex;
     align-items: baseline;
-    font-size: 5rem;
+    font-size: 4rem;
 
     &.has-line {
         border-bottom: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
@@ -75,22 +70,32 @@
 .card-label {
     color: var(--composer-font-color-primary);
     margin: 0;
+    text-align: left !important;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .cards-grid {
-        .card {
-            padding: var(--composer-gap-sm) !important;
-        }
-
-        .card-value {
-            font-size: 4rem !important;
-        }
+    .max-content {
+        padding: var(--composer-gap-lg);
     }
 
+    .card-value {
+        font-size: 3rem !important;
+    }
+
+    .cards-grid {
+        gap: var(--composer-gap-md) !important;
+
+        .card {
+            padding: var(--composer-gap-md) !important;
+        }
+    }
 }
 
 @container (max-width: #{$composer-phone-width}) {
+    .max-content {
+        padding: var(--composer-gap-lg);
+    }
+
     .card-value {
         font-size: 3rem !important;
     }

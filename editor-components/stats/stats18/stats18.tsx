@@ -11,6 +11,9 @@ type CardData = {
     value: number;
     suffix: string;
     cardLabel: string;
+    subtitle: string;
+    title: string;
+    description: string;
 };
 
 class Stats18Page extends BaseStats {
@@ -18,17 +21,12 @@ class Stats18Page extends BaseStats {
         super(props, styles)
 
         this.addProp({
-            type: "boolean",
-            key: "showLine",
-            displayer: "Show Separator Line",
-            value: true,
-        });
-        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
             value: "",
         });
+
         this.addProp({
             type: "string",
             key: "title",
@@ -57,6 +55,24 @@ class Stats18Page extends BaseStats {
                     value: [
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "prefix",
                             displayer: "Prefix",
                             value: "$",
@@ -76,7 +92,7 @@ class Stats18Page extends BaseStats {
                         {
                             type: "string",
                             key: "cardLabel",
-                            displayer: "Label",
+                            displayer: "Item Title",
                             value: "Total investment in 2022",
                         },
                     ],
@@ -86,6 +102,24 @@ class Stats18Page extends BaseStats {
                     key: "card",
                     displayer: "Card",
                     value: [
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
                         {
                             type: "string",
                             key: "prefix",
@@ -107,7 +141,7 @@ class Stats18Page extends BaseStats {
                         {
                             type: "string",
                             key: "cardLabel",
-                            displayer: "Label",
+                            displayer: "Item Title",
                             value: "Employees",
                         },
                     ],
@@ -117,6 +151,24 @@ class Stats18Page extends BaseStats {
                     key: "card",
                     displayer: "Card",
                     value: [
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
                         {
                             type: "string",
                             key: "prefix",
@@ -138,7 +190,7 @@ class Stats18Page extends BaseStats {
                         {
                             type: "string",
                             key: "cardLabel",
-                            displayer: "Label",
+                            displayer: "Item Title",
                             value: "Increased website traffic",
                         },
                     ],
@@ -148,6 +200,24 @@ class Stats18Page extends BaseStats {
                     key: "card",
                     displayer: "Card",
                     value: [
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
                         {
                             type: "string",
                             key: "prefix",
@@ -169,7 +239,7 @@ class Stats18Page extends BaseStats {
                         {
                             type: "string",
                             key: "cardLabel",
-                            displayer: "Label",
+                            displayer: "Item Title",
                             value: "Client Satisfaction",
                         },
                     ],
@@ -177,7 +247,12 @@ class Stats18Page extends BaseStats {
             ],
         });
 
-
+        this.addProp({
+            type: "boolean",
+            key: "showLine",
+            displayer: "Show Separator Line",
+            value: true,
+        });
 
         this.addProp({
             type: "object",
@@ -206,6 +281,7 @@ class Stats18Page extends BaseStats {
             value: 4,
             max: 4,
         });
+
         this.addProp({
             type: "array",
             key: "buttons",
@@ -284,6 +360,15 @@ class Stats18Page extends BaseStats {
 
             return (
                 <div ref={ref} className={this.decorateCSS("card")}>
+                    {this.castToString(card.subtitle) && (
+                        <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.SectionSubTitle>
+                    )}
+                    {this.castToString(card.title) && (
+                        <Base.SectionTitle className={this.decorateCSS("card-title")}>{card.title}</Base.SectionTitle>
+                    )}
+                    {this.castToString(card.description) && (
+                        <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.description}</Base.SectionDescription>
+                    )}
                     <div className={`${this.decorateCSS("card-value")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
                         {prefix && <span className={this.decorateCSS("card-value-prefix")}>{prefix}</span>}
                         <span className={this.decorateCSS("display-value")}>{displayValue}</span>
@@ -349,7 +434,7 @@ class Stats18Page extends BaseStats {
 
                     {cardList.length > 0 && (
                         <Base.ListGrid
-                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }}
+                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
                             {cardList.map((card, index) => this.renderAnimatedCard(card, animationSettings, showLine, index))}
