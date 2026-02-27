@@ -321,7 +321,10 @@ class Feature50 extends BaseFeature {
                         gridCount={{ pc: itemsPerRow || 2, tablet: 2, phone: 1 }}
                         className={this.decorateCSS("cards-grid")}
                     >
-                        {cards?.map((card: Card, index: number) => (
+                        {cards?.map((card: Card, index: number) => {
+                            const isImageMedia = card.media && (card.media as any).type === "image";
+
+                            return (
                             <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                                 <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                     {this.castToString(card.subtitle) && (
@@ -371,15 +374,15 @@ class Feature50 extends BaseFeature {
                                     <div className={this.decorateCSS("media-wrapper")}>
                                         <Base.Media 
                                             value={card.media}
-                                            className={this.decorateCSS("media")}
+                                            className={`${this.decorateCSS("media")} ${isImageMedia ? this.decorateCSS("media-image") : ""}`}
                                         />
-                                        {card.overlay && (
+                                        {card.overlay && isImageMedia && (
                                             <div className={this.decorateCSS("overlay")}></div>
                                         )}
                                     </div>
                                 )}
                             </Base.VerticalContent>
-                        ))}
+                        )})}
                     </Base.ListGrid>
 
                     {primaryButtons && primaryButtons.filter(b => this.castToString(b.text)).length > 0 && (

@@ -60,6 +60,9 @@
             width: 8rem;
             height: 8rem;
             object-fit: contain;
+          }
+          .media-image {
+            object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
 
