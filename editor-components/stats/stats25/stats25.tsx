@@ -158,10 +158,10 @@ class Stats25 extends BaseStats {
             return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
         };
 
-        const titleExist = stat.title && stat.title !== "";
-        const subtitleExist = stat.subtitle && stat.subtitle !== "";
-        const descriptionExist = stat.description && stat.description !== "";
-        const valueExist = originalString && originalString !== "";
+        const titleExist = this.castToString(stat.title);
+        const subtitleExist = this.castToString(stat.subtitle);
+        const descriptionExist = this.castToString(stat.description);
+        const valueExist = this.castToString(originalString);
 
         if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
