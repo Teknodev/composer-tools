@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./hero-section25.module.scss";
-import { BaseHeroSection } from "../../EditorComponent";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
@@ -16,7 +16,10 @@ interface IAnimationProps {
 interface SliderItem {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  image: string;
+  logo?: TypeMediaInputValue;
+  subtitle?: React.JSX.Element;
+  image: TypeMediaInputValue;
+  overlay: boolean;
   button: INPUTS.CastedButton;
 };
 
@@ -27,7 +30,7 @@ interface TopContentItem {
 
 interface IconItem {
   navigate_icon: string;
-  icon_name: string;
+  icon_name: TypeMediaInputValue;
 }
 
 class HeroSection25 extends BaseHeroSection {
@@ -61,7 +64,7 @@ class HeroSection25 extends BaseHeroSection {
     this.addProp({
       type: "boolean",
       key: "lineIsActive",
-      displayer: "Line Active",
+      displayer: "Line",
       value: true,
     });
     this.addProp({
@@ -80,14 +83,15 @@ class HeroSection25 extends BaseHeroSection {
             {
               type: "page",
               key: "navigate_icon",
-              displayer: "Icon Link",
+              displayer: "Navigate To",
               value: "",
             },
             {
-              type: "icon",
+              type: "media",
               key: "icon_name",
               displayer: "Icon",
-              value: "FaInstagram",
+              value: { type: "icon", name: "FaInstagram" },
+              additionalParams: { availableTypes: ["icon", "image"] },
             },
           ],
         },
@@ -99,10 +103,10 @@ class HeroSection25 extends BaseHeroSection {
             {
               type: "page",
               key: "navigate_icon",
-              displayer: "Icon Link",
+              displayer: "Navigate To",
               value: "",
             },
-            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaTwitter" },
+            { type: "media", key: "icon_name", displayer: "Icon", value: { type: "icon", name: "FaTwitter" }, additionalParams: { availableTypes: ["icon", "image"] } },
           ],
         },
         {
@@ -113,10 +117,10 @@ class HeroSection25 extends BaseHeroSection {
             {
               type: "page",
               key: "navigate_icon",
-              displayer: "Icon Link",
+              displayer: "Navigate To",
               value: "",
             },
-            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaBehance" },
+            { type: "media", key: "icon_name", displayer: "Icon", value: { type: "icon", name: "FaBehance" }, additionalParams: { availableTypes: ["icon", "image"] } },
           ],
         },
         {
@@ -127,42 +131,65 @@ class HeroSection25 extends BaseHeroSection {
             {
               type: "page",
               key: "navigate_icon",
-              displayer: "Icon Link",
+              displayer: "Navigate To",
               value: "",
             },
-            { type: "icon", key: "icon_name", displayer: "Icon", value: "FaFacebookF" },
+            { type: "media", key: "icon_name", displayer: "Icon", value: { type: "icon", name: "FaFacebookF" }, additionalParams: { availableTypes: ["icon", "image"] } },
           ],
         },
       ],
     });
     this.addProp({
-      type: "icon",
-      key: "prev_icon",
-      displayer: "Prev icon",
-      value: "FaArrowLeftLong",
-    });
-    this.addProp({
-      type: "icon",
-      key: "next_icon",
-      displayer: "Next icon",
-      value: "FaArrowRightLong",
-    });
-    this.addProp({
-      type: "string",
-      key: "next-arrow-text",
-      displayer: "Next Arrow Text",
-      value: "NEXT",
+      type: "object",
+      key: "navigation",
+      displayer: "Navigation",
+      value: [
+        {
+          type: "media",
+          key: "prev_icon",
+          displayer: "Prev Icon",
+          value: { type: "icon", name: "FaArrowLeftLong" },
+          additionalParams: { availableTypes: ["icon", "image"] },
+        },
+        {
+          type: "string",
+          key: "prev_text",
+          displayer: "Prev Text",
+          value: "PREV",
+        },
+        {
+          type: "media",
+          key: "next_icon",
+          displayer: "Next Icon",
+          value: { type: "icon", name: "FaArrowRightLong" },
+          additionalParams: { availableTypes: ["icon", "image"] },
+        },
+        {
+          type: "string",
+          key: "next_text",
+          displayer: "Next Text",
+          value: "NEXT",
+        },
+      ],
     });
 
     this.addProp({
-      type: "string",
-      key: "prev-arrow-text",
-      displayer: "Prev Arrow Text",
-      value: "PREV",
+      type: "boolean",
+      key: "autoplay",
+      displayer: "Autoplay",
+      value: true,
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "animation",
+      displayer: "Animation",
+      value: true,
+    });
+
     this.addProp({
       type: "array",
-      displayer: "Slider Carousel",
+      displayer: "Slider",
       key: "slider",
       value: [
         {
@@ -170,6 +197,19 @@ class HeroSection25 extends BaseHeroSection {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+           {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -184,11 +224,20 @@ class HeroSection25 extends BaseHeroSection {
                 "Modern Hotel is the architecture of a new generation, a building that exists not only in the dimension of space, but also in the dimension of time and communication",
             },
             {
-              type: "image",
-              displayer: "Item",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b0?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b0?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
             },
             INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "White"),
           ],
@@ -198,6 +247,19 @@ class HeroSection25 extends BaseHeroSection {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -212,11 +274,20 @@ class HeroSection25 extends BaseHeroSection {
                 "Modern Hotel is the architecture of a new generation, a building  that exists not only in the dimension of space, but also in the dimension of time and communication.",
             },
             {
-              type: "image",
-              displayer: "Item",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b1?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
             },
             INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "White"),
           ],
@@ -226,6 +297,19 @@ class HeroSection25 extends BaseHeroSection {
           displayer: "Item",
           key: "item",
           value: [
+            {
+              type: "media",
+              displayer: "Logo",
+              key: "logo",
+              additionalParams: { availableTypes: ["icon", "image"] },
+              value: { type: "icon", name: "" },
+            },
+            {
+              type: "string",
+              displayer: "Subtitle",
+              key: "subtitle",
+              value: "",
+            },
             {
               type: "string",
               displayer: "Title",
@@ -240,11 +324,20 @@ class HeroSection25 extends BaseHeroSection {
                 "Exhibition Center is the architecture of a new generation, a building that exists not only in the dimension of space, but also in the dimension of time and communication.  ",
             },
             {
-              type: "image",
-              displayer: "Item",
+              type: "media",
+              displayer: "Media",
               key: "image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b2?alt=media&timestamp=1719483639150",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66619ff6bd2970002c6268b2?alt=media&timestamp=1719483639150",
+              },
+              additionalParams: { availableTypes: ["image", "video"] },
+            },
+            {
+              type: "boolean",
+              displayer: "Overlay",
+              key: "overlay",
+              value: false,
             },
             INPUTS.BUTTON("button", "Button", "Read More", "", "FaArrowRightLong", null, "White"),
           ],
@@ -275,27 +368,33 @@ class HeroSection25 extends BaseHeroSection {
   };
 
   render() {
+    const animation: boolean = this.getPropValue("animation");
+
     const settings = {
       dots: false,
       infinite: true,
       arrows: false,
       speed: 1000,
-      fade: true,
-      autoplay: true,
+      fade: animation,
+      autoplay: this.getPropValue("autoplay"),
       autoplaySpeed: 3000,
       slidesToShow: 1,
       slidesToScroll: 1,
       beforeChange: (oldIndex: number, newIndex: number) => {
         if (oldIndex == newIndex) return;
-        this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
-        this.setComponentState("descriptionAnimationClass", "animate__fadeOutDown");
-        setTimeout(() => {
+        if (animation) {
+          this.setComponentState("buttonAnimationClass", "animate__fadeOutDown");
+          this.setComponentState("titleAnimationClass", "animate__fadeOutDown");
+          this.setComponentState("descriptionAnimationClass", "animate__fadeOutDown");
+          setTimeout(() => {
+            this.setComponentState("active-index", newIndex);
+            this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
+            this.setComponentState("titleAnimationClass", "animate__fadeInRight");
+            this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
+          }, 1000);
+        } else {
           this.setComponentState("active-index", newIndex);
-          this.setComponentState("buttonAnimationClass", "animate__fadeInUp");
-          this.setComponentState("titleAnimationClass", "animate__fadeInRight");
-          this.setComponentState("descriptionAnimationClass", "animate__fadeInUp");
-        }, 1000);
+        }
       },
     };
 
@@ -305,10 +404,12 @@ class HeroSection25 extends BaseHeroSection {
     const activeIndex = this.getComponentState("active-index");
     const imageless = !sliderItemObject[activeIndex]?.image;
 
-    const prevIcon = this.getPropValue("prev_icon")
-    const prevArrowText = this.getPropValue("prev-arrow-text")
-    const nextIcon = this.getPropValue("next_icon")
-    const nextArrowText = this.getPropValue("next-arrow-text")
+    const navigation = this.castToObject<{
+      prev_icon: TypeMediaInputValue;
+      prev_text: string;
+      next_icon: TypeMediaInputValue;
+      next_text: string;
+    }>("navigation");
 
     const socialMediaIcons = this.castToObject<IconItem[]>("icons");
 
@@ -331,12 +432,18 @@ class HeroSection25 extends BaseHeroSection {
               return (
                 <div className={this.decorateCSS("slider-images")} key={indexSlider}>
                   {sliderItem.image &&
-                    <img
+                    <Base.Media
+                      autoPlay
+                      loop
+                      muted
+                      controls={false}
+                      value={sliderItem.image}
                       className={this.decorateCSS("slider-image")}
-                      src={sliderItem.image}
-                      alt=""
                     />
                   }
+                  {sliderItem.overlay && sliderItem.image && (
+                    <div className={this.decorateCSS("overlay")} />
+                  )}
                 </div>
               )
             })}
@@ -382,11 +489,9 @@ class HeroSection25 extends BaseHeroSection {
                   <div className={this.decorateCSS("icons")}>
                     {socialMediaIcons.map((item: IconItem, iconIndex: number) => (
                       <ComposerLink path={item.navigate_icon} key={iconIndex}>
-                        <Base.Icon
-                          name={item.icon_name}
-                          propsIcon={{
-                            className: `${this.decorateCSS("icon")}`,
-                          }}
+                        <Base.Media
+                          value={item.icon_name}
+                          className={this.decorateCSS("icon")}
                         />
                       </ComposerLink>
                     ))}
@@ -394,53 +499,47 @@ class HeroSection25 extends BaseHeroSection {
               </div>}
 
             {(sliderItemObject.length > 1 &&
-              (this.castToString(prevArrowText) ||
-                prevIcon ||
-                this.castToString(nextArrowText) ||
-                nextIcon)) && (
+              (this.castToString(navigation.prev_text) ||
+                navigation.prev_icon ||
+                this.castToString(navigation.next_text) ||
+                navigation.next_icon)) && (
                 <div className={`${this.decorateCSS("arrows")} 
                       ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("no-left-side")}
                       ${!isIndexDisplayExist && this.decorateCSS("icon-bottom")}
                       ${imageless && this.decorateCSS("black-theme")}`}>
-                  {(this.castToString(prevArrowText) || prevIcon) &&
+                  {(this.castToString(navigation.prev_text) || navigation.prev_icon) &&
                     <div
                       className={this.decorateCSS("prev-arrow")}
                       onClick={() => {
                         this.getComponentState("slider-ref").current.slickPrev();
                       }}
                     >
-                      {prevIcon &&
-                        <Base.Icon
-                          name={prevIcon}
-                          propsIcon={{
-                            className: `${this.decorateCSS("arrow")}`,
-                            size: 20,
-                          }}
+                      {navigation.prev_icon &&
+                        <Base.Media
+                          value={navigation.prev_icon}
+                          className={this.decorateCSS("arrow")}
                         />}
-                      {this.castToString(prevArrowText) &&
-                        <span className={this.decorateCSS("arrow-text")}>
-                          {prevArrowText}
-                        </span>}
+                      {this.castToString(navigation.prev_text) &&
+                        <Base.H6 className={this.decorateCSS("arrow-text")}>
+                          {navigation.prev_text}
+                        </Base.H6>}
                     </div>}
 
-                  {(this.castToString(nextArrowText) || nextIcon) &&
+                  {(this.castToString(navigation.next_text) || navigation.next_icon) &&
                     <div
                       className={this.decorateCSS("next-arrow")}
                       onClick={() => {
                         this.getComponentState("slider-ref").current.slickNext();
                       }}
                     >
-                      {this.castToString(nextArrowText) &&
-                        <span className={this.decorateCSS("arrow-text")}>
-                          {nextArrowText}
-                        </span>}
-                      {nextIcon &&
-                        <Base.Icon
-                          name={nextIcon}
-                          propsIcon={{
-                            className: `${this.decorateCSS("arrow")}`,
-                            size: 20,
-                          }}
+                      {this.castToString(navigation.next_text) &&
+                        <Base.H6 className={this.decorateCSS("arrow-text")}>
+                          {navigation.next_text}
+                        </Base.H6>}
+                      {navigation.next_icon &&
+                        <Base.Media
+                          value={navigation.next_icon}
+                            className={this.decorateCSS("arrow")}
                         />}
                     </div>}
                 </div>
@@ -449,27 +548,46 @@ class HeroSection25 extends BaseHeroSection {
 
           {sliderItemObject.map((sliderItem: SliderItem, index: number) => {
             const isActive = this.getComponentState("active-index") === index;
-            if (isActive && sliderItem) {
-              return (
-                <Base.Container className={this.decorateCSS("content-container")}>
-                  <Base.MaxContent
-                    className={`${this.decorateCSS("content-max-content")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
-                    key={index}
-                  >
-                    {(this.castToString(sliderItem.button.text) ||
-                      sliderItem.button.icon ||
-                      this.castToString(sliderItem.title) ||
-                      this.castToString(sliderItem.description)) &&
-                      <div className={`${this.decorateCSS("layout")} 
-                    ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("full-width-right-item")}`}>
-                        <Base.VerticalContent className={this.decorateCSS("content")}>
-                          {this.castToString(sliderItem.title) &&
+            return (
+              <Base.Container
+                className={this.decorateCSS("content-container")}
+                key={index}
+                style={{ display: !isActive && "none" }}
+              >
+                <Base.MaxContent
+                  className={`${this.decorateCSS("content-max-content")} ${!sliderItem.image && this.decorateCSS("black-theme")}`}
+                >
+                  {(this.castToString(sliderItem.button.text) ||
+                    sliderItem.button.icon ||
+                    this.castToString(sliderItem.title) ||
+                    this.castToString(sliderItem.description)) && (
+                    <div className={`${this.decorateCSS("layout")} 
+                      ${(!isIndexDisplayExist && !isMediaPanelExist) && this.decorateCSS("full-width-right-item")}`}>
+                      <Base.VerticalContent className={this.decorateCSS("content")}> 
+                        {this.castToString(sliderItem.title) && (
+                          <React.Fragment>
+                            {sliderItem.logo && (
+                              <Base.Media
+                                value={sliderItem.logo}
+                                className={`${this.decorateCSS("logo")} animate__animated ${this.getComponentState("titleAnimationClass")}`}
+                                onAnimationEnd={() => {
+                                  this.handleAnimationEnd({
+                                    animationState: "titleAnimationClass",
+                                    startingAnimation: "animate__fadeInRight",
+                                    endingAnimation: "animate__fadeOutDown",
+                                  });
+                                }}
+                              />
+                            )}
+                            {this.castToString(sliderItem.subtitle) && (
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${sliderItem.image && this.decorateCSS("with-image")} ${sliderItem.image && this.decorateCSS("subtitle-has-image")} ${animation ? `animate__animated ${this.getComponentState("titleAnimationClass")}` : ""}`}>
+                                {sliderItem.subtitle}
+                              </Base.SectionSubTitle>
+                            )}
                             <Base.SectionTitle
                               className={`
-                              ${this.decorateCSS("title")} 
-                              animate__animated 
-                              ${this.getComponentState("titleAnimationClass")
-                                }`}
+                                ${this.decorateCSS("title")} ${sliderItem.image && this.decorateCSS("with-image")} ${animation ? `animate__animated ${this.getComponentState("titleAnimationClass")}` : ""}
+                              `}
                               onAnimationEnd={() => {
                                 this.handleAnimationEnd({
                                   animationState: "titleAnimationClass",
@@ -479,56 +597,55 @@ class HeroSection25 extends BaseHeroSection {
                               }}
                             >
                               {sliderItem.title}
-                            </Base.SectionTitle>}
-                          {this.castToString(sliderItem.description) &&
-                            <Base.SectionDescription
-                              className={`${this.decorateCSS("description")} 
-                            animate__animated 
-                            ${this.getComponentState("descriptionAnimationClass")}`}
+                            </Base.SectionTitle>
+                          </React.Fragment>
+                        )}
+                        {this.castToString(sliderItem.description) && (
+                          <Base.SectionDescription
+                            className={`${this.decorateCSS("description")} ${sliderItem.image && this.decorateCSS("with-image")} ${animation ? `animate__animated ${this.getComponentState("descriptionAnimationClass")}` : ""}`}
+                            onAnimationEnd={() => {
+                              this.handleAnimationEnd({
+                                animationState: "descriptionAnimationClass",
+                                startingAnimation: "animate__fadeInUp",
+                                endingAnimation: "animate__fadeOutDown",
+                              });
+                            }}
+                          >
+                            {sliderItem.description}
+                          </Base.SectionDescription>
+                        )}
+                        {(this.castToString(sliderItem.button.text) || sliderItem.button.icon) && (
+                          <ComposerLink path={sliderItem.button.url}>
+                            <Base.Button
+                              buttonType={sliderItem.button.type}
+                              className={`${this.decorateCSS("button")} ${animation ? `animate__animated ${this.getComponentState("buttonAnimationClass")}` : ""}`}
                               onAnimationEnd={() => {
                                 this.handleAnimationEnd({
-                                  animationState: "descriptionAnimationClass",
+                                  animationState: "buttonAnimationClass",
                                   startingAnimation: "animate__fadeInUp",
                                   endingAnimation: "animate__fadeOutDown",
                                 });
                               }}
                             >
-                              {sliderItem.description}
-                            </Base.SectionDescription>}
-                          {(this.castToString(sliderItem.button.text) ||
-                            sliderItem.button.icon) &&
-                            <ComposerLink path={sliderItem.button.url}>
-                              <Base.Button buttonType={sliderItem.button.type}
-                                className={`${this.decorateCSS("button")} animate__animated ${this.getComponentState(
-                                  "buttonAnimationClass"
-                                )}`}
-                                onAnimationEnd={() => {
-                                  this.handleAnimationEnd({
-                                    animationState: "buttonAnimationClass",
-                                    startingAnimation: "animate__fadeInUp",
-                                    endingAnimation: "animate__fadeOutDown",
-                                  });
-                                }}
-                              >
-                                {sliderItem.button.text}
-                                {sliderItem.button.icon &&
-                                  <Base.Icon
-                                    name={sliderItem.button.icon}
-                                    propsIcon={{
-                                      className: this.decorateCSS("button-icon"),
-                                    }}
-                                  />}
-                              </Base.Button>
-                            </ComposerLink>}
-                        </Base.VerticalContent>
-                      </div>}
-                  </Base.MaxContent>
-                </Base.Container>
-              );
-            }
-            return null;
-          }
-          )}
+                              {this.castToString(sliderItem.button.text) && (
+                                <Base.P className={this.decorateCSS("button-text")}>{sliderItem.button.text}</Base.P>
+                              )}
+                              {sliderItem.button.icon && (
+                                <Base.Media
+                                  value={sliderItem.button.icon}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  )}
+                </Base.MaxContent>
+              </Base.Container>
+            );
+          })}
         </div>
       </div >
     );
