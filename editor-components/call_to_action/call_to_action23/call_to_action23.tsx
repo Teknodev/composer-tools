@@ -13,7 +13,7 @@ class CallToAction23Page extends BaseCallToAction {
 
     this.addProp({
       type: "boolean",
-      key: "cardBackground",
+      key: "coloredBackground",
       displayer: "Colored Background",
       value: true,
     });
@@ -23,7 +23,6 @@ class CallToAction23Page extends BaseCallToAction {
       key: "subtitle",
       displayer: "Subtitle",
       value: "",
-      
     });
 
     this.addProp({
@@ -42,16 +41,16 @@ class CallToAction23Page extends BaseCallToAction {
 
     this.addProp({
       type: "string",
-      key: "priceLabel",
+      key: "infoLabel",
       displayer: "Label",
       value: "STARTING AT ONLY",
     });
 
     this.addProp({
       type: "string",
-      key: "price",
+      key: "infoText",
       displayer: "Info Text",
-      value: "$2.95/mo ",
+      value: "$2.95/mo",
     });
 
     this.addProp({
@@ -60,8 +59,7 @@ class CallToAction23Page extends BaseCallToAction {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "Get started", "", null, null, "Primary"),
-       
-      ],
+      ]
     });
   }
 
@@ -74,28 +72,24 @@ class CallToAction23Page extends BaseCallToAction {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const priceLabel = this.castToString(this.getPropValue("priceLabel"));
-    const price = this.castToString(this.getPropValue("price"));
-    const cardBackground = this.getPropValue("cardBackground");
-    const hasCardBackground = cardBackground === true;
-    const alignment = Base.getContentAlignment();
+    const infoLabel = this.castToString(this.getPropValue("infoLabel"));
+    const infoText = this.castToString(this.getPropValue("infoText"));
+    const coloredBackground = this.getPropValue("coloredBackground");
+    const hasColoredBackground = !!coloredBackground;
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${hasCardBackground ? this.decorateCSS("no-card-style") : ""}`}
+        className={`${this.decorateCSS("container")} ${hasColoredBackground ? this.decorateCSS("has-background") : ""}`}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {hasCardBackground ? (
-            <div
-              className={`${this.decorateCSS("content")} ${alignment === "center" ? this.decorateCSS("content-center") : ""}`}
-            >
-            <div className={this.decorateCSS("content-row")}>
-              <div className={this.decorateCSS("content-left")}>
-                {(subtitle || title || description) && (
-                  <Base.VerticalContent className={this.decorateCSS("content-text")}>
+          <div className={this.decorateCSS("content")}>
+            <div className={this.decorateCSS("main-row")}>
+              {(subtitle || title || description) && (
+                <div className={this.decorateCSS("header-group")}>
+                  <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                     {subtitle && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {this.getPropValue("subtitle")}
+                        {subtitle}
                       </Base.SectionSubTitle>
                     )}
                     {title && (
@@ -105,86 +99,38 @@ class CallToAction23Page extends BaseCallToAction {
                     )}
                     {description && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {this.getPropValue("description")}
+                        {description}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
-                )}
-                <div className={this.decorateCSS("pricing")}>
-                  {priceLabel && (
-                    <Base.P className={this.decorateCSS("price-label")}>
-                      {priceLabel}
-                    </Base.P>
-                  )}
-                  {price && (
-                    <Base.H4 className={this.decorateCSS("price-value")}>{price}</Base.H4>
-                  )}
                 </div>
-              </div>
-            {buttons?.length > 0 && (
-              <div className={this.decorateCSS("button-wrap")}>
-                {buttons.map((button: Button, index: number) =>
-                  this.castToString(button.text) ? (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button
-                        className={this.decorateCSS("button")}
-                      >
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {button.text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  ) : null
-                )}
-              </div>
-            )}
-            </div>
-          </div>
-          ) : (
-            <div className={this.decorateCSS("content")}>
-              <div className={this.decorateCSS("content-row")}>
-                <div className={this.decorateCSS("content-left")}>
-                  {(subtitle || title || description) && (
-                    <Base.VerticalContent className={this.decorateCSS("content-text")}>
-                      {subtitle && (
-                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                          {this.getPropValue("subtitle")}
-                        </Base.SectionSubTitle>
-                      )}
-                      {title && (
-                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                          {title}
-                        </Base.SectionTitle>
-                      )}
-                      {description && (
-                        <Base.SectionDescription className={this.decorateCSS("description")}>
-                          {this.getPropValue("description")}
-                        </Base.SectionDescription>
-                      )}
-                    </Base.VerticalContent>
-                  )}
-                  <div className={this.decorateCSS("pricing")}>
-                    {priceLabel && (
-                      <Base.P className={this.decorateCSS("price-label")}>
-                        {priceLabel}
+              )}
+
+              <div className={this.decorateCSS("right-group")}>
+                {(infoLabel || infoText) && (
+                  <div className={this.decorateCSS("info-group")}>
+                    {infoLabel && (
+                      <Base.P className={this.decorateCSS("info-label")}>
+                        {infoLabel}
                       </Base.P>
                     )}
-                    {price && (
-                      <Base.H4 className={this.decorateCSS("price-value")}>{price}</Base.H4>
+                    {infoText && (
+                      <Base.H3 className={this.decorateCSS("info-text")}>
+                        {infoText}
+                      </Base.H3>
                     )}
                   </div>
-                </div>
+                )}
+
                 {buttons?.length > 0 && (
-                  <div className={this.decorateCSS("button-wrap")}>
+                  <div className={this.decorateCSS("button-group")}>
                     {buttons.map((button: Button, index: number) =>
                       this.castToString(button.text) ? (
                         <ComposerLink key={index} path={button.url}>
-                          <Base.Button
-                            className={this.decorateCSS("button")}
-                          >
-                            <Base.P className={this.decorateCSS("button-text")}>
+                          <Base.Button className={this.decorateCSS("button")}>
+                            <span className={this.decorateCSS("button-text")}>
                               {button.text}
-                            </Base.P>
+                            </span>
                           </Base.Button>
                         </ComposerLink>
                       ) : null
@@ -193,7 +139,7 @@ class CallToAction23Page extends BaseCallToAction {
                 )}
               </div>
             </div>
-          )}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

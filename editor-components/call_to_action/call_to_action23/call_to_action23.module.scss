@@ -1,213 +1,215 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--composer-gap-xl);
-  width: 100%;
-  background: linear-gradient(to bottom,
-      var(--composer-html-background) 0%,
-      var(--composer-html-background) 50%,
-      color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
-      color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
+  position: relative;
+  padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
 
-  .max-content {
-    width: 100%;
-    max-width: 100%;
-  }
+
 
   .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
     width: 100%;
-    border-radius: var(--composer-border-radius-md);
-    text-align: left !important; 
 
-    .content-row {
+    .main-row {
       display: flex;
       flex-direction: row;
-      flex-wrap: nowrap;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: var(--composer-gap-xl);
+    }
+
+    .header-group {
       flex: 1;
 
-      .content-left {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: var(--composer-gap-xl);
-        flex: 0.6;
+      .vertical-content {
+        align-items: flex-start;
 
-        &.no-buttons {
-          flex: 1;
-          width: 100%;
+        .subtitle {
+          text-align: left !important;
+          align-self: flex-start;
+          margin-left: 0;
         }
 
-        .content-text {
-          flex: 1;
-          min-width: 0;
-
-          .subtitle,
-          .title,
-          .description {
-            color: var(--composer-font-color-primary) !important;
-            text-align: left !important;
-          }
-
-
-          .subtitle {
-            margin-left: 0 !important;
-            width: fit-content !important;
-            transform: none !important;
-            &::before,
-            &::after {
-              display: none !important;
-            }
-          }
+        .title {
+          text-align: left;
         }
 
-        .pricing {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start !important;
-          gap: var(--composer-gap-sm);
-          flex: 1;
-          min-width: 0;
-          
-          .price-label {
-            color: var(--composer-font-color-primary) !important;
-            text-align: left !important;
-          }
-
-          .price-value {
-            color: var(--composer-primary-color) !important;
-            text-align: left !important;
-          }
-        }
-      }
-
-      .button-wrap {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-end;
-        gap: var(--composer-gap-sm);
-        flex: 0.3;
-        margin-left: auto;
-
-        .button .button-text {
+        .description {
+          text-align: left;
           margin: 0;
         }
       }
     }
-  }
 
+    .right-group {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      flex-wrap: nowrap;
+      gap: var(--composer-gap-md);
 
+      .info-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
 
-  &.no-card-style {
-    .max-content {
-      max-width: 100%;
-    }
+        .info-label,
+        .info-text {
+          text-align: left;
+          word-wrap: break-word;
+        }
 
-    .content {
-      width: 100%;
-      padding: 80px 50px;
-      background-color: var(--composer-font-color-primary) !important;
+        .info-label {
+          color: var(--composer-font-color-primary);
+        }
 
-      .content-row .content-left .content-text {
-        .subtitle,
-        .title,
-        .description {
-          color: var(--composer-html-background) !important;
+        .info-text {
+          color: var(--composer-primary-color);
         }
       }
-      .content-row .content-left .pricing .price-label {
-        color: var(--composer-html-background) !important;
-      }
-      .content-row .content-left .pricing .price-value {
-        color: var(--composer-secondary-color) !important;
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
       }
     }
   }
 
-  &:not(.no-card-style) {
-    background: var(--composer-html-background);
+  &.has-background {
+    background: linear-gradient(to bottom,
+        var(--composer-html-background) 0%,
+        var(--composer-html-background) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
 
     .max-content {
-      padding: 0;
-    }
+      background-color: var(--composer-font-color-primary);
+      border-radius: var(--composer-border-radius-md);
+      padding: 60px calc(var(--composer-gap-lg)*2);
 
-    .content {
-      padding: 0 !important;
-      background-color: transparent;
-      .content-row .content-left .content-text {
-        .subtitle,
-        .title,
-        .description {
-          color: var(--composer-font-color-primary) !important;
+      .content {
+        .header-group .vertical-content {
+          .subtitle {
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            color: var(--composer-html-background);
+            transform: none;
+            margin-left: 0 !important;
+
+            &::before {
+              display: none !important;
+            }
+          }
+
+          .title {
+            color: var(--composer-html-background);
+          }
+
+          .description {
+            color: var(--composer-html-background);
+          }
         }
-      }
-      .content-row .content-left .pricing .price-label {
-        color: var(--composer-font-color-primary) !important;
-      }
-      .content-row .content-left .pricing .price-value {
-        color: var(--composer-primary-color) !important;
+
+        .right-group {
+          .info-group {
+            .info-label {
+              color: var(--composer-html-background);
+            }
+
+            .info-text {
+              color: var(--composer-primary-color);
+            }
+          }
+        }
       }
     }
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container.no-card-style .content {
-    padding: 80px 40px;
-  }
+  .container {
+    padding: 60px var(--composer-gap-xl);
 
-  .container .content .content-row .content-left {
-    gap: var(--composer-gap-md);
+    &.has-background {
+      .max-content {
+        padding: 60px var(--composer-gap-xl);
+      }
+    }
+
+    .content {
+      .main-row {
+        gap: var(--composer-gap-lg);
+      }
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    &.no-card-style .content {
-      padding: 50px 20px;
-    }
+    padding: var(--composer-gap-lg) var(--composer-gap-md);
 
-    .content .content-row {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--composer-gap-md);
-
-        .content-left {
-          flex-direction: column;
-
-          .content-text {
-            .subtitle {
-              margin-left: auto !important;
-              width: fit-content !important;
-
-              &::before,
-              &::after {
-                transform: none !important;
-              }
-            }
-
-            .title {
-              text-align: center !important;
-            }
-
-            .description {
-              text-align: center !important;
-            }
-          }
-
-          .price-value {
-            text-align: center;
-          }
-        }
-
-        .button-wrap {
-          justify-content: center;
-        }
+    &.has-background {
+      .max-content {
+        padding: var(--composer-gap-lg) var(--composer-gap-md);
       }
     }
 
+    .content {
+      .main-row {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--composer-gap-md);
+      }
+
+      .header-group .vertical-content {
+        align-items: center;
+        text-align: center;
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: center;
+        }
+      }
+
+      .right-group {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+
+        .info-group {
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .info-label,
+          .info-text {
+            text-align: center;
+          }
+
+          .info-text {
+            font-size: var(--composer-font-size-xl) !important;
+          }
+        }
+
+        .button-group {
+          justify-content: center !important;
+        }
+      }
+    }
   }
+}
