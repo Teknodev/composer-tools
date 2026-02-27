@@ -72,15 +72,6 @@ class CallToAction34Page extends BaseCallToAction {
             ]
         });
 
-        this.addProp({
-            type: "select",
-            key: "subtitleType",
-            displayer: "Subtitle Type",
-            value: "line",
-            additionalParams: {
-                selectItems: ["default", "line", "badge"]
-            }
-        });
     }
 
     static getName(): string {
@@ -92,10 +83,9 @@ class CallToAction34Page extends BaseCallToAction {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const isColored = this.getPropValue("isBackgroundColored");
-        const subtitleType = this.getPropValue("subtitleType");
-        const currentSubtitleType = isColored && subtitleType === "badge" ? "default" : subtitleType;
-
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasLeftContent = subtitle || title || description || buttons.length > 0;
+
         const mediaGroup = this.castToObject<any>("mediaGroup");
         const media = mediaGroup.media;
         const showOverlay = mediaGroup.overlay;
@@ -104,52 +94,54 @@ class CallToAction34Page extends BaseCallToAction {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
-                        <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
-                            <Base.VerticalContent>
-                                {subtitle && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")} subtitleType={currentSubtitleType}>
-                                        {subtitle}
-                                    </Base.SectionSubTitle>
-                                )}
+                        {hasLeftContent && (
+                            <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
+                                <Base.VerticalContent>
+                                    {subtitle && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {subtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
 
-                                {title && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}
-                                    >
-                                        {title}
-                                    </Base.SectionTitle>
-                                )}
+                                    {title && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}
+                                        >
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
 
-                                {description && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {description}
-                                    </Base.SectionDescription>
-                                )}
+                                    {description && (
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {description}
+                                        </Base.SectionDescription>
+                                    )}
 
-                                {buttons.length > 0 && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                                            return (button.text || button.icon) && (
-                                                <ComposerLink key={index} path={button.url}>
+                                    {buttons.length > 0 && (
+                                        <div className={this.decorateCSS("button-container")}>
+                                            {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                                return (button.text || button.icon) && (
+                                                    <ComposerLink key={index} path={button.url}>
 
-                                                    <Base.Button
-                                                        className={this.decorateCSS("button")}
-                                                        buttonType={button.type}
-                                                    >
-                                                        {button.text && (
-                                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                                {button.text}
-                                                            </Base.P>
-                                                        )}
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            );
-                                        })}
-                                    </div>
-                                )}
+                                                        <Base.Button
+                                                            className={this.decorateCSS("button")}
+                                                            buttonType={button.type}
+                                                        >
+                                                            {button.text && (
+                                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                                    {button.text}
+                                                                </Base.P>
+                                                            )}
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
 
 
-                            </Base.VerticalContent>
-                        </div>
+                                </Base.VerticalContent>
+                            </div>
+                        )}
 
                         {media?.url && (
                             <div className={this.decorateCSS("right-column")}>
