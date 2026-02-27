@@ -59,7 +59,7 @@ class Stats23 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "100" },
+                        { type: "string", key: "number", displayer: "Value", value: "100" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Clients from 17 countries" },
@@ -69,7 +69,7 @@ class Stats23 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Number", value: "280" },
+                        { type: "string", key: "number", displayer: "Value", value: "280" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Million raised" },
@@ -79,7 +79,7 @@ class Stats23 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "90" },
+                        { type: "string", key: "number", displayer: "Value", value: "90" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Of our clients come back" },
@@ -89,7 +89,7 @@ class Stats23 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "638" },
+                        { type: "string", key: "number", displayer: "Value", value: "638" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Net Promoting Score" },
@@ -150,10 +150,10 @@ class Stats23 extends BaseStats {
             };
         }, [targetNumber, statsAnimation, animationDuration, originalNumberString]);
 
-        const titleExist = stat.title && stat.title !== "";
-        const subtitleExist = stat.subtitle && stat.subtitle !== "";
-        const descriptionExist = stat.description && stat.description !== "";
-        const valueExist = originalNumberString && originalNumberString !== "";
+        const titleExist = this.castToString(stat.title);
+        const subtitleExist = this.castToString(stat.subtitle);
+        const descriptionExist = this.castToString(stat.description);
+        const valueExist = this.castToString(originalNumberString);
 
         if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
