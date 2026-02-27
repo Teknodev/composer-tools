@@ -116,6 +116,7 @@ class Stats19 extends BaseStats {
     const isDescriptionExist = this.castToString(description);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const itemCount = this.getPropValue("itemCount");
+    const alignment = Base.getContentAlignment();
     const statsProp = this.getPropValue("stats");
     const stats: StatItem[] = statsProp.map((item: any) => {
       const subtitle = item.getPropValue("subtitle");
@@ -130,21 +131,25 @@ class Stats19 extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {isSubtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {subtitle}
-              </Base.SectionSubTitle>
-            )}
-            {isTitleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
-            )}
-            {isDescriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
+          <Base.VerticalContent className={`${this.decorateCSS("wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+            {(isSubtitleExist || isTitleExist || isDescriptionExist) && (
+              <div className={this.decorateCSS("header")}>
+                {isSubtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {isTitleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {isDescriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </div>
             )}
 
             {stats.length > 0 && (

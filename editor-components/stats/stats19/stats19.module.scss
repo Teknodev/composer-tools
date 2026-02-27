@@ -2,10 +2,26 @@
 
 .container {
   .max-content .wrapper {
-    gap: var(--composer-gap-lg);
+    .header {
+      margin-bottom: var(--composer-gap-md);
+    }
 
-    > * {
-      margin-bottom: 0;
+    &.alignment-center {
+      .header .subtitle {
+        width: fit-content;
+      }
+
+      .stats-grid .stat-item,
+      .stats-grid .stat-subtitle,
+      .stats-grid .stat-title,
+      .stats-grid .stat-desc {
+        text-align: left;
+      }
+
+      .stats-grid .stat-item,
+      .stats-grid .stat-header {
+        align-items: flex-start;
+      }
     }
 
     .subtitle,
@@ -29,6 +45,7 @@
 
     .stats-grid {
       gap: var(--composer-gap-lg);
+      margin-bottom: var(--composer-gap-md);
 
       .stat-item {
         display: flex;
