@@ -93,9 +93,9 @@ class CallToAction34Page extends BaseCallToAction {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
+                    <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}`}>
                         {hasLeftContent && (
-                            <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
+                            <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}`}>
                                 <Base.VerticalContent>
                                     {subtitle && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
