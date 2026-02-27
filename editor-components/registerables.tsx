@@ -236,7 +236,11 @@ import StatsComponent14 from "./stats/stats14/stats14";
 import StatsComponent15 from "./stats/stats15/stats15";
 import StatsComponent16 from "./stats/stats16/stats16";
 import StatsComponent20 from "./stats/stats20/stats20";
+<<<<<<< bpi-28
+import StatsComponent23 from "./stats/stats23/stats23";
+=======
 import StatsComponent21 from "./stats/stats21/stats21";
+>>>>>>> main
 import StatsComponent24 from "./stats/stats24/stats24";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
@@ -623,7 +627,11 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent15,
     StatsComponent16,
     StatsComponent20,
+<<<<<<< bpi-28
+    StatsComponent23,
+=======
     StatsComponent21,
+>>>>>>> main
     StatsComponent24,
     Form1,
     Form2,
