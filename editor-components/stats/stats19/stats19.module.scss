@@ -74,14 +74,6 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .wrapper .stats-grid {
     gap: var(--composer-gap-md);
-
-    .stat-item .stat-header .stat-value {
-      .stat-prefix,
-      .stat-number,
-      .stat-suffix {
-        font-size: 4rem;
-      }
-    }
   }
 }
 
