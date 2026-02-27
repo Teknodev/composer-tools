@@ -162,11 +162,11 @@ class Stats20 extends BaseStats {
             };
         }, [targetNumber, statsAnimation, animationDuration, originalNumberString]);
 
-        const suffixExist = stat.suffix && stat.suffix !== "";
+        const suffixExist = this.castToString(stat.suffix);
         const numberExist = originalNumberString && originalNumberString !== "" && originalNumberString !== "0";
-        const titleExist = stat.title && stat.title !== "";
-        const subtitleExist = stat.subtitle && stat.subtitle !== "";
-        const infoTextExist = stat.infoText && stat.infoText !== "";
+        const titleExist = this.castToString(stat.title);
+        const subtitleExist = this.castToString(stat.subtitle);
+        const infoTextExist = this.castToString(stat.infoText);
         const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
         if (!numberExist && !suffixExist && !titleExist && !subtitleExist && !infoTextExist) return null;
@@ -246,7 +246,7 @@ class Stats20 extends BaseStats {
                         <Base.VerticalContent className={`${this.decorateCSS("card-content")} ${(hasTopSection && hasStats && enable_divider) ? this.decorateCSS("has-divider") : ""}`}>
 
                             {hasTopSection && (
-                                <div className={`${this.decorateCSS("header-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}`}>
+                                <div className={`${this.decorateCSS("header-container")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
                                     <Base.VerticalContent className={this.decorateCSS("left-container")}>
                                         {subtitle && (
                                             <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
