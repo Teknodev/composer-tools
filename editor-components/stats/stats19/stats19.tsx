@@ -116,7 +116,6 @@ class Stats19 extends BaseStats {
     const isDescriptionExist = this.castToString(description);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const itemCount = this.getPropValue("itemCount");
-    const alignment = Base.getContentAlignment();
     const statsProp = this.getPropValue("stats");
     const stats: StatItem[] = statsProp.map((item: any) => {
       const subtitle = item.getPropValue("subtitle");
@@ -131,7 +130,7 @@ class Stats19 extends BaseStats {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
             {isSubtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {subtitle}
@@ -165,6 +164,11 @@ class Stats19 extends BaseStats {
 
                   return (
                     <div key={index} className={this.decorateCSS("stat-item")}>
+                      {hasSubtitle && (
+                        <Base.P className={this.decorateCSS("stat-subtitle")}>
+                          {stat.subtitle}
+                        </Base.P>
+                      )}
                       <div className={this.decorateCSS("stat-header")}>
                         {hasNumber && (
                           <div className={this.decorateCSS("stat-value")}>
@@ -189,11 +193,6 @@ class Stats19 extends BaseStats {
                           </Base.H6>
                         )}
                       </div>
-                      {hasSubtitle && (
-                        <Base.P className={this.decorateCSS("stat-subtitle")}>
-                          {stat.subtitle}
-                        </Base.P>
-                      )}
                       {hasDescription && (
                         <Base.P className={this.decorateCSS("stat-desc")}>
                           {stat.description}

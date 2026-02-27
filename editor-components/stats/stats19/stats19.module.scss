@@ -2,20 +2,16 @@
 
 .container {
   .max-content .wrapper {
+    gap: var(--composer-gap-lg);
+
+    > * {
+      margin-bottom: 0;
+    }
+
     .subtitle,
     .title,
     .description {
       content: "";
-    }
-
-    &.alignment-center {
-      align-items: center;
-
-      .subtitle,
-      .title,
-      .description {
-        text-align: center;
-      }
     }
 
     .button-container {
@@ -23,6 +19,7 @@
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
       align-self: center;
+      
 
       .button,
       .button-text {
@@ -32,17 +29,17 @@
 
     .stats-grid {
       gap: var(--composer-gap-lg);
-      margin-top: var(--composer-gap-lg);
-      margin-bottom: var(--composer-gap-lg);
 
       .stat-item {
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-sm);
+        align-items: flex-start;
+        text-align: left;
 
         .stat-header {
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           gap: var(--composer-gap-md);
 
           .stat-value {
@@ -51,13 +48,14 @@
             .stat-prefix,
             .stat-number,
             .stat-suffix {
-              font-size: 5rem;
+              font-size: 4rem;
               color: var(--composer-primary-color);
             }
           }
 
           .stat-title {
             color: var(--composer-font-color-primary);
+            align-self: center;
           }
         }
 
