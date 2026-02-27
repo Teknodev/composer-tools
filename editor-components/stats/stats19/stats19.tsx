@@ -154,7 +154,7 @@ class Stats19 extends BaseStats {
 
             {stats.length > 0 && (
               <Base.ListGrid
-                gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
+                gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                 className={this.decorateCSS("stats-grid")}
               >
                 {stats.map((stat: StatItem, index: number) => {
@@ -169,11 +169,6 @@ class Stats19 extends BaseStats {
 
                   return (
                     <div key={index} className={this.decorateCSS("stat-item")}>
-                      {hasSubtitle && (
-                        <Base.P className={this.decorateCSS("stat-subtitle")}>
-                          {stat.subtitle}
-                        </Base.P>
-                      )}
                       <div className={this.decorateCSS("stat-header")}>
                         {hasNumber && (
                           <div className={this.decorateCSS("stat-value")}>
@@ -192,17 +187,24 @@ class Stats19 extends BaseStats {
                             )}
                           </div>
                         )}
-                        {hasTitle && (
-                          <Base.H6 className={this.decorateCSS("stat-title")}>
-                            {stat.title}
-                          </Base.H6>
-                        )}
+                        <div className={this.decorateCSS("stat-content")}>
+                          {hasSubtitle && (
+                            <Base.P className={this.decorateCSS("stat-subtitle")}>
+                              {stat.subtitle}
+                            </Base.P>
+                          )}
+                          {hasTitle && (
+                            <Base.H6 className={this.decorateCSS("stat-title")}>
+                              {stat.title}
+                            </Base.H6>
+                          )}
+                          {hasDescription && (
+                            <Base.P className={this.decorateCSS("stat-desc")}>
+                              {stat.description}
+                            </Base.P>
+                          )}
+                        </div>
                       </div>
-                      {hasDescription && (
-                        <Base.P className={this.decorateCSS("stat-desc")}>
-                          {stat.description}
-                        </Base.P>
-                      )}
                     </div>
                   );
                 })}

@@ -2,9 +2,7 @@
 
 .container {
   .max-content .wrapper {
-    .header {
-      margin-bottom: var(--composer-gap-md);
-    }
+    gap: var(--composer-gap-md);
 
     &.alignment-center {
       .header .subtitle {
@@ -35,7 +33,6 @@
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
       align-self: center;
-      
 
       .button,
       .button-text {
@@ -45,12 +42,10 @@
 
     .stats-grid {
       gap: var(--composer-gap-lg);
-      margin-bottom: var(--composer-gap-md);
 
       .stat-item {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-sm);
         align-items: flex-start;
         text-align: left;
 
@@ -70,18 +65,24 @@
             }
           }
 
-          .stat-title {
-            color: var(--composer-font-color-primary);
-            align-self: center;
+          .stat-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-sm);
+
+            .stat-subtitle {
+              color: var(--composer-font-color-primary);
+            }
+
+            .stat-title {
+              color: var(--composer-font-color-primary);
+              align-self: center;
+            }
+
+            .stat-desc {
+              color: var(--composer-font-color-primary);
+            }
           }
-        }
-
-        .stat-subtitle {
-          color: var(--composer-font-color-primary);
-        }
-
-        .stat-desc {
-          color: var(--composer-font-color-primary);
         }
       }
     }
