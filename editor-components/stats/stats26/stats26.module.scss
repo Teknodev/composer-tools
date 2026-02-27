@@ -1,0 +1,74 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .content {
+            gap: var(--composer-gap-lg);
+
+            .header-container {
+                align-items: flex-start;
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .stats-grid {
+                column-gap: var(--composer-gap-lg);
+                row-gap: var(--composer-gap-xl);
+
+                .stat-item {
+                    .stat-value {
+                        color: var(--composer-font-color-primary);
+                        font-size: 5rem;
+                        font-weight: 700;
+
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            color: inherit;
+                        }
+                    }
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        color: var(--composer-font-color-primary);
+                    }
+
+                    .stat-title {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content {
+        .stats-grid .stat-item .stat-value {
+            font-size: 4rem;
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content {
+        .stats-grid {
+            row-gap: var(--composer-gap-lg);
+
+            .stat-item .stat-value {
+                font-size: 3.5rem;
+            }
+        }
+    }
+}
