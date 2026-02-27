@@ -1,7 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-
-
 .max-content {
     display: flex;
     flex-direction: column;
@@ -29,16 +27,10 @@
 
     &::before {
         display: none;
-
     }
 }
 
-
-.cards-grid {
-    gap: var(--composer-gap-lg)
-}
-
-.card {
+.stat-item {
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     border-radius: var(--composer-border-radius-md);
     display: flex;
@@ -46,19 +38,40 @@
     justify-content: center;
     align-items: flex-start;
     padding: var(--composer-gap-xl);
+
+    .stat-subtitle {
+        text-align: left !important;
+        color: var(--composer-font-color-primary);
+    }
+
+    .stat-title {
+        text-align: left !important;
+        color: var(--composer-font-color-primary);
+    }
+
+    .stat-description {
+        text-align: left !important;
+        color: var(--composer-font-color-primary);
+    }
 }
 
-.card-value {
+
+
+.stat-value {
     color: var(--composer-font-color-primary);
-    margin-bottom: var(--composer-gap-sm);
-    padding-bottom: var(--composer-gap-sm);
     width: 100%;
     display: flex;
     align-items: baseline;
     font-size: 4rem;
 
     &.has-line {
+        margin-bottom: var(--composer-gap-sm);
+        padding-bottom: var(--composer-gap-sm);
         border-bottom: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+    }
+
+    ::before {
+        display: none;
     }
 
     .display-value {
@@ -67,36 +80,18 @@
     }
 }
 
-.card-label {
-    color: var(--composer-font-color-primary);
-    margin: 0;
-    text-align: left !important;
-}
-
 @container (max-width: #{$composer-tablet-width}) {
-    .max-content {
-        padding: var(--composer-gap-lg);
-    }
-
-    .card-value {
+    .stat-value {
         font-size: 3rem !important;
     }
 
-    .cards-grid {
-        gap: var(--composer-gap-md) !important;
-
-        .card {
-            padding: var(--composer-gap-md) !important;
-        }
+    .stat-item {
+        padding: var(--composer-gap-md) !important;
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .max-content {
-        padding: var(--composer-gap-lg);
-    }
-
-    .card-value {
+    .stat-value {
         font-size: 3rem !important;
     }
 }

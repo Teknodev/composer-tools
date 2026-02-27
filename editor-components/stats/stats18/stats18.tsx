@@ -8,17 +8,22 @@ import ComposerLink from "custom-hooks/composer-base-components/Link/link";
 
 type CardData = {
     prefix: string;
-    value: number;
+    prefixElement: JSX.Element;
+    value: string;
+    valueElement: JSX.Element;
     suffix: string;
-    cardLabel: string;
+    suffixElement: JSX.Element;
     subtitle: string;
+    subtitleElement: JSX.Element;
     title: string;
+    titleElement: JSX.Element;
     description: string;
+    descriptionElement: JSX.Element;
 };
 
 class Stats18Page extends BaseStats {
     constructor(props?: any) {
-        super(props, styles)
+        super(props, styles);
 
         this.addProp({
             type: "string",
@@ -33,6 +38,7 @@ class Stats18Page extends BaseStats {
             displayer: "Title",
             value: "Our success in numbers ",
         });
+
         this.addProp({
             type: "string",
             key: "description",
@@ -42,206 +48,72 @@ class Stats18Page extends BaseStats {
 
         this.addProp({
             type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+
+            ],
+        });
+
+        this.addProp({
+            type: "array",
             key: "card-list",
             additionalParams: {
                 maxElementCount: 4,
             },
-            displayer: "Card List",
+            displayer: "Stats Items",
             value: [
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Stats Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Subtitle",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "prefix",
-                            displayer: "Prefix",
-                            value: "$",
-                        },
-                        {
-                            type: "number",
-                            key: "value",
-                            displayer: "Value",
-                            value: 50,
-                        },
-                        {
-                            type: "string",
-                            key: "suffix",
-                            displayer: "Suffix",
-                            value: "M+",
-                        },
-                        {
-                            type: "string",
-                            key: "cardLabel",
-                            displayer: "Item Title",
-                            value: "Total investment in 2022",
-                        },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
+                        { type: "string", key: "value", displayer: "Value", value: "50" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "M+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Total investment in 2022" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Stats Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Subtitle",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "prefix",
-                            displayer: "Prefix",
-                            value: "",
-                        },
-                        {
-                            type: "number",
-                            key: "value",
-                            displayer: "Value",
-                            value: 5000,
-                        },
-                        {
-                            type: "string",
-                            key: "suffix",
-                            displayer: "Suffix",
-                            value: "+",
-                        },
-                        {
-                            type: "string",
-                            key: "cardLabel",
-                            displayer: "Item Title",
-                            value: "Employees",
-                        },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "value", displayer: "Value", value: "5000" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Employees" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Stats Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Subtitle",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "prefix",
-                            displayer: "Prefix",
-                            value: "",
-                        },
-                        {
-                            type: "number",
-                            key: "value",
-                            displayer: "Value",
-                            value: 12,
-                        },
-                        {
-                            type: "string",
-                            key: "suffix",
-                            displayer: "Suffix",
-                            value: "x",
-                        },
-                        {
-                            type: "string",
-                            key: "cardLabel",
-                            displayer: "Item Title",
-                            value: "Increased website traffic",
-                        },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "value", displayer: "Value", value: "12" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Increased website traffic" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
                     type: "object",
                     key: "card",
-                    displayer: "Card",
+                    displayer: "Stats Item",
                     value: [
-                        {
-                            type: "string",
-                            key: "subtitle",
-                            displayer: "Subtitle",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "",
-                        },
-                        {
-                            type: "string",
-                            key: "prefix",
-                            displayer: "Prefix",
-                            value: "",
-                        },
-                        {
-                            type: "number",
-                            key: "value",
-                            displayer: "Value",
-                            value: 99,
-                        },
-                        {
-                            type: "string",
-                            key: "suffix",
-                            displayer: "Suffix",
-                            value: "%",
-                        },
-                        {
-                            type: "string",
-                            key: "cardLabel",
-                            displayer: "Item Title",
-                            value: "Client Satisfaction",
-                        },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "value", displayer: "Value", value: "99" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Client Satisfaction" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -250,27 +122,17 @@ class Stats18Page extends BaseStats {
         this.addProp({
             type: "boolean",
             key: "showLine",
-            displayer: "Show Separator Line",
+            displayer: "Line",
             value: true,
         });
 
         this.addProp({
             type: "object",
-            key: "animationSettings",
-            displayer: "Animation Settings",
+            key: "animation",
+            displayer: "Animation",
             value: [
-                {
-                    type: "number",
-                    key: "duration",
-                    displayer: "Animation Duration (ms)",
-                    value: 2000,
-                },
-                {
-                    type: "number",
-                    key: "incrementValue",
-                    displayer: "Increment Value",
-                    value: 10,
-                },
+                { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
 
@@ -282,162 +144,178 @@ class Stats18Page extends BaseStats {
             max: 4,
         });
 
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
-            ],
-        });
     }
 
     static getName(): string {
         return "Stats 18";
     }
 
+    private AnimatedCard = ({ card, animationDuration = 2000, statsAnimation, showLine }: { card: CardData; animationDuration?: number; statsAnimation: boolean; showLine: boolean }) => {
+        const originalString = card.value;
+        const targetNumber = parseFloat(originalString) || 0;
 
-    private renderAnimatedCard(card: CardData, animationSettings: any, showLine: boolean, index: number) {
-        const getNestedValue = (key: string) => {
-            if (Array.isArray(animationSettings)) {
-                const prop = animationSettings.find((p: any) => p.key === key);
-                return prop ? prop.value : undefined;
+        const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
+        const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
+
+        React.useEffect(() => {
+            if (!statsAnimation) {
+                setAnimatedNumber(targetNumber);
+                return;
             }
-            return undefined;
-        };
 
-        const animationDuration = Number(getNestedValue("duration")) || 2000;
-        const propIncrementValue = Number(getNestedValue("incrementValue")) || 10;
+            const steps = animationDuration / 30;
+            let currentNumber = 0;
+            const increment = targetNumber / steps;
 
-        const AnimatedCard = ({ card }: { card: CardData }) => {
-            const [displayValue, setDisplayValue] = React.useState<number>(0);
-            const ref = React.useRef<HTMLDivElement>(null);
-            const hasAnimated = React.useRef(false);
-
-            const numericPart = Number(card.value) || 0;
-            const prefix = this.castToString(card.prefix);
-            const suffix = this.castToString(card.suffix);
-
-            React.useEffect(() => {
-                const observer = new IntersectionObserver(
-                    (entries) => {
-                        if (entries[0].isIntersecting && !hasAnimated.current) {
-                            animate();
-                            hasAnimated.current = true;
-                        }
-                    },
-                    { threshold: 0.1 }
-                );
-
-                if (ref.current) {
-                    observer.observe(ref.current);
+            intervalRef.current = setInterval(() => {
+                currentNumber += increment;
+                if (currentNumber >= targetNumber) {
+                    currentNumber = targetNumber;
+                    clearInterval(intervalRef.current!);
                 }
+                setAnimatedNumber(currentNumber);
+            }, 30);
 
-                return () => observer.disconnect();
-            }, [card.value]);
-
-            const animate = () => {
-                if (numericPart === 0) {
-                    setDisplayValue(0);
-                    return;
+            return () => {
+                if (intervalRef.current) {
+                    clearInterval(intervalRef.current);
                 }
-
-                let start = 0;
-                const totalSteps = Math.ceil(numericPart / propIncrementValue);
-                const stepTime = Math.max(Math.floor(animationDuration / totalSteps), 20);
-                const increment = propIncrementValue;
-
-                const timer = setInterval(() => {
-                    start += increment;
-                    if (start >= numericPart) {
-                        setDisplayValue(numericPart);
-                        clearInterval(timer);
-                    } else {
-                        setDisplayValue(start);
-                    }
-                }, stepTime);
             };
+        }, [targetNumber, statsAnimation, animationDuration, originalString]);
 
-            return (
-                <div ref={ref} className={this.decorateCSS("card")}>
-                    {this.castToString(card.subtitle) && (
-                        <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.SectionSubTitle>
-                    )}
-                    {this.castToString(card.title) && (
-                        <Base.SectionTitle className={this.decorateCSS("card-title")}>{card.title}</Base.SectionTitle>
-                    )}
-                    {this.castToString(card.description) && (
-                        <Base.SectionDescription className={this.decorateCSS("card-description")}>{card.description}</Base.SectionDescription>
-                    )}
-                    <div className={`${this.decorateCSS("card-value")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
-                        {prefix && <span className={this.decorateCSS("card-value-prefix")}>{prefix}</span>}
-                        <span className={this.decorateCSS("display-value")}>{displayValue}</span>
-                        {suffix && <span className={this.decorateCSS("card-value-suffix")}>{suffix}</span>}
-                    </div>
-                    <Base.P className={this.decorateCSS("card-label")}>{card.cardLabel}</Base.P>
-                </div>
-            );
+        const formatNumber = (num: number): string => {
+            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
+            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
         };
 
-        return <AnimatedCard key={index} card={card} />;
-    }
+        const titleExist = card.title && card.title !== "";
+        const subtitleExist = card.subtitle && card.subtitle !== "";
+        const descriptionExist = card.description && card.description !== "";
+        const valueExist = originalString && originalString !== "";
+
+        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+
+        return (
+            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                {valueExist && (
+                    <div className={`${this.decorateCSS("stat-value")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
+                        {card.prefix && (
+                            <span className={this.decorateCSS("stat-prefix")}>
+                                {card.prefixElement}
+                            </span>
+                        )}
+                        <span className={this.decorateCSS("display-value")}>
+                            {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                        </span>
+                        {card.suffix && (
+                            <span className={this.decorateCSS("stat-suffix")}>
+                                {card.suffixElement}
+                            </span>
+                        )}
+                    </div>
+                )}
+                {subtitleExist && (
+                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                        {card.subtitleElement}
+                    </Base.H6>
+                )}
+                {titleExist && (
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
+                        {card.titleElement}
+                    </Base.H5>
+                )}
+                {descriptionExist && (
+                    <Base.P className={this.decorateCSS("stat-description")}>
+                        {card.descriptionElement}
+                    </Base.P>
+                )}
+            </Base.VerticalContent>
+        );
+    };
 
     render() {
-        const subtitle = this.getPropValue("subtitle");
-        const title = this.getPropValue("title");
-        const description = this.getPropValue("description");
-        const cardList = this.castToObject<CardData[]>("card-list");
-        const animationSettings = this.getPropValue("animationSettings");
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const showLine = !!this.getPropValue("showLine");
+        const itemCount = this.getPropValue("itemCount");
+
+        const statsListRaw = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("card-list");
+        const statsList: CardData[] = statsListRaw.map((item) => {
+            const prefix = this.castToString(item.prefix) || "";
+            const value = this.castToString(item.value) || "0";
+            const suffix = this.castToString(item.suffix) || "";
+            const title = this.castToString(item.title) || "";
+            const subtitle = this.castToString(item.subtitle) || "";
+            const description = this.castToString(item.description) || "";
+            return { prefix, prefixElement: item.prefix, value, valueElement: item.value, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+        });
+
+        const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
+        const statsAnimation = !!animationProps?.statsAnimation;
+        const animationDuration = animationProps?.animationDuration || 2000;
+
+        const hasTopSection = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
+
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("header-section")}>
-                        {this.castToString(subtitle) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                {subtitle}
-                            </Base.SectionSubTitle>
-                        )}
-                        {(this.castToString(title)) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                {title}
-                            </Base.SectionTitle>
-                        )}
-                        {this.castToString(description) && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                                {description}
-                            </Base.SectionDescription>
-                        )}
-                        {buttons.length > 0 && (
-                            <div className={this.decorateCSS("button-container")}>
-                                {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                    return (
-                                        <div key={index}>
-                                            {this.castToString(item.text) && (
-                                                <ComposerLink path={item.url}>
-                                                    <Base.Button
-                                                        buttonType={item.type}
-                                                        className={this.decorateCSS("button")}
-                                                    >
-                                                        {item.text}
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            )}
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        )}
-                    </Base.VerticalContent>
+                    {hasTopSection && (
+                        <Base.VerticalContent className={this.decorateCSS("header-section")}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {buttons.length > 0 && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                        const buttonText = this.castToString(item.text);
 
-                    {cardList.length > 0 && (
+                                        if (!buttonText) return null;
+
+                                        return (
+                                            <ComposerLink key={index} path={item.url}>
+                                                <Base.Button
+                                                    buttonType={item.type}
+                                                    className={this.decorateCSS("button")}
+                                                >
+                                                    {item.text}
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </Base.VerticalContent>
+                    )}
+
+                    {statsList.length > 0 && (
                         <Base.ListGrid
-                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: this.getPropValue("itemCount"), phone: 1 }}
-                            className={this.decorateCSS("cards-grid")}
+                            gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
+                            className={this.decorateCSS("stats-grid")}
                         >
-                            {cardList.map((card, index) => this.renderAnimatedCard(card, animationSettings, showLine, index))}
+                            {statsList.map((card: CardData, index: number) => (
+                                <this.AnimatedCard
+                                    key={`stat18-${index}`}
+                                    card={card}
+                                    animationDuration={animationDuration}
+                                    statsAnimation={statsAnimation}
+                                    showLine={showLine}
+                                />
+                            ))}
                         </Base.ListGrid>
                     )}
                 </Base.MaxContent>
