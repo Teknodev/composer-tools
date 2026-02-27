@@ -62,7 +62,7 @@ class Stats25 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "2018" },
+                        { type: "string", key: "number", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "History of success" },
@@ -75,7 +75,7 @@ class Stats25 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "1500" },
+                        { type: "string", key: "number", displayer: "Value", value: "1500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Capitalize on low hanging fruit" },
@@ -88,7 +88,7 @@ class Stats25 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Number", value: "0.01" },
+                        { type: "string", key: "number", displayer: "Value", value: "0.01" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Leverage agile frameworks" },
@@ -106,6 +106,13 @@ class Stats25 extends BaseStats {
                 { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
+        });
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 2,
+            max: 4,
         });
     }
 
@@ -219,11 +226,12 @@ class Stats25 extends BaseStats {
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
+        const itemCount = this.getPropValue("itemCount");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid gridCount={{ pc: 2, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                    <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                         {hasHeaderSection && (
                             <Base.VerticalContent className={this.decorateCSS("header-item")}>
                                 {subtitleExist && (
