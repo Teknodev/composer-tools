@@ -5,11 +5,15 @@
     .wrapper {
 
       .left {
+        align-items: flex-start;
 
         .subtitle,
         .title,
         .description {
-          content: "";
+          
+          text-align: left;
+          margin-left: 0;
+          margin-right: 0;
         }
 
         .button-container {
@@ -25,8 +29,13 @@
       }
 
       .right {
+        align-items: flex-start;
+        text-align: left;
+
         .description {
-          content: "";
+          margin-left: 0;
+          margin-right: 0;
+          text-align: left;
         }
 
         .stats-grid {
@@ -43,36 +52,21 @@
               .stat-prefix,
               .stat-number,
               .stat-suffix {
-                font-size: 5rem;
+                font-size: 4rem;
                 color: var(--composer-font-color-primary);
               }
             }
 
-            .stat-subtitle {
-              color: var(--composer-font-color-primary);
-            }
-
-            .stat-title {
-              color: var(--composer-font-color-primary);
-            }
-
+            .stat-subtitle,
+            .stat-title,
             .stat-description {
               color: var(--composer-font-color-primary);
+              margin-left: 0;
+              margin-right: 0;
+              text-align: left;
             }
           }
         }
-      }
-    }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .wrapper .right .stats-grid {
-    .card .stat-value {
-      .stat-prefix,
-      .stat-number,
-      .stat-suffix {
-        font-size: 4rem;
       }
     }
   }

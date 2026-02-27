@@ -22,7 +22,7 @@ class Stats22 extends BaseStats {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "sfgsag",
     });
     this.addProp({
       type: "string",
