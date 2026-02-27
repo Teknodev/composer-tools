@@ -83,6 +83,7 @@
                     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-md);
                     padding: 80px 50px;
+
                     .card-content {
                         .subtitle {
                             background: transparent;
@@ -97,16 +98,6 @@
     @container (max-width: #{$composer-tablet-width}) {
         .max-content .card-container .card.has-background {
             padding: 80px 40px;
-        }
-    }
-
-    @container (max-width: #{$composer-phone-width}) {
-        .max-content .card-container .card.has-background {
-            padding: 50px 20px;
-        }
-                    padding: 80px var(--composer-gap-xl);
-                }
-            }
         }
     }
 
