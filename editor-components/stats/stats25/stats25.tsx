@@ -231,7 +231,7 @@ class Stats25 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                    <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                         {hasHeaderSection && (
                             <Base.VerticalContent className={this.decorateCSS("header-item")}>
                                 {subtitleExist && (
