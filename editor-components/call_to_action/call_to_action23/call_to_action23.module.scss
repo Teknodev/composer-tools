@@ -1,0 +1,217 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  position: relative;
+  padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
+
+
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+    width: 100%;
+
+    .main-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      gap: var(--composer-gap-xl);
+    }
+
+    .header-group {
+      flex: 1;
+
+      .vertical-content {
+        align-items: flex-start;
+
+        .subtitle {
+          text-align: left !important;
+          align-self: flex-start;
+          margin-left: 0;
+        }
+
+        .title {
+          text-align: left;
+        }
+
+        .description {
+          text-align: left;
+          margin: 0;
+        }
+      }
+    }
+
+    .right-group {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      flex-wrap: nowrap;
+      gap: var(--composer-gap-md);
+
+      .info-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+
+        .info-label,
+        .info-text {
+          text-align: left;
+          word-wrap: break-word;
+        }
+
+        .info-label {
+          color: var(--composer-font-color-primary);
+        }
+
+        .info-text {
+          color: var(--composer-primary-color);
+        }
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+    }
+  }
+
+  &.has-background {
+    background: linear-gradient(to bottom,
+        var(--composer-html-background) 0%,
+        var(--composer-html-background) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%);
+
+    .max-content {
+      background-color: var(--composer-font-color-primary);
+      border-radius: var(--composer-border-radius-md);
+      padding: 60px calc(var(--composer-gap-lg)*2);
+
+      .content {
+        .header-group .vertical-content {
+          .subtitle {
+            background: transparent !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+            color: var(--composer-html-background);
+            transform: none;
+
+            &::before {
+              display: none !important;
+            }
+          }
+
+          .title {
+            color: var(--composer-html-background);
+          }
+
+          .description {
+            color: var(--composer-html-background);
+          }
+        }
+
+        .right-group {
+          .info-group {
+            .info-label {
+              color: var(--composer-html-background);
+            }
+
+            .info-text {
+              color: var(--composer-primary-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    padding: 60px var(--composer-gap-xl);
+
+    &.has-background {
+      .max-content {
+        padding: 60px var(--composer-gap-xl);
+      }
+    }
+
+    .content {
+      .main-row {
+        gap: var(--composer-gap-lg);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-lg) var(--composer-gap-md);
+
+    &.has-background {
+      .max-content {
+        padding: var(--composer-gap-lg) var(--composer-gap-md);
+      }
+    }
+
+    .content {
+      .main-row {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--composer-gap-md);
+      }
+
+      .header-group .vertical-content {
+        align-items: center;
+        text-align: center;
+
+        .subtitle {
+          margin: auto !important;
+        }
+
+        .title,
+        .description {
+          text-align: center;
+        }
+      }
+
+      .right-group {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+
+
+        .info-group {
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .info-label,
+          .info-text {
+            text-align: center;
+          }
+
+          .info-text {
+            font-size: var(--composer-font-size-xl) !important;
+          }
+        }
+
+        .button-group {
+          justify-content: center !important;
+        }
+      }
+    }
+  }
+}
