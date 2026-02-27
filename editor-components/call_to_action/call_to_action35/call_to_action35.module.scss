@@ -112,9 +112,7 @@
 
         .subtitle {
             width: fit-content;
-            transform: none !important;
-            text-align: left !important;
-            align-self: flex-start;
+            margin-left: 0 !important;
 
             &::before {
                 content: "";
@@ -130,6 +128,7 @@
         align-items: center;
         flex-shrink: 0;
         padding: 0;
+        margin: auto;
     }
 
     .button-group {
@@ -160,7 +159,14 @@
 
         .text-block {
             flex: 1;
-            text-align: left;
+            align-items: flex-start !important;
+            text-align: left !important;
+
+            .subtitle,
+            .title,
+            .description {
+                text-align: left !important;
+            }
         }
 
         .button-group {
@@ -188,25 +194,28 @@
             }
 
             .text-block {
-                align-items: center;
                 flex: 0 1 auto;
-                text-align: center !important;
+                align-items: flex-start !important;
+                text-align: left !important;
 
-                .subtitle,
+                .subtitle {
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+                }
+
                 .title,
                 .description {
-                    text-align: center;
+                    text-align: left !important;
                 }
             }
 
             .card .text-block .subtitle {
-                text-align: center !important;
-                align-self: center;
+                transform: none !important;
             }
         }
 
         .button-wrapper {
-         .button-group {
+            .button-group {
                 margin-left: 0;
                 display: flex;
                 flex-wrap: wrap;

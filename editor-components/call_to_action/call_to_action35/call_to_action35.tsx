@@ -16,32 +16,6 @@ class CallToAction35 extends BaseCallToAction {
             value: true,
         });
         this.addProp({
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: "",
-        });
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Let's Make it Bigger!",
-        });
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "Capitalize on low hanging fruit to identify a ballpark value.",
-        });
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "View More", "", null, null, "White"),
-            ],
-        });
-        this.addProp({
             type: "object",
             key: "media",
             displayer: "Media",
@@ -66,6 +40,32 @@ class CallToAction35 extends BaseCallToAction {
                 }
             ]
         });
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "false",
+        });
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "Let's Make it Bigger!",
+        });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "Capitalize on low hanging fruit to identify a ballpark value.",
+        });
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "View More", "", null, null, "White"),
+            ],
+        });
     }
 
     static getName(): string {
@@ -87,10 +87,17 @@ class CallToAction35 extends BaseCallToAction {
 
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${background && this.decorateCSS("has-background")}`}>
-                <div className={this.decorateCSS("background-section")}>
-                    {hasBackgroundImage && <div className={this.decorateCSS("background-wrapper")}> <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} /></div>}
-                    {showOverlay && <div className={this.decorateCSS("overlay")} />} </div>
-                <div className={`${this.decorateCSS("bottom-strip")} ${!background ? this.decorateCSS("transparent") : ""}`} />
+                {hasBackgroundImage && (
+                    <div className={this.decorateCSS("background-section")}>
+                        <div className={this.decorateCSS("background-wrapper")}>
+                            <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
+                        </div>
+                        {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                    </div>
+                )}
+                {hasBackgroundImage && (
+                    <div className={`${this.decorateCSS("bottom-strip")} ${!background ? this.decorateCSS("transparent") : ""}`} />
+                )}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")}>
                         <div className={this.decorateCSS("content")}>
