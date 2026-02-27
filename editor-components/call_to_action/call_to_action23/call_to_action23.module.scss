@@ -4,8 +4,6 @@
   position: relative;
   padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
 
-
-
   .content {
     display: flex;
     flex-direction: column;
@@ -107,7 +105,6 @@
             border-radius: 0 !important;
             color: var(--composer-html-background);
             transform: none;
-            margin-left: 0 !important;
 
             &::before {
               display: none !important;
@@ -181,6 +178,7 @@
         .subtitle,
         .title,
         .description {
+          margin: auto;
           text-align: center !important;
         }
       }
