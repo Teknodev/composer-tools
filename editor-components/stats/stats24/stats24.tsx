@@ -142,9 +142,9 @@ class Stats24 extends BaseStats {
             };
         }, [targetNumber, statsAnimation, animationDuration, originalNumberString]);
 
-        const titleExist = stat.title && stat.title !== "";
-        const subtitleExist = stat.subtitle && stat.subtitle !== "";
-        const descriptionExist = stat.description && stat.description !== "";
+        const titleExist = this.castToString(stat.title);
+        const subtitleExist = this.castToString(stat.subtitle);
+        const descriptionExist = this.castToString(stat.description);
         const valueExist = originalNumberString && originalNumberString !== "";
 
         if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
@@ -211,16 +211,16 @@ class Stats24 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const titleExist = title && title !== "";
-        const subtitleExist = subtitle && subtitle !== "";
-        const descriptionExist = description && description !== "";
+        const titleExist = this.castToString(title);
+        const subtitleExist = this.castToString(subtitle);
+        const descriptionExist = this.castToString(description);
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
         const hasStats = stats.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : this.decorateCSS("alignment-left")}`}>
+                    <Base.VerticalContent className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
 
                         {hasLeftSection && (
                             <div className={this.decorateCSS("left-card")}>
