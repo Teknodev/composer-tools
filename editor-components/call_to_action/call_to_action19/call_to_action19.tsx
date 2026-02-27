@@ -245,11 +245,9 @@ class CallToAction19 extends BaseCallToAction {
                                                         />
                                                     </div>
                                                 )}
-                                                {this.castToString(item.description) && (
-                                                    <Base.P className={this.decorateCSS("feature-list")}>
-                                                        {item.description}
-                                                    </Base.P>
-                                                )}
+                                                <Base.P className={this.decorateCSS("feature-list")}>
+                                                    {item.description}
+                                                </Base.P>
                                             </div>
                                         ))}
                                     </Base.ListGrid>
