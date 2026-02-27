@@ -13,16 +13,14 @@
             padding: 0;
             gap: var(--composer-gap-xl);
 
+
             &.colored {
-                padding: 0 0 0 50px;
+                padding: 80px 50px;
                 background-color: var(--composer-primary-color);
 
-                @container (max-width: #{$composer-phone-width}) {
-                    padding: 20px 50px;
-                }
-
                 .right-column {
-                    border-radius: 0 var(--composer-border-radius-md) var(--composer-border-radius-md) 0;
+                    margin: -80px -50px -80px 0;
+                    border-radius: 0 !important;
                 }
 
                 .left-column {
@@ -31,6 +29,12 @@
                     .subtitle,
                     .description {
                         color: var(--composer-font-color-secondary);
+                    }
+
+                    .subtitle {
+                        background-color: transparent !important;
+                        padding: 0;
+                        border-radius: 0;
                     }
                 }
             }
@@ -52,6 +56,7 @@
             .subtitle,
             .description {
                 text-align: left !important;
+                align-self: flex-start !important;
             }
 
             &.no-media {
@@ -111,9 +116,14 @@
     }
 }
 
+
 @container (max-width: #{$composer-tablet-width}) {
-    .container {
+    .container .max-content .card-wrapper.colored {
         padding: 80px 40px;
+
+        .right-column {
+            margin: -80px -50px -80px 0;
+        }
     }
 }
 
@@ -124,18 +134,27 @@
                 padding: 0;
                 flex-direction: column-reverse;
                 gap: 0;
+                border-radius: var(--composer-border-radius-md);
 
                 &.colored {
                     padding: 0;
+
+                    .right-column {
+                        margin: 0;
+                        border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
+                    }
                 }
 
                 .left-column {
-                    padding: var(--composer-gap-xl);
+                    padding: 50px 20px;
+                    margin: 0;
                     width: 100%;
                 }
 
                 .right-column {
+                    margin: 0;
                     width: 100%;
+                    border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
                 }
 
                 &.no-media {
