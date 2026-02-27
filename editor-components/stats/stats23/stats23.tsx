@@ -217,10 +217,7 @@ class Stats23 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const titleExist = title && title !== "";
-        const subtitleExist = subtitle && subtitle !== "";
-        const descriptionExist = description && description !== "";
-        const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+        const hasLeftSection = subtitle || title || description || hasValidButtons;
         const hasStats = stats.length > 0;
 
         return (
@@ -230,17 +227,17 @@ class Stats23 extends BaseStats {
 
                         {hasLeftSection && (
                             <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                                {subtitleExist && (
+                                {subtitle && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
-                                {titleExist && (
+                                {title && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
                                         {this.getPropValue("title")}
                                     </Base.SectionTitle>
                                 )}
-                                {descriptionExist && (
+                                {description && (
                                     <Base.SectionDescription className={this.decorateCSS("description")}>
                                         {this.getPropValue("description")}
                                     </Base.SectionDescription>
