@@ -46,6 +46,8 @@
 
             .right-column {
                 .stats-grid {
+                    gap: var(--composer-gap-lg);
+
                     .stat-item {
                         align-items: flex-start;
                         text-align: left;
