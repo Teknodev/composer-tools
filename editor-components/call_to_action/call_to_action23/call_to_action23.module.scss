@@ -18,6 +18,7 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
+      gap: var(--composer-gap-xl);
     }
 
     .header-group {
@@ -28,6 +29,7 @@
 
         .subtitle {
           text-align: left;
+          margin-left: 0;
         }
 
         .title {
