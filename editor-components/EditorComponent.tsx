@@ -376,6 +376,7 @@ export enum CATEGORIES {
   ABOUT = "about",
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
+  FIXED = "fixed",
 }
 
 export function generateId(key: string): string {
@@ -1122,4 +1123,8 @@ export abstract class BasePortfolio extends Component {
 
 export abstract class BaseComparison extends Component {
   static category = CATEGORIES.COMPARISON;
+}
+
+export abstract class BaseFixed extends Component {
+  static category = CATEGORIES.FIXED;
 }
