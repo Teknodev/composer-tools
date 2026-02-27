@@ -56,7 +56,6 @@
                 flex: 1.5;
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-sm);
-                box-shadow: var(--composer-box-shadow-lg);
                 display: flex;
                 align-items: center;
                 margin-bottom: 0;
@@ -73,7 +72,6 @@
                 .stat-item {
                     background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-sm);
-                    box-shadow: var(--composer-box-shadow-lg);
                     padding: var(--composer-gap-lg) var(--composer-gap-md);
 
                     .stat-value {
