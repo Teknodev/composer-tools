@@ -40,8 +40,8 @@ class CallToAction31Page extends BaseCallToAction {
 
         this.addProp({
             type: "object",
-            key: "mediaGroup",
-            displayer: "Media Group",
+            key: "media",
+            displayer: "Media",
             value: [
                 {
                     type: "media",
@@ -87,9 +87,9 @@ class CallToAction31Page extends BaseCallToAction {
     }
 
     render() {
-        const mediaGroup = this.castToObject<any>("mediaGroup");
-        const media = mediaGroup.media;
-        const overlay = mediaGroup.overlay;
+        const media = this.castToObject<any>("media");
+        const mediaData = media.media;
+        const overlay = media.overlay;
         const coloredBackground = this.getPropValue("coloredBackground");
 
         return (
@@ -98,23 +98,25 @@ class CallToAction31Page extends BaseCallToAction {
 
                     <div className={this.decorateCSS("header-row")}>
                         <div className={this.decorateCSS("text-column")}>
-                            {this.castToString(this.getPropValue("subtitle")) && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {this.getPropValue("subtitle")}
-                                </Base.SectionSubTitle>
-                            )}
+                            <Base.VerticalContent>
+                                {this.castToString(this.getPropValue("subtitle")) && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
+                                )}
 
-                            {this.castToString(this.getPropValue("title")) && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </Base.SectionTitle>
-                            )}
+                                {this.castToString(this.getPropValue("title")) && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                )}
 
-                            {this.castToString(this.getPropValue("description")) && (
-                                <Base.SectionDescription className={this.decorateCSS("description")}>
-                                    {this.getPropValue("description")}
-                                </Base.SectionDescription>
-                            )}
+                                {this.castToString(this.getPropValue("description")) && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.SectionDescription>
+                                )}
+                            </Base.VerticalContent>
                         </div>
                         <div className={this.decorateCSS("button-column")}>
                             {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
@@ -139,7 +141,7 @@ class CallToAction31Page extends BaseCallToAction {
                     {media && (
                         <div className={this.decorateCSS("media-wrapper")}>
                             <Base.Media
-                                value={media}
+                                value={mediaData}
                                 className={this.decorateCSS("media")}
                             />
                             {overlay && <div className={this.decorateCSS("overlay")} />}

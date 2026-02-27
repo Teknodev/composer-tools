@@ -8,26 +8,30 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-xl);
         border-radius: var(--composer-border-radius-md);
         background-color: color-mix(in srgb,
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 5%);
 
-        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl) 0;
+        padding: 80px 50px 0;
 
-        // @container (max-width: #{$composer-tablet-width}) {
-        //     padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg) 0;
-        // }
+        @container (max-width: #{$composer-tablet-width}) {
+            padding: 80px 40px 0;
+        }
 
         @container (max-width: #{$composer-phone-width}) {
-            padding: var(--composer-gap-xl) var(--composer-gap-md) 0;
+            padding: 50px 20px 0;
         }
 
         &.no-card {
             padding: 0;
             border-radius: 0;
             background-color: transparent;
+
+            .media-wrapper {
+                border-radius: var(--composer-gap-sm);
+            }
         }
 
         .header-row {
@@ -44,7 +48,7 @@
                 text-align: center;
 
                 .text-column {
-                    text-align: center;
+                    text-align: left;
                     width: 100%;
                 }
 
@@ -61,35 +65,18 @@
                 gap: var(--composer-gap-md);
             }
 
-            @container (max-width: #{$composer-tablet-width}) {
-                text-align: center;
-                gap: var(--composer-gap-md);
-            }
-
             .text-column {
                 flex: 0 0 50%;
                 width: 50%;
                 text-align: left;
 
-                @container (max-width: #{$composer-tablet-width}) {
-                    flex: 0 0 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    text-align: left;
+                .subtitle,
+                .title,
+                .description {
+                    text-align: left !important;
+                    align-self: flex-start !important;
                 }
 
-                @container (max-width: #{$composer-phone-width}) {
-                    flex: 0 0 100%;
-                    max-width: 100% !important;
-                    justify-content: flex-start;
-                    text-align: center;
-                }
-
-                .subtitle {
-                    text-align: left;
-
-                }
 
                 .title,
                 .description {
@@ -104,11 +91,6 @@
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
 
-                @container (max-width: #{$composer-tablet-width}) {
-                    flex: 0 0 100%;
-                    justify-content: center;
-                }
-
                 .button {
                     min-width: auto;
 
@@ -120,7 +102,7 @@
         }
 
         .media-wrapper {
-            border-radius: var(--composer-gap-sm);
+            border-radius: var(--composer-gap-sm) var(--composer-gap-sm) 0 0;
             position: relative;
             overflow: hidden;
 
@@ -134,12 +116,6 @@
             .overlay {
                 position: absolute;
                 inset: 0;
-            }
-        }
-
-        @container (max-width: #{$composer-tablet-width}) {
-            .header-row {
-                align-items: center;
             }
         }
     }
