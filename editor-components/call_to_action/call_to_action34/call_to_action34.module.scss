@@ -13,18 +13,12 @@
             padding: 0;
             gap: var(--composer-gap-xl);
 
-            :global(.center) {
-                flex-direction: row;
-                text-align: left;
-                align-items: flex-start;
-            }
-
             &.colored {
                 padding: 0 0 0 50px;
                 background-color: var(--composer-primary-color);
 
                 @container (max-width: #{$composer-phone-width}) {
-                    padding: var(--composer-gap-xl) var(--composer-gap-xl) var(--composer-gap-xl) 50px;
+                    padding: 20px 50px;
                 }
 
                 .right-column {
@@ -54,7 +48,6 @@
             text-align: left;
             align-items: flex-start;
 
-
             .title,
             .subtitle,
             .description {
@@ -69,6 +62,7 @@
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
                 display: flex;
+                align-self: flex-start;
 
                 .button {
                     padding: var(--composer-gap-sm) var(--composer-gap-md);
@@ -89,7 +83,7 @@
             overflow: hidden;
             position: relative;
             display: flex;
-            border-radius: 0 var(--composer-border-radius-md) var(--composer-border-radius-md) 0;
+            border-radius: var(--composer-border-radius-md);
 
             .media-container {
                 position: relative;
