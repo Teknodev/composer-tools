@@ -73,7 +73,7 @@ class Stats20 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "300" },
+                        { type: "string", key: "number", displayer: "Value", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
@@ -83,7 +83,7 @@ class Stats20 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "20" },
+                        { type: "string", key: "number", displayer: "Value", value: "20" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
@@ -93,7 +93,7 @@ class Stats20 extends BaseStats {
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "180" },
+                        { type: "string", key: "number", displayer: "Value", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
