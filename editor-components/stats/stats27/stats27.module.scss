@@ -1,0 +1,88 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .content {
+            align-items: flex-start;
+            gap: var(--composer-gap-lg);
+
+            .header-container {
+                align-items: flex-start;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left;
+                }
+
+                .subtitle {
+                    margin-left: 0;
+                    width: fit-content;
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .stats-grid {
+                gap: var(--composer-gap-xl);
+
+                .stat-item {
+                    align-items: flex-start;
+
+                    .stat-value {
+                        color: var(--composer-primary-color);
+                        display: flex;
+                        align-items: center;
+                        font-size: 6rem;
+
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            color: inherit;
+                        }
+                    }
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: left;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content {
+        .stats-grid .stat-item .stat-value {
+            font-size: 4rem;
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content {
+        .stats-grid {
+            gap: var(--composer-gap-lg);
+
+            .stat-item {
+                .stat-value {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
+}
