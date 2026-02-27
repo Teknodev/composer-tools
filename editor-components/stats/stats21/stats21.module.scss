@@ -98,18 +98,12 @@
     .container .max-content {
         .content-wrapper {
             flex-direction: column;
-            gap: 0;
+            gap: var(--composer-gap-lg);
 
             .left-column,
             .right-column {
                 width: 100%;
                 flex: auto;
-            }
-
-            .left-column {
-                .button-container {
-                    padding-bottom: var(--composer-gap-md);
-                }
             }
 
             .right-column {
