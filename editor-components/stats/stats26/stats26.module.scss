@@ -33,6 +33,7 @@
             }
 
             .stats-list {
+                gap: var(--composer-gap-lg);
 
                 &.has-divider {
                     gap: 0;
@@ -52,7 +53,7 @@
                 .stat-row {
                     display: flex;
                     flex-direction: row;
-                    align-items: center;
+                    align-items: stretch;
                     gap: var(--composer-gap-xl);
 
                     .stat-label {
@@ -63,6 +64,9 @@
                     .stat-value-container,
                     .stat-description-container {
                         flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: flex-end;
                     }
 
                     .stat-title,

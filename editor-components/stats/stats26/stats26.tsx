@@ -106,13 +106,6 @@ class Stats26 extends BaseStats {
             ],
         });
 
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 3,
-            max: 4,
-        });
     }
 
     static getName(): string {
@@ -220,7 +213,6 @@ class Stats26 extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
         const enableDivider = this.getPropValue("enable_divider");
-        const itemCount = this.getPropValue("itemCount");
 
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
@@ -289,7 +281,7 @@ class Stats26 extends BaseStats {
 
                         {hasStats && (
                             <Base.ListGrid
-                                gridCount={{ pc: enableDivider ? 1 : itemCount, tablet: enableDivider ? 1 : itemCount, phone: 1 }}
+                                gridCount={{ pc: 1, tablet: 1, phone: 1 }}
                                 className={`${this.decorateCSS("stats-list")} ${enableDivider ? this.decorateCSS("has-divider") : ""}`}
                             >
                                 {enableDivider && <div className={this.decorateCSS("divider")} />}
