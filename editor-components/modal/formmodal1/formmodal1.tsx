@@ -464,7 +464,7 @@ class FormModal1 extends BaseModal {
                     initialValues={{ ...getInitialValue() }}
                     validationSchema={this.getValidationSchema()}
                     onSubmit={(data, { resetForm }) => {
-                      this.insertForm("Contact Us", data);
+                      this.insertForm("Form Modal 1 - ContactUsForm", data);
                       resetForm();
                     }}
                   >
