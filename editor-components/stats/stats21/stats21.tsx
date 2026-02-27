@@ -62,7 +62,7 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "30" },
+                        { type: "string", key: "number", displayer: "Value", value: "30" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
@@ -75,7 +75,7 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "45" },
+                        { type: "string", key: "number", displayer: "Value", value: "45" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Leverage agile frameworks" },
@@ -88,7 +88,7 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "500" },
+                        { type: "string", key: "number", displayer: "Value", value: "500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
@@ -101,7 +101,7 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Number", value: "10" },
+                        { type: "string", key: "number", displayer: "Value", value: "10" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Transactions confirmed in second" },
@@ -164,10 +164,10 @@ class Stats21 extends BaseStats {
             };
         }, [targetNumber, statsAnimation, animationDuration, originalString]);
 
-        const titleExist = stat.title && stat.title !== "";
-        const subtitleExist = stat.subtitle && stat.subtitle !== "";
-        const descriptionExist = stat.description && stat.description !== "";
-        const valueExist = originalString && originalString !== "";
+        const titleExist = this.castToString(stat.title);
+        const subtitleExist = this.castToString(stat.subtitle);
+        const descriptionExist = this.castToString(stat.description);
+        const valueExist = this.castToString(originalString);
 
         if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
