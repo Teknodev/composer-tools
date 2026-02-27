@@ -10,6 +10,16 @@ class CallToAction24 extends BaseCallToAction {
         super(props, styles);
 
         this.addProp({
+
+
+            type: "boolean",
+            key: "enable_card",
+            displayer: "Colored Background",
+            value: true,
+        });
+
+        this.addProp({
+
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -31,6 +41,7 @@ class CallToAction24 extends BaseCallToAction {
         });
 
         this.addProp({
+
             type: "boolean",
             key: "enable_card",
             displayer: "Colored Background",
@@ -60,7 +71,13 @@ class CallToAction24 extends BaseCallToAction {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
+
                 <div className={this.decorateCSS("background-top")}></div>
+
+                {enable_card && (
+                    <div className={this.decorateCSS("background-top")}></div>
+                )}
+
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("card-container")}>
                         <div className={`${this.decorateCSS("card")} ${enable_card && this.decorateCSS("has-background")}`}>
@@ -68,16 +85,22 @@ class CallToAction24 extends BaseCallToAction {
                                 {subtitle && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {subtitle}
+                                        {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
                                 {title && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {title}
+                                       {title}
+                                        {this.getPropValue("title")}
                                     </Base.SectionTitle>
                                 )}
                                 {description && (
                                     <Base.SectionDescription className={this.decorateCSS("description")}>
+
                                         {description}
+
+                                        {this.getPropValue("description")}
+
                                     </Base.SectionDescription>
                                 )}
                                 {buttons.length > 0 && (
@@ -97,13 +120,22 @@ class CallToAction24 extends BaseCallToAction {
                                                         >
                                                             {buttonText && (
                                                                 <Base.P className={this.decorateCSS("button-text")}>
+
                                                                     {buttonText}
+
+                                                                    {item.text}
+
                                                                 </Base.P>
                                                             )}
                                                             {iconExist && (
                                                                 <Base.Media
+
                                                                     value={item.icon as any}
                                                                     className={this.decorateCSS("button-icon")}
+
+                                                                    className={this.decorateCSS("button-icon")}
+                                                                    value={item.icon as any}
+
                                                                 />
                                                             )}
                                                         </Base.Button>

@@ -428,6 +428,32 @@ export abstract class Component
     this.styles = styles;
     this.id = props?.id || generateComponentId();
 
+    const originalRender = this.render.bind(this);
+
+    this.render = () => {
+      const result = originalRender();
+
+      if (!React.isValidElement(result)) {
+        throw new Error(
+          `${this.getInstanceName()} must return a single React element.`
+        );
+      }
+
+      if (Array.isArray(result)) {
+        throw new Error(
+          `${this.getInstanceName()} cannot return an array of elements.`
+        );
+      }
+
+      if (result.type === React.Fragment) {
+        throw new Error(
+          `${this.getInstanceName()} cannot return a Fragment.`
+        );
+      }
+
+      return result;
+    };
+
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];

@@ -60,9 +60,21 @@
                         gap: var(--composer-gap-sm);
 
                         .button {
+
                             .button-text {
                                 content: "";
                             }
+
+                            .button-text {
+                                content: "";
+                            }
+
+                            .button-icon {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+
                         }
                     }
                 }
@@ -71,9 +83,7 @@
                     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-md);
                     padding: 80px 50px;
-
                     .card-content {
-
                         .subtitle {
                             background: transparent;
                             padding: 0;
@@ -94,5 +104,22 @@
         .max-content .card-container .card.has-background {
             padding: 50px 20px;
         }
+                    padding: 80px var(--composer-gap-xl);
+                }
+            }
+        }
+    }
+
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card-container .card.has-background {
+        padding: 80px var(--composer-gap-lg);
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .card-container .card.has-background {
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
     }
 }
