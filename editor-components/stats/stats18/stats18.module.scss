@@ -80,6 +80,10 @@
     }
 }
 
+.stats-grid {
+    margin-top: var(--composer-gap-md);
+}
+
 @container (max-width: #{$composer-tablet-width}) {
     .stat-value {
         font-size: 3rem !important;

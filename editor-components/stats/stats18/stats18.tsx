@@ -52,7 +52,6 @@ class Stats18Page extends BaseStats {
             displayer: "Buttons",
             value: [
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-
             ],
         });
 
@@ -304,7 +303,7 @@ class Stats18Page extends BaseStats {
 
                     {statsList.length > 0 && (
                         <Base.ListGrid
-                            gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
+                            gridCount={{ pc: itemCount, tablet: 4, phone: 1 }}
                             className={this.decorateCSS("stats-grid")}
                         >
                             {statsList.map((card: CardData, index: number) => (
