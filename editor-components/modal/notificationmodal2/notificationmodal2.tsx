@@ -111,7 +111,7 @@ class NotificationModal2 extends BaseModal {
                 validationSchema={this.validationSchema}
                 onSubmit={(data, { resetForm }) => {
                   this.setComponentState("placeholderText", submitText);
-                  this.insertForm("Call Me Back", data);
+                  this.insertForm("Notification Modal 2 - NewsletterForm", data);
                   setTimeout(() => {
                     this.setComponentState(
                       "placeholderText",

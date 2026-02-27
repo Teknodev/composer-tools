@@ -17,12 +17,20 @@ class HeroSection35 extends BaseHeroSection {
                 {
                     type: "media",
                     key: "pattern",
-                    displayer: "Pattern Image",
+                    displayer: "Media",
+                    additionalParams: { availableTypes: ["image", "video"] },
                     value: {
                         type: "image",
                         url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/pattern-bg.webp",
                     } 
                 },
+               {
+                    type: "media",
+                    key: "logo",
+                    displayer: "Logo",
+                    additionalParams: { availableTypes: ["icon", "image"] },
+                    value: { type: "icon", name: "" },
+               },
                {
                     type: "string",
                     key: "subtitle",
@@ -36,15 +44,19 @@ class HeroSection35 extends BaseHeroSection {
                     value: "Driving Excellence Through Evolution and <span style='color: var(--composer-secondary-color)'>Trust.</span>",
                },
                {
-                    type: "icon",
+                    type: "media",
                     key: "mainIcon",
                     displayer: "Main Icon",
-                    value: "LiaArrowRightSolid",
+                    additionalParams: { availableTypes: ["icon", "image"] },
+                    value: {
+                        type: "icon",
+                        name: "FiArrowUpRight",
+                    },
                },
                {
                     type: "page",
                     key: "page",
-                    displayer: "Page",
+                    displayer: "Navigate To",
                     value: "",
                },
                {
@@ -60,10 +72,14 @@ class HeroSection35 extends BaseHeroSection {
                     value: "Scroll Down",
                },
                {
-                    type: "icon",
+                    type: "media",
                     key: "smallIcon",
                     displayer: "Icon",
-                    value: "FaArrowDown",
+                    additionalParams: { availableTypes: ["icon", "image"] },
+                    value: {
+                        type: "icon",
+                        name: "FaArrowDown",
+                    },
                },
             ]
         });
@@ -97,11 +113,18 @@ class HeroSection35 extends BaseHeroSection {
                 {
                     type: "media",
                     key: "image",
-                    displayer: "Image",
+                    displayer: "Media",
+                    additionalParams: { availableTypes: ["image", "video"] },
                     value: {
                         type: "image",
-                        url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/hero-img.webp",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693bfee3875e15002c62e85e?alt=media",
                     }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
                 },
                 {
                     type: "object",
@@ -115,37 +138,72 @@ class HeroSection35 extends BaseHeroSection {
                             value: true
                         },
                         {
-                            type: "media",
-                            key: "customer1Image",
-                            displayer: "Customer Image",
-                            value: {
-                                type: "image",
-                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-1.webp",
-                            },
+                            type: "array",
+                            key: "customerImages",
+                            displayer: "Customer Images",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "customerImage",
+                                    displayer: "Customer Image",
+                                    value: [
+                                        {
+                                            type: "media",
+                                            key: "image",
+                                            displayer: "Image",
+                                            additionalParams: { availableTypes: ["image"] },
+                                            value: {
+                                                type: "image",
+                                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-1.webp",
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "customerImage",
+                                    displayer: "Customer Image",
+                                    value: [
+                                        {
+                                            type: "media",
+                                            key: "image",
+                                            displayer: "Image",
+                                            additionalParams: { availableTypes: ["image"] },
+                                            value: {
+                                                type: "image",
+                                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-2.webp",
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "customerImage",
+                                    displayer: "Customer Image",
+                                    value: [
+                                        {
+                                            type: "media",
+                                            key: "image",
+                                            displayer: "Image",
+                                            additionalParams: { availableTypes: ["image"] },
+                                            value: {
+                                                type: "image",
+                                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-3.webp",
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
                         },
                         {
                             type: "media",
-                            key: "customer2Image",
-                            displayer: "Customer Image",
-                            value: {
-                                type: "image",
-                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-2.webp",
-                            },
-                        },
-                        {
-                            type: "media",
-                            key: "customer3Image",
-                            displayer: "Customer Image",
-                            value: {
-                                type: "image",
-                                url: "https://bexon.themejunction.net/wp-content/uploads/2025/07/client-3.webp",
-                            },
-                        },
-                        {
-                            type: "icon",
                             key: "customerIcon",
-                            displayer: "Customer Icon",
-                            value: "FaPlus",
+                            displayer: "Icon",
+                            additionalParams: { availableTypes: ["icon", "image"] },
+                            value: {
+                                type: "icon",
+                                name: "FaPlus",
+                            },
                         },
                         {
                             type: "string",
@@ -197,11 +255,13 @@ class HeroSection35 extends BaseHeroSection {
         const leftCardTextExist = this.castToString(leftCard.text);
 
         const customerBoxDescriptionExist = this.castToString(customerBox.customerDesc);
-        const customerBoxImageExist = customerBox.customer1Image || customerBox.customer2Image || customerBox.customer3Image || customerBox.customerIcon;
+        const customerBoxImageExist = (customerBox.customerImages && customerBox.customerImages.length > 0) || customerBox.customerIcon;
         const customerBoxNumberExist = this.castToString(customerBox.customerNumber);
-        const leftCardExist = leftCard.pattern || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || leftCard.smallIcon || leftCard.mainIcon;
+        const hasMedia = (m: { name?: string; url?: string } | null | undefined) => Boolean(m && (m.name || m.url));
+        const leftCardExist = leftCard.pattern || hasMedia(leftCard.logo) || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCardTextExist || hasMedia(leftCard.smallIcon) || hasMedia(leftCard.mainIcon);
         const customerBoxExist = customerBoxImageExist || customerBoxDescriptionExist || customerBoxNumberExist;
         const rightCardExist = rightCard.image || (customerBoxExist && customerBox.visibility);
+        const showCustomerBox = customerBoxExist && customerBox.visibility;
 
         return(
             <Base.Container ref={this.containerRef} className={this.decorateCSS("container")}>
@@ -218,9 +278,17 @@ class HeroSection35 extends BaseHeroSection {
                                     </div>
                                 )}
                                 <div className={this.decorateCSS("left-content-wrapper")}>
-                                    {(leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <div className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
+                                    {(leftCard?.logo || leftCardSubtitleExist || leftCardTitleExist || leftCardDescriptionExist || leftCard.mainIcon) && <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!rightCardExist ? this.decorateCSS("full-width") : ""}`}>
+                                        {(leftCard?.logo?.url || leftCard?.logo?.name) && (
+                                        <div className={this.decorateCSS("logo-wrapper")}>
+                                            <Base.Media
+                                                value={leftCard.logo}
+                                                className={`${this.decorateCSS("logo")} ${leftCard.logo.type == "image" && this.decorateCSS("logo-image")}`}
+                                            />
+                                        </div>
+                                        )}
                                         {leftCardSubtitleExist && (
-                                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${leftCard.pattern && this.decorateCSS("subtitle-has-image")}`}>
                                                 {leftCard.subtitle}
                                             </Base.SectionSubTitle>
                                         )}
@@ -239,19 +307,15 @@ class HeroSection35 extends BaseHeroSection {
                                                         <div className={this.decorateCSS("main-icon-container")}>
                                                             {page ? (
                                                                 <ComposerLink path={page}>
-                                                                    <Base.Icon 
-                                                                        name={leftCard.mainIcon} 
-                                                                        propsIcon={{
-                                                                            className: this.decorateCSS("main-icon")
-                                                                        }}
+                                                                    <Base.Media 
+                                                                        value={leftCard.mainIcon} 
+                                                                        className={this.decorateCSS("main-icon")}
                                                                     />
                                                                 </ComposerLink>
                                                             ) : (
-                                                                <Base.Icon 
-                                                                    name={leftCard.mainIcon} 
-                                                                    propsIcon={{
-                                                                        className: this.decorateCSS("main-icon")
-                                                                    }}
+                                                                <Base.Media 
+                                                                    value={leftCard.mainIcon} 
+                                                                    className={this.decorateCSS("main-icon")}
                                                                 />
                                                             )}
                                                         </div>
@@ -270,7 +334,7 @@ class HeroSection35 extends BaseHeroSection {
                                                 )}
                                             </div>
                                         )}
-                                    </div>}
+                                    </Base.VerticalContent>}
                                 </div>
                                 {(leftCardTextExist || leftCard.smallIcon) && (
                                     <div 
@@ -284,9 +348,9 @@ class HeroSection35 extends BaseHeroSection {
                                         )}
                                         <div className={this.decorateCSS("scroll-icon-container")}>
                                             {leftCard.smallIcon && (
-                                                <Base.Icon
-                                                    name={leftCard.smallIcon}
-                                                    propsIcon={{className: this.decorateCSS("scroll-icon")}}
+                                                <Base.Media
+                                                    value={leftCard.smallIcon}
+                                                    className={this.decorateCSS("scroll-icon")}
                                                 />
                                             )}
                                         </div>
@@ -296,40 +360,55 @@ class HeroSection35 extends BaseHeroSection {
                         )}
                         {rightCardExist && (
                             <div className={leftCardExist ? this.decorateCSS("right-card") : this.decorateCSS("right-card-no-left-card")}>
-                                <div className={this.decorateCSS("image-container")}>
+                                <div className={`${this.decorateCSS("image-container")} ${showCustomerBox && this.decorateCSS("has-customer-box")}`}>
+                                    {rightCard.image && <div className={this.decorateCSS("image-spacer")} />}
                                     {rightCard.image && (
-                                        <Base.Media
-                                            value={rightCard.image}
-                                            className={this.decorateCSS("image")}
-                                        />
+                                        <div className={this.decorateCSS("image-wrapper")}>
+                                            <Base.Media
+                                                value={rightCard.image}
+                                                className={this.decorateCSS("image")}
+                                            />
+                                            {rightCard.overlay && <div className={this.decorateCSS("image-overlay")} />}
+                                        </div>
                                     )}
-                                    {customerBox && customerBox.visibility && Object.keys(customerBox).length > 1 && customerBoxExist && (
-                                        <div className={`${this.decorateCSS("box-area")} ${!rightCard.image ? this.decorateCSS("full-size") : ""}`}>
-                                            <div className={this.decorateCSS("customer-box")}>
+                                    {showCustomerBox && (
+                                        <div className={this.decorateCSS("box-area") + (!rightCard.image ? ` ${this.decorateCSS("full-size")}` : "")}>
+                                            <svg className={this.decorateCSS("box-corner-left")}>
+                                                <defs>
+                                                    <mask id="cutout-topleft">
+                                                        <rect width="20" height="20" fill="white" />
+                                                        <path d="M 0 0 L 42 0 C 0 0 40 25 0 20 Z" fill="black" />
+                                                    </mask>
+                                                </defs>
+                                                <rect width="25" height="25" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-topleft)" />
+                                            </svg>
+                                            <svg className={this.decorateCSS("box-corner-right")}>
+                                                <defs>
+                                                    <mask id="cutout-bottomright">
+                                                        <rect width="20" height="20" fill="white" />
+                                                        <path d="M 0 0 L 42 0 C 0 0 40 25 0 20 Z" fill="black" />
+                                                    </mask>
+                                                </defs>
+                                                <rect width="25" height="25" fill={getComputedStyle(document.documentElement).getPropertyValue('--composer-html-background') || '#fff'} mask="url(#cutout-bottomright)" />
+                                            </svg>
+                                            <div className={this.decorateCSS("customer-box")}> 
                                                 {customerBoxImageExist && <div className={this.decorateCSS("customer-images")}>
-                                                    {customerBox.customer1Image && (
-                                                        <Base.Media
-                                                            value={customerBox.customer1Image}
-                                                            className={this.decorateCSS("customer-img")}
-                                                        />
-                                                    )}
-                                                    {customerBox.customer2Image && (
-                                                        <Base.Media
-                                                            value={customerBox.customer2Image}
-                                                            className={this.decorateCSS("customer-img")}
-                                                        />
-                                                    )}
-                                                    {customerBox.customer3Image && (
-                                                        <Base.Media
-                                                            value={customerBox.customer3Image}
-                                                            className={this.decorateCSS("customer-img")}
-                                                        />
-                                                    )}
+                                                    {customerBox.customerImages && customerBox.customerImages.map((item: any, idx: number) => {
+                                                        const mediaField = Array.isArray(item?.value) ? item.value.find((v: any) => v.type === 'media' || v.key === 'image') : item?.value;
+                                                        const mediaValue = mediaField?.value ?? mediaField ?? item;
+                                                        return (
+                                                            <Base.Media
+                                                                key={idx}
+                                                                value={mediaValue}
+                                                                className={this.decorateCSS("customer-img")}
+                                                            />
+                                                        );
+                                                    })}
                                                     {customerBox.customerIcon && (
                                                         <div className={this.decorateCSS("customer-icon-container")}>
-                                                            <Base.Icon 
-                                                                name={customerBox.customerIcon} 
-                                                                propsIcon={{ className: this.decorateCSS("customer-icon") }} 
+                                                            <Base.Media 
+                                                                value={customerBox.customerIcon} 
+                                                                className={this.decorateCSS("customer-icon")}
                                                             />
                                                         </div>
                                                     )}  
