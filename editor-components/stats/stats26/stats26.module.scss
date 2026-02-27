@@ -33,9 +33,6 @@
             }
 
             .stats-list {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-xl);
 
                 &.has-divider {
                     gap: 0;
@@ -96,7 +93,6 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .content {
         .stats-list {
-            gap: var(--composer-gap-lg);
 
             &.has-divider {
                 gap: 0;
@@ -120,7 +116,6 @@
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content {
         .stats-list {
-            gap: var(--composer-gap-lg);
 
             &.has-divider {
                 gap: 0;
