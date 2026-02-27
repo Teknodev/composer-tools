@@ -25,7 +25,7 @@ class Stats26 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "lorem",
+            value: "",
         });
 
         this.addProp({
@@ -39,7 +39,7 @@ class Stats26 extends BaseStats {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "lorem ipsum dolor sit amet consectetur adipiscing elit",
+            value: "",
         });
 
         this.addProp({
@@ -47,8 +47,15 @@ class Stats26 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "lorem", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "enable_divider",
+            displayer: "Divider",
+            value: true,
         });
 
         this.addProp({
@@ -58,7 +65,7 @@ class Stats26 extends BaseStats {
             value: [
                 {
                     type: "object", key: "stat", displayer: "Stat", value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "+" },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
@@ -71,7 +78,7 @@ class Stats26 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "number", displayer: "Value", value: "17" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "lorem" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Funding" },
                         { type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line." },
                     ]
@@ -81,7 +88,7 @@ class Stats26 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "100" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "lorem" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "People" },
                         { type: "string", key: "description", displayer: "Description", value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test." },
                     ]
@@ -98,13 +105,21 @@ class Stats26 extends BaseStats {
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
+
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 3,
+            max: 4,
+        });
     }
 
     static getName(): string {
         return "Stats 26";
     }
 
-    private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
+    private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation, enableDivider }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean; enableDivider: boolean }) => {
         const originalNumberString = stat.number;
         const targetNumber = parseFloat(originalNumberString) || 0;
 
@@ -152,40 +167,49 @@ class Stats26 extends BaseStats {
         if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {(valueExist || suffixExist) && (
-                    <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
-                            <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+            <>
+                <div className={this.decorateCSS("stat-row")}>
+                    <Base.VerticalContent className={this.decorateCSS("stat-label")}>
+                        {subtitleExist && (
+                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                                {stat.subtitleElement}
+                            </Base.H6>
+                        )}
+                        {titleExist && (
+                            <Base.H5 className={this.decorateCSS("stat-title")}>
+                                {stat.titleElement}
+                            </Base.H5>
+                        )}
+                    </Base.VerticalContent>
+                    <div className={this.decorateCSS("stat-value-container")}>
+                        {(valueExist || suffixExist) && (
+                            <span className={this.decorateCSS("stat-value")}>
+                                {stat.prefix && (
+                                    <span className={this.decorateCSS("stat-prefix")}>
+                                        {stat.prefix}
+                                    </span>
+                                )}
+                                <span className={this.decorateCSS("stat-number")}>
+                                    {displayNumber}
+                                </span>
+                                {suffixExist && (
+                                    <span className={this.decorateCSS("stat-suffix")}>
+                                        {stat.suffix}
+                                    </span>
+                                )}
                             </span>
                         )}
-                        <span className={this.decorateCSS("stat-number")}>
-                            {displayNumber}
-                        </span>
-                        {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
-                            </span>
+                    </div>
+                    <div className={this.decorateCSS("stat-description-container")}>
+                        {descriptionExist && (
+                            <Base.P className={this.decorateCSS("stat-description")}>
+                                {stat.descriptionElement}
+                            </Base.P>
                         )}
-                    </span>
-                )}
-                {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                        {stat.subtitleElement}
-                    </Base.H6>
-                )}
-                {titleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-title")}>
-                        {stat.titleElement}
-                    </Base.H5>
-                )}
-                {descriptionExist && (
-                    <Base.P className={this.decorateCSS("stat-description")}>
-                        {stat.descriptionElement}
-                    </Base.P>
-                )}
-            </Base.VerticalContent>
+                    </div>
+                </div>
+                {enableDivider && <div className={this.decorateCSS("divider")} />}
+            </>
         );
     };
 
@@ -195,6 +219,8 @@ class Stats26 extends BaseStats {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+        const enableDivider = this.getPropValue("enable_divider");
+        const itemCount = this.getPropValue("itemCount");
 
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
@@ -262,13 +288,18 @@ class Stats26 extends BaseStats {
                         )}
 
                         {hasStats && (
-                            <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                            <Base.ListGrid
+                                gridCount={{ pc: enableDivider ? 1 : itemCount, tablet: enableDivider ? 1 : itemCount, phone: 1 }}
+                                className={`${this.decorateCSS("stats-list")} ${enableDivider ? this.decorateCSS("has-divider") : ""}`}
+                            >
+                                {enableDivider && <div className={this.decorateCSS("divider")} />}
                                 {stats.map((stat: StatItem, index: number) => (
                                     <this.AnimatedStat
                                         key={`stat26-${index}`}
                                         stat={stat}
                                         animationDuration={animationDuration}
                                         statsAnimation={statsAnimation}
+                                        enableDivider={enableDivider}
                                     />
                                 ))}
                             </Base.ListGrid>
