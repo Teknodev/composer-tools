@@ -6,7 +6,7 @@
             gap: var(--composer-gap-xl);
 
             .header-item {
-                justify-content: center;
+                justify-content: flex-start;
                 align-items: flex-start;
 
                 .title,
@@ -36,7 +36,8 @@
 
             .stat-item {
                 align-items: flex-start;
-                justify-content: center;
+                justify-content: flex-end;
+                margin: var(--composer-gap-md) 0;
 
                 .stat-value {
                     color: var(--composer-font-color-primary);
