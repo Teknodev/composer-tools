@@ -1,0 +1,198 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .content {
+            gap: var(--composer-gap-xl);
+            display: flex;
+            flex-direction: row;
+
+            .left-section,
+            .right-section {
+                flex: 1;
+                align-items: flex-start;
+            }
+
+            .left-section {
+                .header {
+                    width: 100%;
+                    align-items: flex-start;
+
+                    .title,
+                    .description {
+                        text-align: left;
+                    }
+
+                    .subtitle {
+                        margin-left: 0;
+                        width: fit-content;
+                    }
+
+                    .bottom-row {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-xl);
+                        width: 100%;
+
+                        .button-group {
+                            display: flex;
+                            flex-wrap: wrap;
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+                            flex-shrink: 0;
+
+                            .button {
+                                .button-text {
+                                    color: inherit;
+                                }
+                            }
+                        }
+
+                        .rating {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            color: var(--composer-font-color-primary);
+
+                            .rating-value,
+                            .rating-text {
+                                margin: 0;
+                                text-align: left;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right-section {
+                .right-vertical-content {
+                    width: 100%;
+
+                    .features-title {
+                        margin: 0;
+                        text-align: left;
+                        color: var(--composer-font-color-primary);
+                    }
+
+                    .featured-list-items {
+                        margin-top: var(--composer-gap-md);
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--composer-gap-md);
+
+                        .feature-list-item {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+                            color: var(--composer-font-color-primary);
+
+                            .icon-wrapper {
+                                display: flex;
+                                flex-shrink: 0;
+                            }
+
+                            .icon {
+                                width: 1.25rem;
+                                height: 1.25rem;
+                            }
+
+                            .feature-list {
+                                margin: 0;
+                                text-align: left;
+                                color: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.has-card-background {
+        .max-content {
+            background-color: var(--composer-primary-color);
+            border-radius: var(--composer-border-radius-md);
+            padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
+
+            .content {
+                color: var(--composer-font-color-secondary);
+
+                .header .subtitle {
+                    color: inherit;
+                    background: transparent;
+                    padding: 0;
+                    margin-left: 0;
+                    width: fit-content;
+                    transform: none !important;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                .header .title,
+                .header .description,
+                .header .bottom-row .rating,
+                .right-section .right-vertical-content .features-title,
+                .right-section .right-vertical-content .featured-list-items .feature-list-item {
+                    color: inherit;
+                }
+            }
+        }
+    }
+
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        &.has-card-background .max-content {
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+        }
+
+        .content {
+            flex-direction: column;
+            gap: calc(1.5 * var(--composer-gap-md));
+
+            .left-section,
+            .right-section {
+                width: 100%;
+                flex: none;
+            }
+
+            .left-section {
+                .header {
+                    .bottom-row {
+                        gap: var(--composer-gap-md) !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        &.has-card-background .max-content {
+            padding: calc(var(--composer-gap-md)*2) var(--composer-gap-md);
+        }
+
+        .content {
+            flex-direction: column;
+            gap: calc(1.5 * var(--composer-gap-md));
+
+            .left-section,
+            .right-section {
+                width: 100%;
+                flex: none;
+            }
+
+            .left-section .header .bottom-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--composer-gap-md) !important;
+            }
+        }
+    }
+}
