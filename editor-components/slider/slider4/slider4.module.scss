@@ -1,85 +1,53 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding-bottom: 0;
-
-  @container (max-width: #{$composer-tablet-width}) {
-    padding: 0;
-  }
-
-  @container (max-width: #{$composer-phone-width}) {
-    padding: 0;
-  }
-
   .max-content {
     display: flex;
-    gap: var(--composer-gap-sm);
+    gap: var(--composer-gap-lg);
     flex-direction: column;
+    position: relative;
 
-    @container (max-width: #{$composer-tablet-width}) {
-      gap: 0;
-    }
+    .vertical-content {
 
-    .header {
-      @container (max-width: #{$composer-tablet-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+      .title,
+      .subtitle {
+        content: "";
       }
 
       .description {
-        content: "";
+        margin-bottom: 0;
       }
     }
 
     .down-page {
       gap: var(--composer-gap-md);
-
-      @container (max-width: #{$composer-phone-width}) {
-        padding: 0;
-      }
-
-      @container (max-width: #{$composer-tablet-width}) {
-        gap: 0;
-      }
+      align-items: stretch;
 
       .control-part {
         flex: 1;
-        max-width: 100%;
-        display: flex;
+        overflow: hidden;
         flex-direction: column;
+        justify-content: start;
+        text-align: left;
         padding: var(--composer-gap-md);
-        margin: var(--composer-gap-md) 0;
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border-radius: var(--composer-border-radius-lg);
-        gap: var(--composer-gap-sm);
-
-        @container (max-width: #{$composer-tablet-width}) {
-          margin: var(--composer-gap-md) var(--composer-gap-lg) 0 var(--composer-gap-lg);
-        }
-
-        @container (max-width: #{$composer-phone-width}) {
-          margin: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
-        }
 
         .control-title {
-          margin-top: var(--composer-gap-sm);
           color: var(--composer-primary-color);
-          font-size: 1.5rem;
+          text-align: left;
         }
 
         .control-description {
           color: var(--composer-font-color-primary);
+          text-align: left;
         }
 
         .arrows {
           display: flex;
           gap: var(--composer-gap-sm);
-          align-items: end;
-          height: 100%;
-          margin-bottom: var(--composer-gap-sm);
+          justify-content: flex-start;
+          width: 100%;
 
           .icon-wrapper {
             width: 35px;
@@ -87,14 +55,18 @@
 
             .prevArrow,
             .nextArrow {
-              flex-shrink: 0;
               color: var(--composer-font-color-primary);
               border-radius: 50%;
               border: 2px solid var(--composer-primary-color);
               width: 100%;
               height: 100%;
+              object-fit: cover;
               padding: var(--composer-gap-xs);
               background-color: var(--composer-html-background);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.5rem;
 
               &:hover {
                 background-color: var(--composer-primary-color);
@@ -109,99 +81,101 @@
         flex: 3;
         max-width: 80%;
 
-        @container (max-width: #{$composer-tablet-width}) {
-          max-width: 100%;
-        }
-
         .carousel {
           display: flex;
-          overflow: hidden;
           gap: var(--composer-gap-md);
+          position: relative;
 
-          @container (max-width: #{$composer-tablet-width}) {
-            padding: 0 var(--composer-gap-md);
+          :global(.slick-dots) {
+            display: none !important;
           }
 
-          @container (max-width: #{$composer-phone-width}) {
-            padding: 0;
-          }
-
-          > div {
-            > div {
-              padding: var(--composer-gap-md) 0;
+          :global(.slick-list) {
+            :global(.slick-track) {
               display: flex;
               align-items: stretch;
               height: 100%;
 
-              > div {
+              :global(.slick-slide) {
                 padding: 0 var(--composer-gap-md);
-                height: auto;
-                min-height: 219px;
+                height: 100%;
+                display: flex;
 
-                > div {
+                .slide-wrapper {
                   height: 100%;
+                  width: 100%;
+                  display: flex;
                 }
               }
             }
           }
 
           .card {
-            flex: 1;
-            padding: var(--composer-gap-md);
-            transition: transform 0.3s ease;
+            justify-content: start;
+            text-align: left;
+            padding: var(--composer-gap-lg);
+            transition: transform var(--composer-transition-duration-normal) ease;
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
-            border-radius: var(--composer-border-radius-lg);
-            gap: var(--composer-gap-md);
+            border-radius: var(--composer-border-radius-md);
             height: 100%;
+            min-height: 265px;
 
-            &:hover {
+            &.hover-active:hover {
               transform: scale(1.05);
+            }
 
-              @container (max-width: #{$composer-tablet-width}) {
-                transform: scale(1.03);
+            .card-button {
+              justify-content: left;
+              width: 100%;
+
+              .card-button-text {
+                content: "";
               }
 
-              @container (max-width: #{$composer-phone-width}) {
-                transform: scale(1.02);
+              .card-button-icon {
+                line-height: 0;
               }
             }
 
+            .icon-row {
+              width: 100%;
+              justify-content: flex-start;
+            }
+
             .play-icon {
-              flex-shrink: 0;
               font-size: 3rem;
               color: var(--composer-primary-color);
+              width: 3rem;
+              height: 3rem;
+              margin-left: 0;
+            }
+
+            .item-subtitle {
+              color: var(--composer-font-color-secondary);
+              text-align: left;
             }
 
             .item-header {
               color: var(--composer-font-color-primary);
+              text-align: left;
             }
 
             .item-content {
               color: var(--composer-tertiary-color);
+              text-align: left;
+              width: 100%;
             }
           }
 
           .for-single-card {
             &:hover {
               transform: scale(1.02);
-
-              @container (max-width: #{$composer-tablet-width}) {
-                transform: scale(1.02);
-              }
-
-              @container (max-width: #{$composer-phone-width}) {
-                transform: scale(1.02);
-              }
             }
           }
         }
 
         .carousel--singleCard {
           width: 100%;
-
-          > div {
-            width: 100%;
-          }
         }
 
         .carousel--multipleCards {
@@ -213,9 +187,129 @@
         max-width: 100%;
       }
     }
+
+    .custom-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      width: 100%;
+      gap: var(--composer-gap-sm);
+
+      .dot-item {
+        margin: 0 var(--composer-gap-sm);
+        cursor: pointer;
+
+        .dot-button {
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-full);
+          border: none;
+          background: var(--composer-font-color-primary);
+          opacity: 0.5;
+          padding: 0;
+          transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
+          transform: scale(0.8);
+        }
+
+        &.active .dot-button {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .button-wrapper {
+      display: flex;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+
+      .button-text {
+        content: "";
+      }
+
+      .button-icon {
+        line-height: 0;
+      }
+    }
   }
 }
 
-.no-header {
-  padding-top: 0;
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .down-page {
+        .slider-parent {
+          max-width: 100%;
+
+          .carousel {
+            :global(.slick-list) {
+              margin: 0 calc(-1 * var(--composer-gap-sm));
+
+              :global(.slick-track) {
+                :global(.slick-slide) {
+                  padding: 0 var(--composer-gap-sm);
+                }
+              }
+            }
+
+            .card {
+              &.hover-active:hover {
+                transform: scale(1.03);
+              }
+            }
+
+            .for-single-card {
+              &:hover {
+                transform: scale(1.02);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .down-page {
+        padding: 0;
+
+        .slider-parent {
+          .carousel {
+
+            .card {
+              &.hover-active:hover {
+                transform: scale(1.02);
+              }
+            }
+
+            .for-single-card {
+              &:hover {
+                transform: scale(1.02);
+              }
+            }
+          }
+        }
+      }
+
+      .custom-dots {
+        .dot-item {
+          margin: 0 var(--composer-gap-xs);
+
+          .dot-button {
+            transform: scale(0.6);
+          }
+
+          &.active .dot-button {
+            transform: scale(0.8);
+          }
+        }
+      }
+    }
+  }
 }

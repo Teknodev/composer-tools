@@ -1,7 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  height: 550px;
   padding: 0;
 
   .slider-wrapper {
@@ -13,22 +12,112 @@
       height: 100%;
       width: 100%;
 
-      div {
-        height: 100%;
-      }
-
       .carousel {
+        position: relative;
+
+        :global(.slick-list) {
+          overflow: hidden;
+        }
+
+        :global(.slick-dots) {
+          bottom: auto;
+          top: 75%;
+          left: 70px;
+          transform: translateY(-50%);
+          width: auto !important;
+          display: flex !important;
+          flex-direction: column;
+          z-index: 100;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            margin: var(--composer-gap-sm) 0;
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
+
+            button {
+              width: var(--composer-gap-sm);
+              height: var(--composer-gap-sm);
+              padding: 0;
+              background: transparent;
+              border: none;
+              cursor: pointer;
+              position: relative;
+
+              &:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: var(--composer-gap-sm);
+                height: var(--composer-gap-sm);
+                border-radius: var(--composer-border-radius-full);
+                background: var(--composer-font-color-secondary);
+                opacity: 0.5;
+                transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
+                transform: scale(0.8);
+                line-height: unset;
+              }
+            }
+
+            &:global(.slick-active) {
+              button:before {
+                transform: scale(1.2);
+                opacity: 1;
+              }
+            }
+          }
+
+          @container (max-width: #{$composer-phone-width}) {
+            flex-direction: row;
+            bottom: 20px;
+            top: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100% !important;
+            justify-content: center;
+
+            li {
+              margin: 0 var(--composer-gap-sm);
+              width: var(--composer-gap-sm) !important;
+              height: var(--composer-gap-sm) !important;
+            }
+          }
+        }
+
+        :global(.slick-prev) {
+          left: 20px;
+          z-index: 100;
+        }
+
+        :global(.slick-next) {
+          right: 20px;
+          z-index: 100;
+        }
+
         .card {
+          height: 100%;
+
           .slider-item {
             width: 100%;
-            height: 100%;
-            background-position: center;
-            background-size: cover;
+            height: 50vh;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
             transition: 500ms;
+
+            .slider-item-media {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 50vh;
+              object-fit: cover;
+              z-index: 0;
+            }
 
             .max-content {
               max-width: var(--composer-content-width);
@@ -38,21 +127,59 @@
               display: flex;
               align-items: center;
               margin: var(--composer-gap-md) var(--composer-gap-xl);
+              overflow: hidden;
+
+              .slider-item-content {
+                width: 100%;
+                align-items: center;
+                text-align: center;
+              }
+            }
+
+            .slider-item-subtitle-wrapper {
+              width: 100%;
+              display: flex;
+            }
+
+            .slider-item-subtitle {
+              transition: 700ms;
+              opacity: 0;
+
+              &.slider-item-subtitle-with-media {
+                color: white;
+                background: transparent;
+
+                &::before {
+                  background: white;
+                }
+              }
+
+              &.show {
+                opacity: 1;
+              }
             }
 
             .slider-item-title {
-              margin: 0 0 -200px 0;
               width: 100%;
               transition: 700ms;
               opacity: 0;
-              font-size: 4.5rem;
-              display: -webkit-box;
-              -webkit-box-orient: vertical;
-              -webkit-line-clamp: 3;
-              overflow: hidden;
-              text-overflow: ellipsis;
 
-              &.slider-item-title-with-img {
+              &.slider-item-title-with-media {
+                color: white;
+              }
+
+              &.show {
+                margin-bottom: var(--composer-gap-md);
+                opacity: 1;
+              }
+            }
+
+            .slider-item-description {
+              width: 100%;
+              transition: 700ms;
+              opacity: 0;
+
+              &.slider-item-description-with-media {
                 color: white;
               }
 
@@ -70,122 +197,121 @@
               top: 0;
               left: 0;
               z-index: 1;
+              pointer-events: none;
             }
           }
         }
       }
     }
+  }
 
-    .footer-max-content {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      z-index: 10;
+  .footer-max-content {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+
+    .slider-footer {
+      border-top-left-radius: var(--composer-border-radius-md);
+      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
-      max-height: 170px;
+      justify-content: center;
+      align-items: stretch;
+      width: 100%;
 
-      .slider-footer {
-        border-top-left-radius: var(--composer-border-radius-md);
-        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      .slider-footer-items {
+        height: 100%;
         display: flex;
-        justify-content: center;
-        align-items: stretch;
-        width: 100%;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
+        gap: var(--composer-gap-md);
 
-        .slider-footer-items {
-          height: 100%;
+        .slider-footer-item {
           display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
-          gap: var(--composer-gap-md);
+          flex: 1;
+          align-items: center;
+          gap: var(--composer-gap-sm);
 
-          .slider-footer-item {
-            display: flex;
-            flex: 1;
-            align-items: center;
-            gap: var(--composer-gap-sm);
+          .slider-footer-item-media {
+            width: 200px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-sm);
+            transition: 500ms;
+            transition-property: transform;
+            flex-shrink: 0;
 
-            .slider-footer-item-image {
-              width: 200px;
-              height: 100%;
-              object-fit: cover;
-              border-radius: var(--composer-border-radius-md);
-              transition: 500ms;
-              transition-property: transform;
-              flex: 1;
-              aspect-ratio: 2/1;
 
-              &.hover-animation:hover {
-                transform-origin: center;
-                transform: rotate(5deg);
-              }
-            }
 
-            .slider-footer-item-body {
-              flex: 1;
-              width: 50%;
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              gap: var(--composer-gap-xs);
-              max-height: 130px;
-              overflow: hidden;
-
-              .slider-footer-item-title {
-                margin: 0;
-                color: var(--composer-font-color-primary);
-              }
-
-              .slider-footer-item-subtitle {
-                margin: 0;
-                color: var(--composer-tertiary-color);
-              }
+            &.hover-animation:hover {
+              transform-origin: center;
+              transform: rotate(5deg);
             }
           }
 
-          .half-width {
-            flex: 0.5;
+          .slider-footer-item-body {
+            flex: 1;
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+            max-height: 130px;
+            text-align: left;
+
+
+            .slider-footer-item-title {
+              margin: 0;
+              color: var(--composer-font-color-primary);
+              text-align: left;
+            }
+
+            .slider-footer-item-subtitle {
+              margin: 0;
+              color: var(--composer-tertiary-color);
+              text-align: left;
+            }
           }
         }
 
-        .slider-buttons {
+        .half-width {
+          flex: 0.5;
+        }
+      }
+
+      .slider-buttons {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .slider-button {
+          position: relative;
+          border: none;
+          background-color: var(--composer-font-color-primary);
+          color: var(--composer-html-background);
+          transition: 400ms;
+          height: 50%;
+          cursor: pointer;
+          aspect-ratio: 1 / 1;
+          min-width: 60px;
+          min-height: 60px;
           display: flex;
-          flex-direction: column;
-          height: 100%;
+          align-items: center;
+          justify-content: center;
 
-          .slider-button {
-            position: relative;
-            border: none;
-            background-color: var(--composer-font-color-primary);
-            color: var(--composer-html-background);
-            transition: 400ms;
-            height: 50%;
-            cursor: pointer;
-            aspect-ratio: 1 / 1;
-            min-width: 60px;
-            min-height: 60px;
+          .slider-button-media {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+            font-size: 1.5rem;
+            object-fit: contain;
+          }
 
-            .slider-arrow-icon {
-              position: absolute;
-              left: 50%;
-              top: 50%;
-              transform: translate(-50%, -50%);
-              transform-origin: center;
-              transition-property: transform;
-              transition: 300ms;
-              font-size: 1.5rem;
-              flex-shrink: 0;
-            }
-
-            &:hover {
-              color: var(--composer-font-color-primary);
-              background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-
-              .slider-arrow-icon {
-                transform: translate(-50%, -50%) rotate(90deg);
-              }
-            }
+          &:hover {
+            color: var(--composer-font-color-primary);
+            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           }
         }
       }
@@ -193,8 +319,11 @@
   }
 }
 
+
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: 0 !important;
+
     .slider-wrapper {
       .slider {
         .carousel {
@@ -205,7 +334,7 @@
               }
 
               .slider-item-title {
-                font-size: 3rem;
+                content: "";
               }
             }
           }
@@ -224,12 +353,13 @@
           justify-content: end;
 
           .slider-footer-items {
-            border-top-left-radius: var(--composer-border-radius-md);
+            border-top-left-radius: var(--composer-border-radius-sm);
             background-color: white;
 
             .slider-footer-item {
-              .slider-footer-item-image {
+              .slider-footer-item-media {
                 width: 150px;
+                height: 75px;
               }
 
               .slider-footer-item-body {
@@ -245,6 +375,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: 0 !important;
+
     .slider-wrapper {
       .slider {
         .carousel {
@@ -252,10 +384,13 @@
             .slider-item {
               .max-content {
                 margin: var(--composer-gap-md) var(--composer-gap-md);
+                top: -20px;
+                padding: var(--composer-gap-md);
               }
 
               .slider-item-title {
-                font-size: 2rem;
+                content: "";
+
               }
             }
           }
@@ -278,6 +413,8 @@
             .slider-button {
               width: 50px;
               height: 50px;
+              min-width: 50px;
+              min-height: 50px;
             }
           }
         }
