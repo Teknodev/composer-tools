@@ -1,6 +1,8 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
+
   .background-image {
     position: absolute;
     top: 0;
@@ -11,84 +13,94 @@
   }
 
   .max-content {
-    .wrapper {
-      width: 100%;
-      background-size: cover;
-      background-position: center;
-      border-radius: var(--composer-border-radius-md);
-      position: relative;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: var(--composer-border-radius-md);
+    position: relative;
 
-      .overlay {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: var(--composer-overlay-color);
-        border-radius: var(--composer-border-radius-md);
-        z-index: 1;
-      }
+    &.has-image {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      min-height: 600px;
+      padding: var(--composer-gap-md) var(--composer-gap-md);
 
-      .content-container {
-        height: 100%;
-        justify-content: center;
-        position: relative;
-        z-index: 2;
-
-        &.image {
-          min-height: 600px;
-          padding: var(--composer-gap-md) var(--composer-gap-md);
-          align-items: center;
-          text-align: center;
-
-          .subtitle,
-          .title,
-          .description {
-            color: white;
-            background: transparent;
-            text-align: center;
-          }
-        }
+      .vertical-content {
 
         .subtitle {
-          content: "";
-          transform: translateX(0);
-
-          &::before {
-            display: none;
-          }
+          color: #ffffff;
+          padding: 0;
+          background: transparent;
         }
 
         .title,
         .description {
-          content: "";
+          color: #ffffff;
         }
 
+      }
+    }
 
-        .buttons-container {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: var(--composer-gap-md);
+    .vertical-content {
+      justify-content: center;
+      position: relative;
+      z-index: 2;
 
-          .button-wrapper {
-            .button-image {
-              width: 170px;
-              height: 50px;
-              border-radius: var(--composer-border-radius-sm);
-              object-fit: cover;
-            }
+      .subtitle {
+        margin-left: auto;
+        margin-right: auto;
+        transform: none;
+        text-align: center;
 
-            .button-element {
+        &::before {
+          display: none;
+        }
+      }
 
-              .button-icon,
-              .button-text {
-                content: "";
-              }
-            }
+      .title,
+      .description {
+        text-align: center;
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        width: 100%;
+        z-index: 2;
+
+        .button-image {
+          height: 50px;
+          width: 170px;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
+        }
+
+        .button-element {
+
+          .button-icon {
+            line-height: 0;
+          }
+
+          .button-text {
+            content: "";
           }
         }
       }
+    }
+
+    .overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--composer-overlay-color);
+      border-radius: var(--composer-border-radius-md);
+      z-index: 1;
     }
   }
 }
@@ -96,10 +108,17 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .wrapper {
-        .content-container {
+      .vertical-content {
+        &.image {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
+        }
+
+        .buttons-container {
+          .button-image {
+            height: 45px !important;
+            width: 150px !important;
+          }
         }
       }
     }
@@ -109,25 +128,15 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .wrapper {
-        .content-container {
-          min-height: 600px;
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
+      .vertical-content {
+        &.has-image {
+          min-height: 400px;
+        }
 
-          .description {
-            text-align: center;
-          }
-
-          .buttons-container {
-            justify-content: center;
-            flex-direction: column;
-
-            .button-wrapper {
-              .button-image {
-                width: 150px;
-                height: 40px;
-              }
-            }
+        .buttons-container {
+          .button-image {
+            height: 32px !important;
+            width: 120px !important;
           }
         }
       }

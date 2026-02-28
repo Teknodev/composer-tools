@@ -1,10 +1,18 @@
-import * as React from "react";
+import React from "react";
 import styles from "./download10.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type Background = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+type IconItem = {
+  icon: TypeMediaInputValue;
+};
 
 class Download10 extends BaseDownload {
   constructor(props?: any) {
@@ -32,39 +40,18 @@ class Download10 extends BaseDownload {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Download", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),]
+    })
+
+    this.addProp({
       type: "string",
       key: "text1",
       displayer: "Review Title",
       value: "Trustes by 2M+ customers",
     });
-
-    this.addProp({
-      type: "string",
-      key: "text2",
-      displayer: "Review Score",
-      value: "4.3/5 (55k Reviews)",
-    });
-
-    this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image","video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67438ea6506a40002c2dca7f?alt=media&timestamp=1732480731550",
-      },
-    });
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "Download", "", "FaApple", "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/68e79205ffd791002b7e7482?alt=media", "Primary"),
-      ]
-    })
 
     this.addProp({
       type: "array",
@@ -81,7 +68,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -100,7 +87,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -119,7 +106,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -138,7 +125,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -157,7 +144,7 @@ class Download10 extends BaseDownload {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -168,6 +155,39 @@ class Download10 extends BaseDownload {
         },
       ],
     });
+
+    this.addProp({
+      type: "string",
+      key: "text2",
+      displayer: "Review Score",
+      value: "4.3/5 (55k Reviews)",
+    });
+
+    this.addProp({
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67438ea6506a40002c2dca7f?alt=media&timestamp=1732480731550",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
   }
 
   static getName(): string {
@@ -175,73 +195,68 @@ class Download10 extends BaseDownload {
   }
 
   render() {
-    const subtitle = this.getPropValue("badge");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
-
+    const subtitle = this.castToString(this.getPropValue("badge"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasContent = subtitle || title || description;
     const reviewTitle = this.castToString(this.getPropValue("text1"));
     const reviewScore = this.castToString(this.getPropValue("text2"));
-
-    const icons = this.castToObject<any>("icons");
-    const image = this.getPropValue("image");
-
+    const icons = this.castToObject<IconItem[]>("icons");
+    const background = this.castToObject<Background>("media");
+    const image = background?.media;
+    const overlay = background?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-
-    const alignmentValue = Base.getContentAlignment();
+    const hasLeftContainer = hasContent || buttons.length > 0 || reviewTitle || reviewScore || icons.length > 0;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("with-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("page")}>
-            <div
-              className={`${this.decorateCSS("left-container")} 
-            ${(image && alignmentValue === "center") && this.decorateCSS("center")} 
-            ${!image && this.decorateCSS("no-image")}`}
-            >
-              <Base.VerticalContent>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                {buttons.length > 0 && (
-                  <Base.Row className={this.decorateCSS("button-group")}>
-                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
-                      const buttonTextExist = this.castToString(item.text);
-                      const iconExist = item.icon && item.icon.name;
-                      const imageExist = item.image && item.image.url;
-                      const buttonExist = buttonTextExist || iconExist || imageExist;
-                      return buttonExist && (
-                        <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
-                          {imageExist ? (
-                            <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                          ) : (
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                                {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                            </Base.Button>
-                          )}
-                        </ComposerLink>
-                      );
-                    })}
-                  </Base.Row>
+          <div className={`${this.decorateCSS("page")} ${image && this.decorateCSS("has-image")}`}>
+            {hasLeftContainer && (
+              <div className={this.decorateCSS("left-container")}>
+                {(hasContent || buttons.length > 0) && (
+                  <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                    {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
+                    {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                    {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                    {buttons.length > 0 && (
+                      <Base.Row className={this.decorateCSS("button-group")}>
+                        {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
+                          const buttonTextExist = this.castToString(item?.text);
+                          const iconExist = item.icon && item.icon.name;
+                          const imageExist = item.image && item.image.url;
+                          return (buttonTextExist || iconExist || imageExist) && (
+                            <ComposerLink key={`dw-10-btn-${index}`} path={item.url}>
+                              {imageExist ? (
+                                <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                              ) : (
+                                <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                  {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                  {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                                </Base.Button>
+                              )}
+                            </ComposerLink>
+                          );
+                        })}
+                      </Base.Row>
+                    )}
+                  </Base.VerticalContent>
                 )}
-              </Base.VerticalContent>
-              {(reviewTitle || reviewScore || icons.length > 0) && (
-                <Base.VerticalContent className={this.decorateCSS("stats")}>
-                  {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
-                  <Base.Row className={this.decorateCSS("down-description")}>
-                    <div className={this.decorateCSS("stars")}>{icons.map((icon: any, index: number) => icon.icon && <Base.Media value={icon.icon} className={this.decorateCSS("icon")} />)}</div>
-                    {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
-                  </Base.Row>
-                </Base.VerticalContent>
-              )}
-            </div>
+                {(reviewTitle || reviewScore || icons.length > 0) && (
+                  <Base.VerticalContent className={this.decorateCSS("stats")}>
+                    {reviewTitle && <Base.H5 className={this.decorateCSS("stats-title")}>{this.getPropValue("text1")}</Base.H5>}
+                    <Base.Row className={this.decorateCSS("down-description")}>
+                      <div className={this.decorateCSS("stars")}>{icons.map((item: IconItem) => item.icon && <Base.Media value={item.icon} className={this.decorateCSS("icon")} />)}</div>
+                      {reviewScore && <Base.P className={this.decorateCSS("info")}>{this.getPropValue("text2")}</Base.P>}
+                    </Base.Row>
+                  </Base.VerticalContent>
+                )}
+              </div>
+            )}
             {image && (
-              <div className={this.decorateCSS("right-container")}>
-                <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("right-image")} />
+              <div className={`${this.decorateCSS("right-container")} ${!hasContent && this.decorateCSS("no-image")}`}>
+                <Base.Media value={image} className={this.decorateCSS("right-image")} />
+                {overlay && <div className={this.decorateCSS("overlay")} />}
               </div>
             )}
           </div>

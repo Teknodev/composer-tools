@@ -1,53 +1,72 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .max-content {
-    .header {
-      .title, .description, .subtitle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .vertical-content {
+
+      .title,
+      .description,
+      .subtitle {
         content: "";
       }
     }
+
     .cards-container {
       .cards {
         .card {
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
+          align-items: flex-start;
           padding: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-xl);
+          border-radius: var(--composer-border-radius-md);
           transition: 0.5s;
 
           .icon-container {
+            margin-bottom: var(--composer-gap-md);
             padding: var(--composer-gap-sm);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 15%);
             border-radius: 50%;
-            margin-bottom: var(--composer-gap-md);
             transition: 0.5s;
             width: fit-content;
 
             .icon {
               font-size: 2rem;
+              width: 2rem;
+              height: 2rem;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
               color: var(--composer-font-color-primary);
             }
           }
 
-          .device, .platform, .card-description {
+          .device,
+          .platform,
+          .card-description {
+            text-align: left !important;
             color: var(--composer-font-color-primary);
-            margin: 0;
           }
 
           .button-container {
-              .button {
-                .button-icon, .button-text {
-                  content: "";
-                }
-                .image {
-                  width: 170px;
-                  height: 50px;
-                  object-fit: cover;
-                  border-radius: var(--composer-border-radius-sm);
-                }
+            .button {
+              .button-image {
+                height: 50px;
+                width: 170px;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
               }
+
+              .button-text {
+                content: "";
+              }
+
+              .button-icon {
+                line-height: 0;
+              }
+            }
           }
 
           &:hover {
@@ -73,18 +92,42 @@
   }
 }
 
-@container(max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
-      .cards-container{
-        .cards{
-          .card{
+@container(max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .cards-container {
+        .cards {
+          .card {
             .button-container {
-                .button {
-                  .image {
-                    width: 120px;
-                    height: 100%;
-                  }
+              .button {
+                .button-image {
+                  height: 45px !important;
+                  width: 150px !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container(max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .cards-container {
+        .cards {
+          .card {
+            .button-container {
+              .button {
+                .button-image {
+                  height: 32px !important;
+                  width: 120px !important;
+
+                }
               }
             }
           }

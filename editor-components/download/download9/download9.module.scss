@@ -1,8 +1,8 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  &.image {
-    padding: 0 !important;
+  &.has-image {
+    padding: 0;
   }
 
   .page {
@@ -19,7 +19,7 @@
     }
 
     &.no-image {
-      min-height: 350px;
+      min-height: auto;
     }
 
     .background-image {
@@ -48,7 +48,7 @@
       overflow: hidden;
       position: relative;
       height: auto;
-      min-height: 350px;
+      min-height: auto;
       width: 100%;
 
       &.image {
@@ -60,12 +60,12 @@
 
           .title,
           .description {
-            color: white;
+            color: #ffffff;
             text-align: center;
           }
 
           .subtitle {
-            color: white;
+            color: #ffffff;
             text-align: center;
             background: transparent !important;
           }
@@ -75,7 +75,7 @@
           align-items: center;
 
           .hover-subtitle {
-            color: white;
+            color: #ffffff;
             text-align: center;
             background: transparent !important;
 
@@ -86,7 +86,7 @@
 
           .card-title,
           .card-description {
-            color: white;
+            color: #ffffff;
             text-align: center;
           }
         }
@@ -117,7 +117,6 @@
       transition: opacity 0.5s ease 0.2s, transform 0.5s ease 0.3s;
 
       .subtitle {
-        content: "";
         transform: translateX(0);
         align-self: center;
 
@@ -128,7 +127,6 @@
 
       .title,
       .description {
-        content: "";
         text-align: center;
       }
     }
@@ -173,23 +171,19 @@
         justify-content: center;
         gap: var(--composer-gap-sm);
 
-        .image-container {
-          width: 170px;
+        .button-image {
           height: 50px;
-
-          .card-image {
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-sm);
-          }
+          width: 170px;
+          border-radius: var(--composer-border-radius-sm);
+          object-fit: cover;
         }
 
         .button {
+          .button-icon {
+            line-height: 0;
+          }
 
-          .icon,
-          .text {
+          .button-text {
             content: "";
           }
         }
@@ -221,15 +215,19 @@
       }
     }
   }
-
-
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    padding: var(--composer-gap-lg) 0px !important;
+
+    &.has-image {
+      padding: 0 !important;
+    }
+
     .page {
       .max-content {
-        min-height: 500px;
+        min-height: auto;
 
         .middle-container {
           padding: var(--composer-gap-md) var(--composer-gap-lg);
@@ -239,17 +237,9 @@
           padding: var(--composer-gap-md) var(--composer-gap-lg);
 
           .buttons-container {
-            .image-container {
-              width: 152px;
-              height: 45px;
-
-              .card-image {
-                width: 100%;
-                height: 100%;
-                cursor: pointer;
-                object-fit: cover;
-                border-radius: var(--composer-border-radius-sm);
-              }
+            .button-image {
+              height: 45px !important;
+              width: 150px !important;
             }
           }
         }
@@ -260,6 +250,12 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    padding: var(--composer-gap-md) 0px !important;
+
+    &.has-image {
+      padding: 0 !important;
+    }
+
     .page {
       .max-content {
         .middle-container {
@@ -270,11 +266,9 @@
           padding: var(--composer-gap-md);
 
           .buttons-container {
-            flex-direction: column;
-
-            .image-container {
-              width: 150px;
-              height: 45px;
+            .button-image {
+              height: 32px !important;
+              width: 120px !important;
             }
           }
         }

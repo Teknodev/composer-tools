@@ -1,12 +1,9 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
-$min-height: 500px;
-
 .container {
   background-size: cover;
   background-position: center;
   position: relative;
-  min-height: $min-height;
 
   .background-image {
     position: absolute;
@@ -15,66 +12,6 @@ $min-height: 500px;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .max-content {
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-    min-height: $min-height;
-
-    .page {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
-      width: 58%;
-      &.no-image{
-        width: 100%;
-      }
-
-      .header {
-        .title,
-        .description,
-        .subtitle {
-          content: "";
-        }
-      }
-
-      .buttons-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: var(--composer-gap-sm);
-        .button-wrapper {
-          width: 170px;
-          height: 50px;
-          >div, >a{
-            width: 100% !important;
-            height: 100%;
-            display: flex;
-            align-items: center;
-          }
-          .button-image {
-            height: 100%;
-            width: 100%;
-            cursor: pointer;
-            border-radius: var(--composer-border-radius-sm);
-            object-fit: cover;
-          }
-        }
-          .button-element {
-            .icon, .button-text {
-              content: "";
-            }
-          }
-    
-        &.center {
-          justify-content: center;
-        }
-      }
-
-    }
   }
 
   .overlay {
@@ -86,40 +23,82 @@ $min-height: 500px;
     z-index: 1;
     background-color: var(--composer-overlay-color);
   }
-  &.single{
-    height: auto;
-    .max-content{
-      height: auto;
+
+  &.has-background {
+    .max-content {
+      min-height: 500px;
+
+      .header {
+        width: 60%;
+
+        .subtitle,
+        .title,
+        .description {
+          margin-left: 0;
+          text-align: left;
+        }
+
+        .buttons-container {
+          justify-content: left !important;
+          width: 100%;
+        }
+      }
     }
   }
-}
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .page {
-        width: 55% !important;
 
-        .buttons-container{
-          .button-wrapper {
-            .button-image {
-              width: 100%;
-            }
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+
+    .header {
+
+      .title,
+      .description,
+      .subtitle {
+        content: "";
+      }
+
+      .buttons-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button-image {
+          height: 50px;
+          width: 170px;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
+        }
+
+        .button-element {
+          .button-icon {
+            line-height: 0;
+          }
+
+          .button-text {
+            content: "";
           }
         }
       }
-      .page-no-image {
-        width: 100%;
-      }
     }
+  }
+}
 
-    .overlay {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      background-color: var(--composer-overlay-color);
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .header {
+        .buttons-container {
+          .button-image {
+            width: 150px !important;
+            height: 45px !important;
+          }
+        }
+      }
     }
   }
 }
@@ -127,8 +106,17 @@ $min-height: 500px;
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .page {
+      .header {
         width: 100% !important;
+
+        .buttons-container {
+          justify-content: var(--composer-content-alignment);
+
+          .button-image {
+            width: 120px !important;
+            height: 32px !important;
+          }
+        }
       }
     }
   }

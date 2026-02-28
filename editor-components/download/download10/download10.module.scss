@@ -1,68 +1,127 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  position: relative;
+
+  &.with-image {
+    padding-bottom: 0 !important;
+  }
+
   .max-content {
+    position: relative;
+
     .page {
       width: 100%;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: var(--composer-gap-md);
-      .left-container {
-        &.no-image{
-          width: 100%;
+
+      &.has-image {
+        .left-container {
+          padding-bottom: 80px;
+          width: 60%;
+          gap: var(--composer-gap-lg);
+
+          .vertical-content {
+
+            .subtitle {
+              text-align: left;
+              margin-left: 0;
+            }
+
+            .title,
+            .description {
+              text-align: left;
+            }
+
+            .button-group,
+            .stats,
+            .down-description {
+              justify-content: flex-start;
+            }
+          }
+
+          .stats {
+            align-items: flex-start;
+
+            .stats-title {
+              text-align: left;
+            }
+
+            .down-description {
+
+              .info {
+                text-align: left;
+              }
+            }
+          }
         }
+      }
+
+      .left-container {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-sm);
-        .subtitle, .title, .description {
-          content: "";
-        }
+        justify-content: center;
+        gap: var(--composer-gap-md);
+        width: 100%;
+        position: relative;
+        z-index: 10;
 
-        .button-group {
-          width: 100%;
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-sm);
-          min-height: 60px;
-          height: auto;
+        .vertical-content {
 
-          .button-image {
-            width: 170px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: var(--composer-border-radius-sm);
+          .subtitle,
+          .title,
+          .description {
+            content: "";
           }
-          .button-element {
-            height: 50px;
-            .button-icon {
-              content: "";
+
+          .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            width: 100%;
+
+            .button-image {
+              width: 170px;
+              height: 50px;
+              object-fit: cover;
+              border-radius: var(--composer-border-radius-sm);
             }
-            .button-text {
-              content: "";
+
+            .button-element {
+              .button-icon {
+                line-height: 0;
+              }
+
+              .button-text {
+                content: "";
+              }
             }
           }
         }
 
         .stats {
-          display: flex;
-          flex-direction: column;
+          width: 100%;
+
           .stats-title {
             color: var(--composer-font-color-primary);
           }
+
           .down-description {
-            display: flex;
             align-items: center;
             gap: var(--composer-gap-sm);
+
             .stars {
               display: flex;
-              align-items: center;
               color: var(--composer-font-color-primary);
               gap: var(--composer-gap-xs);
 
               .icon {
                 width: var(--composer-gap-md);
                 height: var(--composer-gap-md);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
                 color: var(--composer-primary-color);
               }
             }
@@ -73,12 +132,36 @@
           }
         }
       }
+
       .right-container {
+        position: relative;
+        z-index: 1;
+        align-self: flex-end;
+        width: 40%;
+
+        &.no-image {
+          width: 100%;
+
+          .right-image {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
         .right-image {
-          width: 600px;
+          width: 100%;
           height: 600px;
           object-fit: cover;
           border-radius: var(--composer-border-radius-sm);
+          display: block;
+        }
+
+        .overlay {
+          position: absolute;
+          inset: 0;
+          background-color: var(--composer-overlay-color);
+          border-radius: var(--composer-border-radius-sm);
+          z-index: 2;
         }
       }
     }
@@ -91,19 +174,40 @@
       .page {
         flex-direction: row;
         gap: var(--composer-gap-md);
-        .left-container{
-          width: 100%;
-          .button-group {
-            width: 100%;
-            min-height: 80px;
-            height: auto;
+
+        &.has-image {
+          .left-container {
+            width: 50%;
           }
         }
+
+        .left-container {
+          gap: var(--composer-gap-xs);
+
+          .vertical-content {
+            .button-group {
+              width: 100%;
+              height: auto;
+              margin-bottom: var(--composer-gap-sm);
+              align-items: stretch;
+
+              .button-image {
+                height: 45px !important;
+                width: 150px !important;
+              }
+            }
+          }
+        }
+
         .right-container {
-          width: 100%;
+          align-self: stretch;
+          width: 50%;
+
           .right-image {
             width: 100%;
-            height: 400px;
+            height: 100%;
+            min-height: 500px;
+            object-fit: cover;
           }
         }
       }
@@ -117,20 +221,33 @@
       .page {
         flex-direction: column;
         gap: var(--composer-gap-md);
-        .left-container{
-          .button-group{
-            .button-element{
-              height: 40px;
-            }
-            .button-image{
-              width: 150px;
-              height: 40px;
+
+        &.has-image {
+          .left-container {
+            padding-bottom: var(--composer-gap-xl);
+          }
+        }
+
+        .left-container {
+          width: 100% !important;
+          align-items: flex-start !important;
+          gap: var(--composer-gap-sm) !important;
+
+          .vertical-content {
+            .button-group {
+              margin-bottom: var(--composer-gap-sm);
+
+              .button-image {
+                width: 120px !important;
+                height: 32px !important;
+              }
             }
           }
         }
 
         .right-container {
-          width: 100%;
+          width: 100% !important;
+
           .right-image {
             width: 100%;
             height: 300px;
