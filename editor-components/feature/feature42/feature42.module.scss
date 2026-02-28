@@ -1,0 +1,355 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .max-content {
+            .vertical-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .subtitle {
+                    transform: none;
+                    text-align: center;
+
+                    &:before {
+                        display: none;
+                    }
+                }
+
+                .title,
+                .description {
+                    text-align: center;
+                }
+            }
+        }
+
+        .items-wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: var(--composer-gap-xl);
+            width: fit-content;
+            margin: 0 auto;
+
+            .itemTitle {
+                cursor: pointer;
+                text-align: left;
+                color: var(--composer-tertiary-color);
+                transition: color 0.3s ease;
+                position: relative;
+                padding-bottom: var(--composer-gap-sm);
+                width: auto;
+
+                &:hover {
+                    color: var(--composer-font-color-primary);
+                }
+
+                &.active {
+                    color: var(--composer-font-color-primary);
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        height: 4px;
+                        background-color: var(--composer-font-color-primary);
+                        animation: expandWidth 0.4s ease forwards;
+                    }
+                }
+            }
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+    }
+
+    .card-wrapper {
+        display: flex;
+        position: relative;
+        min-width: 0;
+
+        .card-content {
+            display: none;
+            flex-direction: row;
+            gap: var(--composer-gap-xl);
+            flex: 1;
+            min-width: 0;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            .mobile-title-wrapper {
+                display: none;
+            }
+
+            &.active-item {
+                display: flex;
+                position: relative;
+                opacity: 1;
+            }
+
+            .image-wrapper {
+                position: relative;
+                border-top-right-radius: var(--composer-border-radius-sm);
+                border-bottom-right-radius: var(--composer-border-radius-sm);
+                margin-left: calc(-1 * var(--composer-gap-xl));
+                overflow: hidden;
+                width: 100%;
+                min-height: 500px;
+                height: auto;
+                flex: 0.5;
+
+                &.full-width {
+                    margin-right: calc(-1 * var(--composer-gap-xl));
+                    border-radius: 0;
+                    flex: 1;
+                }
+
+                .itemImage {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                .overlay {
+                    background-color: var(--composer-overlay-color);
+                    position: absolute;
+                    inset: 0;
+                    border-radius: inherit;
+                }
+            }
+
+            .sectionsWrapper {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
+                align-items: flex-start;
+                flex: 0.5;
+
+                &.no-image {
+                    flex: 1;
+                    align-items: var(--composer-content-alignment);
+
+                    .cardSubTitle,
+                    .cardTitle,
+                    .sectionText1,
+                    .sectionText2 {
+                        text-align: var(--composer-content-alignment);
+                    }
+                }
+
+                .cardSubTitle,
+                .cardTitle,
+                .sectionText1,
+                .sectionText2 {
+                    text-align: left;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .card-button {
+                    .card-button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+
+    .button-container {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .button {
+            .button-text {
+                content: "";
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        gap: var(--composer-gap-lg);
+
+        .wrapper {
+            .max-content {
+                .vertical-content {
+                    .subtitle {
+                        padding-right: var(--composer-gap-xl);
+                    }
+                }
+            }
+        }
+
+        .card-wrapper {
+            .card-content {
+                flex-direction: column;
+
+                .mobile-title-wrapper {
+                    display: none;
+                }
+
+                .image-wrapper {
+                    order: 2;
+                    border-radius: 0;
+                    min-height: 350px;
+                    margin-left: calc(-1 * var(--composer-gap-lg));
+                    margin-bottom: var(--composer-gap-lg);
+                    width: calc(100% + 2 * var(--composer-gap-lg));
+
+                    &.full-width {
+                        margin-right: 0;
+                    }
+                }
+
+                .sectionsWrapper {
+                    order: 1;
+                    flex: unset;
+
+                    .cardSubTitle,
+                    .cardTitle,
+                    .sectionText1,
+                    .sectionText2 {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        gap: var(--composer-gap-sm);
+
+        .wrapper {
+            .items-wrapper {
+                display: none;
+            }
+        }
+
+        .card-wrapper {
+            flex-direction: column;
+            gap: 0;
+
+            .card-content {
+                gap: var(--composer-gap-md);
+                flex-direction: column;
+                display: flex;
+                position: relative;
+                opacity: 1;
+                height: auto;
+
+                .mobile-title-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: var(--composer-gap-sm);
+                    padding: var(--composer-gap-md) 0;
+                    cursor: pointer;
+                    order: 1;
+
+                    &.line {
+                        border-top: 1px solid var(--composer-tertiary-color);
+                    }
+
+                    .mobile-title {
+                        color: var(--composer-font-color-primary);
+                        transition: color 0.3s ease;
+                        width: fit-content;
+                        margin: 0;
+
+                        &.active {
+                            color: var(--composer-primary-color);
+                        }
+                    }
+
+                    .arrow-icon {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var(--composer-font-color-primary);
+                        transition: transform 0.3s ease, color 0.3s ease;
+                        font-size: calc(var(--composer-font-size-sm) * 2);
+                        line-height: 0;
+
+                        &.active {
+                            transform: rotate(180deg);
+                            color: var(--composer-primary-color);
+                        }
+
+                        .is-image {
+                            width: 30px;
+                            height: 30px;
+                            object-fit: contain;
+                        }
+                    }
+                }
+
+                &:last-child .mobile-title-wrapper.line {
+                    border-bottom: 1px solid var(--composer-tertiary-color);
+                }
+
+                .image-wrapper {
+                    order: 3;
+                    margin-left: calc(-1 * var(--composer-gap-md));
+                    margin-bottom: var(--composer-gap-md);
+                    width: calc(100% + 2 * var(--composer-gap-md));
+                    min-height: 240px;
+                    border-radius: 0;
+                    display: none;
+                }
+
+                &:last-child {
+                    .image-wrapper {
+                        margin-bottom: 0;
+                    }
+                }
+
+                .sectionsWrapper {
+                    order: 2;
+                    display: none;
+                    padding-bottom: var(--composer-gap-md);
+
+                    .cardSubTitle,
+                    .cardTitle,
+                    .sectionText1,
+                    .sectionText2 {
+                        text-align: left;
+                    }
+                }
+
+                &.active-item {
+                    .image-wrapper {
+                        display: block;
+                    }
+
+                    .sectionsWrapper {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+}
