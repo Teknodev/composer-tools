@@ -1,187 +1,255 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
   .max-content {
     display: flex;
+    flex-direction: column;
 
-    .content {
+    .main-wrapper {
       display: flex;
       flex: 1;
-      gap: var(--composer-gap-xl);
-      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--composer-gap-md);
 
-      .card-1 {
-        display: flex;
-        flex-direction: column;
+      .left-section {
         flex: 1;
-        min-width: 275px;
-        align-items: baseline;
-
-        .title, .subtitle, .description {
-          text-align: left;
-          margin-left: 0;
-        }
-      }
-
-      .card-2 {
-        color: var(--composer-font-color-primary);
-        display: flex;
-        flex: 2;
-        min-width: 300px;
-
-        .left-text {
-          color: var(--composer-tertiary-color);
-          text-align: justify;
-        }
-      }
-
-      .card-3 {
+        min-width: 250px;
         display: flex;
         flex-direction: column;
-        flex: 2;
-        min-width: 300px;
         gap: var(--composer-gap-md);
 
-        .right-text {
-          color: var(--composer-tertiary-color);
-          text-align: justify;
-        }
-
-        .information {
+        .card-1 {
           display: flex;
           flex-direction: column;
-          gap: var(--composer-gap-xs);
-          align-items: flex-start;
+          align-items: baseline;
 
-          .name {
-            color: var(--composer-primary-color);
-            text-align: left;
-          }
-
-          .job-title {
-            color: var(--composer-tertiary-color);
-            text-align: left;
+          .title,
+          .subtitle {
+            text-align: left !important;
+            margin-left: 0;
+            word-break: break-word;
           }
         }
       }
 
-      .content-right-section-empty {
+      .right-section {
+        flex: 4;
         display: flex;
         flex-direction: column;
-        flex: 3;
-        min-width: 400px;
         gap: var(--composer-gap-md);
 
-        .left-text {
-          color: var(--composer-tertiary-color);
-          text-align: justify;
-        }
-
-        .information-below-text1 {
+        .content {
           display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-xs);
-          align-items: flex-start;
+          flex: 1;
+          gap: var(--composer-gap-xl);
+          flex-wrap: wrap;
 
-          .name {
-            color: var(--composer-primary-color);
+          .card-2 {
+            color: var(--composer-font-color-primary);
+            display: flex;
+            flex: 1;
+            min-width: 250px;
+
+            .left-text {
+              color: var(--composer-tertiary-color);
+              text-align: justify;
+              word-break: break-word;
+            }
           }
 
-          .job-title {
-            color: var(--composer-tertiary-color);
+          .card-3 {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 250px;
+            gap: var(--composer-gap-md);
+
+            .right-text {
+              color: var(--composer-tertiary-color);
+              text-align: justify;
+              word-break: break-word;
+            }
+
+            .information {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
+              align-items: flex-start;
+
+              .name {
+                color: var(--composer-primary-color);
+                text-align: left;
+              }
+
+              .job-title {
+                color: var(--composer-tertiary-color);
+                text-align: left;
+              }
+            }
+          }
+
+          .content-right-section-empty {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 250px;
+            gap: var(--composer-gap-md);
+
+            .left-text {
+              color: var(--composer-tertiary-color);
+              text-align: justify;
+            }
+
+            .information-below-text1 {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
+              align-items: flex-start;
+
+              .name {
+                color: var(--composer-primary-color);
+                text-align: left;
+              }
+
+              .job-title {
+                color: var(--composer-tertiary-color);
+                text-align: left;
+              }
+            }
+          }
+        }
+
+        .content-column {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          gap: var(--composer-gap-md);
+
+          .information {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-xs);
+            align-self: flex-start;
+            align-items: flex-start;
+
+            .name {
+              color: var(--composer-primary-color);
+              text-align: left;
+            }
+
+            .job-title {
+              color: var(--composer-tertiary-color);
+              text-align: left;
+            }
+          }
+
+          .card-2,
+          .card-3,
+          .content-right-section-empty {
+            display: none;
           }
         }
       }
     }
 
-    .content-column {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      gap: var(--composer-gap-md);
+    .description-mobile {
+      text-align: left !important;
+      margin-left: 0;
+      color: var(--composer-font-color-primary);
+      word-break: break-word;
+      display: none;
+    }
 
-      .card-1 {
-        display: flex;
-        flex-direction: column;
-        color: var(--composer-font-color-primary);
-        align-items: flex-start;
+    .description-desktop {
+      text-align: left !important;
+      margin-left: 0;
+      color: var(--composer-font-color-primary);
+      word-break: break-word;
+      display: block;
+    }
+  }
+}
 
-        .title {
-          content: "";
-          text-align: left;
-        }
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: 0px;
 
-        .subtitle {
-          color: var(--composer-tertiary-color);
-          text-align: left;
-        }
+      .description-mobile {
+        display: block;
       }
 
-      .information {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-xs);
-        align-self: flex-start;
-        align-items: flex-start;
-
-        .name {
-          color: var(--composer-primary-color);
-          text-align: left;
-        }
-
-        .job-title {
-          color: var(--composer-tertiary-color);
-          text-align: left;
-        }
-      }
-      .card-2,
-      .card-3,
-      .content-right-section-empty {
+      .description-desktop {
         display: none;
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .max-content {
-    .card-1 {
-      min-width: 200px !important;
-    }
-  }
-}
-
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    .content {
-      flex-direction: column;
-      gap: var(--composer-gap-sk) !important;
+  .container {
+    .max-content {
+      .main-wrapper {
+        flex-direction: column;
+        gap: var(--composer-gap-md);
 
-      .content-right-section-empty {
-        gap: var(--composer-gap-md) !important;
+        .left-section,
+        .right-section {
+          width: 100% !important;
+          min-width: 0 !important;
+        }
 
-        .information-below-text1 {
-          align-items: flex-start !important;
+        .left-section {
+          order: 1;
+
+          .card-1 {
+            padding-bottom: 0px;
+          }
+        }
+
+        .right-section {
+          order: 2;
+        }
+
+        .right-section {
+          .content {
+            flex-direction: column !important;
+            gap: var(--composer-gap-md) !important;
+
+            .card-2,
+            .card-3,
+            .content-right-section-empty {
+              min-width: auto !important;
+              width: 100% !important;
+            }
+
+            .content-right-section-empty {
+              gap: var(--composer-gap-md) !important;
+
+              .information-below-text1 {
+                align-items: flex-start !important;
+              }
+            }
+          }
+
+          .content-column {
+            gap: var(--composer-gap-md) !important;
+
+            .information {
+              align-self: flex-start !important;
+              align-items: flex-start !important;
+            }
+          }
         }
       }
-    }
 
-    .content-column {
-      gap: var(--composer-gap-md) !important;
-
-      .card-1 {
-        align-items: flex-start !important;
+      .description-mobile {
+        display: block;
       }
 
-      .information {
-        align-self: flex-start !important;
-        align-items: flex-start !important;
+      .description-desktop {
+        display: none;
       }
     }
   }

@@ -44,14 +44,14 @@ class About9 extends BaseAbout {
                 url: "https://html-roof.jrstudio.com.co/img/general/image-02.jpg"
             }
         })
-        
+
         this.addProp({
             type: "boolean",
             key: "overlay",
             displayer: "Overlay",
             value: false,
         });
-        
+
         this.addProp({
             type: "string",
             key: "text1",
@@ -80,28 +80,35 @@ class About9 extends BaseAbout {
         const text2 = this.getPropValue("text2");
         const overlay = this.getPropValue("overlay") as boolean;
 
-        const showTopContainer = this.castToString(title) || image1 || image2;
+        const hasImage1 = !!image1?.url;
+        const hasImage2 = !!image2?.url;
+        const hasImages = hasImage1 || hasImage2;
+        const showTopContainer = this.castToString(title) || hasImages;
         const showBottomContainer = this.castToString(text1) || this.castToString(text2);
         const showSideContainer = showTopContainer || showBottomContainer;
+
+        const alignmentValue = Base.getContentAlignment();
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showSideContainer && (
-                        <div className={this.decorateCSS("side-container")}>
+                        <div className={`${this.decorateCSS("side-container")} ${hasImages && this.decorateCSS("with-image")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                             {showTopContainer && (
                                 <div className={this.decorateCSS("top-container")}>
                                     <Base.VerticalContent className={this.decorateCSS("title-container")}>
-                                    {subtitleText && (
-                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                            {subtitle}
-                                        </Base.SectionSubTitle>
-                                    )}
-                                    {this.castToString(title) && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {title}
-                                        </Base.SectionTitle>
-                                    )}
+                                        {subtitleText && (
+                                            <div className={this.decorateCSS("subtitle-wrapper")}>
+                                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                                    {subtitle}
+                                                </Base.SectionSubTitle>
+                                            </div>
+                                        )}
+                                        {this.castToString(title) && (
+                                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                                                {title}
+                                            </Base.SectionTitle>
+                                        )}
                                     </Base.VerticalContent>
                                     {image1?.url && (
                                         <div className={this.decorateCSS("image-1")}>

@@ -1,5 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .overlay {
   position: absolute;
@@ -12,17 +12,13 @@
 }
 
 .container {
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
   .max-content {
     .side-container {
       display: flex;
       flex-direction: column;
       gap: var(--composer-gap-xl);
       color: var(--composer-font-color-primary);
+
       .top-container {
         display: flex;
         gap: var(--composer-gap-md);
@@ -32,32 +28,105 @@
           flex: 1;
           width: 100%;
           text-align: left;
+          display: flex;
+          align-items: center;
 
-          .subtitle,.title {
+          .title {
             content: "";
+            text-align: left;
+          }
+
+          .subtitle-wrapper {
+            width: 100%;
+            display: flex;
+
+            .subtitle {
+              content: "";
+            }
+          }
+
+          .subtitle {
+            margin-left: 0px !important;
           }
         }
+
         .image-1,
         .image-2 {
           flex: 1;
           position: relative;
+          min-height: 200px;
+          overflow: hidden;
+          border-radius: var(--composer-border-radius-sm);
+
           .image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
             border-radius: var(--composer-border-radius-sm);
           }
         }
+
+        &.with-image {
+
+          .title,
+          .subtitle {
+            text-align: left !important;
+          }
+        }
       }
+
+      &.center {
+        &:not(.with-image) {
+          .top-container {
+            justify-content: center;
+
+            .title-container {
+              justify-content: center;
+              text-align: center;
+
+              .title,
+              .subtitle {
+                text-align: center !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+              }
+            }
+          }
+
+          .bottom-container {
+            text-align: center;
+
+            .text-1,
+            .text-2 {
+              text-align: center;
+            }
+          }
+        }
+      }
+
       .bottom-container {
         display: flex;
         gap: var(--composer-gap-md);
         color: var(--composer-tertiary-color);
         text-align: justify;
+
         .text-1,
         .text-2 {
           flex: 1;
           text-align: justify;
+        }
+      }
+
+      &:not(.with-image) {
+        .bottom-container {
+
+          .text-1:only-child,
+          .text-2:only-child {
+            text-align: center;
+          }
         }
       }
     }
@@ -65,14 +134,28 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .side-container {
-    .top-container {
-      flex-direction: column;
-    }
-    .bottom-container {
-      flex-direction: column;
-      .text-1 {
-        margin-bottom: 1rem;
+  .container {
+    .max-content {
+      .side-container {
+        gap: var(--composer-gap-md) !important;
+
+        .top-container {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+
+          .image-1,
+          .image-2 {
+            width: 100%;
+            max-width: 100%;
+            min-height: 150px;
+            flex: none;
+          }
+        }
+
+        .bottom-container {
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+        }
       }
     }
   }
