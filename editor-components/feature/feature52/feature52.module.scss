@@ -1,0 +1,268 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  background: var(--composer-html-background);
+
+  .max-content {
+    position: relative;
+    width: 100%;
+  }
+
+  .content-container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: var(--composer-gap-md);
+    align-items: flex-start;
+    width: 100%;
+
+    &.only-list,
+    &.only-heading {
+      grid-template-columns: 1fr;
+    }
+
+    &.only-heading {
+      .heading-container {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .heading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 92%;
+  
+    .heading-text-content {
+      width: 100%;
+
+      .subtitle,
+      .title,.description {
+        text-align: left;
+      }
+
+      .subtitle {
+        margin-left: 0 !important;
+      }
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: var(--composer-gap-md);
+      width: 100%;
+
+      .button {
+        .button-icon,
+        .button-image {
+          align-items: center;
+          justify-content: center;
+          width: 1.75rem;
+          height: 1.75rem;
+          font-size: 1.75rem;
+        }
+
+        .button-image {
+          object-fit: cover;
+        }
+
+        .button-text {
+          color: var(--composer-font-color-primary);
+          text-align: left !important;
+        }
+      }
+    }
+  }
+
+  .force-left {
+    text-align: left !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .list-container {
+    width: 100%;
+    padding: var(--composer-gap-md);
+
+    .list-grid {
+      width: 100%;
+      gap: 0px;
+
+      .item-container {
+        background: var(--composer-html-background);
+        padding: 0 var(--composer-gap-sm);
+        border-top: var(--composer-border-width-xs) solid
+          color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 80%);
+        border-bottom: var(--composer-border-width-xs) solid
+          color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 80%);
+
+        &.line-disabled {
+          border-top: none;
+          border-bottom: none;
+        }
+
+        .item-header {
+          width: 100%;
+          padding: var(--composer-gap-md) 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: var(--composer-gap-md);
+          cursor: pointer;
+
+          .item-left {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-md);
+            min-width: 0;
+            width: 100%;
+
+            .item-icon {
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              width: 2rem;
+              height: 2rem;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+
+              &.item-icon-active {
+                color: var(--composer-primary-color);
+              }
+            }
+
+            .item-title {
+              color: var(--composer-font-color-primary);
+              text-align: left !important;
+
+              &.item-title-active {
+                color: var(--composer-primary-color);
+              }
+            }
+          }
+
+          .toggle-button-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 32px;
+
+            .toggle-icon {
+              align-items: center;
+              justify-content: center;
+              object-fit: cover;
+              width: 2rem;
+              height: 2rem;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+              transform: rotate(0deg);
+              transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+              &.toggle-icon-active {
+                color: var(--composer-primary-color);
+                transform: rotate(180deg);
+              }
+            }
+          }
+        }
+
+        .item-description-container {
+          overflow: hidden;
+          padding: 0;
+          display: flex;
+          max-height: 0px;
+          transition:
+            max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+          &.item-description-active {
+            max-height: 500px;
+            padding: 0 0 var(--composer-gap-md) 0;
+          }
+
+          .item-description {
+            padding: 0;
+            opacity: 0;
+            color: color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 25%);
+            text-align: left;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          &.item-description-active {
+            .item-description {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .list-container {
+      .list-grid {
+        .item-container {
+          .item-header {
+            .item-left {
+              .item-icon {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 1.75rem;
+              }
+            }
+
+            .toggle-button-container {
+              .toggle-icon {
+                width: 1.75rem;
+                height: 1.75rem;
+                font-size: 1.75rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .content-container {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .list-container {
+      padding: 0 !important;
+
+      .list-grid {
+        .item-container {
+          .item-header {
+            .item-left {
+              .item-icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 1.5rem;
+              }
+            }
+
+            .toggle-button-container {
+              .toggle-icon {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 1.5rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
