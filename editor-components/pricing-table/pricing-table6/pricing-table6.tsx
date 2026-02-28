@@ -11,10 +11,9 @@ type Pricing = {
   product: Array<{
     cardTitle1: string;
     description: string;
-    badge: React.JSX.Element;
+    subtitle: React.JSX.Element;
     property: string;
     title: React.JSX.Element;
-    subtitle: string;
     product: {
       per: string;
       price: string;
@@ -26,7 +25,7 @@ type Pricing = {
     right_items: {
       enable: boolean;
       text: React.JSX.Element;
-      badge: React.JSX.Element;
+      subtitle: React.JSX.Element;
       title: React.JSX.Element;
       list: {
         property: string;
@@ -43,8 +42,8 @@ class PricingMultipleTwo extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "badge",
-      displayer: "Badge",
+      key: "subtitle",
+      displayer: "Subtitle",
       value: "Affordable pricing",
     });
 
@@ -53,6 +52,20 @@ class PricingMultipleTwo extends BasePricingTable {
       key: "title",
       displayer: "Title",
       value: "Choose the plan that's right for you",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
     });
 
     this.addProp({
@@ -82,16 +95,22 @@ class PricingMultipleTwo extends BasePricingTable {
                   displayer: "Left Items",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GoCircle",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "GoCircle" },
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "check_icon",
                       displayer: "Check Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "CiCircleCheck" },
                     },
                     {
                       type: "string",
@@ -124,8 +143,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "badge",
-                          displayer: "Badge",
+                          key: "subtitle",
+                          displayer: "Subtitle",
                           value: "PRIMARY",
                         },
                         {
@@ -160,13 +179,17 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value: "3 hours of training (VR therapy + platform use)",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -188,10 +211,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Unlimited technical support",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -213,10 +239,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Hours of supervision per month",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -226,7 +255,17 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
+                          value: [
+                            INPUTS.BUTTON(
+                              "button",
+                              "Button",
+                              "LETS GO",
+                              "",
+                              "",
+                              null,
+                              "Primary"
+                            ),
+                          ],
                         },
                       ],
                     },
@@ -238,17 +277,24 @@ class PricingMultipleTwo extends BasePricingTable {
                   displayer: "Left Items",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GoCircle",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "GoCircle" },
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "check_icon",
                       displayer: "Check Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "CiCircleCheck" },
                     },
+
                     {
                       type: "string",
                       key: "plan",
@@ -280,8 +326,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "badge",
-                          displayer: "Badge",
+                          key: "subtitle",
+                          displayer: "Subtitle",
                           value: "POPULAR",
                         },
                         {
@@ -316,13 +362,17 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value: "3 hours of training (VR therapy + platform use)",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -344,10 +394,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Unlimited technical support",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -369,10 +422,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Hours of supervision per month",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -382,7 +438,17 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
+                          value: [
+                            INPUTS.BUTTON(
+                              "button",
+                              "Button",
+                              "Join this plan",
+                              "",
+                              "",
+                              null,
+                              "Primary"
+                            ),
+                          ],
                         },
                       ],
                     },
@@ -394,17 +460,24 @@ class PricingMultipleTwo extends BasePricingTable {
                   displayer: "Left Items",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GoCircle",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "GoCircle" },
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "check_icon",
                       displayer: "Check Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "CiCircleCheck" },
                     },
+
                     {
                       type: "string",
                       key: "plan",
@@ -436,8 +509,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "badge",
-                          displayer: "Badge",
+                          key: "subtitle",
+                          displayer: "Subtitle",
                           value: "PREMIUM",
                         },
                         {
@@ -472,13 +545,17 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value: "3 hours of training (VR therapy + platform use)",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -500,10 +577,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Unlimited technical support",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -525,10 +605,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Hours of supervision per month",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -538,7 +621,17 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
+                          value: [
+                            INPUTS.BUTTON(
+                              "button",
+                              "Button",
+                              "Join this plan",
+                              "",
+                              "",
+                              null,
+                              "Primary"
+                            ),
+                          ],
                         },
                       ],
                     },
@@ -570,16 +663,22 @@ class PricingMultipleTwo extends BasePricingTable {
                   displayer: "Left Items",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GoCircle",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "GoCircle" },
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "check_icon",
                       displayer: "Check Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "CiCircleCheck" },
                     },
                     {
                       type: "string",
@@ -612,8 +711,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "badge",
-                          displayer: "Badge",
+                          key: "subtitle",
+                          displayer: "Subtitle",
                           value: "PRIMARY",
                         },
                         {
@@ -648,13 +747,17 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value: "3 hours of training (VR therapy + platform use)",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -676,10 +779,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Unlimited technical support",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -701,10 +807,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Hours of supervision per month",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -714,7 +823,17 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
+                          value: [
+                            INPUTS.BUTTON(
+                              "button",
+                              "Button",
+                              "Join this plan",
+                              "",
+                              "",
+                              null,
+                              "Primary"
+                            ),
+                          ],
                         },
                       ],
                     },
@@ -726,16 +845,22 @@ class PricingMultipleTwo extends BasePricingTable {
                   displayer: "Left Items",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GoCircle",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "GoCircle" },
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "check_icon",
                       displayer: "Check Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "CiCircleCheck" },
                     },
                     {
                       type: "string",
@@ -769,8 +894,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "badge",
-                          displayer: "Badge",
+                          key: "subtitle",
+                          displayer: "Subtitle",
                           value: "POPULAR",
                         },
                         {
@@ -805,13 +930,17 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value: "3 hours of training (VR therapy + platform use)",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -833,10 +962,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Unlimited technical support",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -858,10 +990,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Hours of supervision per month",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCancel",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCancel" },
                                 },
                               ],
                             },
@@ -871,7 +1006,17 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
+                          value: [
+                            INPUTS.BUTTON(
+                              "button",
+                              "Button",
+                              "Join this plan",
+                              "",
+                              "",
+                              null,
+                              "Primary"
+                            ),
+                          ],
                         },
                       ],
                     },
@@ -883,16 +1028,22 @@ class PricingMultipleTwo extends BasePricingTable {
                   displayer: "Left Items",
                   value: [
                     {
-                      type: "icon",
+                      type: "media",
                       key: "circle_icon",
                       displayer: "Circle Icon",
-                      value: "GoCircle",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "GoCircle" },
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "check_icon",
                       displayer: "Check Icon",
-                      value: "CiCircleCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "CiCircleCheck" },
                     },
                     {
                       type: "string",
@@ -925,8 +1076,8 @@ class PricingMultipleTwo extends BasePricingTable {
                       value: [
                         {
                           type: "string",
-                          key: "badge",
-                          displayer: "Badge",
+                          key: "subtitle",
+                          displayer: "Subtitle",
                           value: "PREMIUM",
                         },
                         {
@@ -961,13 +1112,17 @@ class PricingMultipleTwo extends BasePricingTable {
                                   type: "string",
                                   key: "property",
                                   displayer: "Property",
-                                  value: "3 hours of training (VR therapy + platform use)",
+                                  value:
+                                    "3 hours of training (VR therapy + platform use)",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -989,10 +1144,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Unlimited technical support",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -1014,10 +1172,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                   value: "Hours of supervision per month",
                                 },
                                 {
-                                  type: "icon",
+                                  type: "media",
                                   key: "dash_icon",
                                   displayer: "Dash Icon",
-                                  value: "FcCheckmark",
+                                  additionalParams: {
+                                    availableTypes: ["icon", "image"],
+                                  },
+                                  value: { type: "icon", name: "FcCheckmark" },
                                 },
                               ],
                             },
@@ -1027,7 +1188,17 @@ class PricingMultipleTwo extends BasePricingTable {
                           type: "array",
                           key: "buttons",
                           displayer: "Buttons",
-                          value: [INPUTS.BUTTON("button", "Button", "Join this plan", "", null, null, "Primary")],
+                          value: [
+                            INPUTS.BUTTON(
+                              "button",
+                              "Button",
+                              "Join this plan",
+                              "",
+                              "",
+                              null,
+                              "Primary"
+                            ),
+                          ],
                         },
                       ],
                     },
@@ -1040,14 +1211,14 @@ class PricingMultipleTwo extends BasePricingTable {
       ],
     });
     this.addProp({
-      type:"multiSelect",
+      type: "multiSelect",
       key: "animations",
       displayer: "Animations",
       value: ["animation1", "animation2", "animation3"],
-      additionalParams:{
-        selectItems:["animation1", "animation2", "animation3", "animation4"]
-      }
-    })
+      additionalParams: {
+        selectItems: ["animation1", "animation2", "animation3", "animation4"],
+      },
+    });
 
     this.setActiveTab(0);
     this.setActivePlan(0);
@@ -1059,33 +1230,147 @@ class PricingMultipleTwo extends BasePricingTable {
   setActivePlan(activeTabIndex: number) {
     this.setComponentState("activePlan", activeTabIndex);
   }
+
+  private getButtonsFromItem(buttons: any[]) {
+    if (!Array.isArray(buttons)) return [];
+
+    return buttons.map((btn: any) => {
+      const parent = btn?.value ?? btn;
+      const icon = this.getPropValue("icon", { parent_object: parent });
+      const media = icon || null;
+      return {
+        text: this.getPropValue("text", { parent_object: parent }),
+        type: this.getPropValue("type", { parent_object: parent }),
+        url: this.getPropValue("url", { parent_object: parent }),
+        media,
+      };
+    });
+  }
+
+  private hasAnyButton(buttons: { text?: string; media?: any }[]) {
+    return buttons.some(
+      (b: any) =>
+        this.castToString(b?.text) ||
+        (b as any).media?.name ||
+        (b as any).media?.url ||
+        (b as any).icon?.name ||
+        (b as any).icon?.url
+    );
+  }
+
   static getName(): string {
     return "Pricing 6";
   }
   render(): React.ReactNode {
     const plans = this.castToObject<Pricing[]>("plans");
     const activeTab = this.getComponentState("activeTab");
-    const hasPlans = Array.isArray(plans) && plans.length > 0 && activeTab !== undefined && plans[activeTab];
+    const hasPlans =
+      Array.isArray(plans) &&
+      plans.length > 0 &&
+      activeTab !== undefined &&
+      plans[activeTab];
     const plan = hasPlans ? plans[activeTab].product : [];
     const planIndex = this.getComponentState("activePlan");
     const rightItemExist = plan[planIndex]?.right_items?.list.length > 0;
-    const animations = this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
+    const animations = this.getPropValue("animations")
+      .map((animation: string) => this.decorateCSS(animation))
+      .join(" ");
+
+    const title = this.getPropValue("title");
+    const subtitle = this.getPropValue("subtitle");
+    const description = this.getPropValue("description");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
+    const titleExist = this.castToString(title);
+    const subtitleExist = this.castToString(subtitle);
+    const descriptionExist = this.castToString(description);
+    const hasAnyButton = this.hasAnyButton(buttons);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("page")}>
-            <Base.VerticalContent className={this.decorateCSS("up-page")}>
-              {this.castToString(this.getPropValue("badge")) && <Base.SectionSubTitle className={this.decorateCSS("badge")}>{this.getPropValue("badge")}</Base.SectionSubTitle>}
-              {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-            </Base.VerticalContent>
+            {(titleExist || subtitleExist || descriptionExist) && (
+              <Base.VerticalContent className={this.decorateCSS("up-page")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
+                )}
+                {hasAnyButton && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((btn, btnIndex: number) => {
+                      const buttonText = btn.text;
+                      const buttonMedia = btn.icon;
+                      const buttonUrl = btn.url || "#";
+                      const buttonType = btn.type;
+
+                      const btnTextExist = this.castToString(buttonText);
+                      const buttonMediaExist =
+                        buttonMedia &&
+                        ((buttonMedia as any).name || (buttonMedia as any).url);
+
+                      if (!btnTextExist && !buttonMediaExist) return null;
+
+                      return (
+                        <ComposerLink
+                          path={buttonUrl}
+                          key={`top-btn-${btnIndex}`}
+                        >
+                          <Base.Button
+                            buttonType={buttonType}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonMediaExist && (
+                              <Base.Media
+                                value={buttonMedia}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                            {btnTextExist && (
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {buttonText}
+                              </Base.P>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
             {hasPlans && (
               <div className={this.decorateCSS("plan-items")}>
                 {plans.map((plan: any, index: number) => {
                   const title2 = this.castToString(plan.getPropValue("title"));
                   return (
                     title2 && (
-                      <Base.P className={this.decorateCSS("plan-title") + " " + (this.getComponentState("activeTab") === index && this.decorateCSS("activeTab"))} onClick={() => this.setActiveTab(index)}>
+                      <Base.P
+                        className={
+                          this.decorateCSS("plan-title") +
+                          " " +
+                          (this.getComponentState("activeTab") === index &&
+                            this.decorateCSS("activeTab"))
+                        }
+                        onClick={() => this.setActiveTab(index)}
+                      >
                         {plan.getPropValue("title")}
                       </Base.P>
                     )
@@ -1098,80 +1383,271 @@ class PricingMultipleTwo extends BasePricingTable {
                 {plan.length > 0 && (
                   <>
                     <div className={this.decorateCSS("left-page")}>
-                      {plan.map((tab: any, index: number) => (
-                        <div className={`${this.decorateCSS("listArray") + " " + (this.getComponentState("activePlan") == index && this.decorateCSS("active"))} 
-                        ${this.getPropValue("animations")  && animations} `} 
-                        onClick={() => this.setActivePlan(index)} key={index}>
-                          <div className={this.decorateCSS("plan-icons")}>
-                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={planIndex == index ? tab.check_icon : tab.circle_icon}></Base.Icon>
-                            <Base.P className={this.decorateCSS("plan")}> {tab.plan}</Base.P>
+                      {plan.map((tab: any, index: number) => {
+                        const planText = this.castToString(tab.plan);
+                        const tagText = this.castToString(tab.tag);
+                        const priceText = this.castToString(tab.price);
+                        const perText = this.castToString(tab.per);
+                        const hasIcon = tab.check_icon || tab.circle_icon;
+
+                        if (
+                          !planText &&
+                          !tagText &&
+                          !priceText &&
+                          !perText &&
+                          !hasIcon
+                        ) {
+                          return null;
+                        }
+
+                        return (
+                          <div
+                            className={`${
+                              this.decorateCSS("listArray") +
+                              " " +
+                              (this.getComponentState("activePlan") == index &&
+                                this.decorateCSS("active"))
+                            } 
+                          ${this.getPropValue("animations") && animations} `}
+                            onClick={() => this.setActivePlan(index)}
+                            key={index}
+                          >
+                            {(hasIcon || planText) && (
+                              <div className={this.decorateCSS("plan-icons")}>
+                                {hasIcon && (
+                                  <Base.Media
+                                    value={
+                                      planIndex == index
+                                        ? tab.check_icon
+                                        : tab.circle_icon
+                                    }
+                                    className={this.decorateCSS("icon")}
+                                  />
+                                )}
+                                {planText && (
+                                  <Base.P className={this.decorateCSS("plan")}>
+                                    {tab.plan}
+                                  </Base.P>
+                                )}
+                              </div>
+                            )}
+                            
+                            {tagText && (
+                              <div className={this.decorateCSS("tag-wrapper")}>
+                                <Base.P className={this.decorateCSS("tag")}>
+                                  {tab.tag}
+                                </Base.P>
+                              </div>
+                            )}
+                            {(priceText || perText) && (
+                              <div className={this.decorateCSS("item-price")}>
+                                {priceText && (
+                                  <Base.H5
+                                    className={this.decorateCSS("price")}
+                                  >
+                                    {tab.price}
+                                  </Base.H5>
+                                )}
+                                {perText && (
+                                  <Base.P className={this.decorateCSS("per")}>
+                                    {tab.per}
+                                  </Base.P>
+                                )}
+                              </div>
+                            )}
                           </div>
-                          {this.castToString(tab.tag) && <Base.P className={this.decorateCSS("tag")}> {tab.tag}</Base.P>}
-                          <div className={this.decorateCSS("item-price")}>
-                            <Base.H5 className={this.decorateCSS("price")}>{tab.price}</Base.H5>
-                            <Base.H5 className={this.decorateCSS("per")}> {tab.per}</Base.H5>
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                     {rightItemExist && (
-                      <div className={`${this.decorateCSS("right-page")} ${this.getPropValue("animations")  
-                      && animations} `}>
-                        <Base.VerticalContent className={this.decorateCSS("content")}>
-                          {plan[planIndex].right_items.badge && this.castToString(plan[planIndex].right_items.badge) && <Base.H5 className={this.decorateCSS("badge")}>{plan[planIndex].right_items.badge}</Base.H5>}
-                          {this.castToString(plan[planIndex].right_items.title) && <Base.H2 className={this.decorateCSS("title")}>{plan[planIndex].right_items.title}</Base.H2>}
+                      <div
+                        className={`${this.decorateCSS("right-page")} ${
+                          this.getPropValue("animations") && animations
+                        } `}
+                      >
+                        <Base.VerticalContent
+                          className={this.decorateCSS("content")}
+                        >
+                          {(() => {
+                            const subtitle =
+                              plan[planIndex]?.right_items?.subtitle;
+                            const title = plan[planIndex]?.right_items?.title;
+                            const subtitleExist = this.castToString(subtitle);
+                            const titleExist = this.castToString(title);
 
-                          <div className={this.decorateCSS("list-body")}>
-                            {plan[planIndex]?.right_items?.list?.map((listItem: any, listItemIndex: number) => {
-                              const property = listItem.getPropValue("property");
-                              const iconValue = listItem.getPropValue("dash_icon");
-                              const enableValue = listItem.getPropValue("enable");
+                            if (!subtitleExist && !titleExist) {
+                              return null;
+                            }
 
-                              const listValue = this.castToString(property);
-
-                              return (
-                                (listValue || iconValue) && (
-                                  <div key={listItemIndex} className={`${this.decorateCSS("list-item")} ${!enableValue && this.decorateCSS("list-item-disabled")}`}>
-                                    <Base.Icon
-                                      propsIcon={{
-                                        className: this.decorateCSS("dash_icon"),
-                                      }}
-                                      name={iconValue}
-                                    />
-                                    <Base.P className={this.decorateCSS("property")}>{property}</Base.P>
-                                  </div>
-                                )
-                              );
-                            })}
-                          </div>
-
-                          {plan[planIndex]?.right_items?.buttons.length > 0 && (
-                            <div className={this.decorateCSS("body-bottom")}>
-                              <div className={this.decorateCSS("button-container")}>
-                                {plan[planIndex]?.right_items?.buttons.map((button: any, buttonIndex: number) => {
-                                  const buttonText = this.castToString(button.getPropValue("text"));
-                                  return (
-                                    buttonText && (
-                                      <ComposerLink key={buttonIndex} path={button.getPropValue("url")}>
-                                        <Base.Button
-                                          buttonType={button.getPropValue("type")}
-                                          className={this.decorateCSS("button")}
-                                        >
-                                          {buttonText}
-                                        </Base.Button>
-                                      </ComposerLink>
-                                    )
-                                  );
-                                })}
+                            return (
+                              <div className={this.decorateCSS("header-wrapper")}>
+                                {titleExist && (
+                                  <Base.H4
+                                    className={this.decorateCSS("title")}
+                                  >
+                                    {title}
+                                  </Base.H4>
+                                )}
+                                {subtitleExist && (
+                                  <div className={this.decorateCSS("subtitle-wrapper")}>
+                                      <Base.P
+                                        className={this.decorateCSS("subtitle")}
+                                      >
+                                        {subtitle}
+                                      </Base.P>
+                                    </div>
+                                )}
                               </div>
-                              {plan[planIndex]?.right_items?.text && (
-                                <span className={this.decorateCSS("bottom-text")}>
-                                  {plan[planIndex].right_items.text}
-                                </span>
+                            );
+                          })()}
+
+                          {plan[planIndex]?.right_items?.list?.length > 0 && (
+                            <div className={this.decorateCSS("list-body")}>
+                              {plan[planIndex]?.right_items?.list?.map(
+                                (listItem: any, listItemIndex: number) => {
+                                  const property =
+                                    listItem.getPropValue("property");
+                                  const iconValue =
+                                    listItem.getPropValue("dash_icon");
+                                  const enableValue =
+                                    listItem.getPropValue("enable");
+
+                                  const listValue = this.castToString(property);
+                                  const hasIcon =
+                                    iconValue &&
+                                    (iconValue.name ||
+                                      iconValue.url ||
+                                      (typeof iconValue === "string" &&
+                                        iconValue));
+
+                                  if (!listValue && !hasIcon) {
+                                    return null;
+                                  }
+
+                                  return (
+                                    <div
+                                      key={listItemIndex}
+                                      className={`${this.decorateCSS(
+                                        "list-item"
+                                      )} ${
+                                        !enableValue &&
+                                        this.decorateCSS("list-item-disabled")
+                                      }`}
+                                    >
+                                      {hasIcon && (
+                                        <Base.Media
+                                          value={iconValue}
+                                          className={this.decorateCSS(
+                                            "dash_icon"
+                                          )}
+                                        />
+                                      )}
+                                      {listValue && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "property"
+                                          )}
+                                        >
+                                          {property}
+                                        </Base.P>
+                                      )}
+                                    </div>
+                                  );
+                                }
                               )}
                             </div>
                           )}
 
+                          {(plan[planIndex]?.right_items?.buttons?.length > 0 || plan[planIndex]?.right_items?.text) &&
+                            (() => {
+                              const buttons = this.getButtonsFromItem(
+                                plan[planIndex].right_items.buttons
+                              );
+                              const hasButtons = this.hasAnyButton(buttons);
+                              const bottomText =
+                                plan[planIndex]?.right_items?.text;
+                              const hasBottomText =
+                                this.castToString(bottomText);
+
+                              if (!hasButtons && !hasBottomText) {
+                                return null;
+                              }
+
+                              return (
+                                <div
+                                  className={this.decorateCSS("body-bottom")}
+                                >
+                                  {hasButtons && (
+                                    <div
+                                      className={this.decorateCSS(
+                                        "button-container"
+                                      )}
+                                    >
+                                      {buttons.map(
+                                        (btn: any, buttonIndex: number) => {
+                                          const buttonText = this.castToString(
+                                            btn.text
+                                          );
+                                          const buttonMedia = btn.media;
+                                          const buttonMediaExist =
+                                            buttonMedia &&
+                                            ((buttonMedia as any).name ||
+                                              (buttonMedia as any).url);
+
+                                          if (
+                                            !buttonText &&
+                                            !buttonMediaExist
+                                          ) {
+                                            return null;
+                                          }
+
+                                          return (
+                                            <ComposerLink
+                                              key={buttonIndex}
+                                              path={btn.url || "#"}
+                                            >
+                                              <Base.Button
+                                                buttonType={btn.type}
+                                                className={this.decorateCSS(
+                                                  "button"
+                                                )}
+                                              >
+                                                {buttonMediaExist && (
+                                                  <Base.Media
+                                                    value={buttonMedia}
+                                                    className={this.decorateCSS(
+                                                      "button-icon"
+                                                    )}
+                                                  />
+                                                )}
+                                                {buttonText && (
+                                                  <Base.P
+                                                    className={this.decorateCSS(
+                                                      "button-text"
+                                                    )}
+                                                  >
+                                                    {btn.text}
+                                                  </Base.P>
+                                                )}
+                                              </Base.Button>
+                                            </ComposerLink>
+                                          );
+                                        }
+                                      )}
+                                    </div>
+                                  )}
+                                  {hasBottomText && (
+                                    <span
+                                      className={this.decorateCSS(
+                                        "bottom-text"
+                                      )}
+                                    >
+                                      {bottomText}
+                                    </span>
+                                  )}
+                                </div>
+                              );
+                            })()}
                         </Base.VerticalContent>
                       </div>
                     )}
