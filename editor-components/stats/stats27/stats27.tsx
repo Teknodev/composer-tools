@@ -226,6 +226,7 @@ class Stats27 extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
         const itemCount = this.getPropValue("itemCount");
+        const alignment = Base.getContentAlignment();
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
@@ -249,7 +250,7 @@ class Stats27 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("content")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("content")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
                         {hasTopSection && (
                             <Base.VerticalContent className={this.decorateCSS("header-container")}>
                                 {subtitleExist && (

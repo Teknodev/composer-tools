@@ -34,6 +34,28 @@
                 }
             }
 
+            &.alignment-center {
+                align-items: center;
+
+                .header-container {
+                    align-items: center;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .subtitle {
+                        margin-inline: auto;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
+            }
+
             .stats-grid {
                 gap: var(--composer-gap-xl);
 
