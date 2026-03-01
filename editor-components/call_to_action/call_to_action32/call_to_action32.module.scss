@@ -1,0 +1,179 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .card {
+            box-sizing: border-box;
+
+            &.active {
+                padding: 0;
+                background-color: var(--composer-primary-color);
+                border-radius: var(--composer-border-radius-md);
+                overflow: hidden;
+
+                &.no-media {
+                    border-radius: var(--composer-border-radius-md);
+                }
+
+                .content-wrapper .left-column {
+                    padding: 80px 0 80px var(--composer-gap-xl);
+
+                    &.no-media {
+                        padding-right: var(--composer-gap-xl);
+                    }
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        color: var(--composer-font-color-secondary);
+                    }
+
+                    .subtitle {
+                        background: transparent;
+                        padding: 0;
+
+                        &::before {
+                            background-color: var(--composer-font-color-secondary);
+                        }
+                    }
+                }
+
+                .content-wrapper .media-column {
+                    padding-top: var(--composer-gap-xl);
+
+                    .media-container {
+                        border-radius: var(--composer-border-radius-sm) 0 0 0;
+                    }
+                }
+            }
+
+            .content-wrapper {
+                flex-direction: row;
+                align-items: center;
+                gap: var(--composer-gap-xl);
+                width: 100%;
+
+                .left-column {
+                    flex: 1;
+                    text-align: left;
+
+                    .subtitle {
+                        text-align: left;
+                        margin-left: 0;
+                        margin-right: auto;
+                        width: fit-content;
+                    }
+
+                    .title,
+                    .description {
+                        text-align: left;
+                    }
+
+                    .button-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-sm);
+                        justify-content: flex-start;
+                        width: 100%;
+
+                        .button {
+                            .button-text {
+                                content: "";
+                            }
+
+                            .button-icon {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+
+                .media-column {
+                    width: 50%;
+
+                    .media-container {
+                        border-radius: var(--composer-border-radius-sm);
+                        position: relative;
+                        overflow: hidden;
+
+                        .media {
+                            display: block;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+
+                        .media-overlay {
+                            position: absolute;
+                            inset: 0;
+                            background: var(--composer-overlay-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card.active {
+        .content-wrapper .left-column {
+            padding: 80px 0 80px var(--composer-gap-lg);
+
+            &.no-media {
+                padding-right: var(--composer-gap-lg);
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .card.active {
+        padding: 0;
+        border-radius: var(--composer-border-radius-md);
+
+        .content-wrapper .left-column {
+            padding: var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-lg) var(--composer-gap-md);
+        }
+
+        .content-wrapper .media-column {
+            padding-top: 0;
+
+            .media-container {
+                border-radius: 0;
+            }
+        }
+
+        &.no-media {
+            border-radius: var(--composer-border-radius-md);
+
+            .content-wrapper .left-column {
+                padding: var(--composer-gap-xl) var(--composer-gap-md);
+            }
+        }
+    }
+
+    .container .max-content .card {
+        .content-wrapper {
+            flex-direction: column;
+            gap: 0;
+
+            .left-column {
+                width: 100%;
+                flex: auto;
+                padding-bottom: var(--composer-gap-lg);
+            }
+
+            .media-column {
+                width: 100%;
+                flex: auto;
+
+                .media-container {
+                    border-radius: var(--composer-border-radius-sm);
+                }
+            }
+        }
+    }
+}
