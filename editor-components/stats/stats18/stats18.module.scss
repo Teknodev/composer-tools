@@ -1,0 +1,101 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.max-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-section {
+    align-items: flex-start;
+    text-align: left;
+
+    .button-container {
+        margin-bottom: var(--composer-gap-md);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+            content: "";
+        }
+    }
+}
+
+.subtitle {
+    color: var(--composer-primary-color);
+    transform: none !important;
+
+    &::before {
+        display: none;
+    }
+}
+
+.stat-item {
+    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    border-radius: var(--composer-border-radius-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: var(--composer-gap-xl);
+
+    .stat-subtitle {
+        text-align: left !important;
+        color: var(--composer-font-color-primary);
+    }
+
+    .stat-title {
+        text-align: left !important;
+        color: var(--composer-font-color-primary);
+    }
+
+    .stat-description {
+        text-align: left !important;
+        color: var(--composer-font-color-primary);
+    }
+}
+
+
+
+.stat-value {
+    color: var(--composer-font-color-primary);
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    font-size: 4rem;
+
+    &.has-line {
+        margin-bottom: var(--composer-gap-sm);
+        padding-bottom: var(--composer-gap-sm);
+        border-bottom: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+    }
+
+    ::before {
+        display: none;
+    }
+
+    .display-value {
+        font-size: inherit;
+        font-weight: inherit;
+    }
+}
+
+.stats-grid {
+    margin-top: var(--composer-gap-md);
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .stat-value {
+        font-size: 3rem !important;
+    }
+
+    .stat-item {
+        padding: var(--composer-gap-md) !important;
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .stat-value {
+        font-size: 3rem !important;
+    }
+}
