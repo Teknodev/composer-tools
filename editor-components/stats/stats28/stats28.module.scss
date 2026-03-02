@@ -70,16 +70,6 @@
                     .stat-item {
                         align-items: flex-start;
 
-                        .stat-icon {
-                            display: flex;
-                            align-items: center;
-
-                            .icon {
-                                font-size: 6rem;
-                                color: var(--composer-font-color-primary);
-                            }
-                        }
-
                         .stat-value {
                             color: var(--composer-font-color-primary);
                             display: flex;
@@ -89,6 +79,11 @@
                             .stat-prefix,
                             .stat-number,
                             .stat-suffix {
+                                color: inherit;
+                            }
+
+                            .stat-prefix .prefix-icon {
+                                font-size: inherit;
                                 color: inherit;
                             }
                         }
@@ -115,10 +110,6 @@
                 .stat-value {
                     font-size: 4rem;
                 }
-
-                .stat-icon .icon {
-                    font-size: 4rem;
-                }
             }
         }
     }
@@ -134,11 +125,7 @@
 
                 .stat-item {
                     .stat-value {
-                        font-size: 3.5rem;
-                    }
-
-                    .stat-icon .icon {
-                        font-size: 3.5rem;
+                        font-size: 4rem;
                     }
                 }
             }

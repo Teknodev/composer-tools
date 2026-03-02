@@ -9,7 +9,6 @@ type StatItem = {
     prefix: string;
     number: string;
     suffix: string;
-    icon: string;
     title: string;
     titleElement: JSX.Element;
     subtitle: string;
@@ -65,7 +64,6 @@ class Stats28 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "25" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "icon", key: "icon", displayer: "Icon", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
@@ -79,7 +77,6 @@ class Stats28 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "14" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "icon", key: "icon", displayer: "Icon", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Cities where employees work" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
@@ -93,7 +90,6 @@ class Stats28 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "icon", key: "icon", displayer: "Icon", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
@@ -104,10 +100,9 @@ class Stats28 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "IoInfiniteSharp" },
                         { type: "string", key: "number", displayer: "Value", value: "" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "icon", key: "icon", displayer: "Icon", value: "IoInfiniteSharp" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Infinite possibilities" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
@@ -182,35 +177,32 @@ class Stats28 extends BaseStats {
         const descriptionExist = this.castToString(stat.description);
         const valueExist = this.castToString(originalNumberString);
         const suffixExist = this.castToString(stat.suffix);
-        const iconExist = stat.icon;
         const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist && !iconExist) return null;
+        const prefixExist = stat.prefix;
+
+        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist && !prefixExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {iconExist ? (
-                    <div className={this.decorateCSS("stat-icon")}>
-                        <Base.Icon name={stat.icon} propsIcon={{ className: this.decorateCSS("icon") }} />
-                    </div>
-                ) : (
-                    (valueExist || suffixExist) && (
-                        <span className={this.decorateCSS("stat-value")}>
-                            {stat.prefix && (
-                                <span className={this.decorateCSS("stat-prefix")}>
-                                    {stat.prefix}
-                                </span>
-                            )}
+                {(valueExist || suffixExist || prefixExist) && (
+                    <span className={this.decorateCSS("stat-value")}>
+                        {prefixExist && (
+                            <span className={this.decorateCSS("stat-prefix")}>
+                                <Base.Icon name={stat.prefix} propsIcon={{ className: this.decorateCSS("prefix-icon") }} />
+                            </span>
+                        )}
+                        {valueExist && (
                             <span className={this.decorateCSS("stat-number")}>
                                 {displayNumber}
                             </span>
-                            {suffixExist && (
-                                <span className={this.decorateCSS("stat-suffix")}>
-                                    {stat.suffix}
-                                </span>
-                            )}
-                        </span>
-                    )
+                        )}
+                        {suffixExist && (
+                            <span className={this.decorateCSS("stat-suffix")}>
+                                {stat.suffix}
+                            </span>
+                        )}
+                    </span>
                 )}
                 {subtitleExist && (
                     <Base.H6 className={this.decorateCSS("stat-subtitle")}>
@@ -242,16 +234,15 @@ class Stats28 extends BaseStats {
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; icon: string; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "0";
+            const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
-            const icon = item.icon || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, number, suffix, icon, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
@@ -309,7 +300,7 @@ class Stats28 extends BaseStats {
 
                         {hasStats && (
                             <div className={this.decorateCSS("card")}>
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                     {stats.map((stat: StatItem, index: number) => (
                                         <this.AnimatedStat
                                             key={`stat28-${index}`}
