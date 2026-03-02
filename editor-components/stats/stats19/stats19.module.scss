@@ -48,6 +48,7 @@
         flex-direction: column;
         align-items: flex-start;
         text-align: left;
+        gap: var(--composer-gap-sm);
 
         .stat-header {
           display: flex;
@@ -68,7 +69,6 @@
           .stat-content {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-sm);
 
             .stat-subtitle {
               color: var(--composer-font-color-primary);
@@ -76,13 +76,12 @@
 
             .stat-title {
               color: var(--composer-font-color-primary);
-              align-self: center;
-            }
-
-            .stat-desc {
-              color: var(--composer-font-color-primary);
             }
           }
+        }
+
+        .stat-desc {
+          color: var(--composer-font-color-primary);
         }
       }
     }

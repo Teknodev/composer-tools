@@ -171,7 +171,7 @@ class Stats19 extends BaseStats {
                     <div key={index} className={this.decorateCSS("stat-item")}>
                       <div className={this.decorateCSS("stat-header")}>
                         {hasNumber && (
-                          <div className={this.decorateCSS("stat-value")}>
+                          <span className={this.decorateCSS("stat-value")}>
                             {hasPrefix && (
                               <span className={this.decorateCSS("stat-prefix")}>
                                 {stat.prefix}
@@ -185,26 +185,28 @@ class Stats19 extends BaseStats {
                                 {stat.suffix}
                               </span>
                             )}
-                          </div>
+                          </span>
                         )}
-                        <div className={this.decorateCSS("stat-content")}>
-                          {hasSubtitle && (
-                            <Base.P className={this.decorateCSS("stat-subtitle")}>
-                              {stat.subtitle}
-                            </Base.P>
-                          )}
-                          {hasTitle && (
-                            <Base.H6 className={this.decorateCSS("stat-title")}>
-                              {stat.title}
-                            </Base.H6>
-                          )}
-                          {hasDescription && (
-                            <Base.P className={this.decorateCSS("stat-desc")}>
-                              {stat.description}
-                            </Base.P>
-                          )}
-                        </div>
+                        {(hasSubtitle || hasTitle) && (
+                          <span className={this.decorateCSS("stat-content")}>
+                            {hasSubtitle && (
+                              <Base.P className={this.decorateCSS("stat-subtitle")}>
+                                {stat.subtitle}
+                              </Base.P>
+                            )}
+                            {hasTitle && (
+                              <Base.H6 className={this.decorateCSS("stat-title")}>
+                                {stat.title}
+                              </Base.H6>
+                            )}
+                          </span>
+                        )}
                       </div>
+                      {hasDescription && (
+                        <Base.P className={this.decorateCSS("stat-desc")}>
+                          {stat.description}
+                        </Base.P>
+                      )}
                     </div>
                   );
                 })}
