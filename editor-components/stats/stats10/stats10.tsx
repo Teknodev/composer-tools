@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats10.module.scss";
 
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 
 type ProgressItem = {
   progressTitle: string;
