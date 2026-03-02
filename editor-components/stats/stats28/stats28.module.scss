@@ -74,7 +74,7 @@
                             color: var(--composer-font-color-primary);
                             display: flex;
                             align-items: center;
-                            font-size: 5rem;
+                            font-size: 6rem;
 
                             .stat-prefix,
                             .stat-number,
@@ -121,7 +121,7 @@
             padding: var(--composer-gap-xl) var(--composer-gap-md);
 
             .stats-grid {
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-lg);
 
                 .stat-item {
                     .stat-value {
