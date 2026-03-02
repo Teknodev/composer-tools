@@ -199,20 +199,24 @@ class Stats17 extends BaseStats {
             )}
           </div>
         )}
-        {hasSubtitle && (
-          <Base.P className={this.decorateCSS("stat-subtitle")}>
-            {stat.subtitle}
-          </Base.P>
-        )}
-        {hasTitle && (
-          <Base.H6 className={this.decorateCSS("stat-title")}>
-            {stat.title}
-          </Base.H6>
-        )}
-        {hasDescription && (
-          <Base.P className={this.decorateCSS("stat-description")}>
-            {stat.description}
-          </Base.P>
+        {(hasSubtitle || hasTitle || hasDescription) && (
+          <Base.VerticalContent className={this.decorateCSS("stat-content")}>
+            {hasSubtitle && (
+              <Base.P className={this.decorateCSS("stat-subtitle")}>
+                {stat.subtitle}
+              </Base.P>
+            )}
+            {hasTitle && (
+              <Base.H6 className={this.decorateCSS("stat-title")}>
+                {stat.title}
+              </Base.H6>
+            )}
+            {hasDescription && (
+              <Base.P className={this.decorateCSS("stat-description")}>
+                {stat.description}
+              </Base.P>
+            )}
+          </Base.VerticalContent>
         )}
       </div>
     );
@@ -261,7 +265,7 @@ class Stats17 extends BaseStats {
               )}
             </Base.VerticalContent>
           )}
-          <Base.VerticalContent className={this.decorateCSS("bottom")}>
+          <div className={this.decorateCSS("bottom")}>
             {statItems.length > 0 && (
               <Base.ListGrid
                 gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
@@ -296,7 +300,7 @@ class Stats17 extends BaseStats {
                 )}
               </div>
             )}
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

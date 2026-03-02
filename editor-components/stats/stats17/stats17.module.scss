@@ -30,6 +30,8 @@
     }
 
     .bottom {
+      display: flex;
+      flex-direction: column;
       align-items: center;
 
       .stats-grid {
@@ -40,11 +42,6 @@
           flex-direction: column;
           align-items: center;
           text-align: center;
-
-          .stat-subtitle {
-            text-align: center;
-            color: var(--composer-font-color-secondary);
-          }
 
           .stat-value {
             display: flex;
@@ -58,14 +55,15 @@
             }
           }
 
-          .stat-title {
-            text-align: center;
-            color: var(--composer-font-color-secondary);
-          }
+          .stat-content {
+            align-items: center;
 
-          .stat-description {
-            text-align: center;
-            color: var(--composer-font-color-secondary);
+            .stat-subtitle,
+            .stat-title,
+            .stat-description {
+              text-align: center;
+              color: var(--composer-font-color-secondary);
+            }
           }
         }
       }
