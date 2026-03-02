@@ -1,10 +1,10 @@
 import * as React from "react";
 import styles from "./hero-section15.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface InputItem {
   placeholder: React.JSX.Element;

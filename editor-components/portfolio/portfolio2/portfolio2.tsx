@@ -2,8 +2,8 @@ import * as React from "react";
 import styles from "./portfolio2.module.scss";
 import { BasePortfolio, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type SideCard = {
   subtitle: React.JSX.Element;

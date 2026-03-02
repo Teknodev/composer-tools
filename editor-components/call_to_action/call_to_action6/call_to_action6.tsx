@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 

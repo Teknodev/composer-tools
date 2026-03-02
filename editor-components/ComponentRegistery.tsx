@@ -25,9 +25,9 @@ class ComponentsRegistery {
     }
   }
 
-  registerDynamic(components: typeof Component[]) {
+  registerDynamic(components: typeof Component[], forceCategory?: CATEGORIES) {
     components.forEach((component: typeof Component) => {
-      const category = component.getCategory();
+      const category = forceCategory || component.getCategory();
       this.ensureCategory(category);
       const exists = this.availableComponents[category].some(
         (c) => c.getName() === component.getName()
@@ -35,6 +35,7 @@ class ComponentsRegistery {
       if (!exists) {
         this.availableComponents[category].push(component);
       }
+      console.log("AVAILABLE COMPONENTS",this.availableComponents)
     });
   }
 }

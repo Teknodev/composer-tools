@@ -1,7 +1,7 @@
 import React from "react";
 import { BaseComingSoon } from "../../EditorComponent";
 import styles from "./coming-soon2.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 
 class COMING_SOON2 extends BaseComingSoon {

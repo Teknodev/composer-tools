@@ -6,7 +6,7 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerModalClose from "../../../composer-base-components/close/close";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Emoji = {
   value: string;
