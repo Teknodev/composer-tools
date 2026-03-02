@@ -15,6 +15,7 @@ type Item = {
   itemTitle: Element;
   itemDescription: Element;
   itemIcon: TypeMediaInputValue;
+  itemIconClosed?: TypeMediaInputValue;
 };
 
 type PrimaryButton = {
@@ -68,7 +69,19 @@ class Feature51 extends BaseFeature {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Item Icon (Open)",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "media",
+              key: "itemIconClosed",
+              displayer: "Item Icon (Closed)",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -100,7 +113,19 @@ class Feature51 extends BaseFeature {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Item Icon (Open)",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "media",
+              key: "itemIconClosed",
+              displayer: "Item Icon (Closed)",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -132,7 +157,19 @@ class Feature51 extends BaseFeature {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Item Icon (Open)",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "media",
+              key: "itemIconClosed",
+              displayer: "Item Icon (Closed)",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -164,7 +201,19 @@ class Feature51 extends BaseFeature {
             {
               type: "media",
               key: "itemIcon",
-              displayer: "Item Icon",
+              displayer: "Item Icon (Open)",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "",
+              },
+            },
+            {
+              type: "media",
+              key: "itemIconClosed",
+              displayer: "Item Icon (Closed)",
               additionalParams: {
                 availableTypes: ["image", "icon"],
               },
@@ -195,6 +244,13 @@ class Feature51 extends BaseFeature {
       type: "boolean",
       key: "withLines",
       displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "enableIconAnimation",
+      displayer: "Enable Icon Animation",
       value: true,
     });
 
@@ -375,6 +431,46 @@ class Feature51 extends BaseFeature {
                       item.itemDescription,
                     );
                     const itemIcon = item.itemIcon;
+                    const itemIconClosed = item.itemIconClosed;
+                    const enableIconAnimation = this.getPropValue(
+                      "enableIconAnimation",
+                    ) as boolean;
+
+                    // Helper function to check if media value is valid
+                    const hasValidMedia = (
+                      media: TypeMediaInputValue | undefined,
+                    ): boolean => {
+                      if (!media) return false;
+                      if (media.type === "icon") {
+                        return !!media.name && media.name.trim() !== "";
+                      } else if (media.type === "image") {
+                        return !!media.url && media.url.trim() !== "";
+                      }
+                      return false;
+                    };
+
+                    // Check if icons/images have actual content
+                    const hasOpenIcon = hasValidMedia(itemIcon);
+                    const hasClosedIcon = hasValidMedia(itemIconClosed);
+
+                    // Determine which icon to display and whether to animate
+                    let displayIcon: TypeMediaInputValue | undefined =
+                      undefined;
+                    let shouldAnimate = false;
+
+                    if (hasOpenIcon) {
+                      // When open icon exists, switch between open/closed without animation
+                      displayIcon = isActive
+                        ? itemIcon
+                        : hasClosedIcon
+                          ? itemIconClosed
+                          : itemIcon;
+                      shouldAnimate = false;
+                    } else if (hasClosedIcon) {
+                      // Only closed icon exists
+                      displayIcon = itemIconClosed;
+                      shouldAnimate = enableIconAnimation;
+                    }
 
                     return (
                       <Base.VerticalContent
@@ -394,10 +490,12 @@ class Feature51 extends BaseFeature {
                               {item.itemTitle}
                             </Base.H4>
                           )}
-                          {itemIcon && (
+                          {displayIcon && (
                             <Base.Media
-                              value={itemIcon}
-                              className={this.decorateCSS("item-icon")}
+                              value={displayIcon}
+                              className={`${this.decorateCSS("item-icon")} 
+                                ${shouldAnimate ? this.decorateCSS("item-icon-animated") : ""}
+                              `}
                             />
                           )}
                         </Base.Row>
