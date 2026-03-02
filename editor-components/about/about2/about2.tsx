@@ -8,7 +8,29 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 class About2 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "sectionTitle",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp(INPUTS.BUTTON("button", "Button", "Play me here", "", null, null, "Link"));
+
     this.addProp({
       type: "media",
       key: "videoUrl",
@@ -79,6 +101,18 @@ class About2 extends BaseAbout {
     const cover = this.getPropValue("cover-image");
     const rawVideo = this.getPropValue("videoUrl");
 
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("sectionTitle"));
+    const description = this.castToString(this.getPropValue("description"));
+
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+    const buttonTextExist = button && this.castToString(button.text);
+
+    const hasCoverImage = !!cover?.url;
+    const hasContent = subtitleExist || titleExist || descriptionExist || buttonTextExist;
+
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${this.getComponentState("is_video_visible") && this.decorateCSS("with-overlay")}`}
@@ -88,25 +122,48 @@ class About2 extends BaseAbout {
         {cover && <Base.Media value={cover} className={this.decorateCSS("cover-media")} />}
         {this.getPropValue("overlay") && cover && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {this.castToString(button.url) ? (
-            <ComposerLink path={button.url}>
-              <Base.Button
-                buttonType={button.type}
-                className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image")?.url && this.decorateCSS("with-image")}`}
-              >
-                <Base.P className={this.decorateCSS("text")}>{button.text}</Base.P>
-              </Base.Button>
-            </ComposerLink>
-          ) : (
-            <Base.Button
-              onClick={() => {
-                this.setComponentState("is_video_visible", true);
-              }}
-              buttonType={button.type}
-              className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image")?.url && this.decorateCSS("with-image")}`}
-            >
-              <Base.P className={this.decorateCSS("text")}>{button.text}</Base.P>
-            </Base.Button>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                  {this.getPropValue("sectionTitle")}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+              {buttonTextExist && (
+                <div className={this.decorateCSS("button-container")}>
+                  {this.castToString(button.url) ? (
+                    <ComposerLink path={button.url}>
+                      <Base.Button
+                        buttonType={button.type}
+                        className={`${this.decorateCSS("button")} ${hasCoverImage ? this.decorateCSS("with-image") : ""}`}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  ) : (
+                    <Base.Button
+                      onClick={() => {
+                        this.setComponentState("is_video_visible", true);
+                      }}
+                      buttonType={button.type}
+                      className={`${this.decorateCSS("button")} ${hasCoverImage ? this.decorateCSS("with-image") : ""}`}
+                    >
+                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    </Base.Button>
+                  )}
+                </div>
+              )}
+            </Base.VerticalContent>
           )}
           {(this.getComponentState("is_video_visible") && this.getPropValue("videoUrl")?.url) && (
 
