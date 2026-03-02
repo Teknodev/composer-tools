@@ -60,7 +60,7 @@ class CallToAction34Page extends BaseCallToAction {
                     },
                     value: {
                         type: "image",
-                        url: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80&w=1000"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a5989e771c03002ccbd6c4?alt=media"
                     },
                 },
                 {
