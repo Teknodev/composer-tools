@@ -4,16 +4,25 @@ import styles from "./about1.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 
-interface ListItem {
+type ListItem = {
   title: React.JSX.Element;
   description: React.JSX.Element;
 }
-interface Icon {
+type Icon = {
   icon: TypeMediaInputValue;
   link: string;
 }
+
+type ButtonType = {
+  text: string;
+  url: string;
+  type: TypeButton;
+  icon?: TypeMediaInputValue;
+  image?: TypeMediaInputValue;
+};
+
 class About1 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
@@ -245,8 +254,8 @@ class About1 extends BaseAbout {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
-      }
+        selectItems: ["animate1", "animate2"],
+      },
     });
   }
   static getName(): string {
@@ -257,7 +266,7 @@ class About1 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("sectionTitle");
     const description = this.getPropValue("description");
-    const icon = this.castToObject<any>("icon");
+    const icon = this.castToObject<ButtonType>("icon");
     const rightItems = this.castToObject<Icon[]>("right-items")
     const textContent = this.castToObject<ListItem[]>("items");
 
