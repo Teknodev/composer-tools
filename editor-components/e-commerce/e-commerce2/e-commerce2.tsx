@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce2.module.scss";
-import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { getCurrencyInfo } from "composer-tools/utils/currency";
+import { BaseECommerce } from "../../EditorComponent";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { getCurrencyInfo } from "../../../utils/currency";
 
 interface ImageGallery {
     sectionTitle: React.JSX.Element;

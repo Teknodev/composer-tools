@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react'
 import styles from "./Accordion.module.scss";
-import { Base } from 'composer-tools/composer-base-components/base/base';
-import { TypeMediaInputValue } from 'composer-tools/editor-components/EditorComponent';
+import { Base } from '../../base/base';
+import { TypeMediaInputValue } from '../../../editor-components/EditorComponent';
 interface AccordionProps {
     title: string;
     children: React.ReactNode;
