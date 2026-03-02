@@ -46,6 +46,7 @@ function execScript(code: string, label: string): void {
 
 function injectStylesheet(css: string, key: string): void {
   if (!css.trim()) return;
+
   const existing = document.querySelector(`style[data-key="${key}"]`);
   if (existing) return;
 
@@ -124,5 +125,17 @@ export async function loadCustomComponentsFromMeta(
     console.warn(
       `[CustomComponents] No components registered. ${activeComponents.length} active component(s) loaded but none matched.`
     );
+  }
+}
+
+export function getCustomComponentsFromPage(pageJson: string): string[] {
+  try {
+    const parsed = JSON.parse(pageJson);
+    const components = Array.isArray(parsed) ? parsed : [parsed];
+    return components
+      .filter((c: any) => c.customComponentId)
+      .map((c: any) => c.customComponentId);
+  } catch {
+    return [];
   }
 }

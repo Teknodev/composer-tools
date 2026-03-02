@@ -106,7 +106,7 @@ class SubscriptionModal extends BaseModal {
                     initialValues={{ email: "" }}
                     validationSchema={SubscriptionSchema}
                     onSubmit={(data, { resetForm }) => {
-                      this.insertForm("Subscribe", data);
+                      this.insertForm("Subscription Modal - NewsletterForm", data);
                       resetForm();
                     }}
                   >

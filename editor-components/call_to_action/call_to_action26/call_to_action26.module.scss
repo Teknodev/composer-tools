@@ -1,0 +1,82 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+      min-width: 800px;
+      min-height: 800px;
+      height: auto;
+      max-width: 60%;
+      
+      border-radius: var(--composer-border-radius-full);
+      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15%;
+      box-sizing: border-box;
+    }
+
+    .content {
+      align-items: center;
+      width: 100%;
+      
+
+      .subtitle {
+        &::before {
+          display: none;
+        }
+        transform: none;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .subtitle,
+      .title,
+      .description {
+        text-align: center;
+        min-width: 0;
+        
+      }
+
+      .buttons {
+        display: flex;
+        gap: var(--composer-gap-sm);
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content .card {
+    min-width: 600px;
+    min-height: 600px;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .card {
+    min-width: 350px;
+    min-height: 350px;
+    padding: 20%;
+
+
+  }
+}

@@ -10,7 +10,7 @@ class ComponentsRegistery {
     });
   }
 
-  getComponents(): TRegistryState  {
+  getComponents(): TRegistryState {
     return this.availableComponents;
   }
   register(components: typeof Component[]) {
@@ -35,7 +35,6 @@ class ComponentsRegistery {
       if (!exists) {
         this.availableComponents[category].push(component);
       }
-      console.log("AVAILABLE COMPONENTS",this.availableComponents)
     });
   }
 }

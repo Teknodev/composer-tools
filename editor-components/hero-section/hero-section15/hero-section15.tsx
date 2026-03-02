@@ -181,7 +181,7 @@ class HeroSection15 extends BaseHeroSection {
                         <Formik
                           initialValues={{ ...getInitialValue() }}
                           onSubmit={(data, { resetForm }) => {
-                            this.insertForm("Make Order", data);
+                            this.insertForm("HS15 - NewsletterForm", data);
                             resetForm();
                           }}
                         >
