@@ -1,22 +1,21 @@
+import React from "react";
 import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type Button = INPUTS.CastedButton;
-
-type ISliderItem = {
+type SliderItem = {
+  subTitle: string;
   title: string;
   description: string;
   media: TypeMediaInputValue;
-  button: Button;
+  button: INPUTS.CastedButton;
   icon: TypeMediaInputValue;
 };
 
 class Slider11 extends BaseSlider {
   private progressIntervalId?: NodeJS.Timeout;
-
   constructor(props?: any) {
     super(props, styles);
 
@@ -26,6 +25,7 @@ class Slider11 extends BaseSlider {
       displayer: "Subtitle",
       value: "",
     });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -37,8 +37,7 @@ class Slider11 extends BaseSlider {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Create beautiful sites with ultimate design flexibility, backed by ultra-reliable infrastructure and unbeatable performance.",
+      value: "Create beautiful sites with ultimate design flexibility, backed by ultra-reliable infrastructure and unbeatable performance.",
     });
 
     this.addProp({
@@ -50,14 +49,20 @@ class Slider11 extends BaseSlider {
 
     this.addProp({
       type: "array",
-      key: "sliderItems",
-      displayer: "Slider Items",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subTitle",
+              displayer: "Sub Title",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -100,9 +105,15 @@ class Slider11 extends BaseSlider {
         },
         {
           type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subTitle",
+              displayer: "Sub Title",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -145,9 +156,15 @@ class Slider11 extends BaseSlider {
         },
         {
           type: "object",
-          key: "sliderItem",
-          displayer: "Slider Item",
+          key: "card",
+          displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subTitle",
+              displayer: "Sub Title",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -188,7 +205,7 @@ class Slider11 extends BaseSlider {
             },
           ],
         },
-      ] as any,
+      ],
     });
 
     this.addProp({
@@ -213,7 +230,6 @@ class Slider11 extends BaseSlider {
     });
 
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings"));
-
     this.setComponentState("activeTab", 0);
   }
 
@@ -239,18 +255,16 @@ class Slider11 extends BaseSlider {
   }
 
   private nextSlide() {
-    const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
-    const current = (this.getComponentState("activeTab") as number) || 0;
+    const sliderItems = this.castToObject<SliderItem[]>("cards");
+    const current = (this.getComponentState("activeTab")) || 0;
     const next = (current + 1) % sliderItems.length;
-
     this.setActiveTab(next);
   }
 
   private prevSlide() {
-    const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
-    const current = (this.getComponentState("activeTab") as number) || 0;
+    const sliderItems = this.castToObject<SliderItem[]>("cards");
+    const current = (this.getComponentState("activeTab")) || 0;
     const prev = (current - 1 + sliderItems.length) % sliderItems.length;
-
     this.setActiveTab(prev);
   }
 
@@ -270,61 +284,37 @@ class Slider11 extends BaseSlider {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const buttons = this.castToObject<Button[]>("buttons");
-    const sliderItems = this.castToObject<ISliderItem[]>("sliderItems");
-    const active = this.getComponentState("activeTab") as number;
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const sliderItems = this.castToObject<SliderItem[]>("cards");
+    const active = this.getComponentState("activeTab");
     const isOverlayActive = this.getPropValue("overlay");
     const showDividerLines = this.getPropValue("showDividerLines");
     const enableLineAnimations = this.getPropValue("enableLineAnimations");
-
+    const hasContent = subtitle || title || description || buttons.length > 0;
     const rawSettings = this.getPropValue("slider-settings");
     const settings = this.transformSliderValues(rawSettings);
     const speed = settings.autoplaySpeed || 5000;
     const autoplay = settings.autoplay ?? true;
     const showArrows = settings.arrows ?? true;
     const showDots = settings.dots ?? true;
-
-    const titleExist = !!title;
-    const descriptionExist = !!description;
-
     const activeItem = sliderItems[active];
-    const activeItemHasMedia = !!(activeItem?.media as any)?.url;
-    const noMediaAtAll = sliderItems.every(item => !(item.media as any)?.url);
+    const activeItemHasMedia = !!(activeItem?.media)?.url;
+    const noMediaAtAll = sliderItems.every(item => !(item.media)?.url);
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} 
-        ${!this.castToString(subtitle) && !titleExist && !descriptionExist && this.decorateCSS("no-header")}`}
-      >
+      <Base.Container className={`${this.decorateCSS("container")} ${!hasContent && this.decorateCSS("no-header")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || titleExist || descriptionExist || buttons.length > 0) && (
-            <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {this.castToString(subtitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
-              )}
-
-              {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
-
-              {descriptionExist && (
-                <Base.SectionDescription
-                  className={this.decorateCSS("description")}
-                >
-                  {description}
-                </Base.SectionDescription>
-              )}
-
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {subtitle}</Base.SectionSubTitle>)}
+              {title && (<Base.SectionTitle className={this.decorateCSS("title")}> {title} </Base.SectionTitle>)}
+              {description && (<Base.SectionDescription className={this.decorateCSS("description")}> {description} </Base.SectionDescription>)}
               {buttons.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((button: Button, index: number) => (
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => (
                     <ComposerLink key={index} path={button.url}>
                       {this.castToString(button.text) && (
                         <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
@@ -337,86 +327,53 @@ class Slider11 extends BaseSlider {
               )}
             </Base.VerticalContent>
           )}
-
-          <div className={`${this.decorateCSS("tabs-layout")} ${activeItemHasMedia ? "" : this.decorateCSS("no-media")} ${noMediaAtAll ? this.decorateCSS("all-no-media") : ""}`}>
+          <div className={`${this.decorateCSS("tabs-layout")} ${!activeItemHasMedia && this.decorateCSS("no-media")} ${noMediaAtAll && this.decorateCSS("all-no-media")}`}>
             {sliderItems.length > 1 && showArrows && (
               <>
-                <div
-                  className={this.decorateCSS("arrow-prev")}
-                  onClick={() => this.prevSlide()}
-                />
-                <div
-                  className={this.decorateCSS("arrow-next")}
-                  onClick={() => this.nextSlide()}
-                />
+                <div className={this.decorateCSS("arrow-prev")} onClick={() => this.prevSlide()} />
+                <div className={this.decorateCSS("arrow-next")} onClick={() => this.nextSlide()} />
               </>
             )}
-
-
-            <div className={`${this.decorateCSS("tabs-left")} ${(!activeItemHasMedia || noMediaAtAll) ? this.decorateCSS("full-width") : ""}`}>
-              {sliderItems.map((item: ISliderItem, index: number) => {
-                const itemTitleExist = !!item.title;
-                const itemDescExist = !!item.description;
+            <div className={`${this.decorateCSS("tabs-left")} ${(!activeItemHasMedia || noMediaAtAll) && this.decorateCSS("full-width")}`}>
+              {sliderItems.map((item: SliderItem, index: number) => {
+                const itemTitleExist = !!this.castToString(item.title);
+                const itemDescExist = !!this.castToString(item.description);
+                const itemSubTitleExist = !!this.castToString(item.subTitle);
+                const buttonExist = !!item.button && !!this.castToString(item.button.text);
+                const hasCardContent = itemTitleExist || itemDescExist || itemSubTitleExist || buttonExist;
 
                 return (
-                  <div
-                    key={index}
-                    className={`${this.decorateCSS("tab-item")} ${active === index ? this.decorateCSS("active") : ""
-                      }`}
-                    onClick={() => this.setActiveTab(index)}
-                  >
-                    {(item.media as any)?.url && (
+                  <div key={index} className={`${this.decorateCSS("tab-item")} ${active === index && this.decorateCSS("active")}`} onClick={() => this.setActiveTab(index)}>
+                    {(item.media)?.url && (
                       <div className={this.decorateCSS("tab-background")}>
-                        <Base.Media
-                          value={item.media}
-                          className={this.decorateCSS("tab-bg-media")}
-                        />
-                        {isOverlayActive && (
-                          <div className={this.decorateCSS("overlay")} />
-                        )}
+                        <Base.Media value={item.media} className={this.decorateCSS("tab-bg-media")} />
+                        {isOverlayActive && (<div className={this.decorateCSS("overlay")} />)}
                       </div>
                     )}
-
-                    {itemTitleExist && (
-                      <Base.H5 className={this.decorateCSS("tab-title")}>
-                        {item.title}
-                      </Base.H5>
-                    )}
-                    {itemDescExist && (
-                      <Base.P className={this.decorateCSS("tab-desc")}>
-                        {item.description}
-                      </Base.P>
-                    )}
-                    {item.button && this.castToString(item.button.text) && (
-                      <ComposerLink path={item.button.url}>
-                        <div className={`${this.decorateCSS("link-wrapper")} ${this.decorateCSS("left")}`}>
-                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("tab-button")}>
-                            <Base.P className={this.decorateCSS("tab-link")}>
-                              {item.button.text}
-                            </Base.P>
-                          </Base.Button>
-                          {item.icon && (
-                            <Base.Media
-                              value={item.icon}
-                              className={this.decorateCSS("icon")}
-                            />
-                          )}
-                        </div>
-                      </ComposerLink>
-                    )}
-
+                    {hasCardContent && (
+                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        {itemSubTitleExist && (<Base.H6 className={this.decorateCSS("card-subtitle")}> {item.subTitle} </Base.H6>)}
+                        {itemTitleExist && (<Base.H5 className={this.decorateCSS("card-title")}> {item.title} </Base.H5>)}
+                        {itemDescExist && (<Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>)}
+                        {item.button && this.castToString(item.button.text) && (
+                          <ComposerLink path={item.button.url}>
+                            <Base.Row className={this.decorateCSS("button-wrapper")}>
+                              <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
+                                <Base.P className={this.decorateCSS("card-button-text")}>
+                                  {item.button.text}
+                                </Base.P>
+                              </Base.Button>
+                              {item.icon && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
+                            </Base.Row>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>)}
                     {sliderItems.length > 1 && showDividerLines && (
                       <div className={this.decorateCSS("progress-container")}>
                         <div className={this.decorateCSS("progress-track")}>
                           <div
-                            className={`${this.decorateCSS("progress-fill")} ${active === index && autoplay && enableLineAnimations
-                              ? this.decorateCSS("animate")
-                              : ""
-                              }`}
-                            style={{
-                              animationDuration: autoplay ? `${speed}ms` : undefined,
-                              width: !autoplay && active === index ? "100%" : undefined,
-                            }}
+                            className={`${this.decorateCSS("progress-fill")} ${active === index && autoplay && enableLineAnimations && this.decorateCSS("animate")}`}
+                            style={{ animationDuration: autoplay ? `${speed}ms` : undefined, width: !autoplay && active === index ? "100%" : undefined, }}
                           />
                         </div>
                       </div>
@@ -425,37 +382,21 @@ class Slider11 extends BaseSlider {
                 );
               })}
             </div>
-
             {activeItemHasMedia && !noMediaAtAll && (
               <div className={this.decorateCSS("tabs-right")}>
-                {sliderItems.map((item: ISliderItem, index: number) => (
-                  <div
-                    key={index}
-                    className={`${this.decorateCSS("tab-image-wrapper")} 
-                      ${active === index ? this.decorateCSS("visible") : ""}`}
-                  >
-                    <Base.Media
-                      value={item.media}
-                      className={this.decorateCSS("tab-image")}
-                    />
-                    {isOverlayActive && (
-                      <div className={this.decorateCSS("overlay")} />
-                    )}
+                {sliderItems.map((item: SliderItem, index: number) => (
+                  <div key={index} className={`${this.decorateCSS("tab-image-wrapper")} ${active === index && this.decorateCSS("visible")}`} >
+                    <Base.Media value={item.media} className={this.decorateCSS("tab-image")} />
+                    {isOverlayActive && (<div className={this.decorateCSS("overlay")} />)}
                   </div>
                 ))}
               </div>
             )}
           </div>
-
           {sliderItems.length > 1 && showDots && (
             <div className={this.decorateCSS("dots")}>
               {sliderItems.map((_, index) => (
-                <div
-                  key={`dot-${index}`}
-                  className={`${this.decorateCSS("dot-item")} ${active === index ? this.decorateCSS("active") : ""
-                    }`}
-                  onClick={() => this.setActiveTab(index)}
-                >
+                <div key={`dot-${index}`} className={`${this.decorateCSS("dot-item")} ${active === index && this.decorateCSS("active")}`} onClick={() => this.setActiveTab(index)} >
                   <button className={this.decorateCSS("dot-button")} />
                 </div>
               ))}
