@@ -37,7 +37,6 @@ class CallToAction31Page extends BaseCallToAction {
             value: "",
         });
 
-
         this.addProp({
             type: "object",
             key: "media",
@@ -63,7 +62,6 @@ class CallToAction31Page extends BaseCallToAction {
                 }
             ]
         });
-
 
         this.addProp({
             type: "array",

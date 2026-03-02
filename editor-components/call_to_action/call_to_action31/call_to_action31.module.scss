@@ -31,7 +31,7 @@
             background-color: transparent;
 
             .media-wrapper {
-                border-radius: var(--composer-gap-sm);
+                border-radius: var(--composer-border-radius-sm);
             }
         }
 
@@ -64,12 +64,10 @@
                 .title,
                 .description {
                     text-align: left !important;
-                    // width: 100% !important;
                     align-self: flex-start !important;
                     margin-left: 0 !important;
                     margin-right: auto !important;
                 }
-
 
                 .title,
                 .description {
@@ -107,7 +105,7 @@
         }
 
         .media-wrapper {
-            border-radius: var(--composer-gap-sm) var(--composer-gap-sm) 0 0;
+            border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
             position: relative;
             overflow: hidden;
 
