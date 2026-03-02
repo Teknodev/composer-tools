@@ -105,12 +105,12 @@
     }
 
     .bottom .stats-grid {
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .card .stat-value .stat-prefix,
       .card .stat-value .stat-number,
       .card .stat-value .stat-suffix {
-        font-size: 3rem;
+        font-size: 4rem;
       }
     }
   }
