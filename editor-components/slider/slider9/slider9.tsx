@@ -120,7 +120,7 @@ class Slider9 extends BaseSlider {
           value: {
             type: "icon",
             name: "MdOutlineStar",
-          } as any,
+          },
         },
         {
           type: "media",
@@ -132,7 +132,7 @@ class Slider9 extends BaseSlider {
           value: {
             type: "icon",
             name: "MdOutlineStarBorder",
-          } as any,
+          },
         },
       ],
     });
@@ -158,7 +158,7 @@ class Slider9 extends BaseSlider {
           value: {
             type: "icon",
             name: "IoMdArrowDropleft",
-          } as any,
+          },
         },
         {
           type: "media",
@@ -170,7 +170,7 @@ class Slider9 extends BaseSlider {
           value: {
             type: "icon",
             name: "IoMdArrowDropright",
-          } as any,
+          },
         },
         INPUTS.BUTTON("button", "Button", "ADD TO CART", "", null, null, "Black"),
         {
@@ -188,7 +188,7 @@ class Slider9 extends BaseSlider {
               value: {
                 type: "icon",
                 name: "FaHeart",
-              } as any,
+              },
             },
             {
               type: "string",
@@ -666,9 +666,9 @@ class Slider9 extends BaseSlider {
     const isZoomed = this.getComponentState("isZoomed");
     const sliderItems = this.castToObject<SliderItem[]>("sliderItems");
 
-    const buttonText = this.getPropValue("text", { parent_object: quantitySection.button as any });
-    const buttonType = this.getPropValue("type", { parent_object: quantitySection.button as any });
-    const buttonUrl = this.getPropValue("url", { parent_object: quantitySection.button as any });
+    const buttonText = this.getPropValue("text", { parent_object: quantitySection.button });
+    const buttonType = this.getPropValue("type", { parent_object: quantitySection.button });
+    const buttonUrl = this.getPropValue("url", { parent_object: quantitySection.button });
 
     const RightContentExist =
       titleExist ||

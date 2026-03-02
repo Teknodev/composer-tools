@@ -284,8 +284,8 @@
               top: 50%;
               transform: translateY(-50%);
               pointer-events: all;
-              width: 40px;
-              height: 40px;
+              width: var(--composer-gap-lg);
+              height: var(--composer-gap-lg);
               color: black;
               display: flex;
               justify-content: center;
@@ -342,8 +342,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 50px;
-                height: 50px;
+                width: var(--composer-gap-xl);
+                height: var(--composer-gap-xl);
                 border-radius: 50%;
                 background-color: var(--composer-html-background);
 
@@ -424,7 +424,7 @@
               .overlay-left-button,
               .overlay-right-button {
                 position: absolute;
-                color: white;
+                color: #ffffff;
                 width: 30px;
                 height: 30px;
                 transition: transform 0.3s ease;
@@ -452,7 +452,7 @@
                 position: absolute;
                 top: var(--composer-gap-md);
                 right: var(--composer-gap-md);
-                color: #fff;
+                color: #ffffff;
                 cursor: pointer;
                 z-index: 10;
                 background-color: transparent;
@@ -534,15 +534,15 @@
               position: absolute;
               top: var(--composer-gap-sm);
               right: var(--composer-gap-sm);
-              color: #fff;
+              color: #ffffff;
               cursor: pointer;
               z-index: 10;
               background-color: transparent;
               border: none;
 
               .close-button {
-                width: 40px;
-                height: 40px;
+                width: var(--composer-gap-lg);
+                height: var(--composer-gap-lg);
                 font-size: 2rem;
 
                 .button-icon {
@@ -832,12 +832,12 @@
             .buttons {
               .button-wrapper {
                 .icon-wrapper {
-                  width: 40px;
-                  height: 40px;
+                  width: var(--composer-gap-lg);
+                  height: var(--composer-gap-lg);
 
                   .button {
-                    width: 20px;
-                    height: 20px;
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
                     font-size: 1.5rem;
                   }
                 }
@@ -852,16 +852,16 @@
               .fullscreen-overlay {
 
                 .overlay-left-button {
-                  left: 40px;
+                  left: var(--composer-gap-lg);
                 }
 
                 .overlay-right-button {
-                  right: 40px;
+                  right: var(--composer-gap-lg);
                 }
 
                 .close-button-wrapper {
-                  top: 20px;
-                  right: 20px;
+                  top: var(--composer-gap-md);
+                  right: var(--composer-gap-md);
 
                   .close-button {
                     width: 30px;
@@ -874,8 +874,8 @@
             .video-modal {
               .video-content {
                 .close-button-wrapper {
-                  top: 10px;
-                  right: 10px;
+                  top: var(--composer-gap-sm);
+                  right: var(--composer-gap-sm);
                 }
               }
             }
@@ -921,17 +921,17 @@
               .fullscreen-overlay {
 
                 .overlay-left-button {
-                  left: 5px;
+                  left: var(--composer-gap-xs);
                 }
 
                 .overlay-right-button {
-                  right: 5px;
+                  right: var(--composer-gap-xs);
                 }
 
                 .close-button-wrapper {
                   .close-button {
-                    width: 20px;
-                    height: 20px;
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
                   }
                 }
               }
@@ -945,8 +945,8 @@
               .video-content {
                 .close-button-wrapper {
                   .close-button {
-                    width: 20px;
-                    height: 20px;
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
                   }
                 }
               }
