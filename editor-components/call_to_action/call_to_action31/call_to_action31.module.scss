@@ -35,6 +35,18 @@
             }
         }
 
+        &.no-media:not(.no-card) {
+            padding-bottom: 80px;
+
+            @container (max-width: #{$composer-tablet-width}) {
+                padding-bottom: 80px;
+            }
+
+            @container (max-width: #{$composer-phone-width}) {
+                padding-bottom: 50px;
+            }
+        }
+
         .header-row {
             box-sizing: border-box;
             display: flex;
@@ -52,10 +64,10 @@
                 .title,
                 .description {
                     text-align: left !important;
-                    width: 100% !important;
-                    // align-self: flex-start !important;
-                    // margin-left: 0 !important;
-                    // margin-right: auto !important;
+                    // width: 100% !important;
+                    align-self: flex-start !important;
+                    margin-left: 0 !important;
+                    margin-right: auto !important;
                 }
 
 

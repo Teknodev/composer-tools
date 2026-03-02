@@ -94,7 +94,7 @@ class CallToAction31Page extends BaseCallToAction {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!coloredBackground ? this.decorateCSS("no-card") : ""}`}>
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!coloredBackground ? this.decorateCSS("no-card") : ""} ${!mediaData?.url ? this.decorateCSS("no-media") : ""}`}>
 
                     <div className={this.decorateCSS("header-row")}>
                         <div className={this.decorateCSS("text-column")}>
@@ -138,7 +138,7 @@ class CallToAction31Page extends BaseCallToAction {
                         </div>
                     </div>
 
-                    {media && (
+                    {mediaData?.url && (
                         <div className={this.decorateCSS("media-wrapper")}>
                             <Base.Media
                                 value={mediaData}
