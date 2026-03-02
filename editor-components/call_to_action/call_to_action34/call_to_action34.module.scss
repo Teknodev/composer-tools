@@ -29,12 +29,17 @@
                     .subtitle,
                     .description {
                         color: var(--composer-font-color-secondary);
+                        text-align: left;
+                        align-self: flex-start;
+                        margin-left: 0;
+                        margin-right: 0;
                     }
 
                     .subtitle {
                         background-color: transparent !important;
                         padding: 0;
                         border-radius: 0;
+                        --composer-primary-color: var(--composer-font-color-secondary);
                     }
                 }
             }

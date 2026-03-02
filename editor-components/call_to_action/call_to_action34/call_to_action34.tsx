@@ -20,7 +20,7 @@ class CallToAction34Page extends BaseCallToAction {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "deneme",
         });
 
         this.addProp({
