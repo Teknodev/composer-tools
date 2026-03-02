@@ -325,6 +325,9 @@ export type TypeReactComponent = {
   cssClasses?: TypeCSSProp;
   interactions?: Record<string, InteractionType[]>;
   id?: string;
+  children?: string;
+  customComponentId?: string;
+  customComponentVersion?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -365,17 +368,18 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  // TOP_BANNER = "topBanner",
+  TOP_BANNER = "topBanner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
   LEGAL = "legal",
   COMINGSOON = "comingSoon",
-  // STICKY = "sticky",
+  STICKY = "sticky",
   BREADCRUMB = "breadcrumb",
   ABOUT = "about",
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
+  CUSTOM = "custom"
 }
 
 export function generateId(key: string): string {
