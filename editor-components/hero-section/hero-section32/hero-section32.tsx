@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BaseHeroSection } from "../../EditorComponent";
 import styles from "./hero-section32.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
   backgroundImage: string;

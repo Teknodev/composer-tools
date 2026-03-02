@@ -3,9 +3,9 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature12.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { TypeMediaInputValue } from "../../../types/declarative";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../EditorComponent";
 
 type Card = {
   title: React.JSX.Element;

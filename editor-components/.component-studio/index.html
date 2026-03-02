@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Component Preview</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --composer-font-family: var(--theme-font-family, 'Inter, sans-serif');
+      --composer-font-size-md: 16px;
+      --composer-font-size-sm: 14px;
+      --composer-html-background: var(--theme-background, #ffffff);
+      --composer-primary-color: var(--theme-primary, #4f46e5);
+      --composer-secondary-color: var(--theme-secondary, #7c3aed);
+      --composer-tertiary-color: var(--theme-tertiary, #ec4899);
+      --composer-font-color-primary: var(--theme-font-color-primary, #1E293B);
+      --composer-font-color-secondary: var(--theme-font-color-secondary, #ffffff);
+      --composer-content-width: var(--theme-content-width, 1200px);
+      --composer-border-radius-xs: 4px;
+      --composer-border-radius-sm: var(--theme-border-radius, 8px);
+      --composer-border-radius-xl: 24px;
+      --composer-gap-xs: 4px;
+      --composer-gap-sm: 8px;
+      --composer-gap-md: 16px;
+      --composer-gap-lg: 24px;
+      --composer-gap-xl: 48px;
+      --composer-overlay-color: rgba(0, 0, 0, 0.5);
+      --composer-content-alignment: center;
+      --composer-view-type: colorful;
+      --composer-subtitle-type: none;
+    }
+    body {
+      font-family: var(--composer-font-family);
+      background: var(--composer-html-background);
+      color: var(--composer-font-color-primary);
+    }
+  </style>
+</head>
+<body>
+  <div id="preview-root"></div>
+  <script type="module">
+    import { createElement } from 'react';
+    import { createRoot } from 'react-dom/client';
+
+    const root = createRoot(document.getElementById('preview-root'));
+
+    async function loadComponent() {
+      try {
+        const mod = await import('/../about/about10/about10.tsx');
+        const Comp = mod.default || mod;
+        root.render(createElement(Comp));
+      } catch (e) {
+        root.render(createElement('div', {
+          style: { padding: '2rem', color: '#ef4444', fontFamily: 'monospace' }
+        }, 'Error loading component: ' + e.message));
+      }
+    }
+
+    loadComponent();
+
+    function applyTheme(payload) {
+      const { colors, fonts, environments } = payload;
+      const el = document.documentElement;
+      if (colors) {
+        Object.entries(colors).forEach(([key, value]) => {
+          el.style.setProperty('--theme-' + key.replace(/_/g, '-'), value);
+        });
+        if (colors.primary) el.style.setProperty('--composer-primary-color', colors.primary);
+        if (colors.secondary) el.style.setProperty('--composer-secondary-color', colors.secondary);
+        if (colors.tertiary) el.style.setProperty('--composer-tertiary-color', colors.tertiary);
+        if (colors.background) el.style.setProperty('--composer-html-background', colors.background);
+        if (colors.font_color_primary) el.style.setProperty('--composer-font-color-primary', colors.font_color_primary);
+        if (colors.font_color_secondary) el.style.setProperty('--composer-font-color-secondary', colors.font_color_secondary);
+      }
+      if (fonts?.family) {
+        el.style.setProperty('--theme-font-family', fonts.family);
+        el.style.setProperty('--composer-font-family', fonts.family);
+      }
+      if (environments) {
+        if (environments.border_radius !== undefined) {
+          el.style.setProperty('--theme-border-radius', environments.border_radius + 'px');
+          el.style.setProperty('--composer-border-radius-sm', environments.border_radius + 'px');
+        }
+        if (environments.content_width) {
+          el.style.setProperty('--theme-content-width', environments.content_width.width + 'px');
+          el.style.setProperty('--composer-content-width', environments.content_width.width + 'px');
+        }
+        if (environments.box_shadow) {
+          const s = environments.box_shadow;
+          el.style.setProperty(
+            '--theme-box-shadow',
+            s.x + 'px ' + s.y + 'px ' + s.blur + 'px ' + s.spread + 'px ' + s.color
+          );
+        }
+      }
+    }
+
+    window.addEventListener('message', (event) => {
+      if (event.data?.type === 'THEME_UPDATE') {
+        applyTheme(event.data.payload);
+      }
+      if (event.data?.type === 'SELECT_COMPONENT') {
+        loadComponent();
+      }
+    });
+
+    if (import.meta.hot) {
+      import.meta.hot.accept();
+    }
+  </script>
+</body>
+</html>
