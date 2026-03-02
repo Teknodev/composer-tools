@@ -20,17 +20,17 @@ class ComponentsRegistery {
   }
 
   ensureCategory(category: string) {
-    if (!this.availableComponents[category]) {
-      this.availableComponents[category] = [];
+    if (!this.availableComponents[category as CATEGORIES]) {
+      this.availableComponents[category as CATEGORIES] = [];
     }
   }
 
-  registerDynamic(components: iComponent[], forceCategory?: CATEGORIES) {
-    components.forEach((component: iComponent) => {
+  registerDynamic(components: typeof Component[], forceCategory?: CATEGORIES) {
+    components.forEach((component: typeof Component) => {
       const category = forceCategory || component.getCategory();
       this.ensureCategory(category);
       const exists = this.availableComponents[category].some(
-        (c: iComponent) => c.getName() === component.getName()
+        (c) => c.getName() === component.getName()
       );
       if (!exists) {
         this.availableComponents[category].push(component);

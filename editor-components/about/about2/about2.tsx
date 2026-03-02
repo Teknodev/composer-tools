@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./about2.module.scss";
 import { BaseAbout } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class About2 extends BaseAbout {
   constructor(props?: any) {

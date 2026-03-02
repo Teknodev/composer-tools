@@ -1,7 +1,7 @@
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 import { BaseSocialWidget } from "../../EditorComponent";
 import styles from "./social_widget1.module.scss";
-import { ComposerEmbededLink } from "composer-tools/composer-base-components/embeded-link/embeded-link";
+import { ComposerEmbededLink } from "../../../composer-base-components/embeded-link/embeded-link";
 
 class TwitterWidget extends BaseSocialWidget {
   constructor(props?: any) {

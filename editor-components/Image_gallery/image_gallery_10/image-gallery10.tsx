@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./image-gallery10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseImageGallery } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CardType = {
     title: React.ReactNode;

@@ -1,8 +1,8 @@
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 import { BaseSocial } from "../../EditorComponent";
 import styles from "./social3.module.scss";
 import React from "react";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type PostItem ={
     postTitle: React.JSX.Element,
