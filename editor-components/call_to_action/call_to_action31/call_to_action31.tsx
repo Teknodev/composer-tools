@@ -59,7 +59,7 @@ class CallToAction31Page extends BaseCallToAction {
                     type: "boolean",
                     key: "overlay",
                     displayer: "Overlay",
-                    value: true
+                    value: false
                 }
             ]
         });
