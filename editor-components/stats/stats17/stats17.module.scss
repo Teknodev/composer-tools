@@ -98,6 +98,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content {
+    gap: var(--composer-gap-md);
+    
     .header .subtitle {
       text-align: center;
     }
