@@ -10,6 +10,8 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class SurveyModal extends BaseModal {
+  static subCategory = "survey";
+
   constructor(props?: any) {
     super(props, styles);
 

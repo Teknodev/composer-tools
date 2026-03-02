@@ -1,8 +1,8 @@
-import { BaseFixed } from "../../EditorComponent";
-import styles from "./fixed1.module.scss";
+import { BaseBackToTop } from "../../EditorComponent";
+import styles from "./back-to-top1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-class Fixed1 extends BaseFixed {
+class BackToTop1 extends BaseBackToTop {
   constructor(props?: any) {
     super(props, styles);
 
@@ -22,7 +22,7 @@ class Fixed1 extends BaseFixed {
   }
 
   static getName(): string {
-    return "Fixed 1";
+    return "Back to Top 1";
   }
 
   scrollToTop = () => {
@@ -51,4 +51,4 @@ class Fixed1 extends BaseFixed {
   }
 }
 
-export default Fixed1;
+export default BackToTop1;

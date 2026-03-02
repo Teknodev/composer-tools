@@ -11,6 +11,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ButtonNavigator from "components/button-navigator/button-navigator";
 
 class SubscriptionModal extends BaseModal {
+  static subCategory = "subscription";
+
   constructor(props?: any) {
     super(props, styles);
 

@@ -346,7 +346,7 @@ import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Portfolio3 from "./portfolio/portfolio3/portfolio3";
 import Comparison1 from "./comparison/comparison1/comparison1";
-import Fixed1 from "./fixed/fixed1/fixed1";
+import BackToTop1 from "./back-to-top/back-to-top1/back-to-top1";
 
 
 function Registerables(composer: ComponentsRegistery) {
@@ -698,7 +698,7 @@ function Registerables(composer: ComponentsRegistery) {
     Portfolio2,
     Portfolio3,
     Comparison1,
-    Fixed1,
+    BackToTop1,
   ]);
 }
 

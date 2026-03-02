@@ -10,6 +10,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 type Button = INPUTS.CastedButton
 
 class ConfirmationModal1 extends BaseModal {
+  static subCategory = "confirmation";
+
   constructor(props?: any) {
     super(props, styles);
 

@@ -8,6 +8,8 @@ import ComposerModalClose from "../../../composer-base-components/close/close";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Notice extends BaseModal {
+  static subCategory = "notice";
+
   constructor(props?: any) {
     super(props, styles);
 

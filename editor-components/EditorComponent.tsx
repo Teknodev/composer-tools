@@ -376,7 +376,7 @@ export enum CATEGORIES {
   ABOUT = "about",
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
-  FIXED = "fixed",
+  BACK_TO_TOP = "backToTop",
 }
 
 export function generateId(key: string): string {
@@ -1029,6 +1029,11 @@ export abstract class BaseImageGallery extends Component {
 
 export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
+  static subCategory: string = "modal";
+
+  static getSubCategory(): string {
+    return this.subCategory;
+  }
 }
 
 export abstract class BaseLegal extends Component {
@@ -1125,6 +1130,6 @@ export abstract class BaseComparison extends Component {
   static category = CATEGORIES.COMPARISON;
 }
 
-export abstract class BaseFixed extends Component {
-  static category = CATEGORIES.FIXED;
+export abstract class BaseBackToTop extends Component {
+  static category = CATEGORIES.BACK_TO_TOP;
 }
