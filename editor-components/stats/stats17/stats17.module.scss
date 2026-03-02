@@ -30,9 +30,8 @@
     }
 
     .bottom {
-      display: flex;
-      flex-direction: column;
       align-items: center;
+      gap: var(--composer-gap-md);
 
       .stats-grid {
         gap: var(--composer-gap-lg);
@@ -69,7 +68,6 @@
       }
 
       .button-container {
-        margin-top: var(--composer-gap-lg);
         display: flex;
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
@@ -105,7 +103,7 @@
     }
 
     .bottom .stats-grid {
-      gap: var(--composer-gap-lg);
+      gap: var(--composer-gap-md);
 
       .card .stat-value .stat-prefix,
       .card .stat-value .stat-number,

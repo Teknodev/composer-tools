@@ -265,7 +265,7 @@ class Stats17 extends BaseStats {
               )}
             </Base.VerticalContent>
           )}
-          <div className={this.decorateCSS("bottom")}>
+          <Base.VerticalContent className={this.decorateCSS("bottom")}>
             {statItems.length > 0 && (
               <Base.ListGrid
                 gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
@@ -300,7 +300,7 @@ class Stats17 extends BaseStats {
                 )}
               </div>
             )}
-          </div>
+          </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
     );
