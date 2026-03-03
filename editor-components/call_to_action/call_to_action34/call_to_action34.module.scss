@@ -39,7 +39,7 @@
                         background-color: transparent !important;
                         padding: 0;
                         border-radius: 0;
-                        --composer-primary-color: var(--composer-font-color-secondary);
+                        --composer-primary-color: var(--composer-font-color-secondary) !important;
                     }
                 }
             }
