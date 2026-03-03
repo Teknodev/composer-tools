@@ -4,10 +4,10 @@ import { EventEmitter, EVENTS } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
-import InlineEditor from "../../custom-hooks/UseInlineEditor";
+import { getInlineEditor } from "../InlineEditorProvider";
 import { v4 as uuidv4 } from 'uuid';
-import { CurrencyCode } from "composer-tools/utils/currency";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { CurrencyCode } from "../utils/currency";
+import { INPUTS } from "../custom-hooks/input-templates";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -325,6 +325,9 @@ export type TypeReactComponent = {
   cssClasses?: TypeCSSProp;
   interactions?: Record<string, InteractionType[]>;
   id?: string;
+  children?: string;
+  customComponentId?: string;
+  customComponentVersion?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -365,17 +368,18 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  // TOP_BANNER = "topBanner",
+  TOP_BANNER = "topBanner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
   LEGAL = "legal",
   COMINGSOON = "comingSoon",
-  // STICKY = "sticky",
+  STICKY = "sticky",
   BREADCRUMB = "breadcrumb",
   ABOUT = "about",
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
+  CUSTOM = "custom",
 }
 
 export function generateId(key: string): string {
@@ -641,6 +645,7 @@ export abstract class Component
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
 
+      const InlineEditor = getInlineEditor();
       return (
         <InlineEditor
           id={prop.id}

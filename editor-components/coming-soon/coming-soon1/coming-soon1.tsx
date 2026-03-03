@@ -1,8 +1,8 @@
-import { BaseComingSoon } from "composer-tools/editor-components/EditorComponent";
+import { BaseComingSoon } from "../../EditorComponent";
 import styles from "./coming-soon1.module.scss";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type ButtonType = INPUTS.CastedButton;
 type ButtonsArray = ButtonType[];
