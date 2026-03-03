@@ -44,9 +44,9 @@
                 }
             }
 
-            &.no-media {
-                padding-right: var(--composer-gap-xl);
-            }
+            // &.no-media {
+            //     padding-right: var(--composer-gap-xl);
+            // }
         }
 
         .left-column {
@@ -64,9 +64,19 @@
                 align-self: flex-start !important;
             }
 
-            &.no-media {
-                padding-right: var(--composer-gap-xl);
+            .subtitle {
+                text-align: left !important;
+                align-self: flex-start !important;
+                margin-left: 0;
+
+                &::before {
+                    background-color: var(--composer-font-color-secondary) !important;
+                }
             }
+
+            // &.no-media {
+            //     padding-right: var(--composer-gap-xl);
+            // }
 
             .button-container {
                 flex-wrap: wrap;
