@@ -133,7 +133,7 @@ class Stats19 extends BaseStats {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={`${this.decorateCSS("wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
             {(isSubtitleExist || isTitleExist || isDescriptionExist) && (
-              <div className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={this.decorateCSS("header")}>
                 {isSubtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                     {subtitle}
@@ -149,68 +149,70 @@ class Stats19 extends BaseStats {
                     {description}
                   </Base.SectionDescription>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
 
             {stats.length > 0 && (
-              <Base.ListGrid
-                gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
-                className={this.decorateCSS("stats-grid")}
-              >
-                {stats.map((stat: StatItem, index: number) => {
-                  const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
-                  const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
-                  const hasNumber = (parseFloat(stat.number) || 0) !== 0 || hasPrefix || hasSuffix;
-                  const hasSubtitle = this.castToString(stat.subtitle);
-                  const hasTitle = this.castToString(stat.title);
-                  const hasDescription = this.castToString(stat.description);
+              <Base.VerticalContent className={this.decorateCSS("stats-wrapper")}>
+                <Base.ListGrid
+                  gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
+                  className={this.decorateCSS("stats-grid")}
+                >
+                  {stats.map((stat: StatItem, index: number) => {
+                    const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
+                    const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
+                    const hasNumber = (parseFloat(stat.number) || 0) !== 0 || hasPrefix || hasSuffix;
+                    const hasSubtitle = this.castToString(stat.subtitle);
+                    const hasTitle = this.castToString(stat.title);
+                    const hasDescription = this.castToString(stat.description);
 
-                  if (!hasNumber && !hasTitle) return null;
+                    if (!hasNumber && !hasTitle) return null;
 
-                  return (
-                    <div key={index} className={this.decorateCSS("stat-item")}>
-                      <div className={this.decorateCSS("stat-header")}>
-                        {hasNumber && (
-                          <span className={this.decorateCSS("stat-value")}>
-                            {hasPrefix && (
-                              <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+                    return (
+                      <div key={index} className={this.decorateCSS("stat-item")}>
+                        <div className={this.decorateCSS("stat-header")}>
+                          {hasNumber && (
+                            <span className={this.decorateCSS("stat-value")}>
+                              {hasPrefix && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                  {stat.prefix}
+                                </span>
+                              )}
+                              <span className={this.decorateCSS("stat-number")}>
+                                {stat.number}
                               </span>
-                            )}
-                            <span className={this.decorateCSS("stat-number")}>
-                              {stat.number}
+                              {hasSuffix && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                  {stat.suffix}
+                                </span>
+                              )}
                             </span>
-                            {hasSuffix && (
-                              <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
-                              </span>
-                            )}
-                          </span>
-                        )}
-                        {(hasSubtitle || hasTitle) && (
-                          <span className={this.decorateCSS("stat-content")}>
-                            {hasSubtitle && (
-                              <Base.P className={this.decorateCSS("stat-subtitle")}>
-                                {stat.subtitle}
-                              </Base.P>
-                            )}
-                            {hasTitle && (
-                              <Base.H6 className={this.decorateCSS("stat-title")}>
-                                {stat.title}
-                              </Base.H6>
-                            )}
-                          </span>
+                          )}
+                          {(hasSubtitle || hasTitle) && (
+                            <span className={this.decorateCSS("stat-content")}>
+                              {hasSubtitle && (
+                                <Base.P className={this.decorateCSS("stat-subtitle")}>
+                                  {stat.subtitle}
+                                </Base.P>
+                              )}
+                              {hasTitle && (
+                                <Base.H6 className={this.decorateCSS("stat-title")}>
+                                  {stat.title}
+                                </Base.H6>
+                              )}
+                            </span>
+                          )}
+                        </div>
+                        {hasDescription && (
+                          <Base.P className={this.decorateCSS("stat-desc")}>
+                            {stat.description}
+                          </Base.P>
                         )}
                       </div>
-                      {hasDescription && (
-                        <Base.P className={this.decorateCSS("stat-desc")}>
-                          {stat.description}
-                        </Base.P>
-                      )}
-                    </div>
-                  );
-                })}
-              </Base.ListGrid>
+                    );
+                  })}
+                </Base.ListGrid>
+              </Base.VerticalContent>
             )}
 
             {buttons.length > 0 && (
