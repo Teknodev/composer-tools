@@ -2,8 +2,8 @@ import React from "react";
 import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type SliderItem = {
   subTitle: string;

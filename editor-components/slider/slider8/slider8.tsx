@@ -2,7 +2,6 @@ import * as React from "react";
 import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider8.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
