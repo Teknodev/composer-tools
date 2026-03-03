@@ -1,9 +1,19 @@
 import * as React from "react";
 import styles from "./about2.module.scss";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type CoverMedia = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
+type VideoMedia = {
+  media: TypeMediaInputValue;
+  icon: TypeMediaInputValue;
+};
 
 class About2 extends BaseAbout {
   constructor(props?: any) {
@@ -12,70 +22,81 @@ class About2 extends BaseAbout {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "lorem",
     });
 
     this.addProp({
       type: "string",
-      key: "sectionTitle",
+      key: "title",
       displayer: "Title",
-      value: "",
+      value: "lorem ipsum",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
     });
 
     this.addProp(INPUTS.BUTTON("button", "Button", "Play me here", "", null, null, "Link"));
 
     this.addProp({
-      type: "media",
-      key: "videoUrl",
-      displayer: "Video",
-      additionalParams: {
-        availableTypes: ["video"],
-      },
-      value: {
-        type: "video",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038"
-      }
-    })
-
-    this.addProp({
-      type: "media",
+      type: "object",
+      key: "front-media",
       displayer: "Media",
-      key: "cover-image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ba4ebd2970002c628732?alt=media&timestamp=1719563672206",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
-
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
-    this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Button Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "RxCross2",
-      },
+      type: "object",
+      key: "back-media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["video"],
+          },
+          value: {
+            type: "video",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/667e77bd0181a1002c334f66?alt=media&timestamp=1719564238038",
+          },
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "icon"],
+          },
+          value: {
+            type: "icon",
+            name: "RxCross2",
+          },
+        },
+      ],
     });
 
     this.addProp({
@@ -96,22 +117,25 @@ class About2 extends BaseAbout {
   }
 
   render() {
-    const closeIcon = this.getPropValue("closeIcon");
+    const videoProps = this.castToObject<VideoMedia>("back-media");
+    const rawVideo = videoProps?.media;
+    const closeIcon = videoProps?.icon;
+
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const cover = this.getPropValue("cover-image");
-    const rawVideo = this.getPropValue("videoUrl");
+
+    const coverProps = this.castToObject<CoverMedia>("front-media");
+
+    const cover = coverProps?.media;
+    const coverOverlay = coverProps?.overlay;
 
     const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const title = this.castToString(this.getPropValue("sectionTitle"));
+    const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
 
-    const subtitleExist = this.castToString(subtitle);
-    const titleExist = this.castToString(title);
-    const descriptionExist = this.castToString(description);
     const buttonTextExist = button && this.castToString(button.text);
 
-    const hasCoverImage = !!cover?.url;
-    const hasContent = subtitleExist || titleExist || descriptionExist || buttonTextExist;
+    const hasMedia = !!cover;
+    const hasContent = subtitle || title || description || buttonTextExist;
 
     return (
       <Base.Container
@@ -119,22 +143,29 @@ class About2 extends BaseAbout {
         data-animation={(this.getPropValue("hoverAnimation") || []).join(" ")}
       >
 
-        {cover && <Base.Media value={cover} className={this.decorateCSS("cover-media")} />}
-        {this.getPropValue("overlay") && cover && <div className={this.decorateCSS("overlay")} />}
+        {hasMedia && (
+          <div className={this.decorateCSS("media-container")}>
+            <Base.Media value={cover} className={this.decorateCSS("media")} />
+            {coverOverlay && <div className={this.decorateCSS("overlay")} />}
+          </div>
+        )}
+
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
-            <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {subtitleExist && (
+            <Base.VerticalContent
+              className={`${this.decorateCSS("content")} ${hasMedia ? this.decorateCSS("with-media") : ""}`}
+            >
+              {subtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {this.getPropValue("sectionTitle")}
+              {title && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {descriptionExist && (
+              {description && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
@@ -145,7 +176,7 @@ class About2 extends BaseAbout {
                     <ComposerLink path={button.url}>
                       <Base.Button
                         buttonType={button.type}
-                        className={`${this.decorateCSS("button")} ${hasCoverImage ? this.decorateCSS("with-image") : ""}`}
+                        className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
                       >
                         <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                       </Base.Button>
@@ -156,7 +187,7 @@ class About2 extends BaseAbout {
                         this.setComponentState("is_video_visible", true);
                       }}
                       buttonType={button.type}
-                      className={`${this.decorateCSS("button")} ${hasCoverImage ? this.decorateCSS("with-image") : ""}`}
+                      className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
                     >
                       <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                     </Base.Button>
@@ -165,7 +196,7 @@ class About2 extends BaseAbout {
               )}
             </Base.VerticalContent>
           )}
-          {(this.getComponentState("is_video_visible") && this.getPropValue("videoUrl")?.url) && (
+          {this.getComponentState("is_video_visible") && rawVideo && (
 
             <Base.Overlay
               onClick={() => this.setComponentState("is_video_visible", false)}
@@ -173,18 +204,31 @@ class About2 extends BaseAbout {
               isVisible={true}
             >
               <div className={this.decorateCSS("video-container")}>
-                <div className={this.decorateCSS("video")} onClick={(event: React.MouseEvent) => event.stopPropagation()}>
-                  <Base.Media value={rawVideo} className={this.decorateCSS("player")} />
+                <div className={this.decorateCSS("video-wrapper")} onClick={(event: React.MouseEvent) => event.stopPropagation()}>
+                  <Base.Media
+                    value={rawVideo}
+                    className={this.decorateCSS("player")}
+                    autoPlay={true}
+                    loop={true}
+                    controls={true}
+                  // playsInline
+                  />
+                  {closeIcon && (
+                    <div
+                      className={this.decorateCSS("close-icon-box")}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        this.setComponentState("is_video_visible", false);
+                      }}
+                    >
+                      <Base.Media
+                        value={closeIcon}
+                        className={this.decorateCSS("close-icon")}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
-              {closeIcon && (
-                <div className={this.decorateCSS("close-icon-box")}>
-                  <Base.Media
-                    value={closeIcon}
-                    className={this.decorateCSS("close-icon")}
-                  />
-                </div>
-              )}
             </Base.Overlay>
           )}
         </Base.MaxContent>
