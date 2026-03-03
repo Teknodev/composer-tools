@@ -206,15 +206,6 @@ export type InteractionType ={
   visible_on?: string,
   show_once?: false,
 };
-export type PageInteractionType ={
-  type?: string;
-  modal?: string;
-  scroll_depth?: number;
-  delay_time?: number;
-  visible_on?: string;
-  show_once?: boolean;
-  trigger_action?: string;
-};
 
 export type TypeLocation = {
   lng: number;
