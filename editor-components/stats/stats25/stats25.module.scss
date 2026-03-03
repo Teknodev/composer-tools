@@ -3,7 +3,7 @@
 .container {
     .max-content {
         .stats-grid {
-            gap: var(--composer-gap-xl);
+            gap: var(--composer-gap-lg) calc(var(--composer-gap-xl) * 2);
 
             .header-item {
                 justify-content: flex-start;
