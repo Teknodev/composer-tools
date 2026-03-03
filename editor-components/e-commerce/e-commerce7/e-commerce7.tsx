@@ -1,11 +1,11 @@
 import * as React from "react";
 import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./e-commerce7.module.scss";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
-import { CurrencyCode, getCurrencyInfo } from "composer-tools/utils/currency";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { CurrencyCode, getCurrencyInfo } from "../../../utils/currency";
 
 type Images = {
   item: TypeMediaInputValue;

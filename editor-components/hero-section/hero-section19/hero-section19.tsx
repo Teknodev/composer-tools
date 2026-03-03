@@ -1,9 +1,9 @@
 import * as React from "react";
 import styles from "./hero-section19.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class HeroSection19 extends BaseHeroSection {
   constructor(props?: any) {
