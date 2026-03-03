@@ -1,9 +1,9 @@
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { TypeMediaInputValue } from "../../../types/declarative";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { TypeMediaInputValue } from "../../EditorComponent";
 
 class IntroSection2 extends BaseIntroSection {
   constructor(props?: any) {
