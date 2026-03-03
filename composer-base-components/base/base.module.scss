@@ -353,7 +353,7 @@
         margin-top: 0px;
     }
     >*:last-child{
-        margin-bottom: 0px;
+        margin-bottom: 0px !important;
     }
     .sectionDescription,
     .sectionTitle{
@@ -414,6 +414,14 @@
   font-family: var(--composer-font-family);
   padding: var(--composer-gap-sm) var(--composer-gap-md);
 
+  blinkpage,
+  p,
+  blinkpage p {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    width: auto;
+  }
+  
     @container (max-width: #{$composer-tablet-width}) {
         padding: var(--composer-gap-sm) !important;
     }

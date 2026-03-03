@@ -2,8 +2,8 @@
 
 .container {
     width: 100%;
-    height: 100vh;
-    padding: 0;
+    height: 100vh !important;
+    padding: 0 !important;
     display: flex;
     align-items: center;
     background-color: black;
@@ -36,6 +36,7 @@
                     height: 100vh;
                     width: 100%;
                     z-index: 2 !important;
+                    overflow: hidden;
                 }
 
                 .overlay {
@@ -66,10 +67,10 @@
                 gap: var(--compoer-gap-md);
                 align-items: center;
                 cursor: pointer;
-                gap: var(--composer-gap-md);
 
                 .social-icon {
-                    content: "";
+                    width: 30px;
+                    height: 20px;
                 }
 
                 .icon-stick {
@@ -89,9 +90,12 @@
                     opacity: 0;
                     overflow-x: hidden;
                     transition: width 0.5s ease, opacity 1s ease;
+                    margin-left: var(--composer-gap-md);
 
                     .icon {
                         font-size: 1rem;
+                        width: 24px;
+                        height: 24px;
                     }
                 }
 
@@ -118,6 +122,20 @@
                 gap: var(--composer-gap-lg);
                 cursor: pointer;
                 font-size: 2rem;
+
+                .prev-icon, .next-icon {
+                    .icon-image {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+
+                .main-social {
+                    .social-icon {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
             }
 
             .control-num {
@@ -141,10 +159,11 @@
                 .content {
                     position: absolute;
                     right: var(--composer-gap-xs);
-                    top: var(--composer-gap-xs);
+                    top: 0;
                     z-index: 2;
-                    color: white;
-                    font-size: 1.5rem;
+                    color: rgba(255, 255, 255, 0.03);
+                    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.11);
+                    font-size: 2rem;
                 }
 
                 .carousel {
@@ -173,46 +192,119 @@
                 }
 
                 .slider-inner {
+                    align-items: baseline;
                     padding-left: calc(var(--composer-gap-xl) * 2);
                     color: white;
                     top: 50%;
                     width: 40%;
-                    display: flex;
-                    flex-direction: column;
-                    gap: var(--composer-gap-md);
+                    
+                    .logo {
+                        font-size: 2rem;
+                        aspect-ratio: 3 / 1;
+                        object-fit: cover;
+                        max-width: 150px;
+                        color: white;
+                    }
 
-                    .up-text {
-                        display: flex;
-                        align-items: center;
-                        gap: var(--composer-gap-sm);
-
-                        .stick {
-                            width: 35px;
-                            height: 1px;
-                            background-color: white;
+                    .subtitle {
+                        text-align: left;
+                        width: fit-content;
+                        margin-left: 0;
+                        &.subtitle-transparent {
+                            background: transparent !important;
+                            padding: 0 !important;
                         }
-
-                        .subtitle {
-                            font-size: 1rem;
-                            color: white;
+                        &.subtitle-with-image {
+                            color: white !important;
+                            
+                            &::before{
+                                background: white !important;
+                            }
                         }
                     }
 
                     .title {
                         font-size: 5rem;
-                        margin: 0;
-                        color: white;
+                        overflow: hidden;
+                        line-height: normal;
+                        text-align: left;
+
+                        &.title-with-image {
+                            color: white !important;
+                        }
+
+                        &.letter-animate {
+                            .char {
+                                opacity: 0;
+                                transform: translateX(-12px);
+                                display: inline-block;
+                                animation-name: letterIn;
+                                animation-duration: 420ms;
+                                animation-fill-mode: forwards;
+                                animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+                            }
+                        }
+
+                        &.letter-animate-out {
+                            .char {
+                                opacity: 1;
+                                transform: translateX(0);
+                                display: inline-block;
+                                animation-name: letterOut;
+                                animation-duration: 420ms;
+                                animation-fill-mode: forwards;
+                                animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+                            }
+                        }
+
+                        .char {
+                            display: inline-block;
+                            white-space: pre-wrap;
+                        }
+                    }
+
+                @keyframes letterIn {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-12px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                    @keyframes letterOut {
+                        from {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
+                        to {
+                            opacity: 0;
+                            transform: translateX(12px);
+                        }
                     }
 
                     .description {
                         font-size: 1.5rem;
                         color: white;
-                        margin: 0px;
+                        text-align: left;
                     }
 
                     .button-box {
+                        display: flex;
+                        gap: var(--composer-gap-md);
                         .button {
-                            content: "";
+                            .button-icon {
+                                display: flex;
+                                width: 24px;
+                                height: 24px;
+                                font-size: 1.5rem;
+                            }
+
+                            .button-text{
+                                content: "";
+                            }
                         }
                     }
 
@@ -245,18 +337,17 @@
 
                 .slider-container {
                     .slider-inner {
-                        .up-text {
-                            .stick {
-                                background-color: var(--composer-font-color-primary);
-                            }
+                        color: var(--composer-font-color-primary);
 
-                            .subtitle {
-                                color: var(--composer-font-color-primary);
-                            }
+                        .logo {
+                            color: var(--composer-font-color-primary);
                         }
 
+                            .description {
+                                color: var(--composer-font-color-primary);
+                            }
+
                         .title {
-                            color: var(--composer-font-color-primary);
                         }
 
                         .description {
@@ -268,7 +359,6 @@
         }
     }
 }
-
 
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -357,10 +447,6 @@
                         .title {
                             font-size: 3rem;
                         }
-
-                        .description {
-                            font-size: 1rem;
-                        }
                     }
                 }
 
@@ -373,7 +459,7 @@
                 }
 
                 .control-nav {
-                    top: 50%;
+                    bottom: 45px;
                     right: 20px;
                 }
             }
