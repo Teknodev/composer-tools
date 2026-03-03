@@ -1,0 +1,108 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: var(--composer-html-background);
+
+    // &.colored-background {
+    //     background: var(--color-content-bg-alt);
+    // }
+
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--composer-gap-xl);
+        // padding: 80px 50px;
+
+        max-width: var(--site-content-width, 1200px);
+        margin: 0 auto;
+        width: 100%;
+
+        @container (max-width: #{$composer-tablet-width}) {
+            padding: 80px 40px;
+            gap: var(--composer-gap-lg);
+        }
+
+        @container (max-width: #{$composer-phone-width}) {
+            padding: 50px 20px;
+            gap: var(--composer-gap-md);
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .description {
+            text-align: center;
+            // max-width: 800px;
+        }
+
+        .cards-container {
+            width: 100%;
+            margin: 0 auto;
+            // max-width: var(--site-content-width);
+
+            margin-top: var(--composer-gap-xl);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--composer-gap-xl);
+
+            @container (max-width: #{$composer-tablet-width}) {
+                grid-template-columns: repeat(1, 1fr);
+                gap: var(--composer-gap-lg);
+            }
+
+            @container (max-width: #{$composer-phone-width}) {
+                grid-template-columns: repeat(1, 1fr);
+                gap: var(--composer-gap-md);
+            }
+
+            .card {
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                padding: 10%;
+                border-radius: var(--composer-border-radius-sm, 10px);
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-sm);
+                align-items: flex-start;
+                text-align: left;
+
+                &.colored-background {
+                    background-color: var(--color-content-bg-alt) !important;
+                }
+
+                /* Küçük başlık */
+                .card-subtitle {
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    color: var(--composer-font-color-primary);
+                    display: flex;
+                    align-items: flex-start;
+                    margin: 0 !important;
+
+                    &::before,
+                    &::after {
+                        display: none !important;
+                    }
+                }
+
+                .card-title {
+                    font-family: var(--h2-font-family, inherit);
+                    font-weight: var(--h2-font-weight, inherit);
+                    font-size: var(--h2-font-size, 4rem);
+                    font-style: var(--h2-font-style, inherit);
+                    line-height: var(--h2-line-height, 1.4);
+                    letter-spacing: var(--h2-letter-spacing, inherit);
+                    text-transform: var(--h2-text-transform, inherit);
+                    margin-bottom: var(--composer-gap-sm);
+                }
+
+                .card-number {
+                    font-size: calc(20px + 20vmin);
+                    font-weight: 400;
+                    color: var(--composer-primary-color);
+                }
+            }
+        }
+    }
+}
