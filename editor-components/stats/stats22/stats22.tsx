@@ -93,10 +93,13 @@ class Stats22 extends BaseStats {
       ],
     });
     this.addProp({
-      type: "number",
-      key: "animationDuration",
-      displayer: "Number Animation Duration (ms)",
-      value: 2000,
+      type: "object",
+      key: "animation",
+      displayer: "Animation",
+      value: [
+        { type: "boolean", key: "statsAnimation", displayer: "Number Animation", value: true },
+        { type: "number", key: "animationDuration", displayer: "Number Animation Duration (ms)", value: 2000 },
+      ],
     });
   }
 
@@ -107,17 +110,24 @@ class Stats22 extends BaseStats {
   private AnimatedStat = ({
     stat,
     animationDuration = 2000,
+    statsAnimation,
   }: {
     stat: StatItem;
     animationDuration?: number;
+    statsAnimation: boolean;
   }) => {
     const cleanNumber = String(stat.number || "0").replace(/[^\d.]/g, "");
     const targetNumber = parseFloat(cleanNumber) || 0;
-    const [animatedNumber, setAnimatedNumber] = React.useState<string>("0");
+    const [animatedNumber, setAnimatedNumber] = React.useState<string>(statsAnimation ? "0" : Math.floor(targetNumber).toString());
     const ref = React.useRef<HTMLDivElement>(null);
     const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
     React.useEffect(() => {
+      if (!statsAnimation) {
+        setAnimatedNumber(Math.floor(targetNumber).toString());
+        return;
+      }
+
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -142,7 +152,7 @@ class Stats22 extends BaseStats {
           clearInterval(intervalRef.current);
         }
       };
-    }, [targetNumber, animationDuration]);
+    }, [targetNumber, animationDuration, statsAnimation]);
 
     const animateValue = () => {
       if (intervalRef.current) {
@@ -193,20 +203,24 @@ class Stats22 extends BaseStats {
             )}
           </div>
         )}
-        {hasSubtitle && (
-          <Base.P className={this.decorateCSS("stat-subtitle")}>
-            {stat.subtitle}
-          </Base.P>
-        )}
-        {hasTitle && (
-          <Base.H6 className={this.decorateCSS("stat-title")}>
-            {stat.title}
-          </Base.H6>
-        )}
-        {hasDescription && (
-          <Base.P className={this.decorateCSS("stat-description")}>
-            {stat.description}
-          </Base.P>
+        {(hasSubtitle || hasTitle || hasDescription) && (
+          <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
+            {hasSubtitle && (
+              <Base.P className={this.decorateCSS("stat-subtitle")}>
+                {stat.subtitle}
+              </Base.P>
+            )}
+            {hasTitle && (
+              <Base.H6 className={this.decorateCSS("stat-title")}>
+                {stat.title}
+              </Base.H6>
+            )}
+            {hasDescription && (
+              <Base.P className={this.decorateCSS("stat-description")}>
+                {stat.description}
+              </Base.P>
+            )}
+          </Base.VerticalContent>
         )}
       </div>
     );
@@ -217,7 +231,9 @@ class Stats22 extends BaseStats {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const animationDuration = this.getPropValue("animationDuration") || 2000;
+    const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
+    const statsAnimation = !!animationProps?.statsAnimation;
+    const animationDuration = animationProps?.animationDuration || 2000;
     const statItemsProp = this.getPropValue("statItems");
     const statItems: StatItem[] = statItemsProp.map((item: any) => {
       const subtitle = item.getPropValue("subtitle");
@@ -294,6 +310,7 @@ class Stats22 extends BaseStats {
                             key={index}
                             stat={item}
                             animationDuration={animationDuration}
+                            statsAnimation={statsAnimation}
                           />
                         );
                       })}
