@@ -460,7 +460,6 @@ class Slider12 extends BaseSlider {
             )}
           </Base.MaxContent>
         </Base.Container>
-
         <Base.Container className={`${this.decorateCSS("lower-container")} ${!buttonText && this.decorateCSS("no-button")}`}>
           <Base.MaxContent className={this.decorateCSS("wrap")}>
             {validItems.length > 0 && (
@@ -468,9 +467,7 @@ class Slider12 extends BaseSlider {
                 <ComposerSlider key={sliderMode} ref={this.sliderRef} {...settings} >
                   {validItems.map((item, i) => {
                     const media = item.media;
-                    const hasCardDescription = this.castToString(
-                      item.description
-                    );
+                    const hasCardDescription = this.castToString(item.description);
                     const hasHeaderText = this.castToString(item.header);
 
                     const slideClasses = [this.decorateCSS("slide")];
@@ -500,7 +497,7 @@ class Slider12 extends BaseSlider {
                                   </Base.H4>
                                 )}
                                 {hasCardDescription && (
-                                  <Base.P className={this.decorateCSS("card-description-text")}>
+                                  <Base.P className={this.decorateCSS("card-description")}>
                                     {item.description}
                                   </Base.P>
                                 )}

@@ -123,6 +123,11 @@
           opacity: 1;
           color: var(--composer-font-color-primary) !important;
         }
+
+        &:hover button:before {
+          opacity: 1;
+          color: var(--composer-font-color-primary) !important;
+        }
       }
     }
 
@@ -242,8 +247,6 @@
         justify-content: flex-start;
       }
 
-
-
       .slide,
       .slide.wide {
         width: 440px !important;
@@ -295,6 +298,16 @@
     .slider-parent {
       :global(.slick-track) {
         gap: var(--composer-gap-sm);
+      }
+
+      :global(.slick-dots) {
+        bottom: 10px;
+
+        li {
+          button:before {
+            font-size: 6px;
+          }
+        }
       }
 
 
