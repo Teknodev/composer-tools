@@ -60,6 +60,10 @@
             }
           }
         }
+
+        &.no-arrows {
+          margin-bottom: 40px;
+        }
       }
     }
   }
@@ -154,30 +158,19 @@
       }
     }
 
-    .text {
+    .card-content {
       padding: var(--composer-gap-xs);
       margin-top: var(--composer-gap-xs);
       text-align: left;
 
-      .card-header {
+      .card-title {
         color: var(--composer-font-color-primary);
         text-align: left;
-
-        &::first-letter {
-          text-transform: uppercase;
-        }
       }
 
       .card-description {
         color: var(--composer-tertiary-color);
-
-        .card-description-text {
-          text-align: left !important;
-
-          &::first-letter {
-            text-transform: uppercase;
-          }
-        }
+        text-align: left !important;
       }
     }
   }
@@ -229,6 +222,10 @@
             font-size: 2.5rem !important;
             width: 2.5rem !important;
             height: 2.5rem !important;
+          }
+
+          &.no-arrows {
+            margin-bottom: 20px;
           }
         }
       }
@@ -325,7 +322,7 @@
         min-height: 380px;
       }
 
-      .text {
+      .card-content {
         padding: var(--composer-gap-xs) !important;
       }
     }
