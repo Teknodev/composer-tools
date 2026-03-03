@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 const TypeWriter: React.FC<{ text: string | React.ReactNode; className?: string; speed?: number }> = ({ text, className, speed = 80 }) => {
   const [index, setIndex] = React.useState(0);

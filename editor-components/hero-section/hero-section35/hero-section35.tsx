@@ -1,8 +1,8 @@
 import * as React from "react";
 import {BaseHeroSection} from "../../EditorComponent";
 import styles from "./hero-section35.module.scss";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import { Base } from "composer-tools/composer-base-components/base/base"; 
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { Base } from "../../../composer-base-components/base/base"; 
 
 class HeroSection35 extends BaseHeroSection {
     private containerRef = React.createRef<HTMLDivElement>();

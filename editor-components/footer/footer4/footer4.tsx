@@ -1,12 +1,12 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FooterValues = {
   footerTitle: React.JSX.Element;
@@ -621,7 +621,7 @@ class Footer4Page extends BaseFooter {
                             this.setComponentState("placeholderText", defaultPlaceholder);
                           }, 2000);
 
-                          this.insertForm("Subscribe", data);
+                          this.insertForm("Footer 4 - NewsletterForm", data);
                           resetForm();
                         }}
                       >

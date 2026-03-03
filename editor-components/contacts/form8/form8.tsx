@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import styles from "./form8.module.scss";
 import { ErrorMessage, Formik, Form } from "formik";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ContactItem = {
   text: React.JSX.Element;
@@ -453,7 +453,7 @@ class Form8 extends BaseContacts {
                 validationSchema={getSchema}
                 onSubmit={(data, { resetForm }) => {
                   const formData = getFormDataWithConvertedKeys(data);
-                  this.insertForm("Contact Me", formData);
+                  this.insertForm("Form 8 - ContactUsForm", formData);
                   resetForm();
                 }}
               >

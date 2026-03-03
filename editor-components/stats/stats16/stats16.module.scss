@@ -1,0 +1,101 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        align-items: center;
+        width: 100%;
+
+        .content {
+            align-items: center;
+            gap: var(--composer-gap-lg);
+
+            .header-container {
+                align-items: center;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: center;
+                }
+
+                .subtitle {
+                    width: fit-content;
+                    transform: none;
+                    margin-left: 0 auto;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .stats-grid {
+                width: 100%;
+
+                .stat-item {
+                    align-items: center;
+                    text-align: center;
+
+                    .stat-value {
+                        color: var(--composer-primary-color);
+                        display: flex;
+                        align-items: center;
+                        font-size: 5rem;
+
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            color: inherit;
+                        }
+                    }
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: center;
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content .stats-grid {
+        .stat-item .stat-value {
+            font-size: 4rem;
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content {
+        gap: 0;
+
+        .header-container {
+            .button-container {
+                padding-bottom: var(--composer-gap-md);
+            }
+        }
+
+        .stats-grid {
+            .stat-item .stat-value {
+                font-size: 4rem;
+            }
+        }
+    }
+}
