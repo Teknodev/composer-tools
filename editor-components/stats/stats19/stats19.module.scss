@@ -4,24 +4,6 @@
   .max-content .wrapper {
     gap: var(--composer-gap-md);
 
-    &.alignment-center {
-      .header .subtitle {
-        width: fit-content;
-      }
-
-      .stats-grid .stat-item,
-      .stats-grid .stat-subtitle,
-      .stats-grid .stat-title,
-      .stats-grid .stat-desc {
-        text-align: left;
-      }
-
-      .stats-grid .stat-item,
-      .stats-grid .stat-header {
-        align-items: flex-start;
-      }
-    }
-
     .subtitle,
     .title,
     .description {
