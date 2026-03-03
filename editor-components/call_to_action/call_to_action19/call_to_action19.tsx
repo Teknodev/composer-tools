@@ -168,6 +168,7 @@ class CallToAction19 extends BaseCallToAction {
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<Button[]>("buttons");
         const features = this.castToObject<FeatureItem[]>("features");
+        const validFeatures = features.filter((item: FeatureItem) => this.castToString(item.description) || item.icon);
         const ratingValue = this.getPropValue("ratingValue");
         const ratingText = this.getPropValue("ratingText");
         const itemCountInARow = this.getPropValue("itemCountInARow");
@@ -223,10 +224,10 @@ class CallToAction19 extends BaseCallToAction {
                             </div>
                         )}
 
-                        {features.length > 0 && (
+                        {validFeatures.length > 0 && (
                             <div className={this.decorateCSS("right-section")}>
                                 <Base.VerticalContent className={this.decorateCSS("right-vertical-content")}>
-                                    {features.length > 0 && this.castToString(this.getPropValue("featureTitle")) && (
+                                    {validFeatures.length > 0 && this.castToString(this.getPropValue("featureTitle")) && (
                                         <Base.H5 className={this.decorateCSS("features-title")}>
                                             {this.getPropValue("featureTitle")}
                                         </Base.H5>
@@ -235,7 +236,7 @@ class CallToAction19 extends BaseCallToAction {
                                         className={this.decorateCSS("featured-list-items")}
                                         gridCount={{ pc: itemCountInARow }}
                                     >
-                                        {features.map((item: FeatureItem, index: number) => (
+                                        {validFeatures.map((item: FeatureItem, index: number) => (
                                             <div key={index} className={this.decorateCSS("feature-list-item")}>
                                                 {item.icon && (
                                                     <div className={this.decorateCSS("icon-wrapper")}>

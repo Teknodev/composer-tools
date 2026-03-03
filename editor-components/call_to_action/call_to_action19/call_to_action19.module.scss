@@ -158,25 +158,9 @@
         &.has-card-background .max-content {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
-
-        .max-content .content {
-            flex-direction: column;
-            gap: calc(1.5 * var(--composer-gap-md));
-
-            .left-section,
-            .right-section {
-                width: 100%;
-                flex: none;
-            }
-
-            .left-section {
-                .header {
-                    .bottom-row {
-                        gap: var(--composer-gap-md) !important;
-                    }
-                }
-            }
-        }
+        .bottom-row{
+            gap: var(--composer-gap-md) !important;
+        } 
     }
 }
 
