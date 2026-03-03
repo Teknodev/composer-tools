@@ -19,17 +19,20 @@
 
         @container (max-width: #{$composer-tablet-width}) {
             padding: 80px 40px 0;
+            height: auto;
         }
 
         @container (max-width: #{$composer-phone-width}) {
             padding: 50px 20px 0;
             gap: var(--composer-gap-lg);
+            height: auto;
         }
 
         &.no-card {
             padding: 0;
             border-radius: 0;
             background-color: transparent;
+            height: auto;
 
             .media-wrapper {
                 border-radius: var(--composer-border-radius-sm);
@@ -38,6 +41,7 @@
 
         &.no-media:not(.no-card) {
             padding-bottom: 80px;
+            height: auto;
 
             @container (max-width: #{$composer-tablet-width}) {
                 padding-bottom: 80px;
@@ -68,11 +72,6 @@
                     align-self: flex-start !important;
                     margin-left: 0 !important;
                     margin-right: auto !important;
-                }
-
-                .title,
-                .description {
-                    padding: 0;
                 }
             }
 
