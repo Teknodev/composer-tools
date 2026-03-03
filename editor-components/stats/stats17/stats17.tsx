@@ -84,10 +84,23 @@ class Stats17 extends BaseStats {
       ],
     });
     this.addProp({
-      type: "number",
-      key: "animationDuration",
-      displayer: "Number Animation Duration (ms)",
-      value: 2000,
+      type: "object",
+      key: "numberAnimation",
+      displayer: "Number Animation",
+      value: [
+        {
+          type: "boolean",
+          key: "enabled",
+          displayer: "Enable Number Animation",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "duration",
+          displayer: "Number Animation Duration (ms)",
+          value: 2000,
+        },
+      ],
     });
     this.addProp({
       type: "array",
@@ -112,9 +125,11 @@ class Stats17 extends BaseStats {
 
   private AnimatedStat = ({
     stat,
+    animationEnabled = true,
     animationDuration = 2000,
   }: {
     stat: StatItem;
+    animationEnabled?: boolean;
     animationDuration?: number;
   }) => {
     const cleanNumber = String(stat.number || "0").replace(/[^\d.]/g, "");
@@ -124,6 +139,10 @@ class Stats17 extends BaseStats {
     const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
     React.useEffect(() => {
+      if (!animationEnabled) {
+        setAnimatedNumber(String(targetNumber));
+        return;
+      }
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -148,7 +167,7 @@ class Stats17 extends BaseStats {
           clearInterval(intervalRef.current);
         }
       };
-    }, [targetNumber, animationDuration]);
+    }, [targetNumber, animationDuration, animationEnabled]);
 
     const animateValue = () => {
       if (intervalRef.current) {
@@ -236,7 +255,9 @@ class Stats17 extends BaseStats {
       const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
-    const animationDuration = this.getPropValue("animationDuration") || 2000;
+    const animationObj = this.getPropValue("numberAnimation");
+    const animationEnabled = animationObj?.getPropValue("enabled") ?? true;
+    const animationDuration = animationObj?.getPropValue("duration") || 2000;
     const itemCount = this.getPropValue("itemCount");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasHeader = subtitle || title || description;
@@ -281,6 +302,7 @@ class Stats17 extends BaseStats {
                     <this.AnimatedStat
                       key={index}
                       stat={item}
+                      animationEnabled={animationEnabled}
                       animationDuration={animationDuration}
                     />
                   );
