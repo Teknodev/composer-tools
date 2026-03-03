@@ -70,6 +70,25 @@
                     .stat-item {
                         align-items: flex-start;
 
+                        .stat-icon-wrapper {
+                            font-size: 6rem;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            line-height: 1;
+
+                            .stat-icon {
+                                color: var(--composer-font-color-primary);
+                                font-size: inherit;
+                            }
+
+                            .stat-image {
+                                width: 1em;
+                                height: 1em;
+                                object-fit: contain;
+                            }
+                        }
+
                         .stat-value {
                             color: var(--composer-font-color-primary);
                             display: flex;

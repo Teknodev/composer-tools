@@ -1,11 +1,12 @@
 import * as React from "react";
-import { BaseStats } from "../../EditorComponent";
+import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats28.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type StatItem = {
+    icon: TypeMediaInputValue | string;
     prefix: string;
     number: string;
     suffix: string;
@@ -61,6 +62,7 @@ class Stats28 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
+                        { type: "icon", key: "icon", displayer: "Icon", value: "" },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "25" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
@@ -74,6 +76,7 @@ class Stats28 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
+                        { type: "icon", key: "icon", displayer: "Icon", value: "" },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "14" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
@@ -87,6 +90,7 @@ class Stats28 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
+                        { type: "icon", key: "icon", displayer: "Icon", value: "" },
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "180" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
@@ -100,7 +104,8 @@ class Stats28 extends BaseStats {
                     key: "stat",
                     displayer: "Stat",
                     value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "IoInfiniteSharp" },
+                        { type: "icon", key: "icon", displayer: "Icon", value: "IoInfiniteSharp" },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
@@ -181,15 +186,35 @@ class Stats28 extends BaseStats {
 
         const prefixExist = stat.prefix;
 
-        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist && !prefixExist) return null;
+        let iconObj: TypeMediaInputValue | undefined;
+        let iconString = "";
+
+        if (typeof stat.icon === "object" && stat.icon?.type === "image") {
+            iconObj = stat.icon as TypeMediaInputValue;
+        } else if (typeof stat.icon === "string") {
+            iconString = stat.icon;
+        }
+
+        const iconExist = !!iconObj || !!iconString;
+
+        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist && !prefixExist && !iconExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+                {iconExist && (
+                    <div className={this.decorateCSS("stat-icon-wrapper")}>
+                        {iconObj ? (
+                            <Base.Media value={iconObj} className={this.decorateCSS("stat-image")} />
+                        ) : (iconString ? (
+                            <Base.Icon name={iconString} propsIcon={{ className: this.decorateCSS("stat-icon") }} />
+                        ) : null)}
+                    </div>
+                )}
                 {(valueExist || suffixExist || prefixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
                         {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>
-                                <Base.Icon name={stat.prefix} propsIcon={{ className: this.decorateCSS("prefix-icon") }} />
+                                {stat.prefix}
                             </span>
                         )}
                         {valueExist && (
@@ -234,15 +259,25 @@ class Stats28 extends BaseStats {
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
-        const stats: StatItem[] = statsItems.map((item) => {
-            const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "";
-            const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const description = this.castToString(item.description) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+        const statsItems = this.getPropValue("stats");
+        const stats: StatItem[] = statsItems.map((item: any) => {
+            const icon = item.getPropValue ? item.getPropValue("icon") : item.icon;
+
+            let iconProp: TypeMediaInputValue | string = "";
+            if (icon && typeof icon === "object") {
+                iconProp = icon;
+            } else {
+                iconProp = this.castToString(icon) || "";
+            }
+
+            const prefix = this.castToString(item.getPropValue ? item.getPropValue("prefix") : item.prefix) || "";
+            const number = this.castToString(item.getPropValue ? item.getPropValue("number") : item.number) || "";
+            const suffix = this.castToString(item.getPropValue ? item.getPropValue("suffix") : item.suffix) || "";
+            const title = this.castToString(item.getPropValue ? item.getPropValue("title") : item.title) || "";
+            const subtitle = this.castToString(item.getPropValue ? item.getPropValue("subtitle") : item.subtitle) || "";
+            const description = this.castToString(item.getPropValue ? item.getPropValue("description") : item.description) || "";
+
+            return { icon: iconProp, prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
