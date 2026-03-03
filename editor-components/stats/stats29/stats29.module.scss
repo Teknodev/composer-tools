@@ -1,7 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-font-color-primary);
+  background-color: var(--composer-font-color-primary);
+
   .max-content {
     .card {
       .card-content {
@@ -17,16 +18,20 @@
 
           .left-container {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
 
             .subtitle {
-              text-align: left !important;
-            color: var(--composer-html-background);
-            transform: none;
-            }::before{
+              color: var(--composer-html-background) !important;
+              transform: none;
+
+              &::before {
+                background: var(--composer-html-background) !important;
                 display: none;
+              }
+
+              /* &:global(.badge) {
+                color: var(--composer-html-background) !important;
+                background: var(--composer-font-color-primary) !important;
+              } */
             }
 
             .title {
@@ -36,7 +41,7 @@
             .description {
               text-align: left;
               max-width: 600px;
-            color: var(--composer-html-background);
+              color: var(--composer-html-background);
             }
           }
 
@@ -66,23 +71,21 @@
           .stat-item {
             flex: 1;
             min-width: 250px;
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
+            align-items: flex-start !important;
 
             .stat-value {
-              display: flex;
-              align-items: baseline;
+              color: var(--composer-primary-color);
               gap: var(--composer-gap-xs);
-
+              font-size: 12rem;
+            
               .stat-prefix,
               .stat-number,
               .stat-suffix {
-                color: var(--composer-primary-color);
+                color: inherit;
               }
 
               .stat-number {
-                font-size: 5rem;
+                font-size: 12rem;
               }
 
               .stat-prefix {
@@ -90,18 +93,29 @@
               }
 
               .stat-suffix {
-                font-size: 2rem;
+                font-size: 4rem;
               }
             }
 
             .stat-title {
               color: var(--composer-primary-color);
-              font-size: 4rem;
+
               text-align: left;
             }
-            .stat-description{
-                color: var(--composer-html-background);
-                text-align: left;
+
+            .stat-description {
+              color: var(--composer-html-background);
+              text-align: left;
+            }
+          }
+
+          .stat-item:nth-child(even) {
+            .stat-value {
+              color: var(--composer-secondary-color);
+            }
+
+            .stat-title {
+              color: var(--composer-secondary-color);
             }
           }
         }
@@ -110,20 +124,11 @@
   }
 }
 
-// Tablet breakpoint
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .card {
-        &.has-background {
-          padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-        }
-
         .card-content {
-          &.has-divider .divider {
-            margin: var(--composer-gap-md) 0;
-          }
-
           .header-container {
             flex-direction: column;
             gap: var(--composer-gap-md);
@@ -135,26 +140,9 @@
           }
 
           .stats-grid {
-            margin-top: var(--composer-gap-md);
-
             .stat-item {
               .stat-value {
-                .stat-number {
-                  font-size: 4rem;
-                }
-
-                .stat-prefix,
-                .stat-suffix {
-                  font-size: 1.5rem;
-                }
-              }
-
-              .stat-title {
-                font-size: 1.25rem;
-              }
-
-              .stat-description {
-                font-size: 0.95rem;
+                font-size: 9rem;
               }
             }
           }
@@ -211,13 +199,15 @@
 
             .stat-item {
               .stat-value {
+                align-self: flex-start;
+
                 .stat-number {
-                  font-size: 5rem;
+                  font-size: 8rem;
                 }
 
                 .stat-prefix,
                 .stat-suffix {
-                  font-size: 1.25rem;
+                  font-size: 4rem;
                 }
               }
 

@@ -154,9 +154,9 @@ class Stats29 extends BaseStats {
     if (!valueExist && !titleExist && !descriptionExist) return null;
 
     return (
-      <div className={this.decorateCSS("stat-item")}>
+      <Base.VerticalContent className={this.decorateCSS("stat-item")}>
         {valueExist && (
-          <div className={this.decorateCSS("stat-value")}>
+          <span className={this.decorateCSS("stat-value")}>
             {stat.prefix && (
               <span className={this.decorateCSS("stat-prefix")}>
                 {stat.prefix}
@@ -170,19 +170,19 @@ class Stats29 extends BaseStats {
                 {stat.suffix}
               </span>
             )}
-          </div>
+          </span>
         )}
         {titleExist && (
-          <Base.H4 className={this.decorateCSS("stat-title")}>
+          <Base.H2 className={this.decorateCSS("stat-title")}>
             {stat.title}
-          </Base.H4>
+          </Base.H2>
         )}
         {descriptionExist && (
           <Base.P className={this.decorateCSS("stat-description")}>
             {stat.description}
           </Base.P>
         )}
-      </div>
+      </Base.VerticalContent>
     );
   };
 
@@ -217,7 +217,7 @@ class Stats29 extends BaseStats {
           <div className={this.decorateCSS("card")}>
             <div className={this.decorateCSS("card-content")}>
               <div className={this.decorateCSS("header-container")}>
-                <div className={this.decorateCSS("left-container")}>
+                <Base.VerticalContent className={this.decorateCSS("left-container")}>
                   {isSubtitleExist && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {subtitle}
@@ -233,7 +233,7 @@ class Stats29 extends BaseStats {
                       {description}
                     </Base.SectionDescription>
                   )}
-                </div>
+                </Base.VerticalContent>
 
                 {hasValidButtons && (
                   <div className={this.decorateCSS("button-container")}>
