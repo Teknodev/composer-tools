@@ -3,9 +3,9 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./notice.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import ComposerModalClose from "../../../composer-base-components/close/close";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class Notice extends BaseModal {
   constructor(props?: any) {
