@@ -1,8 +1,8 @@
 import * as React from "react";
 import styles from "./download4.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseDownload } from "../../EditorComponent";
-import { Base, TypeMediaInputValue } from "../../../composer-base-components/base/base";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
+import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Background = {
@@ -91,35 +91,35 @@ class Download4 extends BaseDownload {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {hasContent && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-              </Base.VerticalContent>
-            )}
-            {buttons.length > 0 && (
-              <div className={this.decorateCSS("button-group")}>
-                {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                  const buttonTextExist = this.castToString(item.text);
-                  const iconExist = item.icon && item.icon.name;
-                  const imageExist = item.image && item.image.url;
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("button-group")}>
+                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                      const buttonTextExist = this.castToString(item.text);
+                      const iconExist = item.icon && item.icon.name;
+                      const imageExist = item.image && item.image.url;
 
-                  return (!buttonTextExist && !iconExist && !imageExist) || (
-                    <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
-                      {imageExist ? (
-                        <div className={this.decorateCSS("image-button-wrapper")}>
-                          <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                        </div>
-                      ) : (
-                        <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                          {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                          {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                        </Base.Button>
-                      )}
-                    </ComposerLink>
-                  );
-                })}
-              </div>
+                      return (!buttonTextExist && !iconExist && !imageExist) || (
+                        <ComposerLink key={`dw-4-btn-${index}`} path={item.url}>
+                          {imageExist ? (
+                            <div className={this.decorateCSS("image-button-wrapper")}>
+                              <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                            </div>
+                          ) : (
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                              {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                              {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                            </Base.Button>
+                          )}
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
             )}
           </div>
           {media && (

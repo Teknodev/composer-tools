@@ -50,20 +50,20 @@
             color: var(--composer-font-color-primary);
           }
 
-          .button-container {
-            .button {
-              .button-image {
-                height: 50px;
-                width: 170px;
+          .card-button-container {
+            .card-button {
+              .card-button-image {
+                height: var(--composer-gap-lg);
+                width: 141px;
                 object-fit: cover;
                 border-radius: var(--composer-border-radius-sm);
               }
 
-              .button-text {
+              .card-button-text {
                 content: "";
               }
 
-              .button-icon {
+              .card-button-icon {
                 line-height: 0;
               }
             }
@@ -89,6 +89,30 @@
         }
       }
     }
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+
+      .button {
+        .button-image {
+          height: var(--composer-gap-lg);
+          width: 141px;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
+        }
+
+        .button-text {
+          content: "";
+        }
+
+        .button-icon {
+          line-height: 0;
+        }
+      }
+    }
   }
 }
 
@@ -100,11 +124,11 @@
       .cards-container {
         .cards {
           .card {
-            .button-container {
-              .button {
-                .button-image {
-                  height: 45px !important;
-                  width: 150px !important;
+            .card-button-container {
+              .card-button {
+                .card-button-image {
+                  height: 39px !important;
+                  width: 138px !important;
                 }
               }
             }
@@ -121,12 +145,11 @@
       .cards-container {
         .cards {
           .card {
-            .button-container {
-              .button {
-                .button-image {
-                  height: 32px !important;
-                  width: 120px !important;
-
+            .card-button-container {
+              .card-button {
+                .card-button-image {
+                  height: 27px !important;
+                  width: 117px !important;
                 }
               }
             }

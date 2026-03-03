@@ -4,20 +4,11 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: var(--composer-gap-md);
 
-    .content {
-      display: flex;
-      flex-direction: column;
+    .vertical-content {
       align-items: center;
-      width: 100%;
-    }
-
-    .header {
-      align-items: center;
-      width: 100%;
 
       .subtitle {
         text-align: center;
@@ -32,28 +23,28 @@
       .description {
         text-align: center;
       }
-    }
 
-    .button-group {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: var(--composer-gap-sm);
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
 
-      .button-image {
-        height: 50px;
-        width: 170px;
-        object-fit: cover;
-        border-radius: var(--composer-border-radius-sm);
-      }
-
-      .button-element {
-        .button-icon {
-          line-height: 0;
+        .button-image {
+          height: 50px;
+          width: 170px;
+          object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
         }
 
-        .button-text {
-          content: "";
+        .button-element {
+          .button-icon {
+            line-height: 0;
+          }
+
+          .button-text {
+            content: "";
+          }
         }
       }
     }
@@ -86,10 +77,12 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .button-group {
-        .button-image {
-          height: 45px;
-          width: 150px;
+      .vertical-content {
+        .button-group {
+          .button-image {
+            height: 45px;
+            width: 150px;
+          }
         }
       }
     }
@@ -99,10 +92,12 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .button-group {
-        .button-image {
-          height: 33px;
-          width: 120px;
+      .vertical-content {
+        .button-group {
+          .button-image {
+            height: 33px;
+            width: 120px;
+          }
         }
       }
 

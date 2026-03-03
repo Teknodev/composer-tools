@@ -1,10 +1,7 @@
 import React from "react";
 import styles from "./download10.module.scss";
-import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
-import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseDownload, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
@@ -224,7 +221,7 @@ class Download10 extends BaseDownload {
                     {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                     {buttons.length > 0 && (
                       <Base.Row className={this.decorateCSS("button-group")}>
-                        {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
+                        {buttons.map((item: INPUTS.CastedButton, index: number) => {
                           const buttonTextExist = this.castToString(item?.text);
                           const iconExist = item.icon && item.icon.name;
                           const imageExist = item.image && item.image.url;

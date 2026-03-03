@@ -28,7 +28,7 @@
     .max-content {
       min-height: 500px;
 
-      .header {
+      .vertical-content {
         width: 60%;
 
         .subtitle,
@@ -53,7 +53,7 @@
     position: relative;
     z-index: 2;
 
-    .header {
+    .vertical-content {
 
       .title,
       .description,
@@ -91,7 +91,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      .header {
+      .vertical-content {
         .buttons-container {
           .button-image {
             width: 150px !important;
@@ -106,7 +106,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      .header {
+      .vertical-content {
         width: 100% !important;
 
         .buttons-container {

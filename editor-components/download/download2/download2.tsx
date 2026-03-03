@@ -210,18 +210,18 @@ class Download2 extends BaseDownload {
                     {platformExist && <Base.H2 className={this.decorateCSS("platform")}>{card.platform}</Base.H2>}
                     {descriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
                     {buttonExist &&
-                      <div className={this.decorateCSS("button-container")}>
+                      <div className={this.decorateCSS("card-button-container")}>
                         <ComposerLink path={card?.button.url}>
                           {card?.button.image && card?.button.image.url ? (
-                            <div className={this.decorateCSS("button-element")}>
-                              <div className={this.decorateCSS("button")}>
-                                <Base.Media value={card?.button.image} className={this.decorateCSS("button-image")} />
+                            <div className={this.decorateCSS("card-button-element")}>
+                              <div className={this.decorateCSS("card-button")}>
+                                <Base.Media value={card?.button.image} className={this.decorateCSS("card-button-image")} />
                               </div>
                             </div>
                           ) : (
-                            <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
-                              {this.castToString(card.button.text) && <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P>}
-                              {card.button.icon && card.button.icon.name && (<Base.Media value={card.button.icon} className={this.decorateCSS("button-icon")} />)}
+                            <Base.Button buttonType={card.button.type} className={this.decorateCSS("card-button")}>
+                              {this.castToString(card.button.text) && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
+                              {card.button.icon && card.button.icon.name && (<Base.Media value={card.button.icon} className={this.decorateCSS("card-button-icon")} />)}
                             </Base.Button>
                           )}
                         </ComposerLink>
@@ -231,6 +231,24 @@ class Download2 extends BaseDownload {
               })}
             </Base.ListGrid>
           </div >
+          {buttonExist &&
+            <div className={this.decorateCSS("button-container")}>
+              <ComposerLink path={card?.button.url}>
+                {card?.button.image && card?.button.image.url ? (
+                  <div className={this.decorateCSS("button-element")}>
+                    <div className={this.decorateCSS("button")}>
+                      <Base.Media value={card?.button.image} className={this.decorateCSS("button-image")} />
+                    </div>
+                  </div>
+                ) : (
+                  <Base.Button buttonType={card.button.type} className={this.decorateCSS("button")}>
+                    {this.castToString(card.button.text) && <Base.P className={this.decorateCSS("button-text")}>{card.button.text}</Base.P>}
+                    {card.button.icon && card.button.icon.name && (<Base.Media value={card.button.icon} className={this.decorateCSS("button-icon")} />)}
+                  </Base.Button>
+                )}
+              </ComposerLink>
+            </div>
+          }
         </Base.MaxContent >
       </Base.Container >
     );

@@ -73,7 +73,7 @@
         z-index: 2;
 
         .button-image {
-          height: 50px;
+          height: var(--composer-gap-xl);
           width: 170px;
           border-radius: var(--composer-border-radius-sm);
           object-fit: cover;

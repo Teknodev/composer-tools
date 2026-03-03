@@ -213,6 +213,7 @@
 
           .button-group {
             width: 100%;
+            flex-direction: row;
 
             .button-image {
               @include button-image(120px, 32px);

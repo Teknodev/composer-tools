@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "./download11.module.scss";
 import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
-import { BaseDownload } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";

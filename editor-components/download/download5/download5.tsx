@@ -1,5 +1,5 @@
 import styles from "./download5.module.scss";
-import { BaseDownload, TypeMediaInputValue  } from "../../EditorComponent";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -90,7 +90,7 @@ class Download5 extends BaseDownload {
         <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
               {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
