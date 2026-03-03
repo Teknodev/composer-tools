@@ -1,0 +1,241 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: var(--composer-font-color-primary);
+  .max-content {
+    .card {
+      padding: 80px 50px;
+
+      .card-content {
+        gap: var(--composer-gap-md);
+        display: flex;
+        flex-direction: column;
+
+        .header-container {
+          display: flex;
+          gap: var(--composer-gap-lg);
+          flex-direction: column;
+          align-items: center;
+
+          .left-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+
+            .subtitle {
+              text-align: left !important;
+            color: var(--composer-html-background);
+            transform: none;
+            }::before{
+                display: none;
+            }
+
+            .title {
+              color: var(--composer-html-background);
+            }
+
+            .description {
+              text-align: left;
+              max-width: 600px;
+            color: var(--composer-html-background);
+            }
+          }
+
+          .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: var(--composer-gap-sm);
+            align-items: flex-start;
+
+            .button {
+              white-space: nowrap;
+
+              .button-text {
+                content: "";
+              }
+            }
+          }
+        }
+
+        .stats-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-lg);
+          margin-top: var(--composer-gap-md);
+
+          .stat-item {
+            flex: 1;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+
+            .stat-value {
+              display: flex;
+              align-items: baseline;
+              gap: var(--composer-gap-xs);
+
+              .stat-prefix,
+              .stat-number,
+              .stat-suffix {
+                color: var(--composer-primary-color);
+              }
+
+              .stat-number {
+                font-size: 5rem;
+              }
+
+              .stat-prefix {
+                font-size: 2rem;
+              }
+
+              .stat-suffix {
+                font-size: 2rem;
+              }
+            }
+
+            .stat-title {
+              color: var(--composer-primary-color);
+              font-size: 4rem;
+              text-align: left;
+            }
+            .stat-description{
+                color: var(--composer-html-background);
+                text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Tablet breakpoint
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .card {
+        padding: 80px 40px;
+
+        &.has-background {
+          padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+        }
+
+        .card-content {
+          &.has-divider .divider {
+            margin: var(--composer-gap-md) 0;
+          }
+
+          .header-container {
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+
+            .button-container {
+              width: 100%;
+              justify-content: flex-start;
+            }
+          }
+
+          .stats-grid {
+            margin-top: var(--composer-gap-md);
+
+            .stat-item {
+              .stat-value {
+                .stat-number {
+                  font-size: 4rem;
+                }
+
+                .stat-prefix,
+                .stat-suffix {
+                  font-size: 1.5rem;
+                }
+              }
+
+              .stat-title {
+                font-size: 1.25rem;
+              }
+
+              .stat-description {
+                font-size: 0.95rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .card {
+        padding: 50px 20px;
+        
+        &.has-background {
+
+        .card-content {
+          gap: var(--composer-gap-md);
+
+          .header-container {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--composer-gap-sm);
+
+            .left-container {
+              gap: var(--composer-gap-sm);
+
+              .subtitle,
+              .title,
+              .description {
+                text-align: left;
+              }
+
+              .description {
+                max-width: 100%;
+              }
+            }
+
+            .button-container {
+              width: 100%;
+              justify-content: flex-start;
+
+              .button {
+                width: auto;
+              }
+            }
+          }
+
+          .stats-grid {
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            margin-top: var(--composer-gap-md);
+
+            .stat-item {
+              .stat-value {
+                .stat-number {
+                  font-size: 5rem;
+                }
+
+                .stat-prefix,
+                .stat-suffix {
+                  font-size: 1.25rem;
+                }
+              }
+
+              .stat-title {
+                font-size: 2rem !important;
+              }
+
+              .stat-description {
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
