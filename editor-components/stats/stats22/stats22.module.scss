@@ -10,10 +10,14 @@
         .subtitle,
         .title,
         .description {
-          
           text-align: left;
           margin-left: 0;
           margin-right: 0;
+        }
+
+        // Desktop/tablet: description is shown in .right, hide it here
+        .description {
+          display: none;
         }
 
         .button-container {
@@ -39,7 +43,7 @@
         }
 
         .stats-grid {
-          gap: var(--composer-gap-lg);
+          gap: var(--composer-gap-md);
 
           .card {
             display: flex;
@@ -75,15 +79,55 @@
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .wrapper {
     flex-direction: column;
+
+    .left {
+      align-items: center;
+
+      .subtitle,
+      .title,
+      .description {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      // Mobile: show description here (between title and button)
+      .description {
+        display: revert;
+      }
+
+      .button-container {
+        justify-content: center;
+      }
+    }
+
     .right {
+      align-items: center;
       gap: var(--composer-gap-md);
 
+      // Mobile: hide description from right (shown in left instead)
+      .description {
+        display: none;
+      }
+
       .stats-grid {
-        .card .stat-value {
-          .stat-prefix,
-          .stat-number,
-          .stat-suffix {
-            font-size: 3rem;
+        .card {
+          align-items: center;
+
+          .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+              font-size: 3rem;
+            }
+          }
+
+          .stat-subtitle,
+          .stat-title,
+          .stat-description {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
           }
         }
       }

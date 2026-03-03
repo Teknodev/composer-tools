@@ -229,7 +229,7 @@ class Stats22 extends BaseStats {
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
 
-    const hasLeft = subtitle || title || buttons.length > 0;
+    const hasLeft = subtitle || title || description || buttons.length > 0;
     const hasRight = description || statItems.length > 0;
 
     return (
@@ -248,6 +248,11 @@ class Stats22 extends BaseStats {
                     <Base.SectionTitle className={this.decorateCSS("title")}>
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
+                  )}
+                  {description && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </Base.SectionDescription>
                   )}
                   {buttons.length > 0 && (
                     <div className={this.decorateCSS("button-container")}>
@@ -275,7 +280,7 @@ class Stats22 extends BaseStats {
                   )}
                   {statItems.length > 0 && (
                     <Base.ListGrid
-                      gridCount={{ pc: 3, tablet: 3, phone: 2 }}
+                      gridCount={{ pc: 3, tablet: 3, phone: 1 }}
                       className={this.decorateCSS("stats-grid")}
                     >
                       {statItems.map((item, index) => {
