@@ -74,9 +74,10 @@
         .text-block .subtitle {
             background: none !important;
             padding: 0 !important;
+            transform: none !important;
 
             &::before {
-                background-color: currentColor !important;
+                background-color:  black !important;
             }
         }
     }
@@ -113,7 +114,7 @@
         .subtitle {
             width: fit-content;
             margin-left: 0 !important;
-
+            transform: none !important;
             &::before {
                 content: "";
                 display: none;
@@ -199,10 +200,13 @@
                 text-align: left !important;
 
                 .subtitle {
-                    margin-left: 0 !important;
-                    margin-right: 0 !important;
+                    transform: none;
+                    &::before{
+                    color: currentColor !important;
                 }
-
+                }
+                
+                
                 .title,
                 .description {
                     text-align: left !important;
