@@ -3,9 +3,9 @@ import styles from "./hero-section29.module.scss";
 import { BaseHeroSection } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import * as Yup from "yup";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface ServiceItem {
   title: string;

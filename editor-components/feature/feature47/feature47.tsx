@@ -1,11 +1,11 @@
-import { BaseFeature } from "composer-tools/editor-components/EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature47.module.scss";
 import {
   Base,
   TypeButton,
-} from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+} from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
   title: Element;
