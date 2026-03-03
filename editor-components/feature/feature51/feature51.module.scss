@@ -119,7 +119,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content {
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-lg);
 
     .buttons-wrapper {
       margin-top: var(--composer-gap-md);
@@ -138,7 +138,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content {
-    gap: var(--composer-gap-sm);
+    gap: var(--composer-gap-md);
   }
 
   .container .items-container .item :where(svg, img) {

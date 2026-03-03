@@ -250,7 +250,7 @@ class Feature51 extends BaseFeature {
     this.addProp({
       type: "boolean",
       key: "enableIconAnimation",
-      displayer: "Enable Icon Animation",
+      displayer: "Icon Animation",
       value: true,
     });
 
