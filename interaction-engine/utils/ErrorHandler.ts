@@ -76,8 +76,9 @@ export class ErrorHandler {
       );
     }
 
-    // Log the error
-    logger.error(engineError.message, engineError.originalError || engineError, {
+    // Log the error – when wrapping an unknown Error, log it as the cause
+    const logTarget = engineError.originalError ?? engineError;
+    logger.error(engineError.message, logTarget, {
       ...engineError.context,
       code: engineError.code,
     });

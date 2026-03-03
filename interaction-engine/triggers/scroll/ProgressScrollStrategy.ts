@@ -26,6 +26,9 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
    */
   private cachedElementHeight = 0;
   private cachedOffsetTop = 0;
+  /** Debounced resize handler for refreshing cached geometry */
+  private resizeTimeout?: ReturnType<typeof setTimeout>;
+  private resizeHandler?: () => void;
 
   attach(
     target: HTMLElement,
@@ -43,9 +46,26 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
     let lastRange: 'before' | 'during' | 'after' | null = null;
     let animationCompleted = false;
 
+    // Bug 4: Track previous display value for removeOnComplete feature
+    let previousDisplay: string | null = null;
+
     // Cache original element geometry (pre-transform)
     this.cachedElementHeight = target.offsetHeight;
     this.cachedOffsetTop = this.computeOffsetTop(target, scrollRoot);
+
+    // Resize handler: recache geometry on window resize
+    this.resizeHandler = () => {
+      if (this.resizeTimeout) clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = setTimeout(() => {
+        this.cachedElementHeight = target.offsetHeight;
+        this.cachedOffsetTop = this.computeOffsetTop(target, scrollRoot);
+      }, 200);
+    };
+    if (addEventListenerFn) {
+      addEventListenerFn(window, 'resize', this.resizeHandler as EventListener);
+    } else {
+      window.addEventListener('resize', this.resizeHandler);
+    }
 
     // Scroll-driven RAF loop
     // A single RAF is scheduled per scroll event.  The RAF computes
@@ -71,55 +91,49 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
         if (config.replay && lastRange !== null) {
           animationCompleted = false;
           lastRange = null;
+          // Bug 4: Restore element visibility on replay reset
+          if (config.removeOnComplete && previousDisplay !== null) {
+            target.style.display = previousDisplay === 'none' ? '' : previousDisplay;
+            previousDisplay = null;
+          }
           if (config.engine === 'animateCss') {
             this.removeAnimateCssClasses(target);
           } else {
             target.style.opacity = '';
             target.style.transform = '';
+            target.style.scale = '';
+            target.style.translate = '';
+            target.style.rotate = '';
             target.style.filter = '';
           }
         }
         return;
       }
 
-      let viewportProgress = 0;
+      // ── Progress formula ────────────────────────────────────────
+      // progress = 0  → element's top edge at viewport bottom (just entering)
+      // progress = 1  → element fully scrolled into view
+      //
+      // As user scrolls down the element moves up. Its top edge enters
+      // the viewport first (elementTop crosses below viewportHeight).
+      // progress linearly increases until the element has travelled its
+      // own height into the viewport.
+      //
+      // No scale-adjust is needed: at progress ≈ 0 the element is both
+      // transparent (opacity 0) and visually small (scale < 1), so the
+      // visual edge naturally enters the viewport a bit after progress
+      // becomes positive — producing a smooth fade-in with no gap.
 
-      if (elementHeight <= viewportHeight) {
-        const minHeight = config.minProgressHeight ?? 150;
-        if (minHeight > 0 && elementHeight < minHeight) {
-          viewportProgress = (config.progressEnd ?? 1) + 0.01;
-        } else if (elementBottom <= viewportHeight && elementTop >= 0) {
-          const fullyVisiblePosition = viewportHeight - elementHeight;
-          if (elementTop >= fullyVisiblePosition) {
-            const distanceTraveled = fullyVisiblePosition - elementTop;
-            viewportProgress = distanceTraveled / fullyVisiblePosition;
-          } else {
-            const distancePastFullyVisible = fullyVisiblePosition - elementTop;
-            viewportProgress = 1 + distancePastFullyVisible / fullyVisiblePosition;
-          }
-        } else if (elementTop < 0) {
-          const distancePastTop = Math.abs(elementTop);
-          viewportProgress = 2 + distancePastTop / elementHeight;
-        } else if (elementTop < viewportHeight && elementBottom > viewportHeight) {
-          const visibleHeight = viewportHeight - elementTop;
-          viewportProgress = visibleHeight / elementHeight;
-        } else {
-          viewportProgress = 0;
-        }
+      let viewportProgress: number;
+
+      if (elementHeight < 1) {
+        // Degenerate zero-height element — treat as fully visible
+        viewportProgress = 1;
       } else {
-        if (elementTop >= 0) {
-          const visibleHeight = Math.min(elementBottom - viewportHeight, elementHeight);
-          viewportProgress = Math.max(0, visibleHeight / elementHeight);
-        } else if (elementBottom <= 0) {
-          viewportProgress = 0;
-        } else {
-          const scrolled = Math.abs(elementTop);
-          const totalScroll = elementHeight;
-          viewportProgress = scrolled / totalScroll;
-        }
+        viewportProgress = (viewportHeight - elementTop) / elementHeight;
       }
 
-      viewportProgress = Math.max(0, viewportProgress);
+      viewportProgress = Math.max(0, Math.min(viewportProgress, 2));
 
       const startThreshold = config.progressStart ?? 0;
       const endThreshold = config.progressEnd ?? 1;
@@ -147,6 +161,9 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
           } else {
             target.style.opacity = '';
             target.style.transform = '';
+            target.style.scale = '';
+            target.style.translate = '';
+            target.style.rotate = '';
             target.style.filter = '';
           }
         }
@@ -159,7 +176,13 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
             this.removeAnimateCssClasses(target);
           }
           animationCompleted = true;
+          console.log('Progress animation completed for element:', animationCompleted);
           lastRange = 'after';
+          // Bug 4: removeOnComplete — hide element after progress animation completes
+          if (config.removeOnComplete) {
+            previousDisplay = target.style.display || getComputedStyle(target).display;
+            target.style.display = 'none';
+          }
         }
       } else {
         const effectProgress =
@@ -170,9 +193,11 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
           animationCompleted = false;
           if (config.engine === 'animateCss') {
             this.addAnimateCssClasses(target, config);
-          } else {
-            target.getAnimations().forEach((anim) => anim.cancel());
           }
+          // Bug 3 fix: Removed target.getAnimations().forEach(anim => anim.cancel())
+          // which was cancelling ALL animations on the element including those
+          // from other interactions. Progress mode uses direct style manipulation,
+          // so no animation cancellation is needed here.
         }
 
         if (config.engine !== 'animateCss') {
@@ -213,6 +238,13 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
       cancelAnimationFrame(this.progressRAF);
       this.progressRAF = undefined;
     }
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+      this.resizeTimeout = undefined;
+    }
+    // Note: resizeHandler is cleaned up by central listener tracking when
+    // addEventListenerFn was used. For fallback path, we clean manually.
+    this.resizeHandler = undefined;
     this.cachedElementHeight = 0;
     this.cachedOffsetTop = 0;
   }
@@ -255,24 +287,24 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
         element.style.opacity = normalizedProgress.toString();
         break;
       case 'slideUp':
-        element.style.transform = `translateY(${(1 - normalizedProgress) * 100}px)`;
+        element.style.translate = `0px ${(1 - normalizedProgress) * 100}px`;
         element.style.opacity = normalizedProgress.toString();
         break;
       case 'slideDown':
-        element.style.transform = `translateY(${(normalizedProgress - 1) * 100}px)`;
+        element.style.translate = `0px ${(normalizedProgress - 1) * 100}px`;
         element.style.opacity = normalizedProgress.toString();
         break;
       case 'slideLeft':
-        element.style.transform = `translateX(${(normalizedProgress - 1) * 100}px)`;
+        element.style.translate = `${(normalizedProgress - 1) * 100}px 0px`;
         element.style.opacity = normalizedProgress.toString();
         break;
       case 'slideRight':
-        element.style.transform = `translateX(${(1 - normalizedProgress) * 100}px)`;
+        element.style.translate = `${(1 - normalizedProgress) * 100}px 0px`;
         element.style.opacity = normalizedProgress.toString();
         break;
       case 'scale': {
         const scale = 0.5 + normalizedProgress * 0.5;
-        element.style.transform = `scale(${scale})`;
+        element.style.scale = String(scale);
         element.style.opacity = normalizedProgress.toString();
         break;
       }
@@ -287,7 +319,10 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
     progress: number,
     config: OnScrollConfig
   ): void {
-    const transforms: string[] = [];
+    // Uses individual CSS transform properties (scale, translate, rotate) to
+    // avoid conflicts with animate.css animations that use composite `transform`.
+    // Convention: at progress=1 (fully scrolled), effects resolve to their
+    // identity/initial values so the element reaches its normal appearance.
 
     if (config.customOpacityStart !== undefined || config.customOpacityEnd !== undefined) {
       const opacityStart = config.customOpacityStart ?? 0;
@@ -297,28 +332,31 @@ export class ProgressScrollStrategy implements ScrollModeStrategy {
     }
 
     if (config.customTranslateX !== undefined && config.customTranslateX !== 0) {
-      transforms.push(`translateX(${config.customTranslateX * progress}px)`);
-    }
-
-    if (config.customTranslateY !== undefined && config.customTranslateY !== 0) {
-      transforms.push(`translateY(${config.customTranslateY * progress}px)`);
+      const tx = config.customTranslateX * (1 - progress);
+      if (config.customTranslateY !== undefined && config.customTranslateY !== 0) {
+        const ty = config.customTranslateY * (1 - progress);
+        element.style.translate = `${tx}px ${ty}px`;
+      } else {
+        element.style.translate = `${tx}px 0px`;
+      }
+    } else if (config.customTranslateY !== undefined && config.customTranslateY !== 0) {
+      const ty = config.customTranslateY * (1 - progress);
+      element.style.translate = `0px ${ty}px`;
     }
 
     if (config.customScaleStart !== undefined || config.customScaleEnd !== undefined) {
       const scaleStart = config.customScaleStart ?? 1;
       const scaleEnd = config.customScaleEnd ?? 1;
-      transforms.push(`scale(${scaleStart + (scaleEnd - scaleStart) * progress})`);
+      element.style.scale = String(scaleStart + (scaleEnd - scaleStart) * progress);
     }
 
     if (config.customRotate !== undefined && config.customRotate !== 0) {
-      transforms.push(`rotate(${config.customRotate * progress}deg)`);
+      element.style.rotate = `${config.customRotate * (1 - progress)}deg`;
     }
 
     if (config.customBlur !== undefined && config.customBlur !== 0) {
-      element.style.filter = `blur(${config.customBlur * progress}px)`;
+      element.style.filter = `blur(${config.customBlur * (1 - progress)}px)`;
     }
-
-    element.style.transform = transforms.length > 0 ? transforms.join(' ') : '';
   }
 
   private addAnimateCssClasses(element: HTMLElement, config: OnScrollConfig): void {

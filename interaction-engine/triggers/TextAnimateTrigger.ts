@@ -79,9 +79,7 @@ export class TextAnimateTrigger extends BaseTrigger {
       this.observer.disconnect();
       this.observer = undefined;
     }
-    this.clearEventListeners();
-    this.target = undefined;
-    this.fire = undefined;
-    this.cleanup = undefined;
+    this.hasTriggered = false;
+    super.detach();
   }
 }

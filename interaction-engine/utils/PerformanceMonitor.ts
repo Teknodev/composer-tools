@@ -63,7 +63,27 @@ export class PerformanceMonitor {
   private maxMetricsPerOperation = 1000;
   private enabled = true;
 
-  private constructor() {}
+  /** Interval ID for periodic stale-operation cleanup */
+  private cleanupIntervalId?: ReturnType<typeof setInterval>;
+  /** Max age (ms) for entries in activeOperations before cleanup */
+  private static readonly STALE_OPERATION_TTL = 60_000;
+  /** Cleanup sweep interval (ms) */
+  private static readonly CLEANUP_INTERVAL = 30_000;
+
+  private constructor() {
+    // Periodically sweep stale entries from activeOperations
+    // (start() called but end() never called, e.g. due to unhandled throw)
+    this.cleanupIntervalId = setInterval(() => {
+      if (this.activeOperations.size === 0) return;
+      const now = performance.now();
+      for (const [id, startTime] of this.activeOperations) {
+        if (now - startTime > PerformanceMonitor.STALE_OPERATION_TTL) {
+          this.activeOperations.delete(id);
+          logger.debug('PerformanceMonitor: cleaned up stale operation', { operationId: id });
+        }
+      }
+    }, PerformanceMonitor.CLEANUP_INTERVAL);
+  }
 
   static getInstance(): PerformanceMonitor {
     if (!PerformanceMonitor.instance) {
@@ -281,6 +301,16 @@ export class PerformanceMonitor {
   clearAllMetrics(): void {
     this.metrics.clear();
     this.activeOperations.clear();
+  }
+
+  /**
+   * Stop the periodic cleanup timer (for testing / shutdown)
+   */
+  destroy(): void {
+    if (this.cleanupIntervalId) {
+      clearInterval(this.cleanupIntervalId);
+      this.cleanupIntervalId = undefined;
+    }
   }
 
   /**

@@ -16,17 +16,18 @@ export class ClickTrigger extends BaseTrigger {
     this.fire = fire;
     this.cleanup = cleanup;
     
-    this.boundClickHandler = async () => {
+    this.boundClickHandler = () => {
       // Check if trigger should only fire once
       if (this.config?.once && this.hasTriggered) {
         return;
       }
 
-      // Cancel any ongoing animation before starting new one
-      await cleanup?.();
+      // Do NOT await cleanup here — command.execute() will synchronously cancel
+      // any running animations (including in-progress cleanup reverses) via
+      // cancelAllAnimations(). Awaiting cleanup caused race conditions where a
+      // slow reverse animation blocked re-triggering.
       fire();
       this.hasTriggered = true;
-      // For click, animate and let it complete naturally (no forced reverse)
     };
 
     let triggerTarget = target;
@@ -45,5 +46,10 @@ export class ClickTrigger extends BaseTrigger {
     }
     
     this.target = triggerTarget;
+  }
+
+  override detach(): void {
+    this.hasTriggered = false;
+    super.detach();
   }
 }

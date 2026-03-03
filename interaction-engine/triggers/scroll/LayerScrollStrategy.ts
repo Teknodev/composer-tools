@@ -10,7 +10,13 @@ export class LayerScrollStrategy implements ScrollModeStrategy {
     target: HTMLElement,
     fire: () => void,
     cleanup: (() => void) | undefined,
-    config: OnScrollConfig
+    config: OnScrollConfig,
+    _addEventListenerFn: (
+      element: EventTarget,
+      type: string,
+      handler: EventListener,
+      options?: boolean | AddEventListenerOptions
+    ) => void
   ): void {
     const observerOptions: IntersectionObserverInit = {
       root: null,

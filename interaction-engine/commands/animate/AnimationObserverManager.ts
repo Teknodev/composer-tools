@@ -8,19 +8,28 @@ export class AnimationObserverManager {
   private observer?: IntersectionObserver;
 
   /**
-   * Setup IntersectionObserver to pause/play an animation when its element
-   * enters/leaves the viewport.
+   * Setup IntersectionObserver to pause/play one or more animations when their element
+   * enters/leaves the viewport. Supports a single Animation or an array for
+   * composite animations (e.g. separate transform + opacity tracks).
    */
-  setup(element: HTMLElement, animation: Animation): void {
+  setup(element: HTMLElement, animations: Animation | Animation[]): void {
     this.disconnect();
+
+    const targets = Array.isArray(animations) ? animations : [animations];
 
     this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animation.play();
-          } else {
-            animation.pause();
+          for (const anim of targets) {
+            try {
+              if (entry.isIntersecting) {
+                anim.play();
+              } else {
+                anim.pause();
+              }
+            } catch {
+              // Animation may have been cancelled between observer ticks; ignore.
+            }
           }
         });
       },

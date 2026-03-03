@@ -167,24 +167,6 @@ export class Interaction implements Disposable {
   }
 
   /**
-   * Get a copy of the configuration
-   */
-  getConfig(): InteractionConfig {
-    return { ...this.config };
-  }
-
-  /**
-   * Update the configuration
-   */
-  updateConfig(newConfig: InteractionConfig): void {
-    logger.debug('Configuration updated', {
-      component: 'Interaction',
-      interactionId: this.interactionId,
-    });
-    this.config = { ...this.config, ...newConfig };
-  }
-
-  /**
    * Get the priority level
    */
   getPriority(): number {
@@ -196,23 +178,6 @@ export class Interaction implements Disposable {
    */
   getId(): string {
     return this.interactionId;
-  }
-
-  /**
-   * Get execution statistics
-   */
-  getStats(): {
-    executionCount: number;
-    queueSize: number;
-    isExecuting: boolean;
-    isMounted: boolean;
-  } {
-    return {
-      executionCount: this.executionCount,
-      queueSize: this.executionQueue.length,
-      isExecuting: this.isExecuting,
-      isMounted: this.mounted,
-    };
   }
 
   /**
@@ -284,8 +249,14 @@ export class Interaction implements Disposable {
     };
 
     try {
-      // Use requestAnimationFrame for better performance with animations
       const executeCommand = () => {
+        // Guard: if a newer execution has already started, skip this stale RAF callback.
+        // This prevents the double-animation bug when fire() is called twice in rapid
+        // succession before the first RAF fires.
+        if (currentExecutionId !== this.executionCount) {
+          finishExecution();
+          return;
+        }
         try {
           const result = this.command.execute(context);
           if (result instanceof Promise) {
@@ -316,8 +287,23 @@ export class Interaction implements Disposable {
         }
       };
 
-      // Batch animation-related commands in requestAnimationFrame
-      if (this.config.useRAF !== false && (this.config.animation || this.config.property)) {
+      // Snapshot execution count to detect stale RAF callbacks.
+      const currentExecutionId = this.executionCount;
+
+      // Use RAF for animation-related commands to batch with paint.
+      // Check for animation command types beyond just config.animation|property —
+      // loopEffect uses config.type, textAnimate uses config.textAnimation, etc.
+      const isAnimationCommand =
+        this.config.useRAF !== false &&
+        (this.config.animation ||
+          this.config.property ||
+          this.config.loopType ||
+          this.config.type === 'loop' ||
+          this.config.type === 'mirror' ||
+          this.config.textAnimation ||
+          this.command instanceof BaseAnimationCommand);
+
+      if (isAnimationCommand) {
         requestAnimationFrame(executeCommand);
       } else {
         executeCommand();

@@ -22,15 +22,12 @@ export class LoopTrigger extends BaseTrigger {
   }
 
   detach(): void {
-    // Call cleanup on detach if provided
+    // Call cleanup on detach if provided (before super.detach nulls it)
     try {
       this.cleanup?.();
     } catch (err) {
       /* ignore */
     }
-    this.clearEventListeners();
-    this.target = undefined;
-    this.fire = undefined;
-    this.cleanup = undefined;
+    super.detach();
   }
 }

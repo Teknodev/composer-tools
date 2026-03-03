@@ -52,7 +52,14 @@ export function bootstrapInteractions(
 
     // Apply interactions to all matching elements
     elements.forEach((element, index) => {
-      const elementInteractions = new ElementInteractions();
+      // Bug 5 fix: If we already have an ElementInteractions for this key,
+      // merge new interactions into it instead of overwriting.
+      const mapKey = isClassName ? `${elementSchema.elementId}-${index}` : elementSchema.elementId;
+      let elementInteractions = elementInteractionsMap.get(mapKey);
+      const isExisting = !!elementInteractions;
+      if (!elementInteractions) {
+        elementInteractions = new ElementInteractions();
+      }
       // Debug: report mounting target
       logger.debug(`InteractionBootstrap: mounting interactions for element "${elementSchema.elementId}" (instance ${index})`, { element });
 
@@ -86,10 +93,12 @@ export function bootstrapInteractions(
         }
       }
 
-      elementInteractions.mount(element as HTMLElement);
+      // Only mount if this is a new ElementInteractions (not already mounted)
+      if (!isExisting) {
+        elementInteractions.mount(element as HTMLElement);
+      }
       
       // Store with unique key for each element instance
-      const mapKey = isClassName ? `${elementSchema.elementId}-${index}` : elementSchema.elementId;
       elementInteractionsMap.set(mapKey, elementInteractions);
     });
   }

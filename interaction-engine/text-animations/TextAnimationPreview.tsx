@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useMemo } from 'react';
 import { TextAnimationConfig, TextPreviewState } from './types';
+import { TEXT_ANIMATION_PRESETS } from './presets';
 
 /** Escape HTML entities to prevent XSS in the iframe srcDoc */
 function escapeHtml(str: string): string {
@@ -50,6 +51,18 @@ export const TextAnimationPreview: React.FC<Props> = ({ config, preview, onPrevi
     [(config as any).textContent]
   );
 
+  // Generate the iframe preset scripts from the single source of truth (presets.ts).
+  // Each preset's previewScript is a string of JS that receives `element` in scope.
+  const iframePresetScripts = useMemo(() => {
+    const entries = Object.entries(TEXT_ANIMATION_PRESETS)
+      .filter(([, p]) => p.previewScript)
+      .map(([id, p]) => {
+        const escapedScript = p.previewScript.replace(/\\/g, '\\\\').replace(/`/g, '\\`');
+        return `${JSON.stringify(id)}: function(element) { ${escapedScript} }`;
+      });
+    return `{ ${entries.join(',\n                ')} }`;
+  }, []);
+
   return (
     <div className="text-animation-preview">
       <div className="preview-controls">
@@ -80,44 +93,14 @@ export const TextAnimationPreview: React.FC<Props> = ({ config, preview, onPrevi
             <style>
               body { margin: 0; font-family: Arial, sans-serif; }
               #preview-text { font-size: 24px; text-align: center; margin-top: 50px; }
+              #preview-text span { display: inline-block; }
             </style>
           </head>
           <body>
             <div id="preview-text">${safeText}</div>
             <script>
               let animation;
-              const PRESET_SCRIPTS = {
-                blur: function(element) {
-                  return element.animate(
-                    [{ filter: "blur(10px)", opacity: 0 }, { filter: "none", opacity: 1 }],
-                    { duration: 1000 }
-                  );
-                },
-                flip: function(element) {
-                  return element.animate(
-                    [{ transform: "rotateY(180deg)", opacity: 0 }, { transform: "none", opacity: 1 }],
-                    { duration: 800 }
-                  );
-                },
-                shake: function(element) {
-                  return element.animate(
-                    [{ transform: "translateX(-5px)" }, { transform: "translateX(5px)" }, { transform: "none" }],
-                    { duration: 500, iterations: 3 }
-                  );
-                },
-                shoot: function(element) {
-                  return element.animate(
-                    [{ transform: "translateY(100%)", opacity: 0 }, { transform: "none", opacity: 1 }],
-                    { duration: 600 }
-                  );
-                },
-                scale: function(element) {
-                  return element.animate(
-                    [{ transform: "scale(0.5)", opacity: 0 }, { transform: "none", opacity: 1 }],
-                    { duration: 900 }
-                  );
-                }
-              };
+              var PRESET_SCRIPTS = ${iframePresetScripts};
 
               window.addEventListener('message', function(event) {
                 if (event.data.type === 'UPDATE_CONFIG') {
@@ -149,15 +132,26 @@ export const TextAnimationPreview: React.FC<Props> = ({ config, preview, onPrevi
                 }
               }
 
+              function esc(s) {
+                return s.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+              }
+
               function applyGranularity(element, config) {
-                // Split text based on granularity
-                if (config.granularity === 'character') {
-                  var chars = element.textContent.split('');
-                  element.innerHTML = chars.map(function(char) {
-                    return '<span>' + char.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+                var text = element.textContent || '';
+                var g = config.granularity || 'character';
+
+                if (g === 'character') {
+                  element.innerHTML = text.split('').map(function(c) {
+                    return '<span>' + esc(c === ' ' ? '\\u00A0' : c) + '</span>';
                   }).join('');
+                } else if (g === 'word') {
+                  element.innerHTML = text.split(/\\s+/).map(function(w) {
+                    return '<span style="margin-right:0.25em">' + esc(w) + '</span>';
+                  }).join('');
+                } else {
+                  // 'element' and 'layer' granularity treat the whole element as one unit
+                  element.innerHTML = '<span>' + esc(text) + '</span>';
                 }
-                // Add other granularities...
               }
             </script>
           </body>

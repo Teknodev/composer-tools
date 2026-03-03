@@ -1,4 +1,4 @@
-// src/composer-tools/interaction-engine/triggers/OnAppearTrigger.ts
+// interaction-engine/triggers/OnAppearTrigger.ts
 
 import { BaseTrigger } from './TriggerStrategy';
 import { logger } from '../utils/Logger';
@@ -14,31 +14,29 @@ export class OnAppearTrigger extends BaseTrigger {
   private observer?: IntersectionObserver;
   private hasTriggered = false;
   private timeoutId?: number;
-  private interactionConfig?: OnAppearConfig;
+  private readonly config: OnAppearConfig;
 
   constructor(config?: OnAppearConfig) {
-      super();
-      this.interactionConfig = config;
-    }
+    super();
+    this.config = config ?? {};
+  }
 
   attach(target: HTMLElement, fire: () => void, cleanup?: () => void): void {
     this.target = target;
     this.fire = fire;
     this.cleanup = cleanup;
 
-    const { threshold = 0.1, rootMargin = '0px', once = false, delay = 0 } = this.interactionConfig || {};
-    logger.debug('OnAppearTrigger config:', { threshold, rootMargin, once, delay });
+    const { threshold = 0.1, rootMargin = '0px', once = false, delay = 0 } = this.config;
+
+    logger.debug('OnAppearTrigger: attaching', { threshold, rootMargin, once, delay });
+
     this.observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
-            // Element is visible
-            if (once && this.hasTriggered) {
-              return;
-            }
+            if (once && this.hasTriggered) continue;
 
             if (delay > 0) {
-              // Delay execution
               this.timeoutId = window.setTimeout(() => {
                 fire();
                 this.hasTriggered = true;
@@ -48,28 +46,20 @@ export class OnAppearTrigger extends BaseTrigger {
               this.hasTriggered = true;
             }
 
-            // If once is true, disconnect after first trigger
-            if (once && this.observer) {
-              this.observer.disconnect();
+            if (once) {
+              this.observer?.disconnect();
             }
-          } else {
-            // Element is not visible (scrolled out)
-            if (cleanup && this.hasTriggered && !once) {
-              // Clear any pending delayed execution
-              if (this.timeoutId) {
-                clearTimeout(this.timeoutId);
-                this.timeoutId = undefined;
-              }
-              cleanup();
-              this.hasTriggered = false;
+          } else if (cleanup && this.hasTriggered && !once) {
+            if (this.timeoutId) {
+              clearTimeout(this.timeoutId);
+              this.timeoutId = undefined;
             }
+            cleanup();
+            this.hasTriggered = false;
           }
-        });
+        }
       },
-      {
-        threshold,
-        rootMargin,
-      }
+      { threshold, rootMargin },
     );
 
     this.observer.observe(target);
@@ -80,42 +70,11 @@ export class OnAppearTrigger extends BaseTrigger {
       clearTimeout(this.timeoutId);
       this.timeoutId = undefined;
     }
-
     if (this.observer) {
       this.observer.disconnect();
       this.observer = undefined;
     }
-
     this.hasTriggered = false;
     super.detach();
-  }
-
-  private getConfig(target: HTMLElement): OnAppearConfig {
-    const config: OnAppearConfig = {};
-
-    // Read from data attributes
-    const thresholdAttr = target.getAttribute('data-appear-threshold');
-    if (thresholdAttr) {
-      const parsed = parseFloat(thresholdAttr);
-      config.threshold = isNaN(parsed) ? 0.1 : parsed;
-    }
-
-    const rootMarginAttr = target.getAttribute('data-appear-root-margin');
-    if (rootMarginAttr) {
-      config.rootMargin = rootMarginAttr;
-    }
-
-    const onceAttr = target.getAttribute('data-appear-once');
-    if (onceAttr) {
-      config.once = onceAttr === 'true';
-    }
-
-    const delayAttr = target.getAttribute('data-appear-delay');
-    if (delayAttr) {
-      const parsed = parseInt(delayAttr, 10);
-      config.delay = isNaN(parsed) ? 0 : parsed;
-    }
-
-    return config;
   }
 }

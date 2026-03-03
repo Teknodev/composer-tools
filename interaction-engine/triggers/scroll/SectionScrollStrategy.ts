@@ -2,6 +2,7 @@
 
 import { ScrollModeStrategy, OnScrollConfig } from './types';
 import { logger } from '../../utils/Logger';
+import { resolveSectionId } from '../../utils/resolveSectionId';
 
 export class SectionScrollStrategy implements ScrollModeStrategy {
   private observer?: IntersectionObserver;
@@ -12,31 +13,22 @@ export class SectionScrollStrategy implements ScrollModeStrategy {
     _target: HTMLElement,
     fire: () => void,
     cleanup: (() => void) | undefined,
-    config: OnScrollConfig
+    config: OnScrollConfig,
+    _addEventListenerFn: (
+      element: EventTarget,
+      type: string,
+      handler: EventListener,
+      options?: boolean | AddEventListenerOptions
+    ) => void
   ): void {
     if (!config.sectionId) {
       logger.warn('OnScrollTrigger: sectionId is required for section mode');
       return;
     }
 
-    if (config.sectionId.startsWith('.')) {
-      const className = config.sectionId.slice(1);
-      try {
-        let elements = document.querySelectorAll(`[class~="${className}"]`);
-        if (elements.length === 0 && !className.startsWith('auto-generate-')) {
-          const prefixed = `auto-generate-${className}`;
-          elements = document.querySelectorAll(`[class~="${prefixed}"]`);
-          logger.debug('OnScrollTrigger: fallback to prefixed token', { className, prefixed, elements });
-        } else {
-          logger.debug('OnScrollTrigger: found section elements for', { className, elements });
-        }
-        this.targetSection = (elements[0] as HTMLElement) || undefined;
-      } catch (error) {
-        logger.error('OnScrollTrigger: error finding section elements', error as Error);
-      }
-    } else {
-      this.targetSection = document.getElementById(config.sectionId) || undefined;
-    }
+    const dummyFallback = _target; // use target element as fallback
+    const result = resolveSectionId(config.sectionId, dummyFallback, 'SectionScrollStrategy');
+    this.targetSection = result.target === dummyFallback && !result.elements ? undefined : result.target;
 
     if (!this.targetSection) {
       logger.warn(`OnScrollTrigger: Section with selector "${config.sectionId}" not found`);

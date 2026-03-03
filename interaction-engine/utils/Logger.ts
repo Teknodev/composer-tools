@@ -1,4 +1,4 @@
-// src/composer-tools/interaction-engine/utils/Logger.ts
+// interaction-engine/utils/Logger.ts
 
 export enum LogLevel {
   DEBUG = 0,
@@ -31,13 +31,10 @@ export class Logger {
   private level: LogLevel = LogLevel.WARN;
   private handlers: LogHandler[] = [];
   private logHistory: LogEntry[] = [];
-  private maxHistorySize = 100;
+  private readonly maxHistorySize = 100;
 
   private constructor() {
-    // Add default console handler in development
-    if (process.env.NODE_ENV !== 'production') {
-      this.addHandler(this.consoleHandler);
-    }
+    this.handlers.push(this.consoleHandler);
   }
 
   static getInstance(): Logger {
@@ -91,13 +88,11 @@ export class Logger {
   }
 
   error(message: string, error?: Error, context?: LogContext): void {
-    this.log(LogLevel.ERROR, message, { ...context }, error);
+    this.log(LogLevel.ERROR, message, context, error);
   }
 
   private log(level: LogLevel, message: string, context?: LogContext, error?: Error): void {
-    if (level < this.level) {
-      return;
-    }
+    if (level < this.level) return;
 
     const entry: LogEntry = {
       timestamp: new Date(),
@@ -107,24 +102,21 @@ export class Logger {
       error,
     };
 
-    // Add to history
     this.logHistory.push(entry);
     if (this.logHistory.length > this.maxHistorySize) {
       this.logHistory.shift();
     }
 
-    // Call all handlers
-    this.handlers.forEach(handler => {
+    for (const handler of this.handlers) {
       try {
         handler(entry);
       } catch (err) {
-        // Prevent handler errors from breaking the logger
         console.error('Log handler error:', err);
       }
-    });
+    }
   }
 
-  private consoleHandler: LogHandler = (entry: LogEntry) => {
+  private readonly consoleHandler: LogHandler = (entry: LogEntry) => {
     const { level, message, context, error } = entry;
     const prefix = `[InteractionEngine${context?.component ? `::${context.component}` : ''}]`;
     const contextStr = context ? JSON.stringify(context) : '';
@@ -146,5 +138,4 @@ export class Logger {
   };
 }
 
-// Export singleton instance
 export const logger = Logger.getInstance();

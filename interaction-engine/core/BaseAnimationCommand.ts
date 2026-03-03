@@ -18,6 +18,16 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
   protected animationTarget?: HTMLElement;
 
   /**
+   * Tracks element removal state for the removeOnComplete feature (Bug 4).
+   * When set, the element was hidden after animation completion and can be
+   * restored during cleanup (replay) or undo.
+   */
+  protected _removedElement?: {
+    element: HTMLElement;
+    previousDisplay: string;
+  };
+
+  /**
    * Optional callback set during async cleanup operations.
    * Called by forceCancel() to abort an in-progress cleanup
    * (e.g. a CSS transition or a reverse animation) so that a new
@@ -122,6 +132,32 @@ export abstract class BaseAnimationCommand extends BaseInteractionCommand {
    */
   undo(context: InteractionContext): void {
     this.cancelAllAnimations();
+    this.showRemovedElement();
     this.restoreOriginalStyles(this.animationTarget || context.target);
+  }
+
+  // ── removeOnComplete helpers (Bug 4) ─────────────────────────
+
+  /**
+   * Hide the element after animation completes (removeOnComplete feature).
+   * Stores previous display value so it can be reversed.
+   */
+  protected hideElement(target: HTMLElement): void {
+    if (this._removedElement) return; // already hidden
+    const previousDisplay = target.style.display || getComputedStyle(target).display;
+    this._removedElement = { element: target, previousDisplay };
+    target.style.display = 'none';
+    logger.debug('BaseAnimationCommand: element hidden (removeOnComplete)', { target });
+  }
+
+  /**
+   * Restore a previously hidden element (for replay/cleanup/undo).
+   */
+  protected showRemovedElement(): void {
+    if (!this._removedElement) return;
+    const { element, previousDisplay } = this._removedElement;
+    element.style.display = previousDisplay === 'none' ? '' : previousDisplay;
+    this._removedElement = undefined;
+    logger.debug('BaseAnimationCommand: element restored (removeOnComplete reversed)');
   }
 }

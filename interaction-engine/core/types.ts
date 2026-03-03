@@ -83,6 +83,9 @@ export interface AnimateCommandConfig extends BaseAnimationConfig {
   // Cleanup behaviour
   preserveEndState?: boolean;
   keepEndState?: boolean;
+  /** When true, element is hidden (display:none) after its exit animation completes.
+   *  Reversible when replay=true — element is shown again on re-entry. */
+  removeOnComplete?: boolean;
   // Trigger passthrough
   triggerType?: string;
 }
@@ -203,7 +206,7 @@ export interface ModalService {
  */
 export interface AnimationResult {
   cancel?: () => void;
-  finished?: Promise<void>;
+  finished?: Promise<any>;
   animation?: Animation;
 }
 

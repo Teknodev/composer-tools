@@ -22,6 +22,16 @@ export const TransitionConfig: React.FC<Props> = ({ transition, onChange, onBack
     onChange({ spring: { ...transition.spring, ...spring } });
   };
 
+  const safeInt = (raw: string, fallback: number): number => {
+    const n = parseInt(raw, 10);
+    return Number.isFinite(n) ? n : fallback;
+  };
+
+  const safeFloat = (raw: string, fallback: number): number => {
+    const n = parseFloat(raw);
+    return Number.isFinite(n) ? n : fallback;
+  };
+
   return (
     <div className="transition-config">
       <header>
@@ -56,7 +66,7 @@ export const TransitionConfig: React.FC<Props> = ({ transition, onChange, onBack
             <input
               type="number"
               value={transition.ease.duration}
-              onChange={(e) => handleEaseChange({ duration: parseInt(e.target.value) })}
+              onChange={(e) => handleEaseChange({ duration: safeInt(e.target.value, transition.ease.duration) })}
             />
           </div>
         </div>
@@ -69,7 +79,7 @@ export const TransitionConfig: React.FC<Props> = ({ transition, onChange, onBack
             <input
               type="number"
               value={transition.spring.stiffness}
-              onChange={(e) => handleSpringChange({ stiffness: parseFloat(e.target.value) })}
+              onChange={(e) => handleSpringChange({ stiffness: safeFloat(e.target.value, transition.spring.stiffness) })}
               min="100"
               max="1000"
             />
@@ -79,7 +89,7 @@ export const TransitionConfig: React.FC<Props> = ({ transition, onChange, onBack
             <input
               type="number"
               value={transition.spring.damping}
-              onChange={(e) => handleSpringChange({ damping: parseFloat(e.target.value) })}
+              onChange={(e) => handleSpringChange({ damping: safeFloat(e.target.value, transition.spring.damping) })}
               min="0.1"
               max="1"
               step="0.1"
@@ -90,7 +100,7 @@ export const TransitionConfig: React.FC<Props> = ({ transition, onChange, onBack
             <input
               type="number"
               value={transition.spring.mass}
-              onChange={(e) => handleSpringChange({ mass: parseFloat(e.target.value) })}
+              onChange={(e) => handleSpringChange({ mass: safeFloat(e.target.value, transition.spring.mass) })}
               min="0.5"
               max="2"
               step="0.1"

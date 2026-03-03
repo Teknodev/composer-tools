@@ -8,6 +8,7 @@ export class HoverTrigger extends BaseTrigger {
   private boundLeaveHandler?: (event: Event) => void;
   private persistOnLeave: boolean = false;
   private config?: Record<string, any>;
+  private detached = false;
 
   constructor(config?: Record<string, any>) {
     super();
@@ -33,8 +34,8 @@ export class HoverTrigger extends BaseTrigger {
     };
 
     this.boundLeaveHandler = async () => {
-      if (!this.target) {
-        await cleanup?.();
+      // Guard against async leave handler firing after detach()
+      if (this.detached || !this.target) {
         return;
       }
 
@@ -71,5 +72,11 @@ export class HoverTrigger extends BaseTrigger {
     }
     
     this.target = triggerTarget;
+    this.detached = false;
+  }
+
+  override detach(): void {
+    this.detached = true;
+    super.detach();
   }
 }

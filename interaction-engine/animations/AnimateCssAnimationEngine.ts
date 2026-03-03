@@ -1,16 +1,35 @@
-// src/composer-tools/interaction-engine/animations/AnimateCssAnimationEngine.ts
+// interaction-engine/animations/AnimateCssAnimationEngine.ts
 
 import { AnimationEngine } from '../core/types';
 import { logger } from '../utils/Logger';
 
-// Global timeout registry for AnimateCss animations
-const activeTimeouts = new Map<HTMLElement, number>();
+/**
+ * Global fallback-timeout registry so cancelAll() can clear them by element.
+ * Uses WeakMap so DOM elements removed without explicit cancelAll() can be GC'd.
+ */
+const activeTimeouts = new WeakMap<HTMLElement, number>();
 
-/** CSS custom properties & styles set during animate.css animations */
+/**
+ * Global animationend-listener registry so cancelAll() can remove stale
+ * listeners that would otherwise leak on the DOM element indefinitely.
+ * Uses WeakMap to prevent retaining DOM element references.
+ */
+const activeListeners = new WeakMap<HTMLElement, (e: AnimationEvent) => void>();
+
+/**
+ * Delay-timeout registry — when delay > 0 the engine uses JS setTimeout to
+ * defer class-addition instead of relying solely on the CSS animation-delay
+ * property (which animate.css v4 only honours via utility classes).
+ * Uses WeakMap for GC-friendliness.
+ */
+const activeDelayTimeouts = new WeakMap<HTMLElement, number>();
+
+/** CSS custom-properties and inline styles written during animate.css animations. */
 const ANIMATE_STYLE_PROPS = [
   '--animate-duration',
   '--animate-delay',
   '--animate-repeat',
+  'animation-delay',
   'animation-iteration-count',
   'animation-direction',
   'animation-fill-mode',
@@ -18,27 +37,55 @@ const ANIMATE_STYLE_PROPS = [
 
 /**
  * Remove animate.css artefacts from an element and force a reflow.
- * @param element Target element
- * @param specificClass Specific animate__ class to remove. When omitted, all animate__ classes are removed.
+ * IMPORTANT: Must NOT touch individual CSS transform properties (scale, translate,
+ * rotate) — they are preserved so prior transform interactions compose correctly.
+ * @param specificClass When provided, only that class is removed; otherwise all `animate__*` classes are removed.
  */
 function resetElement(element: HTMLElement, specificClass?: string): void {
   try {
     if (specificClass) {
       element.classList.remove('animate__animated', specificClass);
     } else {
-      Array.from(element.classList)
-        .filter(c => c.startsWith('animate__'))
-        .forEach(c => element.classList.remove(c));
+      for (const cls of Array.from(element.classList)) {
+        if (cls.startsWith('animate__')) element.classList.remove(cls);
+      }
     }
-
     for (const prop of ANIMATE_STYLE_PROPS) {
       element.style.removeProperty(prop);
     }
-    element.style.animation = '';
-    // Force reflow so subsequent class additions reliably restart animation
-    void element.offsetWidth;
-  } catch (_) {
+    element.style.removeProperty('animation');
+    void element.offsetWidth; // force reflow so subsequent class additions restart the animation
+  } catch {
     /* ignore cleanup errors */
+  }
+}
+
+/**
+ * Apply all animation-specific inline CSS properties for the given config.
+ * Called both on initial play and when offScreen=pause brings the element
+ * back into view — ensures custom duration/delay/repeat are always active.
+ */
+function applyAnimationStyles(
+  element: HTMLElement,
+  duration: number,
+  properties: Record<string, any>,
+): void {
+  // Always set duration explicitly so resetElement() -> re-play is consistent.
+  element.style.setProperty('--animate-duration', `${duration}ms`);
+
+  if (properties.delay) {
+    element.style.setProperty('--animate-delay', `${properties.delay}ms`);
+    element.style.setProperty('animation-delay', `${properties.delay}ms`);
+  }
+  if (properties.iterationCount && properties.iterationCount !== 1) {
+    // animate.css v4 reads animation-iteration-count via --animate-repeat.
+    element.style.setProperty('--animate-repeat', String(properties.iterationCount));
+  }
+  if (properties.direction && properties.direction !== 'normal') {
+    element.style.setProperty('animation-direction', properties.direction);
+  }
+  if (properties.fillMode && properties.fillMode !== 'none') {
+    element.style.setProperty('animation-fill-mode', properties.fillMode);
   }
 }
 
@@ -47,170 +94,184 @@ export class AnimateCssAnimationEngine implements AnimationEngine {
     element: HTMLElement,
     properties: Record<string, any>,
     duration: number,
-    _easing?: string
+    _easing?: string,
   ): Promise<{ cancel?: () => void } | void> {
-    const execId = (properties && (properties as any).__executionId) || undefined;
-    if (execId) {
-      try {
-        delete (properties as any).__executionId;
-      } catch (err) {
-        /* ignore */
-      }
-    }
-
-    try {
-      logger.debug('AnimateCssAnimationEngine.animate: started', { execId, elementId: element.id, properties, duration });
-    } catch (err) {
-      /* ignore */
-    }
-    // Check if animate.css is loaded
-    // if (!this.isAnimateCssLoaded()) {
-    //   logger.warn('animate.css not found. Please include animate.css in your project.');
-    //   return;
-    // }
-
     const animationClass = properties.animation || properties.class || 'animate__bounce';
-
-    // Ensure proper animate.css class format
     const formattedAnimationClass = animationClass.startsWith('animate__')
       ? animationClass
       : `animate__${animationClass}`;
 
-    // CLEANUP: ensure any previous animate.css artifacts are removed so adding
-    // classes below will always restart the animation (handles interrupted/infinite runs)
-    resetElement(element);
+    // Remove any previous animate.css artefacts — including any stale
+    // animationend listener — so re-triggering reliably restarts cleanly.
+    this.cancelAll(element);
 
-    // Optionally observe visibility to pause/resume by re-adding classes on re-entry
     let visibilityObserver: IntersectionObserver | undefined;
-    const offScreenMode = (properties && (properties as any).offScreen) || undefined;
 
-    if (offScreenMode === 'pause') {
+    if (properties.offScreen === 'pause') {
       try {
-        visibilityObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            try { logger.debug('AnimateCssAnimationEngine.visibilityObserver: entry', { execId, elementId: element.id, isIntersecting: entry.isIntersecting }); } catch (e) {}
-            if (entry.isIntersecting) {
-              // Re-add classes to restart animation on re-entry
-              element.classList.add('animate__animated', formattedAnimationClass);
-              try { element.style.removeProperty('animation'); } catch (e) {}
-              void element.offsetWidth; // force reflow
-            } else {
-              // Remove classes when leaving view to stop animation
-              element.classList.remove('animate__animated', formattedAnimationClass);
-              try { element.style.animation = ''; } catch (e) {}
+        visibilityObserver = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                // Re-apply classes AND custom CSS vars so duration/delay/etc.
+                // are honoured every time the element re-enters the viewport.
+                resetElement(element, formattedAnimationClass);
+                element.classList.add('animate__animated', formattedAnimationClass);
+                applyAnimationStyles(element, duration, properties);
+                void element.offsetWidth;
+              } else {
+                element.classList.remove('animate__animated', formattedAnimationClass);
+                element.style.removeProperty('animation');
+              }
             }
-          });
-        }, { root: null, rootMargin: '0px', threshold: 0.1 });
-
+          },
+          { root: null, rootMargin: '0px', threshold: 0.1 },
+        );
         visibilityObserver.observe(element);
-      } catch (e) {
+      } catch {
         visibilityObserver = undefined;
       }
     }
 
-    element.classList.add('animate__animated', formattedAnimationClass);
+    // Helper: adds animation classes and styles.  When called from the
+    // deferred-delay path we zero out the CSS delay because JS already
+    // handled the wait.
+    const effectiveDelay = properties.delay || 0;
+    const startAnimation = (applyDelay: boolean) => {
+      element.classList.add('animate__animated', formattedAnimationClass);
+      if (applyDelay) {
+        applyAnimationStyles(element, duration, properties);
+      } else {
+        applyAnimationStyles(element, duration, { ...properties, delay: 0 });
+      }
+    };
 
-    try {
-      logger.debug('AnimateCssAnimationEngine.animate: classes added', { execId, elementId: element.id, formattedAnimationClass, offScreenMode, elementClasses: Array.from(element.classList) });
-    } catch (e) {
-      /* ignore */
-    }
-
-    // Set custom duration if provided
-    if (duration && duration !== 1000) {
-      element.style.setProperty('--animate-duration', `${duration}ms`);
-    }
-
-    // Set custom delay if provided
-    if (properties.delay) {
-      element.style.setProperty('--animate-delay', `${properties.delay}ms`);
-    }
-
-    // Set iteration count if provided
-    if (properties.iterationCount && properties.iterationCount !== 1) {
-      element.style.setProperty('--animate-repeat', properties.iterationCount.toString());
-      element.style.animationIterationCount = properties.iterationCount.toString();
-      try { logger.debug('AnimateCssAnimationEngine.animate: set iteration', { iterationCount: properties.iterationCount }); } catch (e) {}
-    }
-
-    // Set direction if provided
-    if (properties.direction && properties.direction !== 'normal') {
-      element.style.animationDirection = properties.direction;
-    }
-
-    // Set fill mode if provided
-    if (properties.fillMode && properties.fillMode !== 'none') {
-      element.style.animationFillMode = properties.fillMode;
-    }
-
-    // Wait for animation to complete
     return new Promise((resolve) => {
-      let fallbackTimeoutId: number;
+      // Declared up-front (let, not const) so both `cancel` and
+      // `handleAnimationEnd` can reference each other without any
+      // temporal-dead-zone issues — previously `cancel` was defined before
+      // `handleAnimationEnd`, causing a ReferenceError when cancel() was
+      // called on infinite animations.
+      let handleAnimationEnd: ((e: AnimationEvent) => void) | undefined;
 
       const cancel = () => {
-        // Remove event listener
-        element.removeEventListener('animationend', handleAnimationEnd);
-        // Clean up classes and styles
-        resetElement(element, formattedAnimationClass);
-        if (visibilityObserver) {
-          try { visibilityObserver.disconnect(); } catch (e) {}
-          visibilityObserver = undefined;
+        // Clear pending delay-start timeout.
+        const pendingDelayId = activeDelayTimeouts.get(element);
+        if (pendingDelayId !== undefined) {
+          clearTimeout(pendingDelayId);
+          activeDelayTimeouts.delete(element);
         }
+        if (handleAnimationEnd) {
+          element.removeEventListener('animationend', handleAnimationEnd);
+          activeListeners.delete(element);
+        }
+        const fallbackId = activeTimeouts.get(element);
+        if (fallbackId !== undefined) {
+          clearTimeout(fallbackId);
+          activeTimeouts.delete(element);
+        }
+        resetElement(element, formattedAnimationClass);
+        visibilityObserver?.disconnect();
+        visibilityObserver = undefined;
       };
 
-      // For infinite animations, don't wait for animationend
-      if (properties.iterationCount === "infinite") {
-        // Resolve after delay, leaving the animation running
-        setTimeout(() => {
-          try { logger.debug('AnimateCssAnimationEngine.animate: finished (infinite)', { execId, elementId: element.id }); } catch (e) {}
-          resolve({ cancel });
-        }, properties.delay || 0);
+      // Infinite animations resolve immediately, leaving the animation running.
+      if (properties.iterationCount === 'infinite') {
+        if (effectiveDelay > 0) {
+          const delayId = window.setTimeout(() => {
+            activeDelayTimeouts.delete(element);
+            startAnimation(false);
+          }, effectiveDelay);
+          activeDelayTimeouts.set(element, delayId);
+        } else {
+          startAnimation(true);
+        }
+        setTimeout(() => resolve({ cancel }), effectiveDelay);
         return;
       }
 
-      const handleAnimationEnd = () => {
-        try { logger.debug('AnimateCssAnimationEngine.animate: finished', { execId, elementId: element.id }); } catch (e) {}
-        
-        resetElement(element, formattedAnimationClass);
-        
-        if (visibilityObserver) {
-          try { visibilityObserver.disconnect(); } catch (e) {}
-          visibilityObserver = undefined;
+      handleAnimationEnd = (e: AnimationEvent) => {
+        // animationend bubbles — ignore events originating from child elements
+        // to avoid resolving the promise before the parent animation finishes.
+        if (e.target !== element) return;
+
+        logger.debug('AnimateCssAnimationEngine: animationend', { elementId: element.id });
+
+        element.removeEventListener('animationend', handleAnimationEnd!);
+        activeListeners.delete(element);
+
+        const fallbackId = activeTimeouts.get(element);
+        if (fallbackId !== undefined) {
+          clearTimeout(fallbackId);
+          activeTimeouts.delete(element);
         }
-        element.removeEventListener('animationend', handleAnimationEnd);
-        activeTimeouts.delete(element);
+
+        resetElement(element, formattedAnimationClass);
+        visibilityObserver?.disconnect();
+        visibilityObserver = undefined;
+
         resolve({ cancel });
       };
 
       element.addEventListener('animationend', handleAnimationEnd);
+      activeListeners.set(element, handleAnimationEnd);
 
-      // Calculate total animation time for fallback
+      // Start animation — defer class addition when delay > 0 so the
+      // animation truly waits (animate.css v4 only honours --animate-delay
+      // via utility classes, which we don't use).
+      if (effectiveDelay > 0) {
+        const delayId = window.setTimeout(() => {
+          activeDelayTimeouts.delete(element);
+          startAnimation(false);
+        }, effectiveDelay);
+        activeDelayTimeouts.set(element, delayId);
+      } else {
+        startAnimation(true);
+      }
+
       const iterationCount = typeof properties.iterationCount === 'number' ? properties.iterationCount : 1;
-      const totalDuration = (duration || 1000) * iterationCount + (properties.delay || 0);
+      const totalDuration = duration * iterationCount + effectiveDelay;
 
-      // Fallback timeout in case animationend doesn't fire
-      fallbackTimeoutId = window.setTimeout(() => {
-        try { logger.debug('AnimateCssAnimationEngine.animate: fallback finished', { execId, elementId: element.id }); } catch (e) {}
-        
-        resetElement(element, formattedAnimationClass);
-        
-        if (visibilityObserver) {
-          try { visibilityObserver.disconnect(); } catch (e) {}
-          visibilityObserver = undefined;
+      const fallbackId = window.setTimeout(() => {
+        logger.debug('AnimateCssAnimationEngine: fallback timeout fired', { elementId: element.id });
+
+        if (handleAnimationEnd) {
+          element.removeEventListener('animationend', handleAnimationEnd);
+          activeListeners.delete(element);
         }
         activeTimeouts.delete(element);
+
+        resetElement(element, formattedAnimationClass);
+        visibilityObserver?.disconnect();
+        visibilityObserver = undefined;
+
         resolve({ cancel });
       }, totalDuration + 100);
 
-      activeTimeouts.set(element, fallbackTimeoutId);
+      activeTimeouts.set(element, fallbackId);
     });
   }
 
   cancelAll(element: HTMLElement): void {
+    // Clear pending delay-start timeout so a deferred animation doesn't
+    // kick in after the caller has already cancelled everything.
+    const delayId = activeDelayTimeouts.get(element);
+    if (delayId !== undefined) {
+      clearTimeout(delayId);
+      activeDelayTimeouts.delete(element);
+    }
+
     const timeoutId = activeTimeouts.get(element);
-    if (timeoutId) {
+    if (timeoutId !== undefined) {
       clearTimeout(timeoutId);
       activeTimeouts.delete(element);
+    }
+
+    // Remove any live animationend listener so it doesn't fire after cancel.
+    const listener = activeListeners.get(element);
+    if (listener) {
+      element.removeEventListener('animationend', listener);
+      activeListeners.delete(element);
     }
 
     resetElement(element);

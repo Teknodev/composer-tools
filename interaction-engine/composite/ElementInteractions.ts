@@ -7,31 +7,13 @@ import { errorHandler } from '../utils/ErrorHandler';
 import { performanceMonitor } from '../utils/PerformanceMonitor';
 
 /**
- * Performance monitoring data
- */
-interface PerformanceMetrics {
-  executionCount: number;
-  averageExecutionTime: number;
-  lastExecutionTime: number;
-  totalExecutionTime: number;
-  errorCount: number;
-}
-
-/**
  * Manages multiple interactions for a single element
- * Handles lifecycle, priority ordering, and performance monitoring
+ * Handles lifecycle and priority ordering
  */
 export class ElementInteractions implements Disposable {
   private interactions: Interaction[] = [];
   private mounted = false;
   private targetElement?: HTMLElement;
-  private performanceMetrics: PerformanceMetrics = {
-    executionCount: 0,
-    averageExecutionTime: 0,
-    lastExecutionTime: 0,
-    totalExecutionTime: 0,
-    errorCount: 0,
-  };
   private readonly elementId: string;
 
   constructor(elementId?: string) {
@@ -220,13 +202,6 @@ export class ElementInteractions implements Disposable {
   }
 
   /**
-   * Get all interactions (readonly)
-   */
-  getInteractions(): readonly Interaction[] {
-    return [...this.interactions];
-  }
-
-  /**
    * Clear all interactions
    */
   clearInteractions(): void {
@@ -255,71 +230,16 @@ export class ElementInteractions implements Disposable {
   }
 
   /**
-   * Get performance metrics
-   */
-  getPerformanceMetrics(): Readonly<PerformanceMetrics> {
-    // Update metrics from individual interactions
-    let totalExecutions = 0;
-    for (const interaction of this.interactions) {
-      const stats = interaction.getStats();
-      totalExecutions += stats.executionCount;
-    }
-
-    return {
-      ...this.performanceMetrics,
-      executionCount: totalExecutions,
-    };
-  }
-
-  /**
-   * Optimize interactions based on performance
-   */
-  optimizeInteractions(): void {
-    // Sort interactions by priority
-    this.interactions.sort((a, b) => b.getPriority() - a.getPriority());
-    
-    // Clear queues if performance is degrading
-    const metrics = this.getPerformanceMetrics();
-    if (metrics.averageExecutionTime > 100) {
-      logger.warn('Performance degradation detected, clearing queues', {
-        component: 'ElementInteractions',
-        elementId: this.elementId,
-        avgExecutionTime: metrics.averageExecutionTime,
-      });
-      
-      this.interactions.forEach(i => i.clearQueue());
-    }
-
-    logger.debug('Interactions optimized', {
-      component: 'ElementInteractions',
-      elementId: this.elementId,
-      interactionCount: this.interactions.length,
-    });
-  }
-
-  /**
-   * Get element ID
-   */
-  getElementId(): string {
-    return this.elementId;
-  }
-
-  /**
    * Get statistics
    */
   getStats(): {
     interactionCount: number;
     mountedInteractions: number;
-    totalExecutions: number;
     isMounted: boolean;
   } {
-    const mountedInteractions = this.interactions.filter(i => i.isMounted()).length;
-    const metrics = this.getPerformanceMetrics();
-
     return {
       interactionCount: this.interactions.length,
-      mountedInteractions,
-      totalExecutions: metrics.executionCount,
+      mountedInteractions: this.interactions.filter(i => i.isMounted()).length,
       isMounted: this.mounted,
     };
   }
@@ -328,9 +248,7 @@ export class ElementInteractions implements Disposable {
    * Dispose and cleanup all resources
    */
   dispose(): void {
-    this.unmount();
-    
-    // Dispose all interactions
+    // Dispose all interactions (dispose() handles unmounting internally)
     for (const interaction of this.interactions) {
       try {
         interaction.dispose();
@@ -343,11 +261,16 @@ export class ElementInteractions implements Disposable {
       }
     }
     
-    this.clearInteractions();
+    // Clear the array without calling unmount again
+    const clearedCount = this.interactions.length;
+    this.interactions = [];
+    this.mounted = false;
+    this.targetElement = undefined;
 
     logger.debug('ElementInteractions disposed', {
       component: 'ElementInteractions',
       elementId: this.elementId,
+      clearedCount,
     });
   }
 }

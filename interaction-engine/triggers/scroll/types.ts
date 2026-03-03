@@ -37,6 +37,8 @@ export interface OnScrollConfig {
   easing?: string;
   engine?: string;
   animateCssAnimation?: string;
+  /** When true, element is hidden after animation completes. Reversible with replay. */
+  removeOnComplete?: boolean;
 }
 
 /**

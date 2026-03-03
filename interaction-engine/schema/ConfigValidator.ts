@@ -155,6 +155,13 @@ export class ConfigValidator {
     if (config.duration !== undefined && (typeof config.duration !== 'number' || config.duration < 0)) {
       errors.push(`Invalid duration: ${config.duration}`);
     }
+
+    // Warn if removeOnComplete is used with infinite iterations
+    if (config.removeOnComplete && config.iterationCount === 'infinite') {
+      warnings.push(
+        'removeOnComplete has no effect with infinite iterationCount (animation never completes)',
+      );
+    }
   }
 
   private static validateLoopEffectConfig(

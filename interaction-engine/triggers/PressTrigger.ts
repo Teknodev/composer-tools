@@ -69,4 +69,9 @@ export class PressTrigger extends BaseTrigger {
     
     this.target = triggerTarget;
   }
+
+  override detach(): void {
+    this.hasTriggered = false;
+    super.detach();
+  }
 }

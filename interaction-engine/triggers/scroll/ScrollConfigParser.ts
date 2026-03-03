@@ -28,13 +28,16 @@ function parseFromConstructorConfig(raw: OnScrollConfig): OnScrollConfig {
   if (config.minProgressHeight === undefined) config.minProgressHeight = 150;
 
   // Map direct animation properties to custom* properties for progress effects.
+  // Convention: the configured value is the START state (before the element is
+  // fully scrolled into view), and the END state is always the element's
+  // default/initial appearance (opacity=1, scale=1, etc.).
   if (config.opacity !== undefined && config.opacity !== 1) {
-    config.customOpacityEnd = config.opacity;
-    config.customOpacityStart = 0;
+    config.customOpacityStart = config.opacity;
+    config.customOpacityEnd = 1;
   }
   if (config.scale !== undefined && config.scale !== 1) {
-    config.customScaleEnd = config.scale;
-    config.customScaleStart = 0.8;
+    config.customScaleStart = config.scale;
+    config.customScaleEnd = 1;
   }
   if (config.translateX !== undefined) {
     config.customTranslateX =
@@ -171,7 +174,7 @@ function parseFromDataAttributes(target: HTMLElement): OnScrollConfig {
   if (config.threshold === undefined) config.threshold = 0;
   if (config.replay === undefined) config.replay = false;
   if (config.debounceDelay === undefined) config.debounceDelay = 50;
-  if (config.minProgressHeight === undefined) config.minProgressHeight = 80;
+  if (config.minProgressHeight === undefined) config.minProgressHeight = 150;
 
   return config;
 }

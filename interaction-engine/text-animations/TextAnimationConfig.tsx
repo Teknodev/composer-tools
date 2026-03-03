@@ -13,7 +13,9 @@ interface Props {
 export const TextAnimationConfig: React.FC<Props> = ({ config, onChange, onNavigate }) => {
   const handlePresetChange = (preset: string) => {
     const presetData = TEXT_ANIMATION_PRESETS[preset];
-    onChange({ preset, ...presetData.defaultConfig });
+    // Only apply defaultConfig fields from the preset, preserving user's granularity etc.
+    const { granularity, ...rest } = config;
+    onChange({ preset, ...presetData.defaultConfig, granularity });
   };
 
   const handleGranularityChange = (granularity: GranularityType) => {
