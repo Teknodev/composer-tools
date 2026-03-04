@@ -10,71 +10,63 @@ as *;
       display: flex;
       flex: 1;
       align-items: center;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .left-section {
         flex: 1;
-        min-width: 250px;
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
 
         .card-1 {
-          display: flex;
-          flex-direction: column;
           align-items: baseline;
 
           .title,
-          .subtitle {
-            text-align: left !important;
+          .subtitle,
+          .description {
+            text-align: left;
             margin-left: 0;
             word-break: break-word;
+          }
+
+          .description {
+            color: var(--composer-font-color-primary);
+          }
+
+          .buttons-container {
+            display: flex;
+            gap: var(--composer-gap-md);
+            flex-wrap: wrap;
+
+            .button-wrapper {
+              display: flex;
+
+              .button {
+                .button-text {
+                  content: "";
+                }
+              }
+            }
           }
         }
       }
 
       .right-section {
-        flex: 4;
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
+        flex: 2;
 
         .content {
           display: flex;
           flex: 1;
-          gap: var(--composer-gap-xl);
+          gap: var(--composer-gap-lg);
           flex-wrap: wrap;
 
-          .card-2 {
-            color: var(--composer-font-color-primary);
-            display: flex;
+          .right-column-card {
             flex: 1;
-            min-width: 250px;
 
-            .left-text {
-              color: var(--composer-tertiary-color);
-              text-align: justify;
-              word-break: break-word;
-            }
-          }
-
-          .card-3 {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-width: 250px;
-            gap: var(--composer-gap-md);
-
-            .right-text {
+            .text {
               color: var(--composer-tertiary-color);
               text-align: justify;
               word-break: break-word;
             }
 
             .information {
-              display: flex;
-              flex-direction: column;
-              gap: var(--composer-gap-xs);
               align-items: flex-start;
 
               .name {
@@ -87,86 +79,9 @@ as *;
                 text-align: left;
               }
             }
-          }
-
-          .content-right-section-empty {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-            min-width: 250px;
-            gap: var(--composer-gap-md);
-
-            .left-text {
-              color: var(--composer-tertiary-color);
-              text-align: justify;
-            }
-
-            .information-below-text1 {
-              display: flex;
-              flex-direction: column;
-              gap: var(--composer-gap-xs);
-              align-items: flex-start;
-
-              .name {
-                color: var(--composer-primary-color);
-                text-align: left;
-              }
-
-              .job-title {
-                color: var(--composer-tertiary-color);
-                text-align: left;
-              }
-            }
-          }
-        }
-
-        .content-column {
-          display: flex;
-          flex-direction: column;
-          flex: 1;
-          gap: var(--composer-gap-md);
-
-          .information {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-xs);
-            align-self: flex-start;
-            align-items: flex-start;
-
-            .name {
-              color: var(--composer-primary-color);
-              text-align: left;
-            }
-
-            .job-title {
-              color: var(--composer-tertiary-color);
-              text-align: left;
-            }
-          }
-
-          .card-2,
-          .card-3,
-          .content-right-section-empty {
-            display: none;
           }
         }
       }
-    }
-
-    .description-mobile {
-      text-align: left !important;
-      margin-left: 0;
-      color: var(--composer-font-color-primary);
-      word-break: break-word;
-      display: none;
-    }
-
-    .description-desktop {
-      text-align: left !important;
-      margin-left: 0;
-      color: var(--composer-font-color-primary);
-      word-break: break-word;
-      display: block;
     }
   }
 }
@@ -175,14 +90,6 @@ as *;
   .container {
     .max-content {
       gap: 0px;
-
-      .description-mobile {
-        display: block;
-      }
-
-      .description-desktop {
-        display: none;
-      }
     }
   }
 }
@@ -192,12 +99,10 @@ as *;
     .max-content {
       .main-wrapper {
         flex-direction: column;
-        gap: var(--composer-gap-md);
 
         .left-section,
         .right-section {
-          width: 100% !important;
-          min-width: 0 !important;
+          width: 100%;
         }
 
         .left-section {
@@ -210,46 +115,20 @@ as *;
 
         .right-section {
           order: 2;
-        }
 
-        .right-section {
           .content {
-            flex-direction: column !important;
-            gap: var(--composer-gap-md) !important;
+            flex-direction: column;
 
-            .card-2,
-            .card-3,
-            .content-right-section-empty {
-              min-width: auto !important;
-              width: 100% !important;
-            }
+            .right-column-card {
+              width: 100%;
+              gap: var(--composer-gap-md);
 
-            .content-right-section-empty {
-              gap: var(--composer-gap-md) !important;
-
-              .information-below-text1 {
-                align-items: flex-start !important;
+              .information {
+                align-items: flex-start;
               }
             }
           }
-
-          .content-column {
-            gap: var(--composer-gap-md) !important;
-
-            .information {
-              align-self: flex-start !important;
-              align-items: flex-start !important;
-            }
-          }
         }
-      }
-
-      .description-mobile {
-        display: block;
-      }
-
-      .description-desktop {
-        display: none;
       }
     }
   }

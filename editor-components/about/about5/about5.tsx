@@ -1,6 +1,8 @@
 import styles from "./about5.module.scss";
 import { BaseAbout } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 
 class About5 extends BaseAbout {
@@ -50,6 +52,12 @@ class About5 extends BaseAbout {
             displayer: "Job Title",
             value: "Strategy Manager"
         })
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+        });
     }
 
     static getName(): string {
@@ -57,34 +65,20 @@ class About5 extends BaseAbout {
     }
 
     render() {
-        const subtitle = this.getPropValue("subtitle");
-        const title = this.getPropValue("title");
-        const description = this.getPropValue("description");
-        const text1 = this.getPropValue("text1");
-        const text2 = this.getPropValue("text2");
-        const name = this.getPropValue("name");
-        const jobTitle = this.getPropValue("jobTitle");
+        const subtitleStr = this.castToString(this.getPropValue("subtitle"));
+        const titleStr = this.castToString(this.getPropValue("title"));
+        const descriptionStr = this.castToString(this.getPropValue("description"));
+        const text1Str = this.castToString(this.getPropValue("text1"));
+        const text2Str = this.castToString(this.getPropValue("text2"));
+        const nameStr = this.castToString(this.getPropValue("name"));
+        const jobTitleStr = this.castToString(this.getPropValue("jobTitle"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-        const subtitleStr = this.castToString(subtitle);
-        const titleStr = this.castToString(title);
-        const descriptionStr = this.castToString(description);
-        const text1Str = this.castToString(text1);
-        const text2Str = this.castToString(text2);
-        const nameStr = this.castToString(name);
-        const jobTitleStr = this.castToString(jobTitle);
+        const hasValidButtons = buttons.some((button) => this.castToString(button.text));
 
-        const showCard1 = titleStr || subtitleStr || descriptionStr;
-        const showCard2 = !!text1Str;
-        const showCard3 = text2Str || nameStr || jobTitleStr;
+        const showCard1 = titleStr || subtitleStr || descriptionStr || hasValidButtons;
         const showInformation = nameStr || jobTitleStr;
-        const showRightSection = showCard2 || showCard3;
-
-        const isText1Empty = !text1Str;
-        const isText2Empty = !text2Str;
-
-        const areBothTextsEmpty = isText1Empty && isText2Empty;
-
-        const contentClass = areBothTextsEmpty ? "content-column" : "content";
+        const showRightSection = text1Str || text2Str || showInformation;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -96,18 +90,35 @@ class About5 extends BaseAbout {
                                 <Base.VerticalContent className={this.decorateCSS("card-1")}>
                                     {subtitleStr && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                            {subtitle}
+                                            {this.getPropValue("subtitle")}
                                         </Base.SectionSubTitle>
                                     )}
                                     {titleStr && (
                                         <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {title}
+                                            {this.getPropValue("title")}
                                         </Base.SectionTitle>
                                     )}
                                     {descriptionStr && (
-                                        <Base.SectionDescription className={this.decorateCSS("description-mobile")}>
-                                            {description}
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {this.getPropValue("description")}
                                         </Base.SectionDescription>
+                                    )}
+
+                                    {hasValidButtons && (
+                                        <div className={this.decorateCSS("buttons-container")}>
+                                            {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                                const buttonText = this.castToString(button.text);
+                                                if (!buttonText) return null;
+
+                                                return (
+                                                    <ComposerLink key={index} path={button.url}>
+                                                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                );
+                                            })}
+                                        </div>
                                     )}
                                 </Base.VerticalContent>
 
@@ -116,81 +127,54 @@ class About5 extends BaseAbout {
 
                         {showRightSection && (
                             <div className={this.decorateCSS("right-section")}>
-                                <div className={this.decorateCSS(contentClass)}>
-                                    {areBothTextsEmpty ? (
-                                        showInformation && (
-                                            <div className={this.decorateCSS("information")}>
-                                                {nameStr && (
-                                                    <Base.P className={this.decorateCSS("name")}>
-                                                        {name}
-                                                    </Base.P>
-                                                )}
-                                                {jobTitleStr && (
-                                                    <Base.P className={this.decorateCSS("job-title")}>
-                                                        {jobTitle}
-                                                    </Base.P>
-                                                )}
-                                            </div>
-                                        )
-                                    ) : (
-                                        isText2Empty ? (
-                                            <div className={this.decorateCSS("content-right-section-empty")}>
-                                                {showCard2 && (
-                                                    <Base.P className={this.decorateCSS("left-text")}>
-                                                        {text1}
-                                                    </Base.P>
-                                                )}
-                                                {showInformation && (
-                                                    <div className={this.decorateCSS("information-below-text1")}>
-                                                        {nameStr && (
-                                                            <Base.P className={this.decorateCSS("name")}>
-                                                                {name}
-                                                            </Base.P>
-                                                        )}
-                                                        {jobTitleStr && (
-                                                            <Base.P className={this.decorateCSS("job-title")}>
-                                                                {jobTitle}
-                                                            </Base.P>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        ) : (
-                                            <>
-                                                {showCard2 && (
-                                                    <div className={this.decorateCSS("card-2")}>
-                                                        {text1Str && (
-                                                            <Base.P className={this.decorateCSS("left-text")}>
-                                                                {text1}
-                                                            </Base.P>
-                                                        )}
-                                                    </div>
-                                                )}
-                                                {showCard3 && (
-                                                    <div className={this.decorateCSS("card-3")}>
-                                                        {text2Str && (
-                                                            <Base.P className={this.decorateCSS("right-text")}>
-                                                                {text2}
-                                                            </Base.P>
-                                                        )}
-                                                        {showInformation && (
-                                                            <div className={this.decorateCSS("information")}>
-                                                                {nameStr && (
-                                                                    <Base.P className={this.decorateCSS("name")}>
-                                                                        {name}
-                                                                    </Base.P>
-                                                                )}
-                                                                {jobTitleStr && (
-                                                                    <Base.P className={this.decorateCSS("job-title")}>
-                                                                        {jobTitle}
-                                                                    </Base.P>
-                                                                )}
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </>
-                                        )
+                                <div className={this.decorateCSS("content")}>
+                                    {text1Str && (
+                                        <Base.VerticalContent className={this.decorateCSS("right-column-card")}>
+                                            <Base.P className={this.decorateCSS("text")}>
+                                                {this.getPropValue("text1")}
+                                            </Base.P>
+                                            {/* Render info under text1 if text2 is empty */}
+                                            {showInformation && !text2Str && (
+                                                <Base.VerticalContent className={this.decorateCSS("information")}>
+                                                    {nameStr && (
+                                                        <Base.P className={this.decorateCSS("name")}>
+                                                            {this.getPropValue("name")}
+                                                        </Base.P>
+                                                    )}
+                                                    {jobTitleStr && (
+                                                        <Base.P className={this.decorateCSS("job-title")}>
+                                                            {this.getPropValue("jobTitle")}
+                                                        </Base.P>
+                                                    )}
+                                                </Base.VerticalContent>
+                                            )}
+                                        </Base.VerticalContent>
+                                    )}
+
+                                    {/* Only show the second card if there is text2 or if text1 is also empty (meaning info needs a home) */}
+                                    {(text2Str || (showInformation && !text1Str)) && (
+                                        <Base.VerticalContent className={this.decorateCSS("right-column-card")}>
+                                            {text2Str && (
+                                                <Base.P className={this.decorateCSS("text")}>
+                                                    {this.getPropValue("text2")}
+                                                </Base.P>
+                                            )}
+                                            {/* Render info normally in the second card if text2 exists (or if both texts are completely empty) */}
+                                            {showInformation && (text2Str || !text1Str) && (
+                                                <Base.VerticalContent className={this.decorateCSS("information")}>
+                                                    {nameStr && (
+                                                        <Base.P className={this.decorateCSS("name")}>
+                                                            {this.getPropValue("name")}
+                                                        </Base.P>
+                                                    )}
+                                                    {jobTitleStr && (
+                                                        <Base.P className={this.decorateCSS("job-title")}>
+                                                            {this.getPropValue("jobTitle")}
+                                                        </Base.P>
+                                                    )}
+                                                </Base.VerticalContent>
+                                            )}
+                                        </Base.VerticalContent>
                                     )}
                                 </div>
                             </div>
@@ -198,11 +182,6 @@ class About5 extends BaseAbout {
 
 
                     </div>
-                    {descriptionStr && (
-                        <Base.SectionDescription className={this.decorateCSS("description-desktop")}>
-                            {description}
-                        </Base.SectionDescription>
-                    )}
                 </Base.MaxContent>
             </Base.Container>
         )
