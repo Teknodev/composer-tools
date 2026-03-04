@@ -13,7 +13,7 @@
 
             .card {
                 background-color: var(--composer-primary-color);
-                padding: var(--composer-gap-xl);
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
                 margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
                 border-radius: var(--composer-border-radius-md);
             }
@@ -62,7 +62,7 @@
 
     .card {
         background-color: var(--composer-primary-color);
-        padding: 80px 50px;
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
         margin: 0;
 
         .text-block .subtitle,
@@ -84,7 +84,7 @@
 
     .content-wrapper {
         width: 100%;
-        padding: 80px 50px;
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
     }
 
     .header {
@@ -152,10 +152,18 @@
         &.has-background {
             .max-content {
                 .card {
-                    padding: var(--composer-gap-lg);
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
                     margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
                 }
             }
+        }
+
+        .card {
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+        }
+
+        .content-wrapper {
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
 
         .text-block {
@@ -182,10 +190,18 @@
         &.has-background {
             .max-content {
                 .card {
-                    padding: var(--composer-gap-md);
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
                     margin: var(--composer-gap-xl) var(--composer-gap-md) !important;
                 }
             }
+        }
+
+        .card {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
+        }
+
+        .content-wrapper {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
 
         .max-content {
@@ -219,11 +235,14 @@
         }
 
         .button-wrapper {
+            justify-content: flex-start;
+            margin: 0;
+
             .button-group {
                 margin-left: 0;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: center;
+                justify-content: flex-start;
             }
         }
     }

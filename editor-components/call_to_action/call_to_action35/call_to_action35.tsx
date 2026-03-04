@@ -86,7 +86,7 @@ class CallToAction35 extends BaseCallToAction {
         const alignment = Base.getContentAlignment();
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${background && this.decorateCSS("has-background")}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${background && hasBackgroundImage && this.decorateCSS("has-background")}`}>
                 {hasBackgroundImage && (
                     <div className={this.decorateCSS("background-section")}>
                         <div className={this.decorateCSS("background-wrapper")}>
