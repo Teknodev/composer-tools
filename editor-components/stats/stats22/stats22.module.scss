@@ -81,46 +81,49 @@
     flex-direction: column;
 
     .left {
-      align-items: center;
-
-      .subtitle,
-      .title,
-      .description {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      // Mobile: show description here (between title and button)
       .description {
         display: revert;
-      }
-
-      .button-container {
-        justify-content: center;
       }
     }
 
     .right {
-      align-items: center;
       gap: var(--composer-gap-md);
 
-      // Mobile: hide description from right (shown in left instead)
       .description {
         display: none;
       }
 
-      .stats-grid {
-        .card {
-          align-items: center;
+      .stats-grid .card .stat-value {
+        .stat-prefix,
+        .stat-number,
+        .stat-suffix {
+          font-size: 3rem;
+        }
+      }
+    }
 
-          .stat-value {
-            .stat-prefix,
-            .stat-number,
-            .stat-suffix {
-              font-size: 3rem;
-            }
-          }
+    &.alignment-center {
+      .left {
+        align-items: center;
+
+        .subtitle,
+        .title,
+        .description {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .button-container {
+          justify-content: center;
+        }
+      }
+
+      .right {
+        align-items: center;
+
+        .stats-grid .card {
+          align-items: center;
 
           .stat-subtitle,
           .stat-title,

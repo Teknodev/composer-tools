@@ -247,11 +247,12 @@ class Stats22 extends BaseStats {
 
     const hasLeft = subtitle || title || description || buttons.length > 0;
     const hasRight = description || statItems.length > 0;
+    const alignment = Base.getContentAlignment() || "left";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
+          <Base.ContainerGrid className={`${this.decorateCSS("wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
             {hasLeft && (
               <Base.GridCell>
                 <Base.VerticalContent className={this.decorateCSS("left")}>
