@@ -67,6 +67,7 @@ as *;
             }
 
             .information {
+              align-self: flex-start;
               align-items: flex-start;
 
               .name {
@@ -82,14 +83,6 @@ as *;
           }
         }
       }
-    }
-  }
-}
-
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      gap: 0px;
     }
   }
 }
@@ -122,10 +115,6 @@ as *;
             .right-column-card {
               width: 100%;
               gap: var(--composer-gap-md);
-
-              .information {
-                align-items: flex-start;
-              }
             }
           }
         }
