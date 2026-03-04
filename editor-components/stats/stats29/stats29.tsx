@@ -9,6 +9,7 @@ type StatItem = {
   prefix: string;
   number: string;
   suffix: string;
+  subtitle: string;
   title: string;
   description: string;
   titleElement: JSX.Element;
@@ -147,11 +148,12 @@ class Stats29 extends BaseStats {
       };
     }, [targetNumber, statsAnimation, animationDuration, originalString]);
 
+    const subtitleExist = this.castToString(stat.subtitle);
     const titleExist = this.castToString(stat.title);
     const descriptionExist = this.castToString(stat.description);
     const valueExist = this.castToString(originalString);
 
-    if (!valueExist && !titleExist && !descriptionExist) return null;
+    if (!valueExist && !subtitleExist && !titleExist && !descriptionExist) return null;
 
     return (
       <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -171,6 +173,11 @@ class Stats29 extends BaseStats {
               </span>
             )}
           </span>
+        )}
+        {subtitleExist && (
+          <Base.P className={this.decorateCSS("stat-subtitle")}>
+            {stat.subtitle}
+          </Base.P>
         )}
         {titleExist && (
           <Base.H2 className={this.decorateCSS("stat-title")}>
@@ -202,9 +209,10 @@ class Stats29 extends BaseStats {
       const prefix = this.castToString(item.prefix) || "";
       const number = this.castToString(item.number) || "0";
       const suffix = this.castToString(item.suffix) || "";
+      const subtitle = this.castToString(item.subtitle) || "";
       const title = this.castToString(item.title) || "";
       const description = this.castToString(item.description) || "";
-      return { prefix, number, suffix, title, titleElement: item.title, description, descriptionElement: item.description };
+      return { prefix, number, suffix, subtitle, title, titleElement: item.title, description, descriptionElement: item.description };
     });
 
     const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
@@ -233,27 +241,26 @@ class Stats29 extends BaseStats {
                       {description}
                     </Base.SectionDescription>
                   )}
+                  {hasValidButtons && (
+                    <div className={this.decorateCSS("button-container")}>
+                      {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                        const buttonText = this.castToString(button.text);
+                        if (buttonText)
+                          return (
+                            <ComposerLink key={index} path={button.url}>
+                              <Base.Button
+                                buttonType={button.type}
+                                className={this.decorateCSS("button")}
+                              >
+                                <span className={this.decorateCSS("button-text")}>{buttonText}</span>
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        return null;
+                      })}
+                    </div>
+                  )}
                 </Base.VerticalContent>
-
-                {hasValidButtons && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                      const buttonText = this.castToString(button.text);
-                      if (buttonText)
-                        return (
-                          <ComposerLink key={index} path={button.url}>
-                            <Base.Button
-                              buttonType={button.type}
-                              className={this.decorateCSS("button")}
-                            >
-                              {buttonText}
-                            </Base.Button>
-                          </ComposerLink>
-                        );
-                      return null;
-                    })}
-                  </div>
-                )}
               </div>
 
               {stats?.length > 0 && (
