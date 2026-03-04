@@ -38,7 +38,9 @@ class About4 extends BaseAbout {
             type: "array",
             key: "buttons",
             displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link")],
+            value: [
+                INPUTS.BUTTON("button", "Button", "Read More", "", null, null, "Link"),
+            ],
         });
     }
 
@@ -48,43 +50,42 @@ class About4 extends BaseAbout {
 
     render() {
 
-        const subTitle = this.getPropValue("subTitle");
-        const title = this.getPropValue("title");
-        const leftText = this.getPropValue("leftText");
-        const rightText = this.getPropValue("rightText");
+        const subTitleStr = this.castToString(this.getPropValue("subTitle"));
+        const titleStr = this.castToString(this.getPropValue("title"));
+        const leftTextStr = this.castToString(this.getPropValue("leftText"));
+        const rightTextStr = this.castToString(this.getPropValue("rightText"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((button) => this.castToString(button.text));
-        const singleText = (this.castToString(leftText) && !this.castToString(rightText)) || (!this.castToString(leftText) && this.castToString(rightText));
+        const singleText = (leftTextStr && !rightTextStr) || (!leftTextStr && rightTextStr);
 
-
-        const showContent = this.castToString(subTitle) || this.castToString(title) || this.castToString(leftText) || this.castToString(rightText) || hasValidButtons;
-        const showTextContainer = this.castToString(leftText) || this.castToString(rightText);
+        const showContent = subTitleStr || titleStr || leftTextStr || rightTextStr || hasValidButtons;
+        const showTextContainer = leftTextStr || rightTextStr;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContent && (
                         <Base.VerticalContent className={this.decorateCSS("content")}>
-                            {this.castToString(subTitle) && (
+                            {subTitleStr && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {subTitle}
+                                    {this.getPropValue("subTitle")}
                                 </Base.SectionSubTitle>
                             )}
-                            {this.castToString(title) && (
+                            {titleStr && (
                                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                                    {title}
+                                    {this.getPropValue("title")}
                                 </Base.SectionTitle>
                             )}
                             {showTextContainer && (
                                 <div className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
-                                    {this.castToString(leftText) && (
+                                    {leftTextStr && (
                                         <Base.SectionDescription className={this.decorateCSS("left-text")}>
-                                            {leftText}
+                                            {this.getPropValue("leftText")}
                                         </Base.SectionDescription>
                                     )}
-                                    {this.castToString(rightText) && (
+                                    {rightTextStr && (
                                         <Base.SectionDescription className={this.decorateCSS("right-text")}>
-                                            {rightText}
+                                            {this.getPropValue("rightText")}
                                         </Base.SectionDescription>
                                     )}
                                 </div>
@@ -96,13 +97,11 @@ class About4 extends BaseAbout {
                                         if (!this.castToString(button.text)) return null;
 
                                         return (
-                                            <div key={index} className={this.decorateCSS("button-wrapper")}>
-                                                <ComposerLink path={button.url}>
-                                                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            </div>
+                                            <ComposerLink key={index} path={button.url}>
+                                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
                                         );
                                     })}
                                 </div>
