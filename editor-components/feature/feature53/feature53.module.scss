@@ -16,8 +16,10 @@
     }
 
     .tabs {
+      gap: var(--composer-gap-lg);
       .tab-buttons {
         display: flex;
+        gap: var(--composer-gap-sm);
 
         .tab-button {
           padding: var(--composer-gap-sm) var(--composer-gap-md);
@@ -51,6 +53,7 @@
         .tab-content {
           display: flex;
           align-items: stretch;
+          gap: var(--composer-gap-lg);
           opacity: 0;
           visibility: hidden;
           pointer-events: none;
@@ -81,7 +84,7 @@
           }
 
           .content-description {
-            color: var(--composer-tertiary-color);
+            color: var(--composer-font-color-primary);
           }
 
           .button-container {

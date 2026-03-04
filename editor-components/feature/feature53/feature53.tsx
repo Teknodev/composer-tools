@@ -405,43 +405,45 @@ class Feature53 extends BaseFeature {
                     </Base.H6>
                   )}
 
-                  <div className={this.decorateCSS("tab-content")}>
-                    {contentExist && (
-                      <Base.VerticalContent className={this.decorateCSS("content")}>
-                        {tabSubtitleExist && (
-                          <Base.H4 className={this.decorateCSS("content-subtitle")}>{tab.subtitle}</Base.H4>
-                        )}
-                        {tabTitleExist && (
-                          <Base.H2 className={this.decorateCSS("content-title")}>{tab.title}</Base.H2>
-                        )}
-                        {tabDescriptionExist && (
-                          <Base.P className={this.decorateCSS("content-description")}>{tab.description}</Base.P>
-                        )}
-                        {hasAnyButton && (
-                          <div className={this.decorateCSS("button-container")}>
-                            {buttons.map((button, btnIndex) => {
-                              const buttonTextExist = this.castToString(button.text);
-                              return (
-                                buttonTextExist && (
-                                  <ComposerLink key={`feature53-btn-${index}-${btnIndex}`} path={button.url}>
-                                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                    </Base.Button>
-                                  </ComposerLink>
-                                )
-                              );
-                            })}
-                          </div>
-                        )}
-                      </Base.VerticalContent>
-                    )}
-                    {hasMedia && (
-                      <div className={this.decorateCSS("media-container")}>
-                        <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
-                        {overlayEnabled && <div className={this.decorateCSS("overlay")} />}
-                      </div>
-                    )}
-                  </div>
+                  {(contentExist || hasMedia) && (
+                    <div className={this.decorateCSS("tab-content")}>
+                      {contentExist && (
+                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                          {tabSubtitleExist && (
+                            <Base.H4 className={this.decorateCSS("content-subtitle")}>{tab.subtitle}</Base.H4>
+                          )}
+                          {tabTitleExist && (
+                            <Base.H2 className={this.decorateCSS("content-title")}>{tab.title}</Base.H2>
+                          )}
+                          {tabDescriptionExist && (
+                            <Base.P className={this.decorateCSS("content-description")}>{tab.description}</Base.P>
+                          )}
+                          {hasAnyButton && (
+                            <div className={this.decorateCSS("button-container")}>
+                              {buttons.map((button, btnIndex) => {
+                                const buttonTextExist = this.castToString(button.text);
+                                return (
+                                  buttonTextExist && (
+                                    <ComposerLink key={`feature53-btn-${index}-${btnIndex}`} path={button.url}>
+                                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  )
+                                );
+                              })}
+                            </div>
+                          )}
+                        </Base.VerticalContent>
+                      )}
+                      {hasMedia && (
+                        <div className={this.decorateCSS("media-container")}>
+                          <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
+                          {overlayEnabled && <div className={this.decorateCSS("overlay")} />}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
