@@ -202,7 +202,7 @@
           align-items: flex-start;
           justify-content: center;
           width: 100%;
-          margin-right: 100px !important;
+          margin-right: 100px;
 
           &:hover {
             color: var(--color-white);
@@ -231,7 +231,7 @@
             flex-shrink: 0;
             width: max-content;
             font-weight: 500;
-            font-size: 6.5rem;
+            font-size: 6rem;
 
             &.active {
               color: var(--color-white);
@@ -346,6 +346,10 @@
         .card {
           .button-wrapper {
             font-size: 3rem;
+
+            .title-text {
+              font-size: 4.5rem;
+            }
           }
         }
       }
@@ -396,6 +400,7 @@
 
           .button-wrapper {
             font-size: 2rem;
+            margin-right: 70px !important;
 
             .title-text {
               font-size: 2.75rem;

@@ -249,6 +249,13 @@ class Slider2 extends BaseSlider {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "followUsText",
       displayer: "Bottom Text",
@@ -358,12 +365,6 @@ class Slider2 extends BaseSlider {
       },
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
 
     this.setComponentState("active_index", 0);
