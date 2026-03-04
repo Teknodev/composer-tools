@@ -18,6 +18,10 @@
 
         .button {
             content: "";
+
+            .button-text {
+                content: "";
+            }
         }
     }
 }
@@ -81,8 +85,6 @@
     }
 }
 
-.stats-grid {
-}
 
 @container (max-width: #{$composer-tablet-width}) {
     .stat-value {
