@@ -1,6 +1,6 @@
 import styles from "./download7.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseDownload , TypeMediaInputValue} from "../../EditorComponent";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
@@ -94,7 +94,7 @@ class Download7 extends BaseDownload {
             {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             {buttons?.length > 0 && (
-              <Base.Row className={this.decorateCSS("buttons-container")}>
+              <div className={this.decorateCSS("buttons-container")}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                   const buttonTextExist = this.castToString(item?.text);
                   const iconExist = item.icon && item.icon.name;
@@ -112,7 +112,7 @@ class Download7 extends BaseDownload {
                     </ComposerLink>
                   );
                 })}
-              </Base.Row>
+              </div>
             )}
           </Base.VerticalContent >
         </Base.MaxContent >

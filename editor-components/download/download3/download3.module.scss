@@ -76,11 +76,10 @@
           align-self: center;
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
-          align-items: flex-end;
           width: 20%;
 
           .button-image {
-            @include button-image(170px, 50px);
+            @include button-image(144px, 42px);
           }
 
           .button-element {
@@ -91,7 +90,6 @@
             .button-icon {
               line-height: 0;
             }
-
           }
         }
       }
@@ -99,40 +97,39 @@
 
     .group-container-center {
       .vertical-content-center {
-        width: 100%;
-      }
+        align-items: center;
 
-      .subtitle {
-        margin-left: 0;
-        margin-right: 0;
-        width: fit-content;
-      }
+        .subtitle {
+          text-align: center;
+          width: fit-content;
+        }
 
-      .title,
-      .description {
-        content: "";
-      }
+        .title,
+        .description {
+          content: "";
+        }
 
-      .button-group {
-        display: flex;
-        gap: var(--composer-gap-sm);
-        flex-wrap: wrap;
-        justify-content: center;
+        .button-group {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          justify-content: center;
 
-        .button {
-          .button-image {
-            @include button-image(170px, 50px);
-          }
-
-          .button-element {
-            .button-text {
-              content: "";
+          .button {
+            .button-image {
+              @include button-image(144px, 42px);
             }
 
-            .button-icon {
-              line-height: 0;
-            }
+            .button-element {
+              .button-text {
+                content: "";
+              }
 
+              .button-icon {
+                line-height: 0;
+              }
+
+            }
           }
         }
       }
@@ -163,16 +160,18 @@
 
           .button-group {
             .button-image {
-              @include button-image(150px, 45px);
+              @include button-image(141px, 43px);
             }
           }
         }
 
         .group-container-center {
-          .button-group {
-            .button {
-              .button-image {
-                @include button-image(150px, 45px);
+          .vertical-content-center {
+            .button-group {
+              .button {
+                .button-image {
+                  @include button-image(141px, 43px);
+                }
               }
             }
           }
@@ -196,7 +195,6 @@
         .group-container-left {
           flex-direction: column;
           gap: var(--composer-gap-md);
-          align-items: flex-start;
 
           .title-block {
             width: 100%;
@@ -216,16 +214,18 @@
             flex-direction: row;
 
             .button-image {
-              @include button-image(120px, 32px);
+              @include button-image(109px, 29px);
             }
           }
         }
 
         .group-container-center {
-          .button-group {
-            .button {
-              .button-image {
-                @include button-image(120px, 32px);
+          .vertical-content-center {
+            .button-group {
+              .button {
+                .button-image {
+                  @include button-image(109px, 29px);
+                }
               }
             }
           }

@@ -31,8 +31,8 @@
         gap: var(--composer-gap-sm);
 
         .button-image {
-          height: 50px;
-          width: 170px;
+          height: 42px;
+          width: 145px;
           object-fit: cover;
           border-radius: var(--composer-border-radius-sm);
         }
@@ -80,8 +80,8 @@
       .vertical-content {
         .button-group {
           .button-image {
-            height: 45px;
-            width: 150px;
+            height: 43px !important;
+            width: 144px !important;
           }
         }
       }
@@ -95,8 +95,8 @@
       .vertical-content {
         .button-group {
           .button-image {
-            height: 33px;
-            width: 120px;
+            height: 29px !important;
+            width: 116px !important;
           }
         }
       }

@@ -97,19 +97,8 @@
       flex-wrap: wrap;
 
       .button {
-        .button-image {
-          height: var(--composer-gap-lg);
-          width: 141px;
-          object-fit: cover;
-          border-radius: var(--composer-border-radius-sm);
-        }
-
         .button-text {
           content: "";
-        }
-
-        .button-icon {
-          line-height: 0;
         }
       }
     }

@@ -1,6 +1,6 @@
 import styles from "./download3.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseDownload, TypeMediaInputValue} from "../../EditorComponent";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
@@ -138,33 +138,33 @@ class Download3 extends BaseDownload {
                       {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                       {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                       {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                    </Base.VerticalContent>
-                  )}
-                  {buttons.length > 0 && (
-                    <div className={this.decorateCSS("button-group")}>
-                      {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
-                        const buttonTextExist = this.castToString(item.text);
-                        const iconExist = item.icon && item.icon.name;
-                        const imageExist = item.image && item.image.url;
-                        const buttonExist = buttonTextExist || iconExist || imageExist;
-                        return buttonExist && (
-                          <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
-                            <ComposerLink path={item.url}>
-                              <div className={this.decorateCSS("button-link")}>
-                                {imageExist ? (
-                                  <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
-                                ) : (
-                                  <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
-                                    {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
-                                    {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                                  </Base.Button>
-                                )}
+                      {buttons.length > 0 && (
+                        <Base.Row className={this.decorateCSS("button-group")}>
+                          {this.castToObject<INPUTS.CastedButton[]>("buttons").map((item: INPUTS.CastedButton, index: number) => {
+                            const buttonTextExist = this.castToString(item.text);
+                            const iconExist = item.icon && item.icon.name;
+                            const imageExist = item.image && item.image.url;
+                            const buttonExist = buttonTextExist || iconExist || imageExist;
+                            return buttonExist && (
+                              <div key={`dw-3-btn-${index}`} className={this.decorateCSS("button")}>
+                                <ComposerLink path={item.url}>
+                                  <div className={this.decorateCSS("button-link")}>
+                                    {imageExist ? (
+                                      <Base.Media value={item.image} className={this.decorateCSS("button-image")} />
+                                    ) : (
+                                      <Base.Button buttonType={item.type} className={this.decorateCSS("button-element")}>
+                                        {iconExist && <Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />}
+                                        {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                                      </Base.Button>
+                                    )}
+                                  </div>
+                                </ComposerLink>
                               </div>
-                            </ComposerLink>
-                          </div>
-                        );
-                      })}
-                    </div>
+                            );
+                          })}
+                        </Base.Row>
+                      )}
+                    </Base.VerticalContent>
                   )}
                 </div>
               )}

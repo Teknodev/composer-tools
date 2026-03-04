@@ -95,10 +95,6 @@
         .card-description {
           text-align: center;
         }
-
-        .buttons-container {
-          align-items: center;
-        }
       }
     }
 
@@ -172,8 +168,8 @@
         gap: var(--composer-gap-sm);
 
         .button-image {
-          height: 50px;
-          width: 170px;
+          height: 42px;
+          width: 157px;
           border-radius: var(--composer-border-radius-sm);
           object-fit: cover;
         }
@@ -238,7 +234,7 @@
 
           .buttons-container {
             .button-image {
-              height: 45px !important;
+              height: 40px !important;
               width: 150px !important;
             }
           }
@@ -267,8 +263,8 @@
 
           .buttons-container {
             .button-image {
-              height: 32px !important;
-              width: 120px !important;
+              height: 40px !important;
+              width: 150px !important;
             }
           }
         }
