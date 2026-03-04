@@ -1,10 +1,15 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about3.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+
+type ImageMedia = {
+  image: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class About3 extends BaseAbout {
   constructor(props?: any) {
@@ -141,6 +146,7 @@ class About3 extends BaseAbout {
 
   render() {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
     const isAboutTitleExist = this.castToString(
       this.getPropValue("subtitle")
@@ -157,8 +163,8 @@ class About3 extends BaseAbout {
     const isRightBoldTextExist = this.castToString(
       this.getPropValue("rightBoldText")
     );
-    const backImage = this.castToObject<any>("back-image");
-    const frontImage = this.castToObject<any>("front-image");
+    const backImage = this.castToObject<ImageMedia>("back-image");
+    const frontImage = this.castToObject<ImageMedia>("front-image");
     const backMedia = backImage?.image;
     const frontMedia = frontImage?.image;
     const isImage1Exist = backImage?.image;
@@ -172,7 +178,7 @@ class About3 extends BaseAbout {
       isAboutTitleExist ||
       isMainTitleExist ||
       isDescriptionExist ||
-      buttons.length > 0 ||
+      hasValidButtons ||
       isPhoneExist;
     const noImages = !isImage1Exist && !isImage2Exist;
 
@@ -203,37 +209,41 @@ class About3 extends BaseAbout {
                 </Base.SectionDescription>
               )}
 
-              <div className={this.decorateCSS("button-container")}>
-                {buttons.length > 0 && (
-                  <div className={this.decorateCSS("buttons-wrapper")}>
-                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
-                      <div key={index} className={this.decorateCSS("button-wrapper")}>
-                        {this.castToString(button.text) && (
-                          <ComposerLink path={button.url}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
+              {(hasValidButtons || isPhoneExist) && (
+                <div className={this.decorateCSS("button-container")}>
+                  {hasValidButtons && (
+                    <div className={this.decorateCSS("buttons-wrapper")}>
+                      {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                        if (!this.castToString(button.text)) return null;
 
-                {(this.getPropValue("phoneIcon") || isPhoneExist) && (
-                  <div className={this.decorateCSS("phone-section")}>
-                    <Base.Media
-                      value={this.getPropValue("phoneIcon")}
-                      className={this.decorateCSS("icon")}
-                    />
-                    {isPhoneExist && (
-                      <Base.H6 className={this.decorateCSS("text")}>
-                        {this.getPropValue("phone")}
-                      </Base.H6>
-                    )}
-                  </div>
-                )}
-              </div>
+                        return (
+                          <div key={index} className={this.decorateCSS("button-wrapper")}>
+                            <ComposerLink path={button.url}>
+                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {(this.getPropValue("phoneIcon") || isPhoneExist) && (
+                    <div className={this.decorateCSS("phone-section")}>
+                      <Base.Media
+                        value={this.getPropValue("phoneIcon")}
+                        className={this.decorateCSS("icon")}
+                      />
+                      {isPhoneExist && (
+                        <Base.H6 className={this.decorateCSS("text")}>
+                          {this.getPropValue("phone")}
+                        </Base.H6>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
 
