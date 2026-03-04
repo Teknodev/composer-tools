@@ -148,68 +148,50 @@ class About3 extends BaseAbout {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
-    const isAboutTitleExist = this.castToString(
-      this.getPropValue("subtitle")
-    );
-    const isMainTitleExist = this.castToString(this.getPropValue("title"));
-    const isDescriptionExist = this.castToString(
-      this.getPropValue("description")
-    );
+    const subtitleStr = this.castToString(this.getPropValue("subtitle"));
+    const titleStr = this.castToString(this.getPropValue("title"));
+    const descriptionStr = this.castToString(this.getPropValue("description"));
 
-    const isPhoneExist = this.castToString(this.getPropValue("phone"));
-    const isRightWeakTextExist = this.castToString(
-      this.getPropValue("rightWeakText")
-    );
-    const isRightBoldTextExist = this.castToString(
-      this.getPropValue("rightBoldText")
-    );
+    const phoneStr = this.castToString(this.getPropValue("phone"));
+    const rightWeakTextStr = this.castToString(this.getPropValue("rightWeakText"));
+    const rightBoldTextStr = this.castToString(this.getPropValue("rightBoldText"));
+
     const backImage = this.castToObject<ImageMedia>("back-image");
     const frontImage = this.castToObject<ImageMedia>("front-image");
     const backMedia = backImage?.image;
     const frontMedia = frontImage?.image;
-    const isImage1Exist = backImage?.image;
-    const isImage2Exist = frontImage?.image;
-    const showDiv =
-      isRightWeakTextExist ||
-      isRightBoldTextExist ||
-      isImage1Exist ||
-      isImage2Exist;
-    const showLeftDiv =
-      isAboutTitleExist ||
-      isMainTitleExist ||
-      isDescriptionExist ||
-      hasValidButtons ||
-      isPhoneExist;
+
+    const isImage1Exist = !!backMedia;
+    const isImage2Exist = !!frontMedia;
+    const phoneIconValue = this.getPropValue("phoneIcon");
+    const hasPhoneSection = phoneIconValue || phoneStr;
+
+    const showDiv = rightWeakTextStr || rightBoldTextStr || isImage1Exist || isImage2Exist;
+    const showLeftDiv = subtitleStr || titleStr || descriptionStr || hasValidButtons || hasPhoneSection;
     const noImages = !isImage1Exist && !isImage2Exist;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${noImages ? this.decorateCSS("no-images") : ""}`}>
           {showLeftDiv && (
-            <Base.VerticalContent
-              className={this.decorateCSS("title-container")}
-            >
-              {isAboutTitleExist && (
-                <Base.SectionSubTitle
-                  className={this.decorateCSS("subtitle")}
-                >
-                  {this.getPropValue("subtitle")}
+            <Base.VerticalContent className={this.decorateCSS("title-container")}>
+              {subtitleStr && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitleStr}
                 </Base.SectionSubTitle>
               )}
-              {isMainTitleExist && (
+              {titleStr && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
+                  {titleStr}
                 </Base.SectionTitle>
               )}
-              {isDescriptionExist && (
-                <Base.SectionDescription
-                  className={this.decorateCSS("description")}
-                >
-                  {this.getPropValue("description")}
+              {descriptionStr && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {descriptionStr}
                 </Base.SectionDescription>
               )}
 
-              {(hasValidButtons || isPhoneExist) && (
+              {(hasValidButtons || hasPhoneSection) && (
                 <div className={this.decorateCSS("button-container")}>
                   {hasValidButtons && (
                     <div className={this.decorateCSS("buttons-wrapper")}>
@@ -217,27 +199,24 @@ class About3 extends BaseAbout {
                         if (!this.castToString(button.text)) return null;
 
                         return (
-                          <div key={index} className={this.decorateCSS("button-wrapper")}>
-                            <ComposerLink path={button.url}>
-                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                              </Base.Button>
-                            </ComposerLink>
-                          </div>
+                          <ComposerLink key={index} path={button.url}>
+                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            </Base.Button>
+                          </ComposerLink>
                         );
                       })}
                     </div>
                   )}
 
-                  {(this.getPropValue("phoneIcon") || isPhoneExist) && (
+                  {hasPhoneSection && (
                     <div className={this.decorateCSS("phone-section")}>
-                      <Base.Media
-                        value={this.getPropValue("phoneIcon")}
-                        className={this.decorateCSS("icon")}
-                      />
-                      {isPhoneExist && (
+                      {phoneIconValue && (
+                        <Base.Media value={phoneIconValue} className={this.decorateCSS("icon")} />
+                      )}
+                      {phoneStr && (
                         <Base.H6 className={this.decorateCSS("text")}>
-                          {this.getPropValue("phone")}
+                          {phoneStr}
                         </Base.H6>
                       )}
                     </div>
@@ -254,16 +233,16 @@ class About3 extends BaseAbout {
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
 
-                {(isImage1Exist || isImage2Exist) && (isRightWeakTextExist || isRightBoldTextExist) && (
+                {(isImage1Exist || isImage2Exist) && (rightWeakTextStr || rightBoldTextStr) && (
                   <div className={this.decorateCSS("image-text")}>
-                    {isRightWeakTextExist && (
+                    {rightWeakTextStr && (
                       <Base.P className={this.decorateCSS("upper-text")}>
-                        {this.getPropValue("rightWeakText")}
+                        {rightWeakTextStr}
                       </Base.P>
                     )}
-                    {isRightBoldTextExist && (
+                    {rightBoldTextStr && (
                       <Base.H2 className={this.decorateCSS("lower-text")}>
-                        {this.getPropValue("rightBoldText")}
+                        {rightBoldTextStr}
                       </Base.H2>
                     )}
                   </div>

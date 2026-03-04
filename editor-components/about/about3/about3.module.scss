@@ -39,18 +39,12 @@
                     gap: var(--composer-gap-md);
                     flex-wrap: wrap;
 
-                    .button-wrapper {
-                        .button {
+                    .button {
+                        .button-text {
                             content: "";
-
-                            .button-text {
-                                content: "";
-                            }
                         }
                     }
                 }
-
-
 
                 .phone-section {
                     display: flex;
