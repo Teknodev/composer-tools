@@ -48,9 +48,14 @@ class About1 extends BaseAbout {
       value: "We are a creative agency distinctively defined by our commitment to design excellence and innovation.",
     });
 
-    this.addProp(
-      INPUTS.BUTTON("icon", "Button", "", "", "GoChevronDown", "", "Bare")
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", "GoChevronDown", "", "Bare"),
+      ],
+    });
 
     this.addProp({
       type: "media",
@@ -266,14 +271,15 @@ class About1 extends BaseAbout {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("sectionTitle");
     const description = this.getPropValue("description");
-    const icon = this.castToObject<ButtonType>("icon");
+    const buttons = this.castToObject<ButtonType[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || btn.image?.url || btn.icon?.name);
     const rightItems = this.castToObject<Icon[]>("right-items")
     const textContent = this.castToObject<ListItem[]>("items");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
-          {(this.castToString(subtitle) || this.castToString(title) || icon) && (
+          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || hasValidButtons) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
               {this.castToString(subtitle) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -285,25 +291,36 @@ class About1 extends BaseAbout {
                   {title}
                 </Base.SectionTitle>
               )}
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
-              {(icon?.image?.url || icon?.icon?.name || this.castToString(icon.text)) && (
-                <ComposerLink path={icon.url}>
-                  <Base.Button buttonType={icon.type} className={`${this.decorateCSS("button")} ${icon.type === "Bare" && this.decorateCSS("button-bare")}`}>
-                    {this.castToString(icon.text) && (
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {icon.text}
-                      </Base.P>
-                    )}
-                    {(icon.image?.url || icon.icon?.name) && (
-                      <Base.Media
-                        value={icon.image?.url ? { type: "image", url: icon.image.url } : { type: "icon", name: icon.icon?.name }}
-                        className={this.decorateCSS("icon")}
-                      />
-                    )}
-                  </Base.Button>
-                </ComposerLink>
+              {this.castToString(description) && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: ButtonType, index: number) => {
+                    const hasContent = this.castToString(item.text) || item.image?.url || item.icon?.name;
+                    if (!hasContent) return null;
+
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={`${this.decorateCSS("button")} ${item.type === "Bare" && this.decorateCSS("button-bare")}`}>
+                          {this.castToString(item.text) && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text}
+                            </Base.P>
+                          )}
+                          {(item.image?.url || item.icon?.name) && (
+                            <Base.Media
+                              value={item.image?.url ? { type: "image", url: item.image.url } : { type: "icon", name: item.icon?.name }}
+                              className={this.decorateCSS("icon")}
+                            />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
