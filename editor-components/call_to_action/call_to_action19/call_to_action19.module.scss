@@ -198,6 +198,9 @@
 
             .right-section .right-vertical-content {
                 gap: var(--composer-gap-sm);
+                .featured-list-items{
+                    margin-top: 0 !important;
+                }
             }
         }
     }
