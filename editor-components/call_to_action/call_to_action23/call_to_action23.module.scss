@@ -170,12 +170,16 @@
       .main-row {
         flex-direction: column;
         text-align: center;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-md); 
       }
 
       .header-group .vertical-content {
         align-items: center !important;
         text-align: center !important;
+
+        > * {
+          margin: 0 !important;
+        }
 
         .subtitle,
         .title,
