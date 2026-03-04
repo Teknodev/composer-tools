@@ -1,0 +1,201 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+
+    .heading {
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
+
+    .tabs {
+      .tab-buttons {
+        display: flex;
+
+        .tab-button {
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
+          border-radius: 999px;
+          cursor: pointer;
+          color: var(--composer-font-color-primary);
+          background-color: transparent;
+          transition: background-color var(--composer-transition-duration-normal) ease, color var(--composer-transition-duration-normal) ease;
+          white-space: nowrap;
+          width: auto;
+
+          &.active {
+            background-color: var(--composer-primary-color);
+            color: var(--composer-font-color-secondary);
+          }
+        }
+      }
+
+      .tab-content-area {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        .tab {
+          grid-area: 1 / 1;
+          margin-bottom: 0;
+
+          .tab-header {
+          display: none;
+        }
+
+        .tab-content {
+          display: flex;
+          align-items: stretch;
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transition: opacity var(--composer-transition-duration-normal) ease;
+        }
+
+        &.active .tab-content {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+
+        .content {
+          flex: 1;
+          justify-content: center;
+          align-items: flex-start;
+          text-align: left;
+
+          .content-subtitle,
+          .content-title,
+          .content-description {
+            text-align: left;
+          }
+
+          .content-subtitle,
+          .content-title {
+            color: var(--composer-font-color-primary);
+          }
+
+          .content-description {
+            color: var(--composer-tertiary-color);
+          }
+
+          .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+
+            .button {
+              .button-text {
+                content: "";
+              }
+            }
+          }
+        }
+
+        .media-container {
+          flex: 1;
+          position: relative;
+          display: flex;
+          overflow: hidden;
+          border-radius: var(--composer-border-radius-sm);
+
+          .media {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+          }
+
+          .overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--composer-overlay-color);
+            pointer-events: none;
+          }
+        }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .tabs {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+
+        &.tablet-closed-default .tab-content-area .tab.active .tab-content {
+          display: none;
+        }
+
+        .tab-buttons {
+          display: none;
+        }
+
+        .tab-content-area {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .tab-content-area .tab {
+          &:not(:last-child) {
+            margin-bottom: var(--composer-gap-sm);
+          }
+
+          border-bottom: var(--composer-border-width-xs) solid
+            color-mix(
+              in srgb,
+              var(--composer-font-color-primary) 15%,
+              transparent
+            );
+
+          .tab-header {
+            display: block;
+            padding: var(--composer-gap-md) 0;
+            cursor: pointer;
+            color: var(--composer-font-color-primary);
+            transition: color var(--composer-transition-duration-normal) ease;
+
+            &.active {
+              color: var(--composer-primary-color);
+            }
+          }
+
+          .tab-content {
+            display: none;
+            position: static;
+          }
+
+          &.active .tab-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .tabs {
+        .tab-content-area .tab {
+          .media-container {
+            .media {
+              aspect-ratio: 16/9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
