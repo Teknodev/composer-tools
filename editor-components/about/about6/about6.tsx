@@ -122,10 +122,6 @@ class About6 extends BaseAbout {
                                     <Base.Media
                                         value={this.getPropValue("signature")}
                                         className={this.decorateCSS("signature-image")}
-                                        autoPlay={true}
-                                        loop={true}
-                                        controls={true}
-                                        muted={true}
                                     />
                                 </div>
                             )}
