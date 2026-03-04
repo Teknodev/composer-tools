@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: calc(var(--composer-gap-lg) * 2) 0px !important;
+  padding: calc(var(--composer-gap-lg) * 2) 0px calc(var(--composer-gap-lg) * 3) 0px !important;
 
   .max-content {
     display: flex;
@@ -171,7 +171,7 @@
           width: 45px;
           cursor: pointer;
           top: auto;
-          bottom: -65px;
+          bottom: -85px;
           padding: 0;
           border: 1px solid var(--composer-tertiary-color);
           border-radius: 50%;
@@ -226,7 +226,7 @@
         }
 
         :global(.slick-dots) {
-          bottom: -70px;
+          bottom: -90px;
           display: flex !important;
           justify-content: center;
           align-items: center;
@@ -285,7 +285,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-xl);
 
       .vertical-content {
         padding: 0 var(--composer-gap-lg);
@@ -297,7 +297,7 @@
         :global(.slick-next) {
           height: 35px;
           width: 35px;
-          bottom: -60px;
+          bottom: -80px;
 
           &:before {
             font-size: 8px;
@@ -318,7 +318,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-xl) 0px !important;
+    padding: var(--composer-gap-xl) 0px calc(var(--composer-gap-lg) * 4) 2px !important;
 
     .max-content {
 
@@ -362,7 +362,7 @@
           :global(.slick-next) {
             height: 30px;
             width: 30px;
-            bottom: -40px;
+            bottom: -90px;
           }
 
           :global(.slick-prev) {
@@ -382,7 +382,7 @@
           }
 
           :global(.slick-dots) {
-            bottom: -50px;
+            bottom: -30px;
           }
         }
       }
