@@ -62,6 +62,10 @@
                 .stat-item {
                     align-items: flex-start;
 
+                    &>*:not(:last-child) {
+                        margin-bottom: 0 !important;
+                    }
+
                     .stat-value {
                         color: var(--composer-primary-color);
                         display: flex;
@@ -80,6 +84,10 @@
                     .stat-description {
                         text-align: left;
                         color: var(--composer-font-color-primary);
+                    }
+
+                    .stat-description {
+                        margin-top: var(--composer-gap-md);
                     }
                 }
             }
