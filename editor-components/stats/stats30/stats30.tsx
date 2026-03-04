@@ -68,6 +68,12 @@ export class Stats30Page extends BaseStats {
                             value: "Experienced team members",
                         },
                         {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                        {
                             type: "number",
                             key: "number",
                             displayer: "Number",
@@ -93,6 +99,12 @@ export class Stats30Page extends BaseStats {
                             value: "Days of product development",
                         },
                         {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                        {
                             type: "number",
                             key: "number",
                             displayer: "Number",
@@ -111,7 +123,7 @@ export class Stats30Page extends BaseStats {
     getColoredBackground() {
         return this.getPropValue("coloredBackground") ? this.decorateCSS("colored-background") : "";
     }
-    private AnimatedCard = ({ card, coloredBackgroundClass }: { card: any, coloredBackgroundClass: string }) => {
+    AnimatedCard = ({ card, coloredBackgroundClass, alignment }: { card: any, coloredBackgroundClass: string, alignment: string }) => {
         const [animatedNumber, setAnimatedNumber] = React.useState<string>("0");
         const ref = React.useRef<HTMLDivElement>(null);
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -162,14 +174,21 @@ export class Stats30Page extends BaseStats {
         };
 
         return (
-            <div ref={ref} className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`}>
-                <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
+            <div ref={ref} className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`} data-alignment={alignment}>
+                <Base.H6 className={this.decorateCSS("card-subtitle")}>
                     {card.subtitle}
-                </Base.SectionSubTitle>
-                <Base.SectionTitle className={this.decorateCSS("card-title")}>
+                </Base.H6>
+                <Base.H2 className={this.decorateCSS("card-title")}>
                     {card.title}
-                </Base.SectionTitle>
-                <div className={this.decorateCSS("separator")}></div>
+                </Base.H2>
+
+
+                {this.castToString(card.description) && (
+                    <Base.P className={this.decorateCSS("card-description")}>
+                        {card.description}
+                    </Base.P>
+                )}
+
                 <div className={this.decorateCSS("card-number")}>
                     {animatedNumber}
                 </div>
@@ -182,6 +201,7 @@ export class Stats30Page extends BaseStats {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+        const alignment = Base.getContentAlignment();
 
         const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
@@ -189,42 +209,21 @@ export class Stats30Page extends BaseStats {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {hasTopSection && (
-                        <div className={this.decorateCSS("header-container")}>
+                        <div className={this.decorateCSS("header-container")} data-alignment={alignment}>
                             {subtitleExist && (
-                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                <Base.H6 className={this.decorateCSS("subtitle")}>
                                     {this.getPropValue("subtitle")}
-                                </Base.SectionSubTitle>
+                                </Base.H6>
                             )}
                             {titleExist && (
-                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                <Base.H2 className={this.decorateCSS("title")}>
                                     {this.getPropValue("title")}
-                                </Base.SectionTitle>
+                                </Base.H2>
                             )}
                             {descriptionExist && (
-                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                <Base.P className={this.decorateCSS("description")}>
                                     {this.getPropValue("description")}
-                                </Base.SectionDescription>
-                            )}
-                            {hasValidButtons && (
-                                <div className={this.decorateCSS("button-container")}>
-                                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                        const buttonText = this.castToString(item.text);
-                                        if (!buttonText) return null;
-
-                                        return (
-                                            <div key={index}>
-                                                <Base.Button
-                                                    buttonType={item.type}
-                                                    className={this.decorateCSS("button")}
-                                                >
-                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                        {item.text}
-                                                    </Base.P>
-                                                </Base.Button>
-                                            </div>
-                                        );
-                                    })}
-                                </div>
+                                </Base.P>
                             )}
                         </div>
                     )}
@@ -236,8 +235,29 @@ export class Stats30Page extends BaseStats {
                                     key={index}
                                     card={card}
                                     coloredBackgroundClass={this.getColoredBackground()}
+                                    alignment={alignment}
                                 />
                             ))}
+                        </div>
+                    )}
+                    {hasValidButtons && (
+                        <div className={this.decorateCSS("bottom-action-container")}>
+                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                const buttonText = this.castToString(item.text);
+                                if (!buttonText) return null;
+                                return (
+                                    <div key={index}>
+                                        <Base.Button
+                                            buttonType={item.type}
+                                            className={this.decorateCSS("button")}
+                                        >
+                                            <Base.P className={this.decorateCSS("button-text")}>
+                                                {item.text}
+                                            </Base.P>
+                                        </Base.Button>
+                                    </div>
+                                );
+                            })}
                         </div>
                     )}
                 </Base.MaxContent>

@@ -29,7 +29,7 @@
 
             .card {
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                padding: 10%;
+                padding: var(--composer-gap-xl);
                 border-radius: var(--composer-border-radius-md);
                 display: flex;
                 flex-direction: column;
@@ -49,11 +49,6 @@
                     text-align: left;
                     width: 100%;
                     margin: 0;
-
-                    // &::before,
-                    // &::after {
-                    //     display: none;
-                    // }
                 }
 
                 .card-title {
@@ -62,9 +57,46 @@
                 }
 
                 .card-number {
-                    font-size: calc(20px + 20vmin);
+                    font-size: 14rem;
                     font-weight: 400;
                     color: var(--composer-primary-color);
+                    text-align: left;
+
+                    @container (max-width: #{$composer-tablet-width}) {
+                        font-size: 15rem;
+                    }
+
+                    @container (max-width: #{$composer-phone-width}) {
+                        font-size: 10rem;
+                    }
+                }
+
+                &[data-alignment="center"] {
+                    text-align: center;
+
+                    .card-subtitle,
+                    .card-title,
+                    .card-description {
+                        text-align: center !important;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                    }
+                }
+
+            }
+
+            .bottom-action-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: var(--composer-gap-xl);
+                margin-bottom: var(--composer-gap-xl);
+
+                .button {
+                    .button-text {
+                        text-align: center;
+                    }
                 }
             }
         }
