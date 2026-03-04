@@ -267,10 +267,10 @@ class About1 extends BaseAbout {
     return "About 1";
   }
   render() {
-    const image = this.getPropValue("image");
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("sectionTitle");
-    const description = this.getPropValue("description");
+    const imageValue = this.getPropValue("image");
+    const subtitleStr = this.castToString(this.getPropValue("subtitle"));
+    const titleStr = this.castToString(this.getPropValue("sectionTitle"));
+    const descriptionStr = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<ButtonType[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || btn.image?.url || btn.icon?.name);
     const rightItems = this.castToObject<Icon[]>("right-items")
@@ -279,21 +279,21 @@ class About1 extends BaseAbout {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
-          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || hasValidButtons) && (
+          {(subtitleStr || titleStr || descriptionStr || hasValidButtons) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {this.castToString(subtitle) && (
+              {subtitleStr && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(title) && (
+              {titleStr && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {title}
+                  {this.getPropValue("sectionTitle")}
                 </Base.SectionTitle>
               )}
-              {this.castToString(description) && (
+              {descriptionStr && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {hasValidButtons && (
@@ -325,13 +325,13 @@ class About1 extends BaseAbout {
             </Base.VerticalContent>
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
-            {image && (
+            {imageValue && (
               <Base.GridCell
                 className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 <Base.Media
-                  value={this.getPropValue("image")}
+                  value={imageValue}
                   className={this.decorateCSS("image")}
                 />
                 {this.getPropValue("overlay") && (
@@ -342,8 +342,8 @@ class About1 extends BaseAbout {
             )}
             {textContent.length > 0 && (
               <Base.GridCell className={this.decorateCSS("content-right")}>
-                {textContent.map((item) => (
-                  <Base.VerticalContent className={this.decorateCSS("item")}>
+                {textContent.map((item, index) => (
+                  <Base.VerticalContent key={index} className={this.decorateCSS("item")}>
                     {this.castToString(item.title) && (
                       <Base.H4 className={this.decorateCSS("title")}>
                         {item.title}
@@ -361,10 +361,10 @@ class About1 extends BaseAbout {
           </Base.ContainerGrid>
           {rightItems.length > 0 && (
             <div className={this.decorateCSS("icons")}>
-              {rightItems.map((icons: Icon) => {
+              {rightItems.map((icons: Icon, index: number) => {
                 return (
                   icons.icon && (
-                    <ComposerLink path={icons.link}>
+                    <ComposerLink key={index} path={icons.link}>
                       <Base.Media
                         value={icons.icon}
                         className={this.decorateCSS("icon-item")}
