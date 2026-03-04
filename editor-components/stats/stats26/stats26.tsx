@@ -157,25 +157,27 @@ class Stats26 extends BaseStats {
         const suffixExist = this.castToString(stat.suffix);
         const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <>
                 <div className={this.decorateCSS("stat-row")}>
-                    <Base.VerticalContent className={this.decorateCSS("stat-label")}>
-                        {subtitleExist && (
-                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                                {stat.subtitleElement}
-                            </Base.H6>
-                        )}
-                        {titleExist && (
-                            <Base.H5 className={this.decorateCSS("stat-title")}>
-                                {stat.titleElement}
-                            </Base.H5>
-                        )}
-                    </Base.VerticalContent>
-                    <div className={this.decorateCSS("stat-value-container")}>
-                        {(valueExist || suffixExist) && (
+                    {(subtitleExist || titleExist) && (
+                        <Base.VerticalContent className={this.decorateCSS("stat-label")}>
+                            {subtitleExist && (
+                                <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                                    {stat.subtitleElement}
+                                </Base.H6>
+                            )}
+                            {titleExist && (
+                                <Base.H5 className={this.decorateCSS("stat-title")}>
+                                    {stat.titleElement}
+                                </Base.H5>
+                            )}
+                        </Base.VerticalContent>
+                    )}
+                    {(valueExist || suffixExist) && (
+                        <div className={this.decorateCSS("stat-value-container")}>
                             <span className={this.decorateCSS("stat-value")}>
                                 {stat.prefix && (
                                     <span className={this.decorateCSS("stat-prefix")}>
@@ -191,15 +193,15 @@ class Stats26 extends BaseStats {
                                     </span>
                                 )}
                             </span>
-                        )}
-                    </div>
-                    <div className={this.decorateCSS("stat-description-container")}>
-                        {descriptionExist && (
+                        </div>
+                    )}
+                    {descriptionExist && (
+                        <div className={this.decorateCSS("stat-description-container")}>
                             <Base.P className={this.decorateCSS("stat-description")}>
                                 {stat.descriptionElement}
                             </Base.P>
-                        )}
-                    </div>
+                        </div>
+                    )}
                 </div>
                 {enableDivider && <div className={this.decorateCSS("divider")} />}
             </>
