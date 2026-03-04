@@ -4,6 +4,7 @@ import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type SliderItem = {
   media: TypeMediaInputValue;
@@ -55,6 +56,7 @@ class Slider4 extends BaseSlider {
           displayer: "Description",
           value: "Experience top-notch features with our services",
         },
+        INPUTS.BUTTON("button", "Button", "", "", "", null),
         {
           type: "media",
           key: "previousArrow",
@@ -319,7 +321,7 @@ class Slider4 extends BaseSlider {
     });
 
     this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
-      dots: true,
+      dots: false,
       arrows: true,
       infinite: true,
       speed: 500,
@@ -394,6 +396,14 @@ class Slider4 extends BaseSlider {
     const controlDescription = controls["description"];
     const nextArrow = controls["nextArrow"];
     const previousArrow = controls["previousArrow"];
+
+    const controlButton = {
+      text: this.getPropValue("text", { parent_object: controls["button"] }),
+      type: this.getPropValue("type", { parent_object: controls["button"] }),
+      url: this.getPropValue("url", { parent_object: controls["button"] }),
+      icon: this.getPropValue("icon", { parent_object: controls["button"] })
+    };
+
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const sliderRef = this.getComponentState("slider-ref");
 
@@ -408,10 +418,20 @@ class Slider4 extends BaseSlider {
             </Base.VerticalContent>
           )}
           <Base.ContainerGrid className={this.decorateCSS("down-page")}>
-            {(this.castToString(controlTitle) || this.castToString(controlDescription) || previousArrow || nextArrow) && (
+            {(this.castToString(controlTitle) || this.castToString(controlDescription) || previousArrow || nextArrow || (this.castToString(controlButton.text) || (controlButton.icon && (controlButton.icon)?.name))) && (
               <Base.VerticalContent className={this.decorateCSS("control-part")}>
                 {this.castToString(controlTitle) && <Base.H4 className={this.decorateCSS("control-title")}>{controlTitle}</Base.H4>}
                 {this.castToString(controlDescription) && <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
+                {(this.castToString(controlButton.text) || (controlButton.icon && (controlButton.icon)?.name)) && (
+                  <div className={this.decorateCSS("control-button")}>
+                    <ComposerLink path={controlButton.url}>
+                      <Base.Button buttonType={controlButton.type}>
+                        {this.castToString(controlButton.text) && (<Base.P className={this.decorateCSS("control-button-text")}>{controlButton.text}</Base.P>)}
+                        {controlButton.icon && (controlButton.icon)?.name && (<Base.Media value={controlButton.icon} className={this.decorateCSS("control-button-icon")} />)}
+                      </Base.Button>
+                    </ComposerLink>
+                  </div>
+                )}
                 {showArrows && (previousArrow || nextArrow) && (
                   <div className={this.decorateCSS("arrows")}>
                     {previousArrow && (
@@ -428,7 +448,7 @@ class Slider4 extends BaseSlider {
                 )}
               </Base.VerticalContent>
             )}
-            <div className={`${this.decorateCSS("slider-parent")}  ${!this.castToString(controlTitle) && !this.castToString(controlDescription) && !previousArrow && !nextArrow && this.decorateCSS("no-control-part")}`}>
+            <div className={`${this.decorateCSS("slider-parent")}  ${!this.castToString(controlTitle) && !this.castToString(controlDescription) && !previousArrow && !nextArrow && !(this.castToString(controlButton.text) || (controlButton.icon && (controlButton.icon)?.name)) && this.decorateCSS("no-control-part")}`}>
               <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
                 {cards.map((item: SliderItem, index: number) => (
                   <div className={this.decorateCSS("slide-wrapper")} key={index}>

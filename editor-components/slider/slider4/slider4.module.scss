@@ -27,7 +27,7 @@
         flex: 1;
         overflow: hidden;
         flex-direction: column;
-        justify-content: start;
+        justify-content: center;
         text-align: left;
         padding: var(--composer-gap-md);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -73,6 +73,16 @@
                 color: var(--composer-font-color-secondary);
               }
             }
+          }
+        }
+
+        .control-button {
+          .control-button-text {
+            content: "";
+          }
+
+          .control-button-icon {
+            line-height: 0;
           }
         }
       }
@@ -223,6 +233,7 @@
       display: flex;
       gap: var(--composer-gap-sm);
       flex-wrap: wrap;
+      justify-content: center;
 
       .button-text {
         content: "";
