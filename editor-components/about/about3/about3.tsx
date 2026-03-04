@@ -177,17 +177,17 @@ class About3 extends BaseAbout {
             <Base.VerticalContent className={this.decorateCSS("title-container")}>
               {subtitleStr && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitleStr}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
               {titleStr && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {titleStr}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
               {descriptionStr && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {descriptionStr}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
 
@@ -216,7 +216,7 @@ class About3 extends BaseAbout {
                       )}
                       {phoneStr && (
                         <Base.H6 className={this.decorateCSS("text")}>
-                          {phoneStr}
+                          {this.getPropValue("phone")}
                         </Base.H6>
                       )}
                     </div>
@@ -237,12 +237,12 @@ class About3 extends BaseAbout {
                   <div className={this.decorateCSS("image-text")}>
                     {rightWeakTextStr && (
                       <Base.P className={this.decorateCSS("upper-text")}>
-                        {rightWeakTextStr}
+                        {this.getPropValue("rightWeakText")}
                       </Base.P>
                     )}
                     {rightBoldTextStr && (
                       <Base.H2 className={this.decorateCSS("lower-text")}>
-                        {rightBoldTextStr}
+                        {this.getPropValue("rightBoldText")}
                       </Base.H2>
                     )}
                   </div>

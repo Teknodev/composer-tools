@@ -163,17 +163,17 @@ class About2 extends BaseAbout {
             >
               {subtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
               {title && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
               {description && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {hasValidButtons && (
