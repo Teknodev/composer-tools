@@ -55,12 +55,14 @@
 
             .stat-subtitle,
             .stat-title {
+              text-align: left;
               content: "";
             }
           }
         }
 
         .stat-desc {
+          text-align: left;
           color: var(--composer-font-color-primary);
         }
       }
