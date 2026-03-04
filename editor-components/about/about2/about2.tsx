@@ -163,17 +163,17 @@ class About2 extends BaseAbout {
             >
               {subtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
+                  {subtitle}
                 </Base.SectionSubTitle>
               )}
               {title && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
+                  {title}
                 </Base.SectionTitle>
               )}
               {description && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
+                  {description}
                 </Base.SectionDescription>
               )}
               {hasValidButtons && (
@@ -189,7 +189,7 @@ class About2 extends BaseAbout {
                             buttonType={item.type}
                             className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
                           >
-                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       );
@@ -204,7 +204,7 @@ class About2 extends BaseAbout {
                         buttonType={item.type}
                         className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
                       >
-                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                        <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
                       </Base.Button>
                     );
                   })}
