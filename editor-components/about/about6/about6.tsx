@@ -35,7 +35,7 @@ class About6 extends BaseAbout {
             key: "signature",
             displayer: "Media",
             additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video"],
             },
             value: {
                 type: "image",
@@ -50,24 +50,24 @@ class About6 extends BaseAbout {
         })
     }
 
-  static getName(): string {
-    return "About 6";
-  }
+    static getName(): string {
+        return "About 6";
+    }
 
     render() {
-        const subTitle = this.getPropValue("subtitle");
-        const title = this.getPropValue("title");
-        const leftText = this.getPropValue("leftText");
-        const rightText = this.getPropValue("rightText");
+        const subTitleStr = this.castToString(this.getPropValue("subtitle"));
+        const titleStr = this.castToString(this.getPropValue("title"));
+        const leftTextStr = this.castToString(this.getPropValue("leftText"));
+        const rightTextStr = this.castToString(this.getPropValue("rightText"));
         const signature = this.getPropValue("signature");
-        const name = this.getPropValue("name");
+        const nameStr = this.castToString(this.getPropValue("name"));
 
-        const leftExists = this.castToString(leftText);
-        const rightExists = this.castToString(rightText);
-        const showTextContainer = leftExists || rightExists;
-        const singleText = (leftExists && !rightExists) || (!leftExists && rightExists);
-        const showTopContainer = this.castToString(subTitle) || this.castToString(title);
-        const showBottomContainer = (signature) || this.castToString(name);
+        const leftExists = leftTextStr;
+        const rightExists = rightTextStr;
+        const showTextContainer = leftTextStr || rightTextStr;
+        const singleText = (leftTextStr && !rightTextStr) || (!leftTextStr && rightTextStr);
+        const showTopContainer = subTitleStr || titleStr;
+        const showBottomContainer = (signature) || nameStr;
         const showContentContainer = showTopContainer || showTextContainer || showBottomContainer;
 
         const subTitleType = Base.getSectionSubTitleType();
@@ -76,62 +76,66 @@ class About6 extends BaseAbout {
             <Base.Container className={`${this.decorateCSS("container")} `}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContentContainer && showTopContainer && (
-                                <div
-                                    className={this.decorateCSS(
-                                        "top-container"
-                                    )}>
-                                    {this.castToString(subTitle) && (
-                                        <Base.SectionSubTitle
-                                            className={`${subTitleType === "badge"
-                                                ? this.decorateCSS("subtitle-badge")
-                                                : this.decorateCSS("subtitle")
-                                                } `}>
-                                            {subTitle}
-                                        </Base.SectionSubTitle>
-                                    )}
-                                    {this.castToString(title) && (
-                                        <Base.SectionTitle
-                                            className={`${this.decorateCSS("title")} 
+                        <div
+                            className={this.decorateCSS(
+                                "top-container"
+                            )}>
+                            {subTitleStr && (
+                                <Base.SectionSubTitle
+                                    className={`${subTitleType === "badge"
+                                        ? this.decorateCSS("subtitle-badge")
+                                        : this.decorateCSS("subtitle")
+                                        } `}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleStr && (
+                                <Base.SectionTitle
+                                    className={`${this.decorateCSS("title")} 
                                             `}>
-                                            {title}
-                                        </Base.SectionTitle>
-                                    )}
-                                </div>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
                             )}
+                        </div>
+                    )}
                     {showContentContainer && showTextContainer && (
-                                <div
-                                    className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
-                                    {this.castToString(leftText) && (
-                                        <Base.SectionDescription className={this.decorateCSS("left-text")}>
-                                            {leftText}
-                                        </Base.SectionDescription>
-                                    )}
-                                    {this.castToString(rightText) && (
-                                        <Base.SectionDescription className={this.decorateCSS("right-text")}>
-                                            {rightText}
-                                        </Base.SectionDescription>
-                                    )}
-                                </div>
+                        <div
+                            className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
+                            {leftTextStr && (
+                                <Base.SectionDescription className={this.decorateCSS("left-text")}>
+                                    {this.getPropValue("leftText")}
+                                </Base.SectionDescription>
                             )}
+                            {rightTextStr && (
+                                <Base.SectionDescription className={this.decorateCSS("right-text")}>
+                                    {this.getPropValue("rightText")}
+                                </Base.SectionDescription>
+                            )}
+                        </div>
+                    )}
                     {showContentContainer && showBottomContainer && (
-                                <div className={this.decorateCSS(
-                                    "bottom-container"
-                                )}>
-                                    {signature && (
-                                        <div className={this.decorateCSS("signature")}>
-                                            <Base.Media
-                                                value={this.getPropValue("signature")}
-                                                className={this.decorateCSS("signature-image")}
-                                            />
-                                        </div>
-                                    )}
-                                    {this.castToString(name) && (
-                                        <Base.P className={this.decorateCSS("name")}>
-                                            {name}
-                                        </Base.P>
-                                    )}
+                        <div className={this.decorateCSS(
+                            "bottom-container"
+                        )}>
+                            {signature && (
+                                <div className={this.decorateCSS("signature")}>
+                                    <Base.Media
+                                        value={this.getPropValue("signature")}
+                                        className={this.decorateCSS("signature-image")}
+                                        autoPlay={true}
+                                        loop={true}
+                                        controls={true}
+                                        muted={true}
+                                    />
                                 </div>
                             )}
+                            {nameStr && (
+                                <Base.P className={this.decorateCSS("name")}>
+                                    {this.getPropValue("name")}
+                                </Base.P>
+                            )}
+                        </div>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         )
