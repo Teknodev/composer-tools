@@ -347,18 +347,18 @@ class Slider7 extends BaseSlider {
               )}
             </Base.VerticalContent>
           )}
-          {previousArrow && sliderSettings.arrows && (
-            <div className={this.decorateCSS("prevArrow")} onClick={() => sliderRef.current.slickPrev()}>
-              <Base.Media value={previousArrow} className={this.decorateCSS("arrow-icon")} />
-            </div>
-          )}
-          {nextArrow && sliderSettings.arrows && (
-            <div className={this.decorateCSS("nextArrow")} onClick={() => sliderRef.current.slickNext()}>
-              <Base.Media value={nextArrow} className={this.decorateCSS("arrow-icon")} />
-            </div>
-          )}
           {isCardExist && (
             <div className={this.decorateCSS("carousel-wrapper")}>
+              {previousArrow && sliderSettings.arrows && (
+                <div className={this.decorateCSS("prevArrow")} onClick={() => sliderRef.current.slickPrev()}>
+                  <Base.Media value={previousArrow} className={this.decorateCSS("arrow-icon")} />
+                </div>
+              )}
+              {nextArrow && sliderSettings.arrows && (
+                <div className={this.decorateCSS("nextArrow")} onClick={() => sliderRef.current.slickNext()}>
+                  <Base.Media value={nextArrow} className={this.decorateCSS("arrow-icon")} />
+                </div>
+              )}
               <ComposerSlider
                 {...settings}
                 className={this.decorateCSS("carousel")}
