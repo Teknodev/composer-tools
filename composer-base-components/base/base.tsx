@@ -264,27 +264,22 @@ export namespace Base {
   export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
 
     const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);    
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
+    const [height, setHeight] = useState(0);
     const [currentOpacity, setCurrentOpacity] = useState(0);
 
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
       let playgroundEl = document.getElementById("playground");
 
-      const updatePosition = () => {
-        const boundingClient = playgroundEl.getBoundingClientRect();
-        setWidth(boundingClient.width);
-        setHeight(boundingClient.height);
-        setX(boundingClient.x);
-        setY(boundingClient.y);
+      const updateSize = () => {
+        setWidth(playgroundEl.offsetWidth);
+        setHeight(playgroundEl.offsetHeight);
       };
 
-      let resizeObserver = new ResizeObserver(updatePosition); 
+      let resizeObserver = new ResizeObserver(updateSize); 
       resizeObserver.observe(playgroundEl);
       
-      window.addEventListener('resize', updatePosition);
+      window.addEventListener('resize', updateSize);
 
       if (isVisible) {
         setCurrentOpacity(1);
@@ -292,20 +287,20 @@ export namespace Base {
 
       if(!isVisible){
         resizeObserver.disconnect();
-        window.removeEventListener('resize', updatePosition);
+        window.removeEventListener('resize', updateSize);
         setCurrentOpacity(0);
       }
 
       return () => {
         document.documentElement.style.overflow = "";
         resizeObserver.disconnect();
-        window.removeEventListener('resize', updatePosition);
+        window.removeEventListener('resize', updateSize);
       };
-    }, [isVisible ,width]);
+    }, [isVisible, width]);
     if(isVisible) {
       return (
         <div
-          style={{ width, height, left: x, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
+          style={{ width, height, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
           className={`${styles.overlay} ${className}`}
           {...props}
         >
