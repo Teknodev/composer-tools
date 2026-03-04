@@ -119,16 +119,26 @@ class CallToAction31Page extends BaseCallToAction {
                         <div className={this.decorateCSS("button-column")}>
                             {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
                                 (button: INPUTS.CastedButton, index: number) =>
-                                    this.castToString(button.text) && (
+                                    (button.text || button.icon) && (
+                                        // this.castToString(button.text) && (
                                         <ComposerLink key={index} path={button.url}>
 
                                             <Base.Button
                                                 className={this.decorateCSS("button")}
                                                 buttonType={button.type}>
 
-                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                    {button.text}
-                                                </Base.P>
+                                                {button.icon && (
+                                                    <Base.Icon
+                                                        name={button.icon}
+                                                        propsIcon={{ className: this.decorateCSS("button-icon") }}
+                                                    />
+                                                )}
+
+                                                {button.text && (
+                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                        {button.text}
+                                                    </Base.P>
+                                                )}
                                             </Base.Button>
                                         </ComposerLink>
                                     )
