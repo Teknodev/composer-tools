@@ -291,7 +291,7 @@ class Stats18Page extends BaseStats {
                                                     buttonType={item.type}
                                                     className={this.decorateCSS("button")}
                                                 >
-                                                    {item.text}
+                                                    <span className={this.decorateCSS("button-text")}>{item.text}</span>
                                                 </Base.Button>
                                             </ComposerLink>
                                         );
