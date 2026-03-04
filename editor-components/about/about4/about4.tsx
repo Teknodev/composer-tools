@@ -53,10 +53,11 @@ class About4 extends BaseAbout {
         const leftText = this.getPropValue("leftText");
         const rightText = this.getPropValue("rightText");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasValidButtons = buttons.some((button) => this.castToString(button.text));
         const singleText = (this.castToString(leftText) && !this.castToString(rightText)) || (!this.castToString(leftText) && this.castToString(rightText));
 
 
-        const showContent = this.castToString(subTitle) || this.castToString(title) || this.castToString(leftText) || this.castToString(rightText) || buttons.length > 0;
+        const showContent = this.castToString(subTitle) || this.castToString(title) || this.castToString(leftText) || this.castToString(rightText) || hasValidButtons;
         const showTextContainer = this.castToString(leftText) || this.castToString(rightText);
 
         return (
@@ -89,19 +90,21 @@ class About4 extends BaseAbout {
                                 </div>
                             )}
 
-                            {buttons.length > 0 && (
+                            {hasValidButtons && (
                                 <div className={this.decorateCSS("buttons-container")}>
-                                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
-                                        <div key={index} className={this.decorateCSS("button-wrapper")}>
-                                            {this.castToString(button.text) && (
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                        if (!this.castToString(button.text)) return null;
+
+                                        return (
+                                            <div key={index} className={this.decorateCSS("button-wrapper")}>
                                                 <ComposerLink path={button.url}>
                                                     <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                                                         <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                                     </Base.Button>
                                                 </ComposerLink>
-                                            )}
-                                        </div>
-                                    ))}
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             )}
                         </Base.VerticalContent>
