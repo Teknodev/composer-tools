@@ -106,8 +106,6 @@
 
                     .button.with-image {
                         color: var(--composer-font-color-secondary);
-                        border-bottom: 1px solid var(--composer-font-color-secondary);
-                        padding-bottom: 0px !important;
                     }
                 }
             }
@@ -169,13 +167,11 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .content.with-media {
         min-height: 600px;
-        padding: var(--composer-gap-lg);
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content.with-media {
         min-height: 500px;
-        padding: var(--composer-gap-md);
     }
 }

@@ -22,24 +22,31 @@ class About2 extends BaseAbout {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "lorem",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "lorem ipsum",
+      value: "",
     });
 
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+      value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Play me here", "", null, null, "Link"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Play me here", "", null, null, "Link"),
+      ],
+    });
 
     this.addProp({
       type: "object",
@@ -121,7 +128,8 @@ class About2 extends BaseAbout {
     const rawVideo = videoProps?.media;
     const closeIcon = videoProps?.icon;
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
     const coverProps = this.castToObject<CoverMedia>("front-media");
 
@@ -132,10 +140,8 @@ class About2 extends BaseAbout {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
 
-    const buttonTextExist = button && this.castToString(button.text);
-
     const hasMedia = !!cover;
-    const hasContent = subtitle || title || description || buttonTextExist;
+    const hasContent = subtitle || title || description || hasValidButtons;
 
     return (
       <Base.Container
@@ -170,28 +176,38 @@ class About2 extends BaseAbout {
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
-              {buttonTextExist && (
+              {hasValidButtons && (
                 <div className={this.decorateCSS("button-container")}>
-                  {this.castToString(button.url) ? (
-                    <ComposerLink path={button.url}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const buttonText = this.castToString(item.text);
+                    if (!buttonText) return null;
+
+                    if (this.castToString(item.url)) {
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button
+                            buttonType={item.type}
+                            className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
+                          >
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    }
+
+                    return (
                       <Base.Button
-                        buttonType={button.type}
+                        key={index}
+                        onClick={() => {
+                          this.setComponentState("is_video_visible", true);
+                        }}
+                        buttonType={item.type}
                         className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
                       >
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
-                    </ComposerLink>
-                  ) : (
-                    <Base.Button
-                      onClick={() => {
-                        this.setComponentState("is_video_visible", true);
-                      }}
-                      buttonType={button.type}
-                      className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
-                    >
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>
-                  )}
+                    );
+                  })}
                 </div>
               )}
             </Base.VerticalContent>
