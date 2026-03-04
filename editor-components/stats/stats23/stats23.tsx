@@ -108,6 +108,14 @@ class Stats23 extends BaseStats {
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
+
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 2,
+            max: 4,
+        });
     }
 
     static getName(): string { return "Stats 23"; }
@@ -176,20 +184,24 @@ class Stats23 extends BaseStats {
                         )}
                     </span>
                 )}
-                {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                        {stat.subtitleElement}
-                    </Base.H6>
-                )}
-                {titleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-title")}>
-                        {stat.titleElement}
-                    </Base.H5>
-                )}
-                {descriptionExist && (
-                    <Base.P className={this.decorateCSS("stat-description")}>
-                        {stat.descriptionElement}
-                    </Base.P>
+                {(subtitleExist || titleExist || descriptionExist) && (
+                    <Base.VerticalContent className={this.decorateCSS("stat-text-content")}>
+                        {subtitleExist && (
+                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                                {stat.subtitleElement}
+                            </Base.H6>
+                        )}
+                        {titleExist && (
+                            <Base.H5 className={this.decorateCSS("stat-title")}>
+                                {stat.titleElement}
+                            </Base.H5>
+                        )}
+                        {descriptionExist && (
+                            <Base.P className={this.decorateCSS("stat-description")}>
+                                {stat.descriptionElement}
+                            </Base.P>
+                        )}
+                    </Base.VerticalContent>
                 )}
             </Base.VerticalContent>
         );
@@ -216,6 +228,8 @@ class Stats23 extends BaseStats {
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
+
+        const itemCount = this.getPropValue("itemCount");
 
         const hasLeftSection = subtitle || title || description || hasValidButtons;
         const hasStats = stats.length > 0;
@@ -269,7 +283,7 @@ class Stats23 extends BaseStats {
                         )}
 
                         {hasStats && (
-                            <Base.ListGrid gridCount={{ pc: 2, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                 {stats.map((stat: StatItem, index: number) => (
                                     <this.AnimatedStat
                                         key={`stat23-${index}`}

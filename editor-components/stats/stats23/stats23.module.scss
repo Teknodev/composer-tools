@@ -79,6 +79,8 @@
                     border-radius: var(--composer-border-radius-sm);
                     box-shadow: var(--box-shadow-active);
                     padding: var(--composer-gap-lg) var(--composer-gap-md);
+                    justify-content: space-between;
+                    height: 100%;
 
                     .stat-value {
                         color: var(--composer-font-color-primary);
