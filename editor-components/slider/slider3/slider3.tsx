@@ -177,6 +177,13 @@ class Slider3 extends BaseSlider {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
       type: "media",
       key: "previousArrow",
       displayer: "Previous Arrow Icon",
@@ -204,19 +211,14 @@ class Slider3 extends BaseSlider {
 
     this.addProp({
       type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp({
-      type: "boolean",
       key: "hoverAnimation",
       displayer: "Hover Animation",
       value: true,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+      arrows: true,
+    }));
     this.setComponentState("centerSlide", 0);
     this.setComponentState("slider-ref", React.createRef());
   }
@@ -277,32 +279,30 @@ class Slider3 extends BaseSlider {
     const showDots = sliderSettings.dots !== false;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!hasHeader && this.decorateCSS("no-header")}`} >
-        {(hasHeader || previousArrow || nextArrow) && (
+      <Base.Container className={`${this.decorateCSS("container")} ${!arrowsExist && this.decorateCSS("no-arrows")}`}>
+        {(hasHeader || arrowsExist) && (
           <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <div className={`${this.decorateCSS("header")} ${!hasHeader && this.decorateCSS("no-header-titles")}`} >
-              {hasHeader && (
-                <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!arrowsExist && this.decorateCSS("no-arrows")}`} >
-                  {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                  {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                </Base.VerticalContent>
-              )}
-              {arrowsExist && (
-                <div className={this.decorateCSS("arrows")}>
-                  {previousArrow && (
-                    <div className={this.decorateCSS("prevArrow")} onClick={() => { sliderRef.current.slickPrev(); }}>
-                      <Base.Media value={this.getPropValue("previousArrow")} className={`${previousArrow.type === "image" && this.decorateCSS("has-image")}`} />
-                    </div>
-                  )}
-                  {nextArrow && (
-                    <div className={this.decorateCSS("nextArrow")} onClick={() => { sliderRef.current.slickNext(); }}>
-                      <Base.Media value={this.getPropValue("nextArrow")} className={`${nextArrow.type === "image" && this.decorateCSS("has-image")}`} />
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
+            {hasHeader && (
+              <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              </Base.VerticalContent>
+            )}
+            {arrowsExist && (
+              <div className={this.decorateCSS("arrows")}>
+                {previousArrow && (
+                  <div className={this.decorateCSS("prevArrow")} onClick={() => { sliderRef.current.slickPrev(); }}>
+                    <Base.Media value={this.getPropValue("previousArrow")} className={`${previousArrow.type === "image" && this.decorateCSS("has-image")}`} />
+                  </div>
+                )}
+                {nextArrow && (
+                  <div className={this.decorateCSS("nextArrow")} onClick={() => { sliderRef.current.slickNext(); }}>
+                    <Base.Media value={this.getPropValue("nextArrow")} className={`${nextArrow.type === "image" && this.decorateCSS("has-image")}`} />
+                  </div>
+                )}
+              </div>
+            )}
           </Base.MaxContent>
         )}
         <div className={this.decorateCSS("slider-parent")}>
@@ -314,7 +314,7 @@ class Slider3 extends BaseSlider {
                     key={index}
                     className={`${this.decorateCSS("card")} 
                       ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}
-                     ${!item.media && this.decorateCSS("no-media")}
+                      ${!item.media && this.decorateCSS("no-media")}
                       ${showDots && this.decorateCSS("has-dots")}`}
                   >
                     <div className={this.decorateCSS("image-container")}>
