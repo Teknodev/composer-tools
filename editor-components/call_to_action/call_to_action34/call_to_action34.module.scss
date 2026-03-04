@@ -6,8 +6,8 @@
     .max-content {
         .card-wrapper {
             width: 100%;
-            display: flex;
-            flex-direction: row;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             overflow: hidden;
             border-radius: var(--composer-border-radius-md);
             padding: 0;
@@ -43,14 +43,9 @@
                     }
                 }
             }
-
-            // &.no-media {
-            //     padding-right: var(--composer-gap-xl);
-            // }
         }
 
         .left-column {
-            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -74,10 +69,6 @@
                 }
             }
 
-            // &.no-media {
-            //     padding-right: var(--composer-gap-xl);
-            // }
-
             .button-container {
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
@@ -99,7 +90,6 @@
         }
 
         .right-column {
-            flex: 1;
             overflow: hidden;
             position: relative;
             display: flex;
@@ -133,11 +123,19 @@
 
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .card-wrapper.colored {
-        padding: 80px 40px;
+    .container .max-content .card-wrapper {
+        grid-template-columns: repeat(1, 1fr);
 
         .right-column {
-            margin: -80px -50px -80px 0;
+            order: -1;
+        }
+
+        &.colored {
+            padding: 80px 40px;
+
+            .right-column {
+                margin: -80px -40px 0 -40px;
+            }
         }
     }
 }
@@ -147,12 +145,20 @@
         .max-content {
             .card-wrapper {
                 padding: 0;
-                flex-direction: column-reverse;
+                grid-template-columns: repeat(1, 1fr);
                 gap: 0;
                 border-radius: var(--composer-border-radius-md);
 
+                .right-column {
+                    order: -1;
+                }
+
                 &.colored {
                     padding: 0;
+
+                    .left-column {
+                        padding: 50px 20px;
+                    }
 
                     .right-column {
                         margin: 0;
@@ -161,9 +167,14 @@
                 }
 
                 .left-column {
-                    padding: 50px 20px;
+                    padding: 0;
                     margin: 0;
                     width: 100%;
+                    gap: var(--composer-gap-xs);
+
+                    .title {
+                        margin-top: 0;
+                    }
                 }
 
                 .right-column {
