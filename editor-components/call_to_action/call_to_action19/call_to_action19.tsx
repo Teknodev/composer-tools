@@ -193,9 +193,9 @@ class CallToAction19 extends BaseCallToAction {
                                                     {buttons.map((button: Button, index: number) =>
                                                         this.castToString(button?.text) && (
                                                             <ComposerLink key={index} path={button.url}>
-                                                                <Base.Button className={`${this.decorateCSS("button")} ${this.decorateCSS(`button-${index}`)}`}
+                                                                <Base.Button className={this.decorateCSS("button")}
                                                                     buttonType={button.type}>
-                                                                    <Base.P className={`${this.decorateCSS("button-text")} ${this.decorateCSS(`button-text-${index}`)}`}>
+                                                                    <Base.P className={this.decorateCSS("button-text")}>
                                                                         {button.text}
                                                                     </Base.P>
                                                                 </Base.Button>
@@ -247,7 +247,7 @@ class CallToAction19 extends BaseCallToAction {
                                                     </div>
                                                 )}
                                                 <Base.P className={this.decorateCSS("feature-list")}>
-                                                    {item.description}
+                                                    {this.castToString(item.description)}
                                                 </Base.P>
                                             </div>
                                         ))}
