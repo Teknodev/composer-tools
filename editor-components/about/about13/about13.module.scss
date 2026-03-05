@@ -5,16 +5,16 @@
         .wrapper {
             display: flex;
             gap: var(--composer-gap-xl);
+            width: 100%;
 
             .left-content {
-                width: 100%;
+                flex: 1;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 flex-wrap: wrap;
 
                 .vertical-content {
-                    width: 100%;
 
                     .subtitle {
                         width: fit-content;
@@ -29,7 +29,6 @@
                         display: flex;
                         gap: var(--composer-gap-sm);
                         flex-wrap: wrap;
-                        width: 100%;
 
                         .button {
                             .button-text {
@@ -78,8 +77,6 @@
         .max-content {
             .wrapper {
                 .left-content {
-                    width: 50%;
-
                     .vertical-content {
                         text-align: left;
 
@@ -93,7 +90,7 @@
                         }
 
                         .button-container {
-                            justify-content: left;
+                            justify-content: flex-start;
                         }
                     }
                 }

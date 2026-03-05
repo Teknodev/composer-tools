@@ -10,25 +10,6 @@ class About13 extends BaseAbout {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "image",
-            displayer: "Media",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
-        });
-
-
-        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -54,6 +35,24 @@ class About13 extends BaseAbout {
             key: "buttons",
             displayer: "Buttons",
             value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Link")],
+        });
+
+        this.addProp({
+            type: "media",
+            key: "image",
+            displayer: "Media",
+            value: {
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
+                type: "image",
+            },
+            additionalParams: { availableTypes: ["image", "video"] }
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "enableOverlay",
+            displayer: "Overlay",
+            value: false,
         });
     }
 
