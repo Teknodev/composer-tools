@@ -53,10 +53,8 @@ as *;
       .buttons-container {
         display: flex;
         justify-content: center;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
         flex-wrap: wrap;
-        width: 100%;
-        margin-top: var(--composer-gap-md);
 
         .button {
           .button-text {
