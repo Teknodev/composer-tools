@@ -119,14 +119,14 @@ class About14 extends BaseAbout {
                                         <Base.SectionSubTitle
                                             className={this.decorateCSS("subtitle")}
                                         >
-                                            {subtitle}
+                                            {this.getPropValue("subtitle")}
                                         </Base.SectionSubTitle>
                                     )}
                                     {hasTitle && (
                                         <Base.SectionTitle
                                             className={this.decorateCSS("title")}
                                         >
-                                            {title}
+                                            {this.getPropValue("title")}
                                         </Base.SectionTitle>
                                     )}
                                     {hasDescription && (
@@ -136,7 +136,7 @@ class About14 extends BaseAbout {
                                             <Base.SectionDescription
                                                 className={this.decorateCSS("description")}
                                             >
-                                                {description}
+                                                {this.getPropValue("description")}
                                             </Base.SectionDescription>
 
                                             <div
