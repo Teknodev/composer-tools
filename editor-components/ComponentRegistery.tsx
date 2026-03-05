@@ -29,11 +29,22 @@ class ComponentsRegistery {
     components.forEach((component: typeof Component) => {
       const category = forceCategory || component.getCategory();
       this.ensureCategory(category);
-      const exists = this.availableComponents[category].some(
-        (c) => c.getName() === component.getName()
-      );
-      if (!exists) {
-        this.availableComponents[category].push(component);
+
+      if (category === CATEGORIES.CUSTOM) {
+        const compId = (component as any).customComponentId;
+        const exists = compId && this.availableComponents[category].some(
+          (c) => (c as any).customComponentId === compId
+        );
+        if (!exists) {
+          this.availableComponents[category].push(component);
+        }
+      } else {
+        const exists = this.availableComponents[category].some(
+          (c) => c.getName() === component.getName()
+        );
+        if (!exists) {
+          this.availableComponents[category].push(component);
+        }
       }
     });
   }
