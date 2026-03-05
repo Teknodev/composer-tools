@@ -2,69 +2,84 @@
 
 .container {
   .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
     align-items: center;
     justify-content: center;
 
-    .top-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-sm);
+    .content {
       align-items: center;
       justify-content: center;
+      width: 100%;
 
-      .subtitle,
-      .title,
-      .subtitle-badge {
-        text-align: center;
-      }
+      .top-container {
+        gap: var(--composer-gap-sm);
+        align-items: center;
+        justify-content: center;
 
-      .subtitle {
-        text-align: center;
-        transform: translateX(0);
-
-        &::before {
-          display: none;
+        .subtitle,
+        .title,
+        .subtitle-badge {
+          text-align: center;
         }
-      }
-    }
 
-    .text-container {
-      color: var(--composer-font-color-primary);
-      display: flex;
-      gap: var(--composer-gap-md);
+        .subtitle {
+          text-align: center;
+          transform: translateX(0);
 
-      .left-text,
-      .right-text {
-        flex: 1;
-        text-align: justify;
-      }
-    }
-
-    .text-container.single-text {
-
-      .left-text,
-      .right-text {
-        text-align: center;
-      }
-    }
-
-    .bottom-container {
-      color: var(--composer-font-color-primary);
-      text-align: center;
-
-      .signature {
-        .signature-image {
-          width: 150px;
-          height: 100px;
-          object-fit: contain;
+          &::before {
+            display: none;
+          }
         }
       }
 
-      .name {
+      .text-container {
+        color: var(--composer-font-color-primary);
+        display: flex;
+        gap: var(--composer-gap-md);
+
+        .left-text,
+        .right-text {
+          flex: 1;
+          text-align: justify;
+        }
+      }
+
+      .text-container.single-text {
+
+        .left-text,
+        .right-text {
+          text-align: center;
+        }
+      }
+
+      .bottom-container {
+        color: var(--composer-font-color-primary);
         text-align: center;
+        align-items: center;
+
+        .signature {
+          .signature-image {
+            width: 150px;
+            height: 100px;
+            object-fit: contain;
+          }
+        }
+
+        .name {
+          text-align: center;
+        }
+      }
+
+      .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
       }
     }
   }
@@ -84,10 +99,10 @@
       }
     }
 
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
+    .content {
+      .text-container {
+        flex-direction: column;
+      }
     }
   }
 }

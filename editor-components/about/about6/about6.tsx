@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./about6.module.scss";
 import { BaseAbout } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class About6 extends BaseAbout {
     constructor(props?: any) {
@@ -48,6 +50,14 @@ class About6 extends BaseAbout {
             displayer: "Name",
             value: "Maria T. Jones"
         })
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
     }
 
     static getName(): string {
@@ -61,6 +71,9 @@ class About6 extends BaseAbout {
         const rightTextStr = this.castToString(this.getPropValue("rightText"));
         const signature = this.getPropValue("signature");
         const nameStr = this.castToString(this.getPropValue("name"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
+        const hasValidButtons = buttons.some((button) => this.castToString(button.text));
 
         const leftExists = leftTextStr;
         const rightExists = rightTextStr;
@@ -68,69 +81,88 @@ class About6 extends BaseAbout {
         const singleText = (leftTextStr && !rightTextStr) || (!leftTextStr && rightTextStr);
         const showTopContainer = subTitleStr || titleStr;
         const showBottomContainer = (signature) || nameStr;
-        const showContentContainer = showTopContainer || showTextContainer || showBottomContainer;
+        const showContentContainer = showTopContainer || showTextContainer || showBottomContainer || hasValidButtons;
 
         const subTitleType = Base.getSectionSubTitleType();
 
         return (
             <Base.Container className={`${this.decorateCSS("container")} `}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {showContentContainer && showTopContainer && (
-                        <div
-                            className={this.decorateCSS(
-                                "top-container"
-                            )}>
-                            {subTitleStr && (
-                                <Base.SectionSubTitle
-                                    className={`${subTitleType === "badge"
-                                        ? this.decorateCSS("subtitle-badge")
-                                        : this.decorateCSS("subtitle")
-                                        } `}>
-                                    {this.getPropValue("subtitle")}
-                                </Base.SectionSubTitle>
-                            )}
-                            {titleStr && (
-                                <Base.SectionTitle
-                                    className={`${this.decorateCSS("title")} 
+                    {showContentContainer && (
+                        <Base.VerticalContent className={this.decorateCSS("content")}>
+                            {showTopContainer && (
+                                <Base.VerticalContent
+                                    className={this.decorateCSS(
+                                        "top-container"
+                                    )}>
+                                    {subTitleStr && (
+                                        <Base.SectionSubTitle
+                                            className={`${subTitleType === "badge"
+                                                ? this.decorateCSS("subtitle-badge")
+                                                : this.decorateCSS("subtitle")
+                                                } `}>
+                                            {this.getPropValue("subtitle")}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {titleStr && (
+                                        <Base.SectionTitle
+                                            className={`${this.decorateCSS("title")} 
                                             `}>
-                                    {this.getPropValue("title")}
-                                </Base.SectionTitle>
+                                            {this.getPropValue("title")}
+                                        </Base.SectionTitle>
+                                    )}
+                                </Base.VerticalContent>
                             )}
-                        </div>
-                    )}
-                    {showContentContainer && showTextContainer && (
-                        <div
-                            className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
-                            {leftTextStr && (
-                                <Base.SectionDescription className={this.decorateCSS("left-text")}>
-                                    {this.getPropValue("leftText")}
-                                </Base.SectionDescription>
-                            )}
-                            {rightTextStr && (
-                                <Base.SectionDescription className={this.decorateCSS("right-text")}>
-                                    {this.getPropValue("rightText")}
-                                </Base.SectionDescription>
-                            )}
-                        </div>
-                    )}
-                    {showContentContainer && showBottomContainer && (
-                        <div className={this.decorateCSS(
-                            "bottom-container"
-                        )}>
-                            {signature && (
-                                <div className={this.decorateCSS("signature")}>
-                                    <Base.Media
-                                        value={this.getPropValue("signature")}
-                                        className={this.decorateCSS("signature-image")}
-                                    />
+                            {showTextContainer && (
+                                <div
+                                    className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
+                                    {leftTextStr && (
+                                        <Base.SectionDescription className={this.decorateCSS("left-text")}>
+                                            {this.getPropValue("leftText")}
+                                        </Base.SectionDescription>
+                                    )}
+                                    {rightTextStr && (
+                                        <Base.SectionDescription className={this.decorateCSS("right-text")}>
+                                            {this.getPropValue("rightText")}
+                                        </Base.SectionDescription>
+                                    )}
                                 </div>
                             )}
-                            {nameStr && (
-                                <Base.P className={this.decorateCSS("name")}>
-                                    {this.getPropValue("name")}
-                                </Base.P>
+                            {hasValidButtons && (
+                                <div className={this.decorateCSS("buttons-container")}>
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                        if (!this.castToString(button.text)) return null;
+
+                                        return (
+                                            <ComposerLink key={index} path={button.url}>
+                                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
                             )}
-                        </div>
+                            {showBottomContainer && (
+                                <Base.VerticalContent className={this.decorateCSS(
+                                    "bottom-container"
+                                )}>
+                                    {signature && (
+                                        <div className={this.decorateCSS("signature")}>
+                                            <Base.Media
+                                                value={this.getPropValue("signature")}
+                                                className={this.decorateCSS("signature-image")}
+                                            />
+                                        </div>
+                                    )}
+                                    {nameStr && (
+                                        <Base.P className={this.decorateCSS("name")}>
+                                            {this.getPropValue("name")}
+                                        </Base.P>
+                                    )}
+                                </Base.VerticalContent>
+                            )}
+                        </Base.VerticalContent>
                     )}
                 </Base.MaxContent>
             </Base.Container>
