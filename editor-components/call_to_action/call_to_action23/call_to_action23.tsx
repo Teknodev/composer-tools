@@ -1,5 +1,5 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action23.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -89,17 +89,17 @@ class CallToAction23Page extends BaseCallToAction {
                   <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                     {subtitle && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {subtitle}
+                        {this.getPropValue("subtitle")}
                       </Base.SectionSubTitle>
                     )}
                     {title && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
+                        {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
                     {description && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {description}
+                        {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
@@ -111,12 +111,12 @@ class CallToAction23Page extends BaseCallToAction {
                   <div className={this.decorateCSS("info-group")}>
                     {infoLabel && (
                       <Base.P className={this.decorateCSS("info-label")}>
-                        {infoLabel}
+                        {this.getPropValue("infoLabel")}
                       </Base.P>
                     )}
                     {infoText && (
                       <Base.H3 className={this.decorateCSS("info-text")}>
-                        {infoText}
+                        {this.getPropValue("infoText")}
                       </Base.H3>
                     )}
                   </div>
@@ -125,7 +125,7 @@ class CallToAction23Page extends BaseCallToAction {
                 {buttons?.length > 0 && (
                   <div className={this.decorateCSS("button-group")}>
                     {buttons.map((button: Button, index: number) =>
-                      this.castToString(button.text) ? (
+                      this.castToString(button.text) && (
                         <ComposerLink key={index} path={button.url}>
                           <Base.Button className={this.decorateCSS("button")}>
                             <span className={this.decorateCSS("button-text")}>
@@ -133,7 +133,7 @@ class CallToAction23Page extends BaseCallToAction {
                             </span>
                           </Base.Button>
                         </ComposerLink>
-                      ) : null
+                      )
                     )}
                   </div>
                 )}
