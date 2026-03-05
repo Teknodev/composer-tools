@@ -3,7 +3,7 @@
 .container {
     .max-content {
         .content {
-            gap: var(--composer-gap-xl);
+            gap: calc(var(--composer-gap-xl) * 2);
             display: flex;
             flex-direction: row;
 
@@ -49,8 +49,6 @@
                             flex-wrap: wrap;
                             align-items: center;
                             gap: var(--composer-gap-sm);
-                            flex-shrink: 0;
-
                             .button {
                                 .button-text {
                                     color: inherit;
@@ -159,6 +157,7 @@
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
         .bottom-row{
+            flex-wrap: nowrap !important;
             gap: var(--composer-gap-md) !important;
         } 
     }
