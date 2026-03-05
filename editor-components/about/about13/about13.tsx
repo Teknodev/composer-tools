@@ -93,7 +93,7 @@ class About13 extends BaseAbout {
                                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
                                     {buttons.length > 0 && (
-                                        <Base.Row className={this.decorateCSS("button-container")}>
+                                        <div className={this.decorateCSS("button-container")}>
                                             {buttons.map((item, index) => {
                                                 const buttonText = this.castToString(item.text || "");
                                                 const buttonUrl = item.url || "#";
@@ -106,7 +106,7 @@ class About13 extends BaseAbout {
                                                     </ComposerLink>
                                                 );
                                             })}
-                                        </Base.Row>
+                                        </div>
                                     )}
                                 </Base.VerticalContent>
                             </div>
