@@ -17,7 +17,7 @@
                         padding: 0;
 
                         &::before {
-                            background: var(--composer-font-color-secondary) !important;
+                            background: var(--composer-font-color-secondary);
                         }
                     }
 
@@ -43,7 +43,7 @@
                 &.full-width {
                     width: 100%;
                     display: block;
-                    text-align: var(--composer-content-alignment) !important;
+                    text-align: var(--composer-content-alignment);
 
                     .subtitle {
                         display: inline-block;
@@ -53,12 +53,12 @@
 
                     .title,
                     .description {
-                        text-align: inherit !important;
+                        text-align: inherit;
                     }
 
                     .button-container {
                         display: flex;
-                        justify-content: var(--composer-content-alignment) !important;
+                        justify-content: var(--composer-content-alignment);
                     }
                 }
 
@@ -68,11 +68,11 @@
 
                 .title,
                 .description {
-                    text-align: left !important;
+                    text-align: left;
                 }
 
                 .button-container {
-                    justify-content: flex-start !important;
+                    justify-content: flex-start;
                     gap: var(--composer-gap-sm);
                     flex-wrap: wrap;
                     flex-direction: row;
@@ -132,7 +132,7 @@
     .container {
         &.has-background {
             .max-content {
-                padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
+                padding: var(--composer-gap-xl) var(--composer-gap-md);
             }
         }
     }
@@ -142,7 +142,7 @@
     .container {
         &.has-background {
             .max-content {
-                padding: var(--composer-gap-lg) var(--composer-gap-md) !important;
+                padding: var(--composer-gap-lg) var(--composer-gap-md);
             }
         }
 
@@ -153,23 +153,23 @@
 
                 .vertical-content {
                     width: 100%;
-                    text-align: var(--composer-content-alignment) !important;
-                    display: block !important;
+                    text-align: var(--composer-content-alignment);
+                    display: block;
 
                     .subtitle {
                         margin-left: unset;
                         width: auto;
-                        display: inline-block !important;
+                        display: inline-block;
                         max-width: 100%;
                     }
 
                     .title,
                     .description {
-                        text-align: inherit !important;
+                        text-align: inherit;
                     }
 
                     .button-container {
-                        justify-content: var(--composer-content-alignment) !important;
+                        justify-content: var(--composer-content-alignment);
                         width: 100%;
                     }
                 }
