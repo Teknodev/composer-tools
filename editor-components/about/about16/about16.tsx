@@ -215,7 +215,7 @@ class About16 extends BaseAbout {
                                     const cardDescription = this.castToString(card.description);
                                     const isImage = card.icon?.type === "image";
                                     const hasTextDetails = cardTitle || cardDescription || cardSubtitle;
-                                    const hasMedia = card.video && "url" in card.video && card.video.url;
+                                    const hasMedia = !!card.video;
                                     return (
                                         <div key={index} className={this.decorateCSS("list-item")}>
                                             <div className={`${this.decorateCSS("media-container")} ${enableAnimation && this.decorateCSS("animated")} ${!hasMedia && this.decorateCSS("no-media")}`}>

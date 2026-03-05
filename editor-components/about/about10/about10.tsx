@@ -1,14 +1,19 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface FeatureItem {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  title: string;
+  description: string;
 }
+
+type MediaGroup = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class About10 extends BaseAbout {
   constructor(props?: any) {
@@ -46,23 +51,29 @@ class About10 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
-      key: "mainImage",
+      type: "object",
+      key: "media",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69133ed33596a1002b2462ba?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69133ed33596a1002b2462ba?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -186,14 +197,15 @@ class About10 extends BaseAbout {
       return !!(iconVal?.name || iconVal?.url);
     });
     const hasButtonText = buttons.some((btn) => this.castToString(btn.text));
-    const mainImage = this.getPropValue("mainImage");
+    const mainMediaGroup = this.castToObject<MediaGroup>("media");
+    const mainImage = mainMediaGroup?.media;
     const features = this.castToObject<FeatureItem[]>("features");
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
     const animationClass = hoverAnimation.length && hoverAnimation.join(" ");
 
     const hasSubtitleOrTitle = this.castToString(subtitle) || this.castToString(title);
     const hasDescriptionOrButton = this.castToString(description) || hasButtonText || hasButtonIcon;
-    const isImageExist = mainImage;
+    const isImageExist = !!mainImage;
     const isFeaturesExist = features.length > 0;
 
     return (
@@ -256,7 +268,7 @@ class About10 extends BaseAbout {
                 value={mainImage}
                 className={this.decorateCSS("main-image")}
               />
-              {this.getPropValue("overlay") && (
+              {mainMediaGroup?.overlay && (
                 <div className={this.decorateCSS("overlay")} />
               )}
               <div className={this.decorateCSS("hover-effect")} />

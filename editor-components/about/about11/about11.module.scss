@@ -133,8 +133,8 @@
               color: var(--composer-font-color-primary);
               font-size: 1.5rem;
               transition: color 0.3s ease;
-              width: 25px;
-              height: 25px;
+              width: calc(var(--composer-gap-xl) / 2);
+              height: calc(var(--composer-gap-xl) / 2);
             }
           }
 
@@ -148,8 +148,8 @@
               color: var(--composer-font-color-primary);
               font-size: 1.5rem;
               transition: color 0.3s ease;
-              width: 25px;
-              height: 25px;
+              width: calc(var(--composer-gap-xl) / 2);
+              height: calc(var(--composer-gap-xl) / 2);
 
               &:hover {
                 color: var(--composer-font-color-secondary);

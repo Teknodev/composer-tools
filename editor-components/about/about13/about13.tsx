@@ -1,12 +1,17 @@
 import * as React from "react";
-import { BaseAbout, TypeUsableComponentProps } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about13.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+type MediaGroup = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+};
+
 class About13 extends BaseAbout {
-    constructor(props?: TypeUsableComponentProps) {
+    constructor(props?: any) {
         super(props, styles);
 
         this.addProp({
@@ -38,21 +43,27 @@ class About13 extends BaseAbout {
         });
 
         this.addProp({
-            type: "media",
-            key: "image",
+            type: "object",
+            key: "media",
             displayer: "Media",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
-                type: "image",
-            },
-            additionalParams: { availableTypes: ["image", "video"] }
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "enableOverlay",
-            displayer: "Overlay",
-            value: false,
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    value: {
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8a9e496aa1002ca4869f?alt=media",
+                        type: "image",
+                    },
+                    additionalParams: { availableTypes: ["image", "video"] }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
     }
 
@@ -61,13 +72,14 @@ class About13 extends BaseAbout {
     }
 
     render() {
-        const image = this.getPropValue("image");
-        const isImageExist = !!image?.url;
+        const mediaGroup = this.castToObject<MediaGroup>("media");
+        const image = mediaGroup?.media;
+        const isImageExist = !!image;
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const enableOverlay = this.getPropValue("enableOverlay");
+        const enableOverlay = mediaGroup?.overlay;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
         return (

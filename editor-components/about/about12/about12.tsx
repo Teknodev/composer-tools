@@ -5,6 +5,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
+type MediaGroup = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
+
 class About12 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
@@ -39,23 +44,29 @@ class About12 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "media",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8d39496aa1002ca48910?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8d39496aa1002ca48910?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
   }
 
@@ -68,16 +79,17 @@ class About12 extends BaseAbout {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const image = this.getPropValue("image");
-    const overlay = this.getPropValue("overlay");
+    const mediaGroup = this.castToObject<MediaGroup>("media");
+    const image = mediaGroup?.media;
+    const overlay = mediaGroup?.overlay;
 
-    const hasImage = !!(image && image.url);
+    const hasImage = !!image;
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
     const hasAnyButton = buttons.some(
-      (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
+      (b: INPUTS.CastedButton) => this.castToString(b?.text) || (b?.icon as { name?: string })?.name || (b?.icon as { url?: string })?.url
     );
     const hasRightContainer = !!(
       hasTitle ||
@@ -150,7 +162,7 @@ class About12 extends BaseAbout {
                           const btnTextExist = this.castToString(item.text);
                           const buttonIcon = item.icon as unknown as TypeMediaInputValue;
                           const buttonIconExist =
-                            buttonIcon?.name || buttonIcon?.url;
+                            (buttonIcon as { name?: string })?.name || (buttonIcon as { url?: string })?.url;
                           const buttonText = item.text;
 
                           if (!btnTextExist && !buttonIconExist) {

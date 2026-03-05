@@ -5,7 +5,8 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ImageItemType = {
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
+    overlay: boolean;
 }
 
 class About15 extends BaseAbout {
@@ -14,7 +15,7 @@ class About15 extends BaseAbout {
 
         this.addProp({
             type: "boolean",
-            key: "cardBackground",
+            key: "card-background",
             displayer: "Card Background",
             value: true,
         });
@@ -29,12 +30,12 @@ class About15 extends BaseAbout {
             value: [
                 {
                     type: "object",
-                    key: "ImageItem",
+                    key: "image-item",
                     displayer: "Image Item",
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -44,16 +45,22 @@ class About15 extends BaseAbout {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69368796496aa1002ca9ccab?alt=media",
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
                 {
                     type: "object",
-                    key: "ImageItem",
+                    key: "image-item",
                     displayer: "Image Item",
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -63,16 +70,22 @@ class About15 extends BaseAbout {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693687bb496aa1002ca9cda0?alt=media",
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
                 {
                     type: "object",
-                    key: "ImageItem",
+                    key: "image-item",
                     displayer: "Image Item",
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -82,17 +95,17 @@ class About15 extends BaseAbout {
                                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6937fc4a875e15002c5f02f2?alt=media",
                             },
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
             ],
         });
 
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
-        });
 
         this.addProp({
             type: "string",
@@ -130,13 +143,12 @@ class About15 extends BaseAbout {
     }
 
     render() {
-        const cardBackground = this.getPropValue("cardBackground");
+        const cardBackground = this.getPropValue("card-background");
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const images = this.castToObject<ImageItemType[]>("images") || [];
-        const enableOverlay = this.getPropValue("overlay");
         const hasImages = images.length > 0;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
@@ -158,7 +170,7 @@ class About15 extends BaseAbout {
                                             return (
                                                 <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
                                                     <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                        {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={item.icon as any} />)}
+                                                        {item.icon && (<Base.Media className={this.decorateCSS("button-icon")} value={item.icon as unknown as TypeMediaInputValue} />)}
                                                         {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
                                                     </Base.Button>
                                                 </ComposerLink>
@@ -172,12 +184,12 @@ class About15 extends BaseAbout {
                             <div className={this.decorateCSS("images-content")}>
                                 <div className={this.decorateCSS("images-wrapper")}>
                                     {images.map((item: ImageItemType, index: number) => {
-                                        const imageSource = item.image;
+                                        const imageSource = item.media;
                                         if (!imageSource) return null;
                                         return (
                                             <div key={`img-${index}`} className={this.decorateCSS("image-box")}>
                                                 <Base.Media value={imageSource} className={this.decorateCSS("image")} />
-                                                {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
+                                                {item.overlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                             </div>
                                         );
                                     })}

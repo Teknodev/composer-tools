@@ -1,9 +1,14 @@
 import * as React from "react";
 import styles from "./about9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseAbout } from "composer-tools/editor-components/EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "composer-tools/editor-components/EditorComponent";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type MediaGroup = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+};
 
 class About9 extends BaseAbout {
     constructor(props?: any) {
@@ -23,46 +28,66 @@ class About9 extends BaseAbout {
             value: "DIGITAL EXPERIENCE WITH DESIGN AND TECHNOLOGY."
         })
         this.addProp({
-            type: "media",
-            key: "image1",
+            type: "object",
+            key: "media-1",
             displayer: "First Media",
-            additionalParams: {
-                availableTypes: ["image", "video"],
-            },
-            value: {
-                type: "image",
-                url: "https://html-roof.jrstudio.com.co/img/general/image-01.jpg"
-            }
-        })
-        this.addProp({
-            type: "media",
-            key: "image2",
-            displayer: "Second Media",
-            additionalParams: {
-                availableTypes: ["image", "video"],
-            },
-            value: {
-                type: "image",
-                url: "https://html-roof.jrstudio.com.co/img/general/image-02.jpg"
-            }
-        })
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://html-roof.jrstudio.com.co/img/general/image-01.jpg"
+                    }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
+        });
 
         this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
+            type: "object",
+            key: "media-2",
+            displayer: "Second Media",
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://html-roof.jrstudio.com.co/img/general/image-02.jpg"
+                    }
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp({
             type: "string",
-            key: "text1",
+            key: "text-1",
             displayer: "First Text",
             value: "Completely network collaborative web services via user-centric initiatives. Quickly promote sticky testing procedures before unique process improvements. Distinctively engineer innovative information whereas revolutionary process improvements. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia enim omnis saepe dolor voluptatum. Natus soluta maxime ipsum nam sapiente dignissimos voluptatum totam. Ratione atque dolorum nostrum a est voluptatibus."
         })
         this.addProp({
             type: "string",
-            key: "text2",
+            key: "text-2",
             displayer: "Second Text",
             value: "web services via user-centric initiatives. Quickly promote sticky testing procedures before unique process improvements. Distinctively engineer innovative information whereas revolutionary process improvements. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia enim omnis saepe dolor voluptatum. Natus soluta maxime ipsum nam sapiente dignissimos voluptatum totam. Quickly promote sticky testing procedures before unique process improvements."
         })
@@ -84,16 +109,17 @@ class About9 extends BaseAbout {
     render() {
         const titleStr = this.castToString(this.getPropValue("title"));
         const subtitleStr = this.castToString(this.getPropValue("subtitle"));
-        const text1Str = this.castToString(this.getPropValue("text1"));
-        const text2Str = this.castToString(this.getPropValue("text2"));
-        const image1 = this.getPropValue("image1");
-        const image2 = this.getPropValue("image2");
-        const overlay = this.getPropValue("overlay") as boolean;
+        const text1Str = this.castToString(this.getPropValue("text-1"));
+        const text2Str = this.castToString(this.getPropValue("text-2"));
+        const media1 = this.castToObject<MediaGroup>("media-1");
+        const media2 = this.castToObject<MediaGroup>("media-2");
+        const image1 = media1?.media;
+        const image2 = media2?.media;
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
         const hasValidButtons = buttons.some((button) => this.castToString(button.text));
-        const hasImage1 = !!image1?.url;
-        const hasImage2 = !!image2?.url;
+        const hasImage1 = !!image1;
+        const hasImage2 = !!image2;
         const hasImages = hasImage1 || hasImage2;
         const showTopContainer = titleStr || hasImages;
         const showBottomContainer = text1Str || text2Str || hasValidButtons;
@@ -122,16 +148,16 @@ class About9 extends BaseAbout {
                                             </Base.SectionTitle>
                                         )}
                                     </Base.VerticalContent>
-                                    {image1?.url && (
+                                    {image1 && (
                                         <div className={this.decorateCSS("image-1")}>
                                             <Base.Media value={image1} className={this.decorateCSS("image")} />
-                                            {overlay && <div className={this.decorateCSS("overlay")} />}
+                                            {media1?.overlay && <div className={this.decorateCSS("overlay")} />}
                                         </div>
                                     )}
-                                    {image2?.url && (
+                                    {image2 && (
                                         <div className={this.decorateCSS("image-2")}>
                                             <Base.Media value={image2} className={this.decorateCSS("image")} />
-                                            {overlay && <div className={this.decorateCSS("overlay")} />}
+                                            {media2?.overlay && <div className={this.decorateCSS("overlay")} />}
                                         </div>
                                     )}
                                 </div>
@@ -140,12 +166,12 @@ class About9 extends BaseAbout {
                                 <div className={this.decorateCSS("bottom-container")}>
                                     {text1Str && (
                                         <Base.P className={this.decorateCSS("text-1")}>
-                                            {this.getPropValue("text1")}
+                                            {this.getPropValue("text-1")}
                                         </Base.P>
                                     )}
                                     {text2Str && (
                                         <Base.P className={this.decorateCSS("text-2")}>
-                                            {this.getPropValue("text2")}
+                                            {this.getPropValue("text-2")}
                                         </Base.P>
                                     )}
                                 </div>
