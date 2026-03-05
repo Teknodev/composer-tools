@@ -206,12 +206,12 @@ class About10 extends BaseAbout {
               <Base.VerticalContent className={this.decorateCSS("text-content")}>
                 {this.castToString(subtitle) && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
+                    {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
                 {this.castToString(title) && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
+                    {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
               </Base.VerticalContent>
@@ -221,7 +221,7 @@ class About10 extends BaseAbout {
                 <Base.VerticalContent className={this.decorateCSS("text-content")}>
                   {this.castToString(description) && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
+                      {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
                   {(hasButtonText || hasButtonIcon) && buttons.length > 0 && (

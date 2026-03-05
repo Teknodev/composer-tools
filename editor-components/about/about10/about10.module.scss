@@ -8,8 +8,8 @@
     .header {
       display: flex;
       align-items: flex-start;
-      gap: var(--composer-gap-md) !important;
-      margin-bottom: var(--composer-gap-md) !important;
+      gap: var(--composer-gap-md);
+      margin-bottom: var(--composer-gap-md);
 
       .text-content {
         content: "";
@@ -18,7 +18,7 @@
 
         .subtitle,
         .title {
-          text-align: left !important;
+          text-align: left;
           margin-left: 0;
         }
 
@@ -33,7 +33,7 @@
       }
 
       .description {
-        text-align: left !important;
+        text-align: left;
       }
 
       .button-wrapper {
@@ -187,12 +187,12 @@
 
           .feature-title {
             color: var(--composer-font-color-primary);
-            text-align: left !important;
+            text-align: left;
           }
 
           .feature-description {
             color: var(--composer-tertiary-color);
-            text-align: left !important;
+            text-align: left;
           }
         }
       }
@@ -207,8 +207,8 @@
       gap: 0;
 
       .header {
-        gap: var(--composer-gap-md) !important;
-        margin-bottom: var(--composer-gap-md) !important;
+        gap: var(--composer-gap-md);
+        margin-bottom: var(--composer-gap-md);
       }
 
 
@@ -226,11 +226,10 @@
     .max-content {
 
       .header {
-        flex-direction: column !important;
+        flex-direction: column;
         align-items: flex-start;
-        gap: var(--composer-gap-xs) !important;
-        margin-bottom: var(--composer-gap-md) !important;
-
+        gap: var(--composer-gap-xs);
+        margin-bottom: var(--composer-gap-md);
 
         .content-section {
           flex-direction: column;
@@ -245,14 +244,12 @@
 
       .image-section {
         height: 260px;
-        margin-top: var(--composer-gap-md) !important;
-        margin-bottom: var(--composer-gap-md) !important;
+        margin-top: var(--composer-gap-md);
+        margin-bottom: var(--composer-gap-md);
       }
 
       .features-section {
-        margin-top: 0px !important;
-        margin-top: var(--composer-gap-md) !important;
-
+        margin-top: var(--composer-gap-md);
 
         .features-grid {
           gap: var(--composer-gap-md);
@@ -263,7 +260,7 @@
 
             .feature-title,
             .feature-description {
-              text-align: left !important;
+              text-align: left;
             }
           }
         }
