@@ -328,6 +328,7 @@ export type TypeReactComponent = {
   children?: string;
   customComponentId?: string;
   customComponentVersion?: string;
+  globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -380,6 +381,7 @@ export enum CATEGORIES {
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
   CUSTOM = "custom",
+  GLOBAL = "global",
 }
 
 export function generateId(key: string): string {
