@@ -1,11 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
-.center-alignment.row-reverse .item-subtitle,
-.center-alignment.row-reverse .item-description,
-.center-alignment.row-reverse .item-title {
-    text-align: center !important;
-}
-
 .container {
     background-size: cover;
     background-position: center;
@@ -79,6 +73,18 @@
                     color: var(--composer-font-color-white);
                 }
             }
+
+            .buttons-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
         }
 
         .items-wrapper {
@@ -87,21 +93,6 @@
 
             &.row-reverse {
                 flex-direction: row-reverse;
-            }
-
-            &.row-reverse {
-                .right-container {
-                    .item-subtitle {
-                        text-align: end !important;
-                        margin-right: 0px !important;
-                    }
-
-                    .item-description,
-                    .item-title {
-                        text-align: end !important;
-                        margin-right: 0px !important;
-                    }
-                }
             }
 
             .left-container {
@@ -251,7 +242,7 @@
                     }
 
                     text-align: start;
-                    margin-left: 0px !important;
+                    margin-left: 0px;
                 }
 
                 .item-subtitle {
@@ -267,7 +258,7 @@
                 &:has(.item-description) {
                     .item-subtitle {
                         &::before {
-                            display: none !important;
+                            display: none;
                         }
                     }
                 }
@@ -277,44 +268,38 @@
 
                     .item-subtitle {
                         transform: none;
-                        align-self: flex-end !important;
-                        text-align: end !important;
-                        margin-right: 0px !important;
+                        align-self: flex-end;
+                        text-align: end;
+                        margin-right: 0px;
                     }
 
                     .item-description,
                     .item-title {
-                        text-align: end !important;
-                        margin-right: 0px !important;
+                        text-align: end;
+                        margin-right: 0px;
                     }
                 }
 
                 &.center-alignment.row-reverse {
-                    align-items: center !important;
+                    align-items: center;
 
                     .item-subtitle {
-                        transform: none !important;
+                        transform: none;
                     }
 
                     .item-subtitle,
                     .item-description,
                     .item-title {
-                        text-align: center !important;
+                        text-align: center;
                     }
                 }
 
                 &.center-alignment {
                     .item-subtitle {
-                        text-align: start !important;
-                        margin-left: 0px !important;
-                        align-self: flex-start !important;
+                        text-align: start;
+                        margin-left: 0px;
+                        align-self: flex-start;
                     }
-                }
-
-                &.center-alignment.row-reverse .item-subtitle,
-                &.center-alignment.row-reverse .item-description,
-                &.center-alignment.row-reverse .item-title {
-                    text-align: center !important;
                 }
             }
         }
@@ -350,31 +335,16 @@
                 .right-container {
                     padding: 0px;
                     flex: 1;
-                    align-items: flex-start !important;
+                    align-items: flex-start;
                     gap: 0px;
-
-                    &.row-reverse {
-                        align-items: flex-start !important;
-
-                        .item-subtitle {
-                            transform: none !important;
-                            align-self: flex-start !important;
-                            text-align: left !important;
-                            margin-right: 0 !important;
-                        }
-
-                        .item-subtitle,
-                        .item-description,
-                        .item-title {
-                            text-align: left !important;
-                            margin-right: 0 !important;
-                        }
-                    }
 
                     .item-subtitle,
                     .item-description,
                     .item-title {
-                        text-align: left !important;
+                        text-align: left;
+                        margin-right: 0px;
+                        transform: none;
+                        align-self: flex-start;
                     }
                 }
 
@@ -399,29 +369,19 @@
             gap: var(--composer-gap-xl);
 
             .items-wrapper {
+                gap: var(--composer-gap-md);
+
                 .right-container {
                     align-items: center;
-                    gap: 0px !important;
+                    gap: 0px;
 
                     .item-subtitle,
                     .item-title,
                     .item-description {
-                        text-align: left !important;
-                        margin-right: auto !important;
-                        margin-left: 0px !important;
-                    }
-
-                    &.row-reverse {
-                        align-items: center;
-
-                        .item-subtitle,
-                        .item-description,
-                        .item-title {
-                            align-self: flex-start !important;
-                            text-align: left !important;
-                            margin-right: auto !important;
-                            margin-left: 0px !important;
-                        }
+                        text-align: left;
+                        margin-right: auto;
+                        margin-left: 0px;
+                        align-self: flex-start;
                     }
                 }
             }

@@ -1,6 +1,9 @@
+import * as React from "react";
 import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ItemType = {
     image: TypeMediaInputValue;
@@ -13,6 +16,11 @@ type ItemType = {
     middleLineActive: boolean;
     lineActive: boolean;
     dotActive: boolean;
+}
+
+type BackgroundImageType = {
+    image: TypeMediaInputValue;
+    overlay: boolean;
 }
 
 class About7 extends BaseAbout {
@@ -63,6 +71,15 @@ class About7 extends BaseAbout {
             key: "description",
             displayer: "Description",
             value: "",
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
 
         this.addProp({
@@ -226,9 +243,17 @@ class About7 extends BaseAbout {
 
     render() {
         const items = this.castToObject<ItemType[]>("items");
-        const backgroundImage = this.castToObject<any>("background-image");
+        const backgroundImage = this.castToObject<BackgroundImageType>("background-image");
         const bgMedia = backgroundImage?.image;
         const isBackgroundImageExist = !!bgMedia;
+
+        const subtitleStr = this.castToString(this.getPropValue("subtitle"));
+        const titleStr = this.castToString(this.getPropValue("title"));
+        const descriptionStr = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+
+        const hasValidButtons = buttons.some((button) => this.castToString(button.text));
+        const hasTopContent = subtitleStr || titleStr || descriptionStr || hasValidButtons;
 
         const alignment = Base.getContentAlignment();
 
@@ -241,22 +266,37 @@ class About7 extends BaseAbout {
                     <div className={this.decorateCSS("background-overlay")} />
                 )}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
+                    {hasTopContent && (
                         <Base.VerticalContent className={this.decorateCSS("top-content")}>
-                            {this.castToString(this.getPropValue("subtitle")) && (
+                            {subtitleStr && (
                                 <Base.SectionSubTitle className={`${this.decorateCSS("top-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
                                     {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}
-                            {this.castToString(this.getPropValue("title")) && (
+                            {titleStr && (
                                 <Base.SectionTitle className={`${this.decorateCSS("top-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
                                     {this.getPropValue("title")}
                                 </Base.SectionTitle>
                             )}
-                            {this.castToString(this.getPropValue("description")) && (
+                            {descriptionStr && (
                                 <Base.SectionDescription className={`${this.decorateCSS("top-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>
                                     {this.getPropValue("description")}
                                 </Base.SectionDescription>
+                            )}
+                            {hasValidButtons && (
+                                <div className={this.decorateCSS("buttons-container")}>
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                        if (!this.castToString(button.text)) return null;
+
+                                        return (
+                                            <ComposerLink key={index} path={button.url}>
+                                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
                             )}
                         </Base.VerticalContent>
                     )}
@@ -295,7 +335,7 @@ class About7 extends BaseAbout {
                                     </div>
                                 )}
                                 {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
-                                    <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
+                                    <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse ? this.decorateCSS("row-reverse") : ""}`}>
                                         {this.castToString(item.subtitle) && (<Base.H3 className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.H3>)}
                                         {this.castToString(item.title) && (<Base.H2 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H2>)}
                                         {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("item-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
