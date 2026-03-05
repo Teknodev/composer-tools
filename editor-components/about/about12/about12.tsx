@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseAbout } from "composer-tools/editor-components/EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "composer-tools/editor-components/EditorComponent";
 import styles from "./about12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -64,9 +64,9 @@ class About12 extends BaseAbout {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle") || "";
-    const title = this.getPropValue("title") || "";
-    const description = this.getPropValue("description") || "";
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const image = this.getPropValue("image");
     const overlay = this.getPropValue("overlay");
@@ -89,22 +89,19 @@ class About12 extends BaseAbout {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${
-          hasImage && !hasRightContainer ? this.decorateCSS("image-only") : ""
-        }`}
+        className={`${this.decorateCSS("container")} ${hasImage && !hasRightContainer ? this.decorateCSS("image-only") : ""
+          }`}
         isFull={true}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("intro-wrapper")} ${
-              !hasImage && this.decorateCSS("no-image")
-            }`}
+            className={`${this.decorateCSS("intro-wrapper")} ${!hasImage && this.decorateCSS("no-image")
+              }`}
           >
             {hasImage && (
               <div
-                className={`${this.decorateCSS("image-container")} ${
-                  !hasRightContainer && this.decorateCSS("image-container-alone")
-                }`}
+                className={`${this.decorateCSS("image-container")} ${!hasRightContainer && this.decorateCSS("image-container-alone")
+                  }`}
               >
                 <Base.Media
                   value={image}
@@ -118,11 +115,9 @@ class About12 extends BaseAbout {
 
             {hasRightContainer && (
               <div
-                className={`${this.decorateCSS("text-content")} ${
-                  !hasImage ? this.decorateCSS("text-content-alone") : ""
-                } ${alignmentValue === "center" && this.decorateCSS("center")} ${
-                  !hasImage && alignmentValue === "center" && this.decorateCSS("no-image-center")
-                }`}
+                className={`${this.decorateCSS("text-content")} ${!hasImage ? this.decorateCSS("text-content-alone") : ""
+                  } ${alignmentValue === "center" && this.decorateCSS("center")} ${!hasImage && alignmentValue === "center" && this.decorateCSS("no-image-center")
+                  }`}
               >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
@@ -131,12 +126,12 @@ class About12 extends BaseAbout {
                     <Base.SectionSubTitle
                       className={this.decorateCSS("subtitle")}
                     >
-                      {subtitle}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {hasTitle && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
 
@@ -144,7 +139,7 @@ class About12 extends BaseAbout {
                     <Base.SectionDescription
                       className={this.decorateCSS("description")}
                     >
-                      {description}
+                      {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
 
@@ -153,7 +148,7 @@ class About12 extends BaseAbout {
                       {buttons.map(
                         (item: INPUTS.CastedButton, index: number) => {
                           const btnTextExist = this.castToString(item.text);
-                          const buttonIcon = item.icon;
+                          const buttonIcon = item.icon as unknown as TypeMediaInputValue;
                           const buttonIconExist =
                             buttonIcon?.name || buttonIcon?.url;
                           const buttonText = item.text;
