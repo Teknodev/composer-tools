@@ -1,0 +1,145 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .text-content {
+
+            .subtitle,
+            .title,
+            .description {
+                content: ""
+            }
+        }
+
+        .cards-wrapper {
+            display: flex;
+            gap: var(--composer-gap-lg);
+
+            .cards-content {
+                gap: 0;
+                align-items: center;
+                width: 50%;
+
+                &.cards-full-width {
+                    width: 100%;
+                    gap: var(--composer-gap-lg);
+                }
+
+                .card-container {
+                    display: flex;
+                    gap: var(--composer-gap-md);
+                    align-items: flex-start;
+
+                    .card-icon {
+                        display: flex;
+                        font-size: 4rem;
+                        color: var(--composer-primary-color);
+
+                        &.is-image {
+                            width: var(--composer-gap-xl);
+                            height: var(--composer-gap-xl);
+                        }
+                    }
+
+                    .card-content {
+                        .card-title {
+                            color: var(--composer-font-color-primary);
+                            text-align: left;
+                        }
+
+                        .card-description {
+                            color: var(--composer-tertiary-color);
+                            text-align: left;
+                        }
+                    }
+                }
+            }
+
+            .right-content {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+
+                .image-wrapper {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: var(--composer-border-radius-sm);
+                    overflow: hidden;
+                    position: relative;
+
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        border-radius: inherit;
+                        background-color: var(--composer-overlay-color);
+                    }
+                }
+
+                &.image-full-width {
+                    width: 100%;
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: var(--composer-gap-md);
+            flex-wrap: wrap;
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-md);
+
+            .cards-wrapper {
+                gap: var(--composer-gap-md);
+
+                .cards-content {
+                    gap: inherit;
+
+                    .card-container {
+                        .card-icon {
+                            font-size: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .cards-wrapper {
+                flex-direction: column;
+
+                .cards-content,
+                .right-content {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

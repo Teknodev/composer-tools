@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Text = {

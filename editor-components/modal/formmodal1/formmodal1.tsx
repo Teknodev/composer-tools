@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 type InputItems = {
@@ -464,7 +464,7 @@ class FormModal1 extends BaseModal {
                     initialValues={{ ...getInitialValue() }}
                     validationSchema={this.getValidationSchema()}
                     onSubmit={(data, { resetForm }) => {
-                      this.insertForm("Contact Us", data);
+                      this.insertForm("Form Modal 1 - ContactUsForm", data);
                       resetForm();
                     }}
                   >

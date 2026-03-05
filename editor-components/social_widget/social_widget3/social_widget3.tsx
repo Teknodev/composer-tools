@@ -1,7 +1,7 @@
-import { BaseSocialWidget } from "composer-tools/editor-components/EditorComponent";
+import { BaseSocialWidget } from "../../EditorComponent";
 import styles from "./social_widget3.module.scss"
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { ComposerEmbededLink } from "composer-tools/composer-base-components/embeded-link/embeded-link";
+import { Base } from "../../../composer-base-components/base/base";
+import { ComposerEmbededLink } from "../../../composer-base-components/embeded-link/embeded-link";
 
 class FacebookWidget extends BaseSocialWidget {
     constructor(props?: any) {

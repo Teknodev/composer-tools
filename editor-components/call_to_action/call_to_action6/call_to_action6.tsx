@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
@@ -161,7 +161,7 @@ class CallToAction6Page extends BaseCallToAction {
                 validationSchema={this.validationSchema}
                 onSubmit={(data, { resetForm }) => {
                   this.setComponentState("placeholderText", submitText);
-                  this.insertForm("Call Me Back", data);
+                  this.insertForm("CTA6 – NewsletterForm", data);
                   setTimeout(() => {
                     const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
                     this.setComponentState(
