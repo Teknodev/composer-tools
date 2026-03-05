@@ -44,22 +44,6 @@ class Stats32 extends BaseStats {
 
         this.addProp({
             type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [    
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"), 
-            ],
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "line",
-            displayer: "Line",
-            value: true,
-        });
-
-        this.addProp({
-            type: "array",
             key: "stats",
             displayer: "Stats",
             value: [
@@ -106,12 +90,28 @@ class Stats32 extends BaseStats {
         });
 
         this.addProp({
+            type: "boolean",
+            key: "line",
+            displayer: "Line",
+            value: true,
+        });
+
+        this.addProp({
             type: "object",
             key: "animation",
             displayer: "Animation",
             value: [
                 { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
+            ],
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [    
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"), 
             ],
         });
     }

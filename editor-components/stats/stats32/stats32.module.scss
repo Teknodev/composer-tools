@@ -13,7 +13,6 @@
 
             .left-column {
                 flex: 1;
-                align-items: flex-start;
                 gap: var(--composer-gap-md);
                 > * {
                     margin: 0 !important;
@@ -22,7 +21,6 @@
                 .title,
                 .subtitle,
                 .description {
-                    text-align: left;
                     color: var(--composer-font-color-secondary);
                 }
 
@@ -116,6 +114,24 @@
     }
 }
 
+@container (min-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .content-wrapper {
+                .left-column {
+                    align-items: flex-start;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         padding: calc(var(--composer-gap-lg) *2) var(--composer-gap-lg);
@@ -125,11 +141,7 @@
                 gap: var(--composer-gap-xl);
                 flex-direction: column;
                 align-items: stretch;
-                .left-column{
-                    .title{
-                        text-align: none;
-                    }
-                }
+
                 .right-column {
                     .stat-item {
                         .stat-row {
@@ -155,18 +167,7 @@
 
                 .left-column,
                 .right-column {
-                    width: 100%;
                     flex: auto;
-                }
-
-                .left-column {
-                    align-items: inherit !important ;
-
-                    .title,
-                    .subtitle,
-                    .description {
-                        text-align: inherit !important;
-                    }
                 }
 
                 .right-column {
