@@ -62,7 +62,8 @@
                 .stat-item {
                     align-items: flex-start;
 
-                    &>*:not(:last-child) {
+                    &>.stat-title,
+                    &>.stat-subtitle:has(+ .stat-value) {
                         margin-bottom: 0 !important;
                     }
 
