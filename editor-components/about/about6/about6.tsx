@@ -75,8 +75,6 @@ class About6 extends BaseAbout {
 
         const hasValidButtons = buttons.some((button) => this.castToString(button.text));
 
-        const leftExists = leftTextStr;
-        const rightExists = rightTextStr;
         const showTextContainer = leftTextStr || rightTextStr;
         const singleText = (leftTextStr && !rightTextStr) || (!leftTextStr && rightTextStr);
         const showTopContainer = subTitleStr || titleStr;
@@ -86,7 +84,7 @@ class About6 extends BaseAbout {
         const subTitleType = Base.getSectionSubTitleType();
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} `}>
+            <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContentContainer && (
                         <Base.VerticalContent className={this.decorateCSS("content")}>

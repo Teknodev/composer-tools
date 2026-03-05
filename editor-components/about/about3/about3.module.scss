@@ -155,7 +155,7 @@
                 .image-text {
                     position: absolute;
                     z-index: 10;
-                    top: 50px;
+                    top: var(--composer-gap-xl);
                     left: 38%;
                     transform: translateX(-60%);
                     max-width: 200px;
@@ -218,8 +218,8 @@
 
                 .front-image {
                     position: absolute;
-                    left: 0px;
-                    bottom: 0px;
+                    left: 0;
+                    bottom: 0;
                     max-width: 70%;
                     height: 70%;
                 }
@@ -249,7 +249,7 @@
                     max-width: 400px;
 
                     .image-text {
-                        top: 40px;
+                        top: var(--composer-gap-lg);
                         left: 5%;
 
                         .lower-text {
@@ -296,7 +296,7 @@
 
                     .image-text {
                         left: 30%;
-                        top: 20px;
+                        top: var(--composer-gap-md);
 
                         .lower-text {
                             font-size: 3rem !important

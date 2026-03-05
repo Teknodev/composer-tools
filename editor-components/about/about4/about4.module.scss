@@ -53,6 +53,7 @@ as *;
       .buttons-container {
         display: flex;
         justify-content: center;
+        align-self: center;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
 
@@ -67,36 +68,38 @@ as *;
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    .content {
-      align-items: center;
+  .container {
+    .max-content {
+      .content {
+        align-items: center;
 
-      .subtitle {
-        transform: translateX(0);
+        .subtitle {
+          transform: translateX(0);
 
-        &::before {
-          content: none;
+          &::before {
+            content: none;
+          }
         }
-      }
 
-      .title {
-        text-align: center;
-      }
-
-      .text-container {
-        flex-direction: column;
-        gap: var(--composer-gap-xs);
-
-        .left-text,
-        .right-text {
-          width: 100%;
+        .title {
           text-align: center;
         }
-      }
 
-      .buttons-container {
-        flex-direction: column;
-        align-items: center;
+        .text-container {
+          flex-direction: column;
+          gap: var(--composer-gap-xs);
+
+          .left-text,
+          .right-text {
+            width: 100%;
+            text-align: center;
+          }
+        }
+
+        .buttons-container {
+          flex-direction: column;
+          align-items: center;
+        }
       }
     }
   }

@@ -1,12 +1,17 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Text = {
-  description: React.JSX.Element;
+  description: string;
+};
+
+type MediaGroup = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
 };
 
 class About8 extends BaseAbout {
@@ -29,42 +34,61 @@ class About8 extends BaseAbout {
 
     this.addProp({
       type: "string",
-      key: "sectionDescription",
+      key: "description",
       displayer: "Description",
       value: "",
     });
 
     this.addProp({
-      type: "media",
-      key: "image-1",
+      type: "object",
+      key: "media-1",
       displayer: "Media 1",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efa23596a1002b23acda?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efa23596a1002b23acda?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
-      type: "media",
-      key: "image-2",
+      type: "object",
+      key: "media-2",
       displayer: "Media 2",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efdd3596a1002b23ad71?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efdd3596a1002b23ad71?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -118,10 +142,12 @@ class About8 extends BaseAbout {
   render() {
     const titleStr = this.castToString(this.getPropValue("title"));
     const subtitleStr = this.castToString(this.getPropValue("subtitle"));
-    const descriptionStr = this.castToString(this.getPropValue("sectionDescription"));
+    const descriptionStr = this.castToString(this.getPropValue("description"));
 
-    const image1 = this.getPropValue("image-1");
-    const image2 = this.getPropValue("image-2");
+    const media1 = this.castToObject<MediaGroup>("media-1");
+    const media2 = this.castToObject<MediaGroup>("media-2");
+    const image1 = media1?.media;
+    const image2 = media2?.media;
     const texts = this.castToObject<Text[]>("texts");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const alignment = Base.getContentAlignment();
@@ -130,8 +156,8 @@ class About8 extends BaseAbout {
     const hasButton = buttons.some((button) => this.castToString(button.text));
     const validTexts = texts?.filter((t) => !!this.castToString(t.description)) || [];
     const hasTexts = validTexts.length > 0;
-    const hasImage1 = !!image1?.url;
-    const hasImage2 = !!image2?.url;
+    const hasImage1 = !!image1;
+    const hasImage2 = !!image2;
     const hasImages = hasImage1 || hasImage2;
 
     if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionStr) return null;
@@ -153,7 +179,7 @@ class About8 extends BaseAbout {
               )}
               {descriptionStr && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("sectionDescription")}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>
@@ -166,7 +192,7 @@ class About8 extends BaseAbout {
               <div className={this.decorateCSS("images-section")}>
                 {hasImage1 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+                    className={`${this.decorateCSS("image-box")} ${media1?.overlay ? this.decorateCSS("overlay") : ""}`}
                   >
                     <Base.Media
                       value={image1}
@@ -177,7 +203,7 @@ class About8 extends BaseAbout {
                 )}
                 {hasImage2 && (
                   <div
-                    className={`${this.decorateCSS("image-box")} ${this.getPropValue("overlay") ? this.decorateCSS("overlay") : ""}`}
+                    className={`${this.decorateCSS("image-box")} ${media2?.overlay ? this.decorateCSS("overlay") : ""}`}
                   >
                     <Base.Media
                       value={image2}

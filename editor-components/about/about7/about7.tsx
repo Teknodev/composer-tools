@@ -6,12 +6,12 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type ItemType = {
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
     overlay: boolean;
-    year: React.JSX.Element;
-    subtitle: React.JSX.Element;
-    title: React.JSX.Element;
-    description: React.JSX.Element;
+    year: string;
+    subtitle: string;
+    title: string;
+    description: string;
     rowReverse: boolean;
     middleLineActive: boolean;
     lineActive: boolean;
@@ -94,7 +94,7 @@ class About7 extends BaseAbout {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -167,7 +167,7 @@ class About7 extends BaseAbout {
                     value: [
                         {
                             type: "media",
-                            key: "image",
+                            key: "media",
                             displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "video"],
@@ -304,10 +304,10 @@ class About7 extends BaseAbout {
                         return (
                             <div className={`${this.decorateCSS("items-wrapper")} ${item.rowReverse && this.decorateCSS("row-reverse")} ${alignment === "center" && this.decorateCSS("center-alignment")}`} key={index}>
                                 <div className={this.decorateCSS("left-container")}>
-                                    {item.image && (
+                                    {item.media && (
                                         <div className={this.decorateCSS("image-wrapper")}>
                                             <Base.Media
-                                                value={item.image}
+                                                value={item.media}
                                                 className={this.decorateCSS("image")}
                                             />
                                             {item.overlay && (

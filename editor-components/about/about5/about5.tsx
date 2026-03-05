@@ -48,7 +48,7 @@ class About5 extends BaseAbout {
         })
         this.addProp({
             type: "string",
-            key: "jobTitle",
+            key: "job-title",
             displayer: "Job Title",
             value: "Strategy Manager"
         })
@@ -71,7 +71,7 @@ class About5 extends BaseAbout {
         const text1Str = this.castToString(this.getPropValue("text1"));
         const text2Str = this.castToString(this.getPropValue("text2"));
         const nameStr = this.castToString(this.getPropValue("name"));
-        const jobTitleStr = this.castToString(this.getPropValue("jobTitle"));
+        const jobTitleStr = this.castToString(this.getPropValue("job-title"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
         const hasValidButtons = buttons.some((button) => this.castToString(button.text));
@@ -143,7 +143,7 @@ class About5 extends BaseAbout {
                                                     )}
                                                     {jobTitleStr && (
                                                         <Base.P className={this.decorateCSS("job-title")}>
-                                                            {this.getPropValue("jobTitle")}
+                                                            {this.getPropValue("job-title")}
                                                         </Base.P>
                                                     )}
                                                 </Base.VerticalContent>
@@ -169,7 +169,7 @@ class About5 extends BaseAbout {
                                                     )}
                                                     {jobTitleStr && (
                                                         <Base.P className={this.decorateCSS("job-title")}>
-                                                            {this.getPropValue("jobTitle")}
+                                                            {this.getPropValue("job-title")}
                                                         </Base.P>
                                                     )}
                                                 </Base.VerticalContent>

@@ -34,13 +34,9 @@
             gap: var(--composer-gap-sm);
             flex-wrap: wrap;
 
-            .button-wrapper {
-              display: flex;
-
-              .button {
-                .button-text {
-                  content: "";
-                }
+            .button {
+              .button-text {
+                content: "";
               }
             }
           }
@@ -101,7 +97,7 @@
           order: 1;
 
           .card-1 {
-            padding-bottom: 0px;
+            padding-bottom: 0;
           }
         }
 

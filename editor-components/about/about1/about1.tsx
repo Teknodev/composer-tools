@@ -36,7 +36,7 @@ class About1 extends BaseAbout {
 
     this.addProp({
       type: "string",
-      key: "sectionTitle",
+      key: "title",
       displayer: "Title",
       value: "ABOUT",
     });
@@ -58,23 +58,29 @@ class About1 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
+      type: "object",
       key: "image",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9f9bd2970002c6286f3?alt=media&timestamp=1719564173697",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9f9bd2970002c6286f3?alt=media&timestamp=1719564173697",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -267,13 +273,15 @@ class About1 extends BaseAbout {
     return "About 1";
   }
   render() {
-    const imageValue = this.getPropValue("image");
+    type ImageGroup = { media: TypeMediaInputValue; overlay: boolean };
+    const imageGroup = this.castToObject<ImageGroup>("image");
+    const imageValue = imageGroup.media;
     const subtitleStr = this.castToString(this.getPropValue("subtitle"));
-    const titleStr = this.castToString(this.getPropValue("sectionTitle"));
+    const titleStr = this.castToString(this.getPropValue("title"));
     const descriptionStr = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<ButtonType[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || btn.image?.url || btn.icon?.name);
-    const rightItems = this.castToObject<Icon[]>("right-items")
+    const rightItems = this.castToObject<Icon[]>("right-items");
     const textContent = this.castToObject<ListItem[]>("items");
 
     return (
@@ -288,7 +296,7 @@ class About1 extends BaseAbout {
               )}
               {titleStr && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {this.getPropValue("sectionTitle")}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
               {descriptionStr && (
@@ -334,7 +342,7 @@ class About1 extends BaseAbout {
                   value={imageValue}
                   className={this.decorateCSS("image")}
                 />
-                {this.getPropValue("overlay") && (
+                {imageGroup.overlay && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
 

@@ -58,8 +58,8 @@
 
         .signature {
           .signature-image {
-            width: 150px;
-            height: 100px;
+            width: calc(var(--composer-gap-xl) * 3);
+            height: calc(var(--composer-gap-xl) * 2);
             object-fit: contain;
           }
         }
@@ -86,22 +86,24 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    align-items: center;
+  .container {
+    .max-content {
+      align-items: center;
 
-    .subtitle,
-    .subtitle-badge {
-      text-align: center;
-      transform: translateX(0);
+      .subtitle,
+      .subtitle-badge {
+        text-align: center;
+        transform: translateX(0);
 
-      &::before {
-        content: none;
+        &::before {
+          content: none;
+        }
       }
-    }
 
-    .content {
-      .text-container {
-        flex-direction: column;
+      .content {
+        .text-container {
+          flex-direction: column;
+        }
       }
     }
   }

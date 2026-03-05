@@ -51,7 +51,7 @@ class About2 extends BaseAbout {
     this.addProp({
       type: "object",
       key: "front-media",
-      displayer: "Media",
+      displayer: "Cover Media",
       value: [
         {
           type: "media",
@@ -77,7 +77,7 @@ class About2 extends BaseAbout {
     this.addProp({
       type: "object",
       key: "back-media",
-      displayer: "Media",
+      displayer: "Video Media",
       value: [
         {
           type: "media",

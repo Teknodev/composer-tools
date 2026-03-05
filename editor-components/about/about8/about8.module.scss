@@ -61,6 +61,9 @@ as *;
         .image-box {
           flex: 1;
           aspect-ratio: 1;
+          position: relative;
+          overflow: hidden;
+          border-radius: var(--composer-border-radius-sm);
 
           .image {
             width: 100%;

@@ -12,7 +12,7 @@ class About4 extends BaseAbout {
         super(props, styles);
         this.addProp({
             type: "string",
-            key: "subTitle",
+            key: "subtitle",
             displayer: "Subtitle",
             value: "WHAT WE DO"
         })
@@ -50,7 +50,7 @@ class About4 extends BaseAbout {
 
     render() {
 
-        const subTitleStr = this.castToString(this.getPropValue("subTitle"));
+        const subTitleStr = this.castToString(this.getPropValue("subtitle"));
         const titleStr = this.castToString(this.getPropValue("title"));
         const leftTextStr = this.castToString(this.getPropValue("leftText"));
         const rightTextStr = this.castToString(this.getPropValue("rightText"));
@@ -68,7 +68,7 @@ class About4 extends BaseAbout {
                         <Base.VerticalContent className={this.decorateCSS("content")}>
                             {subTitleStr && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                    {this.getPropValue("subTitle")}
+                                    {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
                             )}
                             {titleStr && (

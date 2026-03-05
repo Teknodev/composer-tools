@@ -7,7 +7,7 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ImageMedia = {
-  image: TypeMediaInputValue;
+  media: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -84,7 +84,7 @@ class About3 extends BaseAbout {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -110,7 +110,7 @@ class About3 extends BaseAbout {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "media",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -158,8 +158,8 @@ class About3 extends BaseAbout {
 
     const backImage = this.castToObject<ImageMedia>("back-image");
     const frontImage = this.castToObject<ImageMedia>("front-image");
-    const backMedia = backImage?.image;
-    const frontMedia = frontImage?.image;
+    const backMedia = backImage?.media;
+    const frontMedia = frontImage?.media;
 
     const isImage1Exist = !!backMedia;
     const isImage2Exist = !!frontMedia;
