@@ -1,9 +1,9 @@
-import { BaseSocial } from "composer-tools/editor-components/EditorComponent";
+import { BaseSocial } from "../../EditorComponent";
 import styles from "./social4.module.scss"
-import { Base } from "composer-tools/composer-base-components/base/base";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import React from "react";
 import { FaLessThanEqual } from "react-icons/fa";
 import { TbRubberStamp } from "react-icons/tb";

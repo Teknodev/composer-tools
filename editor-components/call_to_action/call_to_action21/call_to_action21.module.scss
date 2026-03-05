@@ -1,0 +1,84 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+
+    .max-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .card {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+
+            .card-content {
+                align-items: center;
+                width: 100%;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: center;
+                }
+
+                .subtitle {
+                    width: fit-content;
+                    transform: none;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            &.has-background {
+                background: var(--composer-primary-color);
+                border-radius: var(--composer-border-radius-md);
+                padding: 80px 50px;
+
+                .card-content {
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        color: var(--composer-font-color-secondary);
+                    }
+
+                    .subtitle {
+                        background: transparent;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card.has-background {
+        padding: 80px 40px;
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .card.has-background {
+        padding: 50px 20px;
+    }
+}

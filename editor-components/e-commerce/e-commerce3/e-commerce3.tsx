@@ -1,7 +1,7 @@
 import * as React from "react";
-import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
+import { BaseECommerce } from "../../EditorComponent";
 import styles from "./e-commerce3.module.scss";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 
 type Tab = {
   tabTitle: React.JSX.Element,

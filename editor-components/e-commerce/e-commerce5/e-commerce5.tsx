@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce5.module.scss";
-import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
-import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
+import { BaseECommerce } from "../../EditorComponent";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface ImageGallery {
   sectionTitle: React.JSX.Element;

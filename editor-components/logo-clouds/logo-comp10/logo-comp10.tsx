@@ -1,7 +1,7 @@
 import * as React from "react";
 import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp10.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 type TImage = {

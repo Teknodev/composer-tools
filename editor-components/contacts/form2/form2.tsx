@@ -4,7 +4,7 @@ import styles from "./form2.module.scss";
 import { ErrorMessage, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class Form2 extends BaseContacts {
   constructor(props?: any) {
@@ -369,7 +369,7 @@ class Form2 extends BaseContacts {
                     validationSchema={getSchema}
                     onSubmit={(data, { resetForm }) => {
                       const formData = getFormDataWithConvertedKeys(data);
-                      this.insertForm("Contact Us", formData);
+                      this.insertForm("Form 2 - ContactUsForm", formData);
                       resetForm();
                     }}
                   >
