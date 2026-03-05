@@ -116,47 +116,44 @@ class About8 extends BaseAbout {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
+    const titleStr = this.castToString(this.getPropValue("title"));
+    const subtitleStr = this.castToString(this.getPropValue("subtitle"));
+    const descriptionStr = this.castToString(this.getPropValue("sectionDescription"));
+
     const image1 = this.getPropValue("image-1");
     const image2 = this.getPropValue("image-2");
     const texts = this.castToObject<Text[]>("texts");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const alignment = Base.getContentAlignment();
 
-    const hasTitle = !!this.castToString(title);
-    const hasButton = buttons.length > 0;
-    const validTexts =
-      texts?.filter((t) => !!this.castToString(t.description)) || [];
+    const hasTitle = !!titleStr;
+    const hasButton = buttons.some((button) => this.castToString(button.text));
+    const validTexts = texts?.filter((t) => !!this.castToString(t.description)) || [];
     const hasTexts = validTexts.length > 0;
     const hasImage1 = !!image1?.url;
     const hasImage2 = !!image2?.url;
     const hasImages = hasImage1 || hasImage2;
 
-    const description = this.getPropValue("sectionDescription");
-    const descriptionExist = this.castToString(description);
-    const subtitleText = this.castToString(subtitle);
-
-    if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionExist) return null;
+    if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionStr) return null;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasImages ? this.decorateCSS("no-image") : ""}`}>
-          {(subtitleText || hasTitle || descriptionExist) && (
+          {(subtitleStr || hasTitle || descriptionStr) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS(alignment)}`}>
-              {subtitleText && (
+              {subtitleStr && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
               {hasTitle && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {descriptionExist && (
+              {descriptionStr && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
+                  {this.getPropValue("sectionDescription")}
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>
@@ -207,19 +204,19 @@ class About8 extends BaseAbout {
                   </div>
                 )}
 
-                {buttons.length > 0 && (
+                {hasButton && (
                   <div className={`${this.decorateCSS("buttons-container")} ${this.decorateCSS(alignment)}`}>
-                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
-                      <React.Fragment key={index}>
-                        {this.castToString(button.text) && (
-                          <ComposerLink path={button.url}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        )}
-                      </React.Fragment>
-                    ))}
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      if (!this.castToString(button.text)) return null;
+
+                      return (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
                 )}
               </div>

@@ -32,17 +32,17 @@ as *;
       }
 
       &.with-image {
-        align-items: flex-start !important;
-        text-align: left !important;
+        align-items: flex-start;
+        text-align: left;
 
         .subtitle {
-          margin-left: 0 !important;
+          margin-left: 0;
         }
 
         .subtitle,
         .title,
         .description {
-          text-align: left !important;
+          text-align: left;
         }
       }
     }
@@ -135,16 +135,16 @@ as *;
 
       &.with-image {
         .content-section {
-          align-items: flex-start !important;
+          align-items: flex-start;
 
           .texts-wrapper .text {
-            text-align: left !important;
+            text-align: left;
           }
 
           .buttons-container {
-            align-self: flex-start !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
+            align-self: flex-start;
+            margin-left: 0;
+            margin-right: 0;
           }
         }
       }
@@ -230,11 +230,11 @@ as *;
   justify-content: center;
 
   .images-section {
-    width: 100% !important;
+    width: 100%;
     justify-content: center;
 
     .image-box {
-      width: 100% !important;
+      width: 100%;
       max-width: 800px;
     }
   }
