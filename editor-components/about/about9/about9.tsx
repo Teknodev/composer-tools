@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./about9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseAbout } from "composer-tools/editor-components/EditorComponent";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 class About9 extends BaseAbout {
     constructor(props?: any) {
@@ -64,6 +66,15 @@ class About9 extends BaseAbout {
             displayer: "Second Text",
             value: "web services via user-centric initiatives. Quickly promote sticky testing procedures before unique process improvements. Distinctively engineer innovative information whereas revolutionary process improvements. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia enim omnis saepe dolor voluptatum. Natus soluta maxime ipsum nam sapiente dignissimos voluptatum totam. Quickly promote sticky testing procedures before unique process improvements."
         })
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+            ],
+        });
     }
 
     static getName(): string {
@@ -71,20 +82,21 @@ class About9 extends BaseAbout {
     }
 
     render() {
-        const title = this.getPropValue("title");
-        const subtitle = this.getPropValue("subtitle");
-        const subtitleText = this.castToString(subtitle);
+        const titleStr = this.castToString(this.getPropValue("title"));
+        const subtitleStr = this.castToString(this.getPropValue("subtitle"));
+        const text1Str = this.castToString(this.getPropValue("text1"));
+        const text2Str = this.castToString(this.getPropValue("text2"));
         const image1 = this.getPropValue("image1");
         const image2 = this.getPropValue("image2");
-        const text1 = this.getPropValue("text1");
-        const text2 = this.getPropValue("text2");
         const overlay = this.getPropValue("overlay") as boolean;
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
+        const hasValidButtons = buttons.some((button) => this.castToString(button.text));
         const hasImage1 = !!image1?.url;
         const hasImage2 = !!image2?.url;
         const hasImages = hasImage1 || hasImage2;
-        const showTopContainer = this.castToString(title) || hasImages;
-        const showBottomContainer = this.castToString(text1) || this.castToString(text2);
+        const showTopContainer = titleStr || hasImages;
+        const showBottomContainer = text1Str || text2Str || hasValidButtons;
         const showSideContainer = showTopContainer || showBottomContainer;
 
         const alignmentValue = Base.getContentAlignment();
@@ -97,16 +109,16 @@ class About9 extends BaseAbout {
                             {showTopContainer && (
                                 <div className={this.decorateCSS("top-container")}>
                                     <Base.VerticalContent className={this.decorateCSS("title-container")}>
-                                        {subtitleText && (
+                                        {subtitleStr && (
                                             <div className={this.decorateCSS("subtitle-wrapper")}>
                                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                                    {subtitle}
+                                                    {this.getPropValue("subtitle")}
                                                 </Base.SectionSubTitle>
                                             </div>
                                         )}
-                                        {this.castToString(title) && (
+                                        {titleStr && (
                                             <Base.SectionTitle className={this.decorateCSS("title")}>
-                                                {title}
+                                                {this.getPropValue("title")}
                                             </Base.SectionTitle>
                                         )}
                                     </Base.VerticalContent>
@@ -126,16 +138,32 @@ class About9 extends BaseAbout {
                             )}
                             {showBottomContainer && (
                                 <div className={this.decorateCSS("bottom-container")}>
-                                    {this.castToString(text1) && (
+                                    {text1Str && (
                                         <Base.P className={this.decorateCSS("text-1")}>
-                                            {text1}
+                                            {this.getPropValue("text1")}
                                         </Base.P>
                                     )}
-                                    {this.castToString(text2) && (
+                                    {text2Str && (
                                         <Base.P className={this.decorateCSS("text-2")}>
-                                            {text2}
+                                            {this.getPropValue("text2")}
                                         </Base.P>
                                     )}
+                                </div>
+                            )}
+
+                            {hasValidButtons && (
+                                <div className={`${this.decorateCSS("buttons-container")} ${alignmentValue === "center" && !hasImages ? this.decorateCSS("center") : ""}`}>
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                        if (!this.castToString(button.text)) return null;
+
+                                        return (
+                                            <ComposerLink key={index} path={button.url}>
+                                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
                                 </div>
                             )}
                         </div>
