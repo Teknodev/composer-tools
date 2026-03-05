@@ -1,10 +1,10 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about1.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { INPUTS, TypeMediaInputValue } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
-  
+
 type ListItem = {
   title: React.JSX.Element;
   description: React.JSX.Element;

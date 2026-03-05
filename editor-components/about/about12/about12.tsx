@@ -1,8 +1,8 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS, TypeMediaInputValue } from "../../../custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type MediaGroup = {
