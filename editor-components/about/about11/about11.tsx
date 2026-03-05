@@ -3,6 +3,7 @@ import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about11.module.scss";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Icon {
   icon: TypeMediaInputValue;
@@ -118,6 +119,15 @@ class About11 extends BaseAbout {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "boolean",
       key: "iconBackground",
       displayer: "Icon Background",
@@ -154,6 +164,10 @@ class About11 extends BaseAbout {
 
     const rightItems = this.castToObject<Icon[]>("right-items") || [];
     const iconBackground = this.getPropValue("iconBackground");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((button) =>
+      this.castToString(button.text)
+    );
 
     const image = this.getPropValue("image");
 
@@ -165,7 +179,7 @@ class About11 extends BaseAbout {
       return icon?.name || icon?.url;
     });
     const hasRightContent =
-      hasTitle || hasSubtitle || hasDescription || hasRightIcon;
+      hasTitle || hasSubtitle || hasDescription || hasRightIcon || hasValidButtons;
 
     const hasImage = !!(image && image.url);
     const alignmentValue = Base.getContentAlignment();
@@ -193,13 +207,11 @@ class About11 extends BaseAbout {
             )}
             {hasRightContent && (
               <Base.GridCell
-                className={`${this.decorateCSS("right")} ${
-                  !hasImage && alignmentValue === "center"
-                    ? this.decorateCSS("no-image-center")
-                    : ""
-                } ${
-                  alignmentValue === "center" ? this.decorateCSS("center") : ""
-                }`}
+                className={`${this.decorateCSS("right")} ${!hasImage && alignmentValue === "center"
+                  ? this.decorateCSS("no-image-center")
+                  : ""
+                  } ${alignmentValue === "center" ? this.decorateCSS("center") : ""
+                  }`}
               >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
@@ -208,14 +220,14 @@ class About11 extends BaseAbout {
                     <Base.SectionSubTitle
                       className={this.decorateCSS("section-subtitle")}
                     >
-                      {subtitle}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {hasTitle && (
                     <Base.SectionTitle
                       className={this.decorateCSS("section-title")}
                     >
-                      {title}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
 
@@ -223,8 +235,33 @@ class About11 extends BaseAbout {
                     <Base.SectionDescription
                       className={this.decorateCSS("section-description")}
                     >
-                      {description}
+                      {this.getPropValue("description")}
                     </Base.SectionDescription>
+                  )}
+
+                  {hasValidButtons && (
+                    <div className={this.decorateCSS("buttons-container")}>
+                      {buttons.map(
+                        (button: INPUTS.CastedButton, index: number) => {
+                          if (!this.castToString(button.text)) return null;
+
+                          return (
+                            <ComposerLink key={index} path={button.url}>
+                              <Base.Button
+                                buttonType={button.type}
+                                className={this.decorateCSS("button")}
+                              >
+                                <Base.P
+                                  className={this.decorateCSS("button-text")}
+                                >
+                                  {button.text}
+                                </Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        }
+                      )}
+                    </div>
                   )}
 
                   {rightItems.length > 0 && (

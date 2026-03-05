@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -67,15 +66,12 @@
             .section-subtitle {
               margin-left: auto;
             }
-
-            .icons {
-              justify-content: center;
-            }
           }
         }
       }
 
       .vertical-content {
+
         .section-title,
         .section-subtitle,
         .section-description {
@@ -87,12 +83,27 @@
           margin-right: auto;
         }
 
+        .buttons-container {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+
+          .button {
+            .button-text {
+              content: "";
+            }
+          }
+        }
+
         .icons {
           display: flex;
           justify-content: flex-start;
           align-items: center;
           width: 100%;
           gap: var(--composer-gap-sm);
+          margin-top: var(--composer-gap-sm);
           flex-wrap: wrap;
 
           .icon-wrapper {
@@ -102,11 +113,9 @@
             width: 4.5rem;
             height: 4.5rem;
             border-radius: 50%;
-            background-color: color-mix(
-              in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 5%
-            );
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 5%);
             transition: background-color 0.3s ease;
 
             &:hover {
@@ -178,10 +187,6 @@
 
             .section-subtitle {
               margin-left: auto;
-            }
-
-            .icons {
-              justify-content: center;
             }
           }
         }
