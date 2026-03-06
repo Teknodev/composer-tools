@@ -342,9 +342,6 @@
                     .item-description,
                     .item-title {
                         text-align: left !important;
-                        margin-right: 0 !important;
-                        transform: none !important;
-                        align-self: flex-start !important;
                     }
                 }
 
@@ -379,9 +376,6 @@
                     .item-title,
                     .item-description {
                         text-align: left !important;
-                        margin-right: auto !important;
-                        margin-left: 0 !important;
-                        align-self: flex-start !important;
                     }
                 }
             }
