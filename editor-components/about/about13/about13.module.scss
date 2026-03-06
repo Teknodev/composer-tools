@@ -27,10 +27,8 @@
 
                     .button-container {
                         display: flex;
-                        width: 100%;
                         gap: var(--composer-gap-sm);
                         flex-wrap: wrap;
-                        justify-content: flex-start;
 
                         .button {
                             .button-text {
