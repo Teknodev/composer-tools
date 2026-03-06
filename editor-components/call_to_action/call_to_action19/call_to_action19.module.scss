@@ -181,7 +181,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         &.has-card-background .max-content {
-            padding: calc(var(--composer-gap-md)*2) var(--composer-gap-md);
+           padding: 50px 20px;
         }
 
         .max-content .content {
