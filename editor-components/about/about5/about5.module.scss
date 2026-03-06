@@ -68,6 +68,7 @@
               .name {
                 color: var(--composer-primary-color);
                 text-align: left;
+                font-size: 2rem;
               }
 
               .job-title {
@@ -110,6 +111,12 @@
             .right-column-card {
               width: 100%;
               gap: var(--composer-gap-md);
+
+              .information {
+                .name {
+                  font-size: 1.7rem !important;
+                }
+              }
             }
           }
         }
