@@ -43,26 +43,7 @@ class About8 extends BaseAbout {
       type: "object",
       key: "media-1",
       displayer: "Media 1",
-      value: [
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6912efa23596a1002b23acda?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
+      value: [],
     });
 
     this.addProp({
@@ -159,6 +140,7 @@ class About8 extends BaseAbout {
     const hasImage1 = !!image1;
     const hasImage2 = !!image2;
     const hasImages = hasImage1 || hasImage2;
+    const isSingleImage = (hasImage1 && !hasImage2) || (!hasImage1 && hasImage2);
 
     if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionStr) return null;
 
@@ -189,7 +171,7 @@ class About8 extends BaseAbout {
             className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS("no-image")}`}
           >
             {hasImages && (
-              <div className={this.decorateCSS("images-section")}>
+              <div className={`${this.decorateCSS("images-section")} ${isSingleImage ? this.decorateCSS("single-image") : ""}`}>
                 {hasImage1 && (
                   <div
                     className={`${this.decorateCSS("image-box")} ${media1?.overlay ? this.decorateCSS("overlay") : ""}`}

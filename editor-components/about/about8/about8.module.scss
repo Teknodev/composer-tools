@@ -72,6 +72,13 @@ as *;
             border-radius: var(--composer-border-radius-sm);
           }
         }
+
+        &.single-image {
+          .image-box {
+            aspect-ratio: 16 / 9;
+            max-height: 400px;
+          }
+        }
       }
 
       .content-section {
