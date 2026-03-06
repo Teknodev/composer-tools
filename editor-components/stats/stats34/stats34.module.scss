@@ -2,7 +2,7 @@
 
 .container {
     .max-content {
-        .layout {
+        .wrapper {
             display: flex;
             align-items: center;
             gap: var(--composer-gap-lg);
@@ -94,7 +94,7 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .layout {
+    .container .max-content .wrapper {
         flex-direction: column;
         align-items: flex-start;
 

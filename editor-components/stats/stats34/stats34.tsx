@@ -275,7 +275,7 @@ class Stats34 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("layout")}>
+                    <div className={this.decorateCSS("wrapper")}>
                         {(hasContent || visibleButtons.length > 0) && (
                             <Base.VerticalContent className={this.decorateCSS("content")}>
                                 {subtitleExist && (
