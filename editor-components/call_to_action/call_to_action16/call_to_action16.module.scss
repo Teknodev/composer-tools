@@ -1,0 +1,54 @@
+@use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .content {
+            .header {
+                align-items: center;
+
+                .subtitle {
+                    transform: none;
+                    text-align: center;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+
+                .title {
+                    text-align: center;
+                }
+
+                .description {
+                    text-align: center;
+                }
+            }
+
+            .button-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .info-text-container {
+
+            .info-text {
+                color: var(--composer-tertiary-color);
+                text-align: center;
+            }
+        }
+    }
+}

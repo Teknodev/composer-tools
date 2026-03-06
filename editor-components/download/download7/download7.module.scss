@@ -1,6 +1,15 @@
 @use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .max-content {
     .wrapper {
       width: 100%;
@@ -20,32 +29,39 @@
         z-index: 1;
       }
 
-      .content-container{
+      .content-container {
         height: 100%;
         justify-content: center;
         position: relative;
         z-index: 2;
-        &.image{
+
+        &.image {
           min-height: 600px;
           padding: var(--composer-gap-md) var(--composer-gap-md);
           align-items: center;
           text-align: center;
+
+          .subtitle,
+          .title,
+          .description {
+            color: white;
+            background: transparent;
+            text-align: center;
+          }
         }
+
         .subtitle {
           content: "";
           transform: translateX(0);
-          &::before{
+
+          &::before {
             display: none;
           }
-          &.with-image{
-            color: white;
-          }
         }
-        .title, .description {
+
+        .title,
+        .description {
           content: "";
-          &.with-image{
-            color: white;
-          }
         }
 
 
@@ -54,15 +70,19 @@
           flex-wrap: wrap;
           align-items: center;
           gap: var(--composer-gap-md);
+
           .button-wrapper {
             .button-image {
               width: 170px;
-              height:50px;
+              height: 50px;
               border-radius: var(--composer-border-radius-sm);
               object-fit: cover;
             }
+
             .button-element {
-              .button-icon, .button-text {
+
+              .button-icon,
+              .button-text {
                 content: "";
               }
             }
@@ -93,14 +113,17 @@
         .content-container {
           min-height: 600px;
           padding: var(--composer-gap-sm) var(--composer-gap-md);
-          .description{
+
+          .description {
             text-align: center;
           }
-          .buttons-container{
+
+          .buttons-container {
             justify-content: center;
             flex-direction: column;
-            .button-wrapper{
-              .button-image{
+
+            .button-wrapper {
+              .button-image {
                 width: 150px;
                 height: 40px;
               }

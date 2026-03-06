@@ -2,8 +2,8 @@ import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature19.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface ListItem {
   title: string;
@@ -35,9 +35,9 @@ class Feature19 extends BaseFeature {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",

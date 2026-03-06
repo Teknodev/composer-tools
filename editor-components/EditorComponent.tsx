@@ -4,10 +4,10 @@ import { EventEmitter, EVENTS } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
-import InlineEditor from "../../custom-hooks/UseInlineEditor";
+import { getInlineEditor } from "../InlineEditorProvider";
 import { v4 as uuidv4 } from 'uuid';
-import { CurrencyCode } from "composer-tools/utils/currency";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { CurrencyCode } from "../utils/currency";
+import { INPUTS } from "../custom-hooks/input-templates";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -293,6 +293,7 @@ export interface iComponent {
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
   id: string;
+  globalComponentId?: string;
 }
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -325,6 +326,10 @@ export type TypeReactComponent = {
   cssClasses?: TypeCSSProp;
   interactions?: Record<string, InteractionType[]>;
   id?: string;
+  children?: string;
+  customComponentId?: string;
+  customComponentVersion?: string;
+  globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -365,17 +370,19 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  // TOP_BANNER = "topBanner",
+  TOP_BANNER = "topBanner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
   LEGAL = "legal",
   COMINGSOON = "comingSoon",
-  // STICKY = "sticky",
+  STICKY = "sticky",
   BREADCRUMB = "breadcrumb",
   ABOUT = "about",
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
+  CUSTOM = "custom",
+  GLOBAL = "global",
 }
 
 export function generateId(key: string): string {
@@ -391,6 +398,7 @@ export abstract class Component
   private shadowProps: TypeUsableComponentProps[] = [];
   private styles: any;
   public id: string;
+  public globalComponentId: string | undefined;
   static category: CATEGORIES;
   private memorizedElements: {[id: string]: MemorizedElement} = {};
 
@@ -427,6 +435,33 @@ export abstract class Component
     super(props);
     this.styles = styles;
     this.id = props?.id || generateComponentId();
+    this.globalComponentId = props?.globalComponentId;
+
+    const originalRender = this.render.bind(this);
+
+    this.render = () => {
+      const result = originalRender();
+
+      if (!React.isValidElement(result)) {
+        throw new Error(
+          `${this.getInstanceName()} must return a single React element.`
+        );
+      }
+
+      if (Array.isArray(result)) {
+        throw new Error(
+          `${this.getInstanceName()} cannot return an array of elements.`
+        );
+      }
+
+      if (result.type === React.Fragment) {
+        throw new Error(
+          `${this.getInstanceName()} cannot return a Fragment.`
+        );
+      }
+
+      return result;
+    };
 
     let sectionsKeyValue: any = {};
     Object.keys(this.styles).forEach((key, index) => {
@@ -615,6 +650,7 @@ export abstract class Component
 
       const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
 
+      const InlineEditor = getInlineEditor();
       return (
         <InlineEditor
           id={prop.id}
@@ -777,7 +813,7 @@ export abstract class Component
     });
 
     cssClass.push(
-      generateAutoClassName(this.id, section)
+      generateAutoClassName(this.globalComponentId || this.id, section)
     );
     
     return cssClass.join(" ");

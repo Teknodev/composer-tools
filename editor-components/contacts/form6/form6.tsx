@@ -5,7 +5,7 @@ import { ErrorMessage, Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Base } from "../../../composer-base-components/base/base";
 
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class Form6 extends BaseContacts {
   constructor(props?: any) {
@@ -13,7 +13,7 @@ class Form6 extends BaseContacts {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -510,7 +510,7 @@ class Form6 extends BaseContacts {
                     validationSchema={getSchema}
                     onSubmit={(data, { resetForm }) => {
                       const formData = this.getFormDataWithConvertedKeys(data);
-                      this.insertForm("Contact Me", formData);
+                      this.insertForm("Form 6 - ContactUsForm", formData);
                       resetForm();
                     }}
                   >

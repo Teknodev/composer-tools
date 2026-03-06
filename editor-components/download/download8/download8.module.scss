@@ -1,13 +1,19 @@
 @use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0;
+  padding: 80px 0px !important;
+
+  &.with-image {
+    padding: 0 !important;
+  }
+
+
+
   .page {
     width: 100%;
     display: flex;
     align-items: center;
     position: relative;
-    overflow: hidden;
     height: auto;
 
     .image-child {
@@ -15,6 +21,7 @@
       height: 100%;
       overflow: hidden;
       position: absolute;
+
       .background-image {
         width: 100%;
         height: 100%;
@@ -30,21 +37,25 @@
         background-color: var(--composer-overlay-color);
       }
     }
-    .max-content{
+
+    .max-content {
       display: flex;
-      overflow: hidden;
       position: relative;
       height: auto;
+      min-height: 250px;
+
       .left-content {
-        &.center{
+        &.center {
           align-items: center;
           text-align: center;
         }
+
         width: 100%;
         justify-content: center;
         bottom: 0;
         opacity: 1;
-        transition: opacity 0.5s, height 0.5s;
+        transition: opacity 0.5s,
+        height 0.5s;
         padding: var(--composer-gap-md) var(--composer-gap-xl);
         overflow: auto;
         z-index: 3;
@@ -52,22 +63,44 @@
         height: auto;
         position: relative;
 
-        .title, .description {
+        .title,
+        .description,
+        .subtitle {
           content: "";
           text-align: center;
-          &.image{
+        }
+
+        .subtitle {
+          transform: translateX(0);
+          text-align: center;
+          align-self: center;
+
+
+          &::before {
+            display: none;
+          }
+        }
+
+      }
+
+      &.with-image {
+        min-height: 350px;
+
+        .left-content {
+
+          .title,
+          .description {
+            color: white;
+            background: transparent;
+          }
+
+          .subtitle {
+            background: transparent;
             color: white;
           }
         }
-        
       }
-      &.image {
-        min-height: 350px;
-      }
-  
-      &.no-image {
-        min-height: 250px;
-      }
+
     }
 
 
@@ -90,7 +123,8 @@
 
       .card {
         width: 100%;
-        height: 100%;
+        height: auto;
+        min-height: 100%;
         display: flex;
         flex-direction: column;
         border-top-left-radius: var(--composer-border-radius-md);
@@ -99,17 +133,24 @@
 
         .card-up {
           width: 100%;
-          height: 90%;
+          height: auto;
+          flex: 1;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
           margin: 0px;
+          padding-top: var(--composer-gap-sm);
+
           .cardTitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
-            margin: 0;
+            padding-top: 0;
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
           }
+
+          .card-subtitle {
+            margin-left: var(--composer-gap-md);
+          }
+
           .list-group {
             width: 100%;
             display: flex;
@@ -129,6 +170,7 @@
                 height: 12px;
                 flex-shrink: 0;
               }
+
               .text {
                 color: var(--composer-font-color-primary);
               }
@@ -138,10 +180,11 @@
 
         .card-down {
           width: 100%;
-          height: 20%;
+          height: auto;
           display: flex;
           align-items: center;
           border-top: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
+
           .buttons-container {
             display: flex;
             flex-wrap: wrap;
@@ -163,10 +206,11 @@
             }
 
             .button {
-              .icon{
+              .icon {
                 content: "";
               }
-              .text{
+
+              .text {
                 content: "";
               }
             }
@@ -175,7 +219,12 @@
       }
     }
 
+    .card-up .card-subtitle.center-badge {
+      margin: 0px 0px var(--composer-gap-sm) !important;
+    }
+
     &:hover {
+
       .left-content,
       .left-content-no-image {
         opacity: 0;
@@ -183,7 +232,12 @@
         .title {
           opacity: 0;
         }
+
         .description {
+          opacity: 0;
+        }
+
+        .subtitle {
           opacity: 0;
         }
       }
@@ -210,17 +264,20 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .page {
-      .max-content{
-        .left-content{
+      .max-content {
+        .left-content {
           padding: var(--composer-gap-md) !important;
         }
       }
+
       .right-content {
         width: 20vw;
         min-width: 20vw;
+
         .card {
           width: 20vw;
-          height: 100%;
+          height: auto;
+          min-height: 100%;
 
           .card-up {
             .list-group {
@@ -229,18 +286,22 @@
                   width: var(--composer-gap-sm);
                   height: var(--composer-gap-sm);
                 }
+
                 .text {
                   content: "";
                 }
               }
             }
           }
+
           .card-down {
             .buttons-container {
               align-items: baseline;
+
               .image-container {
                 width: 120px;
                 height: 35px;
+
                 .image {
                   width: 100%;
                   height: 100%;

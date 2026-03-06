@@ -1,8 +1,8 @@
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature25.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import React from "react";
 
 type ITabs = {
@@ -44,9 +44,9 @@ class Feature25 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -97,9 +97,9 @@ class Feature25 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -150,9 +150,9 @@ class Feature25 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",

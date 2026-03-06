@@ -353,7 +353,7 @@
         margin-top: 0px;
     }
     >*:last-child{
-        margin-bottom: 0px;
+        margin-bottom: 0px !important;
     }
     .sectionDescription,
     .sectionTitle{
@@ -414,6 +414,14 @@
   font-family: var(--composer-font-family);
   padding: var(--composer-gap-sm) var(--composer-gap-md);
 
+  blinkpage,
+  p,
+  blinkpage p {
+    font-size: inherit !important;
+    line-height: inherit !important;
+    width: auto;
+  }
+  
     @container (max-width: #{$composer-tablet-width}) {
         padding: var(--composer-gap-sm) !important;
     }
@@ -598,6 +606,7 @@
 .label{
     color: var(--composer-font-color-primary);
     font-size: var(--composer-font-size-md) !important;
+    font-family: var(--composer-font-family);
 }
 
 .accordionList{
@@ -616,8 +625,9 @@
 
 .languageIcon{
     color: var(--composer-font-color-primary);
-    width: var(--composer-font-size-md);
-    height: var(--composer-font-size-md);
+    width: 14px;
+    height: 14px;
+    font-size: 1rem;
 }
 
 .baseCard {

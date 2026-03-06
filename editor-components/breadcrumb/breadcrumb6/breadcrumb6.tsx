@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./breadcrumb6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBreadcrumb } from "../../EditorComponent";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
     title: string;
@@ -29,7 +29,8 @@ class Breadcrumb6 extends BaseBreadcrumb {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Background Media",
+      additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dab8f1fb049c002cc2523f?alt=media" },
     });
     this.addProp({

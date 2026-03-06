@@ -1,0 +1,219 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  position: relative;
+  overflow: hidden;
+
+  .max-content {
+    .intro-wrapper {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: end;
+      min-height: 500px;
+      align-items: center;
+
+      &.no-image {
+        min-height: unset;
+      }
+
+      &.no-image-center {
+        .text-content {
+          .vertical-content {
+            .title,
+            .description,
+            .bottom-text {
+              text-align: center;
+            }
+
+            .subtitle {
+              margin-left: auto;
+              text-align: center;
+            }
+
+            .actions-wrapper {
+              align-items: center;
+
+              .action-buttons {
+                justify-content: center;
+                align-items: center;
+              }
+            }
+            .text-wrapper {
+              justify-content: center;
+
+              .thumb-icon {
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+
+      .text-content {
+        width: calc(50% - var(--composer-gap-xl));
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        &.text-content-alone {
+          width: 100%;
+        }
+
+        .vertical-content {
+          .title,
+          .description,
+          .bottom-text {
+            text-align: left;
+          }
+
+          .subtitle {
+            margin-left: 0;
+            text-align: left;
+          }
+
+          .actions-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+
+            .action-buttons {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+            }
+          }
+
+          .button-wrapper {
+            display: flex;
+
+            .button {
+              .button-text {
+                content: "";
+              }
+              .button-icon {
+                display: flex;
+                align-items: center;
+                font-size: 1.5rem;
+                height: 25px;
+                width: 25px;
+              }
+            }
+          }
+          .text-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            gap: var(--composer-gap-sm);
+
+            .thumb-icon {
+              display: flex;
+              align-items: center;
+              color: var(--composer-tertiary-color);
+
+              height: 25px;
+            }
+
+            .bottom-text {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+
+      &.image-container-alone {
+        .image-container {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .image-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
+
+        .media-wrapper {
+          height: 100%;
+
+          .media-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .thumbnail-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--composer-overlay-color);
+            transition: opacity var(--composer-transition-duration-normal) ease;
+            pointer-events: none;
+            z-index: 1;
+          }
+        }
+      }
+    }
+  }
+}
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    padding: var(--composer-gap-xl) 0 !important;
+    .max-content {
+      .intro-wrapper {
+        flex-direction: column;
+        min-height: unset;
+        gap: var(--composer-gap-lg);
+
+        .image-container {
+          order: 2;
+          flex: 0 0 100%;
+          width: 100%;
+          position: relative;
+          padding: 0;
+        }
+
+        .text-content {
+          padding: 0 var(--composer-gap-md) 0 !important;
+          order: 1;
+          width: 100%;
+          flex: 0 0 100%;
+
+          .vertical-content {
+            &.center {
+              .title,
+              .description,
+              .bottom-text {
+                text-align: center;
+              }
+
+              .subtitle {
+                margin-left: auto;
+                text-align: center;
+              }
+
+              .actions-wrapper {
+                align-items: center;
+              }
+              .text-wrapper {
+                justify-content: center;
+
+                .thumb-icon {
+                  align-items: center;
+                  justify-content: center;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -23,7 +23,7 @@
     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
     height: 80%;
     width: 100%;
-  }
+  } 
 
   .max-content {
     position: relative;
@@ -52,7 +52,7 @@
           flex-direction: column;
           justify-content: center;
 
-          .title, .subtitle {
+          .title, .subtitle, .description {
             content: "";
           }
 

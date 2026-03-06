@@ -1,0 +1,106 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background: linear-gradient(to bottom,
+            var(--composer-html-background) 60%,
+            color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 50%);
+
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+
+            .text-content {
+
+                .subtitle,
+                .title,
+                .description {
+                    content: "";
+                }
+            }
+
+            .cards-container {
+                gap: var(--composer-gap-lg);
+                align-items: stretch;
+                justify-items: stretch;
+
+                .card {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
+                    border-radius: var(--composer-border-radius-md);
+                    background-color: var(--composer-html-background);
+                    box-shadow: var(--box-shadow-active);
+                    padding: var(--composer-gap-lg);
+                    box-sizing: border-box;
+                    overflow: hidden;
+                    text-align: left !important;
+
+                    .card-title,
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left !important;
+                    }
+
+                    .card-button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center !important;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: var(--composer-gap-md);
+
+            .button {
+                .button-text {
+                    content: "";
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        background: var(--composer-html-background);
+
+        .max-content {
+            .content-wrapper {
+                .cards-container {
+                    flex-direction: row;
+                    gap: var(--composer-gap-md);
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content-wrapper {
+                gap: calc(var(--composer-gap-sm) * 3);
+
+                .cards-container {
+                    flex-direction: column;
+
+                    .card {
+                        padding: calc(var(--composer-gap-sm) * 3);
+                    }
+                }
+            }
+        }
+    }
+}

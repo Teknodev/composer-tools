@@ -6,10 +6,8 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./subscription-modal.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ButtonNavigator from "components/button-navigator/button-navigator";
-
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 class SubscriptionModal extends BaseModal {
   constructor(props?: any) {
     super(props, styles);
@@ -108,7 +106,7 @@ class SubscriptionModal extends BaseModal {
                     initialValues={{ email: "" }}
                     validationSchema={SubscriptionSchema}
                     onSubmit={(data, { resetForm }) => {
-                      this.insertForm("Subscribe", data);
+                      this.insertForm("Subscription Modal - NewsletterForm", data);
                       resetForm();
                     }}
                   >

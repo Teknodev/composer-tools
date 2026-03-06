@@ -1,0 +1,193 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        .wrapper {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: stretch;
+            overflow: hidden;
+
+            .content-side,
+            .image-side {
+                flex: 0 0 50%;
+                width: 50%;
+                max-width: 50%;
+
+                &:only-child {
+                    flex: 0 0 100%;
+                    width: 100%;
+                    max-width: 100%;
+                    border-radius: var(--composer-border-radius-sm);
+                }
+            }
+
+            .image-side:only-child {
+                min-height: 450px;
+            }
+
+            .content-side {
+                padding: var(--composer-gap-xl) var(--composer-gap-lg);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                border-radius: 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0;
+                align-items: flex-start;
+                text-align: left;
+
+                .heading {
+                    width: 100%;
+                    align-items: flex-start;
+
+                    .subtitle {
+                        margin-left: 0;
+                    }
+
+                    .title {
+                        text-align: left;
+                    }
+
+                    .description-wrapper {
+                        position: relative;
+                        width: 100%;
+                        max-height: 140px;
+                        overflow: hidden;
+                        transition: max-height 0.5s ease-in-out;
+                        pointer-events: none;
+
+                        .description {
+                            text-align: left;
+                            margin-bottom: var(--composer-gap-md);
+                        }
+
+                        .show-more-overlay {
+                            position: absolute;
+                            inset: auto 0 0 0;
+                            height: 80px;
+                            z-index: 10;
+                            display: flex;
+                            align-items: flex-end;
+                            background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 60%);
+                            pointer-events: auto;
+                            cursor: pointer;
+
+                            .show-more-btn {
+                                padding-bottom: 2px;
+                                border-bottom: 2px solid var(--composer-primary-color);
+
+                                .btn-text {
+                                    color: var(--composer-primary-color);
+                                }
+                            }
+                        }
+
+                        &.expanded-wrapper {
+                            max-height: 2000px;
+                            pointer-events: auto;
+                            user-select: auto;
+
+                            .show-more-overlay {
+                                position: relative;
+                                background: none;
+                                height: auto;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .image-side {
+                position: relative;
+                overflow: hidden;
+                border-radius: var(--composer-border-radius-sm) 0 0 var(--composer-border-radius-sm);
+
+                .image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+
+                .overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: var(--composer-overlay-color);
+                    z-index: 1;
+                    pointer-events: none;
+                }
+            }
+
+            &.no-image[data-alignment="center"] .content-side {
+                align-items: center;
+                text-align: center;
+
+                .heading .subtitle,
+                .heading .title,
+                .description-wrapper .description {
+                    text-align: center;
+                }
+
+                .heading {
+                    align-items: center;
+
+                    .subtitle {
+                        margin-left: auto;
+                    }
+                }
+
+                .show-more-overlay {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .wrapper .content-side {
+        padding: var(--composer-gap-xl) 30px;
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .wrapper {
+        flex-direction: column-reverse;
+        height: auto !important;
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border-radius: var(--composer-border-radius-sm);
+        overflow: hidden;
+
+        .content-side,
+        .image-side {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .content-side {
+            padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-lg);
+            background-color: transparent;
+            border-radius: 0;
+        }
+
+        &.no-image {
+            .content-side {
+                padding: var(--composer-gap-lg) var(--composer-gap-md);
+            }
+        }
+
+        .image-side {
+            height: 300px;
+            min-height: 300px;
+            border-radius: 0;
+        }
+    }
+}

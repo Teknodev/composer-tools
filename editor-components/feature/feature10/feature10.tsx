@@ -1,10 +1,10 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   image: TypeMediaInputValue;
@@ -16,6 +16,13 @@ type Card = {
 class Feature10 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -75,9 +82,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -112,9 +119,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -149,9 +156,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -186,9 +193,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -223,9 +230,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -260,9 +267,9 @@ class Feature10 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -306,7 +313,7 @@ class Feature10 extends BaseFeature {
     const cards = this.castToObject<Card[]>("cards");
 
     const title = this.getPropValue("title");
-
+    const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
 
     const button = this.castToObject<INPUTS.CastedButton>("button");
@@ -350,6 +357,11 @@ class Feature10 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             <Base.VerticalContent className={this.decorateCSS("section-wrapper")}>
+            {this.castToString(subtitle) && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
               {this.castToString(title) && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
                   {title}

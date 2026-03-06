@@ -46,7 +46,6 @@
 
       .buttons {
         position: absolute;
-        font-size: 1.5rem;
         rotate: -90deg;
         transform-origin: top left;
         top: 50%;
@@ -58,22 +57,27 @@
 
         .text {
           margin-right: var(--composer-gap-md);
-          font-size: 1rem;
+          font-size: 1.25rem !important;
         }
 
         .counter-wrapper {
+          display: flex;
+          align-items: center;
+          .active-number, .count {
+            color: var(--composer-font-color-primary);
+          }
+
+          .count {
+            font-size: 1.25rem !important;
+          }
+
           .active-number {
-            color: var(--composer-primary-color);
-            font-size: 2.5rem;
+            font-size: 2.5rem !important;
           }
 
           .slash {
             margin: 0px var(--composer-gap-xs);
-          }
-
-          .count {
-            color: var(--composer-primary-color);
-            font-size: 1rem;
+            font-size: 1.25rem !important;
           }
         }
       }
@@ -132,17 +136,35 @@
         }
       }
 
-      .linkText {
-        content: "";
+      .button {
+        margin-top: var(--composer-gap-md);
+        .button-text{
+          content: "";
+        }
       }
     }
 
     .right-content {
-
-      .image {
+      .media-wrapper {
+        position: relative;
         width: 100%;
         height: 100%;
-        object-fit: cover;
+
+        .media {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          background-color: var(--composer-overlay-color);
+        }
       }
     }
 
@@ -150,7 +172,6 @@
       position: absolute;
       left: 50px;
       bottom: 50px;
-      font-size: 1rem;
       color: var(--composer-font-color-primary);
       display: flex;
       justify-content: flex-start;
@@ -163,6 +184,16 @@
         .social-link {
           color: var(--composer-font-color-primary);
           transition: color 0.1s ease-out;
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-xs);
+
+          .social-icon {
+            font-size: 1.25rem;
+            width: 20px;
+            height: 20px;
+            object-fit: cover;
+          }
 
           &:hover {
             color: var(--composer-primary-color);
@@ -180,6 +211,10 @@
         .left-content {
           .buttons {
             left: 40px;
+
+            .active-number {
+              font-size: 2rem !important;
+            }
           }
           .tab-buttons {
             padding-right: var(--composer-gap-lg);
@@ -215,6 +250,7 @@
             align-items: center;
             padding: 0;
             max-height: unset !important;
+            width: 100%;
 
             .tabText {
               font-size: 1.5rem;
@@ -233,9 +269,11 @@
         }
 
         .right-content {
-          .image {
-            height: 40vh;
-            width: 100%;
+          .media-wrapper {
+            .media {
+              height: 40vh;
+              width: 100%;
+            }
           }
         }
 

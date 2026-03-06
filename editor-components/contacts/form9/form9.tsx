@@ -4,12 +4,19 @@ import * as Yup from "yup";
 import { BaseContacts, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./form9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class Form9 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -449,6 +456,10 @@ class Form9 extends BaseContacts {
     const consentLinkText = this.castToString(consent?.link_text) || "";
     const consentLinkUrl = this.castToString(consent?.link_url) || "";
     const showConsent = !!(consent && (consentLabelPrefix || consentLinkText));
+
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleText = this.castToString(subtitle);
+
     const hasAnyFeature =
       Array.isArray(features) &&
       features.some((item: any) => {
@@ -607,6 +618,11 @@ class Form9 extends BaseContacts {
               <Base.VerticalContent
                 className={this.decorateCSS("left-vertical-content")}
               >
+                {subtitleText && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
                 {titleStr && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {title}

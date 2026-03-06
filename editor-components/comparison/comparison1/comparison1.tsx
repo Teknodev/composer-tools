@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BaseComparison } from "../../EditorComponent";
 import styles from "./comparison1.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 interface Card {
   direction: boolean;
   subtitle: React.JSX.Element;
@@ -22,9 +22,9 @@ class Comparison1 extends BaseComparison {
     this.addProp({
       type: "media",
       key: "cover-image",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",
@@ -92,9 +92,9 @@ class Comparison1 extends BaseComparison {
             {
               type: "media",
               key: "leftImage",
-              displayer: "Left Image",
+              displayer: "Left Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -110,9 +110,9 @@ class Comparison1 extends BaseComparison {
             {
               type: "media",
               key: "rightImage",
-              displayer: "Right Image",
+              displayer: "Right Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -170,12 +170,13 @@ class Comparison1 extends BaseComparison {
     const subtitle = this.getPropValue("subtitle");
     const isSubtitleExist = this.castToString(subtitle);
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: coverImage?.url && `url(${coverImage.url})`,
-        }}
-      >
+      <Base.Container className={this.decorateCSS("container")}>
+        {coverImage && (
+          <div className={this.decorateCSS("background-media")}>
+            <Base.Media value={coverImage} className={this.decorateCSS("background-media-element")} />
+          </div>
+        )}
+        {overlay && coverImage && <div className={this.decorateCSS("overlay")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("up-page")}>
             {isSubtitleExist && (

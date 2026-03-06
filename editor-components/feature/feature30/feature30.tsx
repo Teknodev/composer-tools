@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature30.module.scss";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface Card {
   media?: {
@@ -18,6 +18,13 @@ interface Card {
 class Feature30 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -181,6 +188,8 @@ class Feature30 extends BaseFeature {
 
   render() {
     const features = this.castToObject<Card[]>("features") || [];
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleExist = this.castToString(subtitle);
     const heading = this.getPropValue("heading");
     const subheading = this.getPropValue("subheading");
     const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
@@ -205,6 +214,11 @@ class Feature30 extends BaseFeature {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(headingExist || subheadingExist) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && ( 
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
               {headingExist && (
                 <Base.SectionTitle className={this.decorateCSS("heading")}>
                   {heading}

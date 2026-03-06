@@ -1,0 +1,83 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-md);
+
+    .slider-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .heading {
+      align-items: center;
+      width: 100%;
+
+      .title,
+      .description {
+        text-align: center;
+      }
+
+      .subtitle {
+        text-align: center !important;
+        transform: translateX(0);
+        &::before{
+          display: none !important;
+        }
+      }
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--composer-gap-lg);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+
+      .slider {
+        width: 100%;
+      }
+
+      .gallery {
+        width: 100%;
+        gap: var(--composer-gap-xl);
+        justify-content: space-around;
+        justify-items: center;
+
+        .cell {
+          width: 100% !important;
+        }
+
+        .image-child {
+          display: flex;
+          justify-content: center;
+          min-width: 0;
+          width: 100%;
+
+          .image {
+            max-width: 350px;
+            width: 100%;
+            aspect-ratio: 3 / 1;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content .slider-container .image {
+    max-width: 200px !important;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .slider-container .image {
+    max-width: 150px !important;
+  }
+}

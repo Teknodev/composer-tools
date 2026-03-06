@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature6.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   title: React.JSX.Element;
@@ -15,6 +15,13 @@ type Card = {
 class Feature6 extends BaseFeature {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
     this.addProp({
       type: "string",
@@ -50,9 +57,9 @@ class Feature6 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -81,9 +88,9 @@ class Feature6 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -112,9 +119,9 @@ class Feature6 extends BaseFeature {
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -168,6 +175,7 @@ class Feature6 extends BaseFeature {
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const descExist = this.castToString(this.getPropValue("description"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
     const overlay: boolean = this.getPropValue("overlay");
 
@@ -175,8 +183,13 @@ class Feature6 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {(titleExist || descExist) && (
+            {(titleExist || descExist || subtitleExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("header-subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
                 {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("header-title")}>
                     {this.getPropValue("title")}

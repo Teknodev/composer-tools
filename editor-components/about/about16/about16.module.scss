@@ -1,0 +1,198 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        .text-content {
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+        }
+
+        .cards-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+
+            .list-container {
+                width: 100%;
+                gap: var(--composer-gap-md);
+
+                .list-item {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+
+                    .media-container {
+                        &.animated {
+                            .card-overlay .icon-wrapper {
+                                max-width: 0;
+                                margin-right: 0;
+
+                                .icon {
+                                    opacity: 0;
+                                    transform: translateX(-20px);
+                                }
+                            }
+
+                            &:hover {
+                                .card-overlay .icon-wrapper {
+                                    max-width: 65px;
+                                    margin-right: var(--composer-gap-sm);
+
+                                    .icon {
+                                        opacity: 1;
+                                        transform: translateX(0);
+                                    }
+                                }
+                            }
+                        }
+
+                        width: 100%;
+                        aspect-ratio: 16/9;
+                        overflow: hidden;
+                        border-radius: var(--composer-border-radius-sm);
+                        position: relative;
+
+                        .media {
+                            position: absolute;
+                            inset: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            display: block;
+                            pointer-events: none;
+                        }
+
+                        .overlay {
+                            position: absolute;
+                            inset: 0;
+                            border-radius: inherit;
+                            background-color: var(--composer-overlay-color);
+                        }
+
+                        &.no-media {
+                            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                        }
+
+                        .card-overlay {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            padding: var(--composer-gap-md);
+                            display: flex;
+                            flex-direction: row;
+                            align-items: flex-end;
+                            justify-content: flex-start;
+                            z-index: 10;
+                            pointer-events: none;
+
+                            .icon-wrapper {
+                                max-width: 65px;
+                                margin-right: var(--composer-gap-sm);
+                                overflow: hidden;
+                                transition: all 0.3s ease;
+                                display: flex;
+                                align-items: center;
+                                flex-shrink: 0;
+
+                                .icon {
+                                    font-size: 2.5rem;
+                                    color: var(--color-white);
+                                    display: flex;
+                                    opacity: 1;
+                                    transform: translateX(0);
+                                    transition: all 0.3s ease;
+
+                                    &.is-image {
+                                        max-width: var(--composer-gap-xl);
+                                        max-height: var(--composer-gap-xl);
+                                        object-fit: contain;
+                                    }
+                                }
+                            }
+
+                            .text-details {
+                                align-items: flex-start;
+                                flex: 1;
+                                min-width: 0;
+                                pointer-events: auto;
+
+                                .card-subtitle,
+                                .card-title,
+                                .card-description {
+                                    text-align: left;
+                                    color: var(--color-white);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .button-container {
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+                flex-wrap: wrap;
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .list-container {
+                .list-item {
+                    .media-container {
+                        .card-overlay {
+                            .icon-wrapper {
+                                .icon {
+                                    font-size: 2rem !important;
+
+                                    &.is-image {
+                                        max-width: var(--composer-gap-lg) !important;
+                                        max-height: var(--composer-gap-lg) !important;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .list-container {
+                .list-item {
+                    .media-container {
+                        .card-overlay {
+                            .icon-wrapper {
+                                .icon {
+                                    font-size: 1.75rem !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
