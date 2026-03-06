@@ -133,7 +133,7 @@ class About9 extends BaseAbout {
                     {showSideContainer && (
                         <div className={`${this.decorateCSS("side-container")} ${hasImages && this.decorateCSS("with-image")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                             {showTopContainer && (
-                                <div className={this.decorateCSS("top-container")}>
+                                <div className={`${this.decorateCSS("top-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
                                     <Base.VerticalContent className={this.decorateCSS("title-container")}>
                                         {subtitleStr && (
                                             <div className={this.decorateCSS("subtitle-wrapper")}>
