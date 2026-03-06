@@ -6,7 +6,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-md);
     position: relative;
 
     .vertical-content {
@@ -156,6 +156,12 @@
           transition: transform 0.2s ease;
           font-size: 1.5rem;
           line-height: 0;
+
+          &.has-image {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+          }
         }
 
         &:hover {

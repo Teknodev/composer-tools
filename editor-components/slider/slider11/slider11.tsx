@@ -14,6 +14,11 @@ type SliderItem = {
   icon: TypeMediaInputValue;
 };
 
+type LineSetting = {
+  key: string;
+  value: boolean;
+};
+
 class Slider11 extends BaseSlider {
   private progressIntervalId?: NodeJS.Timeout;
   constructor(props?: any) {
@@ -60,7 +65,7 @@ class Slider11 extends BaseSlider {
             {
               type: "string",
               key: "subTitle",
-              displayer: "Sub Title",
+              displayer: "Subtitle",
               value: "",
             },
             {
@@ -111,7 +116,7 @@ class Slider11 extends BaseSlider {
             {
               type: "string",
               key: "subTitle",
-              displayer: "Sub Title",
+              displayer: "Subtitle",
               value: "",
             },
             {
@@ -162,7 +167,7 @@ class Slider11 extends BaseSlider {
             {
               type: "string",
               key: "subTitle",
-              displayer: "Sub Title",
+              displayer: "Subtitle",
               value: "",
             },
             {
@@ -216,17 +221,23 @@ class Slider11 extends BaseSlider {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "showDividerLines",
-      displayer: "Show Divider Lines",
-      value: true,
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "enableLineAnimations",
-      displayer: "Enable Line Animations",
-      value: true,
+      type: "object",
+      key: "line",
+      displayer: "Line Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "showLine",
+          displayer: "Line",
+          value: true,
+        },
+        {
+          type: "boolean",
+          key: "animateLine",
+          displayer: "Line Animation",
+          value: true,
+        },
+      ],
     });
 
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings"));
@@ -291,8 +302,9 @@ class Slider11 extends BaseSlider {
     const sliderItems = this.castToObject<SliderItem[]>("cards");
     const active = this.getComponentState("activeTab");
     const isOverlayActive = this.getPropValue("overlay");
-    const showDividerLines = this.getPropValue("showDividerLines");
-    const enableLineAnimations = this.getPropValue("enableLineAnimations");
+    const lineSettings = this.castToObject<LineSetting[]>("line");
+    const showDividerLines = lineSettings?.find((item) => item.key === "showLine")?.value;
+    const enableLineAnimations = lineSettings?.find((item) => item.key === "animateLine")?.value;
     const hasContent = subtitle || title || description || buttons.length > 0;
     const rawSettings = this.getPropValue("slider-settings");
     const settings = this.transformSliderValues(rawSettings);
@@ -363,7 +375,7 @@ class Slider11 extends BaseSlider {
                                   {item.button.text}
                                 </Base.P>
                               </Base.Button>
-                              {item.icon && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
+                              {item.icon && (<Base.Media value={item.icon} className={`${this.decorateCSS("button-icon")} ${item.icon.type === "image" && this.decorateCSS("has-image")}`} />)}
                             </Base.Row>
                           </ComposerLink>
                         )}
