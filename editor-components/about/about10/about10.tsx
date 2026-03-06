@@ -7,7 +7,11 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface FeatureItem {
   title: string;
+  titleElement: JSX.Element;
+  subtitle: string;
+  subtitleElement: JSX.Element;
   description: string;
+  descriptionElement: JSX.Element;
 }
 
 type MediaGroup = {
@@ -88,6 +92,12 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Location",
@@ -105,6 +115,12 @@ class About10 extends BaseAbout {
           key: "feature",
           displayer: "Feature",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -126,6 +142,12 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Masters",
@@ -143,6 +165,12 @@ class About10 extends BaseAbout {
           key: "feature",
           displayer: "Feature",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -199,7 +227,13 @@ class About10 extends BaseAbout {
     const hasButtonText = buttons.some((btn) => this.castToString(btn.text));
     const mainMediaGroup = this.castToObject<MediaGroup>("media");
     const mainImage = mainMediaGroup?.media;
-    const features = this.castToObject<FeatureItem[]>("features");
+    const featuresItems = this.castToObject<{ title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("features");
+    const features: FeatureItem[] = featuresItems.map((item) => {
+      const title = this.castToString(item.title) || "";
+      const subtitle = this.castToString(item.subtitle) || "";
+      const description = this.castToString(item.description) || "";
+      return { title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+    });
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
     const animationClass = hoverAnimation.length && hoverAnimation.join(" ");
 
@@ -281,23 +315,36 @@ class About10 extends BaseAbout {
                 className={this.decorateCSS("features-grid")}
                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}
               >
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("feature-item")}
-                  >
-                    {this.castToString(feature.title) && (
-                      <Base.H4 className={this.decorateCSS("feature-title")}>
-                        {feature.title}
-                      </Base.H4>
-                    )}
-                    {this.castToString(feature.description) && (
-                      <Base.P className={this.decorateCSS("feature-description")}>
-                        {feature.description}
-                      </Base.P>
-                    )}
-                  </div>
-                ))}
+                {features.map((feature, index) => {
+                  const titleExist = feature.title && feature.title !== "";
+                  const subtitleExist = feature.subtitle && feature.subtitle !== "";
+                  const descriptionExist = feature.description && feature.description !== "";
+
+                  if (!titleExist && !subtitleExist && !descriptionExist) return null;
+
+                  return (
+                    <Base.VerticalContent
+                      key={`about10-feature-${index}`}
+                      className={this.decorateCSS("feature-item")}
+                    >
+                      {subtitleExist && (
+                        <Base.H6 className={this.decorateCSS("feature-subtitle")}>
+                          {feature.subtitleElement}
+                        </Base.H6>
+                      )}
+                      {titleExist && (
+                        <Base.H5 className={this.decorateCSS("feature-title")}>
+                          {feature.titleElement}
+                        </Base.H5>
+                      )}
+                      {descriptionExist && (
+                        <Base.P className={this.decorateCSS("feature-description")}>
+                          {feature.descriptionElement}
+                        </Base.P>
+                      )}
+                    </Base.VerticalContent>
+                  );
+                })}
               </Base.ListGrid>
             </div>
           )}
