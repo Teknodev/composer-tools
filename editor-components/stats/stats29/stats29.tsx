@@ -66,6 +66,8 @@ class Stats29 extends BaseStats {
             { type: "string", key: "number", displayer: "Value", value: "50" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+
             {
               type: "string",
               key: "description",
@@ -83,6 +85,8 @@ class Stats29 extends BaseStats {
             { type: "string", key: "number", displayer: "Value", value: "85" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
             { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
+            { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+
             {
               type: "string",
               key: "description",
@@ -174,20 +178,24 @@ class Stats29 extends BaseStats {
             )}
           </span>
         )}
-        {subtitleExist && (
-          <Base.P className={this.decorateCSS("stat-subtitle")}>
-            {stat.subtitle}
-          </Base.P>
-        )}
-        {titleExist && (
-          <Base.H2 className={this.decorateCSS("stat-title")}>
-            {stat.title}
-          </Base.H2>
-        )}
-        {descriptionExist && (
-          <Base.P className={this.decorateCSS("stat-description")}>
-            {stat.description}
-          </Base.P>
+        {(subtitleExist || titleExist || descriptionExist) && (
+          <Base.VerticalContent className={this.decorateCSS("stat-content")}>
+            {subtitleExist && (
+              <Base.P className={this.decorateCSS("stat-subtitle")}>
+                {stat.subtitle}
+              </Base.P>
+            )}
+            {titleExist && (
+              <Base.H2 className={this.decorateCSS("stat-title")}>
+                {stat.title}
+              </Base.H2>
+            )}
+            {descriptionExist && (
+              <Base.P className={this.decorateCSS("stat-description")}>
+                {stat.description}
+              </Base.P>
+            )}
+          </Base.VerticalContent>
         )}
       </Base.VerticalContent>
     );

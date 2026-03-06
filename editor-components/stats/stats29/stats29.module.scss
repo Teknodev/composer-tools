@@ -8,6 +8,7 @@
       .card-content {
         display: flex;
         flex-direction: column;
+        gap: var(--composer-gap-md);
 
         .header-container {
           display: flex;
@@ -17,30 +18,35 @@
 
           .left-container {
             flex: 1;
+
             .subtitle {
               transform: none;
+
               &::before {
                 display: none;
               }
             }
 
+            .title {
+              text-align: left;
+            }
+
             .description {
               text-align: left;
-              max-width: 600px;
               color: var(--composer-font-color-primary) !important;
             }
-          }
 
-          .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--composer-gap-sm);
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
 
-            .button {
-              white-space: nowrap;
+              .button {
+                white-space: nowrap;
 
-              .button-text {
-                content: "";
+                .button-text {
+                  content: "";
+                }
               }
             }
           }
@@ -56,15 +62,11 @@
             min-width: 250px;
             align-items: flex-start !important;
 
-            > * {
-              margin: 0 !important;
-            }
-
             .stat-value {
               color: var(--composer-primary-color);
               gap: var(--composer-gap-xs);
               font-size: 12rem;
-            
+
               .stat-prefix,
               .stat-number,
               .stat-suffix {
@@ -84,19 +86,26 @@
               }
             }
 
-            .stat-subtitle {
-              color: var(--composer-primary-color);
-              text-align: left;
-            }
+            .stat-content {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-xs);
+              align-items: flex-start;
 
-            .stat-title {
-              color: var(--composer-primary-color);
-              text-align: left;
-            }
+              .stat-subtitle {
+                color: var(--composer-primary-color);
+                text-align: left;
+              }
 
-            .stat-description {
-              color: var(--composer-font-color-primary) !important;
-              text-align: left;
+              .stat-title {
+                color: var(--composer-primary-color);
+                text-align: left;
+              }
+
+              .stat-description {
+                color: var(--composer-font-color-primary) !important;
+                text-align: left;
+              }
             }
           }
 
@@ -105,12 +114,14 @@
               color: var(--composer-secondary-color);
             }
 
-            .stat-subtitle {
-              color: var(--composer-secondary-color);
-            }
+            .stat-content {
+              .stat-subtitle {
+                color: var(--composer-secondary-color);
+              }
 
-            .stat-title {
-              color: var(--composer-secondary-color);
+              .stat-title {
+                color: var(--composer-secondary-color);
+              }
             }
           }
         }
@@ -128,9 +139,11 @@
             flex-direction: column;
             gap: var(--composer-gap-md);
 
-            .button-container {
-              display: flex;
-              align-self: inherit;
+            .left-container {
+              .button-container {
+                display: flex;
+                align-self: inherit;
+              }
             }
           }
 
@@ -159,10 +172,6 @@
   .container {
     .max-content {
       .card {
-        &.has-background {
-          padding: var(--composer-gap-lg);
-        }
-
         .card-content {
           gap: var(--composer-gap-md);
 
@@ -177,12 +186,13 @@
               .description {
                 max-width: 100%;
               }
-            }
-            .button-container {
-              justify-content: flex-start;
 
-              .button {
-                width: auto;
+              .button-container {
+                justify-content: flex-start;
+
+                .button {
+                  width: auto;
+                }
               }
             }
           }
@@ -206,12 +216,18 @@
                 }
               }
 
-              .stat-title {
-                font-size: 2rem !important;
-              }
+              .stat-content {
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-xs);
 
-              .stat-description {
-                font-size: 0.9rem;
+                .stat-title {
+                  font-size: 2rem !important;
+                }
+
+                .stat-description {
+                  font-size: 0.9rem;
+                }
               }
             }
           }
