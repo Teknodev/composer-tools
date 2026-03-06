@@ -92,7 +92,7 @@
               width: 100%;
               z-index: 10;
               height: 100%;
-              gap: var(--composer-gap-lg);
+              gap: var(--composer-gap-sm);
 
               &.fix-location {
                 transform: translateY(0);
@@ -199,8 +199,7 @@
             }
 
             .nav-buttons {
-              position: absolute;
-              top: 80%;
+              margin-top: var(--composer-gap-md);
 
               .nav-button {
                 border-color: #ffffff;
