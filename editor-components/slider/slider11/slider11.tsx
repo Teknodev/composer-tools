@@ -14,11 +14,6 @@ type SliderItem = {
   icon: TypeMediaInputValue;
 };
 
-type LineSetting = {
-  key: string;
-  value: boolean;
-};
-
 class Slider11 extends BaseSlider {
   private progressIntervalId?: NodeJS.Timeout;
   constructor(props?: any) {
@@ -302,9 +297,9 @@ class Slider11 extends BaseSlider {
     const sliderItems = this.castToObject<SliderItem[]>("cards");
     const active = this.getComponentState("activeTab");
     const isOverlayActive = this.getPropValue("overlay");
-    const lineSettings = this.castToObject<LineSetting[]>("line");
-    const showDividerLines = lineSettings?.find((item) => item.key === "showLine")?.value;
-    const enableLineAnimations = lineSettings?.find((item) => item.key === "animateLine")?.value;
+    const lineSettings = this.castToObject<any>("line");
+    const showDividerLines = lineSettings?.showLine ?? true;
+    const enableLineAnimations = lineSettings?.animateLine ?? true;
     const hasContent = subtitle || title || description || buttons.length > 0;
     const rawSettings = this.getPropValue("slider-settings");
     const settings = this.transformSliderValues(rawSettings);
