@@ -37,7 +37,7 @@ class About6 extends BaseAbout {
             key: "signature",
             displayer: "Media",
             additionalParams: {
-                availableTypes: ["image", "video"],
+                availableTypes: ["image", "video", "icon"],
             },
             value: {
                 type: "image",
