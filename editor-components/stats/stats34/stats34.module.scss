@@ -98,6 +98,38 @@
         flex-direction: column;
         align-items: flex-start;
 
+        &.alignment-center {
+            align-items: center;
+
+            .content {
+                align-items: center;
+
+                .subtitle,
+                .title,
+                .description {
+                    text-align: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .buttons-wrapper {
+                    justify-content: center;
+                }
+            }
+
+            .stats-grid {
+                .stat-item {
+                    align-items: center;
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
         .content {
             width: 100%;
         }
