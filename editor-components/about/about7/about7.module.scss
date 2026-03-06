@@ -335,16 +335,16 @@
                 .right-container {
                     padding: 0;
                     flex: 1;
-                    align-items: flex-start;
+                    align-items: flex-start !important;
                     gap: 0;
 
                     .item-subtitle,
                     .item-description,
                     .item-title {
-                        text-align: left;
-                        margin-right: 0;
-                        transform: none;
-                        align-self: flex-start;
+                        text-align: left !important;
+                        margin-right: 0 !important;
+                        transform: none !important;
+                        align-self: flex-start !important;
                     }
                 }
 
@@ -372,16 +372,16 @@
                 gap: var(--composer-gap-md);
 
                 .right-container {
-                    align-items: center;
+                    align-items: flex-start !important;
                     gap: 0;
 
                     .item-subtitle,
                     .item-title,
                     .item-description {
-                        text-align: left;
-                        margin-right: auto;
-                        margin-left: 0;
-                        align-self: flex-start;
+                        text-align: left !important;
+                        margin-right: auto !important;
+                        margin-left: 0 !important;
+                        align-self: flex-start !important;
                     }
                 }
             }
