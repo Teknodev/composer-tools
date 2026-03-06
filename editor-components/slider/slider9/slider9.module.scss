@@ -24,7 +24,7 @@
   .max-content {
     .content {
       display: flex;
-      gap: var(--composer-gap-lg);
+      gap: calc(2 * var(--composer-gap-xl));
       flex-direction: row;
       flex-wrap: nowrap;
       height: 650px;
@@ -348,8 +348,6 @@
                 background-color: var(--composer-html-background);
 
                 .button {
-                  min-width: 25px;
-                  min-height: 25px;
                   width: 25px;
                   height: 25px;
                   cursor: pointer;
@@ -808,6 +806,7 @@
       .content {
         height: auto;
         flex-direction: row;
+        gap: var(--composer-gap-xl);
 
         .sliders-parent {
           .vertical-parent {
