@@ -31,13 +31,11 @@
 
         :global(.slick-dots) {
           top: var(--composer-gap-md);
-          left: 50%;
-          transform: translateX(-50%);
           width: auto !important;
           display: flex !important;
-          flex-direction: row;
+          flex-direction: column;
           z-index: 100;
-          gap: var(--composer-gap-md);
+          right: var(--composer-gap-md);
 
           li {
             margin: var(--composer-gap-sm) 0;
@@ -80,13 +78,16 @@
       }
 
       :global(.slick-prev) {
-        left: var(--composer-gap-md);
+        right: var(--composer-gap-xl);
         z-index: 100;
+        left: auto;
+        top: 100px;
       }
 
       :global(.slick-next) {
-        right: var(--composer-gap-md);
+        top: 140px;
         z-index: 100;
+        right: var(--composer-gap-xl);
       }
 
       .card {
@@ -358,6 +359,12 @@
     .max-content {
       .slider-wrapper {
         .carousel {
+
+          :global(.slick-prev),
+          :global(.slick-next) {
+            display: none !important;
+          }
+
           .card {
             .slider-item {
               .content-wrapper {
