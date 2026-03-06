@@ -3,37 +3,26 @@
 .container {
     .max-content {
         .content-wrapper {
+            // padding-inline: calc(var(--composer-gap-lg) * 3);
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            align-items: center;
+            align-items: flex-start;
             gap: var(--composer-gap-xl);
-
-            &.alignment-center {
-                .text-container {
-                    align-items: flex-start;
-                }
-
-                .title,
-                .subtitle,
-                .description {
-                    text-align: left;
-                }
-
-                .subtitle {
-                    margin-left: 0;
-                }
-            }
+            margin: 0 auto;
         }
     }
 }
 
 .image-container {
+    padding: var(--composer-gap-lg);
     width: 100%;
     height: 100%;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 300px;
 
     img {
         width: 100%;
@@ -44,67 +33,160 @@
 }
 
 .image {
+    position: absolute;
+    top: 0;
+    right: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-position: center;
     object-fit: cover;
-    border-radius: var(--composer-border-radius-sm);
+    border-radius: inherit;
     display: block;
-    /* Ensure it's not inline with weird spacing */
 }
 
 
 .text-card {
     flex: 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 0;
+    justify-content: center;
+    gap: var(--composer-gap-md);
 
     .text-container {
-        padding: var(--composer-gap-xl) 0;
+        width: 100%;
+        padding: calc(var(--composer-gap-lg) * 2) 0;
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-sm);
     }
+
+    .stats-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--columns-gap-xl);
+        margin-top: 0;
+        // padding-inline: calc(var(--composer-gap-lg) * 2);
+    }
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .stat-value {
+        font-size: 7rem;
+        margin: 0;
+        line-height: 1;
+        padding: 0;
+        // color: var(--composer-color-primary, inherit);
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .stat-prefix,
+    .stat-number,
+    .stat-suffix {
+        color: inherit;
+        line-height: 1;
+    }
+
+    .stat-label {
+        margin: 0;
+    }
+
 }
 
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .content-wrapper {
-        gap: var(--composer-gap-lg);
-    }
-}
-
-@container (max-width: #{$composer-phone-width}) {
-    .container .max-content .content-wrapper {
         grid-template-columns: 1fr;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-xs);
+        max-width: 60%;
+        margin-left: 0;
 
         &.alignment-center {
             .text-container {
-                align-items: center;
+                align-items: flex-start;
             }
 
             .title,
             .subtitle,
             .description {
-                text-align: center;
-            }
-
-            .subtitle {
-                margin-inline: auto;
+                text-align: left;
+                margin-inline: 0;
             }
         }
     }
 
     .image-container {
         order: 2;
-        min-height: unset;
+        min-height: 300px;
+        aspect-ratio: 10 / 11;
     }
 
     .text-card {
+        aspect-ratio: 11 / 10;
         order: 1;
+        align-items: flex-start;
+
+        .text-container {
+            padding: 0
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+            gap: var(--composer-gap-lg);
+            align-items: flex-start;
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: var(--composer-gap-lg);
+
+        &.alignment-center {
+            .text-container {
+                align-items: flex-start;
+            }
+
+            .title,
+            .subtitle,
+            .description {
+                text-align: left;
+                margin-inline: 0;
+            }
+
+        }
+    }
+
+    .image-container {
+        order: 2;
+        // min-height: unset;
+    }
+
+    .text-card {
+
+        .title,
+        .description {
+            margin: 0;
+        }
+
+        order: 1;
+        align-items: flex-start;
 
         .text-container {
             padding: var(--composer-gap-md) 0;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+            gap: var(--composer-gap-lg);
+            align-items: flex-start;
         }
     }
 }
