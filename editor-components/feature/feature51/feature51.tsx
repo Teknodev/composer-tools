@@ -9,7 +9,7 @@ import {
   TypeButton,
 } from "composer-tools/composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "composer-tools/composer-base-components/Link/ComposerLinkProvider";
 
 type Item = {
   itemTitle: Element;
@@ -283,7 +283,10 @@ class Feature51 extends BaseFeature {
   }
 
   private handleResize = () => {
-    const width = window.innerWidth;
+    const el = this.containerRef.current;
+    if (!el) return;
+
+    const width = el.clientWidth;
     const desktopPx = 1140;
     const isMobile = width <= desktopPx;
 
@@ -321,6 +324,42 @@ class Feature51 extends BaseFeature {
   private initializeActiveIndices(isMobileOverride?: boolean) {
     const columnCounts = this.getColumnCounts(isMobileOverride);
     return columnCounts.map(() => 0);
+  }
+
+  private hasValidMedia(media: TypeMediaInputValue | undefined): boolean {
+    if (!media) return false;
+    if (media.type === "icon") return !!media.name && media.name.trim() !== "";
+    if (media.type === "image") return !!media.url && media.url.trim() !== "";
+    return false;
+  }
+
+  private getItemIcon(
+    item: Item,
+    isActive: boolean,
+  ): { displayIcon: TypeMediaInputValue | undefined; shouldAnimate: boolean } {
+    const hasOpenIcon = this.hasValidMedia(item.itemIcon);
+    const hasClosedIcon = this.hasValidMedia(item.itemIconClosed);
+    const enableIconAnimation = this.getPropValue(
+      "enableIconAnimation",
+    ) as boolean;
+
+    if (hasOpenIcon) {
+      const displayIcon = isActive
+        ? item.itemIcon
+        : hasClosedIcon
+          ? item.itemIconClosed
+          : item.itemIcon;
+      return { displayIcon, shouldAnimate: false };
+    }
+
+    if (hasClosedIcon) {
+      return {
+        displayIcon: item.itemIconClosed,
+        shouldAnimate: enableIconAnimation,
+      };
+    }
+
+    return { displayIcon: undefined, shouldAnimate: false };
   }
 
   private handleItemClick = (
@@ -413,7 +452,7 @@ class Feature51 extends BaseFeature {
             </Base.VerticalContent>
           )}
 
-          {items?.length > 0 && (
+          {items.length > 0 && (
             <Base.ListGrid
               className={this.decorateCSS("items-container")}
               gridCount={{ pc: pcGridCount, tablet: 1, phone: 1 }}
@@ -430,60 +469,28 @@ class Feature51 extends BaseFeature {
                     const itemDescription = this.castToString(
                       item.itemDescription,
                     );
-                    const itemIcon = item.itemIcon;
-                    const itemIconClosed = item.itemIconClosed;
-                    const enableIconAnimation = this.getPropValue(
-                      "enableIconAnimation",
-                    ) as boolean;
+                    const { displayIcon, shouldAnimate } = this.getItemIcon(
+                      item,
+                      isActive,
+                    );
 
-                    // Helper function to check if media value is valid
-                    const hasValidMedia = (
-                      media: TypeMediaInputValue | undefined,
-                    ): boolean => {
-                      if (!media) return false;
-                      if (media.type === "icon") {
-                        return !!media.name && media.name.trim() !== "";
-                      } else if (media.type === "image") {
-                        return !!media.url && media.url.trim() !== "";
-                      }
-                      return false;
-                    };
-
-                    // Check if icons/images have actual content
-                    const hasOpenIcon = hasValidMedia(itemIcon);
-                    const hasClosedIcon = hasValidMedia(itemIconClosed);
-
-                    // Determine which icon to display and whether to animate
-                    let displayIcon: TypeMediaInputValue | undefined =
-                      undefined;
-                    let shouldAnimate = false;
-
-                    if (hasOpenIcon) {
-                      // When open icon exists, switch between open/closed without animation
-                      displayIcon = isActive
-                        ? itemIcon
-                        : hasClosedIcon
-                          ? itemIconClosed
-                          : itemIcon;
-                      shouldAnimate = false;
-                    } else if (hasClosedIcon) {
-                      // Only closed icon exists
-                      displayIcon = itemIconClosed;
-                      shouldAnimate = enableIconAnimation;
-                    }
+                    const itemClassName = [
+                      this.decorateCSS("item"),
+                      isActive ? this.decorateCSS("active") : "",
+                      this.getPropValue("withLines")
+                        ? this.decorateCSS("with-lines")
+                        : "",
+                      pcGridCount === 1 ? this.decorateCSS("one-column") : "",
+                    ].join(" ");
 
                     return (
                       <Base.VerticalContent
-                        className={`${this.decorateCSS("item")} 
-                        ${isActive ? this.decorateCSS("active") : ""} 
-                        ${this.getPropValue("withLines") ? this.decorateCSS("with-lines") : ""}
-                        ${pcGridCount === 1 ? this.decorateCSS("one-column") : ""}
-                        `}
+                        className={itemClassName}
                         key={globalIndex}
                       >
                         <Base.Row
                           onClick={() => this.handleItemClick(colIdx, idxInCol)}
-                          className={`${this.decorateCSS("item-header")}`}
+                          className={this.decorateCSS("item-header")}
                         >
                           {itemTitle && (
                             <Base.H4 className={this.decorateCSS("item-title")}>
@@ -493,9 +500,12 @@ class Feature51 extends BaseFeature {
                           {displayIcon && (
                             <Base.Media
                               value={displayIcon}
-                              className={`${this.decorateCSS("item-icon")} 
-                                ${shouldAnimate ? this.decorateCSS("item-icon-animated") : ""}
-                              `}
+                              className={[
+                                this.decorateCSS("item-icon"),
+                                shouldAnimate
+                                  ? this.decorateCSS("item-icon-animated")
+                                  : "",
+                              ].join(" ")}
                             />
                           )}
                         </Base.Row>
