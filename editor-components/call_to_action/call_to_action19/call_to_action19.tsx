@@ -45,6 +45,7 @@ class CallToAction19 extends BaseCallToAction {
             displayer: "Buttons",
             value: [
                 INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"),
+
             ],
             additionalParams: {
                 maxElementCount: 4,
@@ -192,14 +193,16 @@ class CallToAction19 extends BaseCallToAction {
                                                 <div className={this.decorateCSS("button-group")}>
                                                     {buttons.map((button: Button, index: number) =>
                                                         this.castToString(button?.text) && (
-                                                            <ComposerLink key={index} path={button.url}>
-                                                                <Base.Button className={this.decorateCSS("button")}
-                                                                    buttonType={button.type}>
-                                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                                        {button.text}
-                                                                    </Base.P>
-                                                                </Base.Button>
-                                                            </ComposerLink>
+                                                            <div key={index} className={this.decorateCSS("button-item")}>
+                                                                <ComposerLink path={button.url}>
+                                                                    <Base.Button className={this.decorateCSS("button")}
+                                                                        buttonType={button.type}>
+                                                                        <Base.P className={this.decorateCSS("button-text")}>
+                                                                            {button.text}
+                                                                        </Base.P>
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            </div>
                                                         )
                                                     )}
                                                 </div>
