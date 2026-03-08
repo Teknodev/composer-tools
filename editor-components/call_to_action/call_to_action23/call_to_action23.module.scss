@@ -26,6 +26,13 @@
           .subtitle {
             text-align: left;
             margin-left: 0;
+            margin-right: auto;
+            width: fit-content;
+            transform: none !important;
+
+            &::before {
+              display: none;
+            }
           }
 
           .title {
@@ -51,6 +58,7 @@
           flex-direction: column;
           align-items: flex-start;
           width: 100%;
+          gap: var(--composer-gap-sm);
 
           .info-label,
           .info-text {
@@ -94,7 +102,7 @@
       background-color: var(--composer-font-color-primary);
       border-radius: var(--composer-border-radius-md);
       padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
-      
+
 
       .content {
         .header-group .vertical-content {
@@ -153,8 +161,8 @@
 
     &.has-background {
       .max-content {
-      padding: var(--composer-gap-xl) var(--composer-gap-md);
-        
+        padding: var(--composer-gap-xl) var(--composer-gap-md);
+
       }
     }
 
@@ -162,7 +170,7 @@
       .main-row {
         flex-direction: column;
         text-align: center;
-        gap: var(--composer-gap-md); 
+        gap: var(--composer-gap-md);
       }
 
       .header-group .vertical-content {
@@ -172,7 +180,8 @@
         .subtitle,
         .title,
         .description {
-          margin: auto;
+          margin-left: auto !important;
+          margin-right: auto !important;
           text-align: center !important;
         }
       }
@@ -185,11 +194,13 @@
 
         .info-group {
           align-items: center;
+          width: auto !important;
           gap: var(--composer-gap-md);
 
           .info-label,
           .info-text {
-            text-align: center;
+            text-align: center !important;
+            margin: 0 auto !important;
           }
         }
 
