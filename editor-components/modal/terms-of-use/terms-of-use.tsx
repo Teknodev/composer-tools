@@ -3,9 +3,9 @@ import ComposerModalClose from "../../../composer-base-components/close/close";
 import { BaseModal } from "../../EditorComponent";
 import styles from "./terms-of-use.module.scss";
 
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Button = {
   buttonText: React.JSX.Element;

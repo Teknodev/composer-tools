@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../composer-base-components/base/base";
 import { BaseLegal } from "../EditorComponent";
 import styles from "./privacy-policy.module.scss";
 
