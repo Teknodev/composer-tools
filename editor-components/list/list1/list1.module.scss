@@ -211,7 +211,7 @@ as *;
       }
 
       .card-header {
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
         margin: 0;
         align-items: flex-start;
 
@@ -225,7 +225,7 @@ as *;
 
         .card-description {
           content: "";
-          color: var(--composer-font-color-primary);
+          color: var(--composer-font-color-tertiary);
           text-align: left !important;
         }
       }
@@ -342,6 +342,7 @@ as *;
   .container {
     .carousel {
       padding: 0px !important;
+
       :global(.slick-slide) {
         padding: 0 var(--composer-gap-sm) !important;
       }
@@ -353,6 +354,7 @@ as *;
           width: 9px !important;
           height: 9px !important;
         }
+
         :global(.slick-active) .dot-button {
           width: 23px !important;
         }
@@ -372,6 +374,12 @@ as *;
 
           &.no-round .image {
             font-size: 12rem;
+          }
+        }
+
+        .card-header {
+          .card-description {
+            font-size: 1.2rem !important;
           }
         }
 
@@ -438,6 +446,12 @@ as *;
 
       &.no-round .image {
         font-size: 10rem;
+      }
+    }
+
+    .card-header {
+      .card-description {
+        font-size: 1.2rem !important;
       }
     }
   }

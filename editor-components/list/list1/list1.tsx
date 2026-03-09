@@ -476,7 +476,8 @@ class List1 extends BaseList {
                       {buttons &&
                         buttons.map((btn: CardButton, btnIndex: number) => {
                           const buttonText = this.castToString(btn.text);
-                          const iconExist = btn.icon && (btn.icon as TypeMediaInputValue).name;
+                          const iconMedia = btn.icon as TypeMediaInputValue;
+                          const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
                           if (!buttonText && !iconExist) return null;
                           return (
                             <div key={btnIndex} className={this.decorateCSS("button")}>
