@@ -4,6 +4,10 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
+  icon: TypeMediaInputValue | null;
+};
+
 type CardItem = {
   url: string;
   image?: TypeMediaInputValue;
@@ -336,7 +340,14 @@ class List2 extends BaseList {
       value: true,
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "View More Categories", null, null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "View More Categories", null, null, null, "Primary")
+      ],
+    });
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -364,10 +375,10 @@ class List2 extends BaseList {
     }
 
     const cards = this.castToObject<CardItem[]>("cards");
-    const buttonType = this.castToObject<any>("button");
-    const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
-    const description = this.getPropValue("description");
+    const buttons = this.castToObject<CardButton[]>("buttons") || [];
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const imageOverlay = this.getPropValue("overlay");
     const showLine = this.getPropValue("showLine");
 
@@ -375,21 +386,21 @@ class List2 extends BaseList {
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
+            {(subtitleExist || titleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                {this.castToString(subtitle) && (
+                {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
+                    {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
-                {this.castToString(title) && (
+                {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
+                    {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
-                {this.castToString(description) && (
+                {descriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")} >
-                    {description}
+                    {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
               </Base.VerticalContent>
@@ -454,15 +465,29 @@ class List2 extends BaseList {
                 })}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") < cards.length) && this.castToString(buttonType.text) && (
-              <ComposerLink path={buttonType.url}>
-                <div className={this.decorateCSS("button-wrapper")}>
-                  <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                    <Base.P className={this.decorateCSS("button-text")}>{buttonType.text}</Base.P>
-                  </Base.Button>
+            {(this.getComponentState("imageCount") < cards.length) && buttons?.length > 0 && buttons.map((btn: CardButton, btnIndex: number) => {
+              const buttonText = this.castToString(btn.text);
+              const iconMedia = btn.icon as TypeMediaInputValue;
+              const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
+              if (!buttonText && !iconExist) return null;
+
+              return (
+                <div key={btnIndex} className={this.decorateCSS("button-wrapper")}>
+                  <ComposerLink path={btn.url}>
+                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
+                      {buttonText && (
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {btn.text}
+                        </Base.P>
+                      )}
+                      {iconExist && (
+                        <Base.Media className={this.decorateCSS("button-icon")} value={iconMedia} />
+                      )}
+                    </Base.Button>
+                  </ComposerLink>
                 </div>
-              </ComposerLink>
-            )}
+              );
+            })}
           </div>
         </Base.MaxContent>
       </Base.Container>
