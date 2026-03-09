@@ -220,7 +220,7 @@ class Stats32 extends BaseStats {
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div
-                        className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}
+                        className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""} ${!imageExist ? this.decorateCSS("no-image") : ""}`}
                     >
                         {hasTextSection && (
                             <div className={this.decorateCSS("text-card")}>
