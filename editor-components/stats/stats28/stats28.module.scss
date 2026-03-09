@@ -132,8 +132,10 @@
         .card {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
-            .stats-grid .stat-item {
-                .stat-value {
+            .stats-grid .stat-item .stat-header {
+
+                .stat-value,
+                .stat-icon-wrapper {
                     font-size: 4rem;
                 }
             }
@@ -149,8 +151,10 @@
             .stats-grid {
                 gap: var(--composer-gap-lg);
 
-                .stat-item {
-                    .stat-value {
+                .stat-item .stat-header {
+
+                    .stat-value,
+                    .stat-icon-wrapper {
                         font-size: 4rem;
                     }
                 }
