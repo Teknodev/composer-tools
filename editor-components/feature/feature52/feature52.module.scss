@@ -23,11 +23,11 @@
         }
 
         .vertical-content {
-            align-items: flex-start;
 
             .subtitle,
             .title,
             .description {
+                margin-left: 0;
                 text-align: left;
             }
 
