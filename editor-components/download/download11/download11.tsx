@@ -96,7 +96,7 @@ class Download11 extends BaseDownload {
           displayer: "Description",
           value: "Unlock the power of data with our advanced analytics tools. Gain actionable insignhts into customer behavior, market trends.",
         },
-        INPUTS.BUTTON("buttonLeft", "Button", "More", "", "", "", "Primary"),
+        INPUTS.BUTTON("buttonLeft", "Button", "More", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -140,7 +140,7 @@ class Download11 extends BaseDownload {
           },
           displayer: "Media",
         },
-        INPUTS.BUTTON("buttonRight", "Button", "More", "", "", "", "Primary"),
+        INPUTS.BUTTON("buttonRight", "Button", "More", "", null, null, "Primary"),
       ],
     });
 
@@ -185,7 +185,7 @@ class Download11 extends BaseDownload {
             url: "",
           },
         },
-        INPUTS.BUTTON("buttonRightBottom", "Button", "More", "", "", "", "Primary"),
+        INPUTS.BUTTON("buttonRightBottom", "Button", "More", "", null, null, "Primary"),
       ],
     });
   }
@@ -265,13 +265,13 @@ class Download11 extends BaseDownload {
                     {this.castToString(leftItems.title) && <Base.H2 className={this.decorateCSS("left-card-title")}>{leftItems.title}</Base.H2>}
                     {this.castToString(leftItems.description) && <Base.P className={this.decorateCSS("left-card-description")}>{leftItems.description}</Base.P>}
                     {buttonLeftExist && (
-                      <div className={this.decorateCSS("button-wrapper")}>
+                      <Base.Row className={this.decorateCSS("left-button-wrapper")}>
                         <ComposerLink path={buttonLeft.url}>
-                          <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("button")}>
-                            {buttonLeftTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonLeft.text}</Base.P>}
+                          <Base.Button buttonType={buttonLeft.type} className={this.decorateCSS("left-card-button")}>
+                            {buttonLeftTextExist && <Base.P className={this.decorateCSS("left-button-text")}>{buttonLeft.text}</Base.P>}
                           </Base.Button>
                         </ComposerLink>
-                      </div>
+                      </Base.Row>
                     )}
                   </Base.VerticalContent>
                 )}
@@ -287,13 +287,13 @@ class Download11 extends BaseDownload {
                         {this.castToString(rightItems.title) && <Base.H2 className={this.decorateCSS("upper-card-title")}>{rightItems.title}</Base.H2>}
                         {this.castToString(rightItems.description) && <Base.P className={this.decorateCSS("upper-card-description")}>{rightItems.description}</Base.P>}
                         {buttonRightExist && (
-                          <div className={this.decorateCSS("button-wrapper")}>
+                          <Base.Row className={this.decorateCSS("upper-button-wrapper")}>
                             <ComposerLink path={buttonRight.url}>
-                              <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("button")}>
-                                {buttonRightTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRight.text}</Base.P>}
+                              <Base.Button buttonType={buttonRight.type} className={this.decorateCSS("upper-card-button")}>
+                                {buttonRightTextExist && <Base.P className={this.decorateCSS("upper-button-text")}>{buttonRight.text}</Base.P>}
                               </Base.Button>
                             </ComposerLink>
-                          </div>
+                          </Base.Row>
                         )}
                       </Base.VerticalContent>
                     )}
@@ -308,13 +308,13 @@ class Download11 extends BaseDownload {
                         {this.castToString(rightBottomItems.title) && <Base.H2 className={this.decorateCSS("button-card-title")}>{rightBottomItems.title}</Base.H2>}
                         {this.castToString(rightBottomItems.description) && <Base.P className={this.decorateCSS("button-card-description")}>{rightBottomItems.description}</Base.P>}
                         {buttonRightBottomExist && (
-                          <div className={this.decorateCSS("button-wrapper")}>
+                          <Base.Row className={this.decorateCSS("bottom-button-wrapper")}>
                             <ComposerLink path={buttonRightBottom.url}>
-                              <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("button")}>
-                                {buttonRightBottomTextExist && <Base.P className={this.decorateCSS("button-text")}>{buttonRightBottom.text}</Base.P>}
+                              <Base.Button buttonType={buttonRightBottom.type} className={this.decorateCSS("bottom-card-button")}>
+                                {buttonRightBottomTextExist && <Base.P className={this.decorateCSS("bottom-button-text")}>{buttonRightBottom.text}</Base.P>}
                               </Base.Button>
                             </ComposerLink>
-                          </div>
+                          </Base.Row>
                         )}
                       </Base.VerticalContent>
                     )}

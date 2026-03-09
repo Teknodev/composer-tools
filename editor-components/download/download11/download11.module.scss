@@ -41,17 +41,22 @@
         }
 
         .left-card-vertical-content {
+          align-items: flex-start;
 
           .left-card-subtitle,
-          .left-card-title {
-            color: var(--composer-primary-color);
+          .left-card-title,
+          .left-card-description {
+            color: var(--composer-font-color-primary);
             text-align: left;
             margin-left: 0;
           }
 
-          .left-card-description {
-            color: var(--composer-font-color-primary);
-            text-align: left;
+          .left-button-wrapper {
+            .left-card-button {
+              .left-button-text {
+                content: "";
+              }
+            }
           }
 
           .left-card-image {
@@ -90,17 +95,22 @@
           .upper-card-vertical-content {
             flex: 1;
             min-width: 0;
+            align-items: flex-start;
 
             .upper-card-subtitle,
-            .upper-card-title {
-              color: var(--composer-primary-color);
+            .upper-card-title,
+            .upper-card-description {
+              color: var(--composer-font-color-primary);
               text-align: left;
               margin-left: 0;
             }
 
-            .upper-card-description {
-              color: var(--composer-font-color-primary);
-              text-align: left;
+            .upper-button-wrapper {
+              .upper-card-button {
+                .upper-button-text {
+                  content: "";
+                }
+              }
             }
           }
 
@@ -126,17 +136,22 @@
           .button-card-vertical-content {
             flex: 1;
             min-width: 0;
+            align-items: flex-start;
 
             .button-card-subtitle,
-            .button-card-title {
-              color: var(--composer-primary-color);
+            .button-card-title,
+            .button-card-description {
+              color: var(--composer-font-color-primary);
               text-align: left;
               margin-left: 0;
             }
 
-            .button-card-description {
-              color: var(--composer-font-color-primary);
-              text-align: left;
+            .bottom-button-wrapper {
+              .bottom-card-button {
+                .bottom-button-text {
+                  content: "";
+                }
+              }
             }
           }
 
