@@ -77,7 +77,7 @@
             transform: none !important;
 
             &::before {
-                background-color:  black !important;
+                display: none;
             }
         }
     }
@@ -114,11 +114,7 @@
         .subtitle {
             width: fit-content;
             margin-left: 0 !important;
-            transform: none !important;
-            &::before {
-                content: "";
-                display: none;
-            }
+
         }
 
     }
@@ -217,12 +213,9 @@
 
                 .subtitle {
                     transform: none;
-                    &::before{
-                    color: currentColor !important;
                 }
-                }
-                
-                
+
+
                 .title,
                 .description {
                     text-align: left !important;
