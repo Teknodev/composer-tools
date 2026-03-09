@@ -49,7 +49,6 @@
       position: relative;
       height: auto;
       min-height: auto;
-      width: 100%;
 
       &.image {
         align-items: center;
@@ -263,8 +262,8 @@
 
           .buttons-container {
             .button-image {
-              height: 40px !important;
-              width: 150px !important;
+              height: 28px !important;
+              width: 105px !important;
             }
           }
         }
