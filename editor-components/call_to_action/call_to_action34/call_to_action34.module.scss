@@ -146,7 +146,7 @@
             .card-wrapper {
                 padding: 0;
                 grid-template-columns: repeat(1, 1fr);
-                gap: 0;
+                gap: var(--composer-gap-md);
                 border-radius: var(--composer-border-radius-md);
 
                 .right-column {
