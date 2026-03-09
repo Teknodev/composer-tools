@@ -148,7 +148,7 @@
 
                         &.item-description-active {
                             max-height: 500px;
-                            padding: 0 0 var(--composer-gap-md) 0;
+                            padding: var(--composer-gap-md) 0;
                         }
 
                         .item-description {
