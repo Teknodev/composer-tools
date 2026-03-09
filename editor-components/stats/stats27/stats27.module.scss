@@ -106,12 +106,30 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content {
+        &.alignment-center {
+            .stats-grid {
+                .stat-item {
+                    align-items: center;
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
         .stats-grid {
             gap: var(--composer-gap-lg);
 
             .stat-item {
                 .stat-value {
                     font-size: 4rem;
+                }
+
+                .stat-description {
+                    margin-top: var(--composer-gap-sm);
                 }
             }
         }
