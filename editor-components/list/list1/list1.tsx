@@ -43,7 +43,7 @@ class List1 extends BaseList {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "lorem ipsum dolor sit amet consectetur adipiscing elit",
     });
     this.addProp({
       type: "array",
@@ -374,9 +374,6 @@ class List1 extends BaseList {
       dotsClass: dotsClassName,
       customPaging: (_i: number) => <button className={this.decorateCSS("dot-button")} />,
       centerPadding: "0px",
-      beforeChange: (_previndex: number, currindex: number) => {
-        this.setComponentState("active-index", currindex);
-      },
       responsive: [
         {
           breakpoint: 950,
@@ -417,7 +414,6 @@ class List1 extends BaseList {
           {sliderItems.length > 0 && (
             <ComposerSlider
               {...settings}
-              initialSlide={this.getComponentState("active-index")}
               key={`slider-${settings.adaptiveHeight}`}
               className={this.decorateCSS("carousel")}
             >
@@ -435,16 +431,15 @@ class List1 extends BaseList {
                   cardExist && (
                     <Base.VerticalContent
                       key={indexSlider}
-                      className={`${this.decorateCSS("card")} ${backgroundColor && this.getComponentState("active-index") === indexSlider
+                      className={`${this.decorateCSS("card")} ${backgroundColor
                         ? this.decorateCSS("active")
                         : ""
                         }`}
                       data-animation={hoverAnimation.join(" ")}
                     >
-                      {backgroundColor &&
-                        this.getComponentState("active-index") === indexSlider && (
-                          <div className={this.decorateCSS("active-after")} />
-                        )}
+                      {backgroundColor && (
+                        <div className={this.decorateCSS("active-after")} />
+                      )}
                       {item.image && (
                         <Base.Row
                           className={`${this.decorateCSS("image-container")} ${isIcon ? this.decorateCSS("no-round") : ""
