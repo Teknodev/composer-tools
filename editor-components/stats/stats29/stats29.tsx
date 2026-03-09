@@ -7,12 +7,16 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type StatItem = {
   prefix: string;
+  prefixElement: JSX.Element;
   number: string;
+  numberElement: JSX.Element;
   suffix: string;
+  suffixElement: JSX.Element;
   subtitle: string;
+  subtitleElement: JSX.Element;
   title: string;
-  description: string;
   titleElement: JSX.Element;
+  description: string;
   descriptionElement: JSX.Element;
 };
 
@@ -25,7 +29,7 @@ class Stats29 extends BaseStats {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "test",
+      value: "",
     });
 
     this.addProp({
@@ -39,7 +43,7 @@ class Stats29 extends BaseStats {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "safafsaf asfas fa sfasfasf ",
+      value: "",
     });
 
 
@@ -165,7 +169,7 @@ class Stats29 extends BaseStats {
           <span className={this.decorateCSS("stat-value")}>
             {stat.prefix && (
               <span className={this.decorateCSS("stat-prefix")}>
-                {stat.prefix}
+                {stat.prefixElement}
               </span>
             )}
             <span className={this.decorateCSS("stat-number")}>
@@ -173,7 +177,7 @@ class Stats29 extends BaseStats {
             </span>
             {stat.suffix && (
               <span className={this.decorateCSS("stat-suffix")}>
-                {stat.suffix}
+                {stat.suffixElement}
               </span>
             )}
           </span>
@@ -182,17 +186,17 @@ class Stats29 extends BaseStats {
           <Base.VerticalContent className={this.decorateCSS("stat-content")}>
             {subtitleExist && (
               <Base.P className={this.decorateCSS("stat-subtitle")}>
-                {stat.subtitle}
+                {stat.subtitleElement}
               </Base.P>
             )}
             {titleExist && (
               <Base.H3 className={this.decorateCSS("stat-title")}>
-                {stat.title}
+                {stat.titleElement}
               </Base.H3>
             )}
             {descriptionExist && (
               <Base.P className={this.decorateCSS("stat-description")}>
-                {stat.description}
+                {stat.descriptionElement}
               </Base.P>
             )}
           </Base.VerticalContent>
@@ -220,7 +224,7 @@ class Stats29 extends BaseStats {
       const subtitle = this.castToString(item.subtitle) || "";
       const title = this.castToString(item.title) || "";
       const description = this.castToString(item.description) || "";
-      return { prefix, number, suffix, subtitle, title, titleElement: item.title, description, descriptionElement: item.description };
+      return { prefix, prefixElement: item.prefix, number, numberElement: item.number, suffix, suffixElement: item.suffix, subtitle, subtitleElement: item.subtitle, title, titleElement: item.title, description, descriptionElement: item.description };
     });
 
     const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
