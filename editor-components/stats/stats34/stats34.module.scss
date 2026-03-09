@@ -6,7 +6,7 @@
         .wrapper {
             display: flex;
             align-items: stretch;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-xl);
 
             .content {
                 flex: 1 1 0%;
@@ -55,7 +55,7 @@
 
             .media-container {
                 position: relative;
-                width: 280px;
+                width: 400px;
                 height: 100%;
                 min-height: 380px;
                 border-radius: var(--composer-border-radius-md);
@@ -111,8 +111,14 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .wrapper .stats-grid .stat-item .stat-value {
-        font-size: 4rem;
+    .container .max-content .wrapper {
+        .media-container {
+            width: 250px;
+        }
+
+        .stats-grid .stat-item .stat-value {
+            font-size: 4rem;
+        }
     }
 }
 
