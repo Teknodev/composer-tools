@@ -124,17 +124,17 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .card-wrapper {
-        grid-template-columns: repeat(1, 1fr);
+        // grid-template-columns: repeat(1, 1fr);
 
-        .right-column {
-            order: -1;
-        }
+        // .right-column {
+        //     order: -1;
+        // }
 
         &.colored {
             padding: 80px 40px;
 
             .right-column {
-                margin: -80px -40px 0 -40px;
+                margin: -80px -40px -80px 0;
             }
         }
     }
