@@ -74,10 +74,10 @@
         .text-block .subtitle {
             background: none !important;
             padding: 0 !important;
-            transform: none !important;
+            /* transform: none !important; */
 
             &::before {
-                display: none;
+                background-color: currentColor !important;
             }
         }
     }
@@ -114,7 +114,6 @@
         .subtitle {
             width: fit-content;
             margin-left: 0 !important;
-
         }
 
     }
