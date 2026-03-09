@@ -87,7 +87,7 @@
         .card-content {
             display: none;
             flex-direction: row;
-            gap: var(--composer-gap-xl);
+            gap: var(--composer-gap-lg);
             flex: 1;
             min-width: 0;
             opacity: 0;
@@ -215,7 +215,6 @@
                     border-radius: 0;
                     min-height: 350px;
                     margin-left: calc(-1 * var(--composer-gap-lg));
-                    margin-bottom: var(--composer-gap-lg);
                     width: calc(100% + 2 * var(--composer-gap-lg));
 
                     &.full-width {
@@ -241,9 +240,13 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
 
         .wrapper {
+            &.no-content {
+                display: none;
+            }
+
             .items-wrapper {
                 display: none;
             }
@@ -330,7 +333,6 @@
                 .sectionsWrapper {
                     order: 2;
                     display: none;
-                    padding-bottom: var(--composer-gap-md);
 
                     .cardSubTitle,
                     .cardTitle,

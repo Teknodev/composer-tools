@@ -3,8 +3,8 @@ import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature42.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { TypeMediaInputValue } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ButtonTypeObj = {
     text: React.JSX.Element;
@@ -260,7 +260,7 @@ class Feature42 extends BaseFeature {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 {(hasContent || hasItems) && (
-                    <div className={this.decorateCSS("wrapper")}>
+                    <div className={`${this.decorateCSS("wrapper")} ${!hasContent && this.decorateCSS("no-content")}`}>
                         {hasContent && (
                             <Base.MaxContent className={this.decorateCSS("max-content")}>
                                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
