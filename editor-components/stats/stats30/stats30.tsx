@@ -44,6 +44,14 @@ export class Stats30Page extends BaseStats {
                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
         });
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 2,
+            max: 4,
+        });
+
 
         this.addProp({
             type: "array",
@@ -175,23 +183,25 @@ export class Stats30Page extends BaseStats {
 
         return (
             <div ref={ref} className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`} data-alignment={alignment}>
-                <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                    {card.subtitle}
-                </Base.H6>
-                <Base.H2 className={this.decorateCSS("card-title")}>
-                    {card.title}
-                </Base.H2>
-
-
-                {this.castToString(card.description) && (
-                    <Base.P className={this.decorateCSS("card-description")}>
-                        {card.description}
+                <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                    <Base.P className={this.decorateCSS("card-subtitle")}>
+                        {card.subtitle}
                     </Base.P>
-                )}
+                    <Base.H2 className={this.decorateCSS("card-title")}>
+                        {card.title}
+                    </Base.H2>
 
-                <div className={this.decorateCSS("card-number")}>
-                    {animatedNumber}
-                </div>
+
+                    {this.castToString(card.description) && (
+                        <Base.P className={this.decorateCSS("card-description")}>
+                            {card.description}
+                        </Base.P>
+                    )}
+
+                    <div className={this.decorateCSS("card-number")}>
+                        {animatedNumber}
+                    </div>
+                </Base.VerticalContent>
             </div>
         );
     };
@@ -202,64 +212,68 @@ export class Stats30Page extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
         const alignment = Base.getContentAlignment();
+        const itemCount = this.getPropValue("itemCount") || 2;
 
-        const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+        const hasTopSection = subtitleExist || titleExist || descriptionExist;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasTopSection && (
-                        <div className={this.decorateCSS("header-container")} data-alignment={alignment}>
-                            {subtitleExist && (
-                                <Base.H6 className={this.decorateCSS("subtitle")}>
-                                    {this.getPropValue("subtitle")}
-                                </Base.H6>
-                            )}
-                            {titleExist && (
-                                <Base.H2 className={this.decorateCSS("title")}>
-                                    {this.getPropValue("title")}
-                                </Base.H2>
-                            )}
-                            {descriptionExist && (
-                                <Base.P className={this.decorateCSS("description")}>
-                                    {this.getPropValue("description")}
-                                </Base.P>
-                            )}
-                        </div>
-                    )}
+                    <div className={this.decorateCSS("content")}>
+                        {hasTopSection && (
+                            <div className={this.decorateCSS("header-container")} data-alignment={alignment}>
+                                {subtitleExist && (
+                                    <Base.P className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.P>
+                                )}
+                                {titleExist && (
+                                    <Base.H2 className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.H2>
+                                )}
+                                {descriptionExist && (
+                                    <Base.P className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.P>
+                                )}
+                            </div>
+                        )}
 
-                    {this.getPropValue("cards")?.length > 0 && (
-                        <div className={this.decorateCSS("cards-container")}>
-                            {this.castToObject<any[]>("cards").map((card: any, index: number) => (
-                                <this.AnimatedCard
-                                    key={index}
-                                    card={card}
-                                    coloredBackgroundClass={this.getColoredBackground()}
-                                    alignment={alignment}
-                                />
-                            ))}
-                        </div>
-                    )}
-                    {hasValidButtons && (
-                        <div className={this.decorateCSS("bottom-action-container")}>
-                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                const buttonText = this.castToString(item.text);
-                                if (!buttonText) return null;
-                                return (
-                                    <div key={index}>
-                                        <Base.Button
-                                            buttonType={item.type}
-                                            className={this.decorateCSS("button")}
-                                        >
-                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                {item.text}
-                                            </Base.P>
-                                        </Base.Button>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    )}
+
+                        {this.getPropValue("cards")?.length > 0 && (
+                            <div className={this.decorateCSS("cards-container")} style={{ "--item-count": itemCount } as React.CSSProperties}>
+                                {this.castToObject<any[]>("cards").map((card: any, index: number) => (
+                                    <this.AnimatedCard
+                                        key={index}
+                                        card={card}
+                                        coloredBackgroundClass={this.getColoredBackground()}
+                                        alignment={alignment}
+                                    />
+                                ))}
+                            </div>
+                        )}
+                        {hasValidButtons && (
+                            <div className={this.decorateCSS("bottom-action-container")}>
+                                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                    const buttonText = this.castToString(item.text);
+                                    if (!buttonText) return null;
+                                    return (
+                                        <div key={index}>
+                                            <Base.Button
+                                                buttonType={item.type}
+                                                className={this.decorateCSS("button")}
+                                            >
+                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                    {item.text}
+                                                </Base.P>
+                                            </Base.Button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         );
