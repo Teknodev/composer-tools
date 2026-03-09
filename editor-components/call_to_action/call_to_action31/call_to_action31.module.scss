@@ -2,9 +2,42 @@
 
 .container {
     background-color: var(--composer-html-background);
-    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+
+    // HEM RESİM HEM KART YOKSA (Review 4: Ekstra boşlukları siler)
+    &.no-media.no-card {
+        padding: 0;
+
+        .max-content {
+            height: auto !important; // 100vh'den kurtar, içerik kadar olsun
+            padding: 40px 20px; // Sadece yazıların etrafında azıcık pay kalsın
+            background-color: transparent !important;
+        }
+    }
+
+    // SADECE KART YOKSA (Review 3: 100vh devam etmeli ama renk gitmeli)
+    &.no-card:not(.no-media) .max-content {
+        background-color: transparent !important;
+        border-radius: 0;
+    }
+
+    // KART VAR ama MEDYA YOKSA (Sıradan kutu simetrisi)
+    &.no-media:not(.no-card) .max-content {
+        padding: 80px 50px;
+        height: auto;
+
+        @container (max-width: #{$composer-tablet-width}) {
+            padding: 80px 40px;
+        }
+
+        @container (max-width: #{$composer-phone-width}) {
+            padding: 50px 20px;
+        }
+    }
 
     .max-content {
+        width: 100%;
         height: 100vh;
         display: flex;
         justify-content: center;
@@ -26,36 +59,6 @@
             padding: 50px 20px 0;
             gap: var(--composer-gap-lg);
             height: auto;
-        }
-
-        &.no-card {
-            padding: 0;
-            border-radius: 0;
-            background-color: transparent;
-            // height: auto;
-
-            .media-wrapper {
-                border-radius: var(--composer-border-radius-sm);
-            }
-        }
-
-        &.no-media:not(.no-card) {
-            // padding-bottom: 80px;
-            padding-top: 0;
-            padding-bottom: 0;
-            height: auto;
-
-            @container (max-width: #{$composer-tablet-width}) {
-                // padding-bottom: 80px;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
-
-            @container (max-width: #{$composer-phone-width}) {
-                // padding-bottom: 50px;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
         }
 
         .header-row {
@@ -106,7 +109,6 @@
                     flex: 1 1 auto;
                     width: 100%;
                 }
-
             }
         }
 

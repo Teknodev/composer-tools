@@ -91,9 +91,8 @@ class CallToAction31Page extends BaseCallToAction {
         const coloredBackground = this.getPropValue("coloredBackground");
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!coloredBackground ? this.decorateCSS("no-card") : ""} ${!mediaData?.url ? this.decorateCSS("no-media") : ""}`}>
-
+            <Base.Container className={`${this.decorateCSS("container")} ${!coloredBackground ? this.decorateCSS("no-card") : ""} ${!mediaData?.url ? this.decorateCSS("no-media") : ""}`}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("header-row")}>
                         <div className={this.decorateCSS("text-column")}>
                             <Base.VerticalContent>
