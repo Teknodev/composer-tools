@@ -7,19 +7,6 @@
             flex-direction: column;
             gap: var(--composer-gap-sm);
             margin-bottom: var(--composer-gap-xl);
-
-            .header-subtitle {
-                color: var(--composer-font-color-secondary);
-            }
-
-            .header-title {
-                color: var(--composer-font-color-primary);
-            }
-
-            .header-description {
-                color: var(--composer-font-color-secondary);
-                max-width: 800px;
-            }
         }
 
         .content {
@@ -48,25 +35,26 @@
                     .text-inner {
                         align-items: flex-start;
                         justify-content: center;
-                        gap: var(--composer-gap-sm);
-
-                        .stats-subtitle {
-                            ::before {
-                                display: none;
-                            }
-                        }
 
                         .stats-title,
-                        .stats-description {
+                        .stats-description,
+                        .stats-subtitle {
                             text-align: left !important;
                             margin-left: 0 !important;
+                        }
+
+                        .stats-subtitle {
+                            transform: none;
+
+                            &::before {
+                                display: none;
+                            }
                         }
 
                         .button-container {
                             display: flex;
                             flex-wrap: wrap;
                             gap: var(--composer-gap-md);
-                            margin-top: var(--composer-gap-md);
 
                             .button {
                                 display: flex;
@@ -124,6 +112,9 @@
         gap: var(--composer-gap-lg);
 
         .row {
+            flex-direction: column;
+            gap: var(--composer-gap-lg);
+
             .text-content {
                 .stat-value {
                     font-size: 4rem;
@@ -131,13 +122,8 @@
 
                 .text-inner {
 
-                    .stats-title {
-                        text-align: inherit !important;
-                    }
-
-                    .stat-description {
+                    .stats-description {
                         max-width: 100%;
-                        text-align: inherit !important;
                     }
                 }
             }
