@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.container {
+    box-sizing: border-box;
+}
+
 .max-content {
     display: flex;
     flex-direction: column;
@@ -17,7 +21,7 @@
         gap: var(--composer-gap-sm);
 
         .button {
-            content: "";
+            box-sizing: border-box;
 
             .button-text {
                 content: "";
@@ -33,6 +37,18 @@
     &::before {
         display: none;
     }
+}
+
+.title {
+    box-sizing: border-box;
+}
+
+.description {
+    box-sizing: border-box;
+}
+
+.stats-grid {
+    box-sizing: border-box;
 }
 
 .stat-item {
@@ -68,6 +84,14 @@
     display: flex;
     align-items: baseline;
     font-size: 4rem;
+
+    .stat-prefix {
+        box-sizing: border-box;
+    }
+
+    .stat-suffix {
+        box-sizing: border-box;
+    }
 
     &.has-line {
         margin-bottom: var(--composer-gap-sm);
