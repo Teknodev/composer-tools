@@ -47,7 +47,7 @@ class Stats34 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Who we are", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "Who we are", "", null, null, "White"),
             ],
         });
 
