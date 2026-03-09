@@ -3,6 +3,7 @@
 .container {
   .max-content {
     .wrapper {
+      gap: var(--composer-gap-xl);
 
       .left {
         align-items: flex-start;
@@ -97,7 +98,7 @@
         .stat-prefix,
         .stat-number,
         .stat-suffix {
-          font-size: 3rem;
+          font-size: 4rem;
         }
       }
     }

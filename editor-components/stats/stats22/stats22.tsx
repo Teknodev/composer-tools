@@ -101,6 +101,13 @@ class Stats22 extends BaseStats {
         { type: "number", key: "animationDuration", displayer: "Number Animation Duration (ms)", value: 2000 },
       ],
     });
+    this.addProp({
+      type: "number",
+      key: "itemCountInRow",
+      displayer: "Item Count in a Row",
+      value: 3,
+      max: 6,
+    });
   }
 
   static getName(): string {
@@ -245,8 +252,18 @@ class Stats22 extends BaseStats {
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
 
-    const hasLeft = subtitle || title || description || buttons.length > 0;
-    const hasRight = description || statItems.length > 0;
+    const visibleStatItems = statItems.filter((item) => {
+      const hasTitle = this.castToString(item.title);
+      const hasPrefix = item.prefix && item.prefix.trim() !== "";
+      const hasSuffix = item.suffix && item.suffix.trim() !== "";
+      const hasNumber = (parseFloat(item.number) || 0) !== 0 || hasPrefix || hasSuffix;
+      return hasNumber || hasTitle;
+    });
+
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+    const itemCountInRow = this.getPropValue("itemCountInRow") ?? 3;
+    const hasLeft = subtitle || title || description || hasValidButtons;
+    const hasRight = description || visibleStatItems.length > 0;
     const alignment = Base.getContentAlignment() || "left";
 
     return (
@@ -271,7 +288,7 @@ class Stats22 extends BaseStats {
                       {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
-                  {buttons.length > 0 && (
+                  {hasValidButtons && (
                     <div className={this.decorateCSS("button-container")}>
                       {buttons.map((button: INPUTS.CastedButton, index: number) =>
                         this.castToString(button.text) && (
@@ -295,26 +312,19 @@ class Stats22 extends BaseStats {
                       {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
-                  {statItems.length > 0 && (
+                  {visibleStatItems.length > 0 && (
                     <Base.ListGrid
-                      gridCount={{ pc: 3, tablet: 3, phone: 1 }}
+                      gridCount={{ pc: itemCountInRow, tablet: 3, phone: 1 }}
                       className={this.decorateCSS("stats-grid")}
                     >
-                      {statItems.map((item, index) => {
-                        const hasTitle = this.castToString(item.title);
-                        const hasPrefix = item.prefix && item.prefix.trim() !== "";
-                        const hasSuffix = item.suffix && item.suffix.trim() !== "";
-                        const hasNumber = (parseFloat(item.number) || 0) !== 0 || hasPrefix || hasSuffix;
-                        if (!hasNumber && !hasTitle) return null;
-                        return (
-                          <this.AnimatedStat
-                            key={index}
-                            stat={item}
-                            animationDuration={animationDuration}
-                            statsAnimation={statsAnimation}
-                          />
-                        );
-                      })}
+                      {visibleStatItems.map((item, index) => (
+                        <this.AnimatedStat
+                          key={index}
+                          stat={item}
+                          animationDuration={animationDuration}
+                          statsAnimation={statsAnimation}
+                        />
+                      ))}
                     </Base.ListGrid>
                   )}
                 </Base.VerticalContent>
