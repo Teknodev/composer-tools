@@ -166,7 +166,7 @@ class About3 extends BaseAbout {
     const phoneIconValue = this.getPropValue("phoneIcon");
     const hasPhoneSection = phoneIconValue || phoneStr;
 
-    const showDiv = rightWeakTextStr || rightBoldTextStr || isImage1Exist || isImage2Exist;
+    const showDiv = isImage1Exist || isImage2Exist;
     const showLeftDiv = subtitleStr || titleStr || descriptionStr || hasValidButtons || hasPhoneSection;
     const noImages = !isImage1Exist && !isImage2Exist;
 
@@ -249,7 +249,13 @@ class About3 extends BaseAbout {
                 )}
                 {isImage1Exist && (
                   <div className={`${this.decorateCSS("back-image")} ${!isImage2Exist && this.decorateCSS("no-image")}`}>
-                    <Base.Media value={backMedia} className={this.decorateCSS("image")} />
+                    <Base.Media
+                      value={backMedia}
+                      className={`${this.decorateCSS("image")} ${backMedia?.type === "video" ? this.decorateCSS("is-video") : ""}`}
+                      autoPlay={true}
+                      muted={true}
+                      loop={true}
+                    />
                     {backImage?.overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}
@@ -258,7 +264,13 @@ class About3 extends BaseAbout {
 
                 {isImage2Exist && (
                   <div className={`${this.decorateCSS("front-image")} ${!isImage1Exist && this.decorateCSS("no-image")} `}>
-                    <Base.Media value={frontMedia} className={this.decorateCSS("image")} />
+                    <Base.Media
+                      value={frontMedia}
+                      className={`${this.decorateCSS("image")} ${frontMedia?.type === "video" ? this.decorateCSS("is-video") : ""}`}
+                      autoPlay={true}
+                      muted={true}
+                      loop={true}
+                    />
                     {frontImage?.overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}
