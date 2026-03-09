@@ -256,13 +256,22 @@
             flex-direction: column;
             gap: 0;
 
-            .card-content {
+            &.enable-line {
                 gap: var(--composer-gap-md);
-                flex-direction: column;
+
+                .card-content {
+                    .mobile-title-wrapper {
+                        padding: 0;
+                    }
+                }
+            }
+
+            .card-content {
                 display: flex;
                 position: relative;
                 opacity: 1;
                 height: auto;
+                gap: 0;
 
                 .mobile-title-wrapper {
                     display: flex;

@@ -290,7 +290,7 @@ class Feature42 extends BaseFeature {
                     </div>
                 )}
                 {hasRightContent && (
-                    <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")}`}>
+                    <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")} ${!enableLine && this.decorateCSS("enable-line")}`}>
                         {items.map((item: ListItem, index: number) => {
                             const isActive = effectiveIndex === index;
                             const cardSubTitleExist = this.castToString(item.cardSubTitle);
