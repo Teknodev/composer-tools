@@ -262,75 +262,66 @@ class Stats22 extends BaseStats {
 
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     const itemCountInRow = this.getPropValue("itemCountInRow") ?? 3;
-    const hasLeft = subtitle || title || description || hasValidButtons;
+    const hasLeft = subtitle || title || hasValidButtons;
     const hasRight = description || visibleStatItems.length > 0;
     const alignment = Base.getContentAlignment() || "left";
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={`${this.decorateCSS("wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+          <div className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
             {hasLeft && (
-              <Base.GridCell>
-                <Base.VerticalContent className={this.decorateCSS("left")}>
-                  {subtitle && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {title && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                  {description && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {this.getPropValue("description")}
-                    </Base.SectionDescription>
-                  )}
-                  {hasValidButtons && (
-                    <div className={this.decorateCSS("button-container")}>
-                      {buttons.map((button: INPUTS.CastedButton, index: number) =>
-                        this.castToString(button.text) && (
-                          <ComposerLink key={`stats22-btn-${index}`} path={button.url}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        )
-                      )}
-                    </div>
-                  )}
-                </Base.VerticalContent>
-              </Base.GridCell>
+              <Base.VerticalContent className={this.decorateCSS("left")}>
+                {subtitle && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {title && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) =>
+                      this.castToString(button.text) && (
+                        <ComposerLink key={`stats22-btn-${index}`} path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    )}
+                  </div>
+                )}
+              </Base.VerticalContent>
             )}
             {hasRight && (
-              <Base.GridCell>
-                <Base.VerticalContent className={this.decorateCSS("right")}>
-                  {description && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {this.getPropValue("description")}
-                    </Base.SectionDescription>
-                  )}
-                  {visibleStatItems.length > 0 && (
-                    <Base.ListGrid
-                      gridCount={{ pc: itemCountInRow, tablet: 3, phone: 1 }}
-                      className={this.decorateCSS("stats-grid")}
-                    >
-                      {visibleStatItems.map((item, index) => (
-                        <this.AnimatedStat
-                          key={index}
-                          stat={item}
-                          animationDuration={animationDuration}
-                          statsAnimation={statsAnimation}
-                        />
-                      ))}
-                    </Base.ListGrid>
-                  )}
-                </Base.VerticalContent>
-              </Base.GridCell>
+              <Base.VerticalContent className={this.decorateCSS("right")}>
+                {description && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {visibleStatItems.length > 0 && (
+                  <Base.ListGrid
+                    gridCount={{ pc: itemCountInRow, tablet: 3, phone: 1 }}
+                    className={this.decorateCSS("stats-grid")}
+                  >
+                    {visibleStatItems.map((item, index) => (
+                      <this.AnimatedStat
+                        key={index}
+                        stat={item}
+                        animationDuration={animationDuration}
+                        statsAnimation={statsAnimation}
+                      />
+                    ))}
+                  </Base.ListGrid>
+                )}
+              </Base.VerticalContent>
             )}
-          </Base.ContainerGrid>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
