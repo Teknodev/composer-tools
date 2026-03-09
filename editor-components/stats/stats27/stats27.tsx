@@ -91,7 +91,7 @@ class Stats27 extends BaseStats {
                         { type: "string", key: "number", displayer: "Value", value: "300" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "PEOPLE" },
-                        { type: "string", key: "title", displayer: "Title", value: "lorem" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "Bring to the table win-win survival strategies to ensure proactive domination" },
                     ],
                 },
