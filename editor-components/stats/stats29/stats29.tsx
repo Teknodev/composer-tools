@@ -25,7 +25,7 @@ class Stats29 extends BaseStats {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "",
+      value: "test",
     });
 
     this.addProp({
@@ -39,7 +39,7 @@ class Stats29 extends BaseStats {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "safafsaf asfas fa sfasfasf ",
     });
 
 
@@ -186,9 +186,9 @@ class Stats29 extends BaseStats {
               </Base.P>
             )}
             {titleExist && (
-              <Base.H2 className={this.decorateCSS("stat-title")}>
+              <Base.H3 className={this.decorateCSS("stat-title")}>
                 {stat.title}
-              </Base.H2>
+              </Base.H3>
             )}
             {descriptionExist && (
               <Base.P className={this.decorateCSS("stat-description")}>
