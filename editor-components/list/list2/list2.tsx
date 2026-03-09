@@ -352,7 +352,7 @@ class List2 extends BaseList {
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
-      value: ["animate1"],
+      value: ["animate1", "animate3"],
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
@@ -365,7 +365,12 @@ class List2 extends BaseList {
     return "List 2";
   }
   handleButtonClick = () => {
-    this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+    const cards = this.castToObject<CardItem[]>("cards");
+    if (this.getComponentState("imageCount") >= cards.length) {
+      this.setComponentState("moreImages", 0);
+    } else {
+      this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"));
+    }
   };
 
   render() {
@@ -465,7 +470,7 @@ class List2 extends BaseList {
                 })}
               </Base.ListGrid>
             )}
-            {(this.getComponentState("imageCount") < cards.length) && buttons?.length > 0 && buttons.map((btn: CardButton, btnIndex: number) => {
+            {buttons?.length > 0 && buttons.map((btn: CardButton, btnIndex: number) => {
               const buttonText = this.castToString(btn.text);
               const iconMedia = btn.icon as TypeMediaInputValue;
               const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
@@ -477,7 +482,7 @@ class List2 extends BaseList {
                     <Base.Button buttonType={btn.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
                       {buttonText && (
                         <Base.P className={this.decorateCSS("button-text")}>
-                          {btn.text}
+                          {this.getComponentState("imageCount") >= cards.length ? "View Less Categories" : btn.text}
                         </Base.P>
                       )}
                       {iconExist && (

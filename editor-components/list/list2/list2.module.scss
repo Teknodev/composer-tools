@@ -143,7 +143,7 @@ as *;
                 gap: var(--composer-gap-xs);
                 margin: var(--composer-gap-xs) 0;
                 background: rgba(var(--composer-primary-color-rgb), 0.5);
-                padding: var(--composer-gap-xs) var(--composer-gap-xs);
+                padding: var(--composer-gap-xs) var(--composer-gap-sm);
                 border-radius: var(--composer-border-radius-sm);
                 transition: all var(--composer-transition-duration-normal) ease;
 
