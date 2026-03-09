@@ -13,7 +13,6 @@
   }
 
   .max-content {
-    width: 100%;
     background-size: cover;
     background-position: center;
     border-radius: var(--composer-border-radius-md);
@@ -45,6 +44,7 @@
 
     .vertical-content {
       justify-content: center;
+      align-items: center;
       position: relative;
       z-index: 2;
 
@@ -69,12 +69,11 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: var(--composer-gap-sm);
-        width: 100%;
         z-index: 2;
 
         .button-image {
-          height: 44px;
-          width: 166px;
+          height: 40px;
+          width: 148px;
           border-radius: var(--composer-border-radius-sm);
           object-fit: cover;
         }
@@ -116,8 +115,8 @@
 
         .buttons-container {
           .button-image {
-            height: 42px !important;
-            width: 147px !important;
+            height: 40px !important;
+            width: 142px !important;
           }
         }
       }
@@ -135,8 +134,8 @@
 
         .buttons-container {
           .button-image {
-            height: 30px !important;
-            width: 115px !important;
+            height: 28px !important;
+            width: 103px !important;
           }
         }
       }
