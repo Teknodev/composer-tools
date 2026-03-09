@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./download6.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseDownload , TypeMediaInputValue} from "../../EditorComponent";
+import { BaseDownload, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
@@ -39,7 +39,7 @@ class Download6 extends BaseDownload {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "Download Now", "", "", "", "Primary")],
+      value: [INPUTS.BUTTON("button", "Button", "Download Now", "", "GoArrowRight", "", "Primary")],
     });
 
     this.addProp({
