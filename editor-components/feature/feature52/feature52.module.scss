@@ -6,7 +6,7 @@
 
         .content-container {
             display: grid;
-            grid-template-columns: 40% 60%;
+            grid-template-columns: 38% 60%;
             gap: var(--composer-gap-lg);
             align-items: flex-start;
 
@@ -23,6 +23,7 @@
         }
 
         .vertical-content {
+            align-items: flex-start;
 
             .subtitle,
             .title,
@@ -51,7 +52,16 @@
 
             .list-grid {
                 width: 100%;
-                gap: 0px;
+
+                &.has-line {
+                    gap: 0px;
+
+                    .item-container {
+                        .item-header {
+                            padding: 30px 0;
+                        }
+                    }
+                }
 
                 .item-container {
                     padding: 0 var(--composer-gap-sm);
@@ -65,7 +75,6 @@
 
                     .item-header {
                         width: 100%;
-                        padding: 30px 0;
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
@@ -162,18 +171,6 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .list-container {
-            .list-grid {
-                .item-container {
-                    .item-header {}
-                }
-            }
-        }
-    }
-}
-
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
@@ -186,10 +183,16 @@
                 padding: 0 !important;
 
                 .list-grid {
+                    &.has-line {
+                        .item-container {
+                            .item-header {
+                                padding: var(--composer-gap-md) 0 !important;
+                            }
+                        }
+                    }
+
                     .item-container {
                         .item-header {
-                            padding: var(--composer-gap-md) 0;
-
                             .item-left {
                                 .item-icon {
                                     width: 1.5rem;

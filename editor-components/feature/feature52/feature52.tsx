@@ -293,7 +293,7 @@ class Feature52 extends BaseFeature {
                                     </Base.SectionDescription>
                                 )}
                                 {visibleButtons.length > 0 && (
-                                    <div className={this.decorateCSS("button-container")}>
+                                    <Base.Row className={this.decorateCSS("button-container")}>
                                         {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
                                             return this.castToString(item.text) && (
                                                 <ComposerLink key={`button-${index}`} path={item.url}>
@@ -303,7 +303,7 @@ class Feature52 extends BaseFeature {
                                                 </ComposerLink>
                                             );
                                         })}
-                                    </div>
+                                    </Base.Row>
                                 )}
                             </Base.VerticalContent>
                         )}
@@ -311,7 +311,7 @@ class Feature52 extends BaseFeature {
                         {hasListContent && (
                             <div className={this.decorateCSS("list-container")}>
                                 <Base.ListGrid
-                                    className={this.decorateCSS("list-grid")}
+                                    className={`${this.decorateCSS("list-grid")} ${line && this.decorateCSS("has-line")}`}
                                     gridCount={{ pc: itemCount, tablet: tabletItemCount, phone: 1 }}
                                 >
                                     {services.map((item: ServiceItemType, index: number) => {
