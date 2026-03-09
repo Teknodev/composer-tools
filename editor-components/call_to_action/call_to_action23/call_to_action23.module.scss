@@ -28,10 +28,9 @@
             margin-left: 0;
             margin-right: auto;
             width: fit-content;
-            transform: none !important;
 
             &::before {
-              display: none;
+              content: "";
             }
           }
 
@@ -112,10 +111,6 @@
             border-radius: 0 !important;
             color: var(--composer-html-background);
             transform: none;
-
-            &::before {
-              display: none !important;
-            }
           }
 
           .title,
