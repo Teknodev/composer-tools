@@ -40,6 +40,14 @@ class List6 extends BaseList {
       value: "",
     });
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+      ],
+    });
+    this.addProp({
       type: "boolean",
       key: "descriptionAnimation",
       displayer: "Title Animation",
@@ -220,14 +228,6 @@ class List6 extends BaseList {
       displayer: "Line Active",
       value: true,
     });
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "Button", "", "", null, "Primary"),
-      ],
-    });
   }
 
   render() {
@@ -266,6 +266,22 @@ class List6 extends BaseList {
                 >
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
+              )}
+              {buttons?.length > 0 && (
+                <div className={`${this.decorateCSS("button-container")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                    if (!this.castToString(button.text)) return null;
+                    return (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
@@ -310,22 +326,6 @@ class List6 extends BaseList {
               </div>
             ))}
           </div>
-          {buttons?.length > 0 && (
-            <div className={`${this.decorateCSS("button-container")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
-              {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                if (!this.castToString(button.text)) return null;
-                return (
-                  <ComposerLink key={index} path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {button.text}
-                      </Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                );
-              })}
-            </div>
-          )}
         </Base.MaxContent>
       </Base.Container>
     );

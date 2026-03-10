@@ -23,12 +23,6 @@ as *;
           margin-right: auto;
         }
       }
-
-
-
-      .description {
-        margin-top: var(--composer-gap-sm);
-      }
     }
 
     .subtitle {
@@ -241,7 +235,7 @@ as *;
       flex-wrap: wrap;
       gap: var(--composer-gap-sm);
       justify-content: flex-start;
-      margin-top: var(--composer-gap-md);
+      // margin-top: var(--composer-gap-md);
 
       &.align-center {
         justify-content: center;
