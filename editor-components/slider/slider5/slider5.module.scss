@@ -10,7 +10,9 @@
 
         :global(.slick-prev),
         :global(.slick-next) {
-          z-index: 20;
+          z-index: 10;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
 
           &:hover,
           &:focus {
@@ -35,15 +37,15 @@
         }
 
         :global(.slick-prev) {
-          left: 80px;
+          left: 50px;
         }
 
         :global(.slick-next) {
-          right: 80px;
+          right: 50px;
         }
 
         :global(.slick-dots) {
-          bottom: var(--composer-gap-xl);
+          bottom: calc(var(--composer-gap-lg) * 2);
           display: flex !important;
           justify-content: center;
           align-items: center;
@@ -111,16 +113,22 @@
       .carousel-wrapper {
         .carousel {
 
+          :global(.slick-prev) {
+            left: var(--composer-gap-lg);
+          }
+
+          :global(.slick-next) {
+            right: var(--composer-gap-lg);
+          }
+
           :global(.slick-prev),
           :global(.slick-next) {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
 
             &:before {
               font-size: 30px;
             }
-          }
-
-          :global(.slick-dots) {
-            bottom: var(--composer-gap-lg);
           }
 
           .slider-item {
@@ -145,27 +153,25 @@
         .carousel {
 
           :global(.slick-prev) {
-            left: var(--composer-gap-xl);
+            left: var(--composer-gap-md);
           }
 
           :global(.slick-next) {
-            right: var(--composer-gap-xl);
-          }
-
-          :global(.slick-dots) {
-            bottom: var(--composer-gap-md);
+            right: var(--composer-gap-md);
           }
 
           :global(.slick-prev),
           :global(.slick-next) {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
 
             &:before {
-              font-size: 25px;
+              font-size: 20px;
             }
           }
 
           :global(.slick-dots) {
-            bottom: var(--composer-gap-md);
+            bottom: var(--composer-gap-xl);
 
             li {
               margin: 0 var(--composer-gap-xs);

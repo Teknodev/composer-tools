@@ -84,7 +84,7 @@
                     height: var(--composer-gap-lg);
 
                     &:before {
-                        font-size: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+                        font-size: 40px;
                         color: var(--composer-font-color-primary);
                         opacity: 0.7;
                     }
@@ -212,7 +212,7 @@
 
         .dots {
             position: absolute;
-            bottom: var(--composer-gap-xl);
+            bottom: calc(var(--composer-gap-lg) * 2);
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -262,7 +262,7 @@
                         height: var(--composer-gap-md);
 
                         &:before {
-                            font-size: var(--composer-gap-md);
+                            font-size: 30px;
                         }
                     }
 
@@ -321,8 +321,6 @@
 
             .dots {
                 .dot-item {
-                    margin: 0 var(--composer-gap-xs);
-
                     .dot-button {
                         width: var(--composer-gap-sm) !important;
                         height: var(--composer-gap-sm) !important;
@@ -348,11 +346,11 @@
 
                     :global(.slick-prev),
                     :global(.slick-next) {
-                        width: 24px;
-                        height: 24px;
+                        width: var(--composer-gap-md);
+                        height: var(--composer-gap-md);
 
                         &:before {
-                            font-size: 24px;
+                            font-size: 20px;
                         }
                     }
 
@@ -374,7 +372,7 @@
 
                             .socials {
                                 .icon {
-                                    font-size: 1.25rem;
+                                    font-size: 1rem;
 
                                     &.has-image {
                                         width: 15px;
@@ -402,9 +400,11 @@
         }
 
         .dots {
-            bottom: var(--composer-gap-md) !important;
+            bottom: var(--composer-gap-xl) !important;
 
             .dot-item {
+                margin: 0 var(--composer-gap-xs) !important;
+
                 &.active {
                     .dot-button {
                         transform: scale(0.8) !important;
