@@ -25,7 +25,7 @@ class Stats32 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "test",
         });
 
         this.addProp({
@@ -39,7 +39,7 @@ class Stats32 extends BaseStats {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
+            value: "sfasfafsfas as fas",
         });
 
         this.addProp({
@@ -110,8 +110,8 @@ class Stats32 extends BaseStats {
             type: "array",
             key: "buttons",
             displayer: "Buttons",
-            value: [    
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"), 
+            value: [
+                INPUTS.BUTTON("button", "Button", "safasfas ", "", null, null, "White"),
             ],
         });
     }
