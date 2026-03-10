@@ -26,31 +26,20 @@
 
                     .subtitle {
                         margin-left: 0;
-                        transform: none !important;
-
-                        &::before {
-                            display: none;
-                        }
                     }
 
                     .bottom-row {
-                        display: flex;
-                        flex-direction: row;
+                        display: grid;
+                        grid-template-columns: repeat(2, auto);
+                        justify-content: start;
                         align-items: center;
-                        flex-wrap: nowrap;
-                        gap: var(--composer-gap-md);
+                        gap: var(--composer-gap-sm);
                         width: 100%;
 
-                        .button-group {
-                            display: flex;
-                            gap: var(--composer-gap-sm);
-                            flex-wrap: wrap;
-
-                            .button-item {
-                                .button {
-                                    .button-text {
-                                        content: "";
-                                    }
+                        .button-item {
+                            .button {
+                                .button-text {
+                                    content: "";
                                 }
                             }
                         }
@@ -60,8 +49,6 @@
                             flex-direction: column;
                             align-items: flex-start;
                             color: var(--composer-font-color-primary);
-                            flex: 1;
-                            min-width: 50%;
 
                             .rating-value,
                             .rating-text {
@@ -133,10 +120,9 @@
                         padding: 0;
                         margin-left: 0;
                         width: fit-content;
-                        transform: none !important;
 
                         &::before {
-                            display: none;
+                            background-color: var(--composer-font-color-secondary) !important;
                         }
                     }
 
@@ -197,12 +183,7 @@
 
             .left-section .header {
                 .bottom-row {
-                    flex-direction: column;
-
-
-                    .rating {
-                        width: 100%;
-                    }
+                    grid-template-columns: 1fr;
                 }
             }
 

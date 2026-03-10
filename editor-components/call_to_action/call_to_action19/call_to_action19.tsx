@@ -45,7 +45,6 @@ class CallToAction19 extends BaseCallToAction {
             displayer: "Buttons",
             value: [
                 INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"),
-
             ],
             additionalParams: {
                 maxElementCount: 4,
@@ -187,25 +186,21 @@ class CallToAction19 extends BaseCallToAction {
                                     {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
                                     {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
 
-                                    {(buttons.length > 0 && buttons.some((b: Button) => this.castToString(b?.text))) || this.castToString(ratingValue) || this.castToString(ratingText) ? (
+                                    {(buttons.some((b: Button) => this.castToString(b?.text)) || this.castToString(ratingValue) || this.castToString(ratingText)) && (
                                         <div className={this.decorateCSS("bottom-row")}>
-                                            {buttons.length > 0 && buttons.some((b: Button) => this.castToString(b?.text)) && (
-                                                <div className={this.decorateCSS("button-group")}>
-                                                    {buttons.map((button: Button, index: number) =>
-                                                        this.castToString(button?.text) && (
-                                                            <div key={index} className={this.decorateCSS("button-item")}>
-                                                                <ComposerLink path={button.url}>
-                                                                    <Base.Button className={this.decorateCSS("button")}
-                                                                        buttonType={button.type}>
-                                                                        <Base.P className={this.decorateCSS("button-text")}>
-                                                                            {button.text}
-                                                                        </Base.P>
-                                                                    </Base.Button>
-                                                                </ComposerLink>
-                                                            </div>
-                                                        )
-                                                    )}
-                                                </div>
+                                            {buttons.map((button: Button, index: number) =>
+                                                this.castToString(button?.text) && (
+                                                    <div key={index} className={this.decorateCSS("button-item")}>
+                                                        <ComposerLink path={button.url}>
+                                                            <Base.Button className={this.decorateCSS("button")}
+                                                                buttonType={button.type}>
+                                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                                    {button.text}
+                                                                </Base.P>
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    </div>
+                                                )
                                             )}
                                             {(this.castToString(ratingValue) || this.castToString(ratingText)) && (
                                                 <div className={this.decorateCSS("rating")}>
@@ -222,15 +217,15 @@ class CallToAction19 extends BaseCallToAction {
                                                 </div>
                                             )}
                                         </div>
-                                    ) : null}
+                                    )}
                                 </Base.VerticalContent>
                             </div>
                         )}
 
-                        {validFeatures.length > 0 && (
+                        {(validFeatures.length > 0 || this.castToString(this.getPropValue("featureTitle"))) && (
                             <div className={this.decorateCSS("right-section")}>
                                 <Base.VerticalContent className={this.decorateCSS("right-vertical-content")}>
-                                    {validFeatures.length > 0 && this.castToString(this.getPropValue("featureTitle")) && (
+                                    {this.castToString(this.getPropValue("featureTitle")) && (
                                         <Base.H5 className={this.decorateCSS("features-title")}>
                                             {this.getPropValue("featureTitle")}
                                         </Base.H5>
