@@ -1,21 +1,18 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  display: flex;
-  flex-direction: column;
   padding: calc(var(--composer-gap-lg) * 2) 0 !important;
+
+  &.no-arrows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+  }
 
   .max-content {
     padding: 0 var(--composer-gap-xl);
-    flex-direction: column;
-    position: relative;
-    flex-wrap: nowrap;
-    display: flex;
-
 
     .vertical-content {
-      max-width: var(--composer-content-width);
-      width: 100%;
 
       .subtitle,
       .title,
@@ -35,13 +32,8 @@
       .nextArrow,
       .prevArrow {
         color: var(--composer-font-color-primary);
-        width: 3rem;
-        height: 3rem;
         font-size: 3rem;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         line-height: 0;
 
         .has-image {
@@ -68,16 +60,6 @@
           height: auto;
           width: 800px;
           padding: 0 !important;
-
-          >div {
-            height: 100%;
-
-            >div,
-            >a {
-              height: 100%;
-              display: flex;
-            }
-          }
         }
       }
     }
@@ -86,6 +68,7 @@
       position: static;
       display: flex !important;
       justify-content: center;
+      padding: 40px 40px 0 40px;
 
       li {
         margin: 0 var(--composer-gap-sm);
@@ -95,17 +78,10 @@
         button {
           width: var(--composer-gap-sm);
           height: var(--composer-gap-sm);
-          padding: 0;
-          background: transparent;
-          border: none;
-          cursor: pointer;
           position: relative;
 
           &:before {
             content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
             width: var(--composer-gap-sm);
             height: var(--composer-gap-sm);
             border-radius: var(--composer-border-radius-full);
@@ -141,10 +117,6 @@
       height: 100%;
       gap: var(--composer-gap-lg);
       cursor: pointer;
-
-      &.has-dots {
-        padding-bottom: 60px;
-      }
 
       &.no-media {
         .image-container {
@@ -229,10 +201,6 @@
   .carousel--multipleCards {
     width: auto;
   }
-
-  &.no-arrows {
-    gap: var(--composer-gap-xl);
-  }
 }
 
 
@@ -245,9 +213,7 @@
 
         .nextArrow,
         .prevArrow {
-          width: 2rem;
-          height: 2rem;
-          font-size: 2rem;
+          font-size: 2.5rem;
         }
       }
     }
@@ -259,27 +225,8 @@
             height: auto;
 
             :global(.slick-slide) {
-              width: 500px;
-
-              >div {
-                height: auto;
-
-                >div,
-                >a {
-                  height: auto;
-                }
-              }
+              width: 600px;
             }
-          }
-        }
-
-        .card {
-          max-width: 500px;
-          gap: var(--composer-gap-lg);
-          height: auto;
-
-          &.has-dots {
-            padding-bottom: var(--composer-gap-lg);
           }
         }
       }
@@ -294,10 +241,11 @@
     .max-content {
       padding: 0 var(--composer-gap-md);
 
-      .header {
+      .arrows {
 
-        .arrows {
-          margin: var(--composer-gap-md) 0 var(--composer-gap-md) 0;
+        .nextArrow,
+        .prevArrow {
+          font-size: 2rem;
         }
       }
     }
@@ -306,22 +254,21 @@
       .carousel {
 
         .card {
+
+          .image-container {
+            height: 300px;
+          }
+
           .content-container {
             padding: 0 var(--composer-gap-md);
           }
         }
 
-        :global(.slick-list) {
-          :global(.slick-track) {
-            :global(.slick-slide) {
-              width: auto;
-            }
-          }
-        }
-
         :global(.slick-dots) {
+          padding: var(--composer-gap-lg) var(--composer-gap-md) 0 var(--composer-gap-md);
+
           li {
-            margin: 0;
+            margin: 0 var(--composer-gap-xs);
 
             button {
               &:before {

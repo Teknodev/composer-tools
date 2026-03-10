@@ -314,8 +314,7 @@ class Slider3 extends BaseSlider {
                     key={index}
                     className={`${this.decorateCSS("card")} 
                       ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}
-                      ${!item.media && this.decorateCSS("no-media")}
-                      ${showDots && this.decorateCSS("has-dots")}`}
+                      ${!item.media && this.decorateCSS("no-media")}`}
                   >
                     <div className={this.decorateCSS("image-container")}>
                       {item.media && (<Base.Media value={item.media} className={`${this.decorateCSS("image")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`} />)}
