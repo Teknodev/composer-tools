@@ -213,34 +213,40 @@ class List3 extends BaseList {
   }
 
   render() {
-    const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
-    const description = this.getPropValue("description");
     const listItems = this.castToObject<Item[]>("listItems");
     const buttons = this.castToObject<CardButton[]>("buttons") || [];
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hoverAnimation = this.castToObject<string[]>("hoverAnimation") || [];
+    const itemCount = this.getPropValue("itemCount");
+    const showCardNumber = this.getPropValue("showCardNumber");
+    const showLines = this.getPropValue("showLines");
 
     const alignment = Base.getContentAlignment();
+    const hasHeaderContent = subtitleExist || titleExist || descriptionExist || buttons?.length > 0;
+
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={this.decorateCSS("cards-grid") + (alignment === "center" ? " " + this.decorateCSS("alignment-center") : "")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || buttons?.length > 0) && (
-              <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
+          <Base.ListGrid className={`${this.decorateCSS("cards-grid")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`} gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}>
+            {hasHeaderContent && (
+              <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={hoverAnimation.join(" ")}>
+                {(subtitleExist || titleExist || descriptionExist) && (
                   <Base.VerticalContent className={this.decorateCSS("intro-content")}>
-                    {this.castToString(subtitle) && (
+                    {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {subtitle}
+                        {this.getPropValue("subtitle")}
                       </Base.SectionSubTitle>
                     )}
-                    {this.castToString(title) && (
+                    {titleExist && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
+                        {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
-                    {this.castToString(description) && (
+                    {descriptionExist && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {description}
+                        {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
