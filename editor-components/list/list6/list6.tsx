@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./list6.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type listItem = {
@@ -220,43 +220,51 @@ class List6 extends BaseList {
       displayer: "Line Active",
       value: true,
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Button", "", "", null, "Primary"),
+      ],
+    });
   }
 
   render() {
     const listItems = this.castToObject<listItem[]>("listItems");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const subtitle = this.getPropValue("subtitle");
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+
     const alignment = Base.getContentAlignment();
     const isCenterAlignment = alignment === "center";
-    const button = this.castToObject<any>("button");
-    const buttonText = this.castToString(button?.text);
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
+          {(subtitleExist || titleExist || descriptionExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
-              {this.castToString(subtitle) && (
+              {subtitleExist && (
                 <Base.SectionSubTitle
                   className={`${this.decorateCSS("subtitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
                 >
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(title) && (
+              {titleExist && (
                 <Base.SectionTitle
                   className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
                 >
-                  {title}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {this.castToString(description) && (
+              {descriptionExist && (
                 <Base.SectionDescription
                   className={`${this.decorateCSS("description")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
                 >
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
             </Base.VerticalContent>
@@ -302,13 +310,20 @@ class List6 extends BaseList {
               </div>
             ))}
           </div>
-          {buttonText && (
-            <div className={this.decorateCSS("button-wrapper")}>
-              <ComposerLink path={button?.url}>
-                <Base.Button buttonType={button?.type} className={this.decorateCSS("button")}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button?.text}</Base.P>
-                </Base.Button>
-              </ComposerLink>
+          {buttons?.length > 0 && (
+            <div className={`${this.decorateCSS("button-container")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
+              {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                if (!this.castToString(button.text)) return null;
+                return (
+                  <ComposerLink key={index} path={button.url}>
+                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>
+                        {button.text}
+                      </Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
             </div>
           )}
         </Base.MaxContent>

@@ -6,6 +6,8 @@ as *;
     gap: var(--composer-gap-xl);
 
     .header-section {
+      margin-bottom: var(--composer-gap-lg);
+
       .subtitle {
         content: "";
       }
@@ -13,7 +15,6 @@ as *;
       &.align-center {
         text-align: center;
         align-items: center;
-        margin-bottom: var(--composer-gap-lg);
 
         .subtitle,
         .sectionTitle {
@@ -138,7 +139,8 @@ as *;
           display: inline-flex;
           justify-content: flex-start;
           text-align: left;
-          font-size: 1.5rem !important;
+          padding-left: var(--composer-gap-lg);
+          font-size: 2rem !important;
         }
 
         .item-content {
@@ -199,7 +201,7 @@ as *;
           .description {
             width: 100%;
             display: flex;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-tertiary-color);
             text-align: left;
           }
         }
@@ -234,10 +236,16 @@ as *;
       }
     }
 
-    .button-wrapper {
+    .button-container {
       display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      justify-content: flex-start;
       margin-top: var(--composer-gap-md);
+
+      &.align-center {
+        justify-content: center;
+      }
 
       .button {
         .button-text {
@@ -265,16 +273,16 @@ as *;
     .max-content {
       .items-wrapper {
         .list-item {
+          .index {
+            font-size: 1.5rem !important;
+          }
+
           .item-content {
             .item-header {
               .icon {
                 width: 1.5rem;
                 height: 1.5rem;
                 font-size: 1.5rem;
-              }
-
-              .index {
-                font-size: 1.25rem !important;
               }
             }
           }
@@ -292,6 +300,11 @@ as *;
           flex-direction: column;
           gap: var(--composer-gap-md);
           align-items: flex-start;
+
+          .index {
+            padding-left: 0;
+            font-size: 1.5rem !important;
+          }
 
           .item-content {
             flex-direction: column;
@@ -317,10 +330,6 @@ as *;
                 width: auto;
                 min-width: auto;
                 padding: 0;
-              }
-
-              .index {
-                font-size: 1rem !important;
               }
 
               .title {
