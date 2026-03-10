@@ -99,9 +99,8 @@ as *;
             left: calc(-1 * var(--composer-gap-lg));
             height: var(--composer-border-width-xs);
             width: calc(100% + var(--composer-gap-md) * 4);
-            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+            background-color: var(--composer-font-color-primary);
             z-index: 1;
-
 
           }
 
