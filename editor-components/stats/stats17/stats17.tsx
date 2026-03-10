@@ -255,9 +255,9 @@ class Stats17 extends BaseStats {
       const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
-    const animationObj = this.getPropValue("numberAnimation");
-    const animationEnabled = animationObj?.getPropValue("enabled") ?? true;
-    const animationDuration = animationObj?.getPropValue("duration") || 2000;
+    const animationProps = this.castToObject<{ enabled: boolean; duration: number }>("numberAnimation");
+    const animationEnabled = animationProps?.enabled ?? true;
+    const animationDuration = animationProps?.duration || 2000;
     const itemCount = this.getPropValue("itemCount");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasHeader = subtitle || title || description;
