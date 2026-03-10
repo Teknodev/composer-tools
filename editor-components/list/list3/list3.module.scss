@@ -326,6 +326,10 @@ as *;
         .card {
           padding: var(--composer-gap-xl) var(--composer-gap-lg);
 
+          &[data-animation~="animate1"]:hover {
+            transform: none;
+          }
+
           .card-content {
             gap: var(--composer-gap-md);
           }

@@ -1,9 +1,13 @@
 import * as React from "react";
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
+  icon: TypeMediaInputValue | null;
+};
 
 type Item = {
   itemTitle: React.JSX.Element;
@@ -39,7 +43,14 @@ class List3 extends BaseList {
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", "FaDownload", null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Download Schedule", "", "FaDownload", null, "Primary")
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -206,16 +217,14 @@ class List3 extends BaseList {
     const subtitle = this.getPropValue("subtitle");
     const description = this.getPropValue("description");
     const listItems = this.castToObject<Item[]>("listItems");
-    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonIcon = this.getPropValue("button")?.icon;
-    const iconExist = buttonIcon && buttonIcon.name;
+    const buttons = this.castToObject<CardButton[]>("buttons") || [];
 
     const alignment = Base.getContentAlignment();
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid className={this.decorateCSS("cards-grid") + (alignment === "center" ? " " + this.decorateCSS("alignment-center") : "")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text) || iconExist) && (
+            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || buttons?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                 {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
                   <Base.VerticalContent className={this.decorateCSS("intro-content")}>
@@ -236,23 +245,37 @@ class List3 extends BaseList {
                     )}
                   </Base.VerticalContent>
                 )}
-                {(this.castToString(buttonType.text) || iconExist) && (
-                  <ComposerLink path={buttonType.url}>
-                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      {this.castToString(buttonType.text) && (
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {buttonType.text}
-                        </Base.P>
-                      )}
-                      {iconExist && (
-                        <Base.Media
-                          value={buttonIcon}
-                          className={this.decorateCSS("button-icon")}
-                        />
-                      )}
-                    </Base.Button>
-                  </ComposerLink>
-                )}
+                {buttons?.length > 0 &&
+                  buttons.map((btn: CardButton, index: number) => {
+                    const buttonText = this.castToString(btn.text);
+                    const iconMedia = btn.icon as TypeMediaInputValue;
+                    const iconExist =
+                      iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                    if (!buttonText && !iconExist) return null;
+
+                    return (
+                      <ComposerLink key={index} path={btn.url}>
+                        <Base.Button
+                          buttonType={btn.type}
+                          className={this.decorateCSS("button")}
+                        >
+                          {buttonText && (
+                            <Base.P
+                              className={this.decorateCSS("button-text")}
+                            >
+                              {btn.text}
+                            </Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media
+                              value={iconMedia}
+                              className={this.decorateCSS("button-icon")}
+                            />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
               </Base.VerticalContent>
             )}
             {listItems.map((listItem: Item, index: number) => {
