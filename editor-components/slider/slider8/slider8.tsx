@@ -57,7 +57,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d222f8a5b002ce6803f?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
           ],
         },
         {
@@ -95,7 +95,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d4f2f8a5b002ce68065?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
           ],
         },
         {
@@ -133,7 +133,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66a26d782f8a5b002ce68093?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
           ],
         },
         {
@@ -171,7 +171,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a48139771c03002ccb1313?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
           ],
         },
         {
@@ -209,7 +209,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a4818b771c03002ccb1337?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
           ],
         },
         {
@@ -247,7 +247,7 @@ class Slider8 extends BaseSlider {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a481b9771c03002ccb13b1?alt=media",
               },
             },
-            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "Tertiary"),
+            INPUTS.BUTTON("button", "Button", "VIEW PROJECT", "", "MdArrowOutward", null, "White"),
           ],
         },
       ],
@@ -341,6 +341,7 @@ class Slider8 extends BaseSlider {
 
     const settings = {
       ...sliderSettings,
+      arrows: false,
       fade: true,
       duration: 1500,
       infinite: cards.length > 1,
@@ -364,13 +365,13 @@ class Slider8 extends BaseSlider {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${anyImagesExist ? this.decorateCSS("has-background") : ""}`}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${anyImagesExist && this.decorateCSS("has-background")}`}>
           <div className={this.decorateCSS("slider-parent")}>
             {cards?.length && cards?.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                 {cards.map((item: Card, index: number) => {
                   return (this.castToString(item.title) || this.castToString(item.button?.text) || item.media) && (
-                    <div className={`${this.decorateCSS("slider-inner-div")} ${anyImagesExist ? this.decorateCSS("has-background") : ""}`} key={`sld-8-${index}`}>
+                    <div className={`${this.decorateCSS("slider-inner-div")} ${anyImagesExist && this.decorateCSS("has-background")}`} key={`sld-8-${index}`}>
                       <div className={`${this.decorateCSS("content")} ${!anyImagesExist && this.decorateCSS("no-image")}`}>
                         {item.backgroundMedia && (<Base.Media value={item.backgroundMedia} className={this.decorateCSS("bg-image")} />)}
                         {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
