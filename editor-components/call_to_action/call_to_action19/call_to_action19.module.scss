@@ -176,17 +176,13 @@
         &.has-card-background .max-content {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
-
-        /*  .bottom-row {
-            gap: var(--composer-gap-md) !important;
-        } */
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
         &.has-card-background .max-content {
-            padding: 50px 20px;
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
 
         .max-content .content {
