@@ -182,24 +182,20 @@ class Stats29 extends BaseStats {
             )}
           </span>
         )}
-        {(subtitleExist || titleExist || descriptionExist) && (
-          <Base.VerticalContent className={this.decorateCSS("stat-content")}>
-            {subtitleExist && (
-              <Base.P className={this.decorateCSS("stat-subtitle")}>
-                {stat.subtitleElement}
-              </Base.P>
-            )}
-            {titleExist && (
-              <Base.H3 className={this.decorateCSS("stat-title")}>
-                {stat.titleElement}
-              </Base.H3>
-            )}
-            {descriptionExist && (
-              <Base.P className={this.decorateCSS("stat-description")}>
-                {stat.descriptionElement}
-              </Base.P>
-            )}
-          </Base.VerticalContent>
+        {subtitleExist && (
+          <Base.H4 className={this.decorateCSS("stat-subtitle")}>
+            {stat.subtitleElement}
+          </Base.H4>
+        )}
+        {titleExist && (
+          <Base.H3 className={this.decorateCSS("stat-title")}>
+            {stat.titleElement}
+          </Base.H3>
+        )}
+        {descriptionExist && (
+          <Base.P className={this.decorateCSS("stat-description")}>
+            {stat.descriptionElement}
+          </Base.P>
         )}
       </Base.VerticalContent>
     );
