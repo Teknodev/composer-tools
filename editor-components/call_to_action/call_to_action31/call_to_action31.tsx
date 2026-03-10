@@ -89,61 +89,68 @@ class CallToAction31Page extends BaseCallToAction {
         const mediaData = media.media;
         const overlay = media.overlay;
         const coloredBackground = this.getPropValue("coloredBackground");
+        const subtitle = this.castToString(this.getPropValue("subtitle"));
+        const title = this.castToString(this.getPropValue("title"));
+        const description = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const hasButtons = buttons.some(btn => btn.text || btn.icon);
+        const hasHeaderContent = subtitle || title || description || hasButtons;
+
 
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${!coloredBackground ? this.decorateCSS("no-card") : ""} ${!mediaData?.url ? this.decorateCSS("no-media") : ""}`}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("header-row")}>
-                        <div className={this.decorateCSS("text-column")}>
-                            <Base.VerticalContent>
-                                {this.castToString(this.getPropValue("subtitle")) && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {this.getPropValue("subtitle")}
-                                    </Base.SectionSubTitle>
-                                )}
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasHeaderContent ? this.decorateCSS("no-header") : ""}`}>
+                    {hasHeaderContent && (
+                        <div className={`${this.decorateCSS("header-row")} ${!hasButtons ? this.decorateCSS("no-buttons") : ""}`}>
+                            <div className={this.decorateCSS("text-column")}>
+                                <Base.VerticalContent>
+                                    {subtitle && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {this.getPropValue("subtitle")}
+                                        </Base.SectionSubTitle>
+                                    )}
 
-                                {this.castToString(this.getPropValue("title")) && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                )}
+                                    {title && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {this.getPropValue("title")}
+                                        </Base.SectionTitle>
+                                    )}
 
-                                {this.castToString(this.getPropValue("description")) && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {this.getPropValue("description")}
-                                    </Base.SectionDescription>
-                                )}
-                            </Base.VerticalContent>
-                        </div>
-                        <div className={this.decorateCSS("button-column")}>
-                            {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
-                                (button: INPUTS.CastedButton, index: number) =>
-                                    (button.text || button.icon) && (
-                                        // this.castToString(button.text) && (
-                                        <ComposerLink key={index} path={button.url}>
-
-                                            <Base.Button
-                                                className={this.decorateCSS("button")}
-                                                buttonType={button.type}>
-
-                                                {button.icon && (
-                                                    <Base.Icon
-                                                        name={button.icon}
-                                                        propsIcon={{ className: this.decorateCSS("button-icon") }}
-                                                    />
-                                                )}
-
-                                                {button.text && (
-                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                        {button.text}
-                                                    </Base.P>
-                                                )}
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    )
+                                    {description && (
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {this.getPropValue("description")}
+                                        </Base.SectionDescription>
+                                    )}
+                                </Base.VerticalContent>
+                            </div>
+                            {hasButtons && (
+                                <div className={this.decorateCSS("button-column")}>
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                                        (button.text || button.icon) && (
+                                            <ComposerLink key={index} path={button.url}>
+                                                <Base.Button
+                                                    className={this.decorateCSS("button")}
+                                                    buttonType={button.type}
+                                                >
+                                                    {button.icon && (
+                                                        <Base.Icon
+                                                            name={button.icon}
+                                                            propsIcon={{ className: this.decorateCSS("button-icon") }}
+                                                        />
+                                                    )}
+                                                    {button.text && (
+                                                        <Base.P className={this.decorateCSS("button-text")}>
+                                                            {button.text}
+                                                        </Base.P>
+                                                    )}
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        )
+                                    ))}
+                                </div>
                             )}
                         </div>
-                    </div>
+                    )}
 
                     {mediaData?.url && (
                         <div className={this.decorateCSS("media-wrapper")}>
