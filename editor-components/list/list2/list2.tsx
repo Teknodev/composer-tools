@@ -364,11 +364,10 @@ class List2 extends BaseList {
   static getName(): string {
     return "List 2";
   }
-  handleButtonClick = () => {
+  handleButtonClick = (e: React.MouseEvent) => {
     const cards = this.castToObject<CardItem[]>("cards");
-    if (this.getComponentState("imageCount") >= cards.length) {
-      this.setComponentState("moreImages", 0);
-    } else {
+    if (this.getComponentState("imageCount") < cards.length) {
+      if (e && e.preventDefault) e.preventDefault();
       this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"));
     }
   };
@@ -476,13 +475,16 @@ class List2 extends BaseList {
               const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
               if (!buttonText && !iconExist) return null;
 
+              const isAllDisplayed = this.getComponentState("imageCount") >= cards.length;
+              const linkUrl = isAllDisplayed ? btn.url : "";
+
               return (
                 <div key={btnIndex} className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={btn.url}>
+                  <ComposerLink path={linkUrl}>
                     <Base.Button buttonType={btn.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
                       {buttonText && (
                         <Base.P className={this.decorateCSS("button-text")}>
-                          {this.getComponentState("imageCount") >= cards.length ? "View Less Categories" : btn.text}
+                          {btn.text}
                         </Base.P>
                       )}
                       {iconExist && (
