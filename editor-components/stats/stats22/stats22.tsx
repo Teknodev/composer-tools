@@ -282,6 +282,11 @@ class Stats22 extends BaseStats {
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
+                {description && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
                 {hasValidButtons && (
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map((button: INPUTS.CastedButton, index: number) =>
