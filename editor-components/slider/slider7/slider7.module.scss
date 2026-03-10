@@ -1,12 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background: var(--composer-html-background);
-
-  &.one-card {
-    padding: var(--composer-gap-md) var(--composer-gap-xl) !important;
-  }
-
   .max-content {
     display: flex;
     flex-direction: column;
@@ -100,6 +94,7 @@
         display: flex !important;
         justify-content: center;
         align-items: center;
+        bottom: -35px;
 
         li {
           margin: 0 var(--composer-gap-sm);
@@ -109,17 +104,10 @@
           button {
             width: var(--composer-gap-sm);
             height: var(--composer-gap-sm);
-            padding: 0;
-            background: transparent;
-            border: none;
-            cursor: pointer;
             position: relative;
 
             &:before {
               content: "";
-              position: absolute;
-              top: 0;
-              left: 0;
               width: var(--composer-gap-sm);
               height: var(--composer-gap-sm);
               border-radius: var(--composer-border-radius-full);
@@ -141,7 +129,7 @@
       }
 
       .card {
-        height: 22.5rem;
+        height: 22rem;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -203,10 +191,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    &.one-card {
-      padding: var(--composer-gap-md) var(--composer-gap-lg) !important;
-    }
-
     .max-content {
       .vertical-content {
         padding: 0 var(--composer-gap-lg);
@@ -235,10 +219,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    &.one-card {
-      padding: var(--composer-gap-md) 0 !important;
-    }
-
     .max-content {
 
       .vertical-content {
@@ -258,6 +238,8 @@
         }
 
         :global(.slick-dots) {
+          bottom: -30px;
+
           li {
             margin: 0 var(--composer-gap-xs);
 

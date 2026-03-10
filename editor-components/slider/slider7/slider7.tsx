@@ -323,8 +323,7 @@ class Slider7 extends BaseSlider {
     const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
-      <Base.Container isFull={true} className={`${this.decorateCSS("container")}
-      ${items.length === 1 && this.decorateCSS("one-card")}`}>
+      <Base.Container isFull={true} className={`${this.decorateCSS("container")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
