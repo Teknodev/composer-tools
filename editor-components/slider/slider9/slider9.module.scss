@@ -580,6 +580,7 @@
         .text-wrapper {
           justify-content: flex-start;
           text-align: left;
+          gap: var(--composer-gap-lg);
 
           .subtitle {
             margin-left: 0px !important;
@@ -592,6 +593,7 @@
             display: flex;
             flex-direction: column;
             width: 100%;
+            gap: var(--composer-gap-sm);
 
 
             .title {
@@ -608,14 +610,13 @@
           .review-and-description {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
             width: 100%;
 
             .review-area {
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
-              margin-top: var(--composer-gap-md);
 
               .stars {
                 display: flex;
@@ -654,8 +655,6 @@
           .inputs {
             display: flex;
             width: 100%;
-            margin-top: var(--composer-gap-md);
-            margin-bottom: var(--composer-gap-md);
 
             .count-input {
               display: flex;
@@ -726,8 +725,6 @@
 
           .wishlist-container {
             width: 100%;
-            margin-top: var(--composer-gap-md);
-            margin-bottom: var(--composer-gap-md);
 
             .wishlist {
               display: flex;
@@ -756,7 +753,7 @@
           .categories {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-sm);
             width: 100%;
 
             .category {
@@ -883,6 +880,7 @@
 
         .right-content {
           .text-wrapper {
+            gap: var(--composer-gap-sm);
 
             .title,
             .description,
@@ -955,6 +953,10 @@
 
         .right-content {
           width: 100%;
+
+          .text-wrapper {
+            gap: var(--composer-gap-md);
+          }
         }
       }
     }

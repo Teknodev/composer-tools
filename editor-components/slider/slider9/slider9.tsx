@@ -714,19 +714,11 @@ class Slider9 extends BaseSlider {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid
-            className={`${this.decorateCSS("content")} ${sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""} ${!RightContentExist ? this.decorateCSS("center-content") : ""}`}
-          >
+          <Base.ContainerGrid className={`${this.decorateCSS("content")} ${sliderItems.length < 1 ? this.decorateCSS("no-left-part") : ""} ${!RightContentExist && this.decorateCSS("center-content")}`}>
             {sliderItems.length > 0 && (
-              <div
-                className={`${this.decorateCSS("sliders-parent")} ${!RightContentExist && this.decorateCSS("empty-right-content")}`}
-              >
+              <div className={`${this.decorateCSS("sliders-parent")} ${!RightContentExist && this.decorateCSS("empty-right-content")}`}>
                 <div className={this.decorateCSS("vertical-parent")}>
-                  <ComposerSlider
-                    {...verticalSettings}
-                    className={this.decorateCSS("carousel-vertical")}
-                    ref={verticalSliderRef}
-                  >
+                  <ComposerSlider {...verticalSettings} className={this.decorateCSS("carousel-vertical")} ref={verticalSliderRef}>
                     {sliderItems.map((item, indexSlider) => {
                       const isActive = currentSlideIndex === indexSlider;
                       const isHovered = hoveredIndex === indexSlider;
@@ -750,9 +742,7 @@ class Slider9 extends BaseSlider {
                             <div className={this.decorateCSS("img")}>
                               <Base.Media value={item.media} className={this.decorateCSS("slider-img")} />
                             </div>
-                            {!isFullscreen && (isActive || isHovered) && (
-                              <div className={this.decorateCSS("overlay")}></div>
-                            )}
+                            {!isFullscreen && (isActive || isHovered) && <div className={this.decorateCSS("overlay")}></div>}
                           </div>
                         </div>
                       );
@@ -790,7 +780,7 @@ class Slider9 extends BaseSlider {
                     {sliderItems.map((item, indexSlider) => (
                       <div className={this.decorateCSS("slick-slide-wrapper")} key={indexSlider}>
                         <div
-                          className={`${this.decorateCSS("img-container")} ${isDragging ? this.decorateCSS("dragging") : ""}`}
+                          className={`${this.decorateCSS("img-container")} ${isDragging && this.decorateCSS("dragging")}`}
                           onMouseDown={this.handleMouseDown}
                           onMouseMove={this.handleMouseMovePan}
                           onMouseUp={this.handleMouseUp}
@@ -807,10 +797,7 @@ class Slider9 extends BaseSlider {
                               height: '100%'
                             }}
                           >
-                            <Base.Media
-                              value={item.media}
-                              className={this.decorateCSS("slider-img")}
-                            />
+                            <Base.Media value={item.media} className={this.decorateCSS("slider-img")} />
                           </div>
                           {overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
