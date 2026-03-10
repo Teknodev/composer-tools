@@ -46,6 +46,7 @@ class CallToAction34Page extends BaseCallToAction {
                 INPUTS.BUTTON("button", "Button", "Sign Up Online", null, null, null, "White")
             ]
         })
+
         this.addProp({
             type: "object",
             key: "mediaGroup",
@@ -90,6 +91,7 @@ class CallToAction34Page extends BaseCallToAction {
         const mediaGroup = this.castToObject<any>("mediaGroup");
         const media = mediaGroup.media;
         const showOverlay = mediaGroup.overlay;
+        const isVideo = media?.type === "video";
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -105,8 +107,7 @@ class CallToAction34Page extends BaseCallToAction {
                                     )}
 
                                     {title && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}
-                                        >
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
                                             {title}
                                         </Base.SectionTitle>
                                     )}
@@ -117,36 +118,34 @@ class CallToAction34Page extends BaseCallToAction {
                                         </Base.SectionDescription>
                                     )}
 
-                                    {buttons.length > 0 && (
-                                        <div className={this.decorateCSS("button-container")}>
-                                            {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                                                return (button.text || button.icon) && (
-                                                    <ComposerLink key={index} path={button.url}>
-
-                                                        <Base.Button
-                                                            className={this.decorateCSS("button")}
-                                                            buttonType={button.type}
-                                                        >
-                                                            {button.text && (
-                                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                                    {button.text}
-                                                                </Base.P>
-                                                            )}
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                );
-                                            })}
-                                        </div>
-                                    )}
-
-
+                                    <div className={this.decorateCSS("button-container")}>
+                                        {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                            if (!button.text && !button.icon) {
+                                                return null;
+                                            }
+                                            return (
+                                                <ComposerLink key={index} path={button.url}>
+                                                    <Base.Button
+                                                        className={this.decorateCSS("button")}
+                                                        buttonType={button.type}
+                                                    >
+                                                        {button.text && (
+                                                            <Base.P className={this.decorateCSS("button-text")}>
+                                                                {button.text}
+                                                            </Base.P>
+                                                        )}
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            );
+                                        })}
+                                    </div>
                                 </Base.VerticalContent>
                             </div>
                         )}
 
                         {media?.url && (
                             <div className={this.decorateCSS("right-column")}>
-                                <div className={this.decorateCSS("media-container")}>
+                                <div className={`${this.decorateCSS("media-container")} ${isVideo ? this.decorateCSS("is-video") : ""}`}>
                                     {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                                     <Base.Media
                                         value={media}
