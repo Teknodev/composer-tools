@@ -45,8 +45,8 @@
               );
               background-size: 300% 300%;
               animation: rotatingBorder 2s linear 1 forwards;
-              -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
-                linear-gradient(var(--color-white) 0 0);
+              -webkit-mask: linear-gradient(var(--text-primary) 0 0) content-box,
+                linear-gradient(var(--text-primary) 0 0);
               -webkit-mask-composite: xor;
               mask-composite: exclude;
             }
@@ -73,8 +73,8 @@
                 rgba(var(--composer-primary-color-rgb), 0.3) 270deg 360deg
               );
               animation: rotate 3s linear infinite;
-              -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
-                linear-gradient(var(--color-white) 0 0);
+              -webkit-mask: linear-gradient(var(--text-primary) 0 0) content-box,
+                linear-gradient(var(--text-primary) 0 0);
               -webkit-mask-composite: xor;
               mask-composite: exclude;
             }

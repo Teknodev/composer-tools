@@ -105,7 +105,7 @@
 
                                 .icon {
                                     font-size: 2.5rem;
-                                    color: var(--color-white);
+                                    color: var(--text-primary);
                                     display: flex;
                                     opacity: 1;
                                     transform: translateX(0);
@@ -129,7 +129,7 @@
                                 .card-title,
                                 .card-description {
                                     text-align: left;
-                                    color: var(--color-white);
+                                    color: var(--text-primary);
                                 }
                             }
                         }

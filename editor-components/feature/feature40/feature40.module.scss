@@ -12,7 +12,7 @@
                 .subtitle,
                 .title,
                 .description {
-                    color: var(--color-white);
+                    color: var(--text-primary);
                 }
 
                 .subtitle {
@@ -20,7 +20,7 @@
                     padding: 0;
 
                     &::before {
-                        background-color: var(--color-white);
+                        background-color: var(--text-primary);
                     }
                 }
             }
@@ -31,7 +31,7 @@
 
                         .card-title,
                         .card-description {
-                            color: var(--color-white);
+                            color: var(--text-primary);
                         }
                     }
 
@@ -39,7 +39,7 @@
                         background-color: var(--composer-overlay-color);
 
                         .card-icon {
-                            color: var(--color-white) !important;
+                            color: var(--text-primary) !important;
                         }
                     }
                 }
