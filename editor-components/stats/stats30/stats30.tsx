@@ -162,14 +162,10 @@ export class Stats30Page extends BaseStats {
         }, [targetNumber, statsAnimation, animationDuration, originalValueString]);
 
         return (
-            <div className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`} data-alignment={alignment}>
-                <Base.VerticalContent className={this.decorateCSS("card-content")}>
+            <div className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`}>
+                <Base.VerticalContent className={this.decorateCSS("card-content")} data-alignment="left">
                     <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitleElement}</Base.H6>
                     <Base.H2 className={this.decorateCSS("card-title")}>{card.titleElement}</Base.H2>
-
-                    {card.description && (
-                        <Base.P className={this.decorateCSS("card-description")}>{card.descriptionElement}</Base.P>
-                    )}
 
                     {card.statValue && (
                         <div className={this.decorateCSS("card-number")}>
@@ -181,6 +177,10 @@ export class Stats30Page extends BaseStats {
                                 <span className={this.decorateCSS("card-suffix")}>{card.suffix}</span>
                             )}
                         </div>
+                    )}
+
+                    {card.description && (
+                        <Base.P className={this.decorateCSS("card-description")}>{card.descriptionElement}</Base.P>
                     )}
                 </Base.VerticalContent>
             </div>
@@ -237,9 +237,9 @@ export class Stats30Page extends BaseStats {
                                     </Base.SectionTitle>
                                 )}
                                 {descriptionExist && (
-                                    <Base.P className={this.decorateCSS("description")}>
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
                                         {this.getPropValue("description")}
-                                    </Base.P>
+                                    </Base.SectionDescription>
                                 )}
                             </Base.VerticalContent>
                         )}

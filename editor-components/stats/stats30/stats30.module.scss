@@ -25,8 +25,7 @@
                 .subtitle,
                 .title,
                 .description {
-                    margin-top: 0;
-                    margin-bottom: 0;
+                    margin: 0;
                 }
 
                 &[data-alignment="center"] {
@@ -70,14 +69,16 @@
                     .card-description {
                         color: var(--composer-font-color-primary);
                         margin: 0;
+                        text-align: left !important;
                     }
 
                     .card-content {
                         display: flex;
                         flex-direction: column;
-                        gap: var(--composer-gap-xs);
+                        gap: var(--composer-gap-md);
                         width: 100%;
-                        align-items: flex-start;
+                        align-items: flex-start !important;
+                        text-align: left !important;
 
                         @container (max-width: #{$composer-phone-width}) {
                             gap: var(--composer-gap-xxs);
@@ -103,6 +104,7 @@
                         align-items: center;
                         gap: 0.2rem;
 
+
                         .card-prefix,
                         .card-suffix {
                             font-size: 1em;
@@ -119,12 +121,12 @@
                         // }
                     }
 
-                    &[data-alignment="center"] {
-                        .card-content {
-                            align-items: center;
-                            text-align: center;
-                        }
-                    }
+                    // &[data-alignment="center"] {
+                    //     .card-content {
+                    //         align-items: center;
+                    //         text-align: center;
+                    //     }
+                    // }
                 }
             }
         }
