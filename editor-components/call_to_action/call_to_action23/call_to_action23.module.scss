@@ -106,10 +106,10 @@
             padding: 0 !important;
             border-radius: 0 !important;
             color: var(--composer-html-background);
-            transform: none;
+            /* transform: none; */
 
             &::before {
-              display: none;
+              background-color: var(--composer-font-color-secondary) !important;
             }
           }
 
@@ -180,13 +180,13 @@
           text-align: center !important;
         }
 
-        .subtitle {
+        /* .subtitle {
           transform: translateX(0) !important;
 
           &::before {
             display: none;
           }
-        }
+        } */
       }
 
       .right-group {
