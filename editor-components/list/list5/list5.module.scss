@@ -33,11 +33,10 @@ as *;
     width: 100%;
     margin: 0 auto;
     padding-bottom: var(--composer-gap-lg);
+    gap: var(--composer-gap-lg);
     box-sizing: border-box;
 
     .header {
-      margin-bottom: var(--composer-gap-md) !important;
-
       .subtitle {
         content: "";
 
@@ -115,11 +114,11 @@ as *;
 
               .icon-badge {
                 .icon-wrapper {
-                  background-color: var(--composer-font-color-primary);
+                  background-color: var(--composer-font-color-secondary);
                   transition: background-color var(--composer-transition-duration-normal) ease;
 
                   .icon {
-                    color: var(--composer-html-background);
+                    color: var(--composer-primary-color);
                     transition: color var(--composer-transition-duration-normal) ease;
                   }
                 }
@@ -158,11 +157,11 @@ as *;
 
               .icon-badge {
                 .icon-wrapper {
-                  background-color: var(--composer-font-color-primary);
+                  background-color: var(--composer-font-color-secondary);
                   transition: background-color var(--composer-transition-duration-normal) ease;
 
                   .icon {
-                    color: var(--composer-html-background);
+                    color: var(--composer-primary-color);
                     transition: color var(--composer-transition-duration-normal) ease;
                   }
                 }
@@ -208,11 +207,11 @@ as *;
 
               .icon-badge {
                 .icon-wrapper {
-                  background-color: var(--composer-font-color-primary);
+                  background-color: var(--composer-font-color-secondary);
                   transition: background-color var(--composer-transition-duration-normal) ease;
 
                   .icon {
-                    color: var(--composer-html-background);
+                    color: var(--composer-primary-color);
                     transition: color var(--composer-transition-duration-normal) ease;
                   }
                 }
@@ -282,7 +281,7 @@ as *;
             .index-section {
               .item-index {
                 content: "";
-                color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                color: var(--composer-html-background);
                 font-size: 5rem;
               }
             }
