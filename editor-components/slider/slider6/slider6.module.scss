@@ -1,12 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: calc(var(--composer-gap-lg) * 2) 0px calc(var(--composer-gap-lg) * 3) 0px !important;
+  padding: calc(var(--composer-gap-lg) * 2) 0 !important;
 
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-xl);
     overflow: visible;
 
     .vertical-content {
@@ -163,22 +163,18 @@
 
         :global(.slick-prev),
         :global(.slick-next) {
-          position: absolute;
           display: flex !important;
           align-items: center;
           justify-content: center;
           height: 45px;
           width: 45px;
-          cursor: pointer;
           top: auto;
           bottom: -85px;
-          padding: 0;
           border: 1px solid var(--composer-tertiary-color);
           border-radius: 50%;
           outline: none;
           z-index: 10;
           transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-          transform: translate(0, 0);
 
           &:hover {
             outline: none;
@@ -194,10 +190,10 @@
           &:before {
             font-family: inherit;
             font-size: 10px;
-            line-height: 1;
             color: var(--composer-font-color-primary);
             opacity: 0.75;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            display: inline-block;
           }
         }
 
@@ -205,7 +201,9 @@
           left: 90px;
 
           &:hover {
-            transform: translate(-20px, 0);
+            &:before {
+              transform: translateX(-20px);
+            }
           }
 
           &:before {
@@ -217,7 +215,9 @@
           right: 90px;
 
           &:hover {
-            transform: translate(20px, 0);
+            &:before {
+              transform: translateX(20px);
+            }
           }
 
           &:before {
@@ -226,7 +226,7 @@
         }
 
         :global(.slick-dots) {
-          bottom: -90px;
+          bottom: -65px;
           display: flex !important;
           justify-content: center;
           align-items: center;
@@ -236,10 +236,6 @@
             pointer-events: auto;
 
             :global(button) {
-              padding: 0;
-              border: none;
-              background: transparent;
-              font-size: 0;
               width: 12px;
               height: 12px;
               display: flex;
@@ -285,7 +281,7 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-xl);
+      gap: var(--composer-gap-lg);
 
       .vertical-content {
         padding: 0 var(--composer-gap-lg);
@@ -297,7 +293,7 @@
         :global(.slick-next) {
           height: 35px;
           width: 35px;
-          bottom: -80px;
+          bottom: -75px;
 
           &:before {
             font-size: 8px;
@@ -318,7 +314,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-xl) 0px calc(var(--composer-gap-lg) * 4) 2px !important;
+    padding: var(--composer-gap-xl) 0px !important;
 
     .max-content {
 
@@ -362,14 +358,16 @@
           :global(.slick-next) {
             height: 30px;
             width: 30px;
-            bottom: -90px;
+            bottom: -55px;
           }
 
           :global(.slick-prev) {
             left: var(--composer-gap-lg) !important;
 
             &:hover {
-              transform: translate(-10px, 0) !important;
+              &:before {
+                transform: translateX(-10px) !important;
+              }
             }
           }
 
@@ -377,12 +375,14 @@
             right: var(--composer-gap-lg) !important;
 
             &:hover {
-              transform: translate(10px, 0) !important;
+              &:before {
+                transform: translateX(10px) !important;
+              }
             }
           }
 
           :global(.slick-dots) {
-            bottom: -30px;
+            bottom: -50px;
           }
         }
       }
