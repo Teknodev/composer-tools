@@ -69,9 +69,8 @@ class Stats29 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "50" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-
+            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
             {
               type: "string",
               key: "description",
@@ -88,8 +87,8 @@ class Stats29 extends BaseStats {
             { type: "string", key: "prefix", displayer: "Prefix", value: "" },
             { type: "string", key: "number", displayer: "Value", value: "85" },
             { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
             { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+            { type: "string", key: "title", displayer: "Title", value: "OF BUYERS" },
 
             {
               type: "string",
