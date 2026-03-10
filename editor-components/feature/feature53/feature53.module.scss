@@ -16,6 +16,11 @@
       .description {
         color: var(--composer-html-background);
       }
+      .subtitle {
+        padding: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+      }
     }
 
     .tabs {
@@ -133,6 +138,16 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
+      .heading {
+        padding-bottom: var(--composer-gap-lg);
+        border-bottom: var(--composer-border-width-xs) solid
+          color-mix(
+            in srgb,
+            var(--composer-html-background) 50%,
+            transparent
+          );
+      }
+
       .tabs {
         display: flex;
         flex-direction: column;
@@ -140,6 +155,10 @@
 
         &.tablet-closed-default .tab-content-area .tab.active .tab-content {
           display: none;
+        }
+
+        &.no-lines .tab-content-area .tab {
+          border-bottom: none;
         }
 
         .tab-buttons {
@@ -159,7 +178,7 @@
           border-bottom: var(--composer-border-width-xs) solid
             color-mix(
               in srgb,
-              var(--composer-font-color-primary) 15%,
+              var(--composer-html-background) 50%,
               transparent
             );
 
@@ -167,12 +186,12 @@
             display: block;
             padding: var(--composer-gap-md) 0;
             cursor: pointer;
-            color: var(--composer-font-color-primary);
+            color: var(--composer-html-background);
             transition: color var(--composer-transition-duration-normal) ease,
               background-color var(--composer-transition-duration-normal) ease;
 
             &.active {
-              background-color: var(--composer-font-color-secondary);
+              background-color: transparent;
               color: var(--composer-primary-color);
             }
           }
@@ -182,10 +201,13 @@
             position: static;
           }
 
-          &.active .tab-content {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
+          &.active {
+            .tab-content {
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
+            }
+            padding-bottom: var(--composer-gap-sm);
           }
         }
       }

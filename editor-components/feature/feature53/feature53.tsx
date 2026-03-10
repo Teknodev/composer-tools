@@ -302,6 +302,13 @@ class Feature53 extends BaseFeature {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "showMobileLines",
+      displayer: "Show Mobile Lines",
+      value: true,
+    });
+
     this.setComponentState("activeTab", -1);
   }
 
@@ -357,7 +364,7 @@ class Feature53 extends BaseFeature {
             </Base.VerticalContent>
           )}
 
-          <Base.VerticalContent className={`${this.decorateCSS("tabs")} ${activeTab === -1 ? this.decorateCSS("tablet-closed-default") : ""}`}>
+          <Base.VerticalContent className={`${this.decorateCSS("tabs")} ${activeTab === -1 ? this.decorateCSS("tablet-closed-default") : ""} ${this.getPropValue("showMobileLines") === false ? this.decorateCSS("no-lines") : ""}`}>
             <div className={this.decorateCSS("tab-buttons")}>
               {filteredTabs.map((tab: ITab, index: number) => {
                 const tabTextExist = this.castToString(tab.tabText);
