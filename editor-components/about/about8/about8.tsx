@@ -1,7 +1,7 @@
 import { BaseAbout } from "../../EditorComponent";
 import styles from "./about8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Text = {
   description: React.JSX.Element;

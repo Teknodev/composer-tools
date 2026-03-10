@@ -3,8 +3,8 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 class CallToAction5Page extends BaseCallToAction {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./image-gallery9.module.scss";
 import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface Card {

@@ -97,8 +97,8 @@ class Stats22 extends BaseStats {
       key: "animation",
       displayer: "Animation",
       value: [
-        { type: "boolean", key: "statsAnimation", displayer: "Number Animation", value: true },
-        { type: "number", key: "animationDuration", displayer: "Number Animation Duration (ms)", value: 2000 },
+        { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+        { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
       ],
     });
     this.addProp({
