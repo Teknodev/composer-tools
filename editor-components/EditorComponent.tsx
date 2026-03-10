@@ -293,6 +293,7 @@ export interface iComponent {
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
   id: string;
+  globalComponentId?: string;
 }
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -328,6 +329,7 @@ export type TypeReactComponent = {
   children?: string;
   customComponentId?: string;
   customComponentVersion?: string;
+  globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -380,6 +382,7 @@ export enum CATEGORIES {
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
   CUSTOM = "custom",
+  GLOBAL = "global",
 }
 
 export function generateId(key: string): string {
@@ -395,6 +398,7 @@ export abstract class Component
   private shadowProps: TypeUsableComponentProps[] = [];
   private styles: any;
   public id: string;
+  public globalComponentId: string | undefined;
   static category: CATEGORIES;
   private memorizedElements: {[id: string]: MemorizedElement} = {};
 
@@ -431,6 +435,7 @@ export abstract class Component
     super(props);
     this.styles = styles;
     this.id = props?.id || generateComponentId();
+    this.globalComponentId = props?.globalComponentId;
 
     const originalRender = this.render.bind(this);
 
@@ -807,7 +812,7 @@ export abstract class Component
     });
 
     cssClass.push(
-      generateAutoClassName(this.id, section)
+      generateAutoClassName(this.globalComponentId || this.id, section)
     );
     
     return cssClass.join(" ");
