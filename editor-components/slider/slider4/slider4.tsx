@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -12,6 +12,14 @@ type SliderItem = {
   sliderTitle: React.JSX.Element;
   sliderDescription: React.JSX.Element;
   button?: INPUTS.CastedButton;
+};
+
+type SliderControls = {
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  button: TypeUsableComponentProps[];
+  previousArrow: TypeMediaInputValue;
+  nextArrow: TypeMediaInputValue;
 };
 
 class Slider4 extends BaseSlider {
@@ -391,17 +399,17 @@ class Slider4 extends BaseSlider {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const description = this.castToString(this.getPropValue("description"));
     const hasHeader = title || subtitle || description;
-    const controls = this.castToObject<any>("controls");
-    const controlTitle = controls["title"];
-    const controlDescription = controls["description"];
-    const nextArrow = controls["nextArrow"];
-    const previousArrow = controls["previousArrow"];
+    const controls = this.castToObject<SliderControls>("controls");
+    const controlTitle = controls.title;
+    const controlDescription = controls.description;
+    const nextArrow = controls.nextArrow;
+    const previousArrow = controls.previousArrow;
 
     const controlButton = {
-      text: this.getPropValue("text", { parent_object: controls["button"] }),
-      type: this.getPropValue("type", { parent_object: controls["button"] }),
-      url: this.getPropValue("url", { parent_object: controls["button"] }),
-      icon: this.getPropValue("icon", { parent_object: controls["button"] })
+      text: this.getPropValue("text", { parent_object: controls.button }),
+      type: this.getPropValue("type", { parent_object: controls.button }),
+      url: this.getPropValue("url", { parent_object: controls.button }),
+      icon: this.getPropValue("icon", { parent_object: controls.button })
     };
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -423,14 +431,14 @@ class Slider4 extends BaseSlider {
                 {this.castToString(controlTitle) && <Base.H4 className={this.decorateCSS("control-title")}>{controlTitle}</Base.H4>}
                 {this.castToString(controlDescription) && <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
                 {(this.castToString(controlButton.text) || (controlButton.icon && (controlButton.icon)?.name)) && (
-                  <div className={this.decorateCSS("control-button")}>
+                  <Base.Row className={this.decorateCSS("control-button")}>
                     <ComposerLink path={controlButton.url}>
                       <Base.Button buttonType={controlButton.type}>
                         {this.castToString(controlButton.text) && (<Base.P className={this.decorateCSS("control-button-text")}>{controlButton.text}</Base.P>)}
                         {controlButton.icon && (controlButton.icon)?.name && (<Base.Media value={controlButton.icon} className={this.decorateCSS("control-button-icon")} />)}
                       </Base.Button>
                     </ComposerLink>
-                  </div>
+                  </Base.Row>
                 )}
                 {showArrows && (previousArrow || nextArrow) && (
                   <div className={this.decorateCSS("arrows")}>
@@ -473,6 +481,18 @@ class Slider4 extends BaseSlider {
               </ComposerSlider>
             </div>
           </Base.ContainerGrid>
+          {buttons.filter((button: INPUTS.CastedButton) => this.castToString(button.text) || (button.icon && (button.icon)?.name)).length > 0 && (
+            <Base.Row className={this.decorateCSS("button-wrapper")}>
+              {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                (this.castToString(button.text) || (button.icon && (button.icon)?.name)) && (
+                  <Base.Button key={index} buttonType={button.type}>
+                    {this.castToString(button.text) && (<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>)}
+                    {button.icon && (button.icon)?.name && (<Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />)}
+                  </Base.Button>
+                )
+              ))}
+            </Base.Row>
+          )}
           {cards.length > 1 && showDots && (
             <div className={this.decorateCSS("custom-dots")}>
               {cards.map((_, index) => (
@@ -485,18 +505,6 @@ class Slider4 extends BaseSlider {
                 </div>
               ))}
             </div>
-          )}
-          {buttons.filter((button: INPUTS.CastedButton) => this.castToString(button.text) || (button.icon && (button.icon)?.name)).length > 0 && (
-            <Base.Row className={this.decorateCSS("button-wrapper")}>
-              {buttons.map((button: INPUTS.CastedButton, index: number) => (
-                (this.castToString(button.text) || (button.icon && (button.icon)?.name)) && (
-                  <Base.Button key={index} buttonType={button.type}>
-                    {this.castToString(button.text) && (<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>)}
-                    {button.icon && (button.icon)?.name && (<Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />)}
-                  </Base.Button>
-                )
-              ))}
-            </Base.Row>
           )}
         </Base.MaxContent>
       </Base.Container>
