@@ -144,6 +144,13 @@ class List4 extends BaseList {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
+    });
+
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
@@ -164,13 +171,6 @@ class List4 extends BaseList {
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "Button", "", "", null, "Primary")],
     });
   }
 
