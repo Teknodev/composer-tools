@@ -250,9 +250,7 @@ as *;
 
                 .icon-wrapper {
                   border-radius: var(--composer-border-radius-full);
-                  background-color: color-mix(in srgb,
-                      var(--composer-html-background),
-                      var(--composer-font-color-primary) 5%);
+                  background-color: var(--composer-html-background);
                   padding: var(--composer-gap-md);
 
                   .icon {
@@ -276,9 +274,7 @@ as *;
                   height: 100%;
                   width: calc(100% + var(--composer-gap-xs));
                   border-radius: var(--composer-border-radius-full);
-                  border-right: var(--composer-border-width-sm) solid color-mix(in srgb,
-                      var(--composer-html-background),
-                      var(--composer-font-color-primary) 5%);
+                  border-right: var(--composer-border-width-sm) solid var(--composer-html-background);
                 }
               }
             }
@@ -286,9 +282,7 @@ as *;
             .index-section {
               .item-index {
                 content: "";
-                color: color-mix(in srgb,
-                    var(--composer-html-background),
-                    var(--composer-font-color-primary) 5%);
+                color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 font-size: 5rem;
               }
             }

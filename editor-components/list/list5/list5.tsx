@@ -7,12 +7,13 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type ListItem = {
-  title: React.JSX.Element;
-  uppericon: React.JSX.Element;
-  text: React.JSX.Element;
-  lowericon: React.JSX.Element;
+  index: JSX.Element;
+  title: JSX.Element;
+  uppericon: TypeMediaInputValue;
+  text: JSX.Element;
+  lowericon: TypeMediaInputValue;
   url: string;
-}
+};
 
 class List5 extends BaseList {
   static getName(): string {
@@ -39,22 +40,29 @@ class List5 extends BaseList {
       value: "",
     });
     this.addProp({
-      type: "media",
+      type: "object",
       key: "image",
       displayer: "Background Media",
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
-      },
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "array",
@@ -66,6 +74,12 @@ class List5 extends BaseList {
           key: "list-item",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "index",
+              displayer: "Index",
+              value: "01",
+            },
             {
               type: "string",
               key: "title",
@@ -117,6 +131,12 @@ class List5 extends BaseList {
           value: [
             {
               type: "string",
+              key: "index",
+              displayer: "Index",
+              value: "02",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Lower Cost",
@@ -164,6 +184,12 @@ class List5 extends BaseList {
           key: "list-item",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "index",
+              displayer: "Index",
+              value: "03",
+            },
             {
               type: "string",
               key: "title",
@@ -215,6 +241,12 @@ class List5 extends BaseList {
           value: [
             {
               type: "string",
+              key: "index",
+              displayer: "Index",
+              value: "04",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Quality & Realism",
@@ -263,13 +295,8 @@ class List5 extends BaseList {
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
-      value: 4
-    });
-    this.addProp({
-      type: "boolean",
-      key: "showIndex",
-      displayer: "Show Index",
-      value: true
+      value: 4,
+      max: 4,
     });
     this.addProp({
       type: "multiSelect",
@@ -283,118 +310,112 @@ class List5 extends BaseList {
   }
   render(): ReactNode {
     const ListItems = this.castToObject<ListItem[]>("list-items");
-    const subtitle = this.getPropValue("subtitle");
-    const header = this.getPropValue("header");
-    const description = this.getPropValue("description");
-    const backgroundMedia = this.getPropValue("image") as TypeMediaInputValue | null;
-    const hasBackgroundMedia = !!backgroundMedia;
-    const imageOverlay = this.getPropValue("overlay");
-    const hasHeaderContent =
-      this.castToString(subtitle) ||
-      this.castToString(header) ||
-      this.castToString(description);
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const headerExist = this.castToString(this.getPropValue("header"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const imageObj = this.castToObject<any>("image");
+    const backgroundMedia = imageObj?.media as TypeMediaInputValue | null;
+    const mediaExists = backgroundMedia as any;
+    const hasBackgroundMedia = backgroundMedia && (mediaExists.url || (mediaExists.type === "icon" && mediaExists.name));
+    const imageOverlay = imageObj?.overlay;
+    const hasHeaderContent = subtitleExist || headerExist || descriptionExist;
     const isSingleColumn = this.getPropValue("itemCount") === 1;
 
     return (
-      <>
-        <Base.Container className={this.decorateCSS("container")}>
-          {hasBackgroundMedia && (
-            <Base.Media
-              value={backgroundMedia as TypeMediaInputValue}
-              className={this.decorateCSS("background-media")}
-            />
+      <Base.Container className={this.decorateCSS("container")}>
+        {hasBackgroundMedia && (
+          <Base.Media
+            value={backgroundMedia as TypeMediaInputValue}
+            className={this.decorateCSS("background-media")}
+          />
+        )}
+        {imageOverlay && hasBackgroundMedia && (
+          <div className={this.decorateCSS("overlay")} />
+        )}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {hasHeaderContent && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+              {headerExist && (
+                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                  {this.getPropValue("header")}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
           )}
-          {imageOverlay && hasBackgroundMedia && (
-            <div className={this.decorateCSS("overlay")} />
-          )}
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {hasHeaderContent && (
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {this.castToString(header) && (
-                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
-                    {header}
-                  </Base.SectionTitle>
-                )}
-                {this.castToString(description) && (
-                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
-            {(ListItems.length > 0) && (
-              <Base.ListGrid
-                className={`${this.decorateCSS("cards-grid")} ${isSingleColumn && this.decorateCSS("single-column")}`}
-                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
-              >
-                {ListItems.map(
-                  (listItem: any, index: number) => {
-                    return (
-                      <div key={index} className={this.decorateCSS("card-wrapper")}>
-                        <div
-                          className={this.decorateCSS("card")}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                        >
-                          <ComposerLink path={listItem.url}>
-                            {(listItem.uppericon || this.getPropValue("showIndex")) && (
-                              <div className={this.decorateCSS("card-header")}>
-                                {listItem.uppericon && (
-                                  <div className={this.decorateCSS("icon-section")}>
-                                    <div className={this.decorateCSS("icon-badge")}>
-                                      <div className={this.decorateCSS("icon-wrapper")}>
-                                        <Base.Media
-                                          value={listItem.uppericon}
-                                          className={this.decorateCSS("icon")}
-                                        />
-                                      </div>
-                                      <div className={this.decorateCSS("icon-badge-border")}></div>
+          {(ListItems.length > 0) && (
+            <Base.ListGrid
+              className={`${this.decorateCSS("cards-grid")} ${isSingleColumn && this.decorateCSS("single-column")}`}
+              gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
+            >
+              {ListItems.map(
+                (listItem: ListItem, index: number) => {
+                  return (
+                    <div key={index} className={this.decorateCSS("card-wrapper")}>
+                      <div
+                        className={this.decorateCSS("card")}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
+                        <ComposerLink path={listItem.url}>
+                          {(listItem.uppericon || this.castToString(listItem.index)) && (
+                            <div className={this.decorateCSS("card-header")}>
+                              {listItem.uppericon && (
+                                <div className={this.decorateCSS("icon-section")}>
+                                  <div className={this.decorateCSS("icon-badge")}>
+                                    <div className={this.decorateCSS("icon-wrapper")}>
+                                      <Base.Media
+                                        value={listItem.uppericon}
+                                        className={this.decorateCSS("icon")}
+                                      />
                                     </div>
+                                    <div className={this.decorateCSS("icon-badge-border")}></div>
                                   </div>
-                                )}
-                                {this.getPropValue("showIndex") && (
-                                  <div className={this.decorateCSS("index-section")}>
-                                    <Base.H1 className={this.decorateCSS("item-index")}>
-                                      {(index + 1).toLocaleString("en-US", {
-                                        minimumIntegerDigits: 2,
-                                        useGrouping: false,
-                                      })}
-                                    </Base.H1>
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                            {this.castToString(listItem.title) && (
-                              <Base.H4 className={this.decorateCSS("card-title")}>
-                                {listItem.title}
-                              </Base.H4>
-                            )}
-                            {this.castToString(listItem.text) && (
-                              <Base.P className={this.decorateCSS("card-description")}>
-                                {listItem.text}
-                              </Base.P>
-                            )}
-                            {listItem.lowericon && (
-                              <Base.Media
-                                value={listItem.lowericon}
-                                className={this.decorateCSS("arrow-icon")}
-                              />
-                            )}
-                          </ComposerLink>
-                        </div>
+                                </div>
+                              )}
+                              {this.castToString(listItem.index) && (
+                                <div className={this.decorateCSS("index-section")}>
+                                  <Base.H1 className={this.decorateCSS("item-index")}>
+                                    {listItem.index}
+                                  </Base.H1>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                          {this.castToString(listItem.title) && (
+                            <Base.H4 className={this.decorateCSS("card-title")}>
+                              {listItem.title}
+                            </Base.H4>
+                          )}
+                          {this.castToString(listItem.text) && (
+                            <Base.P className={this.decorateCSS("card-description")}>
+                              {listItem.text}
+                            </Base.P>
+                          )}
+                          {listItem.lowericon && (
+                            <Base.Media
+                              value={listItem.lowericon}
+                              className={this.decorateCSS("arrow-icon")}
+                            />
+                          )}
+                        </ComposerLink>
                       </div>
-                    );
-                  }
-                )}
-              </Base.ListGrid>
-            )}
-          </Base.MaxContent>
-        </Base.Container>
-      </>
+                    </div>
+                  );
+                }
+              )}
+            </Base.ListGrid>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
