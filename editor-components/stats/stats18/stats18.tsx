@@ -197,7 +197,7 @@ class Stats18Page extends BaseStats {
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 {valueExist && (
-                    <div className={`${this.decorateCSS("stat-value")} ${showLine ? this.decorateCSS("has-line") : ""}`}>
+                    <div className={this.decorateCSS("stat-value")}>
                         {card.prefix && (
                             <span className={this.decorateCSS("stat-prefix")}>
                                 {card.prefixElement}
@@ -213,6 +213,7 @@ class Stats18Page extends BaseStats {
                         )}
                     </div>
                 )}
+                {showLine && <div className={this.decorateCSS("line")} />}
                 {subtitleExist && (
                     <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                         {card.subtitleElement}
