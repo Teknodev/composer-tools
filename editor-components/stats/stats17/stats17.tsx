@@ -86,18 +86,18 @@ class Stats17 extends BaseStats {
     this.addProp({
       type: "object",
       key: "numberAnimation",
-      displayer: "Number Animation",
+      displayer: "Animation",
       value: [
         {
           type: "boolean",
           key: "enabled",
-          displayer: "Enable Number Animation",
+          displayer: "Stats Animation",
           value: true,
         },
         {
           type: "number",
           key: "duration",
-          displayer: "Number Animation Duration (ms)",
+          displayer: "Animation Duration (ms)",
           value: 2000,
         },
       ],
