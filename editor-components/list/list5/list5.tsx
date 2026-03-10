@@ -133,7 +133,7 @@ class List5 extends BaseList {
               type: "string",
               key: "index",
               displayer: "Index",
-              value: "02",
+              value: "",
             },
             {
               type: "string",
