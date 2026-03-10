@@ -389,11 +389,11 @@
                         .slider-item .content {
                             .box-parent {
                                 padding-left: 30px;
-                                padding-right: 50px;
+                                padding-right: var(--composer-gap-xl);
                             }
 
                             .socials {
-                                right: calc(var(--composer-gap-md) + 30px);
+                                right: var(--composer-gap-xl);
                             }
                         }
                     }
@@ -405,13 +405,6 @@
             bottom: var(--composer-gap-md) !important;
 
             .dot-item {
-                margin: 0 var(--composer-gap-xs) !important;
-
-                .dot-button {
-                    width: calc(var(--composer-gap-xs) + 2px) !important;
-                    height: calc(var(--composer-gap-xs) + 2px) !important;
-                }
-
                 &.active {
                     .dot-button {
                         transform: scale(0.8) !important;
