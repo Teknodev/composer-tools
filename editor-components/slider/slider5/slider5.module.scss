@@ -35,26 +35,19 @@
         }
 
         :global(.slick-prev) {
-          right: 30px;
-          transform: rotate(90deg);
-          left: auto;
-          top: 45%;
+          left: 80px;
         }
 
         :global(.slick-next) {
-          right: 30px;
-          transform: rotate(90deg);
-          left: auto;
-          top: 55%;
+          right: 80px;
         }
 
         :global(.slick-dots) {
-          bottom: var(--composer-gap-lg);
+          bottom: var(--composer-gap-xl);
           display: flex !important;
           justify-content: center;
           align-items: center;
           z-index: 10;
-          left: 0;
 
           li {
             margin: 0 var(--composer-gap-sm);
@@ -64,17 +57,15 @@
             button {
               &:before {
                 content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
                 width: var(--composer-gap-sm);
                 height: var(--composer-gap-sm);
                 border-radius: var(--composer-border-radius-full);
-                background: var(--composer-font-color-secondary);
+                background: var(--composer-font-color-primary);
                 opacity: 0.5;
                 transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
                 transform: scale(0.8);
                 line-height: unset;
+
               }
             }
 
@@ -119,12 +110,24 @@
     .max-content {
       .carousel-wrapper {
         .carousel {
+
+          :global(.slick-prev),
+          :global(.slick-next) {
+
+            &:before {
+              font-size: 30px;
+            }
+          }
+
+          :global(.slick-dots) {
+            bottom: var(--composer-gap-lg);
+          }
+
           .slider-item {
             height: 70vh;
 
             .media {
               height: 70vh;
-              object-fit: cover;
             }
           }
         }
@@ -141,12 +144,23 @@
       .carousel-wrapper {
         .carousel {
 
+          :global(.slick-prev) {
+            left: var(--composer-gap-xl);
+          }
+
+          :global(.slick-next) {
+            right: var(--composer-gap-xl);
+          }
+
+          :global(.slick-dots) {
+            bottom: var(--composer-gap-md);
+          }
+
           :global(.slick-prev),
           :global(.slick-next) {
-            right: 30px;
 
             &:before {
-              font-size: 30px;
+              font-size: 25px;
             }
           }
 
@@ -173,7 +187,6 @@
 
             .media {
               height: 60vh;
-              object-fit: cover;
             }
           }
         }
