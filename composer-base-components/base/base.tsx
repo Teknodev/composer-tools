@@ -673,6 +673,7 @@ export namespace Base {
             muted={!!value.settings?.muted || !!value.settings?.autoplay} // autoplay videos should be muted to avoid browser restrictions
             playsInline
             preload="auto"
+            ref={(el) => { if (el) el.playbackRate = value.settings?.playbackRate ?? 1; }}
             {...props}
           />
         );
