@@ -31,12 +31,7 @@
 }
 
 .subtitle {
-    color: var(--composer-primary-color);
-    transform: none !important;
-
-    &::before {
-        display: none;
-    }
+    color: var(--composer-primary-color);   
 }
 
 .title {
