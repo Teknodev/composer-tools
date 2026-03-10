@@ -101,7 +101,7 @@
           z-index: 20;
           width: var(--composer-gap-lg);
           height: var(--composer-gap-lg);
-          top: 55%;
+          top: 54%;
 
           &:before {
             font-size: var(--composer-gap-lg);
@@ -111,24 +111,19 @@
         }
 
         :global(.slick-prev) {
-          left: 25px;
+          left: var(--composer-gap-lg);
         }
 
         :global(.slick-next) {
-          right: 25px;
+          right: var(--composer-gap-lg);
         }
 
         :global(.slick-dots) {
-          position: absolute;
           bottom: var(--composer-gap-lg);
           left: 0;
           display: flex !important;
           justify-content: center;
           align-items: center;
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          width: 100% !important;
           z-index: 10;
 
           li {
@@ -137,12 +132,6 @@
             height: var(--composer-gap-sm);
 
             button {
-              width: var(--composer-gap-sm);
-              height: var(--composer-gap-sm);
-              padding: 0;
-              background: transparent;
-              border: none;
-              cursor: pointer;
               position: relative;
 
               &:before {
@@ -257,8 +246,6 @@
         display: flex;
         align-items: center;
         gap: var(--composer-gap-md);
-        font-size: 0.875rem;
-        font-weight: 300;
 
         .separator {
           width: var(--composer-gap-lg);
@@ -282,18 +269,18 @@
         gap: var(--composer-gap-md);
 
         .follow-text {
-          font-size: 0.875rem;
-          font-weight: 300;
+          content: "";
         }
 
         .social-icons {
           display: flex;
           align-items: center;
           gap: var(--composer-gap-sm);
+          line-height: 0;
 
           .social-icon {
-            width: 18px;
-            height: 18px;
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
             color: var(--color-white);
             transition: opacity var(--composer-transition-duration-normal);
 
@@ -329,7 +316,37 @@
 
           :global(.slick-prev),
           :global(.slick-next) {
-            top: 50%;
+            top: 52%;
+
+            &:before {
+              font-size: 30px;
+            }
+          }
+
+          :global(.slick-prev) {
+            left: 35px;
+          }
+
+          :global(.slick-next) {
+            right: 35px;
+          }
+
+          :global(.slick-dots) {
+            bottom: 30px;
+
+            li {
+              margin: 0 var(--composer-gap-xs);
+
+              button:before {
+                transform: scale(0.6);
+              }
+
+              &:global(.slick-active) {
+                button:before {
+                  transform: scale(0.8);
+                }
+              }
+            }
           }
         }
 
@@ -376,7 +393,7 @@
 
         .decorator-line {
           left: var(--composer-gap-md);
-          top: calc(-1 * var(--composer-gap-sm));
+          top: -5px;
         }
 
         .text {
@@ -385,6 +402,26 @@
       }
 
       .carousel-wrapper {
+        .carousel {
+
+          :global(.slick-prev),
+          :global(.slick-next) {
+            top: 50%;
+
+            &:before {
+              font-size: var(--composer-gap-md);
+            }
+          }
+
+          :global(.slick-prev) {
+            left: var(--composer-gap-sm);
+          }
+
+          :global(.slick-next) {
+            right: var(--composer-gap-sm);
+          }
+        }
+
         :global(.slick-list) {
           :global(.slick-track) {
             :global(.slick-slide) {
@@ -400,10 +437,10 @@
 
           .button-wrapper {
             font-size: 2rem;
-            margin-right: 70px !important;
+            margin-right: 90px !important;
 
             .title-text {
-              font-size: 2.75rem;
+              font-size: 2.5rem;
             }
           }
         }
@@ -412,6 +449,14 @@
       .footer {
         padding: 0 var(--composer-gap-md);
         bottom: var(--composer-gap-xl);
+
+        .page-numbers {
+          gap: var(--composer-gap-xs);
+
+          .separator {
+            width: 30px;
+          }
+        }
       }
     }
   }
