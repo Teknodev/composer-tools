@@ -106,10 +106,10 @@
             padding: 0 !important;
             border-radius: 0 !important;
             color: var(--composer-html-background);
-            /* transform: none; */
+            transform: none;
 
             &::before {
-              background-color: currentColor !important;
+              display: none;
             }
           }
 
@@ -178,6 +178,14 @@
           margin-left: auto !important;
           margin-right: auto !important;
           text-align: center !important;
+        }
+
+        .subtitle {
+          transform: translateX(0) !important;
+
+          &::before {
+            display: none;
+          }
         }
       }
 
