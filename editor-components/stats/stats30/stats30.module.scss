@@ -20,6 +20,14 @@
                 flex-direction: column;
                 align-items: flex-start;
                 text-align: left;
+                gap: var(--composer-gap-sm);
+
+                .subtitle,
+                .title,
+                .description {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
 
                 &[data-alignment="center"] {
                     align-items: center;
@@ -57,6 +65,13 @@
                     border-radius: var(--composer-border-radius-md);
                     width: 100%;
 
+                    .card-subtitle,
+                    .card-title,
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        margin: 0;
+                    }
+
                     .card-content {
                         display: flex;
                         flex-direction: column;
@@ -76,7 +91,7 @@
                         .card-title,
                         .card-description,
                         .card-number {
-                            color: var(--composer-color-primary);
+                            color: var(--composer-font-color-primary);
                         }
                     }
 
@@ -84,10 +99,24 @@
                         font-size: 14rem;
                         color: var(--composer-primary-color);
                         line-height: 1;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.2rem;
 
-                        @container (max-width: #{$composer-phone-width}) {
-                            font-size: 7rem;
+                        .card-prefix,
+                        .card-suffix {
+                            font-size: 1em;
+                            color: inherit;
+                            line-height: 1;
                         }
+
+                        @container (max-width: #{$composer-tablet-width}) {
+                            font-size: 10rem;
+                        }
+
+                        // @container (max-width: #{$composer-phone-width}) {
+                        //     font-size: 10rem;
+                        // }
                     }
 
                     &[data-alignment="center"] {
