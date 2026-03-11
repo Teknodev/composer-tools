@@ -404,12 +404,12 @@ class Feature53 extends BaseFeature {
                   className={`${this.decorateCSS("tab")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
                 >
                   {tabTextExist && (
-                    <Base.H6
+                    <Base.H5
                       className={`${this.decorateCSS("tab-header")} ${activeTab === index ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.setActiveTab(index)}
                     >
                       {tab.tabText}
-                    </Base.H6>
+                    </Base.H5>
                   )}
 
                   {(contentExist || hasMedia) && (

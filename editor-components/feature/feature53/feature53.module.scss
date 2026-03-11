@@ -142,6 +142,7 @@
   .container {
     .max-content {
       .heading {
+        width: 100%;
         padding-bottom: var(--composer-gap-lg);
         border-bottom: var(--composer-border-width-xs) solid
           color-mix(
@@ -174,6 +175,7 @@
         }
 
         .tab-content-area .tab {
+          width: 100%;
           &:not(:last-child) {
             margin-bottom: var(--composer-gap-sm);
           }
@@ -205,6 +207,7 @@
           }
 
           &.active {
+            border-bottom-color: var(--composer-primary-color);
             .tab-content {
               display: flex;
               flex-direction: column;
