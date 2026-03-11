@@ -293,6 +293,7 @@ export interface iComponent {
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
   id: string;
+  globalComponentId?: string;
 }
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -328,6 +329,7 @@ export type TypeReactComponent = {
   children?: string;
   customComponentId?: string;
   customComponentVersion?: string;
+  globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
@@ -342,10 +344,7 @@ export type TypeUsableComponentProps = {
   ) => any;
 };
 
-type MemorizedElement = {
-  jsxElement?: React.JSX.Element,
-  value?: string;
-};
+
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -380,6 +379,7 @@ export enum CATEGORIES {
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
   CUSTOM = "custom",
+  GLOBAL = "global",
 }
 
 export function generateId(key: string): string {
@@ -395,8 +395,10 @@ export abstract class Component
   private shadowProps: TypeUsableComponentProps[] = [];
   private styles: any;
   public id: string;
+  public globalComponentId: string | undefined;
+  public _SanitizeHTML: React.ComponentType<any> | null = null;
   static category: CATEGORIES;
-  private memorizedElements: {[id: string]: MemorizedElement} = {};
+
 
   componentDidUpdate(
     prevProps: Readonly<{}>,
@@ -431,6 +433,7 @@ export abstract class Component
     super(props);
     this.styles = styles;
     this.id = props?.id || generateComponentId();
+    this.globalComponentId = props?.globalComponentId;
 
     const originalRender = this.render.bind(this);
 
@@ -466,6 +469,12 @@ export abstract class Component
     const compProps = (props?.props || []).map((p: TypeUsableComponentProps) =>
       this.attachValueGetter(p)
     );
+    // Ensure every prop has a unique ID within this instance.
+    // Global component copies receive props from the store by reference,
+    // so all copies (and all array items within a copy) may share the same
+    // prop IDs. Without this, findObjectById always matches the first
+    // array item, causing inline edits to save to the wrong element.
+    compProps.forEach((p: TypeUsableComponentProps) => this.attachPropId(p));
     this.state = {
       states: {},
       componentProps: {
@@ -620,58 +629,56 @@ export abstract class Component
       });
     };
 
-    const SanitizeHTML = ({ html, options }: any) => {
-      const prefix = preSufFixToElement(properties?.prefix);
-      const suffix = preSufFixToElement(properties?.suffix);
+    // Cache the SanitizeHTML component reference on the class instance.
+    // Defining it inline would create a NEW function reference per render,
+    // causing React to treat it as a new component type and unmount/remount
+    // the entire InlineEditor subtree (destroying the Lexical editor).
+    if (!this._SanitizeHTML) {
+      const componentInstance = this;
+      this._SanitizeHTML = ({ html, prop: currentProp, properties: currentProperties }: any) => {
+        const prefix = preSufFixToElement(currentProperties?.prefix);
+        const suffix = preSufFixToElement(currentProperties?.suffix);
 
-      const stringPrefix = renderToString(prefix || <></>);
-      const stringSuffix = renderToString(suffix || <></>);
+        const stringPrefix = renderToString(prefix || <></>);
+        const stringSuffix = renderToString(suffix || <></>);
 
-      const hasHtmlTag = html.indexOf("<");
+        const hasHtmlTag = html.indexOf("<");
 
-      if (hasHtmlTag != 0 && hasHtmlTag != -1) {
-        html = `<p> ${html} </p>`;
-      }
+        if (hasHtmlTag != 0 && hasHtmlTag != -1) {
+          html = `<p> ${html} </p>`;
+        }
 
-      const firstTagStartIndex = html.indexOf(">") + 1;
-      const firstTagEndIndex = html.lastIndexOf("<");
+        const firstTagStartIndex = html.indexOf(">") + 1;
+        const firstTagEndIndex = html.lastIndexOf("<");
 
-      const htmlWithPrefixAndSuffix =
-        html.substring(0, firstTagStartIndex) +
-        stringPrefix +
-        html.substring(firstTagStartIndex, firstTagEndIndex) +
-        stringSuffix +
-        html.substring(firstTagEndIndex);
+        const htmlWithPrefixAndSuffix =
+          html.substring(0, firstTagStartIndex) +
+          stringPrefix +
+          html.substring(firstTagStartIndex, firstTagEndIndex) +
+          stringSuffix +
+          html.substring(firstTagEndIndex);
 
-      const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
+        const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, {} as any);
 
-      const InlineEditor = getInlineEditor();
-      return (
-        <InlineEditor
-          id={prop.id}
-          value={prop.value as string}
-          props={this.getProps()}
-          sanitizedHtml={sanitizedHtml}
-          componentId={this.id}
-        />
-      );
-    };
-
-
-    if(!this.memorizedElements[prop.id]) {
-      this.memorizedElements[prop.id] = {};
+        const InlineEditor = getInlineEditor();
+        return (
+          <InlineEditor
+            id={currentProp.id}
+            value={currentProp.value as string}
+            props={componentInstance.getProps()}
+            sanitizedHtml={sanitizedHtml}
+            componentId={componentInstance.id}
+          />
+        );
+      };
     }
 
-    const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
-    && prop.value != memorizedElement?.value;
+    const SanitizeHTML = this._SanitizeHTML;
 
-    if(!memorizedElement.jsxElement || isValueChanged){
-      memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
-      memorizedElement["value"] = prop.value as string;
-    }
-
-    return memorizedElement.jsxElement;
+    // Always return a fresh JSX element so that InlineEditor's
+    // useContextSelector hooks can re-run and pick up
+    // activeEditorNamespace changes from InlineEditorContext.
+    return <SanitizeHTML html={prop?.value} prop={prop} properties={properties} />;
   }
 
   getExportedCSSClasses() {
@@ -807,7 +814,7 @@ export abstract class Component
     });
 
     cssClass.push(
-      generateAutoClassName(this.id, section)
+      generateAutoClassName(this.globalComponentId || this.id, section)
     );
     
     return cssClass.join(" ");
