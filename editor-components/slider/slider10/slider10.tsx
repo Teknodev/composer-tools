@@ -402,7 +402,17 @@ class Slider10 extends BaseSlider {
       },
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      dots: false,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
 
     this.setComponentState("slider-ref", React.createRef());
     this.setComponentState("active", 0);
@@ -445,15 +455,12 @@ class Slider10 extends BaseSlider {
 
     const slides = this.castToObject<SliderItem[]>("cards");
     const featuredItems = this.castToObject<FeaturedItem[]>("featured-items");
-
     const sliderRef = this.getComponentState("slider-ref");
     const overlay = this.getPropValue("overlay");
     const hoverAnimation = this.getPropValue("hoverAnimation");
     const textAnimation = this.getPropValue("textAnimation");
-
     const prevIcon = this.getPropValue("previousButtonIcon");
     const nextIcon = this.getPropValue("nextButtonIcon");
-
     const activeIndex = this.getComponentState("active");
 
     return (
