@@ -58,9 +58,6 @@ class Stats18Page extends BaseStats {
         this.addProp({
             type: "array",
             key: "card-list",
-            additionalParams: {
-                maxElementCount: 4,
-            },
             displayer: "Stats Items",
             value: [
                 {
@@ -140,7 +137,6 @@ class Stats18Page extends BaseStats {
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 4,
-            max: 4,
         });
 
     }
