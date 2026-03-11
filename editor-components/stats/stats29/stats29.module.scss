@@ -1,0 +1,216 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  background-color: var(--composer-html-background);
+
+  .max-content {
+    .card {
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .header-container {
+          display: flex;
+          gap: var(--composer-gap-lg);
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+
+          .left-container {
+            flex: 1;
+            width: 100%;
+
+            .subtitle {
+              box-sizing: border-box;
+            }
+
+            .title {
+              box-sizing: border-box;
+            }
+
+            .description {
+              color: var(--composer-font-color-primary) !important;
+            }
+
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+
+              .button {
+                white-space: nowrap;
+
+                .button-text {
+                  box-sizing: border-box;
+                }
+              }
+            }
+          }
+        }
+
+        .stats-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-lg);
+
+          .stat-item {
+            flex: 1;
+            min-width: 250px;
+            align-items: flex-start !important;
+
+            .stat-value {
+              color: var(--composer-primary-color);
+              gap: var(--composer-gap-xs);
+              font-size: 12rem;
+
+              .stat-prefix,
+              .stat-number,
+              .stat-suffix {
+                color: inherit;
+              }
+
+              .stat-number {
+                font-size: 12rem;
+              }
+
+              .stat-prefix {
+                font-size: 2rem;
+              }
+
+              .stat-suffix {
+                font-size: 12rem;
+              }
+            }
+
+            .stat-subtitle {
+              color: var(--composer-primary-color);
+              text-align: left;
+            }
+
+            .stat-title {
+              color: var(--composer-primary-color);
+              text-align: left;
+            }
+
+            .stat-description {
+              color: var(--composer-font-color-primary) !important;
+              text-align: left;
+            }
+          }
+
+          .stat-item:nth-child(even) {
+            .stat-value {
+              color: var(--composer-secondary-color);
+            }
+
+            .stat-subtitle {
+              color: var(--composer-secondary-color);
+            }
+
+            .stat-title {
+              color: var(--composer-secondary-color);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .card {
+        .card-content {
+          .header-container {
+            flex-direction: column;
+
+            .left-container {
+              .button-container {
+                display: flex;
+                align-self: inherit;
+              }
+            }
+          }
+
+          .stats-grid {
+            .stat-item {
+              .stat-value {
+                font-size: 9rem;
+
+                .stat-number {
+                  font-size: 9rem;
+                }
+
+                .stat-suffix {
+                  font-size: 9rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .card {
+        .card-content {
+          gap: var(--composer-gap-md);
+
+          .header-container {
+            flex-direction: column;
+            align-items: flex-start;
+
+            .left-container {
+              .description {
+                max-width: 100%;
+              }
+
+              .button-container {
+                justify-content: flex-start;
+
+                .button {
+                  width: auto;
+                }
+              }
+            }
+          }
+
+          .stats-grid {
+            flex-direction: column;
+            gap: var(--composer-gap-md);
+            margin-top: var(--composer-gap-md);
+
+            .stat-item {
+              .stat-value {
+                font-size: 7rem;
+                align-self: flex-start;
+
+                .stat-number {
+                  font-size: 7rem;
+                }
+
+                .stat-suffix {
+                  font-size: 7rem;
+                }
+              }
+
+              .stat-title {
+                font-size: 2rem !important;
+              }
+
+              .stat-description {
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
