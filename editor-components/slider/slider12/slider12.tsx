@@ -20,9 +20,7 @@ class Slider12 extends BaseSlider {
 
   constructor(props?: any) {
     super(props, styles);
-
     this.setComponentState("slider-mode", "desktop");
-
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -404,9 +402,8 @@ class Slider12 extends BaseSlider {
     const items = this.castToObject<Card[]>("cards") ?? [];
     const prevMedia = this.getPropValue("previousArrow");
     const nextMedia = this.getPropValue("nextArrow");
-
-    const title = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const hasContent = title || subtitle || description;
     const overlayEnabled = this.getPropValue("overlay");
@@ -430,7 +427,7 @@ class Slider12 extends BaseSlider {
         <Base.Container className={this.decorateCSS("upper-container")}>
           <Base.MaxContent className={this.decorateCSS("max-content")}>
             {(hasContent || hasNav) && (
-              <div className={`${this.decorateCSS("section-header")} ${!showArrows ? this.decorateCSS("no-arrows") : ""}`}>
+              <div className={`${this.decorateCSS("section-header")} ${!showArrows && this.decorateCSS("no-arrows")}`}>
                 <Base.VerticalContent className={this.decorateCSS("section-header-content")}>
                   {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                   {title && (<Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>)}

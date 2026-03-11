@@ -1,17 +1,11 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background: var(--composer-html-background);
-
   .upper-container {
     padding: 80px var(--composer-gap-xl) 0;
 
     .max-content {
       .section-header {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        max-width: 100%;
 
         .section-header-content {
           align-items: flex-start;
@@ -33,15 +27,15 @@
 
           .arrows {
             display: flex;
-            gap: var(--composer-gap-xs);
+            gap: var(--composer-gap-sm);
             margin-bottom: var(--composer-gap-sm);
 
             .prevArrow,
             .nextArrow {
               cursor: pointer;
               font-size: 3rem;
-              width: 3rem;
-              height: 3rem;
+              width: var(--composer-gap-lg);
+              height: var(--composer-gap-lg);
               color: var(--composer-tertiary-color);
               display: flex;
               align-items: center;
@@ -62,7 +56,7 @@
         }
 
         &.no-arrows {
-          margin-bottom: 40px;
+          margin-bottom: var(--composer-gap-lg);
         }
       }
     }
@@ -84,12 +78,6 @@
     overflow: visible;
     box-sizing: border-box;
 
-    :global(.slick-list) {
-      overflow: visible;
-      margin: 0;
-      padding: 0;
-    }
-
     :global(.slick-track) {
       margin-top: var(--composer-gap-sm);
       display: flex !important;
@@ -105,28 +93,37 @@
     :global(.slick-dots) {
       display: flex !important;
       justify-content: center;
-      margin-bottom: var(--composer-gap-md);
+      align-items: center;
       padding: var(--composer-gap-xs) !important;
       position: relative;
-      width: 100%;
+      z-index: 10;
+      bottom: -50px;
 
       li {
-        margin: 0 4px;
+        margin: 0 var(--composer-gap-sm);
+        width: var(--composer-gap-sm);
+        height: var(--composer-gap-sm);
 
-        button:before {
-          font-size: 10px;
-          color: var(--composer-font-color-primary) !important;
-          opacity: 0.5;
+        button {
+          padding: 0;
+
+          &:before {
+            content: "";
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-full);
+            background: var(--composer-font-color-primary);
+            opacity: 0.5;
+            transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
+            transform: scale(0.8);
+            line-height: unset;
+          }
         }
 
+        &:global(.slick-active) button:before,
         &.slick-active button:before {
+          transform: scale(1.2);
           opacity: 1;
-          color: var(--composer-font-color-primary) !important;
-        }
-
-        &:hover button:before {
-          opacity: 1;
-          color: var(--composer-font-color-primary) !important;
         }
       }
     }
@@ -145,68 +142,68 @@
       flex-direction: column;
       border-radius: var(--composer-border-radius-sm);
       min-height: 500px;
-    }
 
-    .media {
-      width: 100%;
-      height: 340px;
-      overflow: hidden;
-      border-radius: var(--composer-border-radius-sm);
-      position: relative;
-      object-fit: cover;
-
-      .media-content {
+      .media {
         width: 100%;
-        height: 100%;
-        display: block;
+        height: 340px;
+        overflow: hidden;
+        border-radius: var(--composer-border-radius-sm);
+        position: relative;
         object-fit: cover;
+
+        .media-content {
+          width: 100%;
+          height: 100%;
+          display: block;
+          object-fit: cover;
+        }
       }
-    }
 
-    .card-content {
-      padding: var(--composer-gap-xs);
-      margin-top: var(--composer-gap-xs);
-      text-align: left;
-
-      .card-title {
-        color: var(--composer-font-color-primary);
+      .card-content {
+        padding: var(--composer-gap-xs);
+        margin-top: var(--composer-gap-xs);
         text-align: left;
-      }
 
-      .card-description {
-        color: var(--composer-tertiary-color);
-        text-align: left !important;
+        .media-overlay {
+          position: absolute;
+          inset: 0;
+          background: var(--composer-overlay-color);
+          pointer-events: none;
+          border-radius: var(--composer-border-radius-sm);
+        }
+
+        .card-title {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+
+        .card-description {
+          color: var(--composer-tertiary-color);
+          text-align: left !important;
+        }
       }
     }
   }
-}
 
-.media-overlay {
-  position: absolute;
-  inset: 0;
-  background: var(--composer-overlay-color);
-  pointer-events: none;
-  border-radius: var(--composer-border-radius-sm);
-}
+  .button-container {
+    display: flex;
+    justify-content: center;
+    padding: var(--composer-gap-md);
+    padding-bottom: var(--composer-gap-lg);
+    margin: var(--composer-gap-xs) var(--composer-gap-md);
 
-.button-container {
-  display: flex;
-  justify-content: center;
-  padding: var(--composer-gap-md);
-  padding-bottom: var(--composer-gap-lg);
-  margin: var(--composer-gap-xs) var(--composer-gap-md);
+    .button {
+      .button-text {
+        content: "";
 
-  .button {
-    .button-text {
-      content: "";
-
-      &::first-letter {
-        text-transform: uppercase;
+        &::first-letter {
+          text-transform: uppercase;
+        }
       }
-    }
 
-    .button-icon {
-      font-size: 1.5rem;
+      .button-icon {
+        font-size: 1.5rem;
+      }
     }
   }
 }
@@ -225,12 +222,12 @@
           .arrows-wrap .arrows .prevArrow,
           .arrows-wrap .arrows .nextArrow {
             font-size: 2.5rem !important;
-            width: 2.5rem !important;
-            height: 2.5rem !important;
+            width: 35px !important;
+            height: 35px !important;
           }
 
           &.no-arrows {
-            margin-bottom: 20px;
+            margin-bottom: var(--composer-gap-md);
           }
         }
       }
@@ -245,6 +242,10 @@
     .slider-parent {
       :global(.slick-track) {
         justify-content: flex-start;
+      }
+
+      :global(.slick-dots) {
+        bottom: 15px;
       }
 
       .slide,
@@ -280,8 +281,8 @@
               .prevArrow,
               .nextArrow {
                 font-size: 2rem !important;
-                width: 2rem !important;
-                height: 2rem !important;
+                width: 30px !important;
+                height: 30px !important;
               }
             }
           }
@@ -290,7 +291,7 @@
     }
 
     .lower-container {
-      padding: 0 var(--composer-gap-md) !important;
+      padding: 0 var(--composer-gap-md) var(--composer-gap-md) !important;
     }
   }
 
@@ -301,16 +302,23 @@
       }
 
       :global(.slick-dots) {
-        bottom: 10px;
+        bottom: 0;
 
         li {
+          width: var(--composer-gap-sm) !important;
+          height: var(--composer-gap-sm) !important;
+          margin: 0 var(--composer-gap-xs) !important;
+
           button:before {
-            font-size: 6px;
+            transform: scale(0.6);
+          }
+
+          &:global(.slick-active) button:before,
+          &.slick-active button:before {
+            transform: scale(0.8);
           }
         }
       }
-
-
 
       :global(.slick-next) {
         right: -5px !important;
@@ -324,7 +332,7 @@
       .slide,
       .slide.wide {
         width: 360px !important;
-        max-width: 360px;
+        max-width: 360px !important;
 
         .media {
           height: 220px;
@@ -332,11 +340,11 @@
       }
 
       .card {
-        min-height: 380px;
-      }
+        min-height: auto;
 
-      .card-content {
-        padding: var(--composer-gap-xs) !important;
+        .card-content {
+          padding: var(--composer-gap-xs) !important;
+        }
       }
     }
   }
