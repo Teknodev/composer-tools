@@ -1,5 +1,17 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+@keyframes downAnimate {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .container {
   padding: 0 !important;
 
@@ -109,6 +121,18 @@
               &::before {
                 background: none;
               }
+            }
+
+            .imageSubtitleAnimation {
+              animation: downAnimate 1s ease;
+            }
+
+            .imageTitleAnimation {
+              animation: downAnimate 1s ease;
+            }
+
+            .imageDescriptionAnimation {
+              animation: downAnimate 1s ease;
             }
 
             &.has-media {

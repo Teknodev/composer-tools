@@ -486,19 +486,25 @@ class Slider10 extends BaseSlider {
                         {item.media && (<Base.Media value={mediaValue} className={this.decorateCSS("slider-item-media")} />)}
                         <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!!item.media && this.decorateCSS("has-media")}`}>
                           {this.castToString(item.subtitle) && (
-                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                              {item.subtitle}
-                            </Base.SectionSubTitle>
+                            <div className={this.decorateCSS("subtitle-wrapper")}>
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${textAnimation && activeIndex === index ? this.decorateCSS("imageSubtitleAnimation") : ""}`}>
+                                {item.subtitle}
+                              </Base.SectionSubTitle>
+                            </div>
                           )}
                           {this.castToString(item.title) && (
-                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                              {item.title}
-                            </Base.SectionTitle>
+                            <div className={this.decorateCSS("title-wrapper")}>
+                              <Base.SectionTitle className={`${this.decorateCSS("title")} ${textAnimation && activeIndex === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
+                                {item.title}
+                              </Base.SectionTitle>
+                            </div>
                           )}
                           {this.castToString(item.description) && (
-                            <Base.SectionDescription className={this.decorateCSS("description")}>
-                              {item.description}
-                            </Base.SectionDescription>
+                            <div className={this.decorateCSS("description-wrapper")}>
+                              <Base.SectionDescription className={`${this.decorateCSS("description")} ${textAnimation && activeIndex === index ? this.decorateCSS("imageDescriptionAnimation") : ""}`}>
+                                {item.description}
+                              </Base.SectionDescription>
+                            </div>
                           )}
                         </Base.VerticalContent>
                         {overlay && <div className={this.decorateCSS("slider-item-overlay")} />}
