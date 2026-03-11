@@ -18,18 +18,20 @@
                 .subtitle,
                 .description {
                     color: var(--composer-font-color-secondary);
+                    text-align: left;
                 }
 
                 .subtitle {
                     margin-left: 0;
                     padding: 0;
                     background: transparent;
+
+                    &::before {
+                        background-color: var(--composer-font-color-secondary);
+                    }
                 }
 
-                ::before {
-                    content: "";
-                    background-color: var(--composer-font-color-secondary);
-                }
+
 
                 .button-container {
                     margin: 0;
@@ -37,6 +39,7 @@
                     flex-wrap: wrap;
                     justify-content: flex-start;
                     gap: var(--composer-gap-sm);
+                    width: 100%;
 
                     .button {
                         .button-text {
@@ -81,7 +84,7 @@
                             color: var(--composer-font-color-secondary);
                             display: flex;
                             align-items: flex-end;
-                            font-size: 8rem;
+                            font-size: 7rem;
                             line-height: 1;
                             opacity: 0.5;
 
@@ -110,6 +113,20 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         padding: calc(var(--composer-gap-lg) *2) var(--composer-gap-lg);
+
+        .max-content {
+            .content-wrapper {
+                .right-column {
+                    .stat-item {
+                        .stat-row {
+                            .stat-value {
+                                font-size: 5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

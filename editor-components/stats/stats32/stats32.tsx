@@ -25,7 +25,7 @@ class Stats32 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "test",
+            value: "",
         });
 
         this.addProp({
@@ -39,7 +39,7 @@ class Stats32 extends BaseStats {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "sfasfafsfas as fas",
+            value: "",
         });
 
         this.addProp({
@@ -175,9 +175,9 @@ class Stats32 extends BaseStats {
                             </Base.H6>
                         )}
                         {titleExist && (
-                            <Base.H5 className={this.decorateCSS("stat-title")}>
+                            <Base.H4 className={this.decorateCSS("stat-title")}>
                                 {stat.titleElement}
-                            </Base.H5>
+                            </Base.H4>
                         )}
                         {descriptionExist && (
                             <Base.P className={this.decorateCSS("stat-description")}>
