@@ -6,11 +6,15 @@
     .max-content {
         .content-wrapper {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: calc(var(--composer-gap-xl) * 2);
 
             .button-container {
                 display: flex;
                 flex-wrap: wrap;
+                justify-content: flex-start;
                 gap: var(--composer-gap-sm);
 
                 .button {
@@ -20,58 +24,25 @@
                 }
             }
 
-            &.alignment-left {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                gap: calc(var(--composer-gap-xl) * 2);
+            .left-container {
+                flex: 1;
+                align-items: flex-start;
 
-                .left-container {
-                    flex: 1;
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left;
                 }
 
-                .stats-grid {
-                    flex: 1;
-                }
-            }
-
-            &.alignment-left {
-                .left-container {
-                    align-items: flex-start;
-
-                    .title,
-                    .subtitle,
-                    .description {
-                        text-align: left;
-                    }
-
-                    .subtitle {
-                        margin-left: 0;
-                        margin-right: auto;
-                        width: fit-content;
-                    }
-
-                    .button-container {
-                        justify-content: flex-start;
-                    }
-                }
-
-                .stat-item {
-                    align-items: flex-start;
-
-                    .stat-value {
-                        justify-content: flex-start;
-                    }
-
-                    .stat-title,
-                    .stat-subtitle,
-                    .stat-description {
-                        text-align: left;
-                    }
+                .subtitle {
+                    margin-left: 0;
+                    margin-right: auto;
+                    width: fit-content;
                 }
             }
 
             .stats-grid {
+                flex: 1;
                 gap: var(--composer-gap-md);
 
                 .stat-item {
@@ -81,12 +52,14 @@
                     padding: var(--composer-gap-lg) var(--composer-gap-md);
                     justify-content: space-between;
                     height: 100%;
+                    align-items: flex-start;
 
                     .stat-value {
                         color: var(--composer-font-color-primary);
                         display: flex;
                         align-items: center;
                         font-size: 4rem;
+                        justify-content: flex-start;
 
                         .stat-prefix,
                         .stat-number,
@@ -99,6 +72,7 @@
                     .stat-subtitle,
                     .stat-description {
                         color: var(--composer-font-color-primary);
+                        text-align: left;
                     }
                 }
             }
@@ -106,26 +80,20 @@
     }
 }
 
-
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .content-wrapper {
+        gap: var(--composer-gap-xl);
+
         .stats-grid .stat-item .stat-value {
             font-size: 3rem;
-        }
-
-        &.alignment-left {
-            gap: var(--composer-gap-xl);
         }
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content-wrapper {
-
-        &.alignment-left {
-            flex-direction: column;
-            gap: var(--composer-gap-sm);
-        }
+        flex-direction: column;
+        gap: var(--composer-gap-sm);
 
         .stats-grid .stat-item {
             padding: var(--composer-gap-md);

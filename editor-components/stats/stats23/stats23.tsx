@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats23.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
@@ -169,7 +169,7 @@ class Stats23 extends BaseStats {
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 {valueExist && (
                     <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
+                        {this.castToString(stat.prefix) && (
                             <span className={this.decorateCSS("stat-prefix")}>
                                 {stat.prefix}
                             </span>
@@ -177,7 +177,7 @@ class Stats23 extends BaseStats {
                         <span className={this.decorateCSS("stat-number")}>
                             {statsAnimation ? formatNumber(parseFloat(animatedNumber) || 0) : formatNumber(targetNumber)}
                         </span>
-                        {stat.suffix && (
+                        {this.castToString(stat.suffix) && (
                             <span className={this.decorateCSS("stat-suffix")}>
                                 {stat.suffix}
                             </span>
@@ -237,7 +237,7 @@ class Stats23 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={`${this.decorateCSS("content-wrapper")} ${this.decorateCSS("alignment-left")}`}>
+                    <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
 
                         {hasLeftSection && (
                             <Base.VerticalContent className={this.decorateCSS("left-container")}>
