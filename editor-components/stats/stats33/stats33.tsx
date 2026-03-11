@@ -62,6 +62,13 @@ class Stats33 extends BaseStats {
       value: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
     });
     this.addProp({
+      type: "number",
+      key: "itemCountInRow",
+      displayer: "Item Count in a Row",
+      value: 2,
+      max: 4,
+    });
+    this.addProp({
       type: "object",
       key: "animation",
       displayer: "Animation",
@@ -113,9 +120,9 @@ class Stats33 extends BaseStats {
     if (!valueExist && !titleExist && !descriptionExist) return null;
     return (
       <React.Fragment>
+        {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>}
         {valueExist && (
-          <span className={this.decorateCSS("stat-value")}> 
-            {stat.prefix && <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>}
+          <span className={this.decorateCSS("stat-value")}>
             <span className={this.decorateCSS("stat-number")}>{statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}</span>
             {stat.suffix && <span className={this.decorateCSS("stat-suffix")}>{stat.suffix}</span>}
           </span>
@@ -147,16 +154,23 @@ class Stats33 extends BaseStats {
     const description = this.getPropValue("description");
     const buttons: INPUTS.CastedButton[] = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const image = this.getPropValue("image");
+    const itemCountInRow = this.getPropValue("itemCountInRow") || 2;
     const isTitleExist = this.castToString(title);
     const isDescriptionExist = this.castToString(description);
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     return (
-      <Base.Container className={this.decorateCSS("container")}> 
-        <Base.MaxContent className={this.decorateCSS("max-content")}> 
-          <div className={this.decorateCSS("stats33-page")}> 
-            <div className={this.decorateCSS("left-column")}> 
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("stats33-page")}>
+            <div className={this.decorateCSS("text-content")}>
               {stats.length > 0 && (
-                <this.AnimatedStat stat={stats[0]} animationDuration={animationDuration} statsAnimation={statsAnimation} />
+                <Base.ListGrid gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                  {stats.map((stat: StatItem, index: number) => (
+                    <div key={index} className={this.decorateCSS("stat-item")}>
+                      <this.AnimatedStat stat={stat} animationDuration={animationDuration} statsAnimation={statsAnimation} />
+                    </div>
+                  ))}
+                </Base.ListGrid>
               )}
               {isTitleExist && (
                 <Base.SectionTitle className={this.decorateCSS("stat-title")}>{title}</Base.SectionTitle>
@@ -165,13 +179,13 @@ class Stats33 extends BaseStats {
                 <Base.SectionDescription className={this.decorateCSS("stat-description")}>{description}</Base.SectionDescription>
               )}
               {hasValidButtons && (
-                <div className={this.decorateCSS("button-container")}> 
+                <div className={this.decorateCSS("button-container")}>
                   {buttons.map((button: INPUTS.CastedButton, index: number) => {
                     const buttonText = this.castToString(button.text);
                     if (buttonText)
                       return (
                         <ComposerLink key={index} path={button.url}>
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}> 
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
                             <span className={this.decorateCSS("button-text")}>{buttonText}</span>
                           </Base.Button>
                         </ComposerLink>
@@ -181,8 +195,8 @@ class Stats33 extends BaseStats {
                 </div>
               )}
             </div>
-            <div className={this.decorateCSS("right-column")}> 
-              <div className={this.decorateCSS("image-wrapper")}> 
+            <div className={this.decorateCSS("media-content")}>
+              <div className={this.decorateCSS("image-wrapper")}>
                 <Base.Media value={image} className="base-media" />
               </div>
             </div>
