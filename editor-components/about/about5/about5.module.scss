@@ -9,13 +9,13 @@
       display: flex;
       flex: 1;
       align-items: center;
-      gap: var(--composer-gap-lg);
+      gap: var(--composer-gap-md);
 
       .left-section {
         flex: 1;
 
         .card-1 {
-          align-items: baseline;
+          align-items: flex-start;
 
           .title,
           .subtitle,
@@ -31,7 +31,7 @@
 
           .buttons-container {
             display: flex;
-            gap: var(--composer-gap-sm);
+            gap: var(--composer-gap-xs);
             flex-wrap: wrap;
 
             .button {
@@ -49,7 +49,7 @@
         .content {
           display: flex;
           flex: 1;
-          gap: var(--composer-gap-lg);
+          gap: var(--composer-gap-md);
           flex-wrap: wrap;
 
           .right-column-card {
@@ -74,6 +74,7 @@
               .job-title {
                 color: var(--composer-tertiary-color);
                 text-align: left;
+                font-size: 20px;
               }
             }
           }
