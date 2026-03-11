@@ -165,9 +165,9 @@ class About8 extends BaseAbout {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!hasImages ? this.decorateCSS("no-image") : ""}`}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleStr || hasTitle || descriptionStr) && (
-            <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS(alignment)}`}>
+            <Base.VerticalContent className={`${this.decorateCSS("header-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
               {subtitleStr && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
@@ -187,7 +187,7 @@ class About8 extends BaseAbout {
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : this.decorateCSS("no-image")}`}
+            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : ""}`}
           >
             {hasImages && (
               <div className={`${this.decorateCSS("images-section")} ${isSingleImage ? this.decorateCSS("single-image") : ""}`}>
@@ -217,7 +217,7 @@ class About8 extends BaseAbout {
             )}
 
             {(hasTexts || buttons.length > 0) && (
-              <div className={`${this.decorateCSS("content-section")} ${hasImages ? this.decorateCSS("left") : this.decorateCSS(alignment)}`}>
+              <Base.VerticalContent className={this.decorateCSS("content-section")}>
                 {hasTexts && (
                   <div className={this.decorateCSS("texts-wrapper")}>
                     {validTexts.map((text, index) => (
@@ -246,7 +246,7 @@ class About8 extends BaseAbout {
                     })}
                   </div>
                 )}
-              </div>
+              </Base.VerticalContent>
             )}
           </div>
         </Base.MaxContent>
