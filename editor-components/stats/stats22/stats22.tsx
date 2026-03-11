@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats22.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
@@ -123,7 +123,7 @@ class Stats22 extends BaseStats {
     animationDuration?: number;
     statsAnimation: boolean;
   }) => {
-    const cleanNumber = String(stat.number || "0").replace(/[^\d.]/g, "");
+    const cleanNumber = (stat.number || "0").replace(/[^\d.]/g, "");
     const targetNumber = parseFloat(cleanNumber) || 0;
     const [animatedNumber, setAnimatedNumber] = React.useState<string>(statsAnimation ? "0" : Math.floor(targetNumber).toString());
     const ref = React.useRef<HTMLDivElement>(null);
@@ -246,9 +246,9 @@ class Stats22 extends BaseStats {
       const subtitle = item.getPropValue("subtitle");
       const itemTitle = item.getPropValue("title");
       const itemDescription = item.getPropValue("description");
-      const number = String(this.castToString(item.getPropValue("number")) || "0");
-      const prefix = String(this.castToString(item.getPropValue("prefix")) || "");
-      const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
+      const number = this.castToString(item.getPropValue("number")) || "0";
+      const prefix = this.castToString(item.getPropValue("prefix")) || "";
+      const suffix = this.castToString(item.getPropValue("suffix")) || "";
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
 
