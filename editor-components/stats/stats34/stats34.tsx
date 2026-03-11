@@ -3,7 +3,7 @@ import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats34.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type StatItem = {
     prefix: string;
@@ -230,9 +230,9 @@ class Stats34 extends BaseStats {
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-title")}>
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.H6>
+                    </Base.H5>
                 )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
