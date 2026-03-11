@@ -132,7 +132,7 @@ class Stats17 extends BaseStats {
     animationEnabled?: boolean;
     animationDuration?: number;
   }) => {
-    const cleanNumber = (stat.number || "0").replace();
+    const cleanNumber = (stat.number || "0").replace(/[^\d.]/g, "");
     const targetNumber = parseFloat(cleanNumber) || 0;
     const [animatedNumber, setAnimatedNumber] = React.useState<string>("0");
     const ref = React.useRef<HTMLDivElement>(null);
