@@ -157,12 +157,6 @@
           display: block;
           object-fit: cover;
         }
-      }
-
-      .card-content {
-        padding: var(--composer-gap-xs);
-        margin-top: var(--composer-gap-xs);
-        text-align: left;
 
         .media-overlay {
           position: absolute;
@@ -171,6 +165,12 @@
           pointer-events: none;
           border-radius: var(--composer-border-radius-sm);
         }
+      }
+
+      .card-content {
+        padding: var(--composer-gap-xs);
+        margin-top: var(--composer-gap-xs);
+        text-align: left;
 
         .card-title {
           color: var(--composer-font-color-primary);
