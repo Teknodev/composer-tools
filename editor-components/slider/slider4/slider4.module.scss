@@ -24,11 +24,11 @@
         flex: 1;
         overflow: hidden;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         text-align: left;
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-lg);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-        border-radius: var(--composer-border-radius-lg);
+        border-radius: var(--composer-border-radius-md);
 
         .control-title {
           color: var(--composer-primary-color);
