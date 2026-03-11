@@ -326,8 +326,9 @@ class Feature52 extends BaseFeature {
                                         return (
                                             <div
                                                 key={`feature52-service-${index}`}
-                                                className={`${this.decorateCSS("item-container")} ${isActive ? this.decorateCSS("active-item") : ""} ${!line ? this.decorateCSS("line-disabled") : ""}`}
+                                                className={`${this.decorateCSS("item-container")} ${isActive && this.decorateCSS("active-item")}`}
                                             >
+                                                {line && index === 0 && <div className={this.decorateCSS("line")}></div>}
                                                 {itemHeaderExist && (
                                                     <div
                                                         className={this.decorateCSS("item-header")}
@@ -340,12 +341,12 @@ class Feature52 extends BaseFeature {
                                                         <div className={this.decorateCSS("item-left")}>
                                                             {itemIconExist && (
                                                                 <Base.Media
-                                                                    className={`${this.decorateCSS("item-icon")} ${isActive ? this.decorateCSS("item-icon-active") : ""}`}
+                                                                    className={`${this.decorateCSS("item-icon")} ${isActive && this.decorateCSS("item-icon-active")}`}
                                                                     value={item.icon}
                                                                 />
                                                             )}
                                                             {itemTitleExist && (
-                                                                <Base.H4 className={`${this.decorateCSS("item-title")} ${isActive ? this.decorateCSS("item-title-active") : ""}`}>
+                                                                <Base.H4 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
                                                                     {item.title}
                                                                 </Base.H4>
                                                             )}
@@ -353,7 +354,7 @@ class Feature52 extends BaseFeature {
                                                         {currentToggleIcon && (
                                                             <div className={this.decorateCSS("toggle-button-container")}>
                                                                 <Base.Media
-                                                                    className={`${this.decorateCSS("toggle-icon")} ${this.decorateCSS("button-icon")} ${isActive ? this.decorateCSS("toggle-icon-active") : ""}`}
+                                                                    className={`${this.decorateCSS("toggle-icon")} ${this.decorateCSS("button-icon")} ${isActive && this.decorateCSS("toggle-icon-active")}`}
                                                                     value={currentToggleIcon}
                                                                 />
                                                             </div>
@@ -362,13 +363,14 @@ class Feature52 extends BaseFeature {
                                                 )}
                                                 {itemDescriptionExist && (
                                                     <div
-                                                        className={`${this.decorateCSS("item-description-container")} ${isActive ? this.decorateCSS("item-description-active") : ""}`}
+                                                        className={`${this.decorateCSS("item-description-container")} ${isActive && this.decorateCSS("item-description-active")}`}
                                                     >
                                                         <Base.P className={this.decorateCSS("item-description")}>
                                                             {item.description}
                                                         </Base.P>
                                                     </div>
                                                 )}
+                                                {line && <div className={this.decorateCSS("line")}></div>}
                                             </div>
                                         );
                                     })}
