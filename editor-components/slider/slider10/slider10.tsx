@@ -434,8 +434,10 @@ class Slider10 extends BaseSlider {
   }
 
   render() {
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
     const settings = {
-      ...this.transformSliderValues(this.getPropValue("settings")),
+      ...sliderSettings,
+      arrows: false,
       beforeChange: (_: number, next: number) => {
         this.setComponentState("active", next);
       },
@@ -475,27 +477,23 @@ class Slider10 extends BaseSlider {
                     <div className={this.decorateCSS("card")} key={index}>
                       <div className={this.decorateCSS("slider-item")}>
                         {item.media && (<Base.Media value={mediaValue} className={this.decorateCSS("slider-item-media")} />)}
-                        <div className={`${this.decorateCSS("content-wrapper")} ${settings.arrows ? this.decorateCSS("has-arrows") : ""}`}>
-                          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                            {this.castToString(item.subtitle) && (
-                              <div className={this.decorateCSS("slider-item-subtitle-wrapper")}>
-                                <Base.SectionSubTitle className={`${this.decorateCSS("slider-item-subtitle")} ${item.media && this.decorateCSS("slider-item-subtitle-with-media")} ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}`}>
-                                  {item.subtitle}
-                                </Base.SectionSubTitle>
-                              </div>
-                            )}
-                            {this.castToString(item.title) && (
-                              <Base.SectionTitle className={`${this.decorateCSS("slider-item-title")} ${item.media && this.decorateCSS("slider-item-title-with-media")} ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}`}>
-                                {item.title}
-                              </Base.SectionTitle>
-                            )}
-                            {this.castToString(item.description) && (
-                              <Base.SectionDescription className={`${this.decorateCSS("slider-item-description")} ${item.media && this.decorateCSS("slider-item-description-with-media")} ${(activeIndex === index || textAnimation) && this.decorateCSS("show")}`}>
-                                {item.description}
-                              </Base.SectionDescription>
-                            )}
-                          </Base.VerticalContent>
-                        </div>
+                        <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!!item.media && this.decorateCSS("has-media")}`}>
+                          {this.castToString(item.subtitle) && (
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                              {item.subtitle}
+                            </Base.SectionSubTitle>
+                          )}
+                          {this.castToString(item.title) && (
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
+                              {item.title}
+                            </Base.SectionTitle>
+                          )}
+                          {this.castToString(item.description) && (
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
+                              {item.description}
+                            </Base.SectionDescription>
+                          )}
+                        </Base.VerticalContent>
                         {overlay && <div className={this.decorateCSS("slider-item-overlay")} />}
                       </div>
                     </div>
@@ -532,7 +530,7 @@ class Slider10 extends BaseSlider {
                       })}
                     </div>
                   )}
-                  {(prevIcon || nextIcon) && (
+                  {(prevIcon || nextIcon) && sliderSettings.arrows && (
                     <div className={this.decorateCSS("slider-buttons")}>
                       {prevIcon && (
                         <div className={this.decorateCSS("slider-button")} onClick={() => { sliderRef.current.slickPrev(); }}>

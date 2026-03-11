@@ -10,12 +10,6 @@
       position: relative;
 
       .carousel {
-        position: relative;
-
-        :global(.slick-list) {
-          overflow: hidden;
-        }
-
         :global(.slick-track) {
           display: flex;
           align-items: stretch;
@@ -30,12 +24,12 @@
         }
 
         :global(.slick-dots) {
-          top: var(--composer-gap-md);
+          top: 30px;
           width: auto !important;
           display: flex !important;
           flex-direction: column;
-          z-index: 100;
           right: var(--composer-gap-md);
+          z-index: 100;
 
           li {
             margin: var(--composer-gap-sm) 0;
@@ -45,17 +39,10 @@
             button {
               width: var(--composer-gap-sm);
               height: var(--composer-gap-sm);
-              padding: 0;
-              background: transparent;
-              border: none;
-              cursor: pointer;
               position: relative;
 
               &:before {
                 content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
                 width: var(--composer-gap-sm);
                 height: var(--composer-gap-sm);
                 border-radius: var(--composer-border-radius-full);
@@ -75,19 +62,6 @@
             }
           }
         }
-      }
-
-      :global(.slick-prev) {
-        right: var(--composer-gap-xl);
-        z-index: 100;
-        left: auto;
-        top: 100px;
-      }
-
-      :global(.slick-next) {
-        top: 140px;
-        z-index: 100;
-        right: var(--composer-gap-xl);
       }
 
       .card {
@@ -114,75 +88,41 @@
             z-index: 0;
           }
 
-          .content-wrapper {
-            max-width: var(--composer-content-width);
-            width: 100%;
-            z-index: 2;
-            position: relative;
+          .vertical-content {
             display: flex;
+            flex-direction: column;
             align-items: center;
             padding: 80px var(--composer-gap-xl);
             margin-bottom: 70px;
             margin-top: 70px;
-            overflow: hidden;
+            z-index: 10;
 
-            .vertical-content {
-              width: 100%;
-              align-items: center;
+            .subtitle,
+            .title,
+            .description {
               text-align: center;
             }
-          }
 
-          .slider-item-subtitle-wrapper {
-            width: 100%;
-            display: flex;
-          }
-
-          .slider-item-subtitle {
-            transition: 700ms;
-            opacity: 0;
-
-            &.slider-item-subtitle-with-media {
-              color: #ffffff;
-              background: transparent;
+            .subtitle {
+              transform: translateY(0);
 
               &::before {
-                background: #ffffff;
+                background: none;
               }
             }
 
-            &.show {
-              opacity: 1;
-            }
-          }
+            &.has-media {
 
-          .slider-item-title {
-            width: 100%;
-            transition: 700ms;
-            opacity: 0;
+              .subtitle,
+              .title,
+              .description {
+                color: #ffffff;
+              }
 
-            &.slider-item-title-with-media {
-              color: #ffffff;
-            }
-
-            &.show {
-              margin-bottom: var(--composer-gap-md);
-              opacity: 1;
-            }
-          }
-
-          .slider-item-description {
-            width: 100%;
-            transition: 700ms;
-            opacity: 0;
-
-            &.slider-item-description-with-media {
-              color: #ffffff;
-            }
-
-            &.show {
-              margin-bottom: var(--composer-gap-lg);
-              opacity: 1;
+              .subtitle {
+                padding: 0;
+                background-color: transparent;
+              }
             }
           }
 
@@ -245,24 +185,14 @@
           }
 
           .slider-footer-item-body {
-            flex: 1;
-            width: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            gap: var(--composer-gap-xs);
             max-height: 130px;
-            text-align: left;
 
             .slider-footer-item-title {
-              margin: 0;
               color: var(--composer-font-color-primary);
               text-align: left;
             }
 
             .slider-footer-item-subtitle {
-              margin: 0;
               color: var(--composer-tertiary-color);
               text-align: left;
             }
@@ -281,7 +211,6 @@
 
         .slider-button {
           position: relative;
-          border: none;
           background-color: var(--composer-font-color-primary);
           color: var(--composer-html-background);
           transition: 400ms;
@@ -316,14 +245,14 @@
     .max-content {
       .slider-wrapper {
         .carousel {
+          :global(.slick-dots) {
+            top: 25px;
+          }
+
           .card {
             .slider-item {
-              .content-wrapper {
+              .vertical-content {
                 padding: 80px var(--composer-gap-lg);
-
-                &.has-arrows .vertical-content {
-                  padding: 0 var(--composer-gap-md);
-                }
               }
             }
           }
@@ -359,20 +288,10 @@
     .max-content {
       .slider-wrapper {
         .carousel {
-
-          :global(.slick-prev),
-          :global(.slick-next) {
-            display: none !important;
-          }
-
           .card {
             .slider-item {
-              .content-wrapper {
+              .vertical-content {
                 padding: var(--composer-gap-xl) var(--composer-gap-md);
-
-                &.has-arrows .vertical-content {
-                  padding: 0 30px;
-                }
               }
             }
           }
@@ -380,11 +299,14 @@
           :global(.slick-dots) {
             bottom: var(--composer-gap-md);
             top: auto;
+            flex-direction: row;
+            transform: translateX(10px);
+            right: 50%;
 
             li {
-              margin: 0 !important;
               width: var(--composer-gap-xs) !important;
               height: var(--composer-gap-xs) !important;
+              margin: var(--composer-gap-xs) !important;
 
               button:before {
                 transform: scale(0.6) !important;
