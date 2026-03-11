@@ -9,11 +9,13 @@
       align-items: center;
       justify-content: center;
       width: 100%;
+      gap: var(--composer-gap-md);
 
       .top-container {
         gap: var(--composer-gap-sm);
         align-items: center;
         justify-content: center;
+
 
         .subtitle,
         .title,
