@@ -23,11 +23,6 @@
 
             .subtitle {
               box-sizing: border-box;
-              transform: none;
-
-              &::before {
-                display: none;
-              }
             }
 
             .title {
