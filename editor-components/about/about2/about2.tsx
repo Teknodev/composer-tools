@@ -3,7 +3,7 @@ import styles from "./about2.module.scss";
 import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type CoverMedia = {
   media: TypeMediaInputValue;
@@ -227,7 +227,6 @@ class About2 extends BaseAbout {
                     autoPlay={true}
                     loop={true}
                     controls={true}
-                  // playsInline
                   />
                   {closeIcon && (
                     <div
