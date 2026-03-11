@@ -3,7 +3,7 @@ import { BaseBlog } from "../../EditorComponent";
 import styles from "./blog1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 
 type CardType = {

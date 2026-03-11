@@ -2,7 +2,7 @@ import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseList } from "../../EditorComponent";
 import styles from "./list11.module.scss";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface ListItems {
     itemTitle: React.ReactNode;

@@ -2,8 +2,8 @@ import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class IntroSection6 extends BaseIntroSection {
   constructor(props?: any) {

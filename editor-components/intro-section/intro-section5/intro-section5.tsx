@@ -2,9 +2,9 @@ import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section5.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { TypeMediaInputValue } from "composer-tools/editor-components/EditorComponent";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { TypeMediaInputValue } from "../../EditorComponent";
 
 interface ButtonItem {
   text: React.JSX.Element;

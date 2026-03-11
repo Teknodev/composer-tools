@@ -3,7 +3,7 @@ import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
   image: string;
