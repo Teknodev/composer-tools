@@ -110,6 +110,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .content {
+        gap: var(--composer-gap-md);
+
         &.alignment-center {
             .stats-grid {
                 .stat-item {
