@@ -163,28 +163,36 @@ export class Stats30Page extends BaseStats {
 
         return (
             <div className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`}>
-                <Base.VerticalContent className={this.decorateCSS("card-content")} data-alignment="left">
-                    <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitleElement}</Base.H6>
-                    <Base.H2 className={this.decorateCSS("card-title")}>{card.titleElement}</Base.H2>
+                <div className={this.decorateCSS("card-content")}>
 
-                    {card.statValue && (
-                        <div className={this.decorateCSS("card-number")}>
-                            {card.prefix && (
-                                <span className={this.decorateCSS("card-prefix")}>{card.prefix}</span>
-                            )}
-                            <span>{display}</span>
-                            {card.suffix && (
-                                <span className={this.decorateCSS("card-suffix")}>{card.suffix}</span>
-                            )}
+                    {/* 1. GRUP: Üst başlık ve Başlık */}
+                    <div className={this.decorateCSS("header-group")}>
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitleElement}</Base.H6>
+                        <Base.H2 className={this.decorateCSS("card-title")}>{card.titleElement}</Base.H2>
+                    </div>
+
+                    {/* 2. GRUP: Sadece Description */}
+                    {card.description && (
+                        <div className={this.decorateCSS("description-group")}>
+                            <Base.P className={this.decorateCSS("card-description")}>{card.descriptionElement}</Base.P>
                         </div>
                     )}
 
-                    {card.description && (
-                        <Base.P className={this.decorateCSS("card-description")}>{card.descriptionElement}</Base.P>
+                    {/* 3. GRUP: Rakamlar */}
+                    {card.statValue && (
+                        <div className={this.decorateCSS("number-group")}>
+                            <div className={this.decorateCSS("card-number")}>
+                                {card.prefix && <span className={this.decorateCSS("card-prefix")}>{card.prefix}</span>}
+                                <span>{display}</span>
+                                {card.suffix && <span className={this.decorateCSS("card-suffix")}>{card.suffix}</span>}
+                            </div>
+                        </div>
                     )}
-                </Base.VerticalContent>
+
+                </div>
             </div>
         );
+
     };
 
     render() {

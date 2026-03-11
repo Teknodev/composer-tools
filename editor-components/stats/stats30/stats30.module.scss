@@ -1,5 +1,4 @@
-/* stats30.module.scss */
-
+/* stats30.module.scss - En Güncel ve Temiz Versiyon */
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
@@ -11,7 +10,7 @@
         .content {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-xl);
+            gap: var(--composer-gap-xxl);
             width: 100%;
 
             .header-container {
@@ -25,23 +24,14 @@
                 .subtitle,
                 .title,
                 .description {
-                    margin: 0;
+                    margin: 0 !important;
                 }
 
                 &[data-alignment="center"] {
                     align-items: center;
                     text-align: center;
-
-                    .subtitle,
-                    .title,
-                    .description {
-                        text-align: center;
-                        margin-left: auto;
-                        margin-right: auto;
-                    }
                 }
             }
-
 
             .cards-container {
                 width: 100%;
@@ -55,7 +45,6 @@
 
                 @container (max-width: #{$composer-phone-width}) {
                     grid-template-columns: repeat(1, 1fr);
-
                 }
 
                 .card {
@@ -64,36 +53,30 @@
                     border-radius: var(--composer-border-radius-md);
                     width: 100%;
 
+                    .card-content {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+
+                        .header-group {
+                            margin-bottom: 5rem;
+                            gap: 1rem;
+                            display: flex;
+                            flex-direction: column;
+                        }
+
+                        .number-group {
+                            display: flex;
+                            align-items: center;
+                        }
+                    }
+
                     .card-subtitle,
                     .card-title,
                     .card-description {
                         color: var(--composer-font-color-primary);
                         margin: 0;
-                        text-align: left !important;
-                    }
-
-                    .card-content {
-                        display: flex;
-                        flex-direction: column;
-                        gap: var(--composer-gap-md);
-                        width: 100%;
-                        align-items: flex-start !important;
-                        text-align: left !important;
-
-                        @container (max-width: #{$composer-phone-width}) {
-                            gap: var(--composer-gap-xxs);
-                        }
-                    }
-
-                    &.colored-background {
-                        background-color: var(--composer-html-color);
-
-                        .card-subtitle,
-                        .card-title,
-                        .card-description,
-                        .card-number {
-                            color: var(--composer-font-color-primary);
-                        }
+                        text-align: left;
                     }
 
                     .card-number {
@@ -103,42 +86,18 @@
                         display: flex;
                         align-items: center;
                         gap: 0.2rem;
-
-
-                        .card-prefix,
-                        .card-suffix {
-                            font-size: 1em;
-                            color: inherit;
-                            line-height: 1;
-                        }
-
-                        @container (max-width: #{$composer-tablet-width}) {
-                            font-size: 10rem;
-                        }
-
-                        // @container (max-width: #{$composer-phone-width}) {
-                        //     font-size: 10rem;
-                        // }
                     }
 
-                    // &[data-alignment="center"] {
-                    //     .card-content {
-                    //         align-items: center;
-                    //         text-align: center;
-                    //     }
-                    // }
-                }
-            }
-        }
+                    &.colored-background {
+                        background-color: var(--composer-html-color);
 
-        .bottom-action-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-
-            .button {
-                .button-text {
-                    text-align: center;
+                        .card-number,
+                        .card-title,
+                        .card-subtitle,
+                        .card-description {
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
                 }
             }
         }
