@@ -182,7 +182,8 @@
           inset: 0;
           opacity: 0;
           transition: opacity 0.5s ease;
-          border-radius: var(--composer-border-radius-sm);
+          border-top-left-radius: var(--composer-border-radius-sm);
+          border-bottom-left-radius: var(--composer-border-radius-sm);
           overflow: hidden;
 
           &.visible {
