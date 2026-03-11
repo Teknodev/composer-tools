@@ -3,7 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats27.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type StatItem = {
     prefix: string;
@@ -195,7 +195,7 @@ class Stats27 extends BaseStats {
                 )}
                 {(valueExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
+                        {this.castToString(stat.prefix) && (
                             <span className={this.decorateCSS("stat-prefix")}>
                                 {stat.prefix}
                             </span>
