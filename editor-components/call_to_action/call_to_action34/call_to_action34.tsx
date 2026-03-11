@@ -162,6 +162,7 @@ class CallToAction34Page extends BaseCallToAction {
                                             className={this.decorateCSS("media")}
                                         />
                                     )}
+
                                 </div>
                             </div>
                         )}
