@@ -2,7 +2,7 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats19.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type StatItem = {
@@ -121,9 +121,9 @@ class Stats19 extends BaseStats {
       const subtitle = item.getPropValue("subtitle");
       const itemTitle = item.getPropValue("title");
       const itemDescription = item.getPropValue("description");
-      const number = String(this.castToString(item.getPropValue("number")) || "0");
-      const prefix = String(this.castToString(item.getPropValue("prefix")) || "");
-      const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
+      const number = this.castToString(item.getPropValue("number")) || "0";
+      const prefix = this.castToString(item.getPropValue("prefix")) || "";
+      const suffix = this.castToString(item.getPropValue("suffix")) || "";
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
 
