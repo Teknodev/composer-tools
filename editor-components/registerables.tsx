@@ -239,6 +239,7 @@ import StatsComponent16 from "./stats/stats16/stats16";
 import StatsComponent20 from "./stats/stats20/stats20";
 import StatsComponent21 from "./stats/stats21/stats21";
 import StatsComponent24 from "./stats/stats24/stats24";
+import StatsComponent25 from "./stats/stats25/stats25";
 import StatsComponent29 from "./stats/stats29/stats29";
 import StatsComponent33 from "./stats/stats33/stats33";
 import Form1 from "./contacts/form1/form1";
@@ -629,6 +630,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent20,
     StatsComponent21,
     StatsComponent24,
+    StatsComponent25,
     StatsComponent29,
     StatsComponent33,
     Form1,
