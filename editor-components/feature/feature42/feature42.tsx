@@ -290,7 +290,7 @@ class Feature42 extends BaseFeature {
                     </div>
                 )}
                 {hasRightContent && (
-                    <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")} ${!enableLine && this.decorateCSS("enable-line")}`}>
+                    <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")} ${!enableLine ? this.decorateCSS("disable-line") : ""}`}>
                         {items.map((item: ListItem, index: number) => {
                             const isActive = effectiveIndex === index;
                             const cardSubTitleExist = this.castToString(item.cardSubTitle);
@@ -302,8 +302,9 @@ class Feature42 extends BaseFeature {
                                     key={index}
                                     className={`${this.decorateCSS("card-content")} ${isActive && this.decorateCSS("active-item")}`}
                                 >
+                                    {enableLine && index === 0 && <div className={`${this.decorateCSS("line")} ${this.decorateCSS("line-top")}`}></div>}
                                     <div
-                                        className={`${this.decorateCSS("mobile-title-wrapper")} ${enableLine && this.decorateCSS("line")}`}
+                                        className={`${this.decorateCSS("mobile-title-wrapper")}`}
                                         onClick={() => {
                                             const newIndex = activeIndex === index ? -1 : index;
                                             this.setComponentState("activeIndex", newIndex);
@@ -335,6 +336,7 @@ class Feature42 extends BaseFeature {
                                             )}
                                         </div>
                                     )}
+                                    {enableLine && <div className={`${this.decorateCSS("line")} ${this.decorateCSS("line-bottom")}`}></div>}
                                 </div>
                             );
                         })}
