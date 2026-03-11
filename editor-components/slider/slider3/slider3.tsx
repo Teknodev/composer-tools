@@ -41,6 +41,13 @@ class Slider3 extends BaseSlider {
 
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
+    });
+
+    this.addProp({
+      type: "array",
       key: "slider",
       displayer: "Slider",
       value: [
@@ -277,6 +284,8 @@ class Slider3 extends BaseSlider {
     const carouselClass = items.length === 1 ? "carousel--singleCard" : "carousel--multipleCards";
     const arrowsExist = items.length > 1 && (previousArrow || nextArrow) && sliderSettings.arrows;
     const showDots = sliderSettings.dots !== false;
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!arrowsExist && this.decorateCSS("no-arrows")}`}>
@@ -287,6 +296,20 @@ class Slider3 extends BaseSlider {
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {visibleButtons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                      return (this.castToString(item.text) || (item.icon && (item.icon)?.name)) && (
+                        <ComposerLink key={`button-${index}`} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {this.castToString(item.text) && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            {item.icon && (item.icon)?.name && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
             {arrowsExist && (

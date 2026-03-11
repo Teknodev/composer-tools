@@ -37,6 +37,7 @@
       margin: auto;
       margin-bottom: 0;
       overflow: visible;
+      padding-bottom: 70px;
 
       .carousel {
         width: 100%;
@@ -64,6 +65,7 @@
           .content-div {
             border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
             transition: transform var(--composer-transition-duration-normal), filter var(--composer-transition-duration-normal);
+            border-radius: var(--composer-gap-md);
             min-height: 300px;
             height: 100%;
             gap: 0;
@@ -124,7 +126,7 @@
 
             .right-part {
               flex: 1;
-              padding: var(--composer-gap-lg) var(--composer-gap-md);
+              padding: var(--composer-gap-lg) 30px;
               height: fit-content;
               align-items: flex-start;
 
@@ -169,7 +171,7 @@
           height: 45px;
           width: 45px;
           top: auto;
-          bottom: -85px;
+          bottom: -92px;
           border: 1px solid var(--composer-tertiary-color);
           border-radius: 50%;
           outline: none;
@@ -226,7 +228,7 @@
         }
 
         :global(.slick-dots) {
-          bottom: -65px;
+          bottom: -70px;
           display: flex !important;
           justify-content: center;
           align-items: center;
@@ -287,25 +289,33 @@
         padding: 0 var(--composer-gap-lg);
       }
 
-      .slider-parent .carousel {
+      .slider-parent {
+        padding-bottom: 60px;
 
-        :global(.slick-prev),
-        :global(.slick-next) {
-          height: 35px;
-          width: 35px;
-          bottom: -75px;
+        .carousel {
 
-          &:before {
-            font-size: 8px;
+          :global(.slick-prev),
+          :global(.slick-next) {
+            height: 35px;
+            width: 35px;
+            bottom: -78px;
+
+            &:before {
+              font-size: 8px;
+            }
           }
-        }
 
-        :global(.slick-prev) {
-          left: 70px !important;
-        }
+          :global(.slick-prev) {
+            left: 70px !important;
+          }
 
-        :global(.slick-next) {
-          right: 70px !important;
+          :global(.slick-next) {
+            right: 70px !important;
+          }
+
+          :global(.slick-dots) {
+            bottom: -62px;
+          }
         }
       }
     }
@@ -333,6 +343,7 @@
           .card {
             .content-div {
               flex-direction: column;
+              border-radius: 0;
 
               .left-part {
                 flex-direction: column;
@@ -341,6 +352,7 @@
                 .vert-text {
                   writing-mode: unset;
                   transform: unset;
+                  margin: 15px;
                 }
 
                 .image-wrapper {
@@ -358,7 +370,7 @@
           :global(.slick-next) {
             height: 30px;
             width: 30px;
-            bottom: -55px;
+            bottom: -75px;
           }
 
           :global(.slick-prev) {
@@ -382,7 +394,7 @@
           }
 
           :global(.slick-dots) {
-            bottom: -50px;
+            bottom: -66px;
           }
         }
       }
