@@ -118,12 +118,33 @@
                 }
               }
 
+              .subtitle-wrapper {
+                .imageSubtitleAnimation {
+                  animation: downAnimate 1s ease;
+                }
+
+                .subtitle {
+                  text-align: left;
+                }
+              }
+
               .title-wrapper {
                 .imageTitleAnimation {
                   animation: downAnimate 1s ease;
                 }
 
                 .title {
+                  text-align: left;
+                }
+              }
+
+
+              .description-wrapper {
+                .imageDescriptionAnimation {
+                  animation: downAnimate 1s ease;
+                }
+
+                .description {
                   text-align: left;
                 }
               }
@@ -194,7 +215,17 @@
               }
             }
 
+            .subtitle-wrapper .subtitle {
+              color: #ffffff;
+              padding: 0 !important;
+              background: none !important;
+            }
+
             .title-wrapper .title {
+              color: #ffffff;
+            }
+
+            .description-wrapper .description {
               color: #ffffff;
             }
 

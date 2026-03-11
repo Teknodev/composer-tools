@@ -9,7 +9,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Card = {
   media: TypeMediaInputValue;
   backgroundMedia: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
+  description: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 
@@ -29,9 +31,21 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: ""
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "The Petronas Twin Towers",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: ""
             },
             {
               type: "media",
@@ -65,6 +79,12 @@ class Slider8 extends BaseSlider {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -72,6 +92,12 @@ class Slider8 extends BaseSlider {
               value: "Multi-Family Housing",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: ""
+            },
+            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -103,6 +129,12 @@ class Slider8 extends BaseSlider {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -110,6 +142,12 @@ class Slider8 extends BaseSlider {
               value: "The Lighthouse",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: ""
+            },
+            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -141,6 +179,12 @@ class Slider8 extends BaseSlider {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -148,6 +192,12 @@ class Slider8 extends BaseSlider {
               value: "The Arches",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: ""
+            },
+            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -179,6 +229,12 @@ class Slider8 extends BaseSlider {
           key: "card",
           displayer: "Card",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: ""
+            },
             {
               type: "string",
               key: "title",
@@ -186,6 +242,12 @@ class Slider8 extends BaseSlider {
               value: "Riverside Residence",
             },
             {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: ""
+            },
+            {
               type: "media",
               key: "media",
               displayer: "Media",
@@ -219,9 +281,21 @@ class Slider8 extends BaseSlider {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: ""
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Dream House",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: ""
             },
             {
               type: "media",
@@ -370,7 +444,7 @@ class Slider8 extends BaseSlider {
             {cards?.length && cards?.length > 0 && (
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
                 {cards.map((item: Card, index: number) => {
-                  return (this.castToString(item.title) || this.castToString(item.button?.text) || item.media) && (
+                  return (this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || this.castToString(item.button?.text) || item.media) && (
                     <div className={`${this.decorateCSS("slider-inner-div")} ${anyImagesExist && this.decorateCSS("has-background")}`} key={`sld-8-${index}`}>
                       <div className={`${this.decorateCSS("content")} ${!anyImagesExist && this.decorateCSS("no-image")}`}>
                         {item.backgroundMedia && (<Base.Media value={item.backgroundMedia} className={this.decorateCSS("bg-image")} />)}
@@ -382,11 +456,25 @@ class Slider8 extends BaseSlider {
                               <div className={this.decorateCSS("line-2")}></div>
                             </div>
                           )}
+                          {this.castToString(item.subtitle) && (
+                            <div className={this.decorateCSS("subtitle-wrapper")}>
+                              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageSubtitleAnimation") : ""}`}>
+                                {item.subtitle}
+                              </Base.SectionSubTitle>
+                            </div>
+                          )}
                           {this.castToString(item.title) && (
                             <div className={this.decorateCSS("title-wrapper")}>
                               <Base.SectionTitle className={`${this.decorateCSS("title")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageTitleAnimation") : ""}`}>
                                 {item.title}
                               </Base.SectionTitle>
+                            </div>
+                          )}
+                          {this.castToString(item.description) && (
+                            <div className={this.decorateCSS("description-wrapper")}>
+                              <Base.SectionDescription className={`${this.decorateCSS("description")} ${animation && this.getComponentState("activeSlide") === index ? this.decorateCSS("imageDescriptionAnimation") : ""}`}>
+                                {item.description}
+                              </Base.SectionDescription>
                             </div>
                           )}
                           {this.castToString(item.button?.text) && (
