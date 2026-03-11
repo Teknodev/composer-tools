@@ -43,8 +43,11 @@
                             margin-left: 0 !important;
                         }
 
-                        .stats-subtitle {
+                        .stats-title {
                             transform: none;
+                            padding: 0;
+                            background-color: transparent;
+                            --composer-html-background: var(--composer-font-color-primary);
 
                             &::before {
                                 display: none;
@@ -75,6 +78,7 @@
                 }
 
                 .media-wrapper {
+                    position: relative;
                     width: 100%;
                     min-height: 400px;
                     overflow: hidden;
@@ -84,6 +88,12 @@
                         height: 100%;
                         object-fit: cover;
                         display: block;
+                    }
+
+                    .overlay {
+                        background-color: var(--composer-overlay-color);
+                        position: absolute;
+                        inset: 0;
                     }
                 }
             }
@@ -96,7 +106,7 @@
         .row {
             .text-content {
                 .stat-value {
-                    font-size: 5rem;
+                    font-size: 8rem;
                 }
             }
 
@@ -116,8 +126,10 @@
             gap: var(--composer-gap-lg);
 
             .text-content {
+                order: 1;
+
                 .stat-value {
-                    font-size: 4rem;
+                    font-size: 6rem;
                 }
 
                 .text-inner {
@@ -129,6 +141,7 @@
             }
 
             .media-wrapper {
+                order: 2;
                 min-height: 250px;
             }
         }

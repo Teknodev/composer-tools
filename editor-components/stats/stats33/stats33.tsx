@@ -27,21 +27,21 @@ class Stats33 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "test",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Years Of Experience",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps.",
+            value: "",
         });
 
         this.addProp({
@@ -112,6 +112,20 @@ class Stats33 extends BaseStats {
                     ],
                 },
             ],
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "rowReverse",
+            displayer: "Row Reverse",
+            value: false,
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "enableOverlay",
+            displayer: "Overlay",
+            value: false,
         });
 
         this.addProp({
@@ -228,6 +242,9 @@ class Stats33 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
+        const rowReverse = !!this.getPropValue("rowReverse");
+        const enableOverlay = !!this.getPropValue("enableOverlay");
+
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
@@ -236,9 +253,28 @@ class Stats33 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {hasHeader && (
+                        <div className={this.decorateCSS("header")}>
+                            {subtitle && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {title && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+                            {description && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                        </div>
+                    )}
                     <div className={this.decorateCSS("content")}>
                         {stats.map((stat: StatItem, index: number) => {
-                            const isReversed = index % 2 !== 0;
+                            const isReversed = rowReverse ? index % 2 === 0 : index % 2 !== 0;
                             const hasMedia = !!stat.media && "url" in stat.media && !!stat.media.url;
                             const statSubtitleExist = !!stat.subtitle;
                             const statTitleExist = !!stat.title;
@@ -258,14 +294,14 @@ class Stats33 extends BaseStats {
                                     />
                                     <Base.VerticalContent className={this.decorateCSS("text-inner")}>
                                         {statSubtitleExist && (
-                                            <Base.SectionSubTitle className={this.decorateCSS("stats-subtitle")}>
+                                            <Base.H3 className={this.decorateCSS("stats-subtitle")}>
                                                 {stat.subtitleElement}
-                                            </Base.SectionSubTitle>
+                                            </Base.H3>
                                         )}
                                         {statTitleExist && (
-                                            <Base.SectionTitle className={this.decorateCSS("stats-title")}>
+                                            <Base.SectionSubTitle className={this.decorateCSS("stats-title")}>
                                                 {stat.titleElement}
-                                            </Base.SectionTitle>
+                                            </Base.SectionSubTitle>
                                         )}
                                         {statDescriptionExist && (
                                             <Base.SectionDescription className={this.decorateCSS("stats-description")}>
@@ -312,6 +348,9 @@ class Stats33 extends BaseStats {
                                         value={stat.media}
                                         className={this.decorateCSS("image")}
                                     />
+                                    {enableOverlay && (
+                                        <div className={this.decorateCSS("overlay")}></div>
+                                    )}
                                 </Base.GridCell>
                             );
 
