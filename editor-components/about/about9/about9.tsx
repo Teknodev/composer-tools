@@ -134,20 +134,22 @@ class About9 extends BaseAbout {
                         <div className={`${this.decorateCSS("side-container")} ${hasImages && this.decorateCSS("with-image")} ${alignmentValue === "center" && this.decorateCSS("center")}`}>
                             {showTopContainer && (
                                 <div className={`${this.decorateCSS("top-container")} ${hasImages ? this.decorateCSS("with-image") : ""}`}>
-                                    <Base.VerticalContent className={this.decorateCSS("title-container")}>
-                                        {subtitleStr && (
-                                            <div className={this.decorateCSS("subtitle-wrapper")}>
-                                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                                    {this.getPropValue("subtitle")}
-                                                </Base.SectionSubTitle>
-                                            </div>
-                                        )}
-                                        {titleStr && (
-                                            <Base.SectionTitle className={this.decorateCSS("title")}>
-                                                {this.getPropValue("title")}
-                                            </Base.SectionTitle>
-                                        )}
-                                    </Base.VerticalContent>
+                                    {(subtitleStr || titleStr) && (
+                                        <Base.VerticalContent className={this.decorateCSS("title-container")}>
+                                            {subtitleStr && (
+                                                <div className={this.decorateCSS("subtitle-wrapper")}>
+                                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                                        {this.getPropValue("subtitle")}
+                                                    </Base.SectionSubTitle>
+                                                </div>
+                                            )}
+                                            {titleStr && (
+                                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                                    {this.getPropValue("title")}
+                                                </Base.SectionTitle>
+                                            )}
+                                        </Base.VerticalContent>
+                                    )}
                                     {image1 && (
                                         <div className={this.decorateCSS("image-1")}>
                                             <Base.Media value={image1} className={this.decorateCSS("image")} />
