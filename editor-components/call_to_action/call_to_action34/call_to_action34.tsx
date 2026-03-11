@@ -63,6 +63,7 @@ class CallToAction34Page extends BaseCallToAction {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a5989e771c03002ccbd6c4?alt=media"
                     },
+
                 },
                 {
                     type: "boolean",
@@ -147,10 +148,20 @@ class CallToAction34Page extends BaseCallToAction {
                             <div className={this.decorateCSS("right-column")}>
                                 <div className={`${this.decorateCSS("media-container")} ${isVideo ? this.decorateCSS("is-video") : ""}`}>
                                     {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
-                                    <Base.Media
-                                        value={media}
-                                        className={this.decorateCSS("media")}
-                                    />
+                                    {isVideo ? (
+                                        <iframe
+                                            src={media.url}
+                                            className={this.decorateCSS("media")}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    ) : (
+                                        <Base.Media
+                                            value={media}
+                                            className={this.decorateCSS("media")}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         )}
