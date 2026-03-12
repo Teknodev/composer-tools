@@ -7,8 +7,10 @@ import ComposerLink from "../../../../custom-hooks/composer-base-components/Link
 
 type StatItem = {
     prefix: string;
+    prefixElement: JSX.Element;
     number: string;
     suffix: string;
+    suffixElement: JSX.Element;
     subtitle: string;
     subtitleElement: JSX.Element;
     title: string;
@@ -17,6 +19,7 @@ type StatItem = {
     descriptionElement: JSX.Element;
     media: TypeMediaInputValue;
     buttons: INPUTS.CastedButton[];
+    rowReverse: boolean;
 };
 
 class Stats33 extends BaseStats {
@@ -78,6 +81,7 @@ class Stats33 extends BaseStats {
                                 INPUTS.BUTTON("button", "Button", "About Us", "", "FaArrowRight", null, "Primary"),
                             ],
                         },
+                        { type: "boolean", key: "rowReverse", displayer: "Row Reverse", value: false },
                     ],
                 },
                 {
@@ -109,16 +113,10 @@ class Stats33 extends BaseStats {
                                 INPUTS.BUTTON("button", "Button", "View All Projects", "", "FaArrowRight", null, "Primary"),
                             ],
                         },
+                        { type: "boolean", key: "rowReverse", displayer: "Row Reverse", value: true },
                     ],
                 },
             ],
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "rowReverse",
-            displayer: "Row Reverse",
-            value: false,
         });
 
         this.addProp({
@@ -189,7 +187,7 @@ class Stats33 extends BaseStats {
             <span className={this.decorateCSS("stat-value")}>
                 {stat.prefix && (
                     <span className={this.decorateCSS("stat-prefix")}>
-                        {stat.prefix}
+                        {stat.prefixElement}
                     </span>
                 )}
                 <span className={this.decorateCSS("stat-number")}>
@@ -197,7 +195,7 @@ class Stats33 extends BaseStats {
                 </span>
                 {stat.suffix && (
                     <span className={this.decorateCSS("stat-suffix")}>
-                        {stat.suffix}
+                        {stat.suffixElement}
                     </span>
                 )}
             </span>
@@ -214,6 +212,7 @@ class Stats33 extends BaseStats {
             description: JSX.Element;
             media: TypeMediaInputValue;
             buttons: INPUTS.CastedButton[];
+            rowReverse: boolean;
         }[]>("stats");
 
         const stats: StatItem[] = statsItems.map((item) => {
@@ -225,8 +224,10 @@ class Stats33 extends BaseStats {
             const description = this.castToString(item.description) || "";
             return {
                 prefix,
+                prefixElement: item.prefix,
                 number,
                 suffix,
+                suffixElement: item.suffix,
                 subtitle,
                 subtitleElement: item.subtitle,
                 title,
@@ -235,6 +236,7 @@ class Stats33 extends BaseStats {
                 descriptionElement: item.description,
                 media: item.media,
                 buttons: item.buttons || [],
+                rowReverse: !!item.rowReverse,
             };
         });
 
@@ -242,7 +244,6 @@ class Stats33 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const rowReverse = !!this.getPropValue("rowReverse");
         const enableOverlay = !!this.getPropValue("enableOverlay");
 
         const subtitle = this.castToString(this.getPropValue("subtitle"));
@@ -274,7 +275,7 @@ class Stats33 extends BaseStats {
                     )}
                     <div className={this.decorateCSS("content")}>
                         {stats.map((stat: StatItem, index: number) => {
-                            const isReversed = rowReverse ? index % 2 === 0 : index % 2 !== 0;
+                            const isReversed = stat.rowReverse;
                             const hasMedia = !!stat.media && "url" in stat.media && !!stat.media.url;
                             const statSubtitleExist = !!stat.subtitle;
                             const statTitleExist = !!stat.title;
@@ -299,9 +300,9 @@ class Stats33 extends BaseStats {
                                             </Base.H3>
                                         )}
                                         {statTitleExist && (
-                                            <Base.SectionSubTitle className={this.decorateCSS("stats-title")}>
+                                            <Base.SectionTitle className={this.decorateCSS("stats-title")}>
                                                 {stat.titleElement}
-                                            </Base.SectionSubTitle>
+                                            </Base.SectionTitle>
                                         )}
                                         {statDescriptionExist && (
                                             <Base.SectionDescription className={this.decorateCSS("stats-description")}>
