@@ -8,14 +8,12 @@
     .main-wrapper {
       display: flex;
       flex: 1;
-      align-items: center;
       gap: var(--composer-gap-md);
 
       .left-section {
         flex: 1;
 
         .card-1 {
-          align-items: flex-start;
 
           .title,
           .subtitle,
