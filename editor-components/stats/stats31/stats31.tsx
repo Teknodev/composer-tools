@@ -25,7 +25,7 @@ class Stats31 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Stats Overview",
+            value: "",
         });
 
         this.addProp({
@@ -97,45 +97,6 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "years of successful experience" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "stat",
-                    displayer: "Stat",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "24" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "growth rate" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "stat",
-                    displayer: "Stat",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "€" },
-                        { type: "string", key: "number", displayer: "Value", value: "1200" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "avg order value" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "stat",
-                    displayer: "Stat",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "99.2" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "uptime" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
