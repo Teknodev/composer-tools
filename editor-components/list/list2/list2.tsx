@@ -26,20 +26,17 @@ class List2 extends BaseList {
       displayer: "Subtitle",
       value: "Explore",
     });
-
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
       value: "Most Popular Cities/Towns",
     });
-
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Discover best things to do restaurants, shopping, hotels, cafes and places around the world by categories.",
+      value: "Discover best things to do restaurants, shopping, hotels, cafes and places around the world by categories.",
     });
 
     this.addProp({
@@ -53,13 +50,13 @@ class List2 extends BaseList {
       key: "imageCountInitial",
       displayer: "Image Count Initial",
       value: 3
-    })
+    });
     this.addProp({
       type: "number",
       key: "imageCount",
       displayer: "More Image Count",
       value: 3
-    })
+    });
     this.addProp({
       type: "array",
       key: "cards",
@@ -325,21 +322,18 @@ class List2 extends BaseList {
         },
       ],
     });
-
     this.addProp({
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
       value: true,
     });
-
     this.addProp({
       type: "boolean",
       key: "showLine",
       displayer: "Show Line",
       value: true,
     });
-
     this.addProp({
       type: "array",
       key: "buttons",
@@ -364,6 +358,7 @@ class List2 extends BaseList {
   static getName(): string {
     return "List 2";
   }
+
   handleButtonClick = (e: React.MouseEvent) => {
     const cards = this.castToObject<CardItem[]>("cards");
     if (this.getComponentState("imageCount") < cards.length) {
