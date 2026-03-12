@@ -163,7 +163,7 @@ export class Stats30Page extends BaseStats {
 
         return (
             <div className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`}>
-                <div className={this.decorateCSS("card-content")}>
+                <Base.VerticalContent className={this.decorateCSS("card-content")}>
 
                     {/* 1. GRUP: Üst başlık ve Başlık */}
                     <div className={this.decorateCSS("header-group")}>
@@ -189,7 +189,7 @@ export class Stats30Page extends BaseStats {
                         </div>
                     )}
 
-                </div>
+                </Base.VerticalContent>
             </div>
         );
 
@@ -276,7 +276,7 @@ export class Stats30Page extends BaseStats {
                                     const buttonText = this.castToString(item.text);
                                     if (!buttonText) return null;
                                     return (
-                                        <div key={index}>
+                                        <div key={index} className={this.decorateCSS("button-wrapper")}>
                                             <Base.Button
                                                 buttonType={item.type}
                                                 className={this.decorateCSS("button")}
