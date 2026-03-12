@@ -44,7 +44,7 @@ class Stats19 extends BaseStats {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "fasfasfas", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -115,6 +115,7 @@ class Stats19 extends BaseStats {
     const description = this.getPropValue("description");
     const isDescriptionExist = this.castToString(description);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     const itemCount = this.getPropValue("itemCount");
     const statsProp = this.getPropValue("stats");
     const stats: StatItem[] = statsProp.map((item: any) => {
@@ -214,7 +215,7 @@ class Stats19 extends BaseStats {
               </Base.VerticalContent>
             )}
 
-            {buttons.length > 0 && (
+            {hasValidButtons && (
               <div className={this.decorateCSS("button-container")}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) =>
                   this.castToString(item.text) && (
