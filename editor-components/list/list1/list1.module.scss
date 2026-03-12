@@ -1,120 +1,86 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
     align-items: stretch;
 
-    .header {
+    .content {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      text-align: left;
-      width: 100%;
-      padding: 0;
-      margin-bottom: var(--composer-gap-xl);
+      gap: var(--composer-gap-lg);
 
-      .subtitle,
-      .title,
-      .description {
-        content: "";
-      }
-    }
-
-    .carousel {
-      width: calc(100% + var(--composer-gap-md));
-      overflow: hidden;
-      padding: 0 0 var(--composer-gap-xl) 0;
-      margin-left: calc(var(--composer-gap-md) / -2);
-      position: relative;
-
-      :global(.slick-slide) {
-        padding: 0 calc(var(--composer-gap-xl) / 2 + 1px);
-        margin-bottom: calc(2 * var(--composer-gap-md));
-        box-sizing: border-box;
-        height: auto;
-        display: flex;
-        align-items: stretch;
-      }
-
-      :global(.slick-list) {
-        overflow: visible;
-      }
-
-      :global(.slick-list),
-      :global(.slick-track) {
-        display: flex;
-        align-items: stretch;
-      }
-
-      :global(.slick-prev),
-      :global(.slick-next) {
-        width: 40px;
-        height: 40px;
-        z-index: 100;
-
-        &:before {
-          color: var(--composer-font-color-primary) !important;
-          opacity: 1;
-          font-size: 30px;
-        }
-      }
-
-      :global(.slick-prev) {
-        left: 0;
-      }
-
-      :global(.slick-next) {
-        right: 0;
-      }
-
-      :global(.slick-slide) {
-        flex-direction: column;
-      }
-
-      :global(.slick-slide)>div {
-        height: 100%;
+      .header-container {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
-      }
-
-      .dots {
-        display: flex !important;
-        width: fit-content;
-        gap: calc(var(--composer-gap-sm) * 1.5);
-        list-style-type: none;
         padding: 0;
-        bottom: 45px;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        justify-content: center;
-        align-items: center;
-        z-index: 2 !important;
 
-        .dot-button {
-          border: none;
-          transition: all var(--composer-transition-duration-normal) ease;
-          content-visibility: hidden;
-          background-color: var(--composer-font-color-secondary);
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          cursor: pointer;
-          padding: 0;
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
+          .button .button-text {
+            content: "";
+          }
         }
-
-        :global(.slick-active) .dot-button {
-          width: 40px;
-          border-radius: var(--composer-border-radius-md);
-        }
-
-
       }
 
-      :global(.slick-center) {
-        .card.active {
+      .carousel {
+        width: calc(100% + var(--composer-gap-md));
+        overflow: hidden;
+        padding: 0 0 var(--composer-gap-xl) 0;
+        margin-left: calc(var(--composer-gap-md) / -2);
+        position: relative;
+
+        :global(.slick-list),
+        :global(.slick-track) {
+          display: flex;
+          align-items: stretch;
+        }
+
+        :global(.slick-list) {
+          overflow: visible;
+        }
+
+        :global(.slick-slide) {
+          padding: 0 calc(var(--composer-gap-xl) / 2 + 1px);
+          margin-bottom: calc(2 * var(--composer-gap-md));
+          box-sizing: border-box;
+          height: auto;
+          display: flex;
+          align-items: stretch;
+          flex-direction: column;
+
+          >div {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+          }
+        }
+
+        :global(.slick-prev),
+        :global(.slick-next) {
+          width: 40px;
+          height: 40px;
+          z-index: 100;
+
+          &::before {
+            color: var(--composer-font-color-primary) !important;
+            opacity: 1;
+            font-size: 30px;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: 0;
+        }
+
+        :global(.slick-next) {
+          right: 0;
+        }
+
+        :global(.slick-center) .card.active {
           z-index: 1;
 
           .active-after {
@@ -122,156 +88,156 @@ as *;
             visibility: visible;
           }
         }
-      }
-    }
 
-    .dots:not(.dots-colored) {
-      .dot-button {
-        background-color: var(--composer-primary-color);
-      }
-
-      :global(.slick-active) .dot-button {
-        background-color: var(--composer-primary-color);
-      }
-    }
-
-
-
-    .dots-colored {
-      .dot-button {
-        background-color: var(--composer-font-color-secondary);
-      }
-
-      :global(.slick-active) .dot-button {
-        background-color: var(--composer-font-color-secondary);
-      }
-    }
-
-    .card {
-      margin: 0;
-      position: relative;
-      display: flex !important;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: var(--composer-gap-lg);
-
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: color-mix(in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 5%);
-        border-radius: var(--composer-border-radius-md);
-        z-index: -1;
-      }
-
-      padding: var(--composer-gap-lg);
-
-      gap: var(--composer-gap-md);
-      flex: 1 1 auto;
-      height: 100%;
-      min-height: 0;
-      width: 100% !important;
-
-
-
-      .image-container {
-        margin: 0;
-        overflow: hidden;
-        border-radius: 50%;
-        position: relative;
-        width: 220px;
-        max-width: 100%;
-        aspect-ratio: 1 / 1;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-
-        .image {
-          border-radius: inherit;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: all var(--composer-transition-duration-slow) var(--composer-transition-easing);
-        }
-
-        .overlay {
+        .dots {
+          display: flex !important;
+          width: fit-content;
+          gap: calc(var(--composer-gap-sm) * 1.5);
+          list-style-type: none;
+          padding: 0;
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-          border-radius: inherit;
+          bottom: 45px;
+          left: 50%;
+          transform: translateX(-50%);
+          justify-content: center;
+          align-items: center;
+          z-index: 2 !important;
+
+          .dot-button {
+            border: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            padding: 0;
+            cursor: pointer;
+            content-visibility: hidden;
+            transition: all var(--composer-transition-duration-normal) ease;
+
+            background-color: var(--composer-primary-color);
+          }
+
+          :global(.slick-active) .dot-button {
+            width: 40px;
+            border-radius: var(--composer-border-radius-md);
+            background-color: var(--composer-primary-color);
+          }
+
+          &.dots-colored .dot-button,
+          &.dots-colored :global(.slick-active) .dot-button {
+            background-color: var(--composer-font-color-secondary);
+          }
+        }
+      }
+
+      .card {
+        position: relative;
+        display: flex !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-md);
+        padding: var(--composer-gap-lg);
+        margin: 0;
+        flex: 1 1 auto;
+        height: 100%;
+        min-height: 0;
+        width: 100% !important;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-md);
+          z-index: -1;
         }
 
-        &.no-round {
-          border-radius: 0;
+        .image-container {
+          margin: 0;
+          overflow: hidden;
+          border-radius: 50%;
+          position: relative;
+          width: 220px;
+          max-width: 100%;
+          aspect-ratio: 1 / 1;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
 
           .image {
-            border-radius: 0;
-            font-size: 15rem;
+            border-radius: inherit;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all var(--composer-transition-duration-slow) var(--composer-transition-easing);
           }
 
           .overlay {
+            position: absolute;
+            inset: 0;
+            background-color: var(--composer-overlay-color);
+            border-radius: inherit;
+          }
+
+          &.no-round {
             border-radius: 0;
-            opacity: 0;
+
+            .image {
+              border-radius: 0;
+              font-size: 15rem;
+            }
+
+            .overlay {
+              border-radius: 0;
+              opacity: 0;
+            }
           }
         }
-      }
 
-      .card-header {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-sm);
-        margin: 0;
-        align-items: flex-start;
+        .card-header {
+          display: flex;
+          flex-direction: column;
+          gap: var(--composer-gap-sm);
+          margin: 0;
+          align-items: flex-start;
 
-        .card-title {
-          content: "";
-          color: var(--composer-font-color-primary);
-          transition: color var(--composer-transition-duration-normal) ease;
-          cursor: pointer;
-          text-align: left !important;
+          .card-title {
+            color: var(--composer-font-color-primary);
+            transition: color var(--composer-transition-duration-normal) ease;
+            cursor: pointer;
+            text-align: left !important;
+          }
+
+          .card-description {
+            color: var(--composer-font-color-tertiary);
+            text-align: left !important;
+          }
         }
 
-        .card-description {
-          content: "";
-          color: var(--composer-font-color-tertiary);
-          text-align: left !important;
+        .button {
+          position: relative;
+
+          .button-before {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: var(--composer-border-width-xs);
+            background-color: var(--composer-primary-color);
+          }
+
+          .button-text {
+            content: "";
+          }
+
+          .icon {
+            font-size: 1rem;
+            width: 1rem;
+            height: 1rem;
+            min-width: fit-content;
+          }
         }
-      }
 
-      .button {
-        position: relative;
-
-        .button-before {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: var(--composer-border-width-xs);
-          background-color: var(--composer-primary-color);
-        }
-
-        .button-text {
-          content: "";
-        }
-
-        .icon {
-          font-size: 1rem;
-          width: 1rem;
-          height: 1rem;
-          min-width: fit-content;
-        }
-      }
-
-      &.active {
-        .active-after {
+        &.active .active-after {
           content: "";
           position: absolute;
           width: calc(100% + var(--composer-gap-lg) + 70px);
@@ -286,32 +252,24 @@ as *;
           visibility: hidden;
           transition: opacity var(--composer-transition-duration-normal) ease;
         }
-      }
 
+        &[data-animation~="animate1"]:hover {
+          .card-title {
+            color: var(--composer-primary-color);
+          }
 
-      &[data-animation~="animate1"]:hover {
-        .card-title {
-          color: var(--composer-primary-color);
+          .image-container .image {
+            transform: scale(1.1);
+            transition: transform var(--composer-transition-duration-slow) ease-in-out;
+          }
         }
 
-        .image-container .image {
-          transform: scale(1.1);
-          transition: transform var(--composer-transition-duration-slow) ease-in-out;
-        }
-      }
-
-      &[data-animation~="animate2"]:hover {
-        .image-container .image {
+        &[data-animation~="animate2"]:hover .image-container .image {
           transform: rotate(360deg);
           transition: transform var(--composer-transition-duration-normal) ease-in-out;
         }
-      }
 
-
-
-
-      &[data-animation~="animate3"]:hover {
-        .button {
+        &[data-animation~="animate3"]:hover .button {
           animation: breathing 2s infinite ease-in-out;
         }
       }
@@ -319,46 +277,42 @@ as *;
   }
 }
 
-
-
 @keyframes breathing {
-  0% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
 
   50% {
     transform: scale(0.9);
   }
-
-  100% {
-    transform: scale(1);
-  }
 }
 
 @keyframes slideIn {
-  0% {
+  from {
     transform: translateX(-100%);
   }
 
-  100% {
+  to {
     transform: translateX(0);
   }
 }
 
 @keyframes slideOut {
-  0% {
+  from {
     transform: translateX(0);
   }
 
-  100% {
+  to {
     transform: translateX(100%);
   }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
+  .container .content {
     .carousel {
-      padding: 0px !important;
+      padding: 0 !important;
 
       :global(.slick-slide) {
         padding: 0 var(--composer-gap-sm) !important;
@@ -394,38 +348,34 @@ as *;
           }
         }
 
-        .card-header {
-          .card-description {
-            font-size: 1.2rem !important;
-          }
+        .card-header .card-description {
+          font-size: 1.2rem !important;
         }
 
-        &.active {
-          .active-after {
-            width: calc(100% + var(--composer-gap-md) + 20px);
-            left: calc(-0.5 * var(--composer-gap-md) - 10px);
-            bottom: calc(-1.2 * (var(--composer-gap-md) * 0.5 + 20px));
-            height: 80%;
-          }
+        &.active .active-after {
+          width: calc(100% + var(--composer-gap-md) + 20px);
+          left: calc(-0.5 * var(--composer-gap-md) - 10px);
+          bottom: calc(-1.2 * (var(--composer-gap-md) * 0.5 + 20px));
+          height: 80%;
         }
       }
     }
-
-
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
+  .container .content {
+    gap: var(--composer-gap-md) !important;
+
     .carousel {
       padding: 0 var(--composer-gap-md) !important;
 
-      .card .active-after {
-        display: none;
-      }
-
       :global(.slick-slide) {
         padding: 0 var(--composer-gap-md) !important;
+      }
+
+      .card .active-after {
+        display: none;
       }
 
       .dots {
@@ -439,35 +389,26 @@ as *;
         :global(.slick-active) .dot-button {
           width: 25px !important;
         }
-      }
 
-      .dots-colored {
-        li {
-          button {
-            background-color: var(--composer-font-color-primary) !important;
-          }
-        }
-
-        :global(li.slick-active) button {
+        &.dots-colored .dot-button,
+        &.dots-colored :global(.slick-active) .dot-button {
           background-color: var(--composer-font-color-primary) !important;
         }
       }
     }
-  }
 
-  .card {
-    padding: var(--composer-gap-md);
+    .card {
+      padding: var(--composer-gap-md);
 
-    .image-container {
-      width: 150px !important;
+      .image-container {
+        width: 150px !important;
 
-      &.no-round .image {
-        font-size: 10rem;
+        &.no-round .image {
+          font-size: 10rem;
+        }
       }
-    }
 
-    .card-header {
-      .card-description {
+      .card-header .card-description {
         font-size: 1.2rem !important;
       }
     }
