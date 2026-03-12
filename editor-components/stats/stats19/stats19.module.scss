@@ -1,0 +1,100 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+  .max-content .wrapper {
+    gap: var(--composer-gap-xl);
+
+    .subtitle,
+    .title,
+    .description {
+      content: "";
+    }
+
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      align-self: center;
+
+      .button,
+      .button-text {
+        content: "";
+      }
+    }
+
+    .stats-grid {
+      gap: var(--composer-gap-lg);
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        gap: var(--composer-gap-sm);
+
+        .stat-header {
+          display: flex;
+          align-items: center;
+          gap: var(--composer-gap-md);
+
+          .stat-value {
+            display: flex;
+
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+              font-size: 4rem;
+              color: var(--composer-primary-color);
+            }
+          }
+
+          .stat-content {
+            display: flex;
+            flex-direction: column;
+            color: var(--composer-font-color-primary);
+
+            .stat-subtitle,
+            .stat-title {
+              text-align: left;
+              content: "";
+            }
+          }
+        }
+
+        .stat-desc {
+          text-align: left;
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content .wrapper {
+      gap: var(--composer-gap-lg);
+      .stats-grid {
+        gap: var(--composer-gap-md);
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content .wrapper {
+      gap: var(--composer-gap-lg);
+      .stats-grid {
+        gap: var(--composer-gap-md);
+        .stat-item .stat-header .stat-value {
+          .stat-prefix,
+          .stat-number,
+          .stat-suffix {
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+  }
+}
