@@ -665,14 +665,20 @@ export namespace Base {
       case "video":
         return (
           <video
+            key={`${value.url}-${!!value.settings?.autoplay}-${!!value.settings?.loop}-${!!value.settings?.muted}`}
             className={className}
             src={value.url}
             autoPlay={!!value.settings?.autoplay}
             controls={value.settings?.controls !== false}
             loop={!!value.settings?.loop}
-            muted={!!value.settings?.muted || !!value.settings?.autoplay} // autoplay videos should be muted to avoid browser restrictions
+            muted={!!value.settings?.muted || !!value.settings?.autoplay}
             playsInline
             preload="auto"
+            ref={(el) => {
+              if (el) {
+                el.playbackRate = value.settings?.playbackRate ?? 1;
+              }
+            }}
             {...props}
           />
         );
