@@ -49,10 +49,11 @@
                             transform: none;
                             padding: 0;
                             background-color: transparent;
-                            --composer-html-background: var(--composer-font-color-primary);
-
+                            color: var(--composer-font-color-primary);
+                        
                             &::before {
                                 display: none;
+
                             }
                         }
 
