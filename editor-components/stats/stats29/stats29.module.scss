@@ -17,7 +17,7 @@
           align-items: center;
           width: 100%;
 
-          .left-container {
+          .header-content {
             flex: 1;
             width: 100%;
 
@@ -77,7 +77,7 @@
               }
 
               .stat-prefix {
-                font-size: 2rem;
+                font-size: 6rem;
               }
 
               .stat-suffix {
@@ -128,7 +128,7 @@
           .header-container {
             flex-direction: column;
 
-            .left-container {
+            .header-content {
               .button-container {
                 display: flex;
                 align-self: inherit;
@@ -168,7 +168,7 @@
             flex-direction: column;
             align-items: var(--composer-content-alignment);
 
-            .left-container {
+            .header-content {
               .description {
                 max-width: 100%;
               }

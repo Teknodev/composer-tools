@@ -103,6 +103,14 @@ class Stats29 extends BaseStats {
 
 
     this.addProp({
+      type: "number",
+      key: "itemCountInRow",
+      displayer: "Item Count in a Row",
+      value: 2,
+      max: 9,
+    });
+
+    this.addProp({
       type: "object",
       key: "animation",
       displayer: "Animation",
@@ -225,6 +233,7 @@ class Stats29 extends BaseStats {
     const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
     const statsAnimation = !!animationProps?.statsAnimation;
     const animationDuration = animationProps?.animationDuration || 2000;
+    const itemCountInRow = this.getPropValue("itemCountInRow") || 2;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -232,7 +241,7 @@ class Stats29 extends BaseStats {
           <div className={this.decorateCSS("card")}>
             <div className={this.decorateCSS("card-content")}>
               <div className={this.decorateCSS("header-container")}>
-                <Base.VerticalContent className={this.decorateCSS("left-container")}>
+                <Base.VerticalContent className={this.decorateCSS("header-content")}>
                   {isSubtitleExist && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {subtitle}
@@ -272,7 +281,7 @@ class Stats29 extends BaseStats {
 
               {stats?.length > 0 && (
                 <Base.ListGrid
-                  gridCount={{ pc: 2, tablet: 1, phone: 1 }}
+                  gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }}
                   className={this.decorateCSS("stats-grid")}
                 >
                   {stats.map((stat: StatItem, index: number) => (
