@@ -61,8 +61,10 @@ class CallToAction34Page extends BaseCallToAction {
                     },
                     value: {
                         type: "image",
-                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a5989e771c03002ccbd6c4?alt=media"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a5989e771c03002ccbd6c4?alt=media",
+
                     },
+
 
                 },
                 {
@@ -93,6 +95,9 @@ class CallToAction34Page extends BaseCallToAction {
         const media = mediaGroup.media;
         const showOverlay = mediaGroup.overlay;
         const isVideo = media?.type === "video";
+        // Linkin içinde "youtube" geçiyorsa YouTube'dur, geçmiyorsa normal dosyadır (mp4 vb.)
+        const isYouTube = media?.url?.includes("youtube.com") || media?.url?.includes("youtu.be");
+
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -148,7 +153,8 @@ class CallToAction34Page extends BaseCallToAction {
                             <div className={this.decorateCSS("right-column")}>
                                 <div className={`${this.decorateCSS("media-container")} ${isVideo ? this.decorateCSS("is-video") : ""}`}>
                                     {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
-                                    {isVideo ? (
+
+                                    {isVideo && isYouTube ? (
                                         <iframe
                                             src={media.url}
                                             className={this.decorateCSS("media")}
@@ -158,11 +164,10 @@ class CallToAction34Page extends BaseCallToAction {
                                         ></iframe>
                                     ) : (
                                         <Base.Media
-                                            value={media}
+                                            value={isVideo ? { ...media, settings: { autoplay: true, muted: true, loop: true } } : media}
                                             className={this.decorateCSS("media")}
                                         />
                                     )}
-
                                 </div>
                             </div>
                         )}
