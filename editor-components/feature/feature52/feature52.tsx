@@ -11,14 +11,6 @@ type ServiceItemType = {
     description: React.JSX.Element;
 };
 
-type ButtonItemType = {
-    text: React.JSX.Element;
-    url: string;
-    type: INPUTS.CastedButton;
-    icon?: TypeMediaInputValue;
-    image?: TypeMediaInputValue;
-};
-
 class Feature52 extends BaseFeature {
     constructor(props?: TypeUsableComponentProps) {
         super(props, styles);
@@ -310,9 +302,10 @@ class Feature52 extends BaseFeature {
 
                         {hasListContent && (
                             <div className={this.decorateCSS("list-container")}>
+                                {line && <div className={this.decorateCSS("line")}></div>}
                                 <Base.ListGrid
                                     className={`${this.decorateCSS("list-grid")} ${line && this.decorateCSS("has-line")}`}
-                                    gridCount={{ pc: itemCount, tablet: tabletItemCount, phone: 1 }}
+                                    gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                                 >
                                     {services.map((item: ServiceItemType, index: number) => {
                                         const itemTitleExist = this.castToString(item.title);
@@ -328,7 +321,6 @@ class Feature52 extends BaseFeature {
                                                 key={`feature52-service-${index}`}
                                                 className={`${this.decorateCSS("item-container")} ${isActive && this.decorateCSS("active-item")}`}
                                             >
-                                                {line && index === 0 && <div className={this.decorateCSS("line")}></div>}
                                                 {itemHeaderExist && (
                                                     <div
                                                         className={this.decorateCSS("item-header")}
