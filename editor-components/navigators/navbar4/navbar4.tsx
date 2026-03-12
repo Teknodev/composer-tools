@@ -1429,7 +1429,7 @@ class Navbar4 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         {topBar && (
           <Base.Container className={`${this.decorateCSS("upperContainer")} ${this.getPropValue("line") ? this.decorateCSS("showLine") : ""}`}>
             {topBar && (
@@ -1856,7 +1856,7 @@ class Navbar4 extends BaseNavigator {
           onClick={() => this.handleCloseMenu()}
           isVisible = {isVisible}
         />
-      </>
+      </div>
     );
   }
 }

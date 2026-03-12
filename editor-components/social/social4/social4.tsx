@@ -1758,7 +1758,7 @@ class Social4 extends BaseSocial {
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     return (
-        <>
+        <div className={this.decorateCSS("social4-root")}>
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
         {isTitleExist && (
@@ -1931,7 +1931,7 @@ class Social4 extends BaseSocial {
             </div>
         )}
       </Base.Overlay>
-        </>
+        </div>
 
     );
   }
