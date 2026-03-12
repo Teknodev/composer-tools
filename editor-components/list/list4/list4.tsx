@@ -187,110 +187,125 @@ class List4 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist || descriptionExist) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
-              )}
-              {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {descriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
-          )}
-          <Base.ListGrid className={this.decorateCSS("services-grid")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
-            {this.castToObject<Card[]>("content-card").map(
-              (card: Card, index: number) => {
-                const hasTitle = this.castToString(card.title);
-                const hasDescription = this.castToString(card.description);
-                const hasIcon = !!card.icon;
-
-                if (!hasTitle && !hasDescription && !hasIcon) return null;
-                return (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("service-item")}
-                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                  >
-                    <div className={this.decorateCSS("border-frame")}>
-                      <div className={this.decorateCSS("border-left")}></div>
-                      <div className={this.decorateCSS("border-top")}></div>
-                      <div className={this.decorateCSS("border-right")}></div>
-                      <div className={this.decorateCSS("border-bottom")}></div>
-                    </div>
-                    {this.getPropValue("showIndex") && (
-                      <div
-                        className={`${this.decorateCSS("item-index")} ${this.decorateCSS("index")}`}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                      >
-                        {(index + 1).toLocaleString("en-US", {
-                          minimumIntegerDigits: 2,
-                          useGrouping: false,
-                        })}
-                      </div>
-                    )}
-                    <div
-                      key={`cnt-4-card-${index}`}
-                      className={this.decorateCSS("card-content")}
-                    >
-                      <Base.VerticalContent
-                        className={this.decorateCSS("card-body")}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                      >
-                        {card.icon && (
-                          <Base.Media
-                            value={card.icon}
-                            className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
-                          />
-                        )}
-
-                        <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                          {hasTitle && (
-                            <Base.H4
-                              className={this.decorateCSS("item-title")}
-                            >
-                              {card.title}
-                            </Base.H4>
-                          )}
-                          {hasDescription && (
-                            <Base.P className={this.decorateCSS("item-description")}>
-                              {card.description}
-                            </Base.P>
-                          )}
-                        </Base.VerticalContent>
-                      </Base.VerticalContent>
-                    </div>
+          <div className={this.decorateCSS("content")}>
+            {(subtitleExist || titleExist || descriptionExist || buttons?.length > 0) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {buttons?.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((item: CardButton, index: number) => {
+                      const buttonText = this.castToString(item.text);
+                      const iconMedia = item.icon as TypeMediaInputValue;
+                      const iconExist =
+                        iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                      if (!buttonText && !iconExist) return null;
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button
+                            buttonType={item.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {item.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                className={this.decorateCSS("button-icon")}
+                                value={iconMedia}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
-                )
-              }
+                )}
+              </Base.VerticalContent>
             )}
-          </Base.ListGrid>
-          {buttons?.length > 0 && (
-            <div className={this.decorateCSS("button-wrapper")}>
-              {buttons.map((item: CardButton, index: number) => {
-                const buttonText = this.castToString(item.text);
-                const iconMedia = item.icon as TypeMediaInputValue;
-                const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
-                if (!buttonText && !iconExist) return null;
-                return (
-                  <ComposerLink key={index} path={item.url}>
-                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                      {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
-                      {iconExist && <Base.Media className={this.decorateCSS("button-icon")} value={iconMedia} />}
-                    </Base.Button>
-                  </ComposerLink>
-                );
-              })}
-            </div>
-          )}
+            <Base.ListGrid className={this.decorateCSS("services-grid")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
+              {this.castToObject<Card[]>("content-card").map(
+                (card: Card, index: number) => {
+                  const hasTitle = this.castToString(card.title);
+                  const hasDescription = this.castToString(card.description);
+                  const hasIcon = !!card.icon;
+
+                  if (!hasTitle && !hasDescription && !hasIcon) return null;
+                  return (
+                    <div
+                      key={index}
+                      className={this.decorateCSS("service-item")}
+                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                    >
+                      <div className={this.decorateCSS("border-frame")}>
+                        <div className={this.decorateCSS("border-left")}></div>
+                        <div className={this.decorateCSS("border-top")}></div>
+                        <div className={this.decorateCSS("border-right")}></div>
+                        <div className={this.decorateCSS("border-bottom")}></div>
+                      </div>
+                      {this.getPropValue("showIndex") && (
+                        <div
+                          className={`${this.decorateCSS("item-index")} ${this.decorateCSS("index")}`}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                        >
+                          {(index + 1).toLocaleString("en-US", {
+                            minimumIntegerDigits: 2,
+                            useGrouping: false,
+                          })}
+                        </div>
+                      )}
+                      <div
+                        key={`cnt-4-card-${index}`}
+                        className={this.decorateCSS("card-content")}
+                      >
+                        <Base.VerticalContent
+                          className={this.decorateCSS("card-body")}
+                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                        >
+                          {card.icon && (
+                            <Base.Media
+                              value={card.icon}
+                              className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                            />
+                          )}
+
+                          <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
+                            {hasTitle && (
+                              <Base.H4
+                                className={this.decorateCSS("item-title")}
+                              >
+                                {card.title}
+                              </Base.H4>
+                            )}
+                            {hasDescription && (
+                              <Base.P className={this.decorateCSS("item-description")}>
+                                {card.description}
+                              </Base.P>
+                            )}
+                          </Base.VerticalContent>
+                        </Base.VerticalContent>
+                      </div>
+                    </div>
+                  )
+                }
+              )}
+            </Base.ListGrid>
+          </div>
         </Base.MaxContent>
       </Base.Container >
     );
