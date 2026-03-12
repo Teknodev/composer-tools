@@ -328,7 +328,7 @@ class Stats34 extends BaseStats {
                         )}
 
                         {stats.length > 0 && (
-                            <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                 {stats.map((stat: StatItem, index: number) => (
                                     <this.AnimatedStat
                                         key={`stat34-${index}`}
