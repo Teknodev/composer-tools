@@ -1,0 +1,187 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: var(--composer-primary-color);
+    .max-content {
+        .wrapper {
+            display: flex;
+            align-items: stretch;
+            gap: calc(var(--composer-gap-lg) * 2);
+            min-width: 0;
+
+            .content {
+                flex: 1.5 1 0%;
+                min-width: 0;
+                align-items: flex-start;
+                display: flex;
+                flex-direction: column;
+                
+
+                .subtitle,
+                .title,
+                .description {
+                    text-align: left;
+                    margin-left: 0;
+                    margin-right: 0;
+                    color: var(--composer-font-color-secondary);
+                }
+
+                .subtitle {
+                    background: transparent;
+                    padding: 0;
+                    border-radius: 0;
+
+                    &::before {
+                        background-color: var(--composer-font-color-secondary);
+                    }
+                }
+
+                .buttons-wrapper {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            .media-wrapper {
+                flex: 0 1 35%;
+                min-width: 240px;
+                max-width: 480px;
+                display: flex;
+            }
+
+            .media-container {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                min-height: 380px;
+                border-radius: var(--composer-border-radius-sm);
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .media {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .media-overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: var(--composer-overlay-color);
+                }
+            }
+
+            .stats-grid {
+                flex: 1 1 0%;
+                min-width: 0;
+                align-content: space-between;
+
+                .stat-item {
+                    align-items: flex-start;
+
+                    .stat-value {
+                        color: var(--composer-font-color-secondary);
+                        display: flex;
+                        align-items: center;
+                        font-size: 5rem;
+
+                        .stat-prefix,
+                        .stat-number,
+                        .stat-suffix {
+                            color: inherit;
+                        }
+                    }
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: left;
+                        color: var(--composer-font-color-secondary);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .wrapper {
+        .stats-grid .stat-item .stat-value {
+            font-size: 4rem;
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--composer-gap-lg);
+
+        &.alignment-center {
+            align-items: center;
+
+            .content {
+                align-items: center;
+
+                .subtitle,
+                .title,
+                .description {
+                    text-align: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .buttons-wrapper {
+                    justify-content: center;
+                }
+            }
+
+            .stats-grid {
+                .stat-item {
+                    align-items: center;
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        .media-wrapper {
+            width: 100%;
+        }
+
+        .media-container {
+            width: 100%;
+            height: auto;
+            min-height: unset;
+            aspect-ratio: 16 / 9;
+        }
+
+        .stats-grid {
+            width: 100%;
+
+            .stat-item {
+                .stat-value {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
+}
