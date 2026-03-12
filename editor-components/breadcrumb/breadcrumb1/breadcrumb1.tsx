@@ -141,7 +141,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
         const alignmentValue = Base.getContentAlignment();
 
         return (
-            <>
+            <div className={this.decorateCSS("breadcrumb1-root")}>
                 {(bgImage?.url || isTitleExist) && (
                     <Base.Container
                         className={this.decorateCSS("container")}
@@ -227,7 +227,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         </Base.MaxContent>
                     </Base.Container>
                 )}
-            </>
+            </div>
         );
     }
 }
