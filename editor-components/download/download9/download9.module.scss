@@ -98,7 +98,6 @@
     }
 
     .middle-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
       z-index: 3;
       width: 100%;
       min-width: 100%;
@@ -127,7 +126,6 @@
     }
 
     .hover-container {
-      padding: var(--composer-gap-md) var(--composer-gap-xl);
       z-index: 2;
       width: 100vw;
       min-width: 100%;
@@ -224,13 +222,7 @@
       .max-content {
         min-height: auto;
 
-        .middle-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-        }
-
         .hover-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-
           .buttons-container {
             .button-image {
               height: 40px !important;
@@ -253,13 +245,7 @@
 
     .page {
       .max-content {
-        .middle-container {
-          padding: var(--composer-gap-md);
-        }
-
         .hover-container {
-          padding: var(--composer-gap-md);
-
           .buttons-container {
             .button-image {
               height: 28px !important;
