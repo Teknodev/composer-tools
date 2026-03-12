@@ -21,7 +21,10 @@
                 width: 100%;
 
                 .stats-grid {
+                    grid-template-columns: repeat(var(--composer-grid-count), auto) !important;
+                    justify-content: space-between;
                     align-items: start;
+                    gap: var(--composer-gap-md);
 
                     .stat-card {
                         border-radius: var(--composer-border-radius-full);
@@ -32,27 +35,30 @@
                         justify-content: center;
                         padding: 8%;
                         box-sizing: border-box;
-                        overflow: visible;
-                        overflow-wrap: anywhere;
-                        justify-self: center;
+                        overflow: hidden;
 
                         .stat-item {
                             align-items: center;
                             text-align: center;
+                            min-height: 0;
 
                             .stat-value {
                                 display: flex;
                                 align-items: baseline;
                                 font-weight: var(--composer-font-weight-bold);
-                                font-size: 2.5rem;
+                                font-size: 2.75rem;
                                 color: inherit;
-                                white-space: nowrap;
 
                                 .stat-prefix,
                                 .stat-number,
                                 .stat-suffix {
                                     color: inherit;
                                 }
+                            }
+
+                            .stat-subtitle {
+                                color: inherit;
+                                font-size: var(--composer-font-size-sm);
                             }
 
                             .stat-title {
@@ -68,8 +74,7 @@
                             }
                         }
 
-                        // 1st card: small, dark — shifted down
-                        &:nth-child(4n + 1) {
+                        &.stat-card-1 {
                             min-width: 170px;
                             min-height: 170px;
                             background-color: color-mix(
@@ -81,21 +86,15 @@
                             transform: translateY(40%);
                         }
 
-                        // 2nd card: large, very dark — stays at top
-                        &:nth-child(4n + 2) {
+                        &.stat-card-2 {
                             min-width: 270px;
                             min-height: 270px;
                             background-color: var(--composer-font-color-primary);
                             color: var(--composer-html-background);
                             transform: translateY(25%);
-
-                            .stat-item .stat-value {
-                                font-size: 3rem;
-                            }
                         }
 
-                        // 3rd card: large, light gray — slightly down
-                        &:nth-child(4n + 3) {
+                        &.stat-card-3 {
                             min-width: 270px;
                             min-height: 270px;
                             background-color: color-mix(
@@ -105,14 +104,9 @@
                             );
                             color: var(--composer-font-color-primary);
                             transform: translateY(3%);
-
-                            .stat-item .stat-value {
-                                font-size: 3rem;
-                            }
                         }
 
-                        // 4th card: small, primary/purple — shifted down
-                        &:nth-child(4n + 4) {
+                        &.stat-card-4 {
                             min-width: 170px;
                             min-height: 170px;
                             background-color: var(--composer-primary-color);
@@ -141,6 +135,9 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .content .stats-grid-wrapper .stats-grid {
+        grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr) !important;
+        justify-content: unset;
+
         .stat-card {
             transform: none !important;
             width: 100%;
@@ -148,7 +145,7 @@
             min-height: unset !important;
 
             .stat-item .stat-value {
-                font-size: 2.5rem !important;
+                font-size: 2.75rem !important;
             }
         }
     }

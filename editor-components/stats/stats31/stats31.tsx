@@ -3,7 +3,7 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats31.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type StatItem = {
     prefix: string;
@@ -11,6 +11,8 @@ type StatItem = {
     suffix: string;
     title: string;
     titleElement: JSX.Element;
+    subtitle: string;
+    subtitleElement: JSX.Element;
     description: string;
     descriptionElement: JSX.Element;
 };
@@ -44,6 +46,7 @@ class Stats31 extends BaseStats {
             type: "array",
             key: "stats",
             displayer: "Stats",
+            additionalParams: { maxElementCount: 12 },
             value: [
                 {
                     type: "object",
@@ -53,6 +56,7 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "promotion tools" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
@@ -65,6 +69,7 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "number", displayer: "Value", value: "75000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "total net profit every month" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
@@ -77,6 +82,7 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "35" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "of satisfied customers!" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
@@ -89,6 +95,7 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "8" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "years of successful experience" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
@@ -168,10 +175,11 @@ class Stats31 extends BaseStats {
 
         const formattedNumber = statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber);
         const titleExist = stat.title && stat.title !== "";
+        const subtitleExist = stat.subtitle && stat.subtitle !== "";
         const descriptionExist = stat.description && stat.description !== "";
         const valueExist = originalString && originalString !== "";
 
-        if (!valueExist && !titleExist && !descriptionExist) return null;
+        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
@@ -191,6 +199,11 @@ class Stats31 extends BaseStats {
                             </span>
                         )}
                     </span>
+                )}
+                {subtitleExist && (
+                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                        {stat.subtitleElement}
+                    </Base.H6>
                 )}
                 {titleExist && (
                     <Base.P className={this.decorateCSS("stat-title")}>
@@ -213,15 +226,18 @@ class Stats31 extends BaseStats {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const itemCount = this.getPropValue("itemCount");
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; description: JSX.Element }[]>("stats");
+        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
             const number = this.castToString(item.number) || "0";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
+            const subtitle = this.castToString(item.subtitle) || "";
             const description = this.castToString(item.description) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, description, descriptionElement: item.description };
+            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
         });
+
+        const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
@@ -255,9 +271,9 @@ class Stats31 extends BaseStats {
 
                         {stats.length > 0 && (
                             <div className={this.decorateCSS("stats-grid-wrapper")}>
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                     {stats.map((stat: StatItem, index: number) => (
-                                        <div key={`stat31-${index}`} className={this.decorateCSS("stat-card")}>
+                                        <div key={`stat31-${index}`} className={`${this.decorateCSS("stat-card")} ${this.decorateCSS(`stat-card-${(index % 4) + 1}`)}`}>
                                             <this.AnimatedStat
                                                 stat={stat}
                                                 animationDuration={animationDuration}
@@ -269,9 +285,9 @@ class Stats31 extends BaseStats {
                             </div>
                         )}
 
-                        {buttons.length > 0 && (
+                        {visibleButtons.length > 0 && (
                             <div className={this.decorateCSS("button-container")}>
-                                {buttons.map(
+                                {visibleButtons.map(
                                     (item: INPUTS.CastedButton, index: number) => {
                                         const buttonText = this.castToString(item.text);
 
