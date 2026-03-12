@@ -8,11 +8,6 @@
             .header-container {
                 .subtitle {
                     width: fit-content;
-                    transform: none;
-
-                    &::before {
-                        display: none;
-                    }
                 }
             }
 
