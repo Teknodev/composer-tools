@@ -380,6 +380,7 @@ export enum CATEGORIES {
   COMPARISON = "comparison",
   CUSTOM = "custom",
   GLOBAL = "global",
+  PRIVACY = "privacy",
 }
 
 export function generateId(key: string): string {
@@ -1014,6 +1015,10 @@ export abstract class BaseDownload extends Component {
 
 export abstract class BaseCallToAction extends Component {
   static category = CATEGORIES.CALLTOACTION;
+}
+
+export abstract class BasePrivacy extends Component {
+  static category = CATEGORIES.PRIVACY;
 }
 
 export abstract class BaseSlider extends Component {

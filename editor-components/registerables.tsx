@@ -10,6 +10,11 @@ import DownloadComponent8 from "./download/download8/download8";
 import DownloadComponent9 from "./download/download9/download9";
 import DownloadComponent10 from "./download/download10/download10";
 import DownloadComponent11 from "./download/download11/download11";
+import Privacy1 from "./privacy/privacy1/privacy1";
+import Privacy2 from "./privacy/privacy2/privacy2";
+import Privacy3 from "./privacy/privacy3/privacy3";
+import Privacy4 from "./privacy/privacy4/privacy4";
+import Privacy5 from "./privacy/privacy5/privacy5";
 import ListComponent1 from "./list/list1/list1";
 import ListComponent2 from "./list/list2/list2";
 import ListComponent3 from "./list/list3/list3";
@@ -389,6 +394,11 @@ function Registerables(composer: ComponentsRegistery) {
     Blog1,
     Blog2,
     Blog3,
+    Privacy1,
+    Privacy2,
+    Privacy3,
+    Privacy4,
+    Privacy5,
     SliderComponent1,
     SliderComponent2,
     SliderComponent3,
