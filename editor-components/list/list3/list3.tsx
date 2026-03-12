@@ -183,17 +183,23 @@ class List3 extends BaseList {
       ],
     });
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 4,
-      max: 4,
+      type: "boolean",
+      key: "showLines",
+      displayer: "Show Lines",
+      value: true,
     });
     this.addProp({
       type: "boolean",
       key: "showCardNumber",
       displayer: "Show Card Number",
       value: true,
+    });
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 4,
+      max: 4,
     });
     this.addProp({
       type: "multiSelect",
@@ -203,12 +209,6 @@ class List3 extends BaseList {
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3", "animate4", "animate5"]
       }
-    });
-    this.addProp({
-      type: "boolean",
-      key: "showLines",
-      displayer: "Show Lines",
-      value: true,
     });
   }
 
@@ -222,7 +222,6 @@ class List3 extends BaseList {
     const itemCount = this.getPropValue("itemCount");
     const showCardNumber = this.getPropValue("showCardNumber");
     const showLines = this.getPropValue("showLines");
-
     const alignment = Base.getContentAlignment();
     const hasHeaderContent = subtitleExist || titleExist || descriptionExist || buttons?.length > 0;
 
@@ -266,9 +265,7 @@ class List3 extends BaseList {
                           className={this.decorateCSS("button")}
                         >
                           {buttonText && (
-                            <Base.P
-                              className={this.decorateCSS("button-text")}
-                            >
+                            <Base.P className={this.decorateCSS("button-text")}>
                               {btn.text}
                             </Base.P>
                           )}
@@ -299,7 +296,7 @@ class List3 extends BaseList {
                     )}
                     {listItem.texts.map((item: TextItem, tIndex: number) => (
                       <Base.VerticalContent key={tIndex} className={this.decorateCSS("event-item")}>
-                        {this.getPropValue("showLines") && tIndex > 0 && (
+                        {showLines && tIndex > 0 && (
                           <div className={this.decorateCSS("divider")}></div>
                         )}
                         {this.castToString(item.topText) && (
@@ -311,7 +308,7 @@ class List3 extends BaseList {
                       </Base.VerticalContent>
                     ))}
                   </Base.VerticalContent>
-                  {this.getPropValue("showCardNumber") && (
+                  {showCardNumber && (
                     <Base.H1 className={this.decorateCSS("card-number")}>
                       {index < 9 ? `0${index + 1}` : index + 1}
                     </Base.H1>

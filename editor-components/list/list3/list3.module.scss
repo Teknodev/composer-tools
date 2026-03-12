@@ -1,41 +1,33 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px 0px !important;
-
   .max-content {
     .cards-grid {
       gap: 0;
 
       &.alignment-center {
-        text-align: left !important;
+        text-align: left;
 
-        .card {
-          .card-content {
-            align-items: flex-start !important;
-            text-align: left !important;
+        .card .card-content {
+          align-items: flex-start;
+          text-align: left;
 
-            .card-title {
-              text-align: left !important;
-            }
+          .card-title,
+          .event-item,
+          .event-text-top,
+          .event-text-bottom,
+          .divider {
+            text-align: left;
+          }
 
-            .event-item {
-              align-items: flex-start !important;
-              text-align: left !important;
-            }
-
-            .event-text-top,
-            .event-text-bottom,
-            .divider {
-              text-align: left !important;
-            }
+          .event-item {
+            align-items: flex-start;
           }
         }
       }
 
       .card-number {
-        text-align: left !important;
+        text-align: left;
         left: var(--composer-gap-xl);
         bottom: -40px;
         transform: scale(1.15);
@@ -63,25 +55,16 @@ as *;
             margin-left: 0;
             margin-right: auto;
           }
-
-          .subtitle,
-          .title,
-          .description {
-            content: "";
-          }
         }
 
         &[data-animation~="animate5"]:hover {
-          .button {
-            .button-text {
-              transform: translateX(-5px);
-            }
-
-            .button-icon {
-              transform: translateX(5px);
-            }
+          .button .button-text {
+            transform: translateX(-5px);
           }
 
+          .button .button-icon {
+            transform: translateX(5px);
+          }
         }
 
         .button {
@@ -117,24 +100,15 @@ as *;
           color: var(--composer-font-color-secondary);
           transform: scaleY(1.1);
 
-          .card-title {
-            color: var(--composer-font-color-secondary);
-          }
-
-          .event-item {
-
-            .event-text-top,
-            .event-text-bottom {
-              color: var(--composer-font-color-secondary);
-            }
-
-            .divider {
-              background-color: var(--composer-font-color-secondary);
-            }
-          }
-
+          .card-title,
+          .event-item .event-text-top,
+          .event-item .event-text-bottom,
           .card-number {
             color: var(--composer-font-color-secondary);
+          }
+
+          .event-item .divider {
+            background-color: var(--composer-font-color-secondary);
           }
         }
 
@@ -154,10 +128,7 @@ as *;
           &::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: var(--composer-primary-color);
             transform: scaleX(0);
             transform-origin: right;
@@ -193,35 +164,27 @@ as *;
           }
         }
 
-        &[data-animation~="animate3"] {
-          .event-text-top {
-            &::before {
-              position: absolute;
-              content: "";
-              background-color: var(--composer-font-color-primary);
-              border-radius: var(--composer-border-radius-full);
-              width: var(--composer-gap-xs);
-              height: var(--composer-gap-xs);
-              left: -10%;
-              bottom: 50%;
-              animation: pulse-animation 2s infinite;
-              transition: animation 2s ease-in-out;
-            }
-          }
+        &[data-animation~="animate3"] .event-text-top::before {
+          position: absolute;
+          content: "";
+          background-color: var(--composer-font-color-primary);
+          border-radius: var(--composer-border-radius-full);
+          width: var(--composer-gap-xs);
+          height: var(--composer-gap-xs);
+          left: -10%;
+          bottom: 50%;
+          animation: pulse-animation 2s infinite;
+          transition: animation 2s ease-in-out;
         }
 
-        &[data-animation~="animate4"]:hover {
-          .divider {
-            &::before {
-              content: "";
-              position: absolute;
-              width: 100%;
-              height: 100%;
-              background-color: var(--composer-font-color-primary);
-              animation: animate 1s linear 1;
-              transition: animation 1.5s ease-in-out;
-            }
-          }
+        &[data-animation~="animate4"]:hover .divider::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-color: var(--composer-font-color-primary);
+          animation: animate 1s linear 1;
+          transition: animation 1.5s ease-in-out;
         }
 
         .card-content {
@@ -244,10 +207,7 @@ as *;
             flex-direction: column;
             margin: 0;
 
-            .event-text-top {
-              color: var(--composer-tertiary-color);
-            }
-
+            .event-text-top,
             .event-text-bottom {
               color: var(--composer-tertiary-color);
             }
@@ -256,15 +216,12 @@ as *;
               display: block;
               height: var(--composer-border-width-xs);
               width: 100%;
-              background-color: rgba(var(--composer-font-color-primary-rgb),
-                  0.2);
-              margin: 0;
+              background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
+              margin: 0 0 var(--composer-gap-sm);
               position: relative;
               transform: scaleX(1);
               transform-origin: center;
               transition: transform var(--composer-transition-duration-normal) ease-out;
-              margin-bottom: var(--composer-gap-sm);
-
             }
           }
         }
@@ -285,7 +242,6 @@ as *;
     }
   }
 }
-
 
 @keyframes pulse-animation {
   0% {
@@ -310,38 +266,34 @@ as *;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .cards-grid {
-        .intro-card {
-          padding: var(--composer-gap-lg);
-          align-items: flex-start;
-          text-align: left;
+  .container .max-content .cards-grid {
+    .intro-card {
+      padding: var(--composer-gap-lg);
+      align-items: flex-start;
+      text-align: left;
 
-          .button {
-            align-self: flex-start;
-          }
-        }
+      .button {
+        align-self: flex-start;
+      }
+    }
 
-        .card {
-          padding: var(--composer-gap-xl) var(--composer-gap-lg);
+    .card {
+      padding: var(--composer-gap-xl) var(--composer-gap-lg);
 
-          &[data-animation~="animate1"]:hover {
-            transform: none;
-          }
+      &[data-animation~="animate1"]:hover {
+        transform: none;
+      }
 
-          .card-content {
-            gap: var(--composer-gap-md);
-          }
+      .card-content {
+        gap: var(--composer-gap-md);
+      }
 
-          .card-number {
-            left: var(--composer-gap-lg);
-            bottom: -50px;
-            font-size: 12rem;
-            transform: scale(2.5);
-            transform-origin: left bottom;
-          }
-        }
+      .card-number {
+        left: var(--composer-gap-lg);
+        bottom: -50px;
+        font-size: 12rem;
+        transform: scale(2.5);
+        transform-origin: left bottom;
       }
     }
   }
@@ -351,80 +303,64 @@ as *;
   .container {
     padding: var(--composer-gap-xl) 0 !important;
 
-    .max-content {
-      .cards-grid {
-        gap: 0;
+    .max-content .cards-grid {
+      gap: 0;
 
-        &.alignment-center {
-          text-align: center;
-        }
+      &.alignment-center {
+        text-align: center;
+      }
 
-        .intro-card {
-          padding: var(--composer-gap-md);
-          align-items: flex-start;
-          text-align: left;
+      .intro-card {
+        padding: var(--composer-gap-md);
+        align-items: flex-start;
+        text-align: left;
 
-          .intro-content {
-            .subtitle {
-              transform: translateX(0);
+        .intro-content .subtitle {
+          transform: translateX(0);
 
-              &::before {
-                display: none;
-              }
-            }
-          }
-
-          .button {
-            align-self: flex-start;
+          &::before {
+            display: none;
           }
         }
 
-        .card {
-          padding: var(--composer-gap-lg) var(--composer-gap-md) !important;
-
-          .card-content {
-            gap: var(--composer-gap-md);
-            align-items: flex-start;
-            text-align: left;
-
-            .card-title {
-              text-align: left;
-            }
-
-            .event-item {
-              align-items: flex-start;
-              text-align: left;
-
-              .event-text-top {
-                text-align: left;
-              }
-
-              .event-text-bottom {
-                text-align: left;
-              }
-            }
-          }
-
-          .card-number {
-            bottom: -48px;
-            left: var(--composer-gap-sm);
-            font-size: 6rem;
-            transform: scale(2.5);
-            transform-origin: left bottom;
-          }
+        .button {
+          align-self: flex-start;
         }
+      }
 
-        .card[data-animation~="animate1"]:hover {
+      .card {
+        padding: var(--composer-gap-lg) var(--composer-gap-md) !important;
+
+        &[data-animation~="animate1"]:hover {
           transform: none;
         }
 
-        .card {
-          .card-number {
-            left: var(--composer-gap-md) !important;
-            bottom: -50px;
-            transform: scale(2.7);
-            transform-origin: left bottom;
+        .card-content {
+          gap: var(--composer-gap-md);
+          align-items: flex-start;
+          text-align: left;
+
+          .card-title {
+            text-align: left;
           }
+
+          .event-item {
+            align-items: flex-start;
+            text-align: left;
+
+            .event-text-top,
+            .event-text-bottom {
+              text-align: left;
+            }
+          }
+        }
+
+        .card-number {
+          left: var(--composer-gap-md) !important;
+          bottom: -50px;
+          font-size: 6rem;
+          transform: scale(2.7);
+          transform-origin: left bottom;
         }
       }
     }
