@@ -48,8 +48,8 @@ class Stats32 extends BaseStats {
 
         this.addProp({
             type: "object",
-            key: "mediaGroup",
-            displayer: "Media Settings",
+            key: "mediaCard",
+            displayer: "Media",
             value: [
                 {
                     type: "media",
@@ -62,8 +62,8 @@ class Stats32 extends BaseStats {
                 },
                 {
                     type: "boolean",
-                    key: "showOverlay",
-                    displayer: "Show Overlay",
+                    key: "Overlay",
+                    displayer: "Overlay",
                     value: false,
                 },
             ],
@@ -91,10 +91,10 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "10" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in revenue" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
-                        { type: "string", key: "label", displayer: "Label", value: "Increase in revenue" },
+                        // { type: "string", key: "label", displayer: "Label", value: "" },
                     ],
                 },
                 {
@@ -105,10 +105,10 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "250" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in signups" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
-                        { type: "string", key: "label", displayer: "Label", value: "Increase in signups" },
+                        // { type: "string", key: "label", displayer: "Label", value: "" },
                     ],
                 },
             ],
@@ -215,11 +215,11 @@ class Stats32 extends BaseStats {
                         {stat.descriptionElement}
                     </Base.P>
                 )}
-                {labelExist && (
+                {/* {labelExist && (
                     <Base.H6 className={this.decorateCSS("stat-label")}>
                         {stat.labelElement}
                     </Base.H6>
-                )}
+                )} */}
             </Base.VerticalContent>
         );
     };
@@ -228,10 +228,9 @@ class Stats32 extends BaseStats {
         const title = this.castToString(this.getPropValue("title"));
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const description = this.castToString(this.getPropValue("description"));
-        const alignment = Base.getContentAlignment();
-        const mediaGroup = this.castToObject<any>("mediaGroup");
-        const media = mediaGroup?.media || {};
-        const showOverlay = !!mediaGroup?.showOverlay;
+        const mediaCard = this.castToObject<any>("mediaCard");
+        const media = mediaCard?.media || {};
+        const overlay = !!mediaCard?.Overlay;
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasButtons = buttons.some(btn => this.castToString(btn.text));
 
@@ -265,15 +264,14 @@ class Stats32 extends BaseStats {
         const descriptionExist = this.castToString(description);
         const hasTextSection = subtitleExist || titleExist || descriptionExist || hasButtons;
         const hasStats = stats.length > 0;
+        const noText = !hasTextSection && !hasStats;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div
-                        className={`${this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""} ${!mediaExist ? this.decorateCSS("no-media") : ""}`}
-                    >
+                    <div className={`${this.decorateCSS("content-wrapper")} ${!mediaExist ? this.decorateCSS("no-media") : ""} ${noText ? this.decorateCSS("no-text") : ""}`}>
                         {(hasTextSection || hasStats) && (
-                            <div className={this.decorateCSS("text-card")}>
+                            <Base.VerticalContent className={this.decorateCSS("text-card")}>
                                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                     {subtitleExist && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -296,14 +294,15 @@ class Stats32 extends BaseStats {
                                                 if (!this.castToString(item.text)) return null;
                                                 return (
                                                     <ComposerLink key={index} path={item.url}>
-                                                        <Base.Button buttonType={item.type}>
-                                                            <Base.P>{item.text}</Base.P>
+                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                                                         </Base.Button>
                                                     </ComposerLink>
                                                 );
                                             })}
                                         </div>
                                     )}
+
                                 </Base.VerticalContent>
 
                                 {hasStats && (
@@ -318,12 +317,12 @@ class Stats32 extends BaseStats {
                                         ))}
                                     </div>
                                 )}
-                            </div>
+                            </Base.VerticalContent>
                         )}
 
                         {mediaExist && (
                             <div className={this.decorateCSS("media-container")}>
-                                {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                                {overlay && <div className={this.decorateCSS("overlay")}></div>}
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </div>
                         )}
