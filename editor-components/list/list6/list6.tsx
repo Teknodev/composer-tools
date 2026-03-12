@@ -6,7 +6,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
-type listItem = {
+type ListItem = {
   itemIndex: React.JSX.Element;
   itemTitle: React.JSX.Element;
   itemIcon: TypeMediaInputValue;
@@ -231,7 +231,7 @@ class List6 extends BaseList {
   }
 
   render() {
-    const listItems = this.castToObject<listItem[]>("listItems");
+    const listItems = this.castToObject<ListItem[]>("listItems");
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -244,87 +244,89 @@ class List6 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist || descriptionExist) && (
-            <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
-              {subtitleExist && (
-                <Base.SectionSubTitle
-                  className={`${this.decorateCSS("subtitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
-                >
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
-              )}
-              {titleExist && (
-                <Base.SectionTitle
-                  className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
-                >
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {descriptionExist && (
-                <Base.SectionDescription
-                  className={`${this.decorateCSS("description")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
-                >
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-              {buttons?.length > 0 && (
-                <div className={`${this.decorateCSS("button-container")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
-                  {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                    if (!this.castToString(button.text)) return null;
-                    return (
-                      <ComposerLink key={index} path={button.url}>
-                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {button.text}
-                          </Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
-                </div>
-              )}
-            </Base.VerticalContent>
-          )}
-          <div className={this.decorateCSS("items-wrapper")}>
-            {listItems.map((listItem: listItem, index: number) => (
-              <div
-                key={index}
-                className={`${this.decorateCSS("list-item")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
-                data-animation={this.getPropValue("hoverAnimation").join(" ")}
-              >
-                {this.castToString(listItem.itemIndex) && (
-                  <Base.H3 className={this.decorateCSS("index")}>
-                    {listItem.itemIndex}
-                  </Base.H3>
+          <div className={this.decorateCSS("content")}>
+            {(subtitleExist || titleExist || descriptionExist) && (
+              <Base.VerticalContent className={`${this.decorateCSS("header-section")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle
+                    className={`${this.decorateCSS("subtitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                  >
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
                 )}
-                <div className={this.decorateCSS("item-content")}>
-                  {(listItem.itemIcon ||
-                    this.castToString(listItem.itemTitle)) && (
-                      <div className={`${this.decorateCSS("item-header")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
-                        {listItem.itemIcon && (
-                          <div className={this.decorateCSS("icon-wrapper")}>
-                            <Base.Media
-                              value={listItem.itemIcon}
-                              className={this.decorateCSS("icon")}
-                            />
-                          </div>
-                        )}
-                        {this.castToString(listItem.itemTitle) && (
-                          <Base.H4 className={this.decorateCSS("title")}>
-                            {listItem.itemTitle}
-                          </Base.H4>
-                        )}
-                      </div>
-                    )}
-
-                  {this.castToString(listItem.itemText) && (
-                    <Base.P className={this.decorateCSS("description")}>
-                      {listItem.itemText}
-                    </Base.P>
+                {titleExist && (
+                  <Base.SectionTitle
+                    className={`${this.decorateCSS("sectionTitle")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                  >
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription
+                    className={`${this.decorateCSS("description")} ${this.getPropValue("descriptionAnimation") && this.decorateCSS("animation")}`}
+                  >
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {buttons?.length > 0 && (
+                  <div className={`${this.decorateCSS("button-container")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      if (!this.castToString(button.text)) return null;
+                      return (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {button.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
+            <div className={this.decorateCSS("items-wrapper")}>
+              {listItems.map((item: ListItem, index: number) => (
+                <div
+                  key={index}
+                  className={`${this.decorateCSS("list-item")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
+                  {this.castToString(item.itemIndex) && (
+                    <Base.H3 className={this.decorateCSS("index")}>
+                      {item.itemIndex}
+                    </Base.H3>
                   )}
+                  <div className={this.decorateCSS("item-content")}>
+                    {(item.itemIcon ||
+                      this.castToString(item.itemTitle)) && (
+                        <div className={`${this.decorateCSS("item-header")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
+                          {item.itemIcon && (
+                            <div className={this.decorateCSS("icon-wrapper")}>
+                              <Base.Media
+                                value={item.itemIcon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            </div>
+                          )}
+                          {this.castToString(item.itemTitle) && (
+                            <Base.H4 className={this.decorateCSS("title")}>
+                              {item.itemTitle}
+                            </Base.H4>
+                          )}
+                        </div>
+                      )}
+
+                    {this.castToString(item.itemText) && (
+                      <Base.P className={this.decorateCSS("description")}>
+                        {item.itemText}
+                      </Base.P>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </Base.MaxContent>
       </Base.Container>
