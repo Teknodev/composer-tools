@@ -323,7 +323,6 @@ class HeroSection24 extends BaseHeroSection {
     const animationActive = this.getPropValue("animation");
 
     return (
-      <>
       <Base.Container className={`${this.decorateCSS("container")} ${!currentBackgroundImage && this.decorateCSS("no-image")} ${animationActive && this.decorateCSS("has-animation")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
@@ -452,7 +451,6 @@ class HeroSection24 extends BaseHeroSection {
       )}
       </Base.Container>
 
-      </>
 
     );
   }
