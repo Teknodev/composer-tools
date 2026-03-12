@@ -914,13 +914,13 @@ class Slider9 extends BaseSlider {
             {RightContentExist && (
               <div className={this.decorateCSS("right-content")}>
                 <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                  {(subtitleExist) && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {subtitle}
-                    </Base.SectionSubTitle>
-                  )}
-                  {(titleExist || price.value) && (
-                    <div className={this.decorateCSS("header")}>
+                  {(subtitleExist || titleExist) && (
+                    <Base.VerticalContent className={this.decorateCSS("header")}>
+                      {(subtitleExist) && (
+                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                          {subtitle}
+                        </Base.SectionSubTitle>
+                      )}
                       {titleExist && (
                         <Base.SectionTitle className={this.decorateCSS("title")}>
                           {title}
@@ -932,8 +932,9 @@ class Slider9 extends BaseSlider {
                           {price.value}
                         </Base.H3>
                       )}
-                    </div>
+                    </Base.VerticalContent>
                   )}
+
                   {(reviewItem.point ||
                     reviewItem.reviewCount ||
                     this.castToString(reviewItem.reviewText) ||
