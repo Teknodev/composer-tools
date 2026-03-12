@@ -244,7 +244,7 @@ class Testimonials15Page extends Testimonials {
         const gridLayoutClass = this.getGridLayoutClass(leftExist, rightExist);
         const isImageExist = Boolean(this.getPropValue("image"));
         return(
-            <>
+            <div className={this.decorateCSS("testimonials15-root")}>
                 <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
                     <Base.MaxContent className={this.decorateCSS("max-content")}>
                         <Base.ContainerGrid className={`${this.decorateCSS("content-grid")} ${gridLayoutClass}`}>
@@ -414,7 +414,7 @@ class Testimonials15Page extends Testimonials {
                         </div>
                     </Base.Overlay>
                 )}
-            </>
+            </div>
         )
     }
 }

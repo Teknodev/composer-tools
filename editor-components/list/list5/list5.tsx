@@ -322,49 +322,36 @@ class List5 extends BaseList {
     const isSingleColumn = this.getPropValue("itemCount") === 1;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
-        {hasBackgroundMedia && (
-          <Base.Media
-            value={backgroundMedia as TypeMediaInputValue}
-            className={this.decorateCSS("background-media")}
-          />
-        )}
-        {imageOverlay && hasBackgroundMedia && (
-          <div className={this.decorateCSS("overlay")} />
-        )}
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {hasHeaderContent && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && (
-                <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
-              )}
-              {headerExist && (
-                <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
-                  {this.getPropValue("header")}
-                </Base.SectionTitle>
-              )}
-              {descriptionExist && (
-                <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
-          )}
-          {(ListItems.length > 0) && (
-            <Base.ListGrid
-              className={`${this.decorateCSS("cards-grid")} ${isSingleColumn && this.decorateCSS("single-column")}`}
-              gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
-            >
-              {ListItems.map(
-                (listItem: ListItem, index: number) => {
-                  return (
-                    <div key={index} className={this.decorateCSS("card-wrapper")}>
-                      <div
-                        className={this.decorateCSS("card")}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                      >
+        <Base.Container className={this.decorateCSS("container")}
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover"
+          }}
+        >
+          <Base.MaxContent className={this.decorateCSS("max-content")}>
+            {(this.castToString(subtitle) || this.castToString(header)) && (
+              <Base.VerticalContent className={this.decorateCSS("header")}>
+                {this.castToString(subtitle) && (
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("dark")}`}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {this.castToString(header) && (
+                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${image && this.decorateCSS("dark")}`}>
+                    {header}
+                  </Base.SectionTitle>
+                )}
+              </Base.VerticalContent>
+            )}
+            {(ListItems.length > 0) && (
+              <Base.ListGrid
+                className={this.decorateCSS("grid")}
+                gridCount={{ pc: this.getPropValue("itemCount") }}
+              >
+                {ListItems.map(
+                  (listItem: any, index: number) => {
+                    return (
+                      <div className={this.decorateCSS("item-box")}>
                         <ComposerLink path={listItem.url}>
                           {(listItem.uppericon || this.castToString(listItem.index)) && (
                             <div className={this.decorateCSS("card-header")}>
