@@ -5,6 +5,7 @@ import styles from "./list5.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ListItem = {
   index: JSX.Element;
@@ -37,7 +38,15 @@ class List5 extends BaseList {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
     this.addProp({
       type: "object",
@@ -320,38 +329,76 @@ class List5 extends BaseList {
     const imageOverlay = imageObj?.overlay;
     const hasHeaderContent = subtitleExist || headerExist || descriptionExist;
     const isSingleColumn = this.getPropValue("itemCount") === 1;
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasValidHeaderButtons = headerButtons.some((btn) => this.castToString(btn.text));
 
     return (
-        <Base.Container className={this.decorateCSS("container")}
-          style={{
-            backgroundImage: `url(${image})`,
-            backgroundSize: "cover"
-          }}
-        >
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {(this.castToString(subtitle) || this.castToString(header)) && (
+      <Base.Container
+        className={this.decorateCSS("container")}
+        style={{
+          backgroundImage: hasBackgroundMedia && !mediaExists.url ? undefined : `url(${mediaExists?.url})`,
+          backgroundSize: "cover",
+        }}
+      >
+        {hasBackgroundMedia && mediaExists.url && (
+          <Base.Media
+            value={backgroundMedia as TypeMediaInputValue}
+            className={this.decorateCSS("background-media")}
+          />
+        )}
+        {imageOverlay && hasBackgroundMedia && (
+          <div className={this.decorateCSS("overlay")} />
+        )}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("content")}>
+            {hasHeaderContent && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
-                {this.castToString(subtitle) && (
-                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("dark")}`}>
-                    {subtitle}
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                    {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
                 )}
-                {this.castToString(header) && (
-                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${image && this.decorateCSS("dark")}`}>
-                    {header}
+                {headerExist && (
+                  <Base.SectionTitle className={`${this.decorateCSS("header-title")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                    {this.getPropValue("header")}
                   </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBackgroundMedia && this.decorateCSS("dark")}`}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {hasValidHeaderButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {headerButtons.map((btn, index) => {
+                      const buttonText = this.castToString(btn.text);
+                      if (!buttonText) return null;
+                      return (
+                        <div key={index} className={this.decorateCSS("button")}>
+                          <ComposerLink path={btn.url}>
+                            <Base.Button buttonType={btn.type}>
+                              {btn.text}
+                            </Base.Button>
+                          </ComposerLink>
+                        </div>
+                      );
+                    })}
+                  </div>
                 )}
               </Base.VerticalContent>
             )}
-            {(ListItems.length > 0) && (
+            {ListItems.length > 0 && (
               <Base.ListGrid
-                className={this.decorateCSS("grid")}
-                gridCount={{ pc: this.getPropValue("itemCount") }}
+                className={`${this.decorateCSS("cards-grid")} ${isSingleColumn ? this.decorateCSS("single-column") : ""}`}
+                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
               >
-                {ListItems.map(
-                  (listItem: any, index: number) => {
-                    return (
-                      <div className={this.decorateCSS("item-box")}>
+                {ListItems.map((listItem: ListItem, index: number) => {
+                  return (
+                    <div key={index} className={this.decorateCSS("card-wrapper")}>
+                      <div
+                        className={this.decorateCSS("card")}
+                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      >
                         <ComposerLink path={listItem.url}>
                           {(listItem.uppericon || this.castToString(listItem.index)) && (
                             <div className={this.decorateCSS("card-header")}>
@@ -397,10 +444,10 @@ class List5 extends BaseList {
                       </div>
                     </div>
                   );
-                }
-              )}
-            </Base.ListGrid>
-          )}
+                })}
+              </Base.ListGrid>
+            )}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
