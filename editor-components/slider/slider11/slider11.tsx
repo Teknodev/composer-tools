@@ -218,7 +218,7 @@ class Slider11 extends BaseSlider {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
 
     this.addProp({
