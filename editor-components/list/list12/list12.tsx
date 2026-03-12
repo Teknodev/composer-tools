@@ -1,7 +1,8 @@
 import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list12.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class List12 extends BaseList {
   static getName(): string {
@@ -45,7 +46,6 @@ class List12 extends BaseList {
       value: "Simplifying Payments, Fast and Secure",
     });
 
-
     this.addProp({
       type: "string",
       key: "description",
@@ -74,8 +74,7 @@ class List12 extends BaseList {
           type: "string",
           key: "text",
           displayer: "Text 1",
-          value:
-            "Experience contactless payments with just a tap of your card or phone.",
+          value: "Experience contactless payments with just a tap of your card or phone.",
         },
       ],
     });
@@ -101,8 +100,7 @@ class List12 extends BaseList {
           type: "string",
           key: "text",
           displayer: "Text 2",
-          value:
-            "Accept payments anywhere with reliable and portable card readers.",
+          value: "Accept payments anywhere with reliable and portable card readers.",
         },
       ],
     });
@@ -147,15 +145,23 @@ class List12 extends BaseList {
       displayer: "Overlay",
       value: false,
     });
-
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
   }
 
   render() {
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const box1 = this.castToObject("box1");
     const box2 = this.castToObject("box2");
     const box3 = this.castToObject("box3");
-    const subtitle = this.getPropValue("subtitle");
-    const description = this.getPropValue("description");
     const box1IsIcon = box1?.item && box1.item.type === "icon";
     const box2IsIcon = box2?.item && box2.item.type === "icon";
     const box3IsIcon = box3?.item && box3.item.type === "icon";
@@ -163,6 +169,7 @@ class List12 extends BaseList {
     const hasBackgroundMedia = !!backgroundMedia;
     const imageOverlay = this.getPropValue("overlay");
     const backgroundOverlay = this.getPropValue("backgroundOverlay");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -196,19 +203,19 @@ class List12 extends BaseList {
               )}
             </div>
             <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-              {this.castToString(subtitle) && (
+              {subtitleExist && (
                 <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("transparent-bg")}`}>
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(this.getPropValue("title")) && (
+              {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("section-wrapper")}>
                   <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>{this.getPropValue("title")}</div>
                 </Base.SectionTitle>
               )}
-              {this.castToString(description) && (
+              {descriptionExist && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {box2.item && (
@@ -248,9 +255,27 @@ class List12 extends BaseList {
               )}
             </div>
           </div>
+          <div className={this.decorateCSS("button-wrapper")}>
+            {buttons.map((button: INPUTS.CastedButton, index: number) => {
+              const buttonTextExist = this.castToString(button.text);
+              const buttonIconExist = button.icon && !!button.icon.name;
+
+              if (!buttonTextExist && !buttonIconExist) return null;
+
+              return (
+                <ComposerLink key={index} path={button.url}>
+                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                    {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                    {buttonIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={button.icon!} />}
+                  </Base.Button>
+                </ComposerLink>
+              );
+            })}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
   }
 }
+
 export default List12;
