@@ -57,9 +57,9 @@
       align-items: center;
 
       .arrow-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-        font-size: 2.5rem;
+        width: var(--composer-gap-lg);
+        height: var(--composer-gap-lg);
+        font-size: var(--composer-gap-lg);
         object-fit: contain;
         display: flex;
         justify-content: center;
@@ -91,11 +91,11 @@
       }
 
       :global(.slick-dots) {
-        position: relative;
+        position: static;
         display: flex !important;
         justify-content: center;
         align-items: center;
-        bottom: -35px;
+        margin-top: var(--composer-gap-lg);
 
         li {
           margin: 0 var(--composer-gap-sm);
@@ -130,7 +130,7 @@
       }
 
       .card {
-        height: 22rem;
+        height: 352px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -139,11 +139,11 @@
         transition: transform var(--composer-transition-duration-normal);
         transform: scale(0.8);
         z-index: 1;
-        border-radius: var(--composer-border-radius-xs);
+        border-radius: var(--composer-border-radius-sm);
 
         .imgContainer {
           position: relative;
-          width: 30rem;
+          width: 380px;
           height: 100%;
           overflow: hidden;
           z-index: 1;
@@ -202,16 +202,16 @@
         padding: var(--composer-gap-md) var(--composer-gap-lg);
 
         .arrow-icon {
-          width: 1.5rem;
-          height: 1.5rem;
-          font-size: 1.5rem;
+          width: 24px;
+          height: 24px;
+          font-size: 24px;
         }
       }
 
       .carousel {
         .card {
           width: 100%;
-          height: 22rem;
+          height: 352px;
         }
       }
     }
