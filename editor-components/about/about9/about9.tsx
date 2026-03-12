@@ -121,7 +121,7 @@ class About9 extends BaseAbout {
         const hasImage1 = !!image1;
         const hasImage2 = !!image2;
         const hasImages = hasImage1 || hasImage2;
-        const showTopContainer = titleStr || hasImages;
+        const showTopContainer = titleStr || subtitleStr || hasImages;
         const showBottomContainer = text1Str || text2Str || hasValidButtons;
         const showSideContainer = showTopContainer || showBottomContainer;
 
