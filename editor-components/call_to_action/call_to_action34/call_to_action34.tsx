@@ -62,7 +62,6 @@ class CallToAction34Page extends BaseCallToAction {
                     value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69a5989e771c03002ccbd6c4?alt=media",
-
                     },
 
 
