@@ -204,17 +204,10 @@ class Stats28 extends BaseStats {
                 <div className={this.decorateCSS("stat-header")}>
                     {iconExist && (
                         <div className={this.decorateCSS("stat-icon-wrapper")}>
-                            {iconObj ? (
-                                <Base.Media
-                                    value={iconObj}
-                                    className={iconObj.type === "icon" ? this.decorateCSS("stat-icon") : this.decorateCSS("stat-image")}
-                                />
-                            ) : (iconString ? (
-                                <Base.Media
-                                    value={{ type: "icon", name: iconString }}
-                                    className={this.decorateCSS("stat-icon")}
-                                />
-                            ) : null)}
+                            <Base.Media
+                                value={iconObj ?? { type: "icon", name: iconString }}
+                                className={this.decorateCSS(iconObj?.type === "image" ? "stat-image" : "stat-icon")}
+                            />
                         </div>
                     )}
                     {(valueExist || suffixExist || prefixExist) && (
