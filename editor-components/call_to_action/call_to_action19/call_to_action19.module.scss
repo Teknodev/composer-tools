@@ -29,11 +29,9 @@
                     }
 
                     .bottom-row {
-                        display: grid;
-                        grid-template-columns: repeat(2, auto);
-                        justify-content: start;
-                        align-items: center;
-                        gap: var(--composer-gap-sm);
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-md);
                         width: 100%;
 
                         .button-item {
