@@ -17,12 +17,21 @@ class Privacy4 extends BasePrivacy {
     this.setComponentState("inside", false);
   };
 
+  private handleSuggestionClick = (text: string) => {
+    this.setComponentState("inputValue", text);
+  };
+
+  private handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    this.setComponentState("inputValue", e.target.value);
+  };
+
   constructor(props?: any) {
     super(props, styles);
 
     this.setComponentState("mouseX", -999);
     this.setComponentState("mouseY", -999);
     this.setComponentState("inside", false);
+    this.setComponentState("inputValue", "");
 
     this.addProp({
       type: "string",
@@ -62,6 +71,38 @@ class Privacy4 extends BasePrivacy {
     this.addProp(
       INPUTS.BUTTON("button", "Button", "Generate", "", "FaArrowRight", null, "Tertiary")
     );
+
+    this.addProp({
+      type: "array",
+      key: "suggestions",
+      displayer: "Suggestion Prompts",
+      value: [
+        {
+          type: "object",
+          key: "suggestion",
+          displayer: "Suggestion",
+          value: [
+            { type: "string", key: "text", displayer: "Text", value: "A portfolio for a photographer" },
+          ],
+        },
+        {
+          type: "object",
+          key: "suggestion",
+          displayer: "Suggestion",
+          value: [
+            { type: "string", key: "text", displayer: "Text", value: "A landing page for a SaaS product" },
+          ],
+        },
+        {
+          type: "object",
+          key: "suggestion",
+          displayer: "Suggestion",
+          value: [
+            { type: "string", key: "text", displayer: "Text", value: "An online store for handmade jewelry" },
+          ],
+        },
+      ],
+    });
   }
 
   static getName(): string {
@@ -71,6 +112,8 @@ class Privacy4 extends BasePrivacy {
   render() {
     const button: INPUTS.CastedButton =
       this.castToObject<INPUTS.CastedButton>("button");
+    const suggestions: { text: string }[] = this.castToObject<{ text: string }[]>("suggestions") || [];
+    const inputValue: string = this.getComponentState("inputValue") || "";
     const mouseX: number = this.getComponentState("mouseX");
     const mouseY: number = this.getComponentState("mouseY");
     const inside: boolean = this.getComponentState("inside");
@@ -133,6 +176,8 @@ class Privacy4 extends BasePrivacy {
                   placeholder={
                     this.castToString(this.getPropValue("placeholder")) || ""
                   }
+                  value={inputValue}
+                  onChange={this.handleInputChange}
                   maxLength={300}
                 />
                 {this.castToString(button.text) && (
@@ -157,6 +202,22 @@ class Privacy4 extends BasePrivacy {
                 )}
               </div>
             </div>
+
+            {suggestions.length > 0 && (
+              <div className={this.decorateCSS("suggestions")}>
+                {suggestions.map((s: { text: string }, i: number) =>
+                  this.castToString(s.text) ? (
+                    <button
+                      key={i}
+                      className={this.decorateCSS("suggestion-chip")}
+                      onClick={() => this.handleSuggestionClick(this.castToString(s.text) as string)}
+                    >
+                      {s.text}
+                    </button>
+                  ) : null
+                )}
+              </div>
+            )}
 
             {this.castToString(this.getPropValue("hint")) && (
               <Base.P className={this.decorateCSS("hint")}>
