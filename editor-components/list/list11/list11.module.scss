@@ -1,34 +1,54 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
 
-    .wrapper {
+    .content {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
-      .vertical-content {
-        .card-titles {
-          .subtitle {
-            content: "";
+      .header-section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+
+        &.align-center {
+          align-items: center;
+          text-align: center;
+
+          .header-content-wrapper {
+            align-items: center;
+            text-align: center;
+          }
+
+          .button-wrapper {
+            justify-content: center;
           }
         }
 
-        .title-container {
+        .header-content-wrapper {
           display: flex;
           flex-direction: column;
+          align-items: flex-start;
+          flex: 1;
 
-          .title {
-            margin: 0;
+          .subtitle,
+          .section-description {
+            content: "";
           }
-        }
 
-        .section-description {
-          content: "";
+          .button-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+
+            .button .button-text {
+              content: "";
+            }
+          }
         }
       }
 
@@ -37,9 +57,7 @@ as *;
           display: flex;
           flex-direction: column;
           align-items: stretch;
-          background-color: color-mix(in srgb,
-              var(--composer-html-background),
-              var(--composer-font-color-primary) 5%);
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-md);
           transition: all var(--composer-transition-duration-slow) ease-in-out;
@@ -50,29 +68,26 @@ as *;
             gap: var(--composer-gap-md);
 
             .card-image-container {
-              transition: transform 0.5s ease-in-out;
-              border-radius: var(--composer-border-radius-sm);
-              overflow: hidden;
               position: relative;
+              overflow: hidden;
+              border-radius: var(--composer-border-radius-sm);
+              transition: transform 0.5s ease-in-out;
 
               .card-image {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 object-position: center;
-                transition: transform 0.5s ease-in-out;
                 border-radius: inherit;
+                transition: transform 0.5s ease-in-out;
               }
 
               .overlay {
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                inset: 0;
                 background-color: var(--composer-overlay-color);
-                z-index: 1;
                 border-radius: inherit;
+                z-index: 1;
               }
             }
 
@@ -83,11 +98,7 @@ as *;
               align-items: flex-start;
               text-align: left;
 
-              .card-title {
-                color: var(--composer-font-color-primary);
-                text-align: left;
-              }
-
+              .card-title,
               .card-description {
                 color: var(--composer-font-color-primary);
                 text-align: left;
@@ -99,7 +110,8 @@ as *;
                 color: var(--composer-primary-color);
                 overflow: hidden;
                 width: 100%;
-                transition: transform var(--composer-transition-duration-normal) ease-in-out, opacity var(--composer-transition-duration-normal) ease-in-out;
+                transition: transform var(--composer-transition-duration-normal) ease-in-out,
+                  opacity var(--composer-transition-duration-normal) ease-in-out;
 
                 .navigate-to {
                   margin-right: calc(var(--composer-gap-xs) / 2);
@@ -124,43 +136,50 @@ as *;
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
           }
 
-          &[data-animation~="animate2"]:hover {
-            .navigate-container {
-              animation: slideOutFade 1.5s linear, shake 0.5s linear 2s 1;
-            }
+          &[data-animation~="animate2"]:hover .navigate-container {
+            animation: slideOutFade 1.5s linear, shake 0.5s linear 2s 1;
           }
 
-          &[data-animation~="animate2"]:not(:hover) {
-            .navigate-container {
-              animation: resetShake 0.3s linear;
-              transform: translateX(0%);
-              opacity: 1;
-            }
+          &[data-animation~="animate2"]:not(:hover) .navigate-container {
+            animation: resetShake 0.3s linear;
+            transform: translateX(0%);
+            opacity: 1;
           }
 
-          &[data-animation~="animate3"]:hover {
-            .card-image-container {
-              overflow: hidden;
-
-              .card-image {
-                transform: scale(1.05);
-              }
-            }
+          &[data-animation~="animate3"]:hover .card-image-container .card-image {
+            transform: scale(1.05);
           }
         }
       }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content .content {
+    gap: calc(var(--composer-gap-md) * 2);
+
+    .header-section {
+      flex-direction: column;
+      align-items: flex-start;
 
       .button-wrapper {
-        margin-top: var(--composer-gap-md);
-        display: flex;
-        justify-content: center;
-
-        .button {
-          .button-text {
-            content: "";
-          }
-        }
+        justify-content: flex-start;
       }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container .max-content .content {
+    gap: var(--composer-gap-md);
+
+    .header-section {
+      flex-direction: column;
+    }
+
+    .button-wrapper {
+      justify-content: center;
     }
   }
 }
@@ -183,7 +202,9 @@ as *;
 }
 
 @keyframes shake {
-  0% {
+
+  0%,
+  100% {
     transform: translateX(0);
   }
 
@@ -197,10 +218,6 @@ as *;
 
   75% {
     transform: translateX(var(--composer-gap-xs));
-  }
-
-  100% {
-    transform: translateX(0);
   }
 }
 
