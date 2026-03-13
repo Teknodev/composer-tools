@@ -131,7 +131,6 @@ class Stats28 extends BaseStats {
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 4,
-            max: 4,
         });
     }
 
