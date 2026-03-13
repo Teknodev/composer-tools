@@ -12,7 +12,7 @@
         .max-content {
             height: auto !important;
             background-color: transparent !important;
-            padding: 80px 50px;
+            // padding: 80px 50px;
 
             @container (max-width: #{$composer-tablet-width}) {
                 padding: 80px 40px;
@@ -28,19 +28,28 @@
     &.no-card:not(.no-media) .max-content {
         background-color: transparent !important;
         border-radius: 0;
+        padding: 0 !important;
+
+        @container (max-width: #{$composer-tablet-width}) {
+            padding: 0 !important;
+        }
+
+        @container (max-width: #{$composer-phone-width}) {
+            padding: 0 !important;
+        }
     }
 
     // KART VAR ama MEDYA YOKSA (Sıradan kutu simetrisi)
     &.no-media:not(.no-card) .max-content {
-        padding: 80px 50px;
+        padding: 0;
         height: auto;
 
         @container (max-width: #{$composer-tablet-width}) {
-            padding: 80px 40px;
+            padding: 0;
         }
 
         @container (max-width: #{$composer-phone-width}) {
-            padding: 50px 20px;
+            padding: 0;
         }
     }
 
