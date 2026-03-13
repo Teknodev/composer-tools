@@ -27,7 +27,7 @@ class CallToAction31Page extends BaseCallToAction {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "<span style='color: var(--composer-primary-color)'>Use one tool instead of five.</span><br> Save your time with BlinkPage.",
+            value: "Use one tool instead of five.<br> Save your time with BlinkPage.",
         });
 
         this.addProp({
@@ -72,10 +72,10 @@ class CallToAction31Page extends BaseCallToAction {
                     "button",
                     "Button",
                     "Get Started",
-                    "",
-                    "",
                     null,
-                )
+                    null,
+                    null,
+                ),
             ],
         });
     }
@@ -93,7 +93,11 @@ class CallToAction31Page extends BaseCallToAction {
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-        const hasButtons = buttons.some(btn => btn.text || btn.icon);
+        const hasButtons = buttons.some(btn => {
+            const t = (this.castToString(btn.text) || "").trim();
+            const i = (this.castToString(btn.icon) || "").trim();
+            return (t !== "" && t !== "[object Object]") || (i !== "" && i !== "[object Object]");
+        });
         const hasHeaderContent = subtitle || title || description || hasButtons;
 
 
@@ -125,28 +129,37 @@ class CallToAction31Page extends BaseCallToAction {
                             </div>
                             {hasButtons && (
                                 <div className={this.decorateCSS("button-column")}>
-                                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
-                                        (button.text || button.icon) && (
+                                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                        const castText = (this.castToString(button.text) || "").trim();
+                                        const castIcon = (this.castToString(button.icon) || "").trim();
+
+                                        const buttonText = (castText === "[object Object]" || castText === "") ? "" : castText;
+                                        const buttonIcon = (castIcon === "[object Object]" || castIcon === "") ? "" : castIcon;
+
+                                        if (buttonText === "" && buttonIcon === "") {
+                                            return null;
+                                        }
+                                        return (
                                             <ComposerLink key={index} path={button.url}>
                                                 <Base.Button
                                                     className={this.decorateCSS("button")}
                                                     buttonType={button.type}
                                                 >
-                                                    {button.icon && (
+                                                    {buttonIcon !== "" && (
                                                         <Base.Icon
-                                                            name={button.icon}
+                                                            name={buttonIcon}
                                                             propsIcon={{ className: this.decorateCSS("button-icon") }}
                                                         />
                                                     )}
-                                                    {button.text && (
+                                                    {buttonText !== "" && (
                                                         <Base.P className={this.decorateCSS("button-text")}>
-                                                            {button.text}
+                                                            {buttonText}
                                                         </Base.P>
                                                     )}
                                                 </Base.Button>
                                             </ComposerLink>
-                                        )
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             )}
                         </div>
