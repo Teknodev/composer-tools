@@ -10,6 +10,7 @@
 
         .header-section {
             text-align: left;
+
             .subtitle {
                 transform: none !important;
 
@@ -23,7 +24,7 @@
             }
 
             .button-container {
-                margin-bottom: var(--composer-gap-md) !important;
+                /*                 margin-bottom: var(--composer-gap-md) !important; */
                 display: flex;
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
@@ -35,14 +36,9 @@
         }
 
         .cards-grid {
-            gap: var(--composer-gap-lg);
-
             .card {
                 background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-md);
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
                 align-items: flex-start;
                 padding: var(--composer-gap-xl);
 
@@ -53,7 +49,6 @@
                     border-bottom: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
                     width: 100%;
                     display: flex;
-                    align-items: baseline;
                     font-size: 4rem;
 
                     &.no-line {
@@ -73,8 +68,14 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
+    .cards-grid {
+        .card {
+            padding: var(--composer-gap-md) !important;
+        }
+    }
+
     .card-value {
-        font-size: 4rem !important;
+        font-size: 2.5rem !important;
     }
 }
 

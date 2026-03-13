@@ -184,28 +184,26 @@ class Stats18Page extends BaseStats {
         const descriptionExist = this.castToString(card.description);
         const valueExist = originalString && originalString !== "";
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("card")}>
-                {(valueExist || showLine) && (
+                {(valueExist || showLine || prefixExist || suffixExist) && (
                     <div className={`${this.decorateCSS("card-value")}${!showLine ? ` ${this.decorateCSS("no-line")}` : ""}`}>
+                        {prefixExist && (
+                            <span className={this.decorateCSS("stat-prefix")}>
+                                {card.prefix}
+                            </span>
+                        )}
                         {valueExist && (
-                            <>
-                                {prefixExist && (
-                                    <span className={this.decorateCSS("stat-prefix")}>
-                                        {card.prefix}
-                                    </span>
-                                )}
-                                <span className={this.decorateCSS("display-value")}>
-                                    {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
-                                </span>
-                                {suffixExist && (
-                                    <span className={this.decorateCSS("stat-suffix")}>
-                                        {card.suffix}
-                                    </span>
-                                )}
-                            </>
+                            <span className={this.decorateCSS("display-value")}>
+                                {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                            </span>
+                        )}
+                        {suffixExist && (
+                            <span className={this.decorateCSS("stat-suffix")}>
+                                {card.suffix}
+                            </span>
                         )}
                     </div>
                 )}
@@ -294,7 +292,7 @@ class Stats18Page extends BaseStats {
 
                     {statsList.length > 0 && (
                         <Base.ListGrid
-                            gridCount={{ pc: itemCount, tablet: 4, phone: 1 }}
+                            gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
                             {statsList.map((card: CardData, index: number) => (
