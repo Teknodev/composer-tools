@@ -3,20 +3,18 @@ import React from "react";
 import styles from "./list7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type CardButton = INPUTS.CastedButton;
 
 type ListItem = {
   icon: TypeMediaInputValue;
   itemSubtitle: React.JSX.Element;
   text: React.JSX.Element;
   title: React.JSX.Element;
-}
+};
 
 class List7 extends BaseList {
-  static getName(): string {
-    return "List 7";
-  }
-
   constructor(props?: any) {
     super(props, styles);
 
@@ -39,6 +37,13 @@ class List7 extends BaseList {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
     this.addProp({
@@ -184,16 +189,14 @@ class List7 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"]
-      }
+        selectItems: ["animate1", "animate2", "animate3", "animate4"],
+      },
     });
 
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-    });
+  }
+
+  static getName(): string {
+    return "List 7";
   }
 
   render() {
@@ -201,85 +204,119 @@ class List7 extends BaseList {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const listItems = this.castToObject<ListItem[]>("list-items");
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = this.castToObject<CardButton[]>("buttons");
+    const itemCount = this.getPropValue("itemCount");
+    const showIndex = !!this.getPropValue("showIndex");
+    const hoverAnimationValue = this.getPropValue("hoverAnimation");
+    const hoverAnimation = Array.isArray(hoverAnimationValue) ? hoverAnimationValue : [];
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("header-section")}>
-            {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {this.getPropValue("description")}
-              </Base.SectionDescription>
-            )}
-          </Base.VerticalContent>
-
-          {listItems.length > 0 && (
-            <Base.ListGrid className={this.decorateCSS("items-wrapper")} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
-              {listItems.map((item: ListItem, index: number) => {
-                const itemTitleExist = this.castToString(item.title);
-                const itemTextExist = this.castToString(item.text);
-                const itemSubtitleExist = this.castToString(item.itemSubtitle);
-                const showIndexExist = !!this.getPropValue("showIndex");
-                const iconExist = !!((item.icon as any)?.name || (item.icon as any)?.url);
-
-                if (!itemTitleExist && !itemTextExist && !showIndexExist) return null;
-
-                return (
-                  <div key={index} className={this.decorateCSS("list-item")}>
-                    <Base.VerticalContent
-                      className={this.decorateCSS("item-content")}
-                      data-animation={this.getPropValue("hoverAnimation")}
-                    >
-                      <div className={this.decorateCSS("border-layer-1")}></div>
-                      <div className={this.decorateCSS("border-layer-2")}></div>
-                      {showIndexExist && (
-                        <Base.H1 className={this.decorateCSS("index")}>{index < 9 ? `0${index + 1}` : index + 1}</Base.H1>
-                      )}
-                      {iconExist && (
-                        <Base.Media value={item.icon} className={this.decorateCSS("item-icon")} />
-                      )}
-                      {itemSubtitleExist && (
-                        <Base.H6 className={this.decorateCSS("item-subtitle")}>{item.itemSubtitle}</Base.H6>
-                      )}
-                      {itemTitleExist && (
-                        <Base.H3 className={this.decorateCSS("item-title")}>{item.title}</Base.H3>
-                      )}
-                      {itemTextExist && (
-                        <Base.P className={this.decorateCSS("description")}>{item.text}</Base.P>
-                      )}
-                    </Base.VerticalContent>
+          <div className={this.decorateCSS("content")}>
+            {(subtitleExist || titleExist || descriptionExist || buttons.length > 0) && (
+              <Base.VerticalContent className={this.decorateCSS("header-section")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("buttons-wrapper")}>
+                    {buttons.map((button: CardButton, index: number) => {
+                      const buttonText = this.castToString(button.text);
+                      const iconExist = button.icon && (button.icon as any).name;
+                      if (!buttonText && !iconExist) return null;
+                      return (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button
+                            buttonType={button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {button.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                className={this.decorateCSS("button-icon")}
+                                value={button.icon as any}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
-                );
-              })}
-            </Base.ListGrid>
-          )}
+                )}
+              </Base.VerticalContent>
+            )}
 
-          {buttons?.length > 0 && (
-            <div className={this.decorateCSS("buttons-wrapper")}>
-              {buttons.map((button: any, index: number) => {
-                const buttonTextExist = this.castToString(button.text);
-                if (!buttonTextExist) return null;
-                return (
-                  <ComposerLink key={index} path={button.url}>
-                    <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                    </Base.Button>
-                  </ComposerLink>
-                )
-              })}
-            </div>
-          )}
+            {listItems.length > 0 && (
+              <Base.ListGrid
+                className={this.decorateCSS("items-wrapper")}
+                gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
+              >
+                {listItems.map((item: ListItem, index: number) => {
+                  const itemTitleExist = this.castToString(item.title);
+                  const itemTextExist = this.castToString(item.text);
+                  const itemSubtitleExist = this.castToString(item.itemSubtitle);
+                  const iconExist = item.icon && (item.icon.name || item.icon.url);
+
+                  if (!itemTitleExist && !itemTextExist && !showIndex) return null;
+
+                  return (
+                    <div key={index} className={this.decorateCSS("list-item")}>
+                      <Base.VerticalContent
+                        className={this.decorateCSS("item-content")}
+                        data-animation={hoverAnimation.join(" ")}
+                      >
+                        <div className={this.decorateCSS("border-layer-1")}></div>
+                        <div className={this.decorateCSS("border-layer-2")}></div>
+                        {showIndex && (
+                          <Base.H1 className={this.decorateCSS("index")}>
+                            {index < 9 ? `0${index + 1}` : index + 1}
+                          </Base.H1>
+                        )}
+                        {iconExist && (
+                          <Base.Media
+                            value={item.icon}
+                            className={this.decorateCSS("item-icon")}
+                          />
+                        )}
+                        {itemSubtitleExist && (
+                          <Base.H6 className={this.decorateCSS("item-subtitle")}>
+                            {item.itemSubtitle}
+                          </Base.H6>
+                        )}
+                        {itemTitleExist && (
+                          <Base.H3 className={this.decorateCSS("item-title")}>
+                            {item.title}
+                          </Base.H3>
+                        )}
+                        {itemTextExist && (
+                          <Base.P className={this.decorateCSS("item-description")}>
+                            {item.text}
+                          </Base.P>
+                        )}
+                      </Base.VerticalContent>
+                    </div>
+                  );
+                })}
+              </Base.ListGrid>
+            )}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
