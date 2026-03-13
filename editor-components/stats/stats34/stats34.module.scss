@@ -115,6 +115,8 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .wrapper {
+        gap: var(--composer-gap-lg);
+
         .stats-grid .stat-item .stat-value {
             font-size: 4rem;
         }
