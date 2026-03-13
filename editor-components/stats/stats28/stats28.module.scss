@@ -1,0 +1,164 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+
+    .max-content {
+        .content {
+            gap: var(--composer-gap-lg);
+
+            .header-container {
+                align-items: flex-start;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left;
+                }
+
+                .subtitle {
+                    margin-left: 0;
+                    width: fit-content;
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            &.alignment-center {
+                align-items: center;
+
+                .header-container {
+                    align-items: center;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .subtitle {
+                        margin-inline: auto;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+                }
+            }
+
+            .card {
+                background: var(--composer-html-background);
+                box-shadow: var(--box-shadow-active);
+                border-radius: var(--composer-border-radius-md);
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+                width: 100%;
+                box-sizing: border-box;
+
+                .stats-grid {
+                    gap: var(--composer-gap-lg);
+
+                    .stat-item {
+                        align-items: flex-start;
+
+                        .stat-header {
+                            display: flex;
+                            align-items: center;
+                            justify-content: flex-start;
+
+                            .stat-icon-wrapper {
+                                font-size: 6rem;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                line-height: 1;
+
+                                .stat-icon {
+                                    color: var(--composer-font-color-primary);
+                                    font-size: inherit;
+                                }
+
+                                .stat-image {
+                                    width: 1em;
+                                    height: 1em;
+                                    object-fit: contain;
+                                }
+                            }
+
+                            .stat-value {
+                                color: var(--composer-font-color-primary);
+                                display: flex;
+                                align-items: center;
+                                font-size: 6rem;
+
+                                .stat-prefix,
+                                .stat-number,
+                                .stat-suffix {
+                                    color: inherit;
+                                }
+
+                                .stat-prefix .prefix-icon {
+                                    font-size: inherit;
+                                    color: inherit;
+                                }
+                            }
+                        }
+
+                        .stat-title,
+                        .stat-subtitle,
+                        .stat-description {
+                            text-align: left;
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .content {
+        .card {
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+
+            .stats-grid .stat-item .stat-header {
+
+                .stat-value,
+                .stat-icon-wrapper {
+                    font-size: 4rem;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content {
+        .card {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
+
+            .stats-grid {
+                gap: var(--composer-gap-lg);
+
+                .stat-item .stat-header {
+
+                    .stat-value,
+                    .stat-icon-wrapper {
+                        font-size: 4rem;
+                    }
+                }
+            }
+        }
+    }
+}
