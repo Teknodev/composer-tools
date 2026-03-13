@@ -1,0 +1,86 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    background-color: var(--composer-html-background);
+
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+        .header-section {
+            text-align: left;
+
+            .subtitle {
+                transform: none !important;
+
+                &::before {
+                    display: none;
+                }
+            }
+
+            .description {
+                color: var(--composer-font-color-primary);
+            }
+
+            .button-container {
+                /*                 margin-bottom: var(--composer-gap-md) !important; */
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    content: "";
+                }
+            }
+        }
+
+        .cards-grid {
+            .card {
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                border-radius: var(--composer-border-radius-md);
+                align-items: flex-start;
+                padding: var(--composer-gap-xl);
+
+                .card-value {
+                    color: var(--composer-font-color-primary);
+                    margin-bottom: var(--composer-gap-sm);
+                    padding-bottom: var(--composer-gap-sm);
+                    border-bottom: 1px solid color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+                    width: 100%;
+                    display: flex;
+                    font-size: 4rem;
+
+                    &.no-line {
+                        border-bottom: none;
+                        padding-bottom: 0;
+                        margin-bottom: 0;
+                    }
+                }
+
+                .card-label {
+                    color: var(--composer-font-color-primary);
+                    text-align: left !important;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .cards-grid {
+        .card {
+            padding: var(--composer-gap-md) !important;
+        }
+    }
+
+    .card-value {
+        font-size: 2.5rem !important;
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .card-value {
+        font-size: 3rem !important;
+    }
+}
