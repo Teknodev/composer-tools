@@ -1,8 +1,8 @@
 import * as React from "react";
 import { BaseFooter, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./footer7.module.scss";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class Footer7Page extends BaseFooter {
   constructor(props?: any) {

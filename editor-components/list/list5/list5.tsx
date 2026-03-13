@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./list5.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type ListItem = {
   title: React.JSX.Element;
@@ -223,7 +223,6 @@ class List5 extends BaseList {
     const image = this.getPropValue("image");
 
     return (
-      <>
         <Base.Container className={this.decorateCSS("container")}
           style={{
             backgroundImage: `url(${image})`,
@@ -316,7 +315,6 @@ class List5 extends BaseList {
             )}
           </Base.MaxContent>
         </Base.Container>
-      </>
     );
   }
 }

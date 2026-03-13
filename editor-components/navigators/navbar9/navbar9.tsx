@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar9.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
   image: TypeMediaInputValue;
@@ -1220,7 +1220,7 @@ class Navbar9 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           position={position}
           className={`${this.decorateCSS("container")}`}
@@ -1602,7 +1602,7 @@ class Navbar9 extends BaseNavigator {
           onClick={() => this.handleCloseMenu()}
           isVisible={isVisible}
         />
-      </>
+      </div>
     );
   }
 }

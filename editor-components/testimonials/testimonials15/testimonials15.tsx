@@ -1,8 +1,8 @@
 import { Testimonials } from "../../EditorComponent";
 import styles from "./testimonials15.module.scss";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class Testimonials15Page extends Testimonials {
     constructor(props?: any) {
@@ -244,7 +244,7 @@ class Testimonials15Page extends Testimonials {
         const gridLayoutClass = this.getGridLayoutClass(leftExist, rightExist);
         const isImageExist = Boolean(this.getPropValue("image"));
         return(
-            <>
+            <div className={this.decorateCSS("testimonials15-root")}>
                 <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
                     <Base.MaxContent className={this.decorateCSS("max-content")}>
                         <Base.ContainerGrid className={`${this.decorateCSS("content-grid")} ${gridLayoutClass}`}>
@@ -414,7 +414,7 @@ class Testimonials15Page extends Testimonials {
                         </div>
                     </Base.Overlay>
                 )}
-            </>
+            </div>
         )
     }
 }

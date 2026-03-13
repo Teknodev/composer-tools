@@ -3,7 +3,7 @@ import { BaseSocial } from "../../EditorComponent";
 import styles from "./social2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type SlideItems ={
     videoUrl: string;
@@ -882,7 +882,7 @@ componentDidMount() {
     };   
     
     return (
-        <>
+        <div className={this.decorateCSS("social2-root")}>
         <Base.Container className={this.decorateCSS("container")} id={"container"}  >
             <Base.MaxContent className={this.decorateCSS("max-content")}>
                 {this.castToString(this.getPropValue("title")) && (
@@ -1078,7 +1078,7 @@ componentDidMount() {
 
             </ComposerSlider>
         </Base.Overlay>
-        </>
+        </div>
     );
   }
 }

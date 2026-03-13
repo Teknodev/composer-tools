@@ -1,10 +1,10 @@
 import * as React from "react";
 import styles from "./hero-section22.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type SliderObject = {
   title: React.JSX.Element;
@@ -321,11 +321,9 @@ class HeroSection22 extends BaseHeroSection {
       return b.clientHeight - a.clientHeight;
     })[0]?.clientHeight;
 
-    if (!isSliderExist) return <></>;
+    if (!isSliderExist) return <Base.Container className={this.decorateCSS("container")} />;
     return (
-      <>
-        {isSliderExist && (
-          <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("max-content")}>
               <div className={this.decorateCSS("slider-parent")} style={{ minHeight: minHeight + "px" }}>
                 <ComposerSlider {...settings} className={this.decorateCSS("carousel")} ref={this.getComponentState("slider-ref")}>
@@ -410,9 +408,7 @@ class HeroSection22 extends BaseHeroSection {
                 </div>
               )}
             </div>
-          </Base.Container>
-        )}
-      </>
+      </Base.Container>
     );
   }
 }

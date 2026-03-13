@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar3.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Lane {
   contact: React.JSX.Element;
@@ -1324,7 +1324,7 @@ class Navbar3 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         {laneContainer && (
           <Base.Container className={this.decorateCSS("laneContainer")}>
             <Base.MaxContent className={this.decorateCSS("lane")}>
@@ -1782,7 +1782,7 @@ class Navbar3 extends BaseNavigator {
           isVisible = {isVisible}
           onClick={() => this.handleCloseMenu()}
         />
-      </>
+      </div>
     );
   }
 }
