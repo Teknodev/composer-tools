@@ -1,0 +1,212 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+
+
+    .max-content {
+        .card-wrapper {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            overflow: hidden;
+            border-radius: var(--composer-border-radius-md);
+            padding: 0;
+            gap: var(--composer-gap-xl);
+
+
+            &.no-media {
+                grid-template-columns: 1fr;
+            }
+
+
+            &.colored {
+                padding: 80px 50px;
+                background-color: var(--composer-primary-color);
+
+                .right-column {
+                    margin: -80px -50px -80px 0;
+                    border-radius: 0 !important;
+                }
+
+                .left-column {
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        color: var(--composer-font-color-secondary);
+                        text-align: left;
+                        align-self: flex-start;
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+
+                    .subtitle {
+                        background-color: transparent !important;
+                        padding: 0;
+                        border-radius: 0;
+                        --composer-primary-color: var(--composer-font-color-secondary) !important;
+
+                        &::before {
+                            background-color: var(--composer-font-color-secondary) !important;
+                        }
+                    }
+                }
+            }
+
+            .left-column {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: left;
+                align-items: flex-start;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left !important;
+                    align-self: flex-start !important;
+                }
+
+                .subtitle {
+                    text-align: left !important;
+                    align-self: flex-start !important;
+                    margin-left: 0;
+
+                    &::before {
+                        color: var(--composer-font-color-primary) !important;
+                    }
+                }
+
+                .button-container {
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+                    display: flex;
+                    align-self: flex-start;
+
+                    .button {
+                        padding: var(--composer-gap-sm) var(--composer-gap-md);
+                        border-radius: var(--composer-border-radius-sm);
+                        cursor: pointer;
+                        display: inline-flex;
+                        align-items: center;
+
+                        .button-text {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+
+            .right-column {
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                border-radius: var(--composer-border-radius-md);
+
+                .media-container {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+
+                    &.is-video {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+
+                        // aspect-ratio: 16 / 9;
+                        // height: auto;
+                        // align-self: center;
+                    }
+
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: var(--composer-overlay-color);
+                        z-index: 1;
+                        pointer-events: none;
+                    }
+
+                    .media {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card-wrapper {
+        // grid-template-columns: repeat(1, 1fr);
+
+        // .right-column {
+        //     order: -1;
+        // }
+
+        &.colored {
+            padding: 80px 40px;
+
+            .right-column {
+                margin: -80px -40px -80px 0;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .card-wrapper {
+                padding: 0;
+                grid-template-columns: repeat(1, 1fr);
+                gap: 0;
+                border-radius: var(--composer-border-radius-md);
+
+                .right-column {
+                    order: -1;
+                }
+
+                &.colored {
+                    padding: 0;
+
+                    .left-column {
+                        padding: 50px 20px;
+                    }
+
+                    .right-column {
+                        margin: 0;
+                        border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
+                    }
+                }
+
+                .left-column {
+                    padding: 50px 0;
+                    margin: 0;
+                    width: 100%;
+                    // gap: var(--composer-gap-xs);
+
+                    .title {
+                        margin-top: 0;
+                    }
+                }
+
+                .right-column {
+                    margin: 0;
+                    width: 100%;
+                    border-radius: var(--composer-border-radius-md);
+                }
+
+                &.no-media {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
