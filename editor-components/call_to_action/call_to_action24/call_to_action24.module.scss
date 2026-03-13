@@ -59,6 +59,7 @@
                         gap: var(--composer-gap-sm);
 
                         .button {
+                            min-width: none;
 
                             .button-text {
                                 content: "";
