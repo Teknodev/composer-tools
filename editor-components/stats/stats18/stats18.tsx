@@ -188,20 +188,24 @@ class Stats18Page extends BaseStats {
 
         return (
             <Base.VerticalContent className={this.decorateCSS("card")}>
-                {valueExist && (
+                {(valueExist || showLine) && (
                     <div className={`${this.decorateCSS("card-value")}${!showLine ? ` ${this.decorateCSS("no-line")}` : ""}`}>
-                        {prefixExist && (
-                            <span className={this.decorateCSS("stat-prefix")}>
-                                {card.prefix}
-                            </span>
-                        )}
-                        <span className={this.decorateCSS("display-value")}>
-                            {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
-                        </span>
-                        {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {card.suffix}
-                            </span>
+                        {valueExist && (
+                            <>
+                                {prefixExist && (
+                                    <span className={this.decorateCSS("stat-prefix")}>
+                                        {card.prefix}
+                                    </span>
+                                )}
+                                <span className={this.decorateCSS("display-value")}>
+                                    {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                                </span>
+                                {suffixExist && (
+                                    <span className={this.decorateCSS("stat-suffix")}>
+                                        {card.suffix}
+                                    </span>
+                                )}
+                            </>
                         )}
                     </div>
                 )}
@@ -234,7 +238,7 @@ class Stats18Page extends BaseStats {
 
         const statsListRaw = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("card-list");
         const statsList: CardData[] = statsListRaw.map((item) => {
-            const value = this.castToString(item.value) || "0";
+            const value = this.castToString(item.value);
             return { prefix: item.prefix, value, valueElement: item.value, suffix: item.suffix, title: item.title, subtitle: item.subtitle, description: item.description };
         });
 
