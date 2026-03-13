@@ -1,9 +1,14 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+
+type MediaGroup = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class About12 extends BaseAbout {
   constructor(props?: any) {
@@ -39,23 +44,29 @@ class About12 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8d39496aa1002ca48910?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692d8d39496aa1002ca48910?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
   }
 
@@ -64,20 +75,21 @@ class About12 extends BaseAbout {
   }
 
   render() {
-    const subtitle = this.getPropValue("subtitle") || "";
-    const title = this.getPropValue("title") || "";
-    const description = this.getPropValue("description") || "";
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const image = this.getPropValue("image");
-    const overlay = this.getPropValue("overlay");
+    const mediaGroup = this.castToObject<MediaGroup>("media");
+    const image = mediaGroup?.media;
+    const overlay = mediaGroup?.overlay;
 
-    const hasImage = !!(image && image.url);
+    const hasImage = !!image;
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
     const hasAnyButton = buttons.some(
-      (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
+      (b: INPUTS.CastedButton) => this.castToString(b?.text) || (b?.icon as { name?: string })?.name || (b?.icon as { url?: string })?.url
     );
     const hasRightContainer = !!(
       hasTitle ||
@@ -89,22 +101,19 @@ class About12 extends BaseAbout {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${
-          hasImage && !hasRightContainer ? this.decorateCSS("image-only") : ""
-        }`}
+        className={`${this.decorateCSS("container")} ${hasImage && !hasRightContainer ? this.decorateCSS("image-only") : ""
+          }`}
         isFull={true}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div
-            className={`${this.decorateCSS("intro-wrapper")} ${
-              !hasImage && this.decorateCSS("no-image")
-            }`}
+            className={`${this.decorateCSS("intro-wrapper")} ${!hasImage && this.decorateCSS("no-image")
+              }`}
           >
             {hasImage && (
               <div
-                className={`${this.decorateCSS("image-container")} ${
-                  !hasRightContainer && this.decorateCSS("image-container-alone")
-                }`}
+                className={`${this.decorateCSS("image-container")} ${!hasRightContainer && this.decorateCSS("image-container-alone")
+                  }`}
               >
                 <Base.Media
                   value={image}
@@ -118,11 +127,9 @@ class About12 extends BaseAbout {
 
             {hasRightContainer && (
               <div
-                className={`${this.decorateCSS("text-content")} ${
-                  !hasImage ? this.decorateCSS("text-content-alone") : ""
-                } ${alignmentValue === "center" && this.decorateCSS("center")} ${
-                  !hasImage && alignmentValue === "center" && this.decorateCSS("no-image-center")
-                }`}
+                className={`${this.decorateCSS("text-content")} ${!hasImage ? this.decorateCSS("text-content-alone") : ""
+                  } ${alignmentValue === "center" && this.decorateCSS("center")} ${!hasImage && alignmentValue === "center" && this.decorateCSS("no-image-center")
+                  }`}
               >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
@@ -131,12 +138,12 @@ class About12 extends BaseAbout {
                     <Base.SectionSubTitle
                       className={this.decorateCSS("subtitle")}
                     >
-                      {subtitle}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {hasTitle && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
 
@@ -144,7 +151,7 @@ class About12 extends BaseAbout {
                     <Base.SectionDescription
                       className={this.decorateCSS("description")}
                     >
-                      {description}
+                      {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
 
@@ -153,9 +160,9 @@ class About12 extends BaseAbout {
                       {buttons.map(
                         (item: INPUTS.CastedButton, index: number) => {
                           const btnTextExist = this.castToString(item.text);
-                          const buttonIcon = item.icon;
+                          const buttonIcon = item.icon as unknown as TypeMediaInputValue;
                           const buttonIconExist =
-                            buttonIcon?.name || buttonIcon?.url;
+                            (buttonIcon as { name?: string })?.name || (buttonIcon as { url?: string })?.url;
                           const buttonText = item.text;
 
                           if (!btnTextExist && !buttonIconExist) {

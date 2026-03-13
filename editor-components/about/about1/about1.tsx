@@ -1,18 +1,27 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about1.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 
-import { Base } from "../../../composer-base-components/base/base";
-
-interface ListItem {
+type ListItem = {
   title: React.JSX.Element;
   description: React.JSX.Element;
 }
-interface Icon {
-  icon: { type: string; name: string };
+type Icon = {
+  icon: TypeMediaInputValue;
   link: string;
 }
+
+type ButtonType = {
+  text: string;
+  url: string;
+  type: TypeButton;
+  icon?: TypeMediaInputValue;
+  image?: TypeMediaInputValue;
+};
+
 class About1 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
@@ -26,42 +35,51 @@ class About1 extends BaseAbout {
 
     this.addProp({
       type: "string",
-      key: "sectionTitle",
+      key: "title",
       displayer: "Title",
       value: "ABOUT",
     });
 
     this.addProp({
-      type: "media",
-      key: "icon",
-      displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "GoChevronDown",
-      },
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "We are a creative agency distinctively defined by our commitment to design excellence and innovation.",
     });
 
     this.addProp({
-      type: "media",
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", "GoChevronDown", "", "Bare"),
+      ],
+    });
+
+    this.addProp({
+      type: "object",
       key: "image",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9f9bd2970002c6286f3?alt=media&timestamp=1719564173697",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b9f9bd2970002c6286f3?alt=media&timestamp=1719564173697",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -145,9 +163,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -170,9 +188,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -195,9 +213,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -220,9 +238,9 @@ class About1 extends BaseAbout {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -246,70 +264,100 @@ class About1 extends BaseAbout {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2"]
-      }
+        selectItems: ["animate1", "animate2"],
+      },
     });
   }
   static getName(): string {
     return "About 1";
   }
   render() {
-    const image = this.getPropValue("image");
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("sectionTitle");
-    const icon = this.getPropValue("icon");
-    const rightItems = this.castToObject<Icon[]>("right-items")
+    type ImageGroup = { media: TypeMediaInputValue; overlay: boolean };
+    const imageGroup = this.castToObject<ImageGroup>("image");
+    const imageValue = imageGroup.media;
+    const subtitleStr = this.castToString(this.getPropValue("subtitle"));
+    const titleStr = this.castToString(this.getPropValue("title"));
+    const descriptionStr = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<ButtonType[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || btn.image?.url || btn.icon?.name);
+    const rightItems = this.castToObject<Icon[]>("right-items");
     const textContent = this.castToObject<ListItem[]>("items");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subtitle) || this.castToString(title) || icon) && (
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${this.decorateCSS(Base.getContentAlignment())}`}>
+          {(subtitleStr || titleStr || descriptionStr || hasValidButtons) && (
             <Base.VerticalContent className={this.decorateCSS("heading")}>
-              {this.castToString(subtitle) && (
+              {subtitleStr && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(title) && (
+              {titleStr && (
                 <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                  {title}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {icon && (
-                  <Base.Media
-                    value={this.getPropValue("icon")}
-                    className={this.decorateCSS("icon")}
-                  />
-                )}
+              {descriptionStr && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: ButtonType, index: number) => {
+                    const hasContent = this.castToString(item.text) || item.image?.url || item.icon?.name;
+                    if (!hasContent) return null;
+
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={`${this.decorateCSS("button")} ${item.type === "Bare" && this.decorateCSS("button-bare")}`}>
+                          {this.castToString(item.text) && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text}
+                            </Base.P>
+                          )}
+                          {(item.image?.url || item.icon?.name) && (
+                            <Base.Media
+                              value={item.image?.url ? { type: "image", url: item.image.url } : { type: "icon", name: item.icon?.name }}
+                              className={this.decorateCSS("icon")}
+                            />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
           <Base.ContainerGrid className={this.decorateCSS("content")}>
-            {image && (
-              <Base.GridCell 
+            {imageValue && (
+              <Base.GridCell
                 className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 <Base.Media
-                  value={this.getPropValue("image")}
+                  value={imageValue}
                   className={this.decorateCSS("image")}
                 />
-                {this.getPropValue("overlay") && (
+                {imageGroup.overlay && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
+
               </Base.GridCell>
             )}
             {textContent.length > 0 && (
               <Base.GridCell className={this.decorateCSS("content-right")}>
-                {textContent.map((item) => (
-                  <Base.VerticalContent className={this.decorateCSS("item")}>
+                {textContent.map((item, index) => (
+                  <Base.VerticalContent key={index} className={this.decorateCSS("item")}>
                     {this.castToString(item.title) && (
-                      <Base.H2 className={this.decorateCSS("title")}>
+                      <Base.H4 className={this.decorateCSS("title")}>
                         {item.title}
-                      </Base.H2>
+                      </Base.H4>
                     )}
                     {this.castToString(item.description) && (
-                      <Base.P className={this.decorateCSS("description")}>
+                      <Base.P className={this.decorateCSS("item-description")}>
                         {item.description}
                       </Base.P>
                     )}
@@ -320,10 +368,10 @@ class About1 extends BaseAbout {
           </Base.ContainerGrid>
           {rightItems.length > 0 && (
             <div className={this.decorateCSS("icons")}>
-              {rightItems.map((icons: Icon) => {
+              {rightItems.map((icons: Icon, index: number) => {
                 return (
                   icons.icon && (
-                    <ComposerLink path={icons.link}>
+                    <ComposerLink key={index} path={icons.link}>
                       <Base.Media
                         value={icons.icon}
                         className={this.decorateCSS("icon-item")}

@@ -1,23 +1,46 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import styles from "./about14.module.scss";
+
+type MediaGroup = {
+    media: TypeMediaInputValue;
+    overlay: boolean;
+};
+
+type ToggleSettings = {
+    "show-more-text": string;
+    "show-less-text": string;
+};
 
 class About14 extends BaseAbout {
     constructor(props?: any) {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "sideImage",
+            type: "object",
+            key: "media",
             displayer: "Media",
-            additionalParams: {
-                availableTypes: ["image", "video"],
-            },
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693ad982875e15002c62337c?alt=media",
-            },
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/693ad982875e15002c62337c?alt=media",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
         });
 
         this.addProp({
@@ -49,24 +72,17 @@ class About14 extends BaseAbout {
             value: [
                 {
                     type: "string",
-                    key: "showMoreText",
+                    key: "show-more-text",
                     displayer: "Text 1",
                     value: "Show More",
                 },
                 {
                     type: "string",
-                    key: "showLessText",
+                    key: "show-less-text",
                     displayer: "Text 2",
                     value: "Show Less",
                 },
             ],
-        });
-
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
         });
 
         this.setComponentState("isExpanded", false);
@@ -84,7 +100,8 @@ class About14 extends BaseAbout {
 
     render() {
         const isExpanded = this.getComponentState("isExpanded");
-        const imageMedia = this.getPropValue("sideImage");
+        const mediaGroup = this.castToObject<MediaGroup>("media");
+        const imageMedia = mediaGroup?.media;
 
         const title = this.getPropValue("title");
         const description = this.getPropValue("description");
@@ -94,14 +111,14 @@ class About14 extends BaseAbout {
         const hasSubtitle = this.castToString(subtitle);
         const hasDescription = this.castToString(description);
 
-        const toggleSettings = this.castToObject<any>("toggleSettings");
-        const showMoreText = toggleSettings.showMoreText;
-        const showLessText = toggleSettings.showLessText;
+        const toggleSettings = this.castToObject<ToggleSettings>("toggleSettings");
+        const showMoreText = toggleSettings["show-more-text"];
+        const showLessText = toggleSettings["show-less-text"];
 
-        const hasOverlay = this.getPropValue("overlay");
+        const hasOverlay = mediaGroup?.overlay;
 
         const hasTextContent = hasTitle || hasSubtitle || hasDescription;
-        const hasImageContent = imageMedia && imageMedia.url;
+        const hasImageContent = !!imageMedia;
 
         const alignment = Base.getContentAlignment();
 
@@ -119,14 +136,14 @@ class About14 extends BaseAbout {
                                         <Base.SectionSubTitle
                                             className={this.decorateCSS("subtitle")}
                                         >
-                                            {subtitle}
+                                            {this.getPropValue("subtitle")}
                                         </Base.SectionSubTitle>
                                     )}
                                     {hasTitle && (
                                         <Base.SectionTitle
                                             className={this.decorateCSS("title")}
                                         >
-                                            {title}
+                                            {this.getPropValue("title")}
                                         </Base.SectionTitle>
                                     )}
                                     {hasDescription && (
@@ -136,7 +153,7 @@ class About14 extends BaseAbout {
                                             <Base.SectionDescription
                                                 className={this.decorateCSS("description")}
                                             >
-                                                {description}
+                                                {this.getPropValue("description")}
                                             </Base.SectionDescription>
 
                                             <div

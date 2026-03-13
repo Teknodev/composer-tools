@@ -1,5 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+as *;
 
 .container {
   position: relative;
@@ -8,6 +8,7 @@
   &.image-only {
     height: 100%;
   }
+
   .max-content {
     .intro-wrapper {
       display: flex;
@@ -19,6 +20,7 @@
 
       &.no-image {
         min-height: unset;
+
         .text-content {
           padding-left: var(--composer-gap-xl);
           padding-right: var(--composer-gap-xl);
@@ -37,12 +39,15 @@
         &.text-content-alone {
           width: 100%;
         }
+
         .vertical-content {
+
           .title,
           .subtitle,
           .description {
             text-align: left;
           }
+
           .subtitle {
             margin-left: 0;
           }
@@ -59,6 +64,7 @@
             .button-text {
               content: "";
             }
+
             .button-icon {
               display: flex;
               align-items: center;
@@ -72,11 +78,13 @@
 
         &.no-image-center {
           .vertical-content {
+
             .title,
             .subtitle,
             .description {
               text-align: center;
             }
+
             .subtitle {
               margin-left: auto;
             }
@@ -127,11 +135,12 @@
     .max-content {
       .intro-wrapper {
         .text-content {
-          padding-right: var(--composer-gap-lg) !important;
+          padding-right: var(--composer-gap-lg);
         }
+
         &.no-image {
           .text-content {
-            padding-left: var(--composer-gap-lg) !important;
+            padding-left: var(--composer-gap-lg);
           }
         }
       }
@@ -144,6 +153,7 @@
     &.image-only {
       height: auto;
     }
+
     .max-content {
       .intro-wrapper {
         flex-direction: column;
@@ -161,7 +171,7 @@
           order: 1;
           width: 100%;
           flex: 0 0 100%;
-          padding: 0 var(--composer-gap-md) !important;
+          padding: 0 var(--composer-gap-md);
 
           &.center {
             .vertical-content {
@@ -170,7 +180,7 @@
               .title,
               .subtitle,
               .description {
-                text-align: center !important;
+                text-align: center;
               }
 
               .subtitle {
@@ -183,10 +193,11 @@
             }
           }
         }
+
         &.no-image {
           .text-content {
-            padding-left: var(--composer-gap-md) !important;
-            padding-right: var(--composer-gap-md) !important;
+            padding-left: var(--composer-gap-md);
+            padding-right: var(--composer-gap-md);
           }
         }
       }
