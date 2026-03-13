@@ -6,8 +6,23 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 class Privacy4 extends BasePrivacy {
+  private handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    this.setComponentState("mouseX", e.clientX - rect.left);
+    this.setComponentState("mouseY", e.clientY - rect.top);
+    this.setComponentState("inside", true);
+  };
+
+  private handleMouseLeave = () => {
+    this.setComponentState("inside", false);
+  };
+
   constructor(props?: any) {
     super(props, styles);
+
+    this.setComponentState("mouseX", -999);
+    this.setComponentState("mouseY", -999);
+    this.setComponentState("inside", false);
 
     this.addProp({
       type: "string",
@@ -45,7 +60,7 @@ class Privacy4 extends BasePrivacy {
     });
 
     this.addProp(
-      INPUTS.BUTTON("button", "Button", "Generate", "", "FaArrowRight", null, "Primary")
+      INPUTS.BUTTON("button", "Button", "Generate", "", "FaArrowRight", null, "Tertiary")
     );
   }
 
@@ -56,9 +71,23 @@ class Privacy4 extends BasePrivacy {
   render() {
     const button: INPUTS.CastedButton =
       this.castToObject<INPUTS.CastedButton>("button");
+    const mouseX: number = this.getComponentState("mouseX");
+    const mouseY: number = this.getComponentState("mouseY");
+    const inside: boolean = this.getComponentState("inside");
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={this.decorateCSS("container")}
+        onMouseMove={this.handleMouseMove}
+        onMouseLeave={this.handleMouseLeave}
+      >
+        {inside && (
+          <div
+            className={this.decorateCSS("mouse-glow")}
+            style={{ left: mouseX, top: mouseY }}
+            aria-hidden="true"
+          />
+        )}
         <div className={this.decorateCSS("rings-wrapper")} aria-hidden="true">
           <div className={this.decorateCSS("ring") + " " + this.decorateCSS("ring-1")} />
           <div className={this.decorateCSS("ring") + " " + this.decorateCSS("ring-2")} />
