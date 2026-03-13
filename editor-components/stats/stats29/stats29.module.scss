@@ -15,18 +15,13 @@
           gap: var(--composer-gap-lg);
           flex-direction: column;
           align-items: center;
-          width: 100%;
 
           .header-content {
             flex: 1;
-            width: 100%;
 
-            .subtitle {
-              box-sizing: border-box;
-            }
-
+            .subtitle,
             .title {
-              box-sizing: border-box;
+              content: "";
             }
 
             .description {
@@ -39,10 +34,8 @@
               gap: var(--composer-gap-sm);
 
               .button {
-                white-space: nowrap;
-
                 .button-text {
-                  box-sizing: border-box;
+                  width: fit-content;
                 }
               }
             }
@@ -50,40 +43,28 @@
         }
 
         .stats-grid {
-          display: flex;
-          flex-wrap: wrap;
           gap: var(--composer-gap-lg);
 
+
           .stat-item {
-            flex: 1;
-            min-width: 250px;
-            align-items: flex-start !important;
+            align-items: flex-start;
 
             .stat-value {
               display: flex;
-              align-items: flex-end;
               color: var(--composer-primary-color);
-              gap: var(--composer-gap-xs);
               font-size: 12rem;
+
 
               .stat-prefix,
               .stat-number,
               .stat-suffix {
                 color: inherit;
-              }
-
-              .stat-number,
-              .stat-prefix,
-              .stat-suffix {
                 font-size: 12rem;
               }
+
             }
 
-            .stat-subtitle {
-              color: var(--composer-primary-color);
-              text-align: left;
-            }
-
+            .stat-subtitle,
             .stat-title {
               color: var(--composer-primary-color);
               text-align: left;
@@ -100,10 +81,7 @@
               color: var(--composer-secondary-color);
             }
 
-            .stat-subtitle {
-              color: var(--composer-secondary-color);
-            }
-
+            .stat-subtitle,
             .stat-title {
               color: var(--composer-secondary-color);
             }
@@ -160,34 +138,24 @@
 
           .header-container {
             flex-direction: column;
-            align-items: var(--composer-content-alignment);
+            align-items: center;
 
             .header-content {
               .description {
                 max-width: 100%;
               }
-
-              .button-container {
-                justify-content: var(--composer-content-alignment);
-
-                .button {
-                  width: auto;
-                }
-              }
             }
           }
 
           .stats-grid {
-            flex-direction: column;
             gap: var(--composer-gap-md);
             margin-top: var(--composer-gap-md);
 
             .stat-item {
-              align-items: var(--composer-content-alignment);
+              align-items: var(--composer-content-alignment) !important;
 
               .stat-value {
                 font-size: 7rem;
-                align-self: var(--composer-content-alignment);
 
                 .stat-number {
                   font-size: 7rem;
@@ -198,18 +166,18 @@
                 }
               }
 
-              .stat-subtitle {
+              .stat-subtitle,
+              .stat-title {
                 text-align: var(--composer-content-alignment) !important;
               }
 
               .stat-title {
                 font-size: 2rem !important;
-                text-align: var(--composer-content-alignment) !important;
               }
 
               .stat-description {
                 font-size: 0.9rem;
-                text-align: var(--composer-content-alignment);
+                text-align: var(--composer-content-alignment) !important;
               }
             }
           }

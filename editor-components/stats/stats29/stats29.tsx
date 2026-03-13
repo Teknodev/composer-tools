@@ -168,20 +168,22 @@ class Stats29 extends BaseStats {
     const descriptionExist = this.castToString(stat.description);
     const valueExist = this.castToString(originalString);
 
-    if (!valueExist && !subtitleExist && !titleExist && !descriptionExist) return null;
+    if (!valueExist && !stat.suffix && !stat.prefix && !subtitleExist && !titleExist && !descriptionExist) return null;
 
     return (
       <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-        {valueExist && (
+        {(valueExist || stat.prefix || stat.suffix) && (
           <span className={this.decorateCSS("stat-value")}>
             {stat.prefix && (
               <span className={this.decorateCSS("stat-prefix")}>
                 {stat.prefixElement}
               </span>
             )}
-            <span className={this.decorateCSS("stat-number")}>
-              {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
-            </span>
+            {valueExist && (
+              <span className={this.decorateCSS("stat-number")}>
+                {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+              </span>
+            )}
             {stat.suffix && (
               <span className={this.decorateCSS("stat-suffix")}>
                 {stat.suffixElement}
@@ -222,7 +224,7 @@ class Stats29 extends BaseStats {
     const statsItems = this.castToObject<StatItem[]>("stats");
     const stats: StatItem[] = statsItems.map((item: any) => {
       const prefix = this.castToString(item.prefix) || "";
-      const number = this.castToString(item.number) || "0";
+      const number = this.castToString(item.number) || "";
       const suffix = this.castToString(item.suffix) || "";
       const subtitle = this.castToString(item.subtitle) || "";
       const title = this.castToString(item.title) || "";
@@ -233,7 +235,7 @@ class Stats29 extends BaseStats {
     const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
     const statsAnimation = !!animationProps?.statsAnimation;
     const animationDuration = animationProps?.animationDuration || 2000;
-    const itemCountInRow = this.getPropValue("itemCountInRow") || 2;
+    const itemCountInRow = this.getPropValue("itemCountInRow");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -244,17 +246,17 @@ class Stats29 extends BaseStats {
                 <Base.VerticalContent className={this.decorateCSS("header-content")}>
                   {isSubtitleExist && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {subtitle}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {isTitleExist && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
                   {isDescriptionExist && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
+                      {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
                   {hasValidButtons && (
@@ -268,7 +270,7 @@ class Stats29 extends BaseStats {
                                 buttonType={button.type}
                                 className={this.decorateCSS("button")}
                               >
-                                <span className={this.decorateCSS("button-text")}>{buttonText}</span>
+                                <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
                               </Base.Button>
                             </ComposerLink>
                           );
