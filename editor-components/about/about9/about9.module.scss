@@ -119,10 +119,6 @@ as *;
             }
           }
 
-          .buttons-container {
-            align-self: center;
-            justify-content: center;
-          }
         }
       }
 
@@ -141,7 +137,8 @@ as *;
 
       .buttons-container {
         display: flex;
-        align-self: flex-start;
+        align-self: center;
+        justify-content: center;
         gap: var(--composer-gap-sm);
         flex-wrap: wrap;
 

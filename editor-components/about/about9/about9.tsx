@@ -180,7 +180,7 @@ class About9 extends BaseAbout {
                             )}
 
                             {hasValidButtons && (
-                                <div className={`${this.decorateCSS("buttons-container")} ${alignmentValue === "center" && !hasImages ? this.decorateCSS("center") : ""}`}>
+                                <div className={this.decorateCSS("buttons-container")}>
                                     {buttons.map((button: INPUTS.CastedButton, index: number) => {
                                         if (!this.castToString(button.text)) return null;
 
