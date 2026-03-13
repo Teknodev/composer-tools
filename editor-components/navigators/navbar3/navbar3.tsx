@@ -1324,7 +1324,7 @@ class Navbar3 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         {laneContainer && (
           <Base.Container className={this.decorateCSS("laneContainer")}>
             <Base.MaxContent className={this.decorateCSS("lane")}>
@@ -1782,7 +1782,7 @@ class Navbar3 extends BaseNavigator {
           isVisible = {isVisible}
           onClick={() => this.handleCloseMenu()}
         />
-      </>
+      </div>
     );
   }
 }

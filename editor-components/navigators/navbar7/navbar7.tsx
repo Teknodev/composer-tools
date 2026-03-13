@@ -1216,7 +1216,7 @@ class Navbar7 extends BaseNavigator {
     }>("navigationIcons");
     
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           position={position}
           positionContainer={`${this.decorateCSS("pcNavbarContainer")}`}
@@ -1630,7 +1630,7 @@ class Navbar7 extends BaseNavigator {
           onClick={() => this.handleCloseMenu()}
           isVisible={isVisible}
         />
-      </>
+      </div>
     );
   }
 }
