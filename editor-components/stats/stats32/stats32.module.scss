@@ -8,8 +8,9 @@
         .content-wrapper {
             display: flex;
             flex-direction: row;
-            align-items: center;
+            
             gap: var(--composer-gap-xl);
+            align-items: flex-start;
 
             .left-column {
                 flex: 1;
