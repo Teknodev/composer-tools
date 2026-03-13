@@ -4,21 +4,15 @@ import { BaseStats } from "../../EditorComponent";
 import styles from "./stats18.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 type CardData = {
-    prefix: string;
-    prefixElement: JSX.Element;
+    prefix: JSX.Element;
     value: string;
     valueElement: JSX.Element;
-    suffix: string;
-    suffixElement: JSX.Element;
-    subtitle: string;
-    subtitleElement: JSX.Element;
-    title: string;
-    titleElement: JSX.Element;
-    description: string;
-    descriptionElement: JSX.Element;
+    suffix: JSX.Element;
+    subtitle: JSX.Element;
+    title: JSX.Element;
+    description: JSX.Element;
 };
 
 class Stats18Page extends BaseStats {
@@ -183,46 +177,47 @@ class Stats18Page extends BaseStats {
             return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
         };
 
-        const titleExist = card.title && card.title !== "";
-        const subtitleExist = card.subtitle && card.subtitle !== "";
-        const descriptionExist = card.description && card.description !== "";
+        const prefixExist = this.castToString(card.prefix);
+        const suffixExist = this.castToString(card.suffix);
+        const titleExist = this.castToString(card.title);
+        const subtitleExist = this.castToString(card.subtitle);
+        const descriptionExist = this.castToString(card.description);
         const valueExist = originalString && originalString !== "";
 
         if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
+            <Base.VerticalContent className={this.decorateCSS("card")}>
                 {valueExist && (
-                    <div className={this.decorateCSS("stat-value")}>
-                        {card.prefix && (
+                    <div className={`${this.decorateCSS("card-value")}${!showLine ? ` ${this.decorateCSS("no-line")}` : ""}`}>
+                        {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>
-                                {card.prefixElement}
+                                {card.prefix}
                             </span>
                         )}
                         <span className={this.decorateCSS("display-value")}>
                             {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
                         </span>
-                        {card.suffix && (
+                        {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {card.suffixElement}
+                                {card.suffix}
                             </span>
                         )}
                     </div>
                 )}
-                {showLine && <div className={this.decorateCSS("line")} />}
                 {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                        {card.subtitleElement}
+                    <Base.H6 className={this.decorateCSS("card-label")}>
+                        {card.subtitle}
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-title")}>
-                        {card.titleElement}
+                    <Base.H5 className={this.decorateCSS("card-label")}>
+                        {card.title}
                     </Base.H5>
                 )}
                 {descriptionExist && (
-                    <Base.P className={this.decorateCSS("stat-description")}>
-                        {card.descriptionElement}
+                    <Base.P className={this.decorateCSS("card-label")}>
+                        {card.description}
                     </Base.P>
                 )}
             </Base.VerticalContent>
@@ -239,13 +234,8 @@ class Stats18Page extends BaseStats {
 
         const statsListRaw = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("card-list");
         const statsList: CardData[] = statsListRaw.map((item) => {
-            const prefix = this.castToString(item.prefix) || "";
             const value = this.castToString(item.value) || "0";
-            const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const description = this.castToString(item.description) || "";
-            return { prefix, prefixElement: item.prefix, value, valueElement: item.value, suffix, suffixElement: item.suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+            return { prefix: item.prefix, value, valueElement: item.value, suffix: item.suffix, title: item.title, subtitle: item.subtitle, description: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
@@ -288,7 +278,7 @@ class Stats18Page extends BaseStats {
                                                     buttonType={item.type}
                                                     className={this.decorateCSS("button")}
                                                 >
-                                                    <span className={this.decorateCSS("button-text")}>{item.text}</span>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                                                 </Base.Button>
                                             </ComposerLink>
                                         );
@@ -301,7 +291,7 @@ class Stats18Page extends BaseStats {
                     {statsList.length > 0 && (
                         <Base.ListGrid
                             gridCount={{ pc: itemCount, tablet: 4, phone: 1 }}
-                            className={this.decorateCSS("stats-grid")}
+                            className={this.decorateCSS("cards-grid")}
                         >
                             {statsList.map((card: CardData, index: number) => (
                                 <this.AnimatedCard
