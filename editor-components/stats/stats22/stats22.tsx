@@ -213,14 +213,14 @@ class Stats22 extends BaseStats {
         {(hasSubtitle || hasTitle || hasDescription) && (
           <Base.VerticalContent className={this.decorateCSS("stat-vertical-content")}>
             {hasSubtitle && (
-              <Base.P className={this.decorateCSS("stat-subtitle")}>
+              <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                 {stat.subtitle}
-              </Base.P>
+              </Base.H6>
             )}
             {hasTitle && (
-              <Base.H6 className={this.decorateCSS("stat-title")}>
+              <Base.H5 className={this.decorateCSS("stat-title")}>
                 {stat.title}
-              </Base.H6>
+              </Base.H5>
             )}
             {hasDescription && (
               <Base.P className={this.decorateCSS("stat-description")}>
