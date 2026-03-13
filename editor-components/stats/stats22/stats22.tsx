@@ -123,13 +123,20 @@ class Stats22 extends BaseStats {
     animationDuration?: number;
     statsAnimation: boolean;
   }) => {
-    const cleanNumber = (stat.number || "0").replace(/[^\d.]/g, "");
-    const targetNumber = parseFloat(cleanNumber) || 0;
-    const [animatedNumber, setAnimatedNumber] = React.useState<string>(statsAnimation ? "0" : Math.floor(targetNumber).toString());
+    const cleanNumber = (stat.number || "").replace(/[^\d.]/g, "");
+    const targetNumber = parseFloat(cleanNumber);
+    const isEmptyNumber = cleanNumber === "" || isNaN(targetNumber);
+    const [animatedNumber, setAnimatedNumber] = React.useState<string>(
+      isEmptyNumber ? "" : statsAnimation ? "0" : Math.floor(targetNumber).toString()
+    );
     const ref = React.useRef<HTMLDivElement>(null);
     const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
     React.useEffect(() => {
+      if (isEmptyNumber) {
+        setAnimatedNumber("");
+        return;
+      }
       if (!statsAnimation) {
         setAnimatedNumber(Math.floor(targetNumber).toString());
         return;
@@ -159,12 +166,13 @@ class Stats22 extends BaseStats {
           clearInterval(intervalRef.current);
         }
       };
-    }, [targetNumber, animationDuration, statsAnimation]);
+    }, [targetNumber, animationDuration, statsAnimation, isEmptyNumber]);
 
     const animateValue = () => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
       }
+      if (isEmptyNumber || isNaN(targetNumber)) return;
 
       const steps = animationDuration / 30;
       let currentNumber = 0;
@@ -187,7 +195,7 @@ class Stats22 extends BaseStats {
     const hasDescription = stat.description && this.castToString(stat.description);
     const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
     const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
-    const hasNumber = targetNumber !== 0 || hasPrefix || hasSuffix;
+    const hasNumber = (stat.number && stat.number.trim() !== "") || hasPrefix || hasSuffix;
 
     if (!hasNumber && !hasTitle) return null;
 
@@ -246,7 +254,7 @@ class Stats22 extends BaseStats {
       const subtitle = item.getPropValue("subtitle");
       const itemTitle = item.getPropValue("title");
       const itemDescription = item.getPropValue("description");
-      const number = this.castToString(item.getPropValue("number")) || "0";
+      const number = this.castToString(item.getPropValue("number")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
