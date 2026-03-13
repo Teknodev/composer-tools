@@ -706,6 +706,7 @@ export abstract class Component
     return _prop;
   }
 
+
   addProp(prop: TypeUsableComponentProps) {
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
@@ -819,6 +820,16 @@ export abstract class Component
     
     return cssClass.join(" ");
   }
+
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
 
   private attachValueGetter(propValue: TypeUsableComponentProps) {
     if (Array.isArray(propValue.value)) {
@@ -1018,16 +1029,7 @@ export abstract class BaseCallToAction extends Component {
 
 export abstract class BaseSlider extends Component {
   static category = CATEGORIES.SLIDER;
-    
-  transformSliderValues = (
-    sliderProps: TypeUsableComponentProps[]
-  ): INPUTS.TYPE_SLIDER_SETTINGS => {
-    const flatObject: Record<string, any> = {};
-    sliderProps.forEach((prop: TypeUsableComponentProps) => {
-      flatObject[prop.key] = prop.value;
-    });
-    return flatObject;
-  };
+  
 }
 
 export abstract class BaseFAQ extends Component {
