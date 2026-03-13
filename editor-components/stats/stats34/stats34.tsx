@@ -198,26 +198,29 @@ class Stats34 extends BaseStats {
             return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
         };
 
+        const prefixExist = this.castToString(stat.prefix);
+        const suffixExist = this.castToString(stat.suffix);
         const titleExist = stat.title && stat.title !== "";
         const subtitleExist = stat.subtitle && stat.subtitle !== "";
         const descriptionExist = stat.description && stat.description !== "";
         const valueExist = originalString && originalString !== "";
+        const displayNumber = !valueExist ? "" : (statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber));
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {valueExist && (
+                {(prefixExist || valueExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
+                        {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>
                                 {stat.prefix}
                             </span>
                         )}
                         <span className={this.decorateCSS("stat-number")}>
-                            {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                            {displayNumber}
                         </span>
-                        {stat.suffix && (
+                        {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
                                 {stat.suffix}
                             </span>
