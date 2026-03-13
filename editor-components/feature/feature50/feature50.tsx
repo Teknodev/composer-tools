@@ -3,7 +3,7 @@ import styles from "./feature50.module.scss";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Card = {
     media: TypeMediaInputValue;
@@ -286,7 +286,7 @@ class Feature50 extends BaseFeature {
         const subtitle = this.getPropValue("subtitle");
         const title = this.getPropValue("title");
         const description = this.getPropValue("description");
-        const itemsPerRow = Number(this.getPropValue("itemsPerRow")) || 2;
+        const itemsPerRow = this.getPropValue("itemsPerRow") ?? 2;
         const cards = this.castToObject<Card[]>("cards");
         const primaryButtons = this.castToObject<PrimaryButton>("buttons");
 
@@ -318,7 +318,7 @@ class Feature50 extends BaseFeature {
                     )}
 
                     <Base.ListGrid
-                        gridCount={{ pc: itemsPerRow || 2, tablet: 2, phone: 1 }}
+                        gridCount={{ pc: itemsPerRow, tablet: 2, phone: 1 }}
                         className={this.decorateCSS("cards-grid")}
                     >
                         {cards?.map((card: Card, index: number) => {
@@ -350,11 +350,7 @@ class Feature50 extends BaseFeature {
                                             {card.buttons.map((button, btnIndex) => (
                                                 this.castToString(button.text) && (
                                                     <Base.Button
-                                                        className={this.decorateCSS(
-                                                            button.type === "Link" 
-                                                                ? "card-button-link" 
-                                                                : "card-button"
-                                                        )}
+                                                        className={this.decorateCSS("card-button")}
                                                         key={btnIndex}
                                                         buttonType={button.type}
                                                     >

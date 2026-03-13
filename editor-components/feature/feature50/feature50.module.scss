@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-html-background);
-
   .max-content {
     display: flex;
     flex-direction: column;
@@ -11,12 +9,12 @@
 
     .header-section {
       width: 100%;
-    }
 
-    .subtitle,
-    .title,
-    .description {
-      content: "";
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
     }
 
     .cards-grid {
@@ -35,19 +33,33 @@
         border-radius: var(--composer-border-radius-md);
         padding: var(--composer-gap-lg);
 
-        .card-subtitle,
-        .card-title {
-          text-align: left;
-        }
-        .card-description {
-          text-align: left;
-          padding-right: var(--composer-gap-md);
-        }
-
         .card-content {
           align-items: flex-start;
           justify-content: flex-start;
           flex: 1;
+          padding-right: var(--composer-gap-md);
+
+          .card-subtitle,
+          .card-title, 
+          .card-description {
+            text-align: left;
+          }
+
+          .card-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            align-items: center;
+            width: 100%;
+            text-align: left;
+
+            .card-button {
+              content: "";
+              .card-button-text {
+                content: "";
+              }
+            }
+          }
         }
 
         .media-wrapper {
@@ -76,31 +88,6 @@
             pointer-events: none;
             z-index: 1;
             border-radius: var(--composer-border-radius-sm);
-          }
-        }
-
-        .card-buttons {
-          display: flex;
-          flex-wrap: wrap;
-          padding-right: var(--composer-gap-md);
-          gap: var(--composer-gap-sm);
-          align-items: center;
-          width: 100%;
-          text-align: left;
-
-          .card-button {
-            content: "";
-            .card-button-text {
-              content: "";
-            }
-          }
-          .card-button-link {
-            color: var(--composer-html-background);
-            border-bottom-color: var(--composer-html-background);
-            &:hover {
-              color: var(--composer-primary-color);
-              border-bottom-color: var(--composer-primary-color);
-            }
           }
         }
       }
