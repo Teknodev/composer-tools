@@ -191,9 +191,9 @@ class Stats19 extends BaseStats {
                           {(hasSubtitle || hasTitle) && (
                             <span className={this.decorateCSS("stat-content")}>
                               {hasSubtitle && (
-                                <Base.P className={this.decorateCSS("stat-subtitle")}>
+                                <Base.H6 className={this.decorateCSS("stat-subtitle")}>
                                   {stat.subtitle}
-                                </Base.P>
+                                </Base.H6>
                               )}
                               {hasTitle && (
                                 <Base.H5 className={this.decorateCSS("stat-title")}>
