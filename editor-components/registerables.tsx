@@ -184,6 +184,7 @@ import CallToAction18 from "./call_to_action/call_to_action18/call_to_action18";
 import CallToAction20 from "./call_to_action/call_to_action20/call_to_action20";
 import CallToAction21 from "./call_to_action/call_to_action21/call_to_action21";
 import CallToAction22 from "./call_to_action/call_to_action22/call_to_action22";
+import CallToAction23 from "./call_to_action/call_to_action23/call_to_action23";
 import CallToAction24 from "./call_to_action/call_to_action24/call_to_action24";
 import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
 import CalltoAction25 from "./call_to_action/call_to_action25/call_to_action25";
@@ -577,6 +578,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction20,
     CallToAction21,
     CallToAction22,
+    CallToAction23,
     CallToAction24,
     CallToAction27,
     CalltoAction25,
