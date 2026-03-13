@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats27.module.scss";
