@@ -110,19 +110,19 @@ export class Stats30Page extends BaseStats {
     }
 
     private AnimatedCard = ({
-        card,
+        stat,
         coloredBackgroundClass,
         alignment,
         statsAnimation,
         animationDuration,
     }: {
-        card: any;
+        stat: any;
         coloredBackgroundClass: string;
         alignment: string;
         statsAnimation: boolean;
         animationDuration: number;
     }) => {
-        const originalValueString = card.statValue;
+        const originalValueString = stat.statValue;
         const targetNumber = parseFloat(originalValueString.replace(/[^\d.]/g, "")) || 0;
 
         const formatNumber = (num: number): string => {
@@ -161,36 +161,50 @@ export class Stats30Page extends BaseStats {
             };
         }, [targetNumber, statsAnimation, animationDuration, originalValueString]);
 
+        const titleExist = !!this.castToString(stat.title);
+        const subtitleExist = !!this.castToString(stat.subtitle);
+        const descriptionExist = !!this.castToString(stat.description);
+        const valueExist = !!this.castToString(originalValueString);
+        const suffixExist = !!this.castToString(stat.suffix);
+
         return (
-            <div className={`${this.decorateCSS("card")} ${coloredBackgroundClass}`}>
-                <Base.VerticalContent className={this.decorateCSS("card-content")}>
-
-                    {/* 1. GRUP: Üst başlık ve Başlık */}
-                    <div className={this.decorateCSS("header-group")}>
-                        <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitleElement}</Base.H6>
-                        <Base.H2 className={this.decorateCSS("card-title")}>{card.titleElement}</Base.H2>
-                    </div>
-
-                    {/* 2. GRUP: Sadece Description */}
-                    {card.description && (
-                        <div className={this.decorateCSS("description-group")}>
-                            <Base.P className={this.decorateCSS("card-description")}>{card.descriptionElement}</Base.P>
-                        </div>
+            <Base.VerticalContent className={`${this.decorateCSS("stat-item")} ${coloredBackgroundClass}`}>
+                <Base.VerticalContent className={this.decorateCSS("stat-text-group")}>
+                    {subtitleExist && (
+                        <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                            {stat.subtitleElement}
+                        </Base.H6>
                     )}
-
-                    {/* 3. GRUP: Rakamlar */}
-                    {card.statValue && (
-                        <div className={this.decorateCSS("number-group")}>
-                            <div className={this.decorateCSS("card-number")}>
-                                {card.prefix && <span className={this.decorateCSS("card-prefix")}>{card.prefix}</span>}
-                                <span>{display}</span>
-                                {card.suffix && <span className={this.decorateCSS("card-suffix")}>{card.suffix}</span>}
-                            </div>
-                        </div>
+                    {titleExist && (
+                        <Base.H2 className={this.decorateCSS("stat-title")}>
+                            {stat.titleElement}
+                        </Base.H2>
                     )}
-
+                    {descriptionExist && (
+                        <Base.P className={this.decorateCSS("stat-description")}>
+                            {stat.descriptionElement}
+                        </Base.P>
+                    )}
                 </Base.VerticalContent>
-            </div>
+
+                {(valueExist || suffixExist) && (
+                    <span className={this.decorateCSS("stat-value-container")}>
+                        {stat.prefix && (
+                            <span className={this.decorateCSS("stat-prefix")}>
+                                {stat.prefix}
+                            </span>
+                        )}
+                        <span className={this.decorateCSS("stat-value")}>
+                            {display}
+                        </span>
+                        {suffixExist && (
+                            <span className={this.decorateCSS("stat-suffix")}>
+                                {stat.suffix}
+                            </span>
+                        )}
+                    </span>
+                )}
+            </Base.VerticalContent>
         );
 
     };
@@ -254,13 +268,13 @@ export class Stats30Page extends BaseStats {
 
                         {cards.length > 0 && (
                             <div
-                                className={this.decorateCSS("cards-container")}
+                                className={this.decorateCSS("stats-container")}
                                 style={{ "--item-count": itemCount } as React.CSSProperties}
                             >
-                                {cards.map((card: any, index: number) => (
+                                {cards.map((stat: any, index: number) => (
                                     <this.AnimatedCard
                                         key={index}
-                                        card={card}
+                                        stat={stat}
                                         coloredBackgroundClass={this.getColoredBackground()}
                                         alignment={alignment}
                                         statsAnimation={statsAnimation}

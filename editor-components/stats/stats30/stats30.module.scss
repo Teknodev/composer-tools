@@ -1,8 +1,8 @@
-/* stats30.module.scss - En Güncel ve Temiz Versiyon */
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
     background-color: var(--composer-html-background);
+    container-type: inline-size;
 
     .max-content {
         width: 100%;
@@ -33,71 +33,122 @@
                 }
             }
 
-            .cards-container {
+            .stats-container {
                 width: 100%;
                 display: grid;
                 grid-template-columns: repeat(var(--item-count, 2), 1fr);
                 gap: var(--composer-gap-md);
                 margin-top: var(--composer-gap-xl);
 
-                @container (max-width: #{$composer-tablet-width}) {
-                    grid-template-columns: repeat(2, 1fr);
-                }
-
-                @container (max-width: #{$composer-phone-width}) {
-                    grid-template-columns: repeat(1, 1fr);
-                }
-
-                .card {
+                .stat-item {
                     background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     padding: var(--composer-gap-xl);
                     border-radius: var(--composer-border-radius-md);
                     width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4rem; // Orijinal bileşen boşluğu (Metinler ile Rakam arası)
+                    align-items: flex-start;
 
-                    .card-content {
+                    .stat-text-group {
                         display: flex;
                         flex-direction: column;
+                        gap: var(--composer-gap-xs); // Metinlerin kendi arasındaki dar mesafe
                         width: 100%;
-                        gap: var(--composer-gap-sm);
 
-                        .header-group {
-                            margin-bottom: 5rem;
-                            gap: 1rem;
-                            display: flex;
-                            flex-direction: column;
+                        .stat-subtitle,
+                        .stat-title,
+                        .stat-description {
+                            margin: 0 !important;
                         }
 
-                        .number-group {
-                            display: flex;
-                            align-items: center;
+                        .stat-subtitle {
+                            font-size: 1.5rem;
+                            color: var(--composer-font-color-primary);
+                        }
+
+                        .stat-title {
+                            font-size: 3.5rem;
+                            color: var(--composer-font-color-primary);
+                            line-height: 1.1;
+                        }
+
+                        .stat-description {
+                            font-size: 1rem;
+                            opacity: 0.8;
+                            color: var(--composer-font-color-primary);
+                            line-height: 1.5;
                         }
                     }
 
-                    .card-subtitle,
-                    .card-title,
-                    .card-description {
-                        color: var(--composer-font-color-primary);
-                        margin: 0;
-                        text-align: left;
-                    }
-
-                    .card-number {
-                        font-size: 14rem;
-                        color: var(--composer-primary-color);
-                        line-height: 1;
+                    .stat-value-container {
                         display: flex;
-                        align-items: center;
-                        gap: 0.2rem;
+                        align-items: baseline;
+                        gap: var(--composer-gap-sm);
+                        color: var(--composer-primary-color);
+                        margin: 0;
+
+                        .stat-prefix,
+                        .stat-suffix {
+                            font-size: 5rem;
+                            line-height: 1;
+                            margin: 0;
+                        }
+
+                        .stat-value {
+                            font-size: 14rem;
+                            line-height: 1;
+                            margin: 0;
+                        }
                     }
 
                     &.colored-background {
                         background-color: var(--composer-html-color);
 
-                        .card-number,
-                        .card-title,
-                        .card-subtitle,
-                        .card-description {
+                        .stat-value-container,
+                        .stat-text-group {
+
+                            .stat-title,
+                            .stat-subtitle,
+                            .stat-description {
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
+                        
+                        .stat-value-container {
                             color: var(--composer-font-color-primary);
+                        }
+                    }
+                }
+
+                @container (max-width: #{$composer-tablet-width}) {
+                    grid-template-columns: repeat(2, 1fr);
+
+                    .stat-item {
+                        gap: 3rem; // Tablette mesafeyi biraz daralt
+
+                        .stat-value-container {
+
+                            .stat-value,
+                            .stat-prefix,
+                            .stat-suffix {
+                                font-size: 10rem;
+                            }
+                        }
+                    }
+                }
+
+                @container (max-width: #{$composer-phone-width}) {
+                    grid-template-columns: repeat(1, 1fr);
+
+                    .stat-item {
+                        .stat-value-container {
+
+                            .stat-value,
+                            .stat-prefix,
+                            .stat-suffix {
+                                font-size: 10rem;
+                            }
                         }
                     }
                 }
@@ -109,8 +160,6 @@
                 gap: var(--composer-gap-md);
                 margin-top: var(--composer-gap-xl);
                 justify-content: center;
-
-
             }
         }
     }
