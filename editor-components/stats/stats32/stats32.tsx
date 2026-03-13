@@ -192,6 +192,7 @@ class Stats32 extends BaseStats {
                         {stat.prefix && (
                             <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>
                         )}
+
                         <span className={this.decorateCSS("stat-number")}>
                             {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
                         </span>

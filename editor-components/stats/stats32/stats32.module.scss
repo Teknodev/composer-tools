@@ -58,6 +58,7 @@
                 flex-direction: column;
                 justify-content: center;
                 gap: var(--composer-gap-lg);
+                align-items: flex-start;
                 // padding: var(--composer-gap-lg) 0;
 
 
@@ -80,9 +81,11 @@
                     grid-template-columns: repeat(2, 1fr);
                     gap: var(--composer-gap-xl);
                     margin-top: var(--composer-gap-md);
+                    justify-content: start;
                 }
 
                 .stat-item {
+
                     font-size: 1.5rem;
                     display: flex;
                     flex-direction: column;
@@ -96,11 +99,13 @@
 
                     .stat-title {
                         font-size: 1.5rem;
+                        color: var(--composer-font-color-primary);
                     }
 
                     .stat-description {
                         font-size: 1rem;
                         opacity: 0.7;
+                        color: var(--composer-font-color-primary);
                     }
                 }
             }
