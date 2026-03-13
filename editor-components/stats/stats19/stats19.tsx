@@ -196,9 +196,9 @@ class Stats19 extends BaseStats {
                                 </Base.P>
                               )}
                               {hasTitle && (
-                                <Base.H6 className={this.decorateCSS("stat-title")}>
+                                <Base.H5 className={this.decorateCSS("stat-title")}>
                                   {stat.title}
-                                </Base.H6>
+                                </Base.H5>
                               )}
                             </span>
                           )}
