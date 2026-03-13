@@ -40,7 +40,7 @@ class List10 extends BaseList {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Lorem ipsum dolor sit amet consectetur adipiscing elit dolor sit amet consectetur adipiscing elit dolor sit amet consectetur adipiscing elit",
+            value: "",
         });
 
         this.addProp({
