@@ -4,6 +4,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
+interface BoxItem {
+  item: TypeMediaInputValue;
+  text: React.JSX.Element;
+}
+
 class List12 extends BaseList {
   static getName(): string {
     return "List 12";
@@ -51,6 +56,15 @@ class List12 extends BaseList {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -145,37 +159,31 @@ class List12 extends BaseList {
       displayer: "Overlay",
       value: false,
     });
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-      ],
-    });
   }
 
   render() {
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const box1 = this.castToObject("box1");
-    const box2 = this.castToObject("box2");
-    const box3 = this.castToObject("box3");
-    const box1IsIcon = box1?.item && box1.item.type === "icon";
-    const box2IsIcon = box2?.item && box2.item.type === "icon";
-    const box3IsIcon = box3?.item && box3.item.type === "icon";
-    const backgroundMedia = this.getPropValue("image") as TypeMediaInputValue | null;
-    const hasBackgroundMedia = !!backgroundMedia;
+    const box1 = this.castToObject<BoxItem>("box1");
+    const box2 = this.castToObject<BoxItem>("box2");
+    const box3 = this.castToObject<BoxItem>("box3");
+    const backgroundMedia = this.getPropValue("image") as TypeMediaInputValue;
+    const hasBackgroundMedia = !!backgroundMedia?.url;
     const imageOverlay = this.getPropValue("overlay");
     const backgroundOverlay = this.getPropValue("backgroundOverlay");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hoverAnimation = this.getPropValue("hoverAnimation").join(" ");
+
+    const box1Exist = !!box1;
+    const box2Exist = !!box2;
+    const box3Exist = !!box3;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         {hasBackgroundMedia && (
           <Base.Media
-            value={backgroundMedia as TypeMediaInputValue}
+            value={backgroundMedia}
             className={`${this.decorateCSS("background-media")} ${this.decorateCSS("media-el")}`}
           />
         )}
@@ -184,25 +192,29 @@ class List12 extends BaseList {
         )}
         <Base.MaxContent isFull className={`${this.decorateCSS("max-content")} ${this.decorateCSS("alignment-center")}`}>
           <div className={this.decorateCSS("boxes")}>
-            <div className={this.decorateCSS("leftBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-              {box1.item && (
-                <div className={`${this.decorateCSS("circle")} ${box1IsIcon && this.decorateCSS("no-circle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")} ${this.getPropValue("hoverAnimation").join(" ")}`}>
-                  <Base.Media
-                    className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
-                    value={box1.item}
-                  />
-                  {imageOverlay && (
-                    <div className={this.decorateCSS("overlay")} />
-                  )}
-                </div>
-              )}
-              {this.castToString(box1.text) && (
-                <div className={this.decorateCSS("titles")}>
-                  <Base.P className={`${this.decorateCSS("text1")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>{box1.text}</Base.P>
-                </div>
-              )}
-            </div>
-            <div className={this.decorateCSS("middleBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+            {box1Exist && (
+              <div className={this.decorateCSS("leftBox")} data-animation={hoverAnimation}>
+                {box1.item && (
+                  <div className={`${this.decorateCSS("circle")} ${box1.item.type === "icon" && this.decorateCSS("no-circle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")} ${hoverAnimation}`}>
+                    <Base.Media
+                      className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
+                      value={box1.item}
+                    />
+                    {imageOverlay && (
+                      <div className={this.decorateCSS("overlay")} />
+                    )}
+                  </div>
+                )}
+                {this.castToString(box1.text) && (
+                  <div className={this.decorateCSS("titles")}>
+                    <Base.P className={`${this.decorateCSS("text1")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                      {box1.text}
+                    </Base.P>
+                  </div>
+                )}
+              </div>
+            )}
+            <div className={this.decorateCSS("middleBox")} data-animation={hoverAnimation}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${hasBackgroundMedia && this.decorateCSS("transparent-bg")}`}>
                   {this.getPropValue("subtitle")}
@@ -210,7 +222,9 @@ class List12 extends BaseList {
               )}
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("section-wrapper")}>
-                  <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>{this.getPropValue("title")}</div>
+                  <div className={`${this.decorateCSS("title")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                    {this.getPropValue("title")}
+                  </div>
                 </Base.SectionTitle>
               )}
               {descriptionExist && (
@@ -218,8 +232,25 @@ class List12 extends BaseList {
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
-              {box2.item && (
-                <div className={`${this.decorateCSS("circle")} ${box2IsIcon && this.decorateCSS("no-circle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")} ${this.getPropValue("hoverAnimation").join(" ")}`}>
+              <div className={this.decorateCSS("button-wrapper")}>
+                {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                  const buttonTextExist = this.castToString(button.text);
+                  const buttonIconExist = button.icon && !!button.icon.name;
+
+                  if (!buttonTextExist && !buttonIconExist) return null;
+
+                  return (
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                        {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                        {buttonIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={button.icon!} />}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+              {box2Exist && box2.item && (
+                <div className={`${this.decorateCSS("circle")} ${box2.item.type === "icon" && this.decorateCSS("no-circle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")} ${hoverAnimation}`}>
                   <Base.Media
                     className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
                     value={box2.item}
@@ -229,48 +260,37 @@ class List12 extends BaseList {
                   )}
                 </div>
               )}
-              {this.castToString(box2.text) && (
+              {box2Exist && this.castToString(box2.text) && (
                 <div className={this.decorateCSS("titles")}>
-                  <Base.P className={`${this.decorateCSS("text2")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>{box2.text}</Base.P>
+                  <Base.P className={`${this.decorateCSS("text2")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                    {box2.text}
+                  </Base.P>
                 </div>
               )}
             </div>
 
-            <div className={this.decorateCSS("rightBox")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-              {box3.item && (
-                <div className={`${this.decorateCSS("circle")} ${box3IsIcon && this.decorateCSS("no-circle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")} ${this.getPropValue("hoverAnimation").join(" ")}`}>
-                  <Base.Media
-                    className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
-                    value={box3.item}
-                  />
-                  {imageOverlay && (
-                    <div className={this.decorateCSS("overlay")} />
-                  )}
-                </div>
-              )}
-              {this.castToString(box3.text) && (
-                <div className={this.decorateCSS("titles")}>
-                  <Base.P className={`${this.decorateCSS("text3")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>{box3.text}</Base.P>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className={this.decorateCSS("button-wrapper")}>
-            {buttons.map((button: INPUTS.CastedButton, index: number) => {
-              const buttonTextExist = this.castToString(button.text);
-              const buttonIconExist = button.icon && !!button.icon.name;
-
-              if (!buttonTextExist && !buttonIconExist) return null;
-
-              return (
-                <ComposerLink key={index} path={button.url}>
-                  <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                    {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                    {buttonIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={button.icon!} />}
-                  </Base.Button>
-                </ComposerLink>
-              );
-            })}
+            {box3Exist && (
+              <div className={this.decorateCSS("rightBox")} data-animation={hoverAnimation}>
+                {box3.item && (
+                  <div className={`${this.decorateCSS("circle")} ${box3.item.type === "icon" && this.decorateCSS("no-circle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")} ${hoverAnimation}`}>
+                    <Base.Media
+                      className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
+                      value={box3.item}
+                    />
+                    {imageOverlay && (
+                      <div className={this.decorateCSS("overlay")} />
+                    )}
+                  </div>
+                )}
+                {this.castToString(box3.text) && (
+                  <div className={this.decorateCSS("titles")}>
+                    <Base.P className={`${this.decorateCSS("text3")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                      {box3.text}
+                    </Base.P>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

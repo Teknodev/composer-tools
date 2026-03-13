@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   width: 100%;
@@ -23,10 +22,7 @@ as *;
 
   .background-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-color: var(--composer-overlay-color);
     z-index: 1;
   }
@@ -59,84 +55,29 @@ as *;
         width: 100%;
         min-width: 0;
         box-sizing: border-box;
-      }
-
-      .leftBox,
-      .rightBox {
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
 
-        &[data-animation~="animate1"]:hover {
-
-          .circle,
-          .icon {
-            transform: scale(1.1);
-          }
+        &[data-animation~="animate1"]:hover .circle,
+        &[data-animation~="animate1"]:hover .icon {
+          transform: scale(1.1);
         }
 
-        &[data-animation~="animate2"]:hover {
-
-          .circle,
-          .icon {
-            transform: rotate(360deg);
-          }
+        &[data-animation~="animate2"]:hover .circle,
+        &[data-animation~="animate2"]:hover .icon {
+          transform: rotate(360deg);
         }
 
-        &[data-animation~="animate3"]:hover {
-
-          .circle,
-          .icon {
-            animation: bounce 1s ease-in-out;
-          }
+        &[data-animation~="animate3"]:hover .circle,
+        &[data-animation~="animate3"]:hover .icon {
+          animation: bounce 1s ease-in-out;
         }
 
-        &[data-animation~="animate4"]:hover {
-
-          .circle,
-          .icon {
-            animation: breathing 2s ease-out infinite normal;
-          }
-        }
-      }
-
-      .middleBox {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-
-        &[data-animation~="animate1"]:hover {
-
-          .circle,
-          .icon {
-            transform: scale(1.1);
-          }
-        }
-
-        &[data-animation~="animate2"]:hover {
-
-          .circle,
-          .icon {
-            transform: rotate(360deg);
-          }
-        }
-
-        &[data-animation~="animate3"]:hover {
-
-          .circle,
-          .icon {
-            animation: bounce 1s ease-in-out;
-          }
-        }
-
-        &[data-animation~="animate4"]:hover {
-
-          .circle,
-          .icon {
-            animation: breathing 2s ease-out infinite normal;
-          }
+        &[data-animation~="animate4"]:hover .circle,
+        &[data-animation~="animate4"]:hover .icon {
+          animation: breathing 2s ease-out infinite normal;
         }
       }
 
@@ -151,24 +92,19 @@ as *;
         align-items: center;
         overflow: hidden;
         margin-bottom: 1rem;
-        transition: transform 0.3s ease-in-out;
         position: relative;
+        transition: transform 0.3s ease-in-out;
 
         &.with-bg {
           color: white;
         }
       }
 
-      .circle {
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-          border-radius: inherit;
-        }
+      .circle .overlay {
+        position: absolute;
+        inset: 0;
+        background-color: var(--composer-overlay-color);
+        border-radius: inherit;
       }
 
       .no-circle {
@@ -178,8 +114,8 @@ as *;
         justify-content: center;
         align-items: center;
         overflow: visible;
-        transition: transform 0.3s ease-in-out;
         position: relative;
+        transition: transform 0.3s ease-in-out;
 
         .img {
           border-radius: 0;
@@ -203,8 +139,8 @@ as *;
         .text2,
         .text3 {
           color: var(--composer-font-color-primary);
-          max-width: 100%;
           width: 100%;
+          max-width: 100%;
           box-sizing: border-box;
           text-align: center;
 
@@ -244,16 +180,15 @@ as *;
         box-sizing: border-box;
         overflow: hidden;
         text-align: center !important;
+        transform: translateX(0) !important;
+
+        &::before {
+          display: none !important;
+        }
 
         &.with-bg {
           color: white;
           text-align: center !important;
-        }
-
-        transform: translateX(0) !important;
-
-        &:before {
-          display: none !important;
         }
 
         &.transparent-bg {
@@ -266,105 +201,93 @@ as *;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      overflow: visible;
+  .container .max-content {
+    overflow: visible;
 
-      .boxes {
+    .boxes {
+      max-width: 100%;
+      gap: var(--composer-gap-md);
+
+      .leftBox,
+      .rightBox,
+      .middleBox {
+        max-width: calc((100% - (2 * var(--composer-gap-md))) / 3);
+        min-width: 0;
+      }
+
+      .titles .text1,
+      .titles .text2,
+      .titles .text3,
+      .section-wrapper .title {
         max-width: 100%;
-        gap: var(--composer-gap-md);
-
-        .leftBox,
-        .rightBox,
-        .middleBox {
-          max-width: calc((100% - (2 * var(--composer-gap-md))) / 3);
-          min-width: 0;
-        }
-
-        .titles {
-          .text1,
-          .text2,
-          .text3 {
-            max-width: 100%;
-            width: 100%;
-          }
-        }
-
-        .section-wrapper {
-          .title {
-            max-width: 100%;
-            width: 100%;
-          }
-        }
+        width: 100%;
       }
     }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container {
-    .max-content {
-      overflow: visible;
+  .container .max-content {
+    overflow: visible;
 
-      .boxes {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--composer-gap-md);
+    .boxes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--composer-gap-md);
+      width: 100%;
+      max-width: 100%;
+
+      .leftBox,
+      .rightBox,
+      .middleBox {
         width: 100%;
         max-width: 100%;
+        text-align: center !important;
+      }
 
-        .leftBox,
-        .rightBox,
-        .middleBox {
+      .leftBox {
+        order: 2;
+      }
+
+      .middleBox {
+        order: 1;
+      }
+
+      .rightBox {
+        order: 3;
+      }
+
+      .titles {
+        width: 100%;
+        max-width: 100%;
+        text-align: center !important;
+
+        .text1,
+        .text2,
+        .text3 {
           width: 100%;
           max-width: 100%;
           text-align: center !important;
-        }
 
-        .leftBox {
-          order: 2;
-        }
-
-        .middleBox {
-          order: 1;
-        }
-
-        .rightBox {
-          order: 3;
-        }
-
-        .titles {
-          width: 100%;
-          max-width: 100%;
-          text-align: center !important;
-
-          .text1,
-          .text2,
-          .text3 {
-            width: 100%;
-            max-width: 100%;
+          &.with-bg {
             text-align: center !important;
-
-            &.with-bg {
-              text-align: center !important;
-            }
           }
         }
+      }
 
-        .section-wrapper {
+      .section-wrapper {
+        width: 100%;
+        max-width: 100%;
+        text-align: center !important;
+
+        .title {
           width: 100%;
           max-width: 100%;
           text-align: center !important;
 
-          .title {
-            width: 100%;
-            max-width: 100%;
+          &.with-bg {
             text-align: center !important;
-
-            &.with-bg {
-              text-align: center !important;
-            }
           }
         }
       }
@@ -387,27 +310,14 @@ as *;
 }
 
 @keyframes breathing {
-  0% {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
+
+  0%,
+  60%,
+  100% {
     transform: scale(1);
   }
 
   25% {
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
     transform: scale(1.05);
-  }
-
-  60% {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
-  }
-
-  100% {
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
-    transform: scale(1);
   }
 }
