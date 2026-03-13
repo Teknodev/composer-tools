@@ -188,12 +188,12 @@ class Stats32 extends BaseStats {
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 {valueExist && (
-                    <span className={this.decorateCSS("stat-value")}>
+                    <span className={this.decorateCSS("stat-value-container")}>
                         {stat.prefix && (
                             <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>
                         )}
 
-                        <span className={this.decorateCSS("stat-number")}>
+                        <span className={this.decorateCSS("stat-value")}>
                             {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
                         </span>
                         {stat.suffix && (

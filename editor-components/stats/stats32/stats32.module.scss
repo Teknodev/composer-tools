@@ -17,49 +17,21 @@
                 grid-template-columns: 1fr;
             }
 
-            // &.alignment-center {
-            //     .text-card {
-
-            //         .text-container {
-            //             align-items: center;
-            //         }
-
-            //         .button-container {
-            //             justify-content: center;
-            //         }
-
-            //         .stats-grid {
-            //             justify-items: center;
-            //         }
-
-            //         .stat-item {
-            //             align-items: center;
-            //         }
-            //     }
-
-            //     .title,
-            //     .subtitle,
-            //     .description {
-            //         margin: 0;
-            //     }
-            // }
-
             .title,
             .subtitle,
             .description {
                 text-align: left;
                 margin-inline: 0;
                 margin-bottom: 0;
+                color: var(--composer-font-color-primary);
             }
 
             .text-card {
-                // min-height: 500px;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 gap: var(--composer-gap-lg);
                 align-items: flex-start;
-                // padding: var(--composer-gap-lg) 0;
 
 
                 .text-container {
@@ -73,7 +45,6 @@
                     display: flex;
                     flex-wrap: wrap;
                     gap: var(--composer-gap-sm);
-                    // margin-top: var(--composer-gap-md);
                 }
 
                 .stats-grid {
@@ -85,27 +56,40 @@
                 }
 
                 .stat-item {
-
                     font-size: 1.5rem;
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
+                    color: var(--composer-font-color-primary);
 
-                    .stat-value {
-                        color: var(--composer-font-color-primary);
-                        font-size: 7rem;
-                        line-height: 1;
+                    .stat-value-container {
+                        color: inherit;
+                        display: flex;
+                        align-items: baseline;
+                        gap: var(--composer-gap-sm);
+                        margin: 0;
+
+                        .stat-value {
+                            font-size: 7rem;
+                            line-height: 1;
+                        }
+
+                        .stat-prefix,
+                        .stat-suffix {
+                            font-size: 7rem; // Slightly smaller prefixes/suffixes like Stats30
+                            line-height: 1;
+                        }
                     }
 
                     .stat-title {
                         font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
+                        color: inherit;
                     }
 
                     .stat-description {
                         font-size: 1rem;
                         opacity: 0.7;
-                        color: var(--composer-font-color-primary);
+                        color: inherit;
                     }
                 }
             }
@@ -157,8 +141,13 @@
             }
 
             .stat-item {
-                .stat-value {
-                    font-size: 5rem;
+                .stat-value-container {
+
+                    .stat-value,
+                    .stat-prefix,
+                    .stat-suffix {
+                        font-size: 5rem;
+                    }
                 }
             }
         }
@@ -208,8 +197,13 @@
                 }
 
                 .stat-item {
-                    .stat-value {
-                        font-size: 5rem;
+                    .stat-value-container {
+
+                        .stat-value,
+                        .stat-prefix,
+                        .stat-suffix {
+                            font-size: 5rem;
+                        }
                     }
                 }
             }
