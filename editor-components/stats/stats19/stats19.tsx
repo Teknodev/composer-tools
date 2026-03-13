@@ -122,7 +122,7 @@ class Stats19 extends BaseStats {
       const subtitle = item.getPropValue("subtitle");
       const itemTitle = item.getPropValue("title");
       const itemDescription = item.getPropValue("description");
-      const number = this.castToString(item.getPropValue("number")) || "0";
+      const number = this.castToString(item.getPropValue("number")) || "";
       const prefix = this.castToString(item.getPropValue("prefix")) || "";
       const suffix = this.castToString(item.getPropValue("suffix")) || "";
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
@@ -161,7 +161,7 @@ class Stats19 extends BaseStats {
                   {stats.map((stat: StatItem, index: number) => {
                     const hasPrefix = stat.prefix && stat.prefix.trim() !== "";
                     const hasSuffix = stat.suffix && stat.suffix.trim() !== "";
-                    const hasNumber = (parseFloat(stat.number) || 0) !== 0 || hasPrefix || hasSuffix;
+                    const hasNumber = stat.number !== "" || hasPrefix || hasSuffix;
                     const hasSubtitle = this.castToString(stat.subtitle);
                     const hasTitle = this.castToString(stat.title);
                     const hasDescription = this.castToString(stat.description);
