@@ -1,280 +1,301 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 80px 0px !important;
+  padding: calc(var(--composer-gap-lg) * 2) 0 !important;
 
   .max-content {
     padding: 0 var(--composer-gap-lg);
     gap: 0;
 
-    .header {
-      padding: 0;
-      margin-bottom: var(--composer-gap-md);
-    }
-  }
-
-  .grid-container {
-    gap: 0;
-
-    .card {
+    .content {
       display: flex;
       flex-direction: column;
-      position: relative;
-      width: 100%;
-      aspect-ratio: 8/12;
-      transition: transform var(--composer-transition-duration-slow);
-      transform: translateY(0) scale(1);
-      overflow: hidden;
+      gap: var(--composer-gap-lg);
 
-      &[data-animation=""] {
-        .card-content {
-          bottom: -40px;
-        }
+      .header-section {
+        padding: 0;
 
-        .card-description {
-          opacity: 1 !important;
-        }
-      }
-
-      &[data-animation~="animate1"] {
-        &:where(:hover, :focus-within) {
-          .image-container {
-            height: 100%;
-
-            .image {
-              transform: scale(1.05);
-            }
-
-            .gradient-overlay {
-              opacity: 1;
-              background: linear-gradient(0deg,
-                  rgba(var(--composer-primary-color-rgb), 0.9) 0%,
-                  transparent 80%,
-                  transparent 100%);
-              clip-path: none;
-              transition: opacity 0.5s var(--composer-transition-easing);
-            }
-          }
-
-          .card-content {
-            bottom: -20px;
-
-            .card-title,
-            .icon,
-            .card-description {
-              color: var(--composer-font-color-secondary);
-            }
-
-            .card-description {
-              max-height: 300px;
-              opacity: 1;
-              margin-top: var(--composer-gap-md);
-              transition-delay: 0.2s;
-            }
-          }
-        }
-      }
-
-      &[data-animation~="animate2"] {
-        .card-content {
-          bottom: 0;
-          height: 100%;
-          justify-content: center;
-          transform: translateX(-101%);
-          background: rgba(var(--composer-primary-color-rgb), 0.95);
-          z-index: 10;
-          transition: transform 0.5s var(--composer-transition-easing);
-
-          .card-title,
-          .card-description,
-          .icon {
-            opacity: 1 !important;
-            color: var(--composer-font-color-secondary);
-            transform: translateX(0);
-          }
-        }
-
-        &:where(:hover, :focus-within) {
-          .card-content {
-            transform: translateX(0);
-          }
-
-          .image-container {
-            .image {
-              transform: scale(1.1) rotate(-3deg);
-            }
-          }
-        }
-
-        .image-container {
-          .gradient-overlay {
-            display: none;
-          }
-
-          .image {
-            transition: all 0.5s var(--composer-transition-easing);
-          }
-        }
-      }
-
-      &[data-animation~="animate3"] {
-        &:where(:hover, :focus-within) {
-          transform: translateY(calc(-1 * var(--composer-gap-xs))) scale(1.1);
-          z-index: 5;
-
-          .card-content {
-            bottom: -20px;
-            background: linear-gradient(0deg, rgba(var(--composer-primary-color-rgb), 0.9) 0%, transparent 100%);
-
-            .card-title,
-            .icon,
-            .card-description {
-              color: var(--composer-font-color-secondary);
-            }
-
-            .card-description {
-              opacity: 1 !important;
-              max-height: 300px;
-              margin-top: var(--composer-gap-md);
-            }
-          }
-        }
-      }
-
-      &[data-animation="animate4"]:where(:hover, :focus-within) {
-        .card-content {
-          background: rgba(var(--composer-primary-color-rgb), 0.95);
-          bottom: -5%;
-
-          .card-title,
-          .card-description,
-          .icon {
-            color: var(--composer-font-color-secondary);
-          }
-
-          .card-description {
-            max-height: 300px;
-            opacity: 1 !important;
-          }
-        }
-      }
-
-      &[data-animation~="animate5"] {
-        &:where(:hover, :focus-within) {
-          .image-container {
-            .image {
-              transform: scale(1.1);
-            }
-
-            .gradient-overlay {
-              opacity: 1;
-              clip-path: none;
-            }
-          }
-
-          .card-content {
-            bottom: -20px;
-
-            .card-title,
-            .icon,
-            .card-description {
-              color: var(--composer-font-color-secondary);
-            }
-
-            .card-description {
-              opacity: 1 !important;
-              max-height: 300px;
-              margin-top: var(--composer-gap-md);
-            }
-          }
-        }
-      }
-
-      .image-container {
-        width: auto;
-        height: 100%;
-        position: relative;
-
-        .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-        }
-
-        .gradient-overlay {
-          content: "";
-          background: var(--composer-overlay-color);
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 0px;
-          left: 0px;
-          opacity: 0.6;
-          clip-path: none;
-          transition: clip-path 0.6s var(--composer-transition-easing), opacity 0.6s var(--composer-transition-easing);
-        }
-
-        .image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: all 2s var(--composer-transition-easing);
-          transform: scale(1);
-        }
-      }
-
-      .card-content {
-        justify-content: flex-end;
-        align-items: flex-start;
-        left: 0px;
-        width: 100%;
-        bottom: -50px;
-        position: absolute;
-        padding: var(--composer-gap-lg);
-        gap: var(--composer-gap-sm);
-        max-height: 480px;
-        transition: bottom 0.4s var(--composer-transition-easing);
-        text-align: left;
-
-        .card-title {
-          content: "";
-          transition: all 0.3s var(--composer-transition-easing);
-          width: 100%;
-          color: white;
-          text-align: left;
-        }
-
-        .icon {
-          content: "";
-          transition: all 0.3s var(--composer-transition-easing);
-          color: white;
-          width: 2.5rem;
-          height: 2.5rem;
-          font-size: 2.5rem;
-          align-self: flex-start;
-          display: inline-flex;
+        &.align-center {
+          text-align: center;
           align-items: center;
-          justify-content: center;
 
-          .media-el {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
+          .subtitle,
+          .header-title,
+          .description {
+            text-align: center;
+          }
+
+          .button-wrapper {
+            justify-content: center;
           }
         }
 
-        .card-description {
-          content: "";
-          transition: all 0.3s var(--composer-transition-easing);
-          opacity: 0;
+        .button-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
+
+          .button .button-text {
+            content: "";
+          }
+        }
+      }
+
+      .grid-container {
+        gap: 0;
+
+        .card {
+          display: flex;
+          flex-direction: column;
+          position: relative;
           width: 100%;
-          color: white;
-          white-space: normal;
-          text-overflow: ellipsis;
-          text-align: left;
+          aspect-ratio: 8/12;
+          overflow: hidden;
+          transform: translateY(0) scale(1);
+          transition: transform var(--composer-transition-duration-slow);
+
+          &[data-animation=""] {
+            .card-content {
+              bottom: -40px;
+            }
+
+            .card-description {
+              opacity: 1 !important;
+            }
+          }
+
+          &[data-animation~="animate1"]:where(:hover, :focus-within) {
+            .image-container {
+              height: 100%;
+
+              .image {
+                transform: scale(1.05);
+              }
+
+              .gradient-overlay {
+                opacity: 1;
+                background: linear-gradient(0deg,
+                    rgba(var(--composer-primary-color-rgb), 0.9) 0%,
+                    transparent 80%,
+                    transparent 100%);
+                clip-path: none;
+                transition: opacity 0.5s var(--composer-transition-easing);
+              }
+            }
+
+            .card-content {
+              bottom: -20px;
+
+              .card-title,
+              .icon,
+              .card-description {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .card-description {
+                max-height: 300px;
+                opacity: 1;
+                margin-top: var(--composer-gap-md);
+                transition-delay: 0.2s;
+              }
+            }
+          }
+
+          &[data-animation~="animate2"] {
+            .card-content {
+              bottom: 0;
+              height: 100%;
+              justify-content: center;
+              transform: translateX(-101%);
+              background: rgba(var(--composer-primary-color-rgb), 0.95);
+              z-index: 10;
+              transition: transform 0.5s var(--composer-transition-easing);
+
+              .card-title,
+              .card-description,
+              .icon {
+                opacity: 1 !important;
+                color: var(--composer-font-color-secondary);
+                transform: translateX(0);
+              }
+            }
+
+            &:where(:hover, :focus-within) {
+              .card-content {
+                transform: translateX(0);
+              }
+
+              .image-container .image {
+                transform: scale(1.1) rotate(-3deg);
+              }
+            }
+
+            .image-container {
+              .gradient-overlay {
+                display: none;
+              }
+
+              .image {
+                transition: all 0.5s var(--composer-transition-easing);
+              }
+            }
+          }
+
+          &[data-animation~="animate3"]:where(:hover, :focus-within) {
+            transform: translateY(calc(-1 * var(--composer-gap-xs))) scale(1.1);
+            z-index: 5;
+
+            .card-content {
+              bottom: -20px;
+              background: linear-gradient(0deg, rgba(var(--composer-primary-color-rgb), 0.9) 0%, transparent 100%);
+
+              .card-title,
+              .icon,
+              .card-description {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .card-description {
+                opacity: 1 !important;
+                max-height: 300px;
+                margin-top: var(--composer-gap-md);
+              }
+            }
+          }
+
+          &[data-animation~="animate4"]:where(:hover, :focus-within) {
+            .card-content {
+              background: rgba(var(--composer-primary-color-rgb), 0.95);
+              bottom: -5%;
+
+              .card-title,
+              .card-description,
+              .icon {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .card-description {
+                max-height: 300px;
+                opacity: 1 !important;
+              }
+            }
+          }
+
+          &[data-animation~="animate5"]:where(:hover, :focus-within) {
+            .image-container {
+              .image {
+                transform: scale(1.1);
+              }
+
+              .gradient-overlay {
+                opacity: 1;
+                clip-path: none;
+              }
+            }
+
+            .card-content {
+              bottom: -20px;
+
+              .card-title,
+              .icon,
+              .card-description {
+                color: var(--composer-font-color-secondary);
+              }
+
+              .card-description {
+                opacity: 1 !important;
+                max-height: 300px;
+                margin-top: var(--composer-gap-md);
+              }
+            }
+          }
+
+          .image-container {
+            width: auto;
+            height: 100%;
+            position: relative;
+
+            .overlay {
+              position: absolute;
+              inset: 0;
+              background-color: var(--composer-overlay-color);
+            }
+
+            .gradient-overlay {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: var(--composer-overlay-color);
+              opacity: 0.6;
+              clip-path: none;
+              transition: clip-path 0.6s var(--composer-transition-easing),
+                opacity 0.6s var(--composer-transition-easing);
+            }
+
+            .image {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              transform: scale(1);
+              transition: all 2s var(--composer-transition-easing);
+            }
+          }
+
+          .card-content {
+            position: absolute;
+            left: 0;
+            bottom: -50px;
+            width: 100%;
+            max-height: 480px;
+            padding: var(--composer-gap-lg);
+            gap: var(--composer-gap-sm);
+            display: flex; // implied by justify-content usage
+            justify-content: flex-end;
+            align-items: flex-start;
+            text-align: left;
+            transition: bottom 0.4s var(--composer-transition-easing);
+
+            .card-title {
+              content: "";
+              width: 100%;
+              color: white;
+              text-align: left;
+              transition: all 0.3s var(--composer-transition-easing);
+            }
+
+            .icon {
+              content: "";
+              width: 2.5rem;
+              height: 2.5rem;
+              font-size: 2.5rem;
+              color: white;
+              align-self: flex-start;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
+              transition: all 0.3s var(--composer-transition-easing);
+
+              .media-el {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+              }
+            }
+
+            .card-description {
+              content: "";
+              width: 100%;
+              color: white;
+              opacity: 0;
+              white-space: normal;
+              text-overflow: ellipsis;
+              text-align: left;
+              transition: all 0.3s var(--composer-transition-easing);
+            }
+          }
         }
       }
     }
@@ -283,19 +304,16 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 80px 0;
 
-    .grid-container {
+    .max-content .content .grid-container {
       .card {
         aspect-ratio: 8/14;
 
         .card-content {
+          bottom: -30%;
           align-items: flex-start;
           text-align: left;
-          bottom: -30%;
 
           .icon {
             font-size: 2.5rem;
@@ -321,40 +339,38 @@
         }
       }
 
-      .card[data-animation~="animate1"] {
-        &:where(:hover, :focus-within) {
-          .image-container {
-            height: 100%;
+      .card[data-animation~="animate1"]:where(:hover, :focus-within) {
+        .image-container {
+          height: 100%;
 
-            .image {
-              transform: scale(1.05);
-            }
-
-            .gradient-overlay {
-              background: linear-gradient(0deg,
-                  rgba(var(--composer-primary-color-rgb), 0.85) 0%,
-                  transparent 70%,
-                  transparent 100%);
-              opacity: 0.7;
-              clip-path: none;
-              transition: opacity 0.8s var(--composer-transition-easing);
-            }
+          .image {
+            transform: scale(1.05);
           }
 
-          .card-content {
+          .gradient-overlay {
+            background: linear-gradient(0deg,
+                rgba(var(--composer-primary-color-rgb), 0.85) 0%,
+                transparent 70%,
+                transparent 100%);
+            opacity: 0.7;
+            clip-path: none;
+            transition: opacity 0.8s var(--composer-transition-easing);
+          }
+        }
 
-            .card-title,
-            .icon,
-            .card-description {
-              color: var(--composer-font-color-secondary);
-            }
+        .card-content {
 
-            .card-title {
-              margin-top: 0 !important;
-              margin-bottom: 0 !important;
-              padding-top: 0 !important;
-              padding-bottom: 0 !important;
-            }
+          .card-title,
+          .icon,
+          .card-description {
+            color: var(--composer-font-color-secondary);
+          }
+
+          .card-title {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
           }
         }
       }
@@ -369,63 +385,61 @@
 
     .max-content {
       padding: 0 var(--composer-gap-md) !important;
-    }
 
-    .grid-container {
-      .card {
-        aspect-ratio: 8/8;
+      .content {
+        gap: var(--composer-gap-md);
 
-        .card-content {
-          bottom: -60px;
-          padding: var(--composer-gap-md) !important;
+        .grid-container {
+          .card {
+            aspect-ratio: 8/8;
 
-          .card-description {
-            opacity: 0;
-          }
-        }
+            .card-content {
+              bottom: -60px;
+              padding: var(--composer-gap-md) !important;
 
-        .image-container:hover+.card-content .card-description {
-          opacity: 1;
-        }
-      }
-
-      .card[data-animation=""] {
-        .card-content {
-          bottom: -20px !important;
-        }
-      }
-
-      .card[data-animation~="animate1"] {
-        &:where(:hover, :focus-within) {
-          .image-container {
-            .image {
-              transform: scale(1.05);
+              .card-description {
+                opacity: 0;
+              }
             }
 
-            .gradient-overlay {
-              background: linear-gradient(0deg,
-                  rgba(var(--composer-primary-color-rgb), 0.9) 0%,
-                  transparent 70%,
-                  transparent 100%);
-              opacity: 0.8;
-              clip-path: none;
+            .image-container:hover+.card-content .card-description {
+              opacity: 1;
             }
           }
 
-          .card-content {
+          .card[data-animation=""] .card-content {
+            bottom: -20px !important;
+          }
 
-            .card-title,
-            .card-description,
-            .icon {
-              color: var(--composer-font-color-secondary);
+          .card[data-animation~="animate1"]:where(:hover, :focus-within) {
+            .image-container {
+              .image {
+                transform: scale(1.05);
+              }
+
+              .gradient-overlay {
+                background: linear-gradient(0deg,
+                    rgba(var(--composer-primary-color-rgb), 0.9) 0%,
+                    transparent 70%,
+                    transparent 100%);
+                opacity: 0.8;
+                clip-path: none;
+              }
+            }
+
+            .card-content {
+
+              .card-title,
+              .card-description,
+              .icon {
+                color: var(--composer-font-color-secondary);
+              }
             }
           }
-        }
-      }
 
-      .card[data-animation~="animate3"] {
-        &:where(:hover, :focus-within) {
-          transform: none !important;
+          .card[data-animation~="animate3"]:where(:hover, :focus-within) {
+            transform: none !important;
+          }
         }
       }
     }
