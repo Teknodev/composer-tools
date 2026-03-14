@@ -1,0 +1,197 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &.has-media {
+        padding: 0 !important;
+    }
+
+    &.has-background {
+        .max-content {
+            position: relative;
+            margin-top: -190px;
+
+            .card {
+                background-color: var(--composer-primary-color);
+                margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+                border-radius: var(--composer-border-radius-md);
+            }
+        }
+    }
+
+    .background-section {
+        position: relative;
+        min-height: 380px;
+        z-index: 1;
+
+        .background-wrapper {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+
+            .background-image {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: var(--composer-overlay-color);
+        }
+    }
+
+    .max-content {
+        z-index: 2;
+    }
+
+    .card {
+        background-color: var(--composer-primary-color);
+        margin: 0;
+
+        .text-block .subtitle,
+        .text-block .title,
+        .text-block .description {
+            color: var(--composer-font-color-secondary) !important;
+        }
+
+        .text-block .subtitle {
+            background: none !important;
+            padding: 0 !important;
+
+            &::before {
+                background-color: currentColor !important;
+            }
+        }
+    }
+
+    .content-wrapper {
+        width: 100%;
+    }
+
+    .header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: calc(var(--composer-gap-xl) * 2);
+        padding: 80px 50px !important;
+    }
+
+    .text-block {
+        align-items: flex-start;
+        flex: 1;
+        min-width: 0;
+
+        .subtitle,
+        .title,
+        .description {
+            text-align: inherit;
+        }
+
+        .subtitle {
+            width: fit-content;
+            margin-left: 0 !important;
+        }
+
+    }
+
+    .button-group {
+        display: grid;
+        grid-template-columns: repeat(3, max-content);
+        gap: var(--composer-gap-sm);
+        width: max-content;
+
+        .button {
+
+            .button-icon,
+            .button-text {
+                content: "";
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        &.has-media {
+            padding: 0 !important;
+        }
+
+        &.has-background {
+            .max-content {
+                .card {
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                    margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                }
+            }
+        }
+
+        .text-block {
+            flex: 1;
+            align-items: flex-start !important;
+            text-align: left !important;
+
+            .subtitle,
+            .title,
+            .description {
+                text-align: left !important;
+            }
+        }
+
+        .button-group {
+            justify-content: flex-end;
+            margin-left: auto;
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        &.has-media {
+            padding: 0 !important;
+        }
+
+        &.has-background {
+            .max-content {
+                .card {
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
+                    margin: var(--composer-gap-xl) var(--composer-gap-md) !important;
+                }
+            }
+        }
+
+        .text-block {
+            text-align: center !important;
+
+            .subtitle,
+            .title,
+            .description {
+                text-align: center !important;
+            }
+        }
+
+        .max-content {
+            .header {
+                gap: var(--composer-gap-md);
+                display: flex;
+                flex-direction: column;
+            }
+
+            .button-group {
+                margin-left: 0;
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
