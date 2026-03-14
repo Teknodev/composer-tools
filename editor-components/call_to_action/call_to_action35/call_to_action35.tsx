@@ -13,7 +13,7 @@ class CallToAction35 extends BaseCallToAction {
             type: "boolean",
             key: "cardBackground",
             displayer: "Colored Background",
-            value: true,
+            value: false,
         });
         this.addProp({
             type: "object",
@@ -86,7 +86,7 @@ class CallToAction35 extends BaseCallToAction {
         const alignment = Base.getContentAlignment();
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${background && hasBackgroundImage && this.decorateCSS("has-background")}`}>
+            <Base.Container className={`${this.decorateCSS("container")} ${hasBackgroundImage ? this.decorateCSS("has-media") : ""} ${background && hasBackgroundImage ? this.decorateCSS("has-background") : ""}`}>
                 {hasBackgroundImage && (
                     <div className={this.decorateCSS("background-section")}>
                         <div className={this.decorateCSS("background-wrapper")}>
@@ -95,9 +95,7 @@ class CallToAction35 extends BaseCallToAction {
                         {showOverlay && <div className={this.decorateCSS("overlay")} />}
                     </div>
                 )}
-                {hasBackgroundImage && (
-                    <div className={`${this.decorateCSS("bottom-strip")} ${!background ? this.decorateCSS("transparent") : ""}`} />
-                )}
+
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")}>
                         <div className={this.decorateCSS("content")}>
@@ -120,24 +118,24 @@ class CallToAction35 extends BaseCallToAction {
                                     )}
                                 </Base.VerticalContent>
                                 {hasVisibleButtons && (
-                                    <div className={this.decorateCSS("button-wrapper")}>
-                                        <div className={this.decorateCSS("button-group")}>
-                                            {buttons.map((button: Button, index: number) =>
-                                                this.castToString(button?.text) ? (
-                                                    <ComposerLink key={index} path={button.url}>
-                                                        <Base.Button
-                                                            className={`${this.decorateCSS("button")} ${this.decorateCSS(`button-${index}`)}`}
-                                                            buttonType={button.type}
-                                                        >
-                                                            <Base.P className={`${this.decorateCSS("button-text")} ${this.decorateCSS(`button-text-${index}`)}`}>
-                                                                {button.text}
-                                                            </Base.P>
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                ) : null
-                                            )}
-                                        </div>
+
+                                    <div className={this.decorateCSS("button-group")}>
+                                        {buttons.map((button: Button, index: number) =>
+                                            this.castToString(button?.text) ? (
+                                                <ComposerLink key={index} path={button.url}>
+                                                    <Base.Button
+                                                        className={`${this.decorateCSS("button")} ${this.decorateCSS(`button-${index}`)}`}
+                                                        buttonType={button.type}
+                                                    >
+                                                        <Base.P className={`${this.decorateCSS("button-text")} ${this.decorateCSS(`button-text-${index}`)}`}>
+                                                            {button.text}
+                                                        </Base.P>
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            ) : null
+                                        )}
                                     </div>
+
                                 )}
                             </div>
                         </div>

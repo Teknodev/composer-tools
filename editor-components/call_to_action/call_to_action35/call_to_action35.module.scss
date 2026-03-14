@@ -4,7 +4,10 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 0 !important;
+
+    &.has-media {
+        padding: 0 !important;
+    }
 
     &.has-background {
         .max-content {
@@ -13,7 +16,6 @@
 
             .card {
                 background-color: var(--composer-primary-color);
-                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
                 margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
                 border-radius: var(--composer-border-radius-md);
             }
@@ -46,23 +48,12 @@
         }
     }
 
-    .bottom-strip {
-        width: 100%;
-        background-color: var(--composer-html-background);
-        z-index: 0;
-
-        &.transparent {
-            background-color: transparent;
-        }
-    }
-
     .max-content {
         z-index: 2;
     }
 
     .card {
         background-color: var(--composer-primary-color);
-        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
         margin: 0;
 
         .text-block .subtitle,
@@ -74,7 +65,6 @@
         .text-block .subtitle {
             background: none !important;
             padding: 0 !important;
-            /* transform: none !important; */
 
             &::before {
                 background-color: currentColor !important;
@@ -84,7 +74,6 @@
 
     .content-wrapper {
         width: 100%;
-        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
     }
 
     .header {
@@ -95,19 +84,17 @@
         align-items: center;
         width: 100%;
         gap: calc(var(--composer-gap-xl) * 2);
+        padding: 80px 50px !important;
     }
 
     .text-block {
         align-items: flex-start;
         flex: 1;
         min-width: 0;
-        text-align: left;
 
         .subtitle,
         .title,
         .description {
-            color: var(--composer-font-color-primary);
-            width: 100%;
             text-align: inherit;
         }
 
@@ -118,19 +105,11 @@
 
     }
 
-    .button-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-shrink: 0;
-        padding: 0;
-        margin: auto;
-    }
-
     .button-group {
         display: grid;
         grid-template-columns: repeat(3, max-content);
         gap: var(--composer-gap-sm);
+        width: max-content;
 
         .button {
 
@@ -144,6 +123,10 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
+        &.has-media {
+            padding: 0 !important;
+        }
+
         &.has-background {
             .max-content {
                 .card {
@@ -151,14 +134,6 @@
                     margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
                 }
             }
-        }
-
-        .card {
-            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-        }
-
-        .content-wrapper {
-            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
 
         .text-block {
@@ -182,6 +157,10 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        &.has-media {
+            padding: 0 !important;
+        }
+
         &.has-background {
             .max-content {
                 .card {
@@ -191,50 +170,27 @@
             }
         }
 
-        .card {
-            padding: var(--composer-gap-xl) var(--composer-gap-md);
-        }
+        .text-block {
+            text-align: center !important;
 
-        .content-wrapper {
-            padding: var(--composer-gap-xl) var(--composer-gap-md);
+            .subtitle,
+            .title,
+            .description {
+                text-align: center !important;
+            }
         }
 
         .max-content {
-
             .header {
                 gap: var(--composer-gap-md);
+                display: flex;
+                flex-direction: column;
             }
-
-            .text-block {
-                flex: 0 1 auto;
-                align-items: flex-start !important;
-                text-align: left !important;
-
-                .subtitle {
-                    transform: none;
-                }
-
-
-                .title,
-                .description {
-                    text-align: left !important;
-                }
-            }
-
-            .card .text-block .subtitle {
-                transform: none !important;
-            }
-        }
-
-        .button-wrapper {
-            justify-content: flex-start;
-            margin: 0;
 
             .button-group {
                 margin-left: 0;
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: flex-start;
             }
         }
     }
