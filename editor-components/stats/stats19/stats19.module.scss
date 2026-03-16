@@ -26,39 +26,25 @@
       gap: var(--composer-gap-lg);
 
       .stat-item {
-        display: flex;
-        flex-direction: column;
         align-items: flex-start;
         text-align: left;
-        gap: var(--composer-gap-sm);
 
-        .stat-header {
+        .stat-value {
           display: flex;
-          align-items: center;
-          gap: var(--composer-gap-md);
 
-          .stat-value {
-            display: flex;
-
-            .stat-prefix,
-            .stat-number,
-            .stat-suffix {
-              font-size: 4rem;
-              color: var(--composer-primary-color);
-            }
+          .stat-prefix,
+          .stat-number,
+          .stat-suffix {
+            font-size: 4rem;
+            color: var(--composer-primary-color);
           }
+        }
 
-          .stat-content {
-            display: flex;
-            flex-direction: column;
-            color: var(--composer-font-color-primary);
-
-            .stat-subtitle,
-            .stat-title {
-              text-align: left;
-              content: "";
-            }
-          }
+        .stat-subtitle,
+        .stat-title {
+          text-align: left;
+          color: var(--composer-font-color-primary);
+          content: "";
         }
 
         .stat-desc {
@@ -85,9 +71,12 @@
   .container {
     .max-content .wrapper {
       gap: var(--composer-gap-lg);
+      .button-container {
+        justify-content: center;
+      }
       .stats-grid {
         gap: var(--composer-gap-md);
-        .stat-item .stat-header .stat-value {
+        .stat-item .stat-value {
           .stat-prefix,
           .stat-number,
           .stat-suffix {
