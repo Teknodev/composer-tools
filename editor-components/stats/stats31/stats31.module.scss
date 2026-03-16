@@ -16,10 +16,10 @@
                 width: 100%;
 
                 .stats-grid {
-                    grid-template-columns: repeat(var(--composer-grid-count), auto) !important;
+                    grid-template-columns: repeat(var(--composer-grid-count), auto);
                     justify-content: space-between;
                     align-items: start;
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-lg);
 
                     .stat-card {
                         border-radius: var(--composer-border-radius-full);
@@ -29,7 +29,6 @@
                         align-items: center;
                         justify-content: center;
                         padding: 8%;
-                        box-sizing: border-box;
                         overflow: hidden;
 
                         .stat-item {
@@ -41,13 +40,17 @@
                                 display: flex;
                                 align-items: baseline;
                                 font-weight: var(--composer-font-weight-bold);
-                                font-size: 2.75rem;
                                 color: inherit;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                max-width: 100%;
 
                                 .stat-prefix,
                                 .stat-number,
                                 .stat-suffix {
                                     color: inherit;
+                                    font-size: 5rem;
                                 }
                             }
 
@@ -70,8 +73,8 @@
                         }
 
                         &.stat-card-1 {
-                            min-width: 170px;
-                            min-height: 170px;
+                            min-width: 220px;
+                            min-height: 220px;
                             background-color: color-mix(
                                 in srgb,
                                 var(--composer-font-color-primary),
@@ -82,16 +85,16 @@
                         }
 
                         &.stat-card-2 {
-                            min-width: 270px;
-                            min-height: 270px;
+                            min-width: 330px;
+                            min-height: 330px;
                             background-color: var(--composer-font-color-primary);
                             color: var(--composer-html-background);
                             transform: translateY(25%);
                         }
 
                         &.stat-card-3 {
-                            min-width: 270px;
-                            min-height: 270px;
+                            min-width: 330px;
+                            min-height: 330px;
                             background-color: color-mix(
                                 in srgb,
                                 var(--composer-html-background),
@@ -102,8 +105,8 @@
                         }
 
                         &.stat-card-4 {
-                            min-width: 170px;
-                            min-height: 170px;
+                            min-width:  220px;
+                            min-height: 220px;
                             background-color: var(--composer-primary-color);
                             color: var(--composer-font-color-secondary);
                             transform: translateY(25%);
@@ -130,18 +133,17 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container .max-content .content .stats-grid-wrapper .stats-grid {
-        grid-template-columns: repeat(var(--composer-grid-count-tablet), 1fr) !important;
         justify-content: unset;
 
-        .stat-card {
-            transform: none !important;
+        .stat-card.stat-card-1,
+        .stat-card.stat-card-2,
+        .stat-card.stat-card-3,
+        .stat-card.stat-card-4 {
             width: 100%;
-            min-width: unset !important;
-            min-height: unset !important;
-
-            .stat-item .stat-value {
-                font-size: 2.75rem !important;
-            }
+            min-width: unset;
+            min-height: unset;
+            aspect-ratio: 1;
+            transform: none;
         }
     }
 }

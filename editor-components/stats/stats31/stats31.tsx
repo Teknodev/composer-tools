@@ -229,7 +229,7 @@ class Stats31 extends BaseStats {
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "0";
+            const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
@@ -238,6 +238,14 @@ class Stats31 extends BaseStats {
         });
 
         const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
+
+        const visibleStats = stats.filter(
+            (stat) =>
+                (stat.number && stat.number !== "") ||
+                (stat.title && stat.title !== "") ||
+                (stat.subtitle && stat.subtitle !== "") ||
+                (stat.description && stat.description !== "")
+        );
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
@@ -269,10 +277,10 @@ class Stats31 extends BaseStats {
                             </Base.VerticalContent>
                         )}
 
-                        {stats.length > 0 && (
+                        {visibleStats.length > 0 && (
                             <div className={this.decorateCSS("stats-grid-wrapper")}>
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                    {stats.map((stat: StatItem, index: number) => (
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                    {visibleStats.map((stat: StatItem, index: number) => (
                                         <div key={`stat31-${index}`} className={`${this.decorateCSS("stat-card")} ${this.decorateCSS(`stat-card-${(index % 4) + 1}`)}`}>
                                             <this.AnimatedStat
                                                 stat={stat}
