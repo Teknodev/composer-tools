@@ -62,7 +62,7 @@ class Feature53 extends BaseFeature {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "",
+              value: "fsdf",
             },
             {
               type: "string",
@@ -370,13 +370,13 @@ class Feature53 extends BaseFeature {
                 const tabTextExist = this.castToString(tab.tabText);
                 return (
                   tabTextExist && (
-                    <Base.H6
+                    <Base.H2
                       key={`feature53-tab-btn-${index}`}
                       className={`${this.decorateCSS("tab-button")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.setDesktopTab(index)}
                     >
                       {tab.tabText}
-                    </Base.H6>
+                    </Base.H2>
                   )
                 );
               })}
@@ -404,12 +404,12 @@ class Feature53 extends BaseFeature {
                   className={`${this.decorateCSS("tab")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
                 >
                   {tabTextExist && (
-                    <Base.H5
+                    <Base.H2
                       className={`${this.decorateCSS("tab-header")} ${activeTab === index ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.setActiveTab(index)}
                     >
                       {tab.tabText}
-                    </Base.H5>
+                    </Base.H2>
                   )}
 
                   {(contentExist || hasMedia) && (
