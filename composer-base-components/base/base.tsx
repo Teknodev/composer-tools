@@ -670,7 +670,7 @@ export namespace Base {
             autoPlay={!!value.settings?.autoplay}
             controls={value.settings?.controls !== false}
             loop={!!value.settings?.loop}
-            muted={!!value.settings?.muted || !!value.settings?.autoplay} // autoplay videos should be muted to avoid browser restrictions
+            muted={!!value.settings?.muted || !!value.settings?.autoplay}
             playsInline
             preload="auto"
             {...props}
