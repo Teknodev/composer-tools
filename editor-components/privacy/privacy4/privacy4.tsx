@@ -98,7 +98,7 @@ class Privacy4 extends BasePrivacy {
           key: "suggestion",
           displayer: "Suggestion",
           value: [
-            { type: "string", key: "text", displayer: "Text", value: "An online store for handmade jewelry" },
+            { type: "string", key: "text", displayer: "Text", value: "A blog for travel enthusiasts" },
           ],
         },
       ],
