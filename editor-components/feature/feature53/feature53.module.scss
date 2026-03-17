@@ -42,6 +42,8 @@
           white-space: nowrap;
           width: auto;
           color: var(--composer-html-background);
+          font-size: calc(1.5 * var(--composer-font-size-md));
+          line-height: 2rem;
 
           &.active {
             background-color: var(--composer-font-color-secondary);
@@ -59,79 +61,94 @@
           margin-bottom: 0;
 
           .tab-header {
-          display: none;
-        }
-
-        .tab-content {
-          display: flex;
-          align-items: stretch;
-          gap: var(--composer-gap-lg);
-          opacity: 0;
-          visibility: hidden;
-          pointer-events: none;
-          transition: opacity var(--composer-transition-duration-normal) ease;
-        }
-
-        &.active .tab-content {
-          opacity: 1;
-          visibility: visible;
-          pointer-events: auto;
-        }
-
-        .content {
-          flex: 1;
-          justify-content: center;
-          align-items: flex-start;
-          text-align: left;
-
-          .content-subtitle,
-          .content-title,
-          .content-description {
-            text-align: left;
+            display: none;
           }
 
-          .content-subtitle,
-          .content-title {
-            color: var(--composer-html-background);
-          }
-
-          .content-description {
-            color: var(--composer-html-background);
-          }
-
-          .button-container {
+          .tab-content {
             display: flex;
-            flex-wrap: wrap;
-            gap: var(--composer-gap-sm);
+            align-items: stretch;
+            gap: var(--composer-gap-lg);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity var(--composer-transition-duration-normal) ease;
+          }
 
-            .button {
-              .button-text {
-                content: "";
+          &.active .tab-content {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+          }
+
+          .content {
+            flex: 1;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+
+            .content-subtitle,
+            .content-title,
+            .content-description {
+              text-align: left;
+            }
+
+            .content-subtitle,
+            .content-title {
+              color: var(--composer-html-background);
+            }
+
+            .content-description {
+              color: var(--composer-html-background);
+            }
+
+            .button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+
+              .button {
+                .button-text {
+                  content: "";
+                }
               }
             }
           }
-        }
 
-        .media-container {
-          flex: 1;
-          position: relative;
-          display: flex;
-          overflow: hidden;
-          border-radius: var(--composer-border-radius-sm);
+          .media-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            border-radius: var(--composer-border-radius-sm);
 
-          .media {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
+            .media {
+              width: 100%;
+              aspect-ratio: 4/3;
+              object-fit: cover;
+            }
+
+            .overlay {
+              position: absolute;
+              inset: 0;
+              background: var(--composer-overlay-color);
+              pointer-events: none;
+            }
           }
-
-          .overlay {
-            position: absolute;
-            inset: 0;
-            background: var(--composer-overlay-color);
-            pointer-events: none;
-          }
         }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .tabs {
+        .tab-buttons {
+          .tab-button {
+            font-size: calc(1.25 * var(--composer-font-size-md));
+            line-height: 1.75rem;
+          }
         }
       }
     }
@@ -141,21 +158,20 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
+
       .heading {
         width: 100%;
-        padding-bottom: var(--composer-gap-lg);
+        padding-bottom: var(--composer-gap-md);
         border-bottom: var(--composer-border-width-xs) solid
-          color-mix(
-            in srgb,
-            var(--composer-html-background) 50%,
-            transparent
-          );
+          var(--composer-tertiary-color);
       }
 
       .tabs {
         display: flex;
         flex-direction: column;
         gap: 0;
+        width: 100%;
 
         &.tablet-closed-default .tab-content-area .tab.active .tab-content {
           display: none;
@@ -172,28 +188,45 @@
         .tab-content-area {
           display: flex;
           flex-direction: column;
+          width: 100%;
         }
 
         .tab-content-area .tab {
           width: 100%;
-          &:not(:last-child) {
-            margin-bottom: var(--composer-gap-sm);
-          }
-
+          min-width: 0;
           border-bottom: var(--composer-border-width-xs) solid
-            color-mix(
-              in srgb,
-              var(--composer-html-background) 50%,
-              transparent
-            );
+            var(--composer-tertiary-color);
 
           .tab-header {
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--composer-gap-md);
+            width: 100%;
+            min-width: 0;
             padding: var(--composer-gap-md) 0;
             cursor: pointer;
             color: var(--composer-html-background);
             transition: color var(--composer-transition-duration-normal) ease,
               background-color var(--composer-transition-duration-normal) ease;
+
+            .tab-header-title {
+              flex: 1;
+              min-width: 0;
+              width: auto;
+            }
+
+            .tab-header-icon {
+              flex-shrink: 0;
+              margin-left: auto;
+              font-size: calc(1.5 * var(--composer-font-size-md));
+              color: currentColor;
+              transition: transform var(--composer-transition-duration-normal) ease;
+
+              &.active {
+                transform: rotate(180deg);
+              }
+            }
 
             &.active {
               background-color: transparent;
@@ -207,13 +240,13 @@
           }
 
           &.active {
-            border-bottom-color: var(--composer-primary-color);
+            border-bottom-color: var(--composer-tertiary-color);
             .tab-content {
               display: flex;
               flex-direction: column;
               gap: var(--composer-gap-md);
+              padding-bottom: var(--composer-gap-md);
             }
-            padding-bottom: var(--composer-gap-sm);
           }
 
           .media-container {

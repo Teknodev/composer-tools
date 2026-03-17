@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ITab = {
   tabText: JSX.Element;
+  icon?: TypeMediaInputValue;
   subtitle: JSX.Element;
   title: JSX.Element;
   description: JSX.Element;
@@ -59,10 +60,22 @@ class Feature53 extends BaseFeature {
               value: "Analytics",
             },
             {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdKeyboardArrowDown",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
-              value: "fsdf",
+              value: "",
             },
             {
               type: "string",
@@ -120,6 +133,18 @@ class Feature53 extends BaseFeature {
               key: "tabText",
               displayer: "Tab Title",
               value: "Web design",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdKeyboardArrowDown",
+              },
             },
             {
               type: "string",
@@ -185,6 +210,18 @@ class Feature53 extends BaseFeature {
               value: "Animation",
             },
             {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdKeyboardArrowDown",
+              },
+            },
+            {
               type: "string",
               key: "subtitle",
               displayer: "Subtitle",
@@ -246,6 +283,18 @@ class Feature53 extends BaseFeature {
               key: "tabText",
               displayer: "Tab Title",
               value: "Marketing",
+            },
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              additionalParams: {
+                availableTypes: ["icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdKeyboardArrowDown",
+              },
             },
             {
               type: "string",
@@ -336,15 +385,18 @@ class Feature53 extends BaseFeature {
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
+    const hasMediaValue = (value?: TypeMediaInputValue) =>
+      !!value && (("url" in value && value.url) || ("name" in value && value.name));
 
     const filteredTabs = tabs.filter((tab: ITab) => {
       const cardMedia = tab.cardMedia;
       const mediaValue = cardMedia?.media as TypeMediaInputValue | undefined;
-      const hasMedia = !!(mediaValue && (("url" in mediaValue && mediaValue.url) || ("name" in mediaValue && mediaValue.name)));
+      const hasMedia = hasMediaValue(mediaValue);
+      const hasIcon = hasMediaValue(tab.icon);
       const buttons = tab.buttons || [];
       const hasAnyButton = buttons.some((btn) => this.castToString(btn.text));
 
-      return this.castToString(tab.tabText) || this.castToString(tab.title) || this.castToString(tab.subtitle) || this.castToString(tab.description) || hasMedia || hasAnyButton;
+      return this.castToString(tab.tabText) || hasIcon || this.castToString(tab.title) || this.castToString(tab.subtitle) || this.castToString(tab.description) || hasMedia || hasAnyButton;
     });
 
     return (
@@ -385,6 +437,7 @@ class Feature53 extends BaseFeature {
             <Base.VerticalContent className={this.decorateCSS("tab-content-area")}>
             {filteredTabs.map((tab: ITab, index: number) => {
               const tabTextExist = this.castToString(tab.tabText);
+              const tabIconExist = hasMediaValue(tab.icon);
               const tabSubtitleExist = this.castToString(tab.subtitle);
               const tabTitleExist = this.castToString(tab.title);
               const tabDescriptionExist = this.castToString(tab.description);
@@ -392,7 +445,7 @@ class Feature53 extends BaseFeature {
               const cardMedia = tab.cardMedia;
               const mediaValue = cardMedia?.media as TypeMediaInputValue | undefined;
               const overlayEnabled = cardMedia?.overlay ?? false;
-              const hasMedia = !!(mediaValue && (("url" in mediaValue && mediaValue.url) || ("name" in mediaValue && mediaValue.name)));
+              const hasMedia = hasMediaValue(mediaValue);
 
               const buttons = tab.buttons || [];
               const hasAnyButton = buttons.some((btn) => this.castToString(btn.text));
@@ -403,12 +456,20 @@ class Feature53 extends BaseFeature {
                   key={`feature53-tab-${index}`}
                   className={`${this.decorateCSS("tab")} ${desktopActive === index ? this.decorateCSS("active") : ""}`}
                 >
-                  {tabTextExist && (
+                  {(tabTextExist || tabIconExist) && (
                     <Base.H2
                       className={`${this.decorateCSS("tab-header")} ${activeTab === index ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.setActiveTab(index)}
                     >
-                      {tab.tabText}
+                      {tabTextExist && (
+                        <span className={this.decorateCSS("tab-header-title")}>{tab.tabText}</span>
+                      )}
+                      {tabIconExist && (
+                        <Base.Media
+                          value={tab.icon}
+                          className={`${this.decorateCSS("tab-header-icon")} ${activeTab === index ? this.decorateCSS("active") : ""}`}
+                        />
+                      )}
                     </Base.H2>
                   )}
 
