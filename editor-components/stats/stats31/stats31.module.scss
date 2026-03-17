@@ -14,6 +14,7 @@
             .stats-grid-wrapper {
                 position: relative;
                 width: 100%;
+                
 
                 .stats-grid {
                     grid-template-columns: repeat(var(--composer-grid-count), auto);
@@ -35,6 +36,8 @@
                             align-items: center;
                             text-align: center;
                             min-height: 0;
+                            overflow: hidden;
+                            width: 100%;
 
                             .stat-value {
                                 display: flex;
@@ -62,13 +65,11 @@
                             .stat-title {
                                 text-align: center;
                                 color: inherit;
-                                font-size: var(--composer-font-size-sm);
                             }
 
                             .stat-description {
                                 text-align: center;
                                 color: inherit;
-                                font-size: var(--composer-font-size-sm);
                             }
                         }
 
@@ -132,18 +133,42 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .content .stats-grid-wrapper .stats-grid {
-        justify-content: unset;
+    .container .max-content .content .stats-grid-wrapper {
+        padding-bottom: 0;
 
+        .stats-grid {
+            justify-content: unset;
+
+            .stat-card.stat-card-1,
+            .stat-card.stat-card-2,
+            .stat-card.stat-card-3,
+            .stat-card.stat-card-4 {
+                width: 100%;
+                min-width: unset;
+                min-height: unset;
+                aspect-ratio: 1;
+                transform: none;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container .max-content .content .stats-grid-wrapper .stats-grid {
         .stat-card.stat-card-1,
         .stat-card.stat-card-2,
         .stat-card.stat-card-3,
         .stat-card.stat-card-4 {
-            width: 100%;
-            min-width: unset;
-            min-height: unset;
-            aspect-ratio: 1;
-            transform: none;
+            max-width: 200px;
+        }
+
+        .stat-card .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 3rem;
+            }
         }
     }
 }

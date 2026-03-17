@@ -57,8 +57,8 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "number", displayer: "Value", value: "50" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "promotion tools" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "promotion tools" },
                     ],
                 },
                 {
@@ -70,8 +70,8 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "number", displayer: "Value", value: "75000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "total net profit every month" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "total net profit every month" },
                     ],
                 },
                 {
@@ -83,8 +83,8 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "number", displayer: "Value", value: "35" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "k" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "of satisfied customers!" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "of satisfied customers!" },
                     ],
                 },
                 {
@@ -96,8 +96,8 @@ class Stats31 extends BaseStats {
                         { type: "string", key: "number", displayer: "Value", value: "8" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "years of successful experience" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "years of successful experience" },
                     ],
                 },
             ],
@@ -206,9 +206,9 @@ class Stats31 extends BaseStats {
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.P className={this.decorateCSS("stat-title")}>
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.P>
+                    </Base.H5>
                 )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
@@ -279,7 +279,7 @@ class Stats31 extends BaseStats {
 
                         {visibleStats.length > 0 && (
                             <div className={this.decorateCSS("stats-grid-wrapper")}>
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                     {visibleStats.map((stat: StatItem, index: number) => (
                                         <div key={`stat31-${index}`} className={`${this.decorateCSS("stat-card")} ${this.decorateCSS(`stat-card-${(index % 4) + 1}`)}`}>
                                             <this.AnimatedStat
