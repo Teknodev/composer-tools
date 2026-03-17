@@ -112,13 +112,11 @@ export class Stats30Page extends BaseStats {
     private AnimatedCard = ({
         stat,
         coloredBackgroundClass,
-        alignment,
         statsAnimation,
         animationDuration,
     }: {
         stat: any;
         coloredBackgroundClass: string;
-        alignment: string;
         statsAnimation: boolean;
         animationDuration: number;
     }) => {
@@ -186,25 +184,28 @@ export class Stats30Page extends BaseStats {
                         </Base.P>
                     )}
                 </Base.VerticalContent>
-
-                {(valueExist || suffixExist) && (
-                    <span className={this.decorateCSS("stat-value-container")}>
-                        {stat.prefix && (
-                            <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+                <Base.VerticalContent
+                    className={this.decorateCSS("header-container")}
+                >
+                    {(valueExist || suffixExist) && (
+                        <span className={this.decorateCSS("stat-value-container")}>
+                            {stat.prefix && (
+                                <span className={this.decorateCSS("stat-prefix")}>
+                                    {stat.prefix}
+                                </span>
+                            )}
+                            <span className={this.decorateCSS("stat-value")}>
+                                {display}
                             </span>
-                        )}
-                        <span className={this.decorateCSS("stat-value")}>
-                            {display}
+                            {suffixExist && (
+                                <span className={this.decorateCSS("stat-suffix")}>
+                                    {stat.suffix}
+                                </span>
+                            )}
                         </span>
-                        {suffixExist && (
-                            <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
-                            </span>
-                        )}
-                    </span>
-                )}
-            </Base.VerticalContent>
+                    )}
+                </Base.VerticalContent>
+            </Base.VerticalContent >
         );
 
     };
@@ -248,21 +249,23 @@ export class Stats30Page extends BaseStats {
                                 className={this.decorateCSS("header-container")}
                                 data-alignment={alignment}
                             >
-                                {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {this.getPropValue("subtitle")}
-                                    </Base.SectionSubTitle>
-                                )}
-                                {titleExist && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                )}
-                                {descriptionExist && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {this.getPropValue("description")}
-                                    </Base.SectionDescription>
-                                )}
+                                <Base.VerticalContent>
+                                    {subtitleExist && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {this.getPropValue("subtitle")}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {titleExist && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {this.getPropValue("title")}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {descriptionExist && (
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {this.getPropValue("description")}
+                                        </Base.SectionDescription>
+                                    )}
+                                </Base.VerticalContent>
                             </Base.VerticalContent>
                         )}
 
@@ -276,7 +279,6 @@ export class Stats30Page extends BaseStats {
                                         key={index}
                                         stat={stat}
                                         coloredBackgroundClass={this.getColoredBackground()}
-                                        alignment={alignment}
                                         statsAnimation={statsAnimation}
                                         animationDuration={animationDuration}
                                     />

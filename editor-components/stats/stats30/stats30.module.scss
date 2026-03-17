@@ -19,13 +19,13 @@
                 flex-direction: column;
                 align-items: flex-start;
                 text-align: left;
-                gap: var(--composer-gap-sm);
+                // gap: var(--composer-gap-sm);
 
-                .subtitle,
-                .title,
-                .description {
-                    margin: 0 !important;
-                }
+                // .subtitle,
+                // .title,
+                // .description {
+                //     margin: 0 !important;
+                // }
 
                 &[data-alignment="center"] {
                     align-items: center;
@@ -47,19 +47,23 @@
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: 4rem; // Orijinal bileşen boşluğu (Metinler ile Rakam arası)
-                    align-items: flex-start;
+                    gap: 3rem;
+                    align-items: flex-start !important;
+                    text-align: left !important;
 
                     .stat-text-group {
                         display: flex;
                         flex-direction: column;
-                        gap: var(--composer-gap-xs); // Metinlerin kendi arasındaki dar mesafe
+                        // gap: var(--composer-gap-xs); // Metinlerin kendi arasındaki dar mesafe
                         width: 100%;
+                        align-items: flex-start !important;
+                        text-align: left !important;
 
                         .stat-subtitle,
                         .stat-title,
                         .stat-description {
-                            margin: 0 !important;
+                            text-align: left !important;
+                            margin: 0;
                         }
 
                         .stat-subtitle {
@@ -114,7 +118,7 @@
                                 color: var(--composer-font-color-primary);
                             }
                         }
-                        
+
                         .stat-value-container {
                             color: var(--composer-font-color-primary);
                         }
