@@ -29,8 +29,20 @@
         align-items: flex-start;
         text-align: left;
 
+        .stat-header {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          column-gap: var(--composer-gap-sm);
+          align-items: center;
+        }
+
         .stat-value {
           display: flex;
+          align-items: baseline;
+          flex-shrink: 0;
+          grid-column: 1;
+          grid-row: 1 / span 2;
+          line-height: 1;
 
           .stat-prefix,
           .stat-number,
@@ -42,7 +54,10 @@
 
         .stat-subtitle,
         .stat-title {
+          grid-column: 2;
+          min-width: 0;
           text-align: left;
+          
           color: var(--composer-font-color-primary);
           content: "";
         }
@@ -76,6 +91,10 @@
       }
       .stats-grid {
         gap: var(--composer-gap-md);
+        .stat-item .stat-header {
+          align-items: flex-start;
+          gap: var(--composer-gap-xs);
+        }
         .stat-item .stat-value {
           .stat-prefix,
           .stat-number,
