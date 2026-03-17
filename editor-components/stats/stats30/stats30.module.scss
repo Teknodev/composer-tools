@@ -47,14 +47,14 @@
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    gap: 3rem;
+                    gap: 3.5rem; // Metin grubu ile sayısal değer (value) arasındaki ana boşluk
                     align-items: flex-start !important;
                     text-align: left !important;
 
                     .stat-text-group {
                         display: flex;
                         flex-direction: column;
-                        // gap: var(--composer-gap-xs); // Metinlerin kendi arasındaki dar mesafe
+                        gap: var(--composer-gap-sm); // Metinlerin kendi arasındaki boşluk
                         width: 100%;
                         align-items: flex-start !important;
                         text-align: left !important;
@@ -85,6 +85,9 @@
                         }
                     }
 
+                    .header-container {
+                        margin: 0; // Margin kesinlikle yok
+                    }
                     .stat-value-container {
                         display: flex;
                         align-items: baseline;
@@ -94,7 +97,7 @@
 
                         .stat-prefix,
                         .stat-suffix {
-                            font-size: 5rem;
+                            font-size: 14rem;
                             line-height: 1;
                             margin: 0;
                         }
