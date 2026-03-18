@@ -29,7 +29,7 @@ class Stats32 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "deneme"
         });
 
         this.addProp({
@@ -241,7 +241,8 @@ class Stats32 extends BaseStats {
 
         const stats: StatItem[] = statsItems.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
-            number: this.castToString(item.number) || "0",
+            number: this.castToString(item.number),
+            // number: this.castToString(item.number) || "0",
             suffix: this.castToString(item.suffix) || "",
             subtitle: this.castToString(item.subtitle) || "",
             subtitleElement: item.subtitle,
@@ -294,11 +295,13 @@ class Stats32 extends BaseStats {
                                             {buttons.map((item, index) => {
                                                 if (!this.castToString(item.text)) return null;
                                                 return (
-                                                    <ComposerLink key={index} path={item.url}>
-                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                        </Base.Button>
-                                                    </ComposerLink>
+                                                    <div key={index} className={this.decorateCSS("button-wrapper")}>
+                                                        <ComposerLink path={item.url}>
+                                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    </div>
                                                 );
                                             })}
                                         </div>
