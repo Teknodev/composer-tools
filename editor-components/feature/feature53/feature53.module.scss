@@ -43,7 +43,7 @@
           width: auto;
           color: var(--composer-html-background);
           font-size: calc(1.5 * var(--composer-font-size-md));
-          line-height: 2rem;
+          
 
           &.active {
             background-color: var(--composer-font-color-secondary);
@@ -146,8 +146,16 @@
       .tabs {
         .tab-buttons {
           .tab-button {
-            font-size: calc(1.25 * var(--composer-font-size-md));
-            line-height: 1.75rem;
+            font-size: calc(1.5 * var(--composer-font-size-md)) !important;
+          }
+        }
+
+        .tab-content-area .tab .content {
+          .content-title {
+            font-size: calc(1.5 * var(--composer-font-size-md)) !important;
+          }
+          .content-subtitle {
+            font-size: calc(1.25 * var(--composer-font-size-md)) !important;
           }
         }
       }
@@ -207,6 +215,7 @@
             padding: var(--composer-gap-md) 0;
             cursor: pointer;
             color: var(--composer-html-background);
+            font-size: calc(1.25 * var(--composer-font-size-md)) !important;
             transition: color var(--composer-transition-duration-normal) ease,
               background-color var(--composer-transition-duration-normal) ease;
 
@@ -220,6 +229,9 @@
               flex-shrink: 0;
               margin-left: auto;
               font-size: calc(1.5 * var(--composer-font-size-md));
+              width: calc(1.5 * var(--composer-font-size-md));
+              height: calc(1.5 * var(--composer-font-size-md));
+              object-fit: contain;
               color: currentColor;
               transition: transform var(--composer-transition-duration-normal) ease;
 
@@ -246,6 +258,15 @@
               flex-direction: column;
               gap: var(--composer-gap-md);
               padding-bottom: var(--composer-gap-md);
+
+              .content {
+                .content-title {
+                  font-size: calc(1.25 * var(--composer-font-size-md)) !important;
+                }
+                .content-subtitle {
+                  font-size: calc(1.125 * var(--composer-font-size-md)) !important;
+                }
+              }
             }
           }
 
