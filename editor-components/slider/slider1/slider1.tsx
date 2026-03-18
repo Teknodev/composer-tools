@@ -195,7 +195,7 @@ class Slider1 extends BaseSlider {
 
     this.addProp(INPUTS.SLIDER_SETTINGS(
       "settings",
-      "Slider Config"
+      "Slider Settings"
     ));
 
     this.setComponentState("slider-ref", React.createRef());

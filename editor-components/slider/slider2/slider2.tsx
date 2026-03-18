@@ -348,7 +348,7 @@ class Slider2 extends BaseSlider {
     this.addProp({
       type: "boolean",
       key: "showPageNumbers",
-      displayer: "Show Page Numbers",
+      displayer: "Page Numbers",
       value: true,
     });
 
@@ -365,7 +365,7 @@ class Slider2 extends BaseSlider {
       },
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings"));
 
     this.setComponentState("active_index", 0);
     this.setComponentState("text", this.castToObject<SliderItem[]>("slider")[0].title);

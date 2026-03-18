@@ -328,7 +328,7 @@ class Slider4 extends BaseSlider {
       ],
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
       dots: false,
       arrows: true,
       infinite: true,

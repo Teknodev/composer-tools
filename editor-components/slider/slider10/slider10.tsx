@@ -427,7 +427,7 @@ class Slider10 extends BaseSlider {
     this.addProp({
       type: "boolean",
       key: "hoverAnimation",
-      displayer: "Featured Items Hover Animation",
+      displayer: "Featured Items Animation",
       value: true,
     });
 

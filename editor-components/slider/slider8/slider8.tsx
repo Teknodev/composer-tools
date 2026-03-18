@@ -377,11 +377,11 @@ class Slider8 extends BaseSlider {
     this.addProp({
       type: "boolean",
       key: "animation",
-      displayer: "Content Animation",
+      displayer: "Animation",
       value: true,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
       dots: true,
       arrows: true,
       infinite: true,

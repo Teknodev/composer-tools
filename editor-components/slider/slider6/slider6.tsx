@@ -241,7 +241,7 @@ class Slider6 extends BaseSlider {
       value: false,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
       dots: true,
       arrows: true,
       infinite: true,
@@ -314,6 +314,8 @@ class Slider6 extends BaseSlider {
 
     };
 
+    const hideBottomPadding = sliderSettings.dots === false && sliderSettings.arrows === false;
+
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
@@ -346,7 +348,7 @@ class Slider6 extends BaseSlider {
             </Base.VerticalContent>
           )}
           {sliderItems.length > 0 && (
-            <div className={this.decorateCSS("slider-parent")}>
+            <div className={`${this.decorateCSS("slider-parent")} ${hideBottomPadding ? this.decorateCSS("no-bottom-padding") : ""}`}>
               <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
                 {sliderItems.map((item: SliderItem, index: number) => {
                   const imageElement = document.getElementById(`slider6Image${index}`);

@@ -39,6 +39,10 @@
       overflow: visible;
       padding-bottom: 70px;
 
+      &.no-bottom-padding {
+        padding-bottom: 0 !important;
+      }
+
       .carousel {
         width: 100%;
 
@@ -291,6 +295,10 @@
 
       .slider-parent {
         padding-bottom: 60px;
+
+        &.no-bottom-padding {
+          padding-bottom: 0 !important;
+        }
 
         .carousel {
 

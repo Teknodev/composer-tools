@@ -239,7 +239,7 @@ class Slider7 extends BaseSlider {
     this.addProp({
       type: "boolean",
       key: "hoverAnimation",
-      displayer: "Hover Animation",
+      displayer: "Animation",
       value: true,
     });
 

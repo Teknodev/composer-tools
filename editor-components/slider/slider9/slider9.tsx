@@ -404,7 +404,7 @@ class Slider9 extends BaseSlider {
       value: false,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings"));
 
     this.addProp({
       type: "object",

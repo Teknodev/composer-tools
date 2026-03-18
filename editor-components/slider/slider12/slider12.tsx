@@ -43,14 +43,8 @@ class Slider12 extends BaseSlider {
         "Supercharge your productivity with client management and collaboration tools that let you do it all from a single dashboard.",
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Config", {
+    
+    this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
       arrows: true,
       infinite: true,
@@ -285,6 +279,13 @@ class Slider12 extends BaseSlider {
           ],
         },
       ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({

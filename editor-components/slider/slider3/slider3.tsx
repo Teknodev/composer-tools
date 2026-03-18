@@ -219,11 +219,11 @@ class Slider3 extends BaseSlider {
     this.addProp({
       type: "boolean",
       key: "hoverAnimation",
-      displayer: "Hover Animation",
+      displayer: "Animation",
       value: true,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config", {
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
       arrows: true,
     }));
     this.setComponentState("centerSlide", 0);

@@ -103,7 +103,7 @@ class Slider5 extends BaseSlider {
       value: false,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Config"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings"));
   }
 
   static getName(): string {
