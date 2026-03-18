@@ -94,15 +94,6 @@
                 width: 100%;
                 max-width: 750px;
 
-                &.center-single-image {
-                    justify-content: center;
-                    height: auto;
-                    align-self: center;
-
-                    .image-text {
-                        left: 38%;
-                    }
-                }
 
                 &[data-animation~="animate1"] {
 
@@ -221,9 +212,10 @@
 
                     &.no-image {
                         width: 100% !important;
-                        height: auto !important;
-                        aspect-ratio: 16 / 9;
-                        max-height: 450px;
+                        height: 100% !important;
+                        min-height: 300px;
+                        aspect-ratio: unset;
+                        max-height: unset;
                         margin-bottom: 0;
                     }
                 }
@@ -239,9 +231,10 @@
                     &.no-image {
                         position: relative;
                         width: 100% !important;
-                        height: auto !important;
-                        aspect-ratio: 16 / 9;
-                        max-height: 450px;
+                        height: 100% !important;
+                        min-height: 300px;
+                        aspect-ratio: unset;
+                        max-height: unset;
                         left: unset;
                         bottom: unset;
                     }
@@ -280,9 +273,6 @@
                         }
                     }
 
-                    &.center-single-image {
-                        justify-content: center;
-                    }
                 }
             }
         }

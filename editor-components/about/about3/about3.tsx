@@ -229,7 +229,7 @@ class About3 extends BaseAbout {
           {showDiv && (
             <div className={`${this.decorateCSS("right-page")} ${!showLeftDiv ? this.decorateCSS("no-content") : ""}`}>
               <div
-                className={`${this.decorateCSS("image-container")} ${(!isImage1Exist || !isImage2Exist) && this.decorateCSS("center-single-image")}`}
+                className={this.decorateCSS("image-container")}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
 
