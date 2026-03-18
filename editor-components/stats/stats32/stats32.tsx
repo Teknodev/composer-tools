@@ -29,7 +29,7 @@ class Stats32 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "deneme"
+            value: ""
         });
 
         this.addProp({
