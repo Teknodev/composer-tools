@@ -1,9 +1,12 @@
 import { ITriggerStrategy, TriggerCleanup } from "./ITriggerStrategy";
 
 /**
- * Focus trigger — fires separate callbacks for focus and blur.
- * The main callback (enter) is invoked on focus; the leave callback
- * is invoked on blur, mirroring the HoverTriggerStrategy pattern.
+ * Press trigger — fires separate callbacks for mousedown and mouseup.
+ * The main callback (enter) is invoked on mousedown; the leave callback
+ * is invoked on mouseup, mirroring the HoverTriggerStrategy pattern.
+ *
+ * Uses mousedown/mouseup instead of focus/blur so the trigger works on
+ * all elements (divs, text, etc.) — not just natively focusable ones.
  */
 export class FocusTriggerStrategy implements ITriggerStrategy {
   private leaveCallback?: () => void;
@@ -13,16 +16,16 @@ export class FocusTriggerStrategy implements ITriggerStrategy {
   }
 
   attach(element: HTMLElement, callback: () => void): TriggerCleanup {
-    const onFocus = () => callback();
-    const onBlur = () => this.leaveCallback?.();
+    const onMouseDown = () => callback();
+    const onMouseUp = () => this.leaveCallback?.();
 
-    element.addEventListener("focus", onFocus, true); // capture for non-focusable wrappers
-    element.addEventListener("blur", onBlur, true);
+    element.addEventListener("mousedown", onMouseDown);
+    element.addEventListener("mouseup", onMouseUp);
 
     return {
       detach() {
-        element.removeEventListener("focus", onFocus, true);
-        element.removeEventListener("blur", onBlur, true);
+        element.removeEventListener("mousedown", onMouseDown);
+        element.removeEventListener("mouseup", onMouseUp);
       },
     };
   }

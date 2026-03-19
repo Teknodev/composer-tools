@@ -26,6 +26,7 @@ import {
   WebAnimationProperty,
   migrateInteraction,
   getAnimateFields,
+  getTriggerBasePriority,
 } from "../../types/interaction";
 import { triggerEngine } from "./TriggerEngine";
 import { webAnimationEngine, AnimationHandle } from "./WebAnimationEngine";
@@ -448,19 +449,38 @@ export class InteractionManager {
                 const fire = () => {
                   if (this.destroyed) return;
 
+                  const trigger = interaction.trigger;
+                  const isClickTrigger = trigger.type === "click" || trigger.type === "focus";
+                  const isReplayEnabled = "replay" in trigger && trigger.replay === true;
+
                   // Replay guard: skip if this non-replay interaction
                   // already completed on this element.
-                  const trigger = interaction.trigger;
                   if ("replay" in trigger && trigger.replay === false) {
                     const done = this.completedNonReplayAnimations.get(el);
                     if (done?.has(interaction.id)) return;
                   }
 
+                  // For replay-enabled triggers, clear the completion
+                  // record so the animation can play again.
+                  if (isReplayEnabled) {
+                    const done = this.completedNonReplayAnimations.get(el);
+                    if (done) done.delete(interaction.id);
+                  }
+
                   // Element-wide guard: if ANY non-state animation is already
                   // running on this element, ignore the re-trigger so every
                   // current animation plays fully without interruption.
+                  // Exception: click/focus triggers cancel existing and replay
+                  // (user-initiated triggers should always respond).
                   const running = this.activeNonStateAnimations.get(el);
-                  if (running && running.size > 0) return;
+                  if (running && running.size > 0) {
+                    if (isClickTrigger || isReplayEnabled) {
+                      // Cancel existing non-state animations so we can replay
+                      this.cleanupNonStateTracking(el, interaction.id);
+                    } else {
+                      return;
+                    }
+                  }
 
                   // Use live accumulated transform when available — falls back
                   // to pre-computed snapshot for resilience.
@@ -479,7 +499,7 @@ export class InteractionManager {
                     interaction.id,
                     animFields.animation,
                     timingNoDelay,
-                    interaction.priority,
+                    getTriggerBasePriority(interaction.trigger.type) + interaction.priority,
                     accumulated,
                     animFields.target.selector,
                     undefined,
@@ -734,7 +754,7 @@ export class InteractionManager {
                 enterId,
                 animFields.animation,
                 timingNoDelay,
-                interaction.priority,
+                getTriggerBasePriority(interaction.trigger.type) + interaction.priority,
                 accumulated,
                 animFields.target.selector,
                 wasInterrupted,
@@ -770,6 +790,10 @@ export class InteractionManager {
         const allTargetElements = lastResolvedTargets;
 
         for (const el of allTargetElements) {
+          // If the element was hidden by removeOnComplete during the enter
+          // animation, skip the revert — element should stay hidden.
+          if (el.style.display === "none") continue;
+
           // Capture current visual state while animations still apply
           const frozenState = this.captureComputedState(el);
           // Cancel running enter animations on this element
@@ -886,7 +910,7 @@ export class InteractionManager {
                 enterId,
                 animFields.animation,
                 timingNoDelay,
-                interaction.priority,
+                getTriggerBasePriority(interaction.trigger.type) + interaction.priority,
                 accumulated,
                 animFields.target.selector,
                 wasInterrupted,
@@ -922,6 +946,10 @@ export class InteractionManager {
         const allTargetElements = lastResolvedTargets;
 
         for (const el of allTargetElements) {
+          // If the element was hidden by removeOnComplete during the enter
+          // animation, skip the revert — element should stay hidden.
+          if (el.style.display === "none") continue;
+
           // Capture current visual state while animations still apply
           const frozenState = this.captureComputedState(el);
           // Cancel running enter animations on this element
@@ -988,15 +1016,30 @@ export class InteractionManager {
         if (this.destroyed) return;
 
         for (const el of targetElements) {
+          const trigger = interaction.trigger;
+          const isReplayEnabled = "replay" in trigger && trigger.replay === true;
+
           // Replay guard
-          if ("replay" in interaction.trigger && interaction.trigger.replay === false) {
+          if ("replay" in trigger && trigger.replay === false) {
             const done = this.completedNonReplayAnimations.get(el);
             if (done?.has(interaction.id)) return;
           }
 
-          // Element-wide guard
+          // For replay-enabled triggers, clear the completion record
+          if (isReplayEnabled) {
+            const done = this.completedNonReplayAnimations.get(el);
+            if (done) done.delete(interaction.id);
+          }
+
+          // Element-wide guard (skip for replay-enabled triggers)
           const running = this.activeNonStateAnimations.get(el);
-          if (running && running.size > 0) continue;
+          if (running && running.size > 0) {
+            if (isReplayEnabled) {
+              this.cleanupNonStateTracking(el, interaction.id);
+            } else {
+              continue;
+            }
+          }
 
           this.baselineStore.capture(el);
           const accumulated = transformStateManager.getCurrentValues(el);
@@ -1007,7 +1050,7 @@ export class InteractionManager {
             interaction.id,
             af.animation,
             af.timing,
-            interaction.priority,
+            getTriggerBasePriority(interaction.trigger.type) + interaction.priority,
             accumulated,
             af.target.selector,
             undefined,
@@ -1105,7 +1148,7 @@ export class InteractionManager {
       interaction.id,
       af.animation,
       af.timing,
-      interaction.priority,
+      getTriggerBasePriority(interaction.trigger.type) + interaction.priority,
       accumulatedTransform,
       af.target.selector,
       undefined,
@@ -1166,6 +1209,15 @@ export class InteractionManager {
         .then(() => {
           if (cancelRef.cancelled) return;
           animationPriorityManager.onAnimationEnd(element, interactionId);
+          // Handle removeOnComplete for hover/focus enter animations directly.
+          // These use activeEnterAnimations (not activeNonStateAnimations), and
+          // the cycle guard below fails because mouseleave increments the cycle.
+          if (removeOnComplete && interactionId.endsWith("-enter")) {
+            const enterIds = this.activeEnterAnimations.get(element);
+            if (enterIds) enterIds.delete(interactionId);
+            element.style.display = "none";
+            return;
+          }
           if ((this.animationCycle.get(element) ?? 0) !== cycle) return;
           this.onNonStateAnimationEnd(element, interactionId, timing.fillMode, removeOnComplete);
         })
@@ -1206,6 +1258,13 @@ export class InteractionManager {
         .then(() => {
           if (cancelRef.cancelled) return;
           animationPriorityManager.onAnimationEnd(element, interactionId);
+          // Handle removeOnComplete for hover/focus enter animations directly.
+          if (removeOnComplete && interactionId.endsWith("-enter")) {
+            const enterIds = this.activeEnterAnimations.get(element);
+            if (enterIds) enterIds.delete(interactionId);
+            element.style.display = "none";
+            return;
+          }
           if ((this.animationCycle.get(element) ?? 0) !== cycle) return;
           this.onNonStateAnimationEnd(element, interactionId, timing.fillMode, removeOnComplete);
         })
@@ -1257,6 +1316,14 @@ export class InteractionManager {
 
           // Always clean up priority — the animation genuinely finished.
           animationPriorityManager.onAnimationEnd(element, interactionId);
+
+          // Handle removeOnComplete for hover/focus enter animations directly.
+          if (removeOnComplete && interactionId.endsWith("-enter")) {
+            const enterIds = this.activeEnterAnimations.get(element);
+            if (enterIds) enterIds.delete(interactionId);
+            element.style.display = "none";
+            return;
+          }
 
           if ((this.animationCycle.get(element) ?? 0) !== cycle) return;
 
@@ -1659,26 +1726,39 @@ export class InteractionManager {
     // Complex / compound selectors pass through unchanged.
     const safeSelector = this.toSafeSelector(selector);
 
+    // Strategy 1: Direct CSS selector (primary)
     try {
       const matched = Array.from(
         document.querySelectorAll<HTMLElement>(safeSelector)
       );
-      if (matched.length === 0) {
-        console.warn(
-          "[InteractionManager] Interaction target not found:",
-          selector
-        );
-        return [sectionElement];
-      }
-      return matched;
-    } catch (error) {
-      console.warn(
-        "[InteractionManager] Invalid interaction selector:",
-        selector,
-        error
-      );
-      return [sectionElement];
+      if (matched.length > 0) return matched;
+    } catch { /* invalid selector — try fallbacks */ }
+
+    // Strategy 2: Bare ID lookup via getElementById
+    // Handles cases where the user entered a UUID or element ID without # prefix
+    const idCandidate = selector.startsWith("#") ? selector.slice(1) : selector;
+    if (idCandidate && !idCandidate.includes(" ") && !idCandidate.includes(".")) {
+      const byId = document.getElementById(idCandidate);
+      if (byId) return [byId];
     }
+
+    // Strategy 3: Auto-generate class prefix lookup
+    // Matches elements whose class contains "auto-generate-{selector}"
+    // Useful for targeting by component ID or section name
+    try {
+      const prefixMatched = Array.from(
+        document.querySelectorAll<HTMLElement>(
+          `[class*="auto-generate-${CSS.escape(idCandidate)}"]`
+        )
+      );
+      if (prefixMatched.length > 0) return prefixMatched;
+    } catch { /* CSS.escape failed or invalid — skip */ }
+
+    console.warn(
+      "[InteractionManager] Interaction target not found (all strategies exhausted):",
+      selector
+    );
+    return [sectionElement];
   }
 
   /**
