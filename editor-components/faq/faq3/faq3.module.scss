@@ -37,11 +37,15 @@
                 .question-index {
                   color: var(--composer-font-color-primary);
                   width: fit-content;
+                  text-align: left;
+                  margin: 0;
                 }
                 .card-subtitle {
                   color: var(--composer-font-color-primary);
                   transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                   width: fit-content;
+                  text-align: left;
+                  margin: 0;
                 }
                   
                 &:hover {
@@ -72,6 +76,8 @@
               .card-text {
                 display: none;
                 color:var(--composer-tertiary-color);
+                text-align: left;
+                margin: 0;
               }
               &.active {
                 padding-bottom: var(--composer-gap-md);
@@ -100,13 +106,17 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
+            align-items: flex-start;
+            text-align: left;
             .title-info {
               margin: 0px;
               color: var(--composer-font-color-primary);
+              text-align: left;
             }
             .description-info {
               margin: 0px;
               color:var(--composer-tertiary-color);
+              text-align: left;
             }
             .button-info {
               width: fit-content;

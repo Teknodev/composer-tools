@@ -35,7 +35,7 @@ class Faq8 extends BaseFAQ {
       key: "dot_icon",
       displayer: "Dot icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -47,7 +47,7 @@ class Faq8 extends BaseFAQ {
       key: "arrow-right",
       displayer: "Right Arrow icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -59,7 +59,7 @@ class Faq8 extends BaseFAQ {
       key: "arrow-down",
       displayer: "Down Arrow icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

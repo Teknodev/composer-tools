@@ -30,6 +30,7 @@
                                 .title-text {
                                     flex: 1;
                                     color: var(--composer-font-color-primary);
+                                    text-align: left;
                                 }
             
                                 .icon {
@@ -56,6 +57,7 @@
                                 color: var(--composer-font-color-primary);
                                 transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                                 border-bottom: 1px solid var(--composer-tertiary-color);
+                                text-align: left;
                             }
                             &.active {
                                 max-height: 150px;

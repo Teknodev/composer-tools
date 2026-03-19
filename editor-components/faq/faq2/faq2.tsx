@@ -74,7 +74,7 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -106,7 +106,7 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -138,7 +138,7 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -170,7 +170,7 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -202,7 +202,7 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -234,7 +234,7 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",

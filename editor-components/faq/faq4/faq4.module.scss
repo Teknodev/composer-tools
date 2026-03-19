@@ -16,6 +16,7 @@
         display: flex;
         gap: var(--composer-gap-xl);
         flex-wrap: wrap;
+        justify-content: center;
         .sections{
           display: flex;
           .section-title{
@@ -53,6 +54,7 @@
                 flex: 1;
                 .card-title {
                   color: var(--composer-font-color-primary);
+                  text-align: left;
                 }
               }
     
@@ -68,11 +70,12 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
+                  padding: var(--composer-gap-xs);
                   .icon{
                     color: var(--composer-tertiary-color);
-                    width: 14px;
-                    height: 14px;
-                    font-size: 1rem;
+                    width: 18px;
+                    height: 18px;
+                    font-size: 1.4rem;
                     transform: rotate(0deg);
                     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     &.active{
@@ -94,6 +97,7 @@
                 opacity: 0;
                 transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 color: var( --composer-tertiary-color);
+                text-align: left;
               }
               &.active {
                 overflow: hidden;

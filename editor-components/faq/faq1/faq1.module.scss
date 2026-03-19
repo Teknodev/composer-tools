@@ -28,6 +28,7 @@
                         flex: 1;
                         color: var(--composer-font-color-primary);
                         cursor: pointer;
+                        text-align: left;
                     }
                     .icon {
                         display: block;
@@ -52,6 +53,7 @@
                         opacity: 0; 
                         color: var(--composer-tertiary-color);
                         transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        text-align: left;
                     }
                     &.cardActive {
                         max-height: 500px;   

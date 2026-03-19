@@ -39,11 +39,13 @@
           .card-title {
             color: var(--composer-font-color-primary);
             margin: 0px;
+            text-align: left;
           }
 
           .card-description {
             color: var(--composer-tertiary-color);
             margin: 0px;
+            text-align: left;
           }
         }
       }

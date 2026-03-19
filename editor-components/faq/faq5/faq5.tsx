@@ -41,7 +41,7 @@ class Faq5 extends BaseFAQ {
       key: "inactiveIcon",
       displayer: "Inactive Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -53,7 +53,7 @@ class Faq5 extends BaseFAQ {
       key: "activeIcon",
       displayer: "Active Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

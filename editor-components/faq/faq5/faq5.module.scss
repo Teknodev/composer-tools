@@ -86,6 +86,7 @@
                 .card-title {
                   flex: 1;
                   color: var(--composer-font-color-primary);
+                  text-align: center;
                 }
                 .icon-wrapper{
                   display: flex;
@@ -110,6 +111,7 @@
                   opacity: 0;
                   transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                   color: var(--composer-tertiary-color);
+                  text-align: left;
                   &.active{
                     opacity: 1;
                   }

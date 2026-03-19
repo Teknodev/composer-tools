@@ -46,6 +46,7 @@
                             .card-title {
                                 color: var(--composer-font-color-primary);
                                 transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                                text-align: left;
                                 &.active{
                                    color: var(--composer-primary-color); 
                                 }
@@ -75,6 +76,7 @@
                             opacity: 0;
                             transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                             padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md) 0px;
+                            text-align: left;
                             &.active {
                                 opacity: 1;
                             }

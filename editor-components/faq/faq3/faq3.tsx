@@ -187,7 +187,7 @@ class Faq3 extends BaseFAQ {
       displayer: "Active Icon",
       key: "active_icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -200,7 +200,7 @@ class Faq3 extends BaseFAQ {
       displayer: "Inactive Icon",
       key: "inactive_icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

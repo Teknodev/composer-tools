@@ -53,6 +53,7 @@
 
               .card-title {
                 color: var(--composer-font-color-primary);
+                text-align: left;
 
                 &.active {
                   color: var(--composer-font-color-secondary);
@@ -106,6 +107,7 @@
               color: var(--composer-tertiary-color);
               padding: var(--composer-gap-lg) var(--composer-gap-md);
               transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              text-align: left;
             }
 
             &.active {
