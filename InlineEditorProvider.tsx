@@ -24,6 +24,7 @@ const DefaultInlineEditor: InlineEditorComponent = ({ sanitizedHtml, id }) => {
   return React.createElement("span", {
     dangerouslySetInnerHTML: sanitizedHtml,
     id: id,
+    className: "blinkpageTag",
   });
 };
 
