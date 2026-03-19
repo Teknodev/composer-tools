@@ -32,7 +32,7 @@ class Feature51 extends BaseFeature {
     super(props, styles);
 
     this.setComponentState("activeIndices", [0]);
-    this.setComponentState("isMobile", true);
+    this.setComponentState("isMobile", false);
 
     this.addProp({
       type: "string",
@@ -287,8 +287,11 @@ class Feature51 extends BaseFeature {
     if (!el) return;
 
     const width = el.clientWidth;
-    const desktopPx = 1140;
-    const isMobile = width <= desktopPx;
+
+    const tabletPx = "1024";
+    const tabletPxInt = parseInt(tabletPx, 10) || 0;
+
+    const isMobile = width <= tabletPxInt;
 
     const wasMobile = this.getComponentState("isMobile");
     this.setComponentState("isMobile", isMobile);
@@ -296,7 +299,10 @@ class Feature51 extends BaseFeature {
     if (isMobile && !wasMobile) {
       this.setComponentState("activeIndices", [0]);
     } else if (!isMobile && wasMobile) {
-      this.setComponentState("activeIndices", this.initializeActiveIndices());
+      this.setComponentState(
+        "activeIndices",
+        this.initializeActiveIndices(false),
+      );
     }
   };
 
@@ -312,7 +318,7 @@ class Feature51 extends BaseFeature {
     }
 
     const itemCount = this.getPropValue("itemCount") as number;
-    const columnCount = Math.min(itemCount, items.length);
+    const columnCount = Math.max(1, Math.min(itemCount, items.length));
     const total = items.length;
     const perColBase = Math.floor(total / columnCount);
     const rem = total % columnCount;
@@ -390,11 +396,7 @@ class Feature51 extends BaseFeature {
       sectionSubtitle || sectionTitle || sectionDescription;
 
     const items = this.castToObject<Item[]>("items");
-    const itemCountPerRow = this.getPropValue("itemCount");
-
     const isMobile = this.getComponentState("isMobile");
-
-    const pcGridCount = isMobile ? 1 : Math.min(4, itemCountPerRow);
 
     const buttons = this.castToObject<PrimaryButton[]>("buttons");
     const buttonsExist = buttons.some(
@@ -419,6 +421,8 @@ class Feature51 extends BaseFeature {
         offset += count;
       }
     }
+
+    const pcGridCount = columns.length;
 
     return (
       <Base.Container

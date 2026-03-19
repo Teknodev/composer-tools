@@ -28,6 +28,13 @@
     .items-container {
       row-gap: 0 !important;
       column-gap: var(--composer-gap-lg);
+
+      .column > .item.one-column:not(.with-lines):first-child {
+        .item-header {
+          padding-top: 0;
+        }
+      }
+
       .item {
         align-items: flex-start;
         height: fit-content;
