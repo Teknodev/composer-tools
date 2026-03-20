@@ -9,7 +9,7 @@ export interface CustomComponentMeta {
   _id: string;
   name: string;
   category: string;
-  version: string;
+  version: number;
   bundle_url: string;
   bundle_content?: string;
   styles_url: string;
@@ -115,7 +115,7 @@ export async function loadCustomComponentsFromMeta(
       execScript(comp.bundle_content, comp.name);
 
       const safeName = comp.name.replace(/[^a-zA-Z0-9_]/g, "");
-      const windowKey = `${safeName}_v${comp.version.replace(/\./g, "")}`;
+      const windowKey = `${safeName}_v${comp.version}`;
 
       let BaseClass = window.__CUSTOM_COMPONENTS__?.[windowKey];
       if (!BaseClass) {
