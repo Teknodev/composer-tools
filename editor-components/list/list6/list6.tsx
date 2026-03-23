@@ -48,22 +48,6 @@ class List6 extends BaseList {
       ],
     });
     this.addProp({
-      type: "boolean",
-      key: "descriptionAnimation",
-      displayer: "Title Animation",
-      value: true,
-    });
-    this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Hover Animation Style",
-      value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"]
-      }
-    });
-
-    this.addProp({
       type: "array",
       key: "listItems",
       displayer: "List Item",
@@ -228,6 +212,21 @@ class List6 extends BaseList {
       displayer: "Line Active",
       value: true,
     });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Hover Animation Style",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1", "animate2", "animate3", "animate4"]
+      }
+    });
+    this.addProp({
+      type: "boolean",
+      key: "descriptionAnimation",
+      displayer: "Title Animation",
+      value: true,
+    });
   }
 
   render() {
@@ -240,6 +239,7 @@ class List6 extends BaseList {
     const isCenterAlignment = alignment === "center";
 
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -267,22 +267,6 @@ class List6 extends BaseList {
                   >
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
-                )}
-                {buttons?.length > 0 && (
-                  <div className={`${this.decorateCSS("button-container")} ${isCenterAlignment && this.decorateCSS("align-center")}`}>
-                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                      if (!this.castToString(button.text)) return null;
-                      return (
-                        <ComposerLink key={index} path={button.url}>
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {button.text}
-                            </Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
-                  </div>
                 )}
               </Base.VerticalContent>
             )}
@@ -327,6 +311,22 @@ class List6 extends BaseList {
                 </div>
               ))}
             </div>
+            {hasValidButtons && (
+              <div className={this.decorateCSS("button-container")}>
+                {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                  if (!this.castToString(button.text)) return null;
+                  return (
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {button.text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
