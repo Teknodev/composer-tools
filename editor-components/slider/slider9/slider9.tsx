@@ -851,62 +851,75 @@ class Slider9 extends BaseSlider {
                   </div>
 
                   {isFullscreen && (
-                    <div className={this.decorateCSS("fullscreen-modal")}>
-                      <div className={this.decorateCSS("fullscreen-overlay")} onClick={this.handleCloseFullscreen}>
+                    <Base.Overlay isVisible={true} className={this.decorateCSS("overlay")} onClick={this.handleCloseFullscreen}>
+                      <div className={this.decorateCSS("modal-wrapper")} onClick={this.handleCloseFullscreen}>
+                        <div className={this.decorateCSS("modal-content")} onClick={(e) => e.stopPropagation()}>
+                          {exitButton && (
+                            <div className={this.decorateCSS("close")} onClick={(e) => { e.stopPropagation(); this.handleCloseFullscreen(); }}>
+                              <Base.Media value={exitButton} className={this.decorateCSS("close-icon")} />
+                            </div>
+                          )}
+
+                          {this.getCurrentFullscreenItem()?.media && (
+                            <div className={this.decorateCSS("image-container")}>
+                              <Base.Media
+                                value={this.getCurrentFullscreenItem()?.media}
+                                className={this.decorateCSS("modal-image")}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {overlayLeftArrow && (
                         <div
-                          className={this.decorateCSS("overlay-left-button")}
+                          className={this.decorateCSS("prev")}
                           onClick={(e) => {
                             e.stopPropagation();
                             this.fullscreenPrevImage();
                             this.setComponentState("hoveredIndex", null);
                           }}
                         >
-                          <Base.Media value={overlayLeftArrow} className={this.decorateCSS("arrow-icon")} />
+                          <Base.Media value={overlayLeftArrow} className={this.decorateCSS("nav-icon")} />
                         </div>
+                      )}
+
+                      {overlayRightArrow && (
                         <div
-                          className={this.decorateCSS("overlay-right-button")}
+                          className={this.decorateCSS("next")}
                           onClick={(e) => {
                             e.stopPropagation();
                             this.fullscreenNextImage();
                           }}
                         >
-                          <Base.Media value={overlayRightArrow} className={this.decorateCSS("arrow-icon")} />
+                          <Base.Media value={overlayRightArrow} className={this.decorateCSS("nav-icon")} />
                         </div>
-                        <button
-                          className={this.decorateCSS("close-button-wrapper")}
-                          onClick={this.handleCloseFullscreen}
-                        >
-                          <Base.Media value={exitButton} className={`${this.decorateCSS("close-button")} ${this.decorateCSS("button-icon")}`} />
-                        </button>
-                      </div>
-                      <div className={this.decorateCSS("fullscreen-content")}>
-                        <Base.Media
-                          value={this.getCurrentFullscreenItem()?.media}
-                          className={this.decorateCSS("fullscreen-image")}
-                        />
-                      </div>
-                    </div>
+                      )}
+                    </Base.Overlay>
                   )}
 
-                  {isVideoModalOpen && (
-                    <div className={this.decorateCSS("video-modal")}>
-                      <div className={this.decorateCSS("video-overlay")} onClick={this.handleCloseVideoModal}></div>
-                      <div className={this.decorateCSS("video-content")}>
-                        <button
-                          className={this.decorateCSS("close-button-wrapper")}
+                  {isVideoModalOpen && videoUrl && (
+                    <Base.Overlay
+                      isVisible={isVideoModalOpen}
+                      onClick={this.handleCloseVideoModal}
+                      className={this.decorateCSS("video-overlay")}
+                    >
+                      <div
+                        className={this.decorateCSS("video-container")}
+                        onClick={(e: React.MouseEvent) => e.stopPropagation()}
+                      >
+                        <div
+                          className={this.decorateCSS("video-close-button")}
                           onClick={this.handleCloseVideoModal}
                         >
-                          <Base.Media value={exitButton} className={`${this.decorateCSS("close-button")} ${this.decorateCSS("button-icon")}`} />
-                        </button>
-
-                        <video
-                          src={videoUrl?.url || videoUrl}
-                          controls
-                          className={this.decorateCSS("video-player")}
-                          autoPlay
+                          <Base.Media value={exitButton} className={this.decorateCSS("video-close-icon")} />
+                        </div>
+                        <Base.Media
+                          className={this.decorateCSS("video-iframe")}
+                          value={videoUrl}
                         />
                       </div>
-                    </div>
+                    </Base.Overlay>
                   )}
                 </div>
               </div>
