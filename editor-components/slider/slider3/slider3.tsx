@@ -297,7 +297,7 @@ class Slider3 extends BaseSlider {
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                 {visibleButtons.length > 0 && (
-                  <div className={this.decorateCSS("button-container")}>
+                  <Base.Row className={this.decorateCSS("button-container")}>
                     {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
                       return (this.castToString(item.text) || (item.icon && (item.icon)?.name)) && (
                         <ComposerLink key={`button-${index}`} path={item.url}>
@@ -308,7 +308,7 @@ class Slider3 extends BaseSlider {
                         </ComposerLink>
                       );
                     })}
-                  </div>
+                  </Base.Row>
                 )}
               </Base.VerticalContent>
             )}
