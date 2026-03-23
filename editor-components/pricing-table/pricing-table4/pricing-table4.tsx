@@ -11,10 +11,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Pricing = {
-  title1: React.JSX.Element;
+  title: React.JSX.Element;
   list: TypeUsableComponentProps[];
-  title2: React.JSX.Element;
-  pricing: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  price: React.JSX.Element;
   buttons: INPUTS.CastedButton[];
   isFocus: boolean;
   icon: TypeMediaInputValue;
@@ -89,19 +89,19 @@ class PricingMultiple extends BasePricingTable {
             },
             {
               type: "string",
-              key: "title1",
+              key: "title",
               displayer: "Title-1",
               value: "Enterprise",
             },
             {
               type: "string",
-              key: "title2",
+              key: "subtitle",
               displayer: "Title-2",
               value: "Basic Solution",
             },
             {
               type: "string",
-              key: "pricing",
+              key: "price",
               displayer: "Pricing",
               value: "$150",
             },
@@ -117,7 +117,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "One database",
                     },
@@ -278,7 +278,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "One database",
                     },
@@ -450,7 +450,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "One database",
                     },
@@ -719,13 +719,13 @@ class PricingMultiple extends BasePricingTable {
             >
               {this.castToObject<Pricing[]>("cards").map(
                 (price: Pricing, indexCards: number) => {
-                  const title1 = this.castToString(price.title1);
-                  const title2 = this.castToString(price.title2);
-                  const pricing = this.castToString(price.pricing);
+                  const title1 = this.castToString(price.title);
+                  const title2 = this.castToString(price.subtitle);
+                  const pricing = this.castToString(price.price);
                   const hasCardUp = title1 || title2 || pricing;
 
                   const hasList = price.list.some((item: any) => {
-                    const textExist = this.castToString(item.liText);
+                    const textExist = this.castToString(item.text);
                     const iconExist =
                       item.icon && (item.icon.name || item.icon.url);
                     return textExist || iconExist;
@@ -762,21 +762,21 @@ class PricingMultiple extends BasePricingTable {
                                 <Base.H5
                                   className={this.decorateCSS("price-title1")}
                                 >
-                                  {price.title1}
+                                  {price.title}
                                 </Base.H5>
                               )}
                               {title2 && (
                                 <Base.P
                                   className={this.decorateCSS("price-title2")}
                                 >
-                                  {price.title2}
+                                  {price.subtitle}
                                 </Base.P>
                               )}
-                              {this.castToString(price.pricing) && (
+                              {this.castToString(price.price) && (
                                 <Base.H1
                                   className={this.decorateCSS("price-pricing")}
                                 >
-                                  {price.pricing}
+                                  {price.price}
                                 </Base.H1>
                               )}
                             </Base.VerticalContent>
@@ -791,7 +791,7 @@ class PricingMultiple extends BasePricingTable {
                               {price.list.map(
                                 (item: any, indexListGroup: number) => {
                                   const liElement = this.castToString(
-                                    item.liText
+                                    item.text
                                   );
                                   const hasIcon =
                                     item.icon &&
@@ -826,7 +826,7 @@ class PricingMultiple extends BasePricingTable {
                                             "list-item-text"
                                           )}
                                         >
-                                          {item.liText}
+                                          {item.text}
                                         </Base.P>
                                       )}
                                     </div>

@@ -11,7 +11,7 @@ type Card = {
   title: React.JSX.Element;
   price: React.JSX.Element;
   tagSettings: TagSettings;
-  items: { value: React.JSX.Element }[];
+  items: { text: React.JSX.Element }[];
   buttons?: INPUTS.CastedButton[];
 };
 
@@ -135,7 +135,7 @@ class PricingTable3 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "value",
+                      key: "text",
                       displayer: "",
                       value: "Regular seats",
                     },
@@ -148,7 +148,7 @@ class PricingTable3 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "value",
+                      key: "text",
                       displayer: "",
                       value: "Snacks and brunch",
                     },
@@ -161,7 +161,7 @@ class PricingTable3 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "value",
+                      key: "text",
                       displayer: "",
                       value: "Event certificate",
                     },
@@ -245,7 +245,7 @@ class PricingTable3 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "value",
+                      key: "text",
                       displayer: "",
                       value: "Regular seats",
                     },
@@ -258,7 +258,7 @@ class PricingTable3 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "value",
+                      key: "text",
                       displayer: "",
                       value: "Snacks and brunch",
                     },
@@ -271,7 +271,7 @@ class PricingTable3 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "value",
+                      key: "text",
                       displayer: "",
                       value: "Event certificate",
                     },
@@ -367,6 +367,7 @@ class PricingTable3 extends BasePricingTable {
       <Base.Container
         className={this.decorateCSS("container")}
       >
+        <div className={this.decorateCSS("overlay")}></div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || descExist || hasTopLevelButtons) && (
@@ -492,11 +493,11 @@ class PricingTable3 extends BasePricingTable {
                               >
                                 {card.items.map(
                                   (
-                                    item: { value: React.JSX.Element },
+                                    item: { text: React.JSX.Element },
                                     idx: number
                                   ) => {
                                     const itemExist = this.castToString(
-                                      item.value
+                                      item.text
                                     );
                                     return (
                                       itemExist && (
@@ -504,7 +505,7 @@ class PricingTable3 extends BasePricingTable {
                                           key={idx}
                                           className={`${this.decorateCSS("item")} ${!showListDividers && this.decorateCSS("no-lines")}`}
                                         >
-                                          {item.value}
+                                          {item.text}
                                         </Base.P>
                                       )
                                     );

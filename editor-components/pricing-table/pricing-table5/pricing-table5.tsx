@@ -7,10 +7,10 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  planTitle: React.JSX.Element;
+  title: React.JSX.Element;
   description: React.JSX.Element;
   price: React.JSX.Element;
-  priceDescription: React.JSX.Element;
+  duration: React.JSX.Element;
   buttons?: INPUTS.CastedButton[];
 };
 
@@ -88,7 +88,7 @@ class PricingTable5 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "planTitle",
+              key: "title",
               displayer: "PlanType",
               value: "Basic Plan",
             },
@@ -107,7 +107,7 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "priceDescription",
+              key: "duration",
               displayer: "Price Description",
               value: " / Monthly",
             },
@@ -372,10 +372,10 @@ class PricingTable5 extends BasePricingTable {
                 {plans.map((plan: Card, index: number) => {
                   const isActive =
                     index === this.getComponentState("activePlan");
-                  const planTitleExist = this.castToString(plan.planTitle);
+                  const planTitleExist = this.castToString(plan.title);
                   const priceExist = this.castToString(plan.price);
                   const planDescription = this.castToString(
-                    plan.priceDescription
+                    plan.duration
                   );
 
                   const planButtons = this.getButtonsFromItem(plan);
@@ -398,7 +398,7 @@ class PricingTable5 extends BasePricingTable {
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && (
                           <Base.H5 className={this.decorateCSS("plan-title")}>
-                            {plan.planTitle}
+                            {plan.title}
                           </Base.H5>
                         )}
                         <div
@@ -435,7 +435,7 @@ class PricingTable5 extends BasePricingTable {
                                   "price-description"
                                 )}
                               >
-                                {plan.priceDescription}
+                                {plan.duration}
                               </Base.P>
                             )}
                           </div>

@@ -7,14 +7,14 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Pricing = {
-  cardTitle: React.JSX.Element;
-  cardsubtitle: React.JSX.Element;
-  cardPrice: React.JSX.Element;
+  title: React.JSX.Element;
+  subtitle: React.JSX.Element;
+  price: React.JSX.Element;
   buttons: any[];
-  cardDuration: React.JSX.Element;
-  cardDuration1: React.JSX.Element;
-  cardList: string[];
-  pricingTableTitle: React.JSX.Element;
+  duration: React.JSX.Element;
+  duration1: React.JSX.Element;
+  list: string[];
+  note: React.JSX.Element;
   isActive: boolean;
   popular_settings: any;
 };
@@ -86,19 +86,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "cardsubtitle",
+              key: "subtitle",
               displayer: "Pricing Subtitle",
               value: "STARTER",
             },
             {
               type: "string",
-              key: "cardTitle",
+              key: "title",
               displayer: "Price Title",
               value: "Individual",
             },
             {
               type: "array",
-              key: "cardList",
+              key: "list",
               displayer: "Feature List",
               value: [
                 {
@@ -108,7 +108,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Marketing strategy",
                     },
@@ -130,7 +130,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Competitive work analysis",
                     },
@@ -152,7 +152,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Social media share audit",
                     },
@@ -175,7 +175,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Monthly management",
                     },
@@ -194,19 +194,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "price",
               displayer: "Price",
               value: "$29",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "Per user/month ",
             },
             {
               type: "string",
-              key: "cardDuration1",
+              key: "duration1",
               displayer: "Duration1",
               value: "billed annually*",
             },
@@ -228,7 +228,7 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "pricingTableTitle",
+              key: "note",
               displayer: "Pricing Title",
               value: "Cancel anytime",
             },
@@ -266,19 +266,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "cardsubtitle",
+              key: "subtitle",
               displayer: "Pricing Subtitle",
               value: "PROFESSIONAL",
             },
             {
               type: "string",
-              key: "cardTitle",
+              key: "title",
               displayer: "Price Title",
               value: "Business",
             },
             {
               type: "array",
-              key: "cardList",
+              key: "list",
               displayer: "Feature List",
               value: [
                 {
@@ -288,7 +288,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Marketing strategy",
                     },
@@ -310,7 +310,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Competitive work analysis",
                     },
@@ -332,7 +332,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Social media share audit",
                     },
@@ -354,7 +354,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Monthly management",
                     },
@@ -373,19 +373,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "price",
               displayer: "Price",
               value: "$39",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "Per user/month",
             },
             {
               type: "string",
-              key: "cardDuration1",
+              key: "duration1",
               displayer: "Duration1",
               value: " billed annually*",
             },
@@ -407,7 +407,7 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "pricingTableTitle",
+              key: "note",
               displayer: "Pricing Title",
               value: "Cancel anytime",
             },
@@ -445,19 +445,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "cardsubtitle",
+              key: "subtitle",
               displayer: "Pricing Subtitle",
               value: "ENTERPRISE",
             },
             {
               type: "string",
-              key: "cardTitle",
+              key: "title",
               displayer: "Price Title",
               value: "Corporate",
             },
             {
               type: "array",
-              key: "cardList",
+              key: "list",
               displayer: "Feature List",
               value: [
                 {
@@ -467,7 +467,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Marketing strategy",
                     },
@@ -489,7 +489,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Competitive work analysis",
                     },
@@ -511,7 +511,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Social media share audit",
                     },
@@ -533,7 +533,7 @@ class PricingTable1 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Monthly management",
                     },
@@ -562,19 +562,19 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "price",
               displayer: "Price",
               value: "$59",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "Per user/month",
             },
             {
               type: "string",
-              key: "cardDuration1",
+              key: "duration1",
               displayer: "Duration1",
               value: " billed annually*",
             },
@@ -596,7 +596,7 @@ class PricingTable1 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "pricingTableTitle",
+              key: "note",
               displayer: "Pricing Title",
               value: "Cancel anytime",
             },
@@ -772,22 +772,22 @@ class PricingTable1 extends BasePricingTable {
                   const popularBoxExist = popularText && table.popular_settings.is_popular;
 
                   const cardSubtitleExist = this.castToString(
-                    table.cardsubtitle
+                    table.subtitle
                   );
-                  const cardTitleExist = this.castToString(table.cardTitle);
+                  const cardTitleExist = this.castToString(table.title);
 
-                  const cardPriceExist = this.castToString(table.cardPrice);
-                  const durationExist = this.castToString(table.cardDuration);
-                  const duration1Exist = this.castToString(table.cardDuration1);
+                  const cardPriceExist = this.castToString(table.price);
+                  const durationExist = this.castToString(table.duration);
+                  const duration1Exist = this.castToString(table.duration1);
 
                   const cardpricingTableTitleExist = this.castToString(
-                    table.pricingTableTitle
+                    table.note
                   );
 
                   const buttons = this.getButtonsFromItem(table);
 
-                  const hasCardList = table.cardList && table.cardList.some((listItem: any) => {
-                    const cardListItemExist = this.castToString(listItem.cardListItem);
+                  const hasCardList = table.list && table.list.some((listItem: any) => {
+                    const cardListItemExist = this.castToString(listItem.text);
                     const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.name || listItem.buttonIcon.url);
                     return cardListItemExist || buttonIconExist;
                   });
@@ -833,21 +833,21 @@ class PricingTable1 extends BasePricingTable {
                             }`}
                         >
                           <Base.SectionDescription className={this.decorateCSS("cardsubtitle")}>
-                            {table.cardsubtitle}
+                            {table.subtitle}
                           </Base.SectionDescription>
                         </div>
                       )}
                       {cardTitleExist && (
                         <Base.H3 className={`${this.decorateCSS("card-title")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""}`}>
-                          {table.cardTitle}
+                          {table.title}
                         </Base.H3>
                       )}
                       <div className={this.decorateCSS("card-list")}>
                         {(() => {
                           const showListLines = this.getPropValue("cardListLines");
-                          return table.cardList.map((listItem: any, index: number) => {
+                          return table.list.map((listItem: any, index: number) => {
                             const cardListItemExist = this.castToString(
-                              listItem.cardListItem
+                              listItem.text
                             );
                             const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.name || listItem.buttonIcon.url);
                             const cardExist = buttonIconExist || cardListItemExist;
@@ -867,7 +867,7 @@ class PricingTable1 extends BasePricingTable {
                                   )}
                                   {cardListItemExist && (
                                     <Base.P className={this.decorateCSS("list-item")}>
-                                      {listItem.cardListItem}
+                                      {listItem.text}
                                     </Base.P>
                                   )}
                                 </Base.Row>
@@ -892,7 +892,7 @@ class PricingTable1 extends BasePricingTable {
                           >
                             {cardPriceExist && (
                               <Base.P className={this.decorateCSS("price")}>
-                                {table.cardPrice}
+                                {table.price}
                               </Base.P>
                             )}
                             {(durationExist || duration1Exist) && (
@@ -901,12 +901,12 @@ class PricingTable1 extends BasePricingTable {
                               >
                                 {durationExist && (
                                   <Base.P className={this.decorateCSS("duration")}>
-                                    {table.cardDuration}
+                                    {table.duration}
                                   </Base.P>
                                 )}
                                 {duration1Exist && (
                                   <Base.P className={this.decorateCSS("duration1")}>
-                                    {table.cardDuration1}
+                                    {table.duration1}
                                   </Base.P>
                                 )}
                               </div>
@@ -954,7 +954,7 @@ class PricingTable1 extends BasePricingTable {
                           </div>
                           {cardpricingTableTitleExist && (
                             <Base.P className={this.decorateCSS("pricingTitle")}>
-                              {table.pricingTableTitle}
+                              {table.note}
                             </Base.P>
                           )}
                         </div>

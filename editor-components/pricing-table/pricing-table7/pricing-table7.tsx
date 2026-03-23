@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type PricingItem = {
-  itemText: string;
+  text: string;
   icon: TypeMediaInputValue;
 };
 
@@ -178,7 +178,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Case Management",
                     },
@@ -200,7 +200,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Task Management",
                     },
@@ -1097,7 +1097,7 @@ class PricingTable7 extends BasePricingTable {
                 const hasPopularText = this.castToString(pricing.popular_settings?.text) && pricing.isActive;
                 
                 const validItems = pricing.item?.filter((data: any) => {
-                  const hasItemText = this.castToString(data.itemText);
+                  const hasItemText = this.castToString(data.text);
                   const hasItemIcon = data.icon && (data.icon.name || data.icon.url);
                   return hasItemText || hasItemIcon;
                 }) || [];
@@ -1189,7 +1189,7 @@ class PricingTable7 extends BasePricingTable {
                         if (!pricing.item || pricing.item.length === 0) return null;
                         
                         const validItems = pricing.item.filter((data: any) => {
-                          const hasItemText = this.castToString(data.itemText);
+                          const hasItemText = this.castToString(data.text);
                           const hasItemIcon = data.icon && (data.icon.name || data.icon.url);
                           return hasItemText || hasItemIcon;
                         });
@@ -1201,7 +1201,7 @@ class PricingTable7 extends BasePricingTable {
                             className={this.decorateCSS("features")}
                           >
                             {validItems.map((data: any, index: number) => {
-                              const hasItemText = this.castToString(data.itemText);
+                              const hasItemText = this.castToString(data.text);
                               const hasItemIcon = data.icon && (data.icon.name || data.icon.url);
                               
                               return (
@@ -1221,7 +1221,7 @@ class PricingTable7 extends BasePricingTable {
                                         "features-element-text"
                                       )}
                                     >
-                                      {data.itemText}
+                                      {data.text}
                                     </div>
                                   )}
                                 </Base.H5>

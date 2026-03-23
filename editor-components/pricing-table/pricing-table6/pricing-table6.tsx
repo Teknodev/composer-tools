@@ -12,7 +12,7 @@ type Pricing = {
     cardTitle1: string;
     description: string;
     subtitle: React.JSX.Element;
-    property: string;
+    text: string;
     title: React.JSX.Element;
     product: {
       per: string;
@@ -28,7 +28,7 @@ type Pricing = {
       subtitle: React.JSX.Element;
       title: React.JSX.Element;
       list: {
-        property: string;
+        text: string;
         dash_icon: string;
       }[];
       buttons: INPUTS.CastedButton[];
@@ -177,7 +177,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -360,7 +360,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -543,7 +543,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -745,7 +745,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -928,7 +928,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -1110,7 +1110,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value:
                                     "3 hours of training (VR therapy + platform use)",
@@ -1506,7 +1506,7 @@ class PricingMultipleTwo extends BasePricingTable {
                               {plan[planIndex]?.right_items?.list?.map(
                                 (listItem: any, listItemIndex: number) => {
                                   const property =
-                                    listItem.getPropValue("property");
+                                    listItem.getPropValue("text");
                                   const iconValue =
                                     listItem.getPropValue("dash_icon");
                                   const enableValue =

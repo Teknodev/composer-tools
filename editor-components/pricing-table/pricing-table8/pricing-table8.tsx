@@ -8,7 +8,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type IIconBoxes = {
-  planTitle: React.JSX.Element;
+  subtitle: React.JSX.Element;
   bars: any;
   description: any;
   list: any;
@@ -61,7 +61,7 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "planTitle",
+              key: "subtitle",
               displayer: "Plan Title",
               value: "Basic plan",
             },
@@ -101,7 +101,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
@@ -207,7 +207,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
@@ -313,7 +313,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar1",
                       value: "500 Gb",
                     },
@@ -433,25 +433,25 @@ class PricingTable8 extends BasePricingTable {
   }
 
   private hasLowerContainerContent(card: IIconBoxes): boolean {
-    const planTitleExist = this.castToString(card.planTitle);
+    const planTitleExist = this.castToString(card.subtitle);
     const descriptionExist = this.castToString(card.description);
     const hasBars =
       card.bars &&
       card.bars.length > 0 &&
-      card.bars.some((bar: any) => this.castToString(bar.barTitle));
+      card.bars.some((bar: any) => this.castToString(bar.title));
 
     return !!(planTitleExist || descriptionExist || hasBars);
   }
 
   private hasPlanDescContent(card: IIconBoxes): boolean {
-    const planTitleExist = this.castToString(card.planTitle);
+    const planTitleExist = this.castToString(card.subtitle);
     const descriptionExist = this.castToString(card.description);
     return !!(planTitleExist || descriptionExist);
   }
 
   private hasBarsContent(bars: any[]): boolean {
     if (!bars || bars.length === 0) return false;
-    return bars.some((bar: any) => this.castToString(bar.barTitle));
+    return bars.some((bar: any) => this.castToString(bar.title));
   }
 
   render() {
@@ -663,9 +663,9 @@ class PricingTable8 extends BasePricingTable {
                   <Base.VerticalContent
                     className={this.decorateCSS("plan-desc")}
                   >
-                    {this.castToString(currentCard.planTitle) && (
+                    {this.castToString(currentCard.subtitle) && (
                       <Base.H4 className={this.decorateCSS("text")}>
-                        {currentCard.planTitle}
+                        {currentCard.subtitle}
                       </Base.H4>
                     )}
                     {this.castToString(currentCard.description) && (
@@ -680,7 +680,7 @@ class PricingTable8 extends BasePricingTable {
                   <div className={this.decorateCSS("bar-rows")}>
                     <div className={this.decorateCSS("bar-row")}>
                       {currentCard.bars.map((bar: any, index: any) => {
-                        const barTitleExist = this.castToString(bar.barTitle);
+                        const barTitleExist = this.castToString(bar.title);
                         if (!barTitleExist) return null;
 
                         return (
@@ -689,7 +689,7 @@ class PricingTable8 extends BasePricingTable {
                             key={index}
                           >
                             <Base.H6 className={this.decorateCSS("bar-title")}>
-                              {bar.barTitle}
+                              {bar.title}
                             </Base.H6>
                             <div className={this.decorateCSS("bar-percent")}>
                               <div

@@ -8,17 +8,17 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type PricingItems = {
   buttons?: INPUTS.CastedButton[];
-  cardTitle: React.JSX.Element;
-  cardPrice: React.JSX.Element;
-  cardDuration: React.JSX.Element;
-  cardIcon: TypeMediaInputValue;
+  title: React.JSX.Element;
+  price: React.JSX.Element;
+  duration: React.JSX.Element;
+  icon: TypeMediaInputValue;
   cardList: ListItem[];
   buttonType?: INPUTS.CastedButton;
 };
 
 type ListItem = {
   listIcon: TypeMediaInputValue;
-  cardListItem: React.JSX.Element;
+  text: React.JSX.Element;
 };
 
 class PricingTable2 extends BasePricingTable {
@@ -26,19 +26,19 @@ class PricingTable2 extends BasePricingTable {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "pricing-table-subtitle",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "WORK PACKAGES",
     });
     this.addProp({
       type: "string",
-      key: "pricing-table-title",
+      key: "title",
       displayer: "Title",
       value: "Pricing Plans",
     });
     this.addProp({
       type: "string",
-      key: "pricing-table-description",
+      key: "description",
       displayer: "Description",
       value:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
@@ -63,25 +63,25 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
               type: "media",
-              key: "cardIcon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -100,7 +100,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -122,7 +122,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -144,7 +144,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -166,7 +166,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -188,7 +188,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -267,7 +267,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -289,7 +289,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -311,7 +311,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -333,7 +333,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -355,7 +355,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -434,7 +434,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -456,7 +456,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -478,7 +478,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -500,7 +500,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -522,7 +522,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -601,7 +601,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -623,7 +623,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -645,7 +645,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -667,7 +667,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -689,7 +689,7 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
@@ -770,9 +770,9 @@ class PricingTable2 extends BasePricingTable {
   }
 
   render() {
-    const subtitle = this.getPropValue("pricing-table-subtitle");
-    const title = this.getPropValue("pricing-table-title");
-    const description = this.getPropValue("pricing-table-description");
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
 
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
@@ -816,10 +816,10 @@ class PricingTable2 extends BasePricingTable {
             >
               {this.castToObject<PricingItems[]>("pricingTableItem").map(
                 (table: PricingItems, index: number) => {
-                  const cardTitle = table.cardTitle;
-                  const cardPrice = table.cardPrice;
-                  const cardDuration = table.cardDuration;
-                  const cardIcon = table.cardIcon;
+                  const cardTitle = table.title;
+                  const cardPrice = table.price;
+                  const cardDuration = table.duration;
+                  const cardIcon = table.icon;
 
                   const buttons = this.getButtonsFromItem(table);
                   const hasAnyButton = this.hasAnyButtonInItem(buttons);
@@ -833,7 +833,7 @@ class PricingTable2 extends BasePricingTable {
                     : [];
                   const hasCardList = cardListArr.some(
                     (listItem: ListItem) =>
-                      this.castToString(listItem.cardListItem) ||
+                      this.castToString(listItem.text) ||
                       (!!listItem.listIcon &&
                         ((listItem.listIcon as any).name ||
                           (listItem.listIcon as any).url))
@@ -916,7 +916,7 @@ class PricingTable2 extends BasePricingTable {
                                 {cardListArr.map(
                                   (listItem: ListItem, listIndex: number) => {
                                     const cardListItemText = this.castToString(
-                                      listItem.cardListItem
+                                      listItem.text
                                     );
                                     const listIcon = listItem.listIcon;
                                     const listIconExists =
@@ -948,7 +948,7 @@ class PricingTable2 extends BasePricingTable {
                                               "list-item"
                                             )}
                                           >
-                                            {listItem.cardListItem}
+                                            {listItem.text}
                                           </Base.P>
                                         )}
                                       </div>
