@@ -38,7 +38,7 @@ class List5 extends BaseList {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      value: "",
     });
     this.addProp({
       type: "array",
@@ -142,7 +142,7 @@ class List5 extends BaseList {
               type: "string",
               key: "index",
               displayer: "Index",
-              value: "",
+              value: "02",
             },
             {
               type: "string",
@@ -374,13 +374,11 @@ class List5 extends BaseList {
                       const buttonText = this.castToString(btn.text);
                       if (!buttonText) return null;
                       return (
-                        <div key={index} className={this.decorateCSS("button")}>
-                          <ComposerLink path={btn.url}>
-                            <Base.Button buttonType={btn.type}>
-                              {btn.text}
-                            </Base.Button>
-                          </ComposerLink>
-                        </div>
+                        <ComposerLink key={index} path={btn.url}>
+                          <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
                       );
                     })}
                   </div>

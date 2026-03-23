@@ -75,8 +75,12 @@
           justify-content: flex-start;
           gap: var(--composer-gap-sm);
 
-          .button .button-text {
+          .button {
             content: "";
+
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -298,12 +302,16 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .max-content .content .cards-grid .card .card-header .index-section {
-    .item-index {
+  .container .max-content {
+    padding-bottom: 0;
+  }
+
+  .container .max-content .content .cards-grid .card .card-header {
+    .index-section .item-index {
       font-size: 4rem !important;
     }
 
-    .icon-badge .icon-wrapper .icon {
+    .icon-section .icon-badge .icon-wrapper .icon {
       width: 3rem !important;
       height: 3rem !important;
       font-size: 3rem !important;
