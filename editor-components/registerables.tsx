@@ -235,10 +235,15 @@ import StatsComponent13 from "./stats/stats13/stats13";
 import StatsComponent14 from "./stats/stats14/stats14";
 import StatsComponent15 from "./stats/stats15/stats15";
 import StatsComponent16 from "./stats/stats16/stats16";
+import StatsComponent17 from "./stats/stats17/stats17";
 import StatsComponent20 from "./stats/stats20/stats20";
 import StatsComponent21 from "./stats/stats21/stats21";
+import StatsComponent23 from "./stats/stats23/stats23";
 import StatsComponent24 from "./stats/stats24/stats24";
 import StatsComponent25 from "./stats/stats25/stats25";
+import StatsComponent26 from "./stats/stats26/stats26";
+import StatsComponent27 from "./stats/stats27/stats27";
+import StatsComponent28 from "./stats/stats28/stats28";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -623,10 +628,15 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent14,
     StatsComponent15,
     StatsComponent16,
+    StatsComponent17,
     StatsComponent20,
     StatsComponent21,
+    StatsComponent23,
     StatsComponent24,
     StatsComponent25,
+    StatsComponent26,
+    StatsComponent27,
+    StatsComponent28,
     Form1,
     Form2,
     Form3,
