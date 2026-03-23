@@ -9,6 +9,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 type CardItem = {
     icon: TypeMediaInputValue;
     image: TypeMediaInputValue;
+    subtitle: React.JSX.Element;
     title: React.JSX.Element;
     description: React.JSX.Element;
     buttons: INPUTS.CastedButton[];
@@ -66,6 +67,12 @@ class List9 extends BaseList {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "CREATE AMAZING DESING WITH MINT THEME",
@@ -107,6 +114,12 @@ class List9 extends BaseList {
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -154,6 +167,12 @@ class List9 extends BaseList {
                         },
                         {
                             type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
+                        },
+                        {
+                            type: "string",
                             key: "title",
                             displayer: "Title",
                             value: "READY TO START YOUR NEXT WEB PROJECT NOW?",
@@ -195,6 +214,12 @@ class List9 extends BaseList {
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
+                        },
+                        {
+                            type: "string",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: "",
                         },
                         {
                             type: "string",
@@ -350,6 +375,7 @@ class List9 extends BaseList {
                             {cards.map(
                                 (card: CardItem, indexCard: number) => {
                                     const cardTitleExist = this.castToString(card.title);
+                                    const cardSubtitleExist = this.castToString(card.subtitle);
                                     const cardDescriptionExist = this.castToString(card.description);
                                     const iconExist = card.icon && (card.icon.name || card.icon.url);
                                     const imageExist = card.image && (card.image.name || card.image.url);
@@ -383,6 +409,11 @@ class List9 extends BaseList {
                                                         value={card.icon}
                                                         className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
                                                     />
+                                                )}
+                                                {cardSubtitleExist && (
+                                                    <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                                                        {card.subtitle}
+                                                    </Base.H5>
                                                 )}
                                                 {cardTitleExist && (
                                                     <Base.H4 className={this.decorateCSS("card-title")}>

@@ -205,16 +205,19 @@ class List7 extends BaseList {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const listItems = this.castToObject<ListItem[]>("list-items");
     const buttons = this.castToObject<CardButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
     const itemCount = this.getPropValue("itemCount");
     const showIndex = !!this.getPropValue("showIndex");
     const hoverAnimationValue = this.getPropValue("hoverAnimation");
     const hoverAnimation = Array.isArray(hoverAnimationValue) ? hoverAnimationValue : [];
 
+    const hasHeader = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(subtitleExist || titleExist || descriptionExist || buttons.length > 0) && (
+            {hasHeader && (
               <Base.VerticalContent className={this.decorateCSS("header-section")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -231,7 +234,7 @@ class List7 extends BaseList {
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
-                {buttons.length > 0 && (
+                {hasValidButtons && (
                   <div className={this.decorateCSS("buttons-wrapper")}>
                     {buttons.map((button: CardButton, index: number) => {
                       const buttonText = this.castToString(button.text);

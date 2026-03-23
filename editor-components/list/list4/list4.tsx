@@ -11,6 +11,7 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 
 type Card = {
   description: React.JSX.Element;
+  subtitle: React.JSX.Element;
   icon: TypeMediaInputValue;
   title: React.JSX.Element;
 };
@@ -51,6 +52,12 @@ class List4 extends BaseList {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Creative Idea",
@@ -83,6 +90,12 @@ class List4 extends BaseList {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "High Creative Minds",
@@ -113,6 +126,12 @@ class List4 extends BaseList {
           key: "card",
           displayer: "List Item",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -247,6 +266,7 @@ class List4 extends BaseList {
               {this.castToObject<Card[]>("content-card").map(
                 (card: Card, index: number) => {
                   const hasTitle = this.castToString(card.title);
+                  const hasSubtitle = this.castToString(card.subtitle);
                   const hasDescription = this.castToString(card.description);
                   const hasIcon = !!card.icon;
 
@@ -290,6 +310,11 @@ class List4 extends BaseList {
                           )}
 
                           <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
+                            {hasSubtitle && (
+                              <Base.H5 className={this.decorateCSS("item-subtitle")}>
+                                {card.subtitle}
+                              </Base.H5>
+                            )}
                             {hasTitle && (
                               <Base.H4
                                 className={this.decorateCSS("item-title")}

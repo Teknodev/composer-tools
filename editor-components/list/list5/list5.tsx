@@ -10,8 +10,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type ListItem = {
   index: JSX.Element;
   title: JSX.Element;
+  subtitle: JSX.Element;
   uppericon: TypeMediaInputValue;
-  text: JSX.Element;
+  description: JSX.Element;
   lowericon: TypeMediaInputValue;
   url: string;
 };
@@ -91,6 +92,12 @@ class List5 extends BaseList {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Customize & Refine",
@@ -109,8 +116,8 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
@@ -146,6 +153,12 @@ class List5 extends BaseList {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Lower Cost",
@@ -164,8 +177,8 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
@@ -201,6 +214,12 @@ class List5 extends BaseList {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Speed & Efficiency",
@@ -219,8 +238,8 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
@@ -256,6 +275,12 @@ class List5 extends BaseList {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Quality & Realism",
@@ -274,8 +299,8 @@ class List5 extends BaseList {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value: "There are many variations passages Lorem Ipsum available the majority have suffered.",
             },
             {
@@ -422,14 +447,19 @@ class List5 extends BaseList {
                               )}
                             </div>
                           )}
+                          {this.castToString(listItem.subtitle) && (
+                            <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                              {listItem.subtitle}
+                            </Base.H5>
+                          )}
                           {this.castToString(listItem.title) && (
                             <Base.H4 className={this.decorateCSS("card-title")}>
                               {listItem.title}
                             </Base.H4>
                           )}
-                          {this.castToString(listItem.text) && (
+                          {this.castToString(listItem.description) && (
                             <Base.P className={this.decorateCSS("card-description")}>
-                              {listItem.text}
+                              {listItem.description}
                             </Base.P>
                           )}
                           {listItem.lowericon && (

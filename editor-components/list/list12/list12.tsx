@@ -173,6 +173,7 @@ class List12 extends BaseList {
     const imageOverlay = this.getPropValue("overlay");
     const backgroundOverlay = this.getPropValue("backgroundOverlay");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
     const hoverAnimation = this.getPropValue("hoverAnimation").join(" ");
 
     const box1Exist = !!box1;
@@ -232,23 +233,25 @@ class List12 extends BaseList {
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
-              <div className={this.decorateCSS("button-wrapper")}>
-                {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                  const buttonTextExist = this.castToString(button.text);
-                  const buttonIconExist = button.icon && !!button.icon.name;
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-wrapper")}>
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                    const buttonTextExist = this.castToString(button.text);
+                    const buttonIconExist = button.icon && !!button.icon.name;
 
-                  if (!buttonTextExist && !buttonIconExist) return null;
+                    if (!buttonTextExist && !buttonIconExist) return null;
 
-                  return (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                        {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
-                        {buttonIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={button.icon!} />}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
+                    return (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          {buttonTextExist && <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>}
+                          {buttonIconExist && <Base.Media className={this.decorateCSS("button-icon")} value={button.icon!} />}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
               {box2Exist && box2.item && (
                 <div className={`${this.decorateCSS("circle")} ${box2.item.type === "icon" && this.decorateCSS("no-circle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")} ${hoverAnimation}`}>
                   <Base.Media

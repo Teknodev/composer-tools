@@ -12,6 +12,7 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 
 type Card = {
   image: TypeMediaInputValue;
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
   buttons: CardButton[];
@@ -83,6 +84,12 @@ class List1 extends BaseList {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Sesame Honey Roasted",
@@ -125,6 +132,12 @@ class List1 extends BaseList {
               key: "overlay",
               displayer: "Overlay",
               value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -173,6 +186,12 @@ class List1 extends BaseList {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Sesame Honey Roasted",
@@ -215,6 +234,12 @@ class List1 extends BaseList {
               key: "overlay",
               displayer: "Overlay",
               value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -263,6 +288,12 @@ class List1 extends BaseList {
             },
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Sesame Honey Roasted",
@@ -305,6 +336,12 @@ class List1 extends BaseList {
               key: "overlay",
               displayer: "Overlay",
               value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -447,6 +484,7 @@ class List1 extends BaseList {
               >
                 {sliderItems.map((item: Card, indexSlider: number) => {
                   const itemTitleExist = this.castToString(item.title);
+                  const itemSubtitleExist = this.castToString(item.subtitle);
                   const itemDescExist = this.castToString(item.description);
                   const buttons = item.buttons || [];
                   const isIcon = !!item.image && (item.image as TypeMediaInputValue).type === "icon";
@@ -482,12 +520,17 @@ class List1 extends BaseList {
                             )}
                           </Base.Row>
                         )}
-                        {(itemTitleExist || itemDescExist) && (
+                        {(itemTitleExist || itemSubtitleExist || itemDescExist) && (
                           <Base.VerticalContent className={this.decorateCSS("card-header")}>
                             {itemTitleExist && (
                               <Base.H5 className={this.decorateCSS("card-title")}>
                                 {item.title}
                               </Base.H5>
+                            )}
+                            {itemSubtitleExist && (
+                              <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                {item.subtitle}
+                              </Base.H6>
                             )}
                             {itemDescExist && (
                               <Base.P className={this.decorateCSS("card-description")}>

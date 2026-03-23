@@ -5,8 +5,9 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface ListItems {
-    itemTitle: React.JSX.Element;
-    itemDescription: React.JSX.Element;
+    title: React.JSX.Element;
+    subtitle: React.JSX.Element;
+    description: React.JSX.Element;
     itemImage: TypeMediaInputValue;
     url: string;
     navigateToText: React.JSX.Element;
@@ -54,13 +55,19 @@ class List11 extends BaseList {
                     value: [
                         {
                             type: "string",
-                            key: "itemTitle",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
+                            key: "title",
                             displayer: "Title",
                             value: "Share tools quickly and confidently in minutes"
                         },
                         {
                             type: "string",
-                            key: "itemDescription",
+                            key: "description",
                             displayer: "Description",
                             value: "This powerful tool eliminates the need to leave Salesforce to get things done as I can create a custom proposal with dynamic pricing tables. You can also customize your own dynamic versions."
                         },
@@ -109,13 +116,19 @@ class List11 extends BaseList {
                     value: [
                         {
                             type: "string",
-                            key: "itemTitle",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
+                            key: "title",
                             displayer: "Title",
                             value: "Connect every part of your entire business"
                         },
                         {
                             type: "string",
-                            key: "itemDescription",
+                            key: "description",
                             displayer: "Description",
                             value: "Keep data consistent, with native CRM integrations that streamline your entire Tool workflow."
                         },
@@ -164,13 +177,19 @@ class List11 extends BaseList {
                     value: [
                         {
                             type: "string",
-                            key: "itemTitle",
+                            key: "subtitle",
+                            displayer: "Subtitle",
+                            value: ""
+                        },
+                        {
+                            type: "string",
+                            key: "title",
                             displayer: "Title",
                             value: "Maintain compliance and control your apps"
                         },
                         {
                             type: "string",
-                            key: "itemDescription",
+                            key: "description",
                             displayer: "Description",
                             value: "Improve security and trust with built-in legally binding e-Signatures. Create pre-approved templates, content blocks and lock all legal information to prevent costly mistakes."
                         },
@@ -304,8 +323,9 @@ class List11 extends BaseList {
                         )}
                         <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }} className={this.decorateCSS("grid")}>
                             {listItems.map((item: ListItems, index: number) => {
-                                const itemTitleExist = this.castToString(item.itemTitle);
-                                const itemDescriptionExist = this.castToString(item.itemDescription);
+                                const itemTitleExist = this.castToString(item.title);
+                                const itemSubtitleExist = this.castToString(item.subtitle);
+                                const itemDescriptionExist = this.castToString(item.description);
                                 const navigateToTextExist = this.castToString(item.navigateToText);
                                 const iconExist = item.icon && !!item.icon.url;
                                 const imageExist = !!item.itemImage;
@@ -323,14 +343,19 @@ class List11 extends BaseList {
                                                 </div>
                                             )}
                                             <div className={this.decorateCSS("card-content")}>
+                                                {itemSubtitleExist && (
+                                                    <Base.H4 className={this.decorateCSS("card-subtitle")}>
+                                                        {item.subtitle}
+                                                    </Base.H4>
+                                                )}
                                                 {itemTitleExist && (
                                                     <Base.H3 className={this.decorateCSS("card-title")}>
-                                                        {item.itemTitle}
+                                                        {item.title}
                                                     </Base.H3>
                                                 )}
                                                 {itemDescriptionExist && (
                                                     <Base.SectionDescription className={this.decorateCSS("card-description")}>
-                                                        {item.itemDescription}
+                                                        {item.description}
                                                     </Base.SectionDescription>
                                                 )}
                                                 {(navigateToTextExist || iconExist) && (

@@ -258,6 +258,7 @@
             text-align: left;
             transition: bottom 0.4s var(--composer-transition-easing);
 
+            .card-subtitle,
             .card-title {
               content: "";
               width: 100%;

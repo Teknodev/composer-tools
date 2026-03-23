@@ -179,6 +179,7 @@
                 align-items: flex-start;
                 text-align: left;
 
+                .item-subtitle,
                 .item-title {
                   content: "";
                   color: var(--composer-font-color-primary);
