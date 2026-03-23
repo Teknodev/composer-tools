@@ -1,9 +1,9 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class CallToAction8Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -24,9 +24,16 @@ class CallToAction8Page extends BaseCallToAction {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -48,6 +55,8 @@ class CallToAction8Page extends BaseCallToAction {
     const buttonText = this.castToString(button.text);
     const title = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -64,6 +73,11 @@ class CallToAction8Page extends BaseCallToAction {
                       <Base.SectionTitle className={this.decorateCSS("title")}>
                         {this.getPropValue("title")}
                       </Base.SectionTitle>
+                  )}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
                   )}
                 </Base.VerticalContent>
                 {buttonText && (

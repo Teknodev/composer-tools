@@ -1,10 +1,10 @@
 import * as React from "react";
 import styles from "./download5.module.scss";
 import { BaseDownload } from "../../EditorComponent";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class Download5 extends BaseDownload {
   constructor(props?: any) {
@@ -34,9 +34,9 @@ class Download5 extends BaseDownload {
     this.addProp({
       type: "media",
       key: "backgroundImage",
-      displayer: "Background Image",
+      displayer: "Background Media",
       additionalParams: {
-        availableTypes: ["image"],
+        availableTypes: ["image","video"],
       },
       value: {
         type: "image",
@@ -84,7 +84,8 @@ class Download5 extends BaseDownload {
     const backgroundImageUrl = backgroundImage && backgroundImage.url ? backgroundImage.url : null;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`} style={{ backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : "none" }}>
+        <Base.Container className={`${this.decorateCSS("container")} ${!backgroundImageUrl && this.decorateCSS("single")}`}>
+        <Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={`${this.decorateCSS("page")} ${!backgroundImageUrl && this.decorateCSS("no-image")}`}>
             {(subtitleExist || titleExist || descExist) && 

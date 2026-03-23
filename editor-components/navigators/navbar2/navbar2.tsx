@@ -1,10 +1,10 @@
 import * as React from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar2.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Item = {
   nav_title: React.JSX.Element;
@@ -667,7 +667,7 @@ class Navbar2 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
        <Base.Navigator.Container
         position={position}
         positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
@@ -1001,7 +1001,7 @@ class Navbar2 extends BaseNavigator {
           onClick={() => this.toggleMobileMenu()}
           isVisible= {isVisible}
         />
-      </>
+      </div>
     );
   }
 }

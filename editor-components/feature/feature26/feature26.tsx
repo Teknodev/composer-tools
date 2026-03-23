@@ -1,8 +1,8 @@
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature26.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class FeatureComponent26 extends BaseFeature {
   constructor(props?: any) {
@@ -15,9 +15,9 @@ class FeatureComponent26 extends BaseFeature {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6900d3202d05c1002bf00ca7?alt=media", },
-      additionalParams: { availableTypes: ["image"] }
+      additionalParams: { availableTypes: ["image","video"] }
     });
 
     this.addProp({

@@ -5,7 +5,7 @@ import { BaseContacts } from "../../EditorComponent";
 import styles from "./form7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class Form7 extends BaseContacts {
   constructor(props?: any) {
@@ -337,7 +337,7 @@ class Form7 extends BaseContacts {
                     validationSchema={getSchema}
                     onSubmit={(data, { resetForm }) => {
                       const formData = data;
-                      this.insertForm("CONTACT US", formData);
+                      this.insertForm("Form 7 - ContactUsForm", formData);
                       resetForm();
                     }}
                   >

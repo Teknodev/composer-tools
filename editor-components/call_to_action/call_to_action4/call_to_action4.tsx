@@ -1,10 +1,10 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action4.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface ListItem {
   description: React.JSX.Element;
@@ -21,12 +21,18 @@ class CallToAction4Page extends BaseCallToAction {
       key: "subtitle",
       displayer: "Subtitle",
       value: "Our Services",
-    })
+    })  
     this.addProp({
       type: "string",
       key: "title",
       value: "Ready to Start Your Journey?",
       displayer: "Title",
+    });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
     this.addProp({
       type: "media",
@@ -160,7 +166,7 @@ class CallToAction4Page extends BaseCallToAction {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -184,6 +190,8 @@ class CallToAction4Page extends BaseCallToAction {
   render() {
     const listItems = this.castToObject<ListItem[]>("listItems");
     const buttons = this.castToObject<Button[]>("buttons");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -193,6 +201,11 @@ class CallToAction4Page extends BaseCallToAction {
                 <Base.VerticalContent className={this.decorateCSS("header")}>
                   {this.castToString(this.getPropValue("subtitle")) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
+                  )}
                 </Base.VerticalContent>
                 {listItems.length > 0 && (
                   <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>

@@ -6,8 +6,8 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./survey-modal.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class SurveyModal extends BaseModal {
   constructor(props?: any) {
@@ -237,7 +237,7 @@ class SurveyModal extends BaseModal {
               initialValues={{ rating: 0, foundWhatLookingFor: "", message: "" }}
               validationSchema={validationSchema}
               onSubmit={(data, { resetForm }) => {
-                this.insertForm("Notice", data);
+                this.insertForm("Survey Modal - NewsletterForm", data);
                 resetForm();
               }}
             >

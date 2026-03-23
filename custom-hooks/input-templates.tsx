@@ -1,5 +1,5 @@
-import { TypeButton } from "composer-tools/composer-base-components/base/base";
-import { TypeUsableComponentProps } from "composer-tools/editor-components/EditorComponent";
+import { TypeButton } from "../composer-base-components/base/base";
+import { TypeUsableComponentProps } from "../editor-components/EditorComponent";
 
 export namespace INPUTS {
   export type CastedButton = {
@@ -107,9 +107,9 @@ export namespace INPUTS {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["image"],
+            availableTypes: ["image", "video"],
           },
           value: {
             type: "image",

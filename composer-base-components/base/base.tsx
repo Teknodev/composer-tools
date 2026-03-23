@@ -74,6 +74,15 @@ export namespace Base {
     setStyleValue("--composer-font-size-md", `${size}px`);
   }
 
+  export function getContentWidth() {
+    return getStyleValue("--composer-content-width");
+  }
+
+  export function setContentWidth(width: string | number) {
+    const widthValue = `${width}px`;
+    setStyleValue("--composer-content-width", widthValue);
+  }
+
   export function H1({ className, children, ...props }: any) {
     return (
       <h1 className={`${styles.h1} ${className}`} {...props}>
@@ -661,7 +670,9 @@ export namespace Base {
             autoPlay={!!value.settings?.autoplay}
             controls={value.settings?.controls !== false}
             loop={!!value.settings?.loop}
-            muted={!!value.settings?.muted}
+            muted={!!value.settings?.muted || !!value.settings?.autoplay} // autoplay videos should be muted to avoid browser restrictions
+            playsInline
+            preload="auto"
             {...props}
           />
         );

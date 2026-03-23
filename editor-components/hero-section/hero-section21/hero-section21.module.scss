@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
   .max-content {
     .content {
       display: flex;
@@ -25,11 +24,36 @@
           background-color: rgba(var(--composer-html-background-rgb), 0.5);
           position: relative;
           max-width: 65%;
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
+          align-items: baseline;
+
+
+          .card-subtitle, .card-title, .card-description {
+            text-align: left;
+          }
+
+          .card-subtitle{
+            margin-left: 0;
+            width: fit-content;
+          }
 
           &.card-box-no-image {
             max-width: 100%;
             padding: 0;
+          }
+
+          .logo-wrapper {
+            width: auto;
+            max-width: 200px;
+
+            .logo {
+              width: 100%;
+              height: auto;
+              display: block;
+              object-fit: contain;
+              font-size: 2rem;
+              color: var(--composer-font-color-primary);
+            }
           }
 
           .buttons {
@@ -72,24 +96,6 @@
             height: 100%;
           }
         }
-        .video {
-          position: fixed;
-          width: 100vw;
-          height: 100vh;
-          background: var(--composer-overlay-color);
-          top: 0;
-          left: 0;
-          display: grid;
-          place-items: center;
-          z-index: 3;
-
-          .player {
-            width: 100%;
-            max-width: 800px;
-            height: 500px;
-            z-index: 10;
-          }
-        }
         .button {
           margin-left: 50%;
           margin-top: 35%;
@@ -103,14 +109,19 @@
         }
 
         .btn-icon {
-          color: var(--composer-font-color-primary);
-          width: var(--composer-gap-xl);
-          height: var(--composer-gap-xl);
+          color: black;
+          background-color: white;
+          display: flex;
+          width: auto;
+          height: auto;
+          font-size: 2rem;
           transition: transform 0.3s ease-in-out;
-
           position: relative;
           border-radius: 50%;
           animation: pulse 1.5s infinite;
+          padding: var(--composer-gap-md);
+          max-width: 70px;
+          max-height: 70px;
         }
 
         @keyframes pulse {
@@ -128,25 +139,72 @@
         .image {
           width: 100%;
           height: auto;
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           object-fit: cover;
+        }
+        .right-box {
+          position: absolute;
+          right: var(--composer-gap-md);
+          bottom: var(--composer-gap-md);
+          z-index: 4;
+          background: rgba(0,0,0,0.6);
+          color: white;
+          padding: var(--composer-gap-md);
+          border-radius: var(--composer-border-radius-sm);
+          text-align: left;
+          max-width: 40%;
+
+          .right-box-text, .right-box-desc {
+            text-align: left !important;
+          }
         }
       }
     }
   }
+   .video {
+      .player-container {
+        width: 800px;
+        height: auto;
+        .player {
+          content: "";
+        }
+      }
+    }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .close-icon {
+    font-size: 2rem;
+    color: var(--composer-font-color-primary);
+    width: 2rem;
+    height: 2rem;
+    pointer-events: none;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
   .container {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-lg);
     .max-content {
+      gap: var(--composer-gap-xs);
       .content {
         display: flex;
         flex-direction: column-reverse;
+        gap: var(--composer-gap-sm);
         position: relative;
         align-items: center;
         width: 100%;
@@ -157,7 +215,7 @@
           margin-right: 0%;
           width: 100%;
           .card-box {
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
+            padding: 0;
             position: relative;
             max-width: 100%;
 
@@ -173,13 +231,6 @@
           position: relative;
           max-width: 100%;
           margin-top: 0;
-
-          .video {
-            .player {
-              max-width: 700px;
-              height: 500px;
-            }
-          }
           .button {
             position: absolute;
             transform: translate(-50%, -50%);
@@ -188,40 +239,25 @@
             cursor: pointer;
             z-index: 2;
             .btn-icon {
-              width: var(--composer-gap-lg);
-              height: var(--composer-gap-lg);
+              font-size: 1.5rem;
             }
           }
           .image {
             width: 100%;
             height: auto;
+            min-height: 300px;
+          }
+          .right-box {
+            padding: var(--composer-gap-sm);
+            max-width: 60%;
           }
         }
       }
     }
-  }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .container {
-    padding: 0 var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-md);
-
-    .max-content {
-      gap: var(--composer-gap-xs);
-      .content {
-        .card {
-          .card-box {
-            padding: var(--composer-gap-md);
-          }
-        }
-        .image-box {
-          .video {
-            .player {
-              max-width: 350px;
-              height: auto;
-            }
-          }
-        }
+    .video {
+      .player-container {
+        width: 350px;
       }
     }
   }

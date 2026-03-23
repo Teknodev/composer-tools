@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.breadcrumb1-root {
+  display: contents;
+}
+
 .container {
   overflow: hidden;
   padding: 0 var(--composer-gap-xl) !important;
@@ -32,13 +36,18 @@
     height: 100%;
     position: relative;
     z-index: 2;
-    .title-main {
+
+    .left {
+      content: "";
+    }
+    .title-main, .description {
       content: "";
       &.title-with-bg {
         color: #534931;
       }
     }
   }
+
 }
 .strip-container {
   display: flex;

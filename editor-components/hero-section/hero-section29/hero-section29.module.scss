@@ -3,10 +3,10 @@
 .container {
   .max-content {
     .wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
       overflow-wrap: break-word;
       gap: var(--composer-gap-lg);
 
@@ -14,36 +14,110 @@
         flex-flow: row-reverse;
       }
 
+      &.with-image {
+        .content {
+          align-items: flex-start;
+
+          .header {
+            align-items: flex-start;
+            text-align: left;
+
+            .title {
+              justify-content: flex-start;
+            }
+
+            .description {
+              text-align: left;
+            }
+          }
+
+          .form {
+            justify-content: flex-start;
+          }
+
+          .service-card-list {
+            margin-top: var(--composer-gap-lg);
+            .service-card {
+              align-items: flex-start;
+              text-align: left;
+
+              .service-svg {
+                text-align: left;
+              }
+
+              .service-title {
+                text-align: left;
+              }
+
+              .service-description {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+
       .image-container {
-        flex: 1;
+        flex: 1 1 50%;
+        min-width: 0;
+        position: relative;
+        align-self: stretch;
 
         .image {
           width: 100%;
           height: 100%;
           object-fit: cover;
           border-radius: var(--border-radius-xs);
+          display: block;
+        }
+
+        .image-overlay {
+          position: absolute;
+          inset: 0;
+          background: var(--composer-overlay-color);
+          pointer-events: none;
+          border-radius: var(--border-radius-xs);
+          z-index: 2;
         }
       }
 
       .content {
-        flex: 1.5;
+        flex: 1 1 50%;
+        min-width: 0;
         display: flex;
         flex-direction: column;
+        justify-content: baseline;
+        align-items: baseline;
         gap: var(--composer-gap-md);
+        position: relative;
+        z-index: 10;
 
         .header {
+          align-items: baseline;
           .title {
             width: 100%;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            color: var(--composer-font-color-primary);
+            text-align: left;
+            margin-left: 0;
+            width: fit-content;
           }
 
-          .description {
-            color: var(--composer-tertiary-color);
-            margin: 0;
-          }
+        }
+
+        .logo {
+          font-size: 2rem;
+          aspect-ratio: 3 / 1;
+          object-fit: cover;
+          max-width: 250px;
+          color: var(--composer-font-color-primary);
+          display: block;
+        }
+
+        .subtitle, .description {
+          margin-left: 0;
+          text-align: left;
         }
 
         .form {
@@ -53,7 +127,7 @@
 
           .input-container {
             position: relative;
-            width: 45vh;
+            width: clamp(20vh, 40vh, 40vh);
             border-radius: var(--composer-border-radius-sm);
             border: var(--composer-font-color-primary) solid 2px;
 
@@ -80,7 +154,9 @@
           }
 
           .button {
-            content: "";
+            .button-text{
+              content: "";
+            }
           }
         }
 
@@ -89,19 +165,27 @@
             gap: var(--composer-gap-sm);
             display: flex;
             flex-direction: column;
+            align-items: baseline;
 
             .service-svg {
               font-size: 2rem;
               color: var(--composer-primary-color);
               margin: 0;
+              
+              .icon{
+                width: 40px;
+                height: 40px;
+              }
             }
 
             .service-title {
               margin: 0;
+              text-align: left;
               color: var(--composer-font-color-primary);
             }
 
             .service-description {
+              text-align: left;
               color: var(--composer-tertiary-color);
             }
           }
@@ -123,36 +207,22 @@
       margin: auto;
 
       .wrapper {
-        flex-direction: column;
-
-        &.wrapper-reverse {
-          flex-direction: column-reverse;
-        }
-
+        gap: var(--composer-gap-md);
         .content {
           padding-top: 0;
           width: 100%;
 
-          .header {
-            .title {
-              font-size: 3rem;
-              display: flex;
-            }
-
-            .description {
-              font-size: 1.5rem;
-            }
-          }
 
           .form {
             gap: var(--composer-gap-sm);
 
             .input-container {
-              .input {}
+              width: 50%;
             }
           }
 
           .service-card-list {
+            margin-top: var(--composer-gap-md);
             .service-card {
               gap: var(--composer-gap-sm);
               flex: 1;
@@ -180,9 +250,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      max-width: var(--composer-content-width);
-      margin: auto;
-
       .wrapper {
         flex-direction: column;
 
@@ -190,23 +257,10 @@
           flex-direction: column-reverse;
         }
 
-        .content {
+          .content {
           width: 100%;
           align-items: center;
-
-          .header {
-            .title {
-              font-size: 2.5rem;
-              justify-content: center;
-              text-align: center;
-            }
-
-            .description {
-              width: 100%;
-              font-size: 1rem;
-              text-align: center;
-            }
-          }
+          gap: var(--composer-gap-sm);
 
           .form {
             gap: var(--composer-gap-sm);
@@ -226,14 +280,11 @@
           }
 
           .service-card-list {
+            margin-top: var(--composer-gap-md) !important;
             .service-card {
               max-width: 100%;
               gap: var(--composer-gap-sm);
-              align-items: center;
-
-              .service-title {}
-
-              .service-description {}
+              align-items: left;
             }
           }
         }

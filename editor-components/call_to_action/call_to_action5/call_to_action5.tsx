@@ -3,18 +3,24 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "image",
+      type: "media",
       key: "background",
-      displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
+      displayer: "Background Media",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -90,8 +96,13 @@ class CallToAction5Page extends BaseCallToAction {
       <Base.Container
         className={`${this.decorateCSS("container")}
         ${this.getPropValue("overlay") && this.getPropValue("background") && this.decorateCSS("overlay-active")}`}
-        style={{ backgroundImage: `url(${this.getPropValue("background")})` }}
       >
+        {this.getPropValue("background") && (
+          <Base.Media
+            value={this.getPropValue("background")}
+            className={this.decorateCSS("background")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist || subtitleExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
@@ -107,7 +118,7 @@ class CallToAction5Page extends BaseCallToAction {
                 validationSchema={this.validationSchema}
                 onSubmit={(data, { resetForm }) => {
                   this.setComponentState("placeholderText", submitText);
-                  this.insertForm("Call Me Back", data);
+                  this.insertForm("CTA5 – NewsletterForm", data);
                   setTimeout(() => {
                     const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
                     this.setComponentState("placeholderText", defaultPlaceholder);

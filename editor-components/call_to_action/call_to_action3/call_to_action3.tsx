@@ -1,9 +1,9 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Button = INPUTS.CastedButton;
 
@@ -40,11 +40,16 @@ class CallToAction3Page extends BaseCallToAction {
       ],
     });
     this.addProp({
-      type: "image",
+      type: "media",
       key: "image",
-      displayer: "Image",
-      value:
-        "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      displayer: "Media",
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -59,10 +64,16 @@ class CallToAction3Page extends BaseCallToAction {
 
   render() {
     const buttons = this.castToObject<Button[]>("buttons");
+    const image = this.getPropValue("image");
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.getPropValue("image") && this.decorateCSS("overlay-active")}`}
-        style={{ backgroundImage: `url(${this.getPropValue("image")})` }}>
+        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.getPropValue("image") && this.decorateCSS("overlay-active")}`}>
+        {image && (
+          <Base.Media
+            value={image}
+            className={this.decorateCSS("image")}
+          />
+        )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
             {this.castToString(this.getPropValue("subtitle")) && (

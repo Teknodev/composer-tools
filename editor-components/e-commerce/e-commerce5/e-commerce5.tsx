@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Base } from "composer-tools/composer-base-components/base/base";
+import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce5.module.scss";
-import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
-import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
+import { BaseECommerce } from "../../EditorComponent";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 interface ImageGallery {
   sectionTitle: React.JSX.Element;
@@ -43,7 +43,7 @@ class ECommerce5 extends BaseECommerce {
             {
               type: "array",
               key: "sliderContent",
-              displayer: "Image Gallery",
+              displayer: "Media Gallery",
               value: [
                 {
                   type: "object",
@@ -53,9 +53,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -78,9 +78,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -103,9 +103,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -128,9 +128,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -153,9 +153,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -178,9 +178,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -213,7 +213,7 @@ class ECommerce5 extends BaseECommerce {
             {
               type: "array",
               key: "sliderContent",
-              displayer: "Image Gallery",
+              displayer: "Media Gallery",
               value: [
                 {
                   type: "object",
@@ -223,9 +223,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -248,9 +248,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -273,9 +273,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -298,9 +298,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -323,9 +323,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",
@@ -348,9 +348,9 @@ class ECommerce5 extends BaseECommerce {
                     {
                       type: "media",
                       key: "sectionImage",
-                      displayer: "Section Image",
+                      displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image"],
+                          availableTypes: ["image","video"],
                       },
                       value: {
                           type: "image",

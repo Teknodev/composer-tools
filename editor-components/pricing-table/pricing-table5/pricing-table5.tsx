@@ -1,10 +1,10 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import styles from "./pricing-table5.module.scss";
 import { BasePricingTable, TypeMediaInputValue } from "../../EditorComponent";
 
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   planTitle: React.JSX.Element;

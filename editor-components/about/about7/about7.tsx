@@ -21,14 +21,14 @@ class About7 extends BaseAbout {
     this.addProp({
         type: "object",
         key: "background-image",
-        displayer: "Background Image",
+        displayer: "Background Media",
         value: [
             {
                 type: "media",
                 key: "image",
-                displayer: "Image",
+                displayer: "Media",
                 additionalParams: {
-                    availableTypes: ["image"],
+                    availableTypes: ["image", "video"],
                 },
                 value: {
                     type: "image",
@@ -57,9 +57,9 @@ class About7 extends BaseAbout {
                     {
                         type: "media",
                         key: "image",
-                        displayer: "Image",
+                        displayer: "Media",
                         additionalParams: {
-                            availableTypes: ["image"],
+                            availableTypes: ["image", "video"],
                         },
                         value: {
                             type: "image",
@@ -130,9 +130,9 @@ class About7 extends BaseAbout {
                     {
                         type: "media",
                         key: "image",
-                        displayer: "Image",
+                        displayer: "Media",
                         additionalParams: {
-                            availableTypes: ["image"],
+                            availableTypes: ["image", "video"],
                         },
                         value: {
                             type: "image",
@@ -206,13 +206,17 @@ class About7 extends BaseAbout {
   render() {
     const items = this.castToObject<ItemType[]>("items");
     const backgroundImage = this.castToObject<any>("background-image");
-    const isBackgroundImageExist = backgroundImage?.image;
+    const bgMedia = backgroundImage?.image;
+    const isBackgroundImageExist = !!bgMedia;
 
     const alignment = Base.getContentAlignment();
 
     return (
-      <Base.Container className={this.decorateCSS("container")}   style={{backgroundImage: `url(${backgroundImage?.image?.url})`}}>
-        {backgroundImage?.overlay && backgroundImage.image && (
+      <Base.Container className={this.decorateCSS("container")}>
+        {bgMedia && (
+            <Base.Media value={bgMedia} className={this.decorateCSS("background-media-element")} />
+        )}
+        {backgroundImage?.overlay && bgMedia && (
           <div className={this.decorateCSS("background-overlay")} />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>

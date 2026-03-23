@@ -7,8 +7,8 @@
       align-items: center;
       .header {
         .title,
-        .subtitle {
-          content: "";
+        .subtitle,
+        .description {
           text-align: center;
         }
 
@@ -32,7 +32,11 @@
       }
       .description {
         content: "";
-        text-align: center
+        text-align: center;
+      }
+      .item-description {
+        content: "";
+        text-align: center;
       }
       .image-container {
         width: fit-content;

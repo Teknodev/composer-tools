@@ -1,10 +1,10 @@
 import * as React from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar10.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface CategoryItem {
   label: string;
@@ -2485,7 +2485,7 @@ class Navbar10 extends BaseNavigator {
     const isOverlayVisible = hamburgerNavActive || activeDropdown !== null;
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           ref={this.containerRef}
           position={position}
@@ -3062,7 +3062,7 @@ class Navbar10 extends BaseNavigator {
           isVisible={isOverlayVisible}
           onClick={() => this.handleCloseMenu()}
         />
-      </>
+      </div>
     );
   }
 }

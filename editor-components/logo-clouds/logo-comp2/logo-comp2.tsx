@@ -1,9 +1,9 @@
 import * as React from "react";
 import { LogoClouds, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./logo-comp2.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type TImage = {
   image: TypeMediaInputValue;
@@ -39,7 +39,7 @@ class LogoComp2Page extends LogoClouds {
     this.addProp({
       type: "array",
       key: "image-items",
-      displayer: "Images",
+      displayer: "Media Items",
       value: [
         INPUTS.LOGO("section", "Section"),
         INPUTS.LOGO("section", "Section"),

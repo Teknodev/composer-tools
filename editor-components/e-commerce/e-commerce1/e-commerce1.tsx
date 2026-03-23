@@ -1,11 +1,11 @@
-import { BaseECommerce } from "composer-tools/editor-components/EditorComponent";
+import { BaseECommerce } from "../../EditorComponent";
 import styles from "./e-commerce1.module.scss";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
-import ComposerSlider from "composer-tools/composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 import React from "react";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import { getCurrencyInfo } from "composer-tools/utils/currency";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import { getCurrencyInfo } from "../../../utils/currency";
 
 type Image = {
   image: { type: string; url: string },
@@ -52,7 +52,7 @@ class ECommerce1 extends BaseECommerce {
     this.addProp({
       type: "array",
       key: "images",
-      displayer: "Product Images",
+      displayer: "Product Media",
       additionalParams: {
         maxElementCount: 4,
       },
@@ -65,9 +65,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+              displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -84,9 +84,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+              displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -103,9 +103,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+              displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",
@@ -122,9 +122,9 @@ class ECommerce1 extends BaseECommerce {
             {
               type: "media",
               key: "image",
-              displayer: "Product Image",
+                displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image","video"],
               },
               value: {
                 type: "image",

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseAbout } from "../../EditorComponent";
 import styles from "./about1.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -47,7 +47,7 @@ class About1 extends BaseAbout {
     this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },

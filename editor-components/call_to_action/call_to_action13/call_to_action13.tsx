@@ -1,9 +1,9 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Button = INPUTS.CastedButton;
 
@@ -35,6 +35,13 @@ class CallToAction13Page extends BaseCallToAction {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
@@ -61,6 +68,8 @@ class CallToAction13Page extends BaseCallToAction {
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const highlightEnabled = this.getPropValue("highlightEnabled");
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
 
     
     return (
@@ -83,6 +92,11 @@ class CallToAction13Page extends BaseCallToAction {
                     <Base.SectionTitle className={this.decorateCSS("title")}>
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
+                  )}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
                   )}
                 </Base.VerticalContent>
               )}

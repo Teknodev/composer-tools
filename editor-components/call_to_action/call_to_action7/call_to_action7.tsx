@@ -1,10 +1,10 @@
 import * as React from "react";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 class CallToAction7Page extends BaseCallToAction {
@@ -23,9 +23,15 @@ class CallToAction7Page extends BaseCallToAction {
       value: "Level up your portfolio, read the book today!",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
       type: "media",
       key: "image",
-      displayer: "Image",
+      displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
       },
@@ -85,6 +91,8 @@ class CallToAction7Page extends BaseCallToAction {
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const description = this.getPropValue("description");
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const disableAnimation = this.getPropValue("disableAnimation");
@@ -108,6 +116,11 @@ class CallToAction7Page extends BaseCallToAction {
                 <Base.VerticalContent className={this.decorateCSS("right-content")}>
                   {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {description}
+                    </Base.SectionDescription>
+                  )}
                   {placeholder &&
                     <div className={this.decorateCSS("input-button-wrapper")}>
                       <Formik
@@ -115,7 +128,7 @@ class CallToAction7Page extends BaseCallToAction {
                         validationSchema={this.validationSchema}
                         onSubmit={(data, { resetForm }) => {
                           this.setComponentState("placeholderText", submitText);
-                          this.insertForm("Call Me Back", data);
+                          this.insertForm("CTA7 – NewsletterForm", data);
                           setTimeout(() => {
                             const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
                             this.setComponentState(
