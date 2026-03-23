@@ -5,24 +5,19 @@
         position: relative;
 
         .content-container {
-            display: grid;
-            grid-template-columns: 38% 60%;
-            gap: var(--composer-gap-lg);
+            display: flex;
+            gap: var(--composer-gap-xl);
             align-items: flex-start;
 
             &.only-list,
             &.only-heading {
-                grid-template-columns: 1fr;
-            }
-
-            &.only-heading {
-                .heading-container {
-                    max-width: 100%;
-                }
+                flex-direction: column;
             }
         }
 
         .vertical-content {
+            flex: 1;
+            min-width: 0;
             align-items: flex-start;
 
             .subtitle,
@@ -48,6 +43,8 @@
         }
 
         .list-container {
+            flex: 1.5;
+            min-width: 0;
             width: 100%;
 
             .line {
@@ -112,6 +109,7 @@
                             width: 100%;
 
                             .item-icon {
+                                flex-shrink: 0;
                                 display: inline-flex;
                                 align-items: center;
                                 justify-content: center;
@@ -128,6 +126,7 @@
                             .item-title {
                                 color: var(--composer-font-color-primary);
                                 text-align: left !important;
+                                word-break: break-word;
 
                                 &.item-title-active {
                                     color: var(--composer-primary-color);
@@ -136,6 +135,7 @@
                         }
 
                         .toggle-button-container {
+                            flex-shrink: 0;
                             display: inline-flex;
                             align-items: center;
                             justify-content: center;
@@ -194,11 +194,21 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .content-container {
+                flex-direction: column;
+            }
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .content-container {
-                grid-template-columns: 100% !important;
+                flex-direction: column;
                 gap: var(--composer-gap-md);
             }
 

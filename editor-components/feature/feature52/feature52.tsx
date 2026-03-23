@@ -49,7 +49,6 @@ class Feature52 extends BaseFeature {
             key: "itemCount",
             displayer: "Item Count in A Row",
             value: 1,
-            max: 3,
         });
 
         this.addProp({
@@ -251,7 +250,6 @@ class Feature52 extends BaseFeature {
 
         const rawItemCount = this.getPropValue("itemCount");
         const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
-        const tabletItemCount = itemCount === 3 ? 2 : itemCount;
         const line = this.getPropValue("line") as boolean;
 
         const services = this.castToObject<ServiceItemType[]>("services") || [];
@@ -305,7 +303,7 @@ class Feature52 extends BaseFeature {
                                 {line && <div className={this.decorateCSS("line")}></div>}
                                 <Base.ListGrid
                                     className={`${this.decorateCSS("list-grid")} ${line && this.decorateCSS("has-line")}`}
-                                    gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
+                                    gridCount={{ pc: itemCount, tablet: 1, phone: 1 }}
                                 >
                                     {services.map((item: ServiceItemType, index: number) => {
                                         const itemTitleExist = this.castToString(item.title);
