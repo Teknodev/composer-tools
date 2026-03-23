@@ -19,8 +19,10 @@
           flex-wrap: wrap;
           gap: var(--composer-gap-sm);
 
-          .button .button-text {
-            content: "";
+          .button {
+            .button-text {
+              content: "";
+            }
           }
         }
       }
@@ -180,6 +182,7 @@
 
           &.no-round {
             border-radius: 0;
+            color: var(--composer-font-color-primary);
 
             .image {
               border-radius: 0;
@@ -208,26 +211,12 @@
           }
 
           .card-description {
-            color: var(--composer-font-color-tertiary);
+            color: var(--composer-font-color-primary);
             text-align: left !important;
           }
         }
 
         .button {
-          position: relative;
-
-          .button-before {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: var(--composer-border-width-xs);
-            background-color: var(--composer-primary-color);
-          }
-
-          .button-text {
-            content: "";
-          }
 
           .icon {
             font-size: 1rem;
@@ -264,30 +253,11 @@
           }
         }
 
-        &[data-animation~="animate2"]:hover .image-container .image {
-          transform: rotate(360deg);
-          transition: transform var(--composer-transition-duration-normal) ease-in-out;
-        }
-
-        &[data-animation~="animate3"]:hover .button {
-          animation: breathing 2s infinite ease-in-out;
-        }
       }
     }
   }
 }
 
-@keyframes breathing {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(0.9);
-  }
-}
 
 @keyframes slideIn {
   from {

@@ -336,7 +336,7 @@ class List1 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3"],
+        selectItems: ["animate1"],
       },
     });
     this.addProp(
@@ -426,16 +426,13 @@ class List1 extends BaseList {
                       const buttonText = this.castToString(btn.text);
                       if (!buttonText) return null;
                       return (
-                        <div key={index} className={this.decorateCSS("button")}>
-                          <div className={this.decorateCSS("button-before")} />
-                          <ComposerLink path={btn.url}>
-                            <Base.Button buttonType={btn.type}>
-                              <Base.P className={this.decorateCSS("button-text")}>
-                                {btn.text}
-                              </Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        </div>
+                        <ComposerLink key={index} path={btn.url}>
+                          <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {btn.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
                       );
                     })}
                   </div>
@@ -506,24 +503,21 @@ class List1 extends BaseList {
                             const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
                             if (!buttonText && !iconExist) return null;
                             return (
-                              <div key={btnIndex} className={this.decorateCSS("button")}>
-                                <div className={this.decorateCSS("button-before")} />
-                                <ComposerLink path={btn.url}>
-                                  <Base.Button buttonType={btn.type}>
-                                    {buttonText && (
-                                      <Base.P className={this.decorateCSS("button-text")}>
-                                        {btn.text}
-                                      </Base.P>
-                                    )}
-                                    {iconExist && (
-                                      <Base.Media
-                                        value={btn.icon as TypeMediaInputValue}
-                                        className={this.decorateCSS("icon")}
-                                      />
-                                    )}
-                                  </Base.Button>
-                                </ComposerLink>
-                              </div>
+                              <ComposerLink key={btnIndex} path={btn.url}>
+                                <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                                  {buttonText && (
+                                    <Base.P className={this.decorateCSS("button-text")}>
+                                      {btn.text}
+                                    </Base.P>
+                                  )}
+                                  {iconExist && (
+                                    <Base.Media
+                                      value={btn.icon as TypeMediaInputValue}
+                                      className={this.decorateCSS("icon")}
+                                    />
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
                             );
                           })}
                       </Base.VerticalContent>
