@@ -325,20 +325,22 @@ class Slider11 extends BaseSlider {
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
               {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {subtitle}</Base.SectionSubTitle>)}
               {title && (<Base.SectionTitle className={this.decorateCSS("title")}> {title} </Base.SectionTitle>)}
-              {(description || validButtons.length > 0) && (<div className={this.decorateCSS("content")}>
-                {description && (<Base.SectionDescription className={this.decorateCSS("description")}> {description} </Base.SectionDescription>)}
-                {validButtons.length > 0 && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {validButtons.map((button: INPUTS.CastedButton, index: number) => (
-                      <ComposerLink key={index} path={button.url}>
-                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    ))}
-                  </div>
-                )}
-              </div>)}
+              {(description || validButtons.length > 0) && (
+                <div className={this.decorateCSS("content")}>
+                  {description && (<Base.SectionDescription className={this.decorateCSS("description")}> {description} </Base.SectionDescription>)}
+                  {validButtons.length > 0 && (
+                    <Base.Row className={this.decorateCSS("button-container")}>
+                      {validButtons.map((button: INPUTS.CastedButton, index: number) => (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      ))}
+                    </Base.Row>
+                  )}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
           {sliderItems.length > 0 && (
