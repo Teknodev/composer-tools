@@ -69,6 +69,8 @@
 
           .border-frame {
             position: absolute;
+            left: var(--composer-gap-lg);
+            top: var(--composer-gap-lg);
             width: calc(100% - 80px);
             height: calc(100% - 80px);
 
@@ -232,8 +234,8 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: var(--composer-gap-md);
+    padding-right: var(--composer-gap-md);
 
     .max-content {
       .content {

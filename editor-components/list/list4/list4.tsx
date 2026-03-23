@@ -183,12 +183,17 @@ class List4 extends BaseList {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<CardButton[]>("buttons");
+    const hasValidButtons = buttons.some((item: CardButton) => {
+      const iconMedia = item.icon as TypeMediaInputValue;
+      return this.castToString(item.text) || (iconMedia && iconMedia.type === "icon" && iconMedia.name);
+    });
+    const hasHeader = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
     return (
       <Base.Container className={this.decorateCSS("container")} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(subtitleExist || titleExist || descriptionExist || buttons?.length > 0) && (
+            {hasHeader && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -205,7 +210,7 @@ class List4 extends BaseList {
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
-                {buttons?.length > 0 && (
+                {hasValidButtons && (
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map((item: CardButton, index: number) => {
                       const buttonText = this.castToString(item.text);
