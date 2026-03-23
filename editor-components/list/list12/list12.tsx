@@ -145,6 +145,12 @@ class List12 extends BaseList {
       ],
     });
     this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+    this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
@@ -152,12 +158,6 @@ class List12 extends BaseList {
       additionalParams: {
         selectItems: ["animate1", "animate2", "animate3", "animate4"]
       }
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
     });
   }
 

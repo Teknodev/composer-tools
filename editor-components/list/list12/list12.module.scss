@@ -116,6 +116,7 @@
         overflow: visible;
         position: relative;
         transition: transform 0.3s ease-in-out;
+        color: var(--composer-font-color-primary);
 
         .img {
           border-radius: 0;

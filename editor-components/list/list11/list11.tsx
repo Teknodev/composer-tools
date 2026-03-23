@@ -224,16 +224,16 @@ class List11 extends BaseList {
             }
         });
         this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
-        });
-        this.addProp({
             type: "number",
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 3,
+        });
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: false,
         });
     }
 
