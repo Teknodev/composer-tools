@@ -185,7 +185,7 @@ export class Stats30Page extends BaseStats {
                     )}
                 </Base.VerticalContent>
                 <Base.VerticalContent
-                    className={this.decorateCSS("header-container")}
+                    className={this.decorateCSS("stat-value-wrapper")}
                 >
                     {(valueExist || suffixExist) && (
                         <span className={this.decorateCSS("stat-value-container")}>
@@ -249,7 +249,7 @@ export class Stats30Page extends BaseStats {
                                 className={this.decorateCSS("header-container")}
                                 data-alignment={alignment}
                             >
-                                <Base.VerticalContent>
+                                <Base.VerticalContent className={this.decorateCSS("header-texts")}>
                                     {subtitleExist && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                             {this.getPropValue("subtitle")}
@@ -308,7 +308,7 @@ export class Stats30Page extends BaseStats {
                         )}
                     </div>
                 </Base.MaxContent>
-            </Base.Container>
+            </Base.Container >
         );
     }
 }
