@@ -490,9 +490,10 @@ class List1 extends BaseList {
                   const isIcon = !!item.image && (item.image as TypeMediaInputValue).type === "icon";
                   const cardExist =
                     itemTitleExist ||
+                    itemSubtitleExist ||
                     itemDescExist ||
                     item.image ||
-                    (buttons && buttons.length > 0);
+                    buttons.length > 0;
                   return (
                     cardExist && (
                       <Base.VerticalContent

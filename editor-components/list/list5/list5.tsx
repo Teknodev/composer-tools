@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
-import React from "react";
 import styles from "./list5.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
@@ -347,10 +346,10 @@ class List5 extends BaseList {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const headerExist = this.castToString(this.getPropValue("header"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hoverAnimation = (this.getPropValue("hoverAnimation") as string[]) || [];
     const imageObj = this.castToObject<any>("image");
     const backgroundMedia = imageObj?.media as TypeMediaInputValue | null;
-    const mediaExists = backgroundMedia as any;
-    const hasBackgroundMedia = backgroundMedia && (mediaExists.url || (mediaExists.type === "icon" && mediaExists.name));
+    const hasBackgroundMedia = backgroundMedia && ((backgroundMedia as any).url || (backgroundMedia.type === "icon" && (backgroundMedia as any).name));
     const imageOverlay = imageObj?.overlay;
     const hasHeaderContent = subtitleExist || headerExist || descriptionExist;
     const isSingleColumn = this.getPropValue("itemCount") === 1;
@@ -361,11 +360,11 @@ class List5 extends BaseList {
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: hasBackgroundMedia && !mediaExists.url ? undefined : `url(${mediaExists?.url})`,
+          backgroundImage: hasBackgroundMedia && !(backgroundMedia as any).url ? undefined : `url(${(backgroundMedia as any)?.url})`,
           backgroundSize: "cover",
         }}
       >
-        {hasBackgroundMedia && mediaExists.url && (
+        {hasBackgroundMedia && (backgroundMedia as any).url && (
           <Base.Media
             value={backgroundMedia as TypeMediaInputValue}
             className={this.decorateCSS("background-media")}
@@ -420,7 +419,7 @@ class List5 extends BaseList {
                     <div key={index} className={this.decorateCSS("card-wrapper")}>
                       <div
                         className={this.decorateCSS("card")}
-                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                        data-animation={hoverAnimation.join(" ")}
                       >
                         <ComposerLink path={listItem.url}>
                           {(listItem.uppericon || this.castToString(listItem.index)) && (

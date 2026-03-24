@@ -26,14 +26,6 @@
         }
       }
 
-      .card-number {
-        text-align: left;
-        left: var(--composer-gap-xl);
-        bottom: -40px;
-        transform: scale(1.15);
-        transform-origin: left bottom;
-      }
-
       .intro-card {
         display: flex;
         flex-direction: column;
@@ -231,6 +223,7 @@
           -webkit-text-stroke-width: var(--composer-border-width-xs);
           color: var(--composer-primary-color);
           -webkit-text-fill-color: transparent;
+          text-align: left;
           bottom: -40px;
           left: var(--composer-gap-xl);
           font-size: 6.5rem;

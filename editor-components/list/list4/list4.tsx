@@ -201,6 +201,7 @@ class List4 extends BaseList {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hoverAnimation = (this.getPropValue("hoverAnimation") as string[]) || [];
     const buttons = this.castToObject<CardButton[]>("buttons");
     const hasValidButtons = buttons.some((item: CardButton) => {
       const iconMedia = item.icon as TypeMediaInputValue;
@@ -270,12 +271,12 @@ class List4 extends BaseList {
                   const hasDescription = this.castToString(card.description);
                   const hasIcon = !!card.icon;
 
-                  if (!hasTitle && !hasDescription && !hasIcon) return null;
+                  if (!hasTitle && !hasSubtitle && !hasDescription && !hasIcon) return null;
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("service-item")}
-                      data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                      data-animation={hoverAnimation.join(" ")}
                     >
                       <div className={this.decorateCSS("border-frame")}>
                         <div className={this.decorateCSS("border-left")}></div>
@@ -286,7 +287,7 @@ class List4 extends BaseList {
                       {this.getPropValue("showIndex") && (
                         <div
                           className={`${this.decorateCSS("item-index")} ${this.decorateCSS("index")}`}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                          data-animation={hoverAnimation.join(" ")}
                         >
                           {(index + 1).toLocaleString("en-US", {
                             minimumIntegerDigits: 2,
@@ -295,12 +296,11 @@ class List4 extends BaseList {
                         </div>
                       )}
                       <div
-                        key={`cnt-4-card-${index}`}
                         className={this.decorateCSS("card-content")}
                       >
                         <Base.VerticalContent
                           className={this.decorateCSS("card-body")}
-                          data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                          data-animation={hoverAnimation.join(" ")}
                         >
                           {card.icon && (
                             <Base.Media

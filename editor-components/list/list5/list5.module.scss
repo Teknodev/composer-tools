@@ -354,7 +354,7 @@
           }
 
           .icon-section .icon-badge .icon-wrapper {
-            padding: (--composer-gap-sm) !important;
+            padding: var(--composer-gap-sm) !important;
 
             .icon {
               width: 2rem !important;

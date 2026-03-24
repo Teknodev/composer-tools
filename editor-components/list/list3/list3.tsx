@@ -1,4 +1,3 @@
-import * as React from "react";
 import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -10,12 +9,12 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 };
 
 type Item = {
-  itemTitle: React.JSX.Element;
+  itemTitle: JSX.Element;
   texts: TextItem[];
 };
 type TextItem = {
-  topText: React.JSX.Element;
-  bottomText: React.JSX.Element;
+  topText: JSX.Element;
+  bottomText: JSX.Element;
 };
 
 class List3 extends BaseList {
@@ -217,12 +216,12 @@ class List3 extends BaseList {
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const hoverAnimation = this.castToObject<string[]>("hoverAnimation") || [];
+    const hoverAnimation = (this.getPropValue("hoverAnimation") as string[]) || [];
     const itemCount = this.getPropValue("itemCount");
     const showCardNumber = this.getPropValue("showCardNumber");
     const showLines = this.getPropValue("showLines");
     const alignment = Base.getContentAlignment();
-    const hasHeaderContent = subtitleExist || titleExist || descriptionExist || buttons?.length > 0;
+    const hasHeaderContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
@@ -249,7 +248,7 @@ class List3 extends BaseList {
                     )}
                   </Base.VerticalContent>
                 )}
-                {buttons?.length > 0 &&
+                {buttons.length > 0 &&
                   buttons.map((btn: CardButton, index: number) => {
                     const buttonText = this.castToString(btn.text);
                     const iconMedia = btn.icon as TypeMediaInputValue;
@@ -285,7 +284,7 @@ class List3 extends BaseList {
                 <div
                   key={index}
                   className={this.decorateCSS("card")}
-                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                  data-animation={hoverAnimation.join(" ")}
                 >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (

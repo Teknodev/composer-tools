@@ -1,3 +1,4 @@
+import * as React from "react";
 import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list2.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -360,7 +361,6 @@ class List2 extends BaseList {
       }
     });
     this.setComponentState("moreImages", 0);
-    ;
   }
 
   static getName(): string {
@@ -369,7 +369,8 @@ class List2 extends BaseList {
 
   handleButtonClick = (e: React.MouseEvent) => {
     const cards = this.castToObject<CardItem[]>("cards");
-    if (this.getComponentState("imageCount") < cards.length) {
+    const currentCount = this.getPropValue("imageCountInitial") + this.getComponentState("moreImages");
+    if (currentCount < cards.length) {
       if (e && e.preventDefault) e.preventDefault();
       this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"));
     }
@@ -377,9 +378,6 @@ class List2 extends BaseList {
 
   render() {
     const currentCount = this.getPropValue("imageCountInitial") + this.getComponentState("moreImages");
-    if (this.getComponentState("imageCount") !== currentCount) {
-      this.setComponentState("imageCount", currentCount);
-    }
 
     const cards = this.castToObject<CardItem[]>("cards");
     const headerButtons = this.castToObject<CardButton[]>("headerButtons") || [];
@@ -444,7 +442,7 @@ class List2 extends BaseList {
                   phone: 1,
                 }}
               >
-                {cards.slice(0, this.getComponentState("imageCount")).map((item: CardItem, index: number) => {
+                {cards.slice(0, currentCount).map((item: CardItem, index: number) => {
                   const hasImage = !!item.image;
                   const cardClasses = [this.decorateCSS("card")];
                   if (!hasImage) {
@@ -501,7 +499,7 @@ class List2 extends BaseList {
               const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
               if (!buttonText && !iconExist) return null;
 
-              const isAllDisplayed = this.getComponentState("imageCount") >= cards.length;
+              const isAllDisplayed = currentCount >= cards.length;
               const linkUrl = isAllDisplayed ? btn.url : "";
 
               return (
