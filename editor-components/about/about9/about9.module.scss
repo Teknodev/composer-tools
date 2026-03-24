@@ -22,7 +22,7 @@ as *;
       .top-container {
         display: flex;
         gap: var(--composer-gap-md);
-        align-items: center;
+        align-items: stretch;
 
         .title-container {
           flex: 1;
