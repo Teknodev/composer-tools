@@ -301,9 +301,8 @@ class PricingTable5 extends BasePricingTable {
           <div className={this.decorateCSS("content")}>
             {showLeftContent && (
               <Base.VerticalContent
-                className={`${this.decorateCSS("left-content")} ${
-                  !rightItemsExist && this.decorateCSS("left-content-single")
-                }`}
+                className={`${this.decorateCSS("left-content")} ${!rightItemsExist && this.decorateCSS("left-content-single")
+                  }`}
               >
                 {subtitleExist && (
                   <Base.SectionSubTitle
@@ -365,9 +364,8 @@ class PricingTable5 extends BasePricingTable {
             )}
             {rightItemsExist && (
               <div
-                className={`${this.decorateCSS("right-content")} ${
-                  !showLeftContent && this.decorateCSS("right-content-single")
-                }`}
+                className={`${this.decorateCSS("right-content")} ${!showLeftContent && this.decorateCSS("right-content-single")
+                  }`}
               >
                 {plans.map((plan: Card, index: number) => {
                   const isActive =
@@ -384,15 +382,13 @@ class PricingTable5 extends BasePricingTable {
                   return (
                     <div
                       key={index}
-                      className={`${this.decorateCSS("plan")} ${
-                        isActive && this.decorateCSS("active")
-                      } 
-                    ${
-                      this.getPropValue("animations") &&
-                      this.getPropValue("animations")
-                        .map((animation: string) => this.decorateCSS(animation))
-                        .join(" ")
-                    } `}
+                      className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")
+                        } 
+                    ${this.getPropValue("animations") &&
+                        this.getPropValue("animations")
+                          .map((animation: string) => this.decorateCSS(animation))
+                          .join(" ")
+                        } `}
                       onClick={() => this.onPlanClicked(index)}
                     >
                       <div className={this.decorateCSS("plan-upper")}>
@@ -401,25 +397,32 @@ class PricingTable5 extends BasePricingTable {
                             {plan.title}
                           </Base.H5>
                         )}
-                        <div
-                          className={
-                            isActive
-                              ? this.decorateCSS("icon-box-active")
-                              : this.decorateCSS("icon-box")
-                          }
-                        >
-                          <Base.Media
-                            value={this.getPropValue(
-                              isActive ? "lessIcon" : "moreIcon"
-                            )}
-                            className={this.decorateCSS("icon")}
-                          />
-                        </div>
+                        {(() => {
+                          const icon = this.getPropValue(isActive ? "lessIcon" : "moreIcon");
+                          const iconExist = icon && (icon.name || icon.url);
+                          if (!iconExist) return null;
+                          return (
+                            <div
+                              className={
+                                isActive
+                                  ? this.decorateCSS("icon-box-active")
+                                  : this.decorateCSS("icon-box")
+                              }
+                            >
+                              <Base.Media
+                                value={icon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            </div>
+                          );
+                        })()}
                       </div>
 
-                      <Base.P className={this.decorateCSS("plan-description")}>
-                        {plan.description}
-                      </Base.P>
+                      {this.castToString(plan.description) && (
+                        <Base.P className={this.decorateCSS("plan-description")}>
+                          {plan.description}
+                        </Base.P>
+                      )}
 
                       <div className={this.decorateCSS("plan-price-box")}>
                         {(priceExist || planDescription) && (

@@ -98,7 +98,7 @@ as *;
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
           padding: var(--composer-gap-md);
-          border-radius: var(--composer-gap-xs) !important;
+          border-radius: var(--composer-border-radius-sm) !important;
           display: flex;
           flex-direction: column;
           transition: all 0.5s ease;
@@ -198,7 +198,7 @@ as *;
             .icon-box-active {
               color: var(--composer-primary-color);
               background-color: var(--composer-html-background);
-              border-radius: var(--composer-border-radius-xl);
+              border-radius: var(--composer-border-radius-sm);
 
               .icon {
                 font-size: 1.5rem;

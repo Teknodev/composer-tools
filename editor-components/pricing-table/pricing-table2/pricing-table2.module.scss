@@ -45,7 +45,7 @@
             .card-upper {
               margin-bottom: var(--composer-gap-md);
               padding: var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg);
-              border-radius: var(--composer-border-radius-lg);
+              border-radius: var(--composer-border-radius-sm);
               background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
               z-index: 1;
@@ -89,7 +89,7 @@
               padding: var(--composer-gap-md) var(--composer-gap-md);
               margin-top: calc(-1 * var(--composer-gap-xl));
               background-color: var(--composer-html-background);
-              border-radius: var(--composer-border-radius-lg);
+              border-radius: var(--composer-border-radius-sm);
 
               &.no-upper {
                 margin-top: 0;
@@ -98,7 +98,7 @@
               .card-img {
                 padding: var(--composer-gap-md);
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-lg);
+                border-radius: var(--composer-border-radius-sm);
                 box-shadow: var(--box-shadow-active);
                 width: max-content;
                 margin-top: calc(-1 * var(--composer-gap-xl));

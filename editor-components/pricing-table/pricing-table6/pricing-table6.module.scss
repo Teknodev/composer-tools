@@ -42,18 +42,18 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         box-shadow: var(--box-shadow-active);
         color: var(--composer-font-color-primary);
         margin-bottom: var(--composer-gap-md);
-        border-radius: var(--composer-border-radius-md);
+        border-radius: var(--composer-border-radius-sm);
         width: fit-content;
         place-self: flex-start;
 
         .activeTab:first-child {
-          border-top-left-radius: var(--composer-border-radius-md);
-          border-bottom-left-radius: var(--composer-border-radius-md);
+          border-top-left-radius: var(--composer-border-radius-sm);
+          border-bottom-left-radius: var(--composer-border-radius-sm);
         }
 
         .activeTab:last-child {
-          border-top-right-radius: var(--composer-border-radius-md);
-          border-bottom-right-radius: var(--composer-border-radius-md);
+          border-top-right-radius: var(--composer-border-radius-sm);
+          border-bottom-right-radius: var(--composer-border-radius-sm);
         }
 
         .activeTab {
@@ -120,7 +120,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             gap: var(--composer-gap-md);
             padding-right: var(--composer-gap-xl);
             padding-left: var(--composer-gap-xl);
@@ -226,7 +226,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .tag {
                 display: inline-block;
                 color: var(--composer-font-color-primary);
-                border-radius: var(--composer-border-radius-lg);
+                border-radius: var(--composer-border-radius-sm);
                 padding: var(--composer-gap-xs) var(--composer-gap-md);
                 font-size: 1rem;
                 background-color: var(--composer-overlay-color);
@@ -273,7 +273,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               var(--composer-html-background),
               var(--composer-font-color-secondary) 5%);
           box-shadow: var(--box-shadow-active);
-          border-radius: var(--composer-border-radius-md);
+          border-radius: var(--composer-border-radius-sm);
           display: flex;
 
           &.animation3:hover {
@@ -381,7 +381,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               width: 100%;
               gap: var(--composer-gap-md);
               align-items: center;
-              border-radius: var(--composer-border-radius-md);
+              border-radius: var(--composer-border-radius-sm);
 
               .button-container {
                 display: flex;

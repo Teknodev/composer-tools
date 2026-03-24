@@ -26,6 +26,27 @@ class PricingTable8 extends BasePricingTable {
     super(props, styles);
 
     this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Card",
@@ -106,10 +127,10 @@ class PricingTable8 extends BasePricingTable {
                       value: "500 Gb",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 70,
+                      value: "70",
                     },
                   ],
                 },
@@ -125,10 +146,10 @@ class PricingTable8 extends BasePricingTable {
                       value: "3 Years",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 50,
+                      value: "50",
                     },
                   ],
                 },
@@ -212,10 +233,10 @@ class PricingTable8 extends BasePricingTable {
                       value: "500 Gb",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 30,
+                      value: "30",
                     },
                   ],
                 },
@@ -231,10 +252,10 @@ class PricingTable8 extends BasePricingTable {
                       value: "3 Years",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 30,
+                      value: "30",
                     },
                   ],
                 },
@@ -318,10 +339,10 @@ class PricingTable8 extends BasePricingTable {
                       value: "500 Gb",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 70,
+                      value: "70",
                     },
                   ],
                 },
@@ -337,10 +358,10 @@ class PricingTable8 extends BasePricingTable {
                       value: "3 Years",
                     },
                     {
-                      type: "number",
+                      type: "string",
                       key: "percent",
                       displayer: "Percent",
-                      value: 70,
+                      value: "70",
                     },
                   ],
                 },
@@ -470,6 +491,13 @@ class PricingTable8 extends BasePricingTable {
         this.setComponentState("currentIndex", index),
     };
 
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const subtitleExist = this.castToString(subtitle);
+    const titleExist = this.castToString(title);
+    const descriptionExist = this.castToString(description);
+
     const cards = this.castToObject<IIconBoxes[]>("cards");
     const currentIndex = this.getComponentState("currentIndex");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
@@ -490,6 +518,25 @@ class PricingTable8 extends BasePricingTable {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(subtitleExist || titleExist || descriptionExist) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionExist && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
           <div className={this.decorateCSS("box")}>
             {hasCardsWithContent && (
               <ComposerSlider

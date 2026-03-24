@@ -44,6 +44,14 @@ class PricingTable2 extends BasePricingTable {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     });
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
@@ -773,11 +781,13 @@ class PricingTable2 extends BasePricingTable {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
     const hasDescription = this.castToString(description);
-    const hasHeaderContent = hasSubtitle || hasTitle || hasDescription;
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+    const hasHeaderContent = hasSubtitle || hasTitle || hasDescription || hasValidButtons;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -803,6 +813,25 @@ class PricingTable2 extends BasePricingTable {
                   >
                     {description}
                   </Base.SectionDescription>
+                )}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                      if (!this.castToString(item.text)) return null;
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button
+                            buttonType={item.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
                 )}
               </Base.VerticalContent>
             )}

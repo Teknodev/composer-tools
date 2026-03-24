@@ -739,155 +739,151 @@ class PricingMultiple extends BasePricingTable {
                   if (!hasCardContent) return null;
 
                   return (
-                    <div
+                    <Base.VerticalContent
                       key={indexCards}
-                      className={this.decorateCSS("all-card")}
+                      className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")
+                        } ${this.getPropValue("animations") &&
+                        this.getPropValue("animations")
+                          .map((animation: string) =>
+                            this.decorateCSS(animation)
+                          )
+                          .join(" ")
+                        } `}
                     >
-                      <Base.VerticalContent
-                        className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")
-                          } ${this.getPropValue("animations") &&
-                          this.getPropValue("animations")
-                            .map((animation: string) =>
-                              this.decorateCSS(animation)
-                            )
-                            .join(" ")
-                          } `}
-                      >
-                        {hasCardUp && (
-                          <div className={this.decorateCSS("card-up")}>
-                            <Base.VerticalContent
-                              className={this.decorateCSS("card-up-texts")}
-                            >
-                              {title1 && (
-                                <Base.H5
-                                  className={this.decorateCSS("price-title1")}
-                                >
-                                  {price.title}
-                                </Base.H5>
-                              )}
-                              {title2 && (
-                                <Base.P
-                                  className={this.decorateCSS("price-title2")}
-                                >
-                                  {price.subtitle}
-                                </Base.P>
-                              )}
-                              {this.castToString(price.price) && (
-                                <Base.H1
-                                  className={this.decorateCSS("price-pricing")}
-                                >
-                                  {price.price}
-                                </Base.H1>
-                              )}
-                            </Base.VerticalContent>
-                          </div>
-                        )}
+                      {hasCardUp && (
+                        <div className={this.decorateCSS("card-up")}>
+                          <Base.VerticalContent
+                            className={this.decorateCSS("card-up-texts")}
+                          >
+                            {title1 && (
+                              <Base.H5
+                                className={this.decorateCSS("price-title1")}
+                              >
+                                {price.title}
+                              </Base.H5>
+                            )}
+                            {title2 && (
+                              <Base.P
+                                className={this.decorateCSS("price-title2")}
+                              >
+                                {price.subtitle}
+                              </Base.P>
+                            )}
+                            {this.castToString(price.price) && (
+                              <Base.H1
+                                className={this.decorateCSS("price-pricing")}
+                              >
+                                {price.price}
+                              </Base.H1>
+                            )}
+                          </Base.VerticalContent>
+                        </div>
+                      )}
 
-                        {hasList && (
-                          <div className={this.decorateCSS("card-middle")}>
-                            <Base.VerticalContent
-                              className={this.decorateCSS("list-group")}
-                            >
-                              {price.list.map(
-                                (item: any, indexListGroup: number) => {
-                                  const liElement = this.castToString(
-                                    item.text
-                                  );
-                                  const hasIcon =
-                                    item.icon &&
-                                    (typeof item.icon === "object"
-                                      ? item.icon.name || item.icon.url
-                                      : true);
+                      {hasList && (
+                        <div className={this.decorateCSS("card-middle")}>
+                          <Base.VerticalContent
+                            className={this.decorateCSS("list-group")}
+                          >
+                            {price.list.map(
+                              (item: any, indexListGroup: number) => {
+                                const liElement = this.castToString(
+                                  item.text
+                                );
+                                const hasIcon =
+                                  item.icon &&
+                                  (typeof item.icon === "object"
+                                    ? item.icon.name || item.icon.url
+                                    : true);
 
-                                  if (!liElement && !hasIcon) return null;
+                                if (!liElement && !hasIcon) return null;
 
-                                  return (
-                                    <div
-                                      key={indexListGroup}
-                                      className={this.decorateCSS(
-                                        "list-element"
-                                      )}
-                                    >
-                                      {hasIcon && (
-                                        <div
-                                          className={this.decorateCSS(
-                                            "circle-icon"
-                                          )}
-                                        >
-                                          <Base.Media
-                                            value={item.icon}
-                                            className={this.decorateCSS("icon")}
-                                          />
-                                        </div>
-                                      )}
-                                      {liElement && (
-                                        <Base.P
-                                          className={this.decorateCSS(
-                                            "list-item-text"
-                                          )}
-                                        >
-                                          {item.text}
-                                        </Base.P>
-                                      )}
-                                    </div>
-                                  );
-                                }
-                              )}
-                            </Base.VerticalContent>
-                          </div>
-                        )}
-
-                        {hasCardButtons && (
-                          <div className={this.decorateCSS("card-down")}>
-                            {cardButtons.map((btn, btnIndex: number) => {
-                              const buttonText = btn.text;
-                              const buttonMedia = btn.media;
-                              const buttonUrl = btn.url || "#";
-                              const buttonType = btn.type;
-
-                              const btnTextExist = this.castToString(buttonText);
-                              const buttonMediaExist =
-                                buttonMedia &&
-                                ((buttonMedia as any).name ||
-                                  (buttonMedia as any).url);
-
-                              if (!btnTextExist && !buttonMediaExist)
-                                return null;
-
-                              return (
-                                <ComposerLink
-                                  path={buttonUrl}
-                                  key={`card-btn-${indexCards}-${btnIndex}`}
-                                >
-                                  <Base.Button
-                                    buttonType={buttonType}
-                                    className={this.decorateCSS("button")}
-                                  >
-                                    {buttonMediaExist && (
-                                      <Base.Media
-                                        value={buttonMedia}
-                                        className={this.decorateCSS(
-                                          "button-icon"
-                                        )}
-                                      />
+                                return (
+                                  <div
+                                    key={indexListGroup}
+                                    className={this.decorateCSS(
+                                      "list-element"
                                     )}
-                                    {btnTextExist && (
-                                      <Base.P
+                                  >
+                                    {hasIcon && (
+                                      <div
                                         className={this.decorateCSS(
-                                          "button-text"
+                                          "circle-icon"
                                         )}
                                       >
-                                        {buttonText}
+                                        <Base.Media
+                                          value={item.icon}
+                                          className={this.decorateCSS("icon")}
+                                        />
+                                      </div>
+                                    )}
+                                    {liElement && (
+                                      <Base.P
+                                        className={this.decorateCSS(
+                                          "list-item-text"
+                                        )}
+                                      >
+                                        {item.text}
                                       </Base.P>
                                     )}
-                                  </Base.Button>
-                                </ComposerLink>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </Base.VerticalContent>
-                    </div>
+                                  </div>
+                                );
+                              }
+                            )}
+                          </Base.VerticalContent>
+                        </div>
+                      )}
+
+                      {hasCardButtons && (
+                        <div className={this.decorateCSS("card-down")}>
+                          {cardButtons.map((btn, btnIndex: number) => {
+                            const buttonText = btn.text;
+                            const buttonMedia = btn.media;
+                            const buttonUrl = btn.url || "#";
+                            const buttonType = btn.type;
+
+                            const btnTextExist = this.castToString(buttonText);
+                            const buttonMediaExist =
+                              buttonMedia &&
+                              ((buttonMedia as any).name ||
+                                (buttonMedia as any).url);
+
+                            if (!btnTextExist && !buttonMediaExist)
+                              return null;
+
+                            return (
+                              <ComposerLink
+                                path={buttonUrl}
+                                key={`card-btn-${indexCards}-${btnIndex}`}
+                              >
+                                <Base.Button
+                                  buttonType={buttonType}
+                                  className={this.decorateCSS("button")}
+                                >
+                                  {buttonMediaExist && (
+                                    <Base.Media
+                                      value={buttonMedia}
+                                      className={this.decorateCSS(
+                                        "button-icon"
+                                      )}
+                                    />
+                                  )}
+                                  {btnTextExist && (
+                                    <Base.P
+                                      className={this.decorateCSS(
+                                        "button-text"
+                                      )}
+                                    >
+                                      {buttonText}
+                                    </Base.P>
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
                   );
                 }
               )}

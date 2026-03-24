@@ -112,7 +112,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
 
         .slider.round {
-          border-radius: var(--composer-gap-lg);
+          border-radius: var(--composer-border-radius-sm);
         }
 
         .slider.round:before {
@@ -174,7 +174,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .price {
           box-shadow: var(--box-shadow-active);
-          border-radius: var(--composer-border-radius-xl);
+          border-radius: var(--composer-border-radius-sm);
           height: max-content;
           padding: var(--composer-gap-md);
           flex: 1 1;
@@ -188,7 +188,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             box-shadow: var(--box-shadow-active);
             width: fit-content;
             border: 1px solid var(--composer-secondary-color);
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             padding: var(--composer-gap-xs) var(--composer-gap-sm);
             background-color: var(--composer-secondary-color);
             position: absolute;
@@ -204,7 +204,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             width: fit-content;
             height: auto;
             padding: var(--composer-gap-xs) var(--composer-gap-md);
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             display: flex;
             color: var(--composer-font-color-secondary);
             margin-left: 0px;
@@ -241,7 +241,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           .divider,
           .divider2 {
             background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            border-radius: var(--composer-border-radius-md);
+            border-radius: var(--composer-border-radius-sm);
             width: 100%;
             margin: 0;
             position: absolute;
@@ -283,7 +283,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 width: 30px;
                 height: 30px;
                 font-size: 1.5rem;
-                border-radius: var(--composer-border-radius-xl);
+                border-radius: var(--composer-border-radius-sm);
                 display: flex;
                 justify-content: center;
                 align-items: center;

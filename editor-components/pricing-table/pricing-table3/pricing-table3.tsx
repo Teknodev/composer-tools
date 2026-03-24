@@ -464,7 +464,7 @@ class PricingTable3 extends BasePricingTable {
                           </div>
                         )}
                         <Base.VerticalContent
-                          className={`${this.decorateCSS("card-content")} }`}
+                          className={this.decorateCSS("card-content")}
                         >
                           <Base.VerticalContent
                             className={this.decorateCSS("header")}

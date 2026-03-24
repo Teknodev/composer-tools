@@ -62,6 +62,15 @@ class PricingTable7 extends BasePricingTable {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "string",
       key: "text",
       displayer: "Monthly Plan",
@@ -96,7 +105,7 @@ class PricingTable7 extends BasePricingTable {
       displayer: "Line",
       value: true,
     });
-    
+
     this.addProp({
       type: "array",
       key: "monthlyPlan",
@@ -976,9 +985,8 @@ class PricingTable7 extends BasePricingTable {
       <div className={this.decorateCSS("duration-items")}>
         {monthlyText && (
           <Base.P
-            className={`${this.decorateCSS("text")} ${
-              planType === "monthlyPlan" ? this.decorateCSS("active") : ""
-            }`}
+            className={`${this.decorateCSS("text")} ${planType === "monthlyPlan" ? this.decorateCSS("active") : ""
+              }`}
           >
             {text}
           </Base.P>
@@ -1002,9 +1010,8 @@ class PricingTable7 extends BasePricingTable {
         )}
         {yearlyText && (
           <Base.P
-            className={`${this.decorateCSS("yearlyText")} ${
-              planType === "yearlyPlan" ? this.decorateCSS("active") : ""
-            }`}
+            className={`${this.decorateCSS("yearlyText")} ${planType === "yearlyPlan" ? this.decorateCSS("active") : ""
+              }`}
           >
             {yearlyLabel}
           </Base.P>
@@ -1039,9 +1046,11 @@ class PricingTable7 extends BasePricingTable {
     const yearlyPlansData = this.castToObject<YearlyPlan[]>("yearlyPlan");
     const monthlyText = this.castToString(text);
     const yearlyText = this.castToString(yearlyLabel);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
+    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
     const hasIcon = durationIcon && (durationIcon.name || durationIcon.url);
     const hasDiscountText = this.castToString(plansDiscountText);
 
@@ -1076,6 +1085,25 @@ class PricingTable7 extends BasePricingTable {
                 {description}
               </Base.SectionDescription>
             )}
+            {hasValidButtons && (
+              <div className={this.decorateCSS("button-container")}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                  if (!this.castToString(item.text)) return null;
+                  return (
+                    <ComposerLink key={index} path={item.url}>
+                      <Base.Button
+                        buttonType={item.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {item.text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
             {shouldRenderDurationItems && this.renderDurationItems()}
           </Base.VerticalContent>
           <Base.ListGrid
@@ -1095,33 +1123,31 @@ class PricingTable7 extends BasePricingTable {
                 const hasDescription = this.castToString(pricing.description);
                 const hasButtonText = this.castToString(pricing.button?.text);
                 const hasPopularText = this.castToString(pricing.popular_settings?.text) && pricing.isActive;
-                
+
                 const validItems = pricing.item?.filter((data: any) => {
                   const hasItemText = this.castToString(data.text);
                   const hasItemIcon = data.icon && (data.icon.name || data.icon.url);
                   return hasItemText || hasItemIcon;
                 }) || [];
-                
-                const hasAnyContent = hasBadge || hasPrice || hasDuration || hasPromoText || 
-                                     hasDescription || hasButtonText || hasPopularText || 
-                                     validItems.length > 0;
-                
+
+                const hasAnyContent = hasBadge || hasPrice || hasDuration || hasPromoText ||
+                  hasDescription || hasButtonText || hasPopularText ||
+                  validItems.length > 0;
+
                 if (!hasAnyContent) return null;
-                
+
                 return (
                   <div
                     key={index}
-                    className={`${this.decorateCSS("card-item-count")} ${
-                      this.getPropValue("animations") &&
+                    className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") &&
                       this.getPropValue("animations")
                         .map((animation: string) => this.decorateCSS(animation))
                         .join(" ")
-                    } `}
+                      } `}
                   >
                     <Base.VerticalContent
-                      className={`${this.decorateCSS("price")} ${
-                        pricing.isActive && this.decorateCSS("active")
-                      }`}
+                      className={`${this.decorateCSS("price")} ${pricing.isActive && this.decorateCSS("active")
+                        }`}
                     >
                       {this.castToString(pricing.popular_settings.text) &&
                         pricing.isActive && (
@@ -1130,9 +1156,9 @@ class PricingTable7 extends BasePricingTable {
                               "popular-box"
                             )} ${this.decorateCSS("active")}`}
                           >
-                            <span className={this.decorateCSS("popular-text")}>
+                            <Base.P className={this.decorateCSS("popular-text")}>
                               {pricing.popular_settings.text}
-                            </span>
+                            </Base.P>
                           </div>
                         )}
                       {this.castToString(pricing.badge) && (
@@ -1151,17 +1177,21 @@ class PricingTable7 extends BasePricingTable {
                       {[pricing.price, pricing.duration].some(
                         this.castToString
                       ) && (
-                        <div className={this.decorateCSS("price-text")}>
-                          <Base.H1 className={this.decorateCSS("price-title")}>
-                            {pricing.price}
-                          </Base.H1>
-                          <Base.H5
-                            className={this.decorateCSS("duration-text")}
-                          >
-                            {pricing.duration}
-                          </Base.H5>
-                        </div>
-                      )}
+                          <div className={this.decorateCSS("price-text")}>
+                            {this.castToString(pricing.price) && (
+                              <Base.H1 className={this.decorateCSS("price-title")}>
+                                {pricing.price}
+                              </Base.H1>
+                            )}
+                            {this.castToString(pricing.duration) && (
+                              <Base.H5
+                                className={this.decorateCSS("duration-text")}
+                              >
+                                {pricing.duration}
+                              </Base.H5>
+                            )}
+                          </div>
+                        )}
                       {this.castToString(pricing.promoText) && (
                         <Base.P className={this.decorateCSS("promoText")}>
                           {pricing.promoText}
@@ -1187,15 +1217,15 @@ class PricingTable7 extends BasePricingTable {
 
                       {(() => {
                         if (!pricing.item || pricing.item.length === 0) return null;
-                        
+
                         const validItems = pricing.item.filter((data: any) => {
                           const hasItemText = this.castToString(data.text);
                           const hasItemIcon = data.icon && (data.icon.name || data.icon.url);
                           return hasItemText || hasItemIcon;
                         });
-                        
+
                         if (validItems.length === 0) return null;
-                        
+
                         return (
                           <Base.VerticalContent
                             className={this.decorateCSS("features")}
@@ -1203,7 +1233,7 @@ class PricingTable7 extends BasePricingTable {
                             {validItems.map((data: any, index: number) => {
                               const hasItemText = this.castToString(data.text);
                               const hasItemIcon = data.icon && (data.icon.name || data.icon.url);
-                              
+
                               return (
                                 <Base.H5
                                   className={this.decorateCSS("features-element")}
@@ -1235,10 +1265,9 @@ class PricingTable7 extends BasePricingTable {
                         <ComposerLink path={pricing.button.url}>
                           <Base.Button
                             buttonType={pricing.button.type}
-                            className={`${this.decorateCSS("button")} ${
-                              pricing.isActive &&
+                            className={`${this.decorateCSS("button")} ${pricing.isActive &&
                               this.decorateCSS("button-active")
-                            }`}
+                              }`}
                           >
                             {pricing.button.text}
                           </Base.Button>

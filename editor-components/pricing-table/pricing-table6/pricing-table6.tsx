@@ -1402,12 +1402,11 @@ class PricingMultipleTwo extends BasePricingTable {
 
                         return (
                           <div
-                            className={`${
-                              this.decorateCSS("listArray") +
+                            className={`${this.decorateCSS("listArray") +
                               " " +
                               (this.getComponentState("activePlan") == index &&
                                 this.decorateCSS("active"))
-                            } 
+                              } 
                           ${this.getPropValue("animations") && animations} `}
                             onClick={() => this.setActivePlan(index)}
                             key={index}
@@ -1431,7 +1430,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 )}
                               </div>
                             )}
-                            
+
                             {tagText && (
                               <div className={this.decorateCSS("tag-wrapper")}>
                                 <Base.P className={this.decorateCSS("tag")}>
@@ -1461,9 +1460,8 @@ class PricingMultipleTwo extends BasePricingTable {
                     </div>
                     {rightItemExist && (
                       <div
-                        className={`${this.decorateCSS("right-page")} ${
-                          this.getPropValue("animations") && animations
-                        } `}
+                        className={`${this.decorateCSS("right-page")} ${this.getPropValue("animations") && animations
+                          } `}
                       >
                         <Base.VerticalContent
                           className={this.decorateCSS("content")}
@@ -1490,12 +1488,12 @@ class PricingMultipleTwo extends BasePricingTable {
                                 )}
                                 {subtitleExist && (
                                   <div className={this.decorateCSS("subtitle-wrapper")}>
-                                      <Base.P
-                                        className={this.decorateCSS("subtitle")}
-                                      >
-                                        {subtitle}
-                                      </Base.P>
-                                    </div>
+                                    <Base.P
+                                      className={this.decorateCSS("subtitle")}
+                                    >
+                                      {subtitle}
+                                    </Base.P>
+                                  </div>
                                 )}
                               </div>
                             );
@@ -1529,10 +1527,9 @@ class PricingMultipleTwo extends BasePricingTable {
                                       key={listItemIndex}
                                       className={`${this.decorateCSS(
                                         "list-item"
-                                      )} ${
-                                        !enableValue &&
+                                      )} ${!enableValue &&
                                         this.decorateCSS("list-item-disabled")
-                                      }`}
+                                        }`}
                                     >
                                       {hasIcon && (
                                         <Base.Media
@@ -1637,13 +1634,13 @@ class PricingMultipleTwo extends BasePricingTable {
                                     </div>
                                   )}
                                   {hasBottomText && (
-                                    <span
+                                    <Base.P
                                       className={this.decorateCSS(
                                         "bottom-text"
                                       )}
                                     >
                                       {bottomText}
-                                    </span>
+                                    </Base.P>
                                   )}
                                 </div>
                               );
