@@ -1,6 +1,6 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
-import styles from "./slider8.module.scss";
+import { BaseHeroSection } from "../../EditorComponent";
+import styles from "./hero-section39.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -13,7 +13,7 @@ type Card = {
   number: React.JSX.Element;
 };
 
-class Slider8 extends BaseSlider {
+class HeroSection39 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
@@ -217,7 +217,7 @@ class Slider8 extends BaseSlider {
   }
 
   static getName(): string {
-    return "Slider 8";
+    return "Hero Section 39";
   }
 
   render() {
@@ -328,4 +328,4 @@ class Slider8 extends BaseSlider {
   }
 }
 
-export default Slider8;
+export default HeroSection39;
