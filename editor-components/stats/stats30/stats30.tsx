@@ -50,7 +50,6 @@ export class Stats30Page extends BaseStats {
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 2,
-            // max: 4,
         });
 
         this.addProp({
@@ -75,7 +74,6 @@ export class Stats30Page extends BaseStats {
                     displayer: "Card",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        // { type: "string", key: "statValue", displayer: "Value", value: "56" },
                         { type: "string", key: "value", displayer: "Value", value: "56" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Teamwork" },
@@ -89,7 +87,6 @@ export class Stats30Page extends BaseStats {
                     displayer: "Card",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        // { type: "string", key: "statValue", displayer: "Value", value: "87" },
                         { type: "string", key: "value", displayer: "Value", value: "87" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Process" },
@@ -230,7 +227,7 @@ export class Stats30Page extends BaseStats {
             const cardData = item?.card || item || {};
             return {
                 prefix: this.castToString(cardData.prefix) || "",
-                statValue: this.castToString(cardData.value) || this.castToString(cardData.number) || "0",
+                statValue: this.castToString(cardData.value) || this.castToString(cardData.number) || "",
                 suffix: this.castToString(cardData.suffix) || "",
                 subtitle: this.castToString(cardData.subtitle) || "",
                 subtitleElement: cardData.subtitle,
@@ -244,7 +241,7 @@ export class Stats30Page extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content")}>
+                    <Base.VerticalContent className={this.decorateCSS("content")}>
                         {hasTopSection && (
                             <Base.VerticalContent
                                 className={this.decorateCSS("header-container")}
@@ -288,7 +285,7 @@ export class Stats30Page extends BaseStats {
                         )}
 
                         {hasValidButtons && (
-                            <div className={this.decorateCSS("bottom-action-container")}>
+                            <div className={this.decorateCSS("bottom-action-container")} data-alignment={alignment}>
                                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                     const buttonText = this.castToString(item.text);
                                     if (!buttonText) return null;
@@ -307,7 +304,7 @@ export class Stats30Page extends BaseStats {
                                 })}
                             </div>
                         )}
-                    </div>
+                    </Base.VerticalContent>
                 </Base.MaxContent>
             </Base.Container >
         );
