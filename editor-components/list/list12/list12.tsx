@@ -229,7 +229,7 @@ class List12 extends BaseList {
                 </Base.SectionTitle>
               )}
               {descriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
+                <Base.SectionDescription className={`${this.decorateCSS("description")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
