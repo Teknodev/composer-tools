@@ -136,9 +136,9 @@
         max-width: 100%;
         box-sizing: border-box;
 
-        .text1,
-        .text2,
-        .text3 {
+        .box-subtitle,
+        .box-title,
+        .box-desc {
           color: var(--composer-font-color-primary);
           width: 100%;
           max-width: 100%;
@@ -182,6 +182,7 @@
         overflow: hidden;
         text-align: center !important;
         transform: translateX(0) !important;
+        padding: 0 !important;
 
         &::before {
           display: none !important;
@@ -216,9 +217,9 @@
         min-width: 0;
       }
 
-      .titles .text1,
-      .titles .text2,
-      .titles .text3,
+      .titles .box-subtitle,
+      .titles .box-title,
+      .titles .box-desc,
       .section-wrapper .title {
         max-width: 100%;
         width: 100%;
@@ -264,9 +265,9 @@
         max-width: 100%;
         text-align: center !important;
 
-        .text1,
-        .text2,
-        .text3 {
+        .box-subtitle,
+        .box-title,
+        .box-desc {
           width: 100%;
           max-width: 100%;
           text-align: center !important;

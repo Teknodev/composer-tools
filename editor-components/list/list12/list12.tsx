@@ -6,7 +6,9 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 interface BoxItem {
   item: TypeMediaInputValue;
-  text: React.JSX.Element;
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
 }
 
 class List12 extends BaseList {
@@ -86,8 +88,20 @@ class List12 extends BaseList {
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Text 1",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
           value: "Experience contactless payments with just a tap of your card or phone.",
         },
       ],
@@ -112,8 +126,20 @@ class List12 extends BaseList {
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Text 2",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
           value: "Accept payments anywhere with reliable and portable card readers.",
         },
       ],
@@ -138,8 +164,20 @@ class List12 extends BaseList {
         },
         {
           type: "string",
-          key: "text",
-          displayer: "Text 3",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
           value: "Send and receive money instantly, no matter where you are.",
         },
       ],
@@ -206,12 +244,24 @@ class List12 extends BaseList {
                     )}
                   </div>
                 )}
-                {this.castToString(box1.text) && (
-                  <div className={this.decorateCSS("titles")}>
-                    <Base.P className={`${this.decorateCSS("text1")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
-                      {box1.text}
-                    </Base.P>
-                  </div>
+                {(this.castToString(box1.subtitle) || this.castToString(box1.title) || this.castToString(box1.description)) && (
+                  <Base.VerticalContent className={this.decorateCSS("titles")}>
+                    {this.castToString(box1.subtitle) && (
+                      <Base.H6 className={`${this.decorateCSS("box-subtitle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                        {box1.subtitle}
+                      </Base.H6>
+                    )}
+                    {this.castToString(box1.title) && (
+                      <Base.H5 className={`${this.decorateCSS("box-title")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                        {box1.title}
+                      </Base.H5>
+                    )}
+                    {this.castToString(box1.description) && (
+                      <Base.P className={`${this.decorateCSS("box-desc")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                        {box1.description}
+                      </Base.P>
+                    )}
+                  </Base.VerticalContent>
                 )}
               </div>
             )}
@@ -263,12 +313,24 @@ class List12 extends BaseList {
                   )}
                 </div>
               )}
-              {box2Exist && this.castToString(box2.text) && (
-                <div className={this.decorateCSS("titles")}>
-                  <Base.P className={`${this.decorateCSS("text2")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
-                    {box2.text}
-                  </Base.P>
-                </div>
+              {box2Exist && (this.castToString(box2.subtitle) || this.castToString(box2.title) || this.castToString(box2.description)) && (
+                <Base.VerticalContent className={this.decorateCSS("titles")}>
+                  {this.castToString(box2.subtitle) && (
+                    <Base.H6 className={`${this.decorateCSS("box-subtitle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                      {box2.subtitle}
+                    </Base.H6>
+                  )}
+                  {this.castToString(box2.title) && (
+                    <Base.H5 className={`${this.decorateCSS("box-title")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                      {box2.title}
+                    </Base.H5>
+                  )}
+                  {this.castToString(box2.description) && (
+                    <Base.P className={`${this.decorateCSS("box-desc")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                      {box2.description}
+                    </Base.P>
+                  )}
+                </Base.VerticalContent>
               )}
             </div>
 
@@ -285,12 +347,24 @@ class List12 extends BaseList {
                     )}
                   </div>
                 )}
-                {this.castToString(box3.text) && (
-                  <div className={this.decorateCSS("titles")}>
-                    <Base.P className={`${this.decorateCSS("text3")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
-                      {box3.text}
-                    </Base.P>
-                  </div>
+                {(this.castToString(box3.subtitle) || this.castToString(box3.title) || this.castToString(box3.description)) && (
+                  <Base.VerticalContent className={this.decorateCSS("titles")}>
+                    {this.castToString(box3.subtitle) && (
+                      <Base.H6 className={`${this.decorateCSS("box-subtitle")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                        {box3.subtitle}
+                      </Base.H6>
+                    )}
+                    {this.castToString(box3.title) && (
+                      <Base.H5 className={`${this.decorateCSS("box-title")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                        {box3.title}
+                      </Base.H5>
+                    )}
+                    {this.castToString(box3.description) && (
+                      <Base.P className={`${this.decorateCSS("box-desc")} ${hasBackgroundMedia && this.decorateCSS("with-bg")}`}>
+                        {box3.description}
+                      </Base.P>
+                    )}
+                  </Base.VerticalContent>
                 )}
               </div>
             )}
