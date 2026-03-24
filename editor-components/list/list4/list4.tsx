@@ -309,25 +309,23 @@ class List4 extends BaseList {
                             />
                           )}
 
-                          <Base.VerticalContent className={this.decorateCSS("text-wrapper")}>
-                            {hasSubtitle && (
-                              <Base.H5 className={this.decorateCSS("item-subtitle")}>
-                                {card.subtitle}
-                              </Base.H5>
-                            )}
-                            {hasTitle && (
-                              <Base.H4
-                                className={this.decorateCSS("item-title")}
-                              >
-                                {card.title}
-                              </Base.H4>
-                            )}
-                            {hasDescription && (
-                              <Base.P className={this.decorateCSS("item-description")}>
-                                {card.description}
-                              </Base.P>
-                            )}
-                          </Base.VerticalContent>
+                          {hasSubtitle && (
+                            <Base.H5 className={this.decorateCSS("item-subtitle")}>
+                              {card.subtitle}
+                            </Base.H5>
+                          )}
+                          {hasTitle && (
+                            <Base.H4
+                              className={this.decorateCSS("item-title")}
+                            >
+                              {card.title}
+                            </Base.H4>
+                          )}
+                          {hasDescription && (
+                            <Base.P className={this.decorateCSS("item-description")}>
+                              {card.description}
+                            </Base.P>
+                          )}
                         </Base.VerticalContent>
                       </div>
                     </div>

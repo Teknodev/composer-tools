@@ -34,9 +34,6 @@
       }
 
       .services-grid {
-        margin-bottom: var(--composer-gap-xl);
-        gap: var(--composer-gap-sm);
-
         .service-item {
           position: relative;
           padding: var(--composer-gap-lg);
@@ -130,6 +127,9 @@
               border-radius: var(--composer-border-width-sm);
               flex: 1 1 auto;
               transition: background-color var(--composer-transition-duration-slow) ease;
+              display: flex;
+              flex-direction: column;
+              gap: var(--composer-gap-md);
 
               &[data-animation~="animate2"]:hover {
                 background-color: var(--composer-primary-color);
@@ -138,8 +138,8 @@
                   color: var(--composer-html-background);
                 }
 
-                .text-wrapper .item-title,
-                .text-wrapper .item-description {
+                .item-title,
+                .item-description {
                   color: var(--composer-font-color-primary);
                 }
               }
@@ -154,7 +154,6 @@
                 height: 2.5rem;
                 font-size: 2.5rem;
                 color: var(--composer-primary-color);
-                margin: var(--composer-gap-md) 0;
                 align-self: flex-start;
                 display: inline-flex;
                 align-items: center;
@@ -172,32 +171,24 @@
                 color: var(--composer-font-color-primary);
               }
 
-              .text-wrapper {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-md);
-                align-items: flex-start;
+              .item-subtitle,
+              .item-title {
+                content: "";
+                color: var(--composer-font-color-primary);
+                overflow: hidden;
+                margin: 0;
+                position: relative;
+                display: inline-block;
                 text-align: left;
+                width: 100%;
+                align-self: flex-start;
+              }
 
-                .item-subtitle,
-                .item-title {
-                  content: "";
-                  color: var(--composer-font-color-primary);
-                  overflow: hidden;
-                  margin: 0;
-                  position: relative;
-                  display: inline-block;
-                  text-align: left;
-                  width: 100%;
-                  align-self: flex-start;
-                }
-
-                .item-description {
-                  content: "";
-                  margin: 0;
-                  color: var(--composer-font-color-primary);
-                  text-align: left;
-                }
+              .item-description {
+                content: "";
+                margin: 0;
+                color: var(--composer-font-color-primary);
+                text-align: left;
               }
             }
           }
@@ -215,10 +206,6 @@
   .container .max-content {
     .content {
       gap: var(--composer-gap-md);
-
-      .services-grid {
-        gap: var(--composer-gap-md);
-      }
     }
 
     .service-item:nth-child(3n + 2) {
@@ -245,19 +232,29 @@
 
       .item-index {
         position: absolute;
-        top: calc(var(--composer-gap-md) + var(--composer-gap-sm) + var(--composer-gap-xs) * 3);
+        top: calc(var(--composer-gap-sm) + var(--composer-gap-xs));
         left: calc(var(--composer-gap-md) + var(--composer-gap-sm) + var(--composer-gap-xs));
         font-size: 1.25rem;
       }
 
       .services-grid {
-        gap: var(--composer-gap-sm);
+        gap: 0;
 
         .service-item {
           padding: var(--composer-gap-md);
+          transform: none !important;
 
-          &:nth-child(3n + 2) {
-            transform: none;
+          &:nth-child(n) {
+            transform: none !important;
+          }
+
+          .card-content {
+            margin-top: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
+
+            .card-body {
+              padding: var(--composer-gap-md);
+              gap: var(--composer-gap-sm);
+            }
           }
 
           .border-frame {
@@ -267,7 +264,7 @@
             top: var(--composer-gap-md);
 
             .border-top {
-              top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
+              top: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
               left: calc(-1 * var(--composer-gap-md));
               height: var(--composer-border-width-xs);
               width: calc(100% + var(--composer-gap-md) * 2);
