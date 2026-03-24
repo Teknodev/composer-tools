@@ -306,6 +306,7 @@ type AvailablePropTypes =
   | { type: "lottie"; value: string }
   | { type: "video"; value: string }
   | { type: "select"; value: string }
+  | { type: "badge"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
   | { type: "email"; value: string }
@@ -335,7 +336,12 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  MediaType[]};
+  additionalParams?: {
+    selectItems?: string[];
+    badgeItems?: string[];
+    maxElementCount?: number;
+    availableTypes?: MediaType[];
+  };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
