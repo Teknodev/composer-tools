@@ -21,6 +21,7 @@ class Slider12 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
     this.setComponentState("slider-mode", "desktop");
+    this.setComponentState("active_index", 0);
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -43,7 +44,7 @@ class Slider12 extends BaseSlider {
         "Supercharge your productivity with client management and collaboration tools that let you do it all from a single dashboard.",
     });
 
-    
+
     this.addProp(INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
       dots: false,
       arrows: true,
@@ -310,9 +311,12 @@ class Slider12 extends BaseSlider {
       },
     });
 
-    this.addProp(
-      INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
   }
 
   static getName(): string {
@@ -369,7 +373,11 @@ class Slider12 extends BaseSlider {
       swipe: true,
       variableWidth: true,
       ...sliderSettings,
+      dots: false,
       arrows: false,
+      beforeChange: (_current: number, next: number) => {
+        this.setComponentState("active_index", next);
+      },
       responsive: [
         {
           breakpoint: 1280,
@@ -384,7 +392,7 @@ class Slider12 extends BaseSlider {
           settings: {
             slidesToShow: 2,
             slidesToScroll: 1,
-            variableWidth: false,
+            variableWidth: true,
             adaptiveHeight: false,
           },
         },
@@ -393,7 +401,7 @@ class Slider12 extends BaseSlider {
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
-            variableWidth: false,
+            variableWidth: true,
             adaptiveHeight: false,
           },
         },
@@ -408,9 +416,7 @@ class Slider12 extends BaseSlider {
     const description = this.castToString(this.getPropValue("description"));
     const hasContent = title || subtitle || description;
     const overlayEnabled = this.getPropValue("overlay");
-    const button = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonContent = button?.text;
-    const buttonText = this.castToString(buttonContent);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") ?? [];
     const sliderMode = this.getComponentState("slider-mode") || "desktop";
 
     const validItems = items.filter((item) => {
@@ -421,111 +427,121 @@ class Slider12 extends BaseSlider {
     });
 
     const showArrows = sliderSettings.arrows !== false;
+    const showDots = sliderSettings.dots !== false;
     const hasNav = validItems.length > 1 && !!(prevMedia || nextMedia) && showArrows;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <Base.Container className={this.decorateCSS("upper-container")}>
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            {(hasContent || hasNav) && (
-              <div className={`${this.decorateCSS("section-header")} ${!showArrows && this.decorateCSS("no-arrows")}`}>
-                <Base.VerticalContent className={this.decorateCSS("section-header-content")}>
-                  {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                  {title && (<Base.SectionTitle className={this.decorateCSS("section-title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                  {description && (<Base.SectionDescription className={this.decorateCSS("section-description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                </Base.VerticalContent>
-                {hasNav && (
-                  <div className={this.decorateCSS("arrows-wrap")}>
-                    <div className={this.decorateCSS("arrows")}>
-                      {prevMedia && (
-                        <div className={this.decorateCSS("arrow")}>
-                          <div className={this.decorateCSS("prevArrow")} onClick={() => this.sliderRef.current?.slickPrev()}  >
-                            <Base.Media value={prevMedia} className={this.decorateCSS("arrow-media")} />
-                          </div>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(hasContent || hasNav) && (
+            <div className={`${this.decorateCSS("section-header")} ${!showArrows && this.decorateCSS("no-arrows")}`}>
+              <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+              </Base.VerticalContent>
+              {hasNav && (
+                <div className={this.decorateCSS("arrows-wrap")}>
+                  <div className={this.decorateCSS("arrows")}>
+                    {prevMedia && (
+                      <div className={this.decorateCSS("arrow")}>
+                        <div className={this.decorateCSS("prevArrow")} onClick={() => this.sliderRef.current?.slickPrev()}  >
+                          <Base.Media value={prevMedia} className={this.decorateCSS("arrow-media")} />
                         </div>
-                      )}
-                      {nextMedia && (
-                        <div className={this.decorateCSS("arrow")}>
-                          <div className={this.decorateCSS("nextArrow")} onClick={() => this.sliderRef.current?.slickNext()} >
-                            <Base.Media value={nextMedia} className={this.decorateCSS("arrow-media")} />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-          </Base.MaxContent>
-        </Base.Container>
-        <Base.Container className={`${this.decorateCSS("lower-container")} ${!buttonText && this.decorateCSS("no-button")}`}>
-          <Base.MaxContent className={this.decorateCSS("wrap")}>
-            {validItems.length > 0 && (
-              <div className={this.decorateCSS("slider-parent")} ref={this.sliderParentRef}>
-                <ComposerSlider key={sliderMode} ref={this.sliderRef} {...settings} >
-                  {validItems.map((item, i) => {
-                    const media = item.media;
-                    const hasCardDescription = this.castToString(item.description);
-                    const hasHeaderText = this.castToString(item.header);
-
-                    const slideClasses = [this.decorateCSS("slide")];
-                    if (sliderMode !== "mobile" && i % 3 === 2) {
-                      slideClasses.push(this.decorateCSS("wide"));
-                    }
-                    if (i === 0) {
-                      slideClasses.push(this.decorateCSS("first-slide"));
-                    }
-
-                    return (
-                      <ComposerLink key={i} path={item.path}>
-                        <div className={slideClasses.join(" ")}>
-                          <div className={this.decorateCSS("card")}>
-                            {media && (
-                              <div className={this.decorateCSS("media")}>
-                                <Base.Media value={media} className={this.decorateCSS("media-content")} />
-                                {overlayEnabled && (<div className={this.decorateCSS("media-overlay")} />)}
-                              </div>
-                            )}
-
-                            {(hasHeaderText || hasCardDescription) && (
-                              <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                {hasHeaderText && (
-                                  <Base.H4 className={this.decorateCSS("card-title")}>
-                                    {item.header}
-                                  </Base.H4>
-                                )}
-                                {hasCardDescription && (
-                                  <Base.P className={this.decorateCSS("card-description")}>
-                                    {item.description}
-                                  </Base.P>
-                                )}
-                              </Base.VerticalContent>
-                            )}
-                          </div>
-                        </div>
-                      </ComposerLink>
-                    );
-                  })}
-                </ComposerSlider>
-              </div>
-            )}
-            {buttonText && (
-              <div className={this.decorateCSS("button-container")}>
-                <ComposerLink path={button?.url}>
-                  <Base.Button buttonType={button?.type || "Primary"} className={this.decorateCSS("button")}>
-                    <Base.P className={this.decorateCSS("button-text")}>
-                      {buttonContent}
-                    </Base.P>
-                    {button?.icon && (
-                      <Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />
+                      </div>
                     )}
-                  </Base.Button>
-                </ComposerLink>
-              </div>
-            )}
-          </Base.MaxContent>
-        </Base.Container>
-      </div>
+                    {nextMedia && (
+                      <div className={this.decorateCSS("arrow")}>
+                        <div className={this.decorateCSS("nextArrow")} onClick={() => this.sliderRef.current?.slickNext()} >
+                          <Base.Media value={nextMedia} className={this.decorateCSS("arrow-media")} />
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          {validItems.length > 0 && (
+            <div className={this.decorateCSS("slider-parent")} ref={this.sliderParentRef}>
+              <ComposerSlider key={sliderMode} ref={this.sliderRef} {...settings} >
+                {validItems.map((item, i) => {
+                  const media = item.media;
+                  const hasCardDescription = this.castToString(item.description);
+                  const hasHeaderText = this.castToString(item.header);
+
+                  const slideClasses = [this.decorateCSS("slide")];
+                  if (sliderMode !== "mobile" && i % 3 === 2) {
+                    slideClasses.push(this.decorateCSS("wide"));
+                  }
+                  if (i === 0) {
+                    slideClasses.push(this.decorateCSS("first-slide"));
+                  }
+
+                  return (
+                    <ComposerLink key={i} path={item.path}>
+                      <div className={slideClasses.join(" ")}>
+                        <div className={this.decorateCSS("card")}>
+                          {media && (
+                            <div className={this.decorateCSS("media")}>
+                              <Base.Media value={media} className={this.decorateCSS("media-content")} />
+                              {overlayEnabled && (<div className={this.decorateCSS("media-overlay")} />)}
+                            </div>
+                          )}
+
+                          {(hasHeaderText || hasCardDescription) && (
+                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                              {hasHeaderText && (
+                                <Base.H4 className={this.decorateCSS("card-title")}>
+                                  {item.header}
+                                </Base.H4>
+                              )}
+                              {hasCardDescription && (
+                                <Base.P className={this.decorateCSS("card-description")}>
+                                  {item.description}
+                                </Base.P>
+                              )}
+                            </Base.VerticalContent>
+                          )}
+                        </div>
+                      </div>
+                    </ComposerLink>
+                  );
+                })}
+              </ComposerSlider>
+            </div>
+          )}
+          {buttons.filter((button) => this.castToString(button.text) || (button.icon && (button.icon as any)?.name)).length > 0 && (
+            <div className={this.decorateCSS("button-container")}>
+              {buttons.map((button, index) => {
+                const buttonContent = button?.text;
+                const buttonText = this.castToString(buttonContent);
+                return (!buttonText && !button?.icon?.name) ? null : (
+                  <ComposerLink key={index} path={button?.url}>
+                    <Base.Button className={this.decorateCSS("button")}>
+                      {buttonText && (<Base.P className={this.decorateCSS("button-text")}>  {buttonContent}  </Base.P>)}
+                      {button?.icon && button.icon.name && (<Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />)}
+                    </Base.Button>
+                  </ComposerLink>
+                );
+              })}
+            </div>
+          )}
+          {validItems.length > 1 && showDots && (
+            <div className={this.decorateCSS("custom-dots")}>
+              {validItems.map((_, index) => (
+                <li
+                  key={index}
+                  className={this.getComponentState("active_index") === index ? this.decorateCSS("active") : ""}
+                  onClick={() => this.sliderRef.current?.slickGoTo(index)}
+                >
+                  <button />
+                </li>
+              ))}
+            </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
