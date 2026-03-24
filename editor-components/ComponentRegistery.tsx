@@ -48,6 +48,14 @@ class ComponentsRegistery {
       }
     });
   }
+
+  unregisterCustomComponent(customComponentId: string) {
+    const category = CATEGORIES.CUSTOM;
+    if (this.availableComponents[category]) {
+      this.availableComponents[category] = this.availableComponents[category]
+        .filter((c) => (c as any).customComponentId !== customComponentId);
+    }
+  }
 }
 
 export default ComponentsRegistery;
