@@ -21,14 +21,16 @@
       align-items: stretch;
 
       .control-part {
-        flex: 1;
+        flex: 0 0 25%;
         overflow: hidden;
         flex-direction: column;
         justify-content: flex-start;
         text-align: left;
         padding: var(--composer-gap-lg);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
         border-radius: var(--composer-border-radius-md);
+        box-sizing: border-box;
 
         .control-title {
           color: var(--composer-primary-color);
@@ -88,26 +90,30 @@
       }
 
       .slider-parent {
-        flex: 3;
-        max-width: 80%;
+        flex: 1;
+        container-type: inline-size;
 
         .carousel {
           display: flex;
           gap: var(--composer-gap-md);
           position: relative;
+          height: 100%;
 
           :global(.slick-dots) {
             display: none !important;
           }
 
           :global(.slick-list) {
+            height: 100%;
+            margin: 0 calc(-0.5 * var(--composer-gap-md));
+
             :global(.slick-track) {
               display: flex;
               align-items: stretch;
               height: 100%;
 
               :global(.slick-slide) {
-                padding: 0 var(--composer-gap-md);
+                padding: 0 calc(0.5 * var(--composer-gap-md));
                 height: 100%;
                 display: flex;
 
@@ -258,11 +264,11 @@
 
           .carousel {
             :global(.slick-list) {
-              margin: 0 calc(-1 * var(--composer-gap-sm));
+              margin: 0 calc(-0.5 * var(--composer-gap-lg));
 
               :global(.slick-track) {
                 :global(.slick-slide) {
-                  padding: 0 var(--composer-gap-sm);
+                  padding: 0 calc(0.5 * var(--composer-gap-lg));
                 }
               }
             }
