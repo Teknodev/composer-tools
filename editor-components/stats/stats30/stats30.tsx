@@ -50,7 +50,7 @@ export class Stats30Page extends BaseStats {
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 2,
-            max: 4,
+            // max: 4,
         });
 
         this.addProp({
@@ -97,6 +97,7 @@ export class Stats30Page extends BaseStats {
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
+
             ],
         });
     }

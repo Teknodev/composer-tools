@@ -23,6 +23,7 @@
 
                 .header-texts {
                     width: 100%;
+
                     .subtitle,
                     .title,
                     .description {
@@ -41,13 +42,12 @@
                 display: grid;
                 grid-template-columns: repeat(var(--item-count, 2), 1fr);
                 gap: var(--composer-gap-md);
-                margin-top: var(--composer-gap-xl);
 
                 .stat-item {
                     background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     padding: var(--composer-gap-xl);
                     border-radius: var(--composer-border-radius-md);
-                    width: 100%;
+                    box-sizing: border-box;
                     align-items: flex-start;
                     text-align: left;
 
@@ -74,7 +74,7 @@
                         }
 
                         .stat-description {
-                            font-size: 1rem;
+                            font-size: 1.6rem;
                             opacity: 0.8;
                             color: var(--composer-font-color-primary);
                             line-height: 1.5;
@@ -151,7 +151,7 @@
                             .stat-value,
                             .stat-prefix,
                             .stat-suffix {
-                                font-size: 10rem;
+                                font-size: 8rem;
                             }
                         }
                     }
@@ -162,13 +162,14 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: var(--composer-gap-md);
-                margin-top: var(--composer-gap-xl);
                 justify-content: center;
 
                 .button-wrapper {
                     content: "";
+
                     .button {
                         content: "";
+
                         .button-text {
                             content: "";
                         }
