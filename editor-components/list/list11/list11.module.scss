@@ -94,7 +94,6 @@
             .card-content {
               display: flex;
               flex-direction: column;
-              gap: var(--composer-gap-md);
               align-items: flex-start;
               text-align: left;
 
@@ -173,8 +172,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .content {
-    gap: var(--composer-gap-md);
-
     .header-section {
       flex-direction: column;
     }

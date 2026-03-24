@@ -342,7 +342,7 @@ class List11 extends BaseList {
                                                     )}
                                                 </div>
                                             )}
-                                            <div className={this.decorateCSS("card-content")}>
+                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                                 {itemSubtitleExist && (
                                                     <Base.H4 className={this.decorateCSS("card-subtitle")}>
                                                         {item.subtitle}
@@ -375,7 +375,7 @@ class List11 extends BaseList {
                                                         </div>
                                                     </ComposerLink>
                                                 )}
-                                            </div>
+                                            </Base.VerticalContent>
                                         </div>
                                     </div>
                                 );
