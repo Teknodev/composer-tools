@@ -55,6 +55,9 @@ class Stats32 extends BaseStats {
                     type: "media",
                     key: "media",
                     displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"]
+                    },
                     value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media"
@@ -178,25 +181,30 @@ class Stats32 extends BaseStats {
         }, [targetNumber, statsAnimation, animationDuration, originalNumberString]);
 
         const valueExist = originalNumberString && originalNumberString !== "";
+        const prefixExist = !!stat.prefix;
+        const suffixExist = !!stat.suffix;
         const labelExist = this.castToString(stat.label);
         const subtitleExist = this.castToString(stat.subtitle);
         const titleExist = this.castToString(stat.title);
         const descriptionExist = this.castToString(stat.description);
 
-        if (!valueExist && !labelExist && !subtitleExist && !titleExist && !descriptionExist) return null;
+        if (!valueExist && !prefixExist && !suffixExist && !labelExist && !subtitleExist && !titleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {valueExist && (
+            <Base.VerticalContent className={this.decorateCSS("stat-item")} data-alignment="left">
+                {(valueExist || prefixExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value-container")}>
-                        {stat.prefix && (
+                        {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>
                         )}
 
-                        <span className={this.decorateCSS("stat-value")}>
-                            {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
-                        </span>
-                        {stat.suffix && (
+                        {valueExist && (
+                            <span className={this.decorateCSS("stat-value")}>
+                                {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
+                            </span>
+                        )}
+                        
+                        {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>{stat.suffix}</span>
                         )}
                     </span>
@@ -274,7 +282,7 @@ class Stats32 extends BaseStats {
                     <div className={`${this.decorateCSS("content-wrapper")} ${!mediaExist ? this.decorateCSS("no-media") : ""} ${noText ? this.decorateCSS("no-text") : ""}`}>
                         {(hasTextSection || hasStats) && (
                             <Base.VerticalContent className={this.decorateCSS("text-card")}>
-                                <Base.VerticalContent className={this.decorateCSS("text-container")}>
+                                <Base.VerticalContent className={this.decorateCSS("text-container")} data-alignment="left">
                                     {subtitleExist && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                             {this.getPropValue("subtitle")}

@@ -17,18 +17,14 @@
                 grid-template-columns: 1fr;
             }
 
-            .title,
-            .description {
-                text-align: left;
-                margin-inline: 0;
-                margin-bottom: 0;
-                color: var(--composer-font-color-primary);
-            }
+            // Text alignment is handled natively via data-alignment="left" attribute.
+            // .title, .subtitle, .description can be mapped cleanly here.
 
+            .title,
+            .description,
             .subtitle {
-                text-align: left;
-                margin-inline: 0;
-                margin-bottom: 0;
+                content: "";
+                color: var(--composer-font-color-primary);
             }
 
             .text-card {
@@ -50,6 +46,16 @@
                     display: flex;
                     flex-wrap: wrap;
                     gap: var(--composer-gap-sm);
+
+                    .button-wrapper {
+                        content: "";
+                        .button {
+                            content: "";
+                            .button-text {
+                                content: "";
+                            }
+                        }
+                    }
                 }
 
                 .stats-grid {
@@ -64,7 +70,6 @@
                     font-size: 1.5rem;
                     display: flex;
                     flex-direction: column;
-                    align-items: flex-start;
                     color: var(--composer-font-color-primary);
 
                     .stat-value-container {
@@ -87,18 +92,14 @@
                     }
 
                     .stat-title {
-                        // font-size: 1.5rem;
                         color: inherit;
                     }
 
                     .stat-subtitle {
-                        text-align: left;
-                        // margin: 100%;
-                        align-items: flex-start;
+                        content: "";
                     }
 
                     .stat-description {
-                        // font-size: 1rem;
                         opacity: 0.7;
                         color: inherit;
                     }
@@ -174,12 +175,6 @@
             grid-template-columns: 1fr;
             gap: var(--composer-gap-xl);
             max-width: 100%;
-
-            &.alignment-center {
-                .text-container {
-                    align-items: flex-start;
-                }
-            }
 
             .media-container {
                 order: 2;
