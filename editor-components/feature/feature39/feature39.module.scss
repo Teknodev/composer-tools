@@ -1,166 +1,156 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    .max-content {
-        display: flex;
-        flex-direction: row;
-        align-items: stretch;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 
-        &.no-show-divider {
-            gap: var(--composer-gap-xl);
-        }
+    &.has-media {
+        .max-content {
+            .text-content {
 
-        .left-content {
-            display: flex;
-            flex-direction: column;
-            gap: var(--composer-gap-xl);
-            flex: 0 0 40%;
-
-            .vertical-content {
-                .subtitle {
-                    margin-left: 0;
-                }
-
+                .subtitle,
                 .title,
                 .description {
-                    text-align: left;
+                    color: var(--color-white);
                 }
-            }
 
-            .items-wrapper {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-md);
+                .subtitle {
+                    background: none;
+                    padding: 0;
 
-                .itemTitle {
-                    cursor: pointer;
-                    color: var(--composer-font-color-primary);
-                    transition: all 0.3s ease;
-                    padding-left: 0;
-                    text-align: left;
-
-                    &:hover {
-                        color: var(--composer-primary-color);
-                    }
-
-                    &.active {
-                        color: var(--composer-primary-color);
-                        font-weight: 600;
-                        border-left: 4px solid var(--composer-primary-color);
-                        padding-left: var(--composer-gap-sm);
+                    &::before {
+                        background-color: var(--color-white);
                     }
                 }
             }
 
-            &.full-width {
-                flex: 1;
+            .card-container {
+                .card-wrapper {
+                    .card-content {
 
-                .vertical-content {
-                    .subtitle {
-                        margin-right: 0;
-                    }
-
-                    .title,
-                    .description {
-                        text-align: var(--composer-content-alignment);
-                    }
-                }
-            }
-        }
-
-        .dividerColumn {
-            display: flex;
-            justify-content: center;
-            align-self: stretch;
-            margin: 0 calc(var(--composer-gap-lg) * 3) 0 calc(var(--composer-gap-md) * 3);
-            flex-shrink: 0;
-
-            .dividerLine {
-                width: 1px;
-                height: 100%;
-                background-color: var(--composer-tertiary-color);
-            }
-        }
-
-        .right-wrapper {
-            display: flex;
-            flex: 1;
-            min-width: 0;
-            position: relative;
-        }
-
-        .right-content {
-            display: none;
-            flex-direction: column;
-            gap: var(--composer-gap-md);
-            flex: 1;
-            min-width: 0;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-
-            &.active-item {
-                display: flex;
-                position: relative;
-                opacity: 1;
-            }
-
-            .image-wrapper {
-                width: 100%;
-                border-radius: var(--composer-border-radius-md);
-                padding: var(--composer-gap-md);
-                border: 1px solid var(--composer-tertiary-color);
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-                min-height: 0;
-
-                .itemImage {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: var(--composer-border-radius-sm);
-                    object-fit: cover;
-                    display: block;
-                    flex: 1;
-                }
-            }
-
-            .sectionsWrapper {
-                display: flex;
-                flex-direction: column;
-                gap: var(--composer-gap-sm);
-
-                .section {
-                    text-align: left;
-
-                    .sectionTitle {
-                        font-weight: 700;
-                        color: var(--composer-font-color-primary);
-
-                        * span,
-                        * p {
-                            display: inline !important;
-                            white-space: nowrap !important;
+                        .card-title,
+                        .card-description {
+                            color: var(--color-white);
                         }
                     }
 
-                    .sectionText {
-                        color: var(--composer-font-color-primary);
+                    .icon-box {
+                        background-color: var(--composer-overlay-color);
+
+                        .card-icon {
+                            color: var(--color-white) !important;
+                        }
                     }
                 }
             }
+        }
+    }
 
-            .button-container {
+    .background-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+
+        .background-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-color: var(--composer-overlay-color);
+            pointer-events: none;
+        }
+    }
+
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-xl);
+
+        .text-content {
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+        }
+
+        .card-container {
+            gap: var(--composer-gap-lg);
+
+            .card-wrapper {
                 display: flex;
-                gap: var(--composer-gap-sm);
-                flex-wrap: wrap;
+                gap: var(--composer-gap-md);
+                flex-direction: column;
 
-                .button {
-                    .button-text {
-                        content: "";
+                .icon-box {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: var(--composer-primary-color);
+                    border-radius: var(--composer-border-radius-full);
+                    padding: var(--composer-gap-md);
+                    height: 70px;
+                    width: 70px;
+
+                    &.no-bg {
+                        background-color: transparent;
+                        justify-content: flex-start;
+                        padding: 0;
+                        height: auto;
+                        width: auto;
+
+                        .card-icon {
+                            color: var(--composer-primary-color);
+                        }
                     }
+
+                    .card-icon {
+                        font-size: 2.5rem;
+                        color: var(--composer-font-color-secondary);
+                        display: flex;
+
+                        &.is-image {
+                            width: var(--composer-gap-lg);
+                            height: var(--composer-gap-lg);
+                        }
+                    }
+                }
+
+                .card-content {
+                    align-items: flex-start;
+
+                    .card-title,
+                    .card-description {
+                        color: var(--composer-font-color-primary);
+                        text-align: left;
+                    }
+                }
+            }
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+
+            .button {
+                .button-text {
+                    content: "";
                 }
             }
         }
@@ -170,29 +160,52 @@
 @container (max-width: #{$composer-tablet-width}) {
     .container {
         .max-content {
-            .dividerColumn {
-                margin: 0 calc(var(--composer-gap-lg) * 2) 0 calc(var(--composer-gap-md) * 2);
-            }
+            gap: var(--composer-gap-md);
 
+            .card-container {
+                gap: var(--composer-gap-md);
+
+                .card-wrapper {
+                    .icon-box {
+                        height: 60px;
+                        width: 60px;
+
+                        .card-icon {
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
-
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            flex-direction: column;
-            gap: var(--composer-gap-md);
+            .card-container {
+                .card-wrapper {
+                    gap: var(--composer-gap-sm);
 
-            .left-content {
-                gap: var(--composer-gap-md);
+                    .icon-box {
+                        height: var(--composer-gap-xl);
+                        width: var(--composer-gap-xl);
+
+                        .card-icon {
+                            font-size: 1.5rem;
+
+                            &.is-image {
+                                width: var(--composer-gap-md);
+                                height: var(--composer-gap-md);
+                            }
+                        }
+                    }
+
+                    .card-content {
+                        gap: var(--composer-gap-sm);
+                    }
+                }
             }
-
-            .dividerColumn {
-                display: none;
-            }
-
         }
     }
 }

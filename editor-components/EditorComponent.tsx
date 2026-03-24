@@ -380,6 +380,7 @@ export enum CATEGORIES {
   COMPARISON = "comparison",
   CUSTOM = "custom",
   GLOBAL = "global",
+  HEADER = "header",
 }
 
 export function generateId(key: string): string {
@@ -1134,4 +1135,18 @@ export abstract class BasePortfolio extends Component {
 
 export abstract class BaseComparison extends Component {
   static category = CATEGORIES.COMPARISON;
+}
+
+export abstract class BaseHeader extends Component {
+  static category = CATEGORIES.HEADER;
+
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
 }
