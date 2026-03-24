@@ -81,13 +81,14 @@ class About13 extends BaseAbout {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const enableOverlay = mediaGroup?.overlay;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
+        const alignmentValue = Base.getContentAlignment();
 
         return (
             <Base.Container className={`${this.decorateCSS("container")} ${isImageExist && this.decorateCSS("has-image")}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
-                            <div className={this.decorateCSS("left-content")}>
+                            <div className={`${this.decorateCSS("left-content")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""} ${!isImageExist && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""}`}>
                                 <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                                     {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
                                     {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}

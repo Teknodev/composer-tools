@@ -15,25 +15,49 @@
                 flex-wrap: wrap;
 
                 .vertical-content {
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: left;
+                    }
 
                     .subtitle {
                         width: fit-content;
-                    }
-
-                    .title,
-                    .description {
-                        content: "";
+                        margin-left: 0;
                     }
 
                     .button-container {
+                        width: 100%;
                         display: flex;
                         gap: var(--composer-gap-sm);
                         flex-wrap: wrap;
+                        justify-content: flex-start;
 
                         .button {
                             .button-text {
                                 content: "";
                             }
+                        }
+                    }
+                }
+
+                &.no-image-center {
+                    .vertical-content {
+                        align-items: center;
+
+                        .title,
+                        .subtitle,
+                        .description {
+                            text-align: center;
+                        }
+
+                        .subtitle {
+                            margin-left: auto;
+                            margin-right: auto;
+                        }
+
+                        .button-container {
+                            justify-content: center;
                         }
                     }
                 }
@@ -72,32 +96,6 @@
             }
         }
     }
-
-    &.has-image {
-        .max-content {
-            .wrapper {
-                .left-content {
-                    .vertical-content {
-                        text-align: left !important;
-                        align-items: flex-start !important;
-
-                        .subtitle {
-                            text-align: left !important;
-                        }
-
-                        .title,
-                        .description {
-                            text-align: left !important;
-                        }
-
-                        .button-container {
-                            justify-content: flex-start !important;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 @container (max-width: #{$composer-phone-width}) {
@@ -106,36 +104,33 @@
             .wrapper {
                 flex-direction: column;
 
-                .right-content {
-                    width: 100% !important;
-                }
-            }
-        }
+                .left-content {
+                    width: 100%;
 
-        &.has-image {
-            .max-content {
-                .wrapper {
-                    .left-content {
-                        width: 100% !important;
-
+                    &.center {
                         .vertical-content {
-                            text-align: var(--composer-content-alignment) !important;
-                            align-items: var(--composer-content-alignment) !important;
-
-                            .subtitle {
-                                text-align: var(--composer-content-alignment) !important;
-                            }
+                            align-items: center;
 
                             .title,
+                            .subtitle,
                             .description {
-                                text-align: var(--composer-content-alignment) !important;
+                                text-align: center;
+                            }
+
+                            .subtitle {
+                                margin-left: auto;
+                                margin-right: auto;
                             }
 
                             .button-container {
-                                justify-content: var(--composer-content-alignment) !important;
+                                justify-content: center;
                             }
                         }
                     }
+                }
+
+                .right-content {
+                    width: 100% !important;
                 }
             }
         }
