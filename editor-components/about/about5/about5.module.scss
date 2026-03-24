@@ -106,6 +106,7 @@
 
           .content {
             flex-direction: column;
+            gap: var(--composer-gap-md);
 
             .right-column-card {
               width: 100%;
