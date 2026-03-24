@@ -31,6 +31,7 @@
             display: flex;
             gap: var(--composer-gap-xs);
             flex-wrap: wrap;
+            align-self: flex-start;
 
             .button {
               .button-text {
@@ -114,7 +115,7 @@
 
               .information {
                 .name {
-                  font-size: 1.7rem !important;
+                  font-size: 1.5rem !important;
                 }
               }
             }
