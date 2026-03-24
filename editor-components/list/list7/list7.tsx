@@ -280,13 +280,12 @@ class List7 extends BaseList {
                   if (!itemTitleExist && !itemTextExist && !showIndex) return null;
 
                   return (
-                    <div key={index} className={this.decorateCSS("list-item")}>
+                    <div key={index} className={this.decorateCSS("list-item")} data-animation={hoverAnimation.join(" ")}>
+                      <div className={this.decorateCSS("border-layer-1")}></div>
+                      <div className={this.decorateCSS("border-layer-2")}></div>
                       <Base.VerticalContent
                         className={this.decorateCSS("item-content")}
-                        data-animation={hoverAnimation.join(" ")}
                       >
-                        <div className={this.decorateCSS("border-layer-1")}></div>
-                        <div className={this.decorateCSS("border-layer-2")}></div>
                         {showIndex && (
                           <Base.H1 className={this.decorateCSS("index")}>
                             {index < 9 ? `0${index + 1}` : index + 1}

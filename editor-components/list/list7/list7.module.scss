@@ -32,6 +32,75 @@
       .items-wrapper {
         .list-item {
           height: 100%;
+          position: relative;
+
+          .border-layer-1,
+          .border-layer-2 {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--composer-border-radius-sm);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--composer-transition-duration-normal) ease;
+          }
+
+          &[data-animation~="animate1"]:hover {
+            .item-content {
+              border-color: transparent;
+            }
+
+            .border-layer-1,
+            .border-layer-2 {
+              opacity: 1;
+              inset: calc(-1 * var(--composer-border-width-sm));
+              padding: var(--composer-border-width-sm);
+              background: linear-gradient(45deg,
+                  transparent 0%,
+                  transparent 40%,
+                  var(--composer-primary-color) 45%,
+                  var(--composer-primary-color) 55%,
+                  transparent 60%,
+                  transparent 100%);
+              background-size: 300% 300%;
+              animation: rotatingBorder 2s linear 1 forwards;
+              -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
+                linear-gradient(var(--color-white) 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+            }
+          }
+
+          &[data-animation~="animate2"]:hover .item-content {
+            box-shadow: var(--composer-box-shadow-lg);
+          }
+
+          &[data-animation~="animate3"]:hover {
+            .item-content {
+              border-color: transparent;
+            }
+
+            .border-layer-1 {
+              position: absolute;
+              inset: calc(-1 * var(--composer-border-width-sm));
+              border-radius: var(--composer-border-radius-sm);
+              padding: var(--composer-border-width-sm);
+              background: conic-gradient(from var(--angle),
+                  var(--composer-primary-color) 0deg 90deg,
+                  color-mix(in srgb, var(--composer-primary-color), transparent 70%) 90deg 180deg,
+                  var(--composer-primary-color) 180deg 270deg,
+                  color-mix(in srgb, var(--composer-primary-color), transparent 70%) 270deg 360deg);
+              animation: rotate 3s linear infinite;
+              -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
+                linear-gradient(var(--color-white) 0 0);
+              -webkit-mask-composite: xor;
+              mask-composite: exclude;
+            }
+          }
+
+          &[data-animation~="animate4"]:hover .index {
+            transform: rotate(360deg);
+            transition: transform var(--composer-transition-duration-normal);
+          }
 
           .item-content {
             height: 100%;
@@ -41,74 +110,9 @@
             display: flex;
             flex-direction: column;
             gap: var(--composer-gap-md);
-            position: relative;
             box-sizing: border-box;
             user-select: text;
             transition: all var(--composer-transition-duration-normal) ease;
-
-            .border-layer-1,
-            .border-layer-2 {
-              position: absolute;
-              inset: 0;
-              border-radius: var(--composer-border-radius-sm);
-              pointer-events: none;
-              opacity: 0;
-              transition: opacity var(--composer-transition-duration-normal) ease;
-            }
-
-            &[data-animation~="animate1"]:hover {
-              border-color: transparent;
-
-              .border-layer-1,
-              .border-layer-2 {
-                opacity: 1;
-                inset: calc(-1 * var(--composer-border-width-sm));
-                padding: var(--composer-border-width-sm);
-                background: linear-gradient(45deg,
-                    transparent 0%,
-                    transparent 40%,
-                    var(--composer-primary-color) 45%,
-                    var(--composer-primary-color) 55%,
-                    transparent 60%,
-                    transparent 100%);
-                background-size: 300% 300%;
-                animation: rotatingBorder 2s linear 1 forwards;
-                -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
-                  linear-gradient(var(--color-white) 0 0);
-                -webkit-mask-composite: xor;
-                mask-composite: exclude;
-              }
-            }
-
-            &[data-animation~="animate2"]:hover {
-              box-shadow: var(--composer-box-shadow-lg);
-            }
-
-            &[data-animation~="animate3"]:hover {
-              border-color: transparent;
-
-              .border-layer-1 {
-                position: absolute;
-                inset: calc(-1 * var(--composer-border-width-sm));
-                border-radius: var(--composer-border-radius-sm);
-                padding: var(--composer-border-width-sm);
-                background: conic-gradient(from var(--angle),
-                    var(--composer-primary-color) 0deg 90deg,
-                    color-mix(in srgb, var(--composer-primary-color), transparent 70%) 90deg 180deg,
-                    var(--composer-primary-color) 180deg 270deg,
-                    color-mix(in srgb, var(--composer-primary-color), transparent 70%) 270deg 360deg);
-                animation: rotate 3s linear infinite;
-                -webkit-mask: linear-gradient(var(--color-white) 0 0) content-box,
-                  linear-gradient(var(--color-white) 0 0);
-                -webkit-mask-composite: xor;
-                mask-composite: exclude;
-              }
-            }
-
-            &[data-animation~="animate4"]:hover .index {
-              transform: rotate(360deg);
-              transition: transform var(--composer-transition-duration-normal);
-            }
 
             .index {
               color: var(--composer-primary-color);
