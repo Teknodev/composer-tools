@@ -82,7 +82,7 @@
                         align-items: flex-start;
 
                         .subtitle {
-                            margin-left: 0;
+                            text-align: left;
                         }
 
                         .title,
@@ -120,9 +120,10 @@
 
                         .vertical-content {
                             text-align: var(--composer-content-alignment);
+                            align-items: unset;
 
                             .subtitle {
-                                margin-right: 0;
+                                text-align: var(--composer-content-alignment);
                             }
 
                             .title,
