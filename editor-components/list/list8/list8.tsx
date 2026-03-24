@@ -311,60 +311,58 @@ class List8 extends BaseList {
                       className={this.decorateCSS("list-item")}
                       data-animation={hoverAnimation.join(" ")}
                     >
-                      {itemNumberExist && (
-                        <div className={this.decorateCSS("number-badge")}>
-                          <Base.H1 className={this.decorateCSS("index")}>{item.number}</Base.H1>
-                        </div>
-                      )}
-                      {iconExist && (
-                        <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
-                      )}
-                      {(itemSubtitleExist || itemTitleExist || itemTextExist) && (
-                        <div className={this.decorateCSS("item-content")}>
-                          {itemSubtitleExist && (
-                            <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                              {item.subtitle}
-                            </Base.H6>
-                          )}
-                          {itemTitleExist && (
-                            <Base.H5 className={this.decorateCSS("item-title")}>
-                              {item.title}
-                            </Base.H5>
-                          )}
-                          {itemTextExist && (
-                            <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>
-                          )}
-                        </div>
-                      )}
-                      {item.buttons && item.buttons.length > 0 && (
-                        <div className={this.decorateCSS("item-buttons")}>
-                          {item.buttons.map((btn: CardButton, bIndex: number) => {
-                            const btnTextExist = this.castToString(btn.text);
-                            const btnIconExist = btn.icon && btn.icon.name;
-                            if (!btnTextExist && !btnIconExist) return null;
-                            return (
-                              <ComposerLink key={bIndex} path={btn.url}>
-                                <Base.Button
-                                  buttonType={btn.type}
-                                  className={this.decorateCSS("item-button")}
-                                >
-                                  {btnTextExist && (
-                                    <Base.P className={this.decorateCSS("button-text")}>
-                                      {btn.text}
-                                    </Base.P>
-                                  )}
-                                  {btnIconExist && (
-                                    <Base.Media
-                                      className={this.decorateCSS("button-icon")}
-                                      value={btn.icon!}
-                                    />
-                                  )}
-                                </Base.Button>
-                              </ComposerLink>
-                            );
-                          })}
-                        </div>
-                      )}
+                      <Base.VerticalContent className={this.decorateCSS("item-container")}>
+                        {itemNumberExist && (
+                          <div className={this.decorateCSS("number-badge")}>
+                            <Base.H1 className={this.decorateCSS("index")}>{item.number}</Base.H1>
+                          </div>
+                        )}
+                        {iconExist && (
+                          <Base.Media value={item.icon} className={this.decorateCSS("icon")} />
+                        )}
+                        {itemSubtitleExist && (
+                          <Base.H6 className={this.decorateCSS("item-subtitle")}>
+                            {item.subtitle}
+                          </Base.H6>
+                        )}
+                        {itemTitleExist && (
+                          <Base.H5 className={this.decorateCSS("item-title")}>
+                            {item.title}
+                          </Base.H5>
+                        )}
+                        {itemTextExist && (
+                          <Base.P className={this.decorateCSS("item-text")}>{item.text}</Base.P>
+                        )}
+                        {item.buttons && item.buttons.length > 0 && (
+                          <div className={this.decorateCSS("item-buttons")}>
+                            {item.buttons.map((btn: CardButton, bIndex: number) => {
+                              const btnTextExist = this.castToString(btn.text);
+                              const btnIconExist = btn.icon && btn.icon.name;
+                              if (!btnTextExist && !btnIconExist) return null;
+                              return (
+                                <ComposerLink key={bIndex} path={btn.url}>
+                                  <Base.Button
+                                    buttonType={btn.type}
+                                    className={this.decorateCSS("item-button")}
+                                  >
+                                    {btnTextExist && (
+                                      <Base.P className={this.decorateCSS("button-text")}>
+                                        {btn.text}
+                                      </Base.P>
+                                    )}
+                                    {btnIconExist && (
+                                      <Base.Media
+                                        className={this.decorateCSS("button-icon")}
+                                        value={btn.icon!}
+                                      />
+                                    )}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   );
                 })}
