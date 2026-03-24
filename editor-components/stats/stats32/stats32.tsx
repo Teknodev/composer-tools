@@ -314,7 +314,6 @@ class Stats32 extends BaseStats {
                                             })}
                                         </div>
                                     )}
-
                                 </Base.VerticalContent>
 
                                 {hasStats && (
