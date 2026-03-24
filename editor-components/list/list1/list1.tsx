@@ -12,9 +12,9 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 
 type Card = {
   image: TypeMediaInputValue;
-  subtitle: React.JSX.Element;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
   buttons: CardButton[];
   overlay: boolean;
 };
@@ -377,7 +377,7 @@ class List1 extends BaseList {
       },
     });
     this.addProp(
-      INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Config", {
+      INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
         dots: true,
         arrows: false,
         infinite: true,
@@ -523,15 +523,15 @@ class List1 extends BaseList {
                         )}
                         {(itemTitleExist || itemSubtitleExist || itemDescExist) && (
                           <Base.VerticalContent className={this.decorateCSS("card-header")}>
-                            {itemTitleExist && (
-                              <Base.H5 className={this.decorateCSS("card-title")}>
-                                {item.title}
-                              </Base.H5>
-                            )}
                             {itemSubtitleExist && (
                               <Base.H6 className={this.decorateCSS("card-subtitle")}>
                                 {item.subtitle}
                               </Base.H6>
+                            )}
+                            {itemTitleExist && (
+                              <Base.H5 className={this.decorateCSS("card-title")}>
+                                {item.title}
+                              </Base.H5>
                             )}
                             {itemDescExist && (
                               <Base.P className={this.decorateCSS("card-description")}>
