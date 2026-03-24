@@ -203,7 +203,7 @@ class Stats32 extends BaseStats {
                                 {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
                             </span>
                         )}
-                        
+
                         {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>{stat.suffix}</span>
                         )}
