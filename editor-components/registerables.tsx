@@ -29,7 +29,6 @@ import SliderComponent4 from "./slider/slider4/slider4";
 import SliderComponent5 from "./slider/slider5/slider5";
 import SliderComponent6 from "./slider/slider6/slider6";
 import SliderComponent7 from "./slider/slider7/slider7";
-import SliderComponent8 from "./slider/slider8/slider8";
 import PricingComponent1 from "./pricing-table/pricing-table1/pricing-table1";
 import PricingComponent2 from "./pricing-table/pricing-table2/pricing-table2";
 import PricingComponent3 from "./pricing-table/pricing-table3/pricing-table3";
@@ -101,6 +100,7 @@ import HeroSection33 from "./hero-section/hero-section33/hero-section33";
 import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
 import HeroSection38 from "./hero-section/hero-section38/hero-section38";
+import HeroSection39 from "./hero-section/hero-section39/hero-section39";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
 import IntroSection3 from "./intro-section/intro-section3/intro-section3";
@@ -401,7 +401,6 @@ function Registerables(composer: ComponentsRegistery) {
     SliderComponent5,
     SliderComponent6,
     SliderComponent7,
-    SliderComponent8,
     PricingComponent1,
     PricingComponent2,
     PricingComponent3,
@@ -473,6 +472,7 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection34,
     HeroSection35,
     HeroSection38,
+    HeroSection39,
     IntroSection1,
     IntroSection2,
     IntroSection3,
