@@ -42,6 +42,13 @@ class List4 extends BaseList {
 
     this.addProp({
       type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
+    });
+
+    this.addProp({
+      type: "array",
       key: "content-card",
       displayer: "List Item",
       value: [
@@ -160,13 +167,6 @@ class List4 extends BaseList {
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary")],
     });
 
     this.addProp({

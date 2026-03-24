@@ -38,6 +38,14 @@ class List2 extends BaseList {
       displayer: "Description",
       value: "Discover best things to do restaurants, shopping, hotels, cafes and places around the world by categories.",
     });
+    this.addProp({
+      type: "array",
+      key: "headerButtons",
+      displayer: "Header Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", null, null, null, "Primary")
+      ],
+    });
 
     this.addProp({
       type: "number",
@@ -374,7 +382,8 @@ class List2 extends BaseList {
     }
 
     const cards = this.castToObject<CardItem[]>("cards");
-    const buttons = this.castToObject<CardButton[]>("buttons") || [];
+    const headerButtons = this.castToObject<CardButton[]>("headerButtons") || [];
+    const footerButtons = this.castToObject<CardButton[]>("buttons") || [];
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -385,7 +394,7 @@ class List2 extends BaseList {
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {(subtitleExist || titleExist || descriptionExist) && (
+            {(subtitleExist || titleExist || descriptionExist || (headerButtons?.length > 0)) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitleExist && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -402,6 +411,28 @@ class List2 extends BaseList {
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
+                {headerButtons?.length > 0 && headerButtons.map((btn: CardButton, btnIndex: number) => {
+                  const buttonText = this.castToString(btn.text);
+                  const iconMedia = btn.icon as TypeMediaInputValue;
+                  const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                  if (!buttonText && !iconExist) return null;
+                  return (
+                    <div key={btnIndex} className={this.decorateCSS("button-wrapper")}>
+                      <ComposerLink path={btn.url}>
+                        <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {btn.text}
+                            </Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={iconMedia} />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    </div>
+                  );
+                })}
               </Base.VerticalContent>
             )}
             {(cards.length > 0) && (
@@ -464,7 +495,7 @@ class List2 extends BaseList {
                 })}
               </Base.ListGrid>
             )}
-            {buttons?.length > 0 && buttons.map((btn: CardButton, btnIndex: number) => {
+            {footerButtons?.length > 0 && footerButtons.map((btn: CardButton, btnIndex: number) => {
               const buttonText = this.castToString(btn.text);
               const iconMedia = btn.icon as TypeMediaInputValue;
               const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;

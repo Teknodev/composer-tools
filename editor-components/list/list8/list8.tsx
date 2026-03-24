@@ -205,13 +205,6 @@ class List8 extends BaseList {
         selectItems: ["animate1", "animate2", "animate3", "animate4"],
       },
     });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-    });
   }
 
   static getName(): string {

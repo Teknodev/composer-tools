@@ -44,6 +44,15 @@ class List10 extends BaseList {
         });
 
         this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+
+        this.addProp({
             type: "boolean",
             key: "overlay",
             displayer: "Overlay",
@@ -201,15 +210,6 @@ class List10 extends BaseList {
             additionalParams: {
                 selectItems: ["animate1", "animate2", "animate3", "animate4"]
             }
-        });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-            ],
         });
     }
 
