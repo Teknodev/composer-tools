@@ -259,7 +259,7 @@
             object-fit: cover;
             z-index: 2;
             border-radius: var(--composer-border-radius-sm);
-            box-shadow: var(--composer-shadow-lg);
+            box-shadow: var(--box-shadow-active);
             overflow: hidden;
 
             .image-overlay {

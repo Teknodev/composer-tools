@@ -323,11 +323,11 @@ class Slider6 extends BaseSlider {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {subtitle}</Base.SectionSubTitle>)}
-              {title && (<Base.SectionTitle className={this.decorateCSS("title")}> {title} </Base.SectionTitle>)}
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
               {(description || validButtons.length > 0) && (
                 <div className={this.decorateCSS("content")}>
-                  {description && (<Base.SectionDescription className={this.decorateCSS("description")}> {description} </Base.SectionDescription>)}
+                  {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                   {validButtons.length > 0 && (
                     <Base.Row className={this.decorateCSS("button-container")}>
                       {validButtons.map((button: INPUTS.CastedButton, index: number) => (
