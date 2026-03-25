@@ -194,16 +194,6 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .content-container {
-                flex-direction: column;
-            }
-        }
-    }
-}
-
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
