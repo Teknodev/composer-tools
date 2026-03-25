@@ -98,7 +98,8 @@
 
       .right-content {
         .image {
-          height: auto;
+          height: 180px !important;
+          object-fit: cover;
         }
       }
     }
@@ -138,10 +139,23 @@
 
       .right-content {
         width: 100% !important;
+        position: relative;
+        z-index: 1;
 
         .image {
-          min-height: 400px;
+          width: 100% !important;
+          height: 400px !important;
           object-fit: cover;
+          border-radius: var(--composer-border-radius-sm);
+          display: block;
+        }
+
+        .overlay {
+          position: absolute;
+          inset: 0;
+          z-index: 2;
+          background-color: var(--composer-overlay-color);
+          border-radius: var(--composer-border-radius-sm);
         }
       }
     }
