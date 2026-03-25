@@ -77,7 +77,7 @@ class Stats32 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "deneme", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
         });
 
