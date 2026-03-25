@@ -1,10 +1,16 @@
 import * as React from "react";
 import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature42.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type ButtonTypeObj = {
+  text: React.JSX.Element;
+  url?: string;
+  type: TypeButton;
+}
 
 interface ListItem {
   title: React.JSX.Element;
@@ -13,7 +19,7 @@ interface ListItem {
   text1: React.JSX.Element;
   text2: React.JSX.Element;
   image: TypeMediaInputValue;
-  button: INPUTS.CastedButton;
+  button: ButtonTypeObj;
 }
 
 class Feature42 extends BaseFeature {
@@ -240,7 +246,7 @@ class Feature42 extends BaseFeature {
     const activeIndex = this.getComponentState("activeIndex");
     const effectiveIndex = activeIndex === undefined ? 0 : activeIndex;
     const hasItems = items.some((item: ListItem) => this.castToString(item.title));
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const hasContent = subtitleExist || titleExist || descriptionExist;
     const hasRightContent = items.some((item: ListItem) =>
@@ -338,7 +344,7 @@ class Feature42 extends BaseFeature {
         )}
         {visibleButtons.length > 0 && (
           <div className={this.decorateCSS("button-container")}>
-            {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
               const buttonTextExist = this.castToString(item.text);
               return (
                 buttonTextExist && (

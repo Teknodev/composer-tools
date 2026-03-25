@@ -234,7 +234,7 @@
           .cardTitle,
           .sectionText1,
           .sectionText2 {
-            text-align: center;
+            text-align: var(--composer-content-alignment);
           }
         }
       }
@@ -354,13 +354,6 @@
         .sectionsWrapper {
           order: 2;
           display: none;
-
-          .cardSubTitle,
-          .cardTitle,
-          .sectionText1,
-          .sectionText2 {
-            text-align: left;
-          }
         }
 
         &.active-item {
