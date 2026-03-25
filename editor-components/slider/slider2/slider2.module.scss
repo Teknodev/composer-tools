@@ -255,36 +255,16 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-
       .down-page {
-        gap: var(--composer-gap-lg);
+        flex-direction: row !important;
+        gap: var(--composer-gap-md);
+
+        .control-part {
+          flex: 0 0 30%;
+        }
 
         .slider-parent {
-          max-width: 100%;
-
-          .carousel {
-            :global(.slick-list) {
-              margin: 0 calc(-0.5 * var(--composer-gap-lg));
-
-              :global(.slick-track) {
-                :global(.slick-slide) {
-                  padding: 0 calc(0.5 * var(--composer-gap-lg));
-                }
-              }
-            }
-
-            .card {
-              &.hover-active:hover {
-                transform: scale(1.03);
-              }
-            }
-
-            .for-single-card {
-              &:hover {
-                transform: scale(1.02);
-              }
-            }
-          }
+          flex: 1;
         }
       }
     }
@@ -298,6 +278,7 @@
 
       .down-page {
         gap: var(--composer-gap-md);
+        flex-direction: column !important;
       }
 
       .custom-dots {
