@@ -113,6 +113,7 @@ class Header2 extends BaseHeader {
   render() {
     const sliderItems = this.castToObject<SliderItem[]>("slider").filter((item: SliderItem) => item.media);
     const isOverlayActive = this.getPropValue("overlay");
+    const hasMedia = sliderItems.some((item: SliderItem) => item.media);
     const settings = {
       ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: sliderItems.length > 1,
@@ -127,7 +128,7 @@ class Header2 extends BaseHeader {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("carousel-wrapper")}>
+          <div className={`${this.decorateCSS("carousel-wrapper")} ${hasMedia && this.decorateCSS("has-media")}`}>
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {sliderItems.map((item: SliderItem, index: number) => (
                 <div key={index} className={this.decorateCSS("slider-item")}>

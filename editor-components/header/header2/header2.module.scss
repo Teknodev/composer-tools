@@ -101,6 +101,20 @@
           }
         }
       }
+
+      &.has-media {
+        .carousel {
+          :global(.slick-dots) {
+            li {
+              button {
+                &:before {
+                  background: #ffffff;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
