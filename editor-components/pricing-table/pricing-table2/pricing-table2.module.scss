@@ -1,4 +1,4 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
@@ -12,17 +12,17 @@
         .title,
         .subtitle,
         .description {
-          text-align: center !important;
-          margin-left: auto !important;
-          margin-right: auto !important;
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .subtitle {
           &:before {
-            display: none !important;
+            display: none;
           }
 
-          transform: translateX(0) !important;
+          transform: translateX(0);
         }
 
         .button-container {
@@ -31,8 +31,10 @@
           width: 100%;
           gap: var(--composer-gap-sm);
 
-          button {
-            .button-text {
+          .button {
+
+            .button-text,
+            .button-icon {
               content: "";
             }
           }
@@ -67,7 +69,7 @@
 
               .card-title {
                 color: var(--composer-font-color-secondary);
-                text-align: left !important;
+                text-align: left;
               }
 
               .card-price {
@@ -75,23 +77,19 @@
                 align-items: center;
                 gap: var(--composer-gap-sm);
                 margin-bottom: var(--composer-gap-sm);
-                text-align: left !important;
-                margin-left: 0 !important;
-                width: 100% !important;
+                text-align: left;
+                margin-left: 0;
+                width: 100%;
 
                 .price,
                 .duration {
                   color: var(--composer-font-color-secondary);
-                  text-align: left !important;
-                  width: fit-content !important;
-                  margin-left: 0 !important;
-                  margin-right: 0 !important;
+                  text-align: left;
+                  width: fit-content;
+                  margin-left: 0;
+                  margin-right: 0;
                 }
               }
-            }
-
-            .hidden {
-              visibility: hidden;
             }
 
             .card-bottom {
@@ -100,7 +98,7 @@
               margin-left: auto;
               margin-right: auto;
               z-index: 40;
-              box-shadow: var(--box-shadow-active);
+              box-shadow: var(--composer-box-shadow);
               padding: var(--composer-gap-md) var(--composer-gap-sm);
               margin-top: calc(-1 * var(--composer-gap-xl));
               background-color: var(--composer-html-background);
@@ -112,26 +110,28 @@
 
               .card-img {
                 padding: var(--composer-gap-md);
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                background: color-mix(in srgb,
+                    var(--composer-html-background),
+                    var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-sm);
-                box-shadow: var(--box-shadow-active);
+                box-shadow: var(--composer-box-shadow);
                 width: max-content;
                 margin-top: calc(-1 * var(--composer-gap-xl));
                 color: var(--composer-primary-color);
                 align-self: center;
-                margin-left: 0 !important;
-                margin-right: auto !important;
+                margin-left: 0;
+                margin-right: auto;
 
                 .icon {
                   font-size: 2rem;
-                  width: 25px;
-                  height: 25px;
+                  width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                  height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                   color: var(--composer-font-color-primary);
                 }
               }
 
               .card-list {
-                place-self: flex-start !important;
+                place-self: flex-start;
 
                 .card-list-item {
                   display: flex;
@@ -139,22 +139,18 @@
                   gap: var(--composer-gap-md);
                   align-items: center;
 
-                  .list-item {
-                    width: 100%;
-                    color: var(--composer-tertiary-color);
-                  }
-
                   .list-icon {
                     display: flex;
                     align-items: center;
-                    width: 20px;
-                    height: 20px;
+                    width: var(--composer-gap-md);
+                    height: var(--composer-gap-md);
                     color: var(--composer-font-color-primary);
                   }
 
                   .list-item {
                     color: var(--composer-font-color-primary);
                     text-align: left;
+                    width: 100%;
                   }
                 }
               }

@@ -749,7 +749,7 @@ class PricingTable2 extends BasePricingTable {
     const buttonsArray = item?.buttons;
     if (!Array.isArray(buttonsArray)) return [];
 
-    return buttonsArray.map((btn: any) => {
+    return buttonsArray.map((btn) => {
       const parent = btn?.value ?? btn;
       const icon = this.getPropValue("icon", { parent_object: parent });
       const media = icon || null;
@@ -767,9 +767,9 @@ class PricingTable2 extends BasePricingTable {
   ) {
     if (!Array.isArray(buttons)) return false;
     return buttons.some(
-      (b: any) =>
+      (b) =>
         this.castToString(b?.text) ||
-        (b?.media && ((b as any).media?.name || (b as any).media?.url))
+        (b?.media && (b.media?.name || b.media?.url))
     );
   }
 
@@ -786,8 +786,13 @@ class PricingTable2 extends BasePricingTable {
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
     const hasDescription = this.castToString(description);
-    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
-    const hasHeaderContent = hasSubtitle || hasTitle || hasDescription || hasValidButtons;
+    const hasValidButtons = buttons.some((btn) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && btn.icon.name;
+      return buttonText || iconExist;
+    });
+    const hasHeaderContent =
+      hasSubtitle || hasTitle || hasDescription || hasValidButtons;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -817,16 +822,30 @@ class PricingTable2 extends BasePricingTable {
                 {hasValidButtons && (
                   <div className={this.decorateCSS("button-container")}>
                     {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                      if (!this.castToString(item.text)) return null;
+                      const buttonText = this.castToString(item.text);
+                      const iconExist = item.icon && item.icon.name;
+
+                      if (!buttonText && !iconExist) return null;
+
                       return (
                         <ComposerLink key={index} path={item.url}>
                           <Base.Button
                             buttonType={item.type}
                             className={this.decorateCSS("button")}
                           >
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {item.text}
-                            </Base.P>
+                            {buttonText && (
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {item.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                value={item.icon}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
                           </Base.Button>
                         </ComposerLink>
                       );
@@ -864,8 +883,8 @@ class PricingTable2 extends BasePricingTable {
                     (listItem: ListItem) =>
                       this.castToString(listItem.text) ||
                       (!!listItem.listIcon &&
-                        ((listItem.listIcon as any).name ||
-                          (listItem.listIcon as any).url))
+                        (listItem.listIcon.name ||
+                          listItem.listIcon.url))
                   );
 
                   const hasCardIcon =
@@ -950,8 +969,8 @@ class PricingTable2 extends BasePricingTable {
                                     const listIcon = listItem.listIcon;
                                     const listIconExists =
                                       !!listIcon &&
-                                      ((listIcon as any).name ||
-                                        (listIcon as any).url);
+                                      (listIcon.name ||
+                                        listIcon.url);
 
                                     if (!cardListItemText && !listIconExists)
                                       return null;
