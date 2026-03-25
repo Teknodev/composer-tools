@@ -67,9 +67,6 @@ class Location1 extends Location {
       value: true,
     });
 
-
-
-
     this.addProp({
       type: "array",
       key: "icons",
@@ -77,7 +74,7 @@ class Location1 extends Location {
       value: [
         {
           type: "object",
-          key: "icon_item",
+          key: "iconItem",
           displayer: "Icon",
           value: [
             {
@@ -103,7 +100,7 @@ class Location1 extends Location {
         },
         {
           type: "object",
-          key: "icon_item",
+          key: "iconItem",
           displayer: "Icon",
           value: [
             {
@@ -129,7 +126,7 @@ class Location1 extends Location {
         },
         {
           type: "object",
-          key: "icon_item",
+          key: "iconItem",
           displayer: "Icon",
           value: [
             {
@@ -155,7 +152,7 @@ class Location1 extends Location {
         },
         {
           type: "object",
-          key: "icon_item",
+          key: "iconItem",
           displayer: "Icon",
           value: [
             {
@@ -173,7 +170,7 @@ class Location1 extends Location {
 
             {
               type: "page",
-              key: "url",
+              key: "path",
               displayer: "Navigate To",
               value: "",
             },
@@ -181,7 +178,7 @@ class Location1 extends Location {
         },
         {
           type: "object",
-          key: "icon_item",
+          key: "iconItem",
           displayer: "Icon",
           value: [
             {
@@ -199,7 +196,7 @@ class Location1 extends Location {
 
             {
               type: "page",
-              key: "url",
+              key: "path",
               displayer: "Navigate To",
               value: "",
             },
@@ -235,7 +232,7 @@ class Location1 extends Location {
 
             {
               type: "media",
-              key: "marker-image",
+              key: "markerImage",
               displayer: "Marker Media",
               additionalParams: {
                 availableTypes: ["image", "icon"],
@@ -244,6 +241,18 @@ class Location1 extends Location {
                 type: "image",
                 url: "",
               },
+            },
+            {
+              type: "number",
+              key: "markerWidth",
+              displayer: "Marker Width",
+              value: 32,
+            },
+            {
+              type: "number",
+              key: "markerHeight",
+              displayer: "Marker Height",
+              value: 32,
             },
             {
               type: "string",
@@ -282,7 +291,7 @@ class Location1 extends Location {
 
     this.addProp({
       type: "object",
-      key: "button_row",
+      key: "buttonRow",
       displayer: "Contact",
       value: [
         {
@@ -377,12 +386,12 @@ class Location1 extends Location {
         const popupButtonIcon = address.getPropValue("popupButtonIcon");
         const popupButtonIconExist = popupButtonIcon && (popupButtonIcon.name || popupButtonIcon.url);
 
-        const popupButtonUrl = address.getPropValue("popupButtonUrl");
+        const popupButtonUrl = address.getPropValue("navigateTo");
 
-        const markerMedia = address.getPropValue("marker-image");
+        const markerMedia = address.getPropValue("markerImage");
 
-        const width = address.getPropValue("marker-width") || 32;
-        const height = address.getPropValue("marker-height") || 32;
+        const width = address.getPropValue("markerWidth") || 32;
+        const height = address.getPropValue("markerHeight") || 32;
 
         let iconUrl: string | undefined =
           markerMedia && typeof markerMedia === "object" && markerMedia.type === "image"
@@ -427,18 +436,17 @@ class Location1 extends Location {
       }
       return acc;
     }, []);
-
-    const title = this.getPropValue("title");
-    const hasTitle = this.castToString(title);
     const subtitle = this.getPropValue("subtitle");
-    const hasSubtitle = this.castToString(subtitle);
-    const buttom = this.castToObject<ButtomType>("button_row");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+
+    const buttom = this.castToObject<ButtomType>("buttonRow");
     const icons = this.getPropValue("icons");
     const line = this.getPropValue("line");
-    const description = buttom.description;
+
+    const headerDescription = buttom.description;
     const phone = buttom.phoneNumber;
-    const headerDescription = this.getPropValue("headerDescription");
-    const headerDescriptionExist = this.castToString(headerDescription);
+
     const markerZoom = this.getPropValue("markerZoom");
     const centerZoom = this.getPropValue("centerZoom");
 
@@ -447,54 +455,45 @@ class Location1 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {(hasTitle || icons.length > 0) && (
-              <div className={this.decorateCSS("header")}>
-                <Base.VerticalContent className={`${this.decorateCSS("title-block")} ${this.decorateCSS(alignment)}`}>
-                  {hasSubtitle && (
-                    <div className={this.decorateCSS("subtitle-wrapper")}>
-                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
-                    </div>
-                  )}
-                  {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                  {headerDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{headerDescription}</Base.SectionDescription>}
+          {(title || icons.length > 0) && (
+            <div className={this.decorateCSS("header")}>
+              <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              </Base.VerticalContent>
+              {title && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
+              {icons.length > 0 && (
+                <div className={this.decorateCSS("icon-container")}>
+                  {icons.map((icon: any, index: number) => {
+                    const iconValue = icon.getPropValue && icon.getPropValue("icon");
+                    return iconValue && (
+                      <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
+                        <ComposerLink path={icon.getPropValue("path")}>
+                          <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
+                        </ComposerLink>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+          <section className={this.decorateCSS("map-container")}>
+            <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
+          </section>
+          {(description || phone) && (
+            <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
+              {description && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
+              {phone && (
+                <Base.VerticalContent>
+                  <ComposerLink path={buttom.path}>
+                    <Base.H5 className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.H5>
+                  </ComposerLink>
                 </Base.VerticalContent>
-                {hasTitle && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
-                {icons.length > 0 && (
-                  <div className={this.decorateCSS("icon-container")}>
-                    {icons.map((icon: any, index: number) => {
-                      const iconValue = icon.getPropValue && icon.getPropValue("icon");
-                      if (!iconValue) return null;
-                      return (
-                        <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                          <ComposerLink path={icon.getPropValue("path")}>
-                            <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
-                          </ComposerLink>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            )}
-
-            <section className={this.decorateCSS("map-container")}>
-              <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
-            </section>
-
-            {(description || phone) && (
-              <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
-                {description && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
-                {phone && (
-                  <Base.VerticalContent>
-                    <ComposerLink path={buttom.path}>
-                      <Base.H5 className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.H5>
-                    </ComposerLink>
-                  </Base.VerticalContent>
-                )}
-              </div>
-            )}
-          </Base.VerticalContent>
+              )}
+            </div>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
