@@ -129,12 +129,11 @@
               transition: background-color var(--composer-transition-duration-slow) ease;
               display: flex;
               flex-direction: column;
-              gap: var(--composer-gap-md);
 
               &[data-animation~="animate2"]:hover {
                 background-color: var(--composer-primary-color);
 
-                .icon {
+                .item-icon {
                   color: var(--composer-html-background);
                 }
 
@@ -144,21 +143,16 @@
                 }
               }
 
-              &[data-animation~="animate3"]:hover .icon {
+              &[data-animation~="animate3"]:hover .item-icon {
                 transform: rotate(360deg);
                 transition: transform var(--composer-transition-duration-normal);
               }
 
-              .icon {
+              .item-icon {
                 width: 2.5rem;
                 height: 2.5rem;
                 font-size: 2.5rem;
                 color: var(--composer-primary-color);
-                align-self: flex-start;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                object-fit: contain;
               }
 
               .item-subtitle,
@@ -166,7 +160,6 @@
                 content: "";
                 color: var(--composer-font-color-primary);
                 overflow: hidden;
-                margin: 0;
                 position: relative;
                 display: inline-block;
                 text-align: left;
@@ -176,9 +169,22 @@
 
               .item-description {
                 content: "";
-                margin: 0;
                 color: var(--composer-font-color-primary);
                 text-align: left;
+              }
+
+              .card-button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .card-button {
+
+                  .card-button-text,
+                  .card-button-icon {
+                    content: "";
+                  }
+                }
               }
             }
           }
@@ -202,7 +208,7 @@
       transform: translateY(var(--composer-gap-sm));
     }
 
-    .service-item .card-content .card-body .icon {
+    .service-item .card-content .card-body .item-icon {
       width: 1.75rem;
       height: 1.75rem;
       font-size: 1.75rem;
@@ -273,7 +279,7 @@
             }
           }
 
-          .card-content .card-body .icon {
+          .card-content .card-body .item-icon {
             width: 1.5rem;
             height: 1.5rem;
             font-size: 1.5rem;

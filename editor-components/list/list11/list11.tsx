@@ -12,6 +12,7 @@ interface ListItems {
     url: string;
     navigateToText: React.JSX.Element;
     icon: TypeMediaInputValue;
+    buttons: INPUTS.CastedButton[];
 }
 
 class List11 extends BaseList {
@@ -107,6 +108,14 @@ class List11 extends BaseList {
                                 availableTypes: ["icon", "image"],
                             },
                         },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -168,6 +177,14 @@ class List11 extends BaseList {
                                 availableTypes: ["icon", "image"],
                             },
                         },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ]
                 },
                 {
@@ -228,6 +245,14 @@ class List11 extends BaseList {
                             additionalParams: {
                                 availableTypes: ["icon", "image"],
                             },
+                        },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
                         },
                     ]
                 },
@@ -329,6 +354,8 @@ class List11 extends BaseList {
                                 const navigateToTextExist = this.castToString(item.navigateToText);
                                 const iconExist = item.icon && !!item.icon.url;
                                 const imageExist = !!item.itemImage;
+                                const cardButtons = item.buttons || [];
+                                const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
 
                                 return (
                                     <div key={index} className={this.decorateCSS("card")}
@@ -374,6 +401,23 @@ class List11 extends BaseList {
                                                             )}
                                                         </div>
                                                     </ComposerLink>
+                                                )}
+                                                {hasValidCardButtons && (
+                                                    <div className={this.decorateCSS("card-button-container")}>
+                                                        {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                                                            const btnText = this.castToString(btn.text);
+                                                            const btnIconExist = btn.icon && (btn.icon as any).name;
+                                                            if (!btnText && !btnIconExist) return null;
+                                                            return (
+                                                                <ComposerLink key={btnIndex} path={btn.url}>
+                                                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                        {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                                                        {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon as unknown as TypeMediaInputValue} />}
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            );
+                                                        })}
+                                                    </div>
                                                 )}
                                             </Base.VerticalContent>
                                         </div>

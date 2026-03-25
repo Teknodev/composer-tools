@@ -14,6 +14,7 @@ type ListItem = {
   description: JSX.Element;
   lowericon: TypeMediaInputValue;
   url: string;
+  buttons: INPUTS.CastedButton[];
 };
 
 class List5 extends BaseList {
@@ -137,6 +138,14 @@ class List5 extends BaseList {
               displayer: "Navigate To",
               value: "",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -197,6 +206,14 @@ class List5 extends BaseList {
               key: "url",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+              ],
             },
           ],
         },
@@ -259,6 +276,14 @@ class List5 extends BaseList {
               displayer: "Navigate To",
               value: "",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -319,6 +344,14 @@ class List5 extends BaseList {
               key: "url",
               displayer: "Navigate To",
               value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+              ],
             },
           ],
         },
@@ -415,60 +448,83 @@ class List5 extends BaseList {
                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2 }}
               >
                 {ListItems.map((listItem: ListItem, index: number) => {
+                  const cardButtons = listItem.buttons || [];
+                  const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
                   return (
                     <div key={index} className={this.decorateCSS("card-wrapper")}>
-                      <div
+                      <Base.VerticalContent
                         className={this.decorateCSS("card")}
                         data-animation={hoverAnimation.join(" ")}
                       >
                         <ComposerLink path={listItem.url}>
-                          {(listItem.uppericon || this.castToString(listItem.index)) && (
-                            <div className={this.decorateCSS("card-header")}>
-                              {listItem.uppericon && (
-                                <div className={this.decorateCSS("icon-section")}>
-                                  <div className={this.decorateCSS("icon-badge")}>
-                                    <div className={this.decorateCSS("icon-wrapper")}>
-                                      <Base.Media
-                                        value={listItem.uppericon}
-                                        className={this.decorateCSS("icon")}
-                                      />
+                          <Base.VerticalContent className={this.decorateCSS("card-inner")}>
+                            {(listItem.uppericon || this.castToString(listItem.index)) && (
+                              <div className={this.decorateCSS("card-header")}>
+                                {listItem.uppericon && (
+                                  <div className={this.decorateCSS("icon-section")}>
+                                    <div className={this.decorateCSS("icon-badge")}>
+                                      <div className={this.decorateCSS("icon-wrapper")}>
+                                        <Base.Media
+                                          value={listItem.uppericon}
+                                          className={this.decorateCSS("icon")}
+                                        />
+                                      </div>
+                                      <div className={this.decorateCSS("icon-badge-border")}></div>
                                     </div>
-                                    <div className={this.decorateCSS("icon-badge-border")}></div>
                                   </div>
-                                </div>
-                              )}
-                              {this.castToString(listItem.index) && (
-                                <div className={this.decorateCSS("index-section")}>
-                                  <Base.H1 className={this.decorateCSS("item-index")}>
-                                    {listItem.index}
-                                  </Base.H1>
-                                </div>
-                              )}
-                            </div>
-                          )}
-                          {this.castToString(listItem.subtitle) && (
-                            <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                              {listItem.subtitle}
-                            </Base.H5>
-                          )}
-                          {this.castToString(listItem.title) && (
-                            <Base.H4 className={this.decorateCSS("card-title")}>
-                              {listItem.title}
-                            </Base.H4>
-                          )}
-                          {this.castToString(listItem.description) && (
-                            <Base.P className={this.decorateCSS("card-description")}>
-                              {listItem.description}
-                            </Base.P>
-                          )}
-                          {listItem.lowericon && (
+                                )}
+                                {this.castToString(listItem.index) && (
+                                  <div className={this.decorateCSS("index-section")}>
+                                    <Base.H1 className={this.decorateCSS("item-index")}>
+                                      {listItem.index}
+                                    </Base.H1>
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            {this.castToString(listItem.subtitle) && (
+                              <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                                {listItem.subtitle}
+                              </Base.H5>
+                            )}
+                            {this.castToString(listItem.title) && (
+                              <Base.H4 className={this.decorateCSS("card-title")}>
+                                {listItem.title}
+                              </Base.H4>
+                            )}
+                            {this.castToString(listItem.description) && (
+                              <Base.P className={this.decorateCSS("card-description")}>
+                                {listItem.description}
+                              </Base.P>
+                            )}
+                          </Base.VerticalContent>
+                        </ComposerLink>
+                        {hasValidCardButtons && (
+                          <div className={this.decorateCSS("card-button-container")}>
+                            {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                              const btnText = this.castToString(btn.text);
+                              const btnIconExist = btn.icon && (btn.icon as any).name;
+                              if (!btnText && !btnIconExist) return null;
+                              return (
+                                <ComposerLink key={btnIndex} path={btn.url}>
+                                  <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon as unknown as TypeMediaInputValue} />}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
+                        {listItem.lowericon && (
+                          <ComposerLink path={listItem.url}>
                             <Base.Media
                               value={listItem.lowericon}
                               className={this.decorateCSS("arrow-icon")}
                             />
-                          )}
-                        </ComposerLink>
-                      </div>
+                          </ComposerLink>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   );
                 })}

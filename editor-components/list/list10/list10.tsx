@@ -11,6 +11,7 @@ type Card = {
     description: React.JSX.Element;
     bottomText: React.JSX.Element;
     url: string;
+    buttons: INPUTS.CastedButton[];
 };
 
 class List10 extends BaseList {
@@ -105,6 +106,14 @@ class List10 extends BaseList {
                             displayer: "Navigate To",
                             value: "",
                         },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ],
                 },
                 {
@@ -148,6 +157,14 @@ class List10 extends BaseList {
                             displayer: "Navigate To",
                             value: "",
                         },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
+                        },
                     ],
                 },
                 {
@@ -190,6 +207,14 @@ class List10 extends BaseList {
                             key: "url",
                             displayer: "Navigate To",
                             value: "",
+                        },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                            ],
                         },
                     ],
                 },
@@ -293,12 +318,14 @@ class List10 extends BaseList {
                                 const descExist = this.castToString(card.description);
                                 const bottomTextExist = this.castToString(card.bottomText);
                                 const imageExist = !!card.image;
+                                const cardButtons = card.buttons || [];
+                                const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
 
                                 if (!badgeExist && !descExist && !bottomTextExist && !imageExist) return null;
 
                                 return (
                                     <ComposerLink key={index} path={card.url}>
-                                        <div
+                                        <Base.VerticalContent
                                             className={this.decorateCSS("card")}
                                             data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                         >
@@ -329,7 +356,24 @@ class List10 extends BaseList {
                                                     {card.bottomText}
                                                 </Base.P>
                                             )}
-                                        </div>
+                                            {hasValidCardButtons && (
+                                                <div className={this.decorateCSS("card-button-container")}>
+                                                    {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                                                        const btnText = this.castToString(btn.text);
+                                                        const btnIconExist = btn.icon && (btn.icon as any).name;
+                                                        if (!btnText && !btnIconExist) return null;
+                                                        return (
+                                                            <ComposerLink key={btnIndex} path={btn.url}>
+                                                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon as unknown as TypeMediaInputValue} />}
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
+                                        </Base.VerticalContent>
                                     </ComposerLink>
                                 );
                             })}

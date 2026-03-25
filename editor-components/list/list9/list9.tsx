@@ -96,6 +96,14 @@ class List9 extends BaseList {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
+                        },
                     ],
                 },
                 {
@@ -145,6 +153,14 @@ class List9 extends BaseList {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
                         },
                     ],
                 },
@@ -196,6 +212,14 @@ class List9 extends BaseList {
                                 availableTypes: ["image", "video"],
                             },
                         },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
+                        },
                     ],
                 },
                 {
@@ -245,6 +269,14 @@ class List9 extends BaseList {
                             additionalParams: {
                                 availableTypes: ["image", "video"],
                             },
+                        },
+                        {
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [
+                                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
+                            ],
                         },
                     ],
                 },
@@ -379,6 +411,8 @@ class List9 extends BaseList {
                                     const cardDescriptionExist = this.castToString(card.description);
                                     const iconExist = card.icon && (card.icon.name || card.icon.url);
                                     const imageExist = card.image && (card.image.name || card.image.url);
+                                    const cardButtons = card.buttons || [];
+                                    const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
 
                                     if (!cardTitleExist && !cardDescriptionExist && !iconExist && !imageExist) return null;
 
@@ -424,6 +458,23 @@ class List9 extends BaseList {
                                                     <Base.P className={this.decorateCSS("card-description")}>
                                                         {card.description}
                                                     </Base.P>
+                                                )}
+                                                {hasValidCardButtons && (
+                                                    <div className={this.decorateCSS("card-button-container")}>
+                                                        {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                                                            const btnText = this.castToString(btn.text);
+                                                            const btnIconExist = btn.icon && btn.icon.name;
+                                                            if (!btnText && !btnIconExist) return null;
+                                                            return (
+                                                                <ComposerLink key={btnIndex} path={btn.url}>
+                                                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                        {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                                                        {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                                                                    </Base.Button>
+                                                                </ComposerLink>
+                                                            );
+                                                        })}
+                                                    </div>
                                                 )}
                                             </Base.VerticalContent>
                                         </div>

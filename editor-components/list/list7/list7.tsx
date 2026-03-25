@@ -12,6 +12,7 @@ type ListItem = {
   itemSubtitle: React.JSX.Element;
   text: React.JSX.Element;
   title: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
 };
 
 class List7 extends BaseList {
@@ -87,43 +88,13 @@ class List7 extends BaseList {
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "list-item",
-          displayer: "List Item",
-          value: [
             {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              value: {
-                type: "icon",
-                name: "",
-              },
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-            },
-            {
-              type: "string",
-              key: "itemSubtitle",
-              displayer: "Item Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Contagious Energy",
-            },
-            {
-              type: "string",
-              key: "text",
-              displayer: "Text",
-              value:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             },
           ],
         },
@@ -162,6 +133,60 @@ class List7 extends BaseList {
               displayer: "Text",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "list-item",
+          displayer: "List Item",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              displayer: "Icon",
+              value: {
+                type: "icon",
+                name: "",
+              },
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+            },
+            {
+              type: "string",
+              key: "itemSubtitle",
+              displayer: "Item Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Contagious Energy",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             },
           ],
         },
@@ -276,6 +301,8 @@ class List7 extends BaseList {
                   const itemTextExist = this.castToString(item.text);
                   const itemSubtitleExist = this.castToString(item.itemSubtitle);
                   const iconExist = item.icon && (item.icon.name || item.icon.url);
+                  const cardButtons = item.buttons || [];
+                  const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
 
                   if (!itemTitleExist && !itemTextExist && !showIndex) return null;
 
@@ -311,6 +338,23 @@ class List7 extends BaseList {
                           <Base.P className={this.decorateCSS("item-description")}>
                             {item.text}
                           </Base.P>
+                        )}
+                        {hasValidCardButtons && (
+                          <div className={this.decorateCSS("card-button-container")}>
+                            {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                              const btnText = this.castToString(btn.text);
+                              const btnIconExist = btn.icon && (btn.icon as any).name;
+                              if (!btnText && !btnIconExist) return null;
+                              return (
+                                <ComposerLink key={btnIndex} path={btn.url}>
+                                  <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon as unknown as TypeMediaInputValue} />}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
                         )}
                       </Base.VerticalContent>
                     </div>

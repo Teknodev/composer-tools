@@ -14,6 +14,7 @@ type Card = {
   subtitle: React.JSX.Element;
   icon: TypeMediaInputValue;
   title: React.JSX.Element;
+  buttons: CardButton[];
 };
 
 class List4 extends BaseList {
@@ -88,6 +89,14 @@ class List4 extends BaseList {
                 availableTypes: ["icon", "image"],
               },
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -126,6 +135,14 @@ class List4 extends BaseList {
                 availableTypes: ["icon", "image"],
               },
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -163,6 +180,14 @@ class List4 extends BaseList {
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             },
           ],
         },
@@ -270,6 +295,11 @@ class List4 extends BaseList {
                   const hasSubtitle = this.castToString(card.subtitle);
                   const hasDescription = this.castToString(card.description);
                   const hasIcon = !!card.icon;
+                  const cardButtons = card.buttons || [];
+                  const hasValidCardButtons = cardButtons.some((btn: CardButton) => {
+                    const iconMedia = btn.icon as TypeMediaInputValue;
+                    return this.castToString(btn.text) || (iconMedia && iconMedia.type === "icon" && iconMedia.name);
+                  });
 
                   if (!hasTitle && !hasSubtitle && !hasDescription && !hasIcon) return null;
                   return (
@@ -305,7 +335,7 @@ class List4 extends BaseList {
                           {card.icon && (
                             <Base.Media
                               value={card.icon}
-                              className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                              className={this.decorateCSS("item-icon")}
                             />
                           )}
 
@@ -325,6 +355,24 @@ class List4 extends BaseList {
                             <Base.P className={this.decorateCSS("item-description")}>
                               {card.description}
                             </Base.P>
+                          )}
+                          {hasValidCardButtons && (
+                            <div className={this.decorateCSS("card-button-container")}>
+                              {cardButtons.map((btn: CardButton, btnIndex: number) => {
+                                const btnText = this.castToString(btn.text);
+                                const btnIconMedia = btn.icon as TypeMediaInputValue;
+                                const btnIconExist = btnIconMedia && btnIconMedia.type === "icon" && btnIconMedia.name;
+                                if (!btnText && !btnIconExist) return null;
+                                return (
+                                  <ComposerLink key={btnIndex} path={btn.url}>
+                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                      {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                      {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btnIconMedia} />}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                );
+                              })}
+                            </div>
                           )}
                         </Base.VerticalContent>
                       </div>

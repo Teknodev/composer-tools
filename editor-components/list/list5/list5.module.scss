@@ -109,15 +109,12 @@
             border-radius: var(--composer-border-radius-sm);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
             padding: var(--composer-gap-md);
-            gap: var(--composer-gap-md);
             transition: all var(--composer-transition-duration-normal) ease;
 
             // animate1 and animate4 share identical hover styles, grouped together
             &[data-animation~="animate1"]:hover,
             &[data-animation~="animate4"]:hover {
               .card-header {
-                margin-bottom: var(--composer-gap-md);
-
                 .item-index {
                   color: var(--composer-font-color-secondary);
                   transition: color var(--composer-transition-duration-normal) ease;
@@ -176,8 +173,6 @@
 
             &:hover {
               .card-header {
-                margin-bottom: var(--composer-gap-md);
-
                 .item-index {
                   color: var(--composer-font-color-secondary);
                   transition: color var(--composer-transition-duration-normal) ease;
@@ -211,10 +206,10 @@
             }
 
             .card-header {
-              margin-bottom: var(--composer-gap-md);
               display: flex;
               align-items: center;
               flex: 0 0 auto;
+              width: 100%;
 
               .icon-section {
                 flex: 1;
@@ -269,7 +264,6 @@
               content: "";
               color: var(--composer-font-color-primary);
               text-align: left;
-              margin-bottom: var(--composer-gap-sm);
               flex: 0 0 auto;
             }
 
@@ -278,7 +272,19 @@
               color: var(--composer-font-color-primary);
               text-align: left;
               flex: 1 1 auto;
-              margin-bottom: var(--composer-gap-md);
+            }
+
+            .card-button-container {
+              display: flex;
+              flex-wrap: wrap;
+              gap: var(--composer-gap-sm);
+
+              .card-button {
+                .card-button-text,
+                .card-button-icon {
+                  content: "";
+                }
+              }
             }
 
             .arrow-icon {

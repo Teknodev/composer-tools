@@ -15,6 +15,7 @@ type CardItem = {
   count: React.JSX.Element;
   label: React.JSX.Element;
   text: React.JSX.Element;
+  buttons: CardButton[];
 };
 
 class List2 extends BaseList {
@@ -112,6 +113,14 @@ class List2 extends BaseList {
               displayer: "Text",
               value: "Nightlife",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -154,6 +163,14 @@ class List2 extends BaseList {
               key: "text",
               displayer: "Text",
               value: "Shops",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             },
           ],
         },
@@ -198,6 +215,14 @@ class List2 extends BaseList {
               displayer: "Text",
               value: "Restaurant",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -240,6 +265,14 @@ class List2 extends BaseList {
               key: "text",
               displayer: "Text",
               value: "Outdoor Activities",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
             },
           ],
         },
@@ -284,6 +317,14 @@ class List2 extends BaseList {
               displayer: "Text",
               value: "Hotels",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -327,6 +368,14 @@ class List2 extends BaseList {
               displayer: "Text",
               value: "New York",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+              ],
+            },
           ],
         },
       ],
@@ -348,7 +397,7 @@ class List2 extends BaseList {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "View More Categories", null, null, null, "Primary")
+        INPUTS.BUTTON("button", "Button", "View More Categories", "", null, null, "Primary")
       ],
     });
     this.addProp({
@@ -448,6 +497,11 @@ class List2 extends BaseList {
                   if (!hasImage) {
                     cardClasses.push(this.decorateCSS("card-no-image"));
                   }
+                  const cardButtons = item.buttons || [];
+                  const hasValidCardButtons = cardButtons.some((btn: CardButton) => {
+                    const iconMedia = btn.icon as TypeMediaInputValue;
+                    return this.castToString(btn.text) || (iconMedia && iconMedia.type === "icon" && iconMedia.name);
+                  });
                   return (
                     <ComposerLink key={index} path={item.url}>
                       <div
@@ -487,6 +541,24 @@ class List2 extends BaseList {
                             )}
                           </div>
                         </div>
+                        {hasValidCardButtons && (
+                          <div className={this.decorateCSS("card-button-container")}>
+                            {cardButtons.map((btn: CardButton, btnIndex: number) => {
+                              const btnText = this.castToString(btn.text);
+                              const btnIconMedia = btn.icon as TypeMediaInputValue;
+                              const btnIconExist = btnIconMedia && btnIconMedia.type === "icon" && btnIconMedia.name;
+                              if (!btnText && !btnIconExist) return null;
+                              return (
+                                <ComposerLink key={btnIndex} path={btn.url}>
+                                  <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btnIconMedia} />}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
                     </ComposerLink>
                   );
