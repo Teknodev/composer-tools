@@ -43,8 +43,8 @@
             }
           }
 
-          .device,
-          .platform,
+          .card-subtitle,
+          .card-title,
           .card-description {
             text-align: left !important;
             color: var(--composer-font-color-primary);
@@ -80,8 +80,8 @@
               }
             }
 
-            .device,
-            .platform,
+            .card-subtitle,
+            .card-title,
             .card-description {
               color: var(--composer-html-background);
             }

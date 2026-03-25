@@ -7,9 +7,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   icon: string;
-  device: React.JSX.Element;
-  platform: React.JSX.Element;
-  description: React.JSX.Element;
+  cardSubtitle: React.JSX.Element;
+  cardTitle: React.JSX.Element;
+  cardDescription: React.JSX.Element;
   button: INPUTS.CastedButton;
 };
 
@@ -62,19 +62,19 @@ class Download2 extends BaseDownload {
             },
             {
               type: "string",
-              key: "device",
-              displayer: "Device",
+              key: "cardSubtitle",
+              displayer: "Subtitle",
               value: "Desktop",
             },
             {
               type: "string",
-              key: "platform",
-              displayer: "Platform",
+              key: "cardTitle",
+              displayer: "Title",
               value: "PC/MAC",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
@@ -100,19 +100,19 @@ class Download2 extends BaseDownload {
             },
             {
               type: "string",
-              key: "device",
-              displayer: "Device",
+              key: "cardSubtitle",
+              displayer: "Subtitle",
               value: "Mobile Phone",
             },
             {
               type: "string",
-              key: "platform",
-              displayer: "Platform",
+              key: "cardTitle",
+              displayer: "Title",
               value: "IOS",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
@@ -138,19 +138,19 @@ class Download2 extends BaseDownload {
             },
             {
               type: "string",
-              key: "device",
-              displayer: "Device",
+              key: "cardSubtitle",
+              displayer: "Subtitle",
               value: "Mobile Phone / Tablet",
             },
             {
               type: "string",
-              key: "platform",
-              displayer: "Platform",
+              key: "cardTitle",
+              displayer: "Title",
               value: "Android",
             },
             {
               type: "string",
-              key: "description",
+              key: "cardDescription",
               displayer: "Description",
               value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.",
             },
@@ -200,14 +200,14 @@ class Download2 extends BaseDownload {
           <div className={this.decorateCSS("cards-container")}>
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards")}>
               {(this.castToObject<Card[]>("cards") || []).map((card: Card, index: number) => {
-                const deviceExist = this.castToString(card.device);
-                const platformExist = this.castToString(card.platform);
-                const descriptionExist = this.castToString(card.description);
+                const cardSubtitleExist = this.castToString(card.cardSubtitle);
+                const cardTitleExist = this.castToString(card.cardTitle);
+                const cardDescriptionExist = this.castToString(card.cardDescription);
                 const buttonTextExist = this.castToString(card.button?.text);
                 const buttonIconExist = card.button?.icon && card.button?.icon?.name;
                 const buttonImageExist = card.button?.image && card.button?.image?.url;
                 const buttonExist = buttonTextExist || buttonIconExist || buttonImageExist;
-                const cardExist = deviceExist || platformExist || descriptionExist || buttonExist;
+                const cardExist = cardSubtitleExist || cardTitleExist || cardDescriptionExist || buttonExist;
                 return cardExist && (
                   <Base.VerticalContent className={this.decorateCSS("card")} key={index}>
                     {card.icon && (
@@ -215,9 +215,9 @@ class Download2 extends BaseDownload {
                         <Base.Media value={card.icon} className={this.decorateCSS("icon")} />
                       </Base.Row>
                     )}
-                    {deviceExist && <Base.H4 className={this.decorateCSS("device")}>{card.device}</Base.H4>}
-                    {platformExist && <Base.H2 className={this.decorateCSS("platform")}>{card.platform}</Base.H2>}
-                    {descriptionExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                    {card.cardSubtitle && <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H4>}
+                    {card.cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H2>}
+                    {card.cardDescription && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                     {buttonExist &&
                       <div className={this.decorateCSS("card-button-container")}>
                         <ComposerLink path={card?.button?.url}>
