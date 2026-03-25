@@ -140,7 +140,8 @@
         width: 100% !important;
 
         .image {
-          height: auto;
+          min-height: 400px;
+          object-fit: cover;
         }
       }
     }
