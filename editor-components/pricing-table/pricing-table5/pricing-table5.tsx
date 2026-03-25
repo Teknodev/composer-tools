@@ -211,11 +211,11 @@ class PricingTable5 extends BasePricingTable {
     const buttonsArray = item?.buttons;
     if (!Array.isArray(buttonsArray)) return [];
 
-    return buttonsArray.map((btn: any) => {
+    return buttonsArray.map((btn) => {
       const parent = btn?.value ?? btn;
       const icon = this.getPropValue("icon", { parent_object: parent });
-
       const media = icon || null;
+
       return {
         text: this.getPropValue("text", { parent_object: parent }),
         type: this.getPropValue("type", { parent_object: parent }),
@@ -228,11 +228,11 @@ class PricingTable5 extends BasePricingTable {
   private hasAnyButtonInItem(
     buttons: { text?: string; media?: TypeMediaInputValue }[]
   ) {
+    if (!Array.isArray(buttons)) return false;
     return buttons.some(
-      (b: any) =>
+      (b) =>
         this.castToString(b?.text) ||
-        (b as any).icon?.name ||
-        (b as any).icon?.url
+        (b?.media && (b.media.name || b.media.url))
     );
   }
 
@@ -248,7 +248,7 @@ class PricingTable5 extends BasePricingTable {
   }
 
   render(): React.ReactNode {
-    const topLevelButtons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
@@ -256,9 +256,15 @@ class PricingTable5 extends BasePricingTable {
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const hasTopLevelButtons = this.hasAnyButtonInItem(topLevelButtons);
+
+    const hasValidButtons = buttons.some((btn) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && btn.icon.name;
+      return buttonText || iconExist;
+    });
+
     const showLeftContent =
-      subtitleExist || titleExist || descriptionExist || hasTopLevelButtons;
+      subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
     const plans = this.castToObject<Card[]>("plans");
     const rightItemsExist = plans.length > 0;
@@ -291,37 +297,30 @@ class PricingTable5 extends BasePricingTable {
                     {description}
                   </Base.SectionDescription>
                 )}
-                {hasTopLevelButtons && (
+                {hasValidButtons && (
                   <div className={this.decorateCSS("buttons")}>
-                    {topLevelButtons.map((btn: any, btnIndex: number) => {
-                      const buttonText = btn.text;
-                      const buttonMedia = btn.icon;
-                      const buttonUrl = btn.url || "#";
-                      const buttonType = btn.type;
+                    {buttons.map((btn, btnIndex: number) => {
+                      const buttonText = this.castToString(btn.text);
+                      const iconExist = btn.icon && btn.icon.name;
 
-                      const btnTextExist = this.castToString(buttonText);
-                      const buttonMediaExist =
-                        buttonMedia &&
-                        ((buttonMedia as any).name || (buttonMedia as any).url);
-
-                      if (!btnTextExist && !buttonMediaExist) return null;
+                      if (!buttonText && !iconExist) return null;
 
                       return (
                         <ComposerLink
-                          path={buttonUrl}
+                          path={btn.url}
                           key={`top-btn-${btnIndex}`}
                         >
                           <Base.Button
-                            buttonType={buttonType}
+                            buttonType={btn.type}
                             className={this.decorateCSS("button-text")}
                           >
-                            {buttonMediaExist && (
+                            {iconExist && (
                               <Base.Media
-                                value={buttonMedia}
+                                value={btn.icon!}
                                 className={this.decorateCSS("button-icon")}
                               />
                             )}
-                            {btnTextExist && buttonText}
+                            {buttonText && buttonText}
                           </Base.Button>
                         </ComposerLink>
                       );
@@ -415,7 +414,7 @@ class PricingTable5 extends BasePricingTable {
                           <div className={this.decorateCSS("plan-buttons")}>
                             {planButtons.map((btn, btnIndex: number) => {
                               const buttonText = btn.text;
-                              const buttonMedia = btn?.media;
+                              const buttonMedia = btn.media;
                               const buttonUrl = btn.url || "#";
                               const buttonType = btn.type;
 
@@ -423,8 +422,7 @@ class PricingTable5 extends BasePricingTable {
                                 this.castToString(buttonText);
                               const buttonMediaExist =
                                 buttonMedia &&
-                                ((buttonMedia as any).name ||
-                                  (buttonMedia as any).url);
+                                (buttonMedia.name || buttonMedia.url);
 
                               if (!btnTextExist && !buttonMediaExist)
                                 return null;

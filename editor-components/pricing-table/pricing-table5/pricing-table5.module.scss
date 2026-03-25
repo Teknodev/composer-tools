@@ -1,5 +1,4 @@
-@use "../../../../composer-tools/composer-base-components//base/utitilities/viewports.module.scss"
-as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @keyframes bounceText {
   0% {
@@ -48,13 +47,13 @@ as *;
 
         .title,
         .description {
-          text-align: left !important;
+          text-align: left;
         }
 
         .subtitle {
-          margin-left: 0 !important;
-          margin-right: auto !important;
-          text-align: left !important;
+          margin-left: 0;
+          margin-right: auto;
+          text-align: left;
         }
 
         .description {
@@ -64,18 +63,18 @@ as *;
         .buttons {
           display: flex;
           flex-wrap: wrap;
-          place-self: flex-start !important;
-
+          place-self: flex-start;
           gap: var(--composer-gap-sm);
 
-          .button-text {
+          .button-text,
+          .button-icon {
             content: "";
           }
 
           .button-icon {
             font-size: 1.5rem;
-            height: 25px;
-            width: 25px;
+            height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+            width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -100,7 +99,7 @@ as *;
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
           padding: var(--composer-gap-md);
-          border-radius: var(--composer-border-radius-sm) !important;
+          border-radius: var(--composer-border-radius-sm);
           display: flex;
           flex-direction: column;
           transition: all 0.5s ease;
@@ -144,7 +143,7 @@ as *;
               .labels {
                 animation-name: breathe;
                 animation-duration: 1s;
-                animation-timing-function: ease-in-and-out;
+                animation-timing-function: ease-in-out;
                 animation-iteration-count: infinite;
                 animation-direction: alternate;
               }
@@ -153,7 +152,6 @@ as *;
 
           &.active {
             background: var(--composer-primary-color);
-            gap: var(--composer-gap-sm);
 
             .plan-price-box,
             .plan-description {
@@ -178,10 +176,9 @@ as *;
             .plan-upper {
               margin: 0;
 
-              .icon-box {
-                .icon {
-                  content: "";
-                }
+              .icon-box,
+              .icon-box-active {
+                content: "";
               }
             }
           }
@@ -189,7 +186,7 @@ as *;
           .plan-upper {
             display: flex;
             justify-content: space-between;
-            place-self: flex-start !important;
+            place-self: flex-start;
 
             .plan-title {
               margin: 0;
@@ -204,8 +201,8 @@ as *;
 
               .icon {
                 font-size: 1.5rem;
-                width: 25px;
-                height: 30px;
+                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -215,10 +212,6 @@ as *;
             .icon-box-active {
               background-color: var(--composer-font-color-secondary);
               color: var(--composer-primary-color);
-
-              .icon {
-                content: "";
-              }
             }
           }
 
@@ -241,7 +234,6 @@ as *;
           }
 
           .plan-upper {
-            padding: var(--composer-gap-sm);
             gap: var(--composer-gap-sm);
           }
 
@@ -268,7 +260,9 @@ as *;
               gap: var(--composer-gap-sm);
 
               .plan-button {
-                .button-text {
+
+                .button-text,
+                .button-icon {
                   content: "";
                 }
 
@@ -276,8 +270,8 @@ as *;
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  width: 20px;
-                  height: 20px;
+                  width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                  height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                   font-size: 1rem;
                 }
               }
@@ -289,7 +283,6 @@ as *;
   }
 }
 
-
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
@@ -300,9 +293,8 @@ as *;
           .plan {
             .plan-price-box {
               .labels {
-
                 .price-description {
-                  min-width: 100% !important;
+                  min-width: 100%;
                 }
               }
             }
@@ -325,19 +317,18 @@ as *;
         align-items: center;
 
         .left-content {
-          width: 100% !important;
+          width: 100%;
 
           .subtitle,
           .title,
           .description {
-            margin-left: auto !important;
-            margin-right: auto !important;
-            text-align: center !important;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
           }
 
-
           .buttons {
-            width: 100% !important;
+            width: 100%;
             justify-content: center;
           }
         }
@@ -355,7 +346,7 @@ as *;
                 }
 
                 .price-description {
-                  min-width: 100% !important;
+                  min-width: 100%;
                 }
               }
             }
