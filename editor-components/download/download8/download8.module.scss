@@ -136,6 +136,11 @@
           margin: 0;
           padding-top: var(--composer-gap-sm);
 
+          .card-subtitle {
+            color: var(--composer-font-color-primary);
+            margin-left: var(--composer-gap-md);
+          }
+
           .cardTitle {
             color: var(--composer-font-color-primary);
             padding: var(--composer-gap-md);
@@ -149,9 +154,6 @@
             border-bottom: 1px solid rgb(var(--composer-font-color-primary-rgb), 0.5);
           }
 
-          .card-subtitle {
-            margin-left: var(--composer-gap-md);
-          }
 
           .list-group {
             width: 100%;

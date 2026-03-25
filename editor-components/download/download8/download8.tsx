@@ -210,9 +210,9 @@ class Download8 extends BaseDownload {
           <div id={"right-content"} className={this.decorateCSS("right-content")}>
             <Base.VerticalContent className={this.decorateCSS("card")}>
               <Base.VerticalContent className={this.decorateCSS("card-up")}>
-                {cardSubtitle && <Base.SectionSubTitle className={`${this.decorateCSS("card-subtitle")} ${alignment === "center" && this.decorateCSS("center-badge")}`}>{cardSubtitle}</Base.SectionSubTitle>}
+                {cardSubtitle && <Base.H5 className={`${this.decorateCSS("card-subtitle")} ${alignment === "center" && this.decorateCSS("center-badge")}`}>{cardSubtitle}</Base.H5>}
                 {cardTitle && <Base.H3 className={this.decorateCSS("cardTitle")}>{cardTitle}</Base.H3>}
-                {cardDescription && <Base.SectionDescription className={this.decorateCSS("cardDescription")}>{cardDescription}</Base.SectionDescription>}
+                {cardDescription && <Base.P className={this.decorateCSS("cardDescription")}>{cardDescription}</Base.P>}
                 {listExist && (
                   <Base.VerticalContent className={this.decorateCSS("list-group")}>
                     {this.castToObject<ListItem[]>("list").map((item: ListItem, index: number) => {
