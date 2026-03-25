@@ -1,24 +1,27 @@
 import * as React from "react";
 import { BaseSlider } from "../../EditorComponent";
 import styles from "./slider6.module.scss";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Card = {
-  subtitle: React.JSX.Element;
+type Button = INPUTS.CastedButton;
+
+
+type ITabs = {
   title: React.JSX.Element;
-  vertText: React.JSX.Element;
-  image_subtitle: React.JSX.Element;
-  image_title: React.JSX.Element;
-  image_description: React.JSX.Element;
+  description: React.JSX.Element;
   image: string;
-  button: INPUTS.CastedButton;
-  link: string;
+  text: React.JSX.Element;
+  url: string;
+  icon: string;
 };
 
 class Slider6 extends BaseSlider {
+  private progressIntervalId?: NodeJS.Timeout;
+  private readonly ANIMATION_DURATION = 10000;
+
   constructor(props?: any) {
     super(props, styles);
 
@@ -26,310 +29,336 @@ class Slider6 extends BaseSlider {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lasts post",
+      value: "",
     });
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Latest And Greatest Post",
+      value: "Design eye-catching websites with next generation performance",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Create beautiful sites with ultimate design flexibility, backed by ultra-reliable infrastructure and unbeatable performance.",
+    });
+
+    this.addProp({
       type: "array",
-      key: "header",
-      displayer: "Slider",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "tabs",
+      displayer: "Tabs",
       value: [
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "tabs1",
+          displayer: "Tabs 1",
           value: [
             {
               type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
-              value: "LIFESTYLE",
+              key: "title",
+              displayer: "Tab Title",
+              value: "Unbeatable performance",
             },
             {
               type: "string",
-              key: "image_title",
-              displayer: "Image Title",
-              value: "Extreme Athleticism Is the New Midlife Crisis",
+              key: "description",
+              displayer: "Tab Description",
+              value:
+                "Grow your clients' businesses with reliable, high-performance sites born to rank and built to convert—no maintenance needed.",
             },
             {
               type: "string",
-              key: "image_description",
-              displayer: "Image Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
+              key: "text",
+              displayer: "Link Title",
+              value: "SEO and Performance",
             },
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a38f506a40002c2f7b2d?alt=media",
+              type: "page",
+              key: "url",
+              displayer: "Link URL",
+              value: "",
             },
             {
-              type: "string",
-              key: "vertText",
-              displayer: "Vertical Text",
-              value: "Dsn Grid - March , 17th 2020",
-            },
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
-              value: "TRAVEL",
-            },
-            {
-              type: "string",
-              key: "image_title",
-              displayer: "Image Title",
-              value: "The Day I Lost My Child in Charles de Gaulle Airport",
-            },
-            {
-              type: "string",
-              key: "image_description",
-              displayer: "Image Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3ab506a40002c2f7b36?alt=media",
-            },
-            {
-              type: "string",
-              key: "vertText",
-              displayer: "Vertical Text",
-              value: "Dsn Grid - March , 17th 2020",
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GoArrowRight",
             },
 
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image URL",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+            },
           ],
         },
         {
           type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
+          key: "tabs2",
+          displayer: "Tabs 2",
           value: [
             {
               type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
-              value: "HEALTH",
+              key: "title",
+              displayer: "Tab Title",
+              value: "Rock-solid infrastructure",
             },
             {
               type: "string",
-              key: "image_title",
-              displayer: "Image Title",
-              value: "Relationships Aren’t Easy, But They’re Worth It",
+              key: "description",
+              displayer: "Tab Description",
+              value:
+                "Build sites that can weather any storm with reliable 99.95% uptime SLA, automatic backups, free SSL encryption, and more.",
             },
             {
               type: "string",
-              key: "image_description",
-              displayer: "Image Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3c5506a40002c2f7b64?alt=media",
-            },
-            {
-              type: "string",
-              key: "vertText",
-              displayer: "Vertical Text",
-              value: "Dsn Grid - March , 17th 2020",
-            },
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
-          ],
-        },
-        {
-          type: "object",
-          key: "slidercontent",
-          displayer: "Slider Content",
-          value: [
-            {
-              type: "string",
-              key: "image_subtitle",
-              displayer: "Image Subtitle",
-              value: "LIFESTYLE",
-            },
-            {
-              type: "string",
-              key: "image_title",
-              displayer: "Image Title",
-              value: "Extreme Athleticism Is the New Midlife Crisis",
-            },
-            {
-              type: "string",
-              key: "image_description",
-              displayer: "Image Description",
-              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3e8506a40002c2f7b7a?alt=media",
-            },
-            {
-              type: "string",
-              key: "vertText",
-              displayer: "Vertical Text",
-              value: "Dsn Grid - March , 17th 2020",
+              key: "text",
+              displayer: "Link Title",
+              value: "Security and infrastructure",
             },
 
-            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", null, null, "Primary"),
+            {
+              type: "page",
+              key: "url",
+              displayer: "Link URL",
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GoArrowRight",
+            },
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image URL",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f9530a85f1c002bbaf9f2?alt=media",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "tabs3",
+          displayer: "Tabs 3",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Tab Title",
+              value: "Sell anything, anytime",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Tab Description",
+              value:
+                "Create highly customizable, SEO-ready eCommerce sites for clients with all the features you need to sell anything to anyone.",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Link Title",
+              value: "Sell online",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Link URL",
+              value: "",
+            },
+            {
+              type: "icon",
+              key: "icon",
+              displayer: "Icon",
+              value: "GoArrowRight",
+            },
+
+            {
+              type: "image",
+              key: "image",
+              displayer: "Image URL",
+              value:
+                "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/687f951fa85f1c002bbaf9cf?alt=media",
+            },
           ],
         },
       ],
     });
 
-    this.setComponentState("prevSlide", this.castToObject<Card[]>("header").length - 1);
-    this.setComponentState("activeSlide", 0);
-    this.setComponentState("nextSlide", 1);
+    this.setComponentState("activeTab", 0);
   }
+
+  onComponentDidMount() {
+    this.startProgressAnimation();
+  }
+
+  private startProgressAnimation() {
+    if (this.progressIntervalId) {
+      clearInterval(this.progressIntervalId);
+    }
+
+    this.progressIntervalId = setTimeout(() => {
+      this.advanceToNextTab();
+    }, this.ANIMATION_DURATION);
+  }
+
+  private advanceToNextTab() {
+    const tabs = this.castToObject<ITabs[]>("tabs");
+    const current = (this.getComponentState("activeTab") as number) || 0;
+    const next = (current + 1) % tabs.length;
+
+    this.setComponentState("activeTab", next);
+    this.startProgressAnimation();
+  }
+
+  onComponentWillUnmount() {
+    if (this.progressIntervalId !== undefined) {
+      clearInterval(this.progressIntervalId);
+    }
+  }
+
+  setActiveTab(activeTabIndex: number) {
+    this.setComponentState("activeTab", activeTabIndex);
+    this.startProgressAnimation();
+  }
+
   static getName(): string {
     return "Slider 6";
   }
-  render() {
-    const settings = {
-      arrows: false,
-      dots: true,
-      infinite: true,
-      speed: 700,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      adaptiveHeight: true,
-      centerMode: true,
-      centerPadding: "200px",
-      responsive: [
-        {
-          breakpoint: 1920,
-          settings: {
-            centerPadding: "180px",
-          },
-        },
-        {
-          breakpoint: 1280,
-          settings: {
-            centerPadding: "160px",
-          },
-        },
-        {
-          breakpoint: 960,
-          settings: {
-            centerPadding: "150px",
-          },
-        },
-        {
-          breakpoint: 640,
-          settings: {
-            centerPadding: "0px",
-          },
-        },
-      ],
-      beforeChange: (_: number, next: number) => {
-        this.setComponentState("prevSlide", next - 1 < 0 ? this.castToObject<Card[]>("header").length - 1 : next - 1);
-        this.setComponentState("activeSlide", next);
-        this.setComponentState("nextSlide", next + 1 > this.castToObject<Card[]>("header").length - 1 ? 0 : next + 1);
-      },
-    };
 
+  render() {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
-    const isMultipleItems = this.castToObject<Card[]>("header").length > 1;
+    const description = this.getPropValue("description");
+    const buttons = this.castToObject<Button[]>("buttons");
+    const tabs = this.castToObject<ITabs[]>("tabs");
+    const active = this.getComponentState("activeTab") as number;
 
     return (
-      <div className={this.decorateCSS("container")}>
-        <div className={this.decorateCSS("max-content")}>
-          <Base.Container className={this.decorateCSS("header-container")}>
-            <Base.MaxContent className={this.decorateCSS("header-max-content")}>
-              {(this.castToString(subtitle) || this.castToString(title)) && (
-                <Base.VerticalContent className={this.decorateCSS("header")}>
-                  {this.castToString(subtitle) && (
-                    <Base.SectionSubTitle
-                      className={`${this.decorateCSS("subtitle")} 
-                    ${!this.castToString(title) && this.decorateCSS("no-title")}`}
-                    >
-                      {subtitle}
-                    </Base.SectionSubTitle>
-                  )}
-                  {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                </Base.VerticalContent>
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || buttons.length > 0) && (
+            <Base.VerticalContent className={this.decorateCSS("heading")}>
+              {this.castToString(subtitle) && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
               )}
-            </Base.MaxContent>
-          </Base.Container>
-          <div className={this.decorateCSS("slider-parent")}>
-            <ComposerSlider
-              {...settings}
-              className={`
-                ${this.decorateCSS("carousel")}
-                ${!this.castToString(subtitle) && !this.castToString(title) && this.decorateCSS("no-header")}
-                ${!isMultipleItems && this.decorateCSS("single-item")}`}
-            >
-              {this.castToObject<Card[]>("header").map((item: Card, index: number) => {
-                const imageElement = document.getElementById(`slider6Image${index}`);
-                const imageHeight = imageElement?.clientHeight || "auto";
 
-                return (
-                  <div
-                    className={`${this.decorateCSS("card")} 
-                      ${isMultipleItems && this.getComponentState("prevSlide") == index ? this.decorateCSS("prevSlide") : ""} 
-                      ${isMultipleItems && this.getComponentState("nextSlide") == index ? this.decorateCSS("nextSlide") : ""}`}
-                    key={`sld-8-${index}`}
-                  >
-                    <Base.ContainerGrid className={this.decorateCSS("content-div")}>
-                      {(this.castToString(item.vertText) || item.image) && (
-                        <div className={`${this.decorateCSS("left-part")} ${!item.image && this.decorateCSS("no-img")} `}>
-                          {this.castToString(item.vertText) && (
-                            <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
-                              {item.vertText}
-                            </span>
-                          )}
-                          {item.image && (
-                            <div className={this.decorateCSS("image-wrapper")}>
-                              <img alt="" src={item.image} className={this.decorateCSS("image")} />
-                            </div>
-                          )}
-                        </div>
-                      )}
+              {this.castToString(title) && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
 
-                      {(this.castToString(item.image_subtitle) || this.castToString(item.image_title) || this.castToString(item.image_description) || this.castToString(item.button.text)) && (
-                        <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
-                          {this.castToString(item.image_subtitle) && <Base.P className={this.decorateCSS("first-header")}>{item.image_subtitle}</Base.P>}
-                          {this.castToString(item.image_title) && <Base.P className={this.decorateCSS("item-title")}>{item.image_title}</Base.P>}
-                          {this.castToString(item.image_description) && <Base.P className={this.decorateCSS("item-description")}>{item.image_description}</Base.P>}
-                          {this.castToString(item.button.text) && (
-                            <ComposerLink key={index} path={item.button.url}>
-                              <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("button")}>
-                                {item.button.text}
-                              </Base.Button>
-                            </ComposerLink>
-                          )}
-                        </Base.VerticalContent>
+              {this.castToString(description) && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {description}
+                </Base.SectionDescription>
+              )}
+
+              {buttons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((button: Button, index: number) => (
+                    <ComposerLink key={index} path={button.url}>
+                      {this.castToString(button.text) && (
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
                       )}
-                    </Base.ContainerGrid>
-                  </div>
-                );
-              })}
-            </ComposerSlider>
+                    </ComposerLink>
+                  ))}
+                </div>
+              )}
+            </Base.VerticalContent>
+          )}
+
+          <div className={this.decorateCSS("tabs-layout")}>
+            <div className={this.decorateCSS("tabs-left")}>
+              {tabs.map((tab: ITabs, index: number) => (
+                                 <div
+                   key={index}
+                   className={`${this.decorateCSS("tab-item")} ${
+                     active === index ? this.decorateCSS("active") : ""
+                   }`}
+                   onClick={() => this.setActiveTab(index)}
+                 >
+                   <div
+                     className={this.decorateCSS("tab-background")}
+                     style={{
+                       backgroundImage: `url(${tab.image})`,
+                     }}
+                   />
+                  {this.castToString(tab.title) && (
+                    <Base.H3 className={this.decorateCSS("tab-title")}>
+                      {tab.title}
+                    </Base.H3>
+                  )}
+                  {this.castToString(tab.description) && (
+                    <Base.P className={this.decorateCSS("tab-desc")}>
+                      {tab.description}
+                    </Base.P>
+                  )}
+                  {this.castToString(tab.text) && (
+                    <ComposerLink path={tab.url}>
+                      <div className={this.decorateCSS("link-wrapper")}>
+                        <Base.P className={this.decorateCSS("tab-link")}>
+                          {tab.text}
+                        </Base.P>
+                        <Base.Icon
+                          name={tab.icon}
+                          propsIcon={{
+                            className: this.decorateCSS("icon"),
+                          }}
+                        />
+                      </div>
+                    </ComposerLink>
+                  )}
+
+                  {tabs.length > 1 && (
+                    <div className={this.decorateCSS("progress-container")}>
+                      <div className={this.decorateCSS("progress-track")}>
+                                                 <div
+                           className={`${this.decorateCSS("progress-fill")} ${
+                             active === index ? this.decorateCSS("animate") : ""
+                           }`}
+                         />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className={this.decorateCSS("tabs-right")}>
+              {tabs.map((tab: ITabs, index: number) => (
+                <div
+                  key={index}
+                  className={`${this.decorateCSS("tab-image")} 
+                    ${active === index ? this.decorateCSS("visible") : ""}`}
+                >
+                  <img src={tab.image} alt={this.castToString(tab.title)} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
+        </Base.MaxContent>
+      </Base.Container>
     );
   }
 }
