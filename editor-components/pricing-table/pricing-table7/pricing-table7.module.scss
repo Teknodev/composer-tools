@@ -1,4 +1,5 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 @keyframes bounceText {
@@ -23,22 +24,42 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
     .up-text {
 
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        margin-bottom: var(--composer-gap-md);
+
+        .button {
+          .button-icon {
+            font-size: 1.5rem;
+            height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+            width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .button-text {
+            content: "";
+          }
+        }
+      }
+
       .duration-items {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
         font-size: 1.5rem;
 
-        .text {
-          color: var(--composer-tertiary-color);
-          width: fit-content;
-
-          &.active {
-            color: var(--composer-font-color-primary);
-            opacity: 1;
-          }
-        }
-
+        .text,
         .yearlyText {
           color: var(--composer-tertiary-color);
           width: fit-content;
@@ -53,80 +74,60 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .icon {
           color: var(--composer-primary-color);
           font-size: 2rem;
-          right: 0;
-          bottom: var(--composer-gap-xs);
           position: relative;
-          width: 25px;
-          height: 25px;
+          width: var(--composer-gap-md);
+          height: var(--composer-gap-md);
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .planDiscount {
-          right: 0;
-          top: calc(-0.5 * var(--composer-gap-md));
-          position: relative;
           color: var(--composer-tertiary-color);
-          bottom: var(--composer-gap-xs);
-
         }
 
         .switch {
           position: relative;
           display: inline-block;
-          min-width: var(--composer-gap-xl);
+          min-width: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
           height: var(--composer-gap-md);
-        }
 
-        .switch .input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-        }
+          .input {
+            opacity: 0;
+            width: 0;
+            height: 0;
 
-        .slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          -webkit-transition: 0.4s;
-          transition: 0.4s;
-        }
+            &:checked+.slider:before {
+              transform: translateX(calc(var(--composer-gap-xl) + var(--composer-gap-sm) - var(--composer-gap-md)));
+            }
+          }
 
-        .slider:before {
-          position: absolute;
-          content: "";
-          height: var(--composer-gap-md);
-          width: var(--composer-gap-md);
-          background-color: var(--composer-primary-color);
-          -webkit-transition: 0.4s;
-          transition: 0.4s;
-        }
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 10%);
+            transition: $transition;
+            border-radius: var(--composer-border-radius-xl);
 
-        .input:checked+.slider:before {
-          -webkit-transform: translateX(30px);
-          -ms-transform: translateX(30px);
-          transform: translateX(30px);
+            &:before {
+              position: absolute;
+              content: "";
+              height: var(--composer-gap-md);
+              width: var(--composer-gap-md);
+              background-color: var(--composer-primary-color);
+              transition: $transition;
+              border-radius: 50%;
+              left: 0;
+              top: 0;
+            }
+          }
         }
-
-        .slider.round {
-          border-radius: var(--composer-border-radius-sm);
-        }
-
-        .slider.round:before {
-          border-radius: 50%;
-        }
-
-        .plan-items {
-          display: flex;
-        }
-      }
-
-      .subtitle,
-      .title,
-      .description {
-        content: "";
       }
     }
 
@@ -135,7 +136,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         height: 100%;
         display: flex;
         justify-content: center;
-        transition: 0.5s;
+        transition: $transition;
 
         &.animation1:hover {
           .price {
@@ -149,7 +150,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .dividers {
               .divider2 {
                 width: 100%;
-                display: flex
               }
             }
           }
@@ -174,19 +174,26 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .price {
           box-shadow: var(--box-shadow-active);
           border-radius: var(--composer-border-radius-sm);
-          height: max-content;
-          padding: var(--composer-gap-md);
-          flex: 1 1;
+          height: 100%;
+          padding: var(--composer-gap-lg);
+          flex: 1;
           position: relative;
           gap: var(--composer-gap-md);
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          transition: 0.5s;
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+          transition: $transition;
           align-items: flex-start;
+
+          &.active {
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-primary-color) 5%);
+          }
 
           .popular-box {
             box-shadow: var(--box-shadow-active);
             width: fit-content;
-            border: 1px solid var(--composer-secondary-color);
             border-radius: var(--composer-border-radius-sm);
             padding: var(--composer-gap-xs) var(--composer-gap-sm);
             background-color: var(--composer-secondary-color);
@@ -201,20 +208,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
           .badge {
             width: fit-content;
-            height: auto;
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-sm);
-            display: flex;
             color: var(--composer-font-color-secondary);
-            margin-left: 0px;
           }
 
           .price-text {
             color: var(--composer-font-color-primary);
             display: flex;
-            align-items: flex-end;
-            justify-content: flex-start;
-            transition: 0.8s;
+            align-items: baseline;
+            gap: var(--composer-gap-xs);
+            transition: $transition;
 
             .price-title {
               margin: 0;
@@ -222,7 +226,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .duration-text {
               margin: 0;
-              margin-bottom: var(--composer-gap-xs);
               color: var(--composer-tertiary-color);
             }
           }
@@ -234,27 +237,29 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
           .dividers {
             width: 100%;
-            position: relative;
-          }
-
-          .divider,
-          .divider2 {
-            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            border-radius: var(--composer-border-radius-sm);
-            width: 100%;
-            margin: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: 0.8s;
-            z-index: 1;
             height: 2px;
-          }
+            position: relative;
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
+            border-radius: var(--composer-border-radius-xs);
+            overflow: hidden;
 
-          .divider2 {
-            z-index: 2;
-            width: 0px;
-            background-color: var(--composer-primary-color);
+            .divider,
+            .divider2 {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              transition: $transition;
+            }
+
+            .divider {
+              width: 100%;
+            }
+
+            .divider2 {
+              width: 0;
+              background-color: var(--composer-primary-color);
+            }
           }
 
           .description {
@@ -263,39 +268,33 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           }
 
           .features {
+            width: 100%;
             gap: var(--composer-gap-sm);
 
             .features-element {
               display: flex;
-              align-items: flex-start;
+              align-items: center;
               gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
-              justify-content: flex-start !important;
-              text-align: left !important;
-
-              .features-element-text {
-                content: "";
-                text-align: left !important;
-              }
 
               .icon {
                 color: var(--composer-primary-color);
-                background-color: var(--composer-font-color-primary);
-                width: 30px;
-                height: 30px;
+                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                 font-size: 1.5rem;
-                border-radius: var(--composer-border-radius-sm);
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                flex-shrink: 0;
               }
             }
           }
-        }
 
-        .button,
-        .button-active {
-          content: "";
+          .button,
+          .button-active {
+            width: 100%;
+            margin-top: auto;
+          }
         }
       }
     }
@@ -306,6 +305,27 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   .container {
     .max-content {
       gap: var(--composer-gap-lg);
+
+      .up-text {
+        align-items: center;
+        text-align: center;
+
+        .button-container {
+          justify-content: center;
+        }
+
+        .duration-items {
+          justify-content: center;
+        }
+      }
+
+      .card {
+        .card-item-count {
+          .price {
+            padding: var(--composer-gap-md);
+          }
+        }
+      }
     }
   }
 }
