@@ -122,10 +122,13 @@ class PricingMultiple extends BasePricingTable {
                       value: "One database",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "icon",
                       displayer: "Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
