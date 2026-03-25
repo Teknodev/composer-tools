@@ -42,9 +42,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .top-level-buttons {
           display: flex;
           flex-wrap: wrap;
-          gap: var(--composer-gap-md);
-          margin-top: var(--composer-gap-md);
-          align-items: center;
+          gap: var(--composer-gap-sm);
 
           .button {
             content: "";
@@ -71,159 +69,148 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         padding-bottom: var(--composer-gap-md) !important;
 
         .card {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            border-radius: var(--composer-border-radius-sm);
-            box-shadow: var(--box-shadow-active);
-            overflow: hidden;
-            background-color: color-mix(in srgb,
-                var(--composer-html-background),
-                var(--composer-font-color-primary) 5%);
-            transition: 0.8s;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: var(--composer-border-radius-sm);
+          box-shadow: var(--box-shadow-active);
+          overflow: hidden;
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+          transition: 0.8s;
+          padding: var(--composer-gap-lg);
+          gap: var(--composer-gap-md);
 
-            &.animation1:hover {
-              transform: translateY(calc(-1 * var(--composer-gap-sm)));
-            }
+          &.animation1:hover {
+            transform: translateY(calc(-1 * var(--composer-gap-sm)));
+          }
 
-            &.animation2:hover {
-              .card-up {
-                .card-up-texts {
-                  transform: scale(1.1);
-                }
-              }
-            }
-
-            &.animation3:hover {
-              .card-up {
-                .card-up-texts {
-                  .price-pricing {
-                    animation-name: breathe;
-                    animation-duration: 2s;
-                    animation-timing-function: ease-in-out;
-                    animation-iteration-count: infinite;
-                    animation-direction: alternate;
-                  }
-                }
-              }
-            }
-
-            &.focused {
-              scale: 1.06;
-              background: var(--composer-html-background);
-              z-index: 2;
-              position: relative;
-            }
-
+          &.animation2:hover {
             .card-up {
-              width: 100%;
-              justify-content: center;
-              align-items: center;
-
-              .subtitle {
-                width: max-content;
-                color: var(--composer-primary-color);
-              }
-
               .card-up-texts {
-                width: 100%;
-                justify-content: center;
-                align-items: center;
-                color: var(--composer-font-color-primary);
-                padding: var(--composer-gap-lg);
-                transition: 0.8s;
-                padding-bottom: var(--composer-gap-sm);
+                transform: scale(1.1);
+              }
+            }
+          }
 
-                .price-title1 {
-                  color: var(--composer-font-color-primary);
-                  text-align: center;
-                }
-
-                .price-title2 {
-                  text-align: center;
-                  color: var(--composer-tertiary-color);
-                }
-
+          &.animation3:hover {
+            .card-up {
+              .card-up-texts {
                 .price-pricing {
-                  margin-top: var(--composer-gap-md);
-                  color: var(--composer-font-color-primary);
-                  text-align: center;
-                }
-              }
-            }
-
-            .card-middle {
-              padding: 0 var(--composer-gap-lg);
-              width: 100%;
-              margin-bottom: var(--composer-gap-md);
-              color: var(--composer-font-color-primary);
-              margin-top: var(--composer-gap-md);
-              flex-grow: 1;
-              display: flex;
-              flex-direction: column;
-              justify-content: flex-start;
-              align-items: center;
-
-              .list-group {
-                width: 100%;
-                align-items: center;
-                gap: var(--composer-gap-sm);
-
-                .list-element {
-                  display: flex;
-                  align-items: center;
-                  gap: var(--composer-gap-sm);
-                  color: var(--composer-font-color-primary);
-
-                  .circle-icon {
-                    display: flex;
-                    align-items: center;
-                    width: var(--composer-gap-md);
-                    height: var(--composer-gap-md);
-                    color: var(--composer-primary-color);
-
-                    .icon {
-                      content: "";
-                    }
-                  }
-
-                  .list-item-text {
-                    content: "";
-                  }
-                }
-              }
-            }
-
-            .card-down {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              flex-wrap: wrap;
-              align-items: center;
-              gap: var(--composer-gap-md);
-              margin-bottom: var(--composer-gap-md);
-              margin-top: auto;
-
-              .button {
-                margin-bottom: var(--composer-gap-md);
-                margin-top: var(--composer-gap-md);
-
-
-                .button-icon {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                }
-
-                .button-text {
-                  content: "";
+                  animation-name: breathe;
+                  animation-duration: 2s;
+                  animation-timing-function: ease-in-out;
+                  animation-iteration-count: infinite;
+                  animation-direction: alternate;
                 }
               }
             }
           }
+
+          &.focused {
+            scale: 1.06;
+            background: var(--composer-html-background);
+            z-index: 2;
+            position: relative;
+          }
+
+          .card-up {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+
+            .subtitle {
+              width: max-content;
+              color: var(--composer-primary-color);
+            }
+
+            .card-up-texts {
+              width: 100%;
+              justify-content: center;
+              align-items: center;
+              color: var(--composer-font-color-primary);
+              transition: 0.8s;
+
+              .price-title1 {
+                color: var(--composer-font-color-primary);
+                text-align: center;
+              }
+
+              .price-title2 {
+                text-align: center;
+                color: var(--composer-tertiary-color);
+              }
+
+              .price-pricing {
+                margin-top: var(--composer-gap-md);
+                color: var(--composer-font-color-primary);
+                text-align: center;
+              }
+            }
+          }
+
+          .card-middle {
+            width: 100%;
+            color: var(--composer-font-color-primary);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            .list-group {
+              width: 100%;
+              align-items: center;
+
+              .list-element {
+                display: flex;
+                align-items: center;
+                color: var(--composer-font-color-primary);
+
+                .circle-icon {
+                  display: flex;
+                  align-items: center;
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  color: var(--composer-primary-color);
+
+                  .icon {
+                    content: "";
+                  }
+                }
+
+                .list-item-text {
+                  text-align: center;
+                }
+              }
+            }
+          }
+
+          .card-down {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+
+            .button {
+              .button-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              .button-text {
+                content: "";
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -248,10 +235,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   .container {
     .max-content {
       .page {
+        gap: var(--composer-gap-md);
+
         .page-down {
           .card {
             padding-left: var(--composer-gap-md) !important;
             padding-right: var(--composer-gap-md) !important;
+
             .card-up {
               .card-up-texts {
                 content: "";

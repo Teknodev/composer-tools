@@ -238,25 +238,25 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
               type: "media",
-              key: "cardIcon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -405,25 +405,25 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
               type: "media",
-              key: "cardIcon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
@@ -572,25 +572,25 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
               type: "media",
-              key: "cardIcon",
+              key: "icon",
               displayer: "Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],

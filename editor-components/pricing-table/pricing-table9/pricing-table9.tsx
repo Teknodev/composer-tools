@@ -291,15 +291,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "buttonType",
-                  "Button",
-                  "50$/ month",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("type", "Button", "50$/ month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -458,15 +450,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "buttonType",
-                  "Button",
-                  "75$/ month",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("type", "Button", "75$/ month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -625,15 +609,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "buttonType",
-                  "Button",
-                  "100$/ month",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("type", "Button", "100$/ month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -792,15 +768,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "buttonType",
-                  "Button",
-                  "1000$/ month",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("type", "Button", "1000$/ month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -847,11 +815,14 @@ class PricingTable9 extends BasePricingTable {
       arrows: false,
       dots: true,
       dotsClass: this.decorateCSS("dots"),
-      infinite: true,
-      speed: 2000,
       autoplay: true,
+      autoplaySpeed: 2000,
+      infinite: true,
+      speed: 1000,
       slidesToShow: 1,
       slidesToScroll: 1,
+      swipeToSlide: true,
+      touchThreshold: 100,
       responsive: [
         {
           breakpoint: 1024,
@@ -879,6 +850,8 @@ class PricingTable9 extends BasePricingTable {
     const titleExist = this.castToString(title);
     const subtitleExist = this.castToString(subtitle);
     const descriptionExist = this.castToString(description);
+    const columns = this.castToObject<any[]>("columns");
+    const firstColumn = columns[0];
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
     return (
@@ -927,7 +900,7 @@ class PricingTable9 extends BasePricingTable {
           )}
           <div className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("columns-container")}>
-              {this.castToObject<string[]>("columns").map(
+              {columns.map(
                 (column: any, index: any) => {
                   const buttons = column?.buttons || [];
                   const hasButtonsWithContent =
@@ -953,7 +926,7 @@ class PricingTable9 extends BasePricingTable {
                       <div className={this.decorateCSS("column-contents")}>
                         {column?.contents.map(
                           (content: any, contentIndex: any) => {
-                            const firstColumnContent = this.castToObject<any[]>("columns")[0]?.contents?.[contentIndex];
+                            const firstColumnContent = firstColumn?.contents?.[contentIndex];
 
                             if (!firstColumnContent) return null;
 
@@ -1046,8 +1019,9 @@ class PricingTable9 extends BasePricingTable {
           <div className={this.decorateCSS("slider")}>
             <div className={this.decorateCSS("slider-container")}>
               <ComposerSlider {...settings}>
-                {this.castToObject<string[]>("columns").map(
-                  (column: any, index: any) => {
+                {columns
+                  .filter((_, index: number) => index !== 0)
+                  .map((column: any, index: any) => {
                     const buttons = column?.buttons || [];
                     const hasButtonsWithContent =
                       buttons.length > 0 && this.hasAnyButtonContent(buttons);
@@ -1069,7 +1043,7 @@ class PricingTable9 extends BasePricingTable {
                         <div className={this.decorateCSS("column-contents")}>
                           {column?.contents.map(
                             (content: any, contentIndex: any) => {
-                              const firstColumnContent = this.castToObject<any[]>("columns")[0]?.contents?.[contentIndex];
+                              const firstColumnContent = firstColumn?.contents?.[contentIndex];
 
                               if (!firstColumnContent) return null;
 
@@ -1083,6 +1057,11 @@ class PricingTable9 extends BasePricingTable {
                                   key={`content-${contentIndex}`}
                                   className={this.decorateCSS("content-item")}
                                 >
+                                  {firstColumnContent?.text && (
+                                    <Base.P className={this.decorateCSS("content-label")}>
+                                      {firstColumnContent.text}
+                                    </Base.P>
+                                  )}
                                   {iconExist && (
                                     <Base.Media
                                       value={content.icon}
@@ -1094,7 +1073,7 @@ class PricingTable9 extends BasePricingTable {
                                   {textExist && (
                                     <Base.P
                                       className={this.decorateCSS(
-                                        "button-text"
+                                        "content-text"
                                       )}
                                     >
                                       {content?.text}
@@ -1159,7 +1138,7 @@ class PricingTable9 extends BasePricingTable {
                       </div>
                     );
                   }
-                )}
+                  )}
               </ComposerSlider>
             </div>
           </div>

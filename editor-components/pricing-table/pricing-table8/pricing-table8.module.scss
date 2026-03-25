@@ -251,31 +251,34 @@ as *;
               display: flex;
               flex-direction: row;
               align-items: center;
-              gap: var(--composer-gap-md);
+              gap: var(--composer-gap-sm);
+              width: 100%;
 
               .bar-title {
                 color: var(--composer-font-color-primary);
-                width: 60%;
+                width: 40%;
                 text-align: right;
                 margin: 0;
+                white-space: nowrap;
               }
 
               .bar-percent {
                 position: relative;
-                width: 85%;
-                height: var(--composer-gap-md);
-                background-color: var(--composer-html-background);
+                flex-grow: 1;
+                height: 12px;
+                background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
                 border-radius: var(--composer-border-radius-sm);
-                transition: all 0.3s;
+                overflow: hidden;
 
                 .percent {
                   position: absolute;
                   top: 0;
                   left: 0;
                   height: 100%;
-                  transition: width 0.3s;
+                  transition: width 1s ease-in-out;
                   border-radius: var(--composer-border-radius-sm);
-                  background-color: var(--composer-secondary-color);
+                  background-color: var(--composer-primary-color) !important;
+                  z-index: 2;
                 }
               }
             }
@@ -287,12 +290,9 @@ as *;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
+        width: 100%;
+        margin-top: var(--composer-gap-xl);
         gap: var(--composer-gap-md);
-        top: 97%;
 
         .button {
           .buttonicon {

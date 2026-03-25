@@ -215,6 +215,12 @@ as *;
         }
 
         .footer {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: var(--composer-gap-sm);
+          width: 100%;
+
           .button {
             .button-text {
               content: "";
@@ -258,7 +264,7 @@ as *;
   .cards-div-alternate {
     width: 100%;
     flex-direction: column;
-    gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-md);
 
     .card-container {
       width: 100%;
@@ -270,6 +276,6 @@ as *;
   }
 
   .wrapper {
-    gap: var(--composer-gap-lg);
+    gap: var(--composer-gap-md);
   }
 }

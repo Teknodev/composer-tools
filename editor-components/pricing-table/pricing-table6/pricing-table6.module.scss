@@ -388,6 +388,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: var(--composer-gap-sm);
+                white-space: nowrap;
 
                 .button {
                   .button-icon {
@@ -427,7 +428,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         }
 
         .up-page {
-          .title,.description {
+
+          .title,
+          .description {
             text-align: center !important;
           }
 
@@ -436,6 +439,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             margin-left: auto !important;
             margin-right: auto !important;
             transform: translateX(0) !important;
+
             &::before {
               display: none !important;
             }

@@ -206,7 +206,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -234,7 +234,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -389,7 +389,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -417,7 +417,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -572,7 +572,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -600,7 +600,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -774,7 +774,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -802,7 +802,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -957,7 +957,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -985,7 +985,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -1139,7 +1139,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Unlimited technical support",
                                 },
@@ -1167,7 +1167,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 },
                                 {
                                   type: "string",
-                                  key: "property",
+                                  key: "text",
                                   displayer: "Property",
                                   value: "Hours of supervision per month",
                                 },
@@ -1528,7 +1528,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                       className={`${this.decorateCSS(
                                         "list-item"
                                       )} ${!enableValue &&
-                                        this.decorateCSS("list-item-disabled")
+                                      this.decorateCSS("list-item-disabled")
                                         }`}
                                     >
                                       {hasIcon && (

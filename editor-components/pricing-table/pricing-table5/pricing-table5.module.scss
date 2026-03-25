@@ -53,6 +53,8 @@ as *;
 
         .subtitle {
           margin-left: 0 !important;
+          margin-right: auto !important;
+          text-align: left !important;
         }
 
         .description {
@@ -294,6 +296,7 @@ as *;
       .content {
         .right-content {
           width: 100%;
+
           .plan {
             .plan-price-box {
               .labels {
@@ -328,6 +331,7 @@ as *;
           .title,
           .description {
             margin-left: auto !important;
+            margin-right: auto !important;
             text-align: center !important;
           }
 

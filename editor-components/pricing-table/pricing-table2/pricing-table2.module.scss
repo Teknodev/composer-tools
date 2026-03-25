@@ -5,9 +5,10 @@
     .table {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .up-content {
+
         .title,
         .subtitle,
         .description {
@@ -23,10 +24,24 @@
 
           transform: translateX(0) !important;
         }
+
+        .button-container {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          gap: var(--composer-gap-sm);
+
+          button {
+            .button-text {
+              content: "";
+            }
+          }
+        }
       }
 
       .item-div {
-        gap: var(--composer-gap-lg);
+        width: 100%;
+        gap: var(--composer-gap-md);
 
         .card-item-count {
           transition-duration: 0.8s;
@@ -44,7 +59,7 @@
 
             .card-upper {
               margin-bottom: var(--composer-gap-md);
-              padding: var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-xl) var(--composer-gap-lg);
+              padding: var(--composer-gap-lg) var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md);
               border-radius: var(--composer-border-radius-sm);
               background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
@@ -81,12 +96,12 @@
 
             .card-bottom {
               align-self: center;
-              width: 85%;
+              width: 90%;
               margin-left: auto;
               margin-right: auto;
               z-index: 40;
               box-shadow: var(--box-shadow-active);
-              padding: var(--composer-gap-md) var(--composer-gap-md);
+              padding: var(--composer-gap-md) var(--composer-gap-sm);
               margin-top: calc(-1 * var(--composer-gap-xl));
               background-color: var(--composer-html-background);
               border-radius: var(--composer-border-radius-sm);
@@ -152,6 +167,7 @@
                 place-self: flex-start;
 
                 .card-button {
+
                   .button-text,
                   .button-icon {
                     content: "";
@@ -168,6 +184,8 @@
   @container (max-width: #{$composer-tablet-width}) {
     .max-content {
       .table {
+        gap: var(--composer-gap-lg);
+
         .item-div {
           .card-item-count {
             .item-card {
@@ -182,6 +200,8 @@
   @container (max-width: #{$composer-phone-width}) {
     .max-content {
       .table {
+        gap: var(--composer-gap-md);
+
         .item-div {
           .card-item-count {
             .item-card {

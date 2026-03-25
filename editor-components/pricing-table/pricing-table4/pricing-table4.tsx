@@ -51,15 +51,7 @@ class PricingMultiple extends BasePricingTable {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Join this plan",
-          "",
-          "",
-          null,
-          "Primary"
-        ),
+        INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
       ],
     });
 
@@ -139,7 +131,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Unlimited websites",
                     },
@@ -161,7 +153,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "CMS Navigation",
                     },
@@ -183,7 +175,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Free updates",
                     },
@@ -205,7 +197,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Priority support",
                     },
@@ -227,15 +219,7 @@ class PricingMultiple extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "buttonType",
-                  "Button",
-                  "CHOOSE PLAN",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", "", null, "Primary"),
               ],
             },
           ],
@@ -253,19 +237,19 @@ class PricingMultiple extends BasePricingTable {
             },
             {
               type: "string",
-              key: "title1",
+              key: "title",
               displayer: "Title-1",
               value: "Professional",
             },
             {
               type: "string",
-              key: "title2",
+              key: "subtitle",
               displayer: "Title-2",
               value: "Advanced Platform",
             },
             {
               type: "string",
-              key: "pricing",
+              key: "price",
               displayer: "Pricing",
               value: "$150",
             },
@@ -303,7 +287,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Unlimited websites",
                     },
@@ -325,7 +309,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "CMS Navigation",
                     },
@@ -347,7 +331,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Free updates",
                     },
@@ -369,7 +353,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Priority support",
                     },
@@ -392,22 +376,7 @@ class PricingMultiple extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    INPUTS.BUTTON(
-                      "buttonType",
-                      "Button",
-                      "CHOOSE PLAN",
-                      "",
-                      null,
-                      null,
-                      "Primary"
-                    ),
-                  ],
-                },
+                INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", null, null, "Primary"),
               ],
             },
           ],
@@ -425,19 +394,19 @@ class PricingMultiple extends BasePricingTable {
             },
             {
               type: "string",
-              key: "title1",
+              key: "title",
               displayer: "Title-1",
               value: "Starter",
             },
             {
               type: "string",
-              key: "title2",
+              key: "subtitle",
               displayer: "Title-2",
               value: "Customizable Platform",
             },
             {
               type: "string",
-              key: "pricing",
+              key: "price",
               displayer: "Pricing",
               value: "$150",
             },
@@ -475,7 +444,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Unlimited websites",
                     },
@@ -497,7 +466,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "CMS Navigation",
                     },
@@ -519,7 +488,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Free updates",
                     },
@@ -541,7 +510,7 @@ class PricingMultiple extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "liText",
+                      key: "text",
                       displayer: "List Item",
                       value: "Priority support",
                     },
@@ -564,22 +533,7 @@ class PricingMultiple extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                {
-                  type: "object",
-                  key: "button",
-                  displayer: "Button",
-                  value: [
-                    INPUTS.BUTTON(
-                      "buttonType",
-                      "Button",
-                      "CHOOSE PLAN",
-                      "",
-                      null,
-                      null,
-                      "Primary"
-                    ),
-                  ],
-                },
+                INPUTS.BUTTON("buttonType", "Button", "CHOOSE PLAN", "", null, null, "Primary"),
               ],
             },
           ],

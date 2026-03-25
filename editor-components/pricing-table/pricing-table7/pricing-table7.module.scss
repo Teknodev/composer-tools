@@ -22,7 +22,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     gap: var(--composer-gap-xl);
 
     .up-text {
-      gap: var(--composer-gap-sm);
 
       .duration-items {
         display: flex;
@@ -67,7 +66,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           position: relative;
           color: var(--composer-tertiary-color);
           bottom: var(--composer-gap-xs);
-          
+
         }
 
         .switch {
@@ -268,13 +267,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .features-element {
               display: flex;
-              align-items: center;
+              align-items: flex-start;
               gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
-              justify-content: flex-start;
+              justify-content: flex-start !important;
+              text-align: left !important;
 
               .features-element-text {
                 content: "";
+                text-align: left !important;
               }
 
               .icon {

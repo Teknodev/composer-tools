@@ -44,15 +44,7 @@ class PricingTable5 extends BasePricingTable {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "VIEW ALL PLANS",
-          "",
-          "",
-          null,
-          "Primary"
-        ),
+        INPUTS.BUTTON("button", "Button", "VIEW ALL PLANS", "", "", null, "Primary"),
       ],
     });
 
@@ -117,15 +109,7 @@ class PricingTable5 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "GET STARTED",
-                  "",
-                  "",
-                  null,
-                  "White"
-                ),
+                INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
               ],
             },
           ],
@@ -137,7 +121,7 @@ class PricingTable5 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "planTitle",
+              key: "title",
               displayer: "PlanType",
               value: "Standard Plan",
             },
@@ -156,7 +140,7 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "priceDescription",
+              key: "duration",
               displayer: "Price Description",
               value: " / Monthly",
             },
@@ -165,27 +149,19 @@ class PricingTable5 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "GET STARTED",
-                  "",
-                  "",
-                  null,
-                  "White"
-                ),
+                INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
               ],
             },
           ],
         },
         {
           type: "object",
-          key: "plans",
+          key: "plan",
           displayer: "Plans",
           value: [
             {
               type: "string",
-              key: "planTitle",
+              key: "title",
               displayer: "PlanType",
               value: "Premium Plan",
             },
@@ -204,7 +180,7 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "priceDescription",
+              key: "duration",
               displayer: "Price Description",
               value: " / Monthly",
             },
@@ -213,15 +189,7 @@ class PricingTable5 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "GET STARTED",
-                  "",
-                  "",
-                  null,
-                  "White"
-                ),
+                INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
               ],
             },
           ],

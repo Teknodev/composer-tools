@@ -50,15 +50,7 @@ class PricingTable3 extends BasePricingTable {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Join this plan",
-          "",
-          "",
-          null,
-          "Primary"
-        ),
+        INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
       ],
     });
 
@@ -174,15 +166,7 @@ class PricingTable3 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Join this plan",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
               ],
             },
           ],
@@ -284,15 +268,7 @@ class PricingTable3 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Join this plan",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
               ],
             },
           ],

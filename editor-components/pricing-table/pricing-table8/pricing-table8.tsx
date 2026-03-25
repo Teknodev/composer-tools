@@ -141,7 +141,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
@@ -188,7 +188,7 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "planTitle",
+              key: "subtitle",
               displayer: "Plan Title",
               value: "Medium plan",
             },
@@ -247,7 +247,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
@@ -294,7 +294,7 @@ class PricingTable8 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "planTitle",
+              key: "subtitle",
               displayer: "Plan Title",
               value: "Professional plan",
             },
@@ -353,7 +353,7 @@ class PricingTable8 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "barTitle",
+                      key: "title",
                       displayer: "Bar2",
                       value: "3 Years",
                     },
@@ -742,7 +742,7 @@ class PricingTable8 extends BasePricingTable {
                               <div
                                 className={this.decorateCSS("percent")}
                                 style={{
-                                  width: `${bar.percent}%`,
+                                  width: `${this.castToString(bar.percent) || "0"}%`,
                                 }}
                               ></div>
                             </div>

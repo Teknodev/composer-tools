@@ -72,7 +72,7 @@ class PricingTable7 extends BasePricingTable {
 
     this.addProp({
       type: "string",
-      key: "text",
+      key: "monthlyLabel",
       displayer: "Monthly Plan",
       value: "Monthly",
     });
@@ -304,7 +304,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Unlimited eSignature",
                     },
@@ -326,7 +326,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Custom Fields",
                     },
@@ -348,7 +348,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Client Intake Management",
                     },
@@ -444,7 +444,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Everything in Basic & Pro",
                     },
@@ -466,7 +466,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "MyCase Drive",
                     },
@@ -488,7 +488,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Advanced Document",
                     },
@@ -510,7 +510,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Full Text Search",
                     },
@@ -613,7 +613,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Case Management",
                     },
@@ -635,7 +635,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Task Management",
                     },
@@ -730,7 +730,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Unlimited eSignature",
                     },
@@ -752,7 +752,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Custom Fields",
                     },
@@ -774,7 +774,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Client Intake Management",
                     },
@@ -869,7 +869,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "Everything in Basic & Pro",
                     },
@@ -891,7 +891,7 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
                       displayer: "Text",
                       value: "MyCase Drive",
                     },
@@ -913,7 +913,29 @@ class PricingTable7 extends BasePricingTable {
                     },
                     {
                       type: "string",
-                      key: "itemText",
+                      key: "text",
+                      displayer: "Text",
+                      value: "Advanced Document",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "item-list",
+                  displayer: "Custom Fields",
+                  value: [
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FcApproval" },
+                    },
+                    {
+                      type: "string",
+                      key: "text",
                       displayer: "Text",
                       value: "Full Text Search",
                     },
@@ -973,9 +995,9 @@ class PricingTable7 extends BasePricingTable {
     const planType = this.getComponentState("plan_type");
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("plansDiscountText");
-    const text = this.getPropValue("text");
+    const monthlyLabel = this.getPropValue("monthlyLabel");
     const yearlyLabel = this.getPropValue("yearlyLabel");
-    const monthlyText = this.castToString(text);
+    const monthlyText = this.castToString(monthlyLabel);
     const yearlyText = this.castToString(yearlyLabel);
 
     const hasIcon = durationIcon && (durationIcon.name || durationIcon.url);
@@ -988,7 +1010,7 @@ class PricingTable7 extends BasePricingTable {
             className={`${this.decorateCSS("text")} ${planType === "monthlyPlan" ? this.decorateCSS("active") : ""
               }`}
           >
-            {text}
+            {monthlyLabel}
           </Base.P>
         )}
         {(monthlyText && yearlyText) && (
@@ -1036,7 +1058,7 @@ class PricingTable7 extends BasePricingTable {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const text = this.getPropValue("text");
+    const monthlyLabel = this.getPropValue("monthlyLabel");
     const yearlyLabel = this.getPropValue("yearlyLabel");
     const durationIcon = this.getPropValue("icon");
     const plansDiscountText = this.getPropValue("plansDiscountText");
@@ -1044,7 +1066,7 @@ class PricingTable7 extends BasePricingTable {
     const planType = this.getComponentState("plan_type");
     const monthlyPlansData = this.castToObject<MonthlyPlan[]>("monthlyPlan");
     const yearlyPlansData = this.castToObject<YearlyPlan[]>("yearlyPlan");
-    const monthlyText = this.castToString(text);
+    const monthlyText = this.castToString(monthlyLabel);
     const yearlyText = this.castToString(yearlyLabel);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasSubtitle = this.castToString(subtitle);
