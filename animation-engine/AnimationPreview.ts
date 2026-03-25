@@ -69,36 +69,73 @@ export class AnimationPreview {
    */
   static play(
     element: HTMLElement,
-    interaction: AnimationInteraction
+    interaction: any
   ): PreviewHandle {
     // Cancel any in-flight preview
     AnimationPreview.cancelActive();
 
+    // Prevent inheriting display:none from a previous removeOnComplete
+    // which causes the preview to run fully invisibly on subsequent clicks
+    if (element.style.display === "none") {
+      element.style.display = "";
+    }
+    
+    // Clean display:none from the captured string just in case
+    const originalCss = element.style.cssText.replace(/(?:^|;)\s*display:\s*none\s*;?/gi, "$1");
+    // Hard set the cleaned CSS to avoid weird intermediate states
+    element.style.cssText = originalCss;
+    
+    const isRemoveOnComplete = (interaction as any).action?.removeOnComplete ?? false;
+
     const previewId = `${PREVIEW_ID_PREFIX}${interaction.id}`;
     const previewTiming = buildPreviewTiming(interaction.timing);
 
+    let handle: PreviewHandle;
+
     if (interaction.animation.engine === "web-api") {
-      return AnimationPreview.playWebApi(
+      handle = AnimationPreview.playWebApi(
         element,
         previewId,
         interaction.animation,
         previewTiming
       );
     } else if (interaction.animation.engine === "text-animation") {
-      return AnimationPreview.playTextAnimation(
+      handle = AnimationPreview.playTextAnimation(
         element,
         previewId,
         interaction.animation,
         previewTiming
       );
     } else {
-      return AnimationPreview.playAnimateCss(
+      handle = AnimationPreview.playAnimateCss(
         element,
         previewId,
         interaction.animation,
         previewTiming
       );
     }
+
+    const wrappedFinished = handle.finished.finally(() => {
+      // Small delay to prevent React strict-mode/rapid-firing state bugs
+      // where the cancel promise resolves simultaneously with the next play
+      requestAnimationFrame(() => {
+        // Only restore if this is still the active preview or just finished naturally
+        if (
+          AnimationPreview.activePreview === null ||
+          AnimationPreview.activePreview.previewId === previewId
+        ) {
+          element.style.cssText = originalCss;
+          if (isRemoveOnComplete) {
+            element.style.display = "none";
+          }
+        }
+      });
+    });
+
+    return {
+      cancel: handle.cancel,
+      finished: wrappedFinished,
+    };
   }
 
   /**

@@ -14,8 +14,8 @@ import {
 
 // ── Fragment wrapper styles ───────────────────────────────────────────────
 
-export const FRAGMENT_BASE_STYLE  = "display:inline-block;white-space:pre-wrap;";
-export const FRAGMENT_WORD_STYLE  = FRAGMENT_BASE_STYLE;
+export const FRAGMENT_BASE_STYLE  = "display:inline-block;white-space:pre-wrap;margin:0;padding:0;line-height:inherit;vertical-align:baseline;";
+export const FRAGMENT_WORD_STYLE  = "display:inline-block;white-space:pre-wrap;margin:0;padding:0;line-height:inherit;vertical-align:baseline;";
 export const FRAGMENT_LINE_STYLE  = "display:block;";
 
 // ── Scramble alphabet ─────────────────────────────────────────────────────
@@ -90,35 +90,12 @@ export function splitText(
 
   if (fragments.length === 0) return [];
 
-  // ── Line-break detection (character & word modes) ────────────────────
+  // ── Style normalization (character & word modes) ────────────────────
   // For character and word modes we need display:inline-block for
   // animation transforms, but inline-block + non-breaking spaces changes
-  // word-wrapping behaviour.  To preserve the original multi-line layout
-  // we first insert fragments as plain inline <span>s (which wrap
-  // identically to the original text), measure their vertical positions
-  // to discover where CSS line breaks fall, then re-inject them as
-  // inline-block with <br> elements at those positions.
+  // word-wrapping behaviour.
   if (mode === "characters" || mode === "words") {
-    element.innerHTML = "";
-    for (const frag of fragments) {
-      element.appendChild(frag);
-    }
-
-    // Read vertical positions — a jump in `top` means a new line.
-    let prevTop = fragments[0].getBoundingClientRect().top;
-    for (let i = 1; i < fragments.length; i++) {
-      const top = fragments[i].getBoundingClientRect().top;
-      if (top > prevTop + 1) {
-        // Only add if there's no explicit break already at this index.
-        if (!lineBreaks.some((lb) => lb.afterIndex === i)) {
-          lineBreaks.push({ afterIndex: i });
-        }
-      }
-      prevTop = top;
-    }
-    lineBreaks.sort((a, b) => a.afterIndex - b.afterIndex);
-
-    // Now apply animation-ready styles on each fragment.
+    // Apply animation-ready styles on each fragment.
     for (const frag of fragments) {
       frag.style.cssText =
         mode === "words" ? FRAGMENT_WORD_STYLE : FRAGMENT_BASE_STYLE;
@@ -132,18 +109,11 @@ export function splitText(
 
   // ── DOM insertion ───────────────────────────────────────────────────
   // Replace element content with fragment spans.
-  // <br> elements are inserted at tracked positions to preserve multi-line layout.
   // After whitespace fragments, insert a <wbr> (word-break opportunity) so
   // line-wrapping works naturally despite fragments using display:inline-block
   // with non-breaking spaces that would otherwise prevent word-boundary breaks.
   element.innerHTML = "";
-  let brIdx = 0;
   for (let i = 0; i < fragments.length; i++) {
-    // Insert any <br> elements that belong before this fragment.
-    while (brIdx < lineBreaks.length && lineBreaks[brIdx].afterIndex === i) {
-      element.appendChild(document.createElement("br"));
-      brIdx++;
-    }
     const frag = fragments[i];
     element.appendChild(frag);
     if (
@@ -152,11 +122,6 @@ export function splitText(
     ) {
       element.appendChild(document.createElement("wbr"));
     }
-  }
-  // Append any trailing <br> elements.
-  while (brIdx < lineBreaks.length) {
-    element.appendChild(document.createElement("br"));
-    brIdx++;
   }
 
   return fragments;

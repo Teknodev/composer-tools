@@ -10,14 +10,14 @@ export class LayerInViewTriggerStrategy implements ITriggerStrategy {
   constructor(private config: LayerInViewTrigger) {}
 
   attach(element: HTMLElement, callback: () => void): TriggerCleanup {
-    const { offset = 0, once = true } = this.config;
+    const { offset = 0, once = true, replay = false } = this.config as any;
 
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
             callback();
-            if (once) {
+            if (once && !replay) {
               observer.unobserve(element);
             }
           }

@@ -20,16 +20,16 @@ export class ScrollIntoViewTriggerStrategy implements ITriggerStrategy {
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
+            // If replay, fire every re-entry
+            if (replay) {
+              callback();
+              return;
+            }
+
             // If once, fire and unobserve
             if (once) {
               callback();
               observer.unobserve(element);
-              return;
-            }
-
-            // If replay, fire every re-entry
-            if (replay) {
-              callback();
               return;
             }
 

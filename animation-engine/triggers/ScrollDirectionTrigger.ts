@@ -13,6 +13,7 @@ export class ScrollDirectionTriggerStrategy implements ITriggerStrategy {
     let lastScrollY = window.scrollY;
     let accumulated = 0;
     let lastDirection: "up" | "down" | null = null;
+    let hasFiredForCurrentDirection = false;
     let rafId = 0;
 
     const scrollTarget = findScrollableAncestor(element) ?? window;
@@ -40,6 +41,7 @@ export class ScrollDirectionTriggerStrategy implements ITriggerStrategy {
         if (currentDirection !== lastDirection) {
           accumulated = 0;
           lastDirection = currentDirection;
+          hasFiredForCurrentDirection = false;
         }
 
         accumulated += Math.abs(delta);
@@ -47,8 +49,9 @@ export class ScrollDirectionTriggerStrategy implements ITriggerStrategy {
         if (accumulated >= threshold) {
           const shouldFire =
             direction === "any" || direction === currentDirection;
-          if (shouldFire) {
+          if (shouldFire && !hasFiredForCurrentDirection) {
             callback();
+            hasFiredForCurrentDirection = true;
           }
           accumulated = 0;
         }

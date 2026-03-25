@@ -114,6 +114,8 @@ interface ActiveCssAnimationEntry {
   animation: Animation;
   /** The promise resolver to call when this animation finishes */
   resolve: () => void;
+  /** The promise rejector to call when this animation is cancelled */
+  reject: (reason: any) => void;
 }
 
 /**
@@ -238,23 +240,24 @@ export class AnimateCssAdapter {
 
     const animation = element.animate(keyframes, options);
 
-    const promise = new Promise<void>((resolve) => {
+    const promise = new Promise<void>((resolve, reject) => {
       const entry: ActiveCssAnimationEntry = {
         animation,
         resolve,
+        reject,
       };
 
       registry.set(interactionId, entry);
 
       const onFinish = () => {
-        this.removeEntry(element, interactionId);
+        this.removeEntry(element, interactionId, false);
       };
 
       animation.addEventListener("finish", onFinish, { once: true });
       animation.addEventListener("cancel", () => {
         // If cancelled externally (not through our cancel()), clean up
         if (registry.has(interactionId)) {
-          this.removeEntry(element, interactionId);
+          this.removeEntry(element, interactionId, true);
         }
       }, { once: true });
     });
@@ -290,17 +293,19 @@ export class AnimateCssAdapter {
    * Commits final styles to inline and cleans up, preserving accumulated
    * transform state from previous interactions.
    */
-  removeEntry(element: HTMLElement, interactionId: string): void {
+  removeEntry(element: HTMLElement, interactionId: string, isCancel: boolean): void {
     const registry = activeAnimations.get(element);
     const entry = registry?.get(interactionId);
     if (!entry) return;
 
     // Commit final styles into element.style, then cancel the animation
     // so that its fill effect no longer shadows inline styles.
-    try {
-      entry.animation.commitStyles();
-    } catch {
-      // commitStyles can throw if element is disconnected
+    if (!isCancel) {
+      try {
+        entry.animation.commitStyles();
+      } catch {
+        // commitStyles can throw if element is disconnected
+      }
     }
     try {
       entry.animation.cancel();
@@ -325,15 +330,21 @@ export class AnimateCssAdapter {
     // keyframes (built from TSM values) match the inline state exactly.
     transformStateManager.recompose(element);
 
-    // Resolve the promise
-    entry.resolve();
+    // Resolve or reject the promise
+    if (isCancel) {
+      const err = new Error("Animation cancelled");
+      err.name = "AbortError";
+      entry.reject(err);
+    } else {
+      entry.resolve();
+    }
   }
 
   /**
    * Cancel an active Animate.css animation immediately.
    */
   cancel(element: HTMLElement, interactionId: string): void {
-    this.removeEntry(element, interactionId);
+    this.removeEntry(element, interactionId, true);
   }
 
   /**
@@ -345,7 +356,7 @@ export class AnimateCssAdapter {
     // Collect IDs first to avoid mutation during iteration
     const ids = [...registry.keys()];
     for (const id of ids) {
-      this.removeEntry(element, id);
+      this.removeEntry(element, id, true);
     }
   }
 }
