@@ -44,13 +44,13 @@ class Feature51 extends BaseFeature {
 
     this.addProp({
       type: "array",
-      key: "services",
-      displayer: "Services",
+      key: "items",
+      displayer: "Items",
       value: [
         {
           type: "object",
-          key: "service",
-          displayer: "Service",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
@@ -69,8 +69,8 @@ class Feature51 extends BaseFeature {
         },
         {
           type: "object",
-          key: "service",
-          displayer: "Service",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
@@ -89,8 +89,8 @@ class Feature51 extends BaseFeature {
         },
         {
           type: "object",
-          key: "service",
-          displayer: "Service",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
@@ -109,8 +109,8 @@ class Feature51 extends BaseFeature {
         },
         {
           type: "object",
-          key: "service",
-          displayer: "Service",
+          key: "item",
+          displayer: "Item",
           value: [
             {
               type: "string",
@@ -201,11 +201,11 @@ class Feature51 extends BaseFeature {
     const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
     const line = this.getPropValue("line") as boolean;
 
-    const services = this.castToObject<ServiceItemType[]>("services") || [];
+    const items = this.castToObject<ServiceItemType[]>("items") || [];
 
     const collapseIcon = this.getPropValue("collapseIcon") as TypeMediaInputValue;
     const expandIcon = this.getPropValue("expandIcon") as TypeMediaInputValue;
-    const hasListContent = services.length > 0;
+    const hasListContent = items.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -236,7 +236,7 @@ class Feature51 extends BaseFeature {
                 className={`${this.decorateCSS("list-grid")} ${line && this.decorateCSS("has-line")}`}
                 gridCount={{ pc: itemCount, tablet: 1, phone: 1 }}
               >
-                {services.map((item: ServiceItemType, index: number) => {
+                {items.map((item: ServiceItemType, index: number) => {
                   const itemTitleExist = this.castToString(item.itemTitle);
                   const itemDescriptionExist = this.castToString(item.itemDescription);
                   const activeItemIndex = this.getComponentState("activeItemIndex");
@@ -246,7 +246,7 @@ class Feature51 extends BaseFeature {
 
                   return (
                     <div
-                      key={`feature51-service-${index}`}
+                      key={`feature51-item-${index}`}
                       className={`${this.decorateCSS("item-container")} ${isActive && this.decorateCSS("active-item")}`}
                     >
                       {itemHeaderExist && (
