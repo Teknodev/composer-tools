@@ -404,7 +404,17 @@ class Slider5 extends BaseSlider {
       value: false,
     });
 
-    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings"));
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      dots: false,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
 
     this.addProp({
       type: "object",
@@ -687,12 +697,17 @@ class Slider5 extends BaseSlider {
       quantitySection.wishlist.wishlistIcon ||
       categoriesAndTags.length > 0;
 
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
+    const showArrows = sliderSettings.arrows !== false;
+    const showDots = !!sliderSettings.dots;
+
     const verticalSettings = {
-      ...this.transformSliderValues(this.getPropValue("settings")),
+      ...sliderSettings,
       slidesToShow: 3,
       slidesToScroll: 1,
       vertical: true,
       arrows: false,
+      dots: false,
       afterChange: (current: number) => {
         this.setComponentState("currentSlideIndex", current);
         if (horizontalSliderRef.current) {
@@ -702,7 +717,7 @@ class Slider5 extends BaseSlider {
     };
 
     const horizontalSettings = {
-      ...this.transformSliderValues(this.getPropValue("settings")),
+      ...sliderSettings,
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,
@@ -749,7 +764,7 @@ class Slider5 extends BaseSlider {
                     })}
                   </ComposerSlider>
 
-                  {(verticalPreviousArrow || verticalNextArrow) && (
+                  {showArrows && (verticalPreviousArrow || verticalNextArrow) && (
                     <div className={this.decorateCSS("verticalArrows")}>
                       {verticalPreviousArrow && (
                         <div
@@ -771,7 +786,7 @@ class Slider5 extends BaseSlider {
                   )}
                 </div>
 
-                <div className={this.decorateCSS("horizontal-parent")}>
+                <div className={`${this.decorateCSS("horizontal-parent")} ${showDots ? this.decorateCSS("has-dots") : ""}`}>
                   <ComposerSlider
                     {...horizontalSettings}
                     className={this.decorateCSS("carousel-horizontal")}
@@ -805,7 +820,7 @@ class Slider5 extends BaseSlider {
                     ))}
                   </ComposerSlider>
 
-                  {(horizontalPreviousArrow || horizontalNextArrow) && (
+                  {showArrows && (horizontalPreviousArrow || horizontalNextArrow) && (
                     <div className={this.decorateCSS("horizontalArrows")}>
                       {horizontalPreviousArrow && (
                         <div

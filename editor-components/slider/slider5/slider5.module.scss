@@ -164,7 +164,7 @@
 
             :global(.slick-dots) {
               position: absolute;
-              bottom: -50px;
+              bottom: 0px;
               left: 50%;
               transform: translateX(-50%);
               display: flex !important;
@@ -196,7 +196,7 @@
                     width: var(--composer-gap-sm);
                     height: var(--composer-gap-sm);
                     border-radius: var(--composer-border-radius-full);
-                    background: var(--composer-font-color-secondary);
+                    background: var(--composer-font-color-primary);
                     opacity: 0.5;
                     transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
                     transform: scale(0.8);
@@ -505,6 +505,23 @@
                 font-size: 2rem;
                 color: var(--composer-font-color-secondary);
               }
+            }
+          }
+
+          &.has-dots {
+            .carousel-horizontal {
+              :global(.slick-list),
+              :global(.slick-track) {
+                :global(.slick-slide) {
+                  .slick-slide-wrapper {
+                    padding-bottom: 40px;
+                    box-sizing: border-box;
+                  }
+                }
+              }
+            }
+            .buttons {
+              bottom: 50px;
             }
           }
         }
