@@ -2485,7 +2485,7 @@ class Navbar10 extends BaseNavigator {
     const isOverlayVisible = hamburgerNavActive || activeDropdown !== null;
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           ref={this.containerRef}
           position={position}
@@ -3062,7 +3062,7 @@ class Navbar10 extends BaseNavigator {
           isVisible={isOverlayVisible}
           onClick={() => this.handleCloseMenu()}
         />
-      </>
+      </div>
     );
   }
 }
