@@ -233,7 +233,7 @@ export class AnimateCssAdapter {
       iterations:
         timing.iterationCount === "infinite"
           ? Infinity
-          : (timing.iterationCount ?? 1),
+          : (Number(timing.iterationCount) || 1),
       direction: timing.direction || "normal",
       fill: resolvedFill,
     };

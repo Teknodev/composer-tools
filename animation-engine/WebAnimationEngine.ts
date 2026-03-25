@@ -246,7 +246,7 @@ function mapTimingToOptions(timing: TimingConfig): KeyframeAnimationOptions {
     delay: timing.delay,
     easing: timing.easing,
     iterations:
-      timing.iterationCount === "infinite" ? Infinity : timing.iterationCount,
+      timing.iterationCount === "infinite" ? Infinity : (Number(timing.iterationCount) || 1),
     direction: timing.direction,
     fill,
   };
@@ -367,7 +367,10 @@ export class WebAnimationEngine {
         registry.delete(interactionId);
         return anim;
       })
-      .catch(() => animation);
+      .catch((err) => {
+        registry.delete(interactionId);
+        throw err;
+      });
 
     return {
       animation,
