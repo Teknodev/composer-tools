@@ -1,5 +1,5 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
 @keyframes bounceText {
@@ -64,6 +64,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .plan-title {
           padding: var(--composer-gap-sm) var(--composer-gap-md);
           margin: 0;
+          cursor: pointer;
         }
       }
 
@@ -83,14 +84,16 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           align-items: center;
 
           .button {
-            .button-text {
+
+            .button-text,
+            .button-icon {
               content: "";
             }
 
             .button-icon {
               font-size: 1.5rem;
-              height: 25px;
-              width: 25px;
+              height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+              width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
               display: flex;
               align-items: center;
               justify-content: center;
@@ -122,18 +125,15 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             align-items: center;
             border-radius: var(--composer-border-radius-sm);
             gap: var(--composer-gap-md);
-            padding-right: var(--composer-gap-xl);
-            padding-left: var(--composer-gap-xl);
+            padding: 0 var(--composer-gap-xl);
+            cursor: pointer;
 
             &.active {
               background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
 
               .tag,
-              .item-price {
-                color: var(--composer-font-color-secondary);
-              }
-
+              .item-price,
               .per {
                 color: var(--composer-font-color-secondary);
               }
@@ -141,7 +141,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .tag {
                 background-color: var(--composer-font-color-primary);
                 color: var(--composer-html-background);
-                border: var(--composer-font-color-primary);
+                border-color: var(--composer-font-color-primary);
               }
 
               .plan-icons .plan,
@@ -156,32 +156,24 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
             }
 
-            &.animation1:hover {
-              &:not(.active):hover {
-                background-color: var(--composer-primary-color);
+            &:not(.active).animation1:hover {
+              background-color: var(--composer-primary-color);
 
-                .plan-icons,
-                .tag,
-                .item-price {
-                  color: var(--composer-font-color-secondary);
-                }
+              .plan-icons,
+              .tag,
+              .item-price,
+              .per {
+                color: var(--composer-font-color-secondary);
+              }
 
-                .tag {
-                  border: 1px solid var(--composer-font-color-secondary);
-                }
+              .tag {
+                border: 1px solid var(--composer-font-color-secondary);
+              }
 
-                .per {
-                  color: var(--composer-font-color-secondary);
-                }
-
-                .plan-icons .plan,
-                .item-price .price {
-                  color: var(--composer-font-color-secondary);
-                }
-
-                .plan-icons .icon {
-                  color: var(--composer-font-color-secondary);
-                }
+              .plan-icons .plan,
+              .plan-icons .icon,
+              .item-price .price {
+                color: var(--composer-font-color-secondary);
               }
             }
 
@@ -195,7 +187,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .item-price {
                 animation-name: breathe;
                 animation-duration: 1s;
-                animation-timing-function: ease-in-and-out;
+                animation-timing-function: ease-in-out;
                 animation-iteration-count: infinite;
                 animation-direction: alternate;
               }
@@ -219,7 +211,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             .tag-wrapper {
-
               width: 100%;
               padding-left: var(--composer-gap-md);
 
@@ -258,11 +249,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .per {
                 white-space: inherit;
                 width: fit-content;
+                color: var(--composer-tertiary-color);
               }
-            }
-
-            .per {
-              color: var(--composer-tertiary-color);
             }
           }
         }
@@ -281,7 +269,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .header-wrapper {
                 .subtitle {
                   background-color: var(--composer-primary-color);
-                  border: 1px solid var(--composer-primary-color);
+                  border-color: var(--composer-primary-color);
                   color: var(--composer-font-color-secondary);
                 }
               }
@@ -290,9 +278,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
           .content {
             flex-grow: 1;
-            padding: 0;
+            padding: var(--composer-gap-lg) 0 0 0;
             max-width: 100%;
-            padding-top: var(--composer-gap-lg);
             gap: var(--composer-gap-md);
 
             .header-wrapper {
@@ -312,7 +299,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 height: 100%;
 
                 .subtitle {
-                  background-color: transparent;
                   border: 1px solid var(--composer-tertiary-color);
                   color: var(--composer-font-color-primary);
                   padding: 0 var(--composer-gap-sm);
@@ -320,7 +306,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   transition: 0.8s;
                   width: auto;
                   position: relative;
-                  top: 0px;
                 }
               }
             }
@@ -331,7 +316,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               margin-bottom: 0;
               width: 100%;
 
-              .list-item {
+              .list-item,
+              .list-item-disabled {
                 display: flex;
                 align-items: center;
                 gap: var(--composer-gap-sm);
@@ -352,19 +338,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .list-item-disabled {
-                display: flex;
-                align-items: center;
-                gap: var(--composer-gap-sm);
-                padding: var(--composer-gap-sm) 0 var(--composer-gap-md) var(--composer-gap-md);
-                border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                 color: var(--composer-tertiary-color);
 
-                .dash_icon {
-                  font-size: 1.5rem;
-                  color: var(--composer-tertiary-color);
-                  flex-shrink: 0;
-                }
-
+                .dash_icon,
                 .property {
                   color: var(--composer-tertiary-color);
                 }
@@ -376,7 +352,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   var(--composer-html-background),
                   var(--composer-font-color-primary) 5%);
               padding: var(--composer-gap-md);
-              padding-top: var(--composer-gap-xs) !important;
               display: flex;
               width: 100%;
               gap: var(--composer-gap-md);
@@ -391,17 +366,19 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 white-space: nowrap;
 
                 .button {
+
+                  .button-text,
+                  .button-icon {
+                    content: "";
+                  }
+
                   .button-icon {
                     font-size: 1.5rem;
-                    height: 25px;
-                    width: 25px;
+                    height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                    width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                  }
-
-                  .button-text {
-                    content: "";
                   }
                 }
               }
@@ -418,7 +395,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -430,35 +406,32 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         .up-page {
 
           .title,
-          .description {
-            text-align: center !important;
+          .description,
+          .subtitle {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
           }
 
           .subtitle {
-            text-align: center !important;
-            margin-left: auto !important;
-            margin-right: auto !important;
-            transform: translateX(0) !important;
+            transform: none;
 
             &::before {
-              display: none !important;
+              display: none;
             }
           }
         }
 
         .down-page {
-          flex-direction: column !important;
+          flex-direction: column;
 
           .left-page {
             .listArray {
               padding: var(--composer-gap-md);
-              height: auto;
-              gap: var(--composer-gap-md);
               flex-direction: column;
               justify-content: center;
 
               .plan-icons .plan,
-              .plan-icons .icons,
               .item-price .price,
               .item-price .per {
                 margin: 0;
@@ -468,6 +441,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 flex-direction: column;
                 justify-content: center;
                 width: 100%;
+
+                .price {
+                  font-size: 1.5rem;
+                }
               }
 
               .tag-wrapper {
@@ -475,50 +452,25 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 justify-content: center;
                 padding-left: 0;
               }
-
-              .plan-icons {
-                margin-left: 0;
-              }
-
-              .per {
-                margin-right: 0;
-              }
-
-              .price {
-                font-size: 1.5rem !important;
-              }
-
-              &.active {
-                gap: var(--composer-gap-md);
-              }
             }
           }
 
           .right-page {
-            width: 100% !important;
+            width: 100%;
 
             .content {
-              min-height: 400px !important;
-              display: flex;
-              flex-direction: column;
+              min-height: 400px;
 
               .list-body {
 
                 .list-item,
                 .list-item-disabled {
-                  padding: var(--composer-gap-md) 0 var(--composer-gap-md) var(--composer-gap-md) !important;
+                  padding: var(--composer-gap-md);
                 }
               }
 
               .body-bottom {
-                justify-content: center !important;
-                padding-top: 0 !important;
-              }
-
-              .header-wrapper {
-                .subtitle {
-                  top: 0 !important;
-                }
+                justify-content: center;
               }
             }
           }
