@@ -1,5 +1,4 @@
-@use "../../../../composer-tools/composer-base-components//base//utitilities/viewports.module.scss" as *;
-
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
@@ -45,19 +44,19 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           gap: var(--composer-gap-sm);
 
           .button {
-            content: "";
+
+            .button-icon,
+            .button-text {
+              content: "";
+            }
 
             .button-icon {
               display: flex;
               align-items: center;
               justify-content: center;
               font-size: 1.5rem;
-              height: 25px;
-              width: 25px;
-            }
-
-            .button-text {
-              content: "";
+              height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+              width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
             }
           }
         }
@@ -66,7 +65,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .page-down {
         column-gap: var(--composer-gap-md);
         align-items: stretch;
-        padding-bottom: var(--composer-gap-md) !important;
+        padding-bottom: var(--composer-gap-md);
 
         .card {
           width: 100%;
@@ -122,11 +121,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             width: 100%;
             justify-content: center;
             align-items: center;
-
-            .subtitle {
-              width: max-content;
-              color: var(--composer-primary-color);
-            }
 
             .card-up-texts {
               width: 100%;
@@ -199,14 +193,16 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             gap: var(--composer-gap-sm);
 
             .button {
+
+              .button-icon,
+              .button-text {
+                content: "";
+              }
+
               .button-icon {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-              }
-
-              .button-text {
-                content: "";
               }
             }
           }
@@ -222,8 +218,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .page {
         .page-down {
           .card {
-            padding-left: var(--composer-gap-xl) !important;
-            padding-right: var(--composer-gap-xl) !important;
+            padding-left: var(--composer-gap-xl);
+            padding-right: var(--composer-gap-xl);
           }
         }
       }
@@ -239,8 +235,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .page-down {
           .card {
-            padding-left: var(--composer-gap-md) !important;
-            padding-right: var(--composer-gap-md) !important;
+            padding-left: var(--composer-gap-md);
+            padding-right: var(--composer-gap-md);
 
             .card-up {
               .card-up-texts {

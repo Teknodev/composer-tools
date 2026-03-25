@@ -555,7 +555,7 @@ class PricingMultiple extends BasePricingTable {
     const buttonsArray = item?.buttons;
     if (!Array.isArray(buttonsArray)) return [];
 
-    return buttonsArray.map((btn: any) => {
+    return buttonsArray.map((btn) => {
       const parent = btn?.value ?? btn;
       const icon = this.getPropValue("icon", { parent_object: parent });
       const media = icon || null;
@@ -573,9 +573,9 @@ class PricingMultiple extends BasePricingTable {
   ) {
     if (!Array.isArray(buttons)) return false;
     return buttons.some(
-      (b: any) =>
+      (b) =>
         this.castToString(b?.text) ||
-        (b?.media && ((b as any).media?.name || (b as any).media?.url))
+        (b?.media && (b.media.name || b.media.url))
     );
   }
 
@@ -592,10 +592,15 @@ class PricingMultiple extends BasePricingTable {
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
-    const topLevelButtons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const hasTopLevelButtons = this.hasAnyButtonInItem(topLevelButtons);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && btn.icon.name;
+      return buttonText || iconExist;
+    });
 
-    const hasHeaderContent = hasSubtitle || hasTitle || hasDescription || hasTopLevelButtons;
+    const hasHeaderContent =
+      hasSubtitle || hasTitle || hasDescription || hasValidButtons;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -620,41 +625,34 @@ class PricingMultiple extends BasePricingTable {
                     {description}
                   </Base.SectionDescription>
                 )}
-                {hasTopLevelButtons && (
+                {hasValidButtons && (
                   <div className={this.decorateCSS("top-level-buttons")}>
-                    {topLevelButtons.map((btn, btnIndex: number) => {
-                      const buttonText = btn.text;
-                      const buttonMedia = btn.icon;
-                      const buttonUrl = btn.url || "#";
-                      const buttonType = btn.type;
+                    {buttons.map((btn, btnIndex: number) => {
+                      const buttonText = this.castToString(btn.text);
+                      const iconExist = btn.icon && btn.icon.name;
 
-                      const btnTextExist = this.castToString(buttonText);
-                      const buttonMediaExist =
-                        buttonMedia &&
-                        ((buttonMedia as any).name || (buttonMedia as any).url);
-
-                      if (!btnTextExist && !buttonMediaExist) return null;
+                      if (!buttonText && !iconExist) return null;
 
                       return (
                         <ComposerLink
-                          path={buttonUrl}
+                          path={btn.url}
                           key={`top-btn-${btnIndex}`}
                         >
                           <Base.Button
-                            buttonType={buttonType}
+                            buttonType={btn.type}
                             className={this.decorateCSS("button")}
                           >
-                            {buttonMediaExist && (
+                            {iconExist && (
                               <Base.Media
-                                value={buttonMedia}
+                                value={btn.icon!}
                                 className={this.decorateCSS("button-icon")}
                               />
                             )}
-                            {btnTextExist && (
+                            {buttonText && (
                               <Base.P
                                 className={this.decorateCSS("button-text")}
                               >
-                                {buttonText}
+                                {btn.text}
                               </Base.P>
                             )}
                           </Base.Button>
@@ -726,7 +724,7 @@ class PricingMultiple extends BasePricingTable {
                                 {price.subtitle}
                               </Base.P>
                             )}
-                            {this.castToString(price.price) && (
+                            {pricing && (
                               <Base.H1
                                 className={this.decorateCSS("price-pricing")}
                               >
@@ -802,11 +800,9 @@ class PricingMultiple extends BasePricingTable {
                             const btnTextExist = this.castToString(buttonText);
                             const buttonMediaExist =
                               buttonMedia &&
-                              ((buttonMedia as any).name ||
-                                (buttonMedia as any).url);
+                              (buttonMedia.name || buttonMedia.url);
 
-                            if (!btnTextExist && !buttonMediaExist)
-                              return null;
+                            if (!btnTextExist && !buttonMediaExist) return null;
 
                             return (
                               <ComposerLink
