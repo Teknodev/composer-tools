@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-color: var(--composer-html-background);
-
   .max-content {
     .card {
       .card-content {
@@ -19,10 +17,6 @@
               content: "";
             }
 
-            .description {
-              color: var(--composer-font-color-primary) !important;
-            }
-
             .button-container {
               display: flex;
               flex-wrap: wrap;
@@ -30,7 +24,7 @@
 
               .button {
                 .button-text {
-                  width: fit-content;
+                  content: "";
                 }
               }
             }
@@ -108,15 +102,9 @@
               .stat-value {
                 font-size: 9rem;
 
-                .stat-number {
-                  font-size: 9rem;
-                }
-
+                .stat-number,
+                .stat-prefix,
                 .stat-suffix {
-                  font-size: 9rem;
-                }
-
-                .stat-prefix {
                   font-size: 9rem;
                 }
               }
@@ -156,17 +144,12 @@
               .stat-value {
                 font-size: 7rem;
 
-                .stat-number {
-                  font-size: 7rem;
-                }
-
+                .stat-number,
+                .stat-prefix,
                 .stat-suffix {
                   font-size: 7rem;
                 }
 
-                .stat-prefix {
-                  font-size: 7rem;
-                }
               }
 
               .stat-subtitle,
@@ -179,7 +162,7 @@
               }
 
               .stat-description {
-                font-size: 0.9rem;
+                font-size: 1rem;
                 text-align: left !important;
               }
             }
