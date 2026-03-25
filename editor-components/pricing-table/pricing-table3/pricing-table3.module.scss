@@ -1,5 +1,4 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @keyframes pulse {
   0% {
@@ -11,9 +10,11 @@ as *;
   }
 }
 
-.container,
-.max-content {
-  content: "";
+.container {
+  .overlay,
+  .max-content {
+    content: "";
+  }
 }
 
 .wrapper {
@@ -33,8 +34,8 @@ as *;
     .subtitle,
     .description {
       width: 100%;
-      text-align: left !important;
-      margin-left: 0 !important;
+      text-align: left;
+      margin-left: 0;
     }
 
     .top-level-buttons {
@@ -45,14 +46,15 @@ as *;
       place-self: flex-start;
 
       .button {
-        .button-text {
+        .button-text,
+        .button-icon {
           content: "";
         }
 
         .button-icon {
           font-size: 1.5rem;
-          height: 25px;
-          width: 25px;
+          height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+          width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
           display: flex;
           align-items: center;
           justify-content: center;
@@ -149,15 +151,15 @@ as *;
     .card {
       .card-content {
         justify-content: center;
-        align-items: center !important;
+        align-self: center;
 
         .header {
-          align-items: center !important;
+          align-self: center;
 
           .icon {
             color: var(--composer-primary-color);
-            width: 50px;
-            height: 50px;
+            width: var(--composer-gap-xl);
+            height: var(--composer-gap-xl);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -166,12 +168,7 @@ as *;
 
           .title {
             color: var(--composer-tertiary-color);
-          }
-
-          .subtitle,
-          .description,
-          .button {
-            content: "";
+            text-align: center;
           }
 
           .price {
@@ -188,7 +185,8 @@ as *;
               padding: var(--composer-gap-sm);
               width: 100%;
               color: var(--composer-font-color-primary);
-              border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+              border-bottom: 1px solid
+                rgba(var(--composer-font-color-primary-rgb), 0.2);
               text-align: center;
               position: relative;
 
@@ -222,7 +220,8 @@ as *;
           width: 100%;
 
           .button {
-            .button-text {
+            .button-text,
+            .button-icon {
               content: "";
             }
 
@@ -239,10 +238,6 @@ as *;
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container-alternate {
-    margin-top: 0;
-  }
-
   .wrapper {
     flex-direction: column;
 
@@ -259,7 +254,6 @@ as *;
 }
 
 @container (max-width: #{$composer-phone-width}) {
-
   .cards-div,
   .cards-div-alternate {
     width: 100%;
@@ -268,14 +262,14 @@ as *;
 
     .card-container {
       width: 100%;
-    }
 
-    .card-container.active {
-      scale: 1;
+      &.active {
+        scale: 1;
+      }
     }
   }
 
   .wrapper {
     gap: var(--composer-gap-md);
   }
-}
+}
