@@ -1,282 +1,249 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: calc(var(--composer-gap-lg) * 2) 0 !important;
+  padding: 80px 0px !important;
 
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-xl);
-    overflow: visible;
+    gap: calc(var(--composer-gap-lg) * 2);
+    position: relative;
 
     .vertical-content {
-      padding: 0 var(--composer-gap-xl);
+      padding-left: var(--composer-gap-xl);
+      padding-right: var(--composer-gap-xl);
 
       .subtitle,
-      .title,
-      .description {
+      .title {
         content: "";
       }
 
-      .button-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--composer-gap-sm);
-
-        .button {
-          .button-text {
-            content: "";
-          }
-        }
-      }
-    }
-
-    .slider-parent {
-      width: 100%;
-      margin: auto;
-      margin-bottom: 0;
-      overflow: visible;
-      padding-bottom: 70px;
-
-      &.no-bottom-padding {
-        padding-bottom: 0 !important;
-      }
-
-      .carousel {
+      .content {
         width: 100%;
 
-        :global(.slick-list) {
-          :global(.slick-track) {
-            display: flex;
-            align-items: stretch;
-            gap: var(--composer-gap-lg);
-
-            :global(.slick-slide) {
-              height: auto;
-              padding: 0;
-            }
-          }
+        .description {
+          content: "";
         }
 
-        .card {
-          width: 100%;
-          height: 100%;
+        .button-container {
           display: flex;
-          flex-direction: column;
-          border-radius: var(--composer-border-radius-sm) !important;
+          flex-direction: row;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
 
-          .content-div {
-            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.1);
-            transition: transform var(--composer-transition-duration-normal), filter var(--composer-transition-duration-normal);
-            border-radius: var(--composer-gap-md);
-            min-height: 300px;
-            height: 100%;
-            gap: 0;
-
-            .left-part {
-              flex: 1;
-              display: flex;
-              flex-direction: row;
-              flex-wrap: nowrap;
-              width: 100%;
-              align-items: stretch;
-              align-items: center;
-              justify-content: center;
-
-              .vert-text {
-                writing-mode: vertical-rl;
-                text-orientation: mixed;
-                transform: rotate(180deg);
-                color: var(--composer-font-color-primary);
-                text-align: center;
-                margin: var(--composer-gap-sm) var(--composer-gap-md);
-                white-space: normal;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: block;
-              }
-
-              .image-wrapper {
-                position: relative;
-                min-height: 250px;
-                flex: 1;
-                height: 100%;
-
-                .image {
-                  position: absolute;
-                  height: 100%;
-                  width: 100%;
-                  object-fit: cover;
-                  object-position: center;
-                }
-
-                .overlay {
-                  position: absolute;
-                  top: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 100%;
-                  background-color: var(--composer-overlay-color);
-                  z-index: 1;
-                }
-              }
-            }
-
-            .no-image {
-              flex: unset;
-              width: auto;
-            }
-
-            .right-part {
-              flex: 1;
-              padding: var(--composer-gap-lg) 30px;
-              height: fit-content;
-              align-items: flex-start;
-
-              .card-subtitle,
-              .card-description {
-                color: var(--composer-tertiary-color);
-                text-align: left;
-              }
-
-              .card-title {
-                color: var(--composer-font-color-primary);
-                text-align: left;
-              }
-
-              .card-button {
-                display: flex;
-                justify-content: left;
-                width: 100%;
-
-                .card-button-text {
-                  content: "";
-                }
-
-                .card-icon {
-                  line-height: 0;
-                }
-              }
+          .button {
+            .button-text {
+              content: "";
             }
           }
-
-          &.nextSlide,
-          &.prevSlide {
-            filter: blur(var(--composer-gap-xs));
-          }
-        }
-
-        :global(.slick-prev),
-        :global(.slick-next) {
-          display: flex !important;
-          align-items: center;
-          justify-content: center;
-          height: 45px;
-          width: 45px;
-          top: auto;
-          bottom: -92px;
-          border: 1px solid var(--composer-tertiary-color);
-          border-radius: 50%;
-          outline: none;
-          z-index: 10;
-          transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-
-          &:hover {
-            outline: none;
-            background: transparent;
-            color: transparent;
-            border-color: transparent;
-
-            &:before {
-              opacity: 1;
-            }
-          }
-
-          &:before {
-            font-family: inherit;
-            font-size: 10px;
-            color: var(--composer-font-color-primary);
-            opacity: 0.75;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            display: inline-block;
-          }
-        }
-
-        :global(.slick-prev) {
-          left: 90px;
-
-          &:hover {
-            &:before {
-              transform: translateX(-20px);
-            }
-          }
-
-          &:before {
-            content: "◀";
-          }
-        }
-
-        :global(.slick-next) {
-          right: 90px;
-
-          &:hover {
-            &:before {
-              transform: translateX(20px);
-            }
-          }
-
-          &:before {
-            content: "▶";
-          }
-        }
-
-        :global(.slick-dots) {
-          bottom: -70px;
-          display: flex !important;
-          justify-content: center;
-          align-items: center;
-          pointer-events: none;
-
-          :global(li) {
-            pointer-events: auto;
-
-            :global(button) {
-              width: 12px;
-              height: 12px;
-              display: flex;
-              align-items: center;
-
-              &::before {
-                content: "";
-                display: block;
-                background-color: var(--composer-primary-color);
-                height: 2px;
-                width: 100%;
-                opacity: 0.3;
-                transition: opacity 0.3s ease;
-              }
-            }
-
-            &:global(.slick-active) :global(button)::before {
-              opacity: 1;
-            }
-          }
-        }
-
-        .carousel--multipleCards {
-          width: auto;
         }
       }
     }
 
-    .dots-container {
-      display: none;
+    .tabs-layout {
+      position: relative;
+      display: flex;
+      gap: var(--composer-gap-lg);
+
+      .tabs-left {
+        flex: 1;
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: var(--composer-gap-md);
+        text-align: left;
+        padding-left: var(--composer-gap-xl);
+
+        &.full-width {
+          padding-right: var(--composer-gap-xl);
+          width: 100%;
+        }
+
+        .tab-item {
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          border-radius: var(--composer-border-radius-sm);
+
+          .tab-background {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 250px;
+            margin-bottom: var(--composer-gap-md);
+            border-radius: var(--composer-border-radius-sm);
+            overflow: hidden;
+
+            .tab-bg-media {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+
+            .overlay {
+              position: absolute;
+              inset: 0;
+              pointer-events: none;
+              background-color: var(--composer-overlay-color);
+              border-radius: var(--composer-border-radius-sm);
+            }
+          }
+        }
+
+        .card-content {
+          align-items: flex-start !important;
+
+          .card-subtitle,
+          .card-title {
+            color: var(--composer-font-color-primary);
+            text-align: left !important;
+          }
+
+          .card-description {
+            color: var(--composer-tertiary-color);
+            text-align: left !important;
+          }
+
+          .button-wrapper {
+            display: flex;
+            align-items: center;
+            gap: var(--composer-gap-xs);
+            width: 100%;
+
+            .card-button {
+              .card-button-text {
+                content: "";
+              }
+            }
+
+            .button-icon {
+              flex: 0 0 30px;
+              color: var(--composer-font-color-primary);
+              transform: rotate(-45deg);
+              transition: transform 0.2s ease;
+              font-size: 1.5rem;
+              line-height: 0;
+
+              &.has-image {
+                width: var(--composer-gap-md);
+                height: var(--composer-gap-md);
+                object-fit: contain;
+              }
+            }
+
+            &:hover {
+              .button-icon {
+                transform: rotate(0deg);
+              }
+            }
+          }
+        }
+
+        .progress-container {
+          margin: 30px 0;
+
+          .progress-track {
+            width: 100%;
+            height: var(--composer-border-radius-xs);
+            background-color: color-mix(in srgb, var(--composer-font-color-primary) 25%, transparent 0%);
+            border-radius: var(--composer-border-radius-sm);
+            overflow: hidden;
+          }
+
+          .progress-fill {
+            height: 100%;
+            background-color: var(--composer-font-color-primary);
+            border-radius: var(--composer-border-radius-sm);
+            width: 0%;
+
+            &.animate {
+              animation: progressFill linear forwards;
+            }
+          }
+
+          @keyframes progressFill {
+            from {
+              width: 0%;
+            }
+
+            to {
+              width: 100%;
+            }
+          }
+        }
+      }
+
+      .tabs-right {
+        flex: 1;
+        min-width: 0;
+        width: 50vw;
+        position: relative;
+        overflow: hidden;
+        min-height: 150px;
+        border-top-left-radius: var(--composer-border-radius-sm);
+        border-bottom-left-radius: var(--composer-border-radius-sm);
+
+
+        .tab-image-wrapper {
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          overflow: hidden;
+          border-top-left-radius: var(--composer-border-radius-sm);
+          border-bottom-left-radius: var(--composer-border-radius-sm);
+
+
+          &.visible {
+            opacity: 1;
+          }
+
+          .tab-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          .overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-color: var(--composer-overlay-color);
+          }
+        }
+      }
     }
 
-    .single-item {
-      :global(.slick-list) {
-        :global(.slick-track) {
-          margin-left: unset !important;
+    .dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: var(--composer-gap-md);
+
+      .dot-item {
+        cursor: pointer;
+        padding: 0 var(--composer-gap-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .dot-button {
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-full);
+          border: none;
+          background: var(--composer-font-color-primary);
+          opacity: 0.5;
+          padding: 0;
+          transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
+          transform: scale(0.8);
+          flex-shrink: 0;
+        }
+
+        &.active .dot-button {
+          opacity: 1;
+          transform: scale(1.2);
         }
       }
     }
@@ -286,43 +253,18 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-lg);
+      gap: var(--composer-gap-xl);
 
       .vertical-content {
-        padding: 0 var(--composer-gap-lg);
+        padding-left: var(--composer-gap-lg);
+        padding-right: var(--composer-gap-lg);
       }
 
-      .slider-parent {
-        padding-bottom: 60px;
+      .tabs-left {
+        padding-left: var(--composer-gap-lg);
 
-        &.no-bottom-padding {
-          padding-bottom: 0 !important;
-        }
-
-        .carousel {
-
-          :global(.slick-prev),
-          :global(.slick-next) {
-            height: 35px;
-            width: 35px;
-            bottom: -78px;
-
-            &:before {
-              font-size: 8px;
-            }
-          }
-
-          :global(.slick-prev) {
-            left: 70px !important;
-          }
-
-          :global(.slick-next) {
-            right: 70px !important;
-          }
-
-          :global(.slick-dots) {
-            bottom: -62px;
-          }
+        &.full-width {
+          padding-right: var(--composer-gap-lg);
         }
       }
     }
@@ -331,79 +273,47 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-xl) 0px !important;
+    padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
 
     .max-content {
+      gap: var(--composer-gap-lg);
 
       .vertical-content {
-        padding: 0 var(--composer-gap-md);
+        padding-left: 0 !important;
+        padding-right: 0 !important;
       }
 
-      .slider-parent {
-        .carousel {
-          :global(.slick-list) {
-            :global(.slick-track) {
-              gap: 0;
+      .tabs-left {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        gap: var(--composer-gap-md) !important;
+      }
+
+      .tabs-layout {
+        flex-direction: column;
+
+        .tabs-left {
+          .tab-item {
+            display: flex;
+            margin-bottom: var(--composer-gap-sm);
+
+            .tab-background {
+              display: block;
             }
           }
 
-          .card {
-            .content-div {
-              flex-direction: column;
-              border-radius: 0;
-
-              .left-part {
-                flex-direction: column;
-                align-items: unset;
-
-                .vert-text {
-                  writing-mode: unset;
-                  transform: unset;
-                  margin: 15px;
-                }
-
-                .image-wrapper {
-                  flex: unset;
-                }
-              }
-
-              .right-part {
-                padding: var(--composer-gap-md);
-              }
-            }
-          }
-
-          :global(.slick-prev),
-          :global(.slick-next) {
-            height: 30px;
-            width: 30px;
-            bottom: -75px;
-          }
-
-          :global(.slick-prev) {
-            left: var(--composer-gap-lg) !important;
-
-            &:hover {
-              &:before {
-                transform: translateX(-10px) !important;
-              }
-            }
-          }
-
-          :global(.slick-next) {
-            right: var(--composer-gap-lg) !important;
-
-            &:hover {
-              &:before {
-                transform: translateX(10px) !important;
-              }
-            }
-          }
-
-          :global(.slick-dots) {
-            bottom: -66px;
+          .progress-container {
+            display: none;
           }
         }
+      }
+
+      .tabs-right {
+        display: none;
+      }
+
+      .dots {
+        display: none;
       }
     }
   }

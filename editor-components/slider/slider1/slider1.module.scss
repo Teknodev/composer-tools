@@ -1,416 +1,306 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding: 0 !important;
+  padding: calc(var(--composer-gap-lg) * 2) 0 !important;
 
-    .max-content {
-        max-width: unset;
-        position: relative;
+  &.no-arrows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-xl);
+  }
 
-        &.has-background {
-            .slider-parent {
-                .carousel {
+  .max-content {
+    padding: 0 var(--composer-gap-xl);
 
-                    :global(.slick-prev),
-                    :global(.slick-next) {
-                        &:before {
-                            color: #ffffff;
-                        }
-                    }
+    .vertical-content {
 
-                    .slider-item {
-                        .content {
-                            .box-parent {
-                                .vertical-content {
-                                    .subtitle {
-                                        color: #ffffff;
-                                        background: transparent;
-                                        padding: 0;
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
 
-                                        &::before {
-                                            background-color: #ffffff;
-                                        }
-                                    }
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
 
-                                    .title,
-                                    .description {
-                                        color: #ffffff;
-                                    }
-                                }
-                            }
+        .button {
+          .button-text {
+            content: "";
+          }
 
-                            .socials {
-                                .icon {
-                                    color: #ffffff;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .dots {
-                .dot-item {
-                    .dot-button {
-                        background: #ffffff;
-                    }
-                }
-            }
+          .button-icon {
+            line-height: 0;
+          }
         }
-
-        .slider-parent {
-            .carousel {
-
-                :global(.slick-dots) {
-                    display: none !important;
-                }
-
-                :global(.slick-track) {
-                    display: flex;
-                }
-
-                :global(.slick-slide) {
-                    height: inherit;
-
-                    &>div {
-                        height: 100%;
-                    }
-                }
-
-                :global(.slick-prev),
-                :global(.slick-next) {
-                    z-index: 10;
-                    width: var(--composer-gap-lg);
-                    height: var(--composer-gap-lg);
-
-                    &:before {
-                        font-size: 40px;
-                        color: var(--composer-font-color-primary);
-                        opacity: 0.7;
-                    }
-
-                    &:hover:before {
-                        opacity: 1;
-                    }
-                }
-
-                :global(.slick-prev) {
-                    left: var(--composer-gap-xl);
-                }
-
-                :global(.slick-next) {
-                    right: var(--composer-gap-xl);
-                }
-
-                .slider-item {
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    min-height: 85vh;
-                    height: 100%;
-
-                    .image-wrapper {
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        z-index: -3;
-
-                        .image {
-                            object-fit: cover;
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            object-fit: cover;
-                            object-position: center;
-                            width: 100%;
-                            height: 100%;
-                            z-index: 0;
-                        }
-
-                        .overlay {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background-color: var(--composer-overlay-color);
-                            z-index: 1;
-                        }
-                    }
-
-                    .content {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
-                        height: 100%;
-
-                        .box-parent {
-                            width: 100%;
-                            display: flex;
-                            flex-direction: column;
-                            max-width: var(--composer-content-width);
-                            margin: auto;
-
-                            .vertical-content {
-
-                                .subtitle,
-                                .title,
-                                .description {
-                                    content: "";
-                                }
-                            }
-                        }
-
-                        .socials {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: flex-end;
-                            gap: var(--composer-gap-md);
-                            position: absolute;
-                            right: var(--composer-gap-xl);
-                            top: 50%;
-                            transform: translateY(-50%);
-
-                            .icon {
-                                font-size: 2rem;
-                                color: var(--composer-font-color-primary);
-                                cursor: pointer;
-                                transition: transform var(--composer-transition-duration-normal) ease;
-
-                                &.has-image {
-                                    width: 25px;
-                                    height: 25px;
-                                    object-fit: cover;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                &.has-socials {
-                    .slider-item .content .box-parent {
-                        padding-right: var(--composer-gap-xl);
-                    }
-                }
-
-                &.has-arrows {
-                    .slider-item .content {
-                        .box-parent {
-                            padding-left: var(--composer-gap-xl);
-                            padding-right: 100px;
-                        }
-
-                        .socials {
-                            right: calc(var(--composer-gap-xl) + 50px);
-                        }
-                    }
-                }
-            }
-        }
-
-        .dots {
-            position: absolute;
-            bottom: calc(var(--composer-gap-lg) * 2);
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-
-            .dot-item {
-                margin: 0 var(--composer-gap-sm);
-
-                .dot-button {
-                    color: transparent;
-                    position: relative;
-                    width: var(--composer-gap-sm);
-                    height: var(--composer-gap-sm);
-                    border: none;
-                    border-radius: var(--composer-border-radius-full);
-                    background: var(--composer-font-color-primary);
-                    opacity: 0.5;
-                    transition: background var(--composer-transition-duration-normal) ease, transform var(--composer-transition-duration-normal) ease, box-shadow var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
-                    transform: scale(0.8);
-                    padding: 0 !important;
-                    min-width: unset !important;
-
-                    &::before {
-                        content: "";
-                    }
-                }
-
-                &.active {
-                    .dot-button {
-                        transform: scale(1.2);
-                        opacity: 1;
-                    }
-                }
-            }
-        }
+      }
     }
+
+    .arrows {
+      position: static;
+      display: flex;
+      align-items: center;
+      gap: var(--composer-gap-md);
+      justify-content: flex-end;
+      margin: var(--composer-gap-lg) 0 var(--composer-gap-lg) 0;
+
+      .nextArrow,
+      .prevArrow {
+        color: var(--composer-font-color-primary);
+        font-size: 3rem;
+        cursor: pointer;
+        line-height: 0;
+
+        .has-image {
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+          object-fit: cover;
+        }
+      }
+    }
+  }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .slider-parent {
-                .carousel {
+.slider-parent {
+  .carousel {
+    width: 100%;
 
-                    :global(.slick-prev),
-                    :global(.slick-next) {
-                        width: var(--composer-gap-md);
-                        height: var(--composer-gap-md);
+    :global(.slick-list) {
+      :global(.slick-track) {
+        display: flex;
+        height: 100%;
+        padding: 0 !important;
 
-                        &:before {
-                            font-size: 30px;
-                        }
-                    }
-
-                    :global(.slick-prev) {
-                        left: var(--composer-gap-lg);
-                    }
-
-                    :global(.slick-next) {
-                        right: var(--composer-gap-lg);
-                    }
-
-                    .slider-item {
-                        min-height: 70vh;
-                        height: 100%;
-
-                        .content {
-                            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-
-                            .socials {
-                                right: var(--composer-gap-lg);
-
-                                .icon {
-                                    width: var(--composer-gap-lg);
-                                    height: var(--composer-gap-lg);
-                                    font-size: 1.5rem;
-
-                                    &.has-image {
-                                        width: 20px;
-                                        height: 20px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    &.has-socials {
-                        .slider-item .content .box-parent {
-                            padding-right: var(--composer-gap-lg);
-                        }
-                    }
-
-                    &.has-arrows {
-                        .slider-item .content {
-                            .box-parent {
-                                padding-left: var(--composer-gap-lg);
-                                padding-right: 70px;
-                            }
-
-                            .socials {
-                                right: calc(var(--composer-gap-lg) + 40px);
-                            }
-                        }
-                    }
-                }
-            }
-
-            .dots {
-                .dot-item {
-                    .dot-button {
-                        width: var(--composer-gap-sm) !important;
-                        height: var(--composer-gap-sm) !important;
-                        transform: scale(0.6);
-                    }
-
-                    &.active {
-                        .dot-button {
-                            transform: scale(1);
-                        }
-                    }
-                }
-            }
+        :global(.slick-slide) {
+          height: auto;
+          width: 800px;
+          padding: 0 !important;
         }
+      }
     }
+
+    :global(.slick-dots) {
+      position: static;
+      display: flex !important;
+      justify-content: center;
+      padding: 40px 40px 0 40px;
+
+      li {
+        margin: 0 var(--composer-gap-sm);
+        width: var(--composer-gap-sm);
+        height: var(--composer-gap-sm);
+
+        button {
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
+          position: relative;
+
+          &:before {
+            content: "";
+            width: var(--composer-gap-sm);
+            height: var(--composer-gap-sm);
+            border-radius: var(--composer-border-radius-full);
+            background: var(--composer-font-color-primary);
+            opacity: 0.5;
+            transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease, background var(--composer-transition-duration-normal) ease;
+            transform: scale(0.8);
+            line-height: unset;
+          }
+        }
+
+        &:global(.slick-active) {
+          button:before {
+            transform: scale(1.2);
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    .card {
+      flex: 1;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      transition: transform var(--composer-transition-duration-normal);
+      transform: scale(0.8);
+      z-index: 1;
+      max-width: 900px;
+      height: 100%;
+      gap: var(--composer-gap-lg);
+      cursor: pointer;
+
+      &.no-media {
+        .image-container {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          display: block;
+        }
+
+        .content-container {
+          opacity: 1;
+        }
+      }
+
+      .image-container {
+        width: 100%;
+        height: 400px;
+        z-index: 1;
+        border-radius: var(--composer-border-radius-sm);
+        position: relative;
+        overflow: hidden;
+
+        .image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transform: scale(1.1);
+          transform-origin: center;
+          z-index: 1;
+          transition: transform var(--composer-transition-duration-slow) ease, filter var(--composer-transition-duration-slow) ease;
+
+          &.hover-active:hover {
+            transform: scale(1);
+            filter: brightness(80%);
+          }
+
+          &:not(:hover) {
+            transform: scale(1.1);
+            filter: brightness(100%);
+          }
+        }
+
+        .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+          background-color: var(--composer-overlay-color);
+          border-radius: var(--composer-border-radius-sm);
+        }
+      }
+
+      .content-container {
+        opacity: 0;
+        transition: opacity var(--composer-transition-duration-slow) ease;
+        align-items: flex-start !important;
+        text-align: left !important;
+
+        &.active {
+          opacity: 1;
+        }
+
+        .slider-subtitle,
+        .slider-title,
+        .slider-description {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+      }
+    }
+
+    .centerSlide {
+      transform: scale(1);
+      transition: transform var(--composer-transition-duration-normal) ease;
+    }
+  }
+
+  .carousel--singleCard {
+    width: 100%;
+  }
+
+  .carousel--multipleCards {
+    width: auto;
+  }
+}
+
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      padding: 0 var(--composer-gap-lg);
+
+      .arrows {
+
+        .nextArrow,
+        .prevArrow {
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    .slider-parent {
+      .carousel {
+        :global(.slick-list) {
+          :global(.slick-track) {
+            height: auto;
+
+            :global(.slick-slide) {
+              width: 600px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container {
-        .max-content {
-            .slider-parent {
-                .carousel {
+  .container {
+    padding: var(--composer-gap-xl) 0 !important;
 
-                    :global(.slick-prev),
-                    :global(.slick-next) {
-                        width: var(--composer-gap-md);
-                        height: var(--composer-gap-md);
+    .max-content {
+      padding: 0 var(--composer-gap-md);
 
-                        &:before {
-                            font-size: 20px;
-                        }
-                    }
+      .arrows {
 
-                    :global(.slick-prev) {
-                        left: var(--composer-gap-md);
-                    }
-
-                    :global(.slick-next) {
-                        right: var(--composer-gap-md);
-                    }
-
-                    .slider-item {
-                        min-height: 50vh;
-                        height: 100%;
-
-                        .content {
-                            gap: var(--composer-gap-md);
-                            padding: var(--composer-gap-xl) var(--composer-gap-md);
-
-                            .socials {
-                                .icon {
-                                    font-size: 1rem;
-
-                                    &.has-image {
-                                        width: 15px;
-                                        height: 15px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    &.has-arrows {
-                        .slider-item .content {
-                            .box-parent {
-                                padding-left: 30px;
-                                padding-right: var(--composer-gap-xl);
-                            }
-
-                            .socials {
-                                right: var(--composer-gap-xl);
-                            }
-                        }
-                    }
-                }
-            }
+        .nextArrow,
+        .prevArrow {
+          font-size: 2rem;
         }
-
-        .dots {
-            bottom: var(--composer-gap-xl) !important;
-
-            .dot-item {
-                margin: 0 var(--composer-gap-xs) !important;
-
-                &.active {
-                    .dot-button {
-                        transform: scale(0.8) !important;
-                    }
-                }
-            }
-        }
+      }
     }
+
+    .slider-parent {
+      .carousel {
+
+        .card {
+
+          .image-container {
+            height: 300px;
+            border-radius: 0;
+          }
+
+          .content-container {
+            padding: 0 var(--composer-gap-md);
+          }
+        }
+
+        :global(.slick-dots) {
+          padding: var(--composer-gap-lg) var(--composer-gap-md) 0 var(--composer-gap-md);
+
+          li {
+            margin: 0 var(--composer-gap-xs);
+
+            button {
+              &:before {
+                transform: scale(0.6);
+              }
+            }
+
+            &:global(.slick-active) {
+              button:before {
+                transform: scale(0.8);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,31 +1,12 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-
     .max-content {
-        .content-wrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            gap: calc(var(--composer-gap-xl) * 2);
+        .content {
+            align-items: flex-start;
+            gap: var(--composer-gap-lg);
 
-            .button-container {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: flex-start;
-                gap: var(--composer-gap-sm);
-
-                .button {
-                    .button-text {
-                        content: "";
-                    }
-                }
-            }
-
-            .left-container {
-                flex: 1;
+            .header-container {
                 align-items: flex-start;
 
                 .title,
@@ -36,30 +17,61 @@
 
                 .subtitle {
                     margin-left: 0;
-                    margin-right: auto;
                     width: fit-content;
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: flex-start;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+                }
+            }
+
+            &.alignment-center {
+                align-items: center;
+
+                .header-container {
+                    align-items: center;
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .subtitle {
+                        margin-inline: auto;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
                 }
             }
 
             .stats-grid {
-                flex: 1;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-xl);
 
                 .stat-item {
-                    background: var(--composer-html-background);
-                    border-radius: var(--composer-border-radius-sm);
-                    box-shadow: var(--box-shadow-active);
-                    padding: var(--composer-gap-lg) var(--composer-gap-md);
-                    justify-content: space-between;
-                    height: 100%;
                     align-items: flex-start;
 
+                    &>.stat-title,
+                    &>.stat-subtitle:has(+ .stat-value) {
+                        margin-bottom: 0 !important;
+                    }
+
                     .stat-value {
-                        color: var(--composer-font-color-primary);
+                        color: var(--composer-primary-color);
                         display: flex;
                         align-items: center;
-                        font-size: 4rem;
-                        justify-content: flex-start;
+                        font-size: 6rem;
 
                         .stat-prefix,
                         .stat-number,
@@ -71,8 +83,16 @@
                     .stat-title,
                     .stat-subtitle,
                     .stat-description {
-                        color: var(--composer-font-color-primary);
                         text-align: left;
+                        color: var(--composer-font-color-primary);
+                    }
+
+                    .stat-subtitle {
+                        font-size: 1.5rem;
+                    }
+
+                    .stat-description {
+                        margin-top: var(--composer-gap-md);
                     }
                 }
             }
@@ -81,25 +101,42 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content .content-wrapper {
-        gap: var(--composer-gap-xl);
-
+    .container .max-content .content {
         .stats-grid .stat-item .stat-value {
-            font-size: 3rem;
+            font-size: 4rem;
         }
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content .content-wrapper {
-        flex-direction: column;
-        gap: var(--composer-gap-sm);
+    .container .max-content .content {
+        gap: var(--composer-gap-md);
 
-        .stats-grid .stat-item {
-            padding: var(--composer-gap-md);
+        &.alignment-center {
+            .stats-grid {
+                .stat-item {
+                    align-items: center;
 
-            .stat-value {
-                font-size: 3rem;
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        .stats-grid {
+            gap: var(--composer-gap-lg);
+
+            .stat-item {
+                .stat-value {
+                    font-size: 4rem;
+                }
+
+                .stat-description {
+                    margin-top: var(--composer-gap-sm);
+                }
             }
         }
     }
