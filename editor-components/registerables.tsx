@@ -703,7 +703,6 @@ function Registerables(composer: ComponentsRegistery) {
     About16,
     Portfolio1,
     Portfolio2,
-    Portfolio3,
     Comparison1,
     BackToTop1,
     Header1,
