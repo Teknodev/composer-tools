@@ -185,16 +185,18 @@ export class Stats30Page extends BaseStats {
                 <Base.VerticalContent
                     className={this.decorateCSS("stat-value-wrapper")}
                 >
-                    {(valueExist || suffixExist) && (
+                    {(valueExist || suffixExist || stat.prefix) && (
                         <span className={this.decorateCSS("stat-value-container")}>
                             {stat.prefix && (
                                 <span className={this.decorateCSS("stat-prefix")}>
                                     {stat.prefix}
                                 </span>
                             )}
-                            <span className={this.decorateCSS("stat-value")}>
-                                {display}
-                            </span>
+                            {valueExist && (
+                                <span className={this.decorateCSS("stat-value")}>
+                                    {display}
+                                </span>
+                            )}
                             {suffixExist && (
                                 <span className={this.decorateCSS("stat-suffix")}>
                                     {stat.suffix}
