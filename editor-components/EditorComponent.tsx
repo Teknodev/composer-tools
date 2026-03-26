@@ -399,6 +399,7 @@ export abstract class Component
   public globalComponentId: string | undefined;
   public _SanitizeHTML: React.ComponentType<any> | null = null;
   static category: CATEGORIES;
+  static PLACEHOLDER_MODE = true;
 
 
   componentDidUpdate(
@@ -578,6 +579,29 @@ export abstract class Component
     return this.getFilteredProp(key, this.state.componentProps.props);
   }
 
+  private replaceTextWithLorem(value: string): string {
+    if (!value || typeof value !== 'string') return value;
+
+    const hasHtml = /<[^>]+>/.test(value);
+
+    if (hasHtml) {
+      return value.replace(/>([^<]+)</g, (_match, textContent: string) => {
+        const trimmed = textContent.trim();
+        if (!trimmed) return '>' + textContent + '<';
+        const words = trimmed.split(/\s+/);
+        const lorem = words.map(() => 'lorem').join(' ');
+        const leading = textContent.match(/^\s*/)?.[0] || '';
+        const trailing = textContent.match(/\s*$/)?.[0] || '';
+        return '>' + leading + lorem + trailing + '<';
+      });
+    }
+
+    const trimmed = value.trim();
+    if (!trimmed) return value;
+    const words = trimmed.split(/\s+/);
+    return words.map(() => 'lorem').join(' ');
+  }
+
   getPropValue(propName: string, properties?: GetPropValueProperties): any {
     let prop =
       properties?.parent_object?.filter(
@@ -586,6 +610,11 @@ export abstract class Component
 
     const isStringMustBeElement =
       prop?.type == "string" && !properties?.as_string;
+
+    if (isStringMustBeElement && Component.PLACEHOLDER_MODE && prop?.value) {
+      const loremValue = this.replaceTextWithLorem(prop.value as string);
+      return this.getPropValueAsElement({ ...prop, value: loremValue }, properties);
+    }
 
     return isStringMustBeElement
       ? this.getPropValueAsElement(prop, properties)
