@@ -41,6 +41,7 @@ import { TriggerCleanup } from "./triggers/ITriggerStrategy";
 import { PROPERTY_DEFAULT_UNITS } from "./constants";
 import { ModalActionHandler } from "./ModalActionHandler";
 import { NavigateActionHandler } from "./NavigateActionHandler";
+import { TrackEventActionHandler } from "./TrackEventActionHandler";
 import { detectSelectorSpecificity } from "./selector-utils";
 
 // ── Baseline Style Store ───────────────────────────────────────────────────
@@ -639,6 +640,9 @@ export class InteractionManager {
         break;
       case "navigate":
         NavigateActionHandler.execute(interaction.action);
+        break;
+      case "track-event":
+        TrackEventActionHandler.execute(interaction.action);
         break;
       default:
         console.warn(
