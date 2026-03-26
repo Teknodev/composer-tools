@@ -1,16 +1,19 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider3.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
-type Card = {
-  image: string;
-  header: React.JSX.Element;
-  description: React.JSX.Element;
-  link: string;
+type SliderItem = {
+  Slidersubtitle: React.JSX.Element;
+  Slidertitle: React.JSX.Element;
+  Sliderdescription: React.JSX.Element;
+  vertText: React.JSX.Element;
+  media: TypeMediaInputValue;
+  button: INPUTS.CastedButton;
+  path: string;
 };
 
 class Slider3 extends BaseSlider {
@@ -21,256 +24,380 @@ class Slider3 extends BaseSlider {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "What's new at Store",
+      value: "Lasts post",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Effective tools are critical to the success of a small business.",
+      value: "Latest And Greatest Post",
     });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp({
       type: "array",
-      key: "slider",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "header",
       displayer: "Slider",
       value: [
         {
           type: "object",
-          key: "item",
-          displayer: "Slider Item",
+          key: "slidercontent",
+          displayer: "Slider Content",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629525?alt=media&timestamp=1719584962578",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a38f506a40002c2f7b2d?alt=media",
+              },
             },
             {
               type: "string",
-              key: "header",
-              displayer: "Header",
-              value: "Boost Your Productivity",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "LIFESTYLE",
             },
             {
               type: "string",
-              key: "description",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "Extreme Athleticism Is the New Midlife Crisis",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
               displayer: "Description",
-              value: "Enhance your workflow and maximize efficiency with our user-friendly tools. Take the first step toward success now.",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Card Link",
-              value: "",
+              type: "string",
+              key: "vertText",
+              displayer: "Vertical Text",
+              value: "Dsn Grid - March , 17th 2020",
             },
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Slider Item",
+          key: "slidercontent",
+          displayer: "Slider Content",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629526?alt=media&timestamp=1719584962578",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3ab506a40002c2f7b36?alt=media",
+              },
             },
             {
               type: "string",
-              key: "header",
-              displayer: "Header",
-              value: "Effortless Collaboration",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "TRAVEL",
             },
             {
               type: "string",
-              key: "description",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "The Day I Lost My Child in Charles de Gaulle Airport",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
               displayer: "Description",
-              value: "Seamlessly connect with your team and achieve milestones faster with our innovative platform. Experience the change today!",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Card Link",
-              value: "",
+              type: "string",
+              key: "vertText",
+              displayer: "Vertical Text",
+              value: "Dsn Grid - March , 17th 2020",
             },
+
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
           ],
         },
         {
           type: "object",
-          key: "item",
-          displayer: "Slider Item",
+          key: "slidercontent",
+          displayer: "Slider Content",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661caecbd2970002c629527?alt=media&timestamp=1719584962578",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3c5506a40002c2f7b64?alt=media",
+              },
             },
             {
               type: "string",
-              key: "header",
-              displayer: "Header",
-              value: "Quick problem-solving contact",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "HEALTH",
             },
             {
               type: "string",
-              key: "description",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "Relationships Aren’t Easy, But They’re Worth It",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
               displayer: "Description",
-              value: "With this tool, you will get much better results at work and develop new skills. Will you take the risk of trying the latest version of out application",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
             },
             {
-              type: "page",
-              key: "link",
-              displayer: "Card Link",
-              value: "",
+              type: "string",
+              key: "vertText",
+              displayer: "Vertical Text",
+              value: "Dsn Grid - March , 17th 2020",
             },
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
+          ],
+        },
+        {
+          type: "object",
+          key: "slidercontent",
+          displayer: "Slider Content",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a3e8506a40002c2f7b7a?alt=media",
+              },
+            },
+            {
+              type: "string",
+              key: "Slidersubtitle",
+              displayer: "Subtitle",
+              value: "LIFESTYLE",
+            },
+            {
+              type: "string",
+              key: "Slidertitle",
+              displayer: "Title",
+              value: "Extreme Athleticism Is the New Midlife Crisis",
+            },
+            {
+              type: "string",
+              key: "Sliderdescription",
+              displayer: "Description",
+              value: "Whoever said “It’s not about the destination. It’s the journey” never flew on a long ...",
+            },
+            {
+              type: "string",
+              key: "vertText",
+              displayer: "Vertical Text",
+              value: "Dsn Grid - March , 17th 2020",
+            },
+
+            INPUTS.BUTTON("button", "Button", "LOAD MORE", "", "MdArrowOutward", null, "Link"),
           ],
         },
       ],
     });
+
     this.addProp({
-      type: "icon",
-      key: "previousArrow",
-      displayer: "Previous Arrow Icon",
-      value: "BsArrowLeftCircle",
-    });
-    this.addProp({
-      type: "icon",
-      key: "nextArrow",
-      displayer: "Next Arrow Icon",
-      value: "BsArrowRightCircle",
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
     });
 
-    this.setComponentState("centerSlide", 0);
-    this.setComponentState("slider-ref", React.createRef());
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      dots: true,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      adaptiveHeight: true,
+    }));
+
+    this.setComponentState("prevSlide", this.castToObject<SliderItem[]>("header").length - 1);
+    this.setComponentState("activeSlide", 0);
+    this.setComponentState("nextSlide", 1);
   }
-
   static getName(): string {
     return "Slider 3";
   }
   render() {
-    const items = this.castToObject<Card[]>("slider").filter((item: Card) => item.image);
-
-    const isCardExist = items.length > 0;
-    const nextArrow = this.getPropValue("nextArrow");
-    const previousArrow = this.getPropValue("previousArrow");
-    const cardNumber = String(3);
-    const visibleItemCount = Math.min(items.length, 1.2);
-    const sliderRef = this.getComponentState("slider-ref");
-
+    const sliderItems = this.castToObject<SliderItem[]>("header");
+    const isMultipleItems = sliderItems.length > 1;
+    const isOverlayActive = this.getPropValue("overlay");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
     const settings = {
-      dots: false,
+      ...sliderSettings,
       infinite: true,
-      speed: 1000,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: visibleItemCount,
-      variableWidth: true,
-      centerMode: true,
+      slidesToShow: 1,
       slidesToScroll: 1,
-      arrows: false,
-      beforeChange: (current: number, next: number) => {
-        this.setComponentState("centerSlide", next);
-      },
+      adaptiveHeight: true,
+      centerMode: true,
+      centerPadding: "200px",
       responsive: [
+        {
+          breakpoint: 1920,
+          settings: {
+            centerPadding: "180px",
+            dots: sliderSettings.dots,
+            arrows: sliderSettings.arrows,
+          },
+        },
+        {
+          breakpoint: 1280,
+          settings: {
+            centerPadding: "160px",
+            dots: sliderSettings.dots,
+            arrows: sliderSettings.arrows,
+          },
+        },
         {
           breakpoint: 960,
           settings: {
-            dots: false,
-            slidesToShow: visibleItemCount,
-            variableWidth: true,
+            centerPadding: "150px",
+            dots: sliderSettings.dots,
+            arrows: sliderSettings.arrows,
           },
         },
         {
           breakpoint: 640,
           settings: {
-            dots: true,
-            slidesToShow: 1,
-            variableWidth: false,
             centerPadding: "0px",
+            dots: sliderSettings.dots,
           },
         },
       ],
+      beforeChange: (_: number, next: number) => {
+        this.setComponentState("prevSlide", next - 1 < 0 ? sliderItems.length - 1 : next - 1);
+        this.setComponentState("activeSlide", next);
+        this.setComponentState("nextSlide", next + 1 > sliderItems.length - 1 ? 0 : next + 1);
+      },
+
     };
 
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const carouselClass = cardNumber === "1" ? "carousel--singleCard" : "carousel--multipleCards";
-    const arrowsExist = items.length > 1 && (previousArrow || nextArrow);
+    const hideBottomPadding = sliderSettings.dots === false && sliderSettings.arrows === false;
+
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")}  ${!hasContent && this.decorateCSS("no-header")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(title) || this.castToString(subtitle) || previousArrow || nextArrow) && (
-            <div
-              className={`${this.decorateCSS("header")}
-            ${!this.castToString(title) && !this.castToString(subtitle) && this.decorateCSS("no-header-titles")}
-            `}
-            >
-              {(this.castToString(subtitle) || this.castToString(title)) && (
-                <Base.VerticalContent
-                  className={`${this.decorateCSS("header-content")} 
-                ${!arrowsExist && this.decorateCSS("no-arrows")}`}
-                >
-                  {this.castToString(subtitle) && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-                  {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-                </Base.VerticalContent>
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {visibleButtons.length > 0 && (
+                <Base.Row className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                    return this.castToString(item.text) && (
+                      <ComposerLink key={`button-${index}`} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </Base.Row>
               )}
-
-              {arrowsExist && (
-                <div className={this.decorateCSS("arrows")}>
-                  {previousArrow && (
-                    <Base.Icon
-                      name={this.getPropValue("previousArrow")}
-                      propsIcon={{
-                        className: this.decorateCSS("prevArrow"),
-                        onClick: () => {
-                          sliderRef.current.slickPrev();
-                        },
-                      }}
-                    />
-                  )}
-                  {nextArrow && (
-                    <Base.Icon
-                      name={this.getPropValue("nextArrow")}
-                      propsIcon={{
-                        className: this.decorateCSS("nextArrow"),
-                        onClick: () => {
-                          sliderRef.current.slickNext();
-                        },
-                      }}
-                    />
-                  )}
-                </div>
-              )}
+            </Base.VerticalContent>
+          )}
+          {sliderItems.length > 0 && (
+            <div className={`${this.decorateCSS("slider-parent")} ${hideBottomPadding ? this.decorateCSS("no-bottom-padding") : ""}`}>
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+                {sliderItems.map((item: SliderItem, index: number) => {
+                  const imageElement = document.getElementById(`slider6Image${index}`);
+                  const imageHeight = imageElement?.clientHeight || "auto";
+                  return (
+                    <div
+                      className={`${this.decorateCSS("card")} 
+                      ${isMultipleItems && this.getComponentState("prevSlide") == index ? this.decorateCSS("prevSlide") : ""} 
+                      ${isMultipleItems && this.getComponentState("nextSlide") == index ? this.decorateCSS("nextSlide") : ""}`}
+                      key={`sld-8-${index}`}
+                    >
+                      <Base.ContainerGrid className={this.decorateCSS("content-div")}>
+                        {(this.castToString(item.vertText) || item.media) && (
+                          <div className={`${this.decorateCSS("left-part")} ${!item.media && this.decorateCSS("no-image")} `}>
+                            {this.castToString(item.vertText) && (
+                              <span style={{ maxHeight: imageHeight }} className={this.decorateCSS("vert-text")}>
+                                {item.vertText}
+                              </span>
+                            )}
+                            {item.media && (
+                              <div className={this.decorateCSS("image-wrapper")}>
+                                <Base.Media value={item.media} className={this.decorateCSS("image")} />
+                                {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                        {(this.castToString(item.Slidersubtitle) || this.castToString(item.Slidertitle) || this.castToString(item.Sliderdescription) || this.castToString(item.button.text)) && (
+                          <Base.VerticalContent className={this.decorateCSS("right-part")} id={"slider6Image" + index}>
+                            {this.castToString(item.Slidersubtitle) && <Base.P className={this.decorateCSS("card-subtitle")}>{item.Slidersubtitle}</Base.P>}
+                            {this.castToString(item.Slidertitle) && <Base.H5 className={this.decorateCSS("card-title")}>{item.Slidertitle}</Base.H5>}
+                            {this.castToString(item.Sliderdescription) && <Base.P className={this.decorateCSS("card-description")}>{item.Sliderdescription}</Base.P>}
+                            {this.castToString(item.button.text) && (
+                              <ComposerLink key={index} path={item.button.url}>
+                                <Base.Button buttonType={item.button.type} key={index} className={this.decorateCSS("card-button")}>
+                                  <span className={this.decorateCSS("card-button-text")}>{item.button.text}</span>
+                                  {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("card-icon")} />)}
+                                </Base.Button>
+                              </ComposerLink>
+                            )}
+                          </Base.VerticalContent>
+                        )}
+                      </Base.ContainerGrid>
+                    </div>
+                  );
+                })}
+              </ComposerSlider>
             </div>
           )}
-
-          <div className={this.decorateCSS("slider-parent")}>
-            {isCardExist && (
-              <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
-                {items.map((item: Card, index: number) => (
-                  <ComposerLink key={index} path={item.link}>
-                    <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")}`}>
-                      <div className={this.decorateCSS("img-container")}>
-                        <img src={item.image} className={this.decorateCSS("img")} alt="" />
-                      </div>
-                      {(this.castToString(item.header) || this.castToString(item.description)) && (
-                        <Base.VerticalContent
-                          className={`${this.decorateCSS("content-container")} 
-                      ${this.getComponentState("centerSlide") === index && this.decorateCSS("active")}`}
-                        >
-                          {this.castToString(item.header) && <Base.H2 className={this.decorateCSS("content-title")}>{item.header}</Base.H2>}
-                          {this.castToString(item.description) && <Base.P className={this.decorateCSS("content-description")}>{item.description}</Base.P>}
-                        </Base.VerticalContent>
-                      )}
-                    </div>
-                  </ComposerLink>
-                ))}
-              </ComposerSlider>
-            )}
-          </div>
         </Base.MaxContent>
       </Base.Container>
     );

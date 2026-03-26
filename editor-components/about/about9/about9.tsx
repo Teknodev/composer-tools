@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "./about9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseAbout } from "composer-tools/editor-components/EditorComponent";
+import { BaseAbout } from "../../EditorComponent";
 
 class About9 extends BaseAbout {
     constructor(props?: any) {

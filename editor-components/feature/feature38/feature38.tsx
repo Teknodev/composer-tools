@@ -1,9 +1,10 @@
 import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature38.module.scss";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { TypeMediaInputValue } from "../../EditorComponent";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type ButtonTypeObj = {
     text: React.JSX.Element;
@@ -11,17 +12,22 @@ type ButtonTypeObj = {
     type: TypeButton;
 }
 
-type Card = {
+interface Section {
     title: React.JSX.Element;
-    icon: TypeMediaInputValue;
-    hoverTitle: React.JSX.Element;
-    hoverDescription: React.JSX.Element;
-};
+    text: React.JSX.Element;
+}
+
+interface ProductCard {
+    title: React.JSX.Element;
+    image: TypeMediaInputValue;
+    sections: Section[];
+    buttons: ButtonTypeObj[];
+}
 
 class Feature38 extends BaseFeature {
-    cardsRootRef: React.RefObject<HTMLDivElement | null> = React.createRef<HTMLDivElement>();
-    constructor(props?: any) {
+    constructor(props?: Record<string, unknown>) {
         super(props, styles);
+
         this.addProp({
             type: "string",
             key: "subtitle",
@@ -33,14 +39,14 @@ class Feature38 extends BaseFeature {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Main Product Features",
+            value: "Thousands of Agencies Have Chosen Duda as Their White Label Web Design Platform",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key indicators offline to maximise the long tail.",
+            value: "",
         });
 
         this.addProp({
@@ -57,33 +63,58 @@ class Feature38 extends BaseFeature {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Quick Start",
+                            value: "Digital Solutions Provider"
                         },
                         {
                             type: "media",
-                            key: "icon",
-                            displayer: "Icon",
+                            key: "image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["icon", "image"],
+                                availableTypes: ["image", "video"],
                             },
-                            value: {
-                                type: "icon",
-                                name: "MdRocketLaunch",
-                            },
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a92af959f6002d8277e2?alt=media" }
                         },
                         {
-                            type: "string",
-                            key: "hoverTitle",
-                            displayer: "Hover Title",
-                            value: "Quick Start",
+                            type: "array",
+                            key: "sections",
+                            displayer: "Sections",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "The Impact:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Grew their customer base by 82%; shrank site build times by 40%; increased revenue with a restructured business model." },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "How They Did it:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Duda's dedicated account management team helped set tags & codes inside the platform, facilitate product flows, and offer guidance on the most efficient ways to use the platform" },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "Favorite Duda Tool:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Drag and drop editor for easy, client-managed design changes." },
+                                    ],
+                                },
+                            ],
                         },
                         {
-                            type: "string",
-                            key: "hoverDescription",
-                            displayer: "Hover Description",
-                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [INPUTS.BUTTON("button", "Button", "Start a Free Trial", "", null, null, "Primary")],
                         },
-                    ]
+                    ],
                 },
                 {
                     type: "object",
@@ -94,33 +125,58 @@ class Feature38 extends BaseFeature {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "24/7 Support",
+                            value: "Award-Winning Marketing Firm"
                         },
                         {
                             type: "media",
-                            key: "icon",
-                            displayer: "Icon",
+                            key: "image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["icon", "image"],
+                                availableTypes: ["image", "video"],
                             },
-                            value: {
-                                type: "icon",
-                                name: "MdSupportAgent",
-                            },
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a94ff959f6002d827822?alt=media" }
                         },
                         {
-                            type: "string",
-                            key: "hoverTitle",
-                            displayer: "Hover Title",
-                            value: "24/7 Support",
+                            type: "array",
+                            key: "sections",
+                            displayer: "Sections",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "The Impact:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Reduced average site build times by 75%; increased revenue with expanded services; improved lifetime customer value." },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "How They Did it:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Successful team onboarding in 2–3 days, compared to 2–3 weeks on WordPress; design tools that reduced development work from 15 days to 5 hours!" },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "Favorite Duda Tool:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Personalization engine for serving targeted content by audience." },
+                                    ],
+                                },
+                            ],
                         },
                         {
-                            type: "string",
-                            key: "hoverDescription",
-                            displayer: "Hover Description",
-                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [INPUTS.BUTTON("button", "Button", "Start a Free Trial", "", null, null, "Primary")],
                         },
-                    ]
+                    ],
                 },
                 {
                     type: "object",
@@ -131,160 +187,67 @@ class Feature38 extends BaseFeature {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Free Guides",
+                            value: "Digital Marketing Leader"
                         },
                         {
                             type: "media",
-                            key: "icon",
-                            displayer: "Icon",
+                            key: "image",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["icon", "image"],
+                                availableTypes: ["image", "video"],
                             },
-                            value: {
-                                type: "icon",
-                                name: "MdSupport",
-                            },
+                            value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6964a966f959f6002d8278af?alt=media" }
                         },
                         {
-                            type: "string",
-                            key: "hoverTitle",
-                            displayer: "Hover Title",
-                            value: "Free Guides",
+                            type: "array",
+                            key: "sections",
+                            displayer: "Sections",
+                            value: [
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "The Impact:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Achieved their goals of offering a quality, industry-leading product and faster site creation & management at scale." },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "How They Did it:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Seamless migration of thousands of legacy websites in just a few months, using APIs to add metadata and create URL redirects." },
+                                    ],
+                                },
+                                {
+                                    type: "object",
+                                    key: "section",
+                                    displayer: "Section",
+                                    value: [
+                                        { type: "string", key: "title", displayer: "Title", value: "Favorite Duda Tool:" },
+                                        { type: "string", key: "text", displayer: "Text", value: "Connected Data to prepopulate site templates with structured customer data." },
+                                    ],
+                                },
+                            ],
                         },
                         {
-                            type: "string",
-                            key: "hoverDescription",
-                            displayer: "Hover Description",
-                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                            type: "array",
+                            key: "buttons",
+                            displayer: "Buttons",
+                            value: [INPUTS.BUTTON("button", "Button", "Start a Free Trial", "", null, null, "Primary")],
                         },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Modern Design",
-                        },
-                        {
-                            type: "media",
-                            key: "icon",
-                            displayer: "Icon",
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
-                            value: {
-                                type: "icon",
-                                name: "MdDesignServices",
-                            },
-                        },
-                        {
-                            type: "string",
-                            key: "hoverTitle",
-                            displayer: "Hover Title",
-                            value: "Modern Design",
-                        },
-                        {
-                            type: "string",
-                            key: "hoverDescription",
-                            displayer: "Hover Description",
-                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "High Quality",
-                        },
-                        {
-                            type: "media",
-                            key: "icon",
-                            displayer: "Icon",
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
-                            value: {
-                                type: "icon",
-                                name: "MdThumbUpOffAlt",
-                            },
-                        },
-                        {
-                            type: "string",
-                            key: "hoverTitle",
-                            displayer: "Hover Title",
-                            value: "High Quality",
-                        },
-                        {
-                            type: "string",
-                            key: "hoverDescription",
-                            displayer: "Hover Description",
-                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Premium Addons",
-                        },
-                        {
-                            type: "media",
-                            key: "icon",
-                            displayer: "Icon",
-                            additionalParams: {
-                                availableTypes: ["icon", "image"],
-                            },
-                            value: {
-                                type: "icon",
-                                name: "MdAddChart",
-                            },
-                        },
-                        {
-                            type: "string",
-                            key: "hoverTitle",
-                            displayer: "Hover Title",
-                            value: "Premium Addons",
-                        },
-                        {
-                            type: "string",
-                            key: "hoverDescription",
-                            displayer: "Hover Description",
-                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
-                        },
-                    ]
+                    ],
                 },
             ],
         });
 
         this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-        });
-
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 3,
+            type: "boolean",
+            key: "divider",
+            displayer: "Divider",
+            value: true,
         });
     }
 
@@ -292,103 +255,105 @@ class Feature38 extends BaseFeature {
         return "Feature 38";
     }
 
-    calculateMaxHeight = () => {
-        const container = this.cardsRootRef.current;
-        if (!container) return;
-        const width = container.offsetWidth;
-        const cards = Array.from(container.querySelectorAll(`.${styles['card']}`)) as HTMLElement[];
-        const perRow = width <= 640 ? 1 : width <= 1024 ? 3 : (this.getPropValue("itemCount") || 3);
-        const minH = width <= 640 ? 200 : 300;
-        for (let i = 0; i < cards.length; i += perRow) {
-            const row = cards.slice(i, i + perRow);
-            const maxH = Math.max(minH, ...row.map(card => {
-                const front = card.querySelector(`.${styles['front']}`) as HTMLElement;
-                const back = card.querySelector(`.${styles['top']}`) as HTMLElement;
-                [front, back].forEach(el => el && Object.assign(el.style, { overflow: 'visible', height: 'auto' }));
-                const h = Math.max(front?.scrollHeight || 0, back?.scrollHeight || 0);
-                [front, back].forEach(el => el && Object.assign(el.style, { overflow: '', height: '' }));
-                return h;
-            }));
-            row.forEach(card => card.style.setProperty('--dynamic-card-height', `${maxH}px`));
-        }
-    };
-
-    componentDidMount() {
-        this.calculateMaxHeight();
-        window.addEventListener('resize', this.calculateMaxHeight);
-        setTimeout(this.calculateMaxHeight, 500);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.calculateMaxHeight);
-    }
-
-    componentDidUpdate() {
-        this.calculateMaxHeight();
-    }
-
     render() {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const cards = this.castToObject<Card[]>("cards");
-        const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
-        const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const hasContent = subtitleExist || titleExist || descriptionExist;
+        const cards = this.castToObject<ProductCard[]>("cards");
+        const divider = this.getPropValue("divider");
+        const activeIndex = this.getComponentState("activeIndex") || 0;
+        const hasCards = cards.some((card: ProductCard) => this.castToString(card.title));
+        const hasContent = subtitleExist || titleExist || descriptionExist || hasCards;
+        const hasRightContent = cards.some((card: ProductCard) =>
+            card.image ||
+            card.sections?.length > 0 ||
+            card.buttons?.some((btn) => this.castToString(btn.text))
+        );
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {(hasContent || cards?.length > 0) && (
-                        <div className={this.decorateCSS("content-wrapper")}>
-                            {hasContent && (
-                                <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                                    {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                                    {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                                </Base.VerticalContent>
-                            )}
-                            {cards?.length > 0 && (
-                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3 }} className={this.decorateCSS("cards-container")}>
-                                    {cards.map((card: Card, index: number) => {
-                                        const titleExist = this.castToString(card.title);
-                                        const hoverTitleExist = this.castToString(card.hoverTitle);
-                                        const hoverDescExist = this.castToString(card.hoverDescription);
-                                        const iconExist = card.icon;
-                                        const isImage = card.icon?.type === "image";
-                                        const cardHasContent = titleExist || hoverTitleExist || hoverDescExist || iconExist;
-                                        if (!cardHasContent) return null;
-                                        return (
-                                            <div key={index} className={this.decorateCSS("card")}>
-                                                <div className={this.decorateCSS("card-inner")}>
-                                                    <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
-                                                        {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />  </div>)}
-                                                        {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
-                                                    </div>
-                                                    <Base.VerticalContent className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
-                                                        {hoverTitleExist && (<Base.H3 className={this.decorateCSS("card-hover-title")}>{card.hoverTitle}</Base.H3>)}
-                                                        {hoverDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.hoverDescription}</Base.P>)}
-                                                    </Base.VerticalContent>
-                                                </div>
-                                            </div>
+                <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!divider && this.decorateCSS("no-show-divider")}`}>
+                    {hasContent && (
+                        <div className={`${this.decorateCSS("left-content")} ${!hasRightContent && this.decorateCSS("full-width")}`}>
+                            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                                {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                                {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                                {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                            </Base.VerticalContent>
+                            {hasCards && (
+                                <div className={this.decorateCSS("items-wrapper")}>
+                                    {cards.map((card: ProductCard, index: number) => {
+                                        const cardTitle = card.title;
+                                        const isActive = activeIndex === index;
+                                        return this.castToString(cardTitle) && (
+                                            <Base.H5
+                                                key={index}
+                                                className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
+                                                onClick={() => this.setComponentState("activeIndex", index)}
+                                            >
+                                                {cardTitle}
+                                            </Base.H5>
                                         );
                                     })}
-                                </Base.ListGrid>
+                                </div>
                             )}
                         </div>
                     )}
-                    {visibleButtons.length > 0 && (
-                        <div className={this.decorateCSS("button-container")}>
-                            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                const buttonTextExist = this.castToString(item.text);
+                    {divider && hasContent && hasRightContent && (
+                        <div className={this.decorateCSS("dividerColumn")}>
+                            <div className={this.decorateCSS("dividerLine")} />
+                        </div>
+                    )}
+                    {hasRightContent && (
+                        <div className={this.decorateCSS("right-wrapper")}>
+                            {cards.map((card: ProductCard, index: number) => {
+                                const isActive = activeIndex === index;
                                 return (
-                                    buttonTextExist && (
-                                        <ComposerLink key={`button-${index}`} path={item.url}>
-                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
-                                    )
+                                    <div
+                                        key={index}
+                                        className={`${this.decorateCSS("right-content")} ${isActive && this.decorateCSS("active-item")}`}
+                                    >
+                                        {card.image && (
+                                            <div className={this.decorateCSS("image-wrapper")}>
+                                                <Base.Media
+                                                    value={card.image}
+                                                    className={this.decorateCSS("itemImage")}
+                                                />
+                                            </div>
+                                        )}
+                                        {card.sections.length > 0 && (
+                                            <div className={this.decorateCSS("sectionsWrapper")}>
+                                                {card.sections.map((section: Section, sectionIndex: number) => {
+                                                    const sectionTitle = section.title;
+                                                    const sectionText = section.text;
+                                                    return (sectionTitle || sectionText) && (
+                                                        <Base.P key={sectionIndex} className={this.decorateCSS("section")}>
+                                                            {sectionTitle && (
+                                                                <span className={this.decorateCSS("sectionTitle")}>{sectionTitle}</span>
+                                                            )}
+                                                            {sectionText && (
+                                                                <span className={this.decorateCSS("sectionText")}>{sectionText}</span>
+                                                            )}
+                                                        </Base.P>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
+                                        {(() => {
+                                            const validButtons = card.buttons?.filter((btn) => this.castToString(btn.text)) || [];
+                                            return validButtons.length > 0 && (
+                                                <div className={this.decorateCSS("button-container")}>
+                                                    {validButtons.map((buttonItem: ButtonTypeObj, buttonIndex: number) => (
+                                                        <ComposerLink key={`button-${buttonIndex}`} path={buttonItem.url}>
+                                                            <Base.Button buttonType={buttonItem.type} className={this.decorateCSS("button")}>
+                                                                <Base.P className={this.decorateCSS("button-text")}>{buttonItem.text}</Base.P>
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    ))}
+                                                </div>
+                                            );
+                                        })()}
+                                    </div>
                                 );
                             })}
                         </div>

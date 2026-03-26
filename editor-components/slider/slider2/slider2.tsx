@@ -1,21 +1,96 @@
 import * as React from "react";
-import { BaseSlider } from "../../EditorComponent";
-import styles from "./slider2.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { BaseSlider, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
+import styles from "./slider2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-type Card = {
-  image: string;
-  text: React.JSX.Element;
-  button: React.JSX.Element;
-  url: string;
-  number: React.JSX.Element;
+type SliderItem = {
+  media: TypeMediaInputValue;
+  sliderSubtitle: React.JSX.Element;
+  sliderTitle: React.JSX.Element;
+  sliderDescription: React.JSX.Element;
+  button?: INPUTS.CastedButton;
+};
+
+type SliderControls = {
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  button: TypeUsableComponentProps[];
+  previousArrow: TypeMediaInputValue;
+  nextArrow: TypeMediaInputValue;
 };
 
 class Slider2 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Our dedication to our customer",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "At every step of our process, we prioritize the user, ensuring that our products and services are thoughtfully designed to meet their needs and exceed their expectations.",
+    });
+
+    this.addProp({
+      type: "object",
+      key: "controls",
+      displayer: "Controls",
+      value: [
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Grow faster with pro's help",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "Experience top-notch features with our services",
+        },
+        INPUTS.BUTTON("button", "Button", "", "", "", null),
+        {
+          type: "media",
+          key: "previousArrow",
+          displayer: "Previous Arrow Icon",
+          additionalParams: {
+            availableTypes: ["image", "icon"],
+          },
+          value: {
+            type: "icon",
+            name: "RiArrowLeftSLine",
+          },
+        },
+        {
+          type: "media",
+          key: "nextArrow",
+          displayer: "Next Arrow Icon",
+          additionalParams: {
+            availableTypes: ["image", "icon"],
+          },
+          value: {
+            type: "icon",
+            name: "RiArrowRightSLine",
+          },
+        },
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -24,304 +99,413 @@ class Slider2 extends BaseSlider {
       value: [
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 2",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
-              type: "string",
-              key: "button",
-              displayer: "Title",
-              value: "Sonya",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "TfiWorld",
+              },
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Title Link",
+              type: "string",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "01",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d0c506a40002c318e40?alt=media",
+              key: "sliderTitle",
+              displayer: "Title",
+              value: "Customer Experience",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Assumenda voluptatum eveniet possimus modi illo.",
+              key: "sliderDescription",
+              displayer: "Description",
+              value: "We prioritize our customers' experience, ensuring that every interaction with our platform is not only seamless and intuitive but also consistently exceeds expectations.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 0",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
-              type: "string",
-              key: "button",
-              displayer: "Title",
-              value: "Baseball",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoStatsChartSharp",
+              },
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Title Link",
+              type: "string",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "02",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d3f506a40002c318e73?alt=media",
+              key: "sliderTitle",
+              displayer: "Title",
+              value: "Sales and Marketing",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Commodi necessitatibus perspiciatis quae labore!",
+              key: "sliderDescription",
+              displayer: "Description",
+              value: "Our sales and marketing team Works together to provide you with a comprehensive solution that is tailored to your needs.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 0",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
-              type: "string",
-              key: "button",
-              displayer: "Title",
-              value: "Kitchen",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "MdRateReview",
+              },
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Title Link",
+              type: "string",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "03",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675193c7506a40002c3192ef?alt=media",
+              key: "sliderTitle",
+              displayer: "Title",
+              value: "Rating and Reviews",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Commodi necessitatibus perspiciatis quae labore!",
+              key: "sliderDescription",
+              displayer: "Description",
+              value: "Our focus on ratings and reviews onsures that you have Access to the most comprehensive and up-to-date information available.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 1",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
-              type: "string",
-              key: "button",
-              displayer: "Title",
-              value: "biker",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "TfiThumbUp",
+              },
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Title Link",
+              type: "string",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "04",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294e0?alt=media&timestamp=1719584962578",
+              key: "sliderTitle",
+              displayer: "Title",
+              value: "Productivity and Efficiency",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Praesentium cumque saepe dignissimos incidunt.",
+              key: "sliderDescription",
+              displayer: "Description",
+              value: "We are committed to fostering innovation and driving growth, providing you with cutting-edge tools and solutions to stay ahead in your industry.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
-
         {
           type: "object",
-          key: "items1",
-          displayer: "Items 3",
+          key: "sliderItem",
+          displayer: "Slider Item",
           value: [
             {
-              type: "string",
-              key: "button",
-              displayer: "Title",
-              value: "Born Wild",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "TfiDropbox",
+              },
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Title Link",
+              type: "string",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
               type: "string",
-              key: "number",
-              displayer: "Number",
-              value: "05",
-            },
-            {
-              type: "image",
-              key: "image",
-              displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
+              key: "sliderTitle",
+              displayer: "Title",
+              value: "Team Collaboration",
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
-              value: "Impedit ad animi quae nobis voluptate! Rerum, enim.",
+              key: "sliderDescription",
+              displayer: "Description",
+              value: "Your trust is our top priority. We ensure reliability in every aspect of our platform, delivering consistent performance and support so you can focus on what matters most.",
             },
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
+          ],
+        },
+        {
+          type: "object",
+          key: "sliderItem",
+          displayer: "Slider Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "RiRocketFill",
+              },
+            },
+            {
+              type: "string",
+              key: "sliderSubtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "sliderTitle",
+              displayer: "Title",
+              value: "Customer Support",
+            },
+            {
+              type: "string",
+              key: "sliderDescription",
+              displayer: "Description",
+              value: "Our platform provides data-driven insights and tools to help you make confident decisions, optimize performance, and unlock your potential.",
+            },
+            INPUTS.BUTTON("button", "Button", "", "", "", null),
           ],
         },
       ],
     });
 
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      dots: false,
+      arrows: true,
+      infinite: true,
+      speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
+
+    this.addProp({
+      type: "boolean",
+      key: "hoverAnimation",
+      displayer: "Hover Animation",
+      value: true,
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null)],
+    });
+
     this.setComponentState("active_index", 0);
-    this.setComponentState("text", this.castToObject<Card[]>("slider")[0].text);
-    this.setComponentState("text_visibility", true);
+    this.setComponentState("slider-ref", React.createRef());
   }
 
   static getName(): string {
     return "Slider 2";
   }
-
   render() {
-    const slider = this.castToObject<Card[]>("slider");
+    const cards = this.castToObject<SliderItem[]>("slider");
+    const cardNumber = cards.length;
+    const carouselClass = cardNumber === 1 ? "carousel--singleCard" : "carousel--multipleCards";
+
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings") || []);
+    const showDots = sliderSettings.dots !== false;
+    const showArrows = sliderSettings.arrows !== false;
+
     const settings = {
-      arrows: false,
-      autoplay: true,
+      ...sliderSettings,
       dots: false,
-      infinite: slider.length > 2,
-      speed: 1000,
-      variableWidth: true,
-      slidesToShow: 2.5,
-      slidesToScroll: 1,
-      centerMode: false,
-      initialSlide: 0,
+      arrows: false,
+      beforeChange: (_current: number, next: number) => {
+        this.setComponentState("active_index", next);
+      },
       responsive: [
         {
-          breakpoint: 768,
+          breakpoint: 1024,
           settings: {
-            slidesToShow: 2.2,
+            slidesToShow: 2,
             slidesToScroll: 1,
           },
         },
         {
           breakpoint: 640,
           settings: {
-            slidesToShow: 1.5,
+            slidesToShow: 1,
             slidesToScroll: 1,
           },
         },
       ],
-      beforeChange: (_: number, nextSlide: number) => {
-        const sliderData = this.castToObject<Card[]>("slider");
-        const nextSlideData = sliderData[nextSlide];
-
-        this.setComponentState("active_index", nextSlide);
-        this.setComponentState("text_visibility", false);
-        setTimeout(() => {
-          this.setComponentState("text_visibility", true);
-          this.setComponentState("text", nextSlideData?.text);
-        }, 200);
-      },
     };
 
+    const title = this.castToString(this.getPropValue("title"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const description = this.castToString(this.getPropValue("description"));
+    const hasHeader = title || subtitle || description;
+    const controls = this.castToObject<SliderControls>("controls");
+    const controlTitle = controls.title;
+    const controlDescription = controls.description;
+    const nextArrow = controls.nextArrow;
+    const previousArrow = controls.previousArrow;
+
+    const controlButton = {
+      text: this.getPropValue("text", { parent_object: controls.button }),
+      type: this.getPropValue("type", { parent_object: controls.button }),
+      url: this.getPropValue("url", { parent_object: controls.button }),
+      icon: this.getPropValue("icon", { parent_object: controls.button })
+    };
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const sliderRef = this.getComponentState("slider-ref");
+
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")}  ${!hasHeader && this.decorateCSS("no-header")}`} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("image-box")}>
-            <div className={this.decorateCSS("overlay")}>
-              {this.castToObject<Card[]>("slider").map((slide, index) => {
-                const isActive = this.getComponentState("active_index") === index;
-                return (
-                  slide.image && (
-                    <img
-                      key={index}
-                      src={slide.image}
-                      className={`
-                      ${this.decorateCSS("image")} 
-                      ${isActive && this.decorateCSS("active")}`}
-                    />
-                  )
-                );
-              })}
+          {hasHeader && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            </Base.VerticalContent>
+          )}
+          <Base.ContainerGrid className={this.decorateCSS("down-page")}>
+            {(this.castToString(controlTitle) || this.castToString(controlDescription) || previousArrow || nextArrow || (this.castToString(controlButton.text) || (controlButton.icon && (controlButton.icon)?.name))) && (
+              <Base.VerticalContent className={this.decorateCSS("control-part")}>
+                {this.castToString(controlTitle) && <Base.H4 className={this.decorateCSS("control-title")}>{controlTitle}</Base.H4>}
+                {this.castToString(controlDescription) && <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
+                {(this.castToString(controlButton.text) || (controlButton.icon && (controlButton.icon)?.name)) && (
+                  <Base.Row className={this.decorateCSS("control-button")}>
+                    <ComposerLink path={controlButton.url}>
+                      <Base.Button buttonType={controlButton.type}>
+                        {this.castToString(controlButton.text) && (<Base.P className={this.decorateCSS("control-button-text")}>{controlButton.text}</Base.P>)}
+                        {controlButton.icon && (controlButton.icon)?.name && (<Base.Media value={controlButton.icon} className={this.decorateCSS("control-button-icon")} />)}
+                      </Base.Button>
+                    </ComposerLink>
+                  </Base.Row>
+                )}
+                {showArrows && (previousArrow || nextArrow) && (
+                  <div className={this.decorateCSS("arrows")}>
+                    {previousArrow && (
+                      <div className={this.decorateCSS("icon-wrapper")} onClick={() => sliderRef.current.slickPrev()}>
+                        <Base.Media value={previousArrow} className={this.decorateCSS("prevArrow")} />
+                      </div>
+                    )}
+                    {nextArrow && (
+                      <div className={this.decorateCSS("icon-wrapper")} onClick={() => sliderRef.current.slickNext()}>
+                        <Base.Media value={nextArrow} className={this.decorateCSS("nextArrow")} />
+                      </div>
+                    )}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
+            <div className={`${this.decorateCSS("slider-parent")}  ${!this.castToString(controlTitle) && !this.castToString(controlDescription) && !previousArrow && !nextArrow && !(this.castToString(controlButton.text) || (controlButton.icon && (controlButton.icon)?.name)) && this.decorateCSS("no-control-part")}`}>
+              <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
+                {cards.map((item: SliderItem, index: number) => (
+                  <div className={this.decorateCSS("slide-wrapper")} key={index}>
+                    <Base.VerticalContent className={`${this.decorateCSS("card")} ${carouselClass === "carousel--singleCard" && this.decorateCSS("for-single-card")} ${this.getPropValue("hoverAnimation") && this.decorateCSS("hover-active")}`}>
+                      <Base.Row className={this.decorateCSS("icon-row")}>
+                        {item.media && (<Base.Media value={item.media} className={this.decorateCSS("play-icon")} />)}
+                      </Base.Row>
+                      {this.castToString(item.sliderSubtitle) && <Base.H4 className={this.decorateCSS("item-subtitle")}>{item.sliderSubtitle}</Base.H4>}
+                      {this.castToString(item.sliderTitle) && <Base.H3 className={this.decorateCSS("item-header")}>{item.sliderTitle}</Base.H3>}
+                      {this.castToString(item.sliderDescription) && <Base.P className={this.decorateCSS("item-content")}>{item.sliderDescription}</Base.P>}
+                      {item.button && (this.castToString(item.button.text) || (item.button.icon && (item.button.icon)?.name)) && (
+                        <div className={this.decorateCSS("card-button")}>
+                          <Base.Button buttonType={item.button.type}>
+                            {this.castToString(item.button.text) && (<Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>)}
+                            {item.button.icon && (item.button.icon)?.name && (<Base.Media value={item.button.icon} className={this.decorateCSS("card-button-icon")} />)}
+                          </Base.Button>
+                        </div>
+                      )}
+                    </Base.VerticalContent>
+                  </div>
+                ))}
+              </ComposerSlider>
             </div>
-          </div>
-          {this.getComponentState("text") && (
-            <div className={this.decorateCSS("text-box")}>
-              <Base.P
-                className={`${this.decorateCSS("text")} 
-              ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}
-              >
-                {this.getComponentState("text")}
-              </Base.P>
+          </Base.ContainerGrid>
+          {buttons.filter((button: INPUTS.CastedButton) => this.castToString(button.text) || (button.icon && (button.icon)?.name)).length > 0 && (
+            <Base.Row className={this.decorateCSS("button-wrapper")}>
+              {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                (this.castToString(button.text) || (button.icon && (button.icon)?.name)) && (
+                  <Base.Button key={index} buttonType={button.type}>
+                    {this.castToString(button.text) && (<Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>)}
+                    {button.icon && (button.icon)?.name && (<Base.Media value={button.icon} className={this.decorateCSS("button-icon")} />)}
+                  </Base.Button>
+                )
+              ))}
+            </Base.Row>
+          )}
+          {cards.length > 1 && showDots && (
+            <div className={this.decorateCSS("custom-dots")}>
+              {cards.map((_, index) => (
+                <div
+                  key={index}
+                  className={`${this.decorateCSS("dot-item")} ${this.getComponentState("active_index") === index ? this.decorateCSS("active") : ""}`}
+                  onClick={() => sliderRef.current.slickGoTo(index)}
+                >
+                  <button className={this.decorateCSS("dot-button")} />
+                </div>
+              ))}
             </div>
           )}
-          <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
-            {this.castToObject<Card[]>("slider").map((item: Card, indexSlider: number) => {
-              const isActive = this.getComponentState("active_index") === indexSlider;
-
-              return (
-                <div key={indexSlider} className={this.decorateCSS("card")}>
-                  <button
-                    className={this.decorateCSS("button")}
-                    onMouseOver={() => {
-                      const isIndexSame = this.getComponentState("active_index") === indexSlider;
-                      if (isIndexSame) return;
-
-                      this.setComponentState("active_index", indexSlider);
-                      this.setComponentState("text_visibility", false);
-                      setTimeout(() => {
-                        this.setComponentState("text_visibility", true);
-                        this.setComponentState("text", item.text);
-                      }, 200);
-                    }}
-                  >
-                    <ComposerLink key={indexSlider} path={item.url}>
-                      {this.castToString(item.number) && <p className={this.decorateCSS("number")}>{item.number}</p>}
-                      {this.castToString(item.button) && <span className={`${this.decorateCSS("text")} ${isActive && this.decorateCSS("active")}`}>{item.button}</span>}
-                    </ComposerLink>
-                  </button>
-                </div>
-              );
-            })}
-          </ComposerSlider>
         </Base.MaxContent>
       </Base.Container>
     );

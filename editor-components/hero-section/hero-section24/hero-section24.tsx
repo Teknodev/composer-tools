@@ -2,9 +2,9 @@ import * as React from "react";
 import styles from "./hero-section24.module.scss";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type ISliderData = {
   title: React.JSX.Element;
@@ -323,7 +323,6 @@ class HeroSection24 extends BaseHeroSection {
     const animationActive = this.getPropValue("animation");
 
     return (
-      <>
       <Base.Container className={`${this.decorateCSS("container")} ${!currentBackgroundImage && this.decorateCSS("no-image")} ${animationActive && this.decorateCSS("has-animation")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
@@ -452,7 +451,6 @@ class HeroSection24 extends BaseHeroSection {
       )}
       </Base.Container>
 
-      </>
 
     );
   }

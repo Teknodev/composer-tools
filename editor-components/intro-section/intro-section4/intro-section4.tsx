@@ -1,9 +1,20 @@
 import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section4.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+
+type ButtonTypeObj = {
+    text: React.JSX.Element;
+    url: string;
+    type: TypeButton;
+}
+
+type TextType = {
+    value: React.JSX.Element;
+    label: React.JSX.Element;
+}
 
 class IntroSection4 extends BaseIntroSection {
     constructor(props?: any) {
@@ -11,20 +22,22 @@ class IntroSection4 extends BaseIntroSection {
 
         this.addProp({
             type: "media",
-            key: "cover-image",
+            key: "image",
             displayer: "Image",
-            value: {
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367c26496aa1002ca9a73c?alt=media",
-                type: "image",
+            additionalParams: {
+                availableTypes: ["image", "video"]
             },
-            additionalParams: { availableTypes: ["image", "video"] }
-        })
+            value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367d22496aa1002ca9ac4a?alt=media"
+            }
+        });
 
         this.addProp({
             type: "boolean",
-            key: "overlay",
+            key: "enableOverlay",
             displayer: "Overlay",
-            value: true,
+            value: false,
         });
 
         this.addProp({
@@ -38,32 +51,30 @@ class IntroSection4 extends BaseIntroSection {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Online University of In-Demand Professions",
-        });
+            value: "Smoothest Web Hosting"
+        })
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Objectively innovate empowered manufactured products whereas parallel platforms.",
-        });
-
-        this.addProp({
-            type: "string",
-            key: "label",
-            displayer: "Label",
-            value: "OUR COURSES",
-        });
+            value: "Reliable web hosting with 99.9% availability guarantee and free SSL certificate, easy WordPress installs, and a free domain."
+        })
 
         this.addProp({
             type: "array",
             key: "buttons",
-            displayer: "Buttons",
+            displayer: "Button",
+            value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary")],
+        });
+
+        this.addProp({
+            type: "object",
+            key: "texts",
+            displayer: "Text",
             value: [
-                INPUTS.BUTTON("button", "Button", "Business", "", null, null, "Primary"),
-                INPUTS.BUTTON("button", "Button", "Programming", "", null, null, "Primary"),
-                INPUTS.BUTTON("button", "Button", "Marketing", "", null, null, "Primary"),
-                INPUTS.BUTTON("button", "Button", "Design", "", null, null, "Primary"),
+                { type: "string", key: "label", displayer: "Label", value: "Starting at only" },
+                { type: "string", key: "value", displayer: "Value", value: "$2.95/mo" },
             ],
         });
     }
@@ -73,56 +84,78 @@ class IntroSection4 extends BaseIntroSection {
     }
 
     render() {
-        const coverImage = this.getPropValue("cover-image");
-        const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
-        const title = this.castToString(this.getPropValue("title")) || "";
-        const description = this.castToString(this.getPropValue("description")) || "";
-        const label = this.castToString(this.getPropValue("label")) || "";
-        const hasMedia = !!coverImage?.url;
-        const enableOverlay = hasMedia && this.getPropValue("overlay");
-        const hasContent = subtitle || title || description || label || buttonItem.length > 0;
+        const enableOverlay = this.getPropValue("enableOverlay");
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
+        const textProp = this.castToObject<TextType>("texts");
+        const textValueStr = this.castToString(textProp?.value);
+        const textLabelStr = this.castToString(textProp?.label);
+        const hasText = textValueStr || textLabelStr;
+        const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0 || hasText;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${hasMedia ? this.decorateCSS("has-media") : ""}`}>
-                {hasMedia && (
-                    <div className={this.decorateCSS("background-container")}>
-                        <Base.Media
-                            value={coverImage}
-                            className={this.decorateCSS("background-media")}
-                        />
-                        {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+            <Base.Container className={this.decorateCSS("container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    <div className={this.decorateCSS("content")}>
+                        {hasContent && (
+                            <Base.VerticalContent className={this.decorateCSS("left-content")}>
+                                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
+                                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
+                                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
+                                {(buttons.length > 0 || hasText) && (
+                                    <div className={this.decorateCSS("actions-container")}>
+                                        {buttons.length > 0 && (
+                                            <div className={this.decorateCSS("button-container")}>
+                                                {buttons.map((item: ButtonTypeObj, index: number) => {
+                                                    const buttonTextExist = this.castToString(item.text);
+                                                    return (
+                                                        buttonTextExist && (
+                                                            <ComposerLink key={`button-${index}`} path={item.url}>
+                                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                                        {item.text}
+                                                                    </Base.P>
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        )
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
+                                        {hasText && (
+                                            <div className={this.decorateCSS("text-container")}>
+                                                <div className={this.decorateCSS("text")}>
+                                                    {textLabelStr && (
+                                                        <Base.P className={this.decorateCSS("text-label")}>
+                                                            {textProp.label}
+                                                        </Base.P>
+                                                    )}
+                                                    {textValueStr && (
+                                                        <Base.P className={this.decorateCSS("text-value")}>
+                                                            {textProp.value}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </Base.VerticalContent>
+                        )}
+                        {this.getPropValue("image") && (
+                            <div className={`${this.decorateCSS("right-content")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
+                                <div className={this.decorateCSS("image-wrapper")}>
+                                    <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
+                                    {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
+                                </div>
+                            </div>
+                        )}
                     </div>
-                )}
-                {hasContent && (
-                    <Base.MaxContent className={this.decorateCSS("content")}>
-                        <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                            {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                            {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                            {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                            {label && (<Base.H6 className={this.decorateCSS("label")}>{this.getPropValue("label")}</Base.H6>)}
-                            {buttonItem.length > 0 && (
-                                <Base.Row className={this.decorateCSS("button-container")}>
-                                    {buttonItem.map(
-                                        (buttonObj, index: number) => {
-                                            const buttonText = this.castToString(buttonObj.text);
-                                            return buttonText && (
-                                                <ComposerLink key={index} path={buttonObj.url}>
-                                                    <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
-                                                        <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            );
-                                        }
-                                    )}
-                                </Base.Row>
-                            )}
-                        </Base.VerticalContent>
-                    </Base.MaxContent>
-                )}
-            </Base.Container>
+                </Base.MaxContent>
+            </Base.Container >
         )
     }
 }
-
 export default IntroSection4;

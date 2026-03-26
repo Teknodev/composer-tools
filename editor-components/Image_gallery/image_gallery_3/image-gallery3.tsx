@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./image-gallery3.module.scss";
 import { BaseImageGallery, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface ImageItem {
     image: TypeMediaInputValue;

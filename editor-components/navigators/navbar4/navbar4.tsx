@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import React from "react";
 import styles from "./navbar4.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
   image: TypeMediaInputValue;
@@ -1429,7 +1429,7 @@ class Navbar4 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ");
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         {topBar && (
           <Base.Container className={`${this.decorateCSS("upperContainer")} ${this.getPropValue("line") ? this.decorateCSS("showLine") : ""}`}>
             {topBar && (
@@ -1856,7 +1856,7 @@ class Navbar4 extends BaseNavigator {
           onClick={() => this.handleCloseMenu()}
           isVisible = {isVisible}
         />
-      </>
+      </div>
     );
   }
 }

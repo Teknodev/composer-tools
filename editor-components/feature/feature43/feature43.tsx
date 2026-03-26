@@ -1,305 +1,482 @@
-import * as React from "react";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
+import {
+  BaseFeature,
+  TypeMediaInputValue,
+} from "../../EditorComponent";
 import styles from "./feature43.module.scss";
-import { Base, TypeButton } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import {
+  Base,
+  TypeButton,
+} from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-type ButtonTypeObj = {
-    text: React.JSX.Element;
-    icon: TypeMediaInputValue;
-    url: string;
-    type: TypeButton;
-}
+type Card = {
+  title: Element;
+  overlayTitle: Element;
+  subtitle: Element;
+  description: Element;
+  buttons: PrimaryButton[];
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 
-type CardTypeObj = {
-    image: TypeMediaInputValue;
-    enableOverlay: boolean;
-    cardSubtitle: React.JSX.Element;
-    cardTitle: React.JSX.Element;
-    cardDescription: React.JSX.Element;
-    button: ButtonTypeObj;
-    rowReverse: boolean;
-}
+type PrimaryButton = {
+  type: TypeButton;
+  text: Element;
+  url: string;
+  icon?: TypeMediaInputValue;
+};
 
 class Feature43 extends BaseFeature {
-    constructor(props?: any) {
-        super(props, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
-        this.addProp({
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: ""
-        });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Everything you need to deploy your app"
-        });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Key Advantages",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "",
-        });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
 
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-        });
+    this.addProp({
+      type: "array",
+      key: "cards",
+      displayer: "Cards",
+      value: [
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6986010b2631ba002c0126f7?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "12 Years of",
+            },
+            {
+              type: "string",
+              key: "overlayTitle",
+              displayer: "Overlay Title",
+              value: "Development",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "",
+                  "",
+                  null,
+                  null,
+                  "Primary",
+                ),
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698601752631ba002c012777?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Professional",
+            },
+            {
+              type: "string",
+              key: "overlayTitle",
+              displayer: "Overlay Title",
+              value: "Managers",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "",
+                  "",
+                  null,
+                  null,
+                  "Primary",
+                ),
+              ],
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6986019a2631ba002c0127a6?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "High Visual",
+            },
+            {
+              type: "string",
+              key: "overlayTitle",
+              displayer: "Overlay Title",
+              value: "Quality",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Description",
+              value: "",
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "",
+                  "",
+                  null,
+                  null,
+                  "Primary",
+                ),
+              ],
+            },
+          ],
+        },
+      ],
+    });
 
-        this.addProp({
-            type: "array",
-            key: "cards",
-            displayer: "Cards",
-            value: [
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Media",
-                            value: {
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698309f72631ba002cff368a?alt=media",
-                                type: "image",
-                            },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
-                            type: "boolean",
-                            key: "enableOverlay",
-                            displayer: "Overlay",
-                            value: false,
-                        },
-                        {
-                            type: "string",
-                            key: "cardSubtitle",
-                            displayer: "Card Subtitle",
-                            value: ""
-                        },
-                        {
-                            type: "string",
-                            key: "cardTitle",
-                            displayer: "Card Title",
-                            value: "Perfect Design"
-                        },
-                        {
-                            type: "string",
-                            key: "cardDescription",
-                            displayer: "Card Description",
-                            value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
-                        },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-                        {
-                            type: "boolean",
-                            key: "rowReverse",
-                            displayer: "Row Reverse",
-                            value: false,
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Media",
-                            value: {
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69830a1a2631ba002cff36b0?alt=media",
-                                type: "image",
-                            },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
-                            type: "boolean",
-                            key: "enableOverlay",
-                            displayer: "Overlay",
-                            value: false,
-                        },
-                        {
-                            type: "string",
-                            key: "cardSubtitle",
-                            displayer: "Card Subtitle",
-                            value: ""
-                        },
-                        {
-                            type: "string",
-                            key: "cardTitle",
-                            displayer: "Card Title",
-                            value: "Ultra Responsive"
-                        },
-                        {
-                            type: "string",
-                            key: "cardDescription",
-                            displayer: "Card Description",
-                            value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
-                        },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-                        {
-                            type: "boolean",
-                            key: "rowReverse",
-                            displayer: "Row Reverse",
-                            value: true,
-                        },
-                    ]
-                },
-                {
-                    type: "object",
-                    key: "card",
-                    displayer: "Card",
-                    value: [
-                        {
-                            type: "media",
-                            key: "image",
-                            displayer: "Media",
-                            value: {
-                                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69830a782631ba002cff36e6?alt=media",
-                                type: "image",
-                            },
-                            additionalParams: { availableTypes: ["image", "video"] }
-                        },
-                        {
-                            type: "boolean",
-                            key: "enableOverlay",
-                            displayer: "Overlay",
-                            value: false,
-                        },
-                        {
-                            type: "string",
-                            key: "cardSubtitle",
-                            displayer: "Card Subtitle",
-                            value: ""
-                        },
-                        {
-                            type: "string",
-                            key: "cardTitle",
-                            displayer: "Card Title",
-                            value: "Free Test-Drive"
-                        },
-                        {
-                            type: "string",
-                            key: "cardDescription",
-                            displayer: "Card Description",
-                            value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
-                        },
-                        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-                        {
-                            type: "boolean",
-                            key: "rowReverse",
-                            displayer: "Row Reverse",
-                            value: false,
-                        },
-                    ]
-                },
-            ]
-        });
-    }
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
 
-    static getName(): string {
-        return "Feature 43";
-    }
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+  }
 
-    render() {
-        const cards = this.castToObject<CardTypeObj[]>("cards") || [];
-        const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
-        const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const subtitle = this.castToString(this.getPropValue("subtitle"));
-        const title = this.castToString(this.getPropValue("title"));
-        const description = this.castToString(this.getPropValue("description"));
-        const hasContent = subtitle || title || description || visibleButtons.length > 0;
+  static getName(): string {
+    return "Feature 43";
+  }
 
-        return (
-            <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                            {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                            {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                            {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                            {visibleButtons.length > 0 && (
-                                <div className={this.decorateCSS("button-container")}>
-                                    {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                        return this.castToString(item.text) && (
-                                            <ComposerLink key={`button-${index}`} path={item.url}>
-                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
-                                        );
-                                    })}
-                                </div>
+  render() {
+    const sectionSubtitle = this.castToString(this.getPropValue("subtitle"));
+    const sectionTitle = this.castToString(this.getPropValue("title"));
+    const sectionDescription = this.castToString(
+      this.getPropValue("description"),
+    );
+    const isSectionHeadingExist =
+      sectionSubtitle || sectionTitle || sectionDescription;
+
+    const cards = this.castToObject<Card[]>("cards");
+    const itemCountPerRow = this.getPropValue("itemCount");
+    const isCardButtonsExist = (cardButtons: PrimaryButton[]) =>
+      cardButtons.some((button) => this.castToString(button.text));
+
+    const buttons = this.castToObject<PrimaryButton[]>("buttons");
+    const buttonsExist = buttons.some(
+      (button) => !!this.castToString(button.text),
+    );
+
+    const isCardHasMedia = (card: Card) => {
+      return (
+        (card.media?.type === "image" || card.media?.type === "video") &&
+        "url" in card.media &&
+        card.media.url
+      );
+    };
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {isSectionHeadingExist && (
+            <Base.VerticalContent
+              className={this.decorateCSS("header-container")}
+            >
+              {sectionSubtitle && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              )}
+
+              {sectionTitle && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              )}
+
+              {sectionDescription && (
+                <Base.SectionDescription
+                  className={this.decorateCSS("description")}
+                >
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              )}
+            </Base.VerticalContent>
+          )}
+
+          {cards && cards.length > 0 && (
+            <Base.ListGrid
+              gridCount={{
+                pc: itemCountPerRow || 3,
+                tablet: 3,
+                phone: 1,
+              }}
+              className={this.decorateCSS("cards-list")}
+            >
+              {cards?.map((card, index) => (
+                <Base.VerticalContent
+                  key={index}
+                  className={this.decorateCSS("card")}
+                >
+                  <Base.VerticalContent
+                    className={this.decorateCSS("card-header")}
+                  >
+                    {this.castToString(card.subtitle) && (
+                      <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                        {card.subtitle}
+                      </Base.H6>
+                    )}
+                    {this.castToString(card.title) && (
+                      <Base.H3 className={this.decorateCSS("card-title")}>
+                        {card.title}
+                      </Base.H3>
+                    )}
+                  </Base.VerticalContent>
+
+                  <div className={this.decorateCSS("media-wrapper")}>
+                    {(this.castToString(card.overlayTitle) ||
+                      this.castToString(card.description)) && (
+                      <Base.VerticalContent
+                        className={`${this.decorateCSS("media-text-wrapper")} ${isCardHasMedia(card) ? this.decorateCSS("with-image") : ""}`}
+                      >
+                        {this.castToString(card.overlayTitle) && (
+                          <Base.H3
+                            className={this.decorateCSS("card-overlay-title")}
+                          >
+                            {card.overlayTitle}
+                          </Base.H3>
+                        )}
+                        {this.castToString(card.description) && (
+                          <Base.P
+                            className={this.decorateCSS(
+                              "card-overlay-description",
                             )}
-                        </Base.VerticalContent>
-                    )}
-                    {cards.length > 0 && (
-                        <div className={this.decorateCSS("card-wrapper")}>
-                            {cards.map((card: CardTypeObj, index: number) => {
-                                const cardSubtitleExist = this.castToString(card.cardSubtitle);
-                                const cardTitleExist = this.castToString(card.cardTitle);
-                                const cardDescriptionExist = this.castToString(card.cardDescription);
-                                const hasImage = !!(card.image && 'url' in card.image && card.image.url);
-                                const buttonTextExist = this.castToString(card.button?.text);
-                                const hasButton = buttonTextExist;
-
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`${this.decorateCSS("card-content")} ${(card.rowReverse !== undefined ? card.rowReverse : index % 2 !== 0) && this.decorateCSS("row-reverse")}`}
+                          >
+                            {card.description}
+                          </Base.P>
+                        )}
+                        {isCardButtonsExist(card.buttons) && (
+                          <Base.Row
+                            className={this.decorateCSS("card-buttons-wrapper")}
+                          >
+                            {card.buttons.map((button, index) => {
+                              const buttonText = this.castToString(button.text);
+                              const buttonExist = buttonText || button.icon;
+                              return (
+                                buttonExist && (
+                                  <ComposerLink path={button.url}>
+                                    <Base.Button
+                                      className={this.decorateCSS(
+                                        "card-button",
+                                      )}
+                                      key={index}
+                                      buttonType={button.type}
                                     >
-                                        {hasImage && (
-                                            <div className={`${this.decorateCSS("image-wrapper")} ${!(cardTitleExist || cardDescriptionExist || cardSubtitleExist) && this.decorateCSS("full-width")}`}>
-                                                <Base.Media
-                                                    value={card.image}
-                                                    className={this.decorateCSS("card-image")}
-                                                />
-                                                {card.enableOverlay && (
-                                                    <div className={this.decorateCSS("overlay")}></div>
-                                                )}
-                                            </div>
-                                        )}
-                                        {(cardTitleExist || cardDescriptionExist || cardSubtitleExist) && (
-                                            <Base.VerticalContent className={`${this.decorateCSS("text-wrapper")} ${!hasImage && this.decorateCSS("no-image")}`}>
-                                                {cardSubtitleExist && (
-                                                    <Base.H5 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H5>
-                                                )}
-                                                {cardTitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H4>
-                                                )}
-                                                {cardDescriptionExist && (
-                                                    <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
-                                                )}
-                                                {hasButton && (
-                                                    <div className={this.decorateCSS("card-button-container")}>
-                                                        <ComposerLink path={card.button?.url || ""}>
-                                                            <Base.Button buttonType={card.button?.type} className={this.decorateCSS("card-button")}>
-                                                                {buttonTextExist && <Base.P className={this.decorateCSS("card-button-text")}>{card.button.text}</Base.P>}
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    </div>
-                                                )}
-                                            </Base.VerticalContent>
-                                        )}
-                                    </div>
-                                );
+                                      {button.icon && (
+                                        <Base.Media
+                                          value={button.icon}
+                                          className={this.decorateCSS(
+                                            "card-button-icon",
+                                          )}
+                                        />
+                                      )}
+                                      {buttonText && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "card-button-text",
+                                          )}
+                                        >
+                                          {button.text}
+                                        </Base.P>
+                                      )}
+                                    </Base.Button>
+                                  </ComposerLink>
+                                )
+                              );
                             })}
-                        </div>
+                          </Base.Row>
+                        )}
+                      </Base.VerticalContent>
                     )}
-                </Base.MaxContent>
-            </Base.Container>
-        );
-    }
+
+                    {isCardHasMedia(card) && (
+                      <div className={this.decorateCSS("child-media-wrapper")}>
+                        <Base.Media
+                          value={card.media}
+                          className={this.decorateCSS("media")}
+                        />
+                        {card.overlay && (
+                          <div className={this.decorateCSS("overlay")} />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </Base.VerticalContent>
+              ))}
+            </Base.ListGrid>
+          )}
+
+          {buttonsExist && (
+            <Base.Row className={this.decorateCSS("buttons-wrapper")}>
+              {buttons.map((button, index) => {
+                const buttonText = this.castToString(button.text);
+                const buttonExist = buttonText || button.icon;
+                return (
+                  buttonExist && (
+                    <ComposerLink path={button.url}>
+                      <Base.Button
+                        className={this.decorateCSS("button")}
+                        key={index}
+                        buttonType={button.type}
+                      >
+                        {button.icon && (
+                          <Base.Media
+                            value={button.icon}
+                            className={this.decorateCSS("button-icon")}
+                          />
+                        )}
+                        {buttonText && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                );
+              })}
+            </Base.Row>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
 export default Feature43;
