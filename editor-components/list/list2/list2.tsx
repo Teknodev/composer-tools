@@ -12,9 +12,9 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 type CardItem = {
   url: string;
   image?: TypeMediaInputValue;
-  count: React.JSX.Element;
-  label: React.JSX.Element;
-  text: React.JSX.Element;
+  count: JSX.Element;
+  label: JSX.Element;
+  text: JSX.Element;
   buttons: CardButton[];
 };
 
@@ -43,29 +43,36 @@ class List2 extends BaseList {
     this.addProp({
       type: "array",
       key: "headerButtons",
-      displayer: "Header Buttons",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "", null, null, null, "Primary")
       ],
     });
 
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-    });
-    this.addProp({
-      type: "number",
-      key: "imageCountInitial",
-      displayer: "Image Count Initial",
-      value: 3
-    });
-    this.addProp({
-      type: "number",
-      key: "imageCount",
-      displayer: "More Image Count",
-      value: 3
+      type: "object",
+      key: "countSettings",
+      displayer: "Count Settings",
+      value: [
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 3,
+        },
+        {
+          type: "number",
+          key: "mediaCountInitial",
+          displayer: "Media Count Initial",
+          value: 3
+        },
+        {
+          type: "number",
+          key: "moreMediaCount",
+          displayer: "More Media Count",
+          value: 3
+        },
+      ]
     });
     this.addProp({
       type: "array",
@@ -388,8 +395,8 @@ class List2 extends BaseList {
     });
     this.addProp({
       type: "boolean",
-      key: "showLine",
-      displayer: "Show Line",
+      key: "line",
+      displayer: "Line",
       value: true,
     });
     this.addProp({
@@ -418,15 +425,17 @@ class List2 extends BaseList {
 
   handleButtonClick = (e: React.MouseEvent) => {
     const cards = this.castToObject<CardItem[]>("cards");
-    const currentCount = this.getPropValue("imageCountInitial") + this.getComponentState("moreImages");
+    const countSettings = this.getPropValue("countSettings");
+    const currentCount = countSettings.mediaCountInitial + this.getComponentState("moreImages");
     if (currentCount < cards.length) {
       if (e && e.preventDefault) e.preventDefault();
-      this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"));
+      this.setComponentState("moreImages", this.getComponentState("moreImages") + countSettings.moreMediaCount);
     }
   };
 
   render() {
-    const currentCount = this.getPropValue("imageCountInitial") + this.getComponentState("moreImages");
+    const countSettings = this.getPropValue("countSettings");
+    const currentCount = countSettings.mediaCountInitial + this.getComponentState("moreImages");
 
     const cards = this.castToObject<CardItem[]>("cards");
     const headerButtons = this.castToObject<CardButton[]>("headerButtons") || [];
@@ -435,7 +444,7 @@ class List2 extends BaseList {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const imageOverlay = this.getPropValue("overlay");
-    const showLine = this.getPropValue("showLine");
+    const line = this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
@@ -486,7 +495,7 @@ class List2 extends BaseList {
               <Base.ListGrid
                 className={this.decorateCSS("cards-box")}
                 gridCount={{
-                  pc: this.getPropValue("itemCount"),
+                  pc: countSettings.itemCount,
                   tablet: 3,
                   phone: 1,
                 }}
@@ -518,7 +527,7 @@ class List2 extends BaseList {
                         )}
                         <div className={this.decorateCSS("overlay-gradient")}></div>
                         <div className={this.decorateCSS("card-content")}>
-                          {showLine && <div className={this.decorateCSS("stick")}></div>}
+                          {line && <div className={this.decorateCSS("stick")}></div>}
                           <div className={this.decorateCSS("category")}>
                             {this.castToString(item.text) && (
                               <Base.H4 className={this.decorateCSS("category-name")}>

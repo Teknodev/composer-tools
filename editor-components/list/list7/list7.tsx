@@ -9,9 +9,9 @@ type CardButton = INPUTS.CastedButton;
 
 type ListItem = {
   icon: TypeMediaInputValue;
-  itemSubtitle: React.JSX.Element;
-  text: React.JSX.Element;
-  title: React.JSX.Element;
+  subtitle: JSX.Element;
+  description: JSX.Element;
+  title: JSX.Element;
   buttons: INPUTS.CastedButton[];
 };
 
@@ -71,8 +71,8 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "itemSubtitle",
-              displayer: "Item Subtitle",
+              key: "subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
@@ -83,8 +83,8 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
@@ -117,8 +117,8 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "itemSubtitle",
-              displayer: "Item Subtitle",
+              key: "subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
@@ -129,8 +129,8 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
@@ -163,8 +163,8 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "itemSubtitle",
-              displayer: "Item Subtitle",
+              key: "subtitle",
+              displayer: "Subtitle",
               value: "",
             },
             {
@@ -175,8 +175,8 @@ class List7 extends BaseList {
             },
             {
               type: "string",
-              key: "text",
-              displayer: "Text",
+              key: "description",
+              displayer: "Description",
               value:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
             },
@@ -203,8 +203,8 @@ class List7 extends BaseList {
 
     this.addProp({
       type: "boolean",
-      key: "showIndex",
-      displayer: "Show Index",
+      key: "cardNumber",
+      displayer: "Card Number",
       value: true,
     });
 
@@ -232,7 +232,7 @@ class List7 extends BaseList {
     const buttons = this.castToObject<CardButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
     const itemCount = this.getPropValue("itemCount");
-    const showIndex = !!this.getPropValue("showIndex");
+    const cardNumber = !!this.getPropValue("cardNumber");
     const hoverAnimationValue = this.getPropValue("hoverAnimation");
     const hoverAnimation = Array.isArray(hoverAnimationValue) ? hoverAnimationValue : [];
 
@@ -263,7 +263,7 @@ class List7 extends BaseList {
                   <div className={this.decorateCSS("buttons-wrapper")}>
                     {buttons.map((button: CardButton, index: number) => {
                       const buttonText = this.castToString(button.text);
-                      const iconExist = button.icon && (button.icon as any).name;
+                      const iconExist = button.icon && button.icon.name;
                       if (!buttonText && !iconExist) return null;
                       return (
                         <ComposerLink key={index} path={button.url}>
@@ -279,7 +279,7 @@ class List7 extends BaseList {
                             {iconExist && (
                               <Base.Media
                                 className={this.decorateCSS("button-icon")}
-                                value={button.icon as any}
+                                value={button.icon!}
                               />
                             )}
                           </Base.Button>
@@ -298,13 +298,13 @@ class List7 extends BaseList {
               >
                 {listItems.map((item: ListItem, index: number) => {
                   const itemTitleExist = this.castToString(item.title);
-                  const itemTextExist = this.castToString(item.text);
-                  const itemSubtitleExist = this.castToString(item.itemSubtitle);
+                  const itemDescriptionExist = this.castToString(item.description);
+                  const itemSubtitleExist = this.castToString(item.subtitle);
                   const iconExist = item.icon && (item.icon.name || item.icon.url);
                   const cardButtons = item.buttons || [];
-                  const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && (btn.icon as any).name));
+                  const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
 
-                  if (!itemTitleExist && !itemTextExist && !showIndex) return null;
+                  if (!itemTitleExist && !itemDescriptionExist && !cardNumber) return null;
 
                   return (
                     <div key={index} className={this.decorateCSS("list-item")} data-animation={hoverAnimation.join(" ")}>
@@ -313,7 +313,7 @@ class List7 extends BaseList {
                       <Base.VerticalContent
                         className={this.decorateCSS("item-content")}
                       >
-                        {showIndex && (
+                        {cardNumber && (
                           <Base.H1 className={this.decorateCSS("index")}>
                             {index < 9 ? `0${index + 1}` : index + 1}
                           </Base.H1>
@@ -326,7 +326,7 @@ class List7 extends BaseList {
                         )}
                         {itemSubtitleExist && (
                           <Base.H6 className={this.decorateCSS("item-subtitle")}>
-                            {item.itemSubtitle}
+                            {item.subtitle}
                           </Base.H6>
                         )}
                         {itemTitleExist && (
@@ -334,16 +334,16 @@ class List7 extends BaseList {
                             {item.title}
                           </Base.H3>
                         )}
-                        {itemTextExist && (
+                        {itemDescriptionExist && (
                           <Base.P className={this.decorateCSS("item-description")}>
-                            {item.text}
+                            {item.description}
                           </Base.P>
                         )}
                         {hasValidCardButtons && (
                           <div className={this.decorateCSS("card-button-container")}>
                             {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
                               const btnText = this.castToString(btn.text);
-                              const btnIconExist = btn.icon && (btn.icon as any).name;
+                              const btnIconExist = btn.icon && btn.icon.name;
                               if (!btnText && !btnIconExist) return null;
                               return (
                                 <ComposerLink key={btnIndex} path={btn.url}>

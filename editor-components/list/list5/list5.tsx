@@ -24,6 +24,31 @@ class List5 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
+      type: "object",
+      key: "image",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -49,31 +74,7 @@ class List5 extends BaseList {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
-    this.addProp({
-      type: "object",
-      key: "image",
-      displayer: "Background Media",
-      value: [
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          value: {
-            type: "image",
-            url: "",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
+
     this.addProp({
       type: "array",
       key: "list-items",

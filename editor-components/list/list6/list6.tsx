@@ -7,10 +7,10 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type ListItem = {
-  itemIndex: React.JSX.Element;
-  itemTitle: React.JSX.Element;
+  itemIndex: JSX.Element;
+  itemTitle: JSX.Element;
   itemIcon: TypeMediaInputValue;
-  itemText: React.JSX.Element;
+  itemText: JSX.Element;
 };
 
 class List6 extends BaseList {
@@ -208,8 +208,8 @@ class List6 extends BaseList {
     });
     this.addProp({
       type: "boolean",
-      key: "lineActive",
-      displayer: "Line Active",
+      key: "line",
+      displayer: "Line",
       value: true,
     });
     this.addProp({
@@ -274,7 +274,7 @@ class List6 extends BaseList {
               {listItems.map((item: ListItem, index: number) => (
                 <div
                   key={index}
-                  className={`${this.decorateCSS("list-item")} ${this.getPropValue("lineActive") && this.decorateCSS("line")}`}
+                  className={`${this.decorateCSS("list-item")} ${this.getPropValue("line") && this.decorateCSS("line")}`}
                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                 >
                   {this.castToString(item.itemIndex) && (

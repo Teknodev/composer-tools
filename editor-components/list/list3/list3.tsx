@@ -183,14 +183,14 @@ class List3 extends BaseList {
     });
     this.addProp({
       type: "boolean",
-      key: "showLines",
-      displayer: "Show Lines",
+      key: "line",
+      displayer: "Line",
       value: true,
     });
     this.addProp({
       type: "boolean",
-      key: "showCardNumber",
-      displayer: "Show Card Number",
+      key: "cardNumber",
+      displayer: "Card Number",
       value: true,
     });
     this.addProp({
@@ -218,8 +218,8 @@ class List3 extends BaseList {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const hoverAnimation = (this.getPropValue("hoverAnimation") as string[]) || [];
     const itemCount = this.getPropValue("itemCount");
-    const showCardNumber = this.getPropValue("showCardNumber");
-    const showLines = this.getPropValue("showLines");
+    const cardNumber = this.getPropValue("cardNumber");
+    const line = this.getPropValue("line");
     const alignment = Base.getContentAlignment();
     const hasHeaderContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
@@ -294,7 +294,7 @@ class List3 extends BaseList {
                     )}
                     {listItem.texts.map((item: TextItem, tIndex: number) => (
                       <Base.VerticalContent key={tIndex} className={this.decorateCSS("event-item")}>
-                        {showLines && tIndex > 0 && (
+                        {line && tIndex > 0 && (
                           <div className={this.decorateCSS("divider")}></div>
                         )}
                         {this.castToString(item.topText) && (
@@ -306,7 +306,7 @@ class List3 extends BaseList {
                       </Base.VerticalContent>
                     ))}
                   </Base.VerticalContent>
-                  {showCardNumber && (
+                  {cardNumber && (
                     <Base.H1 className={this.decorateCSS("card-number")}>
                       {index < 9 ? `0${index + 1}` : index + 1}
                     </Base.H1>

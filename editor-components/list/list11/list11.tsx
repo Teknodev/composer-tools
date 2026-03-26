@@ -13,6 +13,7 @@ interface ListItems {
     navigateToText: React.JSX.Element;
     icon: TypeMediaInputValue;
     buttons: INPUTS.CastedButton[];
+    overlay: boolean;
 }
 
 class List11 extends BaseList {
@@ -116,6 +117,12 @@ class List11 extends BaseList {
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
                             ],
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
                 {
@@ -184,6 +191,12 @@ class List11 extends BaseList {
                             value: [
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
                             ],
+                        },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
                         },
                     ]
                 },
@@ -254,6 +267,12 @@ class List11 extends BaseList {
                                 INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
                             ],
                         },
+                        {
+                            type: "boolean",
+                            key: "overlay",
+                            displayer: "Overlay",
+                            value: false,
+                        },
                     ]
                 },
             ]
@@ -273,12 +292,7 @@ class List11 extends BaseList {
             displayer: "Item Count in a Row",
             value: 3,
         });
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false,
-        });
+
     }
 
     static getName(): string {
@@ -290,7 +304,6 @@ class List11 extends BaseList {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const sectionDescriptionExist = this.castToString(this.getPropValue("sectionDescription"));
         const listItems = this.castToObject<ListItems[]>("listItems");
-        const imageOverlay = this.getPropValue("overlay");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
         const alignment = Base.getContentAlignment();
@@ -364,7 +377,7 @@ class List11 extends BaseList {
                                             {imageExist && (
                                                 <div className={this.decorateCSS("card-image-container")}>
                                                     <Base.Media className={`${this.decorateCSS("card-image")} ${this.decorateCSS("media-el")}`} value={item.itemImage} />
-                                                    {imageOverlay && (
+                                                    {item.overlay && (
                                                         <div className={this.decorateCSS("overlay")} />
                                                     )}
                                                 </div>

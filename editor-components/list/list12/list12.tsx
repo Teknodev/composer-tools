@@ -9,6 +9,12 @@ interface BoxItem {
   subtitle: JSX.Element;
   title: JSX.Element;
   description: JSX.Element;
+  overlay: boolean;
+}
+
+interface BackgroundMedia {
+  media: TypeMediaInputValue;
+  overlay: boolean;
 }
 
 class List12 extends BaseList {
@@ -20,23 +26,29 @@ class List12 extends BaseList {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "backgroundMedia",
       displayer: "Background Media",
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683dbb7557d0a6002b5dbba8?alt=media&timestamp=1748876160309",
-      },
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "backgroundOverlay",
-      displayer: "Background Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683dbb7557d0a6002b5dbba8?alt=media&timestamp=1748876160309",
+          },
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -104,6 +116,12 @@ class List12 extends BaseList {
           displayer: "Description",
           value: "Experience contactless payments with just a tap of your card or phone.",
         },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
       ],
     });
 
@@ -141,6 +159,12 @@ class List12 extends BaseList {
           key: "description",
           displayer: "Description",
           value: "Accept payments anywhere with reliable and portable card readers.",
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
         },
       ],
     });
@@ -180,14 +204,15 @@ class List12 extends BaseList {
           displayer: "Description",
           value: "Send and receive money instantly, no matter where you are.",
         },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
       ],
     });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
+
     this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
@@ -206,10 +231,9 @@ class List12 extends BaseList {
     const box1 = this.castToObject<BoxItem>("box1");
     const box2 = this.castToObject<BoxItem>("box2");
     const box3 = this.castToObject<BoxItem>("box3");
-    const backgroundMedia = this.getPropValue("image") as TypeMediaInputValue;
-    const hasBackgroundMedia = !!backgroundMedia?.url;
-    const imageOverlay = this.getPropValue("overlay");
-    const backgroundOverlay = this.getPropValue("backgroundOverlay");
+    const backgroundMedia = this.castToObject<BackgroundMedia>("backgroundMedia");
+    const hasBackgroundMedia = !!backgroundMedia?.media?.url;
+    const backgroundOverlay = backgroundMedia?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
     const hoverAnimation = this.getPropValue("hoverAnimation").join(" ");
@@ -222,7 +246,7 @@ class List12 extends BaseList {
       <Base.Container className={this.decorateCSS("container")}>
         {hasBackgroundMedia && (
           <Base.Media
-            value={backgroundMedia}
+            value={backgroundMedia.media}
             className={`${this.decorateCSS("background-media")} ${this.decorateCSS("media-el")}`}
           />
         )}
@@ -239,7 +263,7 @@ class List12 extends BaseList {
                       className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
                       value={box1.item}
                     />
-                    {imageOverlay && (
+                    {box1.overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}
                   </div>
@@ -308,7 +332,7 @@ class List12 extends BaseList {
                     className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
                     value={box2.item}
                   />
-                  {imageOverlay && (
+                  {box2.overlay && (
                     <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
@@ -342,7 +366,7 @@ class List12 extends BaseList {
                       className={`${this.decorateCSS("img")} ${this.decorateCSS("media-el")}`}
                       value={box3.item}
                     />
-                    {imageOverlay && (
+                    {box3.overlay && (
                       <div className={this.decorateCSS("overlay")} />
                     )}
                   </div>

@@ -10,10 +10,10 @@ type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
 };
 
 type Card = {
-  description: React.JSX.Element;
-  subtitle: React.JSX.Element;
+  description: JSX.Element;
+  subtitle: JSX.Element;
   icon: TypeMediaInputValue;
-  title: React.JSX.Element;
+  title: JSX.Element;
   buttons: CardButton[];
 };
 
@@ -202,8 +202,8 @@ class List4 extends BaseList {
     });
     this.addProp({
       type: "boolean",
-      key: "showIndex",
-      displayer: "Show Index",
+      key: "cardNumber",
+      displayer: "Card Number",
       value: true,
     });
 
@@ -314,7 +314,7 @@ class List4 extends BaseList {
                         <div className={this.decorateCSS("border-right")}></div>
                         <div className={this.decorateCSS("border-bottom")}></div>
                       </div>
-                      {this.getPropValue("showIndex") && (
+                      {this.getPropValue("cardNumber") && (
                         <div
                           className={`${this.decorateCSS("item-index")} ${this.decorateCSS("index")}`}
                           data-animation={hoverAnimation.join(" ")}
