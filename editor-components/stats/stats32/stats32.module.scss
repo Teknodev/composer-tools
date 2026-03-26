@@ -11,36 +11,42 @@
 
             &.no-media {
                 grid-template-columns: 1fr;
+            }
+
+            &:not(.no-media) {
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left;
+                    align-self: flex-start;
+                    margin-left: 0;
+                    margin-right: auto;
+                }
 
                 .text-card {
-                    align-items: center;
+                    align-items: flex-start;
+                }
 
-                    .title,
-                    .subtitle,
-                    .description {
-                        text-align: center;
-                        margin-left: auto;
+                .button-container {
+                    align-self: flex-start;
+                }
+
+                .stats-grid {
+                    justify-content: start;
+                }
+
+                .stat-item {
+                    text-align: left;
+                    align-items: flex-start;
+
+                    .stat-title,
+                    .stat-subtitle,
+                    .stat-description {
+                        text-align: left;
+                        align-self: flex-start;
+                        margin-left: 0;
                         margin-right: auto;
-                    }
-
-                    .button-container {
-                        justify-content: center;
-                    }
-
-                    .stats-grid {
-                        justify-content: center;
-                    }
-
-                    .stat-item {
-                        align-items: center;
-
-                        .stat-title,
-                        .stat-subtitle,
-                        .stat-description {
-                            text-align: center;
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
                     }
                 }
             }
@@ -51,33 +57,15 @@
         }
 
 
-        .title {
-            text-align: left;
-            align-self: flex-start;
-            margin-left: 0;
-            margin-right: auto;
-        }
 
         .description {
             color: var(--composer-font-color-primary);
-            text-align: left;
-            align-self: flex-start;
-            margin-left: 0;
-            margin-right: auto;
-        }
-
-        .subtitle {
-            text-align: left;
-            align-self: flex-start;
-            margin-left: 0;
-            margin-right: auto;
         }
 
         .text-card {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
 
 
             .text-container {
@@ -88,7 +76,6 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
-                align-self: flex-start;
                 width: 100%;
 
                 zzz .button-wrapper {
@@ -109,7 +96,6 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: var(--composer-gap-xl);
                 margin-top: var(--composer-gap-md);
-                justify-content: start;
             }
 
             .stat-item {
@@ -117,8 +103,6 @@
                 display: flex;
                 flex-direction: column;
                 color: var(--composer-font-color-primary);
-                text-align: left;
-                align-items: flex-start;
 
                 .stat-value-container {
                     color: var(--composer-primary-color);
@@ -128,39 +112,29 @@
                     margin: 0;
 
                     .stat-value {
-                        font-size: 6rem;
+                        font-size: 5rem;
                         line-height: 1;
                     }
 
                     .stat-prefix,
                     .stat-suffix {
-                        font-size: 6rem; // Slightly smaller prefixes/suffixes like Stats30
+                        font-size: 5rem;
                         line-height: 1;
                     }
                 }
 
                 .stat-title {
                     color: inherit;
-                    text-align: left;
-                    align-self: flex-start;
-                    margin-left: 0;
-                    margin-right: auto;
                 }
 
                 .stat-subtitle {
-                    text-align: left;
-                    align-self: flex-start;
-                    margin-left: 0;
-                    margin-right: auto;
+                    font-size: 1rem;
                 }
+
 
                 .stat-description {
                     opacity: 0.7;
                     color: inherit;
-                    text-align: left;
-                    align-self: flex-start;
-                    margin-left: 0;
-                    margin-right: auto;
                 }
             }
         }

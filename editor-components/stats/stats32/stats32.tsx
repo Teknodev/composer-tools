@@ -60,7 +60,7 @@ class Stats32 extends BaseStats {
                     },
                     value: {
                         type: "image",
-                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media"
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
                     },
                 },
                 {
@@ -97,7 +97,6 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in revenue" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
-                        // { type: "string", key: "label", displayer: "Label", value: "" },
                     ],
                 },
                 {
@@ -111,7 +110,6 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in signups" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
-                        // { type: "string", key: "label", displayer: "Label", value: "" },
                     ],
                 },
             ],
@@ -134,10 +132,12 @@ class Stats32 extends BaseStats {
         stat,
         animationDuration = 2000,
         statsAnimation,
+        isCentered,
     }: {
         stat: StatItem;
         animationDuration?: number;
         statsAnimation: boolean;
+        isCentered: boolean;
     }) => {
         const originalNumberString = stat.number;
         const targetNumber = parseFloat(originalNumberString) || 0;
@@ -191,44 +191,46 @@ class Stats32 extends BaseStats {
         if (!valueExist && !prefixExist && !suffixExist && !labelExist && !subtitleExist && !titleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("stat-item")} data-alignment="left">
+            <Base.VerticalContent
+                className={this.decorateCSS("stat-item")}
+                data-alignment="left"
+            >
                 {(valueExist || prefixExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value-container")}>
                         {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>{stat.prefix}</span>
                         )}
-
                         {valueExist && (
                             <span className={this.decorateCSS("stat-value")}>
                                 {statsAnimation ? animatedNumber : formatNumber(targetNumber)}
                             </span>
                         )}
-
                         {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>{stat.suffix}</span>
                         )}
                     </span>
                 )}
                 {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                    <Base.H6
+                        className={this.decorateCSS("stat-subtitle")}
+                    >
                         {stat.subtitleElement}
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H3 className={this.decorateCSS("stat-title")}>
+                    <Base.H3
+                        className={this.decorateCSS("stat-title")}
+                    >
                         {stat.titleElement}
                     </Base.H3>
                 )}
                 {descriptionExist && (
-                    <Base.P className={this.decorateCSS("stat-description")}>
+                    <Base.P
+                        className={this.decorateCSS("stat-description")}
+                    >
                         {stat.descriptionElement}
                     </Base.P>
                 )}
-                {/* {labelExist && (
-                    <Base.H6 className={this.decorateCSS("stat-label")}>
-                        {stat.labelElement}
-                    </Base.H6>
-                )} */}
             </Base.VerticalContent>
         );
     };
@@ -242,15 +244,17 @@ class Stats32 extends BaseStats {
         const overlay = !!mediaCard?.Overlay;
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasButtons = buttons.some(btn => this.castToString(btn.text));
+        const alignment = Base.getContentAlignment();
+
 
         const mediaExist = media && media.url;
+        const isCentered = !mediaExist && alignment === "center";
 
         const statsItems = this.castToObject<any[]>("stats");
 
         const stats: StatItem[] = statsItems.map((item) => ({
             prefix: this.castToString(item.prefix) || "",
             number: this.castToString(item.number),
-            // number: this.castToString(item.number) || "0",
             suffix: this.castToString(item.suffix) || "",
             subtitle: this.castToString(item.subtitle) || "",
             subtitleElement: item.subtitle,
@@ -276,30 +280,47 @@ class Stats32 extends BaseStats {
         const hasStats = stats.length > 0;
         const noText = !hasTextSection && !hasStats;
 
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("content-wrapper")} ${!mediaExist ? this.decorateCSS("no-media") : ""} ${noText ? this.decorateCSS("no-text") : ""}`}>
+                    <div
+                        className={`${this.decorateCSS("content-wrapper")} ${!mediaExist ? this.decorateCSS("no-media") : ""} ${noText ? this.decorateCSS("no-text") : ""}`}
+                    >
                         {(hasTextSection || hasStats) && (
-                            <Base.VerticalContent className={this.decorateCSS("text-card")}>
-                                <Base.VerticalContent className={this.decorateCSS("text-container")} data-alignment="left">
+                            <Base.VerticalContent
+                                className={this.decorateCSS("text-card")}
+                                data-alignment={!mediaExist ? alignment : "left"}
+                            >
+                                <Base.VerticalContent
+                                    className={this.decorateCSS("text-container")}
+                                    data-alignment={!mediaExist ? alignment : "left"}
+                                >
                                     {subtitleExist && (
-                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        <Base.SectionSubTitle
+                                            className={this.decorateCSS("subtitle")}
+                                        >
                                             {this.getPropValue("subtitle")}
                                         </Base.SectionSubTitle>
                                     )}
                                     {titleExist && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        <Base.SectionTitle
+                                            className={this.decorateCSS("title")}
+                                        >
                                             {this.getPropValue("title")}
                                         </Base.SectionTitle>
                                     )}
                                     {descriptionExist && (
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        <Base.SectionDescription
+                                            className={this.decorateCSS("description")}
+                                        >
                                             {this.getPropValue("description")}
                                         </Base.SectionDescription>
                                     )}
                                     {hasButtons && (
-                                        <div className={this.decorateCSS("button-container")}>
+                                        <div
+                                            className={this.decorateCSS("button-container")}
+                                        >
                                             {buttons.map((item, index) => {
                                                 if (!this.castToString(item.text)) return null;
                                                 return (
@@ -317,13 +338,16 @@ class Stats32 extends BaseStats {
                                 </Base.VerticalContent>
 
                                 {hasStats && (
-                                    <div className={this.decorateCSS("stats-grid")}>
+                                    <div
+                                        className={this.decorateCSS("stats-grid")}
+                                    >
                                         {stats.map((stat: StatItem, index: number) => (
                                             <this.AnimatedStat
                                                 key={`stat32-${index}`}
                                                 stat={stat}
                                                 animationDuration={animationDuration}
                                                 statsAnimation={statsAnimation}
+                                                isCentered={isCentered}
                                             />
                                         ))}
                                     </div>
@@ -339,7 +363,7 @@ class Stats32 extends BaseStats {
                         )}
                     </div>
                 </Base.MaxContent>
-            </Base.Container>
+            </Base.Container >
         );
     }
 }
