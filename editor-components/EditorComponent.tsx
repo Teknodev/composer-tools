@@ -480,7 +480,7 @@ export abstract class Component
       componentProps: {
         props: compProps,
         cssClasses: props?.cssClasses || { ...sectionsKeyValue },
-        interactions: props?.interactions || { ...sectionsKeyValue }
+        interactions: props?.interactions || { ...sectionsKeyValue },
       },
     };
 

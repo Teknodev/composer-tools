@@ -42,7 +42,18 @@ export const baseElementSelectors: Record<string, string> = {
 };
 
 export function formatStyles(styles: Record<string, any>, important = true): string {
-  const formattedStyles = Object.entries(styles)
+  const entries = Object.entries(styles);
+  
+  entries.sort(([keyA], [keyB]) => {
+    const cssKeyA = keyA.replace(/([A-Z])/g, "-$1").toLowerCase();
+    const cssKeyB = keyB.replace(/([A-Z])/g, "-$1").toLowerCase();
+    
+    if (cssKeyB.startsWith(cssKeyA + '-')) return -1;
+    if (cssKeyA.startsWith(cssKeyB + '-')) return 1;
+    return 0;
+  });
+
+  const formattedStyles = entries
     .map(([key, value]) => {
       const formattedKey = key.replace(/([A-Z])/g, "-$1").toLowerCase();
       return `${formattedKey}: ${value}${important ? " !important" : ""};`;
