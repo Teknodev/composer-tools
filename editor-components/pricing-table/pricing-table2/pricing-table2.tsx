@@ -40,8 +40,7 @@ class PricingTable2 extends BasePricingTable {
       type: "string",
       key: "description",
       displayer: "Description",
-      value:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      value: "",
     });
     this.addProp({
       type: "array",
@@ -56,7 +55,6 @@ class PricingTable2 extends BasePricingTable {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 4,
-      max: 5,
     });
 
     this.addProp({
@@ -218,15 +216,7 @@ class PricingTable2 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Select Now",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
               ],
             },
           ],
@@ -385,15 +375,7 @@ class PricingTable2 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Select Now",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
               ],
             },
           ],
@@ -552,15 +534,7 @@ class PricingTable2 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Select Now",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
               ],
             },
           ],
