@@ -239,8 +239,10 @@
 
           .plan-price-box {
             display: flex;
+            width: 100%;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
 
             .labels {
               display: flex;
@@ -256,7 +258,8 @@
 
             .plan-buttons {
               display: flex;
-              flex-wrap: wrap;
+              flex-direction: column;
+              align-items: flex-end;
               gap: var(--composer-gap-sm);
 
               .plan-button {
@@ -325,6 +328,14 @@
             margin-left: auto;
             margin-right: auto;
             text-align: center;
+          }
+
+          .subtitle {
+            transform: none !important;
+
+            &::before {
+              display: none !important;
+            }
           }
 
           .buttons {

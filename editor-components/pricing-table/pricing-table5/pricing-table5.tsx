@@ -347,7 +347,7 @@ class PricingTable5 extends BasePricingTable {
                   const hasPlanButtons = this.hasAnyButtonInItem(planButtons);
 
                   return (
-                    <div
+                    <Base.VerticalContent
                       key={index}
                       className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")
                         } 
@@ -460,7 +460,7 @@ class PricingTable5 extends BasePricingTable {
                           </div>
                         )}
                       </div>
-                    </div>
+                    </Base.VerticalContent>
                   );
                 })}
               </div>
