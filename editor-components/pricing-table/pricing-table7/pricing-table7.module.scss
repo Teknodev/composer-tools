@@ -26,7 +26,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
       .subtitle,
       .title,
-      .description {
+      .description,
+      .round {
         content: "";
       }
 
@@ -178,12 +179,13 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           padding: var(--composer-gap-lg);
           flex: 1;
           position: relative;
-          gap: var(--composer-gap-md);
+          gap: 0;
           background-color: color-mix(in srgb,
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
           transition: $transition;
           align-items: flex-start;
+          text-align: left;
 
           &.active {
             background-color: color-mix(in srgb,
@@ -211,6 +213,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-sm);
             color: var(--composer-font-color-secondary);
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
           }
 
           .price-text {
@@ -219,6 +224,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             align-items: baseline;
             gap: var(--composer-gap-xs);
             transition: $transition;
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+            justify-content: flex-start;
 
             .price-title {
               margin: 0;
@@ -233,6 +242,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           .promoText {
             color: var(--composer-font-color-primary);
             text-align: left;
+            margin-left: 0;
+            margin-right: 0;
           }
 
           .dividers {
@@ -265,17 +276,20 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           .description {
             color: var(--composer-tertiary-color);
             text-align: left;
+            margin-left: 0;
+            margin-right: 0;
           }
 
           .features {
             width: 100%;
-            gap: var(--composer-gap-sm);
 
             .features-element {
               display: flex;
               align-items: center;
               gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
+              text-align: left;
+              justify-content: flex-start;
 
               .icon {
                 color: var(--composer-primary-color);
@@ -286,6 +300,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 justify-content: center;
                 align-items: center;
                 flex-shrink: 0;
+              }
+
+              .features-element-text {
+                content: "";
               }
             }
           }
@@ -305,19 +323,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   .container {
     .max-content {
       gap: var(--composer-gap-lg);
-
-      .up-text {
-        align-items: center;
-        text-align: center;
-
-        .button-container {
-          justify-content: center;
-        }
-
-        .duration-items {
-          justify-content: center;
-        }
-      }
 
       .card {
         .card-item-count {
