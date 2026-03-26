@@ -70,20 +70,6 @@ class PricingTable1 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "cardListLines",
-      displayer: "Show Card List Dividers",
-      value: true,
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 6,
-    });
-
-    this.addProp({
       type: "array",
       key: "pricingTableItem",
       displayer: "Pricing Table Item",
@@ -678,13 +664,33 @@ class PricingTable1 extends BasePricingTable {
       ],
     });
     this.addProp({
-      type: "multiSelect",
-      key: "animations",
-      displayer: "Animations",
-      value: ["animation1", "animation2"],
-      additionalParams: {
-        selectItems: ["animation1", "animation2"],
-      },
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "cardListLines",
+          displayer: "Show Card List Dividers",
+          value: true,
+        },
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 3,
+          max: 6,
+        },
+        {
+          type: "multiSelect",
+          key: "animations",
+          displayer: "Animations",
+          value: ["animation1", "animation2"],
+          additionalParams: {
+            selectItems: ["animation1", "animation2"],
+          },
+        },
+      ],
     });
   }
 
@@ -717,8 +723,9 @@ class PricingTable1 extends BasePricingTable {
     });
 
     const alignmentValue = Base.getContentAlignment();
-    const showListLines = this.getPropValue("cardListLines");
-    const animationClasses = (this.getPropValue("animations") as string[] || [])
+    const settings = this.castToObject<{ cardListLines: boolean; itemCount: number; animations: string[] }>("settings");
+    const showListLines = settings.cardListLines;
+    const animationClasses = (settings.animations as string[] || [])
       .map((a) => this.decorateCSS(a))
       .join(" ");
 
@@ -779,7 +786,7 @@ class PricingTable1 extends BasePricingTable {
             )}
             <Base.ListGrid
               gridCount={{
-                pc: this.getPropValue("itemCount"),
+                pc: settings.itemCount,
                 tablet: 3,
                 phone: 1,
               }}

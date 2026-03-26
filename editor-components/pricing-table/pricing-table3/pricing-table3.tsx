@@ -346,7 +346,6 @@ class PricingTable3 extends BasePricingTable {
       <Base.Container
         className={this.decorateCSS("container")}
       >
-        <div className={this.decorateCSS("overlay")}></div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || descExist || hasValidButtons) && (
