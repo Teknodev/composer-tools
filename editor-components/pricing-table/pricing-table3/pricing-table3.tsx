@@ -351,9 +351,8 @@ class PricingTable3 extends BasePricingTable {
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || descExist || hasValidButtons) && (
               <Base.VerticalContent
-                className={`${this.decorateCSS("featured")} ${
-                  !hasCards && this.decorateCSS("featured-alternate")
-                } `}
+                className={`${this.decorateCSS("featured")} ${!hasCards && this.decorateCSS("featured-alternate")
+                  } `}
               >
                 {subtitleExist && (
                   <Base.SectionSubTitle
@@ -414,10 +413,9 @@ class PricingTable3 extends BasePricingTable {
             )}
             {hasCards && (
               <div
-                className={`${this.decorateCSS("cards-div")} ${
-                  !(titleExist || descExist || hasValidButtons) &&
+                className={`${this.decorateCSS("cards-div")} ${!(titleExist || descExist || hasValidButtons) &&
                   this.decorateCSS("cards-div-alternate")
-                }`}
+                  }`}
               >
                 {cards.map((card: Card, idx: number) => {
                   const showTag = card.tagSettings.showTag;

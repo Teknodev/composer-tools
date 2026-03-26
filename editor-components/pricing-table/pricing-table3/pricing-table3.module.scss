@@ -11,6 +11,7 @@
 }
 
 .container {
+
   .overlay,
   .max-content {
     content: "";
@@ -24,16 +25,20 @@
 
   .featured {
     width: 40%;
-    gap: var(--composer-gap-sm);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
 
     .title,
-    .subtitle,
     .description {
       width: 100%;
+      text-align: left;
+      margin-left: 0;
+    }
+
+    .subtitle {
+      width: fit-content;
       text-align: left;
       margin-left: 0;
     }
@@ -46,6 +51,7 @@
       place-self: flex-start;
 
       .button {
+
         .button-text,
         .button-icon {
           content: "";
@@ -152,9 +158,17 @@
       .card-content {
         justify-content: center;
         align-self: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         .header {
           align-self: center;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
 
           .icon {
             color: var(--composer-primary-color);
@@ -169,6 +183,7 @@
           .title {
             color: var(--composer-tertiary-color);
             text-align: center;
+            width: 100%;
           }
 
           .price {
@@ -180,13 +195,19 @@
         }
 
         .body {
+          width: 100%;
+
           .items {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
             .item {
               padding: var(--composer-gap-sm);
               width: 100%;
               color: var(--composer-font-color-primary);
-              border-bottom: 1px solid
-                rgba(var(--composer-font-color-primary-rgb), 0.2);
+              border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
               text-align: center;
               position: relative;
 
@@ -220,6 +241,7 @@
           width: 100%;
 
           .button {
+
             .button-text,
             .button-icon {
               content: "";
@@ -237,39 +259,44 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
+@container (max-width: #{$composer-phone-width}) {
   .wrapper {
     flex-direction: column;
+    gap: var(--composer-gap-md);
 
     .featured {
       width: 100%;
+      align-items: flex-start;
+      text-align: left;
+
+      .title,
+      .subtitle,
+      .description {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+        align-self: flex-start;
+      }
+
+      .top-level-buttons {
+        justify-content: flex-start;
+        place-self: flex-start;
+      }
     }
 
-    .cards-div {
+    .cards-div,
+    .cards-div-alternate {
       width: 100%;
       flex-direction: column;
       gap: var(--composer-gap-lg);
-    }
-  }
-}
 
-@container (max-width: #{$composer-phone-width}) {
-  .cards-div,
-  .cards-div-alternate {
-    width: 100%;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
+      .card-container {
+        width: 100%;
 
-    .card-container {
-      width: 100%;
-
-      &.active {
-        scale: 1;
+        &.active {
+          scale: 1;
+        }
       }
     }
   }
-
-  .wrapper {
-    gap: var(--composer-gap-md);
-  }
-}
+}
