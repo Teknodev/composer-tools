@@ -7,12 +7,12 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type PopularSettings = {
-  text: React.JSX.Element;
+  text: JSX.Element;
   is_popular: boolean;
 };
 
 type ListItem = {
-  text: React.JSX.Element;
+  text: JSX.Element;
   buttonIcon: TypeMediaInputValue;
 };
 
@@ -21,19 +21,19 @@ type RawButtonProp = {
 };
 
 type TitleItem = {
-  text: React.JSX.Element;
+  text: JSX.Element;
   icon: TypeMediaInputValue;
 };
 
 type Pricing = {
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  price: React.JSX.Element;
+  title: JSX.Element;
+  subtitle: JSX.Element;
+  price: JSX.Element;
   buttons: RawButtonProp[];
-  duration: React.JSX.Element;
-  duration1: React.JSX.Element;
+  duration: JSX.Element;
+  duration1: JSX.Element;
   list: ListItem[];
-  note: React.JSX.Element;
+  note: JSX.Element;
   isActive: boolean;
   popular_settings: PopularSettings;
 };
@@ -242,15 +242,7 @@ class PricingTable1 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Join this plan",
-                  "",
-                  "AiOutlineArrowRight",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
               ],
             },
             {
@@ -421,15 +413,7 @@ class PricingTable1 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Join this plan",
-                  "",
-                  "AiOutlineArrowRight",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
               ],
             },
             {
@@ -600,15 +584,7 @@ class PricingTable1 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Join this plan",
-                  "",
-                  "AiOutlineArrowRight",
-                  null,
-                  "Primary"
-                ),
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
               ],
             },
             {
@@ -804,6 +780,7 @@ class PricingTable1 extends BasePricingTable {
             <Base.ListGrid
               gridCount={{
                 pc: this.getPropValue("itemCount"),
+                tablet: 3,
                 phone: 1,
               }}
               className={this.decorateCSS("items")}
@@ -853,139 +830,141 @@ class PricingTable1 extends BasePricingTable {
                       key={index}
                       className={`${this.decorateCSS("item-card")} ${animationClasses} ${table.isActive ? this.decorateCSS("active") : ""}`}
                     >
-                      {popularBoxExist && (
-                        <div
-                          className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular ? this.decorateCSS("active") : ""}`}
-                        >
-                          <Base.P className={this.decorateCSS("popular-text")}>
-                            {table.popular_settings.text}
-                          </Base.P>
-                        </div>
-                      )}
-                      {cardSubtitleExist && (
-                        <div
-                          className={`${this.decorateCSS("cardsubtitle-wrapper")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""
-                            }`}
-                        >
-                          <Base.SectionDescription className={this.decorateCSS("cardsubtitle")}>
-                            {table.subtitle}
-                          </Base.SectionDescription>
-                        </div>
-                      )}
-                      {cardTitleExist && (
-                        <Base.H3 className={`${this.decorateCSS("card-title")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""}`}>
-                          {table.title}
-                        </Base.H3>
-                      )}
-                      {hasCardList && (
-                        <div className={this.decorateCSS("card-list")}>
-                          {table.list.map((listItem: ListItem, listIdx: number) => {
-                            const cardListItemExist = this.castToString(listItem.text);
-                            const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.type === "icon" ? listItem.buttonIcon.name : listItem.buttonIcon.url);
-                            if (!buttonIconExist && !cardListItemExist) return null;
-                            return (
-                              <Base.Row
-                                key={listIdx}
-                                className={`${this.decorateCSS("card-list-item")} ${!showListLines ? this.decorateCSS("no-lines") : ""}`}
-                              >
-                                {buttonIconExist && (
-                                  <Base.Media
-                                    value={listItem.buttonIcon}
-                                    className={this.decorateCSS("icon")}
-                                  />
-                                )}
-                                {cardListItemExist && (
-                                  <Base.P className={this.decorateCSS("list-item")}>
-                                    {listItem.text}
-                                  </Base.P>
-                                )}
-                              </Base.Row>
-                            );
-                          })}
-                        </div>
-                      )}
-
-                      {(cardPriceExist || durationExist || duration1Exist || hasButtons || cardpricingTableTitleExist) && (
-                        <div
-                          className={`${this.decorateCSS("card-bottom")} ${table.isActive ? this.decorateCSS("active") : ""}`}
-                        >
-                          <div className={this.decorateCSS("card-bottom-content")}>
-                            {(cardPriceExist || durationExist || duration1Exist) && (
-                              <div
-                                className={`${this.decorateCSS("card-price")} ${table.isActive ? this.decorateCSS("active") : ""}`}
-                              >
-                                {cardPriceExist && (
-                                  <Base.P className={this.decorateCSS("price")}>
-                                    {table.price}
-                                  </Base.P>
-                                )}
-                                {(durationExist || duration1Exist) && (
-                                  <div
-                                    className={this.decorateCSS("card-duration")}
-                                  >
-                                    {durationExist && (
-                                      <Base.P className={this.decorateCSS("duration")}>
-                                        {table.duration}
-                                      </Base.P>
-                                    )}
-                                    {duration1Exist && (
-                                      <Base.P className={this.decorateCSS("duration1")}>
-                                        {table.duration1}
-                                      </Base.P>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                            {hasButtons && (
-                              <div className={this.decorateCSS("button-wrapper")}>
-                                {buttons.map((btn, btnIndex: number) => {
-                                  const buttonText = btn.text;
-                                  const buttonMedia = btn.media;
-                                  const buttonUrl = btn.url || "#";
-                                  const buttonType = btn.type;
-
-                                  const btnTextExist = this.castToString(buttonText);
-                                  const buttonMediaExist = buttonMedia && (buttonMedia.type === "icon" ? buttonMedia.name : buttonMedia.url);
-
-                                  if (!btnTextExist && !buttonMediaExist) return null;
-
-                                  return (
-                                    <ComposerLink
-                                      path={buttonUrl}
-                                      key={`pricing-btn-${btnIndex}`}
-                                    >
-                                      <Base.Button
-                                        buttonType={buttonType}
-                                        className={this.decorateCSS("card-button")}
-                                      >
-                                        {btnTextExist && (
-                                          <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
-                                        )}
-                                        {buttonMediaExist && (
-                                          <Base.Media
-                                            value={buttonMedia}
-                                            className={this.decorateCSS(
-                                              "button-icon"
-                                            )}
-                                          />
-                                        )}
-
-
-                                      </Base.Button>
-                                    </ComposerLink>
-                                  );
-                                })}
-                              </div>
-                            )}
-                            {cardpricingTableTitleExist && (
-                              <Base.P className={this.decorateCSS("pricingTitle")}>
-                                {table.note}
-                              </Base.P>
-                            )}
+                      <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                        {popularBoxExist && (
+                          <div
+                            className={`${this.decorateCSS("popular-box")} ${table.popular_settings.is_popular ? this.decorateCSS("active") : ""}`}
+                          >
+                            <Base.P className={this.decorateCSS("popular-text")}>
+                              {table.popular_settings.text}
+                            </Base.P>
                           </div>
-                        </div>
-                      )}
+                        )}
+                        {cardSubtitleExist && (
+                          <div
+                            className={`${this.decorateCSS("cardsubtitle-wrapper")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""
+                              }`}
+                          >
+                            <Base.SectionDescription className={this.decorateCSS("cardsubtitle")}>
+                              {table.subtitle}
+                            </Base.SectionDescription>
+                          </div>
+                        )}
+                        {cardTitleExist && (
+                          <Base.H3 className={`${this.decorateCSS("card-title")} ${alignmentValue === "center" ? this.decorateCSS("center") : ""}`}>
+                            {table.title}
+                          </Base.H3>
+                        )}
+                        {hasCardList && (
+                          <div className={this.decorateCSS("card-list")}>
+                            {table.list.map((listItem: ListItem, listIdx: number) => {
+                              const cardListItemExist = this.castToString(listItem.text);
+                              const buttonIconExist = listItem.buttonIcon && (listItem.buttonIcon.type === "icon" ? listItem.buttonIcon.name : listItem.buttonIcon.url);
+                              if (!buttonIconExist && !cardListItemExist) return null;
+                              return (
+                                <Base.Row
+                                  key={listIdx}
+                                  className={`${this.decorateCSS("card-list-item")} ${!showListLines ? this.decorateCSS("no-lines") : ""}`}
+                                >
+                                  {buttonIconExist && (
+                                    <Base.Media
+                                      value={listItem.buttonIcon}
+                                      className={this.decorateCSS("icon")}
+                                    />
+                                  )}
+                                  {cardListItemExist && (
+                                    <Base.P className={this.decorateCSS("list-item")}>
+                                      {listItem.text}
+                                    </Base.P>
+                                  )}
+                                </Base.Row>
+                              );
+                            })}
+                          </div>
+                        )}
+
+                        {(cardPriceExist || durationExist || duration1Exist || hasButtons || cardpricingTableTitleExist) && (
+                          <div
+                            className={`${this.decorateCSS("card-bottom")} ${table.isActive ? this.decorateCSS("active") : ""}`}
+                          >
+                            <div className={this.decorateCSS("card-bottom-content")}>
+                              {(cardPriceExist || durationExist || duration1Exist) && (
+                                <div
+                                  className={`${this.decorateCSS("card-price")} ${table.isActive ? this.decorateCSS("active") : ""}`}
+                                >
+                                  {cardPriceExist && (
+                                    <Base.P className={this.decorateCSS("price")}>
+                                      {table.price}
+                                    </Base.P>
+                                  )}
+                                  {(durationExist || duration1Exist) && (
+                                    <div
+                                      className={this.decorateCSS("card-duration")}
+                                    >
+                                      {durationExist && (
+                                        <Base.P className={this.decorateCSS("duration")}>
+                                          {table.duration}
+                                        </Base.P>
+                                      )}
+                                      {duration1Exist && (
+                                        <Base.P className={this.decorateCSS("duration1")}>
+                                          {table.duration1}
+                                        </Base.P>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                              {hasButtons && (
+                                <div className={this.decorateCSS("button-wrapper")}>
+                                  {buttons.map((btn, btnIndex: number) => {
+                                    const buttonText = btn.text;
+                                    const buttonMedia = btn.media;
+                                    const buttonUrl = btn.url || "#";
+                                    const buttonType = btn.type;
+
+                                    const btnTextExist = this.castToString(buttonText);
+                                    const buttonMediaExist = buttonMedia && (buttonMedia.type === "icon" ? buttonMedia.name : buttonMedia.url);
+
+                                    if (!btnTextExist && !buttonMediaExist) return null;
+
+                                    return (
+                                      <ComposerLink
+                                        path={buttonUrl}
+                                        key={`pricing-btn-${btnIndex}`}
+                                      >
+                                        <Base.Button
+                                          buttonType={buttonType}
+                                          className={this.decorateCSS("card-button")}
+                                        >
+                                          {btnTextExist && (
+                                            <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                                          )}
+                                          {buttonMediaExist && (
+                                            <Base.Media
+                                              value={buttonMedia}
+                                              className={this.decorateCSS(
+                                                "button-icon"
+                                              )}
+                                            />
+                                          )}
+
+
+                                        </Base.Button>
+                                      </ComposerLink>
+                                    );
+                                  })}
+                                </div>
+                              )}
+                              {cardpricingTableTitleExist && (
+                                <Base.P className={this.decorateCSS("pricingTitle")}>
+                                  {table.note}
+                                </Base.P>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </Base.VerticalContent>
                     </div>
                   );
                 }
