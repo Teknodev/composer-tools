@@ -1216,7 +1216,7 @@ class Navbar6 extends BaseNavigator {
       closeIcon?: TypeMediaInputValue;
     }>("navigationIcons");
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
         <Base.Navigator.Container
           position={position}
           positionContainer={`${this.decorateCSS("navbarContainer")} ${
@@ -1605,7 +1605,7 @@ class Navbar6 extends BaseNavigator {
           onClick={() => this.handleCloseMenu()}
           isVisible={isVisible}
         />
-      </>
+      </div>
     );
   }
 }
