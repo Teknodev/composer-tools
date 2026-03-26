@@ -13,6 +13,17 @@
           content: "";
         }
       }
+      .buttons-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+        flex-wrap: wrap;
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
       .down-page {
         display: flex;
         gap: var(--composer-gap-lg);
@@ -71,6 +82,7 @@
                 width: 16px;
                 height: 16px;
                 font-size: 1rem;
+                object-fit: contain;
                 transform: rotate(0deg);
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               }
@@ -85,6 +97,17 @@
 
             &.active {
               background-color: var(--composer-primary-color);
+            }
+          }
+
+          &.no-line {
+            .child-container {
+              border: none;
+            }
+            .inner-card {
+              .inner-text {
+                border: none;
+              }
             }
           }
 

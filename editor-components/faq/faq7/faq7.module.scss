@@ -3,7 +3,7 @@
         .page {
             display: flex;
             flex-direction: column;
-            gap: var(--composer-gap-md);
+            gap: var(--composer-gap-lg);
             .up-page {
                 .title, .description, .subtitle {
                     content: "";
@@ -58,9 +58,10 @@
                             justify-content: center;            
                             .icon {
                                 color: var(--composer-font-color-primary);
-                                width: 16px;
-                                height: 16px;
-                                font-size: 1rem;
+                                width: 24px;
+                                height: 24px;
+                                font-size: 1.5rem;
+                                object-fit: contain;
                             }
                         }
                     }

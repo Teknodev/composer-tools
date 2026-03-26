@@ -30,6 +30,7 @@
               align-items: center;
               transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               padding:var(--composer-gap-md) 0;
+              gap: var(--composer-gap-md);
               .card-left{
                 flex: 1;
                 display: flex;
@@ -63,7 +64,10 @@
                 min-width: fit-content;
                 .icon {
                   color: var(--composer-primary-color);
-                  font-size: 1rem;
+                  font-size: 1.5rem;
+                  width: 24px;
+                  height: 24px;
+                  object-fit: contain;
                 }
               }
             }

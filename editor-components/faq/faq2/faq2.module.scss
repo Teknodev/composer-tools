@@ -14,25 +14,30 @@
 
       .card-page {
         .card {
-          display: flex;
-          gap: var(--composer-gap-md);
-          flex-direction: column;  
+          
           background-color: color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%);   
           border-radius: var(--composer-border-radius-sm);
           padding: var(--composer-gap-xl);   
           .icon-wrapper {
             display: flex;
             justify-content: center;
+            align-self: flex-start;
             border-radius: 50%;
             background: var(--composer-primary-color);
             position: relative;
             align-items: center;
             width: fit-content;
             padding: var(--composer-gap-sm);
+            &.no-icon-bg {
+              background: none;
+              border-radius: 0;
+              padding: 0;
+            }
             .icon{
-              width: 30px;
-              height: 30px;
+              width: 32px;
+              height: 32px;
               font-size: 2rem;
+              object-fit: contain;
               color: var(--composer-font-color-secondary);
             }
           }

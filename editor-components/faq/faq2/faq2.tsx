@@ -47,6 +47,12 @@ class Faq2 extends BaseFAQ {
       value: 3,
     });
     this.addProp({
+      type: "boolean",
+      key: "showIconBackground",
+      displayer: "Icon Background",
+      value: true,
+    });
+    this.addProp({
       type: "array",
       key: "card",
       displayer: "Card",
@@ -311,14 +317,14 @@ class Faq2 extends BaseFAQ {
                     return (
                       <Base.VerticalContent className={this.decorateCSS("card")}>
                         {item.cardIcon && (
-                          <Base.Row className={this.decorateCSS("icon-wrapper")}>
+                          <Base.Row className={`${this.decorateCSS("icon-wrapper")}${!this.getPropValue("showIconBackground") ? ` ${this.decorateCSS("no-icon-bg")}` : ""}`}>
                             <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
                           </Base.Row>
                         )}
                         {this.castToString(item.cardTitle) && (
-                          <Base.H3 className={this.decorateCSS("card-title")}>
+                          <Base.H4 className={this.decorateCSS("card-title")}>
                             {item.cardTitle}
-                          </Base.H3>
+                          </Base.H4>
                         )}
                         {this.castToString(item.description) && (
                           <Base.P className={this.decorateCSS("card-description")}>

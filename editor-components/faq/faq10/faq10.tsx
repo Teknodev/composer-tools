@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./faq10.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface FAQ {
   subtitle: React.ReactNode;
@@ -233,6 +235,15 @@ class Faq10 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
+    });
+
     this.setComponentState("activeIndices", [0, 0, 0]);
     this.setComponentState("isMobile", false);
   }
@@ -443,6 +454,25 @@ class Faq10 extends BaseFAQ {
                 </div>
               ))}
             </div>
+            {this.getPropValue("buttons").length > 0 && (
+              <div className={this.decorateCSS("buttons-wrapper")}>
+                {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
+                  (button: INPUTS.CastedButton) =>
+                    this.castToString(button.text) && (
+                      <ComposerLink path={button.url}>
+                        <Base.Button
+                          buttonType={button.type}
+                          className={this.decorateCSS("button")}
+                        >
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                )}
+              </div>
+            )}
           </Base.MaxContent>
       </Base.Container>
     );

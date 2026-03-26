@@ -32,7 +32,7 @@
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             width: fit-content;
             &.active{
-              border-bottom: 1px solid var(--composer-font-color-primary);
+              border-bottom: 1px solid var(--composer-primary-color);
               opacity: 1;
               font-weight: bold;
             }
@@ -86,7 +86,7 @@
                 .card-title {
                   flex: 1;
                   color: var(--composer-font-color-primary);
-                  text-align: center;
+                  text-align: left;
                 }
                 .icon-wrapper{
                   display: flex;
@@ -96,6 +96,7 @@
                     width: 25px;
                     height: 25px;
                     font-size: 2rem;
+                    object-fit: contain;
                     color: var(--composer-font-color-primary);
                   }
                 }
@@ -116,9 +117,21 @@
                     opacity: 1;
                   }
                 }
+                .buttons-wrapper {
+                  display: flex;
+                  justify-content: flex-start;
+                  gap: var(--composer-gap-md);
+                  flex-wrap: wrap;
+                  margin-top: var(--composer-gap-md);
+                  .button {
+                    .button-text {
+                      content: "";
+                    }
+                  }
+                }
                 &.active {
-                  padding: var(--composer-gap-md) var(--composer-gap-xl) 0px var(--composer-gap-xl);
-                  max-height: 150px;
+                  padding: var(--composer-gap-md) var(--composer-gap-xl) var(--composer-gap-md) var(--composer-gap-xl);
+                  max-height: 500px;
                 }
               }
            }

@@ -33,6 +33,17 @@
           }
         }
       }
+      .buttons-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-md);
+        flex-wrap: wrap;
+          .button {
+            .button-text {
+              content: "";
+            }
+          }
+      }
       .down-page {
         width: 100%;
         display: flex;
@@ -76,6 +87,7 @@
                     width: 18px;
                     height: 18px;
                     font-size: 1.4rem;
+                    object-fit: contain;
                     transform: rotate(0deg);
                     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     &.active{

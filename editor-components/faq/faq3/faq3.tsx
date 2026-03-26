@@ -258,6 +258,13 @@ class Faq3 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
     this.setComponentState("selectCardIndex", null);
   }
 
@@ -289,6 +296,7 @@ class Faq3 extends BaseFAQ {
     const infoArray = this.castToObject<InfoArrayItem[]>("infoArray");
     const faqItems = this.castToObject<Faq[]>("faqItems");
     const showLine = this.getPropValue("showLine");
+    const lineEnabled = this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -329,6 +337,7 @@ class Faq3 extends BaseFAQ {
                             key={index}
                             className={this.decorateCSS("card")}
                             onClick={() => this.onItemClick(index)}
+                            style={!lineEnabled ? { borderBottom: "none" } : {}}
                           >
                             {(titleExist || descExist || item.index) && (
                               <div className={this.decorateCSS("top-card")}>

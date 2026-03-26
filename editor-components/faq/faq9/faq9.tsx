@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./faq9.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Question = {
   qq: string;
@@ -46,6 +48,13 @@ class Faq9 extends BaseFAQ {
         type: "icon",
         name: "SlArrowDown",
       },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -176,6 +185,15 @@ class Faq9 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
+    });
+
     this.setComponentState("activeLeftQuestionIndex", 0);
     this.setComponentState("activeRightQuestionIndex", 3);
     this.setComponentState("isMobile", false);
@@ -269,6 +287,7 @@ class Faq9 extends BaseFAQ {
     const activeRight = this.getComponentState("activeRightQuestionIndex");
     const questions = this.castToObject<Question[]>("questions");
     const isMobile = this.getComponentState("isMobile");
+    const lineEnabled = this.getPropValue("line");
     const midPoint = isMobile
       ? questions.length
       : Math.ceil(questions.length / 2);
@@ -309,7 +328,7 @@ class Faq9 extends BaseFAQ {
                     const idx = i;
                     return (
                       <div
-                        className={this.decorateCSS("card")}
+                        className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                         key={idx}
                         onClick={() => this.handleQuestion(idx)}
                       >
@@ -384,7 +403,7 @@ class Faq9 extends BaseFAQ {
                       const idx = i + midPoint;
                       return (
                         <div
-                          className={this.decorateCSS("card")}
+                          className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                           key={idx}
                           onClick={() => this.handleQuestion(idx)}
                         >
@@ -455,6 +474,25 @@ class Faq9 extends BaseFAQ {
                   </div>
                 )}
               </div>
+              {this.getPropValue("buttons").length > 0 && (
+                <div className={this.decorateCSS("buttons-wrapper")}>
+                  {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
+                    (button: INPUTS.CastedButton) =>
+                      this.castToString(button.text) && (
+                        <ComposerLink path={button.url}>
+                          <Base.Button
+                            buttonType={button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {button.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                  )}
+                </div>
+              )}
             </div>
           </Base.MaxContent>
         </div>

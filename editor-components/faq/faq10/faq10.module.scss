@@ -30,6 +30,18 @@
       gap: var(--composer-gap-lg);
     }
 
+    .buttons-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: var(--composer-gap-md);
+      flex-wrap: wrap;
+      .button {
+        .button-text {
+          content: "";
+        }
+      }
+    }
+
     .faq-col {
       display: flex;
       flex-direction: column;

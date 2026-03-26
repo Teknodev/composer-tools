@@ -9,6 +9,17 @@
                 content: "";
             }
         }
+        .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: var(--composer-gap-md);
+            flex-wrap: wrap;
+            .button {
+                .button-text { 
+                    content: ""; 
+                }
+            }
+        }
         .page {
             width: 100%;
             height: 100%;
@@ -33,9 +44,10 @@
                     .icon {
                         display: block;
                         transform: rotate(0deg);
-                        height: 30px;
-                        width: 30px;
+                        height: 32px;
+                        width: 32px;
                         font-size: 2rem;
+                        object-fit: contain;
                         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                         color: var(--composer-font-color-primary);
                         &.rotate {
