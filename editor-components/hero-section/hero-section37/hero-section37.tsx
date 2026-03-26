@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
-import styles from "./hero-section39.module.scss";
+import styles from "./hero-section37.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -19,7 +19,7 @@ type SocialItem = {
   path: string;
 };
 
-class HeroSection39 extends BaseHeroSection {
+class HeroSection37 extends BaseHeroSection {
   constructor(props?: any) {
     super(props, styles);
 
@@ -373,7 +373,7 @@ class HeroSection39 extends BaseHeroSection {
   }
 
   static getName(): string {
-    return "Hero Section 39";
+    return "Hero Section 37";
   }
 
   render() {
@@ -514,4 +514,4 @@ class HeroSection39 extends BaseHeroSection {
   }
 }
 
-export default HeroSection39;
+export default HeroSection37;
