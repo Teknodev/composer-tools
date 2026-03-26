@@ -49,6 +49,15 @@ class PricingTable8 extends BasePricingTable {
 
     this.addProp({
       type: "array",
+      key: "headerButtons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "array",
       key: "cards",
       displayer: "Card",
       value: [
@@ -156,14 +165,7 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
-              ],
-            },
+
           ],
         },
         {
@@ -270,14 +272,7 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
-              ],
-            },
+
           ],
         },
         {
@@ -384,14 +379,7 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
-              ],
-            },
+
           ],
         },
       ],
@@ -405,18 +393,10 @@ class PricingTable8 extends BasePricingTable {
 
     this.addProp({
       type: "array",
-      key: "buttons",
+      key: "footerButtons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Continue",
-          "",
-          null,
-          null,
-          "Primary"
-        ),
+        INPUTS.BUTTON("button", "Button", "Continue", "", null, null, "Primary"),
       ],
     });
 
@@ -525,12 +505,14 @@ class PricingTable8 extends BasePricingTable {
 
     const cards = this.castToObject<IIconBoxes[]>("cards");
     const currentIndex = this.getComponentState("currentIndex");
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons");
+    const footerButtons = this.castToObject<INPUTS.CastedButton[]>("footerButtons");
     const line = this.getPropValue("line");
 
     const hasCardsWithContent = cards.some((card) => this.hasCardContent(card));
 
-    const hasButtonsWithContent = this.hasAnyButtonContent(buttons);
+    const hasHeaderButtons = this.hasAnyButtonContent(headerButtons);
+    const hasFooterButtons = this.hasAnyButtonContent(footerButtons);
 
     const currentCard = cards[currentIndex];
     const hasLowerContent =
@@ -543,7 +525,7 @@ class PricingTable8 extends BasePricingTable {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist || descriptionExist) && (
+          {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -559,6 +541,30 @@ class PricingTable8 extends BasePricingTable {
                 <Base.SectionDescription className={this.decorateCSS("description")}>
                   {description}
                 </Base.SectionDescription>
+              )}
+              {hasHeaderButtons && (
+                <div className={this.decorateCSS("header-buttons")}>
+                  {headerButtons.map((item, index) => {
+                    const btnTextExist = this.castToString(item.text);
+                    const btnIconValue = item.icon as unknown as TypeMediaInputValue;
+                    const btnIconExist = btnIconValue && (btnIconValue.type === "icon" ? btnIconValue.name : (btnIconValue as any).url);
+
+                    if (!btnTextExist && !btnIconExist) return null;
+
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {btnIconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={btnIconValue as any} />
+                          )}
+                          {btnTextExist && (
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  })}
+                </div>
               )}
             </Base.VerticalContent>
           )}
@@ -634,23 +640,6 @@ class PricingTable8 extends BasePricingTable {
                             className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
                           />
                         )}
-                        {card.buttons && card.buttons.map((btn: INPUTS.CastedButton, bIndex: number) => {
-                          const btnTextExist = this.castToString(btn.text);
-                          const btnIconExist = btn.icon && btn.icon.name;
-                          if (!btnTextExist && !btnIconExist) return null;
-                          return (
-                            <ComposerLink key={bIndex} path={btn.url}>
-                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
-                                {btnTextExist && (
-                                  <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
-                                )}
-                                {btnIconExist && (
-                                  <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />
-                                )}
-                              </Base.Button>
-                            </ComposerLink>
-                          );
-                        })}
                       </Base.VerticalContent>
                     </div>
                   );
@@ -722,23 +711,6 @@ class PricingTable8 extends BasePricingTable {
                             className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
                           />
                         )}
-                        {card.buttons && card.buttons.map((btn: INPUTS.CastedButton, bIndex: number) => {
-                          const btnTextExist = this.castToString(btn.text);
-                          const btnIconExist = btn.icon && btn.icon.name;
-                          if (!btnTextExist && !btnIconExist) return null;
-                          return (
-                            <ComposerLink key={bIndex} path={btn.url}>
-                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
-                                {btnTextExist && (
-                                  <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
-                                )}
-                                {btnIconExist && (
-                                  <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />
-                                )}
-                              </Base.Button>
-                            </ComposerLink>
-                          );
-                        })}
                       </Base.VerticalContent>
                     </div>
                   );
@@ -746,90 +718,87 @@ class PricingTable8 extends BasePricingTable {
               </div>
             )}
 
-            {hasLowerContent && (
-              <div
-                className={`${this.decorateCSS("lower-container")} ${!line ? this.decorateCSS("center") : ""
-                  }`}
-              >
-                {this.hasPlanDescContent(currentCard) && (
-                  <Base.VerticalContent
-                    className={this.decorateCSS("plan-desc")}
+            {(hasLowerContent || hasFooterButtons) && (
+              <Base.VerticalContent className={this.decorateCSS("footer-content")}>
+                {hasLowerContent && (
+                  <div
+                    className={`${this.decorateCSS("lower-container")} ${!line ? this.decorateCSS("center") : ""
+                      }`}
                   >
-                    {this.castToString(currentCard.subtitle) && (
-                      <Base.H4 className={this.decorateCSS("text")}>
-                        {currentCard.subtitle}
-                      </Base.H4>
-                    )}
-                    {this.castToString(currentCard.description) && (
-                      <Base.P className={this.decorateCSS("description-text")}>
-                        {currentCard.description}
-                      </Base.P>
-                    )}
-                  </Base.VerticalContent>
-                )}
-
-                {line && this.hasBarsContent(currentCard.bars) && (
-                  <div className={this.decorateCSS("bar-rows")}>
-                    <div className={this.decorateCSS("bar-row")}>
-                      {currentCard.bars.map((bar: any, index: any) => {
-                        const barTitleExist = this.castToString(bar.title);
-                        if (!barTitleExist) return null;
-
-                        return (
-                          <div
-                            className={this.decorateCSS("bar-desc")}
-                            key={index}
-                          >
-                            <Base.H6 className={this.decorateCSS("bar-title")}>
-                              {bar.title}
-                            </Base.H6>
-                            <div className={this.decorateCSS("bar-percent")}>
-                              <div
-                                className={this.decorateCSS("percent")}
-                                style={{
-                                  width: `${this.castToString(bar.percent) || "0"}%`,
-                                }}
-                              ></div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {hasButtonsWithContent && (
-              <div className={this.decorateCSS("button-position")}>
-                {buttons.map((item, index) => {
-                  if (!this.hasButtonContent(item)) return null;
-
-                  const buttonTextExist = this.castToString(item.text);
-                  const buttonIconExist = this.hasMediaContent(item.icon);
-
-                  return (
-                    <ComposerLink path={item.url || "#"} key={index}>
-                      <Base.Button
-                        buttonType={item.type}
-                        className={this.decorateCSS("button")}
+                    {this.hasPlanDescContent(currentCard) && (
+                      <Base.VerticalContent
+                        className={this.decorateCSS("plan-desc")}
                       >
-                        {buttonIconExist && (
-                          <Base.Media
-                            value={item.icon}
-                            className={this.decorateCSS("button-icon")}
-                          />
+                        {this.castToString(currentCard.subtitle) && (
+                          <Base.H4 className={this.decorateCSS("text")}>
+                            {currentCard.subtitle}
+                          </Base.H4>
                         )}
-                        {buttonTextExist && (
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {item.text}
+                        {this.castToString(currentCard.description) && (
+                          <Base.P className={this.decorateCSS("description-text")}>
+                            {currentCard.description}
                           </Base.P>
                         )}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
+                      </Base.VerticalContent>
+                    )}
+
+                    {line && this.hasBarsContent(currentCard.bars) && (
+                      <div className={this.decorateCSS("bar-rows")}>
+                        <div className={this.decorateCSS("bar-row")}>
+                          {currentCard.bars.map((bar: any, index: any) => {
+                            const barTitleExist = this.castToString(bar.title);
+                            if (!barTitleExist) return null;
+
+                            return (
+                              <div
+                                className={this.decorateCSS("bar-desc")}
+                                key={index}
+                              >
+                                <Base.H6 className={this.decorateCSS("bar-title")}>
+                                  {bar.title}
+                                </Base.H6>
+                                <div className={this.decorateCSS("bar-percent")}>
+                                  <div
+                                    className={this.decorateCSS("percent")}
+                                    style={{
+                                      width: `${this.castToString(bar.percent) || "0"}%`,
+                                    }}
+                                  ></div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {hasFooterButtons && (
+                  <div className={this.decorateCSS("button-position")}>
+                    {footerButtons.map((item, index) => {
+                      const btnTextExist = this.castToString(item.text);
+                      const btnIconValue = item.icon as unknown as TypeMediaInputValue;
+                      const btnIconExist = btnIconValue && (btnIconValue.type === "icon" ? btnIconValue.name : (btnIconValue as any).url);
+
+                      if (!btnTextExist && !btnIconExist) return null;
+
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            {btnIconExist && (
+                              <Base.Media className={this.decorateCSS("button-icon")} value={btnIconValue as any} />
+                            )}
+                            {btnTextExist && (
+                              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
             )}
           </div>
         </Base.MaxContent>
