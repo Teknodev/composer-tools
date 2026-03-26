@@ -51,7 +51,7 @@ class PricingMultiple extends BasePricingTable {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
       ],
     });
 
@@ -667,7 +667,7 @@ class PricingMultiple extends BasePricingTable {
             <Base.ListGrid
               gridCount={{
                 pc: this.getPropValue("itemCount"),
-                tablet: 1,
+                tablet: 3,
                 phone: 1,
               }}
               className={this.decorateCSS("page-down")}

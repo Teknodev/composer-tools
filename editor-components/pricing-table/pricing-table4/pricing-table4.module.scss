@@ -63,9 +63,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
       .page-down {
-        column-gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
         align-items: stretch;
-        padding-bottom: var(--composer-gap-md);
 
         .card {
           width: 100%;
@@ -212,20 +211,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .page {
-        .page-down {
-          .card {
-            padding-left: var(--composer-gap-xl);
-            padding-right: var(--composer-gap-xl);
-          }
-        }
-      }
-    }
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
