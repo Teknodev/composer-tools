@@ -259,7 +259,7 @@ class PricingMultipleTwo extends BasePricingTable {
                             INPUTS.BUTTON(
                               "button",
                               "Button",
-                              "LETS GO",
+                              "Join this plan",
                               "",
                               "",
                               null,
@@ -1286,7 +1286,7 @@ class PricingMultipleTwo extends BasePricingTable {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("page")}>
+          <div className={this.decorateCSS("page")}>
             {(titleExist || subtitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("up-page")}>
                 {subtitleExist && (
@@ -1354,300 +1354,300 @@ class PricingMultipleTwo extends BasePricingTable {
               </Base.VerticalContent>
             )}
             {hasPlans && (
-              <div className={this.decorateCSS("plan-items")}>
-                {plans.map((plan: any, index: number) => {
-                  const title2 = this.castToString(plan.getPropValue("title"));
-                  return (
-                    title2 && (
-                      <Base.P
-                        className={
-                          this.decorateCSS("plan-title") +
-                          " " +
-                          (this.getComponentState("activeTab") === index &&
-                            this.decorateCSS("activeTab"))
-                        }
-                        onClick={() => this.setActiveTab(index)}
-                      >
-                        {plan.getPropValue("title")}
-                      </Base.P>
-                    )
-                  );
-                })}
-              </div>
-            )}
-            {hasPlans && (
-              <div className={this.decorateCSS("down-page")}>
-                {plan.length > 0 && (
-                  <>
-                    <div className={this.decorateCSS("left-page")}>
-                      {plan.map((tab: any, index: number) => {
-                        const planText = this.castToString(tab.plan);
-                        const tagText = this.castToString(tab.tag);
-                        const priceText = this.castToString(tab.price);
-                        const perText = this.castToString(tab.per);
-                        const hasIcon = tab.check_icon || tab.circle_icon;
-
-                        if (
-                          !planText &&
-                          !tagText &&
-                          !priceText &&
-                          !perText &&
-                          !hasIcon
-                        ) {
-                          return null;
-                        }
-
-                        const isActive =
-                          this.getComponentState("activePlan") == index;
-
-                        return (
-                          <div
-                            className={`${this.decorateCSS("listArray")} ${
-                              isActive && this.decorateCSS("active")
-                            } ${animations}`}
-                            onClick={() => this.setActivePlan(index)}
-                            key={index}
-                          >
-                            {(hasIcon || planText) && (
-                              <div className={this.decorateCSS("plan-icons")}>
-                                {hasIcon && (
-                                  <Base.Media
-                                    value={
-                                      isActive
-                                        ? tab.check_icon
-                                        : tab.circle_icon
-                                    }
-                                    className={this.decorateCSS("icon")}
-                                  />
-                                )}
-                                {planText && (
-                                  <Base.P className={this.decorateCSS("plan")}>
-                                    {tab.plan}
-                                  </Base.P>
-                                )}
-                              </div>
-                            )}
-
-                            {tagText && (
-                              <div className={this.decorateCSS("tag-wrapper")}>
-                                <Base.P className={this.decorateCSS("tag")}>
-                                  {tab.tag}
-                                </Base.P>
-                              </div>
-                            )}
-                            {(priceText || perText) && (
-                              <div className={this.decorateCSS("item-price")}>
-                                {priceText && (
-                                  <Base.H5
-                                    className={this.decorateCSS("price")}
-                                  >
-                                    {tab.price}
-                                  </Base.H5>
-                                )}
-                                {perText && (
-                                  <Base.P className={this.decorateCSS("per")}>
-                                    {tab.per}
-                                  </Base.P>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                    {rightItemExist && (
-                      <div
-                        className={`${this.decorateCSS("right-page")} ${animations}`}
-                      >
-                        <Base.VerticalContent
-                          className={this.decorateCSS("content")}
+              <Base.VerticalContent className={this.decorateCSS("page-down")}>
+                <div className={this.decorateCSS("plan-items")}>
+                  {plans.map((plan: any, index: number) => {
+                    const title2 = this.castToString(plan.getPropValue("title"));
+                    return (
+                      title2 && (
+                        <Base.P
+                          className={
+                            this.decorateCSS("plan-title") +
+                            " " +
+                            (this.getComponentState("activeTab") === index &&
+                              this.decorateCSS("activeTab"))
+                          }
+                          onClick={() => this.setActiveTab(index)}
+                          key={index}
                         >
-                          {(() => {
-                            const rightItems = plan[planIndex]?.right_items;
-                            if (!rightItems) return null;
+                          {plan.getPropValue("title")}
+                        </Base.P>
+                      )
+                    );
+                  })}
+                </div>
+                <div className={this.decorateCSS("down-page")}>
+                  {plan.length > 0 && (
+                    <>
+                      <div className={this.decorateCSS("left-page")}>
+                        {plan.map((tab: any, index: number) => {
+                          const planText = this.castToString(tab.plan);
+                          const tagText = this.castToString(tab.tag);
+                          const priceText = this.castToString(tab.price);
+                          const perText = this.castToString(tab.per);
+                          const hasIcon = tab.check_icon || tab.circle_icon;
 
-                            const subtitle = rightItems.subtitle;
-                            const title = rightItems.title;
-                            const subtitleExist = this.castToString(subtitle);
-                            const titleExist = this.castToString(title);
+                          if (
+                            !planText &&
+                            !tagText &&
+                            !priceText &&
+                            !perText &&
+                            !hasIcon
+                          ) {
+                            return null;
+                          }
 
-                            if (!subtitleExist && !titleExist) {
-                               return null;
-                            }
+                          const isActive =
+                            this.getComponentState("activePlan") == index;
 
-                            return (
-                              <div className={this.decorateCSS("header-wrapper")}>
-                                {titleExist && (
-                                  <Base.H4
-                                    className={this.decorateCSS("title")}
-                                  >
-                                    {title}
-                                  </Base.H4>
-                                )}
-                                {subtitleExist && (
-                                  <div className={this.decorateCSS("subtitle-wrapper")}>
-                                    <Base.P
-                                      className={this.decorateCSS("subtitle")}
-                                    >
-                                      {subtitle}
+                          return (
+                            <div
+                              className={`${this.decorateCSS("listArray")} ${isActive && this.decorateCSS("active")
+                                } ${animations}`}
+                              onClick={() => this.setActivePlan(index)}
+                              key={index}
+                            >
+                              {(hasIcon || planText) && (
+                                <div className={this.decorateCSS("plan-icons")}>
+                                  {hasIcon && (
+                                    <Base.Media
+                                      value={
+                                        isActive
+                                          ? tab.check_icon
+                                          : tab.circle_icon
+                                      }
+                                      className={this.decorateCSS("icon")}
+                                    />
+                                  )}
+                                  {planText && (
+                                    <Base.P className={this.decorateCSS("plan")}>
+                                      {tab.plan}
                                     </Base.P>
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          })()}
+                                  )}
+                                </div>
+                              )}
 
-                          {plan[planIndex]?.right_items?.list?.length > 0 && (
-                            <div className={this.decorateCSS("list-body")}>
-                              {plan[planIndex]?.right_items?.list?.map(
-                                (listItem: any, listItemIndex: number) => {
-                                  const property =
-                                    listItem.getPropValue("text");
-                                  const iconValue =
-                                    listItem.getPropValue("dash_icon");
-                                  const enableValue =
-                                    listItem.getPropValue("enable");
-
-                                  const listValue = this.castToString(property);
-                                  const hasIcon =
-                                    iconValue &&
-                                    (iconValue.name || iconValue.url);
-
-                                  if (!listValue && !hasIcon) {
-                                    return null;
-                                  }
-
-                                  return (
-                                    <div
-                                      key={listItemIndex}
-                                      className={`${this.decorateCSS(
-                                        "list-item"
-                                      )} ${!enableValue &&
-                                      this.decorateCSS("list-item-disabled")
-                                        }`}
+                              {tagText && (
+                                <div className={this.decorateCSS("tag-wrapper")}>
+                                  <Base.P className={this.decorateCSS("tag")}>
+                                    {tab.tag}
+                                  </Base.P>
+                                </div>
+                              )}
+                              {(priceText || perText) && (
+                                <div className={this.decorateCSS("item-price")}>
+                                  {priceText && (
+                                    <Base.H5
+                                      className={this.decorateCSS("price")}
                                     >
-                                      {hasIcon && (
-                                        <Base.Media
-                                          value={iconValue}
-                                          className={this.decorateCSS(
-                                            "dash_icon"
-                                          )}
-                                        />
-                                      )}
-                                      {listValue && (
-                                        <Base.P
-                                          className={this.decorateCSS(
-                                            "property"
-                                          )}
-                                        >
-                                          {property}
-                                        </Base.P>
-                                      )}
-                                    </div>
-                                  );
-                                }
+                                      {tab.price}
+                                    </Base.H5>
+                                  )}
+                                  {perText && (
+                                    <Base.P className={this.decorateCSS("per")}>
+                                      {tab.per}
+                                    </Base.P>
+                                  )}
+                                </div>
                               )}
                             </div>
-                          )}
+                          );
+                        })}
+                      </div>
+                      {rightItemExist && (
+                        <div
+                          className={`${this.decorateCSS("right-page")} ${animations}`}
+                        >
+                          <Base.VerticalContent
+                            className={this.decorateCSS("content")}
+                          >
+                            {(() => {
+                              const rightItems = plan[planIndex]?.right_items;
+                              if (!rightItems) return null;
 
-                          {(() => {
-                            const rightItems = plan[planIndex]?.right_items;
-                            if (!rightItems) return null;
+                              const subtitle = rightItems.subtitle;
+                              const title = rightItems.title;
+                              const subtitleExist = this.castToString(subtitle);
+                              const titleExist = this.castToString(title);
 
-                            const activeButtons = this.getButtonsFromItem(
-                              rightItems.buttons
-                            );
-                            const hasButtons = this.hasAnyButton(activeButtons);
-                            const bottomText = rightItems.text;
-                            const hasBottomText =
-                              this.castToString(bottomText);
+                              if (!subtitleExist && !titleExist) {
+                                return null;
+                              }
 
-                            if (!hasButtons && !hasBottomText) {
-                               return null;
-                            }
+                              return (
+                                <div className={this.decorateCSS("header-wrapper")}>
+                                  {titleExist && (
+                                    <Base.H4
+                                      className={this.decorateCSS("title")}
+                                    >
+                                      {title}
+                                    </Base.H4>
+                                  )}
+                                  {subtitleExist && (
+                                    <div className={this.decorateCSS("subtitle-wrapper")}>
+                                      <Base.P
+                                        className={this.decorateCSS("subtitle")}
+                                      >
+                                        {subtitle}
+                                      </Base.P>
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })()}
 
-                            return (
-                              <div
-                                className={this.decorateCSS("body-bottom")}
-                              >
-                                {hasButtons && (
-                                  <div
-                                    className={this.decorateCSS(
-                                      "button-container"
-                                    )}
-                                  >
-                                    {activeButtons.map(
-                                      (btn: any, buttonIndex: number) => {
-                                        const buttonText = this.castToString(
-                                          btn.text
-                                        );
-                                        const buttonMedia = btn.media;
-                                        const buttonMediaExist =
-                                          buttonMedia &&
-                                          (buttonMedia.name || buttonMedia.url);
+                            {plan[planIndex]?.right_items?.list?.length > 0 && (
+                              <div className={this.decorateCSS("list-body")}>
+                                {plan[planIndex]?.right_items?.list?.map(
+                                  (listItem: any, listItemIndex: number) => {
+                                    const property =
+                                      listItem.getPropValue("text");
+                                    const iconValue =
+                                      listItem.getPropValue("dash_icon");
+                                    const enableValue =
+                                      listItem.getPropValue("enable");
 
-                                        if (
-                                          !buttonText &&
-                                          !buttonMediaExist
-                                        ) {
-                                          return null;
-                                        }
+                                    const listValue = this.castToString(property);
+                                    const hasIcon =
+                                      iconValue &&
+                                      (iconValue.name || iconValue.url);
 
-                                        return (
-                                          <ComposerLink
-                                            key={buttonIndex}
-                                            path={btn.url || "#"}
+                                    if (!listValue && !hasIcon) {
+                                      return null;
+                                    }
+
+                                    return (
+                                      <div
+                                        key={listItemIndex}
+                                        className={`${this.decorateCSS(
+                                          "list-item"
+                                        )} ${!enableValue &&
+                                        this.decorateCSS("list-item-disabled")
+                                          }`}
+                                      >
+                                        {hasIcon && (
+                                          <Base.Media
+                                            value={iconValue}
+                                            className={this.decorateCSS(
+                                              "dash_icon"
+                                            )}
+                                          />
+                                        )}
+                                        {listValue && (
+                                          <Base.P
+                                            className={this.decorateCSS(
+                                              "property"
+                                            )}
                                           >
-                                            <Base.Button
-                                              buttonType={btn.type}
-                                              className={this.decorateCSS(
-                                                "button"
-                                              )}
-                                            >
-                                              {buttonMediaExist && (
-                                                <Base.Media
-                                                  value={buttonMedia}
-                                                  className={this.decorateCSS(
-                                                    "button-icon"
-                                                  )}
-                                                />
-                                              )}
-                                              {buttonText && (
-                                                <Base.P
-                                                  className={this.decorateCSS(
-                                                    "button-text"
-                                                  )}
-                                                >
-                                                  {btn.text}
-                                                </Base.P>
-                                              )}
-                                            </Base.Button>
-                                          </ComposerLink>
-                                        );
-                                      }
-                                    )}
-                                  </div>
-                                )}
-                                {hasBottomText && (
-                                  <Base.P
-                                    className={this.decorateCSS(
-                                      "bottom-text"
-                                    )}
-                                  >
-                                    {bottomText}
-                                  </Base.P>
+                                            {property}
+                                          </Base.P>
+                                        )}
+                                      </div>
+                                    );
+                                  }
                                 )}
                               </div>
-                            );
-                          })()}
-                        </Base.VerticalContent>
-                      </div>
-                    )}
-                  </>
-                )}
-              </div>
+                            )}
+
+                            {(() => {
+                              const rightItems = plan[planIndex]?.right_items;
+                              if (!rightItems) return null;
+
+                              const activeButtons = this.getButtonsFromItem(
+                                rightItems.buttons
+                              );
+                              const hasButtons = this.hasAnyButton(activeButtons);
+                              const bottomText = rightItems.text;
+                              const hasBottomText =
+                                this.castToString(bottomText);
+
+                              if (!hasButtons && !hasBottomText) {
+                                return null;
+                              }
+
+                              return (
+                                <div
+                                  className={this.decorateCSS("body-bottom")}
+                                >
+                                  {hasButtons && (
+                                    <div
+                                      className={this.decorateCSS(
+                                        "button-container"
+                                      )}
+                                    >
+                                      {activeButtons.map(
+                                        (btn: any, buttonIndex: number) => {
+                                          const buttonText = this.castToString(
+                                            btn.text
+                                          );
+                                          const buttonMedia = btn.media;
+                                          const buttonMediaExist =
+                                            buttonMedia &&
+                                            (buttonMedia.name || buttonMedia.url);
+
+                                          if (
+                                            !buttonText &&
+                                            !buttonMediaExist
+                                          ) {
+                                            return null;
+                                          }
+
+                                          return (
+                                            <ComposerLink
+                                              key={buttonIndex}
+                                              path={btn.url || "#"}
+                                            >
+                                              <Base.Button
+                                                buttonType={btn.type}
+                                                className={this.decorateCSS(
+                                                  "button"
+                                                )}
+                                              >
+                                                {buttonMediaExist && (
+                                                  <Base.Media
+                                                    value={buttonMedia}
+                                                    className={this.decorateCSS(
+                                                      "button-icon"
+                                                    )}
+                                                  />
+                                                )}
+                                                {buttonText && (
+                                                  <Base.P
+                                                    className={this.decorateCSS(
+                                                      "button-text"
+                                                    )}
+                                                  >
+                                                    {btn.text}
+                                                  </Base.P>
+                                                )}
+                                              </Base.Button>
+                                            </ComposerLink>
+                                          );
+                                        }
+                                      )}
+                                    </div>
+                                  )}
+                                  {hasBottomText && (
+                                    <Base.P
+                                      className={this.decorateCSS(
+                                        "bottom-text"
+                                      )}
+                                    >
+                                      {bottomText}
+                                    </Base.P>
+                                  )}
+                                </div>
+                              );
+                            })()}
+                          </Base.VerticalContent>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </Base.VerticalContent>
             )}
-          </Base.VerticalContent>
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
