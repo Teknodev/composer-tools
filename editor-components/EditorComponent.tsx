@@ -378,6 +378,7 @@ export enum CATEGORIES {
   ABOUT = "about",
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
+  BACK_TO_TOP = "backToTop",
   CUSTOM = "custom",
   GLOBAL = "global",
   HEADER = "header",
@@ -1051,6 +1052,11 @@ export abstract class BaseImageGallery extends Component {
 
 export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
+  static subCategory: string = "modal";
+
+  static getSubCategory(): string {
+    return this.subCategory;
+  }
 }
 
 export abstract class BaseLegal extends Component {
@@ -1145,6 +1151,10 @@ export abstract class BasePortfolio extends Component {
 
 export abstract class BaseComparison extends Component {
   static category = CATEGORIES.COMPARISON;
+}
+
+export abstract class BaseBackToTop extends Component {
+  static category = CATEGORIES.BACK_TO_TOP;
 }
 
 export abstract class BaseHeader extends Component {

@@ -344,6 +344,7 @@ import About16 from "./about/about16/about16";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Comparison1 from "./comparison/comparison1/comparison1";
+import BackToTop1 from "./back-to-top/back-to-top1/back-to-top1";
 import Header1 from "./header/header1/header1";
 import Header2 from "./header/header2/header2";
 import Header3 from "./header/header3/header3";
@@ -702,7 +703,8 @@ function Registerables(composer: ComponentsRegistery) {
     About16,
     Portfolio1,
     Portfolio2,
-    Comparison1,    
+    Comparison1,
+    BackToTop1,
     Header1,
     Header2,
     Header3,
