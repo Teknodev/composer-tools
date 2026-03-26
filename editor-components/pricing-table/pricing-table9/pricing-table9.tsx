@@ -1,11 +1,30 @@
 import * as React from "react";
-import { BasePricingTable } from "../../EditorComponent";
+import { BasePricingTable, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./pricing-table9.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+interface PricingContent {
+  text: React.JSX.Element;
+  icon: TypeMediaInputValue;
+}
+
+interface PricingColumn {
+  title: React.JSX.Element;
+  contents: PricingContent[];
+  buttons: INPUTS.CastedButton[];
+}
+
+type PricingTable9Props = {
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
+  columns: PricingColumn[];
+  animations: string[];
+} & TypeUsableComponentProps;
 
 class PricingTable9 extends BasePricingTable {
   constructor(props?: any) {
@@ -790,24 +809,9 @@ class PricingTable9 extends BasePricingTable {
     return "Pricing 9";
   }
 
-  private hasMediaContent(media?: any): boolean {
-    if (!media) return false;
-    return !!((media as any).name || (media as any).url || (media as any).src);
-  }
-
-  private hasButtonContent(button: INPUTS.CastedButton): boolean {
-    const textExist = this.castToString(button.text);
-    const iconExist = this.hasMediaContent(button.icon);
-    return !!(textExist || iconExist);
-  }
-
-  private hasAnyButtonContent(buttons: INPUTS.CastedButton[]): boolean {
-    return buttons.some((btn) => this.hasButtonContent(btn));
-  }
-
   private hasAnyColumnTitle(): boolean {
-    const columns = this.castToObject<any[]>("columns");
-    return columns.some((column: any) => this.castToString(column?.title));
+    const columns = this.castToObject<PricingColumn[]>("columns");
+    return columns.some((column) => this.castToString(column?.title));
   }
 
   render() {
@@ -842,17 +846,19 @@ class PricingTable9 extends BasePricingTable {
       ),
     };
 
-    const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
-    const description = this.getPropValue("description");
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => {
+      const buttonText = this.castToString(btn.text);
+      const iconValue = btn.icon as unknown as TypeMediaInputValue;
+      const iconExist = iconValue && (iconValue.type === "icon" ? iconValue.name : (iconValue as { url?: string }).url);
+      return buttonText || iconExist;
+    });
 
-    const titleExist = this.castToString(title);
-    const subtitleExist = this.castToString(subtitle);
-    const descriptionExist = this.castToString(description);
-    const columns = this.castToObject<any[]>("columns");
+    const columns = this.castToObject<PricingColumn[]>("columns");
     const firstColumn = columns[0];
-    const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -861,35 +867,43 @@ class PricingTable9 extends BasePricingTable {
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {subtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
+                  {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
               )}
 
               {titleExist && (
                 <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
+                  {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
               {descriptionExist && (
                 <Base.SectionDescription
                   className={this.decorateCSS("description")}
                 >
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {hasValidButtons && (
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                    if (!this.castToString(item.text)) return null;
+                    const buttonText = this.castToString(item.text);
+                    const iconValue = item.icon as unknown as TypeMediaInputValue;
+                    const iconExist = iconValue && (iconValue.type === "icon" ? iconValue.name : (iconValue as { url?: string }).url);
+                    if (!buttonText && !iconExist) return null;
                     return (
                       <ComposerLink key={index} path={item.url}>
                         <Base.Button
                           buttonType={item.type}
                           className={this.decorateCSS("button")}
                         >
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {item.text}
-                          </Base.P>
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {item.text}
+                            </Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media className={this.decorateCSS("button-icon")} value={iconValue} />
+                          )}
                         </Base.Button>
                       </ComposerLink>
                     );
@@ -901,20 +915,20 @@ class PricingTable9 extends BasePricingTable {
           <div className={this.decorateCSS("container")}>
             <div className={this.decorateCSS("columns-container")}>
               {columns.map(
-                (column: any, index: any) => {
-                  const buttons = column?.buttons || [];
-                  const hasButtonsWithContent =
-                    buttons.length > 0 && this.hasAnyButtonContent(buttons);
+                (column: PricingColumn, index: number) => {
+                  const cardButtons = column?.buttons || [];
                   const columnTitleExist = this.castToString(column?.title);
+                  const hasButtonsWithContent = cardButtons.some((btn: INPUTS.CastedButton) => {
+                    const btnText = this.castToString(btn.text);
+                    const btnIconValue = btn.icon as unknown as TypeMediaInputValue;
+                    const btnIcon = btnIconValue && (btnIconValue.type === "icon" ? btnIconValue.name : btnIconValue.url);
+                    return btnText || btnIcon;
+                  });
+
                   return (
                     <div
                       key={`column-${index}`}
-                      className={`${this.decorateCSS("column-item")}
-                   ${index !== 0 && this.getPropValue("animations") &&
-                        this.getPropValue("animations")
-                          .map((animation: string) => this.decorateCSS(animation))
-                          .join(" ")
-                        } `}
+                      className={`${this.decorateCSS("column-item")} ${index !== 0 && this.getPropValue("animations") ? this.getPropValue("animations").map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
                     >
                       {this.hasAnyColumnTitle() && (
                         <div className={this.decorateCSS("title-container")}>
@@ -925,15 +939,15 @@ class PricingTable9 extends BasePricingTable {
                       )}
                       <div className={this.decorateCSS("column-contents")}>
                         {column?.contents.map(
-                          (content: any, contentIndex: any) => {
+                          (content: PricingContent, contentIndex: number) => {
                             const firstColumnContent = firstColumn?.contents?.[contentIndex];
 
                             if (!firstColumnContent) return null;
 
-                            const iconExist = this.hasMediaContent(
-                              content.icon
-                            );
+                            const iconExist = content.icon && (content.icon.type === "icon" ? content.icon.name : content.icon.url);
                             const textExist = this.castToString(content.text);
+
+                            if (!iconExist && !textExist) return null;
 
                             return (
                               <div
@@ -965,29 +979,25 @@ class PricingTable9 extends BasePricingTable {
                             "column-button-container"
                           )}
                         >
-                          {buttons.map((button: any, btnIndex: number) => {
-                            if (!this.hasButtonContent(button)) return null;
-
-                            const buttonTextExist = this.castToString(
-                              button.text
-                            );
-                            const buttonIconExist = this.hasMediaContent(
-                              button.icon
-                            );
+                          {cardButtons.map((button: INPUTS.CastedButton, btnIndex: number) => {
+                            const buttonTextExist = this.castToString(button.text);
+                            const buttonIconValue = button.icon as unknown as TypeMediaInputValue;
+                            const buttonIconExist = buttonIconValue && (buttonIconValue.type === "icon" ? buttonIconValue.name : buttonIconValue.url);
+                            if (!buttonTextExist && !buttonIconExist) return null;
 
                             return (
                               <Base.Button
+                                key={btnIndex}
                                 buttonType={button.type}
                                 className={this.decorateCSS("column-button")}
                               >
                                 <div className={this.decorateCSS("pulse-wrapper")}>
                                   <ComposerLink
                                     path={button.url || "#"}
-                                    key={btnIndex}
                                   >
                                     {buttonIconExist && (
                                       <Base.Media
-                                        value={button.icon}
+                                        value={buttonIconValue}
                                         className={this.decorateCSS(
                                           "button-icon"
                                         )}
@@ -1021,11 +1031,15 @@ class PricingTable9 extends BasePricingTable {
               <ComposerSlider {...settings}>
                 {columns
                   .filter((_, index: number) => index !== 0)
-                  .map((column: any, index: any) => {
-                    const buttons = column?.buttons || [];
-                    const hasButtonsWithContent =
-                      buttons.length > 0 && this.hasAnyButtonContent(buttons);
+                  .map((column: PricingColumn, index: number) => {
+                    const cardButtons = column?.buttons || [];
                     const columnTitleExist = this.castToString(column?.title);
+                    const hasButtonsWithContent = cardButtons.some((btn: INPUTS.CastedButton) => {
+                      const btnText = this.castToString(btn.text);
+                      const btnIcon = btn.icon as unknown as TypeMediaInputValue;
+                      const btnIconExist = btnIcon && (btnIcon.type === "icon" ? btnIcon.name : btnIcon.url);
+                      return btnText || btnIconExist;
+                    });
                     return (
                       <div
                         key={`column-${index}`}
@@ -1042,22 +1056,23 @@ class PricingTable9 extends BasePricingTable {
                         )}
                         <div className={this.decorateCSS("column-contents")}>
                           {column?.contents.map(
-                            (content: any, contentIndex: any) => {
+                            (content: PricingContent, contentIndex: number) => {
                               const firstColumnContent = firstColumn?.contents?.[contentIndex];
 
                               if (!firstColumnContent) return null;
 
-                              const iconExist = this.hasMediaContent(
-                                content.icon
-                              );
+                              const iconExist = content.icon && (content.icon.type === "icon" ? content.icon.name : content.icon.url);
                               const textExist = this.castToString(content.text);
+                              const firstColumnTextExist = this.castToString(firstColumnContent.text);
+
+                              if (!iconExist && !textExist && !firstColumnTextExist) return null;
 
                               return (
                                 <div
                                   key={`content-${contentIndex}`}
                                   className={this.decorateCSS("content-item")}
                                 >
-                                  {firstColumnContent?.text && (
+                                  {firstColumnTextExist && (
                                     <Base.P className={this.decorateCSS("content-label")}>
                                       {firstColumnContent.text}
                                     </Base.P>
@@ -1091,20 +1106,16 @@ class PricingTable9 extends BasePricingTable {
                               "column-button-container"
                             )}
                           >
-                            {buttons.map((button: any, btnIndex: number) => {
-                              if (!this.hasButtonContent(button)) return null;
-
-                              const buttonTextExist = this.castToString(
-                                button.text
-                              );
-                              const buttonIconExist = this.hasMediaContent(
-                                button.icon
-                              );
+                            {cardButtons.map((button: INPUTS.CastedButton, btnIndex: number) => {
+                              const buttonTextExist = this.castToString(button.text);
+                              const buttonIconValue = button.icon as unknown as TypeMediaInputValue;
+                              const buttonIconExist = buttonIconValue && (buttonIconValue.type === "icon" ? buttonIconValue.name : buttonIconValue.url);
+                              if (!buttonTextExist && !buttonIconExist) return null;
 
                               return (
                                 <ComposerLink
-                                  path={button.url || "#"}
                                   key={btnIndex}
+                                  path={button.url || "#"}
                                 >
                                   <Base.Button
                                     buttonType={button.type}
@@ -1113,7 +1124,7 @@ class PricingTable9 extends BasePricingTable {
                                     <div className={this.decorateCSS("pulse-wrapper")}>
                                       {buttonIconExist && (
                                         <Base.Media
-                                          value={button.icon}
+                                          value={buttonIconValue}
                                           className={this.decorateCSS(
                                             "button-icon"
                                           )}

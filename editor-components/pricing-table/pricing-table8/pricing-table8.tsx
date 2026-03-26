@@ -10,7 +10,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type IIconBoxes = {
   subtitle: React.JSX.Element;
   bars: any;
-  description: any;
+  description: React.JSX.Element;
   list: any;
   title: React.JSX.Element;
   image: string;
@@ -19,6 +19,7 @@ type IIconBoxes = {
   plan: React.JSX.Element;
   icon?: TypeMediaInputValue;
   background?: TypeMediaInputValue;
+  buttons?: INPUTS.CastedButton[];
 };
 
 class PricingTable8 extends BasePricingTable {
@@ -155,6 +156,14 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -259,6 +268,14 @@ class PricingTable8 extends BasePricingTable {
                     },
                   ],
                 },
+              ],
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
               ],
             },
           ],
@@ -367,6 +384,14 @@ class PricingTable8 extends BasePricingTable {
                 },
               ],
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Join this plan", "", "AiOutlineArrowRight", null, "Primary"),
+              ],
+            },
           ],
         },
       ],
@@ -384,11 +409,11 @@ class PricingTable8 extends BasePricingTable {
       displayer: "Buttons",
       value: [
         INPUTS.BUTTON(
-          "buttonType",
+          "button",
           "Button",
-          "CONTINUE",
+          "Continue",
           "",
-          "",
+          null,
           null,
           "Primary"
         ),
@@ -554,7 +579,7 @@ class PricingTable8 extends BasePricingTable {
                   const iconExist = this.hasMediaContent(card.icon);
                   const bgExist = this.hasMediaContent(card.background);
                   const isIconImage = !!(
-                    iconExist && (card.icon as any)?.type === "image"
+                    iconExist && card.icon?.type === "image"
                   );
 
                   return (
@@ -581,7 +606,6 @@ class PricingTable8 extends BasePricingTable {
                             <div
                               className={this.decorateCSS("pricing-container")}
                             >
-
                               {cardPriceBigExist && (
                                 <Base.H1
                                   className={this.decorateCSS("price-big")}
@@ -607,10 +631,26 @@ class PricingTable8 extends BasePricingTable {
                         {iconExist && (
                           <Base.Media
                             value={card.icon}
-                            className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""
-                              }`}
+                            className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
                           />
                         )}
+                        {card.buttons && card.buttons.map((btn: INPUTS.CastedButton, bIndex: number) => {
+                          const btnTextExist = this.castToString(btn.text);
+                          const btnIconExist = btn.icon && btn.icon.name;
+                          if (!btnTextExist && !btnIconExist) return null;
+                          return (
+                            <ComposerLink key={bIndex} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                {btnTextExist && (
+                                  <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                                )}
+                                {btnIconExist && (
+                                  <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
                       </Base.VerticalContent>
                     </div>
                   );
@@ -630,20 +670,12 @@ class PricingTable8 extends BasePricingTable {
                   const iconExist = this.hasMediaContent(card.icon);
                   const bgExist = this.hasMediaContent(card.background);
                   const isIconImage = !!(
-                    iconExist && (card.icon as any)?.type === "image"
+                    iconExist && card.icon?.type === "image"
                   );
 
                   return (
                     <div
-                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2)
-                        ? this.decorateCSS("middle-card")
-                        : ""
-                        }
-                   ${this.getPropValue("animations") &&
-                        this.getPropValue("animations")
-                          .map((animation: string) => this.decorateCSS(animation))
-                          .join(" ")
-                        }`}
+                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${this.getPropValue("animations") ? this.getPropValue("animations").map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
                       key={index}
                       onClick={() => handleCardClick(index)}
                     >
@@ -661,14 +693,12 @@ class PricingTable8 extends BasePricingTable {
                             {card.title}
                           </Base.H2>
                         )}
-
                         <div className={this.decorateCSS("price-stack")}>
                           {cardPriceBigExist && (
                             <Base.H2 className={this.decorateCSS("price-big")}>
                               {card.priceBig}
                             </Base.H2>
                           )}
-
                           {hasPricingContainer && (
                             <div
                               className={this.decorateCSS("pricing-container")}
@@ -686,14 +716,29 @@ class PricingTable8 extends BasePricingTable {
                             </div>
                           )}
                         </div>
-
                         {iconExist && (
                           <Base.Media
                             value={card.icon}
-                            className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""
-                              }`}
+                            className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
                           />
                         )}
+                        {card.buttons && card.buttons.map((btn: INPUTS.CastedButton, bIndex: number) => {
+                          const btnTextExist = this.castToString(btn.text);
+                          const btnIconExist = btn.icon && btn.icon.name;
+                          if (!btnTextExist && !btnIconExist) return null;
+                          return (
+                            <ComposerLink key={bIndex} path={btn.url}>
+                              <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                {btnTextExist && (
+                                  <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>
+                                )}
+                                {btnIconExist && (
+                                  <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />
+                                )}
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        })}
                       </Base.VerticalContent>
                     </div>
                   );

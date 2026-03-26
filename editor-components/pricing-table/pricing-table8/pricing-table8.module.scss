@@ -1,11 +1,16 @@
-@use "../../../../composer-tools//composer-base-components/base//utitilities/viewports.module.scss"
-as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
     display: flex;
     justify-content: center;
     width: 100%;
+
+    .header,
+    .subtitle,
+    .description {
+      content: "";
+    }
 
     .box {
       margin: var(--composer-gap-lg) 0;
@@ -37,7 +42,7 @@ as *;
         .card-item-count {
           width: auto;
           flex: 1;
-          height: 100% !important;
+          height: 100%;
           transition: 0.8s;
 
           &.animation1:hover {
@@ -83,7 +88,7 @@ as *;
             justify-content: flex-start;
             gap: var(--composer-gap-lg);
             height: 100%;
-            min-height: 450px;
+            min-height: calc(var(--composer-gap-xl) * 9);
             background-color: var(--composer-html-background);
             border-radius: var(--composer-border-radius-sm);
             box-shadow: var(--box-shadow-active);
@@ -166,7 +171,7 @@ as *;
               background-color: var(--composer-secondary-color);
               font-size: 2rem;
               border-radius: 50%;
-              border: 4px solid color-mix(in srgb,
+              border: var(--composer-gap-xs) solid color-mix(in srgb,
                   var(--composer-secondary-color),
                   var(--composer-font-color-primary) 25%);
               z-index: 3;
@@ -174,8 +179,8 @@ as *;
             }
 
             .icon-image {
-              width: 45px;
-              height: 45px;
+              width: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
+              height: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
               padding: 0;
             }
           }
@@ -265,7 +270,7 @@ as *;
               .bar-percent {
                 position: relative;
                 flex-grow: 1;
-                height: 12px;
+                height: var(--composer-gap-sm);
                 background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
                 border-radius: var(--composer-border-radius-sm);
                 overflow: hidden;
@@ -295,14 +300,24 @@ as *;
         gap: var(--composer-gap-md);
 
         .button {
-          .buttonicon {
+          .button-icon {
             display: flex;
             align-items: center;
             font-size: 1.75rem;
-            width: 25px;
-            height: 25px;
+            width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+            height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+          }
+
+          .button-text {
+            content: "";
           }
         }
+      }
+
+      .card-button,
+      .card-button-text,
+      .card-button-icon {
+        content: "";
       }
     }
   }
@@ -342,7 +357,7 @@ as *;
               width: 100%;
               height: 100%;
               align-items: center;
-              min-height: 300px;
+              min-height: calc(var(--composer-gap-xl) * 6);
               height: auto;
               justify-content: space-between;
               background-color: var(--composer-html-background);
@@ -380,7 +395,7 @@ as *;
                   position: absolute;
                   text-align: center;
                   transition: 0.8s;
-                  font-size: 6rem !important;
+                  font-size: 6rem;
 
                   color: color-mix(in srgb,
                       var(--composer-html-background),
@@ -407,20 +422,20 @@ as *;
               .icon {
                 z-index: 4;
                 position: relative;
-                top: 30px;
+                top: calc(var(--composer-gap-lg) - var(--composer-gap-sm));
                 display: flex;
                 color: var(--composer-font-color-secondary);
                 background-color: var(--composer-secondary-color);
                 font-size: 1.75rem;
                 border-radius: 50%;
-                border: 2px solid color-mix(in srgb,
+                border: calc(1px + 1px) solid color-mix(in srgb,
                     var(--composer-secondary-color),
                     var(--composer-font-color-primary) 25%);
               }
 
               .icon-image {
-                width: 45px;
-                height: 45px;
+                width: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
               }
             }
           }
@@ -431,28 +446,28 @@ as *;
         }
 
         .lower-container {
-          flex-direction: column !important;
-          gap: var(--composer-gap-md) !important;
-          padding: 0 !important;
+          flex-direction: column;
+          gap: var(--composer-gap-md);
+          padding: 0;
           margin-top: var(--composer-gap-md);
 
           .plan-desc {
-            width: 90% !important;
+            width: 90%;
             gap: var(--composer-gap-md);
           }
 
           .bar-rows {
-            width: 90% !important;
+            width: 90%;
 
             .bar-row {
               .bar-desc {
                 .bar-title {
-                  width: 40% !important;
-                  text-align: left !important;
+                  width: 40%;
+                  text-align: left;
                 }
 
                 .bar-percent {
-                  width: 100% !important;
+                  width: 100%;
                 }
               }
             }
@@ -479,7 +494,7 @@ as *;
 
                 .price-big {
                   margin-top: var(--composer-gap-md);
-                  font-size: 6rem !important;
+                  font-size: 6rem;
                 }
               }
             }

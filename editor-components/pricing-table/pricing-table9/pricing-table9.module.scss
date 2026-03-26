@@ -1,5 +1,4 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @keyframes pulse {
   0% {
@@ -13,15 +12,19 @@ as *;
 
 .container {
   .max-content {
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
     gap: var(--composer-gap-lg);
 
     .header {
 
       .title,
       .subtitle,
-      .description {
+      .description,
+      .button-container,
+      .button,
+      .button-text,
+      .button-icon {
         content: "";
       }
     }
@@ -37,6 +40,12 @@ as *;
 
         .column-item {
           flex: 1;
+
+          &:first-child {
+            .content-item {
+              justify-content: flex-start;
+            }
+          }
 
           &.animation1:hover {
             .content-item {
@@ -101,7 +110,7 @@ as *;
             min-height: var(--composer-gap-xl);
             display: flex;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             gap: var(--composer-gap-sm);
             position: relative;
 
@@ -120,8 +129,8 @@ as *;
               display: flex;
               align-items: center;
               font-size: 1.5rem;
-              width: 25px;
-              height: 25px;
+              width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+              height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
 
               .icon {
                 width: var(--composer-gap-md);
@@ -156,8 +165,8 @@ as *;
               display: flex;
               align-items: center;
               font-size: 1.5rem;
-              width: 25px;
-              height: 25px;
+              width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+              height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
             }
 
             .button-text {
@@ -169,7 +178,7 @@ as *;
     }
 
     .dots {
-      display: flex !important;
+      display: flex;
       flex-direction: row;
       margin: 0 auto;
       width: fit-content;
@@ -207,7 +216,7 @@ as *;
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px 40px !important;
+    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg) !important;
 
     .max-content {
       .container {
@@ -309,10 +318,10 @@ as *;
       }
 
       .dots {
-        display: flex !important;
-        justify-content: center !important;
-        margin: var(--composer-gap-md) auto 0 auto !important;
-        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        margin: var(--composer-gap-md) auto 0 auto;
+        width: 100%;
       }
     }
   }
@@ -320,7 +329,7 @@ as *;
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: 50px 20px !important;
+    padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
 
     .max-content {
       gap: var(--composer-gap-md);
@@ -333,7 +342,7 @@ as *;
           .column-item {
             .title-container {
               .column-title {
-                max-width: 150px;
+                max-width: calc(var(--composer-gap-xl) * 3);
                 width: fit-content;
                 font-size: 1rem;
                 padding: var(--composer-gap-xs);
@@ -358,10 +367,10 @@ as *;
 
       .dots {
         position: relative;
-        display: flex !important;
-        justify-content: center !important;
-        margin: var(--composer-gap-md) auto 0 auto !important;
-        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        margin: var(--composer-gap-md) auto 0 auto;
+        width: 100%;
       }
     }
   }
