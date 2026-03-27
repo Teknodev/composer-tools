@@ -38,33 +38,6 @@ export class Stats30Page extends BaseStats {
 
         this.addProp({
             type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-            ],
-        });
-
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 2,
-        });
-
-        this.addProp({
-            type: "object",
-            key: "animation",
-            displayer: "Animation",
-            value: [
-                { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
-                { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
-            ],
-        });
-
-
-        this.addProp({
-            type: "array",
             key: "cards",
             displayer: "Cards",
             value: [
@@ -77,7 +50,7 @@ export class Stats30Page extends BaseStats {
                         { type: "string", key: "value", displayer: "Value", value: "56" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Teamwork" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced team members" },
+                        { type: "string", key: "title", displayer: "Title", value: "Experienced team <p>members<p/>" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
@@ -95,6 +68,32 @@ export class Stats30Page extends BaseStats {
                     ],
                 },
 
+            ],
+        });
+
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 2,
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+
+        this.addProp({
+            type: "object",
+            key: "animation",
+            displayer: "Animation",
+            value: [
+                { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
+                { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
     }
@@ -287,7 +286,7 @@ export class Stats30Page extends BaseStats {
                         )}
 
                         {hasValidButtons && (
-                            <div className={this.decorateCSS("bottom-action-container")} data-alignment={alignment}>
+                            <div className={this.decorateCSS("bottom-action-container")}>
                                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                     const buttonText = this.castToString(item.text);
                                     if (!buttonText) return null;
