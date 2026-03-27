@@ -12,7 +12,8 @@ export enum EVENTS {
   INSERT_FORM = "insertForm",
   RENDER_CONTENT_TAB = "renderContentTab",
   COMPONENT_DID_UPDATE = "componentDidUpdate",
-  CSS_CLASSES_CHANGED = "cssClassesChanged"
+  CSS_CLASSES_CHANGED = "cssClassesChanged",
+  ANIMATION_INTERACTIONS_CHANGED = "animationInteractionsChanged"
 }
 
 class EventQ {

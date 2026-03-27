@@ -1,811 +1,235 @@
+import * as React from "react";
+import { BaseHeader } from "../../EditorComponent";
 import styles from "./header9.module.scss";
-import { BaseHeader, TypeMediaInputValue } from "../../EditorComponent";
-import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-interface PortfolioItem {
-  visibility: boolean;
-  url: string;
-  subtitle: string;
-  title: string;
-  description: string;
-  icon: TypeMediaInputValue;
-  icon2: TypeMediaInputValue;
-  buttons: INPUTS.CastedButton[];
-  media: TypeMediaInputValue;
-  overlay: boolean;
-}
+type StatItem = {
+  number: number;
+  suffix?: string;
+  label: string;
+};
 
 class Header9 extends BaseHeader {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({ type: "string", key: "subtitle", displayer: "Subtitle", value: "" });
+    this.addProp({ type: "string", key: "title", displayer: "Title", value: "Instant access to trade,anytime and anywhere" });
+    this.addProp({ type: "string", key: "description", displayer: "Description", value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line." });
+
     this.addProp({
-      type: "object",
-      key: "leftSideCard",
-      displayer: "Left Side Card",
+      type: "array",
+      key: "stats",
+      displayer: "Stats",
       value: [
         {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
+          type: "object", key: "stat", displayer: "Stat", value: [
+            { type: "string", key: "number", displayer: "Number", value: "10" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "k+" },
+            { type: "string", key: "label", displayer: "Label", value: "Active Users" },
+          ]
         },
         {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3662f959f6002d79b56d?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
+          type: "object", key: "stat", displayer: "Stat", value: [
+            { type: "string", key: "number", displayer: "Number", value: "0.9" },
+            { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
+            { type: "string", key: "label", displayer: "Label", value: "Commission Fee" },
+          ]
         },
       ],
     });
+
     this.addProp({
-      type: "object",
-      displayer: "Right Side Top Left Card",
-      key: "rightSideTopLeftCard",
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3672f959f6002d79b58a?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
+        INPUTS.BUTTON("button", "Button", "Start Trading", "", null, null, "Primary"),
       ],
     });
-    this.addProp({
-      type: "object",
-      displayer: "Right Side Top Right Card",
-      key: "rightSideTopRightCard",
-      value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Start business with mentors",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "RxDividerVertical",
-          },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "LuChevronRight",
-          },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3680f959f6002d79b5a4?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Right Side Bottom Left Card",
-      key: "rightSideBottomLeftCard",
-      value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Achieve goals & coach fast",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "RxDividerVertical",
-          },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: {
-            type: "icon",
-            name: "LuChevronRight",
-          },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e368df959f6002d79b5be?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      displayer: "Right Side Bottom Right Card",
-      key: "rightSideBottomRightCard",
-      value: [
-        {
-          type: "boolean",
-          key: "visibility",
-          displayer: "Visibility",
-          value: true,
-        },
-        {
-          type: "page",
-          key: "url",
-          displayer: "Navigate To",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "subtitle",
-          displayer: "Subtitle",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "",
-        },
-        {
-          type: "string",
-          key: "description",
-          displayer: "Description",
-          value: "",
-        },
-        {
-          type: "media",
-          key: "icon",
-          displayer: "Icon",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "media",
-          key: "icon2",
-          displayer: "Icon2",
-          additionalParams: { availableTypes: ["icon", "image"] },
-          value: { type: "icon", name: "" },
-        },
-        {
-          type: "array",
-          key: "buttons",
-          displayer: "Buttons",
-          value: [
-            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-          ],
-        },
-        {
-          type: "media",
-          key: "media",
-          displayer: "Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36a0f959f6002d79b610?alt=media",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
-        },
-      ],
-    });
-    this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Animation",
-      value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1", "animate2"],
-      },
-    });
-  }
-  static getName(): string {
-    return "Header 9";
+
+    this.addProp({ type: "media", key: "background", displayer: "Background Image", additionalParams: { availableTypes: ["image"] }, value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cad863596a1002b203b24?alt=media" } });
+    this.addProp({ type: "boolean", key: "overlay", displayer: "Overlay", value: true });
+    this.addProp({ type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true });
+    this.addProp({ type: "number", key: "animationDuration", displayer: "Number Animation Duration (ms)", value: 2000 });
   }
 
-  render() {
-    const itemLeft = this.castToObject<PortfolioItem>("leftSideCard");
-    const itemTopRight = this.castToObject<PortfolioItem>(
-      "rightSideTopRightCard"
-    );
-    const itemTopLeft = this.castToObject<PortfolioItem>(
-      "rightSideTopLeftCard"
-    );
-    const itemBottomLeft = this.castToObject<PortfolioItem>(
-      "rightSideBottomLeftCard"
-    );
-    const itemBottomRight = this.castToObject<PortfolioItem>(
-      "rightSideBottomRightCard"
-    );
+  static getName(): string { return "Header 9"; }
 
-    const getButtonsFromItem = (item: PortfolioItem) => {
-      const buttonsArray = item?.buttons;
-      if (!Array.isArray(buttonsArray)) return [];
-
-      return buttonsArray.map((btn: any) => {
-        const parent = btn?.value ?? btn;
-        const icon = this.getPropValue("icon", { parent_object: parent });
-        const media = icon || null;
-        return {
-          text: this.getPropValue("text", { parent_object: parent }),
-          type: this.getPropValue("type", { parent_object: parent }),
-          url: this.getPropValue("url", { parent_object: parent }),
-          media,
-        };
-      });
+  private AnimatedStat = ({ stat, item, animationDuration = 2000, statsAnimation, background }: { stat: StatItem; item: any; animationDuration?: number; statsAnimation: boolean; background: any }) => {
+    const formatNumber = (num: number, originalString: string): string => {
+      const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
+      return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
     };
 
-    const hasAnyButtonInItem = (
-      buttons: any[]
-    ) => {
-      return buttons.some(
-        (b: any) =>
-          b?.text || b?.media?.name || b?.media?.url
-      );
-    };
+    const originalNumberString = String(this.castToString(item.getPropValue("number") || "0"));
+    const [animatedNumber, setAnimatedNumber] = React.useState<string>(statsAnimation ? "0" : formatNumber(stat.number, originalNumberString));
+    const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
-    const hasContentInItem = (item: PortfolioItem) => {
-      const buttons = getButtonsFromItem(item);
-      const subtitle = item?.subtitle;
-      const title = item?.title;
-      const description = item?.description;
-      const media = item?.media;
-      const icon = item?.icon;
-      const icon2 = item?.icon2;
-
-      const hasSubtitle = this.castToString(subtitle);
-      const hasTitle = this.castToString(title);
-      const hasDescription = this.castToString(description);
-      const hasMedia = media;
-
-      const hasAnyButton = hasAnyButtonInItem(buttons);
-
-      return !!(
-        hasSubtitle ||
-        hasTitle ||
-        hasDescription ||
-        hasMedia ||
-        icon ||
-        icon2 ||
-        hasAnyButton
-      );
-    };
-
-    const itemHasContent = (item: PortfolioItem) =>
-      !!(item && item.visibility && hasContentInItem(item));
-
-    const renderRight =
-      itemHasContent(itemTopLeft) ||
-      itemHasContent(itemTopRight) ||
-      itemHasContent(itemBottomLeft) ||
-      itemHasContent(itemBottomRight);
-
-
-
-    const hasLeftSection = itemHasContent(itemLeft);
-
-    const getRightSideBorderClasses = (position: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'): string => {
-      const classes: string[] = [];
-
-      const hasTopLeft = itemHasContent(itemTopLeft);
-      const hasTopRight = itemHasContent(itemTopRight);
-      const hasBottomLeft = itemHasContent(itemBottomLeft);
-      const hasBottomRight = itemHasContent(itemBottomRight);
-
-      const isLeft = position === "topLeft" || position === "bottomLeft";
-      const isTop = position === "topLeft" || position === "topRight";
-
-      const hasRowPartner = isTop
-        ? hasTopLeft && hasTopRight
-        : hasBottomLeft && hasBottomRight;
-
-      if (hasRowPartner) {
-        classes.push(this.decorateCSS(isLeft ? "inner-right" : "inner-left"));
+    React.useEffect(() => {
+      if (!statsAnimation) {
+        setAnimatedNumber(formatNumber(stat.number, originalNumberString));
+        return;
       }
 
-      const isLeftMost =
-        (position === "topLeft") ||
-        (position === "bottomLeft") ||
-        (position === "topRight" && !hasTopLeft) ||
-        (position === "bottomRight" && !hasBottomLeft);
+      animateNumber();
 
-      if (hasLeftSection && isLeftMost) {
-        classes.push(this.decorateCSS("left-edge"));
+      return () => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+      };
+    }, [stat.number, statsAnimation, animationDuration, originalNumberString]);
+
+    const animateNumber = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
       }
 
-      return classes.join(" ");
+      const targetNumber = stat.number;
+
+      const steps = animationDuration / 30;
+      let currentNumber = 0;
+      const increment = targetNumber / steps;
+
+      intervalRef.current = setInterval(() => {
+        currentNumber += increment;
+
+        if (currentNumber >= targetNumber) {
+          currentNumber = targetNumber;
+          if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+          }
+        }
+        setAnimatedNumber(formatNumber(currentNumber, originalNumberString));
+      }, 30);
     };
 
-    const renderItemContent = (item: PortfolioItem) => {
-      const buttons = getButtonsFromItem(item);
-      const subtitle = item?.subtitle;
-      const title = item?.title;
-      const description = item?.description;
-      const icon = item?.icon;
-      const icon2 = item?.icon2;
+    const suffixExist = stat.suffix && stat.suffix !== "";
+    const numberExist = stat.number != null && !isNaN(stat.number) && (stat.number !== 0 || suffixExist);
+    const labelExist = stat.label && stat.label !== "";
+    const displayNumber = statsAnimation ? animatedNumber : (numberExist ? formatNumber(stat.number, originalNumberString) : "0");
 
-      const hasSubtitle = this.castToString(subtitle);
-      const hasTitle = this.castToString(title);
-      const hasDescription = this.castToString(description);
-      const hasAnyButton = hasAnyButtonInItem(buttons);
-
-      if (!hasContentInItem(item)) {
-        return null;
-      }
-
-      return (
-        <div className={this.decorateCSS("content")}>
-          <Base.VerticalContent
-            className={this.decorateCSS("vertical-content")}
-          >
-            {hasSubtitle && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                {subtitle}
-              </Base.SectionSubTitle>
-            )}
-
-            {(hasTitle || icon || icon2) && (
-              <div className={this.decorateCSS("title-row")}>
-                {hasTitle && (
-                  <Base.H2 className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.H2>
-                )}
-
-                {(icon || icon2) && (
-                  <div className={this.decorateCSS("icons-wrapper")}>
-                    {icon && (
-                      <Base.Media
-                        value={icon}
-                        className={this.decorateCSS("icon1")}
-                      />
-                    )}
-                    {icon2 && (
-                      <Base.Media
-                        value={icon2}
-                        className={this.decorateCSS("icon2")}
-                      />
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {hasDescription && (
-              <Base.SectionDescription
-                className={this.decorateCSS("description")}
-              >
-                {description}
-              </Base.SectionDescription>
-            )}
-
-            {hasAnyButton && (
-              <div className={this.decorateCSS("action-buttons")}>
-                {buttons.map((btn, index: number) => {
-                  const buttonText = btn.text;
-                  const buttonMedia = btn.media as any;
-                  const buttonUrl = btn.url || "#";
-                  const buttonType = btn.type;
-
-                  const btnTextExist = this.castToString(buttonText);
-                  const buttonMediaExist =
-                    buttonMedia && (buttonMedia.name || buttonMedia.url);
-
-                  if (!btnTextExist && !buttonMediaExist) return null;
-
-                  return (
-                    <ComposerLink
-                      path={buttonUrl}
-                      key={`portfolio-btn-${index}`}
-                    >
-                      <Base.Button
-                        buttonType={buttonType as any}
-                        className={this.decorateCSS("button")}
-                      >
-                        {buttonMediaExist && (
-                          <Base.Media
-                            value={buttonMedia}
-                            className={this.decorateCSS("button-icon")}
-                          />
-                        )}
-                        {btnTextExist && (
-                          <Base.P className={this.decorateCSS("button-text")}>
-                            {buttonText}
-                          </Base.P>
-                        )}
-                      </Base.Button>
-                    </ComposerLink>
-                  );
-                })}
-              </div>
-            )}
-          </Base.VerticalContent>
-        </div>
-      );
-    };
+    if (!numberExist && !suffixExist && !labelExist) return null;
 
     return (
-      <Base.Container
-        isFull={true}
-        className={this.decorateCSS("container")}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {itemHasContent(itemLeft) && (
-            <div className={this.decorateCSS("left")}>
-              <ComposerLink path={itemLeft.url} isFullWidth={true}>
-                <div
-                  className={`${this.decorateCSS("item")} ${(!itemLeft.media || !itemLeft.media.url) &&
-                    this.decorateCSS("no-media")
-                    } ${renderRight ? this.decorateCSS("right-edge") : ""}`}
-                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                >
-                  {itemLeft.media && itemLeft.media.url && (
-                    <div className={this.decorateCSS("background-media")}>
-                      <Base.Media
-                        value={itemLeft.media}
-                        className={this.decorateCSS("media-element")}
-                      />
-                      {itemLeft.overlay && (
-                        <div
-                          className={this.decorateCSS("thumbnail-overlay")}
-                        />
-                      )}
-                    </div>
-                  )}
-                  {renderItemContent(itemLeft)}
-                </div>
-              </ComposerLink>
-            </div>
-          )}
+      <div className={this.decorateCSS("stat")}>
+        {numberExist && (
+          <Base.H3 className={`${this.decorateCSS("stat-value")} ${background ? this.decorateCSS("with-bg") : ""}`}>
+            {displayNumber}
+            {stat.suffix && (
+              <span className={this.decorateCSS("stat-suffix")}>
+                {stat.suffix.replace(/<[^>]*>/g, '')}
+              </span>
+            )}
+          </Base.H3>
+        )}
+        {labelExist && (
+          <Base.P className={`${this.decorateCSS("stat-label")} ${background ? this.decorateCSS("with-bg") : ""}`}>
+            {item.getPropValue("label")}
+          </Base.P>
+        )}
+      </div>
+    );
+  };
 
-          {renderRight && (
-            <div className={this.decorateCSS("right")}>
-              {(itemHasContent(itemTopLeft) ||
-                itemHasContent(itemTopRight)) && (
-                  <div className={this.decorateCSS("top")}>
-                    {itemHasContent(itemTopLeft) && (
-                      <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemTopLeft.media || !itemTopLeft.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('topLeft')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemTopLeft.media && itemTopLeft.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemTopLeft.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemTopLeft.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemTopLeft)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                    {itemHasContent(itemTopRight) && (
-                      <ComposerLink path={itemTopRight.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemTopRight.media || !itemTopRight.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('topRight')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemTopRight.media && itemTopRight.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemTopRight.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemTopRight.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemTopRight)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                  </div>
+  render() {
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const statsProp = this.getPropValue("stats");
+    const stats = statsProp.map((item: any) => {
+      const numberString = String(this.castToString(item.getPropValue("number") || "0"));
+      const number = parseFloat(numberString.replace(/[^\d.]/g, '')) || 0;
+      const suffix = String(this.castToString(item.getPropValue("suffix")) || "");
+      const label = String(this.castToString(item.getPropValue("label")) || "");
+      return { number, suffix, label };
+    });
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const background = this.getPropValue("background");
+    const overlay = !!this.getPropValue("overlay");
+    const statsAnimation = !!this.getPropValue("statsAnimation");
+    const alignment = Base.getContentAlignment();
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleText = this.castToString(subtitle);
+
+    const titleText = this.castToString(title);
+    const descriptionText = this.castToString(description);
+    const hasHeader = titleText || descriptionText || buttons.some(button => this.castToString(button?.text));
+    const withBackground = !!background;
+    const subtitleClasses = `${this.decorateCSS("subtitle")} ${withBackground && this.decorateCSS("with-bg")}`;
+
+
+    const containerStyle = { backgroundImage: `url('${background?.url || background || ""}')` } as React.CSSProperties;
+    const animationDuration = this.getPropValue("animationDuration") || 2000;
+
+    return (
+      <Base.Container className={`${this.decorateCSS("container")} ${background ? this.decorateCSS("image-active") : ""} ${overlay && background ? this.decorateCSS("overlay-active") : ""}`} style={containerStyle}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={`${this.decorateCSS("wrapper")} ${alignment === "left" ? this.decorateCSS("alignment-left") : this.decorateCSS("alignment-center")}`}>
+
+            {hasHeader && (
+              <Base.VerticalContent className={this.decorateCSS("content")}>
+                {subtitleText && (
+                  <Base.SectionSubTitle className={subtitleClasses}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
                 )}
-              {(itemHasContent(itemBottomLeft) ||
-                itemHasContent(itemBottomRight)) && (
-                  <div className={this.decorateCSS("bottom")}>
-                    {itemHasContent(itemBottomLeft) && (
-                      <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemBottomLeft.media || !itemBottomLeft.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('bottomLeft')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemBottomLeft.media && itemBottomLeft.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemBottomLeft.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemBottomLeft.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemBottomLeft)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                    {itemHasContent(itemBottomRight) && (
-                      <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
-                        <div
-                          className={`${this.decorateCSS("item")} ${(!itemBottomRight.media || !itemBottomRight.media.url) &&
-                            this.decorateCSS("no-media")
-                            } ${getRightSideBorderClasses('bottomRight')}`}
-                          data-animation={this.getPropValue(
-                            "hoverAnimation"
-                          ).join(" ")}
-                        >
-                          {itemBottomRight.media && itemBottomRight.media.url && (
-                            <div className={this.decorateCSS("background-media")}>
-                              <Base.Media
-                                value={itemBottomRight.media}
-                                className={this.decorateCSS("media-element")}
-                              />
-                              {itemBottomRight.overlay && (
-                                <div
-                                  className={this.decorateCSS(
-                                    "thumbnail-overlay"
-                                  )}
-                                />
-                              )}
-                            </div>
-                          )}
-                          {renderItemContent(itemBottomRight)}
-                        </div>
-                      </ComposerLink>
-                    )}
-                  </div>
+                {titleText && (
+                  <Base.SectionTitle className={`${this.decorateCSS("title")} ${background ? this.decorateCSS("with-bg") : ""}`}>
+                    {title}
+                  </Base.SectionTitle>
                 )}
-            </div>
-          )}
+                {descriptionText && (
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${background ? this.decorateCSS("with-bg") : ""}`}>{description}</Base.SectionDescription>
+                )}
+                {buttons.length > 0 && (() => {
+                  const validButtons = buttons.filter((item) => {
+                    const buttonText = this.castToString(item.text || "");
+                    const iconName = (item.icon as { name?: string })?.name;
+                    const hasValidIcon = iconName && iconName !== "";
+                    return buttonText || hasValidIcon;
+                  });
+                  return validButtons.length > 0 ? (
+                    <Base.Row className={this.decorateCSS("button-container")}>
+                      {validButtons.map((item, index) => {
+                        const buttonText = this.castToString(item.text || "");
+                        const buttonUrl = item.url || "#";
+                        const iconName = (item.icon as { name?: string })?.name;
+                        const hasValidIcon = iconName && iconName !== "";
+                        return (
+                          <ComposerLink key={`stats15-btn-${index}`} path={buttonUrl}>
+                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                              {hasValidIcon && (
+                                <Base.Media className={this.decorateCSS("icon")} value={{ type: "icon", name: iconName }} />
+                              )}
+                              {buttonText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </Base.Row>
+                  ) : null;
+                })()}
+                <Base.Row className={this.decorateCSS("stats-row")}>
+                  {statsProp.map((item: any, index: number) => {
+                    const stat = stats[index];
+                    return (
+                      <this.AnimatedStat
+                        key={`stat15-${index}`}
+                        stat={stat}
+                        item={item}
+                        animationDuration={animationDuration}
+                        statsAnimation={statsAnimation}
+                        background={background}
+                      />
+                    );
+                  })}
+                </Base.Row>
+              </Base.VerticalContent>
+            )}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );
