@@ -223,7 +223,6 @@ class List5 extends BaseList {
     const image = this.getPropValue("image");
 
     return (
-      <>
         <Base.Container className={this.decorateCSS("container")}
           style={{
             backgroundImage: `url(${image})`,
@@ -316,7 +315,6 @@ class List5 extends BaseList {
             )}
           </Base.MaxContent>
         </Base.Container>
-      </>
     );
   }
 }
