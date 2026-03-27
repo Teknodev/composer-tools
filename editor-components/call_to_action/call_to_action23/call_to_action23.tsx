@@ -128,9 +128,9 @@ class CallToAction23Page extends BaseCallToAction {
                       this.castToString(button.text) && (
                         <ComposerLink key={index} path={button.url}>
                           <Base.Button className={this.decorateCSS("button")}>
-                            <span className={this.decorateCSS("button-text")}>
+                            <Base.P className={this.decorateCSS("button-text")}>
                               {button.text}
-                            </span>
+                            </Base.P>
                           </Base.Button>
                         </ComposerLink>
                       )
