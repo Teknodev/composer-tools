@@ -99,8 +99,9 @@ import HeroSection32 from "./hero-section/hero-section32/hero-section32";
 import HeroSection33 from "./hero-section/hero-section33/hero-section33";
 import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
+import HeroSection36 from "./hero-section/hero-section36/hero-section36";
+import HeroSection37 from "./hero-section/hero-section37/hero-section37";
 import HeroSection38 from "./hero-section/hero-section38/hero-section38";
-import HeroSection39 from "./hero-section/hero-section39/hero-section39";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
 import IntroSection3 from "./intro-section/intro-section3/intro-section3";
@@ -345,6 +346,7 @@ import About16 from "./about/about16/about16";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Comparison1 from "./comparison/comparison1/comparison1";
+import BackToTop1 from "./back-to-top/back-to-top1/back-to-top1";
 import Header1 from "./header/header1/header1";
 import Header2 from "./header/header2/header2";
 import Header3 from "./header/header3/header3";
@@ -354,7 +356,6 @@ import Header6 from "./header/header6/header6";
 import Header7 from "./header/header7/header7";
 import Header8 from "./header/header8/header8";
 import Header9 from "./header/header9/header9";
-import Header10 from "./header/header10/header10";
 
 
 function Registerables(composer: ComponentsRegistery) {
@@ -472,8 +473,9 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection33,
     HeroSection34,
     HeroSection35,
+    HeroSection36,
+    HeroSection37,
     HeroSection38,
-    HeroSection39,
     IntroSection1,
     IntroSection2,
     IntroSection3,
@@ -705,6 +707,7 @@ function Registerables(composer: ComponentsRegistery) {
     Portfolio1,
     Portfolio2,
     Comparison1,
+    BackToTop1,
     Header1,
     Header2,
     Header3,
@@ -714,7 +717,6 @@ function Registerables(composer: ComponentsRegistery) {
     Header7,
     Header8,
     Header9,
-    Header10,
   ]);
 }
 
