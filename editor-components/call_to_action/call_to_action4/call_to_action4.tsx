@@ -39,7 +39,7 @@ class CallToAction4Page extends BaseCallToAction {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -195,7 +195,7 @@ class CallToAction4Page extends BaseCallToAction {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+          <div className={`${this.decorateCSS("content")} ${this.getPropValue("image") ? this.decorateCSS("has-image") : ""}`}>
             {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
               <div className={this.decorateCSS("left-page")}>
                 <Base.VerticalContent className={this.decorateCSS("header")}>

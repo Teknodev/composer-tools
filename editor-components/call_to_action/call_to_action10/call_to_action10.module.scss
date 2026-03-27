@@ -10,7 +10,7 @@
                     position: relative;
                     padding-bottom: var(--composer-gap-lg);
                     .title{
-                        width: fit-content;
+                        width: 100%;
                         text-align: center;
                     }
                     .icon {
@@ -18,6 +18,9 @@
                         bottom: 0rem;
                         right: 0;
                         font-size: 3rem;
+                        width: 3rem;
+                        height: 3rem;
+                        object-fit: contain;
                         color: var(--composer-font-color-primary);
                     }
                 }
@@ -25,7 +28,7 @@
                 .subtitle{
                     text-align: center;
                     transform: translateX(0);
-                    width: 100%;
+                    width: fit-content;
                     &::before {
                         display: none;
                     }
@@ -34,13 +37,12 @@
                 .description{
                     text-align: center;
                 }
-            }
 
-
-            .button {
-                content: "";
-                .button-text {
+                .button {
                     content: "";
+                    .button-text {
+                        content: "";
+                    }
                 }
             }
             .card-container{
@@ -53,13 +55,15 @@
                     gap: var(--composer-gap-lg);
                     .icon-wrapper{
                         background-color: var(--composer-primary-color);
-                        border-radius: 50%;
+                        border-radius: var(--composer-border-radius-full);
                         padding: var(--composer-gap-md);
                         width: fit-content;
                         .icon{
                             color: var(--composer-font-color-secondary);
                             font-size: 1.5rem;
-
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            object-fit: contain;
                         }
                     }
                     .card-title{

@@ -13,21 +13,21 @@
         }
 
         .subtitle {
-          width: 100%;
+          width: fit-content;
           transform: translateX(0);
           &::before {
             display: none;
           }
         }
-      }
 
-      .button {
-        content: "";
-
-        .button-text {
+        .button {
           content: "";
-          margin: 0;
-          color: var(--composer-font-color-secondary);
+
+          .button-text {
+            content: "";
+            margin: 0;
+            color: var(--composer-font-color-secondary);
+          }
         }
       }
       .description {

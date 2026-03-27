@@ -33,7 +33,7 @@ class CallToAction10Page extends BaseCallToAction {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -70,7 +70,7 @@ class CallToAction10Page extends BaseCallToAction {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -101,7 +101,7 @@ class CallToAction10Page extends BaseCallToAction {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -132,7 +132,7 @@ class CallToAction10Page extends BaseCallToAction {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -191,14 +191,14 @@ class CallToAction10Page extends BaseCallToAction {
                   {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
+              {this.castToString(button.text) && (
+                <ComposerLink path={button.url}>
+                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                  </Base.Button>
+                </ComposerLink>
+              )}
             </Base.VerticalContent>
-            {this.castToString(button.text) && (
-              <ComposerLink path={button.url}>
-                <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                </Base.Button>
-              </ComposerLink>
-            )}
             {(cardItem.length > 0) && (
               <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (

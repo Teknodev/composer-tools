@@ -134,7 +134,7 @@ class CallToAction6Page extends BaseCallToAction {
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {subtitleExist && (
+            {subtitleExist && !this.getPropValue("backgroundImage") && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>

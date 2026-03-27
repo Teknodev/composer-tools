@@ -13,6 +13,19 @@
             .description {
                 text-align: center;
             }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
+                .button {
+                    content: "";
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
         }
 
         .subtitle {
@@ -90,19 +103,6 @@
                         background-size: 200% 100%;
                         animation: gradientMove 2s linear infinite;
                     }
-                }
-            }
-        }
-
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: var(--composer-gap-sm);
-            .button{
-                content: "";
-                .button-text {
-                    content: "";
                 }
             }
         }

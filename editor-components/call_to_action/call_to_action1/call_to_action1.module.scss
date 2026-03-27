@@ -7,6 +7,9 @@
 
             .icon {
                 font-size: 3rem;
+                width: 3rem;
+                height: 3rem;
+                object-fit: contain;
                 color: var(--composer-primary-color);
             }
 

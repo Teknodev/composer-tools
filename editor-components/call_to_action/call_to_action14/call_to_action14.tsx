@@ -74,22 +74,20 @@ class CallToAction14 extends BaseCallToAction {
                 {this.getPropValue("description")}
               </Base.SectionDescription>
             )}
-          </Base.VerticalContent>
-          {(buttons.length > 0) && (
-            buttons.map((item: INPUTS.CastedButton, index: number) => {
-              return (
-                <div className={this.decorateCSS("button-container")}>
-                  {this.castToString(item.text) && (
-                    <ComposerLink path={item.url}>
+            {buttons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => (
+                  this.castToString(item.text) && (
+                    <ComposerLink key={index} path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                         <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     </ComposerLink>
-                  )}
-                </div>
-              )
-            })
-          )}
+                  )
+                ))}
+              </div>
+            )}
+          </Base.VerticalContent>
         </Base.MaxContent>
       </Base.Container>
     );

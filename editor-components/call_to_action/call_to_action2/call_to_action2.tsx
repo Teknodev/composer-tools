@@ -54,7 +54,7 @@ class CallToAction2Page extends BaseCallToAction {
       key: "playIcon",
       displayer: "Play Button Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -66,7 +66,7 @@ class CallToAction2Page extends BaseCallToAction {
       key: "closeIcon",
       displayer: "Close Button Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

@@ -14,7 +14,7 @@ class CallToAction1Page extends BaseCallToAction {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",

@@ -30,6 +30,8 @@
     z-index: 1;
 
     .wrapper {
+      column-gap: var(--composer-gap-xs);
+
       .left-page {
         display: flex;
 
@@ -102,6 +104,21 @@
                   content: "";
                 }
               }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &:not(.no-image) {
+    .max-content {
+      .wrapper {
+        .right-page {
+          .right-content {
+            .title, .subtitle, .description {
+              margin-left: 0;
+              text-align: left;
             }
           }
         }

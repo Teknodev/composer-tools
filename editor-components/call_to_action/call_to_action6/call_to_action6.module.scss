@@ -60,6 +60,7 @@
         content: "";
         text-align: center;
         transform: translateX(0);
+        color: white;
         &::before {
           display: none;
         }
@@ -67,6 +68,8 @@
 
       .title, .description {
         text-align: center;
+        width: 100%;
+        color: white;
       }
 
       .space-container {
@@ -126,7 +129,7 @@
           align-items: center;
 
           .comment {
-            color: var(--composer-font-color-primary);
+            color: white;
             text-align: center;
           }
 

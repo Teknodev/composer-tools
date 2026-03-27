@@ -58,7 +58,7 @@ class CallToAction8Page extends BaseCallToAction {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={`${this.decorateCSS("container")} ${this.getPropValue("image") && this.decorateCSS("has-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(subtitleExist || title || buttonText) && (

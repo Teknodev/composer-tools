@@ -119,6 +119,9 @@
           .play-icon {
             color: var(--composer-primary-color);
             font-size: 30px;
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
           }
 
           &::before {
@@ -199,6 +202,8 @@
           .close-icon {
             width: 1.5em;
             height: 1.5em;
+            font-size: 1.5em;
+            object-fit: contain;
           }
         }
       }
