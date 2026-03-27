@@ -73,7 +73,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           flex-direction: column;
           justify-content: space-between;
           align-items: center;
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           box-shadow: var(--box-shadow-active);
           overflow: hidden;
           background-color: color-mix(in srgb,
