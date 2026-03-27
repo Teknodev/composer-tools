@@ -144,7 +144,7 @@
         position: absolute;
         top: 0;
         left: 50%;
-        padding: var(--composer-gap-xs);
+        padding: var(--composer-gap-sm) var(--composer-gap-md);
         transform: translate(-50%, -50%);
         color: var(--composer-font-color-secondary);
         border: 1px solid var(--composer-primary-color);
@@ -177,6 +177,7 @@
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
+            margin-bottom: var(--composer-gap-md);
           }
 
           .title {

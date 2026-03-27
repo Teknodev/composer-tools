@@ -50,14 +50,14 @@ class PricingTable3 extends BasePricingTable {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Join this plan", "", "", null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "Pricing plans", "", "", null, "Primary"),
       ],
     });
 
     this.addProp({
       type: "boolean",
       key: "showListDividers",
-      displayer: "Show List Dividers",
+      displayer: "Line",
       value: true,
     });
 
