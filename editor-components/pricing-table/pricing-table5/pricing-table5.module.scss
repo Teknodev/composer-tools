@@ -72,7 +72,7 @@
           }
 
           .button-icon {
-            font-size: 1.5rem;
+            font-size: 1.5rem !important;
             height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
             width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
             display: flex;
@@ -99,7 +99,7 @@
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
           padding: var(--composer-gap-md);
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           display: flex;
           flex-direction: column;
           transition: all 0.5s ease;
@@ -186,7 +186,8 @@
           .plan-upper {
             display: flex;
             justify-content: space-between;
-            place-self: flex-start;
+            width: 100%;
+            align-items: center;
 
             .plan-title {
               margin: 0;
@@ -197,12 +198,16 @@
             .icon-box-active {
               color: var(--composer-primary-color);
               background-color: var(--composer-html-background);
-              border-radius: var(--composer-border-radius-sm);
+              border-radius: var(--composer-border-radius-xl);
+              width: calc(var(--composer-gap-md) + var(--composer-gap-md));
+              height: calc(var(--composer-gap-md) + var(--composer-gap-md));
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-shrink: 0;
 
               .icon {
-                font-size: 1.5rem;
-                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                font-size: 1.5rem !important;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -275,7 +280,6 @@
                   justify-content: center;
                   width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
                   height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
-                  font-size: 1rem;
                 }
               }
             }
@@ -291,9 +295,22 @@
     .max-content {
       .content {
         .right-content {
-          width: 100%;
+          width: 50%;
 
           .plan {
+            .plan-upper {
+
+              .icon-box,
+              .icon-box-active {
+                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+
+                .icon {
+                  font-size: 1.3rem !important;
+                }
+              }
+            }
+
             .plan-price-box {
               .labels {
                 .price-description {
@@ -322,20 +339,23 @@
         .left-content {
           width: 100%;
 
-          .subtitle,
-          .title,
-          .description {
+          .subtitle {
             margin-left: auto;
             margin-right: auto;
             text-align: center;
-          }
-
-          .subtitle {
             transform: none !important;
 
             &::before {
               display: none !important;
             }
+          }
+
+          .title {
+            text-align: center;
+          }
+
+          .description {
+            text-align: center;
           }
 
           .buttons {
@@ -348,12 +368,25 @@
           width: 100%;
 
           .plan {
+            .plan-upper {
+
+              .icon-box,
+              .icon-box-active {
+                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+
+                .icon {
+                  font-size: 1.25rem !important;
+                }
+              }
+            }
+
             .plan-price-box {
               display: flex;
 
               .labels {
                 .price {
-                  font-size: 1rem;
+                  font-size: 1.25rem;
                 }
 
                 .price-description {
