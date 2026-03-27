@@ -277,7 +277,7 @@ class Stats32 extends BaseStats {
         const subtitleExist = this.castToString(subtitle);
         const descriptionExist = this.castToString(description);
         const hasTextSection = subtitleExist || titleExist || descriptionExist || hasButtons;
-        const hasStats = stats.length > 0;
+        const hasStats = stats.some(s => s.number || s.prefix || s.suffix || s.subtitle || s.title || s.description || s.label);
         const noText = !hasTextSection && !hasStats;
 
 
