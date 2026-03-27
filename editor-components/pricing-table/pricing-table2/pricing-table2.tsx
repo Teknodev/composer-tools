@@ -8,7 +8,9 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type PricingItems = {
   buttons?: INPUTS.CastedButton[];
+  subtitle: React.JSX.Element;
   title: React.JSX.Element;
+  description: React.JSX.Element;
   price: React.JSX.Element;
   duration: React.JSX.Element;
   icon: TypeMediaInputValue;
@@ -67,9 +69,21 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
             },
             {
               type: "string",
@@ -226,9 +240,21 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
             },
             {
               type: "string",
@@ -385,9 +411,21 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
             },
             {
               type: "string",
@@ -544,9 +582,21 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
+            },
+            {
+              type: "string",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
             },
             {
               type: "string",
@@ -850,7 +900,9 @@ class PricingTable2 extends BasePricingTable {
             >
               {this.castToObject<PricingItems[]>("pricingTableItem").map(
                 (table: PricingItems, index: number) => {
+                  const cardSubtitle = table.subtitle;
                   const cardTitle = table.title;
+                  const cardDescription = table.description;
                   const cardPrice = table.price;
                   const cardDuration = table.duration;
                   const cardIcon = table.icon;
@@ -858,7 +910,9 @@ class PricingTable2 extends BasePricingTable {
                   const buttons = this.getButtonsFromItem(table);
                   const hasAnyButton = this.hasAnyButtonInItem(buttons);
 
+                  const hasCardSubtitle = this.castToString(cardSubtitle);
                   const hasCardTitle = this.castToString(cardTitle);
+                  const hasCardDescription = this.castToString(cardDescription);
                   const hasCardPrice = this.castToString(cardPrice);
                   const hasCardDuration = this.castToString(cardDuration);
 
@@ -879,7 +933,7 @@ class PricingTable2 extends BasePricingTable {
                     ("name" in cardIcon || "url" in cardIcon);
 
                   const hasUpperContent =
-                    hasCardTitle || hasCardPrice || hasCardDuration;
+                    hasCardSubtitle || hasCardTitle || hasCardDescription || hasCardPrice || hasCardDuration;
                   const hasBottomContent =
                     hasCardIcon || hasCardList || hasAnyButton;
                   const hasCardContent = hasUpperContent || hasBottomContent;
@@ -902,12 +956,26 @@ class PricingTable2 extends BasePricingTable {
                           <Base.VerticalContent
                             className={this.decorateCSS("card-upper")}
                           >
+                            {hasCardSubtitle && (
+                              <Base.H5
+                                className={this.decorateCSS("card-subtitle")}
+                              >
+                                {cardSubtitle}
+                              </Base.H5>
+                            )}
                             {hasCardTitle && (
                               <Base.H4
                                 className={this.decorateCSS("card-title")}
                               >
                                 {cardTitle}
                               </Base.H4>
+                            )}
+                            {hasCardDescription && (
+                              <Base.P
+                                className={this.decorateCSS("card-description")}
+                              >
+                                {cardDescription}
+                              </Base.P>
                             )}
                             {(hasCardPrice || hasCardDuration) && (
                               <div className={this.decorateCSS("card-price")}>

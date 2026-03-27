@@ -12,22 +12,11 @@
         .title,
         .subtitle,
         .description {
-          text-align: center;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .subtitle {
-          &:before {
-            display: none;
-          }
-
-          transform: translateX(0);
+          content: "";
         }
 
         .button-container {
           display: flex;
-          justify-content: center;
           gap: var(--composer-gap-sm);
           flex-wrap: wrap;
 
@@ -67,7 +56,9 @@
               color: var(--composer-font-color-secondary);
               z-index: 1;
 
-              .card-title {
+              .card-subtitle,
+              .card-title,
+              .card-description {
                 color: var(--composer-font-color-secondary);
                 text-align: left;
               }
