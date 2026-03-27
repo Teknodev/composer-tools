@@ -32,14 +32,14 @@ class Stats21 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "About investing to the project",
+            value: "The most trusted way to build a value",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
+            value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
         });
 
         this.addProp({
@@ -62,10 +62,10 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "30" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "number", displayer: "Value", value: "2018" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
+                        { type: "string", key: "title", displayer: "Title", value: "History of success" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
@@ -75,36 +75,23 @@ class Stats21 extends BaseStats {
                     displayer: "Stat",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "45" },
+                        { type: "string", key: "number", displayer: "Value", value: "1500" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Capitalize on low hanging fruit" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
+                        { type: "string", key: "number", displayer: "Value", value: "0.01" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
                         { type: "string", key: "title", displayer: "Title", value: "Leverage agile frameworks" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "stat",
-                    displayer: "Stat",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "500" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "stat",
-                    displayer: "Stat",
-                    value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "10" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Transactions confirmed in second" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
@@ -120,6 +107,13 @@ class Stats21 extends BaseStats {
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 2,
+            max: 4,
+        });
     }
 
     static getName(): string {
@@ -129,11 +123,6 @@ class Stats21 extends BaseStats {
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
         const originalString = stat.number;
         const targetNumber = parseFloat(originalString) || 0;
-
-        const formatNumber = (num: number): string => {
-            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
-            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
-        };
 
         const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -163,6 +152,11 @@ class Stats21 extends BaseStats {
                 }
             };
         }, [targetNumber, statsAnimation, animationDuration, originalString]);
+
+        const formatNumber = (num: number): string => {
+            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
+            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
+        };
 
         const titleExist = this.castToString(stat.title);
         const subtitleExist = this.castToString(stat.subtitle);
@@ -215,7 +209,8 @@ class Stats21 extends BaseStats {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
-        const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
+        const hasHeaderSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
@@ -231,13 +226,14 @@ class Stats21 extends BaseStats {
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
+        const itemCount = this.getPropValue("itemCount");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content-wrapper")}>
-                        {hasLeftSection && (
-                            <Base.VerticalContent className={this.decorateCSS("left-column")}>
+                    <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                        {hasHeaderSection && (
+                            <Base.VerticalContent className={this.decorateCSS("header-item")}>
                                 {subtitleExist && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {this.getPropValue("subtitle")}
@@ -258,7 +254,6 @@ class Stats21 extends BaseStats {
                                         {buttons.map(
                                             (item: INPUTS.CastedButton, index: number) => {
                                                 const buttonText = this.castToString(item.text);
-
                                                 if (!buttonText) return null;
 
                                                 return (
@@ -279,21 +274,15 @@ class Stats21 extends BaseStats {
                                 )}
                             </Base.VerticalContent>
                         )}
-                        {stats.length > 0 && (
-                            <Base.VerticalContent className={this.decorateCSS("right-column")}>
-                                <Base.ListGrid gridCount={{ pc: 2, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                    {stats.map((stat: StatItem, index: number) => (
-                                        <this.AnimatedStat
-                                            key={`stat21-${index}`}
-                                            stat={stat}
-                                            animationDuration={animationDuration}
-                                            statsAnimation={statsAnimation}
-                                        />
-                                    ))}
-                                </Base.ListGrid>
-                            </Base.VerticalContent>
-                        )}
-                    </div>
+                        {stats.map((stat: StatItem, index: number) => (
+                            <this.AnimatedStat
+                                key={`stat25-${index}`}
+                                stat={stat}
+                                animationDuration={animationDuration}
+                                statsAnimation={statsAnimation}
+                            />
+                        ))}
+                    </Base.ListGrid>
                 </Base.MaxContent>
             </Base.Container>
         );

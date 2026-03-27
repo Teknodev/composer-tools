@@ -1,330 +1,379 @@
 import * as React from "react";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
-import { BaseSlider } from "../../EditorComponent";
+import { BaseSlider, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./slider4.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-
-type Card = {
-  icon: string;
-  header: React.JSX.Element;
-  content: React.JSX.Element;
+type SliderItem = {
+  media: TypeMediaInputValue;
 };
+
 class Slider4 extends BaseSlider {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
-      value: "Our dedication to our customer",
+      value: "",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "At every step of our process, we prioritize the user, ensuring that our products and services are thoughtfully designed to meet their needs and exceed their expectations.",
+      value: "",
     });
-    this.addProp({
-      type: "string",
-      key: "control-title",
-      displayer: "Control Title",
-      value: "Grow faster with pro's help",
-    });
-    this.addProp({
-      type: "string",
-      key: "control-description",
-      displayer: "Control Description",
-      value: "Experience top-notch features with our services",
-    });
-    this.addProp({
-      type: "icon",
-      key: "previousArrow",
-      displayer: "Previous Arrow Icon",
-      value: "RiArrowLeftSLine",
-    });
-    this.addProp({
-      type: "icon",
-      key: "nextArrow",
-      displayer: "Next Arrow Icon",
-      value: "RiArrowRightSLine",
-    });
+
     this.addProp({
       type: "array",
-      key: "slider",
-      displayer: "Slider",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", "", null)],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "cards",
+      displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TfiWorld",
-            },
-            {
-              type: "string",
-              key: "header",
-              displayer: "Title",
-              value: "Customer Experience",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Description",
-              value: "We prioritize our customers' experience, ensuring that every interaction with our platform is not only seamless and intuitive but also consistently exceeds expectations.",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-D7nSqgT-_GE-unsplash.jpg",
+              },
             },
           ],
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "IoStatsChartSharp",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/michael-demarco-oB0r-2a1QfE-unsplash-scaled.jpg",
+              },
             },
+
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
             {
-              type: "string",
-              key: "header",
-              displayer: "Title",
-              value: "Sales and Marketing",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Description",
-              value: "Our sales and marketing team Works together to provide you with a comprehensive solution that is tailored to your needs.",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/simone-hutsch-xlGKy9UokjQ-unsplash-1.jpg",
+              },
             },
           ],
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdRateReview",
-            },
-            {
-              type: "string",
-              key: "header",
-              displayer: "Title",
-              value: "Rating and Reviews",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Description",
-              value: "Our focus on ratings and reviews onsures that you have Access to the most comprehensive and up-to-date information available.",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/messeplatz-cloudy-sky-basel-switzerland.jpg",
+              },
             },
           ],
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TfiThumbUp",
-            },
-            {
-              type: "string",
-              key: "header",
-              displayer: "Title",
-              value: "Productivity and Efficiency",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Description",
-              value: "We are committed to fostering innovation and driving growth, providing you with cutting-edge tools and solutions to stay ahead in your industry.",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/metal-geometric-modern-building-scaled.jpg",
+              },
             },
           ],
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "TfiDropbox",
-            },
-            {
-              type: "string",
-              key: "header",
-              displayer: "Title",
-              value: "Team Collaboration",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Description",
-              value: "Your trust is our top priority. We ensure reliability in every aspect of our platform, delivering consistent performance and support so you can focus on what matters most.",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/daniel-stone-A4TtfFo_qRw-unsplash.jpg",
+              },
             },
           ],
         },
         {
           type: "object",
-          key: "slider-card",
-          displayer: "Slider Card",
+          key: "card",
+          displayer: "Card",
           value: [
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "RiRocketFill",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/vertical-shot-high-rise-exotic-skyscraper-blue-sky.jpg",
+              },
             },
+          ],
+        },
+        {
+          type: "object",
+          key: "card",
+          displayer: "Card",
+          value: [
             {
-              type: "string",
-              key: "header",
-              displayer: "Title",
-              value: "Customer Support",
-            },
-            {
-              type: "string",
-              key: "content",
-              displayer: "Description",
-              value: "Our platform provides data-driven insights and tools to help you make confident decisions, optimize performance, and unlock your potential.",
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://themes.pixelwars.org/archy/demo-01/wp-content/uploads/sites/2/2023/05/joel-filipe-PkE6yQwE-6Y-unsplash.jpg",
+              },
             },
           ],
         },
       ],
     });
-    this.setComponentState("slider-ref", React.createRef());
-  }
 
-  static getName(): string {
-    return "Slider 4";
-  }
-  render() {
-    const cards = this.castToObject<Card[]>("slider");
-    const cardNumber = cards.length;
-    const visibleItemCount = Math.min(cards.length, 3);
-    const carouselClass = cardNumber === 1 ? "carousel--singleCard" : "carousel--multipleCards";
+    this.addProp({
+      type: "media",
+      key: "previousArrow",
+      displayer: "Previous Arrow Icon",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowLeft",
+      },
+    });
 
-    const settings = {
-      arrows: false,
+    this.addProp({
+      type: "media",
+      key: "nextArrow",
+      displayer: "Next Arrow Icon",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "BsArrowRight",
+      },
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "hoverAnimation",
+      displayer: "Animation",
+      value: true,
+    });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings", {
+      arrows: true,
       dots: false,
       infinite: true,
       speed: 500,
       autoplay: true,
       autoplaySpeed: 3000,
-      slidesToShow: visibleItemCount,
+      slidesToShow: 1,
       slidesToScroll: 1,
+      adaptiveHeight: false,
+    }));
+
+    this.setComponentState("centerSlide", 0);
+    this.setComponentState("slider-ref", React.createRef());
+
+  }
+
+  static getName(): string {
+    return "Slider 4";
+  }
+
+  render() {
+    let items = this.castToObject<SliderItem[]>("cards").filter((item: SliderItem) => item.media);
+    const isCardExist = items.length > 0;
+    const isOverlayActive = this.getPropValue("overlay");
+    const isHoverActive = this.getPropValue("hoverAnimation");
+    const nextArrow = this.getPropValue("nextArrow");
+    const previousArrow = this.getPropValue("previousArrow");
+    const sliderRef = this.getComponentState("slider-ref");
+    const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
+    let slidesToShowNumber = 1;
+
+    if (items.length === 2) {
+      items = [...items, ...items];
+      slidesToShowNumber = 3;
+    }
+
+    const settings = {
+      ...sliderSettings,
+      infinite: true,
+      speed: 500,
+      centerMode: true,
+      autoplaySpeed: 3000,
+      slidesToShow: slidesToShowNumber,
+      slidesToScroll: 1,
+      centerPadding: "0px",
+      variableWidth: true,
       responsive: [
         {
-          breakpoint: 960,
+          breakpoint: 1024,
           settings: {
-            slidesToShow: Math.min(visibleItemCount, 2),
-          },
+            slidesToShow: 1,
+            dots: sliderSettings.dots,
+            arrows: sliderSettings.arrows,
+          }
         },
         {
           breakpoint: 640,
           settings: {
-            slidesToShow: Math.min(visibleItemCount, 1),
-          },
-        },
+            variableWidth: false,
+            slidesToShow: 1,
+            dots: sliderSettings.dots,
+            arrows: sliderSettings.arrows,
+          }
+        }
       ],
+
+      beforeChange: (_: number, next: number) => {
+        this.setComponentState("centerSlide", next);
+      },
     };
 
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
-    const controlTitle = this.getPropValue("control-title");
-    const controlDescription = this.getPropValue("control-description");
-
-    const nextArrow = this.getPropValue("nextArrow");
-    const previousArrow = this.getPropValue("previousArrow");
-    const sliderRef = this.getComponentState("slider-ref");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitle || title || description || visibleButtons.length > 0;
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} 
-      ${!this.castToString(title) && !this.castToString(description) && this.decorateCSS("no-header")}`}
-      >
+      <Base.Container isFull={true} className={`${this.decorateCSS("container")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(title) || this.castToString(description)) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {this.castToString(title) && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-              {this.castToString(description) && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
+          {hasContent && (
+            <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+              {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {visibleButtons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                    return this.castToString(item.text) && (
+                      <ComposerLink key={`button-${index}`} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          {item.icon && (item.icon)?.name && (<Base.Media value={item.icon} className={this.decorateCSS("button-icon")} />)}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
-          <Base.ContainerGrid className={this.decorateCSS("down-page")}>
-            {(this.castToString(controlTitle) || this.castToString(controlDescription) || previousArrow || nextArrow) && (
-              <Base.VerticalContent className={this.decorateCSS("control-part")}>
-                {this.castToString(controlTitle) && <span className={this.decorateCSS("control-title")}>{controlTitle}</span>}
-                {this.castToString(controlDescription) && <Base.P className={this.decorateCSS("control-description")}>{controlDescription}</Base.P>}
-                {(previousArrow || nextArrow) && (
-                  <div className={this.decorateCSS("arrows")}>
-                    {previousArrow && (
-                      <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon
-                          name={this.getPropValue("previousArrow")}
-                          propsIcon={{
-                            className: this.decorateCSS("prevArrow"),
-                            onClick: () => {
-                              sliderRef.current.slickPrev();
-                            },
-                          }}
-                        />
-                      </div>
-                    )}
-
-                    {nextArrow && (
-                      <div className={this.decorateCSS("icon-wrapper")}>
-                        <Base.Icon
-                          name={this.getPropValue("nextArrow")}
-                          propsIcon={{
-                            className: this.decorateCSS("nextArrow"),
-                            onClick: () => {
-                              sliderRef.current.slickNext();
-                            },
-                          }}
-                        />
-                      </div>
-                    )}
+          {isCardExist && (
+            <div className={this.decorateCSS("carousel-wrapper")}>
+              {previousArrow && sliderSettings.arrows && (
+                <div className={this.decorateCSS("prevArrow")} onClick={() => sliderRef.current.slickPrev()}>
+                  <Base.Media value={previousArrow} className={this.decorateCSS("arrow-icon")} />
+                </div>
+              )}
+              {nextArrow && sliderSettings.arrows && (
+                <div className={this.decorateCSS("nextArrow")} onClick={() => sliderRef.current.slickNext()}>
+                  <Base.Media value={nextArrow} className={this.decorateCSS("arrow-icon")} />
+                </div>
+              )}
+              <ComposerSlider
+                {...settings}
+                className={this.decorateCSS("carousel")}
+                ref={sliderRef}
+              >
+                {items.map((item: SliderItem, index: number) => (
+                  <div key={index} className={`${this.decorateCSS("card")} ${this.getComponentState("centerSlide") === index && this.decorateCSS("centerSlide")} ${isHoverActive && this.decorateCSS("hover-active")}`}>
+                    <div className={this.decorateCSS("imgContainer")}>
+                      {item.media && <Base.Media value={item.media} className={this.decorateCSS("image")} />}
+                      {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
+                    </div>
                   </div>
-                )}
-              </Base.VerticalContent>
-            )}
-
-            <div
-              className={`${this.decorateCSS("slider-parent")} 
-            ${!this.castToString(controlTitle) && !this.castToString(controlDescription) && !previousArrow && !nextArrow && this.decorateCSS("no-control-part")}`}
-            >
-              <ComposerSlider {...settings} className={`${this.decorateCSS("carousel")} ${this.decorateCSS(carouselClass)}`} ref={sliderRef}>
-                {cards.map((item: Card, index: number) => (
-                  <Base.VerticalContent
-                    className={`${this.decorateCSS("card")} 
-                    ${carouselClass === "carousel--singleCard" && this.decorateCSS("for-single-card")}`}
-                    key={index}
-                  >
-                    <Base.Row>
-                      <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("play-icon") }} />
-                    </Base.Row>
-                    <Base.H5 className={this.decorateCSS("item-header")}>{item.header}</Base.H5>
-                    <Base.P className={this.decorateCSS("item-content")}>{item.content}</Base.P>
-                  </Base.VerticalContent>
                 ))}
               </ComposerSlider>
             </div>
-          </Base.ContainerGrid>
+          )}
         </Base.MaxContent>
       </Base.Container>
     );
