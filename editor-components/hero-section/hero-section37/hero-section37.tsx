@@ -1,0 +1,517 @@
+import * as React from "react";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import styles from "./hero-section37.module.scss";
+import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+
+type SliderItem = {
+  media: TypeMediaInputValue;
+  text: React.JSX.Element;
+  title: React.JSX.Element;
+  path: string;
+  number: React.JSX.Element;
+};
+
+type SocialItem = {
+  media: TypeMediaInputValue;
+  path: string;
+};
+
+class HeroSection37 extends BaseHeroSection {
+  constructor(props?: any) {
+    super(props, styles);
+
+    this.addProp({
+      type: "array",
+      key: "slider",
+      displayer: "Slider",
+      value: [
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Sonya",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "01",
+            },
+
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Assumenda voluptatum eveniet possimus modi illo.",
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d0c506a40002c318e40?alt=media",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Baseball",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "02",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Commodi necessitatibus perspiciatis quae labore!",
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67518d3f506a40002c318e73?alt=media",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Kitchen",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "03",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Commodi necessitatibus perspiciatis quae labore!",
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675193c7506a40002c3192ef?alt=media",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "biker",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "04",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Praesentium cumque saepe dignissimos incidunt.",
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ca8fbd2970002c6294e0?alt=media&timestamp=1719584962578",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Born Wild",
+            },
+            {
+              type: "string",
+              key: "number",
+              displayer: "Number",
+              value: "05",
+            },
+            {
+              type: "string",
+              key: "text",
+              displayer: "Text",
+              value: "Impedit ad animi quae nobis voluptate! Rerum, enim.",
+            },
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/677297550655f8002caea7ff?alt=media",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: true,
+    });
+
+    this.addProp({
+      type: "string",
+      key: "followUsText",
+      displayer: "Bottom Text",
+      value: "Follow us",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "socials",
+      displayer: "Social Media",
+      value: [
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BiLogoFacebook",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaSquareXTwitter",
+              },
+            },
+            {
+              type: "page",
+              key: "path",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "showPageNumbers",
+      displayer: "Page Numbers",
+      value: true,
+    });
+
+    this.addProp({
+      type: "media",
+      key: "pageNumbersSeparator",
+      displayer: "Line",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "FiMinus",
+      },
+    });
+
+    this.addProp(INPUTS.SLIDER_SETTINGS("settings", "Slider Settings"));
+
+    this.setComponentState("active_index", 0);
+    this.setComponentState("text", this.castToObject<SliderItem[]>("slider")[0].title);
+    this.setComponentState("text_visibility", true);
+  }
+
+  static getName(): string {
+    return "Hero Section 37";
+  }
+
+  render() {
+    const slider = this.castToObject<SliderItem[]>("slider");
+    const isOverlayActive = this.getPropValue("overlay");
+    const icons = this.castToObject<SocialItem[]>("socials");
+    const followUsText = this.getPropValue("followUsText");
+    const showPageNumbers = this.getPropValue("showPageNumbers");
+    const pageNumbersSeparator = this.getPropValue("pageNumbersSeparator");
+
+    const settings = {
+      ...this.transformSliderValues(this.getPropValue("settings")),
+      infinite: slider.length > 2,
+      speed: 1000,
+      variableWidth: true,
+      centerMode: false,
+      initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2.2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 1.5,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+      beforeChange: (_: number, nextSlide: number) => {
+        const sliderData = this.castToObject<SliderItem[]>("slider");
+        const nextSlideData = sliderData[nextSlide];
+
+        this.setComponentState("active_index", nextSlide);
+        this.setComponentState("text_visibility", false);
+        setTimeout(() => {
+          this.setComponentState("text_visibility", true);
+          this.setComponentState("text", nextSlideData?.text);
+        }, 200);
+      },
+    };
+
+    const activeIndex = this.getComponentState("active_index");
+    const totalSlides = slider.length;
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {slider.some((slide) => slide.media) && (
+            <div className={this.decorateCSS("image-box")}>
+              {isOverlayActive && <div className={this.decorateCSS("image-overlay")}></div>}
+              <div className={this.decorateCSS("overlay")}>
+                {slider.map((slide, index) => {
+                  const isActive = this.getComponentState("active_index") === index;
+                  return slide.media && (
+                    <Base.Media key={index} value={slide.media} className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`} />
+                  );
+                })}
+              </div>
+            </div>
+          )}
+          {this.getComponentState("text") && (
+            <div className={this.decorateCSS("text-box")}>
+              <div className={this.decorateCSS("decorator-line")}></div>
+              <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("text_visibility") && this.decorateCSS("visible")}`}>
+                {this.getComponentState("text")}
+              </Base.P>
+            </div>
+          )}
+          {slider.length > 0 && (
+            <div className={this.decorateCSS("carousel-wrapper")}>
+              <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
+                {slider.map((item: SliderItem, indexSlider: number) => {
+                  const isActive = this.getComponentState("active_index") === indexSlider;
+                  return (
+                    <div key={indexSlider} className={this.decorateCSS("card")}>
+                      <div
+                        className={this.decorateCSS("button-wrapper")}
+                        onMouseOver={() => {
+                          const isIndexSame = this.getComponentState("active_index") === indexSlider;
+                          if (isIndexSame) return;
+
+                          this.setComponentState("active_index", indexSlider);
+                          this.setComponentState("text_visibility", false);
+                          setTimeout(() => {
+                            this.setComponentState("text_visibility", true);
+                            this.setComponentState("text", item.text);
+                          }, 200);
+                        }}
+                      >
+                        <ComposerLink key={indexSlider} path={item.path}>
+                          <div className={this.decorateCSS("link-wrapper")}>
+                            {this.castToString(item.number) && <Base.P className={this.decorateCSS("number")}>{item.number}</Base.P>}
+                            {this.castToString(item.title) && <div className={`${this.decorateCSS("title-text")} ${isActive && this.decorateCSS("active")}`}>{item.title}</div>}
+                          </div>
+                        </ComposerLink>
+                      </div>
+                    </div>
+                  );
+                })}
+              </ComposerSlider>
+            </div>
+          )}
+          {(showPageNumbers || followUsText || icons) && (
+            <div className={this.decorateCSS("footer")}>
+              {showPageNumbers && (
+                <div className={this.decorateCSS("page-numbers")}>
+                  <span className={this.decorateCSS("current")}>{(activeIndex + 1).toString().padStart(2, "0")}</span>
+                  {pageNumbersSeparator && <Base.Media value={pageNumbersSeparator} className={this.decorateCSS("separator")} />}
+                  <span className={this.decorateCSS("total")}>{totalSlides.toString().padStart(2, "0")}</span>
+                </div>
+              )}
+              {(followUsText || icons) && (
+                <div className={this.decorateCSS("follow-us")}>
+                  {followUsText && <Base.P className={this.decorateCSS("follow-text")}>{followUsText}</Base.P>}
+                  {icons && (
+                    <div className={this.decorateCSS("social-icons")}>
+                      {icons.map((social: SocialItem, index: number) => (
+                        social.media && (
+                          <ComposerLink key={index} path={social.path}>
+                            <Base.Media value={social.media} className={this.decorateCSS("social-icon")} />
+                          </ComposerLink>
+                        )
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
+}
+
+export default HeroSection37;
