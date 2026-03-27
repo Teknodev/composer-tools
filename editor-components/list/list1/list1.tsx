@@ -1,25 +1,33 @@
 import * as React from "react";
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import styles from "./list1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
+  icon: TypeMediaInputValue | null;
+};
+
 type Card = {
-  image: string;
-  title: React.JSX.Element;
-  subtitle: React.JSX.Element;
-  text: React.JSX.Element;
-  url: string;
-  icon: string;
-  button: INPUTS.CastedButton;
+  image: TypeMediaInputValue;
+  subtitle: JSX.Element;
+  title: JSX.Element;
+  description: JSX.Element;
+  buttons: CardButton[];
+  overlay: boolean;
 };
 
 class List1 extends BaseList {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "boolean",
+      key: "backgroundColor",
+      displayer: "Colored Background",
+      value: true,
+    });
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -33,21 +41,52 @@ class List1 extends BaseList {
       value: "TODAY RECIPES",
     });
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+    this.addProp({
       type: "array",
       key: "slider",
-      displayer: "Slider",
+      displayer: "List Item",
       value: [
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d23a03b007002cc7aa52?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d23a03b007002cc7aa52?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video", "icon"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -57,30 +96,48 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d26803b007002cc7aa71?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d26803b007002cc7aa71?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video", "icon"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -90,30 +147,48 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY ADDISON",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d2b303b007002cc7aa9f?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d2b303b007002cc7aa9f?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video", "icon"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -123,30 +198,48 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d1ef03b007002cc7aa41?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d1ef03b007002cc7aa41?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video", "icon"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -156,30 +249,48 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY CHARLES",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d30603b007002cc7aacf?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d30603b007002cc7aacf?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video", "icon"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -189,30 +300,48 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY GINO D'ACAMPO",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
+              ],
             },
           ],
         },
         {
           type: "object",
           key: "card",
-          displayer: "Card",
+          displayer: "List Item",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
-              displayer: "Image",
-              value:
-                "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d32d03b007002cc7aae7?alt=media",
+              displayer: "Media",
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b1d32d03b007002cc7aae7?alt=media",
+              },
+              additionalParams: {
+                availableTypes: ["image", "video", "icon"],
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -222,26 +351,21 @@ class List1 extends BaseList {
             },
             {
               type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
+              key: "description",
+              displayer: "Description",
               value: "BY ADDISON",
             },
-            INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", null, null, "Link"),
             {
-              type: "icon",
-              key: "icon",
-              displayer: "Icon",
-              value: "MdNavigateNext",
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "MAIN COURSE", "", "MdNavigateNext", null, "Link"),
+              ],
             },
           ],
         },
       ],
-    });
-    this.addProp({
-      type: "boolean",
-      key: "backgroundColor",
-      displayer: "Colored Area",
-      value: true,
     });
     this.addProp({
       type: "multiSelect",
@@ -249,12 +373,35 @@ class List1 extends BaseList {
       displayer: "Hover Animation Style",
       value: ["animate1"],
       additionalParams: {
-        selectItems: ["animate1", "animate2", "animate3", "animate4"]
-      }
+        selectItems: ["animate1"],
+      },
     });
+    this.addProp(
+      INPUTS.SLIDER_SETTINGS("slider-settings", "Slider Settings", {
+        dots: true,
+        arrows: false,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        adaptiveHeight: false,
+      })
+    );
 
     this.setComponentState("active-index", 1);
   }
+
+  transformSliderValues = (sliderProps: TypeUsableComponentProps[]): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    if (Array.isArray(sliderProps)) {
+      sliderProps.forEach((prop: TypeUsableComponentProps) => {
+        flatObject[prop.key] = prop.value;
+      });
+    }
+    return flatObject as INPUTS.TYPE_SLIDER_SETTINGS;
+  };
 
   static getName(): string {
     return "List 1";
@@ -263,28 +410,32 @@ class List1 extends BaseList {
   render() {
     const sliderItems = this.castToObject<Card[]>("slider");
     const backgroundColor = this.getPropValue("backgroundColor");
-    const title = this.getPropValue("title");
-    const subTitle = this.getPropValue("subtitle");
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subTitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hoverAnimation = this.castToObject<string[]>("hoverAnimation") || [];
+    const sliderSettings = this.getPropValue("slider-settings") || [];
+    const headerButtons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const hasValidHeaderButtons = headerButtons.some((btn) => this.castToString(btn.text));
+    const hasHeaderContent = subTitleExist || titleExist || descriptionExist || hasValidHeaderButtons;
+    const dotsClassName = backgroundColor
+      ? `${this.decorateCSS("dots")} ${this.decorateCSS("dots-colored")}`
+      : this.decorateCSS("dots");
+    const userSettings = this.transformSliderValues(sliderSettings);
     const settings = {
-      dots: true,
-      infinite: sliderItems.length > 1,
-      autoplay: false,
-      autoplaySpeed: 3000,
-      slidesToShow: Math.min(3, sliderItems.length),
-      slidesToScroll: 1,
-      initialSlide: 1,
-      arrows: false,
+      ...userSettings,
+      infinite: sliderItems.length > 1 && userSettings.infinite,
+      slidesToShow: userSettings.slidesToShow,
+      initialSlide: this.getComponentState("active-index"),
       centerMode: true,
-      dotsClass: this.decorateCSS("dots"),
+      dotsClass: dotsClassName,
+      customPaging: (_i: number) => <button className={this.decorateCSS("dot-button")} />,
       centerPadding: "0px",
-      beforeChange: (previndex: number, currindex: number) => {
-        this.setComponentState("active-index", currindex);
-      },
       responsive: [
         {
           breakpoint: 950,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 3,
           },
         },
         {
@@ -298,85 +449,138 @@ class List1 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.castToString(subTitle) || this.castToString(title)) && (
-            <Base.VerticalContent className={this.decorateCSS("card-titles")}>
-              {this.castToString(subTitle) && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subTitle}
-                </Base.SectionSubTitle>
-              )}
-              {this.castToString(title) && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {title}
-                </Base.SectionTitle>
-              )}
-            </Base.VerticalContent>
-          )}
-          {(sliderItems.length > 0) && (
-            <ComposerSlider
-              {...settings}
-              className={this.decorateCSS("carousel")}
-            >
-              {sliderItems.map((item: Card, indexSlider: number) => {
-                return (
-                  <Base.VerticalContent
-                    key={indexSlider}
-                    className={`${this.decorateCSS("card")}
-                    ${backgroundColor &&
-                        this.getComponentState("active-index") === indexSlider
-                        ? this.decorateCSS("active")
-                        : ""
-                      }`}
-                    data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                  >
-                    {item.image && (
-                      <Base.Row className={this.decorateCSS("img-div")}>
-                        <img
-                          className={this.decorateCSS("img")}
-                          src={item.image}
-                          alt={item.image}
-                        />
-                      </Base.Row>
-                    )}
-                    {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
-                      <Base.VerticalContent className={this.decorateCSS("titles")}>
-                        {this.castToString(item.title) && (
-                          <Base.H4 className={this.decorateCSS("card-title")}>
-                            {item.title}
-                          </Base.H4 >
+          <div className={this.decorateCSS("content")}>
+            {hasHeaderContent && (
+              <Base.VerticalContent className={this.decorateCSS("header-container")}>
+                {subTitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {hasValidHeaderButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {headerButtons.map((btn, index) => {
+                      const buttonText = this.castToString(btn.text);
+                      if (!buttonText) return null;
+                      return (
+                        <ComposerLink key={index} path={btn.url}>
+                          <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {btn.text}
+                            </Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            )}
+            {sliderItems.length > 0 && (
+              <ComposerSlider
+                {...settings}
+                key={`slider-${settings.adaptiveHeight}`}
+                className={this.decorateCSS("carousel")}
+              >
+                {sliderItems.map((item: Card, indexSlider: number) => {
+                  const itemTitleExist = this.castToString(item.title);
+                  const itemSubtitleExist = this.castToString(item.subtitle);
+                  const itemDescExist = this.castToString(item.description);
+                  const buttons = item.buttons || [];
+                  const isIcon = !!item.image && (item.image as TypeMediaInputValue).type === "icon";
+                  const cardExist =
+                    itemTitleExist ||
+                    itemSubtitleExist ||
+                    itemDescExist ||
+                    item.image ||
+                    buttons.length > 0;
+                  return (
+                    cardExist && (
+                      <Base.VerticalContent
+                        key={indexSlider}
+                        className={`${this.decorateCSS("card")} ${backgroundColor
+                          ? this.decorateCSS("active")
+                          : ""
+                          }`}
+                        data-animation={hoverAnimation.join(" ")}
+                      >
+                        {backgroundColor && (
+                          <div className={this.decorateCSS("active-after")} />
                         )}
-                        {this.castToString(item.subtitle) && (
-                          <Base.H6 className={this.decorateCSS("card-subtitle")}>
-                            {item.subtitle}
-                          </Base.H6>
-                        )}
-                      </Base.VerticalContent>
-                    )}
-
-                    {(this.castToString(item.button.text) || item.icon) && (
-                      <div className={this.decorateCSS("link")}>
-                      <ComposerLink path={item.button.url}>
-                        <Base.Button buttonType={item.button.type} >
-                          <Base.P className={this.decorateCSS("text")}>
-                            {item.button.text}
-                          </Base.P>
-                          {item.icon && (
-                            <Base.Icon
-                              name={item.icon}
-                              propsIcon={{
-                                className: this.decorateCSS("icon"),
-                              }}
+                        {item.image && (
+                          <Base.Row
+                            className={`${this.decorateCSS("image-container")} ${isIcon ? this.decorateCSS("no-round") : ""
+                              }`}
+                          >
+                            <Base.Media
+                              className={this.decorateCSS("image")}
+                              value={item.image}
                             />
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                      </div>
-                    )}
-                  </Base.VerticalContent>
-                );
-              })}
-            </ComposerSlider>
-          )}
+                            {item.overlay && (
+                              <div className={this.decorateCSS("overlay")} />
+                            )}
+                          </Base.Row>
+                        )}
+                        {(itemTitleExist || itemSubtitleExist || itemDescExist) && (
+                          <Base.VerticalContent className={this.decorateCSS("card-header")}>
+                            {itemSubtitleExist && (
+                              <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                                {item.subtitle}
+                              </Base.H6>
+                            )}
+                            {itemTitleExist && (
+                              <Base.H5 className={this.decorateCSS("card-title")}>
+                                {item.title}
+                              </Base.H5>
+                            )}
+                            {itemDescExist && (
+                              <Base.P className={this.decorateCSS("card-description")}>
+                                {item.description}
+                              </Base.P>
+                            )}
+                          </Base.VerticalContent>
+                        )}
+                        {buttons &&
+                          buttons.map((btn: CardButton, btnIndex: number) => {
+                            const buttonText = this.castToString(btn.text);
+                            const iconMedia = btn.icon as TypeMediaInputValue;
+                            const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                            if (!buttonText && !iconExist) return null;
+                            return (
+                              <ComposerLink key={btnIndex} path={btn.url}>
+                                <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                                  {buttonText && (
+                                    <Base.P className={this.decorateCSS("button-text")}>
+                                      {btn.text}
+                                    </Base.P>
+                                  )}
+                                  {iconExist && (
+                                    <Base.Media
+                                      value={btn.icon as TypeMediaInputValue}
+                                      className={this.decorateCSS("icon")}
+                                    />
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
+                            );
+                          })}
+                      </Base.VerticalContent>
+                    )
+                  );
+                })}
+              </ComposerSlider>
+            )}
+          </div>
         </Base.MaxContent>
       </Base.Container>
     );

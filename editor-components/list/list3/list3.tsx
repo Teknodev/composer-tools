@@ -1,16 +1,20 @@
-import * as React from "react";
-import { BaseList } from "../../EditorComponent";
+import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list3.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type CardButton = Omit<INPUTS.CastedButton, "icon"> & {
+  icon: TypeMediaInputValue | null;
+};
+
 type Item = {
-  itemTitle: React.JSX.Element;
+  itemTitle: JSX.Element;
   texts: TextItem[];
 };
 type TextItem = {
-  itemText: React.JSX.Element;
+  topText: JSX.Element;
+  bottomText: JSX.Element;
 };
 
 class List3 extends BaseList {
@@ -28,22 +32,29 @@ class List3 extends BaseList {
     this.addProp({
       type: "string",
       key: "title",
-      displayer: "title",
+      displayer: "Title",
       value: "Event Schedule",
     });
     this.addProp({
       type: "string",
       key: "description",
-      displayer: "description",
+      displayer: "Description",
       value:
         "Lorem ipsum dolor consectetur eiusmod tempor incididunt labore exercitation tempor.",
     });
-    this.addProp(INPUTS.BUTTON("button", "Button", "Download Schedule", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Download Schedule", "", "FaDownload", null, "Primary")
+      ],
+    });
 
     this.addProp({
       type: "array",
       key: "listItems",
-      displayer: "List Items",
+      displayer: "List Item",
       value: [
         {
           type: "object",
@@ -59,45 +70,33 @@ class List3 extends BaseList {
             {
               type: "array",
               key: "texts",
-              displayer: "Texts",
+              displayer: "Text",
               value: [
                 {
                   type: "object",
                   key: "text",
                   displayer: "Text",
                   value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Psychologist - John parker 10:00 AM to 12:30 PM",
-                    },
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
                   ]
                 },
                 {
                   type: "object",
-                  key: "Text",
+                  key: "text",
                   displayer: "Text",
                   value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Sociology - Herman miller 02:00 PM to 04:30 PM",
-                    },
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Sociology - Herman Miller" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
                   ]
                 },
                 {
                   type: "object",
-                  key: "Text",
+                  key: "text",
                   displayer: "Text",
                   value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Geologist - Jeremy dupont 05:00 PM to 07:30 PM",
-                    },
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Geologist - Jeremy Dupont" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
                   ]
                 },
               ]
@@ -121,42 +120,21 @@ class List3 extends BaseList {
               displayer: "Texts",
               value: [
                 {
-                  type: "object",
-                  key: "text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Economy - Michal ruheen 10:00 AM to 12:30 PM",
-                    },
+                  type: "object", key: "text", displayer: "Text", value: [
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Economy - Michal Ruheen" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
                   ]
                 },
                 {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Engineer - Jessica dover 02:00 PM to 04:30 PM",
-                    },
+                  type: "object", key: "text", displayer: "Text", value: [
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Engineer - Jessica Dover" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
                   ]
                 },
                 {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Psychologist - John parker 05:00 PM to 07:30 PM",
-                    },
+                  type: "object", key: "text", displayer: "Text", value: [
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Psychologist - John Parker" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
                   ]
                 },
               ]
@@ -180,42 +158,21 @@ class List3 extends BaseList {
               displayer: "Texts",
               value: [
                 {
-                  type: "object",
-                  key: "text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Biologist- Saleena fountain 10:00 AM to 12:30 PM",
-                    },
+                  type: "object", key: "text", displayer: "Text", value: [
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Biologist - Saleena Fountain" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "10:00 AM - 12:30 PM" },
                   ]
                 },
                 {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Secretary- Paulina morris 02:00 PM to 04:30 PM",
-                    },
+                  type: "object", key: "text", displayer: "Text", value: [
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Secretary - Paulina Morris" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "02:00 PM - 04:30 PM" },
                   ]
                 },
                 {
-                  type: "object",
-                  key: "Text",
-                  displayer: "Text",
-                  value: [
-                    {
-                      type: "string",
-                      key: "itemText",
-                      displayer: "Item Text",
-                      value: "Politician - Wendaya royin 05:00 PM to 07:30 PM",
-                    },
+                  type: "object", key: "text", displayer: "Text", value: [
+                    { type: "string", key: "topText", displayer: "Top Text", value: "Politician - Wendaya Royin" },
+                    { type: "string", key: "bottomText", displayer: "Bottom Text", value: "05:00 PM - 07:30 PM" },
                   ]
                 },
               ]
@@ -225,17 +182,22 @@ class List3 extends BaseList {
       ],
     });
     this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+    this.addProp({
+      type: "boolean",
+      key: "cardNumber",
+      displayer: "Card Number",
+      value: true,
+    });
+    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 4,
-      max: 4,
-    });
-    this.addProp({
-      type: "boolean",
-      key: "showCardNumber",
-      displayer: "Show Card Number",
-      value: true,
     });
     this.addProp({
       type: "multiSelect",
@@ -249,52 +211,72 @@ class List3 extends BaseList {
   }
 
   render() {
-    const title = this.getPropValue("title");
-    const subtitle = this.getPropValue("subtitle");
-    const description = this.getPropValue("description");
     const listItems = this.castToObject<Item[]>("listItems");
-    const buttonType: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<CardButton[]>("buttons") || [];
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const hoverAnimation = (this.getPropValue("hoverAnimation") as string[]) || [];
+    const itemCount = this.getPropValue("itemCount");
+    const cardNumber = this.getPropValue("cardNumber");
+    const line = this.getPropValue("line");
+    const alignment = Base.getContentAlignment();
+    const hasHeaderContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={this.decorateCSS("row")} gridCount={{ pc: this.getPropValue("itemCount") }}>
-            {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description) || this.castToString(buttonType.text)) && (
-              <Base.VerticalContent className={this.decorateCSS("first")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                {(this.castToString(subtitle) || this.castToString(title) || this.castToString(description)) && (
-                  <Base.VerticalContent className={this.decorateCSS("first-inner")}>
-                    {this.castToString(subtitle) && (
+          <Base.ListGrid className={`${this.decorateCSS("cards-grid")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`} gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}>
+            {hasHeaderContent && (
+              <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={hoverAnimation.join(" ")}>
+                {(subtitleExist || titleExist || descriptionExist) && (
+                  <Base.VerticalContent className={this.decorateCSS("intro-content")}>
+                    {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                        {subtitle}
+                        {this.getPropValue("subtitle")}
                       </Base.SectionSubTitle>
                     )}
-                    {this.castToString(title) && (
+                    {titleExist && (
                       <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {title}
+                        {this.getPropValue("title")}
                       </Base.SectionTitle>
                     )}
-                    {this.castToString(description) && (
+                    {descriptionExist && (
                       <Base.SectionDescription className={this.decorateCSS("description")}>
-                        {description}
+                        {this.getPropValue("description")}
                       </Base.SectionDescription>
                     )}
                   </Base.VerticalContent>
                 )}
-                {this.castToString(buttonType.text) && (
-                  <ComposerLink path={buttonType.url}>
-                    <Base.Button buttonType={buttonType.type} className={this.decorateCSS("button")}>
-                      <Base.P className={this.decorateCSS("button-text")}>
-                        {buttonType.text}
-                      </Base.P>
-                      <Base.Icon
-                        name={"FaArrowRight"}
-                        propsIcon={{
-                          className: this.decorateCSS("button-icon"),
-                        }}
-                      />
-                    </Base.Button>
-                  </ComposerLink>
-                )}
+                {buttons.length > 0 &&
+                  buttons.map((btn: CardButton, index: number) => {
+                    const buttonText = this.castToString(btn.text);
+                    const iconMedia = btn.icon as TypeMediaInputValue;
+                    const iconExist =
+                      iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                    if (!buttonText && !iconExist) return null;
+
+                    return (
+                      <ComposerLink key={index} path={btn.url}>
+                        <Base.Button
+                          buttonType={btn.type}
+                          className={this.decorateCSS("button")}
+                        >
+                          {buttonText && (
+                            <Base.P className={this.decorateCSS("button-text")}>
+                              {btn.text}
+                            </Base.P>
+                          )}
+                          {iconExist && (
+                            <Base.Media
+                              value={iconMedia}
+                              className={this.decorateCSS("button-icon")}
+                            />
+                          )}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
               </Base.VerticalContent>
             )}
             {listItems.map((listItem: Item, index: number) => {
@@ -302,25 +284,30 @@ class List3 extends BaseList {
                 <div
                   key={index}
                   className={this.decorateCSS("card")}
-                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                  data-animation={hoverAnimation.join(" ")}
                 >
                   <Base.VerticalContent className={this.decorateCSS("card-content")}>
                     {this.castToString(listItem.itemTitle) && (
-                      <Base.H5 className={this.decorateCSS("itemTitle")}>
+                      <Base.H4 className={this.decorateCSS("card-title")}>
                         {listItem.itemTitle}
-                      </Base.H5>
+                      </Base.H4>
                     )}
-                    {listItem.texts.map((item: TextItem, index: number) => (
-                      <Base.VerticalContent className={this.decorateCSS("cardItem")}>
-                        <div className={this.decorateCSS("spanItem")}></div>
-                        <Base.P className={this.decorateCSS("itemText")}>
-                          {item.itemText}
-                        </Base.P>
+                    {listItem.texts.map((item: TextItem, tIndex: number) => (
+                      <Base.VerticalContent key={tIndex} className={this.decorateCSS("event-item")}>
+                        {line && tIndex > 0 && (
+                          <div className={this.decorateCSS("divider")}></div>
+                        )}
+                        {this.castToString(item.topText) && (
+                          <Base.P className={this.decorateCSS("event-text-top")}>{item.topText}</Base.P>
+                        )}
+                        {this.castToString(item.bottomText) && (
+                          <Base.P className={this.decorateCSS("event-text-bottom")}>{item.bottomText}</Base.P>
+                        )}
                       </Base.VerticalContent>
                     ))}
                   </Base.VerticalContent>
-                  {this.getPropValue("showCardNumber") && (
-                    <Base.H1 className={this.decorateCSS("index")}>
+                  {cardNumber && (
+                    <Base.H1 className={this.decorateCSS("card-number")}>
                       {index < 9 ? `0${index + 1}` : index + 1}
                     </Base.H1>
                   )}
