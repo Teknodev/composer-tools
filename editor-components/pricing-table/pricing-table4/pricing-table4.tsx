@@ -20,6 +20,11 @@ type Pricing = {
   icon: TypeMediaInputValue;
 };
 
+interface PricingTableSettings {
+  itemCount: number;
+  animations: string[];
+}
+
 class PricingMultiple extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
@@ -53,14 +58,6 @@ class PricingMultiple extends BasePricingTable {
       value: [
         INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
       ],
-    });
-
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 3,
-      max: 4,
     });
 
     this.addProp({
@@ -541,13 +538,27 @@ class PricingMultiple extends BasePricingTable {
       ],
     });
     this.addProp({
-      type: "multiSelect",
-      key: "animations",
-      displayer: "Animations",
-      value: ["animation1", "animation2", "animation3"],
-      additionalParams: {
-        selectItems: ["animation1", "animation2", "animation3"],
-      },
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 3,
+          max: 4,
+        },
+        {
+          type: "multiSelect",
+          key: "animations",
+          displayer: "Animations",
+          value: ["animation1", "animation2", "animation3"],
+          additionalParams: {
+            selectItems: ["animation1", "animation2", "animation3"],
+          },
+        },
+      ],
     });
   }
 
@@ -587,6 +598,7 @@ class PricingMultiple extends BasePricingTable {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
+    const settings = this.castToObject<PricingTableSettings>("settings");
 
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
@@ -666,7 +678,7 @@ class PricingMultiple extends BasePricingTable {
 
             <Base.ListGrid
               gridCount={{
-                pc: this.getPropValue("itemCount"),
+                pc: settings.itemCount,
                 tablet: 3,
                 phone: 1,
               }}
@@ -697,8 +709,8 @@ class PricingMultiple extends BasePricingTable {
                     <Base.VerticalContent
                       key={indexCards}
                       className={`${this.decorateCSS("card")} ${price.isFocus && this.decorateCSS("focused")
-                        } ${this.getPropValue("animations") &&
-                        this.getPropValue("animations")
+                        } ${settings.animations &&
+                        settings.animations
                           .map((animation: string) =>
                             this.decorateCSS(animation)
                           )

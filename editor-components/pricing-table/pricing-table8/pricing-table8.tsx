@@ -22,6 +22,11 @@ type IIconBoxes = {
   buttons?: INPUTS.CastedButton[];
 };
 
+interface PricingTableSettings {
+  line: boolean;
+  animations: string[];
+}
+
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
@@ -401,20 +406,26 @@ class PricingTable8 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "multiSelect",
-      key: "animations",
-      displayer: "Animations",
-      value: ["animation1", "animation2", "animation3"],
-      additionalParams: {
-        selectItems: ["animation1", "animation2", "animation3"],
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "line",
-      displayer: "Line",
-      value: true,
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "boolean",
+          key: "line",
+          displayer: "Line",
+          value: true,
+        },
+        {
+          type: "multiSelect",
+          key: "animations",
+          displayer: "Animations",
+          value: ["animation1", "animation2", "animation3"],
+          additionalParams: {
+            selectItems: ["animation1", "animation2", "animation3"],
+          },
+        },
+      ],
     });
   }
 
@@ -507,7 +518,8 @@ class PricingTable8 extends BasePricingTable {
     const currentIndex = this.getComponentState("currentIndex");
     const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons");
     const footerButtons = this.castToObject<INPUTS.CastedButton[]>("footerButtons");
-    const line = this.getPropValue("line");
+    const settingsGroup = this.castToObject<PricingTableSettings>("settings");
+    const line = settingsGroup.line;
 
     const hasCardsWithContent = cards.some((card) => this.hasCardContent(card));
 
@@ -664,7 +676,7 @@ class PricingTable8 extends BasePricingTable {
 
                   return (
                     <div
-                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${this.getPropValue("animations") ? this.getPropValue("animations").map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
+                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${settingsGroup.animations ? settingsGroup.animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
                       key={index}
                       onClick={() => handleCardClick(index)}
                     >

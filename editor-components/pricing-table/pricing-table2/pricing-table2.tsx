@@ -21,6 +21,11 @@ type ListItem = {
   text: React.JSX.Element;
 };
 
+interface PricingTableSettings {
+  itemCount: number;
+  animations: string[];
+}
+
 class PricingTable2 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
@@ -50,13 +55,6 @@ class PricingTable2 extends BasePricingTable {
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 4,
-    });
-
     this.addProp({
       type: "array",
       key: "pricingTableItem",
@@ -709,13 +707,26 @@ class PricingTable2 extends BasePricingTable {
       ],
     });
     this.addProp({
-      type: "multiSelect",
-      key: "animations",
-      displayer: "Animations",
-      value: ["animation1"],
-      additionalParams: {
-        selectItems: ["animation1", "animation2"],
-      },
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 4,
+        },
+        {
+          type: "multiSelect",
+          key: "animations",
+          displayer: "Animations",
+          value: ["animation1"],
+          additionalParams: {
+            selectItems: ["animation1", "animation2"],
+          },
+        },
+      ],
     });
   }
 
@@ -756,6 +767,7 @@ class PricingTable2 extends BasePricingTable {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const settings = this.castToObject<PricingTableSettings>("settings");
 
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
@@ -830,7 +842,7 @@ class PricingTable2 extends BasePricingTable {
             )}
             <Base.ListGrid
               gridCount={{
-                pc: this.getPropValue("itemCount"),
+                pc: settings.itemCount,
                 tablet: 2,
                 phone: 1,
               }}
@@ -877,8 +889,8 @@ class PricingTable2 extends BasePricingTable {
                   return (
                     <Base.VerticalContent
                       key={index}
-                      className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") &&
-                        this.getPropValue("animations")
+                      className={`${this.decorateCSS("card-item-count")} ${settings.animations &&
+                        settings.animations
                           .map((animation: string) =>
                             this.decorateCSS(animation)
                           )
