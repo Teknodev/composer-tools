@@ -23,6 +23,23 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     gap: var(--composer-gap-xl);
 
     .up-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+
+      .subtitle,
+      .title,
+      .description {
+        text-align: center !important;
+
+        &::before {
+          display: none !important;
+        }
+
+        transform: none !important;
+      }
 
       .subtitle,
       .title,
@@ -37,6 +54,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         flex-wrap: wrap;
         gap: var(--composer-gap-sm);
         margin-bottom: var(--composer-gap-md);
+        justify-content: center;
 
         .button {
           .button-icon {
@@ -57,6 +75,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .duration-items {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: var(--composer-gap-sm);
         font-size: 1.5rem;
 
@@ -179,7 +198,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           padding: var(--composer-gap-lg);
           flex: 1;
           position: relative;
-          gap: 0;
+          gap: var(--composer-gap-md);
           background-color: color-mix(in srgb,
               var(--composer-html-background),
               var(--composer-font-color-primary) 5%);
@@ -227,6 +246,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             text-align: left;
             margin-left: 0;
             margin-right: 0;
+            margin-top: var(--composer-gap-md);
             justify-content: flex-start;
 
             .price-title {
@@ -282,6 +302,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
           .features {
             width: 100%;
+            gap: var(--composer-gap-sm);
 
             .features-element {
               display: flex;
