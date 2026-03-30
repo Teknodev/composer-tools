@@ -5,6 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
+
 type StatItem = {
   subtitle: React.ReactNode;
   title: React.ReactNode;
@@ -339,6 +340,7 @@ class Stats22 extends BaseStats {
       </Base.Container>
     );
   }
+
 
 type StatItem = {
     prefix: string;
