@@ -530,12 +530,18 @@ class PricingTable8 extends BasePricingTable {
     const hasLowerContent =
       currentCard && this.hasLowerContainerContent(currentCard);
 
+    const hasHeader =
+      subtitleExist || titleExist || descriptionExist || hasHeaderButtons;
+
     const handleCardClick = (index: number) => {
       this.setComponentState("currentIndex", index);
     };
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container
+        className={`${this.decorateCSS("container")} ${!hasHeader ? this.decorateCSS("no-header") : ""
+          }`}
+      >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
