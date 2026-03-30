@@ -177,6 +177,7 @@ import CallToAction18 from "./call_to_action/call_to_action18/call_to_action18";
 import CallToAction20 from "./call_to_action/call_to_action20/call_to_action20";
 import CallToAction21 from "./call_to_action/call_to_action21/call_to_action21";
 import CallToAction22 from "./call_to_action/call_to_action22/call_to_action22";
+import CallToAction23 from "./call_to_action/call_to_action23/call_to_action23";
 import CallToAction24 from "./call_to_action/call_to_action24/call_to_action24";
 import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
 import CalltoAction25 from "./call_to_action/call_to_action25/call_to_action25";
@@ -236,6 +237,7 @@ import StatsComponent21 from "./stats/stats21/stats21";
 import StatsComponent22 from "./stats/stats22/stats22";
 import StatsComponent23 from "./stats/stats23/stats23";
 import StatsComponent24 from "./stats/stats24/stats24";
+import StatsComponent32 from "./stats/stats32/stats32";
 import StatsComponent33 from "./stats/stats33/stats33";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
@@ -572,6 +574,7 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction20,
     CallToAction21,
     CallToAction22,
+    CallToAction23,
     CallToAction24,
     CallToAction27,
     CalltoAction25,
@@ -631,6 +634,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent22,
     StatsComponent23,
     StatsComponent24,
+    StatsComponent32,
     StatsComponent33,
     Form1,
     Form2,
