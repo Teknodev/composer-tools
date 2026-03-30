@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: var(--composer-html-background);
-
     .max-content {
         display: flex;
         flex-direction: column;
@@ -18,7 +16,7 @@
             }
 
             .description {
-                color: var(--composer-font-color-primary);
+                content: "";
             }
 
             .button-container {
@@ -69,16 +67,8 @@
                     margin-bottom: var(--composer-gap-sm);
                 }
 
-                .card-subtitle {
-                    color: var(--composer-font-color-primary);
-                    text-align: left !important;
-                }
-
-                .card-title {
-                    color: var(--composer-font-color-primary);
-                    text-align: left !important;
-                }
-
+                .card-subtitle,
+                .card-title,
                 .card-description {
                     color: var(--composer-font-color-primary);
                     text-align: left !important;
