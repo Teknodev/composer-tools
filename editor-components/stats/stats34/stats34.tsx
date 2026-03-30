@@ -275,6 +275,7 @@ class Stats34 extends BaseStats {
 
         const hasContent = subtitleExist || titleExist || descriptionExist;
         const visibleButtons = buttons.filter((btn) => this.castToString(btn.text));
+        const visibleStats = stats.filter((s) => s.prefix || s.number || s.suffix || s.title || s.subtitle || s.description);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -330,9 +331,9 @@ class Stats34 extends BaseStats {
                             </div>
                         )}
 
-                        {stats.length > 0 && (
+                        {visibleStats.length > 0 && (
                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                {stats.map((stat: StatItem, index: number) => (
+                                {visibleStats.map((stat: StatItem, index: number) => (
                                     <this.AnimatedStat
                                         key={`stat34-${index}`}
                                         stat={stat}
