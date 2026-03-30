@@ -128,10 +128,12 @@ class Stats19 extends BaseStats {
       return { subtitle, title: itemTitle, description: itemDescription, number, prefix, suffix };
     });
 
+    const hasAnyStatValues = stats.some((s) => s.number !== "" || s.prefix.trim() !== "" || s.suffix.trim() !== "");
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={this.decorateCSS("wrapper")}>
+          <Base.VerticalContent className={`${this.decorateCSS("wrapper")} ${!hasAnyStatValues ? this.decorateCSS("no-stat-values") : ""}`}>
             {(isSubtitleExist || isTitleExist || isDescriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {isSubtitleExist && (
@@ -171,7 +173,7 @@ class Stats19 extends BaseStats {
                     return (
                       <Base.VerticalContent key={index} className={this.decorateCSS("stat-item")}>
                         {(hasNumber || hasSubtitle || hasTitle) && (
-                          <Base.Row className={this.decorateCSS("stat-header")}>
+                          <Base.Row className={this.decorateCSS("stat-header")} style={!hasNumber ? { gridTemplateColumns: "1fr" } : undefined}>
                             {hasNumber && (
                               <span className={this.decorateCSS("stat-value")}>
                                 {hasPrefix && (
@@ -190,14 +192,14 @@ class Stats19 extends BaseStats {
                               </span>
                             )}
                             {hasSubtitle && (
-                              <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                              <Base.H6 className={this.decorateCSS("stat-subtitle")} style={!hasNumber ? { gridColumn: 1 } : undefined}>
                                 {stat.subtitle}
                               </Base.H6>
                             )}
                             {hasTitle && (
                               <Base.H5
                                 className={this.decorateCSS("stat-title")}
-                                style={!hasSubtitle ? { gridRow: "1 / span 2", alignSelf: "center" } : undefined}
+                                style={{ ...(!hasNumber ? { gridColumn: 1 } : {}), ...(!hasSubtitle ? { gridRow: "1 / span 2", alignSelf: "center" } : {}) }}
                               >
                                 {stat.title}
                               </Base.H5>

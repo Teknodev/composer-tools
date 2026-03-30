@@ -4,6 +4,10 @@
   .max-content .wrapper {
     gap: var(--composer-gap-xl);
 
+    &.no-stat-values {
+      gap: var(--composer-gap-md);
+    }
+
     .subtitle,
     .title,
     .description {
@@ -76,7 +80,8 @@
     .max-content .wrapper {
       gap: var(--composer-gap-lg);
       .stats-grid {
-        gap: var(--composer-gap-md);
+        row-gap: var(--composer-gap-lg);
+        column-gap: var(--composer-gap-md);
       }
     }
   }
