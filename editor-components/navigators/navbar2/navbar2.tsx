@@ -667,7 +667,7 @@ class Navbar2 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
        <Base.Navigator.Container
         position={position}
         positionContainer={`${this.decorateCSS("navbarContainer")} ${changeBackground ? this.decorateCSS("filledBackground") : ""}`}
@@ -1001,7 +1001,7 @@ class Navbar2 extends BaseNavigator {
           onClick={() => this.toggleMobileMenu()}
           isVisible= {isVisible}
         />
-      </>
+      </div>
     );
   }
 }

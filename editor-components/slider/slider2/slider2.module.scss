@@ -1,211 +1,297 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  height: 100%;
-  position: relative;
-  padding: 0;
-
   .max-content {
-    max-width: unset;
+    display: flex;
+    gap: var(--composer-gap-lg);
+    flex-direction: column;
     position: relative;
-    background: black;
 
-    .carousel {
-      width: 100%;
-      text-align: center;
-      margin: 0 auto;
+    .vertical-content {
 
-      > div {
-        > div {
-          > div {
-            > div {
-              padding: 0 var(--composer-gap-xl);
-
-              @container (max-width: #{$composer-tablet-width}) {
-                padding: 0 var(--composer-gap-lg);
-              }
-
-              @container (max-width: #{$composer-phone-width}) {
-                padding: 0 var(--composer-gap-md);
-              }
-            }
-          }
-        }
-      }
-
-      .card {
-        width: 100%;
-        height: 100vh;
-        position: relative;
-
-        .button {
-          font-size: 6rem;
-          border: 0px;
-          background-color: transparent;
-          color: transparent;
-          position: relative;
-          cursor: pointer;
-          top: 45%;
-          transform: translate(0, -50%);
-          z-index: 2;
-          -webkit-text-stroke: 1px white;
-          text-transform: uppercase;
-          transition: 0.3s ease-out;
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
-          width: 100%;
-          padding-left: 0;
-
-          &:hover {
-            color: white;
-            -webkit-text-stroke: 1px white;
-          }
-
-          @container (max-width: #{$composer-tablet-width}) {
-            font-size: 3rem;
-          }
-
-          @container (max-width: #{$composer-phone-width}) {
-            font-size: 2rem;
-          }
-
-          > div {
-            width: 100%;
-            display: flex;
-            align-items: flex-start;
-            justify-content: center;
-          }
-
-          .number {
-            font-size: 1rem;
-            color: white;
-            align-self: flex-start;
-            margin: 0;
-            margin-top: var(--composer-gap-xs);
-          }
-
-          .text {
-            white-space: nowrap;
-
-            &.active {
-              color: white;
-            }
-          }
-        }
+      .title,
+      .subtitle,
+      .description {
+        content: "";
       }
     }
 
-    .image-box {
-      position: absolute;
-      height: 100%;
-      right: 0;
-      width: 65%;
-      z-index: 0;
-      overflow: hidden;
+    .down-page {
+      gap: var(--composer-gap-md);
+      align-items: stretch;
 
-      @container (max-width: #{$composer-tablet-width}) {
-        width: 100%;
-      }
-
-      &::after {
-        background-color: rgba(0, 0, 0, 0.25);
-        content: "";
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        left: 0px;
-        top: 0px;
-        z-index: 3;
-      }
-
-      .overlay {
-        width: 100%;
-        height: 100%;
-        position: relative;
-
-        .image {
-          position: absolute;
-          height: 100%;
-          width: 100%;
-          object-fit: cover;
-          transition: 0.24s ease-in-out;
-          opacity: 0;
-          transform: scale(1.05);
-
-          &.active {
-            opacity: 1;
-            transform: scale(1);
-            z-index: 2;
-          }
-        }
-      }
-    }
-
-    .text-box {
-      width: 100%;
-      margin: auto;
-      position: absolute;
-      top: 63%;
-      left: 50%;
-      transform: translateX(-50%);
-      height: calc(37vh - var(--composer-gap-md));
-      z-index: 5;
-
-      @container (max-width: #{$composer-tablet-width}) {
-        top: 58%;
-        height: calc(42vh - var(--composer-gap-md));
-      }
-
-      @container (max-width: #{$composer-phone-width}) {
-        height: calc(45vh - var(--composer-gap-md));
-        top: 55%;
-      }
-
-      &::before {
-        background-color: white;
-        content: "";
-        width: 20px;
-        height: 2px;
-        position: absolute;
-        top: -15px;
-        left: var(--composer-gap-xl);
-
-        @container (max-width: #{$composer-tablet-width}) {
-          left: var(--composer-gap-lg);
-        }
-
-        @container (max-width: #{$composer-phone-width}) {
-          left: var(--composer-gap-md);
-          top: calc(-1 * var(--composer-gap-sm));
-        }
-      }
-
-      .text {
-        color: white;
-        font-size: 1rem;
-        transition: 0.3s;
-        opacity: 0;
-        width: 100%;
-        max-width: 35%;
-        padding: 0 var(--composer-gap-xl);
+      .control-part {
+        flex: 0 0 25%;
         overflow: hidden;
-        max-height: 100%;
-        margin: 0;
+        flex-direction: column;
+        justify-content: flex-start;
         text-align: left;
+        padding: var(--composer-gap-lg);
+        background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+        border-radius: var(--composer-border-radius-md);
+        box-sizing: border-box;
 
-        @container (max-width: #{$composer-tablet-width}) {
-          padding: 0 var(--composer-gap-lg);
-          max-width: 100%;
+        .control-title {
+          color: var(--composer-primary-color);
+          text-align: left;
         }
 
-        @container (max-width: #{$composer-phone-width}) {
-          padding: 0 var(--composer-gap-md);
-          max-width: 100%;
+        .control-description {
+          color: var(--composer-font-color-primary);
+          text-align: left;
         }
 
-        &.visible {
+        .arrows {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          justify-content: flex-start;
+          width: 100%;
+
+          .icon-wrapper {
+            width: 35px;
+            height: 35px;
+
+            .prevArrow,
+            .nextArrow {
+              color: var(--composer-font-color-primary);
+              border-radius: 50%;
+              border: 2px solid var(--composer-primary-color);
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              padding: var(--composer-gap-xs);
+              background-color: var(--composer-html-background);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 1.5rem;
+
+              &:hover {
+                background-color: var(--composer-primary-color);
+                color: var(--composer-font-color-secondary);
+              }
+            }
+          }
+        }
+
+        .control-button {
+          justify-content: left;
+          width: 100%;
+
+          .control-button-text {
+            content: "";
+          }
+
+          .control-button-icon {
+            line-height: 0;
+          }
+        }
+      }
+
+      .slider-parent {
+        flex: 1;
+        container-type: inline-size;
+
+        .carousel {
+          display: flex;
+          gap: var(--composer-gap-md);
+          position: relative;
+          height: 100%;
+
+          :global(.slick-dots) {
+            display: none !important;
+          }
+
+          :global(.slick-list) {
+            height: 100%;
+            margin: 0 calc(-0.5 * var(--composer-gap-md));
+
+            :global(.slick-track) {
+              display: flex;
+              align-items: stretch;
+              height: 100%;
+
+              :global(.slick-slide) {
+                padding: 0 calc(0.5 * var(--composer-gap-md));
+                height: 100%;
+                display: flex;
+
+                .slide-wrapper {
+                  height: 100%;
+                  width: 100%;
+                  display: flex;
+                }
+              }
+            }
+          }
+
+          .card {
+            justify-content: start;
+            text-align: left;
+            padding: var(--composer-gap-lg);
+            transition: transform var(--composer-transition-duration-normal) ease;
+            border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
+            border-radius: var(--composer-border-radius-md);
+            height: 100%;
+            min-height: 265px;
+
+            &.hover-active:hover {
+              transform: scale(1.05);
+            }
+
+            .card-button {
+              justify-content: left;
+              width: 100%;
+
+              .card-button-text {
+                content: "";
+              }
+
+              .card-button-icon {
+                line-height: 0;
+              }
+            }
+
+            .icon-row {
+              width: 100%;
+              justify-content: flex-start;
+            }
+
+            .play-icon {
+              font-size: 3rem;
+              color: var(--composer-primary-color);
+              width: 3rem;
+              height: 3rem;
+              margin-left: 0;
+            }
+
+            .item-subtitle {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+            }
+
+            .item-header {
+              color: var(--composer-font-color-primary);
+              text-align: left;
+            }
+
+            .item-content {
+              color: var(--composer-tertiary-color);
+              text-align: left;
+              width: 100%;
+            }
+          }
+
+          .for-single-card {
+            &:hover {
+              transform: scale(1.02);
+            }
+          }
+        }
+
+        .carousel--singleCard {
+          width: 100%;
+        }
+
+        .carousel--multipleCards {
+          width: auto;
+        }
+      }
+
+      .no-control-part {
+        max-width: 100%;
+      }
+    }
+
+    .custom-dots {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      width: 100%;
+      gap: var(--composer-gap-xs);
+
+      .dot-item {
+        margin: 0 var(--composer-gap-sm);
+        cursor: pointer;
+
+        .dot-button {
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
+          border-radius: var(--composer-border-radius-full);
+          border: none;
+          background: var(--composer-font-color-primary);
+          opacity: 0.5;
+          padding: 0;
+          transition: transform var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
+          transform: scale(0.8);
+        }
+
+        &.active .dot-button {
           opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .button-wrapper {
+      display: flex;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .button-text {
+        content: "";
+      }
+
+      .button-icon {
+        line-height: 0;
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .down-page {
+        flex-direction: row !important;
+        gap: var(--composer-gap-md);
+
+        .control-part {
+          flex: 0 0 30%;
+        }
+
+        .slider-parent {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .down-page {
+        gap: var(--composer-gap-md);
+        flex-direction: column !important;
+      }
+
+      .custom-dots {
+        .dot-item {
+          margin: 0 var(--composer-gap-xs);
+
+          .dot-button {
+            transform: scale(0.6);
+          }
+
+          &.active .dot-button {
+            transform: scale(0.8);
+          }
         }
       }
     }
