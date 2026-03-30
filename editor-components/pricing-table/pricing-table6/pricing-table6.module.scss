@@ -129,10 +129,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             width: 100%;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
             border-radius: var(--composer-border-radius-sm);
-            gap: 0;
+            gap: var(--composer-gap-md);
             padding: 0 var(--composer-gap-xl);
             cursor: pointer;
 
@@ -148,7 +148,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
               .tag {
                 background-color: var(--composer-font-color-primary);
-                color: var(--composer-html-background);
+                color: var(--composer-font-color-secondary) !important;
                 border-color: var(--composer-font-color-primary);
               }
 
@@ -206,6 +206,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               align-items: center;
               gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
+              flex-shrink: 0;
 
               .icon {
                 font-size: 2rem;
@@ -219,8 +220,8 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             }
 
             .tag-wrapper {
-              width: 100%;
-              padding-left: var(--composer-gap-md);
+              width: auto;
+              padding-left: 0;
 
               .tag {
                 display: inline-block;
@@ -242,7 +243,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               color: var(--composer-font-color-primary);
               transform: scale(1);
               transition: all 0.8s ease;
-              width: inherit;
+              width: auto;
+              flex-shrink: 0;
+              margin-left: auto;
 
               .price,
               .per {
@@ -250,7 +253,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .price {
-                font-size: 2rem;
+                font-size: 2.5rem !important;
                 width: fit-content;
               }
 
@@ -303,6 +306,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .subtitle-wrapper {
                 display: flex;
                 align-items: flex-start;
+                justify-content: flex-start;
                 height: 100%;
 
                 .subtitle {
@@ -313,6 +317,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                   transition: 0.8s;
                   width: auto;
                   position: relative;
+                  text-align: left;
                 }
               }
             }
@@ -327,10 +332,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               .list-item-disabled {
                 display: flex;
                 align-items: center;
+                justify-content: flex-start;
                 gap: var(--composer-gap-sm);
                 padding: var(--composer-gap-md);
                 border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
                 color: var(--composer-font-color-primary);
+                text-align: left;
 
                 .dash_icon {
                   font-size: 1.5rem;
@@ -341,6 +348,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 .property {
                   color: var(--composer-font-color-primary);
                   margin: 0;
+                  text-align: left;
                 }
               }
 
@@ -451,6 +459,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               padding: var(--composer-gap-md);
               flex-direction: column;
               justify-content: center;
+              align-items: center;
               gap: var(--composer-gap-md);
 
               .plan-icons .plan,
@@ -460,12 +469,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .item-price {
-                flex-direction: column;
+                flex-direction: row;
                 justify-content: center;
+                align-items: center;
                 width: 100%;
+                margin-left: 0;
 
                 .price {
-                  font-size: 1.5rem;
+                  font-size: 2rem !important;
                 }
               }
 
@@ -481,18 +492,33 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             width: 100%;
 
             .content {
-              min-height: 400px;
+              min-height: auto;
+
+              .header-wrapper {
+                justify-content: flex-start;
+                align-items: flex-start;
+                text-align: left;
+              }
 
               .list-body {
 
                 .list-item,
                 .list-item-disabled {
                   padding: var(--composer-gap-md);
+                  justify-content: flex-start;
+                  align-items: center;
+                  text-align: left;
                 }
               }
 
               .body-bottom {
-                justify-content: center;
+                justify-content: space-between;
+                flex-direction: row;
+                align-items: center;
+
+                .bottom-text {
+                  text-align: right;
+                }
               }
             }
           }
