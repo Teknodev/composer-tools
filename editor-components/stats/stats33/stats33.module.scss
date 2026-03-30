@@ -35,6 +35,7 @@
                     flex-direction: column;
                     justify-content: center;
                     flex: 1;
+
                     .stat-value {
                         font-size: 12rem;
                         display: flex;
@@ -135,6 +136,7 @@
     .container .max-content .content {
         .row {
             flex-direction: row !important;
+            gap: var(--composer-gap-lg);
 
             .text-content,
             .media-wrapper {
@@ -160,7 +162,7 @@
 
         .row {
             flex-direction: column !important;
-            gap: var(--composer-gap-lg);
+            gap: var(--composer-gap-md);
 
             .text-content {
                 order: 1;
