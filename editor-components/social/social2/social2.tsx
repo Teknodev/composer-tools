@@ -882,7 +882,7 @@ componentDidMount() {
     };   
     
     return (
-        <>
+        <div className={this.decorateCSS("social2-root")}>
         <Base.Container className={this.decorateCSS("container")} id={"container"}  >
             <Base.MaxContent className={this.decorateCSS("max-content")}>
                 {this.castToString(this.getPropValue("title")) && (
@@ -1078,7 +1078,7 @@ componentDidMount() {
 
             </ComposerSlider>
         </Base.Overlay>
-        </>
+        </div>
     );
   }
 }

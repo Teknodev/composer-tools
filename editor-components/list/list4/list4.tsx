@@ -139,7 +139,7 @@ class list4 extends BaseList {
   }
 
   static getName(): string {
-    return "list 4";
+    return "List 4";
   }
 
   render() {
