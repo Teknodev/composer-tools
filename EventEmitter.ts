@@ -15,7 +15,9 @@ export enum EVENTS {
   CSS_CLASSES_CHANGED = "cssClassesChanged",
   ANIMATION_INTERACTIONS_CHANGED = "animationInteractionsChanged",
   OPEN_INLINE_IMAGE_EDITOR = "openInlineImageEditor",
-  OPEN_INLINE_VIDEO_EDITOR = "openInlineVideoEditor"
+  OPEN_INLINE_VIDEO_EDITOR = "openInlineVideoEditor",
+  HOVER_THEME_ELEMENT = "hoverThemeElement",
+  HOVER_TREE_ELEMENT = "hoverTreeElement"
 }
 
 class EventQ {
