@@ -50,7 +50,7 @@ export class Stats30Page extends BaseStats {
                         { type: "string", key: "value", displayer: "Value", value: "56" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Teamwork" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced team <p>members<p/>" },
+                        { type: "string", key: "title", displayer: "Title", value: "Experienced team members" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
