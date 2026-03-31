@@ -4,44 +4,43 @@
   padding: calc(var(--composer-gap-lg) * 2) 0 !important;
 
   .max-content {
-    padding: 0 var(--composer-gap-lg);
-    gap: 0;
+    padding: 0;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
 
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-lg);
+    .header-section {
+      padding: 0 var(--composer-gap-lg);
 
-      .header-section {
-        padding: 0;
+      &.align-center {
+        text-align: center;
+        align-items: center;
 
-        &.align-center {
+        .subtitle,
+        .header-title,
+        .description {
           text-align: center;
-          align-items: center;
-
-          .subtitle,
-          .header-title,
-          .description {
-            text-align: center;
-          }
-
-          .button-wrapper {
-            justify-content: center;
-          }
         }
 
         .button-wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          gap: var(--composer-gap-sm);
-
-          .button .button-text {
-            content: "";
-          }
+          justify-content: center;
         }
       }
 
-      .grid-container {
+      .button-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button .button-text {
+          content: "";
+        }
+      }
+    }
+  }
+
+  .grid-container {
         gap: 0;
 
         .card {
@@ -326,16 +325,14 @@
             }
           }
         }
-      }
     }
-  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: 80px 0;
+    padding: calc(var(--composer-gap-lg) * 2) 0;
 
-    .max-content .content .grid-container {
+    .grid-container {
       .card {
         aspect-ratio: 8/14;
 
@@ -411,16 +408,19 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding-top: 50px !important;
-    padding-bottom: 50px !important;
+    padding-top: var(--composer-gap-xl) !important;
+    padding-bottom: var(--composer-gap-xl) !important;
+    gap: var(--composer-gap-md);
 
     .max-content {
-      padding: 0 var(--composer-gap-md) !important;
+      gap: var(--composer-gap-md);
 
-      .content {
-        gap: var(--composer-gap-md);
+      .header-section {
+        padding: 0 var(--composer-gap-md);
+      }
+    }
 
-        .grid-container {
+    .grid-container {
           .card {
             aspect-ratio: 8/8;
 
@@ -478,7 +478,5 @@
             transform: none !important;
           }
         }
-      }
-    }
   }
 }

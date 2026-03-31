@@ -347,142 +347,138 @@ class List9 extends BaseList {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content")}>
-                        {hasHeader && (
-                            <Base.VerticalContent
-                                className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : ""
-                                    }`}
-                            >
-                                {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {this.getPropValue("subtitle")}
-                                    </Base.SectionSubTitle>
-                                )}
-                                {titleExist && (
-                                    <Base.SectionTitle className={this.decorateCSS("header-title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                )}
-                                {descriptionExist && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {this.getPropValue("description")}
-                                    </Base.SectionDescription>
-                                )}
-                                {headerButtons.length > 0 && (
-                                    <div className={this.decorateCSS("button-wrapper")}>
-                                        {headerButtons.map((button: INPUTS.CastedButton, index: number) => {
-                                            const buttonTextExist = this.castToString(button.text);
-                                            const buttonIconExist = button.icon && button.icon.name;
-
-                                            return (
-                                                <ComposerLink key={index} path={button.url}>
-                                                    <Base.Button
-                                                        buttonType={button.type}
-                                                        className={this.decorateCSS("button")}
-                                                    >
-                                                        {buttonTextExist && (
-                                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                                {button.text}
-                                                            </Base.P>
-                                                        )}
-                                                        {buttonIconExist && (
-                                                            <Base.Media
-                                                                className={this.decorateCSS("button-icon")}
-                                                                value={button.icon!}
-                                                            />
-                                                        )}
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            );
-                                        })}
-                                    </div>
-                                )}
-                            </Base.VerticalContent>
-                        )}
-
-                        <Base.ListGrid
-                            gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }}
-                            className={this.decorateCSS("grid-container")}
+                    {hasHeader && (
+                        <Base.VerticalContent
+                            className={`${this.decorateCSS("header-section")} ${isCenterAlignment ? this.decorateCSS("align-center") : ""}`}
                         >
-                            {cards.map(
-                                (card: CardItem, indexCard: number) => {
-                                    const cardTitleExist = this.castToString(card.title);
-                                    const cardSubtitleExist = this.castToString(card.subtitle);
-                                    const cardDescriptionExist = this.castToString(card.description);
-                                    const iconExist = card.icon && (card.icon.name || card.icon.url);
-                                    const imageExist = card.image && (card.image.name || card.image.url);
-                                    const cardButtons = card.buttons || [];
-                                    const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
-
-                                    if (!cardTitleExist && !cardDescriptionExist && !iconExist && !imageExist) return null;
-
-                                    return (
-                                        <div
-                                            key={indexCard}
-                                            className={this.decorateCSS("card")}
-                                            data-animation={this.getPropValue("hoverAnimation").join(" ")}
-                                            tabIndex={0}
-                                        >
-                                            <div className={this.decorateCSS("image-container")}>
-                                                {imageExist && (
-                                                    <Base.Media
-                                                        className={`${this.decorateCSS("image")} ${this.decorateCSS("media-el")}`}
-                                                        value={card.image}
-                                                    />
-                                                )}
-                                                {imageOverlay && (
-                                                    <div className={this.decorateCSS("overlay")} />
-                                                )}
-                                                {gradientOverlay && <div className={this.decorateCSS("gradient-overlay")} />}
-                                            </div>
-                                            <Base.VerticalContent
-                                                className={this.decorateCSS("card-content")}
-                                            >
-                                                {iconExist && (
-                                                    <Base.Media
-                                                        value={card.icon}
-                                                        className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
-                                                    />
-                                                )}
-                                                {cardSubtitleExist && (
-                                                    <Base.H5 className={this.decorateCSS("card-subtitle")}>
-                                                        {card.subtitle}
-                                                    </Base.H5>
-                                                )}
-                                                {cardTitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("card-title")}>
-                                                        {card.title}
-                                                    </Base.H4>
-                                                )}
-                                                {cardDescriptionExist && (
-                                                    <Base.P className={this.decorateCSS("card-description")}>
-                                                        {card.description}
-                                                    </Base.P>
-                                                )}
-                                                {hasValidCardButtons && (
-                                                    <div className={this.decorateCSS("card-button-container")}>
-                                                        {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
-                                                            const btnText = this.castToString(btn.text);
-                                                            const btnIconExist = btn.icon && btn.icon.name;
-                                                            if (!btnText && !btnIconExist) return null;
-                                                            return (
-                                                                <ComposerLink key={btnIndex} path={btn.url}>
-                                                                    <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
-                                                                        {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
-                                                                        {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
-                                                                    </Base.Button>
-                                                                </ComposerLink>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                )}
-                                            </Base.VerticalContent>
-                                        </div>
-                                    );
-                                }
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
                             )}
-                        </Base.ListGrid>
-                    </div>
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("header-title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {headerButtons.length > 0 && (
+                                <div className={this.decorateCSS("button-wrapper")}>
+                                    {headerButtons.map((button: INPUTS.CastedButton, index: number) => {
+                                        const buttonTextExist = this.castToString(button.text);
+                                        const buttonIconExist = button.icon && button.icon.name;
+
+                                        return (
+                                            <ComposerLink key={index} path={button.url}>
+                                                <Base.Button
+                                                    buttonType={button.type}
+                                                    className={this.decorateCSS("button")}
+                                                >
+                                                    {buttonTextExist && (
+                                                        <Base.P className={this.decorateCSS("button-text")}>
+                                                            {button.text}
+                                                        </Base.P>
+                                                    )}
+                                                    {buttonIconExist && (
+                                                        <Base.Media
+                                                            className={this.decorateCSS("button-icon")}
+                                                            value={button.icon!}
+                                                        />
+                                                    )}
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </div>
+                            )}
+                        </Base.VerticalContent>
+                    )}
+                    <Base.ListGrid
+                        gridCount={{ pc: this.getPropValue("itemCount"), tablet: 4, phone: 1 }}
+                        className={this.decorateCSS("grid-container")}
+                    >
+                        {cards.map(
+                            (card: CardItem, indexCard: number) => {
+                                const cardTitleExist = this.castToString(card.title);
+                                const cardSubtitleExist = this.castToString(card.subtitle);
+                                const cardDescriptionExist = this.castToString(card.description);
+                                const iconExist = card.icon && (card.icon.name || card.icon.url);
+                                const imageExist = card.image && (card.image.name || card.image.url);
+                                const cardButtons = card.buttons || [];
+                                const hasValidCardButtons = cardButtons.some((btn: INPUTS.CastedButton) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
+
+                                if (!cardTitleExist && !cardDescriptionExist && !iconExist && !imageExist) return null;
+
+                                return (
+                                    <div
+                                        key={indexCard}
+                                        className={this.decorateCSS("card")}
+                                        data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                                        tabIndex={0}
+                                    >
+                                        <div className={this.decorateCSS("image-container")}>
+                                            {imageExist && (
+                                                <Base.Media
+                                                    className={`${this.decorateCSS("image")} ${this.decorateCSS("media-el")}`}
+                                                    value={card.image}
+                                                />
+                                            )}
+                                            {imageOverlay && (
+                                                <div className={this.decorateCSS("overlay")} />
+                                            )}
+                                            {gradientOverlay && <div className={this.decorateCSS("gradient-overlay")} />}
+                                        </div>
+                                        <Base.VerticalContent
+                                            className={this.decorateCSS("card-content")}
+                                        >
+                                            {iconExist && (
+                                                <Base.Media
+                                                    value={card.icon}
+                                                    className={`${this.decorateCSS("icon")} ${this.decorateCSS("media-el")}`}
+                                                />
+                                            )}
+                                            {cardSubtitleExist && (
+                                                <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                                                    {card.subtitle}
+                                                </Base.H5>
+                                            )}
+                                            {cardTitleExist && (
+                                                <Base.H4 className={this.decorateCSS("card-title")}>
+                                                    {card.title}
+                                                </Base.H4>
+                                            )}
+                                            {cardDescriptionExist && (
+                                                <Base.P className={this.decorateCSS("card-description")}>
+                                                    {card.description}
+                                                </Base.P>
+                                            )}
+                                            {hasValidCardButtons && (
+                                                <div className={this.decorateCSS("card-button-container")}>
+                                                    {cardButtons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                                                        const btnText = this.castToString(btn.text);
+                                                        const btnIconExist = btn.icon && btn.icon.name;
+                                                        if (!btnText && !btnIconExist) return null;
+                                                        return (
+                                                            <ComposerLink key={btnIndex} path={btn.url}>
+                                                                <Base.Button buttonType={btn.type} className={this.decorateCSS("card-button")}>
+                                                                    {btnText && <Base.P className={this.decorateCSS("card-button-text")}>{btn.text}</Base.P>}
+                                                                    {btnIconExist && <Base.Media className={this.decorateCSS("card-button-icon")} value={btn.icon!} />}
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
+                                        </Base.VerticalContent>
+                                    </div>
+                                );
+                            }
+                        )}
+                    </Base.ListGrid>
                 </Base.MaxContent>
             </Base.Container>
         );
