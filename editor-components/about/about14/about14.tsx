@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import styles from "./about14.module.scss";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type MediaGroup = {
     media: TypeMediaInputValue;
@@ -66,6 +68,15 @@ class About14 extends BaseAbout {
         });
 
         this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+
+        this.addProp({
             type: "object",
             key: "toggleSettings",
             displayer: "Buttons",
@@ -115,9 +126,12 @@ class About14 extends BaseAbout {
         const showMoreText = toggleSettings["show-more-text"];
         const showLessText = toggleSettings["show-less-text"];
 
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+
         const hasOverlay = mediaGroup?.overlay;
 
-        const hasTextContent = hasTitle || hasSubtitle || hasDescription;
+        const hasTextContent = hasTitle || hasSubtitle || hasDescription || hasValidButtons;
         const hasImageContent = !!imageMedia;
 
         const alignment = Base.getContentAlignment();
@@ -146,16 +160,31 @@ class About14 extends BaseAbout {
                                             {this.getPropValue("title")}
                                         </Base.SectionTitle>
                                     )}
-                                    {hasDescription && (
+                                    {(hasDescription || hasValidButtons) && (
                                         <div
                                             className={`${this.decorateCSS("description-wrapper")} ${isExpanded && this.decorateCSS("expanded-wrapper")}`}
                                         >
-                                            <Base.SectionDescription
-                                                className={this.decorateCSS("description")}
-                                            >
-                                                {this.getPropValue("description")}
-                                            </Base.SectionDescription>
-
+                                            {hasDescription && (
+                                                <Base.SectionDescription
+                                                    className={this.decorateCSS("description")}
+                                                >
+                                                    {this.getPropValue("description")}
+                                                </Base.SectionDescription>
+                                            )}
+                                            {hasValidButtons && (
+                                                <div className={this.decorateCSS("button-container")}>
+                                                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                                                        if (!this.castToString(button.text)) return null;
+                                                        return (
+                                                            <ComposerLink key={index} path={button.url}>
+                                                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                                                </Base.Button>
+                                                            </ComposerLink>
+                                                        );
+                                                    })}
+                                                </div>
+                                            )}
                                             <div
                                                 className={this.decorateCSS("show-more-overlay")}
                                                 onClick={this.toggleExpand}
