@@ -208,6 +208,13 @@ class List4 extends BaseList {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "showLines",
+      displayer: "Lines",
+      value: false,
+    });
+
+    this.addProp({
       type: "multiSelect",
       key: "hoverAnimation",
       displayer: "Hover Animation Style",
@@ -308,12 +315,14 @@ class List4 extends BaseList {
                       className={this.decorateCSS("service-item")}
                       data-animation={hoverAnimation.join(" ")}
                     >
-                      <div className={this.decorateCSS("border-frame")}>
-                        <div className={this.decorateCSS("border-left")}></div>
-                        <div className={this.decorateCSS("border-top")}></div>
-                        <div className={this.decorateCSS("border-right")}></div>
-                        <div className={this.decorateCSS("border-bottom")}></div>
-                      </div>
+                      {this.getPropValue("showLines") && (
+                        <div className={this.decorateCSS("border-frame")}>
+                          <div className={this.decorateCSS("border-left")}></div>
+                          <div className={this.decorateCSS("border-top")}></div>
+                          <div className={this.decorateCSS("border-right")}></div>
+                          <div className={this.decorateCSS("border-bottom")}></div>
+                        </div>
+                      )}
                       {this.getPropValue("cardNumber") && (
                         <div
                           className={`${this.decorateCSS("item-index")} ${this.decorateCSS("index")}`}
