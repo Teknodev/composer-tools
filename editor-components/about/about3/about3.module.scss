@@ -75,6 +75,7 @@
 
             &.no-content {
                 display: unset;
+                flex: 1;
 
                 .image-container {
                     max-height: calc(100vh - 100px);
@@ -158,7 +159,7 @@
                     .upper-text {
                         text-align: center;
                         text-transform: uppercase;
-                        color: var(--composer-tertiary-color);
+                        color: var(--composer-font-color-primary);
                         font-size: 1.75rem;
                     }
 

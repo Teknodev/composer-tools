@@ -163,8 +163,9 @@ class About3 extends BaseAbout {
 
     const isImage1Exist = !!backMedia;
     const isImage2Exist = !!frontMedia;
-    const phoneIconValue = this.getPropValue("phoneIcon");
-    const hasPhoneSection = phoneIconValue || phoneStr;
+    const phoneIconValue = this.getPropValue("phoneIcon") as TypeMediaInputValue;
+    const phoneIconExist = phoneIconValue && (phoneIconValue.type === "icon" ? phoneIconValue.name : (phoneIconValue as any).url);
+    const hasPhoneSection = phoneIconExist || phoneStr;
 
     const showDiv = isImage1Exist || isImage2Exist;
     const showLeftDiv = subtitleStr || titleStr || descriptionStr || hasValidButtons || hasPhoneSection;
@@ -211,7 +212,7 @@ class About3 extends BaseAbout {
 
                   {hasPhoneSection && (
                     <div className={this.decorateCSS("phone-section")}>
-                      {phoneIconValue && (
+                      {phoneIconExist && (
                         <Base.Media value={phoneIconValue} className={this.decorateCSS("icon")} />
                       )}
                       {phoneStr && (
