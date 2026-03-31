@@ -220,7 +220,7 @@ export namespace Base {
 
   export function SectionTitle({ className, ...props }: any) {
     return (
-      <H1 className={`${styles.sectionTitle} ${className}`} {...props}></H1>
+      <H1 className={`${styles.sectionTitle} ${className}`} data-section="title" {...props}></H1>
     );
   }
 
@@ -229,6 +229,7 @@ export namespace Base {
     return (
       <H3
         className={`${styles.sectionSubTitle} ${className} ${styles[type]}`}
+        data-section="subtitle"
         {...props}
       ></H3>
     );
@@ -236,7 +237,7 @@ export namespace Base {
 
   export function SectionDescription({ className, ...props }: any) {
     return (
-      <P className={`${styles.sectionDescription} ${className}`} {...props}></P>
+      <P className={`${styles.sectionDescription} ${className}`} data-section="description" {...props}></P>
     );
   }
 
