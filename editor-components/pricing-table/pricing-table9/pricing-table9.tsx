@@ -59,11 +59,19 @@ class PricingTable9 extends BasePricingTable {
     });
 
     this.addProp({
+      type: "media",
+      key: "icon",
+      displayer: "Icon",
+      additionalParams: { availableTypes: ["icon", "image"] },
+      value: { type: "icon", name: "IoApps" },
+    });
+
+    this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "lorem", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 
@@ -189,7 +197,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Massa id neque",
                     },
                     {
                       type: "media",
@@ -293,7 +301,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Placerat duis",
                     },
                     {
                       type: "media",
@@ -317,7 +325,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("type", "Button", "50$/ month", "", "", null, "Primary"),
+                INPUTS.BUTTON("type", "Button", "FREE / month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -348,7 +356,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Aliquam vestib",
                     },
                     {
                       type: "media",
@@ -400,7 +408,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Vel orci porta",
                     },
                     {
                       type: "media",
@@ -476,7 +484,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("type", "Button", "75$/ month", "", "", null, "Primary"),
+                INPUTS.BUTTON("type", "Button", "49.99$ / month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -490,7 +498,7 @@ class PricingTable9 extends BasePricingTable {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "STANDART",
+              value: "STANDARD",
             },
 
             {
@@ -507,7 +515,33 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
+                      value: "Ulum morbi blan",
+                    },
+                    {
+                      type: "media",
+                      key: "icon",
+                      displayer: "Icon",
+                      additionalParams: { availableTypes: ["icon", "image"] },
+                      value: { type: "icon", name: "FcCheckmark" },
+                    },
+                    {
+                      type: "page",
+                      key: "url",
+                      displayer: "Navigate To",
                       value: "",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "content",
+                  displayer: "Content",
+                  value: [
+                    {
+                      type: "string",
+                      key: "text",
+                      displayer: "Content",
+                      value: "Pulvinar neque",
                     },
                     {
                       type: "media",
@@ -559,33 +593,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
-                    },
-                    {
-                      type: "media",
-                      key: "icon",
-                      displayer: "Icon",
-                      additionalParams: { availableTypes: ["icon", "image"] },
-                      value: { type: "icon", name: "FcCheckmark" },
-                    },
-                    {
-                      type: "page",
-                      key: "url",
-                      displayer: "Navigate To",
-                      value: "",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  key: "content",
-                  displayer: "Content",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "Content",
-                      value: "",
+                      value: "Neque laoreet",
                     },
                     {
                       type: "media",
@@ -635,7 +643,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("type", "Button", "100$/ month", "", "", null, "Primary"),
+                INPUTS.BUTTON("type", "Button", "89.99$ / month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -666,7 +674,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Dit cursus risus",
                     },
                     {
                       type: "media",
@@ -692,7 +700,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Libero enim",
                     },
                     {
                       type: "media",
@@ -718,7 +726,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Vitae sagittis",
                     },
                     {
                       type: "media",
@@ -744,7 +752,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Mattis rhoncus",
                     },
                     {
                       type: "media",
@@ -770,7 +778,7 @@ class PricingTable9 extends BasePricingTable {
                       type: "string",
                       key: "text",
                       displayer: "Content",
-                      value: "",
+                      value: "Libero enim",
                     },
                     {
                       type: "media",
@@ -794,7 +802,7 @@ class PricingTable9 extends BasePricingTable {
               key: "buttons",
               displayer: "Buttons",
               value: [
-                INPUTS.BUTTON("type", "Button", "1000$/ month", "", "", null, "Primary"),
+                INPUTS.BUTTON("type", "Button", "129.99$ / month", "", "", null, "Primary"),
               ],
             },
           ],
@@ -826,7 +834,7 @@ class PricingTable9 extends BasePricingTable {
       arrows: false,
       dots: true,
       dotsClass: this.decorateCSS("dots"),
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 2000,
       infinite: true,
       speed: 1000,
@@ -835,12 +843,6 @@ class PricingTable9 extends BasePricingTable {
       swipeToSlide: true,
       touchThreshold: 100,
       responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 2,
-          },
-        },
         {
           breakpoint: 500,
           settings: {
@@ -857,69 +859,93 @@ class PricingTable9 extends BasePricingTable {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const coloredBackground = this.getPropValue("coloredBackground");
+
+    const iconValue = this.getPropValue("icon");
+    let iconObj: TypeMediaInputValue | undefined;
+    let iconString = "";
+    if (typeof iconValue === "object") {
+      iconObj = iconValue as TypeMediaInputValue;
+    } else if (typeof iconValue === "string") {
+      iconString = this.castToString(iconValue);
+    }
+    const headerIconExist = !!iconObj || !!iconString;
+
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => {
       const buttonText = this.castToString(btn.text);
-      const iconValue = btn.icon as unknown as TypeMediaInputValue;
-      const iconExist = iconValue && (iconValue.type === "icon" ? iconValue.name : (iconValue as { url?: string }).url);
+      const btnIconValue = btn.icon as unknown as TypeMediaInputValue;
+      const iconExist = btnIconValue && (btnIconValue.type === "icon" ? btnIconValue.name : (btnIconValue as { url?: string }).url);
       return buttonText || iconExist;
     });
 
     const columns = this.castToObject<PricingColumn[]>("columns");
     const firstColumn = columns[0];
+    const alignment = Base.getContentAlignment();
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${coloredBackground ? this.decorateCSS("colored-background") : ""}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(titleExist || subtitleExist || descriptionExist || hasValidButtons) && (
+          {(titleExist || subtitleExist || descriptionExist || hasValidButtons || headerIconExist) && (
             <div className={this.decorateCSS("header-card")}>
-              <Base.VerticalContent className={this.decorateCSS("header")}>
-                {subtitleExist && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {this.getPropValue("subtitle")}
-                  </Base.SectionSubTitle>
-                )}
+              <div className={`${this.decorateCSS("header")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+                <Base.VerticalContent className={this.decorateCSS("header-left-container")}>
+                  {subtitleExist && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {this.getPropValue("subtitle")}
+                    </Base.SectionSubTitle>
+                  )}
 
-                {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
-                )}
-                {descriptionExist && (
-                  <Base.SectionDescription
-                    className={this.decorateCSS("description")}
-                  >
-                    {this.getPropValue("description")}
-                  </Base.SectionDescription>
-                )}
-                {hasValidButtons && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                      const buttonText = this.castToString(item.text);
-                      const iconValue = item.icon as unknown as TypeMediaInputValue;
-                      const iconExist = iconValue && (iconValue.type === "icon" ? iconValue.name : (iconValue as { url?: string }).url);
-                      if (!buttonText && !iconExist) return null;
-                      return (
-                        <ComposerLink key={index} path={item.url}>
-                          <Base.Button
-                            buttonType={item.type}
-                            className={this.decorateCSS("button")}
-                          >
-                            {buttonText && (
-                              <Base.P className={this.decorateCSS("button-text")}>
-                                {item.text}
-                              </Base.P>
-                            )}
-                            {iconExist && (
-                              <Base.Media className={this.decorateCSS("button-icon")} value={iconValue} />
-                            )}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
+                  {titleExist && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  )}
+                  {descriptionExist && (
+                    <Base.SectionDescription
+                      className={this.decorateCSS("description")}
+                    >
+                      {this.getPropValue("description")}
+                    </Base.SectionDescription>
+                  )}
+                  {hasValidButtons && (
+                    <div className={this.decorateCSS("button-container")}>
+                      {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                        const buttonText = this.castToString(item.text);
+                        const btnIconValue = item.icon as unknown as TypeMediaInputValue;
+                        const iconExist = btnIconValue && (btnIconValue.type === "icon" ? btnIconValue.name : (btnIconValue as { url?: string }).url);
+                        if (!buttonText && !iconExist) return null;
+                        return (
+                          <ComposerLink key={index} path={item.url}>
+                            <Base.Button
+                              buttonType={item.type}
+                              className={this.decorateCSS("button")}
+                            >
+                              {buttonText && (
+                                <Base.P className={this.decorateCSS("button-text")}>
+                                  {item.text}
+                                </Base.P>
+                              )}
+                              {iconExist && (
+                                <Base.Media className={this.decorateCSS("button-icon")} value={btnIconValue} />
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
+                    </div>
+                  )}
+                </Base.VerticalContent>
+                {headerIconExist && (
+                  <div className={this.decorateCSS("header-right-container")}>
+                    <div className={this.decorateCSS("header-icon-wrapper")}>
+                      <Base.Media
+                        value={iconObj ?? { type: "icon", name: iconString }}
+                        className={this.decorateCSS(iconObj?.type === "image" ? "header-image" : "header-icon")}
+                      />
+                    </div>
                   </div>
                 )}
-              </Base.VerticalContent>
+              </div>
             </div>
           )}
           <div className={this.decorateCSS("table-card")}>
@@ -966,20 +992,22 @@ class PricingTable9 extends BasePricingTable {
                                   className={this.decorateCSS("content-item")}
                                   style={index === 0 ? { justifyContent: "flex-start" } : {}}
                                 >
-                                  {iconExist && (
-                                    <Base.Media
-                                      value={content.icon}
-                                      className={this.decorateCSS("content-icon")}
-                                    />
-                                  )}
-                                  {textExist && (
-                                    <Base.P
-                                      className={this.decorateCSS("content-text")}
-                                      style={index === 0 ? { textAlign: "left" } : {}}
-                                    >
-                                      {content?.text}
-                                    </Base.P>
-                                  )}
+                                  <div className={this.decorateCSS("content-right")}>
+                                    {iconExist && (
+                                      <Base.Media
+                                        value={content.icon}
+                                        className={this.decorateCSS("content-icon")}
+                                      />
+                                    )}
+                                    {textExist && (
+                                      <Base.P
+                                        className={this.decorateCSS("content-text")}
+                                        style={index === 0 ? { textAlign: "left" } : {}}
+                                      >
+                                        {content?.text}
+                                      </Base.P>
+                                    )}
+                                  </div>
                                   <div className={this.decorateCSS("hover-line")} />
                                 </div>
                               );
@@ -1022,7 +1050,19 @@ class PricingTable9 extends BasePricingTable {
                                             "button-text"
                                           )}
                                         >
-                                          {button.text}
+                                          {(() => {
+                                            const slashIdx = buttonTextExist.indexOf("/");
+                                            if (slashIdx !== -1) {
+                                              const main = buttonTextExist.substring(0, slashIdx).trim();
+                                              const suffix = buttonTextExist.substring(slashIdx).trim();
+                                              return (
+                                                <>
+                                                  {main} <span className={this.decorateCSS("button-suffix")}>{suffix}</span>
+                                                </>
+                                              );
+                                            }
+                                            return buttonTextExist;
+                                          })()}
                                         </Base.P>
                                       )}
                                     </ComposerLink>
@@ -1090,23 +1130,25 @@ class PricingTable9 extends BasePricingTable {
                                         {firstColumnContent.text}
                                       </Base.P>
                                     )}
-                                    {iconExist && (
-                                      <Base.Media
-                                        value={content.icon}
-                                        className={this.decorateCSS(
-                                          "content-icon"
-                                        )}
-                                      />
-                                    )}
-                                    {textExist && (
-                                      <Base.P
-                                        className={this.decorateCSS(
-                                          "content-text"
-                                        )}
-                                      >
-                                        {content?.text}
-                                      </Base.P>
-                                    )}
+                                    <div className={this.decorateCSS("content-right")}>
+                                      {iconExist && (
+                                        <Base.Media
+                                          value={content.icon}
+                                          className={this.decorateCSS(
+                                            "content-icon"
+                                          )}
+                                        />
+                                      )}
+                                      {textExist && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "content-text"
+                                          )}
+                                        >
+                                          {content?.text}
+                                        </Base.P>
+                                      )}
+                                    </div>
                                     <div className={this.decorateCSS("hover-line")} />
                                   </div>
                                 );
@@ -1149,7 +1191,19 @@ class PricingTable9 extends BasePricingTable {
                                               "button-text"
                                             )}
                                           >
-                                            {button.text}
+                                            {(() => {
+                                              const slashIdx = buttonTextExist.indexOf("/");
+                                              if (slashIdx !== -1) {
+                                                const main = buttonTextExist.substring(0, slashIdx).trim();
+                                                const suffix = buttonTextExist.substring(slashIdx).trim();
+                                                return (
+                                                  <>
+                                                    {main} <span className={this.decorateCSS("button-suffix")}>{suffix}</span>
+                                                  </>
+                                                );
+                                              }
+                                              return buttonTextExist;
+                                            })()}
                                           </Base.P>
                                         )}
                                       </div>
