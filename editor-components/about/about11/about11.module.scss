@@ -162,12 +162,29 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .content {
+        display: flex !important;
+        flex-direction: row !important;
+
+        .left,
+        .right {
+          flex: 1;
+          max-width: 50%;
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .content {
         align-items: flex-start;
-        flex-direction: column;
+        flex-direction: column !important;
 
         .left,
         .right {
