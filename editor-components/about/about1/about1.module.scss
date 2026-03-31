@@ -5,16 +5,16 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        gap: var(--composer-gap-lg);
 
         .heading {
-            margin-bottom: var(--composer-gap-md);
             display: flex;
             flex-direction: column;
 
             .subtitle,
             .section-title,
             .description {
-                margin: inherit;
+                content: "";
             }
 
             .button-container {
@@ -51,6 +51,7 @@
 
                 &.no-content {
                     aspect-ratio: 2;
+                    grid-column: 1 / -1;
                 }
 
                 &[data-animation~="animate1"] {
@@ -127,7 +128,6 @@
         display: flex;
         justify-content: flex-end;
         gap: var(--composer-gap-sm);
-        margin-top: var(--composer-gap-md);
         color: var(--composer-primary-color);
 
         .icon-item {
@@ -233,6 +233,8 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
+            gap: var(--composer-gap-md);
+
             .heading {
                 .button-container .button {
                     .icon {

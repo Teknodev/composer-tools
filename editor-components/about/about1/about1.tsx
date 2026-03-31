@@ -282,6 +282,9 @@ class About1 extends BaseAbout {
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || btn.image?.url || btn.icon?.name);
     const rightItems = this.castToObject<Icon[]>("right-items");
     const textContent = this.castToObject<ListItem[]>("items");
+    const hasTextContent = textContent.some(
+      (item) => this.castToString(item.title) || this.castToString(item.description)
+    );
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -311,7 +314,7 @@ class About1 extends BaseAbout {
 
                     return (
                       <ComposerLink key={index} path={item.url}>
-                        <Base.Button buttonType={item.type} className={`${this.decorateCSS("button")} ${item.type === "Bare" && this.decorateCSS("button-bare")}`}>
+                        <Base.Button buttonType={item.type} className={`${this.decorateCSS("button")} ${item.type === "Bare" ? this.decorateCSS("button-bare") : ""}`}>
                           {this.castToString(item.text) && (
                             <Base.P className={this.decorateCSS("button-text")}>
                               {item.text}
@@ -334,7 +337,7 @@ class About1 extends BaseAbout {
           <Base.ContainerGrid className={this.decorateCSS("content")}>
             {imageValue && (
               <Base.GridCell
-                className={`${this.decorateCSS("image-box")} ${!textContent.length ? this.decorateCSS("no-content") : ""}`}
+                className={`${this.decorateCSS("image-box")} ${!hasTextContent ? this.decorateCSS("no-content") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
               >
                 <Base.Media
@@ -347,7 +350,7 @@ class About1 extends BaseAbout {
 
               </Base.GridCell>
             )}
-            {textContent.length > 0 && (
+            {hasTextContent && (
               <Base.GridCell className={this.decorateCSS("content-right")}>
                 {textContent.map((item, index) => (
                   <Base.VerticalContent key={index} className={this.decorateCSS("item")}>
