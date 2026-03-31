@@ -179,9 +179,9 @@ import CallToAction21 from "./call_to_action/call_to_action21/call_to_action21";
 import CallToAction22 from "./call_to_action/call_to_action22/call_to_action22";
 import CallToAction23 from "./call_to_action/call_to_action23/call_to_action23";
 import CallToAction24 from "./call_to_action/call_to_action24/call_to_action24";
-import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
 import CalltoAction25 from "./call_to_action/call_to_action25/call_to_action25";
 import CallToAction26 from "./call_to_action/call_to_action26/call_to_action26";
+import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
 import CallToAction28 from "./call_to_action/call_to_action28/call_to_action28";
 import CallToAction29 from "./call_to_action/call_to_action29/call_to_action29";
 import CallToAction30 from "./call_to_action/call_to_action30/call_to_action30";
@@ -709,7 +709,7 @@ function Registerables(composer: ComponentsRegistery) {
     About15,
     About16,
     Portfolio1,
-    Portfolio2,
+    Portfolio2,    
     Comparison1,
     BackToTop1,
     Header1,
