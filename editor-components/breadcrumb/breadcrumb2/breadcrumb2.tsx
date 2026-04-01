@@ -1,19 +1,24 @@
 import * as React from "react";
 import styles from "./breadcrumb2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseBreadcrumb } from "../../EditorComponent";
+import { BaseBreadcrumb, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-  title: string;
-  icon: string;
+  title: JSX.Element;
+  icon: TypeMediaInputValue;
   navigateTo: string;
 };
-
 
 class Breadcrumb2 extends BaseBreadcrumb {
   constructor(props?: any) {
     super(props, styles);
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
     this.addProp({
       type: "string",
       key: "title",
@@ -65,12 +70,6 @@ class Breadcrumb2 extends BaseBreadcrumb {
       ],
     });
     this.addProp({
-      type: "boolean",
-      key: "showBreadcrumb",
-      displayer: "Show Breadcrumb",
-      value: true,
-    });
-    this.addProp({
       type: "object",
       key: "currentPage",
       displayer: "Current Page",
@@ -102,11 +101,24 @@ class Breadcrumb2 extends BaseBreadcrumb {
       value: true,
     });
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Background Media",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: { type: "image", url: "" },
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: { type: "image", url: "" },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "media",
@@ -120,12 +132,6 @@ class Breadcrumb2 extends BaseBreadcrumb {
         name: "RxSlash",
       },
     });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
   }
 
   static getName(): string {
@@ -135,86 +141,101 @@ class Breadcrumb2 extends BaseBreadcrumb {
   render() {
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const isTitleExist = this.castToString(this.getPropValue("title"));
+    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
-    const description = this.getPropValue("description");
-    const showBreadcrumb = this.getPropValue("showBreadcrumb");
-    const currentPage = this.castToObject("currentPage");
-    const currentPageTitle = currentPage?.title || "";
-    const currentPageIcon = currentPage?.icon || "";
+    const currentPage = this.castToObject<{ title: JSX.Element; icon: TypeMediaInputValue }>("currentPage");
+    const currentPageTitle = this.castToString(currentPage?.title);
+    const currentPageIconExist = currentPage?.icon && (currentPage.icon.type === "icon" ? currentPage.icon.name : currentPage.icon.url);
     const showGradient = this.getPropValue("showGradient");
-    const overlay = this.getPropValue("overlay");
-    const bgImage = this.getPropValue("image");
+    const background = this.castToObject<{ image: TypeMediaInputValue; overlay: boolean }>("background");
+    const bgImage = background?.image;
+    const bgImageExist = bgImage && (bgImage.type === "icon" ? bgImage.name : bgImage.url);
+    const overlay = background?.overlay;
+    const breadcrumbIconValue = this.getPropValue("breadcrumbIcon");
+    const breadcrumbIconExist = breadcrumbIconValue && (breadcrumbIconValue.type === "icon" ? breadcrumbIconValue.name : breadcrumbIconValue.url);
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${showGradient
-            ? this.decorateCSS("gradientBackground")
-            : this.decorateCSS("noGradient")
+          ? this.decorateCSS("gradientBackground")
+          : this.decorateCSS("noGradient")
           }`}
       >
-        {bgImage && <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />}
-        {overlay && bgImage && <div className={this.decorateCSS("overlay")}></div>}
-        {showBreadcrumb && (
-          <Base.MaxContent className={this.decorateCSS("max-content")}>
-            <Base.Row className={this.decorateCSS("crumber-content")}>
-              {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
+        {bgImageExist && <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />}
+        {overlay && bgImageExist && <div className={this.decorateCSS("overlay")}></div>}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <Base.Row className={this.decorateCSS("crumber-content")}>
+            {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
+              const itemTitleExist = this.castToString(item.title);
+              const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+              if (!itemTitleExist && !itemIconExist) return null;
+              return (
                 <React.Fragment key={index}>
-                  {(this.castToString(item.title) || item.icon) && (
-                    <ComposerLink path={item.navigateTo}>
-                      <div className={this.decorateCSS("breadcrumb-link")}>
-                        {item.icon && (
-                          <Base.Media
-                            value={item.icon}
-                            className={this.decorateCSS("crumberIcon")}
-                          />
-                        )}
-                        {this.castToString(item.title) && (
-                          <Base.P className={this.decorateCSS("home-page")}>
-                            {item.title}
-                          </Base.P>
-                        )}
-                      </div>
-                    </ComposerLink>
-                  )}
+                  <ComposerLink path={item.navigateTo}>
+                    <div className={this.decorateCSS("breadcrumb-link")}>
+                      {itemIconExist && (
+                        <Base.Media
+                          value={item.icon}
+                          className={this.decorateCSS("crumberIcon")}
+                        />
+                      )}
+                      {itemTitleExist && (
+                        <Base.P className={this.decorateCSS("home-page")}>
+                          {item.title}
+                        </Base.P>
+                      )}
+                    </div>
+                  </ComposerLink>
                 </React.Fragment>
-              ))}
-              {breadcrumbItems.length > 0 && (
-                <>
+              );
+            })}
+            {breadcrumbItems.length > 0 && (
+              <>
+                {breadcrumbIconExist && (
                   <Base.Media
-                    value={this.getPropValue("breadcrumbIcon")}
+                    value={breadcrumbIconValue}
                     className={this.decorateCSS("crumberIcon")}
                   />
-                  <div className={this.decorateCSS("current-page-container")}>
-                    {currentPageIcon.name && (
-                      <Base.Media
-                        value={currentPageIcon}
-                        className={this.decorateCSS("current-page-icon")}
-                      />
-                    )}
+                )}
+                <div className={this.decorateCSS("current-page-container")}>
+                  {currentPageIconExist && (
+                    <Base.Media
+                      value={currentPage!.icon}
+                      className={this.decorateCSS("current-page-icon")}
+                    />
+                  )}
+                  {currentPageTitle && (
                     <Base.P className={this.decorateCSS("current-page")}>
-                      {currentPageTitle}
+                      {currentPage?.title}
                     </Base.P>
-                  </div>
-                </>
-              )}
-            </Base.Row>
-            <Base.VerticalContent className={this.decorateCSS("content-container")}>
-              {isTitleExist && (
-                <div>
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {this.getPropValue("title")}
-                  </Base.SectionTitle>
+                  )}
                 </div>
-              )}
-              {isDescriptionExist && (
-                <div>
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                </div>
-              )}
-            </Base.VerticalContent>
-          </Base.MaxContent>
-        )}
+              </>
+            )}
+          </Base.Row>
+          <Base.VerticalContent className={this.decorateCSS("content-container")}>
+            {isSubtitleExist && (
+              <div>
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {this.getPropValue("subtitle")}
+                </Base.SectionSubTitle>
+              </div>
+            )}
+            {isTitleExist && (
+              <div>
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {this.getPropValue("title")}
+                </Base.SectionTitle>
+              </div>
+            )}
+            {isDescriptionExist && (
+              <div>
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {this.getPropValue("description")}
+                </Base.SectionDescription>
+              </div>
+            )}
+          </Base.VerticalContent>
+        </Base.MaxContent>
       </Base.Container>
     );
   }
