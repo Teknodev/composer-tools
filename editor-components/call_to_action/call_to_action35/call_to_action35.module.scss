@@ -9,10 +9,8 @@
         padding: 0 !important;
 
         .max-content {
-            .content-wrapper, .card {
-                .header {
-                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl) !important;
-                }
+            .content-wrapper {
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
             }
         }
     }
@@ -22,8 +20,9 @@
             position: relative;
             margin-top: -190px;
 
-            .card, .content-wrapper {
-                margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+            .card {
+                margin-inline: var(--composer-gap-xl);
+                margin-bottom: calc(var(--composer-gap-lg) * 2);
             }
         }
     }
@@ -57,73 +56,63 @@
     .max-content {
         z-index: 2;
 
-        .card {
-            background-color: var(--composer-primary-color);
-            margin: 0;
-            border-radius: var(--composer-border-radius-md);
+        .card,
+        .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: calc(var(--composer-gap-xl) * 2);
 
-            .header {
-                padding: 80px 50px !important;
+            .text-block {
+                align-items: flex-start;
+                flex: 2;
+                min-width: 0;
 
-                .text-block {
-
-                    .subtitle,
-                    .title,
-                    .description {
-                        color: var(--composer-font-color-secondary) !important;
-                    }
-
-                    .subtitle {
-                        background: none !important;
-                        padding: 0 !important;
-
-                        &::before {
-                            background-color: var(--composer-font-color-secondary) !important;
-                        }
-                    }
+                .subtitle,
+                .title,
+                .description {
+                    text-align: left;
                 }
+
+                .subtitle {
+                    width: fit-content;
+                    margin-inline: 0;
+                }
+            }
+
+            .button-group {
+                display: flex;
+                flex-wrap: wrap;
+                flex: 1;
+                justify-content: flex-end;
+                gap: var(--composer-gap-sm);
+                min-width: fit-content;
             }
         }
 
-        .card, .content-wrapper {
-            .header {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-                gap: calc(var(--composer-gap-xl) * 2);
+        .card {
+            background-color: var(--composer-primary-color);
+            border-radius: var(--composer-border-radius-md);
 
-                .text-block {
-                    align-items: flex-start;
-                    flex: 1;
-                    min-width: 0;
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
 
-                    .subtitle,
-                    .title,
-                    .description {
-                        text-align: inherit;
-                    }
+            .text-block {
 
-                    .subtitle {
-                        width: fit-content !important;
-                        margin-inline: 0 !important;
-                    }
+                .subtitle,
+                .title,
+                .description {
+                    color: var(--composer-font-color-secondary) !important;
+                    text-align: left;
                 }
 
-                .button-group {
-                    display: flex;
-                    flex-wrap: wrap;
-                    flex: 1;
-                    justify-content: flex-end;
-                    gap: var(--composer-gap-sm);
+                .subtitle {
+                    background: none !important;
+                    padding: 0 !important;
 
-                    .button {
-
-                        .button-icon,
-                        .button-text {
-                            content: "";
-                        }
+                    &::before {
+                        background-color: var(--composer-font-color-secondary) !important;
                     }
                 }
             }
@@ -133,31 +122,9 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        &.has-media {
-            padding: 0 !important;
-
-            .max-content {
-                .content-wrapper, .card {
-                    .header {
-                        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg) !important;
-                    }
-                }
-            }
-        }
-
-        &.has-background {
-            .max-content {
-                .card, .content-wrapper {
-                    margin: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-                }
-            }
-        }
-
         .max-content {
             .card {
-                .header {
-                    padding: 80px 40px !important;
-                }
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
             }
         }
     }
@@ -166,65 +133,49 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         &.has-media {
-            padding: 0 !important;
-
             .max-content {
-                .content-wrapper, .card {
-                    .header {
-                        padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
-                    }
-                }
-            }
-        }
-
-        &.has-background {
-            .max-content {
-                .card, .content-wrapper {
-                    margin: var(--composer-gap-xl) var(--composer-gap-md) !important;
+                .content-wrapper {
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
                 }
             }
         }
 
         .max-content {
-            .card, .content-wrapper {
-                .header {
-                    gap: var(--composer-gap-md);
-                    display: flex;
-                    flex-direction: column;
-
-                    .text-block {
-                        align-items: center !important;
-                        text-align: center !important;
-
-                        .subtitle,
-                        .title,
-                        .description {
-                            text-align: center !important;
-                        }
-
-                        .subtitle {
-                            transform: none;
-                            width: fit-content !important;
-                            margin-inline: 0 !important;
-
-                            &::before {
-                                display: none !important;
-                            }
-                        }
-                    }
-
-                    .button-group {
-                        margin-left: 0;
-                        display: flex;
-                        flex-wrap: wrap;
-                        width: 100%;
-                        justify-content: center;
-                    }
-                }
+            .card {
+                margin-inline: var(--composer-gap-md);
+                padding: var(--composer-gap-xl) var(--composer-gap-md);
             }
 
-            .card .header {
-                padding: 50px 20px !important;
+            .card,
+            .content-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--composer-gap-md);
+
+                .text-block {
+                    align-items: center;
+                    width: 100%;
+
+                    .subtitle,
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+
+                    .subtitle {
+                        transform: none;
+
+                        &::before {
+                            display: none !important;
+                        }
+                    }
+                }
+
+                .button-group {
+                    justify-content: center;
+                    width: 100%;
+                    min-width: unset;
+                }
             }
         }
     }
