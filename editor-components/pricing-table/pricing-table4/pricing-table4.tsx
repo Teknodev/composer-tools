@@ -32,7 +32,7 @@ class PricingMultiple extends BasePricingTable {
     this.addProp({
       type: "string",
       key: "subtitle",
-      displayer: "SubTitle",
+      displayer: "Subtitle",
       value: "Pricing Plans",
     });
 
@@ -73,7 +73,7 @@ class PricingMultiple extends BasePricingTable {
             {
               type: "boolean",
               key: "isFocus",
-              displayer: "Is focus",
+              displayer: "Card Active",
               value: false,
             },
             {
@@ -229,7 +229,7 @@ class PricingMultiple extends BasePricingTable {
             {
               type: "boolean",
               key: "isFocus",
-              displayer: "Is focus",
+              displayer: "Card Active",
               value: true,
             },
             {
@@ -386,7 +386,7 @@ class PricingMultiple extends BasePricingTable {
             {
               type: "boolean",
               key: "isFocus",
-              displayer: "Is focus",
+              displayer: "Card Active",
               value: false,
             },
             {
