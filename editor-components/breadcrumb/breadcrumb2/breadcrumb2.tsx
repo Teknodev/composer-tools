@@ -5,9 +5,9 @@ import { BaseBreadcrumb } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-    title: string;
-    icon: string;
-    navigateTo: string;
+  title: string;
+  icon: string;
+  navigateTo: string;
 };
 
 
@@ -45,9 +45,9 @@ class Breadcrumb2 extends BaseBreadcrumb {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -82,16 +82,16 @@ class Breadcrumb2 extends BaseBreadcrumb {
           value: "Current Page",
         },
         {
-            type: "media",
-            key: "icon",
-            displayer: "Icon",
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
-            value: {
-                type: "icon",
-                name: "",
-            },
+          type: "media",
+          key: "icon",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "icon"],
+          },
+          value: {
+            type: "icon",
+            name: "",
+          },
         },
       ],
     });
@@ -108,18 +108,18 @@ class Breadcrumb2 extends BaseBreadcrumb {
       additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "" },
     });
-        this.addProp({
-            type: "media",
-            key: "breadcrumbIcon",
-            displayer: "Breadcrumb Icon",
-            additionalParams: {
-                availableTypes: ["icon"],
-            },
-            value: {
-                type: "icon",
-                name: "RxSlash",
-            },
-        });
+    this.addProp({
+      type: "media",
+      key: "breadcrumbIcon",
+      displayer: "Media",
+      additionalParams: {
+        availableTypes: ["image", "icon"],
+      },
+      value: {
+        type: "icon",
+        name: "RxSlash",
+      },
+    });
     this.addProp({
       type: "boolean",
       key: "overlay",
@@ -146,11 +146,10 @@ class Breadcrumb2 extends BaseBreadcrumb {
     const bgImage = this.getPropValue("image");
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${
-          showGradient
+        className={`${this.decorateCSS("container")} ${showGradient
             ? this.decorateCSS("gradientBackground")
             : this.decorateCSS("noGradient")
-        }`}
+          }`}
       >
         {bgImage && <Base.Media value={bgImage} className={this.decorateCSS("background-image")} />}
         {overlay && bgImage && <div className={this.decorateCSS("overlay")}></div>}
@@ -199,24 +198,24 @@ class Breadcrumb2 extends BaseBreadcrumb {
               )}
             </Base.Row>
             <Base.VerticalContent className={this.decorateCSS("content-container")}>
-            {isTitleExist && (
-            <div>
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            </div>
-          )}
-            {isDescriptionExist && (
-            <div>
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
-            </div>
-          )}
-          </Base.VerticalContent>
-            </Base.MaxContent>
-          )}
-        </Base.Container>
+              {isTitleExist && (
+                <div>
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                </div>
+              )}
+              {isDescriptionExist && (
+                <div>
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                </div>
+              )}
+            </Base.VerticalContent>
+          </Base.MaxContent>
+        )}
+      </Base.Container>
     );
   }
 }

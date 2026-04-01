@@ -23,30 +23,30 @@ class Breadcrumb5 extends BaseBreadcrumb {
                     key: "item",
                     displayer: "Item",
                     value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Home",
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "",
-              },
-            },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Navigate To",
-              value: "",
-            },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Home",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Media",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "",
+                            },
+                        },
+                        {
+                            type: "page",
+                            key: "navigateTo",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
                     ],
                 },
             ],
@@ -60,9 +60,9 @@ class Breadcrumb5 extends BaseBreadcrumb {
         this.addProp({
             type: "media",
             key: "breadcrumbIcon",
-            displayer: "Breadcrumb Icon",
+            displayer: "Media",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
             },
             value: {
                 type: "icon",
@@ -83,9 +83,9 @@ class Breadcrumb5 extends BaseBreadcrumb {
                 {
                     type: "media",
                     key: "icon",
-                    displayer: "Icon",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                     },
                     value: {
                         type: "icon",

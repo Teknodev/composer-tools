@@ -37,6 +37,7 @@
     .breadcrumb-wrapper {
         position: absolute;
         bottom: 0;
+        left: var(--composer-gap-xl);
 
         .crumber-content {
             display: flex;
@@ -169,8 +170,13 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .breadcrumb-wrapper {
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - calc(var(--composer-gap-xl) * 2));
+
             .crumber-content {
-                min-width: 75%;
+                min-width: 100%;
+                max-width: 100%;
 
                 .title{
                 }

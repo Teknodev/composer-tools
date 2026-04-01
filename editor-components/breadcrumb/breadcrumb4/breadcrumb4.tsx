@@ -5,9 +5,9 @@ import { BaseBreadcrumb } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-    title: string;
-    icon: string;
-    navigateTo: string;
+  title: string;
+  icon: string;
+  navigateTo: string;
 };
 
 class Breadcrumb4 extends BaseBreadcrumb {
@@ -16,7 +16,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
     this.addProp({
       type: "object",
       key: "vector1",
-      displayer: "Object 1",
+      displayer: "Media",
       value: [
         {
           type: "media",
@@ -36,7 +36,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
     this.addProp({
       type: "object",
       key: "vector2",
-      displayer: "Object 2",
+      displayer: "Media",
       value: [
         {
           type: "media",
@@ -56,7 +56,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
     this.addProp({
       type: "object",
       key: "vector3",
-      displayer: "Object 3",
+      displayer: "Media",
       value: [
         {
           type: "media",
@@ -117,9 +117,9 @@ class Breadcrumb4 extends BaseBreadcrumb {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -156,9 +156,9 @@ class Breadcrumb4 extends BaseBreadcrumb {
         {
           type: "media",
           key: "icon",
-          displayer: "Icon",
+          displayer: "Media",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["image", "icon"],
           },
           value: {
             type: "icon",
@@ -170,16 +170,16 @@ class Breadcrumb4 extends BaseBreadcrumb {
     this.addProp({
       type: "media",
       key: "breadcrumbIcon",
-      displayer: "Breadcrumb Icon",
+      displayer: "Media",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["image", "icon"],
       },
       value: {
         type: "icon",
         name: "MdKeyboardArrowRight",
       },
     });
-  } 
+  }
 
   static getName(): string {
     return "Breadcrumb 4";
@@ -202,24 +202,24 @@ class Breadcrumb4 extends BaseBreadcrumb {
 
     const titleExist = this.castToString(title);
 
-    return(
+    return (
       <div className={this.decorateCSS("container-main")}>
         {vector1 && vector1.image && (
-          <Base.Media 
+          <Base.Media
             value={vector1.image}
-            className={`${this.decorateCSS("vector1")} ${vector1.animation ? this.decorateCSS("animated") : ""}`} 
+            className={`${this.decorateCSS("vector1")} ${vector1.animation ? this.decorateCSS("animated") : ""}`}
           />
         )}
         {vector2 && vector2.image && (
-          <Base.Media 
-            value={vector2.image} 
-            className={`${this.decorateCSS("vector2")} ${vector2.animation ? this.decorateCSS("animated") : ""}`} 
+          <Base.Media
+            value={vector2.image}
+            className={`${this.decorateCSS("vector2")} ${vector2.animation ? this.decorateCSS("animated") : ""}`}
           />
         )}
         {vector3 && vector3.image && (
-          <Base.Media 
-            value={vector3.image} 
-            className={`${this.decorateCSS("vector3")} ${vector3.animation ? this.decorateCSS("animated") : ""}`} 
+          <Base.Media
+            value={vector3.image}
+            className={`${this.decorateCSS("vector3")} ${vector3.animation ? this.decorateCSS("animated") : ""}`}
           />
         )}
         <div className={this.decorateCSS("section")}>

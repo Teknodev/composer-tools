@@ -32,6 +32,7 @@
     z-index: 1;
     background-color: var(--composer-overlay-color);
   }
+
   .max-content {
     height: 100%;
     position: relative;
@@ -40,27 +41,26 @@
     .left {
       content: "";
     }
-    .title-main, .description {
-      content: "";
-      &.title-with-bg {
-        color: #534931;
-      }
+
+    .title-main,
+    .description {
+      color: #534931 !important;
     }
   }
-
 }
+
 .strip-container {
   display: flex;
   align-items: center;
-  padding: 0px 50px;
+  padding: 0px var(--composer-gap-md);
   min-height: 70px;
-  background-color: color-mix(
-    in srgb,
-    var(--composer-html-background),
-    var(--composer-font-color-primary) 5%
-  );
+  background-color: color-mix(in srgb,
+      var(--composer-html-background),
+      var(--composer-font-color-primary) 5%);
+
   .strip-max-content {
     display: flex;
+
     .strip-content {
       width: 100%;
       display: flex;
@@ -69,44 +69,52 @@
       padding: calc(var(--padding-xl) * 1.5) 0;
       color: var(--composer-font-color-primary);
       flex-wrap: nowrap;
+
       &.center {
         justify-content: center;
       }
+
       &.left {
         justify-content: flex-start;
       }
+
       .breadcrumb-item {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-md);
       }
+
       .current-page-wrapper {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
       }
+
       .breadcrumb-link {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-xs);
         text-decoration: none;
         cursor: pointer;
-        
+
         &:hover {
           .home-page {
             color: var(--composer-primary-color);
           }
+
           .stripIcon {
             color: var(--composer-primary-color);
           }
         }
       }
+
       .home-page {
         color: var(--composer-primary-color);
         text-decoration: none;
         font-weight: bold;
         cursor: pointer;
       }
+
       .stripIcon {
         font-size: 1rem;
         height: 18px;
@@ -114,15 +122,18 @@
         flex-shrink: 0;
         color: var(--composer-primary-color);
       }
+
       .current-page-container {
         display: flex;
         align-items: center;
         gap: var(--composer-gap-xs);
         width: 100%;
       }
+
       .current-page {
         cursor: text;
       }
+
       .current-page-icon {
         font-size: 1rem;
         flex-shrink: 0;
@@ -130,6 +141,7 @@
         height: 18px;
         width: 18px;
       }
+
       .home-page,
       .current-page {
         min-width: 0;
@@ -141,6 +153,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    min-height: 300px;
+    min-height: 200px;
   }
 }

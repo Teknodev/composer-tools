@@ -25,7 +25,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
             key: "description",
             displayer: "Description",
             value: "",
-          });
+        });
 
         this.addProp({
             type: "media",
@@ -53,9 +53,9 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         {
                             type: "media",
                             key: "icon",
-                            displayer: "Icon",
+                            displayer: "Media",
                             additionalParams: {
-                                availableTypes: ["icon"],
+                                availableTypes: ["image", "icon"],
                             },
                             value: {
                                 type: "icon",
@@ -81,9 +81,9 @@ class Breadcrumb1 extends BaseBreadcrumb {
         this.addProp({
             type: "media",
             key: "breadcrumbIcon",
-            displayer: "Breadcrumb Icon",
+            displayer: "Media",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
             },
             value: {
                 type: "icon",
@@ -104,9 +104,9 @@ class Breadcrumb1 extends BaseBreadcrumb {
                 {
                     type: "media",
                     key: "icon",
-                    displayer: "Icon",
+                    displayer: "Media",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                     },
                     value: {
                         type: "icon",
@@ -156,21 +156,21 @@ class Breadcrumb1 extends BaseBreadcrumb {
 
                         {isTitleExist && (
                             <Base.MaxContent className={this.decorateCSS("max-content")}>
-                            <Base.VerticalContent className={this.decorateCSS("left")}>
-                                <Base.SectionTitle
-                                    className={`${this.decorateCSS("title-main")} ${bgImage?.url && this.decorateCSS("title-with-bg")
-                                        } }`}
-                                >
-                                    {this.getPropValue("title")}
-                                </Base.SectionTitle>
-                                {isDescriptionExist && (
-                                    <Base.MaxContent className={this.decorateCSS("max-content")}>
-                                        <Base.SectionDescription className={`${this.decorateCSS("description")} ${bgImage?.url && this.decorateCSS("title-with-bg")}`}>
-                                        {description}
-                                        </Base.SectionDescription>
-                                    </Base.MaxContent>
-                                )}
-                            </Base.VerticalContent>
+                                <Base.VerticalContent className={this.decorateCSS("left")}>
+                                    <Base.SectionTitle
+                                        className={`${this.decorateCSS("title-main")} ${bgImage?.url && this.decorateCSS("title-with-bg")
+                                            } }`}
+                                    >
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                    {isDescriptionExist && (
+                                        <Base.MaxContent className={this.decorateCSS("max-content")}>
+                                            <Base.SectionDescription className={`${this.decorateCSS("description")} ${bgImage?.url && this.decorateCSS("title-with-bg")}`}>
+                                                {description}
+                                            </Base.SectionDescription>
+                                        </Base.MaxContent>
+                                    )}
+                                </Base.VerticalContent>
                             </Base.MaxContent>
                         )}
                     </Base.Container>
@@ -216,10 +216,10 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                                     className={this.decorateCSS("current-page-icon")}
                                                 />
                                             )}
-                                            {this.castToString(currentPageTitle) && 
-                                            <Base.P className={this.decorateCSS("current-page")}>
-                                                {currentPageTitle}
-                                            </Base.P>}
+                                            {this.castToString(currentPageTitle) &&
+                                                <Base.P className={this.decorateCSS("current-page")}>
+                                                    {currentPageTitle}
+                                                </Base.P>}
                                         </div>
                                     </div>
                                 )}
