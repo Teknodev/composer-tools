@@ -21,8 +21,9 @@
             margin-top: -190px;
 
             .card {
-                margin-inline: var(--composer-gap-xl);
+                margin-inline: auto;
                 margin-bottom: calc(var(--composer-gap-lg) * 2);
+                width: 90%;
             }
         }
     }
@@ -88,7 +89,6 @@
                 flex: 1;
                 justify-content: flex-end;
                 gap: var(--composer-gap-sm);
-                min-width: fit-content;
             }
         }
 
@@ -144,6 +144,7 @@
             .card {
                 margin-inline: var(--composer-gap-md);
                 padding: var(--composer-gap-xl) var(--composer-gap-md);
+
             }
 
             .card,
@@ -154,7 +155,7 @@
 
                 .text-block {
                     align-items: center;
-                    width: 100%;
+                    /* width: 100%; */
 
                     .subtitle,
                     .title,
