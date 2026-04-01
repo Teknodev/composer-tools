@@ -130,7 +130,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
   }
 

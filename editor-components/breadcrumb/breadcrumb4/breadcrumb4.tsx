@@ -84,7 +84,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
     this.addProp({
       type: "string",

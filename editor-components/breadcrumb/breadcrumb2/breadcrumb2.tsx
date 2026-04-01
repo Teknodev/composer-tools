@@ -124,7 +124,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
       type: "boolean",
       key: "overlay",
       displayer: "Overlay",
-      value: true,
+      value: false,
     });
   }
 
