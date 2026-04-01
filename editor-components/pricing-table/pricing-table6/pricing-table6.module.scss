@@ -49,18 +49,18 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         display: flex;
         box-shadow: var(--box-shadow-active);
         color: var(--composer-font-color-primary);
-        border-radius: var(--composer-border-radius-sm);
+        border-radius: var(--composer-border-radius-md);
         width: fit-content;
         place-self: flex-start;
 
         .activeTab:first-child {
-          border-top-left-radius: var(--composer-border-radius-sm);
-          border-bottom-left-radius: var(--composer-border-radius-sm);
+          border-top-left-radius: var(--composer-border-radius-md);
+          border-bottom-left-radius: var(--composer-border-radius-md);
         }
 
         .activeTab:last-child {
-          border-top-right-radius: var(--composer-border-radius-sm);
-          border-bottom-right-radius: var(--composer-border-radius-sm);
+          border-top-right-radius: var(--composer-border-radius-md);
+          border-bottom-right-radius: var(--composer-border-radius-md);
         }
 
         .activeTab {
@@ -131,7 +131,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
-            border-radius: var(--composer-border-radius-sm);
+            border-radius: var(--composer-border-radius-md);
             gap: var(--composer-gap-md);
             padding: 0 var(--composer-gap-xl);
             cursor: pointer;
@@ -272,7 +272,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               var(--composer-html-background),
               var(--composer-font-color-secondary) 5%);
           box-shadow: var(--box-shadow-active);
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           display: flex;
 
           &.animation3:hover {
@@ -373,7 +373,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               gap: var(--composer-gap-md);
               align-items: center;
               justify-content: space-between;
-              border-radius: var(--composer-border-radius-sm);
+              border-radius: var(--composer-border-radius-md);
 
               .button-container {
                 display: flex;
