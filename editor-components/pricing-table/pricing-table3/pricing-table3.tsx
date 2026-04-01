@@ -476,8 +476,9 @@ class PricingTable3 extends BasePricingTable {
                                       itemExist && (
                                         <Base.P
                                           key={idx}
-                                          className={`${this.decorateCSS("item")} ${!showListDividers && this.decorateCSS("no-lines")}`}
+                                          className={this.decorateCSS("item")}
                                         >
+                                          {showListDividers && <div className={this.decorateCSS("item-line")} />}
                                           {item.text}
                                         </Base.P>
                                       )
