@@ -754,13 +754,11 @@ class PricingTable1 extends BasePricingTable {
             {(subtitleExist || titleExist || descriptionExist || hasValidButtons) && (
               <Base.VerticalContent className={this.decorateCSS("top-titles")}>
                 {subtitleExist && (
-                  <div className={this.decorateCSS("subtitle-wrapper")}>
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS("subtitle")}
-                    >
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  </div>
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
                 )}
                 {titleExist && (
                   <Base.SectionTitle className={this.decorateCSS("title")}>
@@ -896,8 +894,9 @@ class PricingTable1 extends BasePricingTable {
                               return (
                                 <Base.Row
                                   key={listIdx}
-                                  className={`${this.decorateCSS("card-list-item")} ${!showListLines ? this.decorateCSS("no-lines") : ""}`}
+                                  className={this.decorateCSS("card-list-item")}
                                 >
+                                  {showListLines && <div className={this.decorateCSS("card-list-line")} />}
                                   {buttonIconExist && (
                                     <Base.Media
                                       value={listItem.buttonIcon}
@@ -905,9 +904,9 @@ class PricingTable1 extends BasePricingTable {
                                     />
                                   )}
                                   {cardListItemExist && (
-                                    <Base.P className={this.decorateCSS("list-item")}>
+                                    <Base.H6 className={this.decorateCSS("list-item")}>
                                       {listItem.text}
-                                    </Base.P>
+                                    </Base.H6>
                                   )}
                                 </Base.Row>
                               );

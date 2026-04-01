@@ -16,11 +16,6 @@
         content: "";
       }
 
-      .subtitle-wrapper {
-        width: 100%;
-        display: flex;
-      }
-
       .button-container {
         display: flex;
         flex-wrap: wrap;
@@ -61,8 +56,10 @@
         &.animation1:hover {
           .card-list {
             .card-list-item {
-              &::before {
-                width: 100%;
+              .card-list-line {
+                &::before {
+                  width: 100%;
+                }
               }
             }
           }
@@ -83,6 +80,7 @@
         &.active {
           box-shadow: var(--composer-box-shadow);
           background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          border-radius: var(--composer-border-radius-md);
         }
 
         .popular-box {
@@ -153,36 +151,34 @@
             align-items: center;
             gap: var(--composer-gap-sm);
             padding: var(--composer-gap-md) var(--composer-gap-lg);
-            border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.2);
             color: var(--composer-font-color-primary);
             font-size: 1rem;
             width: 100%;
             position: relative;
 
-            &::before {
-              content: "";
+            .card-list-line {
               position: absolute;
-              top: -1px;
+              top: 0;
               left: 0;
-              width: 0;
+              width: 100%;
               height: 1px;
-              background: var(--composer-primary-color);
-              transition: width 0.8s ease-in-out;
-            }
-
-            &.no-lines {
-              border-top: none;
+              background: rgba(var(--composer-font-color-primary-rgb), 0.2);
 
               &::before {
-                display: none;
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0;
+                height: 1px;
+                background: var(--composer-primary-color);
+                transition: width 0.8s ease-in-out;
               }
             }
 
             .icon {
               color: var(--composer-primary-color);
-              font-size: 1rem;
-              width: var(--composer-gap-md);
-              height: var(--composer-gap-md);
+              font-size: 1.8rem !important;
               display: flex;
               align-items: center;
             }
