@@ -22,16 +22,16 @@ class About15 extends BaseAbout {
 
         this.addProp({
             type: "array",
-            key: "images",
-            displayer: "Images",
+            key: "media",
+            displayer: "Media",
             additionalParams: {
                 maxElementCount: 3,
             },
             value: [
                 {
                     type: "object",
-                    key: "image-item",
-                    displayer: "Image Item",
+                    key: "media-item",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
@@ -55,8 +55,8 @@ class About15 extends BaseAbout {
                 },
                 {
                     type: "object",
-                    key: "image-item",
-                    displayer: "Image Item",
+                    key: "media-item",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
@@ -80,8 +80,8 @@ class About15 extends BaseAbout {
                 },
                 {
                     type: "object",
-                    key: "image-item",
-                    displayer: "Image Item",
+                    key: "media-item",
+                    displayer: "Media Item",
                     value: [
                         {
                             type: "media",
@@ -148,8 +148,8 @@ class About15 extends BaseAbout {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const images = this.castToObject<ImageItemType[]>("images") || [];
-        const hasImages = images.length > 0;
+        const media = this.castToObject<ImageItemType[]>("media") || [];
+        const hasMedia = media.length > 0;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
         return (
@@ -157,7 +157,7 @@ class About15 extends BaseAbout {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("wrapper")}>
                         {hasContent && (
-                            <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!hasImages ? this.decorateCSS("full-width") : ""}`}>
+                            <Base.VerticalContent className={`${this.decorateCSS("vertical-content")} ${!hasMedia ? this.decorateCSS("full-width") : ""}`}>
                                 {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
                                 {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>)}
                                 {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")} </Base.SectionDescription>}
@@ -180,15 +180,15 @@ class About15 extends BaseAbout {
                                 )}
                             </Base.VerticalContent>
                         )}
-                        {hasImages && (
-                            <div className={this.decorateCSS("images-content")}>
-                                <div className={this.decorateCSS("images-wrapper")}>
-                                    {images.map((item: ImageItemType, index: number) => {
+                        {hasMedia && (
+                            <div className={this.decorateCSS("media-content")}>
+                                <div className={this.decorateCSS("media-wrapper")}>
+                                    {media.map((item: ImageItemType, index: number) => {
                                         const imageSource = item.media;
                                         if (!imageSource) return null;
                                         return (
-                                            <div key={`img-${index}`} className={this.decorateCSS("image-box")}>
-                                                <Base.Media value={imageSource} className={this.decorateCSS("image")} />
+                                            <div key={`img-${index}`} className={this.decorateCSS("media-box")}>
+                                                <Base.Media value={imageSource} className={this.decorateCSS("media-item")} />
                                                 {item.overlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                             </div>
                                         );
