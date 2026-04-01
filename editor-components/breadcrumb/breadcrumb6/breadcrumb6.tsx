@@ -5,9 +5,9 @@ import { BaseBreadcrumb } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-    title: string;
-    icon: string;
-    navigateTo: string;
+  title: string;
+  icon: string;
+  navigateTo: string;
 };
 class Breadcrumb6 extends BaseBreadcrumb {
   constructor(props: any) {
@@ -15,14 +15,14 @@ class Breadcrumb6 extends BaseBreadcrumb {
     this.addProp({
       type: "media",
       key: "vector1",
-      displayer: "Image 1",
+      displayer: "Media",
       additionalParams: { availableTypes: ["image", "icon"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da787bfb049c002cc22f10?alt=media" },
     });
     this.addProp({
       type: "media",
       key: "vector2",
-      displayer: "Image 2",
+      displayer: "Media",
       additionalParams: { availableTypes: ["image", "icon"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da788bfb049c002cc22f19?alt=media" },
     });
@@ -134,7 +134,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
     });
   }
 
-  static getName() : string {
+  static getName(): string {
     return "Breadcrumb 6";
   }
 
@@ -176,7 +176,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
           />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("section")} ${ backgroundImage && backgroundImage.url && this.decorateCSS("with-image")}`}>
+          <Base.VerticalContent className={`${this.decorateCSS("section")} ${backgroundImage && backgroundImage.url && this.decorateCSS("with-image")}`}>
             {titleExist && (
               <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>
             )}
@@ -206,16 +206,16 @@ class Breadcrumb6 extends BaseBreadcrumb {
                 ))}
                 {breadcrumbItems.length > 0 && (
                   <>
-                    <Base.Media 
-                      value={this.getPropValue("breadcrumbIcon")} 
-                      className={this.decorateCSS("icon")} 
+                    <Base.Media
+                      value={this.getPropValue("breadcrumbIcon")}
+                      className={this.decorateCSS("icon")}
                     />
                     <div className={this.decorateCSS("current-container")}>
                       <div className={this.decorateCSS("current-page-container")}>
                         {currentPageIcon.name && (
-                          <Base.Media 
-                            value={currentPageIcon} 
-                            className={this.decorateCSS("current-page-icon")} 
+                          <Base.Media
+                            value={currentPageIcon}
+                            className={this.decorateCSS("current-page-icon")}
                           />
                         )}
                         {this.castToString(currentPageTitle) && <Base.P className={this.decorateCSS("current")}>{currentPageTitle}</Base.P>}

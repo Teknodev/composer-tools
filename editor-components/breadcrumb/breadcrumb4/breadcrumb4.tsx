@@ -21,7 +21,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: { availableTypes: ["image", "icon"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e67fb049c002cc23bf1?alt=media" },
         },
@@ -41,7 +41,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: { availableTypes: ["image", "icon"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e7efb049c002cc23bf9?alt=media" },
         },
@@ -61,7 +61,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
         {
           type: "media",
           key: "image",
-          displayer: "Image",
+          displayer: "Media",
           additionalParams: { availableTypes: ["image", "icon"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da8e90fb049c002cc23c02?alt=media" },
         },
