@@ -1,18 +1,30 @@
 import * as React from "react";
 import styles from "./breadcrumb1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { BaseBreadcrumb } from "../../EditorComponent";
+import { BaseBreadcrumb, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
-    title: string;
-    icon: string;
+    title: React.JSX.Element;
+    icon: TypeMediaInputValue;
     navigateTo: string;
+};
+
+type CurrentPageItem = {
+    title: React.JSX.Element;
+    icon: TypeMediaInputValue;
 };
 
 class Breadcrumb1 extends BaseBreadcrumb {
     constructor(props?: any) {
         super(props, styles);
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
+
         this.addProp({
             type: "string",
             key: "title",
@@ -130,22 +142,22 @@ class Breadcrumb1 extends BaseBreadcrumb {
     render() {
         const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
         const isTitleExist = this.castToString(this.getPropValue("title"));
+        const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
         const isDescriptionExist = this.castToString(this.getPropValue("description"));
-        const description = this.getPropValue("description");
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
-        const currentPage = this.castToObject("currentPage");
-        const currentPageTitle = currentPage?.title || "";
-        const currentPageIcon = currentPage?.icon || "";
+        const currentPage = this.castToObject<CurrentPageItem>("currentPage");
+        const currentPageTitleExist = this.castToString(currentPage?.title);
+        const currentPageIconExist = currentPage?.icon && (currentPage.icon.type === "icon" ? currentPage.icon.name : currentPage.icon.url);
         const bgImage = this.getPropValue("image");
         const overlay = this.getPropValue("overlay");
         const alignmentValue = Base.getContentAlignment();
+        const breadcrumbIconValue = this.getPropValue("breadcrumbIcon");
+        const breadcrumbIconExist = breadcrumbIconValue && (breadcrumbIconValue.type === "icon" ? breadcrumbIconValue.name : breadcrumbIconValue.url);
 
         return (
             <div className={this.decorateCSS("breadcrumb1-root")}>
-                {(bgImage?.url || isTitleExist) && (
-                    <Base.Container
-                        className={this.decorateCSS("container")}
-                    >
+                {(bgImage?.url || isTitleExist || isSubtitleExist || isDescriptionExist) && (
+                    <Base.Container className={this.decorateCSS("container")}>
                         {bgImage?.url && (
                             <Base.Media
                                 value={bgImage}
@@ -154,21 +166,29 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         )}
                         {overlay && bgImage?.url && <div className={this.decorateCSS("overlay")}></div>}
 
-                        {isTitleExist && (
+                        {(isTitleExist || isSubtitleExist || isDescriptionExist) && (
                             <Base.MaxContent className={this.decorateCSS("max-content")}>
                                 <Base.VerticalContent className={this.decorateCSS("left")}>
-                                    <Base.SectionTitle
-                                        className={`${this.decorateCSS("title-main")} ${bgImage?.url && this.decorateCSS("title-with-bg")
-                                            } }`}
-                                    >
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
+                                    {isSubtitleExist && (
+                                        <Base.SectionSubTitle
+                                            className={`${this.decorateCSS("subtitle")} ${bgImage?.url ? this.decorateCSS("title-with-bg") : ""}`}
+                                        >
+                                            {this.getPropValue("subtitle")}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {isTitleExist && (
+                                        <Base.SectionTitle
+                                            className={`${this.decorateCSS("title-main")} ${bgImage?.url ? this.decorateCSS("title-with-bg") : ""}`}
+                                        >
+                                            {this.getPropValue("title")}
+                                        </Base.SectionTitle>
+                                    )}
                                     {isDescriptionExist && (
-                                        <Base.MaxContent className={this.decorateCSS("max-content")}>
-                                            <Base.SectionDescription className={`${this.decorateCSS("description")} ${bgImage?.url && this.decorateCSS("title-with-bg")}`}>
-                                                {description}
-                                            </Base.SectionDescription>
-                                        </Base.MaxContent>
+                                        <Base.SectionDescription
+                                            className={`${this.decorateCSS("description")} ${bgImage?.url ? this.decorateCSS("title-with-bg") : ""}`}
+                                        >
+                                            {this.getPropValue("description")}
+                                        </Base.SectionDescription>
                                     )}
                                 </Base.VerticalContent>
                             </Base.MaxContent>
@@ -184,42 +204,50 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                     : this.decorateCSS("left")
                                     }`}
                             >
-                                {breadcrumbItems.map((item: BreadcrumbItem, index: number) => (
-                                    <div key={index} className={this.decorateCSS("breadcrumb-item")}>
-                                        {(this.castToString(item.title) || item.icon.name) && <ComposerLink path={item.navigateTo}>
-                                            <div className={this.decorateCSS("breadcrumb-link")}>
-                                                {item.icon.name && (
-                                                    <Base.Media
-                                                        value={item.icon}
-                                                        className={this.decorateCSS("stripIcon")}
-                                                    />
-                                                )}
-                                                {this.castToString(item.title) && (
-                                                    <Base.P className={this.decorateCSS("home-page")}>
-                                                        {item.title}
-                                                    </Base.P>
-                                                )}
-                                            </div>
-                                        </ComposerLink>}
-                                    </div>
-                                ))}
+                                {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
+                                    const itemTitleExist = this.castToString(item.title);
+                                    const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                    if (!itemTitleExist && !itemIconExist) return null;
+                                    return (
+                                        <div key={index} className={this.decorateCSS("breadcrumb-item")}>
+                                            <ComposerLink path={item.navigateTo}>
+                                                <div className={this.decorateCSS("breadcrumb-link")}>
+                                                    {itemIconExist && (
+                                                        <Base.Media
+                                                            value={item.icon}
+                                                            className={this.decorateCSS("stripIcon")}
+                                                        />
+                                                    )}
+                                                    {itemTitleExist && (
+                                                        <Base.P className={this.decorateCSS("home-page")}>
+                                                            {item.title}
+                                                        </Base.P>
+                                                    )}
+                                                </div>
+                                            </ComposerLink>
+                                        </div>
+                                    );
+                                })}
                                 {breadcrumbItems.length > 0 && (
                                     <div className={this.decorateCSS("current-page-wrapper")}>
-                                        {this.getPropValue("breadcrumbIcon") && <Base.Media
-                                            value={this.getPropValue("breadcrumbIcon")}
-                                            className={this.decorateCSS("stripIcon")}
-                                        />}
+                                        {breadcrumbIconExist && (
+                                            <Base.Media
+                                                value={breadcrumbIconValue}
+                                                className={this.decorateCSS("stripIcon")}
+                                            />
+                                        )}
                                         <div className={this.decorateCSS("current-page-container")}>
-                                            {currentPageIcon.name && (
+                                            {currentPageIconExist && (
                                                 <Base.Media
-                                                    value={currentPageIcon}
+                                                    value={currentPage.icon}
                                                     className={this.decorateCSS("current-page-icon")}
                                                 />
                                             )}
-                                            {this.castToString(currentPageTitle) &&
+                                            {currentPageTitleExist && (
                                                 <Base.P className={this.decorateCSS("current-page")}>
-                                                    {currentPageTitle}
-                                                </Base.P>}
+                                                    {currentPage.title}
+                                                </Base.P>
+                                            )}
                                         </div>
                                     </div>
                                 )}
@@ -233,4 +261,3 @@ class Breadcrumb1 extends BaseBreadcrumb {
 }
 
 export default Breadcrumb1;
-

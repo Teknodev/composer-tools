@@ -6,7 +6,7 @@
 
 .container {
   overflow: hidden;
-  padding: 0 var(--composer-gap-xl) !important;
+  padding: 0 var(--composer-gap-xl);
   min-height: 600px;
   display: flex;
   flex-direction: column;
@@ -43,8 +43,24 @@
     }
 
     .title-main,
+    .subtitle,
     .description {
       color: #534931 !important;
+    }
+
+    .title-with-bg {
+      content: "";
+    }
+
+    .left .subtitle {
+      padding: 0;
+      border-radius: 0;
+      background: none;
+      color: inherit;
+
+      &::before {
+        background: #534931 !important;
+      }
     }
   }
 }
@@ -52,7 +68,7 @@
 .strip-container {
   display: flex;
   align-items: center;
-  padding: 0px var(--composer-gap-md);
+  padding: 0 var(--composer-gap-md);
   min-height: 70px;
   background-color: color-mix(in srgb,
       var(--composer-html-background),
@@ -66,7 +82,7 @@
       display: flex;
       align-items: center;
       gap: var(--composer-gap-sm);
-      padding: calc(var(--padding-xl) * 1.5) 0;
+      padding: var(--composer-gap-lg) 0;
       color: var(--composer-font-color-primary);
       flex-wrap: nowrap;
 
