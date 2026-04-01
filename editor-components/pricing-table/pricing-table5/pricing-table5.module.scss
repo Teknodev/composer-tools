@@ -163,7 +163,7 @@
 
             .plan-description,
             .price-description {
-              color: var(--composer-tertiary-color);
+              color: var(--composer-font-color-secondary);
               text-align: left;
             }
 
@@ -191,6 +191,7 @@
 
             .plan-title {
               margin: 0;
+              text-align: left;
               transition: color 0.5s ease;
             }
 

@@ -50,8 +50,8 @@ class PricingTable5 extends BasePricingTable {
 
     this.addProp({
       type: "media",
-      key: "moreIcon",
-      displayer: "More Icon",
+      key: "activeIcon",
+      displayer: "Active Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -60,8 +60,8 @@ class PricingTable5 extends BasePricingTable {
 
     this.addProp({
       type: "media",
-      key: "lessIcon",
-      displayer: "Less Icon",
+      key: "deactiveIcon",
+      displayer: "Deactive Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -81,7 +81,7 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "string",
               key: "title",
-              displayer: "PlanType",
+              displayer: "Title",
               value: "Basic Plan",
             },
             {
@@ -122,7 +122,7 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "string",
               key: "title",
-              displayer: "PlanType",
+              displayer: "Title",
               value: "Standard Plan",
             },
             {
@@ -162,7 +162,7 @@ class PricingTable5 extends BasePricingTable {
             {
               type: "string",
               key: "title",
-              displayer: "PlanType",
+              displayer: "Title",
               value: "Premium Plan",
             },
             {
@@ -365,7 +365,7 @@ class PricingTable5 extends BasePricingTable {
                           </Base.H5>
                         )}
                         {(() => {
-                          const icon = this.getPropValue(isActive ? "lessIcon" : "moreIcon");
+                          const icon = this.getPropValue(isActive ? "deactiveIcon" : "activeIcon");
                           const iconExist = icon && (icon.name || icon.url);
                           if (!iconExist) return null;
                           return (
