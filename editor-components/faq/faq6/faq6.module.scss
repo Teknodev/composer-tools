@@ -14,8 +14,23 @@
                     flex-direction: column;
                     gap: var(--composer-gap-xl);
                     .header-wrapper{
+                        align-items: flex-start;
                         .title, .subtitle, .description {
                             content: "";
+                            text-align: left;
+                            margin: 0;
+                        }
+                        .buttons-wrapper {
+                            display: flex;
+                            align-items: center;
+                            margin-top: var(--composer-gap-lg);
+                            gap: var(--composer-gap-md);
+                            flex-wrap: wrap;
+                            .button {
+                                .button-text {
+                                    content: "";
+                                }
+                            }
                         }
                     }
                     .items{

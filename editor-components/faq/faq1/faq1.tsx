@@ -34,14 +34,26 @@ class Faq1 extends BaseFAQ {
     })
     this.addProp({
       type: "media",
-      key: "icon",
-      displayer: "Icon",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "IoIosArrowDown",
+      },
+    })
+    this.addProp({
+      type: "media",
+      key: "activeIcon",
+      displayer: "Active Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "IoIosArrowUp",
       },
     })
 
@@ -171,16 +183,17 @@ class Faq1 extends BaseFAQ {
                     this.cardClicked(indexCard);
                   }}
                 >
-                  {(this.castToString(card.subtitle) || this.getPropValue("icon")) && (
+                  {(this.castToString(card.subtitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                     <div className={this.decorateCSS("in-box")}>
                       {this.castToString(card.subtitle) && (
                         <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H4>
                       )}
-                      {this.getPropValue("icon") && (
-                        <Base.Media 
-                          value={this.getPropValue("icon")} 
-                          className={`${this.decorateCSS("icon")} 
-                           ${this.getComponentState("selectCardIndex") === indexCard ? this.decorateCSS("rotate") : ""}`}
+                      {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
+                        <Base.Media
+                          value={this.getComponentState("selectCardIndex") === indexCard
+                            ? this.getPropValue("activeIcon")
+                            : this.getPropValue("inactiveIcon")}
+                          className={this.decorateCSS("icon")}
                         />
                       )}
                     </div>

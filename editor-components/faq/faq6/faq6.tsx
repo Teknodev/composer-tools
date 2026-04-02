@@ -3,6 +3,8 @@ import styles from "./faq6.module.scss";
 import { BaseFAQ, TypeMediaInputValue } from "../../EditorComponent";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class Faq6 extends BaseFAQ {
   constructor(props?: any) {
@@ -26,6 +28,14 @@ class Faq6 extends BaseFAQ {
       key: "description",
       displayer: "Description",
       value: "",
+    })
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
     })
     this.addProp({
       type: "array",
@@ -203,7 +213,7 @@ class Faq6 extends BaseFAQ {
             <div className={this.decorateCSS("content")}>
               {(this.castToString(this.getPropValue("title")) || (this.getPropValue("list_items").length > 0)) && (
                 <div className={this.decorateCSS("items-wrapper")}>
-                  {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subtitle"))) && (
+                  {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subtitle")) || descriptionExist || this.getPropValue("buttons").length > 0) && (
                     <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
                       {this.castToString(this.getPropValue("subtitle")) && (
                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -218,6 +228,19 @@ class Faq6 extends BaseFAQ {
                         <Base.SectionDescription className={this.decorateCSS("description")}>
                           {description}
                         </Base.SectionDescription>
+                      )}
+                      {this.getPropValue("buttons").length > 0 && (
+                        <div className={this.decorateCSS("buttons-wrapper")}>
+                          {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
+                            this.castToString(button.text) && (
+                              <ComposerLink path={button.url}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                          )}
+                        </div>
                       )}
                     </Base.VerticalContent>
                   )}

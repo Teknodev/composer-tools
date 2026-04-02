@@ -42,14 +42,26 @@ class Faq4 extends BaseFAQ {
 
     this.addProp({
       type: "media",
-      key: "icon",
-      displayer: "Icon",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "FaAngleDown",
+      },
+    });
+    this.addProp({
+      type: "media",
+      key: "activeIcon",
+      displayer: "Active Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaAngleUp",
       },
     });
     this.addProp({
@@ -259,7 +271,7 @@ class Faq4 extends BaseFAQ {
               </Base.VerticalContent>
             )}
             {(card.length > 0) && (
-              <div className={this.decorateCSS("middle-page")}>
+              <div className={`${this.decorateCSS("middle-page")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}>
                 {card.map((card: Card, index: number) => (
                   <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
                     <Base.H5 className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
@@ -273,8 +285,8 @@ class Faq4 extends BaseFAQ {
               <div className={this.decorateCSS("down-page")}>
                 <div className={this.decorateCSS("card-wrapper")}>
                   {card[this.getComponentState("selectedSection")]?.items.map((item: Item, index: number) => (
-                    <div className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}`} style={!lineEnabled ? { borderBottom: "none" } : {}} onClick={() => this.cardButton(index)}>
-                      {(this.castToString(item.title) || this.getPropValue("icon")) && (
+                    <div className={`${this.decorateCSS("card")} ${this.getComponentState("cardIndex") === index ? (this.getComponentState("onclick") ? this.decorateCSS("active") : "") : ""}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`} onClick={() => this.cardButton(index)}>
+                      {(this.castToString(item.title) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                         <div className={this.decorateCSS("child-container")}>
                           {this.castToString(item.title) && (
                             <div className={this.decorateCSS("card-left")}>
@@ -283,17 +295,14 @@ class Faq4 extends BaseFAQ {
                               </Base.H4>
                             </div>
                           )}
-                          {this.getPropValue("icon") && (
+                          {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                             <div className={this.decorateCSS("card-right")}>
                               <div className={this.decorateCSS("icon-wrapper")}>
                                 <Base.Media
-                                  value={this.getPropValue("icon")}
-                                  className={`${this.decorateCSS("icon")} ${this.getComponentState("cardIndex") === index
-                                    ? this.getComponentState("onclick")
-                                      ? this.decorateCSS("active")
-                                      : ""
-                                    : ""
-                                    }`}
+                                  value={this.getComponentState("cardIndex") === index && this.getComponentState("onclick")
+                                    ? this.getPropValue("activeIcon")
+                                    : this.getPropValue("inactiveIcon")}
+                                  className={this.decorateCSS("icon")}
                                 />
                               </div>
                             </div>

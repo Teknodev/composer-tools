@@ -24,6 +24,9 @@
             color: var(--composer-font-color-primary);
             border-bottom: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
             cursor: pointer;
+            &.no-line {
+              border-bottom: none;
+            }
             .top-card {
               display: flex;
               justify-content: flex-start;

@@ -335,9 +335,8 @@ class Faq3 extends BaseFAQ {
                         return (
                           <div
                             key={index}
-                            className={this.decorateCSS("card")}
+                            className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                             onClick={() => this.onItemClick(index)}
-                            style={!lineEnabled ? { borderBottom: "none" } : {}}
                           >
                             {(titleExist || descExist || item.index) && (
                               <div className={this.decorateCSS("top-card")}>

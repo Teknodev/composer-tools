@@ -58,14 +58,26 @@ class Faq8 extends BaseFAQ {
     });
     this.addProp({
       type: "media",
-      key: "arrow-down",
-      displayer: "Down Arrow icon",
+      key: "inactiveIcon",
+      displayer: "Inactive Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "FaAngleDown",
+      },
+    });
+    this.addProp({
+      type: "media",
+      key: "activeIcon",
+      displayer: "Active Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaAngleUp",
       },
     });
 
@@ -786,7 +798,14 @@ class Faq8 extends BaseFAQ {
                             <Base.H5 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
                             </Base.H5>
-                            <Base.Media value={this.getPropValue("arrow-down")} className={`${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`} />
+                            {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
+                              <Base.Media
+                                value={this.getComponentState("activeIndex2") === questionIndex
+                                  ? this.getPropValue("activeIcon")
+                                  : this.getPropValue("inactiveIcon")}
+                                className={this.decorateCSS("question-icon")}
+                              />
+                            )}
                           </div>
                         )}
                         {this.castToString(question.answer) && (

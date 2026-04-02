@@ -200,7 +200,7 @@ class Faq7 extends BaseFAQ {
     this.addProp({
       type: "boolean",
       key: "line",
-      displayer: "Enable Line",
+      displayer: "Line",
       value: true,
     })
 

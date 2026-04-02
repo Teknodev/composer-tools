@@ -40,6 +40,14 @@ class Faq5 extends BaseFAQ {
       value: "FAQ stands for Frequently Asked Questions. It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions. ",
     });
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
+    });
+    this.addProp({
       type: "media",
       key: "inactiveIcon",
       displayer: "Inactive Icon",
@@ -624,7 +632,7 @@ class Faq5 extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
+            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.getPropValue("buttons").length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("left-page")}>
                 {this.castToString(this.getPropValue("subtitle")) && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
@@ -634,6 +642,19 @@ class Faq5 extends BaseFAQ {
                 )}
                 {this.castToString(this.getPropValue("description")) && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
+                )}
+                {this.getPropValue("buttons").length > 0 && (
+                  <div className={this.decorateCSS("left-buttons")}>
+                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
+                      this.castToString(button.text) && (
+                        <ComposerLink path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    )}
+                  </div>
                 )}
               </Base.VerticalContent>
             )}

@@ -408,9 +408,9 @@ class Faq10 extends BaseFAQ {
                       >
                         <div className={this.decorateCSS("card-header")}>
                           {cardSubtitleExist && (
-                            <Base.H4 className={this.decorateCSS("card-title")}>
+                            <Base.H5 className={this.decorateCSS("card-title")}>
                               {card.subtitle}
-                            </Base.H4>
+                            </Base.H5>
                           )}
                           <span
                             className={[
