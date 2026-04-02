@@ -161,6 +161,10 @@
   .container .max-content .content {
     gap: calc(var(--composer-gap-md) * 2);
 
+    .items-wrapper {
+      row-gap: calc(var(--composer-gap-xl) + 30px);
+    }
+
     .items-wrapper .list-item .item-container {
       .number-badge {
         min-width: 60px;
