@@ -97,7 +97,7 @@ class CallToAction35 extends BaseCallToAction {
                 )}
 
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")}>
+                <div className={this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")}>
                         <Base.VerticalContent className={this.decorateCSS("text-block")}>
                             {subtitle && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
