@@ -247,7 +247,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is active",
+              displayer: "Card Active",
               value: false,
             },
           ],
@@ -285,7 +285,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "string",
               key: "title",
-              displayer: "Price Title",
+              displayer: "Pricing Title",
               value: "Business",
             },
             {
@@ -424,7 +424,7 @@ class PricingTable1 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is active",
+              displayer: "Card Active",
               value: true,
             },
           ],
@@ -690,7 +690,7 @@ class PricingTable1 extends BasePricingTable {
         {
           type: "boolean",
           key: "cardListLines",
-          displayer: "Show Card List Dividers",
+          displayer: "Line",
           value: true,
         },
         {
