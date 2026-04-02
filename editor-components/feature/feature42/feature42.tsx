@@ -1,24 +1,29 @@
 import * as React from "react";
+import { BaseFeature } from "../../EditorComponent";
 import styles from "./feature42.module.scss";
-import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
-import { INPUTS } from "../../../custom-hooks/input-templates";
+import { TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
-interface Card {
-  media: TypeMediaInputValue;
-  subtitle: string;
-  title: string;
-  description: string;
-  button?: {
-    text: string;
-    url: string;
-    type: TypeButton;
-  };
+type ButtonTypeObj = {
+  text: React.JSX.Element;
+  url?: string;
+  type: TypeButton;
+}
+
+interface ListItem {
+  title: React.JSX.Element;
+  cardSubTitle: React.JSX.Element;
+  cardTitle: React.JSX.Element;
+  text1: React.JSX.Element;
+  text2: React.JSX.Element;
+  image: TypeMediaInputValue;
+  button: ButtonTypeObj;
 }
 
 class Feature42 extends BaseFeature {
-  constructor(props?: any) {
+  constructor(props?: Record<string, unknown>) {
     super(props, styles);
 
     this.addProp({
@@ -32,7 +37,7 @@ class Feature42 extends BaseFeature {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "How Does It Work?",
+      value: "Everything you need to deploy your app",
     });
 
     this.addProp({
@@ -44,122 +49,146 @@ class Feature42 extends BaseFeature {
 
     this.addProp({
       type: "array",
-      key: "cards",
+      key: "items",
       displayer: "Cards",
       value: [
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "item",
+          displayer: "Item",
           value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["icon", "image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698c864d771c03002cc0ac1d?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Modern Design",
+              value: "Design"
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/696df5408ea13f002cfb2fc4?alt=media" }
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Completely iterate covalent strategic theme areas via accurate e-markets.",
+              key: "cardSubTitle",
+              displayer: "Card Subtitle",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Card Title",
+              value: "Tools and software for every business"
+            },
+            {
+              type: "string",
+              key: "text1",
+              displayer: "Text 1",
+              value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail."
+            },
+            {
+              type: "string",
+              key: "text2",
+              displayer: "Text 2",
+              value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
             },
             INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "item",
+          displayer: "Item",
           value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["icon", "image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698c83af771c03002cc0a4cd?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "Free Updates",
+              value: "Analytics"
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/696df56b8ea13f002cfb32a4?alt=media" }
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Credibly innovate granular sources whereas high standards in web-readiness.",
+              key: "cardSubTitle",
+              displayer: "Card Subtitle",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Card Title",
+              value: "Smart data analytics dashboards"
+            },
+            {
+              type: "string",
+              key: "text1",
+              displayer: "Text 1",
+              value: "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps."
+            },
+            {
+              type: "string",
+              key: "text2",
+              displayer: "Text 2",
+              value: "Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line."
             },
             INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
         },
         {
           type: "object",
-          key: "card",
-          displayer: "Card",
+          key: "item",
+          displayer: "Item",
           value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: {
-                availableTypes: ["icon", "image", "video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698c83dd771c03002cc0a508?alt=media",
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
             {
               type: "string",
               key: "title",
               displayer: "Title",
-              value: "High Quality",
+              value: "Marketing"
+            },
+            {
+              type: "media",
+              key: "image",
+              displayer: "Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
+              },
+              value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/696dea738ea13f002cfb17a3?alt=media" }
             },
             {
               type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Performing at the junction of minimalism and mathematics.",
+              key: "cardSubTitle",
+              displayer: "Card Subtitle",
+              value: ""
+            },
+            {
+              type: "string",
+              key: "cardTitle",
+              displayer: "Card Title",
+              value: "Visual component of the project"
+            },
+            {
+              type: "string",
+              key: "text1",
+              displayer: "Text 1",
+              value: "Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar solutions without functional solutions. Completely synergize resource taxing relationships via premier niche markets. "
+            },
+            {
+              type: "string",
+              key: "text2",
+              displayer: "Text 2",
+              value: "Credibly innovate granular internal or “organic” sources whereas high standards in web-readiness. Energistically scale future-proof core competencies impactful experiences."
             },
             INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ],
@@ -169,16 +198,29 @@ class Feature42 extends BaseFeature {
 
     this.addProp({
       type: "boolean",
-      key: "animation",
-      displayer: "Animation",
-      value: true,
+      key: "enableOverlay",
+      displayer: "Overlay",
+      value: false,
     });
 
     this.addProp({
-      type: "number",
-      key: "itemsPerRow",
-      displayer: "Item Count in a Row",
-      value: 3,
+      type: "media",
+      key: "toggleIcon",
+      displayer: "Toggle Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FiChevronDown"
+      }
+    });
+
+    this.addProp({
+      type: "boolean",
+      key: "toggleLine",
+      displayer: "Toggle Line",
+      value: true,
     });
 
     this.addProp({
@@ -194,135 +236,128 @@ class Feature42 extends BaseFeature {
   }
 
   render() {
-    const cards = this.castToObject<Card[]>("cards");
-    const buttonsRaw = this.castToObject<any[]>("buttons") || [];
-    const buttons = buttonsRaw.filter((btn: any) =>
-      this.castToString(btn?.text),
+    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
+    const enableOverlay = this.getPropValue("enableOverlay");
+    const enableLine = this.getPropValue("toggleLine");
+    const mobileIcon = this.getPropValue("toggleIcon");
+    const items = this.castToObject<ListItem[]>("items");
+    const activeIndex = this.getComponentState("activeIndex");
+    const effectiveIndex = activeIndex === undefined ? 0 : activeIndex;
+    const hasItems = items.some((item: ListItem) => this.castToString(item.title));
+    const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const hasContent = subtitleExist || titleExist || descriptionExist;
+    const hasRightContent = items.some((item: ListItem) =>
+      item.image ||
+      this.castToString(item.cardTitle) ||
+      this.castToString(item.text1) ||
+      this.castToString(item.text2)
     );
-    const animation = this.getPropValue("animation");
-    const itemsPerRow = this.getPropValue("itemsPerRow");
-    const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"));
-
-    const hasContent = (card: Card) => {
-      return (
-        this.castToString(card.subtitle) ||
-        this.castToString(card.title) ||
-        this.castToString(card.description) ||
-        card.media
-      );
-    };
+    const hasAnyImage = items.some((item: ListItem) => item.image);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitle || title || description) && (
-            <Base.VerticalContent
-              className={this.decorateCSS("header-section")}
-            >
-              {subtitle && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
-              )}
-              {title && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {description && (
-                <Base.SectionDescription
-                  className={this.decorateCSS("description")}
-                >
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
-          )}
-
-          {cards && cards.length > 0 && (
-            <Base.ListGrid
-              className={this.decorateCSS("cards-container")}
-              gridCount={{ pc: itemsPerRow, tablet: 3, phone: 1 }}
-            >
-              {cards.map((card: Card, index: number) => (
+        {(hasContent || hasItems) && (
+          <div className={`${this.decorateCSS("wrapper")} ${!hasContent && this.decorateCSS("no-content")}`}>
+            {hasContent && (
+              <Base.MaxContent className={this.decorateCSS("max-content")}>
+                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                  {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                  {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                  {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                </Base.VerticalContent>
+              </Base.MaxContent>
+            )}
+            {hasItems && (
+              <div className={this.decorateCSS("items-wrapper")}>
+                {items.map((item: ListItem, index: number) => {
+                  const menuTitle = item.title;
+                  const isActive = effectiveIndex === index;
+                  return this.castToString(menuTitle) && (
+                    <Base.H5
+                      key={index}
+                      className={`${this.decorateCSS("itemTitle")} ${isActive && this.decorateCSS("active")}`}
+                      onClick={() => this.setComponentState("activeIndex", index)}
+                    >
+                      {menuTitle}
+                    </Base.H5>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+        {hasRightContent && (
+          <div className={`${this.decorateCSS("card-wrapper")} ${!hasAnyImage && this.decorateCSS("no-image")} ${!enableLine ? this.decorateCSS("disable-line") : ""}`}>
+            {items.map((item: ListItem, index: number) => {
+              const isActive = effectiveIndex === index;
+              const cardSubTitleExist = this.castToString(item.cardSubTitle);
+              const cardTitleExist = this.castToString(item.cardTitle);
+              const text1Exist = this.castToString(item.text1);
+              const text2Exist = this.castToString(item.text2);
+              return (
                 <div
                   key={index}
-                  className={`${this.decorateCSS("card")} ${!hasContent(card) ? this.decorateCSS("card-empty") : ""}`}
+                  className={`${this.decorateCSS("card-content")} ${isActive && this.decorateCSS("active-item")}`}
                 >
-                  <div className={`${this.decorateCSS("card-wrapper")} ${animation ? this.decorateCSS("animated") : ""}`}>
-                    <Base.VerticalContent className={`${this.decorateCSS("card-content")} ${this.castToString(card.media) ? this.decorateCSS("has-media") : ""}`}>
-                      {this.castToString(card.subtitle) && (
-                        <Base.P className={this.decorateCSS("card-subtitle")}>
-                          {card.subtitle}
-                        </Base.P>
-                      )}
-                      {this.castToString(card.title) && (
-                        <Base.H3 className={this.decorateCSS("card-title")}>
-                          {card.title}
-                        </Base.H3>
-                      )}
-                      {this.castToString(card.description) && (
-                        <Base.P
-                          className={this.decorateCSS("card-description")}
-                        >
-                          {card.description}
-                        </Base.P>
-                      )}
-                      {card.button && this.castToString(card.button.text) && (
-                        <div className={this.decorateCSS("card-button-wrap")}>
-                          <ComposerLink path={card.button.url}>
-                            <Base.Button
-                              className={this.decorateCSS("card-button")}
-                              buttonType={card.button.type}
-                            >
-                              <Base.P className={this.decorateCSS("card-button-text")}>
-                                {card.button.text}
-                              </Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        </div>
-                      )}
-                    </Base.VerticalContent>
-                    <div className={this.decorateCSS("card-media-container")}>
-                      {this.castToString(card.media) && (
-                        <div className={this.decorateCSS("card-media-wrapper")}>
-                          <Base.Media
-                            value={card.media?.type === "video" ? { ...card.media, settings: { autoplay: true, loop: true, muted: true, controls: false } } : card.media}
-                            className={this.decorateCSS("card-media")}
-                          />
-                        </div>
-                      )}
+                  {enableLine && index === 0 && <div className={`${this.decorateCSS("line")} ${this.decorateCSS("line-top")}`}></div>}
+                  <div
+                    className={`${this.decorateCSS("mobile-title-wrapper")}`}
+                    onClick={() => {
+                      const newIndex = activeIndex === index ? -1 : index;
+                      this.setComponentState("activeIndex", newIndex);
+                    }}
+                  >
+                    <Base.H3 className={`${this.decorateCSS("mobile-title")} ${isActive && this.decorateCSS("active")}`}>{item.title}</Base.H3>
+                    <div className={`${this.decorateCSS("arrow-icon")} ${isActive && this.decorateCSS("active")}`}>
+                      {mobileIcon && (<Base.Media value={mobileIcon} className={`${mobileIcon.type === "image" && this.decorateCSS("is-image")}`} />)}
                     </div>
                   </div>
+                  {item.image && (
+                    <div className={`${this.decorateCSS("image-wrapper")} ${!(cardSubTitleExist || cardTitleExist || text1Exist || text2Exist) && this.decorateCSS("full-width")}`}>
+                      <Base.Media value={item.image} className={this.decorateCSS("itemImage")} />
+                      {enableOverlay && (<div className={this.decorateCSS("overlay")}></div>)}
+                    </div>
+                  )}
+                  {(cardTitleExist || text1Exist || text2Exist) && (
+                    <div className={`${this.decorateCSS("sectionsWrapper")} ${!item.image && this.decorateCSS("no-image")}`}>
+                      {cardSubTitleExist && (<Base.H4 className={this.decorateCSS("cardSubTitle")}>{item.cardSubTitle}</Base.H4>)}
+                      {cardTitleExist && (<Base.H3 className={this.decorateCSS("cardTitle")}>{item.cardTitle}</Base.H3>)}
+                      {text1Exist && (<Base.P className={this.decorateCSS("sectionText1")}>{item.text1}</Base.P>)}
+                      {text2Exist && (<Base.P className={this.decorateCSS("sectionText2")}>{item.text2}</Base.P>)}
+                      {item.button && this.castToString(item.button.text) && (
+                        <ComposerLink path={item.button.url}>
+                          <Base.Button buttonType={item.button.type} className={this.decorateCSS("card-button")}>
+                            <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )}
+                    </div>
+                  )}
+                  {enableLine && <div className={`${this.decorateCSS("line")} ${this.decorateCSS("line-bottom")}`}></div>}
                 </div>
-              ))}
-            </Base.ListGrid>
-          )}
-
-          {buttons.length > 0 && (
-            <div className={this.decorateCSS("buttons-container")}>
-              {buttons.map((btn: any, idx: number) => {
-                const buttonTextExists = this.castToString(btn.text);
-                return (
-                  buttonTextExists && (
-                    <ComposerLink key={`feature44-btn-${idx}`} path={btn.url}>
-                      <Base.Button
-                        className={this.decorateCSS("button")}
-                        buttonType={btn.type || "Primary"}
-                      >
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {btn.text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  )
-                );
-              })}
-            </div>
-          )}
-        </Base.MaxContent>
+              );
+            })}
+          </div>
+        )}
+        {visibleButtons.length > 0 && (
+          <div className={this.decorateCSS("button-container")}>
+            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
+              const buttonTextExist = this.castToString(item.text);
+              return (
+                buttonTextExist && (
+                  <ComposerLink key={`button-${index}`} path={item.url}>
+                    <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                      <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                    </Base.Button>
+                  </ComposerLink>
+                )
+              );
+            })}
+          </div>
+        )}
       </Base.Container>
     );
   }
