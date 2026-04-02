@@ -34,15 +34,11 @@
         .stats-grid {
           gap: var(--composer-gap-lg);
 
-
           .stat-item {
-            align-items: flex-start;
-
             .stat-value {
               display: flex;
               color: var(--composer-primary-color);
               font-size: 12rem;
-
 
               .stat-prefix,
               .stat-number,
@@ -50,18 +46,15 @@
                 color: inherit;
                 font-size: 12rem;
               }
-
             }
 
             .stat-subtitle,
             .stat-title {
               color: var(--composer-primary-color);
-              text-align: left;
             }
 
             .stat-description {
               color: var(--composer-font-color-primary) !important;
-              text-align: left;
             }
           }
 
@@ -76,6 +69,24 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+@container (min-width: calc(#{$composer-phone-width} + 1px)) {
+  .container .max-content .card .card-content .stats-grid {
+    .stat-item {
+      align-items: flex-start !important;
+
+      .stat-value {
+        text-align: left !important;
+      }
+
+      .stat-subtitle,
+      .stat-title,
+      .stat-description {
+        text-align: left !important;
       }
     }
   }
@@ -139,8 +150,6 @@
             margin-top: var(--composer-gap-md);
 
             .stat-item {
-              align-items: flex-start !important;
-
               .stat-value {
                 font-size: 7rem;
 
@@ -149,16 +158,11 @@
                 .stat-suffix {
                   font-size: 7rem;
                 }
-
-              }
-
-              .stat-subtitle,
-              .stat-title {
-                text-align: left !important;
               }
 
               .stat-title {
                 font-size: 2rem !important;
+                text-align: left !important;
               }
 
               .stat-description {
