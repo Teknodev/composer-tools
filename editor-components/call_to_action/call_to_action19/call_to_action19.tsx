@@ -244,7 +244,7 @@ class CallToAction19 extends BaseCallToAction {
                                                 )}
                                                 {this.castToString(item.description) && (
                                                     <Base.P className={this.decorateCSS("feature-list")}>
-                                                        {this.castToString(item.description)}
+                                                        {item.description}
                                                     </Base.P>
                                                 )}
                                             </div>
