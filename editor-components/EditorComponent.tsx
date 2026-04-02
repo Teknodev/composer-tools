@@ -255,6 +255,8 @@ type GetPropValueProperties = {
   as_string?: boolean;
   suffix?: PreSufFix;
   prefix?: PreSufFix;
+  /** CMS-linked string on canvas: render HTML like unlinked, but block opening inline Lexical on click. */
+  cmsInlineReadOnly?: boolean;
 };
 
 type RangeInputAdditionalParams = {
@@ -621,9 +623,15 @@ export abstract class Component
       }
     }
 
-    // For CMS props, never wrap in InlineEditor — return the raw value
-    // so the text is displayed but not editable.
+    // CMS-linked strings: render via the same rich-HTML path as unlinked (InlineEditor BlinkPage).
+    // Returning a raw string here made React escape HTML, so tags like <span> showed as literal text.
     if (isCmsProp) {
+      if (prop?.type === "string") {
+        return this.getPropValueAsElement(prop, {
+          ...properties,
+          cmsInlineReadOnly: true,
+        });
+      }
       return prop?.value;
     }
 
@@ -712,6 +720,7 @@ export abstract class Component
             props={componentInstance.getProps()}
             sanitizedHtml={sanitizedHtml}
             componentId={componentInstance.id}
+            cmsInlineReadOnly={!!currentProperties?.cmsInlineReadOnly}
           />
         );
       };
