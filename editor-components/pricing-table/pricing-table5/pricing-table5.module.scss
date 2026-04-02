@@ -32,11 +32,11 @@
   .max-content {
     .content {
       display: flex;
-      gap: var(--composer-gap-xl);
+      gap: calc(var(--composer-gap-lg) * 2);
       width: 100%;
 
       .left-content {
-        width: 50%;
+        width: 60%;
         display: flex;
         flex-direction: column;
 
@@ -83,7 +83,7 @@
       }
 
       .right-content {
-        width: 50%;
+        width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -296,7 +296,7 @@
     .max-content {
       .content {
         .right-content {
-          width: 50%;
+          width: 40%;
 
           .plan {
             .plan-upper {

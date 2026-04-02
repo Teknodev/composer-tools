@@ -360,9 +360,9 @@ class PricingTable5 extends BasePricingTable {
                     >
                       <div className={this.decorateCSS("plan-upper")}>
                         {planTitleExist && (
-                          <Base.H5 className={this.decorateCSS("plan-title")}>
+                          <Base.H6 className={this.decorateCSS("plan-title")}>
                             {plan.title}
-                          </Base.H5>
+                          </Base.H6>
                         )}
                         {(() => {
                           const icon = this.getPropValue(isActive ? "deactiveIcon" : "activeIcon");
