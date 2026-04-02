@@ -91,6 +91,8 @@
   .card-container {
     width: 100%;
     border: 1px solid var(--composer-tertiary-color);
+    border-radius: var(--composer-border-radius-md);
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,13 +108,13 @@
       .card {
         .card-content {
           .body {
-              .item {
-                .item-line {
-                  &::before {
-                    width: 100%;
-                  }
+            .item {
+              .item-line {
+                &::before {
+                  width: 100%;
                 }
               }
+            }
           }
         }
       }
