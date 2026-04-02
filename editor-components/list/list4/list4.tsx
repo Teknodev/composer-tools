@@ -209,9 +209,9 @@ class List4 extends BaseList {
 
     this.addProp({
       type: "boolean",
-      key: "showLines",
-      displayer: "Lines",
-      value: false,
+      key: "showLine",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -315,7 +315,7 @@ class List4 extends BaseList {
                       className={this.decorateCSS("service-item")}
                       data-animation={hoverAnimation.join(" ")}
                     >
-                      {this.getPropValue("showLines") && (
+                      {this.getPropValue("showLine") && (
                         <div className={this.decorateCSS("border-frame")}>
                           <div className={this.decorateCSS("border-left")}></div>
                           <div className={this.decorateCSS("border-top")}></div>
