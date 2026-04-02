@@ -5,6 +5,13 @@ import styles from "./call_to_action8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
+type MediaObject = {
+  image: any;
+  overlay: boolean;
+};
+
+type Button = INPUTS.CastedButton;
+
 class CallToAction8Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -31,37 +38,59 @@ class CallToAction8Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "mediaObject",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
-      },
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6683ec390181a1002c338033?alt=media&timestamp=1719921738698",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
+      ],
+    });
   }
 
   static getName(): string {
     return "Call To Action 8";
   }
   render() {
-
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const buttonText = this.castToString(button.text);
+    const mediaObject = this.castToObject<MediaObject>("mediaObject");
+    const image = mediaObject.image;
+    const overlay = mediaObject.overlay;
+    const buttons = this.castToObject<Button[]>("buttons");
     const title = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
+
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${this.getPropValue("image") && this.decorateCSS("has-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("has-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(subtitleExist || title || buttonText) && (
+            {(subtitleExist || title || buttons.length > 0) && (
               <div className={this.decorateCSS("title-box")}>
                 <Base.VerticalContent className={this.decorateCSS("title-content")}>
                   {subtitleExist && (
@@ -70,9 +99,9 @@ class CallToAction8Page extends BaseCallToAction {
                     </Base.SectionSubTitle>
                   )}
                   {title && (
-                      <Base.SectionTitle className={this.decorateCSS("title")}>
-                        {this.getPropValue("title")}
-                      </Base.SectionTitle>
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
                   )}
                   {descriptionExist && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
@@ -80,27 +109,31 @@ class CallToAction8Page extends BaseCallToAction {
                     </Base.SectionDescription>
                   )}
                 </Base.VerticalContent>
-                {buttonText && (
-                  <Base.Row className={this.decorateCSS("button")}>
-                    <ComposerLink path={button.url}>
-                      <Base.Button
-                        buttonType={button.type}
-                        className={this.decorateCSS("button-element")}
-                      >
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  </Base.Row>
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((button: Button, index: number) => (
+                      this.castToString(button.text) && (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button
+                            buttonType={button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    ))}
+                  </div>
                 )}
               </div>
             )}
-            {this.getPropValue("image") && (
-              <div
-                className={this.decorateCSS("image-box")}>
+            {image && (
+              <div className={this.decorateCSS("image-box")}>
                 <Base.Media
-                  value={this.getPropValue("image")}
+                  value={image}
                   className={this.decorateCSS("image")}
                 />
+                {overlay && <div className={this.decorateCSS("overlay")} />}
               </div>
             )}
           </div>

@@ -46,12 +46,19 @@
       .description,
       .subtitle {
         text-align: center;
+        color: var(--composer-font-color-primary);
       }
 
       .subtitle {
         transform: translateX(0);
         &::before {
           display: none;
+        }
+
+        &.with-image {
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
         }
       }
 

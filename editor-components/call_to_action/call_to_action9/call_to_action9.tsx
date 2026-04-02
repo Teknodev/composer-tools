@@ -5,8 +5,10 @@ import styles from "./call_to_action9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface ImageItem {
-  image: string;
+  image: any;
 }
+
+type Button = INPUTS.CastedButton;
 
 class CallToAction9Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -33,17 +35,14 @@ class CallToAction9Page extends BaseCallToAction {
       value: "",
     });
 
-    this.addProp(
-      INPUTS.BUTTON(
-        "button",
-        "Button",
-        "Start 14 days free trail",
-        "",
-        null,
-        null,
-        "Primary"
-      )
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Start 14 days free trail", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "string",
@@ -72,7 +71,7 @@ class CallToAction9Page extends BaseCallToAction {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -91,7 +90,7 @@ class CallToAction9Page extends BaseCallToAction {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -110,7 +109,7 @@ class CallToAction9Page extends BaseCallToAction {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -129,7 +128,7 @@ class CallToAction9Page extends BaseCallToAction {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -148,7 +147,7 @@ class CallToAction9Page extends BaseCallToAction {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -167,7 +166,7 @@ class CallToAction9Page extends BaseCallToAction {
               key: "image",
               displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -188,8 +187,7 @@ class CallToAction9Page extends BaseCallToAction {
     const images = this.castToObject<ImageItem[]>("imageItems");
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
-    const button: INPUTS.CastedButton =
-      this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<Button[]>("buttons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -213,17 +211,23 @@ class CallToAction9Page extends BaseCallToAction {
                   {description}
                 </Base.SectionDescription>
               )}
-              {this.castToString(button.text) && (
-                <ComposerLink path={button.url}>
-                  <Base.Button
-                    className={this.decorateCSS("button")}
-                    buttonType={button.type}
-                  >
-                    <Base.P className={this.decorateCSS("button-text")}>
-                      {button.text}
-                    </Base.P>
-                  </Base.Button>
-                </ComposerLink>
+              {buttons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((button: Button, index: number) => (
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button
+                          className={this.decorateCSS("button")}
+                          buttonType={button.type}
+                        >
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  ))}
+                </div>
               )}
            </Base.VerticalContent>
             {this.castToString(this.getPropValue("itemDescription")) && (

@@ -13,9 +13,23 @@ class CallToAction11 extends BaseCallToAction {
 
     this.addProp({
       type: "string",
-      key: "text",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
       value: "Get answers and advice from people you want it from. Intact designers and developers will help you create awesome websites for your startup.",
-      displayer: "Text",
+      displayer: "Description",
     });
 
     this.addProp({
@@ -36,13 +50,25 @@ class CallToAction11 extends BaseCallToAction {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(this.getPropValue("text") || buttons.length > 0) && (
+          {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || buttons.length > 0) && (
             <div className={this.decorateCSS("content")}>
-              {this.castToString(this.getPropValue("text")) && (
+              {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
                 <div className={this.decorateCSS("text-container")}>
-                  <Base.SectionDescription className={this.decorateCSS("text")}>
-                    {this.getPropValue("text")}
-                  </Base.SectionDescription>
+                  {this.castToString(this.getPropValue("subtitle")) && (
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                      {this.getPropValue("subtitle")}
+                    </Base.SectionSubTitle>
+                  )}
+                  {this.castToString(this.getPropValue("title")) && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {this.getPropValue("title")}
+                    </Base.SectionTitle>
+                  )}
+                  {this.castToString(this.getPropValue("description")) && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                    </Base.SectionDescription>
+                  )}
                 </div>
               )}
 

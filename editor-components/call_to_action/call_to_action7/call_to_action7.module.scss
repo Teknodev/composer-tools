@@ -35,14 +35,31 @@
       .left-page {
         display: flex;
 
-        .image {
+        .image-container {
+          position: relative;
           width: 70%;
-          border-radius: var(--composer-border-radius-md);
-          object-fit: cover;
-          animation: fadeInFromRight 1s ease-out forwards;
 
-          &.no-animation {
-            animation: unset;
+          .image {
+            width: 100%;
+            border-radius: var(--composer-border-radius-md);
+            object-fit: cover;
+            animation: fadeInFromRight 1s ease-out forwards;
+
+            &.no-animation {
+              animation: unset;
+            }
+          }
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--composer-overlay-color);
+            z-index: 0;
+            pointer-events: none;
+            border-radius: var(--composer-border-radius-md);
           }
         }
       }
@@ -149,7 +166,7 @@
     .max-content {
       .wrapper {
         .left-page {
-          .image {
+          .image-container {
             width: 90%;
           }
         }

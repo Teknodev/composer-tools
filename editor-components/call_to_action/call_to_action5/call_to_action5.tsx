@@ -7,26 +7,38 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
+type MediaObject = {
+  background: any;
+  overlay: boolean;
+};
+
 class CallToAction5Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "media",
-      key: "background",
+      type: "object",
+      key: "mediaObject",
       displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      value: [
+        {
+          type: "media",
+          key: "background",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749ac99506a40002c2f82f5?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
     this.addProp({
       type: "string",
@@ -85,6 +97,9 @@ class CallToAction5Page extends BaseCallToAction {
 
   render() {
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const mediaObject = this.castToObject<MediaObject>("mediaObject");
+    const background = mediaObject.background;
+    const overlay = mediaObject.overlay;
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -95,18 +110,18 @@ class CallToAction5Page extends BaseCallToAction {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.getPropValue("background") && this.decorateCSS("overlay-active")}`}
+        ${overlay && background && this.decorateCSS("overlay-active")}`}
       >
-        {this.getPropValue("background") && (
+        {background && (
           <Base.Media
-            value={this.getPropValue("background")}
+            value={background}
             className={this.decorateCSS("background")}
           />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist || subtitleExist) && (
-            <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
-              {subtitleExist && !this.getPropValue("background") && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            <Base.VerticalContent className={`${this.decorateCSS("header")} ${background && this.decorateCSS("with-image")}`}>
+              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${background && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
@@ -136,7 +151,7 @@ class CallToAction5Page extends BaseCallToAction {
                           onChange={handleChange}
                           value={values.email}
                           name="email"
-                          className={`${this.decorateCSS("input")} ${!this.getPropValue("background") && this.decorateCSS("no-image")}`}
+                          className={`${this.decorateCSS("input")} ${!background && this.decorateCSS("no-image")}`}
                         />
                         {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>

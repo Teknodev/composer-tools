@@ -40,6 +40,7 @@
       .title,
       .subtitle {
         text-align: center !important;
+        color: var(--composer-font-color-primary);
 
         &.with-image {
           color: white;
@@ -51,10 +52,17 @@
         &::before {
           display: none;
         }
+
+        &.with-image {
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
+        }
       }
 
       .description {
         text-align: center !important;
+        color: var(--composer-font-color-primary);
 
         &.with-image {
           color: white;

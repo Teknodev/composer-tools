@@ -53,6 +53,14 @@
       border-radius: var(--composer-border-radius-md);
     }
 
+    &.no-image {
+      .content {
+        .subtitle, .title, .description, .comment {
+          color: var(--composer-font-color-primary);
+        }
+      }
+    }
+
     .content {
       align-items: center;
 
@@ -63,6 +71,12 @@
         color: white;
         &::before {
           display: none;
+        }
+
+        &.with-image {
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
         }
       }
 
@@ -133,10 +147,17 @@
             text-align: center;
           }
 
-          .button {
-            content: "";
-            .button-text {
+          .button-container {
+            display: flex;
+            gap: var(--composer-gap-md);
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .button {
               content: "";
+              .button-text {
+                content: "";
+              }
             }
           }
         }

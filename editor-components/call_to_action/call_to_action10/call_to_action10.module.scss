@@ -5,6 +5,8 @@
             align-items: center;
             gap: var(--composer-gap-md);
             .header {
+                align-items: center;
+
                 .title-container{
                     content: "";
                     position: relative;
@@ -38,21 +40,27 @@
                     text-align: center;
                 }
 
-                .button {
-                    content: "";
-                    .button-text {
+                .button-container {
+                    display: flex;
+                    gap: var(--composer-gap-md);
+                    flex-wrap: wrap;
+                    justify-content: center;
+
+                    .button {
                         content: "";
+                        .button-text {
+                            content: "";
+                        }
                     }
                 }
             }
             .card-container{
                 width: 100%;
                 .card{
-                    display: flex;
-                    flex-direction: column;
-                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);                    border-radius: var(--composer-border-radius-sm);
+                    align-items: flex-start;
+                    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    border-radius: var(--composer-border-radius-sm);
                     padding: var(--composer-gap-lg);
-                    gap: var(--composer-gap-lg);
                     .icon-wrapper{
                         background-color: var(--composer-primary-color);
                         border-radius: var(--composer-border-radius-full);
@@ -65,14 +73,26 @@
                             height: 1.5rem;
                             object-fit: contain;
                         }
+                        &.no-bg {
+                            background-color: transparent;
+                            .icon {
+                                color: var(--composer-primary-color);
+                            }
+                        }
+                    }
+                    .card-subtitle {
+                        margin: 0;
+                        text-align: left;
                     }
                     .card-title{
                         color: var(--composer-font-color-primary);
                         margin:0px;
+                        text-align: left;
                     }
                     .card-description{
                         margin: 0px;
                         color: var(--composer-font-color-primary);
+                        text-align: left;
                     }
                 }
             }

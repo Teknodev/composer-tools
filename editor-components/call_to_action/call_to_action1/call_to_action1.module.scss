@@ -31,6 +31,9 @@
 
             .button-container {
                 display: flex;
+                gap: var(--composer-gap-md);
+                flex-wrap: wrap;
+                justify-content: center;
                 .button{
                     content: "";
                     .button-text {

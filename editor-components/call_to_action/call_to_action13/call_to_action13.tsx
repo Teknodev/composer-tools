@@ -14,7 +14,7 @@ class CallToAction13Page extends BaseCallToAction {
     this.addProp({
       type: "boolean",
       key: "highlightEnabled",
-      displayer: "Enable Highlight Background",
+      displayer: "Subtitle Background",
       value: true,
     });
 
