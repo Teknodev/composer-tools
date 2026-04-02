@@ -228,7 +228,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 color: var(--composer-font-color-primary);
                 border-radius: var(--composer-border-radius-sm);
                 padding: var(--composer-gap-xs) var(--composer-gap-md);
-                font-size: 1rem;
+                font-size: 0.8rem !important;
                 background-color: var(--composer-overlay-color);
                 border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
                 width: auto;
