@@ -834,7 +834,7 @@ class PricingTable9 extends BasePricingTable {
       arrows: false,
       dots: true,
       dotsClass: this.decorateCSS("dots"),
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 2000,
       infinite: true,
       speed: 1000,
@@ -1168,15 +1168,15 @@ class PricingTable9 extends BasePricingTable {
                                 if (!buttonTextExist && !buttonIconExist) return null;
 
                                 return (
-                                  <ComposerLink
+                                  <Base.Button
                                     key={btnIndex}
-                                    path={button.url || "#"}
+                                    buttonType={button.type}
+                                    className={this.decorateCSS("column-button")}
                                   >
-                                    <Base.Button
-                                      buttonType={button.type}
-                                      className={this.decorateCSS("column-button")}
-                                    >
-                                      <div className={this.decorateCSS("pulse-wrapper")}>
+                                    <div className={this.decorateCSS("pulse-wrapper")}>
+                                      <ComposerLink
+                                        path={button.url || "#"}
+                                      >
                                         {buttonIconExist && (
                                           <Base.Media
                                             value={buttonIconValue}
@@ -1206,9 +1206,9 @@ class PricingTable9 extends BasePricingTable {
                                             })()}
                                           </Base.P>
                                         )}
-                                      </div>
-                                    </Base.Button>
-                                  </ComposerLink>
+                                      </ComposerLink>
+                                    </div>
+                                  </Base.Button>
                                 );
                               })}
                             </div>

@@ -30,11 +30,14 @@
           flex-direction: column;
           align-items: flex-start;
 
-          .subtitle,
+          .subtitle {
+            text-align: left;
+            margin-left: 0;
+          }
+
           .title,
           .description {
             text-align: left;
-            content: "";
           }
 
           .button-container {
@@ -59,7 +62,7 @@
           align-items: center;
 
           .header-icon-wrapper {
-            font-size: 10rem;
+            font-size: 9rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -78,25 +81,7 @@
           }
         }
 
-        &.alignment-center {
-          flex-direction: column-reverse;
-          align-items: center;
-          gap: var(--composer-gap-md);
 
-          .header-left-container {
-            align-items: center;
-
-            .title,
-            .subtitle,
-            .description {
-              text-align: center;
-            }
-
-            .button-container {
-              justify-content: center;
-            }
-          }
-        }
       }
     }
 
@@ -293,6 +278,7 @@
               .button-text {
                 margin: 0;
                 white-space: nowrap;
+                font-size: 2rem !important;
 
                 .button-suffix {
                   font-size: 0.6em;
@@ -370,7 +356,7 @@
     .header {
       .header-right-container {
         .header-icon-wrapper {
-          font-size: 8rem;
+          font-size: 7rem;
         }
       }
     }
@@ -395,6 +381,10 @@
       padding-left: var(--composer-gap-xs);
       padding-right: var(--composer-gap-xs);
     }
+
+    .column-button .button-text {
+      font-size: 1.8rem !important;
+    }
   }
 }
 
@@ -403,17 +393,32 @@
     .header {
       flex-direction: column-reverse;
       align-items: flex-start;
-      gap: var(--composer-gap-md);
+      gap: 0 !important;
 
       &.alignment-center {
         align-items: center;
+
+        .header-left-container {
+          align-items: center;
+
+          .title,
+          .subtitle,
+          .description {
+            margin-left: auto;
+            text-align: center;
+          }
+
+          .button-container {
+            justify-content: center;
+          }
+        }
       }
 
       .header-right-container {
         justify-content: flex-start;
 
         .header-icon-wrapper {
-          font-size: 6rem;
+          font-size: 5rem;
         }
       }
     }
@@ -558,7 +563,7 @@
               justify-content: center;
 
               .button-text {
-                font-size: 2rem !important;
+                font-size: 1.5rem !important;
 
                 .button-suffix {
                   font-size: 0.6em;
