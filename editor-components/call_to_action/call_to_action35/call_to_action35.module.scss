@@ -23,7 +23,7 @@
             .card {
                 margin-inline: auto;
                 margin-bottom: calc(var(--composer-gap-lg) * 2);
-                width: 90%;
+                width: 90% !important;
             }
         }
     }
@@ -155,7 +155,7 @@
 
                 .text-block {
                     align-items: center;
-                    /* width: 100%; */
+                    width: 100%;
 
                     .subtitle,
                     .title,
