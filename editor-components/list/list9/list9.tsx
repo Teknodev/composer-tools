@@ -290,7 +290,6 @@ class List9 extends BaseList {
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 4,
-            max: 4,
         });
 
         this.addProp({
