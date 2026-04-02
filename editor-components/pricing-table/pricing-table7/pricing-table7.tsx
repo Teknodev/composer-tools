@@ -961,7 +961,6 @@ class PricingTable7 extends BasePricingTable {
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
-      max: 3,
     });
     this.addProp({
       type: "multiSelect",
