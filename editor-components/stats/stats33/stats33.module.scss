@@ -2,7 +2,6 @@
 
 .container {
     .max-content {
-
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-xl);
@@ -77,7 +76,7 @@
                         .button-container {
                             display: flex;
                             flex-wrap: wrap;
-                            gap: var(--composer-gap-md);
+                            gap: var(--composer-gap-sm);
 
                             .button {
                                 display: flex;
@@ -165,7 +164,7 @@
             gap: var(--composer-gap-md);
 
             .text-content {
-                order: 1;
+                order: 2;
 
                 .stat-value {
                     font-size: 6rem;
@@ -180,7 +179,7 @@
             }
 
             .media-wrapper {
-                order: 2;
+                order: 1;
             }
         }
     }

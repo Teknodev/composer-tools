@@ -79,6 +79,7 @@ class Stats33 extends BaseStats {
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "About Us", "", "FaArrowRight", null, "Primary"),
+                         
                             ],
                         },
                         { type: "boolean", key: "rowReverse", displayer: "Row Reverse", value: false },
