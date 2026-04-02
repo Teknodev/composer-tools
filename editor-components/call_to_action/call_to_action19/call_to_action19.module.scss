@@ -39,7 +39,6 @@
                             .button {
                                 .button-text {
                                     content: "";
-
                                 }
                             }
                         }
@@ -93,7 +92,6 @@
                             .feature-list {
                                 margin: 0;
                                 text-align: left;
-                                color: inherit;
                             }
                         }
                     }
@@ -106,7 +104,7 @@
         .max-content {
             background-color: var(--composer-primary-color);
             border-radius: var(--composer-border-radius-md);
-            padding: calc(var(--composer-gap-lg)*2) var(--composer-gap-xl);
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
 
             .content {
                 color: var(--composer-font-color-secondary);
@@ -152,7 +150,6 @@
             }
         }
     }
-
 }
 
 @container (max-width: #{$composer-tablet-width}) {

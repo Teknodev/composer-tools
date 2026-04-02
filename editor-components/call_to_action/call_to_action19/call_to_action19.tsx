@@ -45,6 +45,7 @@ class CallToAction19 extends BaseCallToAction {
             displayer: "Buttons",
             value: [
                 INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White"),
+
             ],
         });
         this.addProp({
@@ -176,7 +177,7 @@ class CallToAction19 extends BaseCallToAction {
             <Base.Container className={`${this.decorateCSS("container")} ${cardBackground ? this.decorateCSS("has-card-background") : ""}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content")}>
-                        {(hasHeader || (buttons.length > 0 && buttons.some((b: Button) => this.castToString(b?.text))) || this.castToString(ratingValue) || this.castToString(ratingText)) && (
+                        {(hasHeader || buttons.some((b: Button) => this.castToString(b?.text)) || this.castToString(ratingValue) || this.castToString(ratingText)) && (
                             <div className={this.decorateCSS("left-section")}>
                                 <Base.VerticalContent className={this.decorateCSS("header")}>
                                     {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
