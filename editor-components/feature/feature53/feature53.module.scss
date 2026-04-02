@@ -11,6 +11,9 @@
     gap: var(--composer-gap-xl);
 
     .heading {
+      align-items: flex-start;
+      text-align: left;
+
       .subtitle,
       .title,
       .description {
@@ -175,6 +178,10 @@
           var(--composer-tertiary-color);
       }
 
+      .heading.no-lines {
+        border-bottom: none;
+      }
+
       .tabs {
         display: flex;
         flex-direction: column;
@@ -237,6 +244,12 @@
 
               &.active {
                 transform: rotate(180deg);
+              }
+
+              &.is-image {
+                width: calc(1.5 * var(--composer-font-size-md));
+                height: calc(1.5 * var(--composer-font-size-md));
+                object-fit: contain;
               }
             }
 

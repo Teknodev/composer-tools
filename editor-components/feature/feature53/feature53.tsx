@@ -403,7 +403,7 @@ class Feature53 extends BaseFeature {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(hasSubtitle || hasTitle || hasDescription) && (
-            <Base.VerticalContent className={this.decorateCSS("heading")}>
+            <Base.VerticalContent className={`${this.decorateCSS("heading")} ${this.getPropValue("showMobileLines") === false ? this.decorateCSS("no-lines") : ""}`}>
               {hasSubtitle && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>
               )}
@@ -438,6 +438,7 @@ class Feature53 extends BaseFeature {
             {filteredTabs.map((tab: ITab, index: number) => {
               const tabTextExist = this.castToString(tab.tabText);
               const tabIconExist = hasMediaValue(tab.icon);
+              const isImage = tab.icon?.type === "image";
               const tabSubtitleExist = this.castToString(tab.subtitle);
               const tabTitleExist = this.castToString(tab.title);
               const tabDescriptionExist = this.castToString(tab.description);
@@ -467,7 +468,7 @@ class Feature53 extends BaseFeature {
                       {tabIconExist && (
                         <Base.Media
                           value={tab.icon}
-                          className={`${this.decorateCSS("tab-header-icon")} ${activeTab === index ? this.decorateCSS("active") : ""}`}
+                          className={`${this.decorateCSS("tab-header-icon")} ${activeTab === index ? this.decorateCSS("active") : ""} ${isImage ? this.decorateCSS("is-image") : ""}`}
                         />
                       )}
                     </Base.H2>
