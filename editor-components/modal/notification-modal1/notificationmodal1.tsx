@@ -13,6 +13,8 @@ type Button = {
 };
 
 class NotificationModal1 extends BaseModal {
+  static subCategory = "notification";
+
   constructor(props?: any) {
     super(props, styles);
 
