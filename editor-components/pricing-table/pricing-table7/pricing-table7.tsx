@@ -131,7 +131,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is Active?",
+              displayer: "Card Active",
               value: false,
             },
             {
@@ -248,7 +248,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is Active?",
+              displayer: "Card Active",
               value: true,
             },
             {
@@ -388,7 +388,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is Active?",
+              displayer: "Card Active",
               value: false,
             },
             {
@@ -557,7 +557,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is Active?",
+              displayer: "Card Active",
               value: false,
             },
             {
@@ -674,7 +674,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is Active?",
+              displayer: "Card Active",
               value: true,
             },
             {
@@ -813,7 +813,7 @@ class PricingTable7 extends BasePricingTable {
             {
               type: "boolean",
               key: "isActive",
-              displayer: "Is Active?",
+              displayer: "Card Active",
               value: false,
             },
             {
