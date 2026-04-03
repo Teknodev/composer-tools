@@ -7,6 +7,10 @@
   background-position: center;
   padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
 
+  &.no-image {
+    padding: 80px 50px;
+  }
+
   &.overlay-active {
     &::before {
       position: absolute;
@@ -73,7 +77,7 @@
         display: flex;
         width: 100%;
         flex-wrap: wrap;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
         justify-content: center;
 
         .button {
@@ -91,6 +95,10 @@
 
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
+
+    &.no-image {
+      padding: 80px 40px;
+    }
   }
 }
 
@@ -98,5 +106,9 @@
 
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
+
+    &.no-image {
+      padding: 50px 20px;
+    }
   }
 }

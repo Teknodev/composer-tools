@@ -42,7 +42,7 @@
 
                 .button-container {
                     display: flex;
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-sm);
                     flex-wrap: wrap;
                     justify-content: center;
 
@@ -81,16 +81,13 @@
                         }
                     }
                     .card-subtitle {
-                        margin: 0;
                         text-align: left;
                     }
                     .card-title{
                         color: var(--composer-font-color-primary);
-                        margin:0px;
                         text-align: left;
                     }
                     .card-description{
-                        margin: 0px;
                         color: var(--composer-font-color-primary);
                         text-align: left;
                     }

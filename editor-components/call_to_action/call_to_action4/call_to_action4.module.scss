@@ -53,7 +53,7 @@
 
         .buttons {
           display: flex;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
           justify-content: var(--composer-content-alignment, flex-start);
           .button {
             content: "";

@@ -245,7 +245,7 @@ class CallToAction9Page extends BaseCallToAction {
                     {item.image && (
                       <Base.Media
                         value={item.image}
-                        className={this.decorateCSS("image")}
+                        className={this.decorateCSS(item.image.type === "video" ? "video" : "image")}
                       />
                     )}
                   </div>

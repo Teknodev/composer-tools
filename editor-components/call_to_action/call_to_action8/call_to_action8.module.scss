@@ -26,7 +26,7 @@
 
                 .button-container {
                     display: flex;
-                    gap: var(--composer-gap-md);
+                    gap: var(--composer-gap-sm);
                     flex-wrap: wrap;
                     justify-content: flex-start;
 
@@ -78,6 +78,24 @@
               margin-left: 0;
               text-align: left;
             }
+          }
+        }
+      }
+    }
+  }
+  &.container:not(.has-image) {
+    .max-content {
+      .content {
+        .title-box {
+          .title-content {
+            .title, .subtitle, .description {
+              margin: auto;
+              text-align: center;
+            }
+          }
+          .button-container {
+            justify-content: center;
+            margin: auto;
           }
         }
       }

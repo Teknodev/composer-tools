@@ -30,14 +30,14 @@
     z-index: 1;
 
     .wrapper {
-      column-gap: var(--composer-gap-xs);
+      column-gap: var(--composer-gap-lg);
 
       .left-page {
         display: flex;
 
         .image-container {
           position: relative;
-          width: 70%;
+          width: 90%;
 
           .image {
             width: 100%;
@@ -83,7 +83,6 @@
 
             .input-div {
               display: flex;
-              gap: var(--composer-gap-md);
               position: relative;
 
               .input {
@@ -150,31 +149,18 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .wrapper {
-        flex-direction: column-reverse;
-      }
-
-    }
-  }
-}
-
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .wrapper {
-        .left-page {
-          .image-container {
-            width: 90%;
-          }
-        }
+        flex-direction: column-reverse;
 
         .right-page {
           .right-content {
             .input-button-wrapper {
               .input-div {
+                flex-direction: column;
+
                 .input {
                   flex: 1;
                 }

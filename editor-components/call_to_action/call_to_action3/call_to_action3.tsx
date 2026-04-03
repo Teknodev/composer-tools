@@ -82,7 +82,7 @@ class CallToAction3Page extends BaseCallToAction {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${overlay && image && this.decorateCSS("overlay-active")}`}>
+        className={`${this.decorateCSS("container")} ${overlay && image && this.decorateCSS("overlay-active")} ${!image && this.decorateCSS("no-image")}`}>
         {image && (
           <Base.Media
             value={image}

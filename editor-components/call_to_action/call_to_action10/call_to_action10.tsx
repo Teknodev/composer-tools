@@ -251,9 +251,9 @@ class CallToAction10Page extends BaseCallToAction {
                       </div>
                     )}
                     {this.castToString(item.cardSubtitle) && (
-                      <Base.SectionSubTitle className={this.decorateCSS("card-subtitle")}>
+                      <Base.H5 className={this.decorateCSS("card-subtitle")}>
                         {item.cardSubtitle}
-                      </Base.SectionSubTitle>
+                      </Base.H5>
                     )}
                     {this.castToString(item.cardTitle) && (
                       <Base.H3 className={this.decorateCSS("card-title")}>

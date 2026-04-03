@@ -110,7 +110,7 @@ class CallToAction5Page extends BaseCallToAction {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${overlay && background && this.decorateCSS("overlay-active")}`}
+        ${overlay && background && this.decorateCSS("overlay-active")} ${!background && this.decorateCSS("no-image")}`}
       >
         {background && (
           <Base.Media

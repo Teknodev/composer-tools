@@ -24,7 +24,7 @@
 
         .button-container {
           display: flex;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
           flex-wrap: wrap;
           justify-content: center;
 
@@ -60,6 +60,13 @@
           width: 100%;
 
           .image {
+            height: 41px;
+            font-size: 41px;
+            object-fit: cover;
+          }
+
+          .video {
+            width: 100%;
             height: 100%;
             object-fit: cover;
           }

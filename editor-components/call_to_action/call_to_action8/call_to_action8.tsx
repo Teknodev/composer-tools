@@ -86,6 +86,23 @@ class CallToAction8Page extends BaseCallToAction {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
 
+    const buttonContainer = buttons.length > 0 && (
+      <div className={this.decorateCSS("button-container")}>
+        {buttons.map((button: Button, index: number) => (
+          this.castToString(button.text) && (
+            <ComposerLink key={index} path={button.url}>
+              <Base.Button
+                buttonType={button.type}
+                className={this.decorateCSS("button")}
+              >
+                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+              </Base.Button>
+            </ComposerLink>
+          )
+        ))}
+      </div>
+    );
+
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("has-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -108,23 +125,9 @@ class CallToAction8Page extends BaseCallToAction {
                       {description}
                     </Base.SectionDescription>
                   )}
+                  {!image && buttonContainer}
                 </Base.VerticalContent>
-                {buttons.length > 0 && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((button: Button, index: number) => (
-                      this.castToString(button.text) && (
-                        <ComposerLink key={index} path={button.url}>
-                          <Base.Button
-                            buttonType={button.type}
-                            className={this.decorateCSS("button")}
-                          >
-                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          </Base.Button>
-                        </ComposerLink>
-                      )
-                    ))}
-                  </div>
-                )}
+                {image && buttonContainer}
               </div>
             )}
             {image && (

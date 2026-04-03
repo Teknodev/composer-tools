@@ -2,7 +2,6 @@
 
 .container {
   position: relative;
-  padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
   background-color: var(--composer-html-background);
 
 
@@ -83,6 +82,7 @@
         .button-container {
           width: 100%;
           display: flex;
+          gap: var(--composer-gap-sm);
           justify-content: center;
       }
        .button {
@@ -100,8 +100,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-
     .max-content {
       .form {
         .newsletter {
@@ -114,8 +112,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
-
     .max-content {
       .form {
         flex-direction: column;

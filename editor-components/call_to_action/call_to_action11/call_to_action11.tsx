@@ -53,7 +53,7 @@ class CallToAction11 extends BaseCallToAction {
           {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || buttons.length > 0) && (
             <div className={this.decorateCSS("content")}>
               {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
-                <div className={this.decorateCSS("text-container")}>
+                <Base.VerticalContent className={this.decorateCSS("text-container")}>
                   {this.castToString(this.getPropValue("subtitle")) && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {this.getPropValue("subtitle")}
@@ -65,11 +65,11 @@ class CallToAction11 extends BaseCallToAction {
                     </Base.SectionTitle>
                   )}
                   {this.castToString(this.getPropValue("description")) && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                    <Base.SectionDescription className={this.decorateCSS("text")}>
                       {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
-                </div>
+                </Base.VerticalContent>
               )}
 
               {buttons.length > 0 && (
