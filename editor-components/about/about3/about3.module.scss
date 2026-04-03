@@ -266,11 +266,11 @@
                     max-width: 400px;
 
                     .image-text {
-                        top: var(--composer-gap-lg);
-                        left: 5%;
+                        top: var(--composer-gap-xl);
+                        left: 38%;
 
                         .lower-text {
-                            font-size: 3.5rem !important
+                            font-size: 3.5rem !important;
                         }
                     }
 
@@ -309,11 +309,11 @@
                     }
 
                     .image-text {
-                        left: 30%;
-                        top: var(--composer-gap-md);
+                        left: 35%;
+                        top: var(--composer-gap-xl);
 
                         .lower-text {
-                            font-size: 3rem !important
+                            font-size: 3rem !important;
                         }
                     }
                 }
