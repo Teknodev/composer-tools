@@ -79,7 +79,7 @@ class Stats33 extends BaseStats {
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "About Us", "", "FaArrowRight", null, "Primary"),
-                         
+
                             ],
                         },
                         { type: "boolean", key: "rowReverse", displayer: "Row Reverse", value: false },
@@ -112,6 +112,7 @@ class Stats33 extends BaseStats {
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "View All Projects", "", "FaArrowRight", null, "Primary"),
+
                             ],
                         },
                         { type: "boolean", key: "rowReverse", displayer: "Row Reverse", value: true },
@@ -303,14 +304,14 @@ class Stats33 extends BaseStats {
                                             </Base.H3>
                                         )}
                                         {statTitleExist && (
-                                            <Base.SectionTitle className={this.decorateCSS("stats-title")}>
+                                            <Base.H1 className={this.decorateCSS("stats-title")}>
                                                 {stat.titleElement}
-                                            </Base.SectionTitle>
+                                            </Base.H1>
                                         )}
                                         {statDescriptionExist && (
-                                            <Base.SectionDescription className={this.decorateCSS("stats-description")}>
+                                            <Base.P className={this.decorateCSS("stats-description")}>
                                                 {stat.descriptionElement}
-                                            </Base.SectionDescription>
+                                            </Base.P>
                                         )}
 
                                         {hasValidButtons && (
@@ -361,13 +362,9 @@ class Stats33 extends BaseStats {
                             return (
                                 <Base.ContainerGrid
                                     key={`stat33-${index}`}
-                                    className={this.decorateCSS("row")}
+                                    className={`${this.decorateCSS("row")} ${isReversed ? this.decorateCSS("row-reverse") : ""}`}
                                 >
-                                    {isReversed ? (
-                                        <>{mediaCell}{textCell}</>
-                                    ) : (
-                                        <>{textCell}{mediaCell}</>
-                                    )}
+                                    {textCell}{mediaCell}
                                 </Base.ContainerGrid>
                             );
                         })}
