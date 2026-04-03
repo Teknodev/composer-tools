@@ -172,9 +172,9 @@ class Stats29 extends BaseStats {
 
     return (
       <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-        {(valueExist || stat.prefix || stat.suffix) && (
+        {(valueExist || this.castToString(stat.prefixElement) || this.castToString(stat.suffixElement)) && (
           <span className={this.decorateCSS("stat-value")}>
-            {stat.prefix && (
+            {this.castToString(stat.prefixElement) && (
               <span className={this.decorateCSS("stat-prefix")}>
                 {stat.prefixElement}
               </span>
@@ -184,7 +184,7 @@ class Stats29 extends BaseStats {
                 {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
               </span>
             )}
-            {stat.suffix && (
+            {this.castToString(stat.suffixElement) && (
               <span className={this.decorateCSS("stat-suffix")}>
                 {stat.suffixElement}
               </span>
@@ -238,11 +238,13 @@ class Stats29 extends BaseStats {
     const animationDuration = animationProps?.animationDuration || 2000;
     const itemCountInRow = this.getPropValue("itemCountInRow");
 
+    const alignment = Base.getContentAlignment();
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("card")}>
-            <div className={this.decorateCSS("card-content")}>
+            <div className={`${this.decorateCSS("card-content")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
               {hasHeader && (
                 <div className={this.decorateCSS("header-container")}>
                   <Base.VerticalContent className={this.decorateCSS("header-content")}>
@@ -271,7 +273,7 @@ class Stats29 extends BaseStats {
                                 buttonType={button.type}
                                 className={this.decorateCSS("button")}
                               >
-                                <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                               <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                               </Base.Button>
                             </ComposerLink>
                           );

@@ -31,14 +31,27 @@
           }
         }
 
+        &.center-alignment .header-container .header-content {
+          align-items: center;
+
+          .subtitle,
+          .title,
+          .description {
+            text-align: center;
+          }
+        }
+
         .stats-grid {
           gap: var(--composer-gap-lg);
 
           .stat-item {
+            align-items: flex-start;
+
             .stat-value {
               display: flex;
               color: var(--composer-primary-color);
               font-size: 12rem;
+              text-align: left;
 
               .stat-prefix,
               .stat-number,
@@ -46,6 +59,12 @@
                 color: inherit;
                 font-size: 12rem;
               }
+            }
+
+            .stat-subtitle,
+            .stat-title,
+            .stat-description {
+              text-align: left;
             }
 
             .stat-subtitle,
@@ -74,23 +93,6 @@
   }
 }
 
-@container (min-width: calc(#{$composer-phone-width} + 1px)) {
-  .container .max-content .card .card-content .stats-grid {
-    .stat-item {
-      align-items: flex-start !important;
-
-      .stat-value {
-        text-align: left !important;
-      }
-
-      .stat-subtitle,
-      .stat-title,
-      .stat-description {
-        text-align: left !important;
-      }
-    }
-  }
-}
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
@@ -167,6 +169,20 @@
               .stat-description {
                 font-size: 1rem;
               }
+            }
+          }
+
+          &.center-alignment .stats-grid .stat-item {
+            align-items: center;
+
+            .stat-value {
+              text-align: center;
+            }
+
+            .stat-subtitle,
+            .stat-title,
+            .stat-description {
+              text-align: center;
             }
           }
         }
