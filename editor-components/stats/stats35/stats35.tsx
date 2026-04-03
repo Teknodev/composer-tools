@@ -27,7 +27,7 @@ class Stats35 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "",
+            value: "sfasf",
         });
 
         this.addProp({
