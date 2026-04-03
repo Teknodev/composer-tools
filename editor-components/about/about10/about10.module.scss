@@ -4,36 +4,34 @@
   .max-content {
     display: flex;
     flex-direction: column;
+    gap: var(--composer-gap-lg);
 
     .header {
       display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: var(--composer-gap-md);
-      margin-bottom: var(--composer-gap-md);
+      gap: var(--composer-gap-xl);
+      width: 100%;
 
-      .text-content {
-        content: "";
-        align-items: flex-start;
-        flex: 1 1 50%;
+      .left-column {
+        flex: 1;
+        text-align: left;
 
         .subtitle,
         .title {
           text-align: left;
           margin-left: 0;
         }
-
-        .title {
-          margin-bottom: 0;
-        }
-
       }
 
-      .content-section {
-        flex: 1 1 50%;
-      }
-
-      .description {
+      .right-column {
+        flex: 1;
         text-align: left;
+
+        .description {
+          text-align: left;
+        }
       }
 
       .button-wrapper {
@@ -59,35 +57,6 @@
           }
         }
       }
-
-      &:first-child {
-        flex: 1;
-      }
-
-      &:last-child {
-        flex: 1;
-        align-items: flex-start;
-      }
-
-
-      &.no-left {
-        justify-content: flex-start;
-
-        .content-section:last-child {
-          flex: 0 0 auto;
-          max-width: 100%;
-          align-items: flex-start;
-        }
-      }
-
-      &.no-right {
-        justify-content: flex-start;
-
-        .content-section:first-child {
-          flex: 0 0 auto;
-          max-width: 100%;
-        }
-      }
     }
 
     .image-section {
@@ -96,8 +65,6 @@
       height: 580px;
       border-radius: var(--composer-border-radius-sm);
       overflow: hidden;
-      margin-bottom: var(--composer-gap-md);
-      margin-top: var(--composer-gap-md);
 
 
 
@@ -168,9 +135,12 @@
       }
     }
 
+    .features-section:not(:has(.feature-item)) {
+      display: none;
+    }
+
     .features-section {
       width: 100%;
-      margin-top: var(--composer-gap-md);
 
       .features-grid {
         gap: var(--composer-gap-md);
@@ -196,11 +166,10 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: 0;
+      gap: var(--composer-gap-lg);
 
       .header {
-        gap: var(--composer-gap-md);
-        margin-bottom: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
       }
 
 
@@ -216,33 +185,24 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-md);
 
       .header {
         flex-direction: column;
-        align-items: flex-start;
-        gap: var(--composer-gap-xs);
-        margin-bottom: var(--composer-gap-md);
+        gap: var(--composer-gap-md);
 
-        .content-section {
-          flex-direction: column;
-          gap: var(--composer-gap-md);
+        .left-column,
+        .right-column {
           width: 100%;
-        }
-
-        .features-section {
-          margin-top: 0 !important;
+          flex: auto;
         }
       }
 
       .image-section {
         height: 260px;
-        margin-top: var(--composer-gap-md);
-        margin-bottom: var(--composer-gap-md);
       }
 
       .features-section {
-        margin-top: var(--composer-gap-md);
-
         .features-grid {
           gap: var(--composer-gap-md);
 
