@@ -355,9 +355,9 @@ class About1 extends BaseAbout {
                 {textContent.map((item, index) => (
                   <Base.VerticalContent key={index} className={this.decorateCSS("item")}>
                     {this.castToString(item.title) && (
-                      <Base.H4 className={this.decorateCSS("title")}>
+                      <Base.H5 className={this.decorateCSS("title")}>
                         {item.title}
-                      </Base.H4>
+                      </Base.H5>
                     )}
                     {this.castToString(item.description) && (
                       <Base.P className={this.decorateCSS("item-description")}>

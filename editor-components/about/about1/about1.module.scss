@@ -112,6 +112,7 @@
                 .item {
                     display: flex;
                     flex-direction: column;
+                    gap: var(--composer-gap-md);
 
                     .title {
                         color: var(--composer-primary-color);
@@ -141,6 +142,26 @@
     }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .heading {
+                .button-container .button {
+                    .icon {
+                        font-size: 4rem;
+                        width: 4rem;
+                        height: 4rem;
+                    }
+
+                    .button-text {
+                        font-size: 3rem !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
@@ -149,13 +170,13 @@
             .heading {
                 .button-container .button {
                     .icon {
-                        font-size: 3rem;
-                        width: 3rem;
-                        height: 3rem;
+                        font-size: 2.5rem;
+                        width: 2.5rem;
+                        height: 2.5rem;
                     }
 
                     .button-text {
-                        font-size: 2rem !important;
+                        font-size: 1.5rem !important;
                     }
                 }
             }
@@ -190,6 +211,7 @@
 
                     .content-right {
                         .item {
+
                             .title,
                             .item-description {
                                 text-align: left;
@@ -217,6 +239,7 @@
                 .content {
                     .content-right {
                         .item {
+
                             .title,
                             .item-description {
                                 text-align: left;
