@@ -6,7 +6,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 
 type BreadcrumbItem = {
     title: React.JSX.Element;
-    separatorIcon: TypeMediaInputValue;
+    icon: TypeMediaInputValue;
     navigateTo: string;
 };
 
@@ -73,14 +73,14 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         },
                         {
                             type: "media",
-                            key: "separatorIcon",
-                            displayer: "Separator Icon",
+                            key: "icon",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
                             value: {
                                 type: "icon",
-                                name: "RxDoubleArrowRight",
+                                name: "",
                             },
                         },
                         {
@@ -104,8 +104,8 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         },
                         {
                             type: "media",
-                            key: "separatorIcon",
-                            displayer: "Separator Icon",
+                            key: "icon",
+                            displayer: "Media",
                             additionalParams: {
                                 availableTypes: ["image", "icon"],
                             },
@@ -124,6 +124,19 @@ class Breadcrumb1 extends BaseBreadcrumb {
                 },
             ],
         });
+
+        this.addProp({
+            type: "media",
+            key: "separatorIcon",
+            displayer: "Separator Icon",
+            additionalParams: {
+                availableTypes: ["image", "icon"],
+            },
+            value: {
+                type: "icon",
+                name: "RxDoubleArrowRight",
+            },
+        });
     }
 
     static getName(): string {
@@ -137,6 +150,9 @@ class Breadcrumb1 extends BaseBreadcrumb {
         const overlay = background?.overlay;
 
         const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
+
+        const separatorIconValue = this.getPropValue("separatorIcon");
+        const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
 
         const isTitleExist = this.castToString(this.getPropValue("title"));
         const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -193,24 +209,31 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         >
                             {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
                                 const itemTitleExist = this.castToString(item.title);
-                                const separatorIconExist = item.separatorIcon && (item.separatorIcon.type === "icon" ? item.separatorIcon.name : item.separatorIcon.url);
-                                if (!itemTitleExist && !separatorIconExist) return null;
+                                const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                if (!itemTitleExist && !itemIconExist) return null;
+                                const isLast = index === breadcrumbItems.length - 1;
                                 return (
                                     <React.Fragment key={index}>
                                         <div className={this.decorateCSS("breadcrumb-item")}>
                                             <ComposerLink path={item.navigateTo}>
                                                 <div className={this.decorateCSS("breadcrumb-link")}>
+                                                    {itemIconExist && (
+                                                        <Base.Media
+                                                            value={item.icon}
+                                                            className={this.decorateCSS("item-icon")}
+                                                        />
+                                                    )}
                                                     {itemTitleExist && (
-                                                        <Base.P className={this.decorateCSS(index === breadcrumbItems.length - 1 ? "current-page" : "home-page")}>
+                                                        <Base.P className={this.decorateCSS(isLast ? "current-page" : "home-page")}>
                                                             {item.title}
                                                         </Base.P>
                                                     )}
                                                 </div>
                                             </ComposerLink>
                                         </div>
-                                        {separatorIconExist && (
+                                        {!isLast && separatorIconExist && (
                                             <Base.Media
-                                                value={item.separatorIcon}
+                                                value={separatorIconValue}
                                                 className={this.decorateCSS("stripIcon")}
                                             />
                                         )}
