@@ -189,30 +189,16 @@ class About8 extends BaseAbout {
           <div
             className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : ""}`}
           >
-            {hasImages && (
-              <div className={`${this.decorateCSS("images-section")} ${isSingleImage ? this.decorateCSS("single-image") : ""}`}>
-                {hasImage1 && (
-                  <div
-                    className={`${this.decorateCSS("image-box")} ${media1?.overlay ? this.decorateCSS("overlay") : ""}`}
-                  >
-                    <Base.Media
-                      value={image1}
-                      className={this.decorateCSS("image")}
-                    />
-                    <div className={this.decorateCSS("overlay-layer")} />
-                  </div>
-                )}
-                {hasImage2 && (
-                  <div
-                    className={`${this.decorateCSS("image-box")} ${media2?.overlay ? this.decorateCSS("overlay") : ""}`}
-                  >
-                    <Base.Media
-                      value={image2}
-                      className={this.decorateCSS("image")}
-                    />
-                    <div className={this.decorateCSS("overlay-layer")} />
-                  </div>
-                )}
+            {hasImage1 && (
+              <div className={`${this.decorateCSS("image-box")} ${media1?.overlay ? this.decorateCSS("overlay") : ""}`}>
+                <Base.Media value={image1} className={this.decorateCSS("image")} />
+                <div className={this.decorateCSS("overlay-layer")} />
+              </div>
+            )}
+            {hasImage2 && (
+              <div className={`${this.decorateCSS("image-box")} ${media2?.overlay ? this.decorateCSS("overlay") : ""}`}>
+                <Base.Media value={image2} className={this.decorateCSS("image")} />
+                <div className={this.decorateCSS("overlay-layer")} />
               </div>
             )}
 
