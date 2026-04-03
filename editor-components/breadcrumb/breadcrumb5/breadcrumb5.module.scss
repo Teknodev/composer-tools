@@ -1,3 +1,5 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   background-color: color-mix(
     in srgb,
@@ -13,6 +15,7 @@
     content: "";
     position: relative;
     z-index: 3;
+
     .section {
       display: flex;
       justify-content: center;
@@ -32,16 +35,18 @@
       gap: var(--composer-gap-xs);
       text-decoration: none;
       cursor: pointer;
-      
+
       &:hover {
         .home-page-title {
           color: var(--composer-primary-color);
         }
+
         .icon {
           color: var(--composer-primary-color);
         }
       }
     }
+
     .home-page-title {
       color: var(--composer-font-color-primary);
       cursor: pointer;
@@ -69,15 +74,16 @@
       content: "";
     }
 
-    .current-page-icon, .icon {
+    .current-page-icon,
+    .icon {
       content: "";
       color: var(--composer-font-color-primary);
       font-size: 1rem;
       width: 14px;
       height: 14px;
     }
-
   }
+
   .overlay {
     position: absolute;
     left: 0;
@@ -86,5 +92,17 @@
     height: 100%;
     z-index: 1;
     background-color: var(--composer-overlay-color);
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .section {
+    flex-wrap: wrap;
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .section {
+    flex-wrap: wrap;
   }
 }
