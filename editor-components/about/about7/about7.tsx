@@ -40,7 +40,7 @@ class About7 extends BaseAbout {
                     },
                     value: {
                         type: "image",
-                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6819c14f2bb4c4002cf20be0?alt=media",
+                        url: "https://swissdelight.qodeinteractive.com/wp-content/uploads/2021/04/history-offset-img1.png",
                     },
                 },
                 {
