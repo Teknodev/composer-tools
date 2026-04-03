@@ -29,7 +29,12 @@
         animation: fadeInUp 400ms ease-out;
       }
 
+      .description {
+        content: "";
+      }
+
       .sectionTitle {
+        content: "";
         margin: 0 0 var(--composer-gap-md);
 
         &.animation {

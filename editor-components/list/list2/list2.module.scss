@@ -13,6 +13,12 @@
 
       .header {
         text-align: center;
+
+        .subtitle,
+        .title,
+        .description {
+          content: "";
+        }
       }
 
       .cards-box {
@@ -109,6 +115,7 @@
               align-items: start;
 
               .category-name {
+                content: "";
                 text-align: left;
                 overflow-wrap: break-word;
                 word-wrap: break-word;
@@ -127,6 +134,7 @@
 
                 .count-value,
                 .count-label {
+                  content: "";
                   color: var(--composer-font-color-secondary);
                 }
               }

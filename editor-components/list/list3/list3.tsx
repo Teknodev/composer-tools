@@ -226,7 +226,7 @@ class List3 extends BaseList {
     return (
       <Base.Container className={this.decorateCSS("container")} isFull="true">
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ListGrid className={`${this.decorateCSS("cards-grid")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`} gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}>
+          <Base.ListGrid className={`${this.decorateCSS("cards-grid")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""} ${line ? this.decorateCSS("has-line") : ""}`} gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}>
             {hasHeaderContent && (
               <Base.VerticalContent className={this.decorateCSS("intro-card")} data-animation={hoverAnimation.join(" ")}>
                 {(subtitleExist || titleExist || descriptionExist) && (
