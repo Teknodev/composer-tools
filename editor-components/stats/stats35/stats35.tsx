@@ -41,25 +41,40 @@ class Stats35 extends BaseStats {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation.Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition."
+            value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation. Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
         });
 
         this.addProp({
-            type: "media",
-            key: "backgroundImage",
-            displayer: "Background Image",
-            additionalParams: { availableTypes: ["image", "video"] },
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
-            },
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
 
         this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: true,
+            type: "object",
+            key: "media",
+            displayer: "Media",
+            value: [
+                {
+                    type: "media",
+                    key: "backgroundImage",
+                    displayer: "Media",
+                    additionalParams: { availableTypes: ["image", "video"] },
+                    value: {
+                        type: "image",
+                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
+                },
+            ],
         });
 
         this.addProp({
@@ -75,8 +90,8 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Year of foundation" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Year of foundation" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
@@ -88,8 +103,8 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "number", displayer: "Value", value: "171" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Across ten total funds" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Across ten total funds" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
@@ -101,8 +116,8 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "400" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Companies invested in" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "Companies invested in" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
@@ -116,15 +131,6 @@ class Stats35 extends BaseStats {
             value: [
                 { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
-            ],
-        });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
         });
     }
@@ -233,8 +239,10 @@ class Stats35 extends BaseStats {
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
-        const backgroundImage = this.getPropValue("backgroundImage") as TypeMediaInputValue;
-        const showOverlay = this.getPropValue("overlay") !== false;
+        const mediaProps = this.castToObject<{ backgroundImage: TypeMediaInputValue; overlay: boolean }>("media");
+        const backgroundImage = mediaProps?.backgroundImage as TypeMediaInputValue;
+        const hasMedia = !!backgroundImage && "url" in backgroundImage && !!backgroundImage.url;
+        const showOverlay = hasMedia && !!mediaProps?.overlay;
 
         const statsItems = this.castToObject<{
             prefix: JSX.Element;
@@ -270,8 +278,8 @@ class Stats35 extends BaseStats {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content-wrapper")}>
+                <div className={`${this.decorateCSS("content-wrapper")} ${(subtitleExist || titleExist || descriptionExist || hasValidButtons) ? this.decorateCSS("has-left") : ""}`}>
+                    {(subtitleExist || titleExist || descriptionExist || hasValidButtons) && (
                         <div className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                             <Base.VerticalContent className={this.decorateCSS("text-group")}>
                                 {subtitleExist && (
@@ -307,26 +315,26 @@ class Stats35 extends BaseStats {
                                 )}
                             </Base.VerticalContent>
                         </div>
+                    )}
 
-                        <div className={this.decorateCSS("right-column")}>
-                            <Base.Media
-                                value={backgroundImage}
-                                className={this.decorateCSS("background-image")}
-                            />
-                            {showOverlay && <div className={this.decorateCSS("overlay")} />}
-                            <div className={this.decorateCSS("stats-list")}>
-                                {stats.map((stat, index) => (
-                                    <this.AnimatedStat
-                                        key={`stat35-${index}`}
-                                        stat={stat}
-                                        animationDuration={animationDuration}
-                                        statsAnimation={statsAnimation}
-                                    />
-                                ))}
-                            </div>
+                    <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasMedia ? this.decorateCSS("no-media") : ""}`}>
+                        <Base.Media
+                            value={backgroundImage}
+                            className={this.decorateCSS("background-image")}
+                        />
+                        {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                        <div className={this.decorateCSS("stats-list")}>
+                            {stats.map((stat, index) => (
+                                <this.AnimatedStat
+                                    key={`stat35-${index}`}
+                                    stat={stat}
+                                    animationDuration={animationDuration}
+                                    statsAnimation={statsAnimation}
+                                />
+                            ))}
                         </div>
                     </div>
-                </Base.MaxContent>
+                </div>
             </Base.Container>
         );
     }
