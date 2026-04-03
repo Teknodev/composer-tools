@@ -25,52 +25,67 @@
         z-index: 1;
         background-color: var(--composer-overlay-color);
     }
+
     .vector1 {
         position: absolute;
-        top: 0px;
+        top: 0;
         left: 600px;
         object-fit: cover;
-        max-height: 200px; 
+        max-height: 200px;
         max-width: 50%;
-        z-index: 0;       
+        z-index: 0;
     }
+
     .vector2 {
         position: absolute;
         right: 200px;
-        max-height: 200px; 
+        max-height: 200px;
         max-width: 50%;
         object-fit: cover;
         z-index: 0;
     }
+
     .max-content {
         position: relative;
         z-index: 2;
-        
+
         .section {
+            .subtitle {
+                content: "";
+                background: transparent !important;
+                padding: 0 !important;
+            }
+
             .title {
                 max-width: 70%;
                 width: 100%;
             }
+
             .description {
                 opacity: 0.7;
                 max-width: 70%;
                 width: 100%;
             }
+
             .breadcrumb {
                 display: flex;
                 align-items: center;
                 max-width: 100%;
                 gap: var(--composer-gap-xs);
-                .home-container, .current-container{
+
+                .home-container,
+                .current-container {
                     content: "";
                 }
-                .home,.current{
+
+                .home,
+                .current {
                     overflow: hidden;
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 5;
                     text-overflow: ellipsis;
-                    margin: 0px;
+                    margin: 0;
                     white-space: normal;
                     width: 100%;
                 }
@@ -81,37 +96,44 @@
                     gap: var(--composer-gap-xs);
                     text-decoration: none;
                     cursor: pointer;
-                    
+
                     &:hover {
                         .home {
                             color: var(--composer-primary-color);
                         }
+
                         .icon {
                             color: var(--composer-primary-color);
                         }
                     }
                 }
+
                 .home {
                     color: var(--composer-font-color-primary);
+
                     &:hover {
-                        transition: color 0.3 ease;
+                        transition: color 0.3s ease;
                         color: var(--composer-primary-color);
                     }
                 }
+
                 .icon {
                     color: var(--composer-font-color-primary);
                     font-size: 1.25rem;
                     width: 20px;
                     height: 20px;
                 }
+
                 .current-page-container {
                     display: flex;
                     align-items: center;
                     gap: var(--composer-gap-sm);
                 }
+
                 .current {
                     color: var(--composer-primary-color);
                 }
+
                 .current-page-icon {
                     font-size: 1rem;
                     width: 20px;
@@ -122,33 +144,50 @@
             }
 
             &.with-image {
-                .title, .description, .home, .icon {
+
+                .subtitle,
+                .title,
+                .description,
+                .home,
+                .icon {
                     color: black;
+                }
+
+                .subtitle {
+                    &::before {
+                        background: black !important;
+                    }
                 }
             }
         }
     }
 }
 
-@container (max-width : #{$composer-tablet-width}) {
+@container (max-width: #{$composer-tablet-width}) {
     .container {
         .vector1 {
             left: 300px !important;
         }
+
         .vector2 {
             right: 100px;
         }
     }
 }
 
-@container (max-width : #{$composer-phone-width}) { 
+@container (max-width: #{$composer-phone-width}) {
     .container {
-        .vector1, .vector2 {
+
+        .vector1,
+        .vector2 {
             display: none;
         }
+
         .section {
-            .title, .description {
-                max-width: 100% !important;
+
+            .title,
+            .description {
+                max-width: 100%;
             }
         }
     }
