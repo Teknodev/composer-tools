@@ -5,23 +5,42 @@
         .content-wrapper {
             display: flex;
             flex-direction: row;
-            align-items: center;
-            gap: calc(var(--composer-gap-xl) * 2);
+            align-items: stretch;
+            gap: var(--composer-gap-xl);
 
             .left-column {
                 flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
 
                 .text-group {
                     align-items: flex-start;
 
-                    .title {
+                    .title,
+                    .description {
+                        content: "";
                         text-align: left;
-                        margin: 0;
                     }
 
-                    .description {
-                        text-align: left;
-                        margin: 0;
+                    .subtitle {
+                        background: transparent;
+                        padding: 0;
+                        margin-left: 0;
+                    }
+
+                    .button-container {
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: var(--composer-gap-sm);
+                        width: 100%;
+                        align-items: center;
+
+                        .button {
+                            .button-text {
+                                content: "";
+                            }
+                        }
                     }
                 }
             }
@@ -40,13 +59,6 @@
                     height: 100%;
                     object-fit: cover;
 
-                    img,
-                    video,
-                    iframe {
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                    }
                 }
 
                 .overlay {
@@ -67,29 +79,29 @@
                     .stat-item {
                         display: flex;
                         flex-direction: column;
-                        gap: var(--composer-gap-xs);
 
                         .stat-value {
                             display: flex;
-                            align-items: baseline;
+                            align-items: flex-end;
                             color: var(--composer-font-color-secondary);
-                            font-size: 6rem;
+                            font-size: 7rem;
                             line-height: 1;
-                            font-weight: bold;
 
                             .stat-prefix,
                             .stat-number,
                             .stat-suffix {
                                 color: inherit;
                                 font-size: inherit;
-                                font-weight: inherit;
                             }
                         }
 
-                        .stat-title {
+                        .stat-title,
+                        .stat-subtitle,
+                        .stat-description {
                             color: var(--composer-font-color-secondary);
-                            font-size: 1rem;
+                            text-align: left;
                         }
+
                     }
                 }
             }
@@ -107,7 +119,7 @@
             .stats-list {
                 .stat-item {
                     .stat-value {
-                        font-size: 4rem;
+                        font-size: 5rem;
                     }
                 }
             }
@@ -124,6 +136,19 @@
             width: 100%;
         }
 
+        .left-column.center-alignment .text-group {
+            align-items: center;
+
+            .title,
+            .description {
+                text-align: center;
+            }
+
+            .subtitle {
+                margin-left: auto;
+            }
+        }
+
         .right-column {
             min-height: 350px;
 
@@ -133,10 +158,11 @@
 
                 .stat-item {
                     .stat-value {
-                        font-size: 3.5rem;
+                        font-size: 4rem;
                     }
                 }
             }
         }
     }
 }
+

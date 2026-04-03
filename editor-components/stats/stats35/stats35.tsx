@@ -2,6 +2,8 @@ import * as React from "react";
 import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats35.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type StatItem = {
     prefix: string;
@@ -9,13 +11,24 @@ type StatItem = {
     number: string;
     suffix: string;
     suffixElement: JSX.Element;
+    subtitle: string;
+    subtitleElement: JSX.Element;
     title: string;
     titleElement: JSX.Element;
+    description: string;
+    descriptionElement: JSX.Element;
 };
 
 class Stats35 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
+
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
+        });
 
         this.addProp({
             type: "string",
@@ -25,37 +38,10 @@ class Stats35 extends BaseStats {
         });
 
         this.addProp({
-            type: "array",
-            key: "descriptions",
-            displayer: "Descriptions",
-            value: [
-                {
-                    type: "object",
-                    key: "description",
-                    displayer: "Description",
-                    value: [
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation.",
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "description",
-                    displayer: "Description",
-                    value: [
-                        {
-                            type: "string",
-                            key: "text",
-                            displayer: "Text",
-                            value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
-                        },
-                    ],
-                },
-            ],
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation.Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition."
         });
 
         this.addProp({
@@ -89,7 +75,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "2018" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "title", displayer: "Stat Title", value: "Year of foundation" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Year of foundation" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -100,7 +88,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
                         { type: "string", key: "number", displayer: "Value", value: "171" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
-                        { type: "string", key: "title", displayer: "Stat Title", value: "Across ten total funds" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Across ten total funds" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -111,7 +101,9 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
                         { type: "string", key: "number", displayer: "Value", value: "400" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "title", displayer: "Stat Title", value: "Companies invested in" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
+                        { type: "string", key: "title", displayer: "Title", value: "Companies invested in" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -124,6 +116,15 @@ class Stats35 extends BaseStats {
             value: [
                 { type: "boolean", key: "statsAnimation", displayer: "Stats Animation", value: true },
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
+            ],
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
         });
     }
@@ -178,9 +179,11 @@ class Stats35 extends BaseStats {
         }, [targetNumber, statsAnimation, animationDuration, originalString]);
 
         const valueExist = this.castToString(originalString);
+        const subtitleExist = this.castToString(stat.subtitle);
         const titleExist = this.castToString(stat.title);
+        const descriptionExist = this.castToString(stat.description);
 
-        if (!valueExist && !stat.prefix && !stat.suffix && !titleExist) return null;
+        if (!valueExist && !stat.prefix && !stat.suffix && !subtitleExist && !titleExist && !descriptionExist) return null;
 
         return (
             <div className={this.decorateCSS("stat-item")}>
@@ -203,18 +206,33 @@ class Stats35 extends BaseStats {
                         )}
                     </span>
                 )}
-                {titleExist && (
-                    <Base.P className={this.decorateCSS("stat-title")}>
-                        {stat.titleElement}
-                    </Base.P>
+                {(subtitleExist || titleExist || descriptionExist) && (
+                    <Base.VerticalContent className={this.decorateCSS("stat-info")}>
+                        {subtitleExist && (
+                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                                {stat.subtitleElement}
+                            </Base.H6>
+                        )}
+                        {titleExist && (
+                            <Base.H4 className={this.decorateCSS("stat-title")}>
+                                {stat.titleElement}
+                            </Base.H4>
+                        )}
+                        {descriptionExist && (
+                            <Base.P className={this.decorateCSS("stat-description")}>
+                                {stat.descriptionElement}
+                            </Base.P>
+                        )}
+                    </Base.VerticalContent>
                 )}
             </div>
         );
     };
 
     render() {
-        const title = this.castToString(this.getPropValue("title"));
-        const descriptions = this.castToObject<{ text: JSX.Element }[]>("descriptions");
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
         const backgroundImage = this.getPropValue("backgroundImage") as TypeMediaInputValue;
         const showOverlay = this.getPropValue("overlay") !== false;
 
@@ -222,7 +240,9 @@ class Stats35 extends BaseStats {
             prefix: JSX.Element;
             number: JSX.Element;
             suffix: JSX.Element;
+            subtitle: JSX.Element;
             title: JSX.Element;
+            description: JSX.Element;
         }[]>("stats");
 
         const stats: StatItem[] = statsItems.map((item) => ({
@@ -231,33 +251,60 @@ class Stats35 extends BaseStats {
             number: this.castToString(item.number) || "",
             suffix: this.castToString(item.suffix) || "",
             suffixElement: item.suffix,
+            subtitle: this.castToString(item.subtitle) || "",
+            subtitleElement: item.subtitle,
             title: this.castToString(item.title) || "",
             titleElement: item.title,
+            description: this.castToString(item.description) || "",
+            descriptionElement: item.description,
         }));
+
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
+        const alignment = Base.getContentAlignment();
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content-wrapper")}>
-                        <div className={this.decorateCSS("left-column")}>
+                        <div className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                             <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                                {title && (
+                                {subtitleExist && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
+                                )}
+                                {titleExist && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
                                         {this.getPropValue("title")}
                                     </Base.SectionTitle>
                                 )}
-                                {descriptions.map((desc, index) => {
-                                    const text = this.castToString(desc.text);
-                                    return text ? (
-                                        <Base.SectionDescription key={index} className={this.decorateCSS("description")}>
-                                            {desc.text}
-                                        </Base.SectionDescription>
-                                    ) : null;
-                                })}
+                                {descriptionExist && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.SectionDescription>
+                                )}
+                                {hasValidButtons && (
+                                    <div className={this.decorateCSS("button-container")}>
+                                        {buttons.filter((btn) => this.castToString(btn.text)).map((item: INPUTS.CastedButton, index: number) => (
+                                            <ComposerLink key={index} path={item.url}>
+                                                <Base.Button
+                                                    buttonType={item.type}
+                                                    className={this.decorateCSS("button")}
+                                                >
+                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                        {item.text}
+                                                    </Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        ))}
+                                    </div>
+                                )}
                             </Base.VerticalContent>
                         </div>
 
