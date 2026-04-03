@@ -40,29 +40,29 @@
 
     @keyframes animation1 {
         0% {
-            --webkit-transform: translateY(0px);
-            transform: translateY(0px);
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
         }
 
         100% {
-            --webkit-transform: translateY(17px);
+            -webkit-transform: translateY(17px);
             transform: translateY(17px);
         }
     }
 
     @keyframes animation2 {
         0% {
-            --webkit-transform: scale(1);
-            transform: scale(1)
+            -webkit-transform: scale(1);
+            transform: scale(1);
         }
 
         50% {
-            --webkit-transform: scale(1.1);
-            transform: scale(1.1)
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
         }
 
         100% {
-            --webkit-transform: scale(1);
+            -webkit-transform: scale(1);
             transform: scale(1);
         }
     }
@@ -102,12 +102,26 @@
 
             .max-content {
                 .items {
+                    .subtitle {
+                        content: "";
+
+                        &.image {
+                            color: #001D08 !important;
+                            background-color: transparent !important;
+                            padding: 0 !important;
+
+                            &::before {
+                                background: #001D08 !important;
+                            }
+                        }
+                    }
+
                     .title {
                         display: -webkit-box;
                         -webkit-line-clamp: 5;
                         -webkit-box-orient: vertical;
-                        overflow: hidden !important;
-                        text-overflow: ellipsis !important;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         width: 100%;
 
                         &.image {
@@ -151,7 +165,7 @@
                             .text {
                                 color: #646464 !important;
 
-                                &:hover {
+                                &.text-without-image {
                                     color: var(--composer-primary-color);
                                 }
                             }
@@ -159,10 +173,14 @@
 
                         .crumberIcon {
                             font-size: 1.25rem !important;
-                            height: 20px;
-                            width: 20px;
+                            height: var(--composer-gap-md);
+                            width: var(--composer-gap-md);
                             flex-shrink: 0;
                             color: #646464 !important;
+
+                            &.icon-without-image {
+                                color: var(--composer-font-color-primary);
+                            }
                         }
 
                         .current-page-container {
@@ -174,17 +192,23 @@
 
                         .current-page-text {
                             font-weight: bold;
-                            content: "";
                             color: #646464 !important;
+
+                            &.text-without-image {
+                                color: var(--composer-font-color-primary);
+                            }
                         }
 
                         .current-page-icon {
                             font-size: 1rem;
-                            height: 20px;
-                            width: 20px;
+                            height: var(--composer-gap-md);
+                            width: var(--composer-gap-md);
                             flex-shrink: 0;
-                            content: "";
                             color: #646464 !important;
+
+                            &.icon-without-image {
+                                color: var(--composer-font-color-primary);
+                            }
                         }
                     }
                 }
@@ -193,7 +217,13 @@
     }
 }
 
-@container (max-width : #{$composer-phone-width}) {
+@container (max-width: #{$composer-tablet-width}) {
+    .section {
+        min-height: calc(var(--composer-gap-xl) * 6);
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
 
     .vector1,
     .vector2,
