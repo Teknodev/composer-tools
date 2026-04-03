@@ -9,11 +9,11 @@
       align-items: center;
       justify-content: center;
       width: 100%;
-      gap: var(--composer-gap-md);
 
       .top-container {
         align-items: center;
         justify-content: center;
+        margin-bottom: var(--composer-gap-md);
 
 
         .subtitle,
