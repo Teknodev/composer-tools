@@ -157,15 +157,15 @@ class Download11 extends BaseDownload {
         },
         {
           type: "string",
-          key: "title",
-          displayer: "Title",
-          value: "Best new app and updates*",
-        },
-        {
-          type: "string",
           key: "subtitle",
           displayer: "Subtitle",
           value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Best new app and updates*",
         },
         {
           type: "string",
