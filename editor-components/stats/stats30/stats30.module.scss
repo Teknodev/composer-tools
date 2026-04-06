@@ -29,11 +29,6 @@
                         content: "";
                     }
                 }
-
-                // &[data-alignment="center"] {
-                //     align-items: center;
-                //     text-align: center;
-                // }
             }
 
             .stats-container {
@@ -49,6 +44,7 @@
                     box-sizing: border-box;
                     align-items: flex-start;
                     text-align: left;
+                    gap: var(--composer-border-radius-xl);
 
                     .stat-text-group {
                         width: 100%;
@@ -128,7 +124,7 @@
                     grid-template-columns: repeat(2, 1fr);
 
                     .stat-item {
-                        gap: 3rem;
+                        gap: var(--composer-border-radius-sm);
 
                         .stat-value-container {
 
