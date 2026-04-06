@@ -7,17 +7,14 @@
 
     &.has-media {
         padding: 0 !important;
+        padding-inline: var(--composer-gap-xl) !important;
 
-        &.has-background {
-            padding-inline: var(--composer-gap-xl) !important;
-
-            .background-section {
-                margin-inline: calc(-1 * var(--composer-gap-xl));
-            }
+        .background-section {
+            margin-inline: calc(-1 * var(--composer-gap-xl));
         }
 
         .content-wrapper {
-            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+            padding: calc(var(--composer-gap-lg) * 2) 0;
         }
     }
 
@@ -99,6 +96,10 @@
                 }
             }
         }
+    }
+
+    .content-wrapper {
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
     }
 
     .card {
