@@ -233,6 +233,14 @@
           .titles {
             align-items: center;
 
+            .subtitle {
+              transform: translateX(0);
+
+              &::before {
+                display: none;
+              }
+            }
+
             .subtitle,
             .title,
             .description {

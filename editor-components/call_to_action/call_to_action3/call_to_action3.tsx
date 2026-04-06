@@ -1,14 +1,12 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Button = INPUTS.CastedButton;
-
 type MediaObject = {
-  image: any;
+  image: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -75,14 +73,14 @@ class CallToAction3Page extends BaseCallToAction {
   }
 
   render() {
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const image = mediaObject.image;
     const overlay = mediaObject.overlay;
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${overlay && image && this.decorateCSS("overlay-active")} ${!image && this.decorateCSS("no-image")}`}>
+        className={`${this.decorateCSS("container")} ${overlay && image && this.decorateCSS("overlay-active")} ${image && this.decorateCSS("has-background")}`}>
         {image && (
           <Base.Media
             value={image}
@@ -92,24 +90,24 @@ class CallToAction3Page extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
             {this.castToString(this.getPropValue("subtitle")) && (
-              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${image && this.decorateCSS("with-image")}`}>
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>
             )}
             {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={`${this.decorateCSS("title")} ${image && this.decorateCSS("with-image")}`}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </Base.SectionTitle>
             )}
             {this.castToString(this.getPropValue("description")) && (
-              <Base.SectionDescription className={`${this.decorateCSS("description")} ${image && this.decorateCSS("with-image")}`}>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
               </Base.SectionDescription>
             )}
             {(buttons.length > 0) && (
               <div className={this.decorateCSS("buttons")}>
                 {buttons.map(
-                  (button: Button, index: number) => {
+                  (button: INPUTS.CastedButton, index: number) => {
                     button.type = image ? "White" : button.type
 
                     return (
