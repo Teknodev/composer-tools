@@ -84,6 +84,26 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .main-wrapper {
+        .right-section {
+          .content {
+            .right-column-card {
+              .information {
+                .name {
+                  font-size: 1.7rem !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -116,7 +136,7 @@
 
               .information {
                 .name {
-                  font-size: 1.25rem !important;
+                  font-size: 1.6rem !important;
                 }
               }
             }

@@ -29,7 +29,7 @@ class About7 extends BaseAbout {
         this.addProp({
             type: "object",
             key: "background-image",
-            displayer: "Background Media",
+            displayer: "Media",
             value: [
                 {
                     type: "media",
