@@ -1065,8 +1065,8 @@ class PricingTable7 extends BasePricingTable {
       .join(" ");
 
     const planType = this.getComponentState("plan_type");
-    const monthlyPlansData = this.castToObject<MonthlyPlan[]>("monthlyPlan");
-    const yearlyPlansData = this.castToObject<YearlyPlan[]>("yearlyPlan");
+    const monthlyPlansData = this.castToObject<MonthlyPlan>("monthlyPlan");
+    const yearlyPlansData = this.castToObject<YearlyPlan>("yearlyPlan");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const subtitleExist = this.castToString(subtitle);
@@ -1273,7 +1273,7 @@ class PricingTable7 extends BasePricingTable {
                               data.icon && (data.icon.name || data.icon.url);
 
                             return (
-                              <Base.H5
+                              <div
                                 className={this.decorateCSS("features-element")}
                                 key={`price7-list-${featureIndex}`}
                               >
@@ -1284,15 +1284,15 @@ class PricingTable7 extends BasePricingTable {
                                   />
                                 )}
                                 {itemTextExist && (
-                                  <div
+                                  <Base.H6
                                     className={this.decorateCSS(
                                       "features-element-text"
                                     )}
                                   >
                                     {data.text}
-                                  </div>
+                                  </Base.H6>
                                 )}
-                              </Base.H5>
+                              </div>
                             );
                           })}
                         </Base.VerticalContent>
