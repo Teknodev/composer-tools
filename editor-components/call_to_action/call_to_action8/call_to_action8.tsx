@@ -1,16 +1,14 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action8.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type MediaObject = {
-  image: any;
+  image: TypeMediaInputValue;
   overlay: boolean;
 };
-
-type Button = INPUTS.CastedButton;
 
 class CallToAction8Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -71,6 +69,12 @@ class CallToAction8Page extends BaseCallToAction {
         INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
       ],
     });
+    this.addProp({
+      type: "boolean",
+      key: "coloredBackground",
+      displayer: "Colored Background",
+      value: true,
+    });
   }
 
   static getName(): string {
@@ -80,54 +84,36 @@ class CallToAction8Page extends BaseCallToAction {
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const image = mediaObject.image;
     const overlay = mediaObject.overlay;
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const title = this.castToString(this.getPropValue("title"));
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
-    const description = this.getPropValue("description");
-
-    const buttonContainer = buttons.length > 0 && (
-      <div className={this.decorateCSS("button-container")}>
-        {buttons.map((button: Button, index: number) => (
-          this.castToString(button.text) && (
-            <ComposerLink key={index} path={button.url}>
-              <Base.Button
-                buttonType={button.type}
-                className={this.decorateCSS("button")}
-              >
-                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-              </Base.Button>
-            </ComposerLink>
-          )
-        ))}
-      </div>
-    );
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const description = this.castToString(this.getPropValue("description"));
+    const coloredBackground = this.getPropValue("coloredBackground");
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("has-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("has-image")} ${coloredBackground && this.decorateCSS("colored-background")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
-            {(subtitleExist || title || buttons.length > 0) && (
+            {(subtitle || title || description || buttons.length > 0) && (
               <div className={this.decorateCSS("title-box")}>
-                <Base.VerticalContent className={this.decorateCSS("title-content")}>
-                  {subtitleExist && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {title && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                  {descriptionExist && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
-                    </Base.SectionDescription>
-                  )}
-                  {!image && buttonContainer}
+                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+                  {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                  {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                  {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                 </Base.VerticalContent>
-                {image && buttonContainer}
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                      this.castToString(button.text) && (
+                        <ComposerLink key={index} path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")} >
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    ))}
+                  </div>
+                )}
               </div>
             )}
             {image && (
