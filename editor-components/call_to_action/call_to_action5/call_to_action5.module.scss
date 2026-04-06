@@ -2,13 +2,23 @@
 
 .container {
   position: relative;
-  padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
 
-  &.no-image {
-    padding: 80px 50px;
+  &.has-background {
+    .max-content {
+      .header {
+
+        .subtitle {
+          background: transparent !important;
+          padding: 0 !important;
+        }
+
+        .subtitle,
+        .title,
+        .description {
+          color: white;
+        }
+      }
+    }
   }
 
   &.overlay-active {
@@ -42,7 +52,6 @@
     gap: var(--composer-gap-lg);
     z-index: 2;
 
-
     .header {
       align-items: center;
 
@@ -50,30 +59,13 @@
       .description,
       .subtitle {
         text-align: center;
-        color: var(--composer-font-color-primary);
       }
 
       .subtitle {
         transform: translateX(0);
+
         &::before {
           display: none;
-        }
-
-        &.with-image {
-          padding: 0;
-          border-radius: 0;
-          background: transparent;
-        }
-      }
-
-      &.with-image {
-        .title,
-        .description,
-        .subtitle {
-          color: white;
-          &::before {
-            color: white;
-          }
         }
       }
     }
@@ -128,6 +120,7 @@
           content: "";
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
+
           .button-text {
             content: "";
           }
@@ -156,12 +149,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-
-    &.no-image {
-      padding: 80px 40px;
-    }
-
     .max-content {
       .form {
         .newsletter {
@@ -174,12 +161,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
-
-    &.no-image {
-      padding: 50px 20px;
-    }
-
     .max-content {
       .form {
         .newsletter {
@@ -189,13 +170,6 @@
           .inputs {
             .input {
               padding: var(--composer-gap-sm) var(--composer-gap-sm);
-            }
-          }
-
-          .submit-button {
-            content: "";
-            .button-text {
-              content: "";
             }
           }
         }

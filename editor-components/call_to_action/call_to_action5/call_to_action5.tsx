@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 type MediaObject = {
-  background: any;
+  background: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -108,20 +108,12 @@ class CallToAction5Page extends BaseCallToAction {
     const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")}
-        ${overlay && background && this.decorateCSS("overlay-active")} ${!background && this.decorateCSS("no-image")}`}
-      >
-        {background && (
-          <Base.Media
-            value={background}
-            className={this.decorateCSS("background")}
-          />
-        )}
+      <Base.Container className={`${this.decorateCSS("container")} ${overlay && background && this.decorateCSS("overlay-active")} ${background && this.decorateCSS("has-background")}`}>
+        {background && (<Base.Media value={background} className={this.decorateCSS("background")} />)}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist || subtitleExist) && (
-            <Base.VerticalContent className={`${this.decorateCSS("header")} ${background && this.decorateCSS("with-image")}`}>
-              {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${background && this.decorateCSS("with-image")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
               {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
