@@ -64,8 +64,8 @@ class Breadcrumb5 extends BaseBreadcrumb {
         });
         this.addProp({
             type: "media",
-            key: "breadcrumbIcon",
-            displayer: "Media",
+            key: "separatorIcon",
+            displayer: "Separator Icon",
             additionalParams: {
                 availableTypes: ["image", "icon"],
             },
@@ -111,8 +111,8 @@ class Breadcrumb5 extends BaseBreadcrumb {
         const currentPage = this.castToObject<CurrentPageItem>("currentPage");
         const currentPageTitleExist = this.castToString(currentPage?.title);
         const currentPageIconExist = currentPage?.icon && (currentPage.icon.type === "icon" ? currentPage.icon.name : currentPage.icon.url);
-        const breadcrumbIconValue = this.getPropValue("breadcrumbIcon");
-        const breadcrumbIconExist = breadcrumbIconValue && (breadcrumbIconValue.type === "icon" ? breadcrumbIconValue.name : breadcrumbIconValue.url);
+        const separatorIconValue = this.getPropValue("separatorIcon");
+        const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
@@ -146,9 +146,9 @@ class Breadcrumb5 extends BaseBreadcrumb {
                             })}
                             {breadcrumbItems.length > 0 && (
                                 <div className={this.decorateCSS("current-page-wrapper")}>
-                                    {breadcrumbIconExist && (
+                                    {separatorIconExist && (
                                         <Base.Media
-                                            value={breadcrumbIconValue}
+                                            value={separatorIconValue}
                                             className={this.decorateCSS("icon")}
                                         />
                                     )}

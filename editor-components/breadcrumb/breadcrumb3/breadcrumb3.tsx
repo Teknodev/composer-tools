@@ -96,8 +96,8 @@ class Breadcrumb3 extends BaseBreadcrumb {
     });
     this.addProp({
       type: "media",
-      key: "breadcrumbIcon",
-      displayer: "Breadcrumb Media",
+      key: "separatorIcon",
+      displayer: "Separator Icon",
       additionalParams: {
         availableTypes: ["image", "icon"],
       },
@@ -144,9 +144,9 @@ class Breadcrumb3 extends BaseBreadcrumb {
     const bgImage = background?.image;
     const bgImageExist = bgImage && (bgImage.type === "icon" ? bgImage.name : bgImage.url);
     const overlay = background?.overlay;
-    const breadcrumbIconValue = this.getPropValue("breadcrumbIcon");
-    const breadcrumbIconExist = breadcrumbIconValue && (breadcrumbIconValue.type === "icon" ? breadcrumbIconValue.name : breadcrumbIconValue.url);
-    const isBreadcrumbVisible = breadcrumbItems.length > 0 || currentPageTitle || breadcrumbIconExist;
+    const separatorIconValue = this.getPropValue("separatorIcon");
+    const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
+    const isBreadcrumbVisible = breadcrumbItems.length > 0 || currentPageTitle || separatorIconExist;
     const isCrumberVisible = isBreadcrumbVisible || isTitleExist || isSubtitleExist || isDescriptionExist;
     return (
       <Base.Container
@@ -210,9 +210,9 @@ class Breadcrumb3 extends BaseBreadcrumb {
                   })}
                   {breadcrumbItems.length > 0 && (
                     <>
-                      {breadcrumbIconExist && (
+                      {separatorIconExist && (
                         <Base.Media
-                          value={breadcrumbIconValue}
+                          value={separatorIconValue}
                           className={this.decorateCSS("crumberIcon")}
                         />
                       )}

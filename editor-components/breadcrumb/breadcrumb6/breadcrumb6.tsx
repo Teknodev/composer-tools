@@ -33,11 +33,24 @@ class Breadcrumb6 extends BaseBreadcrumb {
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da788bfb049c002cc22f19?alt=media" },
     });
     this.addProp({
-      type: "media",
-      key: "backgroundImage",
-      displayer: "Background Media",
-      additionalParams: { availableTypes: ["image", "video"] },
-      value: { type: "image", url: "" },
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: { type: "image", url: "" },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
     this.addProp({
       type: "string",
@@ -128,8 +141,8 @@ class Breadcrumb6 extends BaseBreadcrumb {
     });
     this.addProp({
       type: "media",
-      key: "breadcrumbIcon",
-      displayer: "Media",
+      key: "separatorIcon",
+      displayer: "Separator Icon",
       additionalParams: {
         availableTypes: ["image", "icon"],
       },
@@ -137,12 +150,6 @@ class Breadcrumb6 extends BaseBreadcrumb {
         type: "icon",
         name: "AiOutlineLine",
       },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
     });
   }
 
@@ -153,8 +160,9 @@ class Breadcrumb6 extends BaseBreadcrumb {
   render() {
     const vector1 = this.getPropValue("vector1");
     const vector2 = this.getPropValue("vector2");
-    const backgroundImage = this.getPropValue("backgroundImage");
-    const overlay = this.getPropValue("overlay");
+    const background = this.castToObject<{ image: TypeMediaInputValue; overlay: boolean }>("background");
+    const backgroundImage = background?.image;
+    const overlay = background?.overlay;
     const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
     const isTitleExist = this.castToString(this.getPropValue("title"));
     const isDescriptionExist = this.castToString(this.getPropValue("description"));
@@ -163,20 +171,21 @@ class Breadcrumb6 extends BaseBreadcrumb {
     const currentPage = this.castToObject<CurrentPageItem>("currentPage");
     const currentPageTitleExist = this.castToString(currentPage?.title);
     const currentPageIconExist = currentPage?.icon && (currentPage.icon.type === "icon" ? currentPage.icon.name : currentPage.icon.url);
-    const breadcrumbIconValue = this.getPropValue("breadcrumbIcon");
-    const breadcrumbIconExist = breadcrumbIconValue && (breadcrumbIconValue.type === "icon" ? breadcrumbIconValue.name : breadcrumbIconValue.url);
+    const separatorIconValue = this.getPropValue("separatorIcon");
+    const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
+    const bgImageExist = backgroundImage && (backgroundImage.type === "icon" ? backgroundImage.name : backgroundImage.url);
     const vector1Exist = vector1 && (vector1.type === "icon" ? vector1.name : vector1.url);
     const vector2Exist = vector2 && (vector2.type === "icon" ? vector2.name : vector2.url);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        {backgroundImage?.url && (
+        {bgImageExist && (
           <Base.Media
             value={backgroundImage}
             className={this.decorateCSS("background-image")}
           />
         )}
-        {overlay && backgroundImage?.url && <div className={this.decorateCSS("overlay")}></div>}
+        {overlay && bgImageExist && <div className={this.decorateCSS("overlay")}></div>}
         {vector1Exist && (
           <Base.Media
             value={vector1}
@@ -190,7 +199,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
           />
         )}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("section")} ${backgroundImage?.url ? this.decorateCSS("with-image") : ""}`}>
+          <Base.VerticalContent className={`${this.decorateCSS("section")} ${bgImageExist ? this.decorateCSS("with-image") : ""}`}>
             {isSubtitleExist && (
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
@@ -237,26 +246,24 @@ class Breadcrumb6 extends BaseBreadcrumb {
                 })}
                 {breadcrumbItems.length > 0 && (
                   <>
-                    {breadcrumbIconExist && (
+                    {separatorIconExist && (
                       <Base.Media
-                        value={breadcrumbIconValue}
+                        value={separatorIconValue}
                         className={this.decorateCSS("icon")}
                       />
                     )}
-                    <div className={this.decorateCSS("current-container")}>
-                      <div className={this.decorateCSS("current-page-container")}>
-                        {currentPageIconExist && (
-                          <Base.Media
-                            value={currentPage.icon}
-                            className={this.decorateCSS("current-page-icon")}
-                          />
-                        )}
-                        {currentPageTitleExist && (
-                          <Base.P className={this.decorateCSS("current")}>
-                            {currentPage.title}
-                          </Base.P>
-                        )}
-                      </div>
+                    <div className={this.decorateCSS("current-page-container")}>
+                      {currentPageIconExist && (
+                        <Base.Media
+                          value={currentPage.icon}
+                          className={this.decorateCSS("current-page-icon")}
+                        />
+                      )}
+                      {currentPageTitleExist && (
+                        <Base.P className={this.decorateCSS("current")}>
+                          {currentPage.title}
+                        </Base.P>
+                      )}
                     </div>
                   </>
                 )}
