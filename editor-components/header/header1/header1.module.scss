@@ -1,50 +1,121 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: 0;
-  min-height: 100vh;
-  height: auto;
+  padding: 0 !important;
 
   .max-content {
     max-width: unset;
     position: relative;
 
-    .slider-parent {
-      height: auto;
+    &.has-background {
+      .slider-parent {
+        .carousel {
 
-      .carousel {
-        background-color: var(--composer-html-background);
+          :global(.slick-prev),
+          :global(.slick-next) {
+            &:before {
+              color: #ffffff;
+            }
+          }
 
-        > div {
-          > div {
-            display: flex;
-            align-items: stretch;
+          .slider-item {
+            .content {
+              .box-parent {
+                .vertical-content {
+                  .subtitle {
+                    color: #ffffff;
+                    background: transparent;
+                    padding: 0;
 
-            > div {
-              height: auto;
+                    &::before {
+                      background-color: #ffffff;
+                    }
+                  }
 
-              > div {
-                height: 100%;
+                  .title,
+                  .description {
+                    color: #ffffff;
+                  }
+                }
+              }
+
+              .socials {
+                .icon {
+                  color: #ffffff;
+                }
               }
             }
           }
         }
+      }
+
+      .dots {
+        .dot-item {
+          .dot-button {
+            background: #ffffff;
+          }
+        }
+      }
+    }
+
+    .slider-parent {
+      .carousel {
+
+        :global(.slick-dots) {
+          display: none !important;
+        }
+
+        :global(.slick-track) {
+          display: flex;
+        }
+
+        :global(.slick-slide) {
+          height: inherit;
+
+          &>div {
+            height: 100%;
+          }
+        }
+
+        :global(.slick-prev),
+        :global(.slick-next) {
+          z-index: 10;
+          width: var(--composer-gap-lg);
+          height: var(--composer-gap-lg);
+
+          &:before {
+            font-size: 40px;
+            color: var(--composer-font-color-primary);
+            opacity: 0.7;
+          }
+
+          &:hover:before {
+            opacity: 1;
+          }
+        }
+
+        :global(.slick-prev) {
+          left: var(--composer-gap-xl);
+        }
+
+        :global(.slick-next) {
+          right: var(--composer-gap-xl);
+        }
 
         .slider-item {
           position: relative;
-          min-height: 100vh;
-          height: 100%;
           display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
+          align-items: center;
+          min-height: 85vh;
+          height: 100%;
 
-          .img-wrapper {
+          .image-wrapper {
             width: 100%;
             height: 100%;
             position: absolute;
             z-index: -3;
 
-            .img {
+            .image {
               object-fit: cover;
               position: absolute;
               top: 0;
@@ -68,13 +139,11 @@
           }
 
           .content {
-            flex: 1;
             display: flex;
             align-items: center;
-            padding: var(--composer-gap-md) var(--composer-gap-xl);
-            z-index: 1;
+            justify-content: center;
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
             height: 100%;
-            gap: var(--composer-gap-md);
 
             .box-parent {
               width: 100%;
@@ -82,36 +151,14 @@
               flex-direction: column;
               max-width: var(--composer-content-width);
               margin: auto;
-              padding-bottom: calc(var(--composer-gap-lg) * 2);
 
-              .box {
-                max-width: calc(100% - var(--composer-gap-xl));
-                gap: var(--composer-gap-sm);
+              .vertical-content {
 
-                .subtitle {
-                  font-size: 1.5rem;
-                  margin-bottom: 0;
+                .subtitle,
+                .title,
+                .description {
+                  content: "";
                 }
-
-                .title {
-                  font-size: 8rem;
-                  margin-bottom: 0;
-                }
-
-                .with-img {
-                  color: #fff;
-                }
-              }
-
-              .center {
-                max-width: 100%;
-                padding: 0 var(--composer-gap-xl);
-              }
-            }
-
-            .with-img {
-              &::before {
-                background-color: #fff;
               }
             }
 
@@ -127,74 +174,76 @@
               transform: translateY(-50%);
 
               .icon {
-                flex-shrink: 0;
-                width: 30px;
-                height: 30px;
-                color: #fff;
+                font-size: 2rem;
+                color: var(--composer-font-color-primary);
                 cursor: pointer;
-                transition: transform 0.3s ease;
+                transition: transform var(--composer-transition-duration-normal) ease;
 
-                &:hover {
-                  transform: scale(1.2);
+                &.has-image {
+                  width: 25px;
+                  height: 25px;
+                  object-fit: cover;
                 }
               }
+            }
+          }
+        }
 
-              .no-img {
-                color: var(--composer-font-color-primary);
-              }
+        &.has-socials {
+          .slider-item .content .box-parent {
+            padding-right: var(--composer-gap-xl);
+          }
+        }
+
+        &.has-arrows {
+          .slider-item .content {
+            .box-parent {
+              padding-left: var(--composer-gap-xl);
+              padding-right: 100px;
+            }
+
+            .socials {
+              right: calc(var(--composer-gap-xl) + 50px);
             }
           }
         }
       }
     }
 
-    .dots,
-    .dots-2 {
+    .dots {
       position: absolute;
-      bottom: 50px;
+      bottom: calc(var(--composer-gap-lg) * 2);
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      text-align: center;
-      right: 0;
-      width: auto;
 
-      li {
+      .dot-item {
         margin: 0 var(--composer-gap-sm);
 
-        button {
+        .dot-button {
           color: transparent;
           position: relative;
-          width: 12px;
-          height: 12px;
+          width: var(--composer-gap-sm);
+          height: var(--composer-gap-sm);
           border: none;
-          border-radius: 50%;
-          background: #fff;
-          transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-          transform: scale(0.65);
+          border-radius: var(--composer-border-radius-full);
+          background: var(--composer-font-color-primary);
+          opacity: 0.5;
+          transition: background var(--composer-transition-duration-normal) ease, transform var(--composer-transition-duration-normal) ease, box-shadow var(--composer-transition-duration-normal) ease, opacity var(--composer-transition-duration-normal) ease;
+          transform: scale(0.8);
+          padding: 0 !important;
+          min-width: unset !important;
 
           &::before {
             content: "";
           }
         }
-      }
 
-      .slick {
-        &.slick-active {
-          transform: scale(1.35);
-        }
-      }
-    }
-
-    .dots-2 {
-      li {
-        button {
-          background: var(--composer-font-color-primary);
+        &.active {
+          .dot-button {
+            transform: scale(1.2);
+            opacity: 1;
+          }
         }
       }
     }
@@ -206,53 +255,84 @@
     .max-content {
       .slider-parent {
         .carousel {
+
+          :global(.slick-prev),
+          :global(.slick-next) {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+
+            &:before {
+              font-size: 30px;
+            }
+          }
+
+          :global(.slick-prev) {
+            left: var(--composer-gap-lg);
+          }
+
+          :global(.slick-next) {
+            right: var(--composer-gap-lg);
+          }
+
           .slider-item {
+            min-height: 70vh;
+            height: 100%;
+
             .content {
-              padding: var(--composer-gap-md) var(--composer-gap-lg);
-
-              .box-parent {
-                .box {
-                  max-width: calc(100% - var(--composer-gap-lg));
-
-                  .title {
-                    font-size: 4rem;
-                  }
-                }
-
-                .center {
-                  max-width: 100%;
-                  padding: 0 var(--composer-gap-lg);
-                }
-              }
+              padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
               .socials {
                 right: var(--composer-gap-lg);
 
                 .icon {
-                  width: 25px;
-                  height: 25px;
+                  width: var(--composer-gap-lg);
+                  height: var(--composer-gap-lg);
+                  font-size: 1.5rem;
+
+                  &.has-image {
+                    width: 20px;
+                    height: 20px;
+                  }
                 }
+              }
+            }
+          }
+
+          &.has-socials {
+            .slider-item .content .box-parent {
+              padding-right: var(--composer-gap-lg);
+            }
+          }
+
+          &.has-arrows {
+            .slider-item .content {
+              .box-parent {
+                padding-left: var(--composer-gap-lg);
+                padding-right: 70px;
+              }
+
+              .socials {
+                right: calc(var(--composer-gap-lg) + 40px);
               }
             }
           }
         }
       }
 
-      .dots,
-      .dots-2 {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        text-align: center;
-        right: 0;
-        width: auto;
+      .dots {
+        .dot-item {
+          .dot-button {
+            width: var(--composer-gap-sm) !important;
+            height: var(--composer-gap-sm) !important;
+            transform: scale(0.6);
+          }
+
+          &.active {
+            .dot-button {
+              transform: scale(1);
+            }
+          }
+        }
       }
     }
   }
@@ -260,64 +340,76 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    min-height: 50vh;
-
     .max-content {
       .slider-parent {
         .carousel {
+
+          :global(.slick-prev),
+          :global(.slick-next) {
+            width: var(--composer-gap-md);
+            height: var(--composer-gap-md);
+
+            &:before {
+              font-size: 20px;
+            }
+          }
+
+          :global(.slick-prev) {
+            left: var(--composer-gap-md);
+          }
+
+          :global(.slick-next) {
+            right: var(--composer-gap-md);
+          }
+
           .slider-item {
             min-height: 50vh;
+            height: 100%;
 
             .content {
-              padding: var(--composer-gap-md);
-              width: 100%;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
               gap: var(--composer-gap-md);
-              padding-bottom: var(--composer-gap-xl);
+              padding: var(--composer-gap-xl) var(--composer-gap-md);
 
-              .box-parent {
-                max-height: 100%;
-                padding-bottom: 0;
-                margin: 0;
+              .socials {
+                .icon {
+                  font-size: 1rem;
 
-                .box {
-                  max-width: 100%;
-
-                  .title {
-                    font-size: 2rem;
+                  &.has-image {
+                    width: 15px;
+                    height: 15px;
                   }
                 }
+              }
+            }
+          }
 
-                .center {
-                  max-width: 100%;
-                  padding: 0;
-                }
+          &.has-arrows {
+            .slider-item .content {
+              .box-parent {
+                padding-left: 30px;
+                padding-right: var(--composer-gap-xl);
               }
 
               .socials {
-                display: flex;
-                flex-direction: row;
-                justify-content: start;
-                column-gap: var(--composer-gap-md);
-                row-gap: var(--composer-gap-sm);
-                position: static;
-                width: 100%;
-                flex-wrap: wrap;
-                padding: 0;
-                height: fit-content;
-                top: unset;
-                transform: unset;
+                right: var(--composer-gap-xl);
               }
             }
           }
         }
       }
+    }
 
-      .dots,
-      .dots-2 {
-        bottom: var(--composer-gap-md);
+    .dots {
+      bottom: var(--composer-gap-xl) !important;
+
+      .dot-item {
+        margin: 0 var(--composer-gap-xs) !important;
+
+        &.active {
+          .dot-button {
+            transform: scale(0.8) !important;
+          }
+        }
       }
     }
   }
