@@ -1,10 +1,42 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   position: relative;
+
+  &.has-background {
+    .max-content {
+      .content {
+        .subtitle {
+          background: transparent !important;
+          padding: 0 !important;
+        }
+
+        .subtitle,
+        .title,
+        .description {
+          color: #ffffff;
+        }
+
+        .space-container {
+          .space {
+            background-color: #ffffff;
+          }
+        }
+
+        .placeholder {
+          background-color: #ffffff;
+        }
+
+        .form {
+          .bottom-container {
+            .comment {
+              color: #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
 
   &::before {
     position: absolute;
@@ -53,44 +85,21 @@
       border-radius: var(--composer-border-radius-md);
     }
 
-    &.no-image {
-      .content {
-        .subtitle, .title, .description {
-          color: var(--composer-font-color-primary);
-        }
-        .form {
-          .bottom-container {
-            .comment {
-              color: var(--composer-font-color-primary);
-            }
-          }
-        }
-      }
-    }
-
     .content {
       align-items: center;
 
       .subtitle {
-        content: "";
-        text-align: center;
         transform: translateX(0);
-        color: white;
+
         &::before {
           display: none;
         }
-
-        &.with-image {
-          padding: 0;
-          border-radius: 0;
-          background: transparent;
-        }
       }
 
-      .title, .description {
+      .subtitle,
+      .title,
+      .description {
         text-align: center;
-        width: 100%;
-        color: white;
       }
 
       .space-container {
@@ -108,16 +117,25 @@
 
       .placeholder {
         min-width: 500px;
-        color: var(--composer-html-background);
+        color: var(--composer-font-color-primary);
         width: 30%;
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-md) var(--composer-gap-md);
         border-radius: var(--composer-border-radius-sm);
-        border: 1px solid var(--composer-font-color-primary);
-        background-color: var(--composer-font-color-primary);
+        border: none;
+        background-color: var(--composer-html-background);
         outline: none;
 
+        &.no-image {
+          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+          color: var(--composer-font-color-primary);
+
+          &::placeholder {
+            color: var(--composer-font-color-primary);
+          }
+        }
+
         &::placeholder {
-          color: var(--composer-html-background);
+          color: var(--composer-tertiary-color);
         }
       }
 
@@ -150,8 +168,8 @@
           align-items: center;
 
           .comment {
-            color: white;
             text-align: center;
+            color: var(--composer-font-color-primary);
           }
 
           .button-container {
@@ -162,6 +180,7 @@
 
             .button {
               content: "";
+
               .button-text {
                 content: "";
               }
@@ -212,6 +231,7 @@
         .placeholder {
           min-width: auto;
           width: 100%;
+          padding: var(--composer-gap-sm) var(--composer-gap-md);
         }
       }
     }

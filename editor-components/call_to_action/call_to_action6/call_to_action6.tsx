@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -7,7 +7,7 @@ import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
 type MediaObject = {
-  backgroundImage: any;
+  backgroundImage: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -128,7 +128,6 @@ class CallToAction6Page extends BaseCallToAction {
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const backgroundImage = mediaObject.backgroundImage;
     const overlay = mediaObject.overlay;
-
     const spaceLineExist = this.getPropValue("spaceLine");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -142,39 +141,18 @@ class CallToAction6Page extends BaseCallToAction {
     const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")}
-        ${overlay && backgroundImage ? this.decorateCSS("overlay-active") : ""}`}
-      >
-        {backgroundImage && (
-          <Base.Media
-            value={backgroundImage}
-            className={this.decorateCSS("background-image")}
-          />
-        )}
-        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!backgroundImage && this.decorateCSS("no-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${overlay && backgroundImage && this.decorateCSS("overlay-active")} ${backgroundImage && this.decorateCSS("has-background")}`}>
+        {backgroundImage && (<Base.Media value={backgroundImage} className={this.decorateCSS("background-image")} />)}
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
-            {subtitleExist && (
-              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImage && this.decorateCSS("with-image")}`}>
-                {this.getPropValue("subtitle")}
-              </Base.SectionSubTitle>
-            )}
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {this.getPropValue("title")}
-              </Base.SectionTitle>
-            )}
-            {descriptionExist && (
-              <Base.SectionDescription className={this.decorateCSS("description")}>
-                {description}
-              </Base.SectionDescription>
-            )}
+            {subtitleExist && (<Base.SectionSubTitle className={`${this.decorateCSS("subtitle")}`}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+            {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+            {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
             {spaceLineExist && (
               <div className={this.decorateCSS("space-container")}>
                 <div className={this.decorateCSS("space")} />
               </div>
             )}
-
             {(commentExist || buttons.length > 0) &&
               <Formik
                 initialValues={{ email: "" }}
@@ -211,7 +189,7 @@ class CallToAction6Page extends BaseCallToAction {
                             placeholderExist
                           }
                           onChange={handleChange}
-                          className={this.decorateCSS("placeholder")}
+                          className={`${this.decorateCSS("placeholder")} ${!backgroundImage && this.decorateCSS("no-image")}`}
                           type="text"
                           name="email"
                           value={values.email}
