@@ -1,23 +1,21 @@
+
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats18.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-
-type StatItem = {
-    prefix: string;
-    number: string;
-    suffix: string;
-    title: string;
-    titleElement: JSX.Element;
-    subtitle: string;
-    subtitleElement: JSX.Element;
-    description: string;
-    descriptionElement: JSX.Element;
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+type CardData = {
+    prefix: JSX.Element;
+    value: string;
+    valueElement: JSX.Element;
+    suffix: JSX.Element;
+    subtitle: JSX.Element;
+    title: JSX.Element;
+    description: JSX.Element;
 };
 
-class Stats18 extends BaseStats {
+class Stats18Page extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
 
@@ -32,14 +30,14 @@ class Stats18 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "About investing to the project",
+            value: "Our success in numbers ",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
+            value: "Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.",
         });
 
         this.addProp({
@@ -53,62 +51,76 @@ class Stats18 extends BaseStats {
 
         this.addProp({
             type: "array",
-            key: "stats",
-            displayer: "Stats",
+            key: "card-list",
+            displayer: "Stats Items",
             value: [
                 {
                     type: "object",
-                    key: "stat",
-                    displayer: "Stat",
+                    key: "card",
+                    displayer: "Stats Item",
                     value: [
-                        { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "30" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
+                        { type: "string", key: "value", displayer: "Value", value: "50" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "M+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Experienced people on the team" },
+                        { type: "string", key: "title", displayer: "Title", value: "Total investment in 2022" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
                     type: "object",
-                    key: "stat",
-                    displayer: "Stat",
+                    key: "card",
+                    displayer: "Stats Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "45" },
+                        { type: "string", key: "value", displayer: "Value", value: "5000" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Leverage agile frameworks" },
+                        { type: "string", key: "title", displayer: "Title", value: "Employees" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
                     type: "object",
-                    key: "stat",
-                    displayer: "Stat",
+                    key: "card",
+                    displayer: "Stats Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "500" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "value", displayer: "Value", value: "12" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Days of product development" },
+                        { type: "string", key: "title", displayer: "Title", value: "Increased website traffic" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
                     type: "object",
-                    key: "stat",
-                    displayer: "Stat",
+                    key: "card",
+                    displayer: "Stats Item",
                     value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "10" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "value", displayer: "Value", value: "99" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Transactions confirmed in second" },
+                        { type: "string", key: "title", displayer: "Title", value: "Client Satisfaction" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
             ],
+        });
+
+        this.addProp({
+            type: "boolean",
+            key: "showLine",
+            displayer: "Line",
+            value: true,
+        });
+
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 4,
         });
 
         this.addProp({
@@ -120,20 +132,16 @@ class Stats18 extends BaseStats {
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
+
     }
 
     static getName(): string {
         return "Stats 18";
     }
 
-    private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
-        const originalString = stat.number;
+    private AnimatedCard = ({ card, animationDuration = 2000, statsAnimation, showLine }: { card: CardData; animationDuration?: number; statsAnimation: boolean; showLine: boolean }) => {
+        const originalString = card.value;
         const targetNumber = parseFloat(originalString) || 0;
-
-        const formatNumber = (num: number): string => {
-            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
-            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
-        };
 
         const [animatedNumber, setAnimatedNumber] = React.useState<number>(statsAnimation ? 0 : targetNumber);
         const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
@@ -164,45 +172,55 @@ class Stats18 extends BaseStats {
             };
         }, [targetNumber, statsAnimation, animationDuration, originalString]);
 
-        const titleExist = this.castToString(stat.title);
-        const subtitleExist = this.castToString(stat.subtitle);
-        const descriptionExist = this.castToString(stat.description);
-        const valueExist = this.castToString(originalString);
+        const formatNumber = (num: number): string => {
+            const decimals = originalString.includes(".") ? (originalString.split(".")[1]?.length || 0) : 0;
+            return decimals > 0 ? num.toFixed(decimals) : Math.floor(num).toString();
+        };
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        const prefixExist = this.castToString(card.prefix);
+        const suffixExist = this.castToString(card.suffix);
+        const titleExist = this.castToString(card.title);
+        const subtitleExist = this.castToString(card.subtitle);
+        const descriptionExist = this.castToString(card.description);
+        const valueExist = originalString && originalString !== "";
+
+        if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
-            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {valueExist && (
-                    <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
+            <Base.VerticalContent className={this.decorateCSS("card")}>
+                {(valueExist || prefixExist || suffixExist) && (
+                    <div className={`${this.decorateCSS("card-value")}${!showLine ? ` ${this.decorateCSS("no-line")}` : ""}`}>
+                        {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>
-                                {stat.prefix}
+                                {card.prefix}
                             </span>
                         )}
-                        <span className={this.decorateCSS("stat-number")}>
-                            {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
-                        </span>
-                        {stat.suffix && (
+                        {valueExist && (
+                            <span className={this.decorateCSS("display-value")}>
+                                {statsAnimation ? formatNumber(animatedNumber) : formatNumber(targetNumber)}
+                            </span>
+                        )}
+                        {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
-                                {stat.suffix}
+                                {card.suffix}
                             </span>
                         )}
-                    </span>
+                    </div>
                 )}
+                {showLine && <div className={this.decorateCSS("line")}></div>}
                 {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                        {stat.subtitleElement}
+                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
+                        {card.subtitle}
                     </Base.H6>
                 )}
                 {titleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-title")}>
-                        {stat.titleElement}
+                    <Base.H5 className={this.decorateCSS("card-title")}>
+                        {card.title}
                     </Base.H5>
                 )}
                 {descriptionExist && (
-                    <Base.P className={this.decorateCSS("stat-description")}>
-                        {stat.descriptionElement}
+                    <Base.P className={this.decorateCSS("card-description")}>
+                        {card.description}
                     </Base.P>
                 )}
             </Base.VerticalContent>
@@ -214,90 +232,85 @@ class Stats18 extends BaseStats {
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
-        const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
+        const showLine = !!this.getPropValue("showLine");
+        const itemCount = this.getPropValue("itemCount");
 
-        const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
-        const stats: StatItem[] = statsItems.map((item) => {
-            const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "0";
-            const suffix = this.castToString(item.suffix) || "";
-            const title = this.castToString(item.title) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const description = this.castToString(item.description) || "";
-            return { prefix, number, suffix, title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+        const statsListRaw = this.castToObject<{ prefix: JSX.Element; value: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("card-list");
+        const statsList: CardData[] = statsListRaw.map((item) => {
+            const value = this.castToString(item.value);
+            return { prefix: item.prefix, value, valueElement: item.value, suffix: item.suffix, title: item.title, subtitle: item.subtitle, description: item.description };
         });
 
         const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
+        const hasTopSection = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
+
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content-wrapper")}>
-                        {hasLeftSection && (
-                            <Base.VerticalContent className={this.decorateCSS("left-column")}>
-                                {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {this.getPropValue("subtitle")}
-                                    </Base.SectionSubTitle>
-                                )}
-                                {titleExist && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                )}
-                                {descriptionExist && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {this.getPropValue("description")}
-                                    </Base.SectionDescription>
-                                )}
-                                {hasValidButtons && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {buttons.map(
-                                            (item: INPUTS.CastedButton, index: number) => {
-                                                const buttonText = this.castToString(item.text);
+                    {hasTopSection && (
+                        <Base.VerticalContent className={this.decorateCSS("header-section")}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {buttons.length > 0 && (
+                                <Base.Row className={this.decorateCSS("button-container")}>
+                                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                        const buttonText = this.castToString(item.text);
 
-                                                if (!buttonText) return null;
+                                        if (!buttonText) return null;
 
-                                                return (
-                                                    <ComposerLink key={index} path={item.url}>
-                                                        <Base.Button
-                                                            buttonType={item.type}
-                                                            className={this.decorateCSS("button")}
-                                                        >
-                                                            <Base.P className={this.decorateCSS("button-text")}>
-                                                                {item.text}
-                                                            </Base.P>
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                );
-                                            }
-                                        )}
-                                    </div>
-                                )}
-                            </Base.VerticalContent>
-                        )}
-                        {stats.length > 0 && (
-                            <Base.VerticalContent className={this.decorateCSS("right-column")}>
-                                <Base.ListGrid gridCount={{ pc: 2, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                    {stats.map((stat: StatItem, index: number) => (
-                                        <this.AnimatedStat
-                                            key={`stat21-${index}`}
-                                            stat={stat}
-                                            animationDuration={animationDuration}
-                                            statsAnimation={statsAnimation}
-                                        />
-                                    ))}
-                                </Base.ListGrid>
-                            </Base.VerticalContent>
-                        )}
-                    </div>
+                                        return (
+                                            <ComposerLink key={index} path={item.url}>
+                                                <Base.Button
+                                                    buttonType={item.type}
+                                                    className={`${this.decorateCSS("button")} ${this.decorateCSS(`button-${index}`)}`}
+                                                >
+                                                    <Base.P className={`${this.decorateCSS("button-text")} ${this.decorateCSS(`button-text-${index}`)}`}>{item.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    })}
+                                </Base.Row>
+                            )}
+                        </Base.VerticalContent>
+                    )}
+
+                    {statsList.length > 0 && (
+                        <Base.ListGrid
+                            gridCount={{ pc: itemCount, tablet: 4, phone: 1 }}
+                            className={this.decorateCSS("cards-grid")}
+                        >
+                            {statsList.map((card: CardData, index: number) => (
+                                <this.AnimatedCard
+                                    key={`stat18-${index}`}
+                                    card={card}
+                                    animationDuration={animationDuration}
+                                    statsAnimation={statsAnimation}
+                                    showLine={showLine}
+                                />
+                            ))}
+                        </Base.ListGrid>
+                    )}
                 </Base.MaxContent>
             </Base.Container>
         );
     }
 }
 
-export default Stats18;
+export default Stats18Page;
