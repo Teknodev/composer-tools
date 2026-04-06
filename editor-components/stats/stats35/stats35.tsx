@@ -278,12 +278,13 @@ class Stats35 extends BaseStats {
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
         return (
-            <Base.Container className={`${this.decorateCSS("container")} ${hasLeftSection ? this.decorateCSS("has-left") : ""}`}>
+            <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.decorateCSS("content-wrapper")}>
+                <div className={`${this.decorateCSS("content-wrapper")} ${hasLeftSection ? this.decorateCSS("has-left") : ""}`}>
                     {hasLeftSection && (
                         <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                            {subtitleExist && (
+                            <div  className={this.decorateCSS("text-block")}>
+{subtitleExist && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                     {this.getPropValue("subtitle")}
                                 </Base.SectionSubTitle>
@@ -313,7 +314,8 @@ class Stats35 extends BaseStats {
                                         </ComposerLink>
                                     ))}
                                 </div>
-                            )}
+                                 )}
+                            </div>
                         </Base.VerticalContent>
                     )}
 
@@ -336,7 +338,7 @@ class Stats35 extends BaseStats {
                             </div>
                         </div>
                     )}
-                    </div>
+                </div>
                 </Base.MaxContent>
             </Base.Container>
         );
