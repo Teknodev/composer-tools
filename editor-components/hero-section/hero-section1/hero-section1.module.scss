@@ -60,11 +60,11 @@
 .container {
   width: 100%;
   background-color: white(--composer-html-background);
-  height: 100%;
   position: relative;
   overflow: hidden;
   padding: 0px 0px var(--composer-gap-md) 0px !important;
   min-height: 100px;
+  height: 500px;
 
   .background-layout {
     position: absolute;
