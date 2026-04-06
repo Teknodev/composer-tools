@@ -1,7 +1,7 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding: 0 !important;
+    padding: calc(var(--composer-gap-lg) * 2) 0;
 
     .content-wrapper {
         display: flex;
@@ -13,37 +13,35 @@
             width: 100%;
         }
 
-        .left-column {
+        .max-content {
             flex: 1;
+            margin: 0;
+            width: auto;
+            display: flex;
+            align-items: center;
+            padding: 0 var(--composer-gap-xl);
+        }
+
+        .left-column {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+            width: 100%;
 
-            .text-group {
-                align-items: flex-start;
+            .subtitle {
+                margin-left: 0;
+            }
 
-                .title,
-                .description {
-                    content: "";
-                    text-align: left;
-                }
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                width: 100%;
+                align-items: center;
 
-                .subtitle {
-                    margin-left: 0;
-                }
-
-                .button-container {
-                    display: flex;
-                    flex-wrap: wrap;
-                    gap: var(--composer-gap-sm);
-                    width: 100%;
-                    align-items: center;
-
-                    .button {
-                        .button-text {
-                            content: "";
-                        }
+                .button {
+                    .button-text {
+                        content: "";
                     }
                 }
             }
@@ -94,6 +92,7 @@
                 padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
 
                 .stat-item {
+                    display: flex;
                     flex-direction: column;
 
                     .stat-value {
@@ -124,14 +123,18 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .content-wrapper {
-        .right-column {
-            min-height: 400px;
+    .container {
+        padding: calc(var(--composer-gap-lg) * 2) 0;
 
-            .stats-list {
-                .stat-item {
-                    .stat-value {
-                        font-size: 5rem;
+        .content-wrapper {
+            .right-column {
+                min-height: 400px;
+
+                .stats-list {
+                    .stat-item {
+                        .stat-value {
+                            font-size: 5rem;
+                        }
                     }
                 }
             }
@@ -141,10 +144,13 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        padding: var(--composer-gap-xl) 0;
+
         .content-wrapper {
             flex-direction: column;
 
-            .left-column {
+            .max-content {
+                width: 100%;
                 padding: var(--composer-gap-xl) var(--composer-gap-md);
             }
 
@@ -153,7 +159,7 @@
                 width: 100%;
             }
 
-            .left-column.center-alignment .text-group {
+            .left-column.center-alignment {
                 align-items: center;
 
                 .title,

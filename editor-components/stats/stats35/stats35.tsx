@@ -279,9 +279,9 @@ class Stats35 extends BaseStats {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
                 <div className={`${this.decorateCSS("content-wrapper")} ${hasLeftSection ? this.decorateCSS("has-left") : ""}`}>
                     {hasLeftSection && (
+                        <Base.MaxContent className={this.decorateCSS("max-content")}>
                         <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                             {subtitleExist && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -315,6 +315,7 @@ class Stats35 extends BaseStats {
                                 </div>
                             )}
                         </Base.VerticalContent>
+                        </Base.MaxContent>
                     )}
 
                     {stats.length > 0 && (
@@ -337,7 +338,6 @@ class Stats35 extends BaseStats {
                         </div>
                     )}
                 </div>
-                </Base.MaxContent>
             </Base.Container>
         );
     }
