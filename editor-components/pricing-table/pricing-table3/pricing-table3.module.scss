@@ -29,7 +29,7 @@
     align-items: flex-start;
     text-align: left;
 
-    .title,
+    .featured-title,
     .description {
       width: 100%;
       text-align: left;
@@ -189,7 +189,7 @@
             margin-bottom: var(--composer-gap-md);
           }
 
-          .title {
+          .card-title {
             color: var(--composer-tertiary-color);
             text-align: center;
             width: 100%;
@@ -291,7 +291,26 @@
       align-items: flex-start;
       text-align: left;
 
-      .title,
+      &.alignment-center {
+        align-items: center;
+        text-align: center;
+
+        .featured-title,
+        .subtitle,
+        .description {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+          align-self: center;
+        }
+
+        .top-level-buttons {
+          justify-content: center;
+          place-self: center;
+        }
+      }
+
+      .featured-title,
       .subtitle,
       .description {
         text-align: left;

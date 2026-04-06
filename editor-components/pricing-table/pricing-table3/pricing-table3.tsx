@@ -342,6 +342,8 @@ class PricingTable3 extends BasePricingTable {
       .map((animation: string) => this.decorateCSS(animation))
       .join(" ");
 
+    const alignment = Base.getContentAlignment();
+
     return (
       <Base.Container
         className={this.decorateCSS("container")}
@@ -350,8 +352,7 @@ class PricingTable3 extends BasePricingTable {
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || descExist || hasValidButtons) && (
               <Base.VerticalContent
-                className={`${this.decorateCSS("featured")} ${!hasCards && this.decorateCSS("featured-alternate")
-                  } `}
+                className={`${this.decorateCSS("featured")} ${!hasCards && this.decorateCSS("featured-alternate")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""} `}
               >
                 {subtitleExist && (
                   <Base.SectionSubTitle
@@ -361,7 +362,7 @@ class PricingTable3 extends BasePricingTable {
                   </Base.SectionSubTitle>
                 )}
                 {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                  <Base.SectionTitle className={this.decorateCSS("featured-title")}>
                     {title}
                   </Base.SectionTitle>
                 )}
@@ -449,7 +450,7 @@ class PricingTable3 extends BasePricingTable {
                               />
                             )}
                             {titleExist && (
-                              <Base.H6 className={this.decorateCSS("title")}>
+                              <Base.H6 className={this.decorateCSS("card-title")}>
                                 {card.title}
                               </Base.H6>
                             )}
