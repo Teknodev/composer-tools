@@ -32,7 +32,7 @@ class Breadcrumb5 extends BaseBreadcrumb {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Home",
+                            value: "",
                         },
                         {
                             type: "media",
@@ -43,7 +43,7 @@ class Breadcrumb5 extends BaseBreadcrumb {
                             },
                             value: {
                                 type: "icon",
-                                name: "",
+                                name: "AiFillHome",
                             },
                         },
                         {
