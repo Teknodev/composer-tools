@@ -46,6 +46,13 @@ class Stats33 extends BaseStats {
             displayer: "Description",
             value: "",
         });
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+            ]
+        })
 
         this.addProp({
             type: "array",
@@ -82,7 +89,7 @@ class Stats33 extends BaseStats {
 
                             ],
                         },
-                        { type: "boolean", key: "rowReverse", displayer: "Row Reverse", value: false },
+                        { type: "boolean", key: "rowReverse", displayer: "Row Reverse", value: false }
                     ],
                 },
                 {
@@ -253,6 +260,9 @@ class Stats33 extends BaseStats {
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const title = this.castToString(this.getPropValue("title"));
         const description = this.castToString(this.getPropValue("description"));
+        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+
         const hasHeader = subtitle || title || description;
 
         return (
@@ -274,6 +284,29 @@ class Stats33 extends BaseStats {
                                 <Base.SectionDescription className={this.decorateCSS("description")}>
                                     {this.getPropValue("description")}
                                 </Base.SectionDescription>
+                            )}
+                            {hasValidButtons && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {buttons.map(
+                                        (item: INPUTS.CastedButton, index: number) => {
+                                            const buttonText = this.castToString(item.text);
+                                            if (!buttonText) return null;
+
+                                            return (
+                                                <ComposerLink key={index} path={item.url}>
+                                                    <Base.Button
+                                                        buttonType={item.type}
+                                                        className={this.decorateCSS("button")}
+                                                    >
+                                                        <Base.P className={this.decorateCSS("button-text")}>
+                                                            {item.text}
+                                                        </Base.P>
+                                                    </Base.Button>
+                                                </ComposerLink>
+                                            );
+                                        }
+                                    )}
+                                </div>
                             )}
                         </Base.VerticalContent>
                     )}
