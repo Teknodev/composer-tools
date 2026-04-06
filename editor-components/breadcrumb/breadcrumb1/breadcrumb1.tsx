@@ -211,33 +211,30 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                 const itemTitleExist = this.castToString(item.title);
                                 const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                                 if (!itemTitleExist && !itemIconExist) return null;
-                                const isLast = index === breadcrumbItems.length - 1;
                                 return (
-                                    <React.Fragment key={index}>
-                                        <div className={this.decorateCSS("breadcrumb-item")}>
-                                            <ComposerLink path={item.navigateTo}>
-                                                <div className={this.decorateCSS("breadcrumb-link")}>
-                                                    {itemIconExist && (
-                                                        <Base.Media
-                                                            value={item.icon}
-                                                            className={this.decorateCSS("item-icon")}
-                                                        />
-                                                    )}
-                                                    {itemTitleExist && (
-                                                        <Base.P className={this.decorateCSS(isLast ? "current-page" : "home-page")}>
-                                                            {item.title}
-                                                        </Base.P>
-                                                    )}
-                                                </div>
-                                            </ComposerLink>
-                                        </div>
-                                        {!isLast && separatorIconExist && (
+                                    <div key={index} className={this.decorateCSS("breadcrumb-item")}>
+                                        <ComposerLink path={item.navigateTo}>
+                                            <div className={this.decorateCSS("breadcrumb-link")}>
+                                                {itemIconExist && (
+                                                    <Base.Media
+                                                        value={item.icon}
+                                                        className={this.decorateCSS("item-icon")}
+                                                    />
+                                                )}
+                                                {itemTitleExist && (
+                                                    <Base.P className={this.decorateCSS("home-page")}>
+                                                        {item.title}
+                                                    </Base.P>
+                                                )}
+                                            </div>
+                                        </ComposerLink>
+                                        {separatorIconExist && (
                                             <Base.Media
                                                 value={separatorIconValue}
                                                 className={this.decorateCSS("stripIcon")}
                                             />
                                         )}
-                                    </React.Fragment>
+                                    </div>
                                 );
                             })}
                         </Base.P>

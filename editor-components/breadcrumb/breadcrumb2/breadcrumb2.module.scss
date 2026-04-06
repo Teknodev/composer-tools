@@ -107,6 +107,10 @@
         width: 18px;
         flex-shrink: 0;
       }
+
+      .breadcrumb-item:last-child .crumberIcon {
+        display: none;
+      }
     }
 
     .content-container {
