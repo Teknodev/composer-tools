@@ -3,7 +3,8 @@
 .container-main {
     width: 100%;
     position: relative;
-    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+    background-color: color-mix(in srgb, var(--composer-primary-color), var(--composer-html-background) 95%);
+
 
     .vector1 {
         position: absolute;

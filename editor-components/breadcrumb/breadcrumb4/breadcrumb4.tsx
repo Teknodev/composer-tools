@@ -10,13 +10,13 @@ type VectorItem = {
 };
 
 type BreadcrumbItem = {
-  title: React.JSX.Element;
+  title: JSX.Element;
   icon: TypeMediaInputValue;
   navigateTo: string;
 };
 
 type CurrentPageItem = {
-  title: React.JSX.Element;
+  title: JSX.Element;
   icon: TypeMediaInputValue;
 };
 
@@ -106,7 +106,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
       key: "backgroundImage",
       displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
-      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da9c05fb049c002cc245da?alt=media" },
+      value: { type: "image", url: "" },
     });
     this.addProp({
       type: "boolean",
