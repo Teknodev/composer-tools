@@ -1,20 +1,24 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
     .max-content {
         .content {
             align-items: center;
             gap: var(--composer-gap-md);
+
             .header {
                 align-items: center;
 
-                .title-container{
+                .title-container {
                     content: "";
                     position: relative;
                     padding-bottom: var(--composer-gap-lg);
-                    .title{
+
+                    .title {
                         width: 100%;
                         text-align: center;
                     }
+
                     .icon {
                         position: absolute;
                         bottom: 0rem;
@@ -26,17 +30,18 @@
                         color: var(--composer-font-color-primary);
                     }
                 }
-    
-                .subtitle{
+
+                .subtitle {
                     text-align: center;
                     transform: translateX(0);
                     width: fit-content;
+
                     &::before {
                         display: none;
                     }
                 }
-    
-                .description{
+
+                .description {
                     text-align: center;
                 }
 
@@ -48,46 +53,57 @@
 
                     .button {
                         content: "";
+
                         .button-text {
                             content: "";
                         }
                     }
                 }
             }
-            .card-container{
+
+            .card-container {
                 width: 100%;
-                .card{
+
+                .card {
                     align-items: flex-start;
                     background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
                     border-radius: var(--composer-border-radius-sm);
                     padding: var(--composer-gap-lg);
-                    .icon-wrapper{
+
+                    .icon-wrapper {
                         background-color: var(--composer-primary-color);
                         border-radius: var(--composer-border-radius-full);
                         padding: var(--composer-gap-md);
                         width: fit-content;
-                        .icon{
+                        line-height: 0;
+
+                        .icon {
                             color: var(--composer-font-color-secondary);
                             font-size: 1.5rem;
                             width: 1.5rem;
                             height: 1.5rem;
                             object-fit: contain;
                         }
+
                         &.no-bg {
                             background-color: transparent;
+
                             .icon {
                                 color: var(--composer-primary-color);
                             }
                         }
                     }
+
                     .card-subtitle {
                         text-align: left;
                     }
-                    .card-title{
+
+                    .card-title {
                         color: var(--composer-font-color-primary);
                         text-align: left;
                     }
-                    .card-description{
+
+                    .card-description {
                         color: var(--composer-font-color-primary);
                         text-align: left;
                     }
@@ -97,18 +113,25 @@
         }
     }
 }
-@container (max-width: #{$composer-phone-width}){
-    .container{
-        .max-content{
-            .content{
-                .title-container{
-                    padding-bottom: var(--composer-gap-md);
 
-                    .title{
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .content {
+                .title-container {
+                    padding-bottom: 0px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    .title {
                         text-align: center;
                     }
+
                     .icon {
+                        position: static;
                         font-size: 1.5rem;
+                        margin-top: var(--composer-gap-sm);
                     }
                 }
             }

@@ -122,13 +122,20 @@
 
 @container (max-width : #{$composer-phone-width}) {
   .container {
+
+    &.colored-background {
+      .max-content {
+        .content {
+          .title-box {
+            padding: var(--composer-gap-md) !important;
+          }
+        }
+      }
+    }
+
     .max-content {
       .content {
         flex-direction: column;
-
-        .title-box {
-          padding: var(--composer-gap-md);
-        }
 
         .image-box {
           .image {

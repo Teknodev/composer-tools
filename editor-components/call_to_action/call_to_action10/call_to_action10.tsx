@@ -1,18 +1,16 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
 interface CardItem {
-  cardIcon: any;
+  cardIcon: TypeMediaInputValue;
   cardSubtitle: React.JSX.Element;
   cardTitle: React.JSX.Element;
   cardDescription: React.JSX.Element;
 }
-
-type Button = INPUTS.CastedButton;
 
 class CallToAction10Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -199,7 +197,7 @@ class CallToAction10Page extends BaseCallToAction {
 
   render() {
     const cardItem = this.castToObject<CardItem[]>("cardItems");
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const enableIconBackground = this.getPropValue("iconBackground");
 
     return (
@@ -209,7 +207,7 @@ class CallToAction10Page extends BaseCallToAction {
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
+                  {this.castToString(this.getPropValue("subtitle"))}
                 </Base.SectionSubTitle>
               )}
               {this.castToString(this.getPropValue("title") || this.getPropValue("icon")) && (
@@ -224,12 +222,12 @@ class CallToAction10Page extends BaseCallToAction {
               )}
               {this.castToString(this.getPropValue("description")) && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
+                  {this.castToString(this.getPropValue("description"))}
                 </Base.SectionDescription>
               )}
               {buttons.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((button: Button, index: number) => (
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => (
                     this.castToString(button.text) && (
                       <ComposerLink key={index} path={button.url}>
                         <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
@@ -242,7 +240,7 @@ class CallToAction10Page extends BaseCallToAction {
               )}
             </Base.VerticalContent>
             {(cardItem.length > 0) && (
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-container")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                     {item.cardIcon && (
