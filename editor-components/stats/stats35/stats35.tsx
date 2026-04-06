@@ -275,66 +275,69 @@ class Stats35 extends BaseStats {
         const animationDuration = animationProps?.animationDuration || 2000;
 
         const alignment = Base.getContentAlignment();
+        const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <div className={`${this.decorateCSS("content-wrapper")} ${(subtitleExist || titleExist || descriptionExist || hasValidButtons) ? this.decorateCSS("has-left") : ""}`}>
-                    {(subtitleExist || titleExist || descriptionExist || hasValidButtons) && (
-                        <div className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                            <Base.VerticalContent className={this.decorateCSS("text-group")}>
-                                {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                        {this.getPropValue("subtitle")}
-                                    </Base.SectionSubTitle>
-                                )}
-                                {titleExist && (
-                                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                                        {this.getPropValue("title")}
-                                    </Base.SectionTitle>
-                                )}
-                                {descriptionExist && (
-                                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                                        {this.getPropValue("description")}
-                                    </Base.SectionDescription>
-                                )}
-                                {hasValidButtons && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {buttons.filter((btn) => this.castToString(btn.text)).map((item: INPUTS.CastedButton, index: number) => (
-                                            <ComposerLink key={index} path={item.url}>
-                                                <Base.Button
-                                                    buttonType={item.type}
-                                                    className={this.decorateCSS("button")}
-                                                >
-                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                        {item.text}
-                                                    </Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
-                                        ))}
-                                    </div>
-                                )}
-                            </Base.VerticalContent>
-                        </div>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                <div className={`${this.decorateCSS("content-wrapper")} ${hasLeftSection ? this.decorateCSS("has-left") : ""}`}>
+                    {hasLeftSection && (
+                        <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
+                            {subtitleExist && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleExist && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionExist && (
+                                <Base.SectionDescription className={this.decorateCSS("description")}>
+                                    {this.getPropValue("description")}
+                                </Base.SectionDescription>
+                            )}
+                            {hasValidButtons && (
+                                <div className={this.decorateCSS("button-container")}>
+                                    {buttons.filter((btn) => this.castToString(btn.text)).map((item: INPUTS.CastedButton, index: number) => (
+                                        <ComposerLink key={index} path={item.url}>
+                                            <Base.Button
+                                                buttonType={item.type}
+                                                className={this.decorateCSS("button")}
+                                            >
+                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                    {item.text}
+                                                </Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    ))}
+                                </div>
+                            )}
+                        </Base.VerticalContent>
                     )}
 
-                    <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasMedia ? this.decorateCSS("no-media") : ""}`}>
-                        <Base.Media
-                            value={backgroundImage}
-                            className={this.decorateCSS("background-image")}
-                        />
-                        {showOverlay && <div className={this.decorateCSS("overlay")} />}
-                        <div className={this.decorateCSS("stats-list")}>
-                            {stats.map((stat, index) => (
-                                <this.AnimatedStat
-                                    key={`stat35-${index}`}
-                                    stat={stat}
-                                    animationDuration={animationDuration}
-                                    statsAnimation={statsAnimation}
-                                />
-                            ))}
+                    {stats.length > 0 && (
+                        <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasMedia ? this.decorateCSS("no-media") : ""}`}>
+                            <Base.Media
+                                value={backgroundImage}
+                                className={this.decorateCSS("background-image")}
+                            />
+                            {showOverlay && <div className={this.decorateCSS("overlay")} />}
+                            <div className={this.decorateCSS("stats-list")}>
+                                {stats.map((stat, index) => (
+                                    <this.AnimatedStat
+                                        key={`stat35-${index}`}
+                                        stat={stat}
+                                        animationDuration={animationDuration}
+                                        statsAnimation={statsAnimation}
+                                    />
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
+                </Base.MaxContent>
             </Base.Container>
         );
     }
