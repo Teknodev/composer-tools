@@ -286,7 +286,7 @@ class List8 extends BaseList {
 
             {listItems.length > 0 && (
               <Base.ListGrid
-                className={this.decorateCSS("items-wrapper")}
+                className={`${this.decorateCSS("items-wrapper")}${!hasHeader ? ` ${this.decorateCSS("no-header")}` : ""}`}
                 gridCount={{ pc: itemCount, tablet: 3, phone: 1 }}
               >
                 {listItems.map((item: ListItem, index: number) => {
@@ -305,13 +305,17 @@ class List8 extends BaseList {
                   )
                     return null;
 
+                  const hasItemContent = itemSubtitleExist || itemTitleExist || itemTextExist;
+
                   return (
                     <div
                       key={index}
                       className={this.decorateCSS("list-item")}
                       data-animation={hoverAnimation.join(" ")}
                     >
-                      <Base.VerticalContent className={this.decorateCSS("item-container")}>
+                      <Base.VerticalContent
+                        className={`${this.decorateCSS("item-container")}${!hasItemContent ? ` ${this.decorateCSS("no-item-content")}` : ""}`}
+                      >
                         {itemNumberExist && (
                           <div className={this.decorateCSS("number-badge")}>
                             <Base.H1 className={this.decorateCSS("index")}>{item.number}</Base.H1>

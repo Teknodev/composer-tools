@@ -43,6 +43,10 @@
       .items-wrapper {
         gap: var(--composer-gap-xl);
 
+        &.no-header {
+          margin-top: calc(var(--composer-gap-xl) + 20px);
+        }
+
         .list-item {
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-sm);
@@ -79,6 +83,14 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+
+            &.no-item-content .number-badge {
+              position: relative;
+              left: auto;
+              top: auto;
+              transform: none;
+              will-change: auto;
+            }
 
             .number-badge {
               content: "";
