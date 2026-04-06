@@ -38,7 +38,7 @@
             padding: 0;
 
             .item-header {
-              padding: 30px 0;
+              padding: 30px 15px 30px 0;
             }
 
             .item-description-container {
@@ -164,6 +164,14 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .container .max-content .list-container .list-grid .item-container .item-header .toggle-button-container .toggle-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 2.5rem;
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
@@ -183,9 +191,9 @@
             .item-header {
               .toggle-button-container {
                 .toggle-icon {
-                  width: 2rem;
-                  height: 2rem;
-                  font-size: 2rem;
+                  width: 1.75rem;
+                  height: 1.75rem;
+                  font-size: 1.75rem;
                 }
               }
             }
