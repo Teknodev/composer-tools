@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 type MediaObject = {
-  image: any;
+  image: TypeMediaInputValue;
   overlay: boolean;
 };
 
@@ -111,10 +111,9 @@ class CallToAction7Page extends BaseCallToAction {
     const image = mediaObject.image;
     const overlay = mediaObject.overlay;
 
-    const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
-    const descriptionExist = this.castToString(this.getPropValue("description"));
-    const description = this.getPropValue("description");
+    const description = this.castToString(this.getPropValue("description"));
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const placeholder = this.castToString(this.getPropValue("placeholder"));
     const animation = this.getPropValue("animation");
@@ -124,7 +123,7 @@ class CallToAction7Page extends BaseCallToAction {
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!image && this.decorateCSS("no-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.ContainerGrid className={this.decorateCSS("wrapper")}>
+          <Base.ContainerGrid gridCount={{ pc: 2, tablet: 2 }} className={this.decorateCSS("wrapper")}>
             {image &&
               (<Base.GridCell className={this.decorateCSS("left-page")}>
                 <div className={this.decorateCSS("image-container")}>
@@ -136,16 +135,12 @@ class CallToAction7Page extends BaseCallToAction {
                 </div>
               </Base.GridCell>)
             }
-            {(subtitleExist || placeholder || title) &&
+            {(subtitle || title || description || placeholder) &&
               (<Base.GridCell className={this.decorateCSS("right-page")}>
                 <Base.VerticalContent className={this.decorateCSS("right-content")}>
-                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                   {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                  {descriptionExist && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
-                    </Base.SectionDescription>
-                  )}
+                  {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                   {placeholder &&
                     <div className={this.decorateCSS("input-button-wrapper")}>
                       <Formik
