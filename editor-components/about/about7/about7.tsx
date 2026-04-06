@@ -40,7 +40,7 @@ class About7 extends BaseAbout {
                     },
                     value: {
                         type: "image",
-                        url: "https://swissdelight.qodeinteractive.com/wp-content/uploads/2021/04/history-offset-img1.png",
+                        url: "",
                     },
                 },
                 {
@@ -78,7 +78,7 @@ class About7 extends BaseAbout {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "White"),
             ],
         });
 
@@ -245,7 +245,7 @@ class About7 extends BaseAbout {
         const items = this.castToObject<ItemType[]>("items");
         const backgroundImage = this.castToObject<BackgroundImageType>("background-image");
         const bgMedia = backgroundImage?.image;
-        const isBackgroundImageExist = !!bgMedia;
+        const isBackgroundImageExist = bgMedia && (bgMedia.url || bgMedia.name);
 
         const subtitleStr = this.castToString(this.getPropValue("subtitle"));
         const titleStr = this.castToString(this.getPropValue("title"));
@@ -259,7 +259,7 @@ class About7 extends BaseAbout {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                {bgMedia && (
+                {isBackgroundImageExist && (
                     <Base.Media value={bgMedia} className={this.decorateCSS("background-media-element")} />
                 )}
                 {backgroundImage?.overlay && bgMedia && (
