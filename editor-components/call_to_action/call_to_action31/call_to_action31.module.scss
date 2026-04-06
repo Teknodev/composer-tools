@@ -21,6 +21,7 @@
 
         .media-wrapper {
             border-radius: var(--composer-border-radius-sm);
+            max-height: 70vh;
         }
     }
 
@@ -174,9 +175,9 @@
 
 
     @container (max-width: #{$composer-tablet-width}) {
-        &.no-media.no-card .max-content {
-            padding: var(--composer-gap-xl) var(--composer-gap-lg);
-        }
+        // &.no-media.no-card .max-content {
+        //     // padding: var(--composer-gap-xl) var(--composer-gap-lg);
+        // }
 
         &.no-card:not(.no-media) .max-content {
             padding: 0 !important;
@@ -211,9 +212,9 @@
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        &.no-media.no-card .max-content {
-            padding: var(--composer-gap-xl) var(--composer-gap-md);
-        }
+        // &.no-media.no-card .max-content {
+        //     // padding: var(--composer-gap-xl) var(--composer-gap-md);
+        // }
 
         &.no-card:not(.no-media) .max-content {
             padding: 0 !important;
