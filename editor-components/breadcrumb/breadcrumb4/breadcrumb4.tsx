@@ -282,27 +282,25 @@ class Breadcrumb4 extends BaseBreadcrumb {
                   const itemTitleExist = this.castToString(item.title);
                   const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
                   return (
-                    <React.Fragment key={index}>
-                      <div className={this.decorateCSS("link")}>
-                        {(itemTitleExist || itemIconExist) && (
-                          <ComposerLink path={item.navigateTo}>
-                            <div className={this.decorateCSS("breadcrumb-link")}>
-                              {itemIconExist && (
-                                <Base.Media
-                                  value={item.icon}
-                                  className={`${this.decorateCSS("crumberIcon")} ${!bgImageExist ? this.decorateCSS("icon-without-image") : ""}`}
-                                />
-                              )}
-                              {itemTitleExist && (
-                                <Base.P className={`${this.decorateCSS("text")} ${!bgImageExist ? this.decorateCSS("text-without-image") : ""}`}>
-                                  {item.title}
-                                </Base.P>
-                              )}
-                            </div>
-                          </ComposerLink>
-                        )}
-                      </div>
-                    </React.Fragment>
+                    <div key={index} className={this.decorateCSS("link")}>
+                      {(itemTitleExist || itemIconExist) && (
+                        <ComposerLink path={item.navigateTo}>
+                          <div className={this.decorateCSS("breadcrumb-link")}>
+                            {itemIconExist && (
+                              <Base.Media
+                                value={item.icon}
+                                className={`${this.decorateCSS("crumberIcon")} ${!bgImageExist ? this.decorateCSS("icon-without-image") : ""}`}
+                              />
+                            )}
+                            {itemTitleExist && (
+                              <Base.P className={`${this.decorateCSS("text")} ${!bgImageExist ? this.decorateCSS("text-without-image") : ""}`}>
+                                {item.title}
+                              </Base.P>
+                            )}
+                          </div>
+                        </ComposerLink>
+                      )}
+                    </div>
                   );
                 })}
                 {breadcrumbItems.length > 0 && (
