@@ -51,7 +51,7 @@ class Stats29 extends BaseStats {
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 
@@ -273,7 +273,7 @@ class Stats29 extends BaseStats {
                                 buttonType={button.type}
                                 className={this.decorateCSS("button")}
                               >
-                               <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                               </Base.Button>
                             </ComposerLink>
                           );

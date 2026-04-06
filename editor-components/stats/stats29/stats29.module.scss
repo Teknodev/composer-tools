@@ -101,13 +101,6 @@
         .card-content {
           .header-container {
             flex-direction: column;
-
-            .header-content {
-              .button-container {
-                display: flex;
-                align-self: inherit;
-              }
-            }
           }
 
           .stats-grid {
@@ -138,7 +131,6 @@
 
           .header-container {
             flex-direction: column;
-            align-items: center;
 
             .header-content {
               .description {
@@ -170,6 +162,10 @@
                 font-size: 1rem;
               }
             }
+          }
+
+          &.center-alignment .header-container .header-content .button-container {
+            justify-content: center;
           }
 
           &.center-alignment .stats-grid .stat-item {
