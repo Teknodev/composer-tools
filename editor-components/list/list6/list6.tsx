@@ -303,7 +303,7 @@ class List6 extends BaseList {
                       )}
 
                     {this.castToString(item.itemText) && (
-                      <Base.P className={this.decorateCSS("description")}>
+                      <Base.P className={this.decorateCSS("card-description")}>
                         {item.itemText}
                       </Base.P>
                     )}
