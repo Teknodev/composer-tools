@@ -228,19 +228,19 @@ class Stats34 extends BaseStats {
                     </span>
                 )}
                 {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                    <Base.H5 className={this.decorateCSS("stat-subtitle")}>
                         {stat.subtitleElement}
-                    </Base.H6>
-                )}
-                {titleExist && (
-                    <Base.H5 className={this.decorateCSS("stat-title")}>
-                        {stat.titleElement}
                     </Base.H5>
                 )}
+                {titleExist && (
+                    <Base.H4 className={this.decorateCSS("stat-title")}>
+                        {stat.titleElement}
+                    </Base.H4>
+                )}
                 {descriptionExist && (
-                    <Base.P className={this.decorateCSS("stat-description")}>
+                    <Base.H6 className={this.decorateCSS("stat-description")}>
                         {stat.descriptionElement}
-                    </Base.P>
+                    </Base.H6>
                 )}
             </Base.VerticalContent>
         );
