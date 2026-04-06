@@ -1,5 +1,9 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
+.breadcrumb1-root {
+  display: contents;
+}
+
 .container {
   overflow: hidden;
   padding: 0 var(--composer-gap-xl) !important;
