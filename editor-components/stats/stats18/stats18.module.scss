@@ -2,73 +2,76 @@
 
 .container {
     .max-content {
-        .content-wrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            gap: var(--composer-gap-xl);
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
 
-            .left-column,
-            .right-column {
-                flex: 1;
+        .header-section {
+            .title {
+                content: "";
             }
 
-            .left-column {
+            .subtitle {
+                content: "";
+            }
+
+            .description {
+                content: "";
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button {
+                    content: "";
+
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .cards-grid {
+            .card {
+                background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                border-radius: var(--composer-border-radius-md);
                 align-items: flex-start;
+                padding: var(--composer-gap-xl);
 
-                .title,
-                .subtitle,
-                .description {
-                    text-align: left;
-                }
-
-                .subtitle {
-                    margin-left: 0;
-                    width: fit-content;
-                }
-
-                .button-container {
+                .card-value {
+                    color: var(--composer-font-color-primary);
+                    margin-bottom: var(--composer-gap-sm);
+                   width: 100%;
                     display: flex;
-                    flex-wrap: wrap;
-                    justify-content: flex-start;
-                    gap: var(--composer-gap-sm);
+                    font-size: 4rem;
 
-                    .button {
-                        .button-text {
-                            content: "";
-                        }
+                    &.no-line {
+                        padding-bottom: 0;
+                        margin-bottom: 0;
+                    }
+
+                    .stat-prefix,
+                    .display-value,
+                    .stat-suffix {
+                        content: "";
                     }
                 }
-            }
 
-            .right-column {
-                .stats-grid {
-                    gap: var(--composer-gap-lg);
+                .line {
+                    width: 100%;
+                    height: 1px;
+                    background-color: color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+                    margin-bottom: var(--composer-gap-sm);
+                }
 
-                    .stat-item {
-                        align-items: flex-start;
-                        text-align: left;
-
-                        .stat-value {
-                            color: var(--composer-primary-color);
-                            display: flex;
-                            align-items: center;
-                            font-size: 6rem;
-
-                            .stat-prefix,
-                            .stat-number,
-                            .stat-suffix {
-                                color: inherit;
-                            }
-                        }
-
-                        .stat-title,
-                        .stat-subtitle,
-                        .stat-description {
-                            text-align: left;
-                            color: var(--composer-font-color-primary);
-                        }
-                    }
+                .card-subtitle,
+                .card-title,
+                .card-description {
+                    color: var(--composer-font-color-primary);
+                    text-align: left !important;
                 }
             }
         }
@@ -76,45 +79,23 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-    .container .max-content {
-        .content-wrapper {
-            gap: var(--composer-gap-lg);
-            align-items: flex-start;
-
-            .right-column {
-                .stats-grid {
-                    .stat-item {
-                        .stat-value {
-                            font-size: 4rem;
-                        }
-                    }
-                }
-            }
+    .cards-grid {
+        .card {
+            padding: var(--composer-gap-md) !important;
         }
+    }
+
+    .card-value {
+        font-size: 2.5rem !important;
     }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .container .max-content {
-        .content-wrapper {
-            flex-direction: column;
-            gap: var(--composer-gap-lg);
+    .max-content {
+        gap: var(--composer-gap-md) !important;
+    }
 
-            .left-column,
-            .right-column {
-                width: 100%;
-                flex: auto;
-            }
-
-            .right-column {
-                .stats-grid {
-                    .stat-item {
-                        .stat-value {
-                            font-size: 4rem;
-                        }
-                    }
-                }
-            }
-        }
+    .card-value {
+        font-size: 3rem !important;
     }
 }

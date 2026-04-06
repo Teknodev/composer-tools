@@ -99,8 +99,9 @@ import HeroSection32 from "./hero-section/hero-section32/hero-section32";
 import HeroSection33 from "./hero-section/hero-section33/hero-section33";
 import HeroSection34 from "./hero-section/hero-section34/hero-section34";
 import HeroSection35 from "./hero-section/hero-section35/hero-section35";
+import HeroSection36 from "./hero-section/hero-section36/hero-section36";
+import HeroSection37 from "./hero-section/hero-section37/hero-section37";
 import HeroSection38 from "./hero-section/hero-section38/hero-section38";
-import HeroSection39 from "./hero-section/hero-section39/hero-section39";
 import IntroSection1 from "./intro-section/intro-section1/intro-section1";
 import IntroSection2 from "./intro-section/intro-section2/intro-section2";
 import IntroSection3 from "./intro-section/intro-section3/intro-section3";
@@ -174,13 +175,15 @@ import CallToAction15 from "./call_to_action/call_to_action15/call_to_action15";
 import CallToAction16 from "./call_to_action/call_to_action16/call_to_action16";
 import CallToAction17 from "./call_to_action/call_to_action17/call_to_action17";
 import CallToAction18 from "./call_to_action/call_to_action18/call_to_action18";
+import CallToAction19 from "./call_to_action/call_to_action19/call_to_action19";
 import CallToAction20 from "./call_to_action/call_to_action20/call_to_action20";
 import CallToAction21 from "./call_to_action/call_to_action21/call_to_action21";
 import CallToAction22 from "./call_to_action/call_to_action22/call_to_action22";
+import CallToAction23 from "./call_to_action/call_to_action23/call_to_action23";
 import CallToAction24 from "./call_to_action/call_to_action24/call_to_action24";
-import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
 import CalltoAction25 from "./call_to_action/call_to_action25/call_to_action25";
 import CallToAction26 from "./call_to_action/call_to_action26/call_to_action26";
+import CallToAction27 from "./call_to_action/call_to_action27/call_to_action27";
 import CallToAction28 from "./call_to_action/call_to_action28/call_to_action28";
 import CallToAction29 from "./call_to_action/call_to_action29/call_to_action29";
 import CallToAction30 from "./call_to_action/call_to_action30/call_to_action30";
@@ -236,6 +239,7 @@ import StatsComponent21 from "./stats/stats21/stats21";
 import StatsComponent22 from "./stats/stats22/stats22";
 import StatsComponent23 from "./stats/stats23/stats23";
 import StatsComponent24 from "./stats/stats24/stats24";
+import StatsComponent32 from "./stats/stats32/stats32";
 import Form1 from "./contacts/form1/form1";
 import Form2 from "./contacts/form2/form2";
 import Form3 from "./contacts/form3/form3";
@@ -345,6 +349,7 @@ import About16 from "./about/about16/about16";
 import Portfolio1 from "./portfolio/portfolio1/portfolio1";
 import Portfolio2 from "./portfolio/portfolio2/portfolio2";
 import Comparison1 from "./comparison/comparison1/comparison1";
+import BackToTop1 from "./back-to-top/back-to-top1/back-to-top1";
 import Header1 from "./header/header1/header1";
 import Header2 from "./header/header2/header2";
 import Header3 from "./header/header3/header3";
@@ -354,7 +359,6 @@ import Header6 from "./header/header6/header6";
 import Header7 from "./header/header7/header7";
 import Header8 from "./header/header8/header8";
 import Header9 from "./header/header9/header9";
-import Header10 from "./header/header10/header10";
 
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
@@ -471,8 +475,9 @@ function Registerables(composer: ComponentsRegistery) {
     HeroSection33,
     HeroSection34,
     HeroSection35,
+    HeroSection36,
+    HeroSection37,
     HeroSection38,
-    HeroSection39,
     IntroSection1,
     IntroSection2,
     IntroSection3,
@@ -567,9 +572,11 @@ function Registerables(composer: ComponentsRegistery) {
     CallToAction16,
     CallToAction17,
     CallToAction18,
+    CallToAction19,
     CallToAction20,
     CallToAction21,
     CallToAction22,
+    CallToAction23,
     CallToAction24,
     CallToAction27,
     CalltoAction25,
@@ -629,6 +636,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent22,
     StatsComponent23,
     StatsComponent24,
+    StatsComponent32,
     Form1,
     Form2,
     Form3,
@@ -704,6 +712,7 @@ function Registerables(composer: ComponentsRegistery) {
     Portfolio1,
     Portfolio2,
     Comparison1,
+    BackToTop1,
     Header1,
     Header2,
     Header3,
@@ -713,7 +722,6 @@ function Registerables(composer: ComponentsRegistery) {
     Header7,
     Header8,
     Header9,
-    Header10,
   ]);
 }
 
