@@ -6,8 +6,10 @@ import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base, TypeButton } from "../../../composer-base-components/base/base";
 
 type ListItem = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  subtitle: string;
+  title: string;
+  description: string;
+  buttons: ButtonType[];
 }
 type Icon = {
   icon: TypeMediaInputValue;
@@ -94,6 +96,12 @@ class About1 extends BaseAbout {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "b.1991, LA, America",
@@ -105,6 +113,14 @@ class About1 extends BaseAbout {
               value:
                 "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique nulla, tenetur necessitatibus asperiores voluptatum hic animi natus nisi quaerat cumque tempora laudantium ad voluptas dolorem neque repellendus totam aperiam alias! Similique nulla, tenetur necessitatibus asperiores voluptatum, Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique nulla, tenetur necessitatibus asperiores voluptatum hic animi natus nisi quaerat cumque tempora laudantium ad voluptas dolorem neque repellendus totam aperiam alias! Similique nulla, tenetur necessitatibus asperiores voluptatum",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -112,6 +128,12 @@ class About1 extends BaseAbout {
           key: "item",
           displayer: "Item",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -125,6 +147,14 @@ class About1 extends BaseAbout {
               value:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem?",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -132,6 +162,12 @@ class About1 extends BaseAbout {
           key: "item",
           displayer: "Item",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -145,11 +181,18 @@ class About1 extends BaseAbout {
               value:
                 "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati quibusdam similique expedita, unde tempore necessitatibus possimus maiores corrupti nostrum. Sed quos culpa vero labore magnam, impedit asperiores ullam inventore quidem?",
             },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
+              ],
+            },
           ],
-        },
-      ],
+        }
+      ]
     });
-
     this.addProp({
       type: "array",
       key: "right-items",
@@ -275,6 +318,8 @@ class About1 extends BaseAbout {
     type ImageGroup = { media: TypeMediaInputValue; overlay: boolean };
     const imageGroup = this.castToObject<ImageGroup>("image");
     const imageValue = imageGroup.media;
+    const hasImage = imageValue && (imageValue.url || imageValue.name);
+
     const subtitleStr = this.castToString(this.getPropValue("subtitle"));
     const titleStr = this.castToString(this.getPropValue("title"));
     const descriptionStr = this.castToString(this.getPropValue("description"));
@@ -283,7 +328,7 @@ class About1 extends BaseAbout {
     const rightItems = this.castToObject<Icon[]>("right-items");
     const textContent = this.castToObject<ListItem[]>("items");
     const hasTextContent = textContent.some(
-      (item) => this.castToString(item.title) || this.castToString(item.description)
+      (item) => this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || (item.buttons && item.buttons.length > 0)
     );
 
     return (
@@ -309,20 +354,24 @@ class About1 extends BaseAbout {
               {hasValidButtons && (
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((item: ButtonType, index: number) => {
-                    const hasContent = this.castToString(item.text) || item.image?.url || item.icon?.name;
+                    const itemText = this.castToString(item.text);
+                    const itemIcon = item.icon;
+                    const itemImage = item.image;
+
+                    const hasContent = itemText || itemImage?.url || itemIcon?.name;
                     if (!hasContent) return null;
 
                     return (
                       <ComposerLink key={index} path={item.url}>
                         <Base.Button buttonType={item.type} className={`${this.decorateCSS("button")} ${item.type === "Bare" ? this.decorateCSS("button-bare") : ""}`}>
-                          {this.castToString(item.text) && (
+                          {itemText && (
                             <Base.P className={this.decorateCSS("button-text")}>
                               {item.text}
                             </Base.P>
                           )}
-                          {(item.image?.url || item.icon?.name) && (
+                          {(itemImage?.url || itemIcon?.name) && (
                             <Base.Media
-                              value={item.image?.url ? { type: "image", url: item.image.url } : { type: "icon", name: item.icon?.name }}
+                              value={itemImage?.url ? { type: "image", url: itemImage.url } : { type: "icon", name: itemIcon?.name }}
                               className={this.decorateCSS("icon")}
                             />
                           )}
@@ -334,8 +383,8 @@ class About1 extends BaseAbout {
               )}
             </Base.VerticalContent>
           )}
-          <Base.ContainerGrid className={this.decorateCSS("content")}>
-            {imageValue && (
+          <Base.ContainerGrid className={`${this.decorateCSS("content")} ${!hasImage ? this.decorateCSS("no-image") : ""}`}>
+            {hasImage && (
               <Base.GridCell
                 className={`${this.decorateCSS("image-box")} ${!hasTextContent ? this.decorateCSS("no-content") : ""}`}
                 data-animation={this.getPropValue("hoverAnimation").join(" ")}
@@ -347,25 +396,64 @@ class About1 extends BaseAbout {
                 {imageGroup.overlay && (
                   <div className={this.decorateCSS("overlay")} />
                 )}
-
               </Base.GridCell>
             )}
             {hasTextContent && (
               <Base.GridCell className={this.decorateCSS("content-right")}>
-                {textContent.map((item, index) => (
-                  <Base.VerticalContent key={index} className={this.decorateCSS("item")}>
-                    {this.castToString(item.title) && (
-                      <Base.H5 className={this.decorateCSS("title")}>
-                        {item.title}
-                      </Base.H5>
-                    )}
-                    {this.castToString(item.description) && (
-                      <Base.P className={this.decorateCSS("item-description")}>
-                        {item.description}
-                      </Base.P>
-                    )}
-                  </Base.VerticalContent>
-                ))}
+                {textContent.map((item, index) => {
+                  const itemButtons = item.buttons || [];
+                  const hasItemButtons = itemButtons?.some((btn) => this.castToString(btn.text) || btn.image?.url || btn.icon?.name);
+
+                  return (
+                    <Base.VerticalContent key={index} className={this.decorateCSS("item")}>
+                      {this.castToString(item.subtitle) && (
+                        <Base.H6 className={this.decorateCSS("item-subtitle")}>
+                          {item.subtitle}
+                        </Base.H6>
+                      )}
+                      {this.castToString(item.title) && (
+                        <Base.H5 className={this.decorateCSS("title")}>
+                          {item.title}
+                        </Base.H5>
+                      )}
+                      {this.castToString(item.description) && (
+                        <Base.P className={this.decorateCSS("item-description")}>
+                          {item.description}
+                        </Base.P>
+                      )}
+                      {hasItemButtons && (
+                        <div className={this.decorateCSS("item-button-container")}>
+                          {itemButtons.map((btn: ButtonType, btnIndex: number) => {
+                            const btnText = this.castToString(btn.text);
+                            const btnIcon = btn.icon;
+                            const btnImage = btn.image;
+
+                            const hasContent = btnText || btnImage?.url || btnIcon?.name;
+                            if (!hasContent) return null;
+
+                            return (
+                              <ComposerLink key={btnIndex} path={btn.url}>
+                                <Base.Button buttonType={btn.type} className={this.decorateCSS("item-button")}>
+                                  {btnText && (
+                                    <Base.P className={this.decorateCSS("item-button-text")}>
+                                      {btn.text}
+                                    </Base.P>
+                                  )}
+                                  {(btnImage?.url || btnIcon?.name) && (
+                                    <Base.Media
+                                      value={btnImage?.url ? { type: "image", url: btnImage.url } : { type: "icon", name: btnIcon?.name }}
+                                      className={this.decorateCSS("item-icon")}
+                                    />
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </Base.VerticalContent>
+                  )
+                })}
               </Base.GridCell>
             )}
           </Base.ContainerGrid>
