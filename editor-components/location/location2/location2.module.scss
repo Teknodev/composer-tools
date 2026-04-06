@@ -185,24 +185,25 @@
   .container {
     .content-container {
       padding: 80px 40px 20px !important;
+    }
 
-      .middle-content {
-        .middle-content-container {
-          padding: var(--composer-gap-md) var(--composer-gap-lg);
-          gap: var(--composer-gap-xl);
-
-          .element-container {
-            flex-direction: column;
-            width: 50%;
-          }
-        }
+    .middle-content {
+      .middle-grid {
+        padding: var(--composer-gap-md) var(--composer-gap-lg);
+        gap: var(--composer-gap-xl);
       }
 
-      .map-container {
-        .map {
-          width: 100%;
-          height: 500px;
+      .middle-grid .element-container {
+        .icon {
+          font-size: 2.5rem;
         }
+      }
+    }
+
+    .map-container {
+      .map {
+        width: 100%;
+        height: 500px;
       }
     }
   }
@@ -302,20 +303,9 @@
     }
 
     .middle-content {
-      .middle-content-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: var(--composer-gap-md);
-        gap: var(--composer-gap-xl);
-
-        .element-container {
-          width: 100%;
-
-          .icon {
-            width: var(--composer-gap-lg);
-            height: var(--composer-gap-lg);
-          }
+      .middle-grid .element-container {
+        .icon {
+          font-size: 2rem;
         }
       }
     }
