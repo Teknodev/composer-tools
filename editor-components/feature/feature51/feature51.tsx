@@ -170,7 +170,11 @@ class Feature51 extends BaseFeature {
       value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
     });
 
-    this.setComponentState("activeItemIndex", -1);
+    const rawItemCount = this.getPropValue("itemCount");
+    const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+
+    const initialActiveItems = Array.from({ length: itemCount }, (_, i) => i);
+    this.setComponentState("activeItems", initialActiveItems);
   }
 
   static getName(): string {
@@ -178,8 +182,13 @@ class Feature51 extends BaseFeature {
   }
 
   private onItemClick(index: number): void {
-    const activeItemIndex = this.getComponentState("activeItemIndex");
-    this.setComponentState("activeItemIndex", activeItemIndex === index ? -1 : index);
+    const activeItems: number[] = this.getComponentState("activeItems") || [];
+
+    if (activeItems.includes(index)) {
+      this.setComponentState("activeItems", activeItems.filter(i => i !== index));
+    } else {
+      this.setComponentState("activeItems", [...activeItems, index]);
+    }
   }
 
   private onItemKeyDown(event: React.KeyboardEvent<HTMLDivElement>, index: number): void {
@@ -239,8 +248,8 @@ class Feature51 extends BaseFeature {
                 {items.map((item: ServiceItemType, index: number) => {
                   const itemTitleExist = this.castToString(item.itemTitle);
                   const itemDescriptionExist = this.castToString(item.itemDescription);
-                  const activeItemIndex = this.getComponentState("activeItemIndex");
-                  const isActive = activeItemIndex === index;
+                  const activeItems: number[] = this.getComponentState("activeItems") || [];
+                  const isActive = activeItems.includes(index);
                   const currentToggleIcon = isActive ? collapseIcon : expandIcon;
                   const itemHeaderExist = !!itemTitleExist || !!currentToggleIcon;
 
