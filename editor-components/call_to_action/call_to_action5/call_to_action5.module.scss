@@ -7,6 +7,10 @@
   background-size: cover;
   background-repeat: no-repeat;
 
+  &.no-image {
+    padding: 80px 50px;
+  }
+
   &.overlay-active {
     &::before {
       position: absolute;
@@ -46,12 +50,19 @@
       .description,
       .subtitle {
         text-align: center;
+        color: var(--composer-font-color-primary);
       }
 
       .subtitle {
         transform: translateX(0);
         &::before {
           display: none;
+        }
+
+        &.with-image {
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
         }
       }
 
@@ -127,6 +138,7 @@
     .button-container {
       width: 100%;
       display: flex;
+      gap: var(--composer-gap-sm);
       justify-content: center;
 
       .button {
@@ -146,6 +158,10 @@
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
 
+    &.no-image {
+      padding: 80px 40px;
+    }
+
     .max-content {
       .form {
         .newsletter {
@@ -159,6 +175,10 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
+
+    &.no-image {
+      padding: 50px 20px;
+    }
 
     .max-content {
       .form {

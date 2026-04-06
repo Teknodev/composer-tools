@@ -6,21 +6,39 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
+type MediaObject = {
+  backgroundImage: any;
+  overlay: boolean;
+};
+
 class CallToAction6Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "backgroundImage",
+      type: "object",
+      key: "mediaObject",
       displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "backgroundImage",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bdaa2707399d002cb4130f?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -65,21 +83,19 @@ class CallToAction6Page extends BaseCallToAction {
       value: "* We promise we will never spam your account. *",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"));
-
-
-
     this.addProp({
-      type: "boolean",
-      key: "spaceLine",
-      displayer: "Space Line",
-      value: true,
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"),
+      ],
     });
 
     this.addProp({
       type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
+      key: "spaceLine",
+      displayer: "Line",
       value: true,
     });
 
@@ -109,6 +125,10 @@ class CallToAction6Page extends BaseCallToAction {
   }
 
   render() {
+    const mediaObject = this.castToObject<MediaObject>("mediaObject");
+    const backgroundImage = mediaObject.backgroundImage;
+    const overlay = mediaObject.overlay;
+
     const spaceLineExist = this.getPropValue("spaceLine");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
@@ -117,25 +137,25 @@ class CallToAction6Page extends BaseCallToAction {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.getPropValue("backgroundImage") ? this.decorateCSS("overlay-active") : ""}`}
+        ${overlay && backgroundImage ? this.decorateCSS("overlay-active") : ""}`}
       >
-        {this.getPropValue("backgroundImage") && (
+        {backgroundImage && (
           <Base.Media
-            value={this.getPropValue("backgroundImage")}
+            value={backgroundImage}
             className={this.decorateCSS("background-image")}
           />
         )}
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
+        <Base.MaxContent className={`${this.decorateCSS("max-content")} ${!backgroundImage && this.decorateCSS("no-image")}`}>
           <Base.VerticalContent className={this.decorateCSS("content")}>
             {subtitleExist && (
-              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${backgroundImage && this.decorateCSS("with-image")}`}>
                 {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>
             )}
@@ -143,7 +163,7 @@ class CallToAction6Page extends BaseCallToAction {
               <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </Base.SectionTitle>
-            )}  
+            )}
             {descriptionExist && (
               <Base.SectionDescription className={this.decorateCSS("description")}>
                 {description}
@@ -155,7 +175,7 @@ class CallToAction6Page extends BaseCallToAction {
               </div>
             )}
 
-            {(commentExist || this.castToString(button.text)) &&
+            {(commentExist || buttons.length > 0) &&
               <Formik
                 initialValues={{ email: "" }}
                 validationSchema={this.validationSchema}
@@ -183,7 +203,7 @@ class CallToAction6Page extends BaseCallToAction {
                     className={this.decorateCSS("form")}
                     onSubmit={handleSubmit}
                   >
-                    {this.castToString(button.text) &&
+                    {buttons.length > 0 &&
                       <div className={this.decorateCSS("input-container")}>
                         <input
                           placeholder={
@@ -203,17 +223,23 @@ class CallToAction6Page extends BaseCallToAction {
                         )}
                       </div>}
 
-                    {(commentExist || this.castToString(button.text)) && (
+                    {(commentExist || buttons.length > 0) && (
                       <div className={this.decorateCSS("bottom-container")}>
                         {commentExist && (
                           <Base.P className={this.decorateCSS("comment")}>
                             {this.getPropValue("comment")}
                           </Base.P>
                         )}
-                        {this.castToString(button.text) && (
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                          </Base.Button>
+                        {buttons.length > 0 && (
+                          <div className={this.decorateCSS("button-container")}>
+                            {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                              this.castToString(button.text) && (
+                                <Base.Button key={index} buttonType={button.type} className={this.decorateCSS("button")}>
+                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              )
+                            ))}
+                          </div>
                         )}
                       </div>
                     )}

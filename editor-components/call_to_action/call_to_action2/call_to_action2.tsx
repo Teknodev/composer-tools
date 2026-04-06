@@ -8,6 +8,14 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Button = INPUTS.CastedButton;
 
+type MediaObject = {
+  image: any;
+  overlay: boolean;
+  playIcon: any;
+  closeIcon: any;
+  video: any;
+};
+
 class CallToAction2Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -37,54 +45,65 @@ class CallToAction2Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "mediaObject",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f51c3292c6002b23c4f6?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "playIcon",
-      displayer: "Play Button Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaPlay",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "closeIcon",
-      displayer: "Close Button Icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "RxCross2",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      displayer: "Video",
-      key: "video",
-      additionalParams: {
-        availableTypes: ["video"],
-      },
-      value: {
-        type: "video",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f51c3292c6002b23c4f6?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+        {
+          type: "media",
+          key: "playIcon",
+          displayer: "Play Button Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaPlay",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Button Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "RxCross2",
+          },
+        },
+        {
+          type: "media",
+          displayer: "Video",
+          key: "video",
+          additionalParams: {
+            availableTypes: ["video"],
+          },
+          value: {
+            type: "video",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b9f4473292c6002b23c4b0?alt=media",
+          },
+        },
+      ],
     });
     this.setComponentState("isVideoVisible", false);
   }
@@ -104,10 +123,13 @@ class CallToAction2Page extends BaseCallToAction {
   render() {
     const alignment = Base.getContentAlignment();
     const buttons = this.castToObject<Button[]>("buttons");
+    const mediaObject = this.castToObject<MediaObject>("mediaObject");
 
-    const image = this.getPropValue("image");
-    const playIcon: string = this.getPropValue("playIcon");
-    const closeIcon: string = this.getPropValue("closeIcon");
+    const image = mediaObject.image;
+    const overlay = mediaObject.overlay;
+    const playIcon = mediaObject.playIcon;
+    const closeIcon = mediaObject.closeIcon;
+    const video = mediaObject.video;
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -116,7 +138,7 @@ class CallToAction2Page extends BaseCallToAction {
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
-        <div className={`${this.decorateCSS("background")} ${!this.getPropValue("image") && this.decorateCSS("no-image")}`}> </div>
+        <div className={`${this.decorateCSS("background")} ${!image && this.decorateCSS("no-image")}`}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
             {(titleExist || subtitleExist || descriptionExist || (buttons.length > 0)) && (
@@ -167,20 +189,21 @@ class CallToAction2Page extends BaseCallToAction {
                   value={image}
                   className={this.decorateCSS("image")}
                 />
+                {overlay && <div className={this.decorateCSS("image-overlay")} />}
                 {playIcon && (
                   <div
                     className={this.decorateCSS("play-icon-box")}
                     onClick={this.showVideo}
                   >
                     <Base.Media
-                      value={this.getPropValue("playIcon")}
+                      value={playIcon}
                       className={this.decorateCSS("play-icon")}
                     />
                   </div>
                 )}
               </div>
             )}
-            {(this.getComponentState("isVideoVisible") && this.getPropValue("video")) && (
+            {(this.getComponentState("isVideoVisible") && video) && (
               <Base.Overlay
                 onClick={this.hideVideo}
                 className={this.decorateCSS("overlay")}
@@ -192,7 +215,7 @@ class CallToAction2Page extends BaseCallToAction {
                     onClick={this.hideVideo}
                   >
                       <Base.Media
-                        value={this.getPropValue("video")}
+                        value={video}
                         className={this.decorateCSS("player")}
                       />
                   </div>
@@ -203,7 +226,7 @@ class CallToAction2Page extends BaseCallToAction {
                     onClick={this.hideVideo}
                   >
                     <Base.Media
-                      value={this.getPropValue("closeIcon")}
+                      value={closeIcon}
                       className={this.decorateCSS("close-icon")}
                     />
                   </div>

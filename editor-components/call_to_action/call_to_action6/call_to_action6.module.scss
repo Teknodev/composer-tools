@@ -53,6 +53,21 @@
       border-radius: var(--composer-border-radius-md);
     }
 
+    &.no-image {
+      .content {
+        .subtitle, .title, .description {
+          color: var(--composer-font-color-primary);
+        }
+        .form {
+          .bottom-container {
+            .comment {
+              color: var(--composer-font-color-primary);
+            }
+          }
+        }
+      }
+    }
+
     .content {
       align-items: center;
 
@@ -60,13 +75,22 @@
         content: "";
         text-align: center;
         transform: translateX(0);
+        color: white;
         &::before {
           display: none;
+        }
+
+        &.with-image {
+          padding: 0;
+          border-radius: 0;
+          background: transparent;
         }
       }
 
       .title, .description {
         text-align: center;
+        width: 100%;
+        color: white;
       }
 
       .space-container {
@@ -126,14 +150,21 @@
           align-items: center;
 
           .comment {
-            color: var(--composer-font-color-primary);
+            color: white;
             text-align: center;
           }
 
-          .button {
-            content: "";
-            .button-text {
+          .button-container {
+            display: flex;
+            gap: var(--composer-gap-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .button {
               content: "";
+              .button-text {
+                content: "";
+              }
             }
           }
         }
@@ -144,8 +175,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-
     .max-content {
       .content {
         .space-container {
@@ -164,16 +193,18 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-xl) var(--composer-gap-md);
-  }
-
-  .container {
     .max-content {
       padding: var(--composer-gap-md);
 
       .content {
         .space-container {
           .space {
+            width: 100%;
+          }
+        }
+
+        .form {
+          .input-container {
             width: 100%;
           }
         }

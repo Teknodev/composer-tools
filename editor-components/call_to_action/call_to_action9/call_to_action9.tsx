@@ -5,8 +5,10 @@ import styles from "./call_to_action9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface ImageItem {
-  image: string;
+  image: any;
 }
+
+type Button = INPUTS.CastedButton;
 
 class CallToAction9Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -33,17 +35,14 @@ class CallToAction9Page extends BaseCallToAction {
       value: "",
     });
 
-    this.addProp(
-      INPUTS.BUTTON(
-        "button",
-        "Button",
-        "Start 14 days free trail",
-        "",
-        null,
-        null,
-        "Primary"
-      )
-    );
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Start 14 days free trail", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "string",
@@ -60,19 +59,19 @@ class CallToAction9Page extends BaseCallToAction {
     this.addProp({
       type: "array",
       key: "imageItems",
-      displayer: "Image Items",
+      displayer: "Media Items",
       value: [
         {
           type: "object",
           key: "imageItem",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -84,14 +83,14 @@ class CallToAction9Page extends BaseCallToAction {
         {
           type: "object",
           key: "imageItem",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -103,14 +102,14 @@ class CallToAction9Page extends BaseCallToAction {
         {
           type: "object",
           key: "imageItem",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -122,14 +121,14 @@ class CallToAction9Page extends BaseCallToAction {
         {
           type: "object",
           key: "imageItem",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -141,14 +140,14 @@ class CallToAction9Page extends BaseCallToAction {
         {
           type: "object",
           key: "imageItem",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -160,14 +159,14 @@ class CallToAction9Page extends BaseCallToAction {
         {
           type: "object",
           key: "imageItem",
-          displayer: "Image Item",
+          displayer: "Media Item",
           value: [
             {
               type: "media",
               key: "image",
-              displayer: "Image",
+              displayer: "Media",
               additionalParams: {
-                availableTypes: ["image"],
+                availableTypes: ["image", "video", "icon"],
               },
               value: {
                 type: "image",
@@ -188,8 +187,7 @@ class CallToAction9Page extends BaseCallToAction {
     const images = this.castToObject<ImageItem[]>("imageItems");
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
-    const button: INPUTS.CastedButton =
-      this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<Button[]>("buttons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -197,7 +195,7 @@ class CallToAction9Page extends BaseCallToAction {
           <Base.VerticalContent
             className={this.decorateCSS("content")}
           >
-           <Base.VerticalContent className={this.decorateCSS("header")}>  
+           <Base.VerticalContent className={this.decorateCSS("header")}>
             {this.castToString(this.getPropValue("subtitle")) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
@@ -213,19 +211,25 @@ class CallToAction9Page extends BaseCallToAction {
                   {description}
                 </Base.SectionDescription>
               )}
+              {buttons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((button: Button, index: number) => (
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button
+                          className={this.decorateCSS("button")}
+                          buttonType={button.type}
+                        >
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {button.text}
+                          </Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  ))}
+                </div>
+              )}
            </Base.VerticalContent>
-            {this.castToString(button.text) && (
-              <ComposerLink path={button.url}>
-                <Base.Button
-                  className={this.decorateCSS("button")}
-                  buttonType={button.type}
-                >
-                  <Base.P className={this.decorateCSS("button-text")}>
-                    {button.text}
-                  </Base.P>
-                </Base.Button>
-              </ComposerLink>
-            )}
             {this.castToString(this.getPropValue("itemDescription")) && (
               <Base.SectionDescription className={this.decorateCSS("item-description")}>
                 {this.getPropValue("itemDescription")}
@@ -241,7 +245,7 @@ class CallToAction9Page extends BaseCallToAction {
                     {item.image && (
                       <Base.Media
                         value={item.image}
-                        className={this.decorateCSS("image")}
+                        className={this.decorateCSS(item.image.type === "video" ? "video" : "image")}
                       />
                     )}
                   </div>

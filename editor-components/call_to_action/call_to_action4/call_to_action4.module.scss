@@ -9,13 +9,6 @@
         flex-direction: column;
         flex: 1;
         gap: var(--composer-gap-lg);
-        .header {
-          .title,
-          .subtitle, .description {
-            text-align: left;
-          }
-        }
-        
         .list-container {
           margin: 0px;
           .list {
@@ -33,16 +26,26 @@
             .icon-container {
               background-color: var(--composer-primary-color);
               padding: var(--composer-gap-xs);
-              border-radius: 50%;
+              border-radius: var(--composer-border-radius-full);
               align-items: center;
               display: flex;
               height: fit-content;
               width: fit-content;
 
+              &.no-bg {
+                background-color: transparent;
+
+                .icon {
+                  color: var(--composer-primary-color);
+                }
+              }
+
               .icon {
                 color: var(--composer-font-color-secondary);
                 width: 10px;
                 height: 10px;
+                font-size: 10px;
+                object-fit: contain;
               }
             }
           }
@@ -50,12 +53,28 @@
 
         .buttons {
           display: flex;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
+          justify-content: var(--composer-content-alignment, flex-start);
           .button {
             content: "";
             .button-text {
               content: "";
             }
+          }
+        }
+      }
+      &.has-image {
+        .left-page {
+          .header {
+            .subtitle,
+            .title,
+            .description {
+              text-align: left;
+              margin-left: 0;
+            }
+          }
+          .buttons {
+            justify-content: flex-start;
           }
         }
       }
@@ -75,6 +94,17 @@
             object-fit: cover;
             height: 100%;
             width: 100%;
+            border-radius: var(--composer-border-radius-xs);
+          }
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--composer-overlay-color);
+            z-index: 0;
+            pointer-events: none;
             border-radius: var(--composer-border-radius-xs);
           }
         }

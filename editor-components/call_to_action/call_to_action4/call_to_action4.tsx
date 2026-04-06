@@ -12,6 +12,11 @@ interface ListItem {
 
 type Button = INPUTS.CastedButton;
 
+type MediaObject = {
+  image: any;
+  overlay: boolean;
+};
+
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -39,12 +44,18 @@ class CallToAction4Page extends BaseCallToAction {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "FaCheck",
       },
+    });
+    this.addProp({
+      type: "boolean",
+      key: "iconBackground",
+      displayer: "Icon Background",
+      value: true,
     });
     this.addProp({
       type: "number",
@@ -164,16 +175,29 @@ class CallToAction4Page extends BaseCallToAction {
       ],
     });
     this.addProp({
-      type: "media",
-      key: "image",
+      type: "object",
+      key: "mediaObject",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
-      },
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6749a012506a40002c2f7882?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
     this.addProp({
       type: "array",
@@ -190,12 +214,16 @@ class CallToAction4Page extends BaseCallToAction {
   render() {
     const listItems = this.castToObject<ListItem[]>("listItems");
     const buttons = this.castToObject<Button[]>("buttons");
+    const mediaObject = this.castToObject<MediaObject>("mediaObject");
+    const image = mediaObject.image;
+    const overlay = mediaObject.overlay;
+    const enableIconBackground = this.getPropValue("iconBackground");
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("content")}>
+          <div className={`${this.decorateCSS("content")} ${image ? this.decorateCSS("has-image") : ""}`}>
             {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || listItems.length > 0 || buttons.length > 0) && (
               <div className={this.decorateCSS("left-page")}>
                 <Base.VerticalContent className={this.decorateCSS("header")}>
@@ -212,7 +240,7 @@ class CallToAction4Page extends BaseCallToAction {
                     {listItems.map((item: ListItem, index: number) => (
                       <div className={this.decorateCSS("list")}>
                         {this.getPropValue("icon") && (
-                          <div className={this.decorateCSS("icon-container")}>
+                          <div className={`${this.decorateCSS("icon-container")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
                             <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
                           </div>
                         )}
@@ -236,10 +264,11 @@ class CallToAction4Page extends BaseCallToAction {
                 )}
               </div>
             )}
-            {this.getPropValue("image") && (
+            {image && (
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("image-container")}>
-                  <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
+                  <Base.Media value={image} className={this.decorateCSS("image")} />
+                  {overlay && <div className={this.decorateCSS("overlay")} />}
                 </div>
               </div>
             )}

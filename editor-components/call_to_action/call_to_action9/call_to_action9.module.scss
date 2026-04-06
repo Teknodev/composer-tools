@@ -6,6 +6,8 @@
       gap: var(--composer-gap-lg);
       align-items: center;
       .header {
+        align-items: center;
+
         .title,
         .subtitle,
         .description {
@@ -13,21 +15,28 @@
         }
 
         .subtitle {
-          width: 100%;
+          width: fit-content;
           transform: translateX(0);
           &::before {
             display: none;
           }
         }
-      }
 
-      .button {
-        content: "";
+        .button-container {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          justify-content: center;
 
-        .button-text {
-          content: "";
-          margin: 0;
-          color: var(--composer-font-color-secondary);
+          .button {
+            content: "";
+
+            .button-text {
+              content: "";
+              margin: 0;
+              color: var(--composer-font-color-secondary);
+            }
+          }
         }
       }
       .description {
@@ -51,6 +60,13 @@
           width: 100%;
 
           .image {
+            height: 41px;
+            font-size: 41px;
+            object-fit: cover;
+          }
+
+          .video {
+            width: 100%;
             height: 100%;
             object-fit: cover;
           }
