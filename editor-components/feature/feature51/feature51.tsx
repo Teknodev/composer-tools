@@ -182,12 +182,19 @@ class Feature51 extends BaseFeature {
   }
 
   private onItemClick(index: number): void {
-    const activeItems: number[] = this.getComponentState("activeItems") || [];
+    const rawItemCount = this.getPropValue("itemCount");
+    const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+    const colIndex = index % itemCount;
 
-    if (activeItems.includes(index)) {
-      this.setComponentState("activeItems", activeItems.filter(i => i !== index));
+    const activeItems: number[] = this.getComponentState("activeItems") || [];
+    const isCurrentlyActive = activeItems.includes(index);
+
+    const otherColActiveItems = activeItems.filter((i) => i % itemCount !== colIndex);
+
+    if (isCurrentlyActive) {
+      this.setComponentState("activeItems", otherColActiveItems);
     } else {
-      this.setComponentState("activeItems", [...activeItems, index]);
+      this.setComponentState("activeItems", [...otherColActiveItems, index]);
     }
   }
 
