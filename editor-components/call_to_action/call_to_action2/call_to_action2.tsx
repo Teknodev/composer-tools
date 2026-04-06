@@ -1,19 +1,15 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action2.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Button = INPUTS.CastedButton;
-
 type MediaObject = {
-  image: any;
+  image: TypeMediaInputValue;
   overlay: boolean;
-  playIcon: any;
-  closeIcon: any;
-  video: any;
+  playIcon: TypeMediaInputValue;
+  video: TypeMediaInputValue;
 };
 
 class CallToAction2Page extends BaseCallToAction {
@@ -81,18 +77,6 @@ class CallToAction2Page extends BaseCallToAction {
         },
         {
           type: "media",
-          key: "closeIcon",
-          displayer: "Close Button Icon",
-          additionalParams: {
-            availableTypes: ["icon", "image"],
-          },
-          value: {
-            type: "icon",
-            name: "RxCross2",
-          },
-        },
-        {
-          type: "media",
           displayer: "Video",
           key: "video",
           additionalParams: {
@@ -122,14 +106,16 @@ class CallToAction2Page extends BaseCallToAction {
 
   render() {
     const alignment = Base.getContentAlignment();
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
 
     const image = mediaObject.image;
     const overlay = mediaObject.overlay;
     const playIcon = mediaObject.playIcon;
-    const closeIcon = mediaObject.closeIcon;
     const video = mediaObject.video;
+
+    const isPlaying = !!this.getComponentState("isVideoVisible");
+    const isVideo = video && video.type === "video";
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -137,7 +123,7 @@ class CallToAction2Page extends BaseCallToAction {
     const description = this.getPropValue("description");
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${this.getComponentState("isVideoVisible") && this.decorateCSS("with-overlay")}`}>
+      <Base.Container className={this.decorateCSS("container")}>
         <div className={`${this.decorateCSS("background")} ${!image && this.decorateCSS("no-image")}`}> </div>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
@@ -166,7 +152,7 @@ class CallToAction2Page extends BaseCallToAction {
                 )}
                 {buttons?.length > 0 && (
                   <div className={this.decorateCSS("button-container")}>
-                    {buttons.map((button: Button, index: number) => {
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
 
                       return this.castToString(button.text) && (
                         <ComposerLink path={button.url}>
@@ -181,59 +167,34 @@ class CallToAction2Page extends BaseCallToAction {
               </div>
             )}
             {image && (
-              <div
-                className={this.decorateCSS("image-container")}
-                onClick={this.showVideo}
-              >
-                <Base.Media
-                  value={image}
-                  className={this.decorateCSS("image")}
-                />
-                {overlay && <div className={this.decorateCSS("image-overlay")} />}
-                {playIcon && (
+              <div className={this.decorateCSS("media-wrapper")}>
+                {isVideo && isPlaying ? (
+                  <Base.Media
+                    value={{ ...video, settings: { autoplay: true, controls: true } }}
+                    className={this.decorateCSS("video-player")}
+                  />
+                ) : (
                   <div
-                    className={this.decorateCSS("play-icon-box")}
-                    onClick={this.showVideo}
+                    className={this.decorateCSS("thumbnail-container")}
+                    onClick={isVideo ? this.showVideo : undefined}
                   >
                     <Base.Media
-                      value={playIcon}
-                      className={this.decorateCSS("play-icon")}
+                      value={image}
+                      className={this.decorateCSS("image")}
                     />
+                    {overlay && <div className={this.decorateCSS("image-overlay")} />}
+                    {isVideo && playIcon && (
+                      <div className={this.decorateCSS("play-icon-box")}>
+                        <Base.Media
+                          value={playIcon}
+                          className={this.decorateCSS("play-icon")}
+                        />
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
             )}
-            {(this.getComponentState("isVideoVisible") && video) && (
-              <Base.Overlay
-                onClick={this.hideVideo}
-                className={this.decorateCSS("overlay")}
-                isVisible={true}
-              >
-                <div className={this.decorateCSS("video-container")}>
-                  <div
-                    className={this.decorateCSS("video")}
-                    onClick={this.hideVideo}
-                  >
-                      <Base.Media
-                        value={video}
-                        className={this.decorateCSS("player")}
-                      />
-                  </div>
-                </div>
-                {closeIcon && (
-                  <div
-                    className={this.decorateCSS("close-icon-box")}
-                    onClick={this.hideVideo}
-                  >
-                    <Base.Media
-                      value={closeIcon}
-                      className={this.decorateCSS("close-icon")}
-                    />
-                  </div>
-                )}
-              </Base.Overlay>
-            )
-            }
           </div>
         </Base.MaxContent>
       </Base.Container >

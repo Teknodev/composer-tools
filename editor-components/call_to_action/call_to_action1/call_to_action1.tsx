@@ -3,7 +3,6 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class CallToAction1Page extends BaseCallToAction {
