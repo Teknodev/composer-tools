@@ -126,6 +126,8 @@
         position: relative;
         z-index: 3;
         text-align: left;
+        align-self: flex-start;
+        margin-left: 0;
       }
 
       .description {
