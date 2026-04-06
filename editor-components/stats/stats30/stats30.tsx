@@ -4,7 +4,7 @@ import styles from "./stats30.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-export class Stats30Page extends BaseStats {
+export class Stats30 extends BaseStats {
     constructor(props?: any) {
         super(props, styles);
 
@@ -312,4 +312,4 @@ export class Stats30Page extends BaseStats {
     }
 }
 
-export default Stats30Page;
+export default Stats30;
