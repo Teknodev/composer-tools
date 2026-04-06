@@ -83,6 +83,7 @@
                     display: -webkit-box;
                     -webkit-box-orient: vertical;
                     -webkit-line-clamp: 5;
+                    line-clamp: 5;
                     text-overflow: ellipsis;
                     margin: 0;
                     white-space: normal;
@@ -121,6 +122,9 @@
                     font-size: 1.25rem;
                     width: 20px;
                     height: 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
 
                 .current-page-container {
@@ -139,6 +143,9 @@
                     height: 20px;
                     flex-shrink: 0;
                     color: var(--composer-primary-color);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                 }
             }
         }
