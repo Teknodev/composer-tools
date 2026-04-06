@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-class CallToAction31Page extends BaseCallToAction {
+class CallToAction31 extends BaseCallToAction {
     constructor(props?: any) {
         super(props, styles);
 
@@ -174,4 +174,4 @@ class CallToAction31Page extends BaseCallToAction {
     }
 }
 
-export default CallToAction31Page;
+export default CallToAction31;
