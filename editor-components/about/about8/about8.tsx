@@ -152,16 +152,17 @@ class About8 extends BaseAbout {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const alignment = Base.getContentAlignment();
 
+    const hasImage1 = image1 && (image1.url || image1.name);
+    const hasImage2 = image2 && (image2.url || image2.name);
+    const hasImages = hasImage1 || hasImage2;
+
     const hasTitle = !!titleStr;
     const hasButton = buttons.some((button) => this.castToString(button.text));
     const validTexts = texts?.filter((t) => !!this.castToString(t.description)) || [];
     const hasTexts = validTexts.length > 0;
-    const hasImage1 = !!image1;
-    const hasImage2 = !!image2;
-    const hasImages = hasImage1 || hasImage2;
-    const isSingleImage = (hasImage1 && !hasImage2) || (!hasImage1 && hasImage2);
+    const hasContent = hasTexts || hasButton;
 
-    if (!hasTitle && !hasImages && !hasTexts && !hasButton && !descriptionStr) return null;
+    if (!hasTitle && !hasImages && !hasContent && !descriptionStr) return null;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -187,7 +188,7 @@ class About8 extends BaseAbout {
           )}
 
           <div
-            className={`${this.decorateCSS("main-content")} ${!hasTexts && !hasButton ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : ""}`}
+            className={`${this.decorateCSS("main-content")} ${!hasContent ? this.decorateCSS("no-content") : ""} ${hasImages ? this.decorateCSS("with-image") : ""}`}
           >
             {hasImage1 && (
               <div className={`${this.decorateCSS("image-box")} ${media1?.overlay ? this.decorateCSS("overlay") : ""}`}>
@@ -201,8 +202,7 @@ class About8 extends BaseAbout {
                 <div className={this.decorateCSS("overlay-layer")} />
               </div>
             )}
-
-            {(hasTexts || buttons.length > 0) && (
+            {hasContent && (
               <Base.VerticalContent className={this.decorateCSS("content-section")}>
                 {hasTexts && (
                   <div className={this.decorateCSS("texts-wrapper")}>
