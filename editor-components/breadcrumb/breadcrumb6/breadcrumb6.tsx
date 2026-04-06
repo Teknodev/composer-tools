@@ -37,7 +37,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
       key: "backgroundImage",
       displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
-      value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67dab8f1fb049c002cc2523f?alt=media" },
+      value: { type: "image", url: "" },
     });
     this.addProp({
       type: "string",

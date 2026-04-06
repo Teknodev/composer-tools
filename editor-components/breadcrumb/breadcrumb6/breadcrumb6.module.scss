@@ -142,23 +142,6 @@
                     color: var(--composer-primary-color);
                 }
             }
-
-            &.with-image {
-
-                .subtitle,
-                .title,
-                .description,
-                .home,
-                .icon {
-                    color: black;
-                }
-
-                .subtitle {
-                    &::before {
-                        background: black !important;
-                    }
-                }
-            }
         }
     }
 }
