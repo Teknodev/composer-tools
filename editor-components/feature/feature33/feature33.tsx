@@ -1,285 +1,207 @@
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature33.module.scss";
-import { Base, TypeButton } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { INPUTS } from "../../../custom-hooks/input-templates";
-
-type ButtonTypeObj = {
-  text: React.JSX.Element;
-  url: string;
-  type: TypeButton;
-}
-
-type Card = {
-  icon: TypeMediaInputValue;
-  title: React.JSX.Element;
-  description: React.JSX.Element;
-};
+import { Base } from "../../../composer-base-components/base/base";
 
 class Feature33 extends BaseFeature {
-  constructor(props?: any) {
-    super(props, styles);
+    constructor(props?: any) {
+        super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: ""
-    });
-
-    this.addProp({
-      type: "string",
-      key: "title",
-      displayer: "Title",
-      value: "A better way to keep your skills"
-    });
-
-    this.addProp({
-      type: "string",
-      key: "description",
-      displayer: "Description",
-      value: ""
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "cards",
-      displayer: "Cards",
-      value: [
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "FaChess"
-              }
+        this.addProp({
+            type: "media",
+            key: "image",
+            displayer: "Media",
+            value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69382412875e15002c5fbd92?alt=media"
             },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Competitive rates"
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Completely iterate covalent strategic theme areas via accurate e-markets."
+            additionalParams: {
+                availableTypes: ["image", "video"]
             }
-          ]
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "FaCoins"
-              }
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "No hidden fees"
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "FaTachometerAlt"
-              }
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Stable performance"
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
-          ]
-        },
-        {
-          type: "object",
-          key: "card",
-          displayer: "Card",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: {
-                type: "icon",
-                name: "FaBolt"
-              }
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Instant transfers"
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "Completely iterate covalent strategic theme areas via accurate e-markets."
-            }
-          ]
-        },
-      ]
-    });
+        });
 
-    this.addProp({
-      type: "boolean",
-      key: "iconBackground",
-      displayer: "Icon Background",
-      value: true,
-    });
+        this.addProp({
+            type: "boolean",
+            key: "overlay",
+            displayer: "Overlay",
+            value: false,
+        });
 
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 2,
-      additionalParams: {
-        maxElementCount: 5,
-      },
-    });
-  }
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: ""
+        });
 
-  static getName(): string {
-    return "Feature 33";
-  }
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "I'm Alexander Green, an\nindependent digital designer"
+        });
 
-  render() {
-    const cards = this.castToObject<Card[]>("cards");
-    const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
-    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-    const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const title = this.castToString(this.getPropValue("title"));
-    const description = this.castToString(this.getPropValue("description"));
-    const alignment = Base.getContentAlignment();
-    const enableIconBackground = this.getPropValue("iconBackground");
-    const hasContent = subtitle || title || description || visibleButtons.length > 0;
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "I usually work in vanilla javascript without frameworks for small projects, allowing me a complete freedom on the architecture, a Headless CMS like Prismic for content management."
+        });
 
-    return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("wrapper")}>
-            {hasContent && (
-              <Base.VerticalContent className={this.decorateCSS("left")} data-alignment={alignment}>
-                {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                {visibleButtons.length > 0 && (
-                  <div className={this.decorateCSS("button-container")}>
-                    {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                      const buttonTextExist = this.castToString(item.text);
-                      return (
-                        buttonTextExist && (
-                          <ComposerLink key={`button-${index}`} path={item.url}>
-                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                              <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                            </Base.Button>
-                          </ComposerLink>
-                        )
-                      );
-                    })}
-                  </div>
-                )}
-              </Base.VerticalContent>
-            )}
+        this.addProp({
+            type: "array",
+            key: "features",
+            displayer: "Features",
+            value: [
+                {
+                    type: "object",
+                    key: "feature",
+                    displayer: "Feature",
+                    value: [
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Feature Title",
+                            value: "Performance"
+                        },
+                        {
+                            type: "string",
+                            key: "text",
+                            displayer: "Feature Text",
+                            value: "On the web, every second counts, I pay particular attention to the performance of your project by respecting the best practices."
+                        }
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "feature",
+                    displayer: "Feature",
+                    value: [
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Feature Title",
+                            value: "Interaction"
+                        },
+                        {
+                            type: "string",
+                            key: "text",
+                            displayer: "Feature Text",
+                            value: "A pleasant experience for your users goes through the animations and interactions of your project, I spend time to imagine and design them."
+                        }
+                    ]
+                }
+            ]
+        });
 
-            {cards?.length > 0 && (
-              <Base.ListGrid
-                className={this.decorateCSS("right")}
-                gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 2, phone: 1 }}
-              >
-                {cards.map((card: Card, index: number) => {
-                  const titleExist = !!this.castToString(card.title);
-                  const descExist = !!this.castToString(card.description);
-                  const isImage = card.icon?.type === "image";
+        this.addProp({
+            type: "number",
+            key: "itemsPerRow",
+            displayer: "Item Count in a Row",
+            value: 2,
+            max: 4
+        });
+    }
 
-                  if (!titleExist && !descExist && !card.icon) return null;
+    static getName(): string {
+        return "Feature 33";
+    }
 
-                  return (
-                    <div
-                      key={index}
-                      className={this.decorateCSS("card-container")}
-                    >
-                      {card.icon &&
-                        <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
-                          <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
+    render() {
+        const image = this.getPropValue("image") as TypeMediaInputValue;
+
+        const rawTitle = this.getPropValue("title");
+        const rawSubtitle = this.getPropValue("subtitle");
+        const rawDescription = this.getPropValue("description");
+
+        const subtitleText = this.castToString(rawSubtitle);
+        const titleText = this.castToString(rawTitle);
+        const descriptionText = this.castToString(rawDescription);
+
+        const rawFeatures = (this.castToObject<any[]>("features") || []).filter(Boolean);
+        const features = rawFeatures.map((feature) => ({
+            title: feature?.title,
+            text: feature?.text,
+        })).filter((item) => this.castToString(item.title) || this.castToString(item.text));
+
+        const itemsPerRow = this.getPropValue("itemsPerRow") || 2;
+        const hasContent = Boolean(subtitleText || titleText || descriptionText || features.length > 0);
+
+        const overlay = this.getPropValue("overlay");
+
+        const hasMedia = !!(image?.url || image?.name);
+
+        const alignmentValue = Base.getContentAlignment();
+        const noImageCenterClass = !hasMedia && alignmentValue === "center" ? this.decorateCSS("no-image-center") : "";
+
+        return (
+            <Base.Container className={this.decorateCSS("container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+
+                    {hasMedia && (
+                        <div
+                            className={`${this.decorateCSS("image-side")} ${!hasContent ? this.decorateCSS("no-content") : ""}`}
+                        >
+                            <Base.Media
+                                className={this.decorateCSS("image")}
+                                value={image}
+                            />
+                            {overlay && (
+                                <div className={this.decorateCSS("overlay")} />
+                            )}
                         </div>
-                      }
-                      {(titleExist || descExist) &&
-                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                          {titleExist && <Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>}
-                          {descExist && <Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>}
+                    )}
+
+                    {hasContent && (
+                        <Base.VerticalContent className={`${this.decorateCSS("content-side")} ${noImageCenterClass}`}>
+                            {(subtitleText || titleText || descriptionText) && (
+                                <Base.VerticalContent className={this.decorateCSS("header")}>
+                                    {subtitleText && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                            {rawSubtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {titleText && (
+                                        <Base.SectionTitle className={this.decorateCSS("title")}>
+                                            {rawTitle}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {descriptionText && (
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                            {rawDescription}
+                                        </Base.SectionDescription>
+                                    )}
+                                </Base.VerticalContent>
+                            )}
+
+                            {features.length > 0 && (
+                                <Base.ListGrid
+                                    gridCount={{ pc: itemsPerRow, tablet: 2, phone: 1 }}
+                                    className={this.decorateCSS("features-grid")}
+                                >
+                                    {features.map((feature, index) => (
+                                        <div key={index} className={this.decorateCSS("feature-item")}>
+                                            {this.castToString(feature.title) && (
+                                                <Base.H5 className={this.decorateCSS("feature-title")}>
+                                                    {feature.title}
+                                                </Base.H5>
+                                            )}
+                                            {this.castToString(feature.text) && (
+                                                <Base.P className={this.decorateCSS("feature-text")}>
+                                                    {feature.text}
+                                                </Base.P>
+                                            )}
+                                        </div>
+                                    ))}
+                                </Base.ListGrid>
+                            )}
                         </Base.VerticalContent>
-                      }
-                    </div>
-                  );
-                })}
-              </Base.ListGrid>
-            )}
-          </div>
-        </Base.MaxContent>
-      </Base.Container>
-    );
-  }
+                    )}
+
+                </Base.MaxContent>
+            </Base.Container>
+        );
+    }
 }
 
 export default Feature33;
