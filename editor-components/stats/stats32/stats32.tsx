@@ -43,7 +43,7 @@ class Stats32 extends BaseStats {
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution.",
+            value: "Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution."
         });
 
         this.addProp({
@@ -313,6 +313,7 @@ class Stats32 extends BaseStats {
                                     {descriptionExist && (
                                         <Base.SectionDescription
                                             className={this.decorateCSS("description")}
+
                                         >
                                             {this.getPropValue("description")}
                                         </Base.SectionDescription>
@@ -320,6 +321,9 @@ class Stats32 extends BaseStats {
                                     {hasButtons && (
                                         <div
                                             className={this.decorateCSS("button-container")}
+                                            data-alignment={!mediaExist ? alignment : "left"}
+
+
                                         >
                                             {buttons.map((item, index) => {
                                                 if (!this.castToString(item.text)) return null;
