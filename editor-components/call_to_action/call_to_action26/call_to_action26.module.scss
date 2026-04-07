@@ -12,7 +12,7 @@
       min-height: 800px;
       height: auto;
       max-width: 60%;
-      
+
       border-radius: var(--composer-border-radius-full);
       background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
       display: flex;
@@ -26,12 +26,13 @@
     .content {
       align-items: center;
       width: 100%;
-      
+
 
       .subtitle {
         &::before {
           display: none;
         }
+
         transform: none;
         margin-left: auto;
         margin-right: auto;
@@ -42,7 +43,7 @@
       .description {
         text-align: center;
         min-width: 0;
-        
+
       }
 
       .buttons {
@@ -68,6 +69,7 @@
   .container .max-content .card {
     min-width: 600px;
     min-height: 600px;
+    max-width: 100%;
   }
 }
 
@@ -76,7 +78,5 @@
     min-width: 350px;
     min-height: 350px;
     padding: 20%;
-
-
   }
 }
