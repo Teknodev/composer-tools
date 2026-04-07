@@ -1,7 +1,13 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
+    position: relative;
     padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+
+    .max-content {
+        position: relative;
+        z-index: 2;
+    }
 
     .content-wrapper {
         display: flex;
@@ -9,33 +15,16 @@
         align-items: stretch;
         gap: calc(var(--composer-gap-lg) * 2);
 
-        &:not(.has-left) .right-column {
-            flex: none;
-            width: 100%;
-            margin-left: calc(-1 * var(--composer-gap-xl));
-        }
-
-        .left-side-wrapper {
+        .left-column {
             flex: 1;
-            display: flex;
+            width: 100%;
+            justify-content: center;
 
-            .max-content {
+            .text-block {
+                display: flex;
+                flex-direction: column;
                 width: 100%;
-                margin: 0;
             }
-
-            .left-column {
-                width: 100%;
-                justify-content: center;
-
-                .text-block {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    /* Align inner text optimally given we are now outside regular grid */
-                    max-width: var(--composer-content-width);
-                    margin: 0 auto 0 auto; 
-                }
 
             .subtitle {
                 margin-left: 0;
@@ -45,6 +34,7 @@
             .description {
                 text-align: left;
             }
+
 
             .button-container {
                 display: flex;
@@ -60,32 +50,41 @@
                 }
             }
         }
-        }
 
         .right-column {
             flex: 1;
             position: relative;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
             min-height: 500px;
-            height: 100%;
-            margin: calc(-1 * (var(--composer-gap-lg) * 2)) calc(-1 * var(--composer-gap-xl)) calc(-1 * (var(--composer-gap-lg) * 2)) 0;
+            // Negative margins to extend right-background to container edges (compensate for container padding)
+            margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-xl)) calc(-1 * var(--composer-gap-lg) * 2) 0;
 
-            .background-image {
+            .right-background {
                 position: absolute;
                 inset: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
 
-            .overlay {
-                position: absolute;
-                inset: 0;
-                background: var(--composer-overlay-color);
-                z-index: 1;
+                .background-image {
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: var(--composer-overlay-color);
+                    z-index: 1;
+                }
             }
 
             &.no-media {
+                margin-top: 0;
+                margin-bottom: 0;
+                margin-right: 0;
                 min-height: unset;
 
                 .stat-value {
@@ -106,10 +105,13 @@
                 flex-direction: column;
                 gap: var(--composer-gap-xl);
                 padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+                width: 100%;
+                align-items: flex-start;
 
                 .stat-item {
                     display: flex;
                     flex-direction: column;
+
 
                     .stat-value {
                         display: flex;
@@ -123,6 +125,7 @@
                         .stat-suffix {
                             color: inherit;
                             font-size: inherit;
+                            text-align: left;
                         }
                     }
 
@@ -134,6 +137,7 @@
                     }
                 }
             }
+
         }
     }
 }
@@ -143,10 +147,6 @@
         padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
         .content-wrapper {
-            &:not(.has-left) .right-column {
-                margin-left: calc(-1 * var(--composer-gap-lg));
-            }
-
             .right-column {
                 min-height: 400px;
                 margin-right: calc(-1 * var(--composer-gap-lg));
@@ -165,57 +165,51 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        padding: var(--composer-gap-xl) var(--composer-gap-md);
-
         .content-wrapper {
             flex-direction: column;
+            gap: 0;
 
-            .left-side-wrapper {
-                width: 100%;
-                
-                .left-column {
-                    width: 100%;
-                }
-            }
-
-            .right-column {
-                width: 100%;
-            }
-
-            .left-column.center-alignment .text-block {
-                align-items: center;
-
+            .left-column.center-alignment {
+                .subtitle,
                 .title,
                 .description {
                     text-align: center;
                 }
 
-                .subtitle {
-                    margin-left: auto;
+                .button-container {
+                    justify-content: center;
                 }
             }
 
-            .right-column {
-                min-height: 350px;
-                width: calc(100% + 2 * var(--composer-gap-md));
-                margin: 0 calc(-1 * var(--composer-gap-md)) calc(-1 * var(--composer-gap-xl));
-
+            .right-column.center-alignment {
                 .stats-list {
-                    gap: var(--composer-gap-lg);
-                    padding: var(--composer-gap-xl) var(--composer-gap-md);
+                    align-items: center;
 
                     .stat-item {
+                        align-items: center;
+
                         .stat-value {
-                            font-size: 4rem;
+                            justify-content: center;
+                        }
+
+                        .stat-title,
+                        .stat-subtitle,
+                        .stat-description {
+                            text-align: center;
                         }
                     }
                 }
+            }
 
-                &.center-alignment .stats-list .stat-item {
-                    align-items: center;
+
+            .right-column {
+                margin: 0 calc(-1 * var(--composer-gap-lg)) calc(-1 * var(--composer-gap-lg) * 2);
+                min-height: unset;
+
+                &.no-media {
+                    margin-bottom: 0;
+                    margin-left: 0;
                 }
-
-
             }
         }
     }
