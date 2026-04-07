@@ -14,6 +14,27 @@ class Breadcrumb1 extends BaseBreadcrumb {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
+            type: "object",
+            key: "background",
+            displayer: "Background Media",
+            value: [
+                {
+                    type: "media",
+                    key: "image",
+                    displayer: "Background Media",
+                    additionalParams: { availableTypes: ["image", "video"] },
+                    value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694543ec875e15002c68e5f0?alt=media" },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: false,
+                },
+            ],
+        });
+
+        this.addProp({
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
@@ -32,27 +53,6 @@ class Breadcrumb1 extends BaseBreadcrumb {
             key: "description",
             displayer: "Description",
             value: "",
-        });
-
-        this.addProp({
-            type: "object",
-            key: "background",
-            displayer: "Background",
-            value: [
-                {
-                    type: "media",
-                    key: "image",
-                    displayer: "Background Media",
-                    additionalParams: { availableTypes: ["image", "video"] },
-                    value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694543ec875e15002c68e5f0?alt=media" },
-                },
-                {
-                    type: "boolean",
-                    key: "overlay",
-                    displayer: "Overlay",
-                    value: false,
-                },
-            ],
         });
 
         this.addProp({
