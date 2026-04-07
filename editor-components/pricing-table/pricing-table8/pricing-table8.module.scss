@@ -383,6 +383,10 @@
         padding-left: 0;
         padding-right: 0;
 
+        .footer-content {
+          margin-top: var(--composer-gap-md);
+        }
+
         :global(.slick-list) {
           padding-bottom: var(--composer-gap-md);
         }
@@ -394,6 +398,36 @@
 
           .card-item-count {
             overflow: visible;
+
+            &.animation1:active {
+              transform: translateY(calc(-1 * var(--composer-gap-sm)));
+              transition: 0.8s;
+            }
+
+            &.animation2:active {
+              .pricing {
+                .pricing-container {
+                  .price {
+                    color: color-mix(in srgb,
+                        var(--composer-html-background),
+                        var(--composer-font-color-primary) 5%);
+                  }
+
+                  .price-big {
+                    transform: translateY(calc(-1 * var(--composer-gap-md)));
+                    color: var(--composer-font-color-primary);
+                  }
+                }
+              }
+            }
+
+            &.animation3:active {
+              .pricing {
+                .icon {
+                  transform: rotate(360deg);
+                }
+              }
+            }
 
             .pricing {
               position: relative;

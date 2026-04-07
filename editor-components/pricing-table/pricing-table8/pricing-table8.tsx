@@ -608,7 +608,7 @@ class PricingTable8 extends BasePricingTable {
 
                   return (
                     <div
-                      className={this.decorateCSS("card-item-count")}
+                      className={`${this.decorateCSS("card-item-count")} ${settingsGroup.animations ? settingsGroup.animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
                       key={index}
                     >
                       <Base.VerticalContent
