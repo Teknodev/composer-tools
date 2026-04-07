@@ -34,7 +34,7 @@ class CallToAction14 extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Button Text", "", null, null,"Primary")
+        INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary")
       ],
     });
     this.addProp({
@@ -54,7 +54,7 @@ class CallToAction14 extends BaseCallToAction {
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent 
+        <Base.MaxContent
           className={this.decorateCSS("max-content")}
           data-animation={this.getPropValue("hoverAnimation").join(" ")}
         >

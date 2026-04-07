@@ -1,14 +1,20 @@
 @use '../../../composer-base-components/base/utitilities/viewports.module.scss' as *;
+
 .container {
     .max-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-md);
         transition: all 0.3s ease;
 
         .header {
-            content: "";
             align-items: center;
+
+            .subtitle {
+                transform: translateX(0) !important;
+
+                &::before {
+                    display: none;
+                }
+            }
+
             .title,
             .subtitle,
             .description {
@@ -20,8 +26,8 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: var(--composer-gap-sm);
+
                 .button {
-                    content: "";
                     .button-text {
                         content: "";
                     }
@@ -29,31 +35,31 @@
             }
         }
 
-        .subtitle {
-            margin: 0 auto;
-            transform: translateX(0) !important;
-            &::before {
-                display: none;
-            }
-        }
-
         &[data-animation~="animate1"] {
             &:hover {
                 transform: translateY(-10px) scale(1.1);
 
-                .title, .description, .subtitle, .button-container {
+                .title,
+                .description,
+                .subtitle,
+                .button-container {
                     transform: translateY(-5px);
                 }
             }
 
-            .title, .description, .subtitle, .button-container {
+            .title,
+            .description,
+            .subtitle,
+            .button-container {
                 transition: transform 0.3s ease;
             }
         }
 
         &[data-animation~="animate2"] {
             &:hover {
-                .title, .subtitle {
+
+                .title,
+                .subtitle {
                     transform: scale(1.05);
                     color: var(--composer-primary-color);
                     transition-delay: 0s;
@@ -71,7 +77,10 @@
                 }
             }
 
-            .title, .description, .subtitle, .button-container {
+            .title,
+            .description,
+            .subtitle,
+            .button-container {
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             }
 
@@ -82,7 +91,9 @@
 
         &[data-animation~="animate3"] {
             &:hover {
-                .title, .subtitle {
+
+                .title,
+                .subtitle {
                     animation: bounceAndGlow 1s ease-in-out;
                     color: var(--composer-primary-color);
                 }
@@ -93,14 +104,12 @@
 
                 .button-container {
                     animation: pulseAndFloat 1.5s ease-in-out infinite;
-                    
+
                     .button {
-                        background: linear-gradient(
-                            270deg,
-                            var(--composer-primary-color),
-                            color-mix(in srgb, var(--composer-primary-color) 80%, white),
-                            var(--composer-primary-color)
-                        );
+                        background: linear-gradient(270deg,
+                                var(--composer-primary-color),
+                                color-mix(in srgb, var(--composer-primary-color) 80%, white),
+                                var(--composer-primary-color));
                         background-size: 200% 100%;
                         animation: gradientMove 2s linear infinite;
                     }
@@ -110,57 +119,53 @@
     }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .heading-page {
-                .heading {
-                    min-width: auto !important;
-                }
-                .button-container {
-                    .button, .button-reverse {
-                        width: 100%;
-                    }
-                }
-            }
-        }
-    }
-}
-
 @keyframes bounceAndGlow {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: scale(1) rotate(0deg);
     }
+
     30% {
         transform: scale(1.1) rotate(-2deg);
     }
+
     60% {
         transform: scale(1.05) rotate(2deg);
     }
+
     80% {
         transform: scale(1.02) rotate(-1deg);
     }
 }
 
 @keyframes waveText {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
     }
+
     25% {
         transform: translateY(calc(var(--composer-gap-sm) * -1)) translateX(var(--composer-gap-xs));
     }
+
     50% {
         transform: translateY(0) translateX(calc(var(--composer-gap-xs) * -1));
     }
+
     75% {
         transform: translateY(var(--composer-gap-sm)) translateX(var(--composer-gap-xs));
     }
 }
 
 @keyframes pulseAndFloat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0) scale(1);
     }
+
     50% {
         transform: translateY(calc(var(--composer-gap-sm) * -1)) scale(1.05);
     }
@@ -170,8 +175,8 @@
     0% {
         background-position: 0% 50%;
     }
+
     100% {
         background-position: 200% 50%;
     }
 }
-
