@@ -303,14 +303,17 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           .features {
             width: 100%;
             gap: var(--composer-gap-sm);
+            align-items: flex-start;
 
             .features-element {
               display: flex;
+              flex-direction: row;
               align-items: center;
               gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
-              text-align: left;
+              text-align: left !important;
               justify-content: flex-start;
+              width: 100%;
 
               .icon {
                 color: var(--composer-primary-color);
@@ -324,7 +327,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .features-element-text {
-                content: "";
+                text-align: left !important;
+                margin: 0;
+                flex: 1;
               }
             }
           }
