@@ -215,9 +215,9 @@ class Download2 extends BaseDownload {
                         <Base.Media value={card.icon} className={this.decorateCSS("icon")} />
                       </Base.Row>
                     )}
-                    {card.cardSubtitle && <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H4>}
-                    {card.cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H2>}
-                    {card.cardDescription && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
+                    {this.castToString(card.cardSubtitle) && <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.H4>}
+                    {this.castToString(card.cardTitle) && <Base.H2 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H2>}
+                    {this.castToString(card.cardDescription) && <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>}
                     {buttonExist &&
                       <div className={this.decorateCSS("card-button-container")}>
                         <ComposerLink path={card?.button?.url}>
