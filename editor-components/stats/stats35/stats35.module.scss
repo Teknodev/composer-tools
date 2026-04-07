@@ -7,26 +7,43 @@
         display: flex;
         flex-direction: row;
         align-items: stretch;
-        gap: var(--composer-gap-lg);
+        gap: calc(var(--composer-gap-lg) * 2);
 
         &:not(.has-left) .right-column {
             flex: none;
             width: 100%;
-            margin-left: calc(-1 * (var(--composer-gap-xl) + max(0px, (100cqw - 2 * var(--composer-gap-xl) - var(--composer-content-width)) / 2)));
+            margin-left: calc(-1 * var(--composer-gap-xl));
         }
 
-        .max-content {
-            gap: var(--composer-gap-lg);
-        }
-
-        .left-column {
+        .left-side-wrapper {
             flex: 1;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+
+            .max-content {
+                width: 100%;
+                margin: 0;
+            }
+
+            .left-column {
+                width: 100%;
+                justify-content: center;
+
+                .text-block {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    /* Align inner text optimally given we are now outside regular grid */
+                    max-width: var(--composer-content-width);
+                    margin: 0 auto 0 auto; 
+                }
 
             .subtitle {
                 margin-left: 0;
+            }
+
+            .title,
+            .description {
+                text-align: left;
             }
 
             .button-container {
@@ -43,6 +60,7 @@
                 }
             }
         }
+        }
 
         .right-column {
             flex: 1;
@@ -50,9 +68,7 @@
             overflow: hidden;
             min-height: 500px;
             height: 100%;
-            margin-top: calc(-1 * (var(--composer-gap-lg) * 2));
-            margin-bottom: calc(-1 * (var(--composer-gap-lg) * 2));
-            margin-right: calc(-1 * (var(--composer-gap-xl) + max(0px, (100cqw - 2 * var(--composer-gap-xl) - var(--composer-content-width)) / 2)));
+            margin: calc(-1 * (var(--composer-gap-lg) * 2)) calc(-1 * var(--composer-gap-xl)) calc(-1 * (var(--composer-gap-lg) * 2)) 0;
 
             .background-image {
                 position: absolute;
@@ -128,12 +144,12 @@
 
         .content-wrapper {
             &:not(.has-left) .right-column {
-                margin-left: calc(-1 * (var(--composer-gap-lg) + max(0px, (100cqw - 2 * var(--composer-gap-lg) - var(--composer-content-width)) / 2)));
+                margin-left: calc(-1 * var(--composer-gap-lg));
             }
 
             .right-column {
                 min-height: 400px;
-                margin-right: calc(-1 * (var(--composer-gap-lg) + max(0px, (100cqw - 2 * var(--composer-gap-lg) - var(--composer-content-width)) / 2)));
+                margin-right: calc(-1 * var(--composer-gap-lg));
 
                 .stats-list {
                     .stat-item {
@@ -154,12 +170,19 @@
         .content-wrapper {
             flex-direction: column;
 
-            .left-column,
+            .left-side-wrapper {
+                width: 100%;
+                
+                .left-column {
+                    width: 100%;
+                }
+            }
+
             .right-column {
                 width: 100%;
             }
 
-            .left-column.center-alignment .text-group {
+            .left-column.center-alignment .text-block {
                 align-items: center;
 
                 .title,
@@ -174,6 +197,7 @@
 
             .right-column {
                 min-height: 350px;
+                width: calc(100% + 2 * var(--composer-gap-md));
                 margin: 0 calc(-1 * var(--composer-gap-md)) calc(-1 * var(--composer-gap-xl));
 
                 .stats-list {
@@ -189,17 +213,9 @@
 
                 &.center-alignment .stats-list .stat-item {
                     align-items: center;
-
-                    .stat-value {
-                        justify-content: center;
-                    }
-
-                    .stat-subtitle,
-                    .stat-title,
-                    .stat-description {
-                        text-align: center;
-                    }
                 }
+
+
             }
         }
     }
