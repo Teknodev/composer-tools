@@ -312,12 +312,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 .subtitle {
                   border: 1px solid var(--composer-tertiary-color);
                   color: var(--composer-font-color-primary);
-                  padding: 0 var(--composer-gap-sm);
+                  padding: var(--composer-gap-sm);
                   border-radius: var(--composer-border-radius-sm);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
                   transition: 0.8s;
-                  width: auto;
-                  position: relative;
-                  text-align: left;
                 }
               }
             }
@@ -340,9 +340,12 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 text-align: left;
 
                 .dash_icon {
+                  width: 1.5rem;
+                  height: 1.5rem;
                   font-size: 1.5rem;
                   color: var(--composer-font-color-primary);
                   flex-shrink: 0;
+                  object-fit: contain;
                 }
 
                 .property {
@@ -493,11 +496,35 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
             .content {
               min-height: auto;
+              padding: var(--composer-gap-md) 0 0 0;
 
               .header-wrapper {
-                justify-content: flex-start;
+                display: flex;
+                flex-direction: column;
                 align-items: flex-start;
                 text-align: left;
+                gap: var(--composer-gap-sm);
+                width: 100%;
+
+                .title {
+                  order: 2;
+                  width: 100%;
+                  text-align: left;
+                }
+
+                .subtitle-wrapper {
+                  order: 1;
+                  align-self: flex-end;
+                  height: auto;
+
+                  .subtitle {
+                    width: auto;
+                    padding: var(--composer-gap-xs) var(--composer-gap-sm);
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1rem !important;
+                  }
+                }
               }
 
               .list-body {
