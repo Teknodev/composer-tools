@@ -5,8 +5,6 @@ import styles from "./call_to_action11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Button = INPUTS.CastedButton;
-
 class CallToAction11 extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -45,7 +43,7 @@ class CallToAction11 extends BaseCallToAction {
   }
 
   render() {
-    const buttons = this.castToObject<Button[]>("buttons") || [];
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -54,35 +52,17 @@ class CallToAction11 extends BaseCallToAction {
             <div className={this.decorateCSS("content")}>
               {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
                 <Base.VerticalContent className={this.decorateCSS("text-container")}>
-                  {this.castToString(this.getPropValue("subtitle")) && (
-                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {this.castToString(this.getPropValue("title")) && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                  {this.castToString(this.getPropValue("description")) && (
-                    <Base.SectionDescription className={this.decorateCSS("text")}>
-                      {this.getPropValue("description")}
-                    </Base.SectionDescription>
-                  )}
+                  {this.castToString(this.getPropValue("subtitle")) && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                  {this.castToString(this.getPropValue("title")) && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                  {this.castToString(this.getPropValue("description")) && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                 </Base.VerticalContent>
               )}
-
               {buttons.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
                   {buttons.map((button, idx) => this.castToString(button.text) && (
                     <ComposerLink path={button.url} key={idx}>
-                      <Base.Button
-                        className={this.decorateCSS("button")}
-                        buttonType={button.type}
-                      >
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {button.text}
-                        </Base.P>
+                      <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                        <Base.P className={this.decorateCSS("button-text")}>  {button.text} </Base.P>
                       </Base.Button>
                     </ComposerLink>
                   ))}
