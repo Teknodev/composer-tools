@@ -5,27 +5,15 @@ import styles from "./call_to_action13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Button = INPUTS.CastedButton;
-
 class CallToAction13Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "boolean",
-      key: "highlightEnabled",
-      displayer: "Subtitle Background",
-      value: true,
-    });
-
-
     this.addProp({
       type: "string",
       key: "subtitle",
       value: "Don't be weird.",
       displayer: "Subtitle",
     });
-
 
     this.addProp({
       type: "string",
@@ -46,15 +34,7 @@ class CallToAction13Page extends BaseCallToAction {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON(
-          "tertiary",
-          "Button",
-          "CONTACT US",
-          "",
-          null,
-          null,
-          "Tertiary"
-        ),
+        INPUTS.BUTTON("tertiary", "Button", "CONTACT US", "", null, null, "Tertiary"),
       ],
     });
   }
@@ -64,45 +44,27 @@ class CallToAction13Page extends BaseCallToAction {
   }
 
   render() {
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const titleExist = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const highlightEnabled = this.getPropValue("highlightEnabled");
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
 
-    
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || subtitle || buttons.length > 0) && (
-            <div
-              className={`${this.decorateCSS("header")} `}
-            >
+            <div className={this.decorateCSS("header")}>
               {(titleExist || subtitle) && (
                 <Base.VerticalContent className={this.decorateCSS("titles")}>
-                  {subtitle && (
-                    <Base.SectionSubTitle
-                      className={`${this.decorateCSS("subtitle")} ${highlightEnabled ? this.decorateCSS("highlight-enabled") : ""}`}
-                    >
-                      {this.getPropValue("subtitle")}
-                    </Base.SectionSubTitle>
-                  )}
-                  {titleExist && (
-                    <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {this.getPropValue("title")}
-                    </Base.SectionTitle>
-                  )}
-                  {descriptionExist && (
-                    <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
-                    </Base.SectionDescription>
-                  )}
+                  {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                  {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                  {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")} </Base.SectionDescription>)}
                 </Base.VerticalContent>
               )}
               {buttons?.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((button: Button, index: number) => this.castToString(button.text) && (
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => this.castToString(button.text) && (
                     <ComposerLink key={index} path={button.url}>
                       <Base.Button
                         className={this.decorateCSS("button")}
