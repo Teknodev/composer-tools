@@ -294,7 +294,7 @@
 
         .bottom-icon {
           font-size: 1.5rem;
-          color: var(--composer-font-color-secondary);
+          // color: inherit;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -325,7 +325,7 @@
   }
 
   .container .max-content .upper-section .items .item-card {
-    border: 1px solid var(--composer-primary-color);
+    // border: none;
     overflow: hidden;
   }
 
