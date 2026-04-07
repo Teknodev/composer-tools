@@ -25,18 +25,18 @@
           max-inline-size: 1200px;
         }
       }
+    }
 
-      .button-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--composer-gap-sm);
-        justify-content: flex-end;
-        max-width: 500px;
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
+      justify-content: flex-end;
+      max-width: 500px;
 
-        .button {
-          .button-text {
-            content: "";
-          }
+      .button {
+        .button-text {
+          content: "";
         }
       }
     }
