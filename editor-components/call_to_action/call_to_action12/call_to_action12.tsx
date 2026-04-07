@@ -3,7 +3,6 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
@@ -29,7 +28,7 @@ class CallToAction12Page extends BaseCallToAction {
       displayer: "Description",
       value: "Get updates by subscribe our weekly newsletter to receive the latest news, evens & promotions"
     });
-    
+
     this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE", "", null, null, "Black"));
 
     this.addProp({
@@ -67,7 +66,7 @@ class CallToAction12Page extends BaseCallToAction {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const button = this.castToObject<INPUTS.CastedButton>("button");
 
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -77,9 +76,7 @@ class CallToAction12Page extends BaseCallToAction {
     const submitText = this.castToString(this.getPropValue("submitText"));
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")}`}
-      >
+      <Base.Container className={`${this.decorateCSS("container")}`} >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(titleExist || descriptionExist || subtitleExist) && (
             <Base.VerticalContent className={`${this.decorateCSS("header")} ${this.getPropValue("background") && this.decorateCSS("with-image")}`}>
@@ -108,8 +105,8 @@ class CallToAction12Page extends BaseCallToAction {
                     {this.castToString(this.getPropValue("placeholder")) && this.castToString(button.text) && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
-                        onFocus={() => this.setComponentState("isInputFocused", true)}
-                        onBlur={() => this.setComponentState("isInputFocused", false)}
+                          onFocus={() => this.setComponentState("isInputFocused", true)}
+                          onBlur={() => this.setComponentState("isInputFocused", false)}
                           placeholder={this.getComponentState("isInputFocused") ? "" : this.getComponentState("placeholderText") || placeholder}
                           type="text"
                           onChange={handleChange}
@@ -128,15 +125,6 @@ class CallToAction12Page extends BaseCallToAction {
                   </Form>
                 )}
               </Formik>
-            </div>
-          )}
-          {this.castToString(button.text) && !this.castToString(this.getPropValue("placeholder")) && (
-            <div className={this.decorateCSS("button-container")}>
-              <ComposerLink path={button.url}>
-                <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${!this.castToString(this.getPropValue("placeholder")) && this.decorateCSS("button-no-item")}`}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                </Base.Button>
-              </ComposerLink>
             </div>
           )}
         </Base.MaxContent>
