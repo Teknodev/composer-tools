@@ -100,6 +100,11 @@
     padding: var(--composer-gap-md);
     transition-duration: 0.8s;
 
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
     &.animation1:hover {
       transform: scale(1.1);
     }
@@ -333,6 +338,8 @@
 
       .card-container {
         width: 100%;
+        border-radius: var(--composer-border-radius-md);
+        border: 1px solid var(--composer-tertiary-color);
 
         &.active {
           scale: 1;
