@@ -29,7 +29,7 @@ class About7 extends BaseAbout {
         this.addProp({
             type: "object",
             key: "background-image",
-            displayer: "Media",
+            displayer: " Background Media",
             value: [
                 {
                     type: "media",
@@ -39,9 +39,9 @@ class About7 extends BaseAbout {
                         availableTypes: ["image", "video"],
                     },
                     value: {
-                        type: "image",
-                        url: "",
-                    },
+    type: "image",
+    url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69d49fff738bad002cc2b990?alt=media",
+},
                 },
                 {
                     type: "boolean",
