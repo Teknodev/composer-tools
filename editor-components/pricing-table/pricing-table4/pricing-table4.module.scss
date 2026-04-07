@@ -82,6 +82,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           transition: 0.8s;
           padding: var(--composer-gap-lg);
           gap: var(--composer-gap-md);
+          scale: 0.94;
 
           &.animation1:hover {
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
@@ -110,7 +111,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
           }
 
           &.focused {
-            scale: 1.06;
+            scale: 1;
             background: var(--composer-html-background);
             z-index: 2;
             position: relative;
