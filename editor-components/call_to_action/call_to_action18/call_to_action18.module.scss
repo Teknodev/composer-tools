@@ -78,17 +78,18 @@
       flex-direction: column;
 
       .header {
-        align-items: center;
+        align-items: var(--composer-content-alignment);
 
         .subtitle,
         .title,
         .description {
-          text-align: center;
+          text-align: var(--composer-content-alignment);
         }
       }
 
       .buttons {
-        justify-content: center;
+        justify-content: var(--composer-content-alignment);
+        width: 100%;
       }
 
       &.card-background-enabled {
