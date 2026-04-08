@@ -6,6 +6,7 @@ import Accordion from "../ui/accordion/Accordion";
 import { IconBaseProps } from "react-icons/lib";
 import { iconLibraries } from "./utitilities/iconList";
 import { TypeMediaInputValue } from "../../editor-components/EditorComponent";
+import { ELEMENT_CATEGORY } from "../../element-categories";
 
 declare global {
   namespace JSX {
@@ -85,7 +86,7 @@ export namespace Base {
 
   export function H1({ className, children, ...props }: any) {
     return (
-      <h1 className={`${styles.h1} ${className}`} {...props}>
+      <h1 className={`${styles.h1} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
         {children}
       </h1>
     );
@@ -93,7 +94,7 @@ export namespace Base {
 
   export function H2({ className, children, ...props }: any) {
     return (
-      <h2 className={`${styles.h2} ${className}`} {...props}>
+      <h2 className={`${styles.h2} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
         {children}
       </h2>
     );
@@ -101,7 +102,7 @@ export namespace Base {
 
   export function H3({ className, children, ...props }: any) {
     return (
-      <h3 className={`${styles.h3} ${className}`} {...props}>
+      <h3 className={`${styles.h3} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
         {children}
       </h3>
     );
@@ -109,7 +110,7 @@ export namespace Base {
 
   export function H4({ className, children, ...props }: any) {
     return (
-      <h4 className={`${styles.h4} ${className}`} {...props}>
+      <h4 className={`${styles.h4} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
         {children}
       </h4>
     );
@@ -117,7 +118,7 @@ export namespace Base {
 
   export function H5({ className, children, ...props }: any) {
     return (
-      <h5 className={`${styles.h5} ${className}`} {...props}>
+      <h5 className={`${styles.h5} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
         {children}
       </h5>
     );
@@ -125,7 +126,7 @@ export namespace Base {
 
   export function H6({ className, children, ...props }: any) {
     return (
-      <h6 className={`${styles.h6} ${className}`} {...props}>
+      <h6 className={`${styles.h6} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
         {children}
       </h6>
     );
@@ -133,7 +134,7 @@ export namespace Base {
 
   export function P({ className, children, ...props }: any) {
     return (
-      <p className={`${styles.p} ${className}`} {...props}>
+      <p className={`${styles.p} ${className}`} data-element-category={ELEMENT_CATEGORY.TEXT} {...props}>
         {children}
       </p>
     );
@@ -153,6 +154,8 @@ export namespace Base {
         className={`${styles.container} ${styles[alignment]} ${styles[viewType]
           } ${className} ${isModal ? styles.modalContainer : ""} ${isFull ? styles.full : ""
           }`}
+        data-element-category={ELEMENT_CATEGORY.CONTAINER}
+        data-video-bg=""
         {...props}
       >
         {children}
@@ -162,7 +165,7 @@ export namespace Base {
 
   export function MaxContent({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.maxContent} ${className}`} {...props}>
+      <div className={`${styles.maxContent} ${className}`} data-element-category={ELEMENT_CATEGORY.MAX_CONTENT} {...props}>
         {children}
       </div>
     );
@@ -170,7 +173,7 @@ export namespace Base {
 
   export function VerticalContent({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.verticalContent} ${className}`} {...props}>
+      <div className={`${styles.verticalContent} ${className}`} data-element-category={ELEMENT_CATEGORY.VERTICAL_CONTENT} {...props}>
         {children}
       </div>
     );
@@ -188,6 +191,7 @@ export namespace Base {
     return (
       <div
         className={`${styles.listGrid} ${className}`}
+        data-element-category={ELEMENT_CATEGORY.LIST_GRID}
         style={
           {
             "--composer-grid-count": gridCount["pc"] || 3,
@@ -204,7 +208,7 @@ export namespace Base {
 
   export function ContainerGrid({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.containerGrid} ${className}`} {...props}>
+      <div className={`${styles.containerGrid} ${className}`} data-element-category={ELEMENT_CATEGORY.CONTAINER_GRID} {...props}>
         {children}
       </div>
     );
@@ -212,7 +216,7 @@ export namespace Base {
 
   export function GridCell({ className, children, ...props }: any) {
     return (
-      <div className={`${styles.gridCell} ${className}`} {...props}>
+      <div className={`${styles.gridCell} ${className}`} data-element-category={ELEMENT_CATEGORY.GRID_CELL} {...props}>
         {children}
       </div>
     );
@@ -220,7 +224,7 @@ export namespace Base {
 
   export function SectionTitle({ className, ...props }: any) {
     return (
-      <H1 className={`${styles.sectionTitle} ${className}`} data-section="title" {...props}></H1>
+      <H1 className={`${styles.sectionTitle} ${className}`} data-section="title" data-element-category={ELEMENT_CATEGORY.SECTION_TITLE} {...props}></H1>
     );
   }
 
@@ -230,6 +234,7 @@ export namespace Base {
       <H3
         className={`${styles.sectionSubTitle} ${className} ${styles[type]}`}
         data-section="subtitle"
+        data-element-category={ELEMENT_CATEGORY.SUB_TITLE}
         {...props}
       ></H3>
     );
@@ -237,7 +242,7 @@ export namespace Base {
 
   export function SectionDescription({ className, ...props }: any) {
     return (
-      <P className={`${styles.sectionDescription} ${className}`} data-section="description" {...props}></P>
+      <P className={`${styles.sectionDescription} ${className}`} data-section="description" data-element-category={ELEMENT_CATEGORY.SECTION_DESCRIPTION} {...props}></P>
     );
   }
 
@@ -253,13 +258,14 @@ export namespace Base {
       <button
         className={`${styles.baseButton} ${styles[(buttonType || "Primary").toLocaleLowerCase()]
           } ${className}`}
+        data-element-category={ELEMENT_CATEGORY.BUTTON}
         {...props}
       ></button>
     );
   }
 
   export function Row({ className, ...props }: any) {
-    return <div className={`${styles.row} ${className}`} {...props}></div>;
+    return <div className={`${styles.row} ${className}`} data-element-category={ELEMENT_CATEGORY.ROW} {...props}></div>;
   }
 
   export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
@@ -626,7 +632,7 @@ export namespace Base {
     ...props 
   }: React.HTMLAttributes<HTMLDivElement>) {
     return (
-      <div className={`${styles.baseCard} ${className}`} {...props}>
+      <div className={`${styles.baseCard} ${className}`} data-element-category={ELEMENT_CATEGORY.CARD} {...props}>
         {children}
       </div>
     );
