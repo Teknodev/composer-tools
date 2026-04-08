@@ -45,7 +45,7 @@ class CallToAction3Page extends BaseCallToAction {
     this.addProp({
       type: "object",
       key: "mediaObject",
-      displayer: "Media",
+      displayer: "Background Media",
       value: [
         {
           type: "media",

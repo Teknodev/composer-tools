@@ -14,6 +14,11 @@ type MediaObject = {
   overlay: boolean;
 };
 
+type IconObject = {
+  icon: TypeMediaInputValue;
+  iconBackground: boolean;
+};
+
 class CallToAction4Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -24,42 +29,47 @@ class CallToAction4Page extends BaseCallToAction {
       displayer: "Subtitle",
       value: "Our Services",
     })
+
     this.addProp({
       type: "string",
       key: "title",
       value: "Ready to Start Your Journey?",
       displayer: "Title",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "",
     });
+
     this.addProp({
-      type: "media",
-      key: "icon",
+      type: "object",
+      key: "iconObject",
       displayer: "Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "FaCheck",
-      },
+      value: [
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaCheck",
+          },
+        },
+        {
+          type: "boolean",
+          key: "iconBackground",
+          displayer: "Icon Background",
+          value: true
+        },
+      ],
     });
-    this.addProp({
-      type: "boolean",
-      key: "iconBackground",
-      displayer: "Icon Background",
-      value: true,
-    });
-    this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item Count in a Row",
-      value: 2,
-    });
+
     this.addProp({
       type: "array",
       key: "listItems",
@@ -171,6 +181,7 @@ class CallToAction4Page extends BaseCallToAction {
         },
       ],
     });
+
     this.addProp({
       type: "object",
       key: "mediaObject",
@@ -196,6 +207,7 @@ class CallToAction4Page extends BaseCallToAction {
         },
       ],
     });
+
     this.addProp({
       type: "array",
       key: "buttons",
@@ -214,7 +226,9 @@ class CallToAction4Page extends BaseCallToAction {
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const image = mediaObject.image;
     const overlay = mediaObject.overlay;
-    const enableIconBackground = this.getPropValue("iconBackground");
+    const iconObject = this.castToObject<IconObject>("iconObject");
+    const icon = iconObject.icon;
+    const enableIconBackground = iconObject.iconBackground;
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
@@ -235,9 +249,9 @@ class CallToAction4Page extends BaseCallToAction {
                   <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
                     {listItems.map((item: ListItem, index: number) => (
                       <div className={this.decorateCSS("list")}>
-                        {this.getPropValue("icon") && (
-                          <div className={`${this.decorateCSS("icon-container")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
-                            <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                        {icon && (
+                          <div className={`${this.decorateCSS("icon-container")} ${!enableIconBackground && this.decorateCSS("no-bg")}`}>
+                            <Base.Media value={icon} className={this.decorateCSS("icon")} />
                           </div>
                         )}
                         {this.castToString(item.description) && <Base.P className={this.decorateCSS("description")}>{item.description}</Base.P>}
