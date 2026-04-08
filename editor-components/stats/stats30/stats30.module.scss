@@ -4,6 +4,16 @@
     background-color: var(--composer-html-background);
     container-type: inline-size;
 
+    // Sadece spacing sıfırlama buraya
+    &.no-colored-background {
+        .max-content {
+            padding-top: 0;
+            padding-bottom: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
     .max-content {
         width: 100%;
 
@@ -37,8 +47,15 @@
                 grid-template-columns: repeat(var(--item-count, 2), 1fr);
                 gap: var(--composer-gap-md);
 
+                &:has(.colored-background) {
+                    background: var(--composer-html-color);
+                    border-radius: var(--composer-border-radius-md);
+                    padding: var(--composer-gap-xl);
+                    gap: 0;
+                }
+
                 .stat-item {
-                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                    background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
                     padding: var(--composer-gap-xl);
                     border-radius: var(--composer-border-radius-md);
                     box-sizing: border-box;
@@ -46,6 +63,25 @@
                     text-align: left;
                     gap: var(--composer-border-radius-xl);
 
+                    &.colored-background {
+                        background: transparent;
+                        border-radius: 0;
+                        padding: var(--composer-gap-md);
+
+                        .stat-value-container,
+                        .stat-text-group {
+
+                            .stat-title,
+                            .stat-subtitle,
+                            .stat-description {
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
+
+                        .stat-value-container {
+                            color: var(--composer-font-color-primary);
+                        }
+                    }
 
                     .stat-text-group {
                         width: 100%;
@@ -101,24 +137,6 @@
                             margin: 0;
                         }
                     }
-
-                    &.colored-background {
-                        background-color: var(--composer-html-color);
-
-                        .stat-value-container,
-                        .stat-text-group {
-
-                            .stat-title,
-                            .stat-subtitle,
-                            .stat-description {
-                                color: var(--composer-font-color-primary);
-                            }
-                        }
-
-                        .stat-value-container {
-                            color: var(--composer-font-color-primary);
-                        }
-                    }
                 }
 
                 @container (max-width: #{$composer-tablet-width}) {
@@ -159,7 +177,7 @@
             .bottom-action-container {
                 display: flex;
                 flex-wrap: wrap;
-                gap: var(--composer-gap-md);
+                gap: var(--composer-gap-sm);
                 justify-content: center;
                 width: 100%;
 

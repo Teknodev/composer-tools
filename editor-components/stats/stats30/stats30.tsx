@@ -12,7 +12,7 @@ export class Stats30 extends BaseStats {
             type: "boolean",
             key: "coloredBackground",
             displayer: "Colored Background",
-            value: false,
+            value: true,
         });
 
         this.addProp({
@@ -240,7 +240,7 @@ export class Stats30 extends BaseStats {
         });
 
         return (
-            <Base.Container className={this.decorateCSS("container")}>
+            <Base.Container className={`${this.decorateCSS("container")} ${!this.getPropValue("coloredBackground") ? this.decorateCSS("no-colored-background") : ""}`}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("content")}>
                         {hasTopSection && (
