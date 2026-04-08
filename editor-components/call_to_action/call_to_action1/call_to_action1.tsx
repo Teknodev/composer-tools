@@ -3,7 +3,6 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class CallToAction1Page extends BaseCallToAction {
@@ -14,7 +13,7 @@ class CallToAction1Page extends BaseCallToAction {
       key: "icon",
       displayer: "Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -41,14 +40,21 @@ class CallToAction1Page extends BaseCallToAction {
         "Create a free demo account to digitize your business and attract more customers. In our demo account, you can test our digital marketing tools and learn how you can use them to grow your business.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"),
+      ],
+    });
   }
 
   static getName(): string {
     return "Call To Action 1";
   }
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -64,13 +70,17 @@ class CallToAction1Page extends BaseCallToAction {
             {this.castToString(this.getPropValue("description")) && (
               <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
             )}
-            {this.castToString(button.text) && (
+            {buttons.length > 0 && (
               <div className={this.decorateCSS("button-container")}>
-                <ComposerLink path={button.url}>
-                  <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                  </Base.Button>
-                </ComposerLink>
+                {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                  this.castToString(button.text) && (
+                    <ComposerLink key={index} path={button.url}>
+                      <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  )
+                ))}
               </div>
             )}
 

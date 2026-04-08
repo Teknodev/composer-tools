@@ -1,14 +1,16 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
-
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
 interface CardItem {
-  cardIcon: string,
-  cardTitle: React.JSX.Element,
-  cardDescription: React.JSX.Element
+  cardIcon: TypeMediaInputValue;
+  iconBackground: boolean;
+  cardSubtitle: React.JSX.Element;
+  cardTitle: React.JSX.Element;
+  cardDescription: React.JSX.Element;
 }
 
 class CallToAction10Page extends BaseCallToAction {
@@ -28,18 +30,27 @@ class CallToAction10Page extends BaseCallToAction {
       displayer: "Title",
       value: "Ready to give your brain a boost?",
     });
+
     this.addProp({
       type: "media",
-      key: "icon",
-      displayer: "Icon",
+      key: "headerIcon",
+      displayer: "Header Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
         name: "BsHandIndexThumb",
       },
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "headerIconBackground",
+      displayer: "Header Icon Background",
+      value: true,
+    });
+
     this.addProp({
       type: "string",
       key: "description",
@@ -47,7 +58,14 @@ class CallToAction10Page extends BaseCallToAction {
       value: "Fast and easy setup.14-day free trial.No credit card required.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Create Account", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "number",
@@ -55,6 +73,7 @@ class CallToAction10Page extends BaseCallToAction {
       displayer: "Item Count in a Row",
       value: 3,
     });
+
     this.addProp({
       type: "array",
       key: "cardItems",
@@ -70,12 +89,24 @@ class CallToAction10Page extends BaseCallToAction {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "HiOutlineDocumentText",
               },
+            },
+            {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "cardSubtitle",
+              displayer: "Card Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -101,12 +132,24 @@ class CallToAction10Page extends BaseCallToAction {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "BsUpload",
               },
+            },
+            {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "cardSubtitle",
+              displayer: "Card Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -132,12 +175,24 @@ class CallToAction10Page extends BaseCallToAction {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "CiMail",
               },
+            },
+            {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
+            },
+            {
+              type: "string",
+              key: "cardSubtitle",
+              displayer: "Card Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -164,7 +219,8 @@ class CallToAction10Page extends BaseCallToAction {
 
   render() {
     const cardItem = this.castToObject<CardItem[]>("cardItems");
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const enableIconBackground = this.getPropValue("headerIconBackground");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -173,40 +229,53 @@ class CallToAction10Page extends BaseCallToAction {
             <Base.VerticalContent className={this.decorateCSS("header")}>
               {this.castToString(this.getPropValue("subtitle")) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
+                  {this.castToString(this.getPropValue("subtitle"))}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(this.getPropValue("title") || this.getPropValue("icon")) && (
-                <div className={this.decorateCSS("title-container")}>
+              {this.castToString(this.getPropValue("title") || this.getPropValue("headerIcon")) && (
+                <div className={`${this.decorateCSS("title-container")} ${!this.getPropValue("headerIcon") && this.decorateCSS("no-header-icon")}`}>
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
-                  {this.getPropValue("icon") && (
-                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                  {this.getPropValue("headerIcon") && (
+                    <div className={`${this.decorateCSS("header-icon-wrapper")} ${enableIconBackground && this.decorateCSS("icon-bg")}`}>
+                      <Base.Media value={this.getPropValue("headerIcon")} className={this.decorateCSS("header-icon")} />
+                    </div>
                   )}
                 </div>
               )}
               {this.castToString(this.getPropValue("description")) && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
+                  {this.castToString(this.getPropValue("description"))}
                 </Base.SectionDescription>
               )}
+              {buttons.length > 0 && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => (
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                  ))}
+                </div>
+              )}
             </Base.VerticalContent>
-            {this.castToString(button.text) && (
-              <ComposerLink path={button.url}>
-                <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                </Base.Button>
-              </ComposerLink>
-            )}
             {(cardItem.length > 0) && (
-              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("card-container")}>
+              <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("card-container")}>
                 {cardItem.map((item: CardItem, index: number) => (
-                  <Base.VerticalContent className={this.decorateCSS("card")}>
+                  <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                     {item.cardIcon && (
-                      <div className={this.decorateCSS("icon-wrapper")}>
+                      <div className={`${this.decorateCSS("icon-wrapper")} ${!item.iconBackground && this.decorateCSS("no-bg")}`}>
                         <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
                       </div>
+                    )}
+                    {this.castToString(item.cardSubtitle) && (
+                      <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                        {item.cardSubtitle}
+                      </Base.H5>
                     )}
                     {this.castToString(item.cardTitle) && (
                       <Base.H3 className={this.decorateCSS("card-title")}>

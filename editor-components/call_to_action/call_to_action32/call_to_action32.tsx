@@ -98,10 +98,10 @@ class CallToAction32 extends BaseCallToAction {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("card")} ${enable_card ? this.decorateCSS("active") : ""} ${!media ? this.decorateCSS("no-media") : ""}`}>
+                    <div className={`${this.decorateCSS("card")} ${enable_card && this.decorateCSS("active")} ${!media && this.decorateCSS("no-media")}`}>
                         <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
                             {hasLeftContent && (
-                                <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!media ? this.decorateCSS("no-media") : ""}`}>
+                                <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!media && this.decorateCSS("no-media")}`}>
                                     {subtitle && (
                                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                             {this.getPropValue("subtitle")}
@@ -123,26 +123,11 @@ class CallToAction32 extends BaseCallToAction {
                                                 (item: INPUTS.CastedButton, index: number) => {
                                                     const buttonText = this.castToString(item.text);
                                                     const iconExist = item.icon && item.icon.name;
-
-                                                    if (!buttonText && !iconExist) return null;
-
-                                                    return (
+                                                    return (!buttonText && !iconExist) || (
                                                         <ComposerLink key={index} path={item.url}>
-                                                            <Base.Button
-                                                                buttonType={item.type}
-                                                                className={this.decorateCSS("button")}
-                                                            >
-                                                                {buttonText && (
-                                                                    <Base.P className={this.decorateCSS("button-text")}>
-                                                                        {item.text}
-                                                                    </Base.P>
-                                                                )}
-                                                                {iconExist && (
-                                                                    <Base.Media
-                                                                        className={this.decorateCSS("button-icon")}
-                                                                        value={item.icon}
-                                                                    />
-                                                                )}
+                                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                                {buttonText && (<Base.P className={this.decorateCSS("button-text")}>  {item.text} </Base.P>)}
+                                                                {iconExist && (<Base.Media className={this.decorateCSS("button-icon")} value={item.icon} />)}
                                                             </Base.Button>
                                                         </ComposerLink>
                                                     );
@@ -154,7 +139,7 @@ class CallToAction32 extends BaseCallToAction {
                             )}
 
                             {media && (
-                                <div className={this.decorateCSS("media-column")}>
+                                <div className={`${this.decorateCSS("media-column")} ${!hasLeftContent && this.decorateCSS("no-left-content")}`}>
                                     <div className={this.decorateCSS("media-container")}>
                                         <Base.Media
                                             value={media}

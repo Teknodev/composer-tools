@@ -1,11 +1,14 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Button = INPUTS.CastedButton;
+type MediaObject = {
+  image: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class CallToAction3Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -40,22 +43,29 @@ class CallToAction3Page extends BaseCallToAction {
       ],
     });
     this.addProp({
-      type: "media",
-      key: "image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      displayer: "Media",
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlayActive",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "mediaObject",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
   }
   static getName(): string {
@@ -63,11 +73,14 @@ class CallToAction3Page extends BaseCallToAction {
   }
 
   render() {
-    const buttons = this.castToObject<Button[]>("buttons");
-    const image = this.getPropValue("image");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const mediaObject = this.castToObject<MediaObject>("mediaObject");
+    const image = mediaObject.image;
+    const overlay = mediaObject.overlay;
+
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${this.getPropValue("overlayActive") && this.getPropValue("image") && this.decorateCSS("overlay-active")}`}>
+        className={`${this.decorateCSS("container")} ${overlay && image && this.decorateCSS("overlay-active")} ${image && this.decorateCSS("has-background")}`}>
         {image && (
           <Base.Media
             value={image}
@@ -77,25 +90,25 @@ class CallToAction3Page extends BaseCallToAction {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("content-container")}>
             {this.castToString(this.getPropValue("subtitle")) && (
-              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                 {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>
             )}
             {this.castToString(this.getPropValue("title")) && (
-              <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+              <Base.SectionTitle className={this.decorateCSS("title")}>
                 {this.getPropValue("title")}
               </Base.SectionTitle>
             )}
             {this.castToString(this.getPropValue("description")) && (
-              <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("image") && this.decorateCSS("with-image")}`}>
+              <Base.SectionDescription className={this.decorateCSS("description")}>
                 {this.getPropValue("description")}
               </Base.SectionDescription>
             )}
             {(buttons.length > 0) && (
               <div className={this.decorateCSS("buttons")}>
                 {buttons.map(
-                  (button: Button, index: number) => {
-                    button.type = this.getPropValue("image") ? "White" : button.type
+                  (button: INPUTS.CastedButton, index: number) => {
+                    button.type = image ? "White" : button.type
 
                     return (
                       <ComposerLink path={button.url}>
