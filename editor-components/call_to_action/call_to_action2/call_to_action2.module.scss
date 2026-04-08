@@ -230,33 +230,17 @@
           flex-direction: column;
           gap: var(--composer-gap-md);
 
-          .titles {
-            align-items: center;
-
-            .subtitle {
-              transform: translateX(0);
-
-              &::before {
-                display: none;
-              }
-            }
-
-            .subtitle,
-            .title,
-            .description {
-              text-align: center;
-            }
-          }
-
           .button-container {
+            width: 100%;
             max-width: 100%;
+            justify-content: var(--composer-content-alignment);
           }
         }
 
         .media-wrapper {
           .play-icon-box {
-            width: 40px;
-            height: 40px;
+            width: var(--composer-gap-lg);
+            height: var(--composer-gap-lg);
 
             .play-icon {
               font-size: 1.25rem;
