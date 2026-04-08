@@ -1,0 +1,175 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    position: relative;
+    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+    background: linear-gradient(
+        to bottom,
+        var(--composer-html-background) 0%,
+        var(--composer-html-background) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 50%,
+        color-mix(in srgb, var(--composer-font-color-primary), var(--composer-html-background) 92%) 100%
+    );
+
+    .max-content {
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--composer-gap-lg) * 2);
+
+        .top-section {
+            align-items: center;
+            text-align: center;
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+        }
+
+        .card {
+            display: flex;
+            flex-direction: row;
+            border-radius: var(--composer-border-radius-lg);
+            overflow: hidden;
+            box-shadow: var(--composer-box-shadow);
+            background: var(--composer-bg-color);
+
+           
+
+            .card-left {
+                flex: 2;
+                padding: calc(var(--composer-gap-lg) * 2);
+                display: flex;
+                flex-direction: column;
+                gap: var(--composer-gap-lg);
+
+                .card-title {
+                    content: "";
+                    margin: 0;
+                }
+
+                .card-description {
+                    content: "";
+                    margin: 0;
+                    color: var(--composer-font-color-primary);
+                    opacity: 0.75;
+                }
+
+                .features-section {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
+                    padding-top: var(--composer-gap-md);
+                    border-top: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.15);
+
+                    .features-label {
+                        content: "";
+                        margin: 0;
+                        font-size: 1rem;
+                        font-weight: 700;
+                    }
+
+                    .features-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: var(--composer-gap-sm) var(--composer-gap-lg);
+
+                        .feature-item {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-xs);
+
+                            .feature-icon {
+                                color: var(--composer-primary-color);
+                                font-size: 1.1rem;
+                                flex-shrink: 0;
+                            }
+
+                            .feature-text {
+                                content: "";
+                                margin: 0;
+                                font-size: 0.95rem;
+                                color: var(--composer-font-color-primary);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .card-right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-md);
+                padding: calc(var(--composer-gap-lg) * 2);
+                background: color-mix(in srgb, var(--composer-primary-color), #fff 92%);
+
+                .tagline {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .price {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .primary-button {
+                    width: 100%;
+                    justify-content: center;
+                }
+
+                .secondary-button {
+                    content: "";
+             
+                   
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+
+        .max-content {
+            .card {
+                .card-left {
+                    padding: var(--composer-gap-lg);
+
+                    .features-section {
+                        .features-grid {
+                            grid-template-columns: 1fr 1fr;
+                        }
+                    }
+                }
+
+                .card-right {
+                    padding: var(--composer-gap-lg);
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .card {
+                flex-direction: column;
+
+                .card-left {
+                    .features-section {
+                        .features-grid {
+                            grid-template-columns: 1fr;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
