@@ -103,7 +103,7 @@ class CallToAction8Page extends BaseCallToAction {
                   {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
                 </Base.VerticalContent>
                 {buttons.length > 0 && (
-                  <div className={this.decorateCSS("button-container")}>
+                  <Base.Row className={this.decorateCSS("button-container")}>
                     {buttons.map((button: INPUTS.CastedButton, index: number) => (
                       this.castToString(button.text) && (
                         <ComposerLink key={index} path={button.url}>
@@ -113,7 +113,7 @@ class CallToAction8Page extends BaseCallToAction {
                         </ComposerLink>
                       )
                     ))}
-                  </div>
+                  </Base.Row>
                 )}
               </div>
             )}

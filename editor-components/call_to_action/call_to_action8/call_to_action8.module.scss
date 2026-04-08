@@ -3,12 +3,21 @@
 .container {
   &.colored-background {
     .max-content {
-      background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+      background-color: var(--composer-font-color-primary);
       border-radius: var(--composer-border-radius-sm);
 
       .content {
         .title-box {
-          padding: var(--composer-gap-xl);
+          padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+
+          .vertical-content {
+
+            .subtitle,
+            .title,
+            .description {
+              color: var(--composer-html-background);
+            }
+          }
         }
       }
     }
@@ -38,7 +47,6 @@
           display: flex;
           gap: var(--composer-gap-sm);
           flex-wrap: wrap;
-          justify-content: flex-start;
 
           .button {
             content: "";
@@ -54,7 +62,6 @@
         flex: 2;
         display: flex;
         position: relative;
-        max-height: 80vh;
 
         .image {
           width: 100%;
@@ -85,34 +92,32 @@
       .content {
         .title-box {
           .vertical-content {
+            align-items: flex-start;
 
             .title,
             .subtitle,
             .description {
-              margin-left: 0;
               text-align: left;
+              margin-left: 0;
             }
+          }
+
+          .button-container {
+            justify-content: flex-start;
           }
         }
       }
     }
   }
+}
 
-  &.container:not(.has-image) {
-    .max-content {
-      .content {
-        .title-box {
-          .vertical-content {
-
-            .title,
-            .subtitle,
-            .description {
-              text-align: center;
-            }
-          }
-
-          .button-container {
-            justify-content: center;
+@container (max-width : #{$composer-tablet-width}) {
+  .container {
+    &.colored-background {
+      .max-content {
+        .content {
+          .title-box {
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg) !important;
           }
         }
       }
@@ -122,26 +127,11 @@
 
 @container (max-width : #{$composer-phone-width}) {
   .container {
-
     &.colored-background {
       .max-content {
         .content {
           .title-box {
-            padding: var(--composer-gap-md) !important;
-          }
-        }
-      }
-    }
-
-    .max-content {
-      .content {
-        flex-direction: column;
-
-        .image-box {
-          .image {
-            border-top-right-radius: 0;
-            border-bottom-left-radius: var(--composer-border-radius-sm);
-            border-bottom-right-radius: var(--composer-border-radius-sm);
+            padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
           }
         }
       }
