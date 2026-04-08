@@ -1,111 +1,132 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    padding: var(--composer-gap-xl) 0;
-    background-color: var(--composer-html-background);
+
 
     .max-content {
         .card-wrapper {
-            display: flex;
-            flex-direction: row;
-            background-color: var(--composer-html-background);
             overflow: hidden;
             border-radius: var(--composer-border-radius-md);
             padding: 0;
+            gap: var(--composer-gap-xl);
 
-            &.colored {
-                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
 
-                @container (max-width: #{$composer-tablet-width}) {
-                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+            &.no-media {
+                grid-template-columns: 1fr !important;
+            }
+
+            &.no-text {
+
+
+                .right-column {
+
+                    max-height: 55vh;
                 }
 
-                @container (max-width: #{$composer-phone-width}) {
-                    padding: var(--composer-gap-xl) var(--composer-gap-md);
-                }
-            }
-        }
+                &.colored {
+                    padding: 0;
+                    background-color: transparent;
 
-        .left-column {
-            flex: 1;
-            padding: var(--composer-gap-lg);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: left;
-            align-items: flex-start;
-
-            @container (max-width: #{$composer-phone-width}) {
-                align-items: flex-start;
-                text-align: flex-start;
-            }
-
-            &.colored {
-                background-color: var(--composer-primary-color);
-            }
-
-            .title,
-            .description {
-                color: var(--composer-font-color-primary);
-            }
-
-            &.colored {
-                color: var(--composer-primary-color);
-            }
-
-            .title,
-            .description {
-                color: var(--composer-font-color-secondary);
-
-            }
-
-            .subtitle {
-                margin: 0;
-            }
-
-            .button-container {
-                flex-wrap: wrap;
-                gap: var(--composer-gap-sm);
-
-                .button {
-                    padding: var(--composer-gap-sm) var(--composer-gap-md);
-                    background-color: var(--composer-html-background);
-                    display: inline-flex;
-                    align-items: center;
-                    gap: var(--composer-gap-xs);
-                    border-radius: var(--composer-border-radius-sm);
-                    cursor: pointer;
-
-                    .button-text {
+                    .right-column {
                         margin: 0;
+                        border-radius: var(--composer-border-radius-md);
                     }
                 }
             }
-        }
 
-        .right-column {
-            flex: 1;
-            overflow: hidden;
-            position: relative;
+            &.colored {
+                padding: 80px var(--composer-gap-xl);
+                background-color: var(--composer-primary-color);
 
-            .media-container {
-                position: relative;
-
-                .overlay {
-                    position: absolute;
-                    inset: 0;
-                    width: 100%;
-                    height: 100%;
-                    background-color: var(--composer-overlay-color);
-                    z-index: 1;
-                    pointer-events: none;
+                .right-column {
+                    margin: -80px calc(-1 * var(--composer-gap-xl)) -80px 0;
+                    border-radius: 0 !important;
                 }
 
-                .media {
+                .left-column {
+
+                    .title,
+                    .subtitle,
+                    .description {
+                        color: var(--composer-font-color-secondary);
+                        text-align: left;
+                        align-self: flex-start;
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+
+                    .subtitle {
+                        background-color: transparent;
+                        padding: 0;
+                        border-radius: 0;
+                        color: var(--composer-font-color-secondary);
+
+                    }
+                }
+            }
+
+            .left-column {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: left;
+                align-items: flex-start;
+
+                .title,
+                .subtitle,
+                .description {
+                    text-align: left;
+                    align-self: flex-start;
+                }
+
+                .subtitle {
+                    margin-left: 0;
+
+                    &::before {
+                        color: var(--composer-font-color-primary);
+                    }
+                }
+
+                .button-container {
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+                    display: flex;
+                    align-self: flex-start;
+
+                    .button {
+                        content: "";
+                    }
+                }
+            }
+
+            .right-column {
+                overflow: hidden;
+                position: relative;
+                display: flex;
+                border-radius: var(--composer-border-radius-sm);
+
+                .media-container {
+                    position: relative;
                     width: 100%;
                     height: 100%;
-                    object-fit: cover;
-                    display: block;
+
+
+                    .overlay {
+                        position: absolute;
+                        inset: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: var(--composer-overlay-color);
+                        z-index: 1;
+                        pointer-events: none;
+                    }
+
+                    .media {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: block;
+                    }
                 }
             }
         }
@@ -114,13 +135,68 @@
 
 
 @container (max-width: #{$composer-tablet-width}) {
+    .container .max-content .card-wrapper {
+
+        &.colored {
+            padding: 80px 40px;
+
+            .right-column {
+                margin: -80px -40px -80px 0;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .card-wrapper {
-                flex-direction: column-reverse;
+                padding: 0;
+                gap: var(--composer-gap-md);
+                border-radius: var(--composer-border-radius-md);
+
+                .right-column {
+                    order: -1;
+                }
+
+                &.colored {
+                    padding: 0;
+                    padding-bottom: var(--composer-gap-xl);
+
+                    .left-column {
+                        padding: var(--composer-gap-md) var(--composer-gap-md);
+                        padding-top: 0;
+                    }
+
+                    .right-column {
+                        margin: 0;
+                        border-radius: var(--composer-border-radius-md) var(--composer-border-radius-md) 0 0;
+                    }
+
+                    &.no-media {
+                        padding: var(--composer-gap-xl) var(--composer-gap-md);
+
+                        .left-column {
+                            padding: 0;
+                        }
+                    }
+                }
 
                 .left-column {
-                    padding: var(--composer-gap-lg);
+                    padding: 0;
+                    margin: 0;
+                    width: 100%;
+                }
+
+                .right-column {
+                    margin: 0;
+                    width: 100%;
+                    border-radius: var(--composer-border-radius-sm);
+                }
+
+                &.no-media {
+                    padding-right: 0;
+                    gap: 0;
                 }
             }
         }
