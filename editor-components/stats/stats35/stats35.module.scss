@@ -58,7 +58,6 @@
             align-items: center;
             justify-content: flex-start;
             min-height: 500px;
-            // Negative margins to extend right-background to container edges (compensate for container padding)
             margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-xl)) calc(-1 * var(--composer-gap-lg) * 2) 0;
 
             .right-background {
@@ -81,11 +80,19 @@
                 }
             }
 
+            &.full-width {
+                margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-xl));
+            }
+
             &.no-media {
                 margin-top: 0;
                 margin-bottom: 0;
                 margin-right: 0;
                 min-height: unset;
+
+                .stats-list {
+                    padding: 0;
+                }
 
                 .stat-value {
                     color: var(--composer-font-color-primary) !important;
@@ -147,9 +154,17 @@
         padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
 
         .content-wrapper {
+            .subtitle {
+                text-align: left;
+            }
+
             .right-column {
                 min-height: 400px;
                 margin-right: calc(-1 * var(--composer-gap-lg));
+
+                &.full-width {
+                    margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-lg));
+                }
 
                 .stats-list {
                     .stat-item {
@@ -167,9 +182,10 @@
     .container {
         .content-wrapper {
             flex-direction: column;
-            gap: 0;
+            gap: var(--composer-gap-md);
 
             .left-column.center-alignment {
+
                 .subtitle,
                 .title,
                 .description {
@@ -205,6 +221,10 @@
             .right-column {
                 margin: 0 calc(-1 * var(--composer-gap-lg)) calc(-1 * var(--composer-gap-lg) * 2);
                 min-height: unset;
+
+                &.full-width {
+                    margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-lg));
+                }
 
                 &.no-media {
                     margin-bottom: 0;
