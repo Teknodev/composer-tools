@@ -26,7 +26,7 @@
 
     &.no-media:not(.no-card) .max-content {
         height: auto;
-        padding: var(--composer-gap-lg) var(--composer-gap-xl);
+        padding: 80px 50px;
     }
 
     .max-content {
@@ -182,7 +182,7 @@
         }
 
         &.no-media:not(.no-card) .max-content {
-            padding: var(--composer-gap-xl) var(--composer-gap-lg);
+            padding: 80px 40px;
         }
 
         .max-content {
@@ -219,7 +219,7 @@
         }
 
         &.no-media:not(.no-card) .max-content {
-            padding: var(--composer-gap-xl) var(--composer-gap-md);
+            padding: 50px 20px;
         }
 
         .max-content {
