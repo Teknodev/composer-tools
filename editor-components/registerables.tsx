@@ -156,6 +156,7 @@ import FeatureComponent44 from "./feature/feature44/feature44";
 import FeatureComponent45 from "./feature/feature45/feature45";
 import FeatureComponent46 from "./feature/feature46/feature46";
 import FeatureComponent47 from "./feature/feature47/feature47";
+import FeatureComponent51 from "./feature/feature51/feature51";
 import CallToAction1 from "./call_to_action/call_to_action1/call_to_action1";
 import CallToAction2 from "./call_to_action/call_to_action2/call_to_action2";
 import CallToAction3 from "./call_to_action/call_to_action3/call_to_action3";
@@ -360,7 +361,6 @@ import Header7 from "./header/header7/header7";
 import Header8 from "./header/header8/header8";
 import Header9 from "./header/header9/header9";
 
-
 function Registerables(composer: ComponentsRegistery) {
   composer.register([
     SocialComponent1,
@@ -554,6 +554,7 @@ function Registerables(composer: ComponentsRegistery) {
     FeatureComponent45,
     FeatureComponent46,
     FeatureComponent47,
+    FeatureComponent51,
     CallToAction1,
     CallToAction2,
     CallToAction3,
