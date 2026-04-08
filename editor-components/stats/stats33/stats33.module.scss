@@ -143,6 +143,10 @@
             flex-direction: column !important;
             gap: var(--composer-gap-md);
 
+            &.row-reverse {
+                flex-direction: column !important;
+            }
+
             .text-content {
                 .stat-value {
                     font-size: 6rem;
