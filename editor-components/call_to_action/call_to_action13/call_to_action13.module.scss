@@ -63,27 +63,24 @@
         flex-direction: column;
 
         .vertical-content {
-          align-items: center;
+          align-items: var(--composer-content-alignment);
 
           .subtitle {
             margin-right: 0;
-            max-inline-size: none;
-            transform: translate(0) !important;
-
-            &::before {
-              background: transparent !important;
-            }
+            max-inline-size: none !important;
+            text-align: var(--composer-content-alignment) !important;
           }
 
           .title,
           .description {
             max-inline-size: none !important;
-            text-align: center !important;
+            text-align: var(--composer-content-alignment) !important;
           }
         }
 
         .button-container {
-          justify-content: center;
+          justify-content: var(--composer-content-alignment);
+          width: 100%;
           max-width: 100%;
         }
       }
