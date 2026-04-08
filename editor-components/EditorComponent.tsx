@@ -328,7 +328,7 @@ export type TypeReactComponent = {
   id?: string;
   children?: string;
   customComponentId?: string;
-  customComponentVersion?: string;
+  customComponentVersion?: number;
   globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
