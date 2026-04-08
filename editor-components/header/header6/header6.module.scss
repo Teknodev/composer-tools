@@ -1,0 +1,125 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
+  as *;
+
+.container {
+  position: relative;
+  z-index: 1;
+  background: (--composer-html-background) no-repeat center center;
+  background-size: cover;
+
+  &.overlay {
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: var(--composer-overlay-color);
+    }
+  }
+
+  .background-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    display: block;
+    .background-media-element {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .max-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    min-height: 70vh;
+
+    .vertical-content {
+      justify-content: center;
+      width: 100%;
+      text-align: left;
+
+      .subtitle {
+        content: "";
+      }
+
+      .description-wrapper {
+        display: flex;
+        justify-content: var(--composer-content-alignment, flex-start);
+        gap: var(--composer-gap-xl);
+
+        &.centered {
+          flex-direction: column-reverse;
+          gap: 0;
+        }
+
+        .button-wrapper {
+          display: flex;
+          justify-content: var(--composer-content-alignment, flex-start);
+          .button-text {
+            content: "";
+          }
+        }
+
+        .description {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .vertical-content {
+        .description-wrapper {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .vertical-content {
+        .description-wrapper {
+          display: flex;
+          flex-direction: column-reverse;
+          gap: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+.container.hasBackground {
+  .subtitle {
+    color: white !important;
+    background: transparent !important;
+  }
+
+  .subtitle {
+    &::before {
+      background: white !important;
+    }
+  }
+
+  .title,
+  .description {
+    color: white !important;
+  }
+}

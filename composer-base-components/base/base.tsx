@@ -220,7 +220,7 @@ export namespace Base {
 
   export function SectionTitle({ className, ...props }: any) {
     return (
-      <H1 className={`${styles.sectionTitle} ${className}`} {...props}></H1>
+      <H1 className={`${styles.sectionTitle} ${className}`} data-section="title" {...props}></H1>
     );
   }
 
@@ -229,6 +229,7 @@ export namespace Base {
     return (
       <H3
         className={`${styles.sectionSubTitle} ${className} ${styles[type]}`}
+        data-section="subtitle"
         {...props}
       ></H3>
     );
@@ -236,7 +237,7 @@ export namespace Base {
 
   export function SectionDescription({ className, ...props }: any) {
     return (
-      <P className={`${styles.sectionDescription} ${className}`} {...props}></P>
+      <P className={`${styles.sectionDescription} ${className}`} data-section="description" {...props}></P>
     );
   }
 
@@ -264,27 +265,22 @@ export namespace Base {
   export function Overlay({ className, isVisible, isModal=false, ...props}: any) {
 
     const [width, setWidth] = useState(0);
-    const [height, setHeight] = useState(0);    
-    const [x, setX] = useState(0);
-    const [y, setY] = useState(0);
+    const [height, setHeight] = useState(0);
     const [currentOpacity, setCurrentOpacity] = useState(0);
 
     useEffect(() => {
       document.documentElement.style.overflow = "hidden";
       let playgroundEl = document.getElementById("playground");
 
-      const updatePosition = () => {
-        const boundingClient = playgroundEl.getBoundingClientRect();
-        setWidth(boundingClient.width);
-        setHeight(boundingClient.height);
-        setX(boundingClient.x);
-        setY(boundingClient.y);
+      const updateSize = () => {
+        setWidth(playgroundEl.offsetWidth);
+        setHeight(playgroundEl.offsetHeight);
       };
 
-      let resizeObserver = new ResizeObserver(updatePosition); 
+      let resizeObserver = new ResizeObserver(updateSize); 
       resizeObserver.observe(playgroundEl);
       
-      window.addEventListener('resize', updatePosition);
+      window.addEventListener('resize', updateSize);
 
       if (isVisible) {
         setCurrentOpacity(1);
@@ -292,20 +288,20 @@ export namespace Base {
 
       if(!isVisible){
         resizeObserver.disconnect();
-        window.removeEventListener('resize', updatePosition);
+        window.removeEventListener('resize', updateSize);
         setCurrentOpacity(0);
       }
 
       return () => {
         document.documentElement.style.overflow = "";
         resizeObserver.disconnect();
-        window.removeEventListener('resize', updatePosition);
+        window.removeEventListener('resize', updateSize);
       };
-    }, [isVisible ,width]);
+    }, [isVisible, width]);
     if(isVisible) {
       return (
         <div
-          style={{ width, height, left: x, top: y, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
+          style={{ width, height, opacity: currentOpacity, ...(isModal && { zIndex: 102 }) }}
           className={`${styles.overlay} ${className}`}
           {...props}
         >
@@ -665,6 +661,7 @@ export namespace Base {
       case "video":
         return (
           <video
+            key={`${value.url}-${!!value.settings?.autoplay}-${!!value.settings?.loop}-${!!value.settings?.muted}`}
             className={className}
             src={value.url}
             autoPlay={!!value.settings?.autoplay}
@@ -673,6 +670,11 @@ export namespace Base {
             muted={!!value.settings?.muted || !!value.settings?.autoplay}
             playsInline
             preload="auto"
+            ref={(el) => {
+              if (el) {
+                el.playbackRate = value.settings?.playbackRate ?? 1;
+              }
+            }}
             {...props}
           />
         );
