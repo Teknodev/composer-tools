@@ -2,7 +2,7 @@ import * as React from "react";
 import styles from "./breadcrumb1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { BaseBreadcrumb } from "../../EditorComponent";
-import ComposerLink from "custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type BreadcrumbItem = {
     title: string;
@@ -141,7 +141,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
         const alignmentValue = Base.getContentAlignment();
 
         return (
-            <>
+            <div className={this.decorateCSS("breadcrumb1-root")}>
                 {(bgImage?.url || isTitleExist) && (
                     <Base.Container
                         className={this.decorateCSS("container")}
@@ -227,7 +227,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                         </Base.MaxContent>
                     </Base.Container>
                 )}
-            </>
+            </div>
         );
     }
 }

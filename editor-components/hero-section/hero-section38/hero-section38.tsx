@@ -1,452 +1,809 @@
-import * as React from "react";
-import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./hero-section38.module.scss";
-import ComposerSlider from "../../../composer-base-components/slider/slider";
+import { BaseHeroSection, TypeMediaInputValue } from "../../EditorComponent";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import Slider from "react-slick";
- 
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type SlideItem = {
-  image: TypeMediaInputValue;
-  name: React.JSX.Element;
-  navigateTo: string;
-  subtitle?: string;
-  description?: string;
-};
+interface PortfolioItem {
+  visibility: boolean;
+  url: string;
+  subtitle: string;
+  title: string;
+  description: string;
+  icon: TypeMediaInputValue;
+  icon2: TypeMediaInputValue;
+  buttons: INPUTS.CastedButton[];
+  media: TypeMediaInputValue;
+  overlay: boolean;
+}
 
 class HeroSection38 extends BaseHeroSection {
-  sliderRef: React.RefObject<Slider | null>;
-
   constructor(props?: any) {
     super(props, styles);
-
     this.addProp({
-      type: "array",
-      key: "slides",
-      displayer: "Slides",
+      type: "object",
+      key: "leftSideCard",
+      displayer: "Left Side Card",
       value: [
         {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
+          type: "boolean",
+          key: "visibility",
+          displayer: "Visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Navigate To",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "",
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "" },
+        },
+        {
+          type: "media",
+          key: "icon2",
+          displayer: "Icon2",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "" },
+        },
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
           value: [
-            {
-              type: "media",
-              key: "image",
-               displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691344f83596a1002b2472ab?alt=media",
-              },
-              additionalParams: {
-                availableTypes: ["image","video"],
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Title",
-              value: "Curitiba Brasil",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Navigate To",
-              value: "",
-            },
+            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
           ],
         },
         {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "image",
-               displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6913448f3596a1002b24721e?alt=media",
-              },
-              additionalParams: {
-                availableTypes: ["image" , "video"],
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Title",
-              value: "Ron Mccleny",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3662f959f6002d79b56d?alt=media",
+          },
         },
         {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "image",
-               displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691344393596a1002b247169?alt=media",
-              },
-              additionalParams: {
-                availableTypes: ["image" , "video"],
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Title",
-              value: "National Aquarium Denmark",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "slide",
-          displayer: "Slide",
-          value: [
-            {
-              type: "media",
-              key: "image",
-               displayer: "Media",
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691343ec3596a1002b24710d?alt=media",
-              },
-              additionalParams: {
-                availableTypes: ["image" , "video"],
-              },
-            },
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "name",
-              displayer: "Title",
-              value: "Seceda",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value: "",
-            },
-            {
-              type: "page",
-              key: "navigateTo",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
         },
       ],
     });
-
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      displayer: "Right Side Top Left Card",
+      key: "rightSideTopLeftCard",
+      value: [
+        {
+          type: "boolean",
+          key: "visibility",
+          displayer: "Visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Navigate To",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "",
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "" },
+        },
+        {
+          type: "media",
+          key: "icon2",
+          displayer: "Icon2",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "" },
+        },
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [
+            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
+          ],
+        },
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3672f959f6002d79b58a?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
-
     this.addProp({
-      type: "boolean",
-      key: "animation",
+      type: "object",
+      displayer: "Right Side Top Right Card",
+      key: "rightSideTopRightCard",
+      value: [
+        {
+          type: "boolean",
+          key: "visibility",
+          displayer: "Visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Navigate To",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Start business with mentors",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "",
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: {
+            type: "icon",
+            name: "RxDividerVertical",
+          },
+        },
+        {
+          type: "media",
+          key: "icon2",
+          displayer: "Icon2",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: {
+            type: "icon",
+            name: "LuChevronRight",
+          },
+        },
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [
+            INPUTS.BUTTON("button", "Button", "", "", "", "", "Primary"),
+          ],
+        },
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e3680f959f6002d79b5a4?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
+      type: "object",
+      displayer: "Right Side Bottom Left Card",
+      key: "rightSideBottomLeftCard",
+      value: [
+        {
+          type: "boolean",
+          key: "visibility",
+          displayer: "Visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Navigate To",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "Achieve goals & coach fast",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "",
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: {
+            type: "icon",
+            name: "RxDividerVertical",
+          },
+        },
+        {
+          type: "media",
+          key: "icon2",
+          displayer: "Icon2",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: {
+            type: "icon",
+            name: "LuChevronRight",
+          },
+        },
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [
+            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+          ],
+        },
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e368df959f6002d79b5be?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
+      type: "object",
+      displayer: "Right Side Bottom Right Card",
+      key: "rightSideBottomRightCard",
+      value: [
+        {
+          type: "boolean",
+          key: "visibility",
+          displayer: "Visibility",
+          value: true,
+        },
+        {
+          type: "page",
+          key: "url",
+          displayer: "Navigate To",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "subtitle",
+          displayer: "Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "title",
+          displayer: "Title",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "description",
+          displayer: "Description",
+          value: "",
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Icon",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "" },
+        },
+        {
+          type: "media",
+          key: "icon2",
+          displayer: "Icon2",
+          additionalParams: { availableTypes: ["icon", "image"] },
+          value: { type: "icon", name: "" },
+        },
+        {
+          type: "array",
+          key: "buttons",
+          displayer: "Buttons",
+          value: [
+            INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+          ],
+        },
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36a0f959f6002d79b610?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
       displayer: "Animation",
-      value: true,
-    });
-
-    this.addProp({
-      type: "media",
-      key: "previousArrow",
-      displayer: "Previous Arrow",
+      value: ["animate1"],
       additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "FiArrowLeft",
+        selectItems: ["animate1", "animate2"],
       },
     });
-
-    this.addProp({
-      type: "media",
-      key: "nextArrow",
-      displayer: "Next Arrow",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "FiArrowRight",
-      },
-    });
-    
-    this.addProp({
-      type: "boolean",
-      key: "autoplay",
-      displayer: "Autoplay",
-      value: false,
-    });
-
-    this.sliderRef = React.createRef();
-    this.setComponentState("active-index", 1);
-    this.setComponentState("scaled-index", null);
   }
-
   static getName(): string {
     return "Hero Section 38";
   }
 
-  private hasImage = (image?: TypeMediaInputValue) => {
-    const media = image as { url?: string; value?: { url?: string } };
-    return !!(media?.url ?? media?.value?.url);
-  };
-
-  private getValidSlides = () => {
-    const slidesRaw = this.castToObject<SlideItem[]>("slides");
-    return slidesRaw.filter((item: SlideItem) => {
-      const imageExist = this.hasImage(item.image);
-      const nameExist = this.castToString(item.name);
-      return imageExist || nameExist;
-    });
-  };
-
-  componentDidMount() {
-    this.setScaledIndexWithDelay();
-  }
-  startScaleDelay = () => {
-    this.setScaledIndexWithDelay(true);
-  };
-
-  private setScaledIndexWithDelay(reset?: boolean) {
-    const animation = !!this.getPropValue("animation");
-    const isWide = window.innerWidth > 640;
-    if (!animation || !isWide) return;
-
-    if (reset) {
-      this.setComponentState("scaled-index", null);
-    }
-
-    setTimeout(() => {
-      const slides = this.getValidSlides();
-      const isSingleSlide = slides.length === 1;
-      const activeIndex = isSingleSlide ? 0 : this.getComponentState("active-index");
-      this.setComponentState("scaled-index", activeIndex);
-    }, 1000);
-  }
-
-  handlePrevClick = () => {
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickPrev();
-    }
-  };
-
-  handleNextClick = () => {
-    if (this.sliderRef.current) {
-      this.sliderRef.current.slickNext();
-    }
-  };
-
   render() {
-    const slides = this.getValidSlides();
-    const overlay = !!this.getPropValue("overlay");
-    const animation = !!this.getPropValue("animation");
-    const isSingleSlide = slides.length === 1;
-    const settings = {
-      dots: false,
-      infinite: slides.length > 1,
-      autoplaySpeed: 5000,
-      speed: 1000,
-      autoplay: !!this.getPropValue("autoplay"),
-      slidesToShow: isSingleSlide ? 1 : 1.2,
-      slidesToScroll: 1,
-      centerMode: !isSingleSlide,
-      centerPadding: "0px",
-      arrows: false,
-      variableWidth: !isSingleSlide,
-      initialSlide: isSingleSlide ? 0 : 1,
-      beforeChange: (_prev: number, next: number) => {
-        this.setComponentState("active-index", next);
-        this.startScaleDelay();
-      },
-      responsive: [
-        {
-          breakpoint: 960,
-          settings: {
-            slidesToShow: 1.2,
-            variableWidth: true,
-            centerMode: true,
-          },
-        },
-        {
-          breakpoint: 640,
-          settings: {
-            slidesToShow: 1,
-            variableWidth: false,
-            centerMode: true,
-            centerPadding: "0px",
-          },
-        },
-      ],
+    const itemLeft = this.castToObject<PortfolioItem>("leftSideCard");
+    const itemTopRight = this.castToObject<PortfolioItem>(
+      "rightSideTopRightCard"
+    );
+    const itemTopLeft = this.castToObject<PortfolioItem>(
+      "rightSideTopLeftCard"
+    );
+    const itemBottomLeft = this.castToObject<PortfolioItem>(
+      "rightSideBottomLeftCard"
+    );
+    const itemBottomRight = this.castToObject<PortfolioItem>(
+      "rightSideBottomRightCard"
+    );
+
+    const getButtonsFromItem = (item: PortfolioItem) => {
+      const buttonsArray = item?.buttons;
+      if (!Array.isArray(buttonsArray)) return [];
+
+      return buttonsArray.map((btn: any) => {
+        const parent = btn?.value ?? btn;
+        const icon = this.getPropValue("icon", { parent_object: parent });
+        const media = icon || null;
+        return {
+          text: this.getPropValue("text", { parent_object: parent }),
+          type: this.getPropValue("type", { parent_object: parent }),
+          url: this.getPropValue("url", { parent_object: parent }),
+          media,
+        };
+      });
     };
 
-    const containerClassNames = !animation
-      ? `${this.decorateCSS("container")} ${this.decorateCSS("no-animation")}`
-      : this.decorateCSS("container");
+    const hasAnyButtonInItem = (
+      buttons: any[]
+    ) => {
+      return buttons.some(
+        (b: any) =>
+          b?.text || b?.media?.name || b?.media?.url
+      );
+    };
 
-    return (
-      <Base.Container className={containerClassNames}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {slides.length > 0 && (
-            <div className={this.decorateCSS("slider-wrapper")}>
-              <ComposerSlider ref={this.sliderRef} {...settings} className={`${this.decorateCSS("slider")} ${isSingleSlide && this.decorateCSS("single-slide")}`}>
-                {slides.map((item: SlideItem, index: number) => {
-                  const scaledIndex = this.getComponentState("scaled-index");
-                  const isScaled = animation && scaledIndex === index;
-                  const navigateTo = item.navigateTo;
-                  const liveName = this.getPropValue(`slides.${index}.name`) ?? item.name;
-                  const slideSubtitle = this.getPropValue(`slides.${index}.subtitle`) ?? item.subtitle;
-                  const slideDescription = this.getPropValue(`slides.${index}.description`) ?? item.description;
-                  const imageValue = (this.getPropValue(`slides.${index}.image`) as TypeMediaInputValue | undefined) ?? item.image;
-                  const imageExists = this.hasImage(imageValue);
-                  const isVideoMedia = imageValue?.type === "video";
-                  const titleExists = this.castToString(liveName);
-                  const hasSubtitle = this.castToString(slideSubtitle);
-                  const hasDescription = this.castToString(slideDescription);
+    const hasContentInItem = (item: PortfolioItem) => {
+      const buttons = getButtonsFromItem(item);
+      const subtitle = item?.subtitle;
+      const title = item?.title;
+      const description = item?.description;
+      const media = item?.media;
+      const icon = item?.icon;
+      const icon2 = item?.icon2;
 
-                  if (!imageExists && !titleExists) {
-                    return null;
-                  }
+      const hasSubtitle = this.castToString(subtitle);
+      const hasTitle = this.castToString(title);
+      const hasDescription = this.castToString(description);
+      const hasMedia = media;
 
-                  const slideClass = `${this.decorateCSS("slide-item")} ${!imageExists && titleExists && this.decorateCSS("no-image")} ${isScaled && this.decorateCSS("active-slide")}`;
-                  
-                  const slideContent = (
-                    <ComposerLink path={navigateTo}>
-                      <div className={this.decorateCSS("image-wrapper")}>
-                        {imageExists && (
-                          <>
-                            <Base.Media
-                              className={`${this.decorateCSS("image")} ${isVideoMedia && this.decorateCSS("video-media")}`}
-                              value={imageValue}
-                            />
-                            {overlay && <div className={this.decorateCSS("overlay")} />}
-                          </>
-                        )}
-                        <Base.VerticalContent
-                          className={`${this.decorateCSS("content-overlay")} ${imageExists && this.decorateCSS("has-image")}`}
-                        >
-                          {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{slideSubtitle}</Base.SectionSubTitle>}
-                          {titleExists && <Base.SectionTitle className={this.decorateCSS("title")}>{liveName}</Base.SectionTitle>}
-                          {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{slideDescription}</Base.SectionDescription>}
-                        </Base.VerticalContent>
-                      </div>
-                    </ComposerLink>
-                  );
+      const hasAnyButton = hasAnyButtonInItem(buttons);
+
+      return !!(
+        hasSubtitle ||
+        hasTitle ||
+        hasDescription ||
+        hasMedia ||
+        icon ||
+        icon2 ||
+        hasAnyButton
+      );
+    };
+
+    const itemHasContent = (item: PortfolioItem) =>
+      !!(item && item.visibility && hasContentInItem(item));
+
+    const renderRight =
+      itemHasContent(itemTopLeft) ||
+      itemHasContent(itemTopRight) ||
+      itemHasContent(itemBottomLeft) ||
+      itemHasContent(itemBottomRight);
+
+
+
+    const hasLeftSection = itemHasContent(itemLeft);
+
+    const getRightSideBorderClasses = (position: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'): string => {
+      const classes: string[] = [];
+
+      const hasTopLeft = itemHasContent(itemTopLeft);
+      const hasTopRight = itemHasContent(itemTopRight);
+      const hasBottomLeft = itemHasContent(itemBottomLeft);
+      const hasBottomRight = itemHasContent(itemBottomRight);
+
+      const isLeft = position === "topLeft" || position === "bottomLeft";
+      const isTop = position === "topLeft" || position === "topRight";
+
+      const hasRowPartner = isTop
+        ? hasTopLeft && hasTopRight
+        : hasBottomLeft && hasBottomRight;
+
+      if (hasRowPartner) {
+        classes.push(this.decorateCSS(isLeft ? "inner-right" : "inner-left"));
+      }
+
+      const isLeftMost =
+        (position === "topLeft") ||
+        (position === "bottomLeft") ||
+        (position === "topRight" && !hasTopLeft) ||
+        (position === "bottomRight" && !hasBottomLeft);
+
+      if (hasLeftSection && isLeftMost) {
+        classes.push(this.decorateCSS("left-edge"));
+      }
+
+      return classes.join(" ");
+    };
+
+    const renderItemContent = (item: PortfolioItem) => {
+      const buttons = getButtonsFromItem(item);
+      const subtitle = item?.subtitle;
+      const title = item?.title;
+      const description = item?.description;
+      const icon = item?.icon;
+      const icon2 = item?.icon2;
+
+      const hasSubtitle = this.castToString(subtitle);
+      const hasTitle = this.castToString(title);
+      const hasDescription = this.castToString(description);
+      const hasAnyButton = hasAnyButtonInItem(buttons);
+
+      if (!hasContentInItem(item)) {
+        return null;
+      }
+
+      return (
+        <div className={this.decorateCSS("content")}>
+          <Base.VerticalContent
+            className={this.decorateCSS("vertical-content")}
+          >
+            {hasSubtitle && (
+              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                {subtitle}
+              </Base.SectionSubTitle>
+            )}
+
+            {(hasTitle || icon || icon2) && (
+              <div className={this.decorateCSS("title-row")}>
+                {hasTitle && (
+                  <Base.H2 className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.H2>
+                )}
+
+                {(icon || icon2) && (
+                  <div className={this.decorateCSS("icons-wrapper")}>
+                    {icon && (
+                      <Base.Media
+                        value={icon}
+                        className={this.decorateCSS("icon1")}
+                      />
+                    )}
+                    {icon2 && (
+                      <Base.Media
+                        value={icon2}
+                        className={this.decorateCSS("icon2")}
+                      />
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {hasDescription && (
+              <Base.SectionDescription
+                className={this.decorateCSS("description")}
+              >
+                {description}
+              </Base.SectionDescription>
+            )}
+
+            {hasAnyButton && (
+              <div className={this.decorateCSS("action-buttons")}>
+                {buttons.map((btn, index: number) => {
+                  const buttonText = btn.text;
+                  const buttonMedia = btn.media as any;
+                  const buttonUrl = btn.url || "#";
+                  const buttonType = btn.type;
+
+                  const btnTextExist = this.castToString(buttonText);
+                  const buttonMediaExist =
+                    buttonMedia && (buttonMedia.name || buttonMedia.url);
+
+                  if (!btnTextExist && !buttonMediaExist) return null;
 
                   return (
-                    <div key={index} className={slideClass}>
-                      {slideContent}
-                    </div>
+                    <ComposerLink
+                      path={buttonUrl}
+                      key={`portfolio-btn-${index}`}
+                    >
+                      <Base.Button
+                        buttonType={buttonType as any}
+                        className={this.decorateCSS("button")}
+                      >
+                        {buttonMediaExist && (
+                          <Base.Media
+                            value={buttonMedia}
+                            className={this.decorateCSS("button-icon")}
+                          />
+                        )}
+                        {btnTextExist && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {buttonText}
+                          </Base.P>
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
                   );
                 })}
-              </ComposerSlider>
-              {slides.length > 1 && (
-                <div className={this.decorateCSS("navigation-wrapper")}>
-                  {this.getPropValue("previousArrow") && (
-                    <div
-                      className={this.decorateCSS("arrow-button")}
-                      onClick={this.handlePrevClick}
-                    >
+              </div>
+            )}
+          </Base.VerticalContent>
+        </div>
+      );
+    };
+
+    return (
+      <Base.Container
+        isFull={true}
+        className={this.decorateCSS("container")}
+      >
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          {itemHasContent(itemLeft) && (
+            <div className={this.decorateCSS("left")}>
+              <ComposerLink path={itemLeft.url} isFullWidth={true}>
+                <div
+                  className={`${this.decorateCSS("item")} ${(!itemLeft.media || !itemLeft.media.url) &&
+                    this.decorateCSS("no-media")
+                    } ${renderRight ? this.decorateCSS("right-edge") : ""}`}
+                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
+                >
+                  {itemLeft.media && itemLeft.media.url && (
+                    <div className={this.decorateCSS("background-media")}>
                       <Base.Media
-                        value={this.getPropValue("previousArrow")}
-                        className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
+                        value={itemLeft.media}
+                        className={this.decorateCSS("media-element")}
                       />
+                      {itemLeft.overlay && (
+                        <div
+                          className={this.decorateCSS("thumbnail-overlay")}
+                        />
+                      )}
                     </div>
                   )}
-                    <div className={this.decorateCSS("pagination")}>
-                      {slides.map((_, index: number) => (
-                        <Base.Button
-                          key={`pagination-dot-${index}`}
-                          className={`${this.decorateCSS("pagination-dot")} ${this.getComponentState("active-index") === index && this.decorateCSS("active")}`}
-                          onClick={() => this.sliderRef.current?.slickGoTo(index)}
-                        >
-                          <div className={`${this.decorateCSS("dot-icon")} ${this.decorateCSS("dot-icon-media")}`} />
-                        </Base.Button>
-                      ))}
-                    </div>
-                  {this.getPropValue("nextArrow") && (
-                    <div
-                      className={this.decorateCSS("arrow-button")}
-                      onClick={this.handleNextClick}
-                    >
-                      <Base.Media
-                        value={this.getPropValue("nextArrow")}
-                        className={`${this.decorateCSS("arrow-icon")} ${this.decorateCSS("arrow-icon-media")}`}
-                      />
-                    </div>
-                  )}
+                  {renderItemContent(itemLeft)}
                 </div>
-              )}
+              </ComposerLink>
+            </div>
+          )}
+
+          {renderRight && (
+            <div className={this.decorateCSS("right")}>
+              {(itemHasContent(itemTopLeft) ||
+                itemHasContent(itemTopRight)) && (
+                  <div className={this.decorateCSS("top")}>
+                    {itemHasContent(itemTopLeft) && (
+                      <ComposerLink path={itemTopLeft.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemTopLeft.media || !itemTopLeft.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('topLeft')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemTopLeft.media && itemTopLeft.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemTopLeft.media}
+                                className={this.decorateCSS("media-element")}
+                              />
+                              {itemTopLeft.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemTopLeft)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                    {itemHasContent(itemTopRight) && (
+                      <ComposerLink path={itemTopRight.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemTopRight.media || !itemTopRight.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('topRight')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemTopRight.media && itemTopRight.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemTopRight.media}
+                                className={this.decorateCSS("media-element")}
+                              />
+                              {itemTopRight.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemTopRight)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                  </div>
+                )}
+              {(itemHasContent(itemBottomLeft) ||
+                itemHasContent(itemBottomRight)) && (
+                  <div className={this.decorateCSS("bottom")}>
+                    {itemHasContent(itemBottomLeft) && (
+                      <ComposerLink path={itemBottomLeft.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemBottomLeft.media || !itemBottomLeft.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('bottomLeft')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemBottomLeft.media && itemBottomLeft.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemBottomLeft.media}
+                                className={this.decorateCSS("media-element")}
+                              />
+                              {itemBottomLeft.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemBottomLeft)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                    {itemHasContent(itemBottomRight) && (
+                      <ComposerLink path={itemBottomRight.url} isFullWidth={true}>
+                        <div
+                          className={`${this.decorateCSS("item")} ${(!itemBottomRight.media || !itemBottomRight.media.url) &&
+                            this.decorateCSS("no-media")
+                            } ${getRightSideBorderClasses('bottomRight')}`}
+                          data-animation={this.getPropValue(
+                            "hoverAnimation"
+                          ).join(" ")}
+                        >
+                          {itemBottomRight.media && itemBottomRight.media.url && (
+                            <div className={this.decorateCSS("background-media")}>
+                              <Base.Media
+                                value={itemBottomRight.media}
+                                className={this.decorateCSS("media-element")}
+                              />
+                              {itemBottomRight.overlay && (
+                                <div
+                                  className={this.decorateCSS(
+                                    "thumbnail-overlay"
+                                  )}
+                                />
+                              )}
+                            </div>
+                          )}
+                          {renderItemContent(itemBottomRight)}
+                        </div>
+                      </ComposerLink>
+                    )}
+                  </div>
+                )}
             </div>
           )}
         </Base.MaxContent>

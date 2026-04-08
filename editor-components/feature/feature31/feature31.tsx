@@ -1,16 +1,15 @@
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature31.module.scss";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
-interface FeatureCardType {
-    media?: TypeMediaInputValue;
+type Card = {
+    media: TypeMediaInputValue;
     title: React.JSX.Element;
     description: React.JSX.Element;
-}
-
+};
 
 class Feature31 extends BaseFeature {
     constructor(props?: any) {
@@ -20,158 +19,115 @@ class Feature31 extends BaseFeature {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Trusted by over 100 developers",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
+            value: "Why Choose Us?",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
+            value: "Imagination is more important than knowledge. Knowledge is limited.",
         });
 
         this.addProp({
             type: "array",
+            key: "cards",
             displayer: "Features",
-            key: "features",
             value: [
                 {
                     type: "object",
-                    key: "feature",
-                    displayer: "Feature",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "icon"] },
-                            value: { type: "icon", name: "FaRocket" },
+                            additionalParams: { availableTypes: ["icon", "image"] },
+                            value: { type: "icon", name: "MdDesignServices" },
                         },
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Smooth Start",
+                            value: "Perfect Design"
                         },
                         {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value: "",
-                        },
-                    ],
+                            value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
+                        }
+                    ]
                 },
                 {
                     type: "object",
-                    key: "feature",
-                    displayer: "Feature",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "icon"] },
-                            value: { type: "icon", name: "FaLifeRing" },
+                            additionalParams: { availableTypes: ["icon", "image"] },
+                            value: { type: "icon", name: "FaCarRear" },
                         },
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "24/7 Support",
+                            value: "Free Test-Drive"
                         },
                         {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value: "",
-                        },
-                    ],
+                            value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamlessly key performance indicators offline to maximise the long tail."
+                        }
+                    ]
                 },
                 {
                     type: "object",
-                    key: "feature",
-                    displayer: "Feature",
+                    key: "card",
+                    displayer: "Card",
                     value: [
                         {
                             type: "media",
                             key: "media",
                             displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "icon"] },
-                            value: { type: "icon", name: "FaPiggyBank" },
+                            additionalParams: { availableTypes: ["icon", "image"] },
+                            value: { type: "icon", name: "BiSolidLike" },
                         },
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Low Prices",
+                            value: "High Quality"
                         },
                         {
                             type: "string",
                             key: "description",
                             displayer: "Description",
-                            value: "",
-                        },
-                    ],
+                            value: "Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration."
+                        }
+                    ]
                 },
-                {
-                    type: "object",
-                    key: "feature",
-                    displayer: "Feature",
-                    value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "icon"] },
-                            value: { type: "icon", name: "FaShieldAlt" },
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Strong Defence",
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "",
-                        },
-                    ],
-                },
-                {
-                    type: "object",
-                    key: "feature",
-                    displayer: "Feature",
-                    value: [
-                        {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["image", "icon"] },
-                            value: { type: "icon", name: "FaSailboat" },
-                        },
-                        {
-                            type: "string",
-                            key: "title",
-                            displayer: "Title",
-                            value: "Free Vacation",
-                        },
-                        {
-                            type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "",
-                        },
-                    ],
-                },
+            ]
+        });
+
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
         });
 
@@ -184,18 +140,9 @@ class Feature31 extends BaseFeature {
 
         this.addProp({
             type: "number",
-            key: "itemsPerRow",
-            displayer: "Items Count in a Row",
-            value: 5,
-        });
-
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
-            ],
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 1,
         });
     }
 
@@ -205,107 +152,71 @@ class Feature31 extends BaseFeature {
 
     render() {
         const subtitle = this.getPropValue("subtitle");
-        const title = this.getPropValue("title");
-        const description = this.getPropValue("description");
-        const titleExist = this.castToString(title);
-        const descriptionExist = this.castToString(description);
         const subtitleExist = this.castToString(subtitle);
-        const features = this.castToObject<FeatureCardType[]>("features") || [];
-        const enableIconBackground = this.getPropValue("iconBackground");
-        const itemsPerRow = this.getPropValue("itemsPerRow") || 5;
+        const title = this.getPropValue("title");
+        const titleExist = this.castToString(title);
+        const description = this.getPropValue("description");
+        const descriptionExist = this.castToString(description);
         const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const hasHeader = titleExist || descriptionExist || subtitleExist;
-
-        const alignment = Base.getContentAlignment();
-
-        const filteredFeatures = features.filter((feature: FeatureCardType) => {
-            const hasTitle = this.castToString(feature.title);
-            const hasDescription = this.castToString(feature.description);
-            const hasMedia = (feature.media as any)?.name || (feature.media as any)?.url;
-            return hasTitle || hasDescription || hasMedia;
-        });
-        const gridClass = `${this.decorateCSS("features-grid")} ${filteredFeatures.length > 0
-            ? this.decorateCSS(`features-grid-${itemsPerRow}`)
-            : ""
-            }`;
+        const enableIconBackground = this.getPropValue("iconBackground");
+        const hasContent = subtitleExist || titleExist || descriptionExist || (buttonItem && buttonItem.length > 0);
+        const cards = this.castToObject<Card[]>("cards");
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasHeader && (
-                        <Base.VerticalContent className={this.decorateCSS("header")}>
-                            {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}
-                            {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
-                            {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
-                        </Base.VerticalContent>
-                    )}
+                    <div className={this.decorateCSS("wrapper")}>
+                        {hasContent && (
+                            <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                                {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}
+                                {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
+                                {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
+                            </Base.VerticalContent>
+                        )}
+                        {cards?.length > 0 && (
+                            <Base.ListGrid
+                                className={this.decorateCSS("features-content")}
+                                gridCount={{ pc: this.getPropValue("itemCount") }}
+                            >
+                                {cards.map((card: Card, index: number) => {
+                                    const titleExist = this.castToString(card.title);
+                                    const descExist = this.castToString(card.description);
+                                    const isImage = card.media?.type === "image";
+                                    if (!titleExist && !descExist && !card.media) return null;
 
-                    {filteredFeatures.length > 0 && (
-                        <Base.ListGrid
-                            gridCount={{
-                                pc: itemsPerRow,
-                                tablet: 5,
-                                phone: 2,
-                            }}
-                            className={gridClass}
-                        >
-                            {filteredFeatures.map((feature: FeatureCardType, index: number) => {
-                                const featureTitleExist = this.castToString(feature.title);
-                                const featureDescExist = this.castToString(feature.description);
-                                const media = feature.media;
-                                return (
-                                    <div
-                                        key={index}
-                                        className={`${this.decorateCSS(
-                                            "feature-card"
-                                        )} ${this.decorateCSS(alignment)}`}
-                                    >
-                                        {media && (
-                                            <div className={`${this.decorateCSS("icon-container")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
-                                                <Base.Media
-                                                    value={media}
-                                                    className={this.decorateCSS("icon")}
-                                                />
-                                            </div>
-                                        )}
-
-                                        {(featureTitleExist || featureDescExist) && (
-                                            <Base.VerticalContent
-                                                className={this.decorateCSS("content")}
-                                            >
-                                                {featureTitleExist && (
-                                                    <Base.H5 className={this.decorateCSS("features-title")}>
-                                                        {feature.title}
-                                                    </Base.H5>
-                                                )}
-                                                {featureDescExist && (
-                                                    <Base.P className={this.decorateCSS("features-description")}>
-                                                        {feature.description}
-                                                    </Base.P>
-                                                )}
+                                    return (
+                                        <div key={index} className={this.decorateCSS("card-container")}>
+                                            {card.media && (
+                                                <div className={`${this.decorateCSS("icon-box")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
+                                                    <Base.Media value={card.media} className={`${this.decorateCSS("card-icon")} ${isImage ? this.decorateCSS("is-image") : ""}`} />
+                                                </div>
+                                            )}
+                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
+                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
                                             </Base.VerticalContent>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                        </Base.ListGrid>
-                    )}
-                    {buttonItem.length > 0 && (
-                        <Base.Row className={this.decorateCSS("button-container")}>
-                            {buttonItem.map(
-                                (buttonObj, index: number) => {
-                                    const buttonText = this.castToString(buttonObj.text);
-                                    return buttonText && (
-                                        <ComposerLink key={index} path={buttonObj.url}>
-                                            <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
-                                                <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
-                                            </Base.Button>
-                                        </ComposerLink>
+                                        </div>
                                     );
-                                }
-                            )}
-                        </Base.Row>
-                    )}
+                                })}
+                            </Base.ListGrid>
+                        )}
+                        {buttonItem.length > 0 && (
+                            <Base.Row className={this.decorateCSS("button-container")}>
+                                {buttonItem.map(
+                                    (buttonObj, index: number) => {
+                                        const buttonText = this.castToString(buttonObj.text);
+                                        return buttonText && (
+                                            <ComposerLink key={index} path={buttonObj.url}>
+                                                <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
+                                                    <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        );
+                                    }
+                                )}
+                            </Base.Row>
+                        )}
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         );

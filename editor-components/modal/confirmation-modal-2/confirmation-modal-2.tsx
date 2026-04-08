@@ -4,8 +4,8 @@ import { BaseModal } from "../../EditorComponent";
 import styles from "./confirmation-modal-2.module.scss";
 
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Speaker = {
   name: React.JSX.Element;
@@ -25,6 +25,8 @@ type EventDetail = {
 };
 
 class ConfirmationModal2 extends BaseModal {
+  static subCategory = "confirmation";
+
   constructor(props?: any) {
     super(props, styles);
 

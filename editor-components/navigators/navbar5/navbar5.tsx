@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BaseNavigator, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./navbar5.module.scss";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { Base } from "composer-tools/composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Logo {
   image: TypeMediaInputValue;
@@ -501,7 +501,7 @@ class Navbar5 extends BaseNavigator {
     const animations = this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")
 
     return (
-      <>
+      <div className={this.decorateCSS("navbar-root")}>
       <Base.Navigator.Container
         id={"navbar5-height"}
         position={position}
@@ -631,7 +631,7 @@ class Navbar5 extends BaseNavigator {
         onClick={() => this.closeNav()} 
         isVisible={isVisible}
       />
-      </>
+      </div>
     );
   }
 }

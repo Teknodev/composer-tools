@@ -1,182 +1,142 @@
 import * as React from "react";
-import { BaseIntroSection, TypeUsableComponentProps, TypeMediaInputValue } from "../../EditorComponent";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section8.module.scss";
-import { Base, TypeButton } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Base } from "../../../composer-base-components/base/base";
 
-type ButtonTypeObj = {
-    text: React.JSX.Element;
-    url: string;
-    type: TypeButton;
-}
-
-interface ContentType {
-    media: TypeMediaInputValue;
-    thumbnail: TypeMediaInputValue;
-    overlay: boolean;
-}
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class IntroSection8 extends BaseIntroSection {
-    constructor(props?: TypeUsableComponentProps) {
-        super(props, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
-        this.addProp({
-            type: "boolean",
-            key: "background",
-            displayer: "Background",
-            value: true,
-        });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Unbeatable services",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: "Find the Best Suitable Solution",
-        });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Everything for your customers",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Inspiration to Design and Create",
-        });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test.",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
-        });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON(
+          "button",
+          "Button",
+          "",
+          "",
+          "FaArrowDown",
+          null,
+          "Primary"
+        ),
+      ],
+    });
+  }
 
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "White")],
-        });
+  static getName(): string {
+    return "Intro Section 8";
+  }
+  render() {
+    const title = this.getPropValue("title") || "";
+    const subtitle = this.getPropValue("subtitle") || "";
+    const description = this.getPropValue("description") || "";
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
-        this.addProp({
-            type: "object",
-            key: "content",
-            displayer: "Content",
-            value: [
-                {
-                    type: "media",
-                    key: "media",
-                    displayer: "Media",
-                    value: {
-                        type: "video",
-                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6925587a3596a1002b2ec2a1?alt=media",
-                    },
-                    additionalParams: { availableTypes: ["image", "video"] },
-                },
-                {
-                    type: "media",
-                    key: "thumbnail",
-                    displayer: "Thumbnail",
-                    value: {
-                        type: "image",
-                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6936735a496aa1002ca98cfa?alt=media",
-                    },
-                    additionalParams: { availableTypes: ["image"] },
-                },
-                {
-                    type: "boolean",
-                    key: "overlay",
-                    displayer: "Overlay",
-                    value: true,
-                }
-            ]
-        });
+    const hasTitle = this.castToString(title);
+    const hasSubtitle = this.castToString(subtitle);
+    const hasDescription = this.castToString(description);
+    const hasAnyButton =
+      Array.isArray(buttons) &&
+      buttons.some((b: any) => this.castToString(b?.text) || b?.icon);
 
-        this.addProp({
-            type: "media",
-            key: "playIcon",
-            displayer: "Play Icon",
-            value: { type: "icon", name: "FaPlay" },
-            additionalParams: { availableTypes: ["icon", "image"] },
-        });
-    }
+    const hasVerticalContent = hasTitle || hasSubtitle || hasDescription;
 
-    static getName(): string {
-        return "Intro Section 8";
-    }
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div className={this.decorateCSS("card")}>
+            {hasVerticalContent && (
+              <Base.VerticalContent
+                className={this.decorateCSS("vertical-content")}
+              >
+                {hasSubtitle && (
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {hasTitle && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {hasDescription && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
+            )}
 
-    handlePlayVideo = () => {
-        this.setComponentState("isPlaying", true);
-    };
+            {hasAnyButton && (
+              <div className={this.decorateCSS("action-buttons")}>
+                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                  const btnTextExist = this.castToString(item.text);
+                  const buttonIcon = item.icon;
+                  if (!btnTextExist && !buttonIcon) {
+                    return null;
+                  }
+                  const buttonUrl = item.url || "#";
+                  return (
+                    <ComposerLink key={index} path={buttonUrl}>
+                      <Base.Button
+                        buttonType={item.type}
+                        className={this.decorateCSS("button")}
+                      >
+                        {btnTextExist && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {item.text}
+                          </Base.P>
+                        )}
+                        {buttonIcon && (
+                          <Base.Media
+                            value={buttonIcon}
+                            className={this.decorateCSS("button-icon")}
+                          />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
 
-    render() {
-        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
-        const titleExist = this.castToString(this.getPropValue("title"));
-        const descriptionExist = this.castToString(this.getPropValue("description"));
-        const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
-        const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const hasBackground = !!this.getPropValue("background");
-        const content = this.castToObject<ContentType>("content");
-        const hasOverlay = !!content?.overlay;
-        const media = content?.media;
-        const thumbnail = content?.thumbnail;
-        const playIcon = this.getPropValue("playIcon");
-        const isVideo = media?.type === "video";
-        const isPlaying = !!this.getComponentState("isPlaying");
-        const hasContent = subtitleExist || titleExist || descriptionExist || visibleButtons.length > 0;
-        const hasMediaUrl = media && "url" in media && media.url;
-        const hasThumbnailUrl = thumbnail && "url" in thumbnail && thumbnail.url;
-
-        return (
-            <Base.Container className={this.decorateCSS("container")}>
-                {hasBackground && <div className={this.decorateCSS("background")} />}
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasContent && (
-                        <Base.VerticalContent className={`${this.decorateCSS("text-content")} ${hasBackground && this.decorateCSS("has-background")}`}>
-                            {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                            {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                            {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                            {visibleButtons.length > 0 && (
-                                <div className={this.decorateCSS("button-container")}>
-                                    {visibleButtons.map((item: ButtonTypeObj, index: number) => {
-                                        return (
-                                            <ComposerLink key={`button-${index}`} path={item.url}>
-                                                <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                    <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                </Base.Button>
-                                            </ComposerLink>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </Base.VerticalContent>
-                    )}
-                    {hasMediaUrl && (
-                        <div className={this.decorateCSS("media-wrapper")}>
-                            {isVideo ? (
-                                !isPlaying ? (
-                                    <div className={this.decorateCSS("thumbnail-container")} onClick={this.handlePlayVideo}>
-                                        <Base.Media value={hasThumbnailUrl ? thumbnail : media} className={this.decorateCSS("thumbnail-image")} />
-                                        {hasOverlay && <div className={this.decorateCSS("overlay")} />}
-                                        {(playIcon?.name || (playIcon && "url" in playIcon && playIcon.url)) && (
-                                            <div className={this.decorateCSS("play-icon-wrapper")}>
-                                                <Base.Media value={playIcon} className={`${this.decorateCSS("play-icon")} ${playIcon?.type === "image" && this.decorateCSS("is-image")}`} />
-                                            </div>
-                                        )}
-                                    </div>
-                                ) : (
-                                    <Base.Media value={{ ...media, settings: { autoplay: true, controls: true } }} className={this.decorateCSS("video")} />
-                                )
-                            ) : (
-                                <div className={this.decorateCSS("thumbnail-container")}>
-                                    <Base.Media value={media} className={this.decorateCSS("image")} />
-                                    {hasOverlay && <div className={this.decorateCSS("overlay")} />}
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </Base.MaxContent>
-            </Base.Container>
-        );
-    }
+            <div className={this.decorateCSS("spacer")}></div>
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
 export default IntroSection8;

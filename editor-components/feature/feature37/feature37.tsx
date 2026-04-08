@@ -1,25 +1,27 @@
 import * as React from "react";
 import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature37.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+
+type ButtonTypeObj = {
+    text: React.JSX.Element;
+    url: string;
+    type: TypeButton;
+}
 
 type Card = {
-    media: TypeMediaInputValue;
     title: React.JSX.Element;
-    description: React.JSX.Element;
-};
-
-type Background = {
-    cover_image: TypeMediaInputValue;
-    overlay: boolean;
+    icon: TypeMediaInputValue;
+    hoverTitle: React.JSX.Element;
+    hoverDescription: React.JSX.Element;
 };
 
 class Feature37 extends BaseFeature {
+    cardsRootRef: React.RefObject<HTMLDivElement | null> = React.createRef<HTMLDivElement>();
     constructor(props?: any) {
         super(props, styles);
-
         this.addProp({
             type: "string",
             key: "subtitle",
@@ -31,38 +33,14 @@ class Feature37 extends BaseFeature {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Why Choose Us?",
+            value: "Main Product Features",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
-        });
-
-        this.addProp({
-            type: "object",
-            key: "background",
-            displayer: "Media",
-            value: [
-                {
-                    type: "media",
-                    key: "cover_image",
-                    displayer: "Media",
-                    value: {
-                        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/694e36c0f959f6002d79b66c?alt=media",
-                        type: "image",
-                    },
-                    additionalParams: { availableTypes: ["image", "video"] }
-                },
-                {
-                    type: "boolean",
-                    key: "overlay",
-                    displayer: "Overlay",
-                    value: false,
-                }
-            ]
+            value: "Podcasting operational change management inside of workflows to establish a framework. Taking seamless key indicators offline to maximise the long tail.",
         });
 
         this.addProp({
@@ -76,24 +54,35 @@ class Feature37 extends BaseFeature {
                     displayer: "Card",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
-                            value: { type: "icon", name: "MdDesignServices" },
-                        },
-                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Perfect Design"
+                            value: "Quick Start",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "MdRocketLaunch",
+                            },
                         },
                         {
                             type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world."
-                        }
+                            key: "hoverTitle",
+                            displayer: "Hover Title",
+                            value: "Quick Start",
+                        },
+                        {
+                            type: "string",
+                            key: "hoverDescription",
+                            displayer: "Hover Description",
+                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                        },
                     ]
                 },
                 {
@@ -102,24 +91,35 @@ class Feature37 extends BaseFeature {
                     displayer: "Card",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
-                            value: { type: "icon", name: "BiSolidLike" },
-                        },
-                        {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Good Quality"
+                            value: "24/7 Support",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "MdSupportAgent",
+                            },
                         },
                         {
                             type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world."
-                        }
+                            key: "hoverTitle",
+                            displayer: "Hover Title",
+                            value: "24/7 Support",
+                        },
+                        {
+                            type: "string",
+                            key: "hoverDescription",
+                            displayer: "Hover Description",
+                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                        },
                     ]
                 },
                 {
@@ -128,34 +128,149 @@ class Feature37 extends BaseFeature {
                     displayer: "Card",
                     value: [
                         {
-                            type: "media",
-                            key: "media",
-                            displayer: "Media",
-                            additionalParams: { availableTypes: ["icon", "image"] },
-                            value: { type: "icon", name: "FaCarRear" },
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Free Guides",
                         },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "MdSupport",
+                            },
+                        },
+                        {
+                            type: "string",
+                            key: "hoverTitle",
+                            displayer: "Hover Title",
+                            value: "Free Guides",
+                        },
+                        {
+                            type: "string",
+                            key: "hoverDescription",
+                            displayer: "Hover Description",
+                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "card",
+                    displayer: "Card",
+                    value: [
                         {
                             type: "string",
                             key: "title",
                             displayer: "Title",
-                            value: "Free Test-Drive"
+                            value: "Modern Design",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "MdDesignServices",
+                            },
                         },
                         {
                             type: "string",
-                            key: "description",
-                            displayer: "Description",
-                            value: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world."
-                        }
+                            key: "hoverTitle",
+                            displayer: "Hover Title",
+                            value: "Modern Design",
+                        },
+                        {
+                            type: "string",
+                            key: "hoverDescription",
+                            displayer: "Hover Description",
+                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                        },
                     ]
                 },
-            ]
-        });
-
-        this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 1,
+                {
+                    type: "object",
+                    key: "card",
+                    displayer: "Card",
+                    value: [
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "High Quality",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "MdThumbUpOffAlt",
+                            },
+                        },
+                        {
+                            type: "string",
+                            key: "hoverTitle",
+                            displayer: "Hover Title",
+                            value: "High Quality",
+                        },
+                        {
+                            type: "string",
+                            key: "hoverDescription",
+                            displayer: "Hover Description",
+                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                        },
+                    ]
+                },
+                {
+                    type: "object",
+                    key: "card",
+                    displayer: "Card",
+                    value: [
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Premium Addons",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Icon",
+                            additionalParams: {
+                                availableTypes: ["icon", "image"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "MdAddChart",
+                            },
+                        },
+                        {
+                            type: "string",
+                            key: "hoverTitle",
+                            displayer: "Hover Title",
+                            value: "Premium Addons",
+                        },
+                        {
+                            type: "string",
+                            key: "hoverDescription",
+                            displayer: "Hover Description",
+                            value: "Completely iterate covalent strategic theme areas via accurate e-markets.",
+                        },
+                    ]
+                },
+            ],
         });
 
         this.addProp({
@@ -164,78 +279,116 @@ class Feature37 extends BaseFeature {
             displayer: "Buttons",
             value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
         });
+
+        this.addProp({
+            type: "number",
+            key: "itemCount",
+            displayer: "Item Count in a Row",
+            value: 3,
+        });
     }
 
     static getName(): string {
         return "Feature 37";
     }
 
+    calculateMaxHeight = () => {
+        const container = this.cardsRootRef.current;
+        if (!container) return;
+        const width = container.offsetWidth;
+        const cards = Array.from(container.querySelectorAll(`.${styles['card']}`)) as HTMLElement[];
+        const perRow = width <= 640 ? 1 : width <= 1024 ? 3 : (this.getPropValue("itemCount") || 3);
+        const minH = width <= 640 ? 200 : 300;
+        for (let i = 0; i < cards.length; i += perRow) {
+            const row = cards.slice(i, i + perRow);
+            const maxH = Math.max(minH, ...row.map(card => {
+                const front = card.querySelector(`.${styles['front']}`) as HTMLElement;
+                const back = card.querySelector(`.${styles['top']}`) as HTMLElement;
+                [front, back].forEach(el => el && Object.assign(el.style, { overflow: 'visible', height: 'auto' }));
+                const h = Math.max(front?.scrollHeight || 0, back?.scrollHeight || 0);
+                [front, back].forEach(el => el && Object.assign(el.style, { overflow: '', height: '' }));
+                return h;
+            }));
+            row.forEach(card => card.style.setProperty('--dynamic-card-height', `${maxH}px`));
+        }
+    };
+
+    componentDidMount() {
+        this.calculateMaxHeight();
+        window.addEventListener('resize', this.calculateMaxHeight);
+        setTimeout(this.calculateMaxHeight, 500);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.calculateMaxHeight);
+    }
+
+    componentDidUpdate() {
+        this.calculateMaxHeight();
+    }
+
     render() {
-        const background = this.castToObject<Background>("background");
-        const image = background?.cover_image;
-        const isImageExist = !!image?.url;
-        const enableOverlay = background?.overlay;
-        const subtitle = this.castToString(this.getPropValue("subtitle"));
-        const title = this.castToString(this.getPropValue("title"));
-        const description = this.castToString(this.getPropValue("description"));
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
         const cards = this.castToObject<Card[]>("cards");
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+        const buttons = this.castToObject<ButtonTypeObj[]>("buttons") || [];
         const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const hasContent = subtitle || title || description;
+        const hasContent = subtitleExist || titleExist || descriptionExist;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                            {subtitle && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
-                            {title && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
-                            {description && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
-                        </Base.VerticalContent>
+                    {(hasContent || cards?.length > 0) && (
+                        <div className={this.decorateCSS("content-wrapper")}>
+                            {hasContent && (
+                                <Base.VerticalContent className={this.decorateCSS("text-content")}>
+                                    {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>)}
+                                    {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>)}
+                                    {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>)}
+                                </Base.VerticalContent>
+                            )}
+                            {cards?.length > 0 && (
+                                <Base.ListGrid ref={this.cardsRootRef} gridCount={{ pc: this.getPropValue("itemCount") || 3, tablet: 3 }} className={this.decorateCSS("cards-container")}>
+                                    {cards.map((card: Card, index: number) => {
+                                        const titleExist = this.castToString(card.title);
+                                        const hoverTitleExist = this.castToString(card.hoverTitle);
+                                        const hoverDescExist = this.castToString(card.hoverDescription);
+                                        const iconExist = card.icon;
+                                        const isImage = card.icon?.type === "image";
+                                        const cardHasContent = titleExist || hoverTitleExist || hoverDescExist || iconExist;
+                                        if (!cardHasContent) return null;
+                                        return (
+                                            <div key={index} className={this.decorateCSS("card")}>
+                                                <div className={this.decorateCSS("card-inner")}>
+                                                    <div className={`${this.decorateCSS("face")} ${this.decorateCSS("front")}`}>
+                                                        {iconExist && (<div className={this.decorateCSS("icon-wrapper")}> <Base.Media value={card.icon} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />  </div>)}
+                                                        {titleExist && (<Base.H3 className={this.decorateCSS("card-title")}>{card.title}</Base.H3>)}
+                                                    </div>
+                                                    <Base.VerticalContent className={`${this.decorateCSS("face")} ${this.decorateCSS("top")}`}>
+                                                        {hoverTitleExist && (<Base.H3 className={this.decorateCSS("card-hover-title")}>{card.hoverTitle}</Base.H3>)}
+                                                        {hoverDescExist && (<Base.P className={this.decorateCSS("card-description")}>{card.hoverDescription}</Base.P>)}
+                                                    </Base.VerticalContent>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </Base.ListGrid>
+                            )}
+                        </div>
                     )}
-                    <div className={this.decorateCSS("cards-wrapper")}>
-                        {cards?.length > 0 && (
-                            <Base.ListGrid
-                                className={`${this.decorateCSS("cards-content")} ${!isImageExist && this.decorateCSS("cards-full-width")}`}
-                                gridCount={{ pc: this.getPropValue("itemCount"), tablet: 1, phone: 1 }}
-                            >
-                                {cards.map((card: Card, index: number) => {
-                                    const titleExist = this.castToString(card.title);
-                                    const descExist = this.castToString(card.description);
-                                    const isImage = card.media?.type === "image";
-
-                                    return (!titleExist && !descExist && !card.media) || (
-                                        <div key={index} className={this.decorateCSS("card-container")}>
-                                            {card.media && (
-                                                <Base.Media value={card.media} className={`${this.decorateCSS("card-icon")} ${isImage && this.decorateCSS("is-image")}`} />
-                                            )}
-                                            <Base.VerticalContent className={this.decorateCSS("card-content")}>
-                                                {titleExist && (<Base.H5 className={this.decorateCSS("card-title")}>{card.title}</Base.H5>)}
-                                                {descExist && (<Base.P className={this.decorateCSS("card-description")}>{card.description}</Base.P>)}
-                                            </Base.VerticalContent>
-                                        </div>
-                                    );
-                                })}
-                            </Base.ListGrid>
-                        )}
-                        {isImageExist && (
-                            <div className={`${this.decorateCSS("right-content")} ${!cards?.length && this.decorateCSS("image-full-width")}`}>
-                                <div className={this.decorateCSS("image-wrapper")}>
-                                    <Base.Media value={image} className={this.decorateCSS("image")} />
-                                    {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
-                                </div>
-                            </div>
-                        )}
-                    </div>
                     {visibleButtons.length > 0 && (
                         <div className={this.decorateCSS("button-container")}>
-                            {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
-                                return this.castToString(item.text) && (
-                                    <ComposerLink key={`button-${index}`} path={item.url}>
-                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                        </Base.Button>
-                                    </ComposerLink>
+                            {visibleButtons.map((item: ButtonTypeObj, index: number) => {
+                                const buttonTextExist = this.castToString(item.text);
+                                return (
+                                    buttonTextExist && (
+                                        <ComposerLink key={`button-${index}`} path={item.url}>
+                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    )
                                 );
                             })}
                         </div>

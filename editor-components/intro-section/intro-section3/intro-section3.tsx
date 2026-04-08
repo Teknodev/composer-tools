@@ -2,139 +2,268 @@ import * as React from "react";
 import { BaseIntroSection } from "../../EditorComponent";
 import styles from "./intro-section3.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class IntroSection3 extends BaseIntroSection {
-    constructor(props?: any) {
-        super(props, styles);
+  constructor(props?: any) {
+    super(props, styles);
 
-        this.addProp({
-            type: "media",
-            key: "image",
-            displayer: "Media",
-            additionalParams: { availableTypes: ["image", "video"] },
-            value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/691c5ca53596a1002b2a1afc?alt=media",
-            },
-        });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Level up your portfolio",
+    });
 
-        this.addProp({
-            type: "boolean",
-            key: "overlay",
-            displayer: "Overlay",
-            value: false
-        });
+    this.addProp({
+      type: "string",
+      key: "title",
+      displayer: "Title",
+      value: "Design Your Website Easily",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "subtitle",
-            displayer: "Subtitle",
-            value: ""
-        });
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value:
+        "Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Nanotechnology immersion along the highway.",
+    });
 
-        this.addProp({
-            type: "string",
-            key: "title",
-            displayer: "Title",
-            value: "Everything You Need to Run Your Websites"
-        });
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON(
+          "button",
+          "Button",
+          "Get Access",
+          "",
+          "FaArrowRight",
+          null,
+          "Primary"
+        ),
+      ],
+    });
 
-        this.addProp({
-            type: "string",
-            key: "description",
-            displayer: "Description",
-            value: ""
-        });
+    this.addProp({
+      type: "string",
+      key: "text",
+      displayer: "Text",
+      value: "No credit card required",
+    });
 
-        this.addProp({
-            type: "array",
-            key: "buttons",
-            displayer: "Buttons",
-            value: [
-                INPUTS.BUTTON("button", "Button", "Start Now", "", null, null, "Primary")
-            ],
-        });
+    this.addProp({
+      type: "media",
+      key: "textIcon",
+      displayer: "Text Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaThumbsUp",
+      },
+    });
 
-        this.addProp({
-            type: "string",
-            key: "label1",
-            displayer: "Label 1",
-            value: "First 30 days for free."
-        });
+    this.addProp({
+      type: "media",
+      key: "image",
+      displayer: "Image",
+      additionalParams: {
+        availableTypes: ["image", "video"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690cc9f93596a1002b205a5f?alt=media",
+      },
+    });
 
-        this.addProp({
-            type: "string",
-            key: "label2",
-            displayer: "Label 2",
-            value: "No credit card required."
-        });
-    }
+    this.addProp({
+      type: "boolean",
+      key: "overlay",
+      displayer: "Overlay",
+      value: false,
+    });
+  }
 
-    static getName(): string {
-        return "Intro Section 3";
-    }
+  static getName(): string {
+    return "Intro Section 3";
+  }
 
-    render() {
-        const subtitle = this.castToString(this.getPropValue("subtitle"));
-        const title = this.castToString(this.getPropValue("title"));
-        const description = this.castToString(this.getPropValue("description"));
-        const image = this.getPropValue("image");
-        const isImageExist = !!image?.url;
-        const enableOverlay = this.getPropValue("overlay");
-        const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-        const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
-        const label1 = this.castToString(this.getPropValue("label1"));
-        const label2 = this.castToString(this.getPropValue("label2"));
-        const hasTitleGroup = label1 || label2;
-        const hasContent = subtitle || title || description || visibleButtons.length > 0 || hasTitleGroup;
+  render() {
+    const subtitle = this.getPropValue("subtitle") || "";
+    const title = this.getPropValue("title") || "";
+    const description = this.getPropValue("description") || "";
 
-        return (
-            <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    {hasContent && (
-                        <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
-                            {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                            {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                            {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                            {(visibleButtons.length > 0 || hasTitleGroup) && (
-                                <div className={this.decorateCSS("button-group-container")} data-has-buttons={visibleButtons.length > 0}>
-                                    {visibleButtons.length > 0 && (
-                                        <Base.Row className={this.decorateCSS("button-container")}>
-                                            {buttons.map((item, index) => {
-                                                const buttonText = this.castToString(item.text || "");
-                                                const buttonUrl = item.url || "#";
-                                                return buttonText && (
-                                                    <ComposerLink key={`dw-btn-${index}`} path={buttonUrl}>
-                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                        </Base.Button>
-                                                    </ComposerLink>
-                                                );
-                                            })}
-                                        </Base.Row>
-                                    )}
-                                    {hasTitleGroup && (
-                                        <div className={this.decorateCSS("label-group")}>
-                                            {label1 && <Base.P className={this.decorateCSS("label1")}>{this.getPropValue("label1")}</Base.P>}
-                                            {label2 && <Base.P className={this.decorateCSS("label2")}>{this.getPropValue("label2")}</Base.P>}
-                                        </div>
-                                    )}
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const bottomText = this.getPropValue("text") || "";
+    const textIcon = this.getPropValue("textIcon");
+
+    const image = this.getPropValue("image");
+    const overlay = this.getPropValue("overlay");
+
+    const hasSubtitle = this.castToString(subtitle);
+    const hasTitle = this.castToString(title);
+    const hasDescription = this.castToString(description);
+
+    const hasAnyButton = buttons.some(
+      (b: any) => this.castToString(b?.text) || b?.icon?.name || b?.icon?.url
+    );
+    const hasBottomText = this.castToString(bottomText);
+
+    const hasImage = !!(image && image.url);
+
+    const alignmentValue = Base.getContentAlignment();
+
+    const hasRightContainer = !!(
+      hasSubtitle ||
+      hasTitle ||
+      hasDescription ||
+      hasAnyButton ||
+      hasBottomText ||
+      textIcon
+    );
+
+    return (
+      <Base.Container className={this.decorateCSS("container")}>
+        <Base.MaxContent className={this.decorateCSS("max-content")}>
+          <div
+            className={`${this.decorateCSS("intro-wrapper")} ${
+              !hasImage && this.decorateCSS("no-image")
+            } ${
+              !hasImage &&
+              alignmentValue === "center" &&
+              this.decorateCSS("no-image-center")
+            } ${
+              hasImage &&
+              !hasRightContainer &&
+              this.decorateCSS("image-container-alone")
+            }`}
+          >
+            {hasImage && (
+              <div className={this.decorateCSS("image-container")}>
+                <div className={this.decorateCSS("media-wrapper")}>
+                  <Base.Media
+                    value={image}
+                    className={this.decorateCSS("media-image")}
+                  />
+                  {overlay && (
+                    <div className={this.decorateCSS("thumbnail-overlay")} />
+                  )}
+                </div>
+              </div>
+            )}
+            {hasRightContainer && (
+              <div
+                className={`${this.decorateCSS("text-content")} ${
+                  !hasImage && this.decorateCSS("text-content-alone")
+                }`}
+              >
+                <Base.VerticalContent
+                  className={`${this.decorateCSS("vertical-content")} ${
+                    alignmentValue === "center" && this.decorateCSS("center")
+                  }`}
+                >
+                  {hasSubtitle && (
+                    <Base.SectionSubTitle
+                      className={this.decorateCSS("subtitle")}
+                    >
+                      {subtitle}
+                    </Base.SectionSubTitle>
+                  )}
+                  {hasTitle && (
+                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                      {title}
+                    </Base.SectionTitle>
+                  )}
+
+                  {hasDescription && (
+                    <Base.SectionDescription
+                      className={this.decorateCSS("description")}
+                    >
+                      {description}
+                    </Base.SectionDescription>
+                  )}
+
+                  {(hasAnyButton || hasBottomText || textIcon) && (
+                    <div className={this.decorateCSS("actions-wrapper")}>
+                      {hasAnyButton && (
+                        <div className={this.decorateCSS("action-buttons")}>
+                          {buttons.map(
+                            (item: INPUTS.CastedButton, index: number) => {
+                              const btnTextExist = this.castToString(item.text);
+                              const buttonIcon = item.icon;
+                              const btnIconExist =
+                                this.castToString(item.icon?.name) ||
+                                this.castToString(item.icon?.url);
+                              if (!btnTextExist && !btnIconExist) {
+                                return null;
+                              }
+                              const buttonUrl = item.url || "#";
+                              return (
+                                <div
+                                  key={`is6-btn-${index}`}
+                                  className={this.decorateCSS("button-wrapper")}
+                                >
+                                  <ComposerLink path={buttonUrl}>
+                                    <Base.Button
+                                      buttonType={item.type}
+                                      className={this.decorateCSS("button")}
+                                    >
+                                      {btnTextExist && (
+                                        <Base.P
+                                          className={this.decorateCSS(
+                                            "button-text"
+                                          )}
+                                        >
+                                          {item.text}
+                                        </Base.P>
+                                      )}
+                                      {btnIconExist && (
+                                        <Base.Media
+                                          value={buttonIcon}
+                                          className={this.decorateCSS(
+                                            "button-icon"
+                                          )}
+                                        />
+                                      )}
+                                    </Base.Button>
+                                  </ComposerLink>
                                 </div>
-                            )}
-                        </Base.VerticalContent>
-                    )}
-                    {isImageExist && (
-                        <div className={this.decorateCSS("image-content")}>
-                            <Base.Media value={image} className={this.decorateCSS("image")} />
-                            {enableOverlay && <div className={this.decorateCSS("overlay")}></div>}
+                              );
+                            }
+                          )}
                         </div>
-                    )}
-                </Base.MaxContent>
-            </Base.Container>
-        );
-    }
+                      )}
+                      {(hasBottomText || textIcon) && (
+                        <Base.Row className={this.decorateCSS("text-wrapper")}>
+                          {textIcon && (
+                            <Base.Media
+                              className={this.decorateCSS("thumb-icon")}
+                              value={textIcon}
+                            />
+                          )}
+
+                          {hasBottomText && (
+                            <Base.P className={this.decorateCSS("bottom-text")}>
+                              {bottomText}
+                            </Base.P>
+                          )}
+                        </Base.Row>
+                      )}
+                    </div>
+                  )}
+                </Base.VerticalContent>
+              </div>
+            )}
+          </div>
+        </Base.MaxContent>
+      </Base.Container>
+    );
+  }
 }
 
 export default IntroSection3;

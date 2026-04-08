@@ -6,9 +6,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import ComposerModalClose from "../../../composer-base-components/close/close";
 import * as Yup from "yup";
 import { Form, Formik } from "formik";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 
 class NotificationModal2 extends BaseModal {
+  static subCategory = "notification";
+
   constructor(props?: any) {
     super(props, styles);
 

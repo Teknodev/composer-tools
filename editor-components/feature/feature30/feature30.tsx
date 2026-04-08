@@ -1,316 +1,315 @@
 import * as React from "react";
-import { BaseFeature } from "../../EditorComponent";
+import { BaseFeature, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./feature30.module.scss";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
-interface Card {
-  media?: {
-    type: "icon" | "image";
-    name?: string;
-    url?: string;
-  };
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+interface FeatureCardType {
+    media?: TypeMediaInputValue;
+    title: React.JSX.Element;
+    description: React.JSX.Element;
 }
 
+
 class Feature30 extends BaseFeature {
-  constructor(props?: any) {
-    super(props, styles);
+    constructor(props?: any) {
+        super(props, styles);
 
-    this.addProp({
-      type: "string",
-      key: "subtitle",
-      displayer: "Subtitle",
-      value: "",
-    });
+        this.addProp({
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "Trusted by over 100 developers",
+        });
 
-    this.addProp({
-      type: "string",
-      key: "heading",
-      displayer: "Title",
-      value: "Unmatched security, privacy, and reliability",
-    });
+        this.addProp({
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "",
+        });
 
-    this.addProp({
-      type: "string",
-      key: "subheading",
-      displayer: "Description",
-      value:
-        "Launch customer sites with confidence thanks to enterprise-grade security, built-in data privacy, and reliable hosting.",
-    });
+        this.addProp({
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
 
-    this.addProp({
-      type: "array",
-      displayer: "Features",
-      key: "features",
-      value: [
-        {
-          type: "object",
-          key: "feature",
-          displayer: "Feature",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "BsCloudCheck" },
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Worry-free data recovery",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Cloud-computing in multiple locations, automated backups in a separate location, and disaster recovery procedures.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "feature",
-          displayer: "Feature",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "BsShieldCheck" },
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Advanced cybersecurity",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Automated DDoS mitigation, robust data encryption, and strict access controls with SSO and identity management integration.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "feature",
-          displayer: "Feature",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "BsLock" },
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Privacy and consent",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Built-in privacy and consent management to comply with global standards: GDPR, CCPA, and more.",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "feature",
-          displayer: "Feature",
-          value: [
-            {
-              type: "media",
-              key: "media",
-              displayer: "Media",
-              additionalParams: { availableTypes: ["icon", "image"] },
-              value: { type: "icon", name: "BsGraphUp" },
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "99.99% uptime",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Duda websites are hosted on AWS, one of the most trusted and secure cloud solutions – with no limits on bandwidth or storage.",
-            },
-          ],
-        },
-      ],
-    });
+        this.addProp({
+            type: "array",
+            displayer: "Features",
+            key: "features",
+            value: [
+                {
+                    type: "object",
+                    key: "feature",
+                    displayer: "Feature",
+                    value: [
+                        {
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            additionalParams: { availableTypes: ["image", "icon"] },
+                            value: { type: "icon", name: "FaRocket" },
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Smooth Start",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "feature",
+                    displayer: "Feature",
+                    value: [
+                        {
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            additionalParams: { availableTypes: ["image", "icon"] },
+                            value: { type: "icon", name: "FaLifeRing" },
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "24/7 Support",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "feature",
+                    displayer: "Feature",
+                    value: [
+                        {
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            additionalParams: { availableTypes: ["image", "icon"] },
+                            value: { type: "icon", name: "FaPiggyBank" },
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Low Prices",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "feature",
+                    displayer: "Feature",
+                    value: [
+                        {
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            additionalParams: { availableTypes: ["image", "icon"] },
+                            value: { type: "icon", name: "FaShieldAlt" },
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Strong Defence",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                    ],
+                },
+                {
+                    type: "object",
+                    key: "feature",
+                    displayer: "Feature",
+                    value: [
+                        {
+                            type: "media",
+                            key: "media",
+                            displayer: "Media",
+                            additionalParams: { availableTypes: ["image", "icon"] },
+                            value: { type: "icon", name: "FaSailboat" },
+                        },
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Free Vacation",
+                        },
+                        {
+                            type: "string",
+                            key: "description",
+                            displayer: "Description",
+                            value: "",
+                        },
+                    ],
+                },
+            ],
+        });
 
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON(
-          "button",
-          "Button",
-          "Talk to us",
-          "",
-          null,
-          null,
-          "Primary"
-        ),
-      ],
-    });
+        this.addProp({
+            type: "boolean",
+            key: "iconBackground",
+            displayer: "Icon Background",
+            value: true,
+        });
 
-    this.addProp({
-      type: "number",
-      key: "itemsPerRow",
-      displayer: "Items Count in a Row",
-      value: 4,
-    });
-  }
+        this.addProp({
+            type: "number",
+            key: "itemsPerRow",
+            displayer: "Items Count in a Row",
+            value: 5,
+        });
 
-  static getName(): string {
-    return "Feature 30";
-  }
+        this.addProp({
+            type: "array",
+            key: "buttons",
+            displayer: "Buttons",
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
+        });
+    }
 
-  render() {
-    const features = this.castToObject<Card[]>("features") || [];
-    const subtitle = this.getPropValue("subtitle");
-    const subtitleExist = this.castToString(subtitle);
-    const heading = this.getPropValue("heading");
-    const subheading = this.getPropValue("subheading");
-    const itemsPerRow = this.getPropValue("itemsPerRow") || 4;
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
-    const alignment = Base.getContentAlignment();
-    const headingExist = this.castToString(heading);
-    const subheadingExist = this.castToString(subheading);
-    const filteredFeatures = features.filter((feature: Card) => {
-      const hasTitle = this.castToString(feature.title);
-      const hasDescription = this.castToString(feature.description);
-      const hasMedia = feature.media?.name || feature.media?.url;
-      return hasTitle || hasDescription || hasMedia;
-    });
-    const gridClass = `${this.decorateCSS("features-grid")} ${
-      filteredFeatures.length > 0
-        ? this.decorateCSS(`features-grid-${itemsPerRow}`)
-        : ""
-    }`;
+    static getName(): string {
+        return "Feature 30";
+    }
 
-    return (
-      <Base.Container className={this.decorateCSS("container")}>
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(headingExist || subheadingExist) && (
-            <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitleExist && ( 
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {subtitle}
-                </Base.SectionSubTitle>
-              )}
-              {headingExist && (
-                <Base.SectionTitle className={this.decorateCSS("heading")}>
-                  {heading}
-                </Base.SectionTitle>
-              )}
-              {subheadingExist && (
-                <Base.SectionDescription
-                  className={this.decorateCSS("subheading")}
-                >
-                  {subheading}
-                </Base.SectionDescription>
-              )}
-            </Base.VerticalContent>
-          )}
+    render() {
+        const subtitle = this.getPropValue("subtitle");
+        const title = this.getPropValue("title");
+        const description = this.getPropValue("description");
+        const titleExist = this.castToString(title);
+        const descriptionExist = this.castToString(description);
+        const subtitleExist = this.castToString(subtitle);
+        const features = this.castToObject<FeatureCardType[]>("features") || [];
+        const enableIconBackground = this.getPropValue("iconBackground");
+        const itemsPerRow = this.getPropValue("itemsPerRow") || 5;
+        const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
+        const hasHeader = titleExist || descriptionExist || subtitleExist;
 
-          {filteredFeatures.length > 0 && (
-            <Base.ListGrid
-              gridCount={{
-                pc: itemsPerRow,
-                tablet: 2,
-                phone: 1,
-              }}
-              className={gridClass}
-            >
-              {filteredFeatures.map((feature: Card) => {
-                const titleExist = this.castToString(feature.title);
-                const descriptionExist = this.castToString(feature.description);
-                const media = feature.media;
-                return (
-                  <div
-                    className={`${this.decorateCSS(
-                      "feature-card"
-                    )} ${this.decorateCSS(alignment)}`}
-                  >
-                    {media && (
-                      <div className={this.decorateCSS("icon-container")}>
-                        <Base.Media
-                          value={media}
-                          className={this.decorateCSS("icon")}
-                        />
-                      </div>
+        const alignment = Base.getContentAlignment();
+
+        const filteredFeatures = features.filter((feature: FeatureCardType) => {
+            const hasTitle = this.castToString(feature.title);
+            const hasDescription = this.castToString(feature.description);
+            const hasMedia = (feature.media as any)?.name || (feature.media as any)?.url;
+            return hasTitle || hasDescription || hasMedia;
+        });
+        const gridClass = `${this.decorateCSS("features-grid")} ${filteredFeatures.length > 0
+            ? this.decorateCSS(`features-grid-${itemsPerRow}`)
+            : ""
+            }`;
+
+        return (
+            <Base.Container className={this.decorateCSS("container")}>
+                <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {hasHeader && (
+                        <Base.VerticalContent className={this.decorateCSS("header")}>
+                            {subtitleExist && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}
+                            {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
+                            {descriptionExist && (<Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>)}
+                        </Base.VerticalContent>
                     )}
 
-                    {(titleExist || descriptionExist) && (
-                      <Base.VerticalContent
-                        className={this.decorateCSS("content")}
-                      >
-                        {titleExist && (
-                          <Base.H3 className={this.decorateCSS("title")}>
-                            {feature.title}
-                          </Base.H3>
-                        )}
-                        {descriptionExist && (
-                          <Base.P className={this.decorateCSS("description")}>
-                            {feature.description}
-                          </Base.P>
-                        )}
-                      </Base.VerticalContent>
-                    )}
-                  </div>
-                );
-              })}
-            </Base.ListGrid>
-          )}
+                    {filteredFeatures.length > 0 && (
+                        <Base.ListGrid
+                            gridCount={{
+                                pc: itemsPerRow,
+                                tablet: 5,
+                                phone: 2,
+                            }}
+                            className={gridClass}
+                        >
+                            {filteredFeatures.map((feature: FeatureCardType, index: number) => {
+                                const featureTitleExist = this.castToString(feature.title);
+                                const featureDescExist = this.castToString(feature.description);
+                                const media = feature.media;
+                                return (
+                                    <div
+                                        key={index}
+                                        className={`${this.decorateCSS(
+                                            "feature-card"
+                                        )} ${this.decorateCSS(alignment)}`}
+                                    >
+                                        {media && (
+                                            <div className={`${this.decorateCSS("icon-container")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
+                                                <Base.Media
+                                                    value={media}
+                                                    className={this.decorateCSS("icon")}
+                                                />
+                                            </div>
+                                        )}
 
-          {buttons.map((item: INPUTS.CastedButton, index: number) => {
-            const buttonTitleExist = this.castToString(item.text);
-            const iconExist = item.icon;
-            const buttonExist = buttonTitleExist || iconExist;
-            return (
-              buttonExist && (
-                <div key={index} className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={item.url}>
-                    <Base.Button
-                      buttonType={item.type}
-                      className={this.decorateCSS("button")}
-                    >
-                      {buttonTitleExist && (
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {item.text}
-                        </Base.P>
-                      )}
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              )
-            );
-          })}
-        </Base.MaxContent>
-      </Base.Container>
-    );
-  }
+                                        {(featureTitleExist || featureDescExist) && (
+                                            <Base.VerticalContent
+                                                className={this.decorateCSS("content")}
+                                            >
+                                                {featureTitleExist && (
+                                                    <Base.H5 className={this.decorateCSS("features-title")}>
+                                                        {feature.title}
+                                                    </Base.H5>
+                                                )}
+                                                {featureDescExist && (
+                                                    <Base.P className={this.decorateCSS("features-description")}>
+                                                        {feature.description}
+                                                    </Base.P>
+                                                )}
+                                            </Base.VerticalContent>
+                                        )}
+                                    </div>
+                                );
+                            })}
+                        </Base.ListGrid>
+                    )}
+                    {buttonItem.length > 0 && (
+                        <Base.Row className={this.decorateCSS("button-container")}>
+                            {buttonItem.map(
+                                (buttonObj, index: number) => {
+                                    const buttonText = this.castToString(buttonObj.text);
+                                    return buttonText && (
+                                        <ComposerLink key={index} path={buttonObj.url}>
+                                            <Base.Button buttonType={buttonObj.type} className={this.decorateCSS("button")}>
+                                                <Base.P className={this.decorateCSS("button-text")}>{buttonObj.text}</Base.P>
+                                            </Base.Button>
+                                        </ComposerLink>
+                                    );
+                                }
+                            )}
+                        </Base.Row>
+                    )}
+                </Base.MaxContent>
+            </Base.Container>
+        );
+    }
 }
 
 export default Feature30;

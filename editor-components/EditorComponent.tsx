@@ -4,10 +4,10 @@ import { EventEmitter, EVENTS } from "../EventEmitter";
 import sanitizeHtml from "sanitize-html";
 import { renderToString } from "react-dom/server";
 import { THEMES, TTheme } from "./location/themes";
-import InlineEditor from "../../custom-hooks/UseInlineEditor";
+import { getInlineEditor } from "../InlineEditorProvider";
 import { v4 as uuidv4 } from 'uuid';
-import { CurrencyCode } from "composer-tools/utils/currency";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { CurrencyCode } from "../utils/currency";
+import { INPUTS } from "../custom-hooks/input-templates";
 
 export const LANGUAGES = [
   { code: "en", name: "English", nativeName: "English" },
@@ -190,7 +190,7 @@ export const LANGUAGES = [
   { code: "za", name: "Zhuang, Chuang", nativeName: "Saɯ cueŋƅ, Saw cuengh" },
 ];
 
-export function generateComponentId(){
+export function generateComponentId() {
   return uuidv4();
 }
 
@@ -199,14 +199,14 @@ type PreSufFix = {
   className: string;
 };
 
-export type InteractionType ={
+export type InteractionType = {
   type?: string,
   modal?: string,
   trigger_action?: string,
   visible_on?: string,
   show_once?: false,
 };
-export type PageInteractionType ={
+export type PageInteractionType = {
   type?: string;
   modal?: string;
   scroll_depth?: number;
@@ -224,30 +224,30 @@ export type TypeLocation = {
 export type TypeMediaInputValue =
   | { type: "image"; url: string }
   | { type: "icon"; name: string }
-  | { 
-      type: "lottie"; 
-      url: string;
-      settings?: {
-        autoplay?: boolean;
-        loop?: boolean;
-      };
-    }
   | {
-      type: "video";
-      url: string;
-      settings?: {
-        autoplay?: boolean;
-        controls?: boolean;
-        loop?: boolean;
-        muted?: boolean;
-      };
+    type: "lottie";
+    url: string;
+    settings?: {
+      autoplay?: boolean;
+      loop?: boolean;
     };
+  }
+  | {
+    type: "video";
+    url: string;
+    settings?: {
+      autoplay?: boolean;
+      controls?: boolean;
+      loop?: boolean;
+      muted?: boolean;
+    };
+  };
 
 export type MediaType = "icon" | "image" | "video" | "lottie";
 
-type currencyAdditionalParams ={
+type currencyAdditionalParams = {
   showCode?: boolean;
-  showSymbol?:boolean;
+  showSymbol?: boolean;
 }
 
 type GetPropValueProperties = {
@@ -293,6 +293,7 @@ export interface iComponent {
   getCategory(): CATEGORIES;
   initializeProp(prop: TypeUsableComponentProps): void;
   id: string;
+  globalComponentId?: string;
 }
 type AvailablePropTypes =
   | { type: "string"; value: string }
@@ -309,11 +310,11 @@ type AvailablePropTypes =
   | { type: "icon"; value: string }
   | { type: "email"; value: string }
   | { type: "location"; value: TypeLocation }
-  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams}
-  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams}
-  | { type: "tag"; value: string[]}
-  | { type: "phone"; value: string, additionalParams?: {  countriesEnabled?: boolean; phonePattern?: "US" | "US_PARENTHESES" | "DOTTED" | "SPACED" } }
-  | { type: "dateTime"; value: string ; additionalParams? : {mode?:string, timeInterval?:number, yearRange? : number, yearStart?: number}}
+  | { type: "range"; value: string; additionalParams?: RangeInputAdditionalParams }
+  | { type: "currency"; value: { value: string; currency?: CurrencyCode }; additionalParams?: currencyAdditionalParams }
+  | { type: "tag"; value: string[] }
+  | { type: "phone"; value: string, additionalParams?: { countriesEnabled?: boolean; phonePattern?: "US" | "US_PARENTHESES" | "DOTTED" | "SPACED" } }
+  | { type: "dateTime"; value: string; additionalParams?: { mode?: string, timeInterval?: number, yearRange?: number, yearStart?: number } }
   | { type: "multiSelect"; value: string[] }
   | { type: "file"; value: string }
   | { type: "media"; value: TypeMediaInputValue }
@@ -325,12 +326,16 @@ export type TypeReactComponent = {
   cssClasses?: TypeCSSProp;
   interactions?: Record<string, InteractionType[]>;
   id?: string;
+  children?: string;
+  customComponentId?: string;
+  customComponentVersion?: string;
+  globalComponentId?: string;
 };
 export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?:  MediaType[]};
+  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?: MediaType[] };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -339,10 +344,7 @@ export type TypeUsableComponentProps = {
   ) => any;
 };
 
-type MemorizedElement = {
-  jsxElement?: React.JSX.Element,
-  value?: string;
-};
+
 
 export enum CATEGORIES {
   NAVIGATOR = "navigator",
@@ -365,17 +367,21 @@ export enum CATEGORIES {
   FEATURE = "feature",
   IMAGEGALLERY = "imageGallery",
   LOCATION = "location",
-  // TOP_BANNER = "topBanner",
+  TOP_BANNER = "topBanner",
   SOCIAL = "social",
   SOCIALWIDGET = "socialWidget",
   ECOMMERCE = "ecommerce",
   LEGAL = "legal",
   COMINGSOON = "comingSoon",
-  // STICKY = "sticky",
+  STICKY = "sticky",
   BREADCRUMB = "breadcrumb",
   ABOUT = "about",
   PORTFOLIO = "portfolio",
   COMPARISON = "comparison",
+  BACK_TO_TOP = "backToTop",
+  CUSTOM = "custom",
+  GLOBAL = "global",
+  HEADER = "header",
 }
 
 export function generateId(key: string): string {
@@ -386,19 +392,21 @@ export function generateId(key: string): string {
 //@ts-ignore
 export abstract class Component
   extends React.Component<{}, { states: any; componentProps: any }>
-  implements iComponent
-{
+  implements iComponent {
   private shadowProps: TypeUsableComponentProps[] = [];
   private styles: any;
   public id: string;
+  public globalComponentId: string | undefined;
+  public _SanitizeHTML: React.ComponentType<any> | null = null;
   static category: CATEGORIES;
-  private memorizedElements: {[id: string]: MemorizedElement} = {};
+  private static _dbgStyle = 'padding:2px 4px;border-radius:2px;font-weight:bold;color:white;background:#4CAF50;';
 
   componentDidUpdate(
     prevProps: Readonly<{}>,
     prevState: Readonly<{ states: any; componentProps: any; }>,
     snapshot?: any
   ): void {
+
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
   }
@@ -427,6 +435,7 @@ export abstract class Component
     super(props);
     this.styles = styles;
     this.id = props?.id || generateComponentId();
+    this.globalComponentId = props?.globalComponentId;
 
     const originalRender = this.render.bind(this);
 
@@ -458,16 +467,22 @@ export abstract class Component
     Object.keys(this.styles).forEach((key, index) => {
       sectionsKeyValue[key] = [];
     });
-    
+
     const compProps = (props?.props || []).map((p: TypeUsableComponentProps) =>
       this.attachValueGetter(p)
     );
+    // Ensure every prop has a unique ID within this instance.
+    // Global component copies receive props from the store by reference,
+    // so all copies (and all array items within a copy) may share the same
+    // prop IDs. Without this, findObjectById always matches the first
+    // array item, causing inline edits to save to the wrong element.
+    compProps.forEach((p: TypeUsableComponentProps) => this.attachPropId(p));
     this.state = {
       states: {},
       componentProps: {
-      props: compProps,
-        cssClasses: props?.cssClasses || {...sectionsKeyValue},
-        interactions: props?.interactions || {...sectionsKeyValue}
+        props: compProps,
+        cssClasses: props?.cssClasses || { ...sectionsKeyValue },
+        interactions: props?.interactions || { ...sectionsKeyValue },
       },
     };
 
@@ -475,8 +490,8 @@ export abstract class Component
     EventEmitter.emit(EVENTS.COMPONENT_ADDED, { data: this });
   }
 
-  componentWillMount(){
-    this.getProps().forEach(({key, value}) => {
+  componentWillMount() {
+    this.getProps().forEach(({ key, value }) => {
       const propIndex = this.state.componentProps.props.findIndex((prop: any) => prop.key === key);
       if (propIndex === -1) return;
 
@@ -491,7 +506,7 @@ export abstract class Component
       const isTypeChanged = propInState.type !== shadowProp.type;
 
       if (isTypeChanged) {
-        
+
         propInState.type = shadowProp.type;
         value = structuredClone(shadowProp.value);
       }
@@ -503,7 +518,7 @@ export abstract class Component
         );
       }
 
-      const isMatchingValue = 
+      const isMatchingValue =
         (!isComplexType && propInState.value === value) ||
         (isComplexType && propInState.value.every((item) => item.getPropValue) && propInState.value === value);
 
@@ -616,57 +631,56 @@ export abstract class Component
       });
     };
 
-    const SanitizeHTML = ({ html, options }: any) => {
-      const prefix = preSufFixToElement(properties?.prefix);
-      const suffix = preSufFixToElement(properties?.suffix);
+    // Cache the SanitizeHTML component reference on the class instance.
+    // Defining it inline would create a NEW function reference per render,
+    // causing React to treat it as a new component type and unmount/remount
+    // the entire InlineEditor subtree (destroying the Lexical editor).
+    if (!this._SanitizeHTML) {
+      const componentInstance = this;
+      this._SanitizeHTML = ({ html, prop: currentProp, properties: currentProperties }: any) => {
+        const prefix = preSufFixToElement(currentProperties?.prefix);
+        const suffix = preSufFixToElement(currentProperties?.suffix);
 
-      const stringPrefix = renderToString(prefix || <></>);
-      const stringSuffix = renderToString(suffix || <></>);
+        const stringPrefix = renderToString(prefix || <></>);
+        const stringSuffix = renderToString(suffix || <></>);
 
-      const hasHtmlTag = html.indexOf("<");
+        const hasHtmlTag = html.indexOf("<");
 
-      if (hasHtmlTag != 0 && hasHtmlTag != -1) {
-        html = `<p> ${html} </p>`;
-      }
+        if (hasHtmlTag != 0 && hasHtmlTag != -1) {
+          html = `<p> ${html} </p>`;
+        }
 
-      const firstTagStartIndex = html.indexOf(">") + 1;
-      const firstTagEndIndex = html.lastIndexOf("<");
+        const firstTagStartIndex = html.indexOf(">") + 1;
+        const firstTagEndIndex = html.lastIndexOf("<");
 
-      const htmlWithPrefixAndSuffix =
-        html.substring(0, firstTagStartIndex) +
-        stringPrefix +
-        html.substring(firstTagStartIndex, firstTagEndIndex) +
-        stringSuffix +
-        html.substring(firstTagEndIndex);
+        const htmlWithPrefixAndSuffix =
+          html.substring(0, firstTagStartIndex) +
+          stringPrefix +
+          html.substring(firstTagStartIndex, firstTagEndIndex) +
+          stringSuffix +
+          html.substring(firstTagEndIndex);
 
-      const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, options);
+        const sanitizedHtml = sanitize(htmlWithPrefixAndSuffix, {} as any);
 
-      return (
-        <InlineEditor
-          id={prop.id}
-          value={prop.value as string}
-          props={this.getProps()}
-          sanitizedHtml={sanitizedHtml}
-          componentId={this.id}
-        />
-      );
-    };
-
-
-    if(!this.memorizedElements[prop.id]) {
-      this.memorizedElements[prop.id] = {};
+        const InlineEditor = getInlineEditor();
+        return (
+          <InlineEditor
+            id={currentProp.id}
+            value={currentProp.value as string}
+            props={componentInstance.getProps()}
+            sanitizedHtml={sanitizedHtml}
+            componentId={componentInstance.id}
+          />
+        );
+      };
     }
 
-    const memorizedElement: MemorizedElement  = this.memorizedElements[prop.id];
-    const isValueChanged = (!!memorizedElement?.value || memorizedElement?.value == "") 
-    && prop.value != memorizedElement?.value;
+    const SanitizeHTML = this._SanitizeHTML;
 
-    if(!memorizedElement.jsxElement || isValueChanged){
-      memorizedElement["jsxElement"] = <SanitizeHTML html={prop?.value}></SanitizeHTML>;
-      memorizedElement["value"] = prop.value as string;
-    }
-
-    return memorizedElement.jsxElement;
+    // Always return a fresh JSX element so that InlineEditor's
+    // useContextSelector hooks can re-run and pick up
+    // activeEditorNamespace changes from InlineEditorContext.
+    return <SanitizeHTML html={prop?.value} prop={prop} properties={properties} />;
   }
 
   getExportedCSSClasses() {
@@ -676,8 +690,8 @@ export abstract class Component
   getCSSClasses(sectionName: string | null): CSSClass[];
   getCSSClasses(sectionName: string | null = null): TypeCSSProp | CSSClass[] {
     const { cssClasses } = this.state.componentProps;
-    
-    return sectionName 
+
+    return sectionName
       ? cssClasses[sectionName]
       : cssClasses;
   }
@@ -707,7 +721,7 @@ export abstract class Component
     this.state.componentProps.props = this.state.componentProps.props.filter(
       (el: any) => el.key !== key
     );
-    
+
     EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
 
@@ -715,7 +729,7 @@ export abstract class Component
     source.forEach(sourceProp => {
       const targetIndex = target.findIndex(prop => prop.key === sourceProp.key);
       if (targetIndex === -1) return;
-      
+
       const targetProp = target[targetIndex];
 
       const isTypeChanged = targetProp.type !== sourceProp.type;
@@ -752,9 +766,11 @@ export abstract class Component
       prop.value === value;
 
     if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+      console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp skipped (no change)', { id: this.id, key });
       return;
     }
 
+    console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp → setState', { id: this.id, key, type: prop.type });
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
       this.state.componentProps.props[i]
@@ -764,7 +780,7 @@ export abstract class Component
 
   setComponentState(key: string, value: any): void {
     const isSameValue = this.state.states[key] === value;
-    if(isSameValue) return;
+    if (isSameValue) return;
     this.state.states[key] = value;
     this.setState({ ...this.state });
   }
@@ -788,7 +804,7 @@ export abstract class Component
   }
   decorateCSS(section: string) {
     let cssClass = [this.styles[section]];
-    
+
     let cssManuplations = Object.entries(this.getCSSClasses()).filter(
       ([p, v]) => v.length > 0
     );
@@ -802,9 +818,9 @@ export abstract class Component
     });
 
     cssClass.push(
-      generateAutoClassName(this.id, section)
+      generateAutoClassName(this.globalComponentId || this.id, section)
     );
-    
+
     return cssClass.join(" ");
   }
 
@@ -836,7 +852,7 @@ export abstract class Component
     }
     return propValue;
   }
-  
+
 
   castToObject<Type>(propName: string): Type {
     let i = this.state.componentProps.props
@@ -848,8 +864,8 @@ export abstract class Component
   }
 
   castToString(elem: React.JSX.Element): string | React.JSX.Element {
-    const isValid = React.isValidElement(elem);    
-    return isValid ? elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, ""): elem;
+    const isValid = React.isValidElement(elem);
+    return isValid ? elem.props?.html?.replace(/<\/?[^>]+(>|$)/g, "") : elem;
   }
 
   private castingProcess(object: any) {
@@ -926,8 +942,8 @@ export abstract class Component
 
 
   onComponentDidMount() {
-  // Called once, immediately after the component is inserted into the DOM
-  // Override in child components
+    // Called once, immediately after the component is inserted into the DOM
+    // Override in child components
   }
 
   onComponentDidUpdate(
@@ -973,6 +989,17 @@ export abstract class BaseList extends Component {
 }
 
 export abstract class BaseHeroSection extends Component {
+
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
+
   static category = CATEGORIES.HERO_SECTION;
 }
 
@@ -1006,7 +1033,7 @@ export abstract class BaseCallToAction extends Component {
 
 export abstract class BaseSlider extends Component {
   static category = CATEGORIES.SLIDER;
-    
+
   transformSliderValues = (
     sliderProps: TypeUsableComponentProps[]
   ): INPUTS.TYPE_SLIDER_SETTINGS => {
@@ -1028,6 +1055,11 @@ export abstract class BaseImageGallery extends Component {
 
 export abstract class BaseModal extends Component {
   static category = CATEGORIES.MODAL;
+  static subCategory: string = "modal";
+
+  static getSubCategory(): string {
+    return this.subCategory;
+  }
 }
 
 export abstract class BaseLegal extends Component {
@@ -1092,19 +1124,19 @@ export abstract class BaseSocialWidget extends Component {
   static category = CATEGORIES.SOCIALWIDGET;
 }
 
-export function generateAutoClassName(componentId: string, section: string){
+export function generateAutoClassName(componentId: string, section: string) {
   return `auto-generate-${componentId}-${section}`;
 };
 
-export abstract class BaseECommerce extends Component {  
+export abstract class BaseECommerce extends Component {
   static category = CATEGORIES.ECOMMERCE;
 }
 
-export abstract class BaseComingSoon extends Component {  
+export abstract class BaseComingSoon extends Component {
   static category = CATEGORIES.COMINGSOON;
 }
 
-export abstract class BaseSticky extends Component {  
+export abstract class BaseSticky extends Component {
   static category = CATEGORIES.STICKY;
 }
 
@@ -1122,4 +1154,22 @@ export abstract class BasePortfolio extends Component {
 
 export abstract class BaseComparison extends Component {
   static category = CATEGORIES.COMPARISON;
+}
+
+export abstract class BaseBackToTop extends Component {
+  static category = CATEGORIES.BACK_TO_TOP;
+}
+
+export abstract class BaseHeader extends Component {
+  static category = CATEGORIES.HEADER;
+
+  transformSliderValues = (
+    sliderProps: TypeUsableComponentProps[]
+  ): INPUTS.TYPE_SLIDER_SETTINGS => {
+    const flatObject: Record<string, any> = {};
+    sliderProps.forEach((prop: TypeUsableComponentProps) => {
+      flatObject[prop.key] = prop.value;
+    });
+    return flatObject;
+  };
 }
