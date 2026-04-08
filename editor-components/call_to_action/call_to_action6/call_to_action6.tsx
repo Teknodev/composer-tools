@@ -63,6 +63,13 @@ class CallToAction6Page extends BaseCallToAction {
     });
 
     this.addProp({
+      type: "boolean",
+      key: "spaceLine",
+      displayer: "Line",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "placeholder",
       displayer: "Placeholder",
@@ -90,13 +97,6 @@ class CallToAction6Page extends BaseCallToAction {
       value: [
         INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"),
       ],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "spaceLine",
-      displayer: "Line",
-      value: true,
     });
 
     this.setComponentState(
