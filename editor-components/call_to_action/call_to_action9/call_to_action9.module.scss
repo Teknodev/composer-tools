@@ -1,10 +1,11 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .max-content {
     .content {
       gap: var(--composer-gap-lg);
       align-items: center;
+
       .header {
         align-items: center;
 
@@ -17,6 +18,7 @@
         .subtitle {
           width: fit-content;
           transform: translateX(0);
+
           &::before {
             display: none;
           }
@@ -39,14 +41,17 @@
           }
         }
       }
+
       .description {
         content: "";
         text-align: center;
       }
+
       .item-description {
         content: "";
         text-align: center;
       }
+
       .image-container {
         width: fit-content;
         container-type: normal;
@@ -66,8 +71,7 @@
           }
 
           .video {
-            width: 100%;
-            height: 100%;
+            height: var(--composer-gap-lg);
             object-fit: cover;
           }
         }

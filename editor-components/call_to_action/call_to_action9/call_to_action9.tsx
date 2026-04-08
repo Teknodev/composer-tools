@@ -1,14 +1,12 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BaseCallToAction } from "../../EditorComponent";
+import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action9.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 interface ImageItem {
-  image: any;
+  image: TypeMediaInputValue;
 }
-
-type Button = INPUTS.CastedButton;
 
 class CallToAction9Page extends BaseCallToAction {
   constructor(props?: any) {
@@ -150,8 +148,8 @@ class CallToAction9Page extends BaseCallToAction {
                 availableTypes: ["image", "video", "icon"],
               },
               value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573",
+                type: "video",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690a09593596a1002b1d8421?alt=media",
               },
             },
           ],
@@ -185,9 +183,7 @@ class CallToAction9Page extends BaseCallToAction {
 
   render() {
     const images = this.castToObject<ImageItem[]>("imageItems");
-    const descriptionExist = this.castToString(this.getPropValue("description"));
-    const description = this.getPropValue("description");
-    const buttons = this.castToObject<Button[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -195,8 +191,8 @@ class CallToAction9Page extends BaseCallToAction {
           <Base.VerticalContent
             className={this.decorateCSS("content")}
           >
-           <Base.VerticalContent className={this.decorateCSS("header")}>
-            {this.castToString(this.getPropValue("subtitle")) && (
+            <Base.VerticalContent className={this.decorateCSS("header")}>
+              {this.castToString(this.getPropValue("subtitle")) && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                   {this.getPropValue("subtitle")}
                 </Base.SectionSubTitle>
@@ -206,20 +202,17 @@ class CallToAction9Page extends BaseCallToAction {
                   {this.getPropValue("title")}
                 </Base.SectionTitle>
               )}
-              {descriptionExist && (
+              {this.castToString(this.getPropValue("description")) && (
                 <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {description}
+                  {this.getPropValue("description")}
                 </Base.SectionDescription>
               )}
               {buttons.length > 0 && (
                 <div className={this.decorateCSS("button-container")}>
-                  {buttons.map((button: Button, index: number) => (
+                  {buttons.map((button: INPUTS.CastedButton, index: number) => (
                     this.castToString(button.text) && (
                       <ComposerLink key={index} path={button.url}>
-                        <Base.Button
-                          className={this.decorateCSS("button")}
-                          buttonType={button.type}
-                        >
+                        <Base.Button className={this.decorateCSS("button")} buttonType={button.type} >
                           <Base.P className={this.decorateCSS("button-text")}>
                             {button.text}
                           </Base.P>
@@ -229,7 +222,7 @@ class CallToAction9Page extends BaseCallToAction {
                   ))}
                 </div>
               )}
-           </Base.VerticalContent>
+            </Base.VerticalContent>
             {this.castToString(this.getPropValue("itemDescription")) && (
               <Base.SectionDescription className={this.decorateCSS("item-description")}>
                 {this.getPropValue("itemDescription")}
@@ -242,12 +235,7 @@ class CallToAction9Page extends BaseCallToAction {
               >
                 {images.map((item: ImageItem, index: number) => (
                   <div className={this.decorateCSS("image-wrapper")}>
-                    {item.image && (
-                      <Base.Media
-                        value={item.image}
-                        className={this.decorateCSS(item.image.type === "video" ? "video" : "image")}
-                      />
-                    )}
+                    {item.image && <Base.Media value={item.image} className={this.decorateCSS(item.image.type === "video" ? "video" : "image")} />}
                   </div>
                 ))}
               </Base.ListGrid>
