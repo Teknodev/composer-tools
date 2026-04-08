@@ -118,7 +118,6 @@ class Stats31 extends BaseStats {
             key: "itemCount",
             displayer: "Item Count in a Row",
             value: 4,
-            max: 4,
         });
 
         this.addProp({
@@ -278,19 +277,17 @@ class Stats31 extends BaseStats {
                         )}
 
                         {visibleStats.length > 0 && (
-                            <div className={this.decorateCSS("stats-grid-wrapper")}>
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
-                                    {visibleStats.map((stat: StatItem, index: number) => (
-                                        <div key={`stat31-${index}`} className={`${this.decorateCSS("stat-card")} ${this.decorateCSS(`stat-card-${(index % 4) + 1}`)}`}>
-                                            <this.AnimatedStat
-                                                stat={stat}
-                                                animationDuration={animationDuration}
-                                                statsAnimation={statsAnimation}
-                                            />
-                                        </div>
-                                    ))}
-                                </Base.ListGrid>
-                            </div>
+                            <Base.ListGrid gridCount={{ pc: itemCount, tablet: 4, phone: 1 }} className={this.decorateCSS("stats-grid")}>
+                                {visibleStats.map((stat: StatItem, index: number) => (
+                                    <div key={`stat31-${index}`} className={`${this.decorateCSS("stat-card")} ${this.decorateCSS(`stat-card-${(index % 4) + 1}`)}`}>
+                                        <this.AnimatedStat
+                                            stat={stat}
+                                            animationDuration={animationDuration}
+                                            statsAnimation={statsAnimation}
+                                        />
+                                    </div>
+                                ))}
+                            </Base.ListGrid>
                         )}
 
                         {visibleButtons.length > 0 && (
