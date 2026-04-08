@@ -126,10 +126,10 @@ class CallToAction7Page extends BaseCallToAction {
           <Base.ContainerGrid gridCount={{ pc: 2, tablet: 2 }} className={this.decorateCSS("wrapper")}>
             {image &&
               (<Base.GridCell className={this.decorateCSS("left-page")}>
-                <div className={this.decorateCSS("image-container")}>
+                <div className={`${this.decorateCSS("image-container")} ${!(subtitle || title || description) && this.decorateCSS("no-content")}`}>
                   <Base.Media
                     value={image}
-                    className={`${this.decorateCSS("image")} ${!animation && this.decorateCSS("no-animation")}`}
+                    className={this.decorateCSS("image")}
                   />
                   {overlay && <div className={this.decorateCSS("overlay")} />}
                 </div>
