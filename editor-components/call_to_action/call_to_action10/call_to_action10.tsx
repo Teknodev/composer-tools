@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface CardItem {
   cardIcon: TypeMediaInputValue;
+  iconBackground: boolean;
   cardSubtitle: React.JSX.Element;
   cardTitle: React.JSX.Element;
   cardDescription: React.JSX.Element;
@@ -29,10 +30,11 @@ class CallToAction10Page extends BaseCallToAction {
       displayer: "Title",
       value: "Ready to give your brain a boost?",
     });
+
     this.addProp({
       type: "media",
-      key: "icon",
-      displayer: "Icon",
+      key: "headerIcon",
+      displayer: "Header Icon",
       additionalParams: {
         availableTypes: ["icon", "image"],
       },
@@ -41,6 +43,14 @@ class CallToAction10Page extends BaseCallToAction {
         name: "BsHandIndexThumb",
       },
     });
+
+    this.addProp({
+      type: "boolean",
+      key: "headerIconBackground",
+      displayer: "Header Icon Background",
+      value: true,
+    });
+
     this.addProp({
       type: "string",
       key: "description",
@@ -58,18 +68,12 @@ class CallToAction10Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "boolean",
-      key: "iconBackground",
-      displayer: "Icon Background",
-      value: true,
-    });
-
-    this.addProp({
       type: "number",
       key: "itemCount",
       displayer: "Item Count in a Row",
       value: 3,
     });
+
     this.addProp({
       type: "array",
       key: "cardItems",
@@ -91,6 +95,12 @@ class CallToAction10Page extends BaseCallToAction {
                 type: "icon",
                 name: "HiOutlineDocumentText",
               },
+            },
+            {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
             },
             {
               type: "string",
@@ -130,6 +140,12 @@ class CallToAction10Page extends BaseCallToAction {
               },
             },
             {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
+            },
+            {
               type: "string",
               key: "cardSubtitle",
               displayer: "Card Subtitle",
@@ -167,6 +183,12 @@ class CallToAction10Page extends BaseCallToAction {
               },
             },
             {
+              type: "boolean",
+              key: "iconBackground",
+              displayer: "Icon Background",
+              value: true,
+            },
+            {
               type: "string",
               key: "cardSubtitle",
               displayer: "Card Subtitle",
@@ -198,7 +220,7 @@ class CallToAction10Page extends BaseCallToAction {
   render() {
     const cardItem = this.castToObject<CardItem[]>("cardItems");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const enableIconBackground = this.getPropValue("iconBackground");
+    const enableIconBackground = this.getPropValue("headerIconBackground");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -210,13 +232,15 @@ class CallToAction10Page extends BaseCallToAction {
                   {this.castToString(this.getPropValue("subtitle"))}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(this.getPropValue("title") || this.getPropValue("icon")) && (
-                <div className={this.decorateCSS("title-container")}>
+              {this.castToString(this.getPropValue("title") || this.getPropValue("headerIcon")) && (
+                <div className={`${this.decorateCSS("title-container")} ${!this.getPropValue("headerIcon") && this.decorateCSS("no-header-icon")}`}>
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
-                  {this.getPropValue("icon") && (
-                    <Base.Media value={this.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                  {this.getPropValue("headerIcon") && (
+                    <div className={`${this.decorateCSS("header-icon-wrapper")} ${enableIconBackground && this.decorateCSS("icon-bg")}`}>
+                      <Base.Media value={this.getPropValue("headerIcon")} className={this.decorateCSS("header-icon")} />
+                    </div>
                   )}
                 </div>
               )}
@@ -244,7 +268,7 @@ class CallToAction10Page extends BaseCallToAction {
                 {cardItem.map((item: CardItem, index: number) => (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
                     {item.cardIcon && (
-                      <div className={`${this.decorateCSS("icon-wrapper")} ${!enableIconBackground ? this.decorateCSS("no-bg") : ""}`}>
+                      <div className={`${this.decorateCSS("icon-wrapper")} ${!item.iconBackground && this.decorateCSS("no-bg")}`}>
                         <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
                       </div>
                     )}

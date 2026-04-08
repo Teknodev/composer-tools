@@ -148,8 +148,8 @@ class CallToAction9Page extends BaseCallToAction {
                 availableTypes: ["image", "video", "icon"],
               },
               value: {
-                type: "video",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/690a09593596a1002b1d8421?alt=media",
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/645516a9f72de2002caaf055?alt=media&timestamp=1719584962573",
               },
             },
           ],
