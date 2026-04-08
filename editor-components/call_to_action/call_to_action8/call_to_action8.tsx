@@ -15,6 +15,13 @@ class CallToAction8Page extends BaseCallToAction {
     super(props, styles);
 
     this.addProp({
+      type: "boolean",
+      key: "coloredBackground",
+      displayer: "Colored Background",
+      value: true,
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -68,12 +75,6 @@ class CallToAction8Page extends BaseCallToAction {
       value: [
         INPUTS.BUTTON("button", "Button", "Get Started", "", null, null, "Primary"),
       ],
-    });
-    this.addProp({
-      type: "boolean",
-      key: "coloredBackground",
-      displayer: "Colored Background",
-      value: true,
     });
   }
 
