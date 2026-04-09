@@ -3,7 +3,7 @@ import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action34.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
 type Button = INPUTS.CastedButton & { navigateTo?: string };
 
@@ -43,7 +43,7 @@ class CallToAction34 extends BaseCallToAction {
             type: "array",
             key: "buttons",
             displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "Sign Up Online", "", null, null, "White")],
+            value: [INPUTS.BUTTON("button", "Button", "Start Your Free Trial", "", null, null, "Primary")],
         });
 
         this.addProp({
