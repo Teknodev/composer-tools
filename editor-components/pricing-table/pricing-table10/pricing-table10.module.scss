@@ -20,17 +20,15 @@
         z-index: 1;
         display: flex;
         flex-direction: column;
+        gap: var(--composer-gap-md);
 
-        .top-section-wrapper {
-            margin-bottom: var(--composer-gap-lg);
-        }
 
         .top-section {
 
             .subtitle,
             .title,
             .description {
-                text-align: left;
+                content: "";
             }
 
             .buttons {
@@ -145,6 +143,7 @@
                     .card-button-secondary {
                         .button-text {
                             color: var(--composer-primary-color);
+                            text-align: center;
                         }
                     }
                 }
@@ -155,7 +154,7 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-top: var(--composer-gap-md);
+
         }
 
         .bottom-button {
@@ -171,38 +170,31 @@
     .container {
         .max-content {
             .card {
-                margin-top: var(--composer-gap-md);
+                .card-left {
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                }
 
-                .card-content-wrapper {
-                    flex-direction: row;
-
-                    .card-left {
-                        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-                    }
-
-                    .card-right {
-                        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-                    }
+                .card-right {
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
                 }
             }
         }
     }
 }
 
+
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
             .card {
-                .card-content-wrapper {
-                    flex-direction: column;
+                flex-direction: column;
 
-                    .card-left {
-                        padding: var(--composer-gap-xl) var(--composer-gap-md);
-                    }
+                .card-left {
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
+                }
 
-                    .card-right {
-                        padding: var(--composer-gap-xl) var(--composer-gap-md);
-                    }
+                .card-right {
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
                 }
             }
         }

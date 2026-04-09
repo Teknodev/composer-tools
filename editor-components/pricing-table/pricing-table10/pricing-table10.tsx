@@ -23,7 +23,7 @@ type CardData = {
 class PricingTable10 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
-     this.addProp({
+    this.addProp({
       type: "boolean",
       key: "isSingleColorBackground",
       displayer: "Is Single Color Background?",
@@ -178,10 +178,10 @@ class PricingTable10 extends BasePricingTable {
       type: "number",
       key: "itemCountInARow",
       displayer: "Item Count in a Row",
-      value: 9,
+      value: 2,
     });
 
-   
+
   }
 
   static getName(): string {
