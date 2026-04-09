@@ -28,6 +28,7 @@
 
             .subtitle {
                 margin-left: 0;
+                text-align: left;
             }
 
             .title,
@@ -55,8 +56,9 @@
             flex: 1;
             position: relative;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
+            justify-content: center;
             min-height: 500px;
             margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-xl)) calc(-1 * var(--composer-gap-lg) * 2) 0;
 
@@ -81,7 +83,10 @@
             }
 
             &.full-width {
-                margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-xl));
+                flex: 1 1 100%;
+                margin: 0;
+                border-radius: var(--composer-border-radius-md);
+                overflow: hidden;
             }
 
             &.no-media {
@@ -108,8 +113,6 @@
             .stats-list {
                 position: relative;
                 z-index: 2;
-                display: flex;
-                flex-direction: column;
                 gap: var(--composer-gap-xl);
                 padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
                 width: 100%;
@@ -118,8 +121,6 @@
                 .stat-item {
                     display: flex;
                     flex-direction: column;
-
-
                     .stat-value {
                         display: flex;
                         align-items: flex-end;
@@ -158,12 +159,15 @@
                 text-align: left;
             }
 
+
+
             .right-column {
                 min-height: 400px;
                 margin-right: calc(-1 * var(--composer-gap-lg));
 
                 &.full-width {
-                    margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-lg));
+                    flex: 1 1 100%;
+                    margin: 0;
                 }
 
                 .stats-list {
@@ -223,7 +227,8 @@
                 min-height: unset;
 
                 &.full-width {
-                    margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-lg));
+                    flex: 1 1 100%;
+                    margin: 0;
                 }
 
                 &.no-media {

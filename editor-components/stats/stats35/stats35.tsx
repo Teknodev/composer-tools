@@ -27,7 +27,7 @@ class Stats35 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: " ",
+            value: "",
         });
 
         this.addProp({
@@ -63,10 +63,10 @@ class Stats35 extends BaseStats {
                     key: "backgroundImage",
                     displayer: "Media",
                     additionalParams: { availableTypes: ["image", "video"] },
-                   value: {
+                    value: {
                         type: "image",
                         url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/698f381d771c03002cc28774?alt=media",
-                    }, 
+                    },
                 },
                 {
                     type: "boolean",
@@ -105,7 +105,7 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Across ten total funds" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" }, 
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -118,7 +118,7 @@ class Stats35 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Companies invested in" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
-                        { type: "string", key: "description", displayer: "Description", value: "" }, 
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -128,7 +128,7 @@ class Stats35 extends BaseStats {
             type: "number",
             key: "itemCount",
             displayer: "Item Count in a Row",
-            value: 3,
+            value: 1,
         });
 
         this.addProp({
@@ -281,7 +281,7 @@ class Stats35 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const itemCount = this.getPropValue("itemCount");
+        const itemCount = this.getPropValue("itemCount") || 1;
         const alignment = Base.getContentAlignment();
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
@@ -291,37 +291,37 @@ class Stats35 extends BaseStats {
                     <div className={this.decorateCSS("content-wrapper")}>
                         {hasLeftSection && (
                             <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
-                                    {subtitleExist && (
-                                        <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                                            {this.getPropValue("subtitle")}
-                                        </Base.SectionSubTitle>
-                                    )}
-                                    {titleExist && (
-                                        <Base.SectionTitle className={this.decorateCSS("title")}>
-                                            {this.getPropValue("title")}
-                                        </Base.SectionTitle>
-                                    )}
-                                    {descriptionExist && (
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
-                                            {this.getPropValue("description")}
-                                        </Base.SectionDescription>
-                                    )}
-                                    {hasValidButtons && (
-                                        <div className={this.decorateCSS("button-container")}>
-                                            {buttons.filter((btn) => this.castToString(btn.text)).map((item: INPUTS.CastedButton, index: number) => (
-                                                <ComposerLink key={index} path={item.url}>
-                                                    <Base.Button
-                                                        buttonType={item.type}
-                                                        className={this.decorateCSS("button")}
-                                                    >
-                                                        <Base.P className={this.decorateCSS("button-text")}>
-                                                            {item.text}
-                                                        </Base.P>
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            ))}
-                                        </div>
-                                    )}
+                                {subtitleExist && (
+                                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                        {this.getPropValue("subtitle")}
+                                    </Base.SectionSubTitle>
+                                )}
+                                {titleExist && (
+                                    <Base.SectionTitle className={this.decorateCSS("title")}>
+                                        {this.getPropValue("title")}
+                                    </Base.SectionTitle>
+                                )}
+                                {descriptionExist && (
+                                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        {this.getPropValue("description")}
+                                    </Base.SectionDescription>
+                                )}
+                                {hasValidButtons && (
+                                    <div className={this.decorateCSS("button-container")}>
+                                        {buttons.filter((btn) => this.castToString(btn.text)).map((item: INPUTS.CastedButton, index: number) => (
+                                            <ComposerLink key={index} path={item.url}>
+                                                <Base.Button
+                                                    buttonType={item.type}
+                                                    className={this.decorateCSS("button")}
+                                                >
+                                                    <Base.P className={this.decorateCSS("button-text")}>
+                                                        {item.text}
+                                                    </Base.P>
+                                                </Base.Button>
+                                            </ComposerLink>
+                                        ))}
+                                    </div>
+                                )}
                             </Base.VerticalContent>
                         )}
                         {(stats.length > 0 || hasMedia) && (
