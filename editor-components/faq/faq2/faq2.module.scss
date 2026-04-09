@@ -16,7 +16,7 @@
         .card {
           
           background-color: color-mix(in srgb, var(--composer-html-background),var(--composer-font-color-primary) 5%);   
-          border-radius: var(--composer-border-radius-sm);
+          border-radius: var(--composer-border-radius-md);
           padding: var(--composer-gap-xl);
           display: flex;
           flex-direction: column;
@@ -46,17 +46,18 @@
                 font-size: 2rem;
                 object-fit: contain;
                 color: var(--composer-font-color-secondary);
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
             }
             .card-title {
               color: var(--composer-font-color-primary);
-              margin: 0px;
               text-align: left;
             }
 
             .card-description {
               color: var(--composer-tertiary-color);
-              margin: 0px;
               text-align: left;
             }
           }
@@ -86,12 +87,10 @@
           flex: 1;
           align-items: start;
           .down-title{
-            margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
           }
           .down-description{
-            margin: 0;
             color: var(--composer-font-color-primary);
             text-align: start;
           }
@@ -100,7 +99,7 @@
         .buttons{
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
           flex-wrap: wrap;
           max-width: 50%;
           justify-content: end;
@@ -119,10 +118,47 @@
   }
 }
 
+@container (max-width: #{$composer-tablet-width}){
+  .container{
+    .max-content{
+      .page{
+        .card-page{
+          .card{
+            .card-content{
+              .icon-wrapper{
+                padding: var(--composer-gap-xs);
+                .icon{
+                  width: 24px;
+                  height: 24px;
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}){
   .container{
     .max-content{
       .page{
+        .card-page{
+          .card{
+            .card-content{
+              .icon-wrapper{
+                padding: var(--composer-gap-xs);
+                .icon{
+                  width: 20px;
+                  height: 20px;
+                  font-size: 1.25rem;
+                }
+              }
+            }
+          }
+        }
         .down-container{
           flex-direction: column;
           gap: var(--composer-gap-xl);

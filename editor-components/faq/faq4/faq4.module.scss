@@ -47,7 +47,7 @@
       .buttons-wrapper {
         display: flex;
         justify-content: center;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-sm);
         flex-wrap: wrap;
           .button {
             .button-text {
@@ -147,6 +147,31 @@
       .page{
         .middle-page{
           border-bottom: none;
+        }
+        .down-page{
+          .card-wrapper{
+            gap: var(--composer-gap-sm);
+            .card{
+              padding-bottom: var(--composer-gap-md);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .page{
+        .down-page{
+          .card-wrapper{
+            gap: var(--composer-gap-xs);
+            .card{
+              padding-bottom: var(--composer-gap-sm);
+            }
+          }
         }
       }
     }

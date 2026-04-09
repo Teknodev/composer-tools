@@ -120,7 +120,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),],
+                      value: [],
                     },
                   ]
                 },
@@ -152,7 +152,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -184,7 +184,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -216,7 +216,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -268,7 +268,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -300,7 +300,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -332,7 +332,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 }
@@ -384,7 +384,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -416,7 +416,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -448,7 +448,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -480,7 +480,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -512,7 +512,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 }
@@ -564,7 +564,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 },
@@ -596,7 +596,7 @@ class Faq5 extends BaseFAQ {
                       type: "array",
                       key: "buttons",
                       displayer: "Buttons",
-                      value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary")],
+                      value: [],
                     },
                   ]
                 }
