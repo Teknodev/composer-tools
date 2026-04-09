@@ -210,6 +210,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                             {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
                                 const itemTitleExist = this.castToString(item.title);
                                 const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                const isLast = index === breadcrumbItems.length - 1;
                                 if (!itemTitleExist && !itemIconExist) return null;
                                 return (
                                     <div key={index} className={this.decorateCSS("breadcrumb-item")}>
@@ -228,7 +229,7 @@ class Breadcrumb1 extends BaseBreadcrumb {
                                                 )}
                                             </div>
                                         </ComposerLink>
-                                        {separatorIconExist && (
+                                        {!isLast && separatorIconExist && (
                                             <Base.Media
                                                 value={separatorIconValue}
                                                 className={this.decorateCSS("stripIcon")}
