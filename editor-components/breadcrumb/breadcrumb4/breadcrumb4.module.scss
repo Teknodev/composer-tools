@@ -139,6 +139,10 @@
                 align-items: center;
 
                 .link {
+                    display: flex;
+                    align-items: center;
+                    gap: var(--composer-gap-xs);
+
                     .breadcrumb-link {
                         display: flex;
                         align-items: center;
@@ -167,6 +171,9 @@
                 }
 
                 .crumberIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     font-size: 1.25rem !important;
                     height: var(--composer-gap-md);
                     width: var(--composer-gap-md);
@@ -178,33 +185,6 @@
                     }
                 }
 
-                .current-page-container {
-                    display: flex;
-                    align-items: center;
-                    gap: var(--composer-gap-sm);
-                    content: "";
-                }
-
-                .current-page-text {
-                    font-weight: bold;
-                    color: #646464 !important;
-
-                    &.text-without-image {
-                        color: var(--composer-font-color-primary);
-                    }
-                }
-
-                .current-page-icon {
-                    font-size: 1rem;
-                    height: var(--composer-gap-md);
-                    width: var(--composer-gap-md);
-                    flex-shrink: 0;
-                    color: #646464 !important;
-
-                    &.icon-without-image {
-                        color: var(--composer-font-color-primary);
-                    }
-                }
             }
         }
     }
@@ -217,6 +197,7 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
+
     .vector1,
     .vector2,
     .vector3 {
