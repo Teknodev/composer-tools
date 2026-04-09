@@ -124,6 +124,14 @@ class Stats32 extends BaseStats {
                 { type: "number", key: "animationDuration", displayer: "Animation Duration (ms)", value: 2000 },
             ],
         });
+
+        this.addProp({
+            type: "number",
+            key: "itemCountInRow",
+            displayer: "Item Count in a Row",
+            value: 2,
+            max: 4,
+        });
     }
 
     static getName(): string { return "Stats 32"; }
@@ -272,6 +280,7 @@ class Stats32 extends BaseStats {
         }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
+        const itemCountInRow = this.getPropValue("itemCountInRow") || 2;
 
         const titleExist = this.castToString(title);
         const subtitleExist = this.castToString(subtitle);
@@ -342,7 +351,8 @@ class Stats32 extends BaseStats {
                                 </Base.VerticalContent>
 
                                 {hasStats && (
-                                    <div
+                                    <Base.ListGrid
+                                        gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }}
                                         className={this.decorateCSS("stats-grid")}
                                     >
                                         {stats.map((stat: StatItem, index: number) => (
@@ -354,7 +364,7 @@ class Stats32 extends BaseStats {
                                                 isCentered={isCentered}
                                             />
                                         ))}
-                                    </div>
+                                    </Base.ListGrid>
                                 )}
                             </Base.VerticalContent>
                         )}
