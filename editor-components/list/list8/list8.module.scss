@@ -99,8 +99,8 @@
               top: 0;
               transform: translate(-50%, -50%);
               will-change: transform;
-              min-width: calc(var(--composer-font-size-xl) * 3);
-              min-height: calc(var(--composer-font-size-xl) * 3);
+              min-width: 65px;
+              min-height: 65px;
               width: fit-content;
               height: fit-content;
               padding: var(--composer-gap-xs) var(--composer-gap-sm);

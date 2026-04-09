@@ -51,7 +51,7 @@ class List9 extends BaseList {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "CardItem",
+                    displayer: "Card Item",
                     value: [
                         {
                             type: "media",
@@ -109,7 +109,7 @@ class List9 extends BaseList {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "CardItem",
+                    displayer: "Card Item",
                     value: [
                         {
                             type: "media",
@@ -167,7 +167,7 @@ class List9 extends BaseList {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "CardItem",
+                    displayer: "Card Item",
                     value: [
                         {
                             type: "media",
@@ -225,7 +225,7 @@ class List9 extends BaseList {
                 {
                     type: "object",
                     key: "card",
-                    displayer: "CardItem",
+                    displayer: "Card Item",
                     value: [
                         {
                             type: "media",

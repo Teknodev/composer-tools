@@ -51,7 +51,7 @@ class List4 extends BaseList {
     this.addProp({
       type: "array",
       key: "content-card",
-      displayer: "List Item",
+      displayer: "List Items",
       value: [
         {
           type: "object",

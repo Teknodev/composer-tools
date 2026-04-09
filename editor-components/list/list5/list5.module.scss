@@ -152,7 +152,7 @@
 
             &[data-animation~="animate2"]:hover {
               transform: translateY(calc(var(--composer-gap-md) * -1));
-              box-shadow: var(--composer-box-shadow-lg);
+              box-shadow: var(--composer-box-shadow-active);
             }
 
             &[data-animation~="animate3"]:hover {
@@ -280,6 +280,7 @@
               gap: var(--composer-gap-sm);
 
               .card-button {
+
                 .card-button-text,
                 .card-button-icon {
                   content: "";

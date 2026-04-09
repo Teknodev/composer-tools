@@ -78,7 +78,7 @@ class List5 extends BaseList {
     this.addProp({
       type: "array",
       key: "list-items",
-      displayer: "List Item",
+      displayer: "List Items",
       value: [
         {
           type: "object",
@@ -390,13 +390,7 @@ class List5 extends BaseList {
     const hasValidHeaderButtons = headerButtons.some((btn) => this.castToString(btn.text));
 
     return (
-      <Base.Container
-        className={this.decorateCSS("container")}
-        style={{
-          backgroundImage: hasBackgroundMedia && !(backgroundMedia as any).url ? undefined : `url(${(backgroundMedia as any)?.url})`,
-          backgroundSize: "cover",
-        }}
-      >
+      <Base.Container className={this.decorateCSS("container")}>
         {hasBackgroundMedia && (backgroundMedia as any).url && (
           <Base.Media
             value={backgroundMedia as TypeMediaInputValue}

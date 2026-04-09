@@ -49,7 +49,7 @@ class List8 extends BaseList {
     this.addProp({
       type: "array",
       key: "list-items",
-      displayer: "List Item",
+      displayer: "List Items",
       value: [
         {
           type: "object",

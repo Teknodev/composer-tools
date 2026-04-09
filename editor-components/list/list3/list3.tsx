@@ -54,7 +54,7 @@ class List3 extends BaseList {
     this.addProp({
       type: "array",
       key: "listItems",
-      displayer: "List Item",
+      displayer: "List Items",
       value: [
         {
           type: "object",
@@ -70,7 +70,7 @@ class List3 extends BaseList {
             {
               type: "array",
               key: "texts",
-              displayer: "Text",
+              displayer: "Texts",
               value: [
                 {
                   type: "object",

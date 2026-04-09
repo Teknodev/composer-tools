@@ -103,7 +103,6 @@
           transform: translateY(0) scale(1);
           transition: transform var(--composer-transition-duration-slow);
 
-          &[data-animation=""]:where(:hover, :focus-within),
           &[data-animation~="animate1"]:where(:hover, :focus-within) {
 
             .description,
@@ -193,18 +192,14 @@
           .badge {
             content: "";
             color: var(--composer-font-color-primary);
-            height: 1em;
             align-self: flex-start;
             text-align: left;
             width: 100%;
-
-            .badge-text {
-              display: block;
-              max-width: 100%;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              white-space: nowrap;
-            }
+            display: block;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
 
           .image-container {
@@ -219,6 +214,7 @@
             border-radius: var(--composer-border-radius-md);
             background: transparent;
             transition: all 0.3s ease;
+            margin-bottom: 0;
 
             .image {
               height: 100%;
@@ -237,7 +233,7 @@
           }
 
           .image-spacer {
-            padding-top: 280px;
+            padding-top: calc(var(--composer-gap-xl) * 5);
             flex: 0 0 auto;
           }
 

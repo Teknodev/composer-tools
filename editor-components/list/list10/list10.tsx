@@ -330,7 +330,7 @@ class List10 extends BaseList {
                                         >
                                             {badgeExist && (
                                                 <Base.P className={this.decorateCSS("badge")}>
-                                                    <span className={this.decorateCSS("badge-text")}>{card.badge}</span>
+                                                    {card.badge}
                                                 </Base.P>
                                             )}
                                             <div className={this.decorateCSS("image-container")}>

@@ -8,6 +8,7 @@
       gap: var(--composer-gap-lg);
 
       .header {
+
         .subtitle,
         .title,
         .description {
@@ -57,7 +58,7 @@
               left: 90px;
               top: 0;
               background-color: var(--composer-primary-color);
-              height: var(--composer-border-width-xs);
+              height: 1px;
               width: 0;
               z-index: 2;
               transition: all var(--composer-transition-duration-slow) ease-in-out;
@@ -84,7 +85,7 @@
               top: calc(-0.5 * var(--composer-gap-xs));
               left: 0;
               height: calc(100% + var(--composer-gap-md));
-              width: var(--composer-border-width-xs);
+              width: 1px;
               background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             }
 
@@ -92,7 +93,7 @@
               position: absolute;
               top: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
               left: calc(-1 * var(--composer-gap-lg));
-              height: var(--composer-border-width-xs);
+              height: 1px;
               width: calc(100% + var(--composer-gap-md) * 4);
               background-color: var(--composer-font-color-primary);
               z-index: 1;
@@ -103,7 +104,7 @@
               top: calc(0.5 * var(--composer-gap-xs));
               right: 0;
               height: calc(100% + var(--composer-gap-md));
-              width: var(--composer-border-width-xs);
+              width: 1px;
               background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             }
 
@@ -111,7 +112,7 @@
               position: absolute;
               bottom: 0;
               left: calc(-1 * var(--composer-gap-lg));
-              height: var(--composer-border-width-xs);
+              height: 1px;
               width: calc(100% + var(--composer-gap-md) * 4);
               background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
             }
@@ -270,13 +271,13 @@
             .border-top {
               top: calc(var(--composer-gap-lg) + var(--composer-gap-xs));
               left: calc(-1 * var(--composer-gap-md));
-              height: var(--composer-border-width-xs);
+              height: 1px;
               width: calc(100% + var(--composer-gap-md) * 2);
             }
 
             .border-bottom {
               left: calc(-1 * var(--composer-gap-md));
-              height: var(--composer-border-width-xs);
+              height: 1px;
               width: calc(100% + var(--composer-gap-md) * 2);
             }
 
