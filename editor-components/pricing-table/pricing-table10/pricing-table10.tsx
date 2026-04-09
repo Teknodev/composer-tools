@@ -25,8 +25,8 @@ class PricingTable10 extends BasePricingTable {
     super(props, styles);
     this.addProp({
       type: "boolean",
-      key: "isSingleColorBackground",
-      displayer: "Is Single Color Background?",
+      key: "coloredBackground",
+      displayer: "Colored Background",
       value: false,
     });
     this.addProp({
@@ -123,7 +123,7 @@ class PricingTable10 extends BasePricingTable {
       key: "bottomButton",
       displayer: "Bottom Button",
       value: [
-        { type: "string", key: "text", displayer: "Text", value: "safasf" },
+        { type: "string", key: "text", displayer: "Text", value: "" },
         { type: "string", key: "url", displayer: "URL", value: "" },
         { type: "string", key: "type", displayer: "Button Type", value: "Primary" },
 
@@ -207,7 +207,7 @@ class PricingTable10 extends BasePricingTable {
     const bottomButton = this.castToObject<any>("bottomButton");
     const bottomButtonText = this.castToString(bottomButton?.text);
     const itemCountInARow = this.getPropValue("itemCountInARow");
-    const isSingleColorBackground = this.getPropValue("isSingleColorBackground");
+    const isSingleColorBackground = this.getPropValue("coloredBackground");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -255,17 +255,19 @@ class PricingTable10 extends BasePricingTable {
             className={this.decorateCSS("card")}
           >
             <Base.VerticalContent className={this.decorateCSS("card-left")}>
-              <div className={this.decorateCSS("card-header")}>
-                {cardSubtitleExist && (
-                  <Base.P className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.P>
-                )}
-                {cardTitleExist && (
-                  <Base.H3 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H3>
-                )}
-                {cardDescriptionExist && (
-                  <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
-                )}
-              </div>
+              {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
+                <div className={this.decorateCSS("card-header")}>
+                  {cardSubtitleExist && (
+                    <Base.P className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.P>
+                  )}
+                  {cardTitleExist && (
+                    <Base.H3 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H3>
+                  )}
+                  {cardDescriptionExist && (
+                    <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
+                  )}
+                </div>
+              )}
               {(featuresLabelExist || features?.length > 0) && (
                 <div className={this.decorateCSS("features-section")}>
                   {(featuresLabelExist || card.line) && (

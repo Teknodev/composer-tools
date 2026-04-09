@@ -2,7 +2,7 @@
 
 .container {
     position: relative;
-    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+    padding: 120px 60px;
     background-color: var(--composer-html-background);
 
     .background-fill {
@@ -124,7 +124,7 @@
                 background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 3%);
 
                 .price {
-                    font-size: 5rem;
+                    font-size: 3.5rem;
                 }
 
                 .tagline,
@@ -176,6 +176,11 @@
 
                 .card-right {
                     padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                    gap: var(--composer-gap-sm);
+
+                    .price {
+                        font-size: 2.5rem !important;
+                    }
                 }
             }
         }
@@ -195,6 +200,10 @@
 
                 .card-right {
                     padding: var(--composer-gap-xl) var(--composer-gap-md);
+
+                    .price {
+                        font-size: 1.5rem !important;
+                    }
                 }
             }
         }
