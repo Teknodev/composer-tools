@@ -10,11 +10,6 @@ type BreadcrumbItem = {
     navigateTo: string;
 };
 
-type CurrentPageItem = {
-    title: JSX.Element;
-    icon: TypeMediaInputValue;
-};
-
 class Breadcrumb5 extends BaseBreadcrumb {
     constructor(props?: any) {
         super(props, styles);
@@ -54,6 +49,37 @@ class Breadcrumb5 extends BaseBreadcrumb {
                         },
                     ],
                 },
+                {
+                    type: "object",
+                    key: "item",
+                    displayer: "Item",
+                    value: [
+                        {
+                            type: "string",
+                            key: "title",
+                            displayer: "Title",
+                            value: "Current Page",
+                        },
+                        {
+                            type: "media",
+                            key: "icon",
+                            displayer: "Media",
+                            additionalParams: {
+                                availableTypes: ["image", "icon"],
+                            },
+                            value: {
+                                type: "icon",
+                                name: "",
+                            },
+                        },
+                        {
+                            type: "page",
+                            key: "navigateTo",
+                            displayer: "Navigate To",
+                            value: "",
+                        },
+                    ],
+                },
             ],
         });
         this.addProp({
@@ -74,31 +100,6 @@ class Breadcrumb5 extends BaseBreadcrumb {
                 name: "RxDividerVertical",
             },
         });
-        this.addProp({
-            type: "object",
-            key: "currentPage",
-            displayer: "Current Page",
-            value: [
-                {
-                    type: "string",
-                    key: "title",
-                    displayer: "Title",
-                    value: "Current Page",
-                },
-                {
-                    type: "media",
-                    key: "icon",
-                    displayer: "Media",
-                    additionalParams: {
-                        availableTypes: ["image", "icon"],
-                    },
-                    value: {
-                        type: "icon",
-                        name: "",
-                    },
-                },
-            ],
-        });
     }
 
     static getName(): string {
@@ -108,9 +109,6 @@ class Breadcrumb5 extends BaseBreadcrumb {
     render() {
         const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
         const showBreadcrumb = this.getPropValue("showBreadcrumb");
-        const currentPage = this.castToObject<CurrentPageItem>("currentPage");
-        const currentPageTitleExist = this.castToString(currentPage?.title);
-        const currentPageIconExist = currentPage?.icon && (currentPage.icon.type === "icon" ? currentPage.icon.name : currentPage.icon.url);
         const separatorIconValue = this.getPropValue("separatorIcon");
         const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
 
@@ -122,6 +120,7 @@ class Breadcrumb5 extends BaseBreadcrumb {
                             {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
                                 const itemTitleExist = this.castToString(item.title);
                                 const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                                const isLast = index === breadcrumbItems.length - 1;
                                 return (
                                     <div key={index} className={this.decorateCSS("breadcrumb-item")}>
                                         {(itemTitleExist || itemIconExist) && (
@@ -141,32 +140,15 @@ class Breadcrumb5 extends BaseBreadcrumb {
                                                 </div>
                                             </ComposerLink>
                                         )}
+                                        {!isLast && separatorIconExist && (
+                                            <Base.Media
+                                                value={separatorIconValue}
+                                                className={this.decorateCSS("icon")}
+                                            />
+                                        )}
                                     </div>
                                 );
                             })}
-                            {breadcrumbItems.length > 0 && (
-                                <div className={this.decorateCSS("current-page-wrapper")}>
-                                    {separatorIconExist && (
-                                        <Base.Media
-                                            value={separatorIconValue}
-                                            className={this.decorateCSS("icon")}
-                                        />
-                                    )}
-                                    <div className={this.decorateCSS("current-page-container")}>
-                                        {currentPageIconExist && (
-                                            <Base.Media
-                                                value={currentPage.icon}
-                                                className={this.decorateCSS("current-page-icon")}
-                                            />
-                                        )}
-                                        {currentPageTitleExist && (
-                                            <Base.P className={this.decorateCSS("current-page-title")}>
-                                                {currentPage.title}
-                                            </Base.P>
-                                        )}
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     )}
                 </Base.MaxContent>

@@ -54,30 +54,15 @@
       }
     }
 
-    .current-page-wrapper {
-      display: flex;
-      align-items: center;
-      gap: var(--composer-gap-xs);
-    }
-
-    .current-page-container {
-      display: flex;
-      align-items: center;
-      gap: var(--composer-gap-xs);
-      content: "";
-    }
-
-    .current-page-title {
-      color: var(--composer-font-color-primary);
-      content: "";
-    }
-
-    .current-page-icon,
     .icon {
       content: "";
       color: var(--composer-font-color-primary);
       display: flex;
-      font-size: 1.3rem !important;
+      font-size: 1.3rem;
+      width: 1.3rem;
+      height: 1.3rem;
+      flex-shrink: 0;
+      object-fit: cover;
       justify-content: center;
       align-items: center;
     }
