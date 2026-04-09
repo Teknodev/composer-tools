@@ -44,6 +44,7 @@ class CallToAction34 extends BaseCallToAction {
             key: "buttons",
             displayer: "Buttons",
             value: [INPUTS.BUTTON("button", "Button", "Start Your Free Trial", "", null, null, "Primary")],
+
         });
 
         this.addProp({
@@ -128,7 +129,7 @@ class CallToAction34 extends BaseCallToAction {
                                         const buttonText = this.castToString(button.text);
                                         const buttonIcon = button.icon;
 
-                                        if (!buttonText || !buttonIcon) return null;
+                                        if (!buttonText && !buttonIcon) return null;
 
                                         return (
                                             <ComposerLink key={index} path={button.navigateTo}>
