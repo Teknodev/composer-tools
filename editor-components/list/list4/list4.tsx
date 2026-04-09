@@ -295,7 +295,7 @@ class List4 extends BaseList {
                 )}
               </Base.VerticalContent>
             )}
-            <Base.ListGrid className={`${this.decorateCSS("services-grid")} ${!this.getPropValue("showLine") ? this.decorateCSS("no-lines") : ""}`} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
+            <Base.ListGrid className={`${this.decorateCSS("services-grid")} ${!this.getPropValue("showLine") ? this.decorateCSS("no-lines") : ""} ${!hasHeader ? this.decorateCSS("no-header") : ""}`} gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3 }}>
               {this.castToObject<Card[]>("content-card").map(
                 (card: Card, index: number) => {
                   const hasTitle = this.castToString(card.title);

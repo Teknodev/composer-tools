@@ -45,23 +45,6 @@
       .services-grid {
         padding-bottom: 23px;
 
-        &.no-lines {
-          padding-bottom: 30px;
-
-          .service-item {
-            padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
-
-            .item-index {
-              top: var(--composer-gap-md);
-              left: calc(var(--composer-gap-md) + var(--composer-gap-sm));
-            }
-
-            .card-content {
-              margin-top: calc(1.5rem + var(--composer-gap-sm));
-            }
-          }
-        }
-
         .service-item {
           position: relative;
           padding: var(--composer-gap-lg);
@@ -221,6 +204,50 @@
             transform: translateY(var(--composer-gap-lg));
           }
         }
+
+        &.no-lines {
+          padding-bottom: var(--composer-gap-lg);
+
+          .service-item {
+            padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+
+            .item-index {
+              top: var(--composer-gap-md);
+              left: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+            }
+
+            .card-content {
+              padding: 0 !important;
+              margin-top: calc(1.5rem + var(--composer-gap-sm));
+            }
+          }
+        }
+
+        &.no-header {
+          margin-top: calc(-1 * var(--composer-gap-lg));
+
+          &.no-lines {
+            margin-top: 0 !important;
+
+            .service-item {
+              padding-top: var(--composer-gap-lg) !important;
+
+              .border-frame {
+                top: 0;
+              }
+
+              .item-index {
+                top: 8px;
+                left: var(--composer-gap-md);
+              }
+
+              .card-content {
+                padding: 0 !important;
+                margin-top: 0 !important;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -290,6 +317,18 @@
 
           &:nth-child(n) {
             transform: none !important;
+          }
+
+          &.no-header {
+            margin-top: calc(-1 * (var(--composer-gap-xl) + var(--composer-gap-sm)));
+
+            &.no-lines {
+              margin-top: 0;
+
+              .service-item {
+                padding-top: 0 !important;
+              }
+            }
           }
 
           .card-content {
