@@ -43,6 +43,25 @@
       }
 
       .services-grid {
+        padding-bottom: 23px;
+
+        &.no-lines {
+          padding-bottom: 30px;
+
+          .service-item {
+            padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+
+            .item-index {
+              top: var(--composer-gap-md);
+              left: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+            }
+
+            .card-content {
+              margin-top: calc(1.5rem + var(--composer-gap-sm));
+            }
+          }
+        }
+
         .service-item {
           position: relative;
           padding: var(--composer-gap-lg);
@@ -213,14 +232,18 @@
       gap: var(--composer-gap-md);
     }
 
-    .service-item:nth-child(3n + 2) {
-      transform: translateY(var(--composer-gap-sm));
-    }
+    .services-grid {
+      padding-bottom: var(--composer-gap-sm);
 
-    .service-item .card-content .card-body .item-icon {
-      width: 1.75rem;
-      height: 1.75rem;
-      font-size: 1.75rem;
+      .service-item:nth-child(3n + 2) {
+        transform: translateY(var(--composer-gap-sm));
+      }
+
+      .service-item .card-content .card-body .item-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        font-size: 1.75rem;
+      }
     }
   }
 }
@@ -244,6 +267,22 @@
 
       .services-grid {
         gap: 0;
+        padding-bottom: 0;
+
+        &.no-lines {
+          .service-item {
+            padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+
+            .item-index {
+              top: var(--composer-gap-md);
+              left: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+            }
+
+            .card-content {
+              margin-top: calc(1.25rem + var(--composer-gap-sm));
+            }
+          }
+        }
 
         .service-item {
           padding: var(--composer-gap-md);
