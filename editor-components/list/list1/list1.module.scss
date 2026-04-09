@@ -39,6 +39,14 @@
         margin-left: calc(var(--composer-gap-md) / -2);
         position: relative;
 
+        &.has-bg-no-dots {
+          padding-bottom: 44px;
+        }
+
+        &.has-bg-with-dots {
+          padding-bottom: 14px;
+        }
+
         :global(.slick-list),
         :global(.slick-track) {
           display: flex;
@@ -286,6 +294,14 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container .content {
     .carousel {
+      &.has-bg-no-dots {
+        padding-bottom: 39px !important;
+      }
+
+      &.has-bg-with-dots {
+        padding-bottom: 8px !important;
+      }
+
       :global(.slick-slide) {
         padding: 0 var(--composer-gap-md) !important;
       }
@@ -346,6 +362,14 @@
 
     .carousel {
       padding: 0 var(--composer-gap-md) !important;
+
+      &.has-bg-no-dots {
+        padding-bottom: 0 !important;
+      }
+
+      &.has-bg-with-dots {
+        padding-bottom: 0 !important;
+      }
 
       :global(.slick-slide) {
         padding: 0 var(--composer-gap-md) !important;

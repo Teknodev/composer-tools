@@ -490,7 +490,7 @@ class List1 extends BaseList {
               <ComposerSlider
                 {...settings}
                 key={`slider-${settings.adaptiveHeight}`}
-                className={this.decorateCSS("carousel")}
+                className={`${this.decorateCSS("carousel")} ${backgroundColor ? (userSettings.dots ? this.decorateCSS("has-bg-with-dots") : this.decorateCSS("has-bg-no-dots")) : ""}`}
               >
                 {sliderItems.map((item: Card, indexSlider: number) => {
                   const itemTitleExist = this.castToString(item.title);
