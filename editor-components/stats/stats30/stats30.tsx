@@ -12,7 +12,7 @@ export class Stats30 extends BaseStats {
             type: "boolean",
             key: "coloredBackground",
             displayer: "Colored Background",
-            value: true,
+            value: false,
         });
 
         this.addProp({
