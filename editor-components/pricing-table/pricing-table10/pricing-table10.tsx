@@ -11,24 +11,29 @@ type FeatureItem = {
 };
 
 type CardData = {
-  cardSubtitle: JSX.Element;
-  cardTitle: JSX.Element;
-  cardDescription: JSX.Element;
-  featuresLabel: JSX.Element;
+  cardSubtitle: string;
+  cardTitle: string;
+  cardDescription: string;
+  featuresLabel: string;
   line: boolean;
-  tagline: JSX.Element;
-  price: JSX.Element;
+  tagline: string;
+  price: string;
 };
 
 class PricingTable10 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
-
+     this.addProp({
+      type: "boolean",
+      key: "isSingleColorBackground",
+      displayer: "Is Single Color Background?",
+      value: false,
+    });
     this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "asfas",
+      value: "",
     });
 
     this.addProp({
@@ -105,6 +110,28 @@ class PricingTable10 extends BasePricingTable {
 
     this.addProp({
       type: "array",
+      key: "cardButtons",
+      displayer: "Card Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "GET ACCESS", "", null, null, "Black"),
+        INPUTS.BUTTON("button", "Button", "Get a free sample (20mb)", "", null, null, "Bare"),
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "bottomButton",
+      displayer: "Bottom Button",
+      value: [
+        { type: "string", key: "text", displayer: "Text", value: "safasf" },
+        { type: "string", key: "url", displayer: "URL", value: "" },
+        { type: "string", key: "type", displayer: "Button Type", value: "Primary" },
+
+      ],
+    });
+
+    this.addProp({
+      type: "array",
       key: "features",
       displayer: "Features",
       value: [
@@ -148,14 +175,13 @@ class PricingTable10 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "array",
-      key: "cardButtons",
-      displayer: "Card Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "GET ACCESS", "", null, null, "Primary"),
-        INPUTS.BUTTON("button", "Button", "Get a free sample (20mb)", "", null, null, "Bare"),
-      ],
+      type: "number",
+      key: "itemCountInARow",
+      displayer: "Item Count in a Row",
+      value: 9,
     });
+
+   
   }
 
   static getName(): string {
@@ -178,62 +204,68 @@ class PricingTable10 extends BasePricingTable {
     const priceExist = this.castToString(card.price);
     const features = this.castToObject<FeatureItem[]>("features");
     const cardButtons = this.castToObject<INPUTS.CastedButton[]>("cardButtons");
+    const bottomButton = this.castToObject<any>("bottomButton");
+    const bottomButtonText = this.castToString(bottomButton?.text);
+    const itemCountInARow = this.getPropValue("itemCountInARow");
+    const isSingleColorBackground = this.getPropValue("isSingleColorBackground");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
+        {!isSingleColorBackground && <div className={this.decorateCSS("background-fill")} />}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleExist || titleExist || descriptionExist || buttons?.length > 0) && (
-            <Base.VerticalContent className={this.decorateCSS("top-section")}>
-              {subtitleExist && (
-                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                  {this.getPropValue("subtitle")}
-                </Base.SectionSubTitle>
-              )}
-              {titleExist && (
-                <Base.SectionTitle className={this.decorateCSS("title")}>
-                  {this.getPropValue("title")}
-                </Base.SectionTitle>
-              )}
-              {descriptionExist && (
-                <Base.SectionDescription className={this.decorateCSS("description")}>
-                  {this.getPropValue("description")}
-                </Base.SectionDescription>
-              )}
-              {buttons?.length > 0 && (
-                <div className={this.decorateCSS("buttons")}>
-                  {buttons.map((button: INPUTS.CastedButton, index: number) => {
-                    const buttonText = this.castToString(button.text);
-                    return (
-                      buttonText && (
-                        <ComposerLink key={index} path={button.url}>
-                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                            {button.text}
-                          </Base.Button>
-                        </ComposerLink>
-                      )
-                    );
-                  })}
-                </div>
-              )}
-            </Base.VerticalContent>
+            <div className={this.decorateCSS("top-section-wrapper")}>
+              <Base.VerticalContent className={this.decorateCSS("top-section")}>
+                {subtitleExist && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {this.getPropValue("subtitle")}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {this.getPropValue("title")}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {this.getPropValue("description")}
+                  </Base.SectionDescription>
+                )}
+                {buttons?.length > 0 && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((button: INPUTS.CastedButton, index: number) => {
+                      const buttonText = this.castToString(button.text);
+                      return (
+                        buttonText && (
+                          <ComposerLink key={index} path={this.castToString(button.url)}>
+                            <Base.Button buttonType={this.castToString(button.type)} className={this.decorateCSS("button")}>
+                              {button.text}
+                            </Base.Button>
+                          </ComposerLink>
+                        )
+                      );
+                    })}
+                  </div>
+                )}
+              </Base.VerticalContent>
+            </div>
           )}
 
           <div
             className={this.decorateCSS("card")}
           >
-
             <Base.VerticalContent className={this.decorateCSS("card-left")}>
-             <div className={this.decorateCSS("card-header")}>
-               {cardSubtitleExist && (
-                <Base.P className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.P>
-              )}
-              {cardTitleExist && (
-                <Base.H3 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H3>
-              )}
-              {cardDescriptionExist && (
-                <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
-              )}
-             </div>
+              <div className={this.decorateCSS("card-header")}>
+                {cardSubtitleExist && (
+                  <Base.P className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.P>
+                )}
+                {cardTitleExist && (
+                  <Base.H3 className={this.decorateCSS("card-title")}>{card.cardTitle}</Base.H3>
+                )}
+                {cardDescriptionExist && (
+                  <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
+                )}
+              </div>
               {(featuresLabelExist || features?.length > 0) && (
                 <div className={this.decorateCSS("features-section")}>
                   {(featuresLabelExist || card.line) && (
@@ -248,7 +280,7 @@ class PricingTable10 extends BasePricingTable {
                   )}
                   {features?.length > 0 && (
                     <Base.ListGrid
-                      gridCount={{ pc: 2, tablet: 2, phone: 1 }}
+                      gridCount={{ pc: itemCountInARow, tablet: 2, phone: 1 }}
                       className={this.decorateCSS("features-grid")}
                     >
                       {features.map((feature: FeatureItem, index: number) => {
@@ -274,7 +306,6 @@ class PricingTable10 extends BasePricingTable {
               )}
             </Base.VerticalContent>
 
-            {/* Right side */}
             <div className={this.decorateCSS("card-right")}>
               {taglineExist && (
                 <Base.P className={this.decorateCSS("tagline")}>{card.tagline}</Base.P>
@@ -282,20 +313,43 @@ class PricingTable10 extends BasePricingTable {
               {priceExist && (
                 <Base.H3 className={this.decorateCSS("price")}>{card.price}</Base.H3>
               )}
-              {cardButtons?.length > 0 && cardButtons.map((button: INPUTS.CastedButton, index: number) => {
-                const buttonText = this.castToString(button.text);
-                return (
-                  buttonText && (
-                    <ComposerLink key={index} path={button.url}>
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
-                        {button.text}
+              {cardButtons?.length > 0 && (
+                <div className={this.decorateCSS("card-buttons")}>
+                  {cardButtons[0] && this.castToString(cardButtons[0].text) && (
+                    <ComposerLink path={this.castToString(cardButtons[0].url)}>
+                      <Base.Button buttonType={this.castToString(cardButtons[0].type)} className={this.decorateCSS("card-button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {cardButtons[0].text}
+                        </Base.P>
                       </Base.Button>
                     </ComposerLink>
-                  )
-                );
-              })}
+                  )}
+                  {cardButtons[1] && this.castToString(cardButtons[1].text) && (
+                    <ComposerLink path={this.castToString(cardButtons[1].url)}>
+                      <Base.Button buttonType={this.castToString(cardButtons[1].type)} className={this.decorateCSS("card-button-secondary")}>
+                        <Base.P className={this.decorateCSS("button-text")}>
+                          {cardButtons[1].text}
+                        </Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  )}
+                </div>
+              )}
             </div>
           </div>
+
+          {bottomButtonText && (
+            <div className={this.decorateCSS("bottom-button-wrapper")}>
+              <ComposerLink path={this.castToString(bottomButton?.url)}>
+                <Base.Button buttonType={this.castToString(bottomButton?.type)} className={this.decorateCSS("bottom-button")}>
+                  <Base.P className={this.decorateCSS("button-text")}>
+                    {bottomButton?.text}
+                  </Base.P>
+                </Base.Button>
+              </ComposerLink>
+            </div>
+          )}
+
         </Base.MaxContent>
       </Base.Container>
     );
