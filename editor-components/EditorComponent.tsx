@@ -399,13 +399,14 @@ export abstract class Component
   public globalComponentId: string | undefined;
   public _SanitizeHTML: React.ComponentType<any> | null = null;
   static category: CATEGORIES;
-
+  private static _dbgStyle = 'padding:2px 4px;border-radius:2px;font-weight:bold;color:white;background:#4CAF50;';
 
   componentDidUpdate(
     prevProps: Readonly<{}>,
     prevState: Readonly<{ states: any; componentProps: any; }>,
     snapshot?: any
   ): void {
+
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
   }
@@ -765,9 +766,11 @@ export abstract class Component
       prop.value === value;
 
     if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+      console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp skipped (no change)', { id: this.id, key });
       return;
     }
 
+    console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp → setState', { id: this.id, key, type: prop.type });
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
       this.state.componentProps.props[i]
