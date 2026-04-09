@@ -441,14 +441,14 @@ class List9 extends BaseList {
                                                 />
                                             )}
                                             {cardSubtitleExist && (
-                                                <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                                                <Base.H6 className={this.decorateCSS("card-subtitle")}>
                                                     {card.subtitle}
-                                                </Base.H5>
+                                                </Base.H6>
                                             )}
                                             {cardTitleExist && (
-                                                <Base.H4 className={this.decorateCSS("card-title")}>
+                                                <Base.H5 className={this.decorateCSS("card-title")}>
                                                     {card.title}
-                                                </Base.H4>
+                                                </Base.H5>
                                             )}
                                             {cardDescriptionExist && (
                                                 <Base.P className={this.decorateCSS("card-description")}>

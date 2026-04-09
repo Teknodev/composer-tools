@@ -349,16 +349,16 @@ class List4 extends BaseList {
                           )}
 
                           {hasSubtitle && (
-                            <Base.H5 className={this.decorateCSS("item-subtitle")}>
+                            <Base.H6 className={this.decorateCSS("item-subtitle")}>
                               {card.subtitle}
-                            </Base.H5>
+                            </Base.H6>
                           )}
                           {hasTitle && (
-                            <Base.H4
+                            <Base.H5
                               className={this.decorateCSS("item-title")}
                             >
                               {card.title}
-                            </Base.H4>
+                            </Base.H5>
                           )}
                           {hasDescription && (
                             <Base.P className={this.decorateCSS("item-description")}>

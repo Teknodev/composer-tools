@@ -280,9 +280,9 @@ class List10 extends BaseList {
                                         </Base.SectionTitle>
                                     )}
                                     {subtitleExist && (
-                                        <Base.H5 className={this.decorateCSS("subtitle")}>
+                                        <Base.H6 className={this.decorateCSS("subtitle")}>
                                             {this.getPropValue("sideText")}
-                                        </Base.H5>
+                                        </Base.H6>
                                     )}
                                 </div>
                                 {descriptionExist && (

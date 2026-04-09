@@ -384,14 +384,14 @@ class List11 extends BaseList {
                                             )}
                                             <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                                 {itemSubtitleExist && (
-                                                    <Base.H4 className={this.decorateCSS("card-subtitle")}>
+                                                    <Base.H6 className={this.decorateCSS("card-subtitle")}>
                                                         {item.subtitle}
-                                                    </Base.H4>
+                                                    </Base.H6>
                                                 )}
                                                 {itemTitleExist && (
-                                                    <Base.H3 className={this.decorateCSS("card-title")}>
+                                                    <Base.H5 className={this.decorateCSS("card-title")}>
                                                         {item.title}
-                                                    </Base.H3>
+                                                    </Base.H5>
                                                 )}
                                                 {itemDescriptionExist && (
                                                     <Base.SectionDescription className={this.decorateCSS("card-description")}>

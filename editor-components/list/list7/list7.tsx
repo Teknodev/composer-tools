@@ -329,9 +329,9 @@ class List7 extends BaseList {
                           </Base.H6>
                         )}
                         {itemTitleExist && (
-                          <Base.H3 className={this.decorateCSS("item-title")}>
+                          <Base.H5 className={this.decorateCSS("item-title")}>
                             {item.title}
-                          </Base.H3>
+                          </Base.H5>
                         )}
                         {itemDescriptionExist && (
                           <Base.P className={this.decorateCSS("item-description")}>

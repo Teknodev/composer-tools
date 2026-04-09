@@ -295,9 +295,9 @@ class List6 extends BaseList {
                             </div>
                           )}
                           {this.castToString(item.itemTitle) && (
-                            <Base.H4 className={this.decorateCSS("title")}>
+                            <Base.H5 className={this.decorateCSS("title")}>
                               {item.itemTitle}
-                            </Base.H4>
+                            </Base.H5>
                           )}
                         </div>
                       )}
