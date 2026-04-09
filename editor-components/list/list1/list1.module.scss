@@ -51,7 +51,6 @@
 
         :global(.slick-slide) {
           padding: 0 calc(var(--composer-gap-xl) / 2 + 1px);
-          margin-bottom: calc(2 * var(--composer-gap-md));
           box-sizing: border-box;
           height: auto;
           display: flex;
@@ -102,10 +101,9 @@
           gap: calc(var(--composer-gap-sm) * 1.5);
           list-style-type: none;
           padding: 0;
-          position: absolute;
-          bottom: 0px;
-          left: 50%;
-          transform: translateX(-50%);
+          position: relative;
+          margin: 0 auto;
+          margin-top: 15px;
           justify-content: center;
           align-items: center;
           z-index: 2 !important;
@@ -293,7 +291,7 @@
       }
 
       .dots {
-        bottom: 0px !important;
+        margin-top: 15px !important;
 
         .dot-button {
           border: none;
@@ -358,7 +356,7 @@
       }
 
       .dots {
-        bottom: -15px !important;
+        margin-top: var(--composer-gap-sm);
 
         .dot-button {
           width: var(--composer-gap-sm) !important;
