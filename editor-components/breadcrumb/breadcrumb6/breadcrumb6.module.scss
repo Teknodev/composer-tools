@@ -52,8 +52,11 @@
         .section {
             .subtitle {
                 content: "";
-                background: transparent !important;
-                padding: 0 !important;
+
+                &.no-badge {
+                    padding: 0;
+                    background-color: transparent;
+                }
             }
 
             .title {
