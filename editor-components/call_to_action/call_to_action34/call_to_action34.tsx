@@ -103,9 +103,9 @@ class CallToAction34 extends BaseCallToAction {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.ListGrid gridCount={{ pc: 2, tablet: 2, phone: 1 }} className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}${!hasLeftContent ? this.decorateCSS("no-text") : ""}`}>
+                    <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}${!hasLeftContent ? this.decorateCSS("no-text") : ""}`}>
                         {hasLeftContent && (
-                            <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}`}>
+                            <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}`}>
                                 {subtitle && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {this.getPropValue("subtitle")}
@@ -153,7 +153,7 @@ class CallToAction34 extends BaseCallToAction {
                                         );
                                     })}
                                 </div>
-                            </Base.VerticalContent>
+                            </div>
                         )}
 
                         {media?.url && (
@@ -168,7 +168,7 @@ class CallToAction34 extends BaseCallToAction {
                                 </div>
                             </div>
                         )}
-                    </Base.ListGrid>
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         );
