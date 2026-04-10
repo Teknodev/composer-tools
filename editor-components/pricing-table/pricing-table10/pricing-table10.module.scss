@@ -52,7 +52,7 @@
             .card-left {
                 flex: 2;
                 display: flex;
-                padding: 120px 60px;
+                padding: 80px 50px;
                 flex-direction: column;
                 gap: var(--composer-gap-md);
 
@@ -115,7 +115,7 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
-                padding: 120px 60px;
+                padding: 80px 50px;
                 align-items: center;
                 justify-content: center;
                 gap: var(--composer-gap-md);
@@ -169,11 +169,11 @@
         .max-content {
             .card {
                 .card-left {
-                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                    padding: 80px 40px;
                 }
 
                 .card-right {
-                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                    padding: 80px 40px;
                     gap: var(--composer-gap-sm);
 
                     .price {
@@ -193,14 +193,14 @@
                 flex-direction: column;
 
                 .card-left {
-                    padding: var(--composer-gap-xl) var(--composer-gap-md);
+                    padding: 50px 20px;
                 }
 
                 .card-right {
-                    padding: var(--composer-gap-xl) var(--composer-gap-md);
+                    padding: 50px 20px;
 
                     .price {
-                        font-size: 1.5rem !important;
+                        font-size: 3.5rem !important;
                     }
                 }
             }

@@ -105,16 +105,15 @@ class PricingTable10 extends BasePricingTable {
           displayer: "Price",
           value: "$349",
         },
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "cardButtons",
-      displayer: "Card Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "GET ACCESS", "", null, null, "Black"),
-        INPUTS.BUTTON("button", "Button", "Get a free sample (20mb)", "", null, null, "Bare"),
+        {
+          type: "array",
+          key: "cardButtons",
+          displayer: "Card Buttons",
+          value: [
+            INPUTS.BUTTON("button", "Button", "GET ACCESS", "", null, null, "Black"),
+            INPUTS.BUTTON("button", "Button", "Get a free sample (20mb)", "", null, null, "Bare"),
+          ],
+        },
       ],
     });
 
@@ -124,9 +123,6 @@ class PricingTable10 extends BasePricingTable {
       displayer: "Bottom Button",
       value: [
         { type: "string", key: "text", displayer: "Text", value: "" },
-        { type: "string", key: "url", displayer: "URL", value: "" },
-        { type: "string", key: "type", displayer: "Button Type", value: "Primary" },
-
       ],
     });
 
@@ -184,6 +180,19 @@ class PricingTable10 extends BasePricingTable {
 
   }
 
+  private getCardButtons(card: CardData) {
+    const buttonsArray = (card as any)?.cardButtons;
+    if (!Array.isArray(buttonsArray)) return [];
+    return buttonsArray.map((btn: any) => {
+      const parent = btn?.value ?? btn;
+      return {
+        text: this.getPropValue("text", { parent_object: parent }),
+        type: this.getPropValue("type", { parent_object: parent }),
+        url: this.getPropValue("url", { parent_object: parent }),
+      };
+    });
+  }
+
   static getName(): string {
     return "Pricing 10";
   }
@@ -203,7 +212,7 @@ class PricingTable10 extends BasePricingTable {
     const taglineExist = this.castToString(card.tagline);
     const priceExist = this.castToString(card.price);
     const features = this.castToObject<FeatureItem[]>("features");
-    const cardButtons = this.castToObject<INPUTS.CastedButton[]>("cardButtons");
+    const cardButtons = this.getCardButtons(card);
     const bottomButton = this.castToObject<any>("bottomButton");
     const bottomButtonText = this.castToString(bottomButton?.text);
     const itemCountInARow = this.getPropValue("itemCountInARow");
@@ -318,8 +327,8 @@ class PricingTable10 extends BasePricingTable {
               {cardButtons?.length > 0 && (
                 <div className={this.decorateCSS("card-buttons")}>
                   {cardButtons[0] && this.castToString(cardButtons[0].text) && (
-                    <ComposerLink path={this.castToString(cardButtons[0].url)}>
-                      <Base.Button buttonType={this.castToString(cardButtons[0].type)} className={this.decorateCSS("card-button")}>
+                    <ComposerLink path={this.castToString(cardButtons[0].url) || ""}>
+                      <Base.Button buttonType={cardButtons[0].type} className={this.decorateCSS("card-button")}>
                         <Base.P className={this.decorateCSS("button-text")}>
                           {cardButtons[0].text}
                         </Base.P>
@@ -327,8 +336,8 @@ class PricingTable10 extends BasePricingTable {
                     </ComposerLink>
                   )}
                   {cardButtons[1] && this.castToString(cardButtons[1].text) && (
-                    <ComposerLink path={this.castToString(cardButtons[1].url)}>
-                      <Base.Button buttonType={this.castToString(cardButtons[1].type)} className={this.decorateCSS("card-button-secondary")}>
+                    <ComposerLink path={this.castToString(cardButtons[1].url) || ""}>
+                      <Base.Button buttonType={cardButtons[1].type} className={this.decorateCSS("card-button-secondary")}>
                         <Base.P className={this.decorateCSS("button-text")}>
                           {cardButtons[1].text}
                         </Base.P>
