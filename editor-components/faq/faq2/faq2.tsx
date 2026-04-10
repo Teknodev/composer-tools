@@ -360,9 +360,9 @@ class Faq2 extends BaseFAQ {
                             </Base.Row>
                           )}
                           {this.castToString(item.cardTitle) && (
-                            <Base.H4 className={this.decorateCSS("card-title")}>
+                            <Base.H6 className={this.decorateCSS("card-title")}>
                               {item.cardTitle}
-                            </Base.H4>
+                            </Base.H6>
                           )}
                           {this.castToString(item.description) && (
                             <Base.P className={this.decorateCSS("card-description")}>
@@ -396,9 +396,9 @@ class Faq2 extends BaseFAQ {
                 {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
                   <Base.VerticalContent className={this.decorateCSS("content")}>
                     {this.castToString(downContainer.title) && (
-                      <Base.H2 className={this.decorateCSS("down-title")}>
+                      <Base.H5 className={this.decorateCSS("down-title")}>
                         {downContainer.title}
-                      </Base.H2>
+                      </Base.H5>
                     )}
                     {this.castToString(downContainer.description) && (
                       <Base.P className={this.decorateCSS("down-description")}>

@@ -274,9 +274,9 @@ class Faq4 extends BaseFAQ {
               <div className={`${this.decorateCSS("middle-page")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}>
                 {card.map((card: Card, index: number) => (
                   <div className={this.decorateCSS("sections")} onClick={() => this.sectionButton(index)}>
-                    <Base.H5 className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
+                    <Base.H6 className={`${this.decorateCSS("section-title")} ${this.getComponentState("selectedSection") === index ? this.decorateCSS("active") : ""}`}>
                       {card.sectionTitle}
-                    </Base.H5>
+                    </Base.H6>
                   </div>
                 ))}
               </div>
@@ -290,9 +290,9 @@ class Faq4 extends BaseFAQ {
                         <div className={this.decorateCSS("child-container")}>
                           {this.castToString(item.title) && (
                             <div className={this.decorateCSS("card-left")}>
-                              <Base.H4 className={this.decorateCSS("card-title")}>
+                              <Base.H6 className={this.decorateCSS("card-title")}>
                                 {item.title}
-                              </Base.H4>
+                              </Base.H6>
                             </div>
                           )}
                           {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (

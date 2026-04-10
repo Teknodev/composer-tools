@@ -176,6 +176,19 @@
     .max-content{
       .page{
         flex-direction: column;
+        .right-page{
+          .bottom-wrapper{
+            .card{
+              .little-container{
+                .icon-wrapper{
+                  .icon{
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

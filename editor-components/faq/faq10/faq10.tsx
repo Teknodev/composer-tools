@@ -37,13 +37,13 @@ class Faq10 extends BaseFAQ {
     this.addProp({
       type: "icon",
       key: "iconPlus",
-      displayer: "Collapsed Icon",
+      displayer: "Inactive Icon",
       value: "IoIosAdd",
     });
     this.addProp({
       type: "icon",
       key: "icon",
-      displayer: "Expanded Icon",
+      displayer: "Active Icon",
       value: "IoIosRemove",
     });
     this.addProp({
@@ -408,9 +408,9 @@ class Faq10 extends BaseFAQ {
                       >
                         <div className={this.decorateCSS("card-header")}>
                           {cardSubtitleExist && (
-                            <Base.H5 className={this.decorateCSS("card-title")}>
+                            <Base.H6 className={this.decorateCSS("card-title")}>
                               {card.subtitle}
-                            </Base.H5>
+                            </Base.H6>
                           )}
                           <span
                             className={[

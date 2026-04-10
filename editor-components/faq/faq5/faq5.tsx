@@ -662,11 +662,11 @@ class Faq5 extends BaseFAQ {
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("section-wrapper")}>
                   {cards.map((card: Card, indexCard: any) => (
-                    <Base.H5 className={`${this.decorateCSS("section")}
+                    <Base.H6 className={`${this.decorateCSS("section")}
                           ${this.getComponentState("activeSection") === indexCard ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.handleSection(indexCard)}>
                       {card.sectionTitle}
-                    </Base.H5>
+                    </Base.H6>
                   ))}
                 </div>
                 {(cards[this.getComponentState("activeSection")].items.length > 0) && (
@@ -683,9 +683,9 @@ class Faq5 extends BaseFAQ {
                                 </div>
                               )}
                               {this.castToString(item.cardTitle) && (
-                                <Base.H5 className={this.decorateCSS("card-title")}>
+                                <Base.H6 className={this.decorateCSS("card-title")}>
                                   {item.cardTitle}
-                                </Base.H5>
+                                </Base.H6>
                               )}
                               {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                                 <div className={this.decorateCSS("icon-wrapper")}>

@@ -51,6 +51,7 @@
                             .title-box {
                                 display: flex;
                                 gap: var(--composer-gap-sm);
+                                align-items: center;
                                 border-bottom: 1px solid var(--composer-tertiary-color);
                                 padding: var(--composer-gap-md);
                                 .title-text {
@@ -145,6 +146,17 @@
             .wrapper{
                 .content{
                     flex-direction: column;
+                    .items-wrapper{
+                        .items{
+                            .item{
+                                .title-box{
+                                    .icon{
+                                        font-size: 1.2rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

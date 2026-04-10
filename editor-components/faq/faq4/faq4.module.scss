@@ -4,7 +4,7 @@
     .page {
       display: flex;
       flex-direction: column;
-      gap: var(--composer-gap-xl);
+      gap: var(--composer-gap-md);
       .up-page {
         .subtitle, .title, .description {
           content: "";
@@ -67,7 +67,7 @@
           .card {
             display: flex;
             flex-direction: column;
-            padding-bottom: var(--composer-gap-lg);
+            padding-bottom: var(--composer-gap-md);
             border-bottom: 1px solid  var(--composer-tertiary-color);
             &.no-line {
               border-bottom: none;
@@ -95,7 +95,9 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  padding: var(--composer-gap-xs);
+                  padding: 0;
+                  width: 36px;
+                  height: 36px;
                   .icon{
                     color: var(--composer-tertiary-color);
                     width: 18px;
@@ -167,9 +169,35 @@
       .page{
         .down-page{
           .card-wrapper{
-            gap: var(--composer-gap-xs);
+            gap: var(--composer-gap-md);
             .card{
-              padding-bottom: var(--composer-gap-sm);
+              padding-bottom: var(--composer-gap-md);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .page{
+        .down-page{
+          .card-wrapper{
+            .card{
+              .child-container{
+                .card-right{
+                  .icon-wrapper{
+                    width: 32px;
+                    height: 32px;
+                    .icon{
+                      font-size: 1.2rem;
+                    }
+                  }
+                }
+              }
             }
           }
         }

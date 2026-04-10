@@ -136,6 +136,7 @@
   .container{
     .max-content{
       .content{
+        gap: var(--composer-gap-lg);
         .bottom-container {
           gap: var(--composer-gap-xl);
         }
@@ -147,8 +148,20 @@
   .container{
     .max-content{
       .content{
+        gap: var(--composer-gap-md);
         .bottom-container {
           flex-direction: column;
+          .content-left{
+            .card{
+              .top-card{
+                .card-right{
+                  .icon{
+                    font-size: 1.2rem;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

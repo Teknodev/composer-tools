@@ -186,7 +186,7 @@ class Faq1 extends BaseFAQ {
                   {(this.castToString(card.subtitle) || this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                     <div className={this.decorateCSS("in-box")}>
                       {this.castToString(card.subtitle) && (
-                        <Base.H4 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H4>
+                        <Base.H6 className={this.decorateCSS("card-subtitle")}>{card.subtitle}</Base.H6>
                       )}
                       {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                         <Base.Media

@@ -771,9 +771,9 @@ class Faq8 extends BaseFAQ {
                                 />
                               )}
                               {this.castToString(category.categoryName) && (
-                                <Base.H5 className={this.decorateCSS("category-name")}>
+                                <Base.H6 className={this.decorateCSS("category-name")}>
                                   {category.categoryName}
-                                </Base.H5>
+                                </Base.H6>
                               )}
                             </div>
                           )}
@@ -803,9 +803,9 @@ class Faq8 extends BaseFAQ {
                       >
                         {(this.castToString(question.qq)) && (
                           <div className={this.decorateCSS("question")}>
-                            <Base.H5 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
+                            <Base.H6 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
-                            </Base.H5>
+                            </Base.H6>
                             {(icons.activeIcon || icons.inactiveIcon) && (
                               <Base.Media
                                 value={this.getComponentState("activeIndex2") === questionIndex
