@@ -7,7 +7,7 @@
 
   .hero {
     overflow: hidden;
-    padding: 0 var(--composer-gap-xl);
+    padding: 0 60px;
     min-height: 600px;
     display: flex;
     flex-direction: column;
@@ -156,6 +156,7 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container .hero {
+    padding: 0 var(--composer-gap-xl);
     min-height: 400px;
   }
 
@@ -166,6 +167,7 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container .hero {
+    padding: 0 30px;
     min-height: 200px;
   }
 
