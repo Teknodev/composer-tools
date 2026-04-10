@@ -319,7 +319,7 @@ class Stats34 extends BaseStats {
 
                         {media && (
                             <div className={this.decorateCSS("media-wrapper")}>
-                                <div className={this.decorateCSS("media-container")}>
+                                <div className={`${this.decorateCSS("media-container")} ${!hasContent && visibleButtons.length === 0 && visibleStats.length === 0 ? this.decorateCSS("no-content") : ""}`}>
                                     <Base.Media
                                         value={media}
                                         className={this.decorateCSS("media")}
