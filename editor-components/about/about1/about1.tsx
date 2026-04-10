@@ -383,7 +383,7 @@ class About1 extends BaseAbout {
               )}
             </Base.VerticalContent>
           )}
-          <Base.ContainerGrid className={`${this.decorateCSS("content")} ${!hasImage ? this.decorateCSS("no-image") : ""}`}>
+          <Base.ListGrid gridCount={{ pc: hasImage && hasTextContent ? 2 : 1, tablet: hasImage && hasTextContent ? 2 : 1, phone: 1 }} className={`${this.decorateCSS("content")} ${!hasImage ? this.decorateCSS("no-image") : ""}`}>
             {hasImage && (
               <Base.GridCell
                 className={`${this.decorateCSS("image-box")} ${!hasTextContent ? this.decorateCSS("no-content") : ""}`}
@@ -456,7 +456,7 @@ class About1 extends BaseAbout {
                 })}
               </Base.GridCell>
             )}
-          </Base.ContainerGrid>
+          </Base.ListGrid>
           {rightItems.length > 0 && (
             <div className={this.decorateCSS("icons")}>
               {rightItems.map((icons: Icon, index: number) => {

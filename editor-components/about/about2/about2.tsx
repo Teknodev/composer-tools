@@ -189,7 +189,7 @@ class About2 extends BaseAbout {
                             buttonType={item.type}
                             className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
                           >
-                            <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                           </Base.Button>
                         </ComposerLink>
                       );
@@ -204,7 +204,7 @@ class About2 extends BaseAbout {
                         buttonType={item.type}
                         className={`${this.decorateCSS("button")} ${hasMedia ? this.decorateCSS("with-image") : ""}`}
                       >
-                        <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
                     );
                   })}

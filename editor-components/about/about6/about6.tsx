@@ -95,10 +95,7 @@ class About6 extends BaseAbout {
                                     )}>
                                     {subTitleStr && (
                                         <Base.SectionSubTitle
-                                            className={`${subTitleType === "badge"
-                                                ? this.decorateCSS("subtitle-badge")
-                                                : this.decorateCSS("subtitle")
-                                                } `}>
+                                            className={this.decorateCSS("subtitle")}>
                                             {this.getPropValue("subtitle")}
                                         </Base.SectionSubTitle>
                                     )}

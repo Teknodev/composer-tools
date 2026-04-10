@@ -328,7 +328,7 @@ class About7 extends BaseAbout {
                                             <div className={`${this.decorateCSS("middle-line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
                                                 <div className={`${this.decorateCSS("line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
                                                     {item.middleLineActive && (<div className={`${this.decorateCSS("middle-line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div>)}
-                                                    {this.castToString(item.year) && (<div className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}>{item.year}</div>)}
+                                                    {this.castToString(item.year) && (<Base.H1 className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}>{item.year}</Base.H1>)}
                                                 </div>
                                             </div>
                                         )}

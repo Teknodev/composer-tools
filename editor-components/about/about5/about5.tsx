@@ -137,14 +137,14 @@ class About5 extends BaseAbout {
                                             {showInformation && !text2Str && (
                                                 <Base.VerticalContent className={this.decorateCSS("information")}>
                                                     {nameStr && (
-                                                        <Base.P className={this.decorateCSS("name")}>
+                                                        <Base.H5 className={this.decorateCSS("name")}>
                                                             {this.getPropValue("name")}
-                                                        </Base.P>
+                                                        </Base.H5>
                                                     )}
                                                     {jobTitleStr && (
-                                                        <Base.P className={this.decorateCSS("job-title")}>
+                                                        <Base.H6 className={this.decorateCSS("job-title")}>
                                                             {this.getPropValue("job-title")}
-                                                        </Base.P>
+                                                        </Base.H6>
                                                     )}
                                                 </Base.VerticalContent>
                                             )}
@@ -163,14 +163,14 @@ class About5 extends BaseAbout {
                                             {showInformation && (text2Str || !text1Str) && (
                                                 <Base.VerticalContent className={this.decorateCSS("information")}>
                                                     {nameStr && (
-                                                        <Base.P className={this.decorateCSS("name")}>
+                                                        <Base.H5 className={this.decorateCSS("name")}>
                                                             {this.getPropValue("name")}
-                                                        </Base.P>
+                                                        </Base.H5>
                                                     )}
                                                     {jobTitleStr && (
-                                                        <Base.P className={this.decorateCSS("job-title")}>
+                                                        <Base.H6 className={this.decorateCSS("job-title")}>
                                                             {this.getPropValue("job-title")}
-                                                        </Base.P>
+                                                        </Base.H6>
                                                     )}
                                                 </Base.VerticalContent>
                                             )}

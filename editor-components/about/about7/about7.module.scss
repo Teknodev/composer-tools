@@ -180,7 +180,6 @@
                         .year {
                             height: fit-content;
                             color: var(--composer-font-color-primary);
-                            font-size: 3.5rem;
 
                             &.without-middle-line {
                                 padding: 0 var(--composer-gap-sm);
@@ -268,23 +267,6 @@
 }
 
 
-@container (max-width: #{$composer-tablet-width}) {
-    .container {
-        .max-content {
-            .items-wrapper {
-                .middle-container {
-                    .middle-line-and-year {
-                        .line-and-year {
-                            .year {
-                                font-size: 2.5rem;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
 
 @container (max-width: #{$composer-phone-width}) {
     .container {

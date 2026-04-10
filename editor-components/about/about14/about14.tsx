@@ -11,8 +11,8 @@ type MediaGroup = {
 };
 
 type ToggleSettings = {
-    "show-more-text": string;
-    "show-less-text": string;
+    showMoreText: string;
+    showLessText: string;
 };
 
 class About14 extends BaseAbout {
@@ -83,13 +83,13 @@ class About14 extends BaseAbout {
             value: [
                 {
                     type: "string",
-                    key: "show-more-text",
+                    key: "showMoreText",
                     displayer: "Text 1",
                     value: "Show More",
                 },
                 {
                     type: "string",
-                    key: "show-less-text",
+                    key: "showLessText",
                     displayer: "Text 2",
                     value: "Show Less",
                 },
@@ -123,8 +123,8 @@ class About14 extends BaseAbout {
         const hasDescription = this.castToString(description);
 
         const toggleSettings = this.castToObject<ToggleSettings>("toggleSettings");
-        const showMoreText = toggleSettings["show-more-text"];
-        const showLessText = toggleSettings["show-less-text"];
+        const showMoreText = toggleSettings.showMoreText;
+        const showLessText = toggleSettings.showLessText;
 
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));

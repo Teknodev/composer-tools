@@ -15,7 +15,7 @@ class About15 extends BaseAbout {
 
         this.addProp({
             type: "boolean",
-            key: "card-background",
+            key: "cardBackground",
             displayer: "Card Background",
             value: true,
         });
@@ -30,7 +30,7 @@ class About15 extends BaseAbout {
             value: [
                 {
                     type: "object",
-                    key: "media-item",
+                    key: "mediaItem",
                     displayer: "Media Item",
                     value: [
                         {
@@ -55,7 +55,7 @@ class About15 extends BaseAbout {
                 },
                 {
                     type: "object",
-                    key: "media-item",
+                    key: "mediaItem",
                     displayer: "Media Item",
                     value: [
                         {
@@ -80,7 +80,7 @@ class About15 extends BaseAbout {
                 },
                 {
                     type: "object",
-                    key: "media-item",
+                    key: "mediaItem",
                     displayer: "Media Item",
                     value: [
                         {
@@ -143,7 +143,7 @@ class About15 extends BaseAbout {
     }
 
     render() {
-        const cardBackground = this.getPropValue("card-background");
+        const cardBackground = this.getPropValue("cardBackground");
         const subtitleExist = this.castToString(this.getPropValue("subtitle"));
         const titleExist = this.castToString(this.getPropValue("title"));
         const descriptionExist = this.castToString(this.getPropValue("description"));

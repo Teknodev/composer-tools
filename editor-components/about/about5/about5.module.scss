@@ -67,14 +67,12 @@
               .name {
                 color: var(--composer-primary-color);
                 text-align: left;
-                font-size: 2rem;
                 margin-bottom: 0;
               }
 
               .job-title {
                 color: var(--composer-tertiary-color);
                 text-align: left;
-                font-size: 20px;
               }
             }
           }
@@ -84,25 +82,6 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .main-wrapper {
-        .right-section {
-          .content {
-            .right-column-card {
-              .information {
-                .name {
-                  font-size: 1.7rem !important;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
@@ -133,12 +112,6 @@
             .right-column-card {
               width: 100%;
               gap: var(--composer-gap-md);
-
-              .information {
-                .name {
-                  font-size: 1.6rem !important;
-                }
-              }
             }
           }
         }
