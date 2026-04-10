@@ -2,8 +2,8 @@ import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats23.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type StatItem = {
     prefix: string;
@@ -32,7 +32,7 @@ class Stats23 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Our Company In Numbers",
+            value: "",
         });
 
         this.addProp({
@@ -57,44 +57,56 @@ class Stats23 extends BaseStats {
             displayer: "Stats",
             value: [
                 {
-                    type: "object", key: "stat", displayer: "Stat", value: [
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "100" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Clients from 17 countries" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ]
+                        { type: "string", key: "number", displayer: "Value", value: "2018" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "FOUNDED" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "Leverage agile frameworks to provide a robust synopsis for high level overviews" },
+                    ],
                 },
                 {
-                    type: "object", key: "stat", displayer: "Stat", value: [
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "$" },
-                        { type: "string", key: "number", displayer: "Value", value: "280" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Million raised" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ]
+                        { type: "string", key: "number", displayer: "Value", value: "171" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "M" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "FUNDING" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "Organically grow the holistic world view of disruptive innovation via workplace" },
+                    ],
                 },
                 {
-                    type: "object", key: "stat", displayer: "Stat", value: [
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "90" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Of our clients come back" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ]
+                        { type: "string", key: "number", displayer: "Value", value: "300" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "PEOPLE" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "Bring to the table win-win survival strategies to ensure proactive domination" },
+                    ],
                 },
                 {
-                    type: "object", key: "stat", displayer: "Stat", value: [
+                    type: "object",
+                    key: "stat",
+                    displayer: "Stat",
+                    value: [
                         { type: "string", key: "prefix", displayer: "Prefix", value: "" },
-                        { type: "string", key: "number", displayer: "Value", value: "638" },
-                        { type: "string", key: "suffix", displayer: "Suffix", value: "" },
-                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "" },
-                        { type: "string", key: "title", displayer: "Title", value: "Net Promoting Score" },
-                        { type: "string", key: "description", displayer: "Description", value: "" },
-                    ]
+                        { type: "string", key: "number", displayer: "Value", value: "4.500" },
+                        { type: "string", key: "suffix", displayer: "Suffix", value: "+" },
+                        { type: "string", key: "subtitle", displayer: "Subtitle", value: "SQUARE FEET" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "Capitalize on low hanging fruit to identify a ballpark value added activity" },
+                    ],
                 },
             ],
         });
@@ -118,7 +130,9 @@ class Stats23 extends BaseStats {
         });
     }
 
-    static getName(): string { return "Stats 23"; }
+    static getName(): string {
+        return "Stats 23";
+    }
 
     private AnimatedStat = ({ stat, animationDuration = 2000, statsAnimation }: { stat: StatItem; animationDuration?: number; statsAnimation: boolean }) => {
         const originalNumberString = stat.number;
@@ -162,12 +176,24 @@ class Stats23 extends BaseStats {
         const subtitleExist = this.castToString(stat.subtitle);
         const descriptionExist = this.castToString(stat.description);
         const valueExist = this.castToString(originalNumberString);
+        const suffixExist = this.castToString(stat.suffix);
+        const displayNumber = statsAnimation ? animatedNumber : formatNumber(targetNumber);
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!valueExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {valueExist && (
+                {subtitleExist && (
+                    <Base.P className={this.decorateCSS("stat-subtitle")}>
+                        {stat.subtitleElement}
+                    </Base.P>
+                )}
+                {titleExist && (
+                    <Base.H5 className={this.decorateCSS("stat-title")}>
+                        {stat.titleElement}
+                    </Base.H5>
+                )}
+                {(valueExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
                         {this.castToString(stat.prefix) && (
                             <span className={this.decorateCSS("stat-prefix")}>
@@ -175,44 +201,34 @@ class Stats23 extends BaseStats {
                             </span>
                         )}
                         <span className={this.decorateCSS("stat-number")}>
-                            {statsAnimation ? formatNumber(parseFloat(animatedNumber) || 0) : formatNumber(targetNumber)}
+                            {displayNumber}
                         </span>
-                        {this.castToString(stat.suffix) && (
+                        {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
                                 {stat.suffix}
                             </span>
                         )}
                     </span>
                 )}
-                {(subtitleExist || titleExist || descriptionExist) && (
-                    <Base.VerticalContent className={this.decorateCSS("stat-text-content")}>
-                        {subtitleExist && (
-                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                                {stat.subtitleElement}
-                            </Base.H6>
-                        )}
-                        {titleExist && (
-                            <Base.H5 className={this.decorateCSS("stat-title")}>
-                                {stat.titleElement}
-                            </Base.H5>
-                        )}
-                        {descriptionExist && (
-                            <Base.P className={this.decorateCSS("stat-description")}>
-                                {stat.descriptionElement}
-                            </Base.P>
-                        )}
-                    </Base.VerticalContent>
+                {descriptionExist && (
+                    <Base.H6 className={this.decorateCSS("stat-description")}>
+                        {stat.descriptionElement}
+                    </Base.H6>
                 )}
             </Base.VerticalContent>
         );
     };
 
     render() {
-        const title = this.castToString(this.getPropValue("title"));
-        const subtitle = this.castToString(this.getPropValue("subtitle"));
-        const description = this.castToString(this.getPropValue("description"));
+        const subtitleExist = this.castToString(this.getPropValue("subtitle"));
+        const titleExist = this.castToString(this.getPropValue("title"));
+        const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+        const itemCount = this.getPropValue("itemCount");
+        const alignment = Base.getContentAlignment();
+
+        const hasTopSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
 
         const statsItems = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const stats: StatItem[] = statsItems.map((item) => {
@@ -229,29 +245,25 @@ class Stats23 extends BaseStats {
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
-        const itemCount = this.getPropValue("itemCount");
-
-        const hasLeftSection = subtitle || title || description || hasValidButtons;
         const hasStats = stats.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("content-wrapper")}>
-
-                        {hasLeftSection && (
-                            <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                                {subtitle && (
+                    <Base.VerticalContent className={`${this.decorateCSS("content")} ${alignment === "center" ? this.decorateCSS("alignment-center") : ""}`}>
+                        {hasTopSection && (
+                            <Base.VerticalContent className={this.decorateCSS("header-container")}>
+                                {subtitleExist && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                         {this.getPropValue("subtitle")}
                                     </Base.SectionSubTitle>
                                 )}
-                                {title && (
+                                {titleExist && (
                                     <Base.SectionTitle className={this.decorateCSS("title")}>
                                         {this.getPropValue("title")}
                                     </Base.SectionTitle>
                                 )}
-                                {description && (
+                                {descriptionExist && (
                                     <Base.SectionDescription className={this.decorateCSS("description")}>
                                         {this.getPropValue("description")}
                                     </Base.SectionDescription>
@@ -286,7 +298,7 @@ class Stats23 extends BaseStats {
                             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                 {stats.map((stat: StatItem, index: number) => (
                                     <this.AnimatedStat
-                                        key={`stat23-${index}`}
+                                        key={`stat27-${index}`}
                                         stat={stat}
                                         animationDuration={animationDuration}
                                         statsAnimation={statsAnimation}
@@ -294,7 +306,6 @@ class Stats23 extends BaseStats {
                                 ))}
                             </Base.ListGrid>
                         )}
-
                     </Base.VerticalContent>
                 </Base.MaxContent>
             </Base.Container>
