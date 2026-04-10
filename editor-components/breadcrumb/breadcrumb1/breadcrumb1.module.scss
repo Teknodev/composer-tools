@@ -46,18 +46,24 @@
       .title-main,
       .subtitle,
       .description {
-        color: #534931 !important;
+        color: var(--composer-font-color-primary);
+      }
+
+      .subtitle:not(.title-with-bg) {
+        &::before {
+          background: var(--composer-font-color-primary) !important;
+        }
       }
 
       .title-with-bg {
-        content: "";
+        color: #534931 !important;
       }
 
       .left .subtitle.title-with-bg {
         padding: 0;
         border-radius: 0;
         background: none;
-        color: inherit;
+        color: #534931 !important;
 
         &::before {
           background: #534931 !important;
