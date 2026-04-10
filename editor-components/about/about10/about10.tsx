@@ -1,14 +1,23 @@
 import * as React from "react";
-import { BaseAbout } from "../../EditorComponent";
+import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface FeatureItem {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  title: string;
+  titleElement: JSX.Element;
+  subtitle: string;
+  subtitleElement: JSX.Element;
+  description: string;
+  descriptionElement: JSX.Element;
 }
+
+type MediaGroup = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 
 class About10 extends BaseAbout {
   constructor(props?: any) {
@@ -46,23 +55,29 @@ class About10 extends BaseAbout {
     });
 
     this.addProp({
-      type: "media",
-      key: "mainImage",
+      type: "object",
+      key: "media",
       displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69133ed33596a1002b2462ba?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69133ed33596a1002b2462ba?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
 
     this.addProp({
@@ -75,6 +90,12 @@ class About10 extends BaseAbout {
           key: "feature",
           displayer: "Feature",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -96,6 +117,12 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Convenience",
@@ -115,6 +142,12 @@ class About10 extends BaseAbout {
           value: [
             {
               type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
               key: "title",
               displayer: "Title",
               value: "Masters",
@@ -132,6 +165,12 @@ class About10 extends BaseAbout {
           key: "feature",
           displayer: "Feature",
           value: [
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
+            },
             {
               type: "string",
               key: "title",
@@ -186,69 +225,75 @@ class About10 extends BaseAbout {
       return !!(iconVal?.name || iconVal?.url);
     });
     const hasButtonText = buttons.some((btn) => this.castToString(btn.text));
-    const mainImage = this.getPropValue("mainImage");
-    const features = this.castToObject<FeatureItem[]>("features");
+    const mainMediaGroup = this.castToObject<MediaGroup>("media");
+    const mainImage = mainMediaGroup?.media;
+    const featuresItems = this.castToObject<{ title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("features");
+    const features: FeatureItem[] = featuresItems.map((item) => {
+      const title = this.castToString(item.title) || "";
+      const subtitle = this.castToString(item.subtitle) || "";
+      const description = this.castToString(item.description) || "";
+      return { title, titleElement: item.title, subtitle, subtitleElement: item.subtitle, description, descriptionElement: item.description };
+    });
     const hoverAnimation = this.getPropValue("hoverAnimation") || [];
     const animationClass = hoverAnimation.length && hoverAnimation.join(" ");
 
     const hasSubtitleOrTitle = this.castToString(subtitle) || this.castToString(title);
     const hasDescriptionOrButton = this.castToString(description) || hasButtonText || hasButtonIcon;
-    const isImageExist = mainImage;
-    const isFeaturesExist = features.length > 0;
+    const isImageExist = !!mainImage;
+    const isFeaturesExist = features.some((feature) => feature.title || feature.subtitle || feature.description);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-          className={`${this.decorateCSS("header")} ${!hasSubtitleOrTitle && this.decorateCSS("no-left")} ${!hasDescriptionOrButton && this.decorateCSS("no-right")}`}
-          >
-            {hasSubtitleOrTitle && (
-                <Base.VerticalContent className={this.decorateCSS("text-content")}>
+          {(hasSubtitleOrTitle || hasDescriptionOrButton) && (
+            <div className={this.decorateCSS("header")}>
+              {hasSubtitleOrTitle && (
+                <Base.VerticalContent className={this.decorateCSS("left-column")}>
                   {this.castToString(subtitle) && (
                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                      {subtitle}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {this.castToString(title) && (
                     <Base.SectionTitle className={this.decorateCSS("title")}>
-                      {title}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
                 </Base.VerticalContent>
-            )}
-            {hasDescriptionOrButton && (
-              <div className={this.decorateCSS("content-section")}>
-                <Base.VerticalContent className={this.decorateCSS("text-content")}>
+              )}
+
+              {hasDescriptionOrButton && (
+                <Base.VerticalContent className={this.decorateCSS("right-column")}>
                   {this.castToString(description) && (
                     <Base.SectionDescription className={this.decorateCSS("description")}>
-                      {description}
+                      {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
                   {(hasButtonText || hasButtonIcon) && buttons.length > 0 && (
                     <div className={this.decorateCSS("button-wrapper")}>
-                    {buttons.map((btn, idx) => {
-                      const iconVal = btn.icon;
-                      const btnHasIcon = iconVal && ((iconVal as { name?: string }).name || (iconVal as { url?: string }).url);
-                      const btnText = this.castToString(btn.text);
-                      const btnHasText = !!btnText;
-                      return (
-                        <ComposerLink key={`about10-btn-${idx}`} path={btn.url}>
-                          <Base.Button className={this.decorateCSS("button")} buttonType={btn.type || "Primary"}>
-                            {btnHasIcon && <Base.Media value={iconVal} className={this.decorateCSS("button-icon")} />}
-                            {btnHasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
-                          </Base.Button>
-                        </ComposerLink>
-                      );
-                    })}
+                      {buttons.map((btn, idx) => {
+                        const iconVal = btn.icon;
+                        const btnHasIcon = iconVal && ((iconVal as { name?: string }).name || (iconVal as { url?: string }).url);
+                        const btnText = this.castToString(btn.text);
+                        const btnHasText = !!btnText;
+                        return (
+                          <ComposerLink key={`about10-btn-${idx}`} path={btn.url}>
+                            <Base.Button className={this.decorateCSS("button")} buttonType={btn.type || "Primary"}>
+                              {btnHasIcon && <Base.Media value={iconVal as unknown as TypeMediaInputValue} className={this.decorateCSS("button-icon")} />}
+                              {btnHasText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
                     </div>
                   )}
                 </Base.VerticalContent>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          )}
 
           {isImageExist && (
-            <div 
+            <div
               className={this.decorateCSS("image-section")}
               data-animation={animationClass}
             >
@@ -256,9 +301,10 @@ class About10 extends BaseAbout {
                 value={mainImage}
                 className={this.decorateCSS("main-image")}
               />
-              {this.getPropValue("overlay") && (
+              {mainMediaGroup?.overlay && (
                 <div className={this.decorateCSS("overlay")} />
               )}
+              <div className={this.decorateCSS("hover-effect")} />
             </div>
           )}
 
@@ -268,23 +314,36 @@ class About10 extends BaseAbout {
                 className={this.decorateCSS("features-grid")}
                 gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }}
               >
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className={this.decorateCSS("feature-item")}
-                  >
-                    {this.castToString(feature.title) && (
-                      <Base.H4 className={this.decorateCSS("feature-title")}>
-                        {feature.title}
-                      </Base.H4>
-                    )}
-                    {this.castToString(feature.description) && (
-                      <Base.P className={this.decorateCSS("feature-description")}>
-                        {feature.description}
-                      </Base.P>
-                    )}
-                  </div>
-                ))}
+                {features.map((feature, index) => {
+                  const titleExist = feature.title && feature.title !== "";
+                  const subtitleExist = feature.subtitle && feature.subtitle !== "";
+                  const descriptionExist = feature.description && feature.description !== "";
+
+                  if (!titleExist && !subtitleExist && !descriptionExist) return null;
+
+                  return (
+                    <Base.VerticalContent
+                      key={`about10-feature-${index}`}
+                      className={this.decorateCSS("feature-item")}
+                    >
+                      {subtitleExist && (
+                        <Base.H6 className={this.decorateCSS("feature-subtitle")}>
+                          {feature.subtitleElement}
+                        </Base.H6>
+                      )}
+                      {titleExist && (
+                        <Base.H5 className={this.decorateCSS("feature-title")}>
+                          {feature.titleElement}
+                        </Base.H5>
+                      )}
+                      {descriptionExist && (
+                        <Base.P className={this.decorateCSS("feature-description")}>
+                          {feature.descriptionElement}
+                        </Base.P>
+                      )}
+                    </Base.VerticalContent>
+                  );
+                })}
               </Base.ListGrid>
             </div>
           )}

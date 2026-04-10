@@ -1,28 +1,30 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
     align-items: center;
     justify-content: center;
 
+    .content {
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
       .top-container {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-sm);
         align-items: center;
         justify-content: center;
+        margin-bottom: var(--composer-gap-md);
+
+
         .subtitle,
-        .title,
-        .subtitle-badge {
+        .title {
           text-align: center;
         }
+
         .subtitle {
           text-align: center;
           transform: translateX(0);
+
           &::before {
             display: none;
           }
@@ -33,52 +35,81 @@
         color: var(--composer-font-color-primary);
         display: flex;
         gap: var(--composer-gap-md);
+
         .left-text,
         .right-text {
           flex: 1;
           text-align: justify;
         }
       }
-      
+
       .text-container.single-text {
-          .left-text,
-          .right-text {
+
+        .left-text,
+        .right-text {
           text-align: center;
         }
       }
-      
+
       .bottom-container {
         color: var(--composer-font-color-primary);
         text-align: center;
+        align-items: center;
+
         .signature {
           .signature-image {
-            width: 150px;
-            height: 100px;
+            width: calc(var(--composer-gap-xl) * 3);
+            height: calc(var(--composer-gap-xl) * 2);
             object-fit: contain;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: var(--composer-font-color-primary);
           }
         }
+
         .name {
           text-align: center;
         }
       }
+
+      .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    align-items: center !important;
-    .subtitle,
-    .subtitle-badge {
-      text-align: center !important;
-      transform: translateX(0) !important;
-      &::before {
-        content: none !important;
+  .container {
+    .max-content {
+      align-items: center;
+
+      .subtitle {
+        text-align: center;
+        transform: translateX(0);
+
+        &::before {
+          content: none;
+        }
       }
-    }
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
+
+      .content {
+        .text-container {
+          flex-direction: column;
+        }
+      }
     }
   }
 }

@@ -59,10 +59,10 @@
 
                         .description {
                             text-align: left;
-                            margin-bottom: var(--composer-gap-md);
                         }
 
                         .show-more-overlay {
+                            margin-top: var(--composer-gap-md);
                             position: absolute;
                             inset: auto 0 0 0;
                             height: 80px;
@@ -93,6 +93,18 @@
                                 background: none;
                                 height: auto;
                             }
+                        }
+                    }
+                }
+
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
                         }
                     }
                 }
