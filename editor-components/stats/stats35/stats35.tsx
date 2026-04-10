@@ -335,7 +335,7 @@ class Stats35 extends BaseStats {
                                         {showOverlay && <div className={this.decorateCSS("overlay")} />}
                                     </div>
                                 )}
-                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: itemCount, phone: 1 }} className={this.decorateCSS("stats-list")}>
+                                <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-list")}>
                                     {stats.map((stat, index) => (
                                         <this.AnimatedStat
                                             key={`stat35-${index}`}
