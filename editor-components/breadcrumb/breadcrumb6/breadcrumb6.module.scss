@@ -50,6 +50,23 @@
         z-index: 2;
 
         .section {
+            &.with-image {
+                .subtitle,
+                .title,
+                .description,
+                .home,
+                .icon {
+                    color: #ffffff !important;
+                }
+
+                .home:hover,
+                .breadcrumb-link:hover .home,
+                .breadcrumb-link:hover .icon {
+                    color: #ffffff !important;
+                    opacity: 0.75;
+                }
+            }
+
             .subtitle {
                 content: "";
 

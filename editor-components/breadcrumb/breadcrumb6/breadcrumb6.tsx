@@ -19,6 +19,26 @@ class Breadcrumb6 extends BaseBreadcrumb {
     super(props, styles);
     this.addProp({
       type: "object",
+      key: "background",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Background Media",
+          additionalParams: { availableTypes: ["image", "video"] },
+          value: { type: "image", url: "" },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+    this.addProp({
+      type: "object",
       key: "vectors",
       displayer: "Media",
       value: [
@@ -35,26 +55,6 @@ class Breadcrumb6 extends BaseBreadcrumb {
           displayer: "Media 2",
           additionalParams: { availableTypes: ["image", "icon"] },
           value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da788bfb049c002cc22f19?alt=media" },
-        },
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "background",
-      displayer: "Background",
-      value: [
-        {
-          type: "media",
-          key: "image",
-          displayer: "Background Media",
-          additionalParams: { availableTypes: ["image", "video"] },
-          value: { type: "image", url: "" },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: false,
         },
       ],
     });
@@ -202,7 +202,7 @@ class Breadcrumb6 extends BaseBreadcrumb {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={`${this.decorateCSS("section")} ${bgImageExist ? this.decorateCSS("with-image") : ""}`}>
             {isSubtitleExist && (
-              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.decorateCSS("no-badge")}`}>
+              <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${bgImageExist ? this.decorateCSS("no-badge") : ""}`}>
                 {this.getPropValue("subtitle")}
               </Base.SectionSubTitle>
             )}
