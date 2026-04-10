@@ -320,7 +320,9 @@ class PricingTable5 extends BasePricingTable {
                                 className={this.decorateCSS("button-icon")}
                               />
                             )}
-                            {buttonText && buttonText}
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                            )}
                           </Base.Button>
                         </ComposerLink>
                       );

@@ -89,7 +89,7 @@
               margin-left: auto;
               margin-right: auto;
               z-index: 40;
-              box-shadow: var(--composer-box-shadow);
+              box-shadow: var(--box-shadow-active);
               padding: var(--composer-gap-md) var(--composer-gap-sm);
               margin-top: calc(-1 * var(--composer-gap-xl));
               background-color: var(--composer-html-background);
@@ -105,7 +105,7 @@
                     var(--composer-html-background),
                     var(--composer-font-color-primary) 5%);
                 border-radius: var(--composer-border-radius-sm);
-                box-shadow: var(--composer-box-shadow);
+                box-shadow: var(--box-shadow-active);
                 width: max-content;
                 margin-top: calc(-1 * var(--composer-gap-xl));
                 color: var(--composer-primary-color);

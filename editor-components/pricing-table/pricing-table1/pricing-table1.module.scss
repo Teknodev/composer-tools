@@ -79,7 +79,7 @@
         }
 
         &.active {
-          box-shadow: var(--composer-box-shadow);
+          box-shadow: var(--composer-box-shadow-active);
           background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-md);
         }
@@ -120,7 +120,6 @@
             color: var(--composer-primary-color);
             padding: var(--composer-gap-xs) var(--composer-gap-md);
             border-radius: var(--composer-border-radius-sm);
-            font-size: 1rem !important;
             transition-duration: 0.8s;
             width: max-content;
           }
@@ -153,7 +152,6 @@
             gap: var(--composer-gap-sm);
             padding: var(--composer-gap-md) var(--composer-gap-lg);
             color: var(--composer-font-color-primary);
-            font-size: 1rem;
             width: 100%;
             position: relative;
 
@@ -179,7 +177,7 @@
 
             .icon {
               color: var(--composer-primary-color);
-              font-size: 1.8rem !important;
+              font-size: 1.75rem !important;
               display: flex;
               align-items: center;
             }
@@ -268,7 +266,6 @@
             }
 
             .pricingTitle {
-              font-size: 1rem;
               text-align: center;
               color: var(--composer-tertiary-color);
             }
@@ -287,14 +284,12 @@
       color: var(--composer-font-color-primary);
 
       .title-bottom {
-        font-size: 1rem;
         display: flex;
         align-items: center;
         gap: var(--composer-gap-sm);
 
         .bottom-icon {
           font-size: 1.5rem;
-          // color: inherit;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -325,11 +320,10 @@
   }
 
   .container .max-content .upper-section .items .item-card {
-    // border: none;
     overflow: hidden;
   }
 
   .container .max-content .upper-section .items .item-card .card-bottom .card-bottom-content .card-price .price {
-    font-size: 3.2rem !important;
+    font-size: 3.25rem !important;
   }
 }

@@ -24,44 +24,13 @@
     }
 
     .button {
-      display: flex;
-      align-items: center;
-      gap: var(--composer-gap-sm);
-
-      .button-icon {
-        display: flex;
-        align-items: center;
-        font-size: 1.5rem;
-      }
-
+      .button-icon,
       .button-text {
-        margin: 0;
+        content: "";
       }
     }
 
-    &:global(.center) {
-      align-items: center;
 
-      .header {
-        align-items: center;
-
-        .header-buttons {
-          justify-content: center;
-        }
-      }
-    }
-
-    &:global(.left) {
-      align-items: flex-start;
-
-      .header {
-        align-items: flex-start;
-
-        .header-buttons {
-          justify-content: flex-start;
-        }
-      }
-    }
 
     .box {
       margin: 0;
@@ -72,7 +41,6 @@
       padding-bottom: var(--composer-gap-lg);
       position: relative;
       border-radius: var(--composer-border-radius-md);
-      padding-top: 1px;
       padding-left: 10%;
       padding-right: 10%;
 
@@ -87,7 +55,6 @@
         position: relative;
         margin-top: calc(-1 * var(--composer-gap-xl));
         width: 100%;
-        padding-top: 1px;
 
         .card-item-count {
           width: auto;
@@ -138,7 +105,7 @@
             justify-content: flex-start;
             gap: var(--composer-gap-lg);
             height: 100%;
-            min-height: calc(var(--composer-gap-xl) * 9);
+            min-height: 330px;
             background-color: var(--composer-html-background);
             border-radius: var(--composer-border-radius-md);
             box-shadow: var(--box-shadow-active);
@@ -300,7 +267,6 @@
           flex-wrap: wrap;
           justify-content: center;
           width: 50%;
-          padding-top: 1px;
 
           .bar-row {
             display: flex;
@@ -434,7 +400,7 @@
               width: 100%;
               height: 100%;
               align-items: center;
-              min-height: calc(var(--composer-gap-xl) * 6);
+              min-height: 300px;
               height: auto;
               justify-content: space-between;
               background-color: var(--composer-html-background);

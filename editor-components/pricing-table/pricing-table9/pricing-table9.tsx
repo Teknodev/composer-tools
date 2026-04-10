@@ -167,7 +167,9 @@ class PricingTable9 extends BasePricingTable {
               type: "array",
               key: "buttons",
               displayer: "Buttons",
-              value: [],
+              value: [
+                INPUTS.BUTTON("type", "Button", "", "", null, null, "Primary"),
+              ],
             },
           ],
         },
