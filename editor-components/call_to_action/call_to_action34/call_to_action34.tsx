@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
 
-type Button = INPUTS.CastedButton & { navigateTo?: string };
+type Button = INPUTS.CastedButton;
 
 class CallToAction34 extends BaseCallToAction {
     constructor(props?: any) {
@@ -39,12 +39,12 @@ class CallToAction34 extends BaseCallToAction {
             value: "You can purchase ready-made gift certificates for any amount and any service",
         });
 
+
         this.addProp({
             type: "array",
             key: "buttons",
             displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "Start Your Free Trial", "", null, null, "Primary")],
-
+            value: [INPUTS.BUTTON("button", "Button", "Sing Up Online", "", null, null, "White")],
         });
 
         this.addProp({
@@ -132,11 +132,10 @@ class CallToAction34 extends BaseCallToAction {
                                         if (!buttonText && !buttonIcon) return null;
 
                                         return (
-                                            <ComposerLink key={index} path={button.navigateTo}>
+                                            <ComposerLink key={index} path={button.url}>
                                                 <Base.Button
                                                     className={this.decorateCSS("button")}
-                                                    buttonType={button.type}
-                                                    navigateTo={button.navigateTo}
+                                                    buttonType="White"
                                                 >
                                                     {buttonIcon && (
                                                         <Base.Media

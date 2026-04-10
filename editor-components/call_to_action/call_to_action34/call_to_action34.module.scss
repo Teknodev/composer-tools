@@ -98,9 +98,8 @@
                     align-self: flex-start;
 
 
-                    .button {
-                        background-color: var(--composer-font-color-secondary); // Beyaz/Zıt renk
-                        color: var(--composer-primary-color);
+                    .button,
+                    .button-text {
                         content: "";
                     }
                 }
