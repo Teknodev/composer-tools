@@ -1,50 +1,14 @@
 import * as React from "react";
 import styles from "./faq6.module.scss";
-import { BaseFAQ } from "../../EditorComponent";
+import { BaseFAQ, TypeMediaInputValue } from "../../EditorComponent";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 class Faq6 extends BaseFAQ {
   constructor(props?: any) {
     super(props, styles);
-
-    this.addProp({
-      type: "media",
-      displayer: "Inactive Icon",
-      key: "inactive_icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaMinus",
-      },
-    })
-    this.addProp({
-      type: "media",
-      displayer: "Active Icon",
-      key: "active_icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaPlus",
-      },
-    })
-
-    this.addProp({
-      type: "media",
-      displayer: "Media",
-      key: "image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd34bd2970002c62977c?alt=media&timestamp=1719584962578",
-      },
-    })
 
     this.addProp({
       type: "string",
@@ -64,6 +28,14 @@ class Faq6 extends BaseFAQ {
       key: "description",
       displayer: "Description",
       value: "",
+    })
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
     })
     this.addProp({
       type: "array",
@@ -149,6 +121,64 @@ class Faq6 extends BaseFAQ {
       ]
     })
 
+    this.addProp({
+      type: "media",
+      displayer: "Inactive Icon",
+      key: "inactive_icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaMinus",
+      },
+    })
+    this.addProp({
+      type: "media",
+      displayer: "Active Icon",
+      key: "active_icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: {
+        type: "icon",
+        name: "FaPlus",
+      },
+    })
+
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    })
+
+    this.addProp({
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "value",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661cd34bd2970002c62977c?alt=media&timestamp=1719584962578",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
+    })
+
     this.setComponentState("active_index", 0);
 
 
@@ -170,6 +200,12 @@ class Faq6 extends BaseFAQ {
   render() {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
+    const lineEnabled = this.getPropValue("line");
+
+    const mediaSection = this.castToObject<{ value?: TypeMediaInputValue; overlay?: boolean }>("media");
+    const mediaValue = mediaSection?.value as TypeMediaInputValue | undefined;
+    const showOverlay = !!(mediaSection?.overlay);
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -177,7 +213,7 @@ class Faq6 extends BaseFAQ {
             <div className={this.decorateCSS("content")}>
               {(this.castToString(this.getPropValue("title")) || (this.getPropValue("list_items").length > 0)) && (
                 <div className={this.decorateCSS("items-wrapper")}>
-                  {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subtitle"))) && (
+                  {(this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("subtitle")) || descriptionExist || this.getPropValue("buttons").length > 0) && (
                     <Base.VerticalContent className={this.decorateCSS("header-wrapper")}>
                       {this.castToString(this.getPropValue("subtitle")) && (
                         <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -193,10 +229,23 @@ class Faq6 extends BaseFAQ {
                           {description}
                         </Base.SectionDescription>
                       )}
+                      {this.getPropValue("buttons").length > 0 && (
+                        <div className={this.decorateCSS("buttons-wrapper")}>
+                          {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
+                            this.castToString(button.text) && (
+                              <ComposerLink path={button.url}>
+                                <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                </Base.Button>
+                              </ComposerLink>
+                            )
+                          )}
+                        </div>
+                      )}
                     </Base.VerticalContent>
                   )}
                   {(this.getPropValue("list_items").length > 0) && (
-                    <div className={this.decorateCSS("items")}>
+                    <div className={`${this.decorateCSS("items")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}>
                       {this.getPropValue("list_items").map((item: any, index: number) => {
                         const is_active = this.getComponentState("active_index") == index;
 
@@ -225,9 +274,10 @@ class Faq6 extends BaseFAQ {
                   )}
                 </div>
               )}
-              {this.getPropValue("image") && (
+              {mediaValue && (
                 <div className={this.decorateCSS("image-box")}>
-                  <Base.Media value={this.getPropValue("image")} className={this.decorateCSS("image")} />
+                  <Base.Media value={mediaValue} className={this.decorateCSS("image")} />
+                  {showOverlay && <div className={this.decorateCSS("overlay")} />}
                 </div>
               )}
             </div>

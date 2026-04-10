@@ -1,8 +1,10 @@
 import * as React from "react";
 import styles from "./faq8.module.scss";
-import { BaseFAQ } from "../../EditorComponent";
+import { BaseFAQ, TypeMediaInputValue } from "../../EditorComponent";
 
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type Category = {
   categoryName: React.JSX.Element;
@@ -31,40 +33,66 @@ class Faq8 extends BaseFAQ {
       value: "",
     });
     this.addProp({
-      type: "media",
-      key: "dot_icon",
-      displayer: "Dot icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "GoDotFill",
-      },
+      type: "object",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "dot_icon",
+          displayer: "Dot Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "GoDotFill",
+          },
+        },
+        {
+          type: "media",
+          key: "arrow_right",
+          displayer: "Right Arrow Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowRoundForward",
+          },
+        },
+        {
+          type: "media",
+          key: "inactiveIcon",
+          displayer: "Inactive Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaAngleDown",
+          },
+        },
+        {
+          type: "media",
+          key: "activeIcon",
+          displayer: "Active Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "FaAngleUp",
+          },
+        },
+      ],
     });
+
     this.addProp({
-      type: "media",
-      key: "arrow-right",
-      displayer: "Right Arrow icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "IoMdArrowRoundForward",
-      },
-    });
-    this.addProp({
-      type: "media",
-      key: "arrow-down",
-      displayer: "Down Arrow icon",
-      additionalParams: {
-        availableTypes: ["icon"],
-      },
-      value: {
-        type: "icon",
-        name: "FaAngleDown",
-      },
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
     });
 
     this.addProp({
@@ -670,6 +698,15 @@ class Faq8 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
+    });
+
     this.setComponentState("activeIndex", 0);
     this.setComponentState("activeIndex2", -1);
   }
@@ -693,6 +730,8 @@ class Faq8 extends BaseFAQ {
   render() {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const description = this.getPropValue("description");
+    const lineEnabled = this.getPropValue("line");
+    const icons = this.castToObject<{ dot_icon?: TypeMediaInputValue; arrow_right?: TypeMediaInputValue; inactiveIcon?: TypeMediaInputValue; activeIcon?: TypeMediaInputValue }>("icons");
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -720,31 +759,28 @@ class Faq8 extends BaseFAQ {
                     (category: Category, indexCategory: any) => {
                       return (
                         <div
-                          className={`${this.decorateCSS("categories")} ${this.getComponentState("activeIndex") ==
-                            indexCategory &&
-                            this.decorateCSS("active-category")
-                            }`}
+                          className={`${this.decorateCSS("categories")} ${this.getComponentState("activeIndex") == indexCategory ? this.decorateCSS("active-category") : ""}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                           onClick={() => this.handleButton(indexCategory)}
                         >
-                          {(this.getPropValue("dot_icon") || this.getPropValue("arrow-right") || this.castToString(category.categoryName)) && (
+                          {(icons.dot_icon || icons.arrow_right || this.castToString(category.categoryName)) && (
                             <div className={this.decorateCSS("category")}>
-                              {this.getPropValue("dot_icon") && (
+                              {icons.dot_icon && (
                                 <Base.Media
-                                  value={this.getPropValue("dot_icon")}
+                                  value={icons.dot_icon}
                                   className={this.decorateCSS("bullet-icon")}
                                 />
                               )}
                               {this.castToString(category.categoryName) && (
-                                <Base.H4 className={this.decorateCSS("category-name")}>
+                                <Base.H5 className={this.decorateCSS("category-name")}>
                                   {category.categoryName}
-                                </Base.H4>
+                                </Base.H5>
                               )}
                             </div>
                           )}
-                          {this.getPropValue("arrow-right") && (
+                          {icons.arrow_right && (
                             <div className={this.decorateCSS("right")}>
                               <Base.Media
-                                value={this.getPropValue("arrow-right")}
+                                value={icons.arrow_right}
                                 className={this.decorateCSS("arrow-right")}
                               />
                             </div>
@@ -767,10 +803,17 @@ class Faq8 extends BaseFAQ {
                       >
                         {(this.castToString(question.qq)) && (
                           <div className={this.decorateCSS("question")}>
-                            <Base.H4 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
+                            <Base.H5 className={`${this.decorateCSS("question-title")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`}>
                               {question.qq}
-                            </Base.H4>
-                            <Base.Media value={this.getPropValue("arrow-down")} className={`${this.decorateCSS("question-icon")} ${this.getComponentState("activeIndex2") === questionIndex ? this.decorateCSS("active") : ""}`} />
+                            </Base.H5>
+                            {(icons.activeIcon || icons.inactiveIcon) && (
+                              <Base.Media
+                                value={this.getComponentState("activeIndex2") === questionIndex
+                                  ? icons.activeIcon
+                                  : icons.inactiveIcon}
+                                className={this.decorateCSS("question-icon")}
+                              />
+                            )}
                           </div>
                         )}
                         {this.castToString(question.answer) && (
@@ -786,6 +829,20 @@ class Faq8 extends BaseFAQ {
                 </div>
               )}
             </div>
+            {this.getPropValue("buttons").length > 0 && (
+              <div className={this.decorateCSS("buttons-wrapper")}>
+                {this.castToObject<INPUTS.CastedButton[]>("buttons").map(
+                  (button: INPUTS.CastedButton, index: number) =>
+                    this.castToString(button.text) && (
+                      <ComposerLink key={index} path={button.url}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    )
+                )}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>

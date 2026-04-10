@@ -187,7 +187,7 @@ class Faq3 extends BaseFAQ {
       displayer: "Active Icon",
       key: "active_icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -200,7 +200,7 @@ class Faq3 extends BaseFAQ {
       displayer: "Inactive Icon",
       key: "inactive_icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -258,6 +258,13 @@ class Faq3 extends BaseFAQ {
       ],
     });
 
+    this.addProp({
+      type: "boolean",
+      key: "line",
+      displayer: "Line",
+      value: true,
+    });
+
     this.setComponentState("selectCardIndex", null);
   }
 
@@ -289,6 +296,7 @@ class Faq3 extends BaseFAQ {
     const infoArray = this.castToObject<InfoArrayItem[]>("infoArray");
     const faqItems = this.castToObject<Faq[]>("faqItems");
     const showLine = this.getPropValue("showLine");
+    const lineEnabled = this.getPropValue("line");
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -327,7 +335,7 @@ class Faq3 extends BaseFAQ {
                         return (
                           <div
                             key={index}
-                            className={this.decorateCSS("card")}
+                            className={`${this.decorateCSS("card")}${!lineEnabled ? ` ${this.decorateCSS("no-line")}` : ""}`}
                             onClick={() => this.onItemClick(index)}
                           >
                             {(titleExist || descExist || item.index) && (

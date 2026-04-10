@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./faq2.module.scss";
-import { BaseFAQ } from "../../EditorComponent";
+import { BaseFAQ, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 
@@ -9,7 +9,8 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 type Card = {
   cardTitle: React.JSX.Element;
   description: React.JSX.Element;
-  cardIcon: string;
+  cardIcon: TypeMediaInputValue;
+  buttons: INPUTS.CastedButton[];
 };
 type BottomItem = {
   title: React.JSX.Element;
@@ -47,6 +48,12 @@ class Faq2 extends BaseFAQ {
       value: 3,
     });
     this.addProp({
+      type: "boolean",
+      key: "showIconBackground",
+      displayer: "Icon Background",
+      value: true,
+    });
+    this.addProp({
       type: "array",
       key: "card",
       displayer: "Card",
@@ -74,12 +81,18 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "BiQuestionMark",
               },
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [],
             }
           ],
         },
@@ -106,12 +119,18 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "BiQuestionMark",
               },
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [],
             }
           ],
         },
@@ -138,12 +157,18 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "BiQuestionMark",
               },
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [],
             }
           ],
         },
@@ -170,12 +195,18 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "BiQuestionMark",
               },
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [],
             }
           ],
         },
@@ -202,12 +233,18 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "BiQuestionMark",
               },
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [],
             }
           ],
         },
@@ -234,12 +271,18 @@ class Faq2 extends BaseFAQ {
               key: "cardIcon",
               displayer: "Card Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
                 name: "BiQuestionMark",
               },
+            },
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [],
             }
           ],
         },
@@ -309,23 +352,38 @@ class Faq2 extends BaseFAQ {
                 {this.castToObject<Card[]>("card").map(
                   (item: Card) => {
                     return (
-                      <Base.VerticalContent className={this.decorateCSS("card")}>
-                        {item.cardIcon && (
-                          <Base.Row className={this.decorateCSS("icon-wrapper")}>
-                            <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
-                          </Base.Row>
+                      <div className={this.decorateCSS("card")}>
+                        <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                          {item.cardIcon && (
+                            <Base.Row className={`${this.decorateCSS("icon-wrapper")}${!this.getPropValue("showIconBackground") ? ` ${this.decorateCSS("no-icon-bg")}` : ""}`}>
+                              <Base.Media value={item.cardIcon} className={this.decorateCSS("icon")} />
+                            </Base.Row>
+                          )}
+                          {this.castToString(item.cardTitle) && (
+                            <Base.H4 className={this.decorateCSS("card-title")}>
+                              {item.cardTitle}
+                            </Base.H4>
+                          )}
+                          {this.castToString(item.description) && (
+                            <Base.P className={this.decorateCSS("card-description")}>
+                              {item.description}
+                            </Base.P>
+                          )}
+                        </Base.VerticalContent>
+                        {item.buttons?.length > 0 && (
+                          <div className={this.decorateCSS("card-buttons")}>
+                            {item.buttons.map((button: INPUTS.CastedButton) => {
+                              return this.castToString(button.text) && (
+                                <ComposerLink path={button.url}>
+                                  <Base.Button buttonType={button.type} className={this.decorateCSS("card-button")}>
+                                    <Base.P className={this.decorateCSS("card-button-text")}>{button.text}</Base.P>
+                                  </Base.Button>
+                                </ComposerLink>
+                              )
+                            })}
+                          </div>
                         )}
-                        {this.castToString(item.cardTitle) && (
-                          <Base.H3 className={this.decorateCSS("card-title")}>
-                            {item.cardTitle}
-                          </Base.H3>
-                        )}
-                        {this.castToString(item.description) && (
-                          <Base.P className={this.decorateCSS("card-description")}>
-                            {item.description}
-                          </Base.P>
-                        )}
-                      </Base.VerticalContent>
+                      </div>
                     );
                   }
                 )}
@@ -336,7 +394,7 @@ class Faq2 extends BaseFAQ {
             {(this.castToString(downContainer.title) || this.castToString(downContainer.description) || this.getPropValue("buttons").length > 0) && (
               <div className={this.decorateCSS("down-container")}>
                 {(this.castToString(downContainer.title) || this.castToString(downContainer.description)) && (
-                  <div className={this.decorateCSS("content")}>
+                  <Base.VerticalContent className={this.decorateCSS("content")}>
                     {this.castToString(downContainer.title) && (
                       <Base.H2 className={this.decorateCSS("down-title")}>
                         {downContainer.title}
@@ -347,7 +405,7 @@ class Faq2 extends BaseFAQ {
                         {downContainer.description}
                       </Base.P>
                     )}
-                  </div>
+                  </Base.VerticalContent>
                 )}
                 {(this.getPropValue("buttons").length > 0) && (
                   <div className={this.decorateCSS("buttons")}>

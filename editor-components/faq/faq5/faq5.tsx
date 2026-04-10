@@ -2,6 +2,8 @@ import * as React from "react";
 import styles from "./faq5.module.scss";
 import { BaseFAQ } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "../../../custom-hooks/input-templates";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 
 type Card = {
@@ -12,6 +14,7 @@ type Item = {
   cardIndex: React.JSX.Element;
   cardTitle: React.JSX.Element;
   description: React.JSX.Element;
+  buttons: INPUTS.CastedButton[];
 }
 
 class Faq5 extends BaseFAQ {
@@ -37,11 +40,19 @@ class Faq5 extends BaseFAQ {
       value: "FAQ stands for Frequently Asked Questions. It is a section of a website or document where common questions and their answers are provided to help users better understand a product, service, or topic. The purpose of an FAQ section is to address common concerns and provide helpful information to users, so they can make informed decisions. ",
     });
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"),
+      ],
+    });
+    this.addProp({
       type: "media",
       key: "inactiveIcon",
       displayer: "Inactive Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -53,7 +64,7 @@ class Faq5 extends BaseFAQ {
       key: "activeIcon",
       displayer: "Active Icon",
       additionalParams: {
-        availableTypes: ["icon"],
+        availableTypes: ["icon", "image"],
       },
       value: {
         type: "icon",
@@ -105,6 +116,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -130,6 +147,12 @@ class Faq5 extends BaseFAQ {
                       key: "description",
                       displayer: "Answer",
                       value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
                     },
                   ]
                 },
@@ -157,6 +180,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -182,6 +211,12 @@ class Faq5 extends BaseFAQ {
                       key: "description",
                       displayer: "Answer",
                       value: " We offer standard and express shipping options. Standard shipping usually takes 5-7 business days, while express shipping takes 1-3 business days.",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
                     },
                   ]
                 },
@@ -229,6 +264,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -255,6 +296,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -280,6 +327,12 @@ class Faq5 extends BaseFAQ {
                       key: "description",
                       displayer: "Answer",
                       value: "Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on our website or on the carrier's website.",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
                     },
                   ]
                 }
@@ -327,6 +380,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -353,6 +412,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -378,6 +443,12 @@ class Faq5 extends BaseFAQ {
                       key: "description",
                       displayer: "Answer",
                       value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
                     },
                   ]
                 },
@@ -405,6 +476,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -430,6 +507,12 @@ class Faq5 extends BaseFAQ {
                       key: "description",
                       displayer: "Answer",
                       value: "We offer a 30-day return policy for most products. If you are not satisfied with your purchase, you can return it within 30 days for a full refund or exchange.",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
                     },
                   ]
                 }
@@ -477,6 +560,12 @@ class Faq5 extends BaseFAQ {
                       displayer: "Answer",
                       value: "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
                     },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
+                    },
                   ]
                 },
                 {
@@ -502,6 +591,12 @@ class Faq5 extends BaseFAQ {
                       key: "description",
                       displayer: "Answer",
                       value: "You can contact our customer support team by email or phone. Our email address and phone number can be found on our website's contact page.",
+                    },
+                    {
+                      type: "array",
+                      key: "buttons",
+                      displayer: "Buttons",
+                      value: [],
                     },
                   ]
                 }
@@ -537,7 +632,7 @@ class Faq5 extends BaseFAQ {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("page")}>
-            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description"))) && (
+            {(this.castToString(this.getPropValue("subtitle")) || this.castToString(this.getPropValue("title")) || this.castToString(this.getPropValue("description")) || this.getPropValue("buttons").length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("left-page")}>
                 {this.castToString(this.getPropValue("subtitle")) && (
                   <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
@@ -548,17 +643,30 @@ class Faq5 extends BaseFAQ {
                 {this.castToString(this.getPropValue("description")) && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
                 )}
+                {this.getPropValue("buttons").length > 0 && (
+                  <div className={this.decorateCSS("left-buttons")}>
+                    {this.castToObject<INPUTS.CastedButton[]>("buttons").map((button: INPUTS.CastedButton) =>
+                      this.castToString(button.text) && (
+                        <ComposerLink path={button.url}>
+                          <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      )
+                    )}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
             {(cards.length > 0) && (
               <div className={this.decorateCSS("right-page")}>
                 <div className={this.decorateCSS("section-wrapper")}>
                   {cards.map((card: Card, indexCard: any) => (
-                    <Base.H4 className={`${this.decorateCSS("section")} 
+                    <Base.H5 className={`${this.decorateCSS("section")}
                           ${this.getComponentState("activeSection") === indexCard ? this.decorateCSS("active") : ""}`}
                       onClick={() => this.handleSection(indexCard)}>
                       {card.sectionTitle}
-                    </Base.H4>
+                    </Base.H5>
                   ))}
                 </div>
                 {(cards[this.getComponentState("activeSection")].items.length > 0) && (
@@ -575,9 +683,9 @@ class Faq5 extends BaseFAQ {
                                 </div>
                               )}
                               {this.castToString(item.cardTitle) && (
-                                <Base.H4 className={this.decorateCSS("card-title")}>
+                                <Base.H5 className={this.decorateCSS("card-title")}>
                                   {item.cardTitle}
-                                </Base.H4>
+                                </Base.H5>
                               )}
                               {(this.getPropValue("activeIcon") || this.getPropValue("inactiveIcon")) && (
                                 <div className={this.decorateCSS("icon-wrapper")}>
@@ -596,6 +704,19 @@ class Faq5 extends BaseFAQ {
                               <Base.P className={`${this.decorateCSS("text")} ${this.getComponentState("activeCard") === index ? this.decorateCSS("active") : ""}`}>
                                 {item.description}
                               </Base.P>
+                              {item.buttons && item.buttons.length > 0 && (
+                                <div className={this.decorateCSS("buttons-wrapper")}>
+                                  {item.buttons.map((button: INPUTS.CastedButton) =>
+                                    this.castToString(button.text) && (
+                                      <ComposerLink path={button.url}>
+                                        <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
+                                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                        </Base.Button>
+                                      </ComposerLink>
+                                    )
+                                  )}
+                                </div>
+                              )}
                             </div>
                           )}
                         </div>
