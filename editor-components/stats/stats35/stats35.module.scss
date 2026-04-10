@@ -2,9 +2,7 @@
 
 .container {
     position: relative;
-    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
-
-    .max-content {
+  .max-content {
         position: relative;
         z-index: 2;
     }
@@ -60,7 +58,7 @@
             align-items: center;
             justify-content: center;
             min-height: 500px;
-            margin: calc(-1 * var(--composer-gap-lg) * 2) calc(-1 * var(--composer-gap-xl)) calc(-1 * var(--composer-gap-lg) * 2) 0;
+            margin: -120px -60px -120px 0;
 
             .right-background {
                 position: absolute;
