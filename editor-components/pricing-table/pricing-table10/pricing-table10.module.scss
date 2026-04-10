@@ -2,7 +2,6 @@
 
 .container {
     position: relative;
-    padding: 120px 60px;
     background-color: var(--composer-html-background);
 
     .background-fill {
@@ -20,7 +19,7 @@
         z-index: 1;
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-lg);
 
 
         .top-section {
@@ -53,10 +52,9 @@
             .card-left {
                 flex: 2;
                 display: flex;
-                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+                padding: 120px 60px;
                 flex-direction: column;
                 gap: var(--composer-gap-md);
-
 
                 .card-title,
                 .card-subtitle,
@@ -64,7 +62,6 @@
                     text-align: left;
                     color: var(--composer-font-color-primary);
                 }
-
 
                 .features-section {
                     display: flex;
@@ -118,6 +115,7 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
+                padding: 120px 60px;
                 align-items: center;
                 justify-content: center;
                 gap: var(--composer-gap-md);
