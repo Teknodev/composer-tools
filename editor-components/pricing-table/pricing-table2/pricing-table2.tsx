@@ -1,59 +1,66 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BasePricingTable } from "../../EditorComponent";
+import { BasePricingTable, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./pricing-table2.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type PricingItems = {
-  button: any;
-  cardTitle: React.JSX.Element;
-  cardPrice: React.JSX.Element;
-  cardDuration: React.JSX.Element;
-  cardIcon: string;
+  buttons?: INPUTS.CastedButton[];
+  subtitle: React.JSX.Element;
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  price: React.JSX.Element;
+  duration: React.JSX.Element;
+  icon: TypeMediaInputValue;
   cardList: ListItem[];
-  buttonType: INPUTS.CastedButton;
+  buttonType?: INPUTS.CastedButton;
 };
 
 type ListItem = {
-  listIcon: string;
-  cardListItem: React.JSX.Element;
+  listIcon: TypeMediaInputValue;
+  text: React.JSX.Element;
 };
+
+interface PricingTableSettings {
+  itemCount: number;
+  animations: string[];
+}
 
 class PricingTable2 extends BasePricingTable {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "string",
-      key: "pricing-table-subtitle",
+      key: "subtitle",
       displayer: "Subtitle",
       value: "WORK PACKAGES",
     });
     this.addProp({
       type: "string",
-      key: "pricing-table-title",
+      key: "title",
       displayer: "Title",
       value: "Pricing Plans",
     });
     this.addProp({
       type: "string",
-      key: "pricing-table-description",
-      displayer: "Desctiption",
-      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
     this.addProp({
-      type: "number",
-      key: "itemCount",
-      displayer: "Item count in a row",
-      value: 4,
-      max: 5,
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
-
     this.addProp({
       type: "array",
       key: "pricingTableItem",
-      displayer: "Pricing Table Item",
+      displayer: "Pricing Table",
       value: [
         {
           type: "object",
@@ -62,27 +69,42 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
-              type: "icon",
-              key: "cardIcon",
+              type: "media",
+              key: "icon",
               displayer: "Icon",
-              value: "TfiAnnouncement",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: { type: "icon", name: "TfiAnnouncement" },
             },
             {
               type: "array",
@@ -96,15 +118,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -115,15 +140,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -134,15 +162,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -153,15 +184,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -172,21 +206,31 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -196,27 +240,42 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
-              type: "icon",
-              key: "cardIcon",
+              type: "media",
+              key: "icon",
               displayer: "Icon",
-              value: "FaExternalLinkAlt",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: { type: "icon", name: "FaExternalLinkAlt" },
             },
             {
               type: "array",
@@ -230,15 +289,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -249,15 +311,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -268,15 +333,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -287,15 +355,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -306,21 +377,31 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -330,27 +411,42 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
-              type: "icon",
-              key: "cardIcon",
+              type: "media",
+              key: "icon",
               displayer: "Icon",
-              value: "FaAnchor",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: { type: "icon", name: "FaAnchor" },
             },
             {
               type: "array",
@@ -364,15 +460,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -383,15 +482,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -402,15 +504,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -421,15 +526,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -440,21 +548,31 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "Select Now", "", "", null, "Primary"),
+              ],
+            },
           ],
         },
         {
@@ -464,27 +582,42 @@ class PricingTable2 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "cardTitle",
+              key: "subtitle",
+              displayer: "Pricing Subtitle",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "title",
               displayer: "Pricing Title",
               value: "Basic Package",
             },
             {
               type: "string",
-              key: "cardPrice",
+              key: "description",
+              displayer: "Pricing Description",
+              value: "",
+            },
+            {
+              type: "string",
+              key: "price",
               displayer: "Price",
               value: "$450",
             },
             {
               type: "string",
-              key: "cardDuration",
+              key: "duration",
               displayer: "Duration",
               value: "/month",
             },
             {
-              type: "icon",
-              key: "cardIcon",
+              type: "media",
+              key: "icon",
               displayer: "Icon",
-              value: "IoIosAirplane",
+              additionalParams: {
+                availableTypes: ["icon", "image"],
+              },
+              value: { type: "icon", name: "IoIosAirplane" },
             },
             {
               type: "array",
@@ -498,15 +631,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -517,15 +653,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -536,15 +675,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -555,15 +697,18 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
@@ -574,34 +719,93 @@ class PricingTable2 extends BasePricingTable {
                   value: [
                     {
                       type: "string",
-                      key: "cardListItem",
+                      key: "text",
                       displayer: "List Item",
                       value: "Website Design",
                     },
                     {
-                      type: "icon",
+                      type: "media",
                       key: "listIcon",
                       displayer: "List Icon",
-                      value: "FaCheck",
+                      additionalParams: {
+                        availableTypes: ["icon", "image"],
+                      },
+                      value: { type: "icon", name: "FaCheck" },
                     },
                   ],
                 },
               ],
             },
-            INPUTS.BUTTON("button", "Button", "Select Now", "", null, null, "Primary"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON(
+                  "button",
+                  "Button",
+                  "Select Now",
+                  "",
+                  "",
+                  null,
+                  "Primary"
+                ),
+              ],
+            },
           ],
         },
       ],
     });
     this.addProp({
-      type:"multiSelect",
-      key: "animations",
-      displayer: "Animations",
-      value: ["animation1"],
-      additionalParams:{
-        selectItems:["animation1", "animation2"]
-      }
-    })
+      type: "object",
+      key: "settings",
+      displayer: "Settings",
+      value: [
+        {
+          type: "number",
+          key: "itemCount",
+          displayer: "Item Count in a Row",
+          value: 4,
+        },
+        {
+          type: "multiSelect",
+          key: "animations",
+          displayer: "Animations",
+          value: ["animation1"],
+          additionalParams: {
+            selectItems: ["animation1", "animation2"],
+          },
+        },
+      ],
+    });
+  }
+
+  private getButtonsFromItem(item: PricingItems) {
+    const buttonsArray = item?.buttons;
+    if (!Array.isArray(buttonsArray)) return [];
+
+    return buttonsArray.map((btn) => {
+      const parent = btn?.value ?? btn;
+      const icon = this.getPropValue("icon", { parent_object: parent });
+      const media = icon || null;
+      return {
+        text: this.getPropValue("text", { parent_object: parent }),
+        type: this.getPropValue("type", { parent_object: parent }),
+        url: this.getPropValue("url", { parent_object: parent }),
+        media,
+      };
+    });
+  }
+
+  private hasAnyButtonInItem(
+    buttons: { text?: string; media?: TypeMediaInputValue }[]
+  ) {
+    if (!Array.isArray(buttons)) return false;
+    return buttons.some(
+      (b) =>
+        this.castToString(b?.text) ||
+        (b?.media && (b.media?.name || b.media?.url))
+    );
   }
 
   static getName(): string {
@@ -609,89 +813,313 @@ class PricingTable2 extends BasePricingTable {
   }
 
   render() {
-    const subtitle = this.castToString(this.getPropValue("pricing-table-subtitle"));
-    const title = this.castToString(this.getPropValue("pricing-table-title"));
-    const description = this.castToString(this.getPropValue("pricing-table-description"));
+    const subtitle = this.getPropValue("subtitle");
+    const title = this.getPropValue("title");
+    const description = this.getPropValue("description");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const settings = this.castToObject<PricingTableSettings>("settings");
+
+    const hasTitle = this.castToString(title);
+    const hasSubtitle = this.castToString(subtitle);
+    const hasDescription = this.castToString(description);
+    const hasValidButtons = buttons.some((btn) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && btn.icon.name;
+      return buttonText || iconExist;
+    });
+    const hasHeaderContent =
+      hasSubtitle || hasTitle || hasDescription || hasValidButtons;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("table")}>
-            {(subtitle || title || description) && (
+            {hasHeaderContent && (
               <Base.VerticalContent className={this.decorateCSS("up-content")}>
-                {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("pricing-table-subtitle")}</Base.SectionSubTitle>}
-                {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("pricing-table-title")}</Base.SectionTitle>}
-                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("pricing-table-description")}</Base.SectionDescription>}
+                {hasSubtitle && (
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {hasTitle && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {hasDescription && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
+                )}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                      const buttonText = this.castToString(item.text);
+                      const iconExist = item.icon && item.icon.name;
+
+                      if (!buttonText && !iconExist) return null;
+
+                      return (
+                        <ComposerLink key={index} path={item.url}>
+                          <Base.Button
+                            buttonType={item.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonText && (
+                              <Base.P
+                                className={this.decorateCSS("button-text")}
+                              >
+                                {item.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                value={item.icon}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
             <Base.ListGrid
               gridCount={{
-                pc: this.getPropValue("itemCount"),
+                pc: settings.itemCount,
                 tablet: 2,
                 phone: 1,
               }}
               className={this.decorateCSS("item-div")}
             >
-              {this.castToObject<PricingItems[]>("pricingTableItem").map((table: PricingItems, index: number) => {
-                const cardTitle = this.castToString(table.cardTitle);
-                const cardPrice = this.castToString(table.cardPrice);
-                const cardDuration = this.castToString(table.cardDuration);
+              {this.castToObject<PricingItems[]>("pricingTableItem").map(
+                (table: PricingItems, index: number) => {
+                  const cardSubtitle = table.subtitle;
+                  const cardTitle = table.title;
+                  const cardDescription = table.description;
+                  const cardPrice = table.price;
+                  const cardDuration = table.duration;
+                  const cardIcon = table.icon;
 
-                return (
-                  <Base.VerticalContent className={`${this.decorateCSS("card-item-count")} ${this.getPropValue("animations") &&
-                   this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")}`}>
-                    <div key={index} className={this.decorateCSS("item-card")}>
-                      <Base.VerticalContent className={`${this.decorateCSS("card-upper")} ${cardTitle || cardPrice || cardDuration ? "" : this.decorateCSS("hidden")}`}>
-                        {cardTitle && <Base.H2 className={this.decorateCSS("card-title")}>{table.cardTitle}</Base.H2>}
-                        {(cardPrice || cardDuration) && (
-                          <div className={this.decorateCSS("card-price")}>
-                            {cardPrice && <Base.H1 className={this.decorateCSS("price")}>{table.cardPrice}</Base.H1>}
-                            {cardDuration && <Base.H2 className={this.decorateCSS("duration")}>{table.cardDuration}</Base.H2>}
-                          </div>
-                        )}
-                      </Base.VerticalContent>
+                  const buttons = this.getButtonsFromItem(table);
+                  const hasAnyButton = this.hasAnyButtonInItem(buttons);
 
-                      <Base.VerticalContent className={this.decorateCSS("card-bottom")}>
-                        {table.cardIcon && (
-                          <div className={this.decorateCSS("card-img")}>
-                            <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={table.cardIcon} />
-                          </div>
-                        )}
-                        {table.cardList.length > 0 && (
-                          <Base.VerticalContent className={this.decorateCSS("card-list")}>
-                            {table.cardList.map((listItem: ListItem, index: number) => {
-                              const cardListItem = this.castToString(listItem.cardListItem);
-                              const listIcon = listItem.listIcon;
-                              return (
-                                <>
-                                  {cardListItem && (
-                                    <span key={index} className={this.decorateCSS("card-list-item")}>
-                                      <Base.Icon
-                                        name={listIcon}
-                                        propsIcon={{
-                                          className: this.decorateCSS("list-icon"),
-                                        }}
-                                      />
-                                      <span className={this.decorateCSS("list-item")}>{listItem.cardListItem}</span>
-                                    </span>
-                                  )}
-                                </>
-                              );
-                            })}
+                  const hasCardSubtitle = this.castToString(cardSubtitle);
+                  const hasCardTitle = this.castToString(cardTitle);
+                  const hasCardDescription = this.castToString(cardDescription);
+                  const hasCardPrice = this.castToString(cardPrice);
+                  const hasCardDuration = this.castToString(cardDuration);
+
+                  const cardListArr: ListItem[] = Array.isArray(table.cardList)
+                    ? table.cardList
+                    : [];
+                  const hasCardList = cardListArr.some(
+                    (listItem: ListItem) =>
+                      this.castToString(listItem.text) ||
+                      (!!listItem.listIcon &&
+                        (listItem.listIcon.name ||
+                          listItem.listIcon.url))
+                  );
+
+                  const hasCardIcon =
+                    cardIcon &&
+                    typeof cardIcon === "object" &&
+                    ("name" in cardIcon || "url" in cardIcon);
+
+                  const hasUpperContent =
+                    hasCardSubtitle || hasCardTitle || hasCardDescription || hasCardPrice || hasCardDuration;
+                  const hasBottomContent =
+                    hasCardIcon || hasCardList || hasAnyButton;
+                  const hasCardContent = hasUpperContent || hasBottomContent;
+
+                  if (!hasCardContent) return null;
+
+                  return (
+                    <Base.VerticalContent
+                      key={index}
+                      className={`${this.decorateCSS("card-item-count")} ${settings.animations &&
+                        settings.animations
+                          .map((animation: string) =>
+                            this.decorateCSS(animation)
+                          )
+                          .join(" ")
+                        }`}
+                    >
+                      <div className={this.decorateCSS("item-card")}>
+                        {hasUpperContent && (
+                          <Base.VerticalContent
+                            className={this.decorateCSS("card-upper")}
+                          >
+                            {hasCardSubtitle && (
+                              <Base.H5
+                                className={this.decorateCSS("card-subtitle")}
+                              >
+                                {cardSubtitle}
+                              </Base.H5>
+                            )}
+                            {hasCardTitle && (
+                              <Base.H4
+                                className={this.decorateCSS("card-title")}
+                              >
+                                {cardTitle}
+                              </Base.H4>
+                            )}
+                            {hasCardDescription && (
+                              <Base.P
+                                className={this.decorateCSS("card-description")}
+                              >
+                                {cardDescription}
+                              </Base.P>
+                            )}
+                            {(hasCardPrice || hasCardDuration) && (
+                              <div className={this.decorateCSS("card-price")}>
+                                {hasCardPrice && (
+                                  <Base.H2
+                                    className={this.decorateCSS("price")}
+                                  >
+                                    {cardPrice}
+                                  </Base.H2>
+                                )}
+                                {hasCardDuration && (
+                                  <Base.H4
+                                    className={this.decorateCSS("duration")}
+                                  >
+                                    {cardDuration}
+                                  </Base.H4>
+                                )}
+                              </div>
+                            )}
                           </Base.VerticalContent>
                         )}
-                        {this.castToString(table.button.text) && (
-                            <Base.Button buttonType={table.button.type} className={this.decorateCSS("card-button")}>
-                               <ComposerLink path={table.button.url}>
-                                 {table.button.text}
-                               </ComposerLink>
-                            </Base.Button>
+
+                        {hasBottomContent && (
+                          <Base.VerticalContent
+                            className={`${this.decorateCSS("card-bottom")} ${!hasUpperContent && this.decorateCSS("no-upper")
+                              }`}
+                          >
+                            {hasCardIcon && (
+                              <div className={this.decorateCSS("card-img")}>
+                                <Base.Media
+                                  value={cardIcon}
+                                  className={this.decorateCSS("icon")}
+                                />
+                              </div>
+                            )}
+                            {hasCardList && (
+                              <Base.VerticalContent
+                                className={this.decorateCSS("card-list")}
+                              >
+                                {cardListArr.map(
+                                  (listItem: ListItem, listIndex: number) => {
+                                    const cardListItemText = this.castToString(
+                                      listItem.text
+                                    );
+                                    const listIcon = listItem.listIcon;
+                                    const listIconExists =
+                                      !!listIcon &&
+                                      (listIcon.name ||
+                                        listIcon.url);
+
+                                    if (!cardListItemText && !listIconExists)
+                                      return null;
+
+                                    return (
+                                      <div
+                                        key={`card-list-${index}-${listIndex}`}
+                                        className={this.decorateCSS(
+                                          "card-list-item"
+                                        )}
+                                      >
+                                        {listIconExists && (
+                                          <Base.Media
+                                            value={listIcon}
+                                            className={this.decorateCSS(
+                                              "list-icon"
+                                            )}
+                                          />
+                                        )}
+                                        {cardListItemText && (
+                                          <Base.P
+                                            className={this.decorateCSS(
+                                              "list-item"
+                                            )}
+                                          >
+                                            {listItem.text}
+                                          </Base.P>
+                                        )}
+                                      </div>
+                                    );
+                                  }
+                                )}
+                              </Base.VerticalContent>
+                            )}
+
+                            {hasAnyButton && (
+                              <div
+                                className={this.decorateCSS("action-buttons")}
+                              >
+                                {buttons.map((btn, btnIndex: number) => {
+                                  const buttonText = btn.text;
+                                  const buttonMedia = btn.media;
+                                  const buttonUrl = btn.url || "#";
+                                  const buttonType = btn.type;
+
+                                  const btnTextExist =
+                                    this.castToString(buttonText);
+                                  const buttonMediaExist =
+                                    buttonMedia &&
+                                    (buttonMedia.name || buttonMedia.url);
+
+                                  if (!btnTextExist && !buttonMediaExist)
+                                    return null;
+
+                                  return (
+                                    <ComposerLink
+                                      path={buttonUrl}
+                                      key={`pricing-btn-${index}-${btnIndex}`}
+                                    >
+                                      <Base.Button
+                                        buttonType={buttonType}
+                                        className={this.decorateCSS(
+                                          "card-button"
+                                        )}
+                                      >
+                                        {buttonMediaExist && (
+                                          <Base.Media
+                                            value={buttonMedia}
+                                            className={this.decorateCSS(
+                                              "button-icon"
+                                            )}
+                                          />
+                                        )}
+                                        {btnTextExist && (
+                                          <Base.P
+                                            className={this.decorateCSS(
+                                              "button-text"
+                                            )}
+                                          >
+                                            {buttonText}
+                                          </Base.P>
+                                        )}
+                                      </Base.Button>
+                                    </ComposerLink>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </Base.VerticalContent>
                         )}
-                      </Base.VerticalContent>
-                    </div>
-                  </Base.VerticalContent>
-                );
-              })}
+                      </div>
+                    </Base.VerticalContent>
+                  );
+                }
+              )}
             </Base.ListGrid>
           </div>
         </Base.MaxContent>

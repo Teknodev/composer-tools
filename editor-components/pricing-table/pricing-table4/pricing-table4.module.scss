@@ -1,13 +1,16 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+
 @keyframes breathe {
   0% {
     transform: scale(1.1);
   }
-  
+
   50% {
     transform: scale(1.05);
   }
-  
+
   100% {
     transform: scale(1.1);
   }
@@ -19,151 +22,215 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
     .page {
       width: 100%;
-      padding-bottom: var(--composer-gap-md);
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
+
       .page-up {
         width: 100%;
         overflow: hidden;
         color: var(--composer-font-color-primary);
 
-        .title, .subtitle {
+        .title,
+        .subtitle {
           content: "";
         }
 
         .description {
           color: var(--composer-font-color-primary);
         }
-      }
 
-      .page-down {
-        column-gap: 0;
+        .top-level-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
 
-        .all-card {
-          .card {
-            width: 100%;
-            height: auto;
-            justify-content: center;
-            align-items: center;
-            border-radius: var(--composer-border-radius-md);
-            box-shadow: var(--box-shadow-active);
-            overflow: hidden;
-            background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-            transition: 0.8s;
+          .button {
 
-            &.animation1:hover {              
-              transform: translateY(calc(-1 * var(--composer-gap-sm)));
+            .button-icon,
+            .button-text {
+              content: "";
             }
 
-            &.animation2:hover {              
-              .card-up{
-                .card-up-texts{
-                  transform: scale(1.1);
-                }
-              }
-            }
-            &.animation3:hover{
-              .card-up{
-                .card-up-texts{
-                  .price-pricing{
-                    animation-name: breathe;
-                    animation-duration: 2s;
-                    animation-timing-function: ease-in-out;
-                    animation-iteration-count: infinite;
-                    animation-direction: alternate;
-                  }
-                }
-              }
-            }
-
-            &.focused {
-              scale: 1.06;
-              background: var(--composer-html-background);
-              z-index: 2;
-              position: relative;
-            }
-
-            .card-up {
-              width: 100%;
-              justify-content: center;
-              align-items: center;
-
-              .subtitle {
-                width: max-content;
-                color: var(--composer-primary-color);
-              }
-
-              .card-up-texts {
-                width: 100%;
-                justify-content: center;
-                align-items: center;
-                color: var(--composer-font-color-primary);
-                padding: var(--composer-gap-lg);
-                transition: 0.8s;
-                
-                .price-title2 {
-                  color: var(--composer-tertiary-color);
-                }
-              }
-            }
-
-            .card-middle {
-              width: 100%;
-              margin-bottom: var(--composer-gap-md);
-              color: var(--composer-font-color-primary);
-              margin-top: var(--composer-gap-sm);
-
-              .list-group {
-                width: 100%;
-                align-items: center;
-                gap: var(--composer-gap-sm);
-
-                .list-element {
-                  display: flex;
-                  align-items: center;
-                  gap: var(--composer-gap-sm);
-                  color: var(--composer-font-color-primary);
-
-                  .circle-icon {
-                    display: flex;
-                    align-items: center;
-                    width: var(--composer-gap-md);
-                    height: var(--composer-gap-md);
-                    color: var(--composer-primary-color);
-                  }
-                  .list-item-text{
-                    content: "";
-                  }
-                }
-              }
-            }
-
-            .card-down {
-              width: 100%;
+            .button-icon {
               display: flex;
-              justify-content: center;
-              flex-wrap: wrap;
               align-items: center;
-              gap: var(--composer-gap-md);
-              margin-bottom: var(--composer-gap-md);
-              .button{
-                content: "";
-              }
+              justify-content: center;
+              font-size: 1.5rem;
+              height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+              width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
             }
           }
         }
       }
 
-      .price-title1 {
-        color: var(--composer-font-color-primary);
-      }
+      .page-down {
+        gap: var(--composer-gap-lg);
+        align-items: stretch;
 
-      .price-title2 {
-        text-align: center;
-        color: var(--composer-font-color-primary);
+        .card {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          border-radius: var(--composer-border-radius-md);
+          box-shadow: var(--box-shadow-active);
+          overflow: hidden;
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+          transition: 0.8s;
+          padding: var(--composer-gap-lg);
+          gap: var(--composer-gap-md);
+          scale: 0.94;
+
+          &.animation1:hover {
+            transform: translateY(calc(-1 * var(--composer-gap-sm)));
+          }
+
+          &.animation2:hover {
+            .card-up {
+              .card-up-texts {
+                transform: scale(1.1);
+              }
+            }
+          }
+
+          &.animation3:hover {
+            .card-up {
+              .card-up-texts {
+                .price-pricing {
+                  animation-name: breathe;
+                  animation-duration: 2s;
+                  animation-timing-function: ease-in-out;
+                  animation-iteration-count: infinite;
+                  animation-direction: alternate;
+                }
+              }
+            }
+          }
+
+          &.focused {
+            scale: 1;
+            background: var(--composer-html-background);
+            z-index: 2;
+            position: relative;
+          }
+
+          .card-up {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+
+            .card-up-texts {
+              width: 100%;
+              justify-content: center;
+              align-items: center;
+              color: var(--composer-font-color-primary);
+              transition: 0.8s;
+
+              .price-title1 {
+                color: var(--composer-font-color-primary);
+                text-align: center;
+              }
+
+              .price-title2 {
+                text-align: center;
+                color: var(--composer-tertiary-color);
+              }
+
+              .price-pricing {
+                margin-top: var(--composer-gap-md);
+                color: var(--composer-font-color-primary);
+                text-align: center;
+              }
+            }
+          }
+
+          .card-middle {
+            width: 100%;
+            color: var(--composer-font-color-primary);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+
+            .list-group {
+              width: 100%;
+              align-items: center;
+
+              .list-element {
+                display: flex;
+                align-items: center;
+                color: var(--composer-font-color-primary);
+
+                .circle-icon {
+                  display: flex;
+                  align-items: center;
+                  width: var(--composer-gap-md);
+                  height: var(--composer-gap-md);
+                  color: var(--composer-primary-color);
+
+                  .icon {
+                    content: "";
+                  }
+                }
+
+                .list-item-text {
+                  text-align: center;
+                }
+              }
+            }
+          }
+
+          .card-down {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--composer-gap-sm);
+
+            .button {
+
+              .button-icon,
+              .button-text {
+                content: "";
+              }
+
+              .button-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
       }
-      .price-pricing {
-        margin-top: var(--composer-gap-md);
-        color: var(--composer-font-color-primary);
+    }
+  }
+}
+
+
+@container (max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .page {
+        gap: var(--composer-gap-md);
+
+        .page-down {
+          .card {
+            padding-left: var(--composer-gap-md);
+            padding-right: var(--composer-gap-md);
+
+            .card-up {
+              .card-up-texts {
+                content: "";
+              }
+            }
+          }
+        }
       }
     }
   }

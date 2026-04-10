@@ -1,10 +1,18 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import styles from "./pricing-table5.module.scss";
-import { BasePricingTable } from "../../EditorComponent";
+import { BasePricingTable, TypeMediaInputValue } from "../../EditorComponent";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+
+type Card = {
+  title: React.JSX.Element;
+  description: React.JSX.Element;
+  price: React.JSX.Element;
+  duration: React.JSX.Element;
+  buttons?: INPUTS.CastedButton[];
+};
 
 class PricingTable5 extends BasePricingTable {
   constructor(props?: any) {
@@ -28,27 +36,36 @@ class PricingTable5 extends BasePricingTable {
       type: "string",
       key: "description",
       displayer: "Description ",
-      value: "We are excited for our work and how it positively impacts clients. With over 12 years of experience we have been constantly providing excellent solutions.",
+      value:
+        "We are excited for our work and how it positively impacts clients. With over 12 years of experience we have been constantly providing excellent solutions.",
     });
     this.addProp({
       type: "array",
       key: "buttons",
       displayer: "Buttons",
-      value: [INPUTS.BUTTON("button", "Button", "VIEW ALL PLANS", "", null, null, "Primary")],
+      value: [
+        INPUTS.BUTTON("button", "Button", "VIEW ALL PLANS", "", "", null, "Primary"),
+      ],
     });
 
     this.addProp({
-      type: "icon",
-      key: "moreIcon",
-      displayer: "More Icon",
-      value: "FaAngleDown",
+      type: "media",
+      key: "activeIcon",
+      displayer: "Active Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: { type: "icon", name: "FaAngleDown" },
     });
 
     this.addProp({
-      type: "icon",
-      key: "lessIcon",
-      displayer: "Less Icon",
-      value: "FaAngleUp",
+      type: "media",
+      key: "deactiveIcon",
+      displayer: "Deactive Icon",
+      additionalParams: {
+        availableTypes: ["icon", "image"],
+      },
+      value: { type: "icon", name: "FaAngleUp" },
     });
 
     this.addProp({
@@ -63,15 +80,16 @@ class PricingTable5 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "planTitle",
-              displayer: "PlanType",
+              key: "title",
+              displayer: "Title",
               value: "Basic Plan",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
+              value:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
             },
             {
               type: "string",
@@ -81,11 +99,19 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "priceDescription",
+              key: "duration",
               displayer: "Price Description",
               value: " / Monthly",
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "White"),
+
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
+              ],
+            },
           ],
         },
         {
@@ -95,15 +121,16 @@ class PricingTable5 extends BasePricingTable {
           value: [
             {
               type: "string",
-              key: "planTitle",
-              displayer: "PlanType",
+              key: "title",
+              displayer: "Title",
               value: "Standard Plan",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
+              value:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
             },
             {
               type: "string",
@@ -113,29 +140,37 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "priceDescription",
+              key: "duration",
               displayer: "Price Description",
               value: " / Monthly",
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
+              ],
+            },
           ],
         },
         {
           type: "object",
-          key: "plans",
+          key: "plan",
           displayer: "Plans",
           value: [
             {
               type: "string",
-              key: "planTitle",
-              displayer: "PlanType",
+              key: "title",
+              displayer: "Title",
               value: "Premium Plan",
             },
             {
               type: "string",
               key: "description",
               displayer: "Description",
-              value: "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
+              value:
+                "Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod. ",
             },
             {
               type: "string",
@@ -145,24 +180,60 @@ class PricingTable5 extends BasePricingTable {
             },
             {
               type: "string",
-              key: "priceDescription",
+              key: "duration",
               displayer: "Price Description",
               value: " / Monthly",
             },
-            INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "White"),
+            {
+              type: "array",
+              key: "buttons",
+              displayer: "Buttons",
+              value: [
+                INPUTS.BUTTON("button", "Button", "GET STARTED", "", "", null, "White"),
+              ],
+            },
           ],
         },
       ],
     });
     this.addProp({
-      type:"multiSelect",
+      type: "multiSelect",
       key: "animations",
       displayer: "Animations",
       value: ["animation1", "animation2"],
-      additionalParams:{
-        selectItems:["animation1", "animation2", "animation3"]
-      }
-    })
+      additionalParams: {
+        selectItems: ["animation1", "animation2", "animation3"],
+      },
+    });
+  }
+
+  private getButtonsFromItem(item: Card) {
+    const buttonsArray = item?.buttons;
+    if (!Array.isArray(buttonsArray)) return [];
+
+    return buttonsArray.map((btn) => {
+      const parent = btn?.value ?? btn;
+      const icon = this.getPropValue("icon", { parent_object: parent });
+      const media = icon || null;
+
+      return {
+        text: this.getPropValue("text", { parent_object: parent }),
+        type: this.getPropValue("type", { parent_object: parent }),
+        url: this.getPropValue("url", { parent_object: parent }),
+        media,
+      };
+    });
+  }
+
+  private hasAnyButtonInItem(
+    buttons: { text?: string; media?: TypeMediaInputValue }[]
+  ) {
+    if (!Array.isArray(buttons)) return false;
+    return buttons.some(
+      (b) =>
+        this.castToString(b?.text) ||
+        (b?.media && (b.media.name || b.media.url))
+    );
   }
 
   static getName(): string {
@@ -170,11 +241,14 @@ class PricingTable5 extends BasePricingTable {
   }
 
   onPlanClicked(index: number) {
-    this.setComponentState("activePlan", index === this.getComponentState("activePlan") ? null : index);
+    this.setComponentState(
+      "activePlan",
+      index === this.getComponentState("activePlan") ? null : index
+    );
   }
 
   render(): React.ReactNode {
-    const buttons = this.getPropValue("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
@@ -182,9 +256,17 @@ class PricingTable5 extends BasePricingTable {
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
-    const showLeftContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
-    const plans = this.getPropValue("plans");
+    const hasValidButtons = buttons.some((btn) => {
+      const buttonText = this.castToString(btn.text);
+      const iconExist = btn.icon && btn.icon.name;
+      return buttonText || iconExist;
+    });
+
+    const showLeftContent =
+      subtitleExist || titleExist || descriptionExist || hasValidButtons;
+
+    const plans = this.castToObject<Card[]>("plans");
     const rightItemsExist = plans.length > 0;
 
     return (
@@ -192,67 +274,195 @@ class PricingTable5 extends BasePricingTable {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {showLeftContent && (
-              <Base.VerticalContent className={`${this.decorateCSS("left-content")} ${!rightItemsExist && this.decorateCSS("left-content-single")}`}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
-                <div className={this.decorateCSS("buttons")}>
-                  {buttons?.map((button: any) => {
-                    const buttonText = this.castToString(button.getPropValue("text"));
-                    return (
-                      buttonText && (
-                        <ComposerLink path={button.getPropValue("url")}>
-                          <div className={this.decorateCSS("button-box")}>
-                            <Base.Button buttonType={button.getPropValue("type")} className={this.decorateCSS("button-text")}>
-                              {button.getPropValue("text")}
-                            </Base.Button>
-                          </div>
+              <Base.VerticalContent
+                className={`${this.decorateCSS("left-content")} ${!rightItemsExist && this.decorateCSS("left-content-single")
+                  }`}
+              >
+                {subtitleExist && (
+                  <Base.SectionSubTitle
+                    className={this.decorateCSS("subtitle")}
+                  >
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {descriptionExist && (
+                  <Base.SectionDescription
+                    className={this.decorateCSS("description")}
+                  >
+                    {description}
+                  </Base.SectionDescription>
+                )}
+                {hasValidButtons && (
+                  <div className={this.decorateCSS("buttons")}>
+                    {buttons.map((btn, btnIndex: number) => {
+                      const buttonText = this.castToString(btn.text);
+                      const iconExist = btn.icon && btn.icon.name;
+
+                      if (!buttonText && !iconExist) return null;
+
+                      return (
+                        <ComposerLink
+                          path={btn.url}
+                          key={`top-btn-${btnIndex}`}
+                        >
+                          <Base.Button
+                            buttonType={btn.type}
+                            className={this.decorateCSS("button-text")}
+                          >
+                            {iconExist && (
+                              <Base.Media
+                                value={btn.icon!}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>
+                            )}
+                          </Base.Button>
                         </ComposerLink>
-                      )
-                    );
-                  })}
-                </div>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
             {rightItemsExist && (
-              <div className={`${this.decorateCSS("right-content")} ${!showLeftContent && this.decorateCSS("right-content-single")}`}>
-                {this.castToObject<any>("plans").map((plan: any, index: number) => {
-                  const isActive = index === this.getComponentState("activePlan");
-                  const planTitleExist = this.castToString(plan.getPropValue("planTitle"));
-                  const priceExist = this.castToString(plan.getPropValue("price"));
-                  const planDescription = this.castToString(plan.getPropValue("priceDescription"));
-                  const planButtonExist = this.castToString(plan.button.text);
+              <div
+                className={`${this.decorateCSS("right-content")} ${!showLeftContent && this.decorateCSS("right-content-single")
+                  }`}
+              >
+                {plans.map((plan: Card, index: number) => {
+                  const isActive =
+                    index === this.getComponentState("activePlan");
+                  const planTitleExist = this.castToString(plan.title);
+                  const priceExist = this.castToString(plan.price);
+                  const planDescription = this.castToString(
+                    plan.duration
+                  );
+
+                  const planButtons = this.getButtonsFromItem(plan);
+                  const hasPlanButtons = this.hasAnyButtonInItem(planButtons);
 
                   return (
-                    <div className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")} 
-                    ${this.getPropValue("animations") && this.getPropValue("animations").map((animation:string) => this.decorateCSS(animation)).join(" ")} `} 
-                    onClick={() => this.onPlanClicked(index)}>
+                    <Base.VerticalContent
+                      key={index}
+                      className={`${this.decorateCSS("plan")} ${isActive && this.decorateCSS("active")
+                        } 
+                    ${this.getPropValue("animations") &&
+                        this.getPropValue("animations")
+                          .map((animation: string) => this.decorateCSS(animation))
+                          .join(" ")
+                        } `}
+                      onClick={() => this.onPlanClicked(index)}
+                    >
                       <div className={this.decorateCSS("plan-upper")}>
-                        {planTitleExist && <Base.H5 className={this.decorateCSS("plan-title")}>{plan.getPropValue("planTitle")}</Base.H5>}
-                        <div className={isActive ? this.decorateCSS("icon-box-active") : this.decorateCSS("icon-box")}>
-                          <Base.Icon propsIcon={{ className: this.decorateCSS("icon") }} name={this.getPropValue(isActive ? "lessIcon" : "moreIcon")} />
-                        </div>
+                        {planTitleExist && (
+                          <Base.H6 className={this.decorateCSS("plan-title")}>
+                            {plan.title}
+                          </Base.H6>
+                        )}
+                        {(() => {
+                          const icon = this.getPropValue(isActive ? "deactiveIcon" : "activeIcon");
+                          const iconExist = icon && (icon.name || icon.url);
+                          if (!iconExist) return null;
+                          return (
+                            <div
+                              className={
+                                isActive
+                                  ? this.decorateCSS("icon-box-active")
+                                  : this.decorateCSS("icon-box")
+                              }
+                            >
+                              <Base.Media
+                                value={icon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            </div>
+                          );
+                        })()}
                       </div>
 
-                      <Base.P className={this.decorateCSS("plan-description")}>{plan.getPropValue("description")}</Base.P>
+                      {this.castToString(plan.description) && (
+                        <Base.P className={this.decorateCSS("plan-description")}>
+                          {plan.description}
+                        </Base.P>
+                      )}
 
                       <div className={this.decorateCSS("plan-price-box")}>
                         {(priceExist || planDescription) && (
                           <div className={this.decorateCSS("labels")}>
-                            {priceExist && <Base.H5 className={this.decorateCSS("price")}>{plan.getPropValue("price")}</Base.H5>}
-                            {planDescription && <Base.P className={this.decorateCSS("price-description")}>{plan.getPropValue("priceDescription")}</Base.P>}
+                            {priceExist && (
+                              <Base.H5 className={this.decorateCSS("price")}>
+                                {plan.price}
+                              </Base.H5>
+                            )}
+                            {planDescription && (
+                              <Base.P
+                                className={this.decorateCSS(
+                                  "price-description"
+                                )}
+                              >
+                                {plan.duration}
+                              </Base.P>
+                            )}
                           </div>
                         )}
-                          {planButtonExist && (
-                            <Base.Button buttonType={plan.button.type} className={this.decorateCSS("plan-button")}>
-                              <ComposerLink path={plan.button.url}>
-                              {plan.button.text}
-                              </ComposerLink>
-                         
-                            </Base.Button>
-                          )}
+                        {hasPlanButtons && (
+                          <div className={this.decorateCSS("plan-buttons")}>
+                            {planButtons.map((btn, btnIndex: number) => {
+                              const buttonText = btn.text;
+                              const buttonMedia = btn.media;
+                              const buttonUrl = btn.url || "#";
+                              const buttonType = btn.type;
+
+                              const btnTextExist =
+                                this.castToString(buttonText);
+                              const buttonMediaExist =
+                                buttonMedia &&
+                                (buttonMedia.name || buttonMedia.url);
+
+                              if (!btnTextExist && !buttonMediaExist)
+                                return null;
+
+                              return (
+                                <ComposerLink
+                                  path={buttonUrl}
+                                  key={`plan-btn-${index}-${btnIndex}`}
+                                >
+                                  <Base.Button
+                                    buttonType={buttonType}
+                                    className={this.decorateCSS("plan-button")}
+                                  >
+                                    {btnTextExist && (
+                                      <Base.P
+                                        className={this.decorateCSS(
+                                          "button-text"
+                                        )}
+                                      >
+                                        {buttonText}
+                                      </Base.P>
+                                    )}
+                                    {buttonMediaExist && (
+                                      <Base.Media
+                                        value={buttonMedia}
+                                        className={this.decorateCSS(
+                                          "button-icon"
+                                        )}
+                                      />
+                                    )}
+                                  </Base.Button>
+                                </ComposerLink>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
-                    </div>
+                    </Base.VerticalContent>
                   );
                 })}
               </div>
