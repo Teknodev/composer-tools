@@ -1,10 +1,9 @@
 import * as React from "react";
 import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action5.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 type MediaObject = {
@@ -15,6 +14,8 @@ type MediaObject = {
 type InputData = {
   placeholder: string;
   submitText: string;
+  buttonText: React.JSX.Element;
+  buttonType: TypeButton;
 };
 
 class CallToAction5Page extends BaseCallToAction {
@@ -65,8 +66,6 @@ class CallToAction5Page extends BaseCallToAction {
       value: "Get immediate and full access to our solution for 10 days completely free. Onlt $19 per month afterwards.",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE NOW", "", null, null, "Primary"));
-
     this.addProp({
       type: "object",
       key: "inputData",
@@ -83,6 +82,21 @@ class CallToAction5Page extends BaseCallToAction {
           key: "submitText",
           displayer: "Submit Text",
           value: "Form successfully submitted!",
+        },
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "SUBSCRIBE NOW",
+        },
+        {
+          type: "select",
+          key: "buttonType",
+          displayer: "Button Type",
+          value: "Primary",
+          additionalParams: {
+            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black", "Bare"],
+          },
         },
       ],
     });
@@ -110,7 +124,6 @@ class CallToAction5Page extends BaseCallToAction {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const background = mediaObject.background;
     const overlay = mediaObject.overlay;
@@ -121,6 +134,8 @@ class CallToAction5Page extends BaseCallToAction {
     const inputData = this.castToObject<InputData>("inputData");
     const placeholder = this.castToString(inputData.placeholder);
     const submitText = this.castToString(inputData.submitText);
+    const buttonText = this.castToString(inputData.buttonText);
+    const buttonType = inputData.buttonType;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${overlay && background && this.decorateCSS("overlay-active")} ${background && this.decorateCSS("has-background")}`}>
@@ -133,7 +148,7 @@ class CallToAction5Page extends BaseCallToAction {
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          {this.castToString(button.text) && placeholder && (
+          {buttonText && placeholder && (
             <div className={this.decorateCSS("form")}>
               <Formik
                 initialValues={{ email: "" }}
@@ -150,7 +165,7 @@ class CallToAction5Page extends BaseCallToAction {
               >
                 {({ handleSubmit, handleChange, values, errors, touched }) => (
                   <Form className={this.decorateCSS("newsletter")} onSubmit={handleSubmit}>
-                    {placeholder && this.castToString(button.text) && (
+                    {placeholder && buttonText && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
                           placeholder={this.getComponentState("placeholderText") || placeholder}
@@ -163,9 +178,9 @@ class CallToAction5Page extends BaseCallToAction {
                         {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>
                     )}
-                    {this.castToString(button.text) && (
-                      <Base.Button className={this.decorateCSS("submit-button")} buttonType={button.type}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    {buttonText && (
+                      <Base.Button className={this.decorateCSS("submit-button")} buttonType={buttonType}>
+                        <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
                       </Base.Button>
                     )}
                   </Form>
@@ -173,13 +188,11 @@ class CallToAction5Page extends BaseCallToAction {
               </Formik>
             </div>
           )}
-          {this.castToString(button.text) && !placeholder && (
+          {buttonText && !placeholder && (
             <div className={this.decorateCSS("button-container")}>
-              <ComposerLink path={button.url}>
-                <Base.Button buttonType={button.type} className={`${this.decorateCSS("button")} ${!placeholder && this.decorateCSS("button-no-item")}`}>
-                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                </Base.Button>
-              </ComposerLink>
+              <Base.Button buttonType={buttonType} className={`${this.decorateCSS("button")} ${!placeholder && this.decorateCSS("button-no-item")}`}>
+                <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
+              </Base.Button>
             </div>
           )}
         </Base.MaxContent>

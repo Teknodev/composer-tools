@@ -2,9 +2,8 @@ import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action7.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 type MediaObject = {
@@ -15,6 +14,8 @@ type MediaObject = {
 type InputData = {
   placeholder: string;
   submitText: string;
+  buttonText: React.JSX.Element;
+  buttonType: TypeButton;
 };
 
 class CallToAction7Page extends BaseCallToAction {
@@ -64,8 +65,6 @@ class CallToAction7Page extends BaseCallToAction {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Get your FREE copy", null, null, null, "Primary"));
-
     this.addProp({
       type: "object",
       key: "inputData",
@@ -82,6 +81,21 @@ class CallToAction7Page extends BaseCallToAction {
           key: "submitText",
           displayer: "Submit Text",
           value: "Form successfully submitted!",
+        },
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Get your FREE copy",
+        },
+        {
+          type: "select",
+          key: "buttonType",
+          displayer: "Button Type",
+          value: "Primary",
+          additionalParams: {
+            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black", "Bare"],
+          },
         },
       ],
     });
@@ -124,16 +138,14 @@ class CallToAction7Page extends BaseCallToAction {
     const mediaObject = this.castToObject<MediaObject>("mediaObject");
     const image = mediaObject.image;
     const overlay = mediaObject.overlay;
-
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
     const inputData = this.castToObject<InputData>("inputData");
     const placeholder = this.castToString(inputData.placeholder);
-    const animation = this.getPropValue("animation");
-
     const submitText = this.castToString(inputData.submitText);
+    const buttonText = this.castToString(inputData.buttonText);
+    const buttonType = inputData.buttonType;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!image && this.decorateCSS("no-image")}`}>
@@ -199,9 +211,9 @@ class CallToAction7Page extends BaseCallToAction {
                                 {errors.email}
                               </div>
                             )}
-                            {this.castToString(button.text) && (
-                              <Base.Button buttonType={button.type} className={this.decorateCSS("button")}>
-                                <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                            {buttonText && (
+                              <Base.Button buttonType={buttonType} className={this.decorateCSS("button")}>
+                                <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
                               </Base.Button>
                             )}
                           </Form>
@@ -209,12 +221,10 @@ class CallToAction7Page extends BaseCallToAction {
                       </Formik>
                     </div>
                   }
-                  {(!placeholder && this.castToString(button.text) && (
-                    <ComposerLink path={button.url}>
-                      <Base.Button className={this.decorateCSS("button")} buttonType={button.type}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
-                    </ComposerLink>
+                  {(!placeholder && buttonText && (
+                    <Base.Button className={this.decorateCSS("button")} buttonType={buttonType}>
+                      <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
+                    </Base.Button>
                   ))}
                 </Base.VerticalContent>
               </Base.GridCell>)}

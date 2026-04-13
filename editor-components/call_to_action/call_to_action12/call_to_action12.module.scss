@@ -19,6 +19,10 @@
         text-align: center;
       }
 
+      .description {
+        margin-bottom: 0 !important;
+      }
+
       .subtitle {
         transform: translateX(0);
 
@@ -38,6 +42,7 @@
         align-items: stretch;
         width: 55%;
         min-width: 500px;
+        gap: var(--composer-gap-md);
 
         .inputs {
           flex: 2;
@@ -71,6 +76,8 @@
         }
 
         .submit-button {
+          margin-top: 0;
+
           .button-text {
             content: "";
           }
@@ -95,6 +102,16 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      .header {
+        align-items: var(--composer-content-alignment);
+
+        .title,
+        .subtitle,
+        .description {
+          text-align: var(--composer-content-alignment);
+        }
+      }
+
       .form {
         flex-direction: column;
         gap: var(--composer-gap-sm);
@@ -103,17 +120,16 @@
           width: 100%;
           min-width: 100%;
           flex-direction: column;
-          gap: var(--composer-gap-md);
 
           .inputs {
-
             .input {
               padding: var(--composer-gap-xs);
             }
           }
 
           .submit-button {
-            justify-content: center;
+            justify-content: var(--composer-content-alignment);
+            width: 50%;
           }
         }
       }

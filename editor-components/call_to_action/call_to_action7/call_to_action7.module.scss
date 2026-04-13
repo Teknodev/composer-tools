@@ -83,10 +83,7 @@
           }
 
           .input-button-wrapper {
-            display: flex;
             width: 100%;
-            align-items: stretch;
-            gap: var(--composer-gap-md);
 
             .input-div {
               display: flex;
@@ -100,7 +97,7 @@
                 transition: border-color 0.3s ease;
                 width: 100%;
                 padding: var(--composer-gap-md);
-                border-radius: var(--composer-border-radius-sm);
+                border-radius: var(--composer-border-radius-sm) 0 0 var(--composer-border-radius-sm);
                 background-color: var(--composer-html-background);
                 color: var(--composer-font-color-primary);
 
@@ -122,7 +119,9 @@
               }
 
               .button {
-                content: "";
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                margin-top: 0;
 
                 .button-text {
                   content: "";

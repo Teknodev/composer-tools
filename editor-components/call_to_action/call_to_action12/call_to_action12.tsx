@@ -1,14 +1,15 @@
 import * as React from "react";
 import { BaseCallToAction } from "../../EditorComponent";
 import styles from "./call_to_action12.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
-import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
 type InputData = {
   placeholder: string;
   submitText: string;
+  buttonText: React.JSX.Element;
+  buttonType: TypeButton;
 };
 
 class CallToAction12Page extends BaseCallToAction {
@@ -34,8 +35,6 @@ class CallToAction12Page extends BaseCallToAction {
       value: "Get updates by subscribe our weekly newsletter to receive the latest news, evens & promotions"
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE", "", null, null, "Black"));
-
     this.addProp({
       type: "object",
       key: "inputData",
@@ -52,6 +51,21 @@ class CallToAction12Page extends BaseCallToAction {
           key: "submitText",
           displayer: "Submit Text",
           value: "Form successfully submitted!",
+        },
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "SUBSCRIBE",
+        },
+        {
+          type: "select",
+          key: "buttonType",
+          displayer: "Button Type",
+          value: "Black",
+          additionalParams: {
+            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black", "Bare"],
+          },
         },
       ],
     });
@@ -80,8 +94,6 @@ class CallToAction12Page extends BaseCallToAction {
   }
 
   render() {
-    const button = this.castToObject<INPUTS.CastedButton>("button");
-
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
@@ -89,6 +101,8 @@ class CallToAction12Page extends BaseCallToAction {
     const inputData = this.castToObject<InputData>("inputData");
     const placeholder = this.castToString(inputData.placeholder);
     const submitText = this.castToString(inputData.submitText);
+    const buttonText = this.castToString(inputData.buttonText);
+    const buttonType = inputData.buttonType;
 
     return (
       <Base.Container className={`${this.decorateCSS("container")}`} >
@@ -100,7 +114,7 @@ class CallToAction12Page extends BaseCallToAction {
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          {this.castToString(button.text) && placeholder && (
+          {buttonText && placeholder && (
             <div className={this.decorateCSS("form")}>
               <Formik
                 initialValues={{ email: "" }}
@@ -117,7 +131,7 @@ class CallToAction12Page extends BaseCallToAction {
               >
                 {({ handleSubmit, handleChange, values, errors, touched }) => (
                   <Form className={this.decorateCSS("newsletter")} onSubmit={handleSubmit}>
-                    {placeholder && this.castToString(button.text) && (
+                    {placeholder && buttonText && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
                           onFocus={() => this.setComponentState("isInputFocused", true)}
@@ -132,9 +146,9 @@ class CallToAction12Page extends BaseCallToAction {
                         {errors.email && touched.email && <div className={this.decorateCSS("error")}>{errors.email}</div>}
                       </div>
                     )}
-                    {this.castToString(button.text) && (
-                      <Base.Button className={this.decorateCSS("submit-button")} buttonType={button.type}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                    {buttonText && (
+                      <Base.Button className={this.decorateCSS("submit-button")} buttonType={buttonType}>
+                        <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
                       </Base.Button>
                     )}
                   </Form>

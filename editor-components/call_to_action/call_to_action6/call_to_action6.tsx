@@ -1,8 +1,7 @@
 import * as React from "react";
 import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action6.module.scss";
-import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "../../../custom-hooks/input-templates";
+import { Base, TypeButton } from "../../../composer-base-components/base/base";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 
@@ -14,6 +13,8 @@ type MediaObject = {
 type InputData = {
   placeholder: string;
   submitText: string;
+  buttonText: React.JSX.Element;
+  buttonType: TypeButton;
 };
 
 class CallToAction6Page extends BaseCallToAction {
@@ -91,22 +92,21 @@ class CallToAction6Page extends BaseCallToAction {
           displayer: "Submit Text",
           value: "Form successfully submitted!",
         },
-      ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "comment",
-      displayer: "Comment",
-      value: "* We promise we will never spam your account. *",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "buttons",
-      displayer: "Buttons",
-      value: [
-        INPUTS.BUTTON("button", "Button", "Subscribe", null, null, null, "Primary"),
+        {
+          type: "string",
+          key: "buttonText",
+          displayer: "Button Text",
+          value: "Subscribe",
+        },
+        {
+          type: "select",
+          key: "buttonType",
+          displayer: "Button Type",
+          value: "Primary",
+          additionalParams: {
+            selectItems: ["Primary", "Secondary", "Tertiary", "Link", "White", "Black", "Bare"],
+          },
+        },
       ],
     });
 
@@ -144,11 +144,11 @@ class CallToAction6Page extends BaseCallToAction {
     const spaceLineExist = this.getPropValue("spaceLine");
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-
     const inputData = this.castToObject<InputData>("inputData");
     const placeholderExist = this.castToString(inputData.placeholder);
     const submitText = this.castToString(inputData.submitText);
+    const buttonText = this.castToString(inputData.buttonText);
+    const buttonType = inputData.buttonType;
 
     const commentExist = this.castToString(this.getPropValue("comment"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
@@ -167,7 +167,7 @@ class CallToAction6Page extends BaseCallToAction {
                 <div className={this.decorateCSS("space")} />
               </div>
             )}
-            {(commentExist || buttons.length > 0) &&
+            {(commentExist || buttonText) &&
               <Formik
                 initialValues={{ email: "" }}
                 validationSchema={this.validationSchema}
@@ -195,7 +195,7 @@ class CallToAction6Page extends BaseCallToAction {
                     className={this.decorateCSS("form")}
                     onSubmit={handleSubmit}
                   >
-                    {buttons.length > 0 &&
+                    {buttonText &&
                       <div className={this.decorateCSS("input-container")}>
                         <input
                           placeholder={
@@ -215,22 +215,18 @@ class CallToAction6Page extends BaseCallToAction {
                         )}
                       </div>}
 
-                    {(commentExist || buttons.length > 0) && (
+                    {(commentExist || buttonText) && (
                       <div className={this.decorateCSS("bottom-container")}>
                         {commentExist && (
                           <Base.P className={this.decorateCSS("comment")}>
                             {this.getPropValue("comment")}
                           </Base.P>
                         )}
-                        {buttons.length > 0 && (
+                        {buttonText && (
                           <div className={this.decorateCSS("button-container")}>
-                            {buttons.map((button: INPUTS.CastedButton, index: number) => (
-                              this.castToString(button.text) && (
-                                <Base.Button key={index} buttonType={button.type} className={this.decorateCSS("button")}>
-                                  <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
-                              )
-                            ))}
+                            <Base.Button buttonType={buttonType} className={this.decorateCSS("button")}>
+                              <Base.P className={this.decorateCSS("button-text")}>{inputData.buttonText}</Base.P>
+                            </Base.Button>
                           </div>
                         )}
                       </div>
