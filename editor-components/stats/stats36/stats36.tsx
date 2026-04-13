@@ -13,6 +13,8 @@ type StatItem = {
     subtitleElement: React.ReactNode;
     title: string;
     titleElement: React.ReactNode;
+    description: string;
+    descriptionElement: React.ReactNode;
 };
 
 class Stats36 extends BaseStats {
@@ -77,6 +79,7 @@ class Stats36 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Work Progress" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
                 {
@@ -89,6 +92,7 @@ class Stats36 extends BaseStats {
                         { type: "string", key: "suffix", displayer: "Suffix", value: "%" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Projects Done" },
                         { type: "string", key: "title", displayer: "Title", value: "" },
+                        { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
             ],
@@ -157,11 +161,12 @@ class Stats36 extends BaseStats {
             };
         }, [targetNumber, statsAnimation, animationDuration, originalNumberString]);
 
-        const valueExist = originalNumberString && originalNumberString !== "";
+        const valueExist = originalNumberString && originalNumberString !== "" && originalNumberString !== "0";
         const subtitleExist = this.castToString(stat.subtitle);
         const titleExist = this.castToString(stat.title);
+        const descriptionExist = this.castToString(stat.description);
 
-        if (!valueExist && !titleExist && !subtitleExist) return null;
+        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <div className={this.decorateCSS("stat-item")}>
@@ -194,6 +199,11 @@ class Stats36 extends BaseStats {
                         style={{ width: `${statsAnimation ? animatedNumber : targetNumber}%` }}
                     />
                 </div>
+                {descriptionExist && (
+                    <Base.P className={this.decorateCSS("stat-description")}>
+                        {stat.descriptionElement}
+                    </Base.P>
+                )}
             </div>
         );
     };
@@ -209,10 +219,11 @@ class Stats36 extends BaseStats {
 
         const statsItems = statsRaw.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number) || "0";
+            const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
             const title = this.castToString(item.title) || "";
             const subtitle = this.castToString(item.subtitle) || "";
+            const description = this.castToString(item.description) || "";
 
             return {
                 prefix,
@@ -222,7 +233,11 @@ class Stats36 extends BaseStats {
                 titleElement: item.title,
                 subtitle,
                 subtitleElement: item.subtitle,
+                description,
+                descriptionElement: item.description,
             };
+        }).filter(item => {
+            return (item.number !== "" && item.number !== "0") || item.title !== "" || item.subtitle !== "" || item.description !== "";
         });
 
         const animationProps = this.castToObject<any>("animation");
@@ -233,69 +248,73 @@ class Stats36 extends BaseStats {
         const subtitleExist = this.castToString(subtitle);
         const descriptionExist = this.castToString(description);
         const mediaExist = !!media?.url;
-        const hasHeader = subtitleExist || titleExist || descriptionExist;
+        const hasContent = subtitleExist || titleExist || descriptionExist || hasValidButtons || statsItems.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ContainerGrid className={this.decorateCSS("grid-wrapper")}>
                         {mediaExist && (
-                            <Base.GridCell className={this.decorateCSS("media-cell")}>
+                            <Base.GridCell className={`${this.decorateCSS("media-cell")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </Base.GridCell>
                         )}
-                        <Base.GridCell className={`${this.decorateCSS("content-cell")} ${!mediaExist ? this.decorateCSS("full-width") : ""}`}>
-                            <Base.VerticalContent className={this.decorateCSS("content-inner")}>
-                                {subtitleExist && (
-                                    <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
-                                        {subtitle}
-                                    </Base.SectionSubTitle>
-                                )}
-                                {titleExist && (
-                                    <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                                        {title}
-                                    </Base.SectionTitle>
-                                )}
-                                {descriptionExist && (
-                                    <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                                        {description}
-                                    </Base.SectionDescription>
-                                )}
-                                {hasValidButtons && (
-                                    <div className={this.decorateCSS("button-container")}>
-                                        {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                            const buttonText = this.castToString(item.text);
-                                            if (!buttonText) return null;
+                        {hasContent && (
+                            <Base.GridCell className={`${this.decorateCSS("content-cell")} ${!mediaExist ? this.decorateCSS("full-width") : ""}`}>
+                                <Base.VerticalContent className={this.decorateCSS("content-inner")}>
+                                    <div className={this.decorateCSS("content-header")}>
+                                        {subtitleExist && (
+                                            <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                                                {subtitle}
+                                            </Base.SectionSubTitle>
+                                        )}
+                                        {titleExist && (
+                                            <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                                                {title}
+                                            </Base.SectionTitle>
+                                        )}
+                                        {descriptionExist && (
+                                            <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                                                {description}
+                                            </Base.SectionDescription>
+                                        )}
+                                        {hasValidButtons && (
+                                            <div className={this.decorateCSS("button-container")}>
+                                                {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                                    const buttonText = this.castToString(item.text);
+                                                    if (!buttonText) return null;
 
-                                            return (
-                                                <ComposerLink key={index} path={item.url}>
-                                                    <Base.Button
-                                                        buttonType={item.type}
-                                                        className={this.decorateCSS("button")}
-                                                    >
-                                                        <Base.P className={this.decorateCSS("button-text")}>
-                                                            {item.text}
-                                                        </Base.P>
-                                                    </Base.Button>
-                                                </ComposerLink>
-                                            );
-                                        })}
+                                                    return (
+                                                        <ComposerLink key={index} path={item.url}>
+                                                            <Base.Button
+                                                                buttonType={item.type}
+                                                                className={this.decorateCSS("button")}
+                                                            >
+                                                                <Base.P className={this.decorateCSS("button-text")}>
+                                                                    {item.text}
+                                                                </Base.P>
+                                                            </Base.Button>
+                                                        </ComposerLink>
+                                                    );
+                                                })}
+                                            </div>
+                                        )}
                                     </div>
-                                )}
-                                {statsItems.length > 0 && (
-                                    <div className={this.decorateCSS("stats-grid")}>
-                                        {statsItems.map((item, index) => (
-                                            <this.AnimatedStat
-                                                key={index}
-                                                stat={item}
-                                                statsAnimation={statsAnimation}
-                                                animationDuration={animationDuration}
-                                            />
-                                        ))}
-                                    </div>
-                                )}
-                            </Base.VerticalContent>
-                        </Base.GridCell>
+                                    {statsItems.length > 0 && (
+                                        <div className={this.decorateCSS("stats-grid")}>
+                                            {statsItems.map((item, index) => (
+                                                <this.AnimatedStat
+                                                    key={index}
+                                                    stat={item as any}
+                                                    statsAnimation={statsAnimation}
+                                                    animationDuration={animationDuration}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
+                                </Base.VerticalContent>
+                            </Base.GridCell>
+                        )}
                     </Base.ContainerGrid>
                 </Base.MaxContent>
             </Base.Container>

@@ -9,15 +9,21 @@
             gap: var(--composer-gap-xl);
             width: 100%;
 
-            .media-cell {
-                position: relative;
-                min-height: 450px;
-                flex: 1;
-                width: calc(50% - (var(--composer-gap-xl) / 2));
-                max-width: calc(50% - (var(--composer-gap-xl) / 2));
-                overflow: hidden;
+                .media-cell {
+                    position: relative;
+                    min-height: 450px;
+                    flex: 1;
+                    width: calc(50% - (var(--composer-gap-xl) / 2));
+                    max-width: calc(50% - (var(--composer-gap-xl) / 2));
+                    overflow: hidden;
 
-                .media {
+                    &.full-width {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        flex: auto;
+                    }
+
+                    .media {
                     position: absolute;
                     inset: 0;
                     width: 100%;
@@ -33,21 +39,29 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: flex-start;
+                align-items: flex-start !important;
 
                 &.full-width {
-                    width: 100%;
-                    max-width: 100%;
+                    width: 100% !important;
+                    max-width: 100% !important;
                 }
 
                 .content-inner {
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    text-align: left;
-                    gap: var(--composer-gap-lg);
+                    width: 100% !important;
+                    display: flex !important;
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                    text-align: left !important;
+                    gap: var(--composer-gap-xl);
                     padding: 0;
+
+                    .content-header {
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: flex-start !important;
+                        width: 100% !important;
+                        gap: 0;
+                    }
 
                     .stats-grid {
                         display: flex;
@@ -70,7 +84,6 @@
                                 display: flex;
                                 justify-content: space-between;
                                 align-items: flex-end;
-                                // gap: var(--composer-gap-sm);
 
                                 .stat-info {
                                     display: flex;
@@ -90,7 +103,6 @@
                                 .stat-value-container {
                                     display: flex;
                                     align-items: baseline;
-                                    // gap: 2px;
                                     color: var(--composer-font-color-primary);
                                     font-weight: 700;
 
@@ -117,18 +129,22 @@
                                     border-radius: 4px;
                                 }
                             }
+
+                            .stat-description {
+                                margin: 0;
+                                text-align: left;
+                                color: var(--composer-font-color-primary);
+                            }
                         }
                     }
 
                     .button-container {
                         display: flex;
                         flex-wrap: wrap;
-                        // gap: var(--composer-gap-md);
                         width: 100%;
                         justify-content: flex-start;
 
                         .button {
-                            // width: fit-content;
                             content: "";
                         }
                     }
@@ -140,10 +156,9 @@
     .section-title,
     .section-subtitle,
     .section-description {
-        width: 100%;
-        text-align: left;
-        margin-left: 0;
-        margin-right: auto;
+        width: 100% !important;
+        text-align: left !important;
+        margin: 0 !important;
     }
 }
 
@@ -152,7 +167,6 @@
         flex-direction: row !important;
     }
 }
-
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
