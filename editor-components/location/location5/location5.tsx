@@ -7,6 +7,11 @@ import { Base } from "../../../composer-base-components/base/base";
 import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
 import { renderToStaticMarkup } from "react-dom/server";
 
+type mapSettings = {
+  centerZoom: number;
+  markerZoom: number;
+}
+
 class Location5 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -44,8 +49,6 @@ class Location5 extends Location {
       displayer: "Description",
       value: "",
     });
-
-
 
     this.addProp({
       type: "array",
@@ -232,17 +235,23 @@ class Location5 extends Location {
     });
 
     this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 3,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
+      type: "object",
+      key: "mapSettings",
+      displayer: "Map Settings",
+      value: [
+        {
+          type: "number",
+          key: "centerZoom",
+          displayer: "Center Zoom Value",
+          value: 3,
+        },
+        {
+          type: "number",
+          key: "markerZoom",
+          displayer: "Marker Zoom Value",
+          value: 15,
+        },
+      ],
     });
 
     this.removeProp("theme");
@@ -275,8 +284,9 @@ class Location5 extends Location {
     const hasSubtitle = this.castToString(subtitle);
     const title = this.getPropValue("title");
     const hasTitle = this.castToString(title);
-    const markerZoom = this.getPropValue("markerZoom");
-    const centerZoom = this.getPropValue("centerZoom");
+    const mapSettings = this.castToObject<mapSettings>("mapSettings");
+    const markerZoom = mapSettings?.markerZoom;
+    const centerZoom = mapSettings?.centerZoom;
 
     const theme = this.getPropValue("theme");
 

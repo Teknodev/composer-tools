@@ -68,8 +68,6 @@ class Location3 extends Location {
       value: "Explore the world with us",
     });
 
-
-
     this.addProp({
       type: "array",
       displayer: "addresses",

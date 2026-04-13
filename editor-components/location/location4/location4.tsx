@@ -28,6 +28,11 @@ type MarkerObject = {
   };
 };
 
+type mapSettings = {
+  centerZoom: number;
+  markerZoom: number;
+}
+
 class Location4 extends Location {
   constructor(props?: any) {
     super(props, styles);
@@ -115,10 +120,6 @@ class Location4 extends Location {
       },
     });
 
-
-
-
-
     this.addProp({
       type: "array",
       displayer: "addresses",
@@ -180,17 +181,22 @@ class Location4 extends Location {
     });
 
     this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 3,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
+      type: "object",
+      key: "mapSettings",
+      displayer: "Map Settings",
+      value: [
+        {
+          type: "number",
+          key: "centerZoom",
+          displayer: "Center Zoom Value",
+          value: 3,
+        }, {
+          type: "number",
+          key: "markerZoom",
+          displayer: "Marker Zoom Value",
+          value: 15,
+        },
+      ],
     });
 
     this.removeProp("theme");
@@ -218,13 +224,9 @@ class Location4 extends Location {
 
   render() {
     const addresses: Address[] = this.getPropValue("addresses");
-
     const theme = this.getPropValue("theme");
-
     const selectedTheme = theme || "Theme-2";
-
     const mapStyle = this.selectTheme(selectedTheme);
-
     const defaultMarkerIcon = "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1b5c0655f8002ca6cccb?alt=media";
 
     const markers = addresses.reduce((acc: MarkerObject[], address: any) => {
@@ -283,8 +285,9 @@ class Location4 extends Location {
       return acc;
     }, []);
 
-    const markerZoom = this.getPropValue("markerZoom");
-    const centerZoom = this.getPropValue("centerZoom");
+    const mapSettings = this.castToObject<mapSettings>("mapSettings");
+    const centerZoom = mapSettings.centerZoom;
+    const markerZoom = mapSettings.markerZoom;
 
     const media = this.getPropValue("media");
     const overlay = this.getPropValue("overlay");

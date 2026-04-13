@@ -39,6 +39,11 @@ type ContentItemType = {
   }[];
 };
 
+type mapSettings = {
+  centerZoom: number;
+  markerZoom: number;
+};
+
 type SocialMediaItemType = {
   icon: any;
 };
@@ -441,17 +446,23 @@ class Location2 extends Location {
     });
 
     this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 2,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
+      type: "object",
+      key: "mapSettings",
+      displayer: "Map Settings",
+      value: [
+        {
+          type: "number",
+          key: "centerZoom",
+          displayer: "Center Zoom Value",
+          value: 2,
+        },
+        {
+          type: "number",
+          key: "markerZoom",
+          displayer: "Marker Zoom Value",
+          value: 15,
+        },
+      ],
     });
 
     this.removeProp("theme");
@@ -481,8 +492,10 @@ class Location2 extends Location {
 
   render() {
     const addresses: Address[] = this.getPropValue("addresses");
-    const markerZoom = this.getPropValue("markerZoom");
-    const centerZoom = this.getPropValue("centerZoom");
+
+    const mapSettings = this.castToObject<mapSettings>("mapSettings");
+    const markerZoom = mapSettings.markerZoom;
+    const centerZoom = mapSettings.centerZoom;
 
     const headerTitle = this.getPropValue("title");
     const headerDescription = this.getPropValue("headerDescription");

@@ -36,6 +36,11 @@ type MarkerObject = {
   };
 };
 
+type mapSettings = {
+  centerZoom: number;
+  markerZoom: number;
+}
+
 class Location6 extends Location {
   constructor(props?: Buttons) {
     super(props, styles);
@@ -60,8 +65,6 @@ class Location6 extends Location {
       displayer: "Description",
       value: "",
     });
-
-
 
     this.addProp({
       type: "array",
@@ -467,18 +470,24 @@ class Location6 extends Location {
     this.setComponentState("customSelectedMarker", null);
 
     this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 2,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
-    });
+      type: "object",
+      key: "mapSettings",
+      displayer: "Map Settings",
+      value: [
+        {
+          type: "number",
+          key: "centerZoom",
+          displayer: "Center Zoom Value",
+          value: 2,
+        },
+        {
+          type: "number",
+          key: "markerZoom",
+          displayer: "Marker Zoom Value",
+          value: 15,
+        },
+      ]
+    })
 
     this.removeProp("theme");
     this.addProp({
@@ -507,8 +516,9 @@ class Location6 extends Location {
     const addresses: Address[] = this.getPropValue("addresses");
     const buttons = this.castToObject<Buttons[]>("buttons");
 
-    const markerZoom = this.getPropValue("markerZoom");
-    const centerZoom = this.getPropValue("centerZoom");
+    const mapSettings = this.castToObject<mapSettings>("mapSettings");
+    const markerZoom = mapSettings?.markerZoom;
+    const centerZoom = mapSettings?.centerZoom;
 
     const theme = this.getPropValue("theme");
 
