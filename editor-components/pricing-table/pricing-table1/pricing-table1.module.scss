@@ -98,7 +98,9 @@
         }
 
         .card-top-content {
-          padding: var(--composer-gap-lg) var(--composer-gap-lg) var(--composer-gap-md);
+          display: flex;
+          flex-direction: column;
+          padding: 45px var(--composer-gap-lg) 35px;
 
           .cardsubtitle-wrapper {
             display: flex;
@@ -122,6 +124,11 @@
             border-radius: var(--composer-border-radius-sm);
             transition-duration: 0.8s;
             width: max-content;
+            font-size: 1rem !important;
+          }
+
+          .card-text-area {
+            width: 100%;
           }
 
           .card-title {
@@ -307,6 +314,18 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .upper-section .items .item-card .card-bottom .card-bottom-content .card-price .price {
     font-size: 3.5rem !important;
+  }
+
+  .container .max-content .upper-section .items .item-card .card-top-content {
+    padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-sm);
+  }
+
+  .container .max-content .upper-section .items .item-card .card-list .card-list-item {
+    padding: var(--composer-gap-sm) var(--composer-gap-md);
+  }
+
+  .container .max-content .upper-section .items .item-card .card-bottom {
+    padding: var(--composer-gap-md);
   }
 }
 

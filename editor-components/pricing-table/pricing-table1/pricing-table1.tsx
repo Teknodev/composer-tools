@@ -865,7 +865,7 @@ class PricingTable1 extends BasePricingTable {
                           </div>
                         )}
                         {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
-                          <Base.VerticalContent className={this.decorateCSS("card-top-content")}>
+                          <div className={this.decorateCSS("card-top-content")}>
                             {cardSubtitleExist && (
                               <div className={`${this.decorateCSS("cardsubtitle-wrapper")} ${this.decorateCSS("center")}`}>
                                 <Base.SectionDescription className={this.decorateCSS("cardsubtitle")}>
@@ -873,17 +873,21 @@ class PricingTable1 extends BasePricingTable {
                                 </Base.SectionDescription>
                               </div>
                             )}
-                            {cardTitleExist && (
-                              <Base.H3 className={`${this.decorateCSS("card-title")} ${this.decorateCSS("center")}`}>
-                                {table.title}
-                              </Base.H3>
+                            {(cardTitleExist || cardDescriptionExist) && (
+                              <Base.VerticalContent className={this.decorateCSS("card-text-area")}>
+                                {cardTitleExist && (
+                                  <Base.H3 className={`${this.decorateCSS("card-title")} ${this.decorateCSS("center")}`}>
+                                    {table.title}
+                                  </Base.H3>
+                                )}
+                                {cardDescriptionExist && (
+                                  <Base.P className={this.decorateCSS("card-description")}>
+                                    {table.description}
+                                  </Base.P>
+                                )}
+                              </Base.VerticalContent>
                             )}
-                            {cardDescriptionExist && (
-                              <Base.P className={this.decorateCSS("card-description")}>
-                                {table.description}
-                              </Base.P>
-                            )}
-                          </Base.VerticalContent>
+                          </div>
                         )}
                         {hasCardList && (
                           <div className={this.decorateCSS("card-list")}>
