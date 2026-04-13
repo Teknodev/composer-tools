@@ -35,7 +35,7 @@
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
 
-                .button {
+                .button .button-text {
                     content: "";
                 }
             }
@@ -61,6 +61,7 @@
                 .card-description {
                     text-align: left;
                     color: var(--composer-font-color-primary);
+
                 }
 
                 .features-section {

@@ -127,7 +127,9 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle" },
+            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", 
+              additionalParams: { availableTypes: ["icon", "image"] }
+            },
             { type: "string", key: "text", displayer: "Text", value: "Private forum access" },
           ],
         },
@@ -136,7 +138,9 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle" },
+            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", 
+              additionalParams: { availableTypes: ["icon", "image"] } 
+            },
             { type: "string", key: "text", displayer: "Text", value: "Members resources" },
           ],
         },
@@ -145,7 +149,7 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle" },
+            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", additionalParams: { availableTypes: ["icon", "image"] } },
             { type: "string", key: "text", displayer: "Text", value: "Entry to annual conference" },
           ],
         },
@@ -154,7 +158,7 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle" },
+            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", additionalParams: { availableTypes: ["icon", "image"] } },
             { type: "string", key: "text", displayer: "Text", value: "Official member t-shirt" },
           ],
         },
@@ -252,9 +256,9 @@ class PricingTable10 extends BasePricingTable {
           <div
             className={this.decorateCSS("card")}
           >
-            <Base.VerticalContent className={this.decorateCSS("card-left")}>
+            <div className={this.decorateCSS("card-left")}>
               {(cardSubtitleExist || cardTitleExist || cardDescriptionExist) && (
-                <div className={this.decorateCSS("card-header")}>
+                <Base.VerticalContent className={this.decorateCSS("card-header")}>
                   {cardSubtitleExist && (
                     <Base.P className={this.decorateCSS("card-subtitle")}>{card.cardSubtitle}</Base.P>
                   )}
@@ -264,7 +268,7 @@ class PricingTable10 extends BasePricingTable {
                   {cardDescriptionExist && (
                     <Base.P className={this.decorateCSS("card-description")}>{card.cardDescription}</Base.P>
                   )}
-                </div>
+                </Base.VerticalContent>
               )}
               {(featuresLabelExist || features?.length > 0) && (
                 <div className={this.decorateCSS("features-section")}>
@@ -304,7 +308,7 @@ class PricingTable10 extends BasePricingTable {
                   )}
                 </div>
               )}
-            </Base.VerticalContent>
+            </div>
 
             <div className={this.decorateCSS("card-right")}>
               {taglineExist && (
@@ -315,24 +319,21 @@ class PricingTable10 extends BasePricingTable {
               )}
               {cardButtons?.length > 0 && (
                 <div className={this.decorateCSS("card-buttons")}>
-                  {cardButtons[0] && this.castToString(cardButtons[0].text) && (
-                    <ComposerLink path={this.castToString(cardButtons[0].url) || ""}>
-                      <Base.Button buttonType={cardButtons[0].type} className={this.decorateCSS("card-button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {cardButtons[0].text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  )}
-                  {cardButtons[1] && this.castToString(cardButtons[1].text) && (
-                    <ComposerLink path={this.castToString(cardButtons[1].url) || ""}>
-                      <Base.Button buttonType={cardButtons[1].type} className={this.decorateCSS("card-button-secondary")}>
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {cardButtons[1].text}
-                        </Base.P>
-                      </Base.Button>
-                    </ComposerLink>
-                  )}
+                  {cardButtons.map((btn: { text: JSX.Element; type: JSX.Element; url: JSX.Element }, index: number) => {
+                    if (!this.castToString(btn.text)) return null;
+                    return (
+                      <ComposerLink key={index} path={this.castToString(btn.url) || ""}>
+                        <Base.Button
+                          buttonType={this.castToString(btn.type)}
+                          className={this.decorateCSS(this.castToString(btn.type) === "Bare" ? "card-button-secondary" : "card-button")}
+                        >
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {btn.text}
+                          </Base.P>
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
                 </div>
               )}
             </div>
