@@ -1439,11 +1439,11 @@ class PricingMultipleTwo extends BasePricingTable {
                               {(priceText || perText) && (
                                 <div className={this.decorateCSS("item-price")}>
                                   {priceText && (
-                                    <Base.H5
+                                    <Base.H6
                                       className={this.decorateCSS("price")}
                                     >
                                       {tab.price}
-                                    </Base.H5>
+                                    </Base.H6>
                                   )}
                                   {perText && (
                                     <Base.P className={this.decorateCSS("per")}>
@@ -1479,11 +1479,11 @@ class PricingMultipleTwo extends BasePricingTable {
                               return (
                                 <div className={this.decorateCSS("header-wrapper")}>
                                   {titleExist && (
-                                    <Base.H4
+                                    <Base.H5
                                       className={this.decorateCSS("title")}
                                     >
                                       {title}
-                                    </Base.H4>
+                                    </Base.H5>
                                   )}
                                   {subtitleExist && (
                                     <div className={this.decorateCSS("subtitle-wrapper")}>

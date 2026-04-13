@@ -1299,13 +1299,13 @@ class PricingTable7 extends BasePricingTable {
                                   />
                                 )}
                                 {itemTextExist && (
-                                  <Base.H6
+                                  <Base.P
                                     className={this.decorateCSS(
                                       "features-element-text"
                                     )}
                                   >
                                     {data.text}
-                                  </Base.H6>
+                                  </Base.P>
                                 )}
                               </div>
                             );

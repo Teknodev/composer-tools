@@ -908,9 +908,9 @@ class PricingTable1 extends BasePricingTable {
                                     />
                                   )}
                                   {cardListItemExist && (
-                                    <Base.H6 className={this.decorateCSS("list-item")}>
+                                    <Base.P className={this.decorateCSS("list-item")}>
                                       {listItem.text}
-                                    </Base.H6>
+                                    </Base.P>
                                   )}
                                 </Base.Row>
                               );

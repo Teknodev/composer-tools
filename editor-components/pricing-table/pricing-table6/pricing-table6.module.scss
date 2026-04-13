@@ -295,7 +295,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             .header-wrapper {
               display: flex;
               gap: var(--composer-gap-md);
-              padding: 0 var(--composer-gap-md);
+              padding: 0 var(--composer-gap-lg);
               width: 100%;
 
               .title {
