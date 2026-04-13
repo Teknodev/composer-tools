@@ -118,15 +118,6 @@ class PricingTable10 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "object",
-      key: "bottomButton",
-      displayer: "Bottom Button",
-      value: [
-        { type: "string", key: "text", displayer: "Text", value: "" },
-      ],
-    });
-
-    this.addProp({
       type: "array",
       key: "features",
       displayer: "Features",
@@ -213,8 +204,6 @@ class PricingTable10 extends BasePricingTable {
     const priceExist = this.castToString(card.price);
     const features = this.castToObject<FeatureItem[]>("features");
     const cardButtons = this.getCardButtons(card);
-    const bottomButton = this.castToObject<any>("bottomButton");
-    const bottomButtonText = this.castToString(bottomButton?.text);
     const itemCountInARow = this.getPropValue("itemCountInARow");
     const isSingleColorBackground = this.getPropValue("coloredBackground");
 
@@ -348,18 +337,6 @@ class PricingTable10 extends BasePricingTable {
               )}
             </div>
           </div>
-
-          {bottomButtonText && (
-            <div className={this.decorateCSS("bottom-button-wrapper")}>
-              <ComposerLink path={this.castToString(bottomButton?.url)}>
-                <Base.Button buttonType={this.castToString(bottomButton?.type)} className={this.decorateCSS("bottom-button")}>
-                  <Base.P className={this.decorateCSS("button-text")}>
-                    {bottomButton?.text}
-                  </Base.P>
-                </Base.Button>
-              </ComposerLink>
-            </div>
-          )}
 
         </Base.MaxContent>
       </Base.Container>

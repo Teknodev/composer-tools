@@ -147,20 +147,6 @@
                 }
             }
         }
-
-        .bottom-button-wrapper {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-
-        }
-
-        .bottom-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--composer-gap-md);
-        }
     }
 }
 
@@ -200,7 +186,7 @@
                     padding: 50px 20px;
 
                     .price {
-                        font-size: 3.5rem !important;
+                        font-size: 2.5rem !important;
                     }
                 }
             }
