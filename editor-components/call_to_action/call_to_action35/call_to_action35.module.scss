@@ -96,10 +96,11 @@
                 }
             }
         }
+
     }
 
     .content-wrapper {
-        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+        padding: 0;
     }
 
     .card {
@@ -130,6 +131,14 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
+        &.has-media {
+            padding-inline: var(--composer-gap-xl) !important;
+
+            .background-section {
+                margin-inline: calc(-1 * var(--composer-gap-xl));
+            }
+        }
+
         .card {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
         }
@@ -139,45 +148,65 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         &.has-media {
+            padding-inline: 30px !important;
+
+            .background-section {
+                margin-inline: -30px;
+            }
+
             .content-wrapper {
-                padding: var(--composer-gap-xl) var(--composer-gap-md);
+                padding: var(--composer-gap-xl) 0;
+            }
+
+            .card {
+                margin-inline: 0;
             }
         }
 
         .card {
-            margin-inline: var(--composer-gap-md);
             padding: var(--composer-gap-xl) var(--composer-gap-md);
         }
 
         .card,
         .content-wrapper {
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
             gap: var(--composer-gap-md);
 
             .text-block {
-                align-items: center;
+                align-items: flex-start;
                 width: 100%;
-
-                .subtitle,
-                .title,
-                .description {
-                    text-align: center;
-                }
-
                 .subtitle {
                     transform: none;
 
                     &::before {
                         display: none !important;
                     }
-                }
+                } 
             }
 
             .button-group {
-                justify-content: center;
+                justify-content: flex-start;
                 width: 100%;
                 min-width: unset;
+            }
+
+            &.center-alignment {
+                align-items: center;
+
+                .text-block {
+                    align-items: center;
+
+                    .subtitle,
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+                }
+
+                .button-group {
+                    justify-content: center;
+                }
             }
         }
     }

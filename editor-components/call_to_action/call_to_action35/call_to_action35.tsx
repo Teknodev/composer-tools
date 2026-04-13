@@ -81,6 +81,7 @@ class CallToAction35 extends BaseCallToAction {
         const hasVisibleButtons = buttons.some(button => this.castToString(button?.text));
         const mediaSection = this.castToObject<{ backgroundImage?: TypeMediaInputValue; overlay?: boolean } & Partial<TypeMediaInputValue>>("media");
         const background = this.getPropValue("cardBackground") !== false;
+        const alignment = Base.getContentAlignment();
         const backgroundImage = (mediaSection?.backgroundImage ?? (mediaSection?.type ? (mediaSection as TypeMediaInputValue) : undefined)) as TypeMediaInputValue | undefined;
         const hasBackgroundImage = backgroundImage && backgroundImage.type !== "icon" && backgroundImage.url && backgroundImage.url.length > 0;
         const showOverlay = !!(mediaSection?.overlay ?? false) && hasBackgroundImage;
@@ -97,7 +98,7 @@ class CallToAction35 extends BaseCallToAction {
                 )}
 
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")}>
+                    <div className={`${this.getPropValue("cardBackground") !== false ? this.decorateCSS("card") : this.decorateCSS("content-wrapper")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                         <Base.VerticalContent className={this.decorateCSS("text-block")}>
                             {subtitle && (
                                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
