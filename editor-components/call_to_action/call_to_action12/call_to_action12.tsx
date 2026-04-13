@@ -6,6 +6,11 @@ import { Form, Formik } from "formik";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import * as Yup from "yup";
 
+type InputData = {
+  placeholder: string;
+  submitText: string;
+};
+
 class CallToAction12Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -32,24 +37,33 @@ class CallToAction12Page extends BaseCallToAction {
     this.addProp(INPUTS.BUTTON("button", "Button", "SUBSCRIBE", "", null, null, "Black"));
 
     this.addProp({
-      type: "string",
-      key: "placeholder",
-      displayer: "Placeholder",
-      value: "Email Address",
+      type: "object",
+      key: "inputData",
+      displayer: "Input",
+      value: [
+        {
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder",
+          value: "Email Address",
+        },
+        {
+          type: "string",
+          key: "submitText",
+          displayer: "Submit Text",
+          value: "Form successfully submitted!",
+        },
+      ],
     });
 
-    this.addProp({
-      type: "string",
-      key: "submitText",
-      displayer: "Submit Text",
-      value: "Form successfully submitted!",
-    });
     this.setComponentState("isInputFocused", false);
-    this.setComponentState("placeholderText", this.castToString(this.getPropValue("placeholder")));
+    const inputData = this.castToObject<InputData>("inputData");
+    this.setComponentState("placeholderText", this.castToString(inputData.placeholder));
   }
 
   onComponentDidUpdate() {
-    const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
+    const inputData = this.castToObject<InputData>("inputData");
+    const currentPlaceholder = this.castToString(inputData.placeholder);
     const prevPlaceholder = this.getComponentState("placeholderText");
 
     if (currentPlaceholder !== prevPlaceholder) {
@@ -72,8 +86,9 @@ class CallToAction12Page extends BaseCallToAction {
     const descriptionExist = this.castToString(this.getPropValue("description"));
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
 
-    const placeholder = this.castToString(this.getPropValue("placeholder"));
-    const submitText = this.castToString(this.getPropValue("submitText"));
+    const inputData = this.castToObject<InputData>("inputData");
+    const placeholder = this.castToString(inputData.placeholder);
+    const submitText = this.castToString(inputData.submitText);
 
     return (
       <Base.Container className={`${this.decorateCSS("container")}`} >
@@ -85,7 +100,7 @@ class CallToAction12Page extends BaseCallToAction {
               {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
             </Base.VerticalContent>
           )}
-          {this.castToString(button.text) && this.castToString(this.getPropValue("placeholder")) && (
+          {this.castToString(button.text) && placeholder && (
             <div className={this.decorateCSS("form")}>
               <Formik
                 initialValues={{ email: "" }}
@@ -94,7 +109,7 @@ class CallToAction12Page extends BaseCallToAction {
                   this.setComponentState("placeholderText", submitText);
                   this.insertForm("CTA12 – NewsletterForm", data);
                   setTimeout(() => {
-                    const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
+                    const defaultPlaceholder = this.castToString(inputData.placeholder);
                     this.setComponentState("placeholderText", defaultPlaceholder);
                   }, 2000);
                   resetForm();
@@ -102,7 +117,7 @@ class CallToAction12Page extends BaseCallToAction {
               >
                 {({ handleSubmit, handleChange, values, errors, touched }) => (
                   <Form className={this.decorateCSS("newsletter")} onSubmit={handleSubmit}>
-                    {this.castToString(this.getPropValue("placeholder")) && this.castToString(button.text) && (
+                    {placeholder && this.castToString(button.text) && (
                       <div className={this.decorateCSS("inputs")}>
                         <input
                           onFocus={() => this.setComponentState("isInputFocused", true)}

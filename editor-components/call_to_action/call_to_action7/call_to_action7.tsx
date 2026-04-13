@@ -12,6 +12,11 @@ type MediaObject = {
   overlay: boolean;
 };
 
+type InputData = {
+  placeholder: string;
+  submitText: string;
+};
+
 class CallToAction7Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
@@ -62,16 +67,23 @@ class CallToAction7Page extends BaseCallToAction {
     this.addProp(INPUTS.BUTTON("button", "Button", "Get your FREE copy", null, null, null, "Primary"));
 
     this.addProp({
-      type: "string",
-      key: "placeholder",
-      displayer: "Placeholder",
-      value: "Email",
-    });
-    this.addProp({
-      type: "string",
-      key: "submitText",
-      displayer: "Submit Text",
-      value: "Form successfully submitted!",
+      type: "object",
+      key: "inputData",
+      displayer: "Input",
+      value: [
+        {
+          type: "string",
+          key: "placeholder",
+          displayer: "Placeholder",
+          value: "Email",
+        },
+        {
+          type: "string",
+          key: "submitText",
+          displayer: "Submit Text",
+          value: "Form successfully submitted!",
+        },
+      ],
     });
 
     this.addProp({
@@ -81,14 +93,16 @@ class CallToAction7Page extends BaseCallToAction {
       value: true,
     });
 
+    const inputData = this.castToObject<InputData>("inputData");
     this.setComponentState(
       "placeholderText",
-      this.castToString(this.getPropValue("placeholder"))
+      this.castToString(inputData.placeholder)
     );
   }
 
   onComponentDidUpdate() {
-    const currentPlaceholder = this.castToString(this.getPropValue("placeholder"));
+    const inputData = this.castToObject<InputData>("inputData");
+    const currentPlaceholder = this.castToString(inputData.placeholder);
     const prevPlaceholder = this.getComponentState("placeholderText");
 
     if (currentPlaceholder !== prevPlaceholder) {
@@ -115,10 +129,11 @@ class CallToAction7Page extends BaseCallToAction {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const placeholder = this.castToString(this.getPropValue("placeholder"));
+    const inputData = this.castToObject<InputData>("inputData");
+    const placeholder = this.castToString(inputData.placeholder);
     const animation = this.getPropValue("animation");
 
-    const submitText = this.castToString(this.getPropValue("submitText"));
+    const submitText = this.castToString(inputData.submitText);
 
     return (
       <Base.Container className={`${this.decorateCSS("container")} ${!image && this.decorateCSS("no-image")}`}>
@@ -150,7 +165,7 @@ class CallToAction7Page extends BaseCallToAction {
                           this.setComponentState("placeholderText", submitText);
                           this.insertForm("CTA7 – NewsletterForm", data);
                           setTimeout(() => {
-                            const defaultPlaceholder = this.castToString(this.getPropValue("placeholder"));
+                            const defaultPlaceholder = this.castToString(inputData.placeholder);
                             this.setComponentState(
                               "placeholderText",
                               defaultPlaceholder
