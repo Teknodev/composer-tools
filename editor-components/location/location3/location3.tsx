@@ -4,6 +4,8 @@ import styles from "./location3.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { Base } from "../../../composer-base-components/base/base";
 import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
@@ -66,6 +68,15 @@ class Location3 extends Location {
       key: "description",
       displayer: "Description",
       value: "Explore the world with us",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
     });
 
     this.addProp({
@@ -342,6 +353,8 @@ class Location3 extends Location {
     }, []);
 
     const iconExist = this.getPropValue("icon");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
 
     const topExist = iconExist || hasTitle || hasDescription || continents.length > 0;
     return (
@@ -362,7 +375,19 @@ class Location3 extends Location {
                 {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
 
                 {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
-
+                {visibleButtons.length > 0 && (
+                  <div className={this.decorateCSS("button-wrapper")}>
+                    {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                      return this.castToString(item.text) && (
+                        <ComposerLink key={`button-${index}`} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
                 {continents.length > 0 && (
                   <div className={this.decorateCSS("continents-wrapper")}>
                     {continents.map((continentObj: any, index: number) => {

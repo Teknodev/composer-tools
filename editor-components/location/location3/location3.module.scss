@@ -45,6 +45,20 @@
           }
         }
 
+        .button-wrapper {
+          display: flex;
+          justify-content: left;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          margin-bottom: 30px !important;
+
+          .button {
+            .button-text {
+              content: ""
+            }
+          }
+        }
+
         .continents-wrapper {
           display: flex;
           justify-content: center;
@@ -66,7 +80,7 @@
             .continent-name {
               color: var(--composer-primary-color);
               text-align: justify !important;
-              font-size: var(--composer-font-size-md);
+              font-size: 15px;
             }
 
             .continent-count {
@@ -134,7 +148,7 @@
             width: 100%;
             justify-content: center;
             min-width: 0;
-            padding: 0;
+            padding-top: 0;
             gap: var(--composer-gap-sm);
 
             .continent-item {
