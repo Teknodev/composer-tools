@@ -51,7 +51,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         color: var(--composer-font-color-primary);
         border-radius: var(--composer-border-radius-md);
         width: fit-content;
-        place-self: flex-start;
+        place-self: center;
 
         .activeTab:first-child {
           border-top-left-radius: var(--composer-border-radius-md);
@@ -175,7 +175,9 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               }
 
               .tag {
-                border: 1px solid var(--composer-font-color-secondary);
+                background-color: var(--composer-font-color-primary);
+                color: var(--composer-html-background);
+                border: 1px solid var(--composer-font-color-primary);
               }
 
               .plan-icons .plan,
@@ -229,10 +231,11 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 border-radius: var(--composer-border-radius-sm);
                 padding: var(--composer-gap-xs) var(--composer-gap-md);
                 font-size: 0.75rem !important;
-                background-color: var(--composer-overlay-color);
+                background-color: transparent;
                 border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
                 width: auto;
                 white-space: nowrap;
+                transition: background-color 0.3s ease, color 0.3s ease;
               }
             }
 
