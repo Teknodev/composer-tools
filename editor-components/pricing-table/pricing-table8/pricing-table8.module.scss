@@ -24,6 +24,7 @@
     }
 
     .button {
+
       .button-icon,
       .button-text {
         content: "";
@@ -128,7 +129,7 @@
 
             .title {
               z-index: 4;
-              color: var(--composer-font-color-secondary);
+              color: var(--composer-font-color-primary);
               text-align: center;
               margin: calc(2.5 * var(--composer-gap-xl)) 0 0 0;
             }
@@ -155,6 +156,7 @@
 
               .pricing-container {
                 margin: 0;
+                margin-top: calc(1.5 * var(--composer-gap-xl));
                 display: flex;
                 flex-direction: column;
 
@@ -424,7 +426,7 @@
 
               .title {
                 z-index: 4;
-                color: var(--composer-font-color-secondary);
+                color: var(--composer-font-color-primary);
                 margin-top: var(--composer-gap-lg);
                 text-align: center;
               }
