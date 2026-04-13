@@ -86,12 +86,6 @@ class PricingTable9 extends BasePricingTable {
           displayer: "Column Content",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "",
-            },
-            {
               type: "array",
               key: "contents",
               displayer: "Contents",
