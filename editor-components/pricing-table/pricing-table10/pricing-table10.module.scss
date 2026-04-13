@@ -115,7 +115,7 @@
                 flex: 1;
                 display: flex;
                 flex-direction: column;
-                padding: 80px 50px;
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
                 align-items: center;
                 justify-content: center;
                 gap: var(--composer-gap-md);
@@ -155,11 +155,11 @@
         .max-content {
             .card {
                 .card-left {
-                    padding: 80px 40px;
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
                 }
 
                 .card-right {
-                    padding: 80px 40px;
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
                     gap: var(--composer-gap-sm);
 
                     .price {
@@ -179,11 +179,11 @@
                 flex-direction: column;
 
                 .card-left {
-                    padding: 50px 20px;
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
                 }
 
                 .card-right {
-                    padding: 50px 20px;
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
 
                     .price {
                         font-size: 2.5rem !important;
