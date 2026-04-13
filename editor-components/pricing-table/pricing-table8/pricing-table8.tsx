@@ -653,10 +653,12 @@ class PricingTable8 extends BasePricingTable {
                         </div>
 
                         {iconExist && (
-                          <Base.Media
-                            value={card.icon}
-                            className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
-                          />
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <Base.Media
+                              value={card.icon}
+                              className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
+                            />
+                          </div>
                         )}
                       </Base.VerticalContent>
                     </div>
@@ -724,10 +726,12 @@ class PricingTable8 extends BasePricingTable {
                           )}
                         </div>
                         {iconExist && (
-                          <Base.Media
-                            value={card.icon}
-                            className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
-                          />
+                          <div className={this.decorateCSS("icon-wrapper")}>
+                            <Base.Media
+                              value={card.icon}
+                              className={`${this.decorateCSS("icon")} ${isIconImage ? this.decorateCSS("icon-image") : ""}`}
+                            />
+                          </div>
                         )}
                       </Base.VerticalContent>
                     </div>
