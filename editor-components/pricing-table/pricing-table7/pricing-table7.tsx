@@ -11,6 +11,13 @@ type PricingItem = {
   icon: TypeMediaInputValue;
 };
 
+type PlanSettings = {
+  monthlyLabel: React.JSX.Element;
+  yearlyLabel: React.JSX.Element;
+  icon: TypeMediaInputValue;
+  plansDiscountText: React.JSX.Element;
+};
+
 type MonthlyPlan = {
   badge: React.JSX.Element;
   price: React.JSX.Element;
@@ -70,32 +77,38 @@ class PricingTable7 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "string",
-      key: "monthlyLabel",
-      displayer: "Monthly Plan",
-      value: "Monthly",
-    });
-    this.addProp({
-      type: "string",
-      key: "yearlyLabel",
-      displayer: "Yearly Plan",
-      value: "Yearly",
-    });
-    this.addProp({
-      type: "media",
-      key: "icon",
-      displayer: "Plan's Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: { type: "icon", name: "BsArrowReturnLeft" },
-    });
-
-    this.addProp({
-      type: "string",
-      key: "plansDiscountText",
-      displayer: "Plan's Discount",
-      value: "(Save 20%)",
+      type: "object",
+      key: "planSettings",
+      displayer: "Plan Settings",
+      value: [
+        {
+          type: "string",
+          key: "monthlyLabel",
+          displayer: "Monthly Plan",
+          value: "Monthly",
+        },
+        {
+          type: "string",
+          key: "yearlyLabel",
+          displayer: "Yearly Plan",
+          value: "Yearly",
+        },
+        {
+          type: "media",
+          key: "icon",
+          displayer: "Plan's Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: { type: "icon", name: "BsArrowReturnLeft" },
+        },
+        {
+          type: "string",
+          key: "plansDiscountText",
+          displayer: "Plan's Discount",
+          value: "(Save 20%)",
+        },
+      ],
     });
 
     this.addProp({
@@ -991,14 +1004,15 @@ class PricingTable7 extends BasePricingTable {
 
   renderDurationItems() {
     const planType = this.getComponentState("plan_type");
-    const durationIcon = this.getPropValue("icon");
-    const plansDiscountText = this.getPropValue("plansDiscountText");
-    const monthlyLabel = this.getPropValue("monthlyLabel");
-    const yearlyLabel = this.getPropValue("yearlyLabel");
+    const planSettings = this.castToObject<PlanSettings>("planSettings");
+    const durationIcon = planSettings?.icon;
+    const plansDiscountText = planSettings?.plansDiscountText;
+    const monthlyLabel = planSettings?.monthlyLabel;
+    const yearlyLabel = planSettings?.yearlyLabel;
 
     const monthlyTextExist = this.castToString(monthlyLabel);
     const yearlyTextExist = this.castToString(yearlyLabel);
-    const iconExist = durationIcon && (durationIcon.name || durationIcon.url);
+    const iconExist = durationIcon && (durationIcon.type === "icon" ? durationIcon.name : durationIcon.url);
     const discountTextExist = this.castToString(plansDiscountText);
 
     return (
@@ -1056,10 +1070,11 @@ class PricingTable7 extends BasePricingTable {
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
-    const monthlyLabel = this.getPropValue("monthlyLabel");
-    const yearlyLabel = this.getPropValue("yearlyLabel");
-    const durationIcon = this.getPropValue("icon");
-    const plansDiscountText = this.getPropValue("plansDiscountText");
+    const planSettings = this.castToObject<PlanSettings>("planSettings");
+    const monthlyLabel = planSettings?.monthlyLabel;
+    const yearlyLabel = planSettings?.yearlyLabel;
+    const durationIcon = planSettings?.icon;
+    const plansDiscountText = planSettings?.plansDiscountText;
     const animations = this.getPropValue("animations")
       .map((animation: string) => this.decorateCSS(animation))
       .join(" ");
@@ -1075,7 +1090,7 @@ class PricingTable7 extends BasePricingTable {
     const monthlyLabelExist = this.castToString(monthlyLabel);
     const yearlyLabelExist = this.castToString(yearlyLabel);
     const durationIconExist =
-      durationIcon && (durationIcon.name || durationIcon.url);
+      durationIcon && (durationIcon.type === "icon" ? durationIcon.name : durationIcon.url);
     const discountTextExist = this.castToString(plansDiscountText);
 
     const hasValidButtons = buttons.some((btn) => {
