@@ -2,7 +2,8 @@
 
 .container {
     position: relative;
-  .max-content {
+
+    .max-content {
         position: relative;
         z-index: 2;
     }
@@ -16,7 +17,7 @@
         .left-column {
             flex: 1;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             justify-content: center;
 
             .text-block {
@@ -120,6 +121,7 @@
                 .stat-item {
                     display: flex;
                     flex-direction: column;
+
                     .stat-value {
                         display: flex;
                         align-items: flex-end;
