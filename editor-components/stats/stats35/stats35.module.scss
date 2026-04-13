@@ -2,6 +2,7 @@
 
 .container {
     position: relative;
+    overflow: hidden;
 
     .max-content {
         position: relative;
@@ -10,14 +11,13 @@
 
     .content-wrapper {
         display: flex;
-        flex-direction: row;
-        align-items: stretch;
-        gap: calc(var(--composer-gap-lg) * 2);
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        gap: var(--composer-gap-xl);
 
         .left-column {
-            flex: 1;
             width: 100%;
-            max-width: 600px;
             justify-content: center;
 
             .text-block {
@@ -26,16 +26,11 @@
                 width: 100%;
             }
 
-            .subtitle {
-                margin-left: 0;
-                text-align: left;
-            }
-
+            .subtitle,
             .title,
             .description {
                 text-align: left;
             }
-
 
             .button-container {
                 display: flex;
@@ -51,131 +46,109 @@
                 }
             }
         }
+    }
 
-        .right-column {
-            flex: 1;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 500px;
-            margin: -120px -60px -120px 0;
+    .right-column {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
 
-            .right-background {
+        .right-background {
+            position: absolute;
+            inset: 0;
+
+            .background-image {
                 position: absolute;
                 inset: 0;
-
-                .background-image {
-                    position: absolute;
-                    inset: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-
-                .overlay {
-                    position: absolute;
-                    inset: 0;
-                    background: var(--composer-overlay-color);
-                    z-index: 1;
-                }
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
 
-            &.full-width {
-                flex: 1 1 100%;
-                margin: 0;
-                border-radius: var(--composer-border-radius-md);
-                overflow: hidden;
+            .overlay {
+                position: absolute;
+                inset: 0;
+                background: var(--composer-overlay-color);
+                z-index: 1;
+            }
+        }
+
+        &.full-width {
+            position: relative;
+            width: 100%;
+            border-radius: var(--composer-border-radius-md);
+            overflow: hidden;
+        }
+
+        &.no-media {
+            .stats-list {
+                padding: 0;
             }
 
-            &.no-media {
-                margin-top: 0;
-                margin-bottom: 0;
-                margin-right: 0;
-                min-height: unset;
+            .stat-value {
+                color: var(--composer-font-color-primary) !important;
+            }
 
-                .stats-list {
-                    padding: 0;
-                }
+            .stat-subtitle,
+            .stat-title,
+            .stat-description {
+                color: var(--composer-font-color-primary) !important;
+            }
+        }
+
+        .stats-list {
+            position: relative;
+            z-index: 2;
+            gap: var(--composer-gap-xl);
+            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+            width: 100%;
+            align-items: flex-start;
+
+            .stat-item {
+                display: flex;
+                flex-direction: column;
 
                 .stat-value {
-                    color: var(--composer-font-color-primary) !important;
-                }
-
-                .stat-subtitle,
-                .stat-title,
-                .stat-description {
-                    color: var(--composer-font-color-primary) !important;
-                }
-            }
-
-            .stats-list {
-                position: relative;
-                z-index: 2;
-                gap: var(--composer-gap-xl);
-                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
-                width: 100%;
-                align-items: flex-start;
-
-                .stat-item {
                     display: flex;
-                    flex-direction: column;
+                    align-items: flex-end;
+                    color: var(--composer-font-color-secondary);
+                    font-size: 7rem;
+                    line-height: 1;
 
-                    .stat-value {
-                        display: flex;
-                        align-items: flex-end;
-                        color: var(--composer-font-color-secondary);
-                        font-size: 7rem;
-                        line-height: 1;
-
-                        .stat-prefix,
-                        .stat-number,
-                        .stat-suffix {
-                            color: inherit;
-                            font-size: inherit;
-                            text-align: left;
-                        }
-                    }
-
-                    .stat-title,
-                    .stat-subtitle,
-                    .stat-description {
-                        color: var(--composer-font-color-secondary);
+                    .stat-prefix,
+                    .stat-number,
+                    .stat-suffix {
+                        color: inherit;
+                        font-size: inherit;
                         text-align: left;
                     }
                 }
-            }
 
+                .stat-title,
+                .stat-subtitle,
+                .stat-description {
+                    color: var(--composer-font-color-secondary);
+                    text-align: left;
+                }
+            }
         }
     }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
-
-        .content-wrapper {
-            .subtitle {
-                text-align: left;
-            }
-
-
-
-            .right-column {
-                min-height: 400px;
-                margin-right: calc(-1 * var(--composer-gap-lg));
-
-                &.full-width {
-                    flex: 1 1 100%;
-                    margin: 0;
-                }
-
-                .stats-list {
-                    .stat-item {
-                        .stat-value {
-                            font-size: 5rem;
-                        }
+        .right-column {
+            .stats-list {
+                .stat-item {
+                    .stat-value {
+                        font-size: 5rem;
                     }
                 }
             }
@@ -186,11 +159,10 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .content-wrapper {
-            flex-direction: column;
-            gap: var(--composer-gap-md);
+            width: 100%;
+            padding-right: 0;
 
             .left-column.center-alignment {
-
                 .subtitle,
                 .title,
                 .description {
@@ -201,8 +173,18 @@
                     justify-content: center;
                 }
             }
+        }
 
-            .right-column.center-alignment {
+        .right-column {
+            position: relative;
+            width: 100%;
+            top: auto;
+            right: auto;
+            bottom: auto;
+            margin-top: var(--composer-gap-lg);
+            min-height: 300px;
+
+            &.center-alignment {
                 .stats-list {
                     align-items: center;
 
@@ -222,20 +204,8 @@
                 }
             }
 
-
-            .right-column {
-                margin: 0 calc(-1 * var(--composer-gap-lg)) calc(-1 * var(--composer-gap-lg) * 2);
-                min-height: unset;
-
-                &.full-width {
-                    flex: 1 1 100%;
-                    margin: 0;
-                }
-
-                &.no-media {
-                    margin-bottom: 0;
-                    margin-left: 0;
-                }
+            &.full-width {
+                width: 100%;
             }
         }
     }

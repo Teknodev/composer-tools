@@ -324,7 +324,10 @@ class Stats35 extends BaseStats {
                                 )}
                             </Base.VerticalContent>
                         )}
-                        {(stats.length > 0 || hasMedia) && (
+                       
+                    </div>
+                </Base.MaxContent>
+                 {(stats.length > 0 || hasMedia) && (
                             <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasMedia ? this.decorateCSS("no-media") : ""} ${!hasLeftSection ? this.decorateCSS("full-width") : ""}`}>
                                 {hasMedia && (
                                     <div className={this.decorateCSS("right-background")}>
@@ -347,8 +350,6 @@ class Stats35 extends BaseStats {
                                 </Base.ListGrid>
                             </div>
                         )}
-                    </div>
-                </Base.MaxContent>
             </Base.Container>
         );
     }
