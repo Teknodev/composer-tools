@@ -336,8 +336,8 @@ class About7 extends BaseAbout {
                                 )}
                                 {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
                                     <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse ? this.decorateCSS("row-reverse") : ""}`}>
-                                        {this.castToString(item.subtitle) && (<Base.H3 className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.H3>)}
-                                        {this.castToString(item.title) && (<Base.H2 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H2>)}
+                                        {this.castToString(item.subtitle) && (<Base.P className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.P>)}
+                                        {this.castToString(item.title) && (<Base.H3 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H3>)}
                                         {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("item-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
                                     </Base.VerticalContent>
                                 )}
