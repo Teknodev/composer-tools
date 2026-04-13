@@ -318,6 +318,10 @@
 
   .container .max-content .upper-section .items .item-card .card-top-content {
     padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-sm);
+
+    .cardsubtitle {
+      font-size: 0.9rem !important;
+    }
   }
 
   .container .max-content .upper-section .items .item-card .card-list .card-list-item {
@@ -344,5 +348,9 @@
 
   .container .max-content .upper-section .items .item-card .card-bottom .card-bottom-content .card-price .price {
     font-size: 3.25rem !important;
+  }
+
+  .container .max-content .upper-section .items .item-card .card-top-content .cardsubtitle {
+    font-size: 0.75rem !important;
   }
 }
