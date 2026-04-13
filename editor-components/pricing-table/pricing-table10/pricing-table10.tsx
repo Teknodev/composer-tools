@@ -112,6 +112,7 @@ class PricingTable10 extends BasePricingTable {
           value: [
             INPUTS.BUTTON("button", "Button", "GET ACCESS", "", null, null, "Black"),
             INPUTS.BUTTON("button", "Button", "Get a free sample (20mb)", "", null, null, "Bare"),
+
           ],
         },
       ],
@@ -319,16 +320,17 @@ class PricingTable10 extends BasePricingTable {
               )}
               {cardButtons?.length > 0 && (
                 <div className={this.decorateCSS("card-buttons")}>
-                  {cardButtons.map((btn: { text: JSX.Element; type: JSX.Element; url: JSX.Element }, index: number) => {
-                    if (!this.castToString(btn.text)) return null;
-                    return (
-                      <ComposerLink key={index} path={this.castToString(btn.url) || ""}>
+                  {cardButtons.map((item: INPUTS.CastedButton, index: number) => {
+                    return (this.castToString(item.text)) && (
+                      <ComposerLink key={index} path={item.url}>
                         <Base.Button
-                          buttonType={this.castToString(btn.type)}
-                          className={this.decorateCSS(this.castToString(btn.type) === "Bare" ? "card-button-secondary" : "card-button")}
+                          buttonType={item.type}
+                          className={this.decorateCSS(
+                            item.type === "Bare" ? "card-button-secondary" : "card-button"
+                          )}
                         >
                           <Base.P className={this.decorateCSS("button-text")}>
-                            {btn.text}
+                            {item.text}
                           </Base.P>
                         </Base.Button>
                       </ComposerLink>
