@@ -227,7 +227,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.VerticalContent className={this.decorateCSS("items")}>
                         {isSubtitleExist && (
-                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${this.decorateCSS("image")}`}>
+                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${bgImageExist ? this.decorateCSS("image") : ""}`}>
                                 {this.getPropValue("subtitle")}
                             </Base.SectionSubTitle>
                         )}
