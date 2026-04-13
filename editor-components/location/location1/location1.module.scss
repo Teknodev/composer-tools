@@ -6,7 +6,7 @@
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-xl);
+    gap: calc(var(--composer-gap-xl) * 2);
 
     .header {
       display: flex;
@@ -50,6 +50,8 @@
             align-items: center;
             font-size: 2rem;
             color: var(--composer-font-color-primary);
+            z-index: 5;
+            position: relative;
           }
 
           .icon-wrapper:hover .icon {
@@ -244,7 +246,17 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-xl);
+
+      .header {
+        .icon-container {
+          .icon-wrapper {
+            .icon {
+              font-size: 1.5rem;
+            }
+          }
+        }
+      }
 
       .popup {
         width: 200px;
@@ -260,7 +272,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .header {
         display: flex;

@@ -29,6 +29,11 @@ type MarkerObject = {
   };
 };
 
+type mapSettings = {
+  centerZoom: number;
+  markerZoom: number;
+};
+
 type ButtomType = {
   description: string;
   phoneNumber: string;
@@ -316,27 +321,23 @@ class Location1 extends Location {
     });
 
     this.addProp({
-      type: "multiSelect",
-      key: "hoverAnimation",
-      displayer: "Animation",
-      value: ["animate1"],
-      additionalParams: {
-        selectItems: ["animate1"]
-      }
-    });
-
-    this.addProp({
-      type: "number",
-      key: "centerZoom",
-      displayer: "Center Zoom Value",
-      value: 3,
-    });
-
-    this.addProp({
-      type: "number",
-      key: "markerZoom",
-      displayer: "Marker Zoom Value",
-      value: 15,
+      type: "object",
+      key: "mapSettings",
+      displayer: "Map Settings",
+      value: [
+        {
+          type: "number",
+          key: "centerZoom",
+          displayer: "Center Zoom Value",
+          value: 3,
+        },
+        {
+          type: "number",
+          key: "markerZoom",
+          displayer: "Marker Zoom Value",
+          value: 15,
+        },
+      ],
     });
 
     this.removeProp("theme");
@@ -355,6 +356,16 @@ class Location1 extends Location {
           "Theme-5",
         ],
       },
+    });
+
+    this.addProp({
+      type: "multiSelect",
+      key: "hoverAnimation",
+      displayer: "Animation",
+      value: ["animate1"],
+      additionalParams: {
+        selectItems: ["animate1"]
+      }
     });
     this.setComponentState("isCardVisible", true);
   }
@@ -436,19 +447,20 @@ class Location1 extends Location {
       }
       return acc;
     }, []);
-    const subtitle = this.getPropValue("subtitle");
-    const title = this.getPropValue("title");
-    const description = this.getPropValue("description");
+    const subtitle = this.castToString(this.getPropValue("subtitle"));
+    const title = this.castToString(this.getPropValue("title"));
+    const headerdescription = this.castToString(this.getPropValue("headerDescription"));
 
     const buttom = this.castToObject<ButtomType>("buttonRow");
     const icons = this.getPropValue("icons");
     const line = this.getPropValue("line");
 
-    const headerDescription = buttom.description;
+    const description = buttom.description;
     const phone = buttom.phoneNumber;
 
-    const markerZoom = this.getPropValue("markerZoom");
-    const centerZoom = this.getPropValue("centerZoom");
+    const mapSettings = this.castToObject<mapSettings>("mapSettings");
+    const markerZoom = mapSettings.markerZoom;
+    const centerZoom = mapSettings.centerZoom;
 
     const alignment = Base.getContentAlignment();
 
@@ -460,7 +472,7 @@ class Location1 extends Location {
               <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+                {headerdescription && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("headerDescription")}</Base.SectionDescription>}
               </Base.VerticalContent>
               {title && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
               {icons.length > 0 && (
