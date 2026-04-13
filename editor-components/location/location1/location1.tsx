@@ -44,6 +44,24 @@ class Location1 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
+    });
+
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -338,24 +356,6 @@ class Location1 extends Location {
           value: 15,
         },
       ],
-    });
-
-    this.removeProp("theme");
-    this.addProp({
-      type: "select",
-      key: "theme",
-      displayer: "Map Theme",
-      value: "",
-      additionalParams: {
-        selectItems: [
-          "Theme-0",
-          "Theme-1",
-          "Theme-2",
-          "Theme-3",
-          "Theme-4",
-          "Theme-5",
-        ],
-      },
     });
 
     this.addProp({

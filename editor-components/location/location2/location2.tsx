@@ -5,6 +5,7 @@ import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { renderToStaticMarkup } from "react-dom/server";
 
 type Address = {
@@ -52,6 +53,24 @@ class Location2 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
+    this.removeProp("theme");
+    this.addProp({
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
+      additionalParams: {
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
+      },
+    });
+
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -74,7 +93,14 @@ class Location2 extends Location {
         "Each template in our ever growing studio library can be added and moved around within any page effortlessly with one click. Combine them, rearrange them and customize them further as much as you desire. Welcome to the future of building with WordPress.",
     });
 
-
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
 
     this.addProp({
       type: "array",
@@ -464,26 +490,6 @@ class Location2 extends Location {
         },
       ],
     });
-
-    this.removeProp("theme");
-    this.addProp({
-      type: "select",
-      key: "theme",
-      displayer: "Map Theme",
-      value: "",
-      additionalParams: {
-        selectItems: [
-          "Theme-0",
-          "Theme-1",
-          "Theme-2",
-          "Theme-3",
-          "Theme-4",
-          "Theme-5",
-        ],
-      },
-    });
-
-
   }
 
   static getName(): string {
@@ -573,6 +579,8 @@ class Location2 extends Location {
     const headerExist = isTitleExist || isDescriptionExist || socials.length > 0;
     const subtitle = this.getPropValue("subtitle");
     const hasSubtitle = this.castToString(subtitle);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const socialNodes = socials.length > 0 ? (
       <div className={this.decorateCSS("socials")}>
         {socials.map((item: any, idx: number) => {
@@ -615,6 +623,20 @@ class Location2 extends Location {
                   <div className={`${this.decorateCSS("description-container")} ${this.decorateCSS(alignmentValue)} ${!isDescriptionExist && isTitleExist && this.decorateCSS("no-description-right")} ${!isDescriptionExist && !isTitleExist && this.decorateCSS("no-description-left")}`}>
                     {isDescriptionExist && <Base.SectionDescription className={this.decorateCSS("description-text")}>{headerDescription}</Base.SectionDescription>}
                     {socialPlacement === "description" && socialNodes}
+                  </div>
+                )}
+
+                {visibleButtons.length > 0 && (
+                  <div className={this.decorateCSS("button-wrapper")}>
+                    {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                      return this.castToString(item.text) && (
+                        <ComposerLink key={`button-${index}`} path={item.url}>
+                          <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
                   </div>
                 )}
                 {!socialPlacement && socialNodes}
