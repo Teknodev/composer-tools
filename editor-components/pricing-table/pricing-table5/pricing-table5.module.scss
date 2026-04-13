@@ -154,12 +154,12 @@
           &.active {
             background: var(--composer-primary-color);
             justify-content: flex-start;
+            gap: var(--composer-gap-md);
 
             .plan-price-box,
             .plan-description {
               max-height: 250px;
               overflow: auto;
-              padding: var(--composer-gap-md) var(--composer-gap-sm);
               opacity: 1;
             }
 
