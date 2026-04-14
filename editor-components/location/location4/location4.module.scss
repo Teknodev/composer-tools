@@ -241,48 +241,64 @@
 }
 
 @container (max-width: #{$composer-tablet-width}) {
-  .container .page .content {
-    min-height: 200px;
+  .container {
+    .page {
+      .content {
+        min-height: 300px;
 
-    .content-container {
-      .max-content {
-        .title-with-icons {
-          .title-icon {
-            width: 60px;
-            max-height: 60px;
-            font-size: 2rem;
-          }
-        }
+        .content-container {
+          .max-content {
+            .title-with-icons {
+              .title-icon {
+                width: 60px;
+                max-height: 60px;
+                font-size: 2rem;
+              }
+            }
 
-        .max-content-no-image {
-          .title-with-icons {
-            .title-icon {
-              width: 60px;
-              max-height: 60px;
-              font-size: 2rem;
+            .max-content-no-image {
+              .title-with-icons {
+                .title-icon {
+                  width: 60px;
+                  max-height: 60px;
+                  font-size: 2rem;
+                }
+              }
             }
           }
         }
       }
     }
-  }
 
-  .popup {
-    width: 250px;
+    .map-container {
+      height: 400px;
+    }
+
+    .popup {
+      width: 250px;
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .container .page .content {
-    min-height: 200px;
+  .container {
+    .page {
+      .content {
+        min-height: 250px;
 
-    .title-with-icons {
-      gap: calc(var(--composer-gap-sm) / 3);
+        .title-with-icons {
+          gap: calc(var(--composer-gap-sm) / 3);
 
-      .title-icon {
-        width: 40px;
-        max-height: 40px;
-        font-size: 1.5rem;
+          .title-icon {
+            width: 40px;
+            max-height: 40px;
+            font-size: 1.5rem;
+          }
+        }
+      }
+
+      .map-container {
+        height: 300px;
       }
     }
   }

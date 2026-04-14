@@ -1,8 +1,13 @@
 import React from "react";
-import { Location } from "../../EditorComponent";
+import { Location, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./location4.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import { Base } from "../../../composer-base-components/base/base";
+
+type Background = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+}
 
 type Address = {
   type: string;
@@ -28,6 +33,11 @@ type MarkerObject = {
   };
 };
 
+type titleIcon = {
+  titleLeftIcon: TypeMediaInputValue;
+  titleRightIcon: TypeMediaInputValue;
+}
+
 type mapSettings = {
   centerZoom: number;
   markerZoom: number;
@@ -37,24 +47,48 @@ class Location4 extends Location {
   constructor(props?: any) {
     super(props, styles);
 
+    this.removeProp("theme");
     this.addProp({
-      type: "media",
-      key: "media",
-      displayer: "Background Media",
+      type: "select",
+      key: "theme",
+      displayer: "Map Theme",
+      value: "",
       additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
+        selectItems: [
+          "Theme-0",
+          "Theme-1",
+          "Theme-2",
+          "Theme-3",
+          "Theme-4",
+          "Theme-5",
+        ],
       },
     });
 
     this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675c1a380655f8002ca6cb4c?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -69,9 +103,6 @@ class Location4 extends Location {
         name: "",
       },
     });
-
-
-
 
     this.addProp({
       type: "string",
@@ -95,30 +126,36 @@ class Location4 extends Location {
     });
 
     this.addProp({
-      type: "media",
-      key: "title-left-icon",
-      displayer: "Title Left Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cdea1f959f6002d7e1d79?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "media",
-      key: "title-right-icon",
-      displayer: "Title Right Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cde02f959f6002d7e1cea?alt=media",
-      },
-    });
+      type: "object",
+      key: "titleIcon",
+      displayer: "Title Icon",
+      value: [
+        {
+          type: "media",
+          key: "titleLeftIcon",
+          displayer: "Title Left Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cdea1f959f6002d7e1d79?alt=media",
+          },
+        },
+        {
+          type: "media",
+          key: "titleRightIcon",
+          displayer: "Title Right Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695cde02f959f6002d7e1cea?alt=media",
+          },
+        }
+      ]
+    })
 
     this.addProp({
       type: "array",
@@ -198,24 +235,6 @@ class Location4 extends Location {
         },
       ],
     });
-
-    this.removeProp("theme");
-    this.addProp({
-      type: "select",
-      key: "theme",
-      displayer: "Map Theme",
-      value: "",
-      additionalParams: {
-        selectItems: [
-          "Theme-0",
-          "Theme-1",
-          "Theme-2",
-          "Theme-3",
-          "Theme-4",
-          "Theme-5",
-        ],
-      },
-    });
   }
 
   static getName(): string {
@@ -289,8 +308,9 @@ class Location4 extends Location {
     const centerZoom = mapSettings.centerZoom;
     const markerZoom = mapSettings.markerZoom;
 
-    const media = this.getPropValue("media");
-    const overlay = this.getPropValue("overlay");
+    const background = this.castToObject<Background>("background");
+    const media = background.media;
+    const overlay = background.overlay;
 
     const subtitle = this.getPropValue("subtitle");
     const subtitleExist = this.castToString(subtitle);
@@ -300,8 +320,9 @@ class Location4 extends Location {
     const descriptionExist = this.castToString(description);
     const logo = this.getPropValue("logo");
     const logoExist = (logo?.type === "icon" && !!logo?.name) || (logo?.type === "image" && !!logo?.url);
-    const titleLeftIcon = this.getPropValue("title-left-icon");
-    const titleRightIcon = this.getPropValue("title-right-icon");
+    const titleIcon = this.castToObject<titleIcon>("titleIcon");
+    const titleLeftIcon = titleIcon.titleLeftIcon;
+    const titleRightIcon = titleIcon.titleRightIcon;
     const titleLeftIconExist = (titleLeftIcon?.type === "icon" && !!titleLeftIcon?.name) || (titleLeftIcon?.type === "image" && !!titleLeftIcon?.url);
     const titleRightIconExist = (titleRightIcon?.type === "icon" && !!titleRightIcon?.name) || (titleRightIcon?.type === "image" && !!titleRightIcon?.url);
     return (
