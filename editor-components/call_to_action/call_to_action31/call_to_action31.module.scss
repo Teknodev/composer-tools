@@ -99,56 +99,7 @@
                 }
             }
 
-            @container (max-width: #{$composer-tablet-width}) {
-                flex-wrap: nowrap;
 
-                .text-column {
-                    flex: 1;
-                    width: auto;
-                }
-
-                .button-column {
-                    min-width: auto;
-                    flex: 0 0 auto;
-                }
-            }
-
-            @container (max-width: #{$composer-phone-width}) {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--composer-gap-md);
-
-                .text-column {
-                    flex: 1 1 auto;
-                    width: 100%;
-                }
-
-                .button-column {
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    justify-content: flex-start;
-                }
-
-                &.mobile-center {
-                    align-items: center;
-
-                    .text-column {
-
-                        .subtitle,
-                        .title,
-                        .description {
-                            text-align: center;
-                            align-self: center;
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
-                    }
-
-                    .button-column {
-                        justify-content: center;
-                    }
-                }
-            }
         }
 
         .media-wrapper {
@@ -173,10 +124,6 @@
 
 
     @container (max-width: #{$composer-tablet-width}) {
-        &.no-media.no-card .max-content {
-            padding: 0;
-        }
-
         &.no-card:not(.no-media) .max-content {
             padding: 0 !important;
         }
@@ -210,14 +157,6 @@
     }
 
     @container (max-width: #{$composer-phone-width}) {
-        &.no-media.no-card .max-content {
-            padding: 0;
-        }
-
-        &.no-card:not(.no-media) .max-content {
-            padding: 0 !important;
-        }
-
         &.no-media:not(.no-card) .max-content {
             padding: 50px 20px;
         }
@@ -225,7 +164,6 @@
         .max-content {
             padding: var(--composer-gap-xl) var(--composer-gap-md) 0;
             gap: var(--composer-gap-lg);
-            height: auto;
 
             .header-row {
                 flex-direction: column;

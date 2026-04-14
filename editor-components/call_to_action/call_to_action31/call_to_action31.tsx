@@ -127,9 +127,8 @@ class CallToAction31 extends BaseCallToAction {
                                 <div className={this.decorateCSS("button-column")}>
                                     {buttons.map((button: INPUTS.CastedButton, index: number) => {
                                         const castText = this.castToString(button.text);
-                                        const castIcon = this.castToString(button.icon);
 
-                                        if (!castText && !castIcon) {
+                                        if (!castText && !button.icon) {
                                             return null;
                                         }
                                         return (
@@ -138,10 +137,10 @@ class CallToAction31 extends BaseCallToAction {
                                                     className={this.decorateCSS("button")}
                                                     buttonType={button.type}
                                                 >
-                                                    {castIcon && (
-                                                        <Base.Icon
-                                                            name={button.icon}
-                                                            propsIcon={{ className: this.decorateCSS("button-icon") }}
+                                                    {button.icon && (
+                                                        <Base.Media
+                                                            value={typeof button.icon === "object" ? (button.icon as any) : { type: "icon", name: button.icon as any }}
+                                                            className={this.decorateCSS("button-icon")}
                                                         />
                                                     )}
                                                     {castText && (
