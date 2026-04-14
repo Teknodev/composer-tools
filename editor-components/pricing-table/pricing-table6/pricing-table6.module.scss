@@ -148,7 +148,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
               .tag {
                 background-color: var(--composer-font-color-primary);
-                color: var(--composer-font-color-secondary) !important;
+                color: var(--composer-html-background) !important;
                 border-color: var(--composer-font-color-primary);
               }
 
@@ -231,7 +231,6 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
                 border-radius: var(--composer-border-radius-sm);
                 padding: var(--composer-gap-xs) var(--composer-gap-md);
                 font-size: 0.75rem !important;
-                background-color: transparent;
                 border: 1px solid rgba(var(--composer-font-color-primary-rgb), 0.5);
                 width: auto;
                 white-space: nowrap;
