@@ -26,14 +26,14 @@ export class Stats30 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "There is an empty element under the title, it should be removed. Please check the image for reference.  bu review gelmiş nereyi düzeltmem gerkiyor ne yapmalıyım anlat birşey yapma ",
+            value: " ",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "There is an empty element under the title, it should be removed. Please check the image for reference.  bu review gelmiş nereyi düzeltmem gerkiyor ne yapmalıyım anlat birşey yapma ",
+            value: "",
         });
 
         this.addProp({
