@@ -506,7 +506,7 @@ class Feature53 extends BaseFeature {
                         </Base.VerticalContent>
                       )}
                       {hasMedia && (
-                        <div className={this.decorateCSS("media-container")}>
+                        <div className={`${this.decorateCSS("media-container")} ${!contentExist ? this.decorateCSS("full-width") : ""}`}>
                           <Base.Media value={mediaValue} className={this.decorateCSS("media")} />
                           {overlayEnabled && <div className={this.decorateCSS("overlay")} />}
                         </div>

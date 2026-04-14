@@ -85,6 +85,7 @@
 
           .content {
             flex: 1;
+            min-width: 0;
             justify-content: center;
             align-items: flex-start;
             text-align: left;
@@ -118,11 +119,15 @@
           }
 
           .media-container {
-            flex: 1;
+            flex: 0 0 50%;
             position: relative;
             display: flex;
             overflow: hidden;
             border-radius: var(--composer-border-radius-sm);
+
+            &.full-width {
+              flex: 1 1 100%;
+            }
 
             .media {
               width: 100%;
@@ -169,7 +174,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
-      gap: var(--composer-gap-md);
+      gap: 0;
 
       .heading {
         width: 100%;
