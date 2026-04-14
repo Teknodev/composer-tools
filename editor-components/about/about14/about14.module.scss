@@ -137,26 +137,31 @@
                 }
             }
 
-            &.no-image[data-alignment="center"] .content-side {
-                align-items: center;
-                text-align: center;
-
-                .heading .subtitle,
-                .heading .title,
-                .description-wrapper .description {
-                    text-align: center;
-                }
-
-                .heading {
+            &[data-alignment="center"] {
+                &.no-image .content-side {
                     align-items: center;
+                    text-align: center;
 
-                    .subtitle {
-                        margin-left: auto;
+                    .heading .subtitle {
+                        text-align: left !important;
                     }
-                }
 
-                .show-more-overlay {
-                    justify-content: center;
+                    .heading .title,
+                    .description-wrapper .description {
+                        text-align: center;
+                    }
+
+                    .heading {
+                        align-items: center;
+
+                        .subtitle {
+                            margin-left: 0 !important;
+                        }
+                    }
+
+                    .show-more-overlay {
+                        justify-content: center;
+                    }
                 }
             }
         }
@@ -188,6 +193,33 @@
             padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-lg);
             background-color: transparent;
             border-radius: 0;
+        }
+
+        &[data-alignment="center"] {
+            .content-side {
+                align-items: center;
+                text-align: center;
+
+                .heading {
+                    align-items: center;
+
+                    .subtitle {
+                        text-align: left !important;
+                        margin-left: 0 !important;
+                        width: auto;
+                    }
+
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+                }
+
+                .button-container,
+                .show-more-overlay {
+                    justify-content: center;
+                }
+            }
         }
 
         &.no-image {

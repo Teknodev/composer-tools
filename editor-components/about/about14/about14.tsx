@@ -79,18 +79,18 @@ class About14 extends BaseAbout {
         this.addProp({
             type: "object",
             key: "toggleSettings",
-            displayer: "Buttons",
+            displayer: "Expand/Collapse Button",
             value: [
                 {
                     type: "string",
                     key: "showMoreText",
-                    displayer: "Text 1",
+                    displayer: "Show More Text",
                     value: "Show More",
                 },
                 {
                     type: "string",
                     key: "showLessText",
-                    displayer: "Text 2",
+                    displayer: "Show Less Text",
                     value: "Show Less",
                 },
             ],

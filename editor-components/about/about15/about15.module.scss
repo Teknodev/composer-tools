@@ -48,7 +48,8 @@
                     .subtitle {
                         display: inline-block;
                         width: auto;
-                        margin-left: auto;
+                        margin-left: 0 !important;
+                        text-align: left !important;
                     }
 
                     .title,
@@ -157,10 +158,11 @@
                     display: block;
 
                     .subtitle {
-                        margin-left: unset;
+                        margin-left: 0 !important;
                         width: auto;
                         display: inline-block;
                         max-width: 100%;
+                        text-align: left !important;
                     }
 
                     .title,
