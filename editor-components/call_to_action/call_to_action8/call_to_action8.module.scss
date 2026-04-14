@@ -12,7 +12,12 @@
 
           .vertical-content {
 
-            .subtitle,
+            .subtitle {
+              color: var(--composer-html-background);
+              background: transparent;
+              padding: 0;
+            }
+
             .title,
             .description {
               color: var(--composer-html-background);
@@ -130,6 +135,8 @@
     &.colored-background {
       .max-content {
         .content {
+          flex-direction: column;
+
           .title-box {
             padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
           }

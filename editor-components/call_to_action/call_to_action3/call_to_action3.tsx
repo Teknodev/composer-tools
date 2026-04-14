@@ -13,6 +13,33 @@ type MediaObject = {
 class CallToAction3Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
+
+    this.addProp({
+      type: "object",
+      key: "mediaObject",
+      displayer: "Background Media",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          displayer: "Media",
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
+    });
+
     this.addProp({
       type: "string",
       key: "subtitle",
@@ -40,31 +67,6 @@ class CallToAction3Page extends BaseCallToAction {
       value: [
         INPUTS.BUTTON("button", "Button", "LEARN MORE", "", null, null, "Primary"),
         INPUTS.BUTTON("button", "Button", "GET IN TOUCH", "", null, null, "Primary")
-      ],
-    });
-    this.addProp({
-      type: "object",
-      key: "mediaObject",
-      displayer: "Background Media",
-      value: [
-        {
-          type: "media",
-          key: "image",
-          additionalParams: {
-            availableTypes: ["image", "video"],
-          },
-          displayer: "Media",
-          value: {
-            type: "image",
-            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c962bd2970002c6293bb?alt=media&timestamp=1719584962578",
-          },
-        },
-        {
-          type: "boolean",
-          key: "overlay",
-          displayer: "Overlay",
-          value: true,
-        },
       ],
     });
   }

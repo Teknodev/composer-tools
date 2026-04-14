@@ -56,7 +56,11 @@
         .titles {
           flex: 1;
 
-          .subtitle,
+          .subtitle {
+            background: transparent;
+            padding: 0;
+          }
+
           .title,
           .description {
             content: "";

@@ -4,6 +4,12 @@ import { BaseCallToAction, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./call_to_action10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
+import { head } from "lodash";
+
+type headerIcon = {
+  headerIcon: TypeMediaInputValue;
+  headerIconBackground: boolean;
+}
 
 interface CardItem {
   cardIcon: TypeMediaInputValue;
@@ -32,23 +38,29 @@ class CallToAction10Page extends BaseCallToAction {
     });
 
     this.addProp({
-      type: "media",
-      key: "headerIcon",
+      type: "object",
+      key: "headerIconObject",
       displayer: "Header Icon",
-      additionalParams: {
-        availableTypes: ["icon", "image"],
-      },
-      value: {
-        type: "icon",
-        name: "BsHandIndexThumb",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "headerIconBackground",
-      displayer: "Header Icon Background",
-      value: true,
+      value: [
+        {
+          type: "media",
+          key: "headerIcon",
+          displayer: "Header Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "BsHandIndexThumb",
+          },
+        },
+        {
+          type: "boolean",
+          key: "headerIconBackground",
+          displayer: "Header Icon Background",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -220,7 +232,9 @@ class CallToAction10Page extends BaseCallToAction {
   render() {
     const cardItem = this.castToObject<CardItem[]>("cardItems");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const enableIconBackground = this.getPropValue("headerIconBackground");
+    const headerIconObject = this.castToObject<headerIcon>("headerIconObject");
+    const headerIcon = headerIconObject?.headerIcon;
+    const enableIconBackground = headerIconObject?.headerIconBackground;
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
@@ -232,14 +246,14 @@ class CallToAction10Page extends BaseCallToAction {
                   {this.castToString(this.getPropValue("subtitle"))}
                 </Base.SectionSubTitle>
               )}
-              {this.castToString(this.getPropValue("title") || this.getPropValue("headerIcon")) && (
-                <div className={`${this.decorateCSS("title-container")} ${!this.getPropValue("headerIcon") && this.decorateCSS("no-header-icon")}`}>
+              {(this.castToString(this.getPropValue("title")) || headerIcon) && (
+                <div className={`${this.decorateCSS("title-container")} ${!headerIcon && this.decorateCSS("no-header-icon")}`}>
                   <Base.SectionTitle className={this.decorateCSS("title")}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
-                  {this.getPropValue("headerIcon") && (
+                  {headerIcon && (
                     <div className={`${this.decorateCSS("header-icon-wrapper")} ${enableIconBackground && this.decorateCSS("icon-bg")}`}>
-                      <Base.Media value={this.getPropValue("headerIcon")} className={this.decorateCSS("header-icon")} />
+                      <Base.Media value={headerIcon} className={this.decorateCSS("header-icon")} />
                     </div>
                   )}
                 </div>

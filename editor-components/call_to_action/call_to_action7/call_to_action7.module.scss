@@ -239,18 +239,24 @@
         flex-direction: column !important;
 
         .right-page {
+          order: 1;
+
           .right-content {
             .input-button-wrapper {
               .input-div {
                 flex-direction: column !important;
-                gap: 20px;
 
                 .input {
                   background-color: var(--composer-font-color-primary);
+                  border-radius: var(--composer-border-radius-sm) var(--composer-border-radius-sm) 0 0;
 
                   &::placeholder {
                     color: var(--composer-tertiary-color);
                   }
+                }
+
+                .button {
+                  border-radius: 0 0 var(--composer-border-radius-sm) var(--composer-border-radius-sm);
                 }
               }
             }
@@ -258,6 +264,8 @@
         }
 
         .left-page {
+          order: 2;
+
           .image-container {
             width: 100%;
           }

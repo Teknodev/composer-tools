@@ -29,6 +29,9 @@
 
 
       .subtitle {
+        background: transparent;
+        padding: 0;
+
         &::before {
           display: none;
         }

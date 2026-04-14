@@ -33,16 +33,16 @@
     gap: var(--composer-gap-xl);
 
     .text-container {
-      justify-content: center;
       display: flex;
       align-items: flex-start;
+      justify-content: center;
       max-width: 550px;
 
       .subtitle,
       .title,
       .description {
-        content: "";
         text-align: left;
+        margin-left: 0;
       }
     }
   }
