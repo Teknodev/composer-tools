@@ -242,7 +242,7 @@
 
             .column-button-container {
               width: 100%;
-              padding: var(--composer-gap-md);
+              padding: 0 var(--composer-gap-md);
               display: flex;
               align-items: center;
               justify-content: center;
@@ -382,7 +382,7 @@
     }
 
     .column-button-container {
-      padding: 5px;
+      padding: 0 var(--composer-gap-xs);
     }
 
     .column-button .button-text {
@@ -555,7 +555,7 @@
 
           .column-button-container {
             width: 100%;
-            padding: var(--composer-gap-md) var(--composer-gap-xs) !important;
+            padding: 0 var(--composer-gap-xs) !important;
             display: flex;
             align-items: center;
             justify-content: center;
