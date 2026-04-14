@@ -3,6 +3,7 @@ import { Location } from "../../EditorComponent";
 import styles from "./location5.module.scss";
 import ComposerMap from "../../../composer-base-components/map/map";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import { Base } from "../../../composer-base-components/base/base";
 import { iconLibraries } from "../../../composer-base-components/base/utitilities/iconList";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -48,6 +49,13 @@ class Location5 extends Location {
       key: "description",
       displayer: "Description",
       value: "",
+    });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "White")],
     });
 
     this.addProp({
@@ -279,22 +287,17 @@ class Location5 extends Location {
 
   render() {
     const locationAddresses = this.getPropValue("locationAddresses") || [];
-
-    const subtitle = this.getPropValue("subtitle");
-    const hasSubtitle = this.castToString(subtitle);
-    const title = this.getPropValue("title");
-    const hasTitle = this.castToString(title);
+    const Subtitle = this.castToString(this.getPropValue("subtitle"));
+    const Title = this.castToString(this.getPropValue("title"));
+    const Description = this.castToString(this.getPropValue("description"));
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const mapSettings = this.castToObject<mapSettings>("mapSettings");
     const markerZoom = mapSettings?.markerZoom;
     const centerZoom = mapSettings?.centerZoom;
-
     const theme = this.getPropValue("theme");
-
     const selectedTheme = theme || "Theme-2";
-
     const mapStyle = this.selectTheme(selectedTheme);
-    const description = this.getPropValue("description");
-    const hasDescription = this.castToString(description);
     const logo = this.getPropValue("logo");
     const logoExist = Boolean(
       (logo as any)?.url ||
@@ -402,16 +405,24 @@ class Location5 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <Base.VerticalContent className={`${this.decorateCSS("title-block")} ${alignmentValue === "center" && this.decorateCSS("center")} ${alignmentValue === "left" && this.decorateCSS("left")}`}>
-            {logoExist && (
-              <Base.Media
-                value={logo}
-                className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`}
-              />
+          <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
+            {logoExist && (<Base.Media value={logo} className={`${this.decorateCSS("location-logo")} ${logo?.type === "image" && this.decorateCSS("location-logo-img")}`} />)}
+            {Subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+            {Title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {Description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+            {visibleButtons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                  return this.castToString(item.text) && (
+                    <ComposerLink key={`button-${index}`} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
             )}
-            {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
-            {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
-            {hasDescription && <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>}
           </Base.VerticalContent>
           <div className={this.decorateCSS("wrapper")}>
             <section className={this.decorateCSS("map-container")}>
