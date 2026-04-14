@@ -139,16 +139,16 @@ class Breadcrumb3 extends BaseBreadcrumb {
   }
 
   render() {
-    const isTitleExist = this.castToString(this.getPropValue("title"));
-    const isSubtitleExist = this.castToString(this.getPropValue("subtitle"));
-    const isDescriptionExist = this.castToString(this.getPropValue("description"));
+    const isTitleExist = !!this.castToString(this.getPropValue("title"));
+    const isSubtitleExist = !!this.castToString(this.getPropValue("subtitle"));
+    const isDescriptionExist = !!this.castToString(this.getPropValue("description"));
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];
     const background = this.castToObject<{ image: TypeMediaInputValue; overlay: boolean }>("background");
     const bgImage = background?.image;
-    const bgImageExist = bgImage && (bgImage.type === "icon" ? bgImage.name : bgImage.url);
-    const overlay = background?.overlay;
+    const bgImageExist = !!(bgImage && (bgImage.type === "icon" ? bgImage.name : bgImage.url));
+    const overlay = !!background?.overlay;
     const separatorIconValue = this.getPropValue("separatorIcon");
-    const separatorIconExist = separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url);
+    const separatorIconExist = !!(separatorIconValue && (separatorIconValue.type === "icon" ? separatorIconValue.name : separatorIconValue.url));
     const isBreadcrumbVisible = breadcrumbItems.length > 0;
     return (
       <Base.Container
@@ -186,8 +186,8 @@ class Breadcrumb3 extends BaseBreadcrumb {
             {isBreadcrumbVisible && (
               <div className={this.decorateCSS("breadcrumb-items")}>
                 {breadcrumbItems.map((item: BreadcrumbItem, index: number) => {
-                  const itemTitleExist = this.castToString(item.title);
-                  const itemIconExist = item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url);
+                  const itemTitleExist = !!this.castToString(item.title);
+                  const itemIconExist = !!(item.icon && (item.icon.type === "icon" ? item.icon.name : item.icon.url));
                   if (!itemTitleExist && !itemIconExist) return null;
                   const isLast = index === breadcrumbItems.length - 1;
                   return (
