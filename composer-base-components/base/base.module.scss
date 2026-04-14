@@ -333,7 +333,7 @@
             color: var(--composer-font-color-primary);
             &.badge{
                 color: var(--composer-font-color-primary);
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
             }
         }
         .sectionDescription{

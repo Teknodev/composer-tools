@@ -697,21 +697,21 @@ export abstract class Component
   }
 
   private attachPropId(_prop: TypeUsableComponentProps) {
+    _prop.id = generateId(_prop.key);
     if (_prop.type == "array" || _prop.type == "object") {
       (_prop.value as TypeUsableComponentProps[]).forEach(
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
-    } else {
-      _prop.id = generateId(_prop.key)
     }
 
     return _prop;
   }
 
   addProp(prop: TypeUsableComponentProps) {
+    this.attachPropId(prop);
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-    this.initializeProp(prop);
+    this.attachValueGetter(prop);
     this.state.componentProps.props.push(prop);
     EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
