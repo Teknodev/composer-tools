@@ -26,14 +26,14 @@ export class Stats30 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "",
+            value: "There is an empty element under the title, it should be removed. Please check the image for reference.  bu review gelmiş nereyi düzeltmem gerkiyor ne yapmalıyım anlat birşey yapma ",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "",
+            value: "There is an empty element under the title, it should be removed. Please check the image for reference.  bu review gelmiş nereyi düzeltmem gerkiyor ne yapmalıyım anlat birşey yapma ",
         });
 
         this.addProp({
@@ -260,9 +260,13 @@ export class Stats30 extends BaseStats {
                                         </Base.SectionTitle>
                                     )}
                                     {descriptionExist && (
-                                        <Base.SectionDescription className={this.decorateCSS("description")}>
+                                        <div
+                                            className={this.decorateCSS("description")}
+                                            data-section="description"
+                                            data-element-category="base.SectionDescription"
+                                        >
                                             {this.getPropValue("description")}
-                                        </Base.SectionDescription>
+                                        </div>
                                     )}
                                 </Base.VerticalContent>
                             </Base.VerticalContent>
