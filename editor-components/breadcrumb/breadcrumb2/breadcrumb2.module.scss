@@ -87,6 +87,7 @@
         .breadcrumb-item {
           display: flex;
           align-items: center;
+          gap: var(--composer-gap-sm);
 
           .breadcrumb-link {
             .breadcrumb-title {

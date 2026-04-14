@@ -90,6 +90,7 @@
         padding: 0;
         color: var(--composer-font-color-primary);
         flex-wrap: nowrap;
+        gap: var(--composer-gap-sm);
 
         &.center {
           justify-content: center;
@@ -102,7 +103,7 @@
         .breadcrumb-item {
           display: flex;
           align-items: center;
-          gap: var(--composer-gap-xs);
+          gap: var(--composer-gap-sm);
         }
 
         .breadcrumb-link {
