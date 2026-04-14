@@ -225,19 +225,19 @@ class Breadcrumb4 extends BaseBreadcrumb {
                 )}
                 {overlay && bgImageExist && <div className={this.decorateCSS("overlay")}></div>}
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <Base.VerticalContent className={this.decorateCSS("items")}>
+                    <Base.VerticalContent className={`${this.decorateCSS("items")} ${bgImageExist ? this.decorateCSS("with-image") : ""}`}>
                         {isSubtitleExist && (
-                            <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${bgImageExist ? this.decorateCSS("image") : ""}`}>
+                            <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                                 {this.getPropValue("subtitle")}
                             </Base.SectionSubTitle>
                         )}
                         {isTitleExist && (
-                            <Base.SectionTitle className={`${this.decorateCSS("title")} ${bgImageExist ? this.decorateCSS("image") : ""}`}>
+                            <Base.SectionTitle className={this.decorateCSS("title")}>
                                 {this.getPropValue("title")}
                             </Base.SectionTitle>
                         )}
                         {isDescriptionExist && (
-                            <Base.SectionDescription className={`${this.decorateCSS("description")} ${bgImageExist ? this.decorateCSS("image") : ""}`}>
+                            <Base.SectionDescription className={this.decorateCSS("description")}>
                                 {this.getPropValue("description")}
                             </Base.SectionDescription>
                         )}
@@ -254,11 +254,11 @@ class Breadcrumb4 extends BaseBreadcrumb {
                                                     {itemIconExist && (
                                                         <Base.Media
                                                             value={item.icon}
-                                                            className={`${this.decorateCSS("crumberIcon")} ${!bgImageExist ? this.decorateCSS("icon-without-image") : ""}`}
+                                                            className={this.decorateCSS("crumberIcon")}
                                                         />
                                                     )}
                                                     {itemTitleExist && (
-                                                        <Base.P className={`${this.decorateCSS("text")} ${!bgImageExist ? this.decorateCSS("text-without-image") : ""}`}>
+                                                        <Base.P className={this.decorateCSS("text")}>
                                                             {item.title}
                                                         </Base.P>
                                                     )}
@@ -268,7 +268,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
                                         {!isLast && separatorIconExist && (
                                             <Base.Media
                                                 value={separatorIconValue}
-                                                className={`${this.decorateCSS("crumberIcon")} ${!bgImageExist ? this.decorateCSS("icon-without-image") : ""}`}
+                                                className={this.decorateCSS("crumberIcon")}
                                             />
                                         )}
                                     </div>
