@@ -621,9 +621,9 @@ class PricingTable8 extends BasePricingTable {
                           />
                         )}
                         {cardTitleExist && (
-                          <Base.H2 className={this.decorateCSS("title")}>
+                          <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
-                          </Base.H2>
+                          </Base.H3>
                         )}
                         <div className={this.decorateCSS("price-stack")}>
                           {hasPricingContainer && (
@@ -631,11 +631,11 @@ class PricingTable8 extends BasePricingTable {
                               className={this.decorateCSS("pricing-container")}
                             >
                               {cardPriceBigExist && (
-                                <Base.H1
+                                <Base.H3
                                   className={this.decorateCSS("price-big")}
                                 >
                                   {card.priceBig}
-                                </Base.H1>
+                                </Base.H3>
                               )}
                               {this.castToString(card.price) && (
                                 <Base.H2 className={this.decorateCSS("price")}>
@@ -698,15 +698,15 @@ class PricingTable8 extends BasePricingTable {
                           />
                         )}
                         {cardTitleExist && (
-                          <Base.H2 className={this.decorateCSS("title")}>
+                          <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
-                          </Base.H2>
+                          </Base.H3>
                         )}
                         <div className={this.decorateCSS("price-stack")}>
                           {cardPriceBigExist && (
-                            <Base.H2 className={this.decorateCSS("price-big")}>
+                            <Base.H3 className={this.decorateCSS("price-big")}>
                               {card.priceBig}
-                            </Base.H2>
+                            </Base.H3>
                           )}
                           {hasPricingContainer && (
                             <div
