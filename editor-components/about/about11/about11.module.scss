@@ -66,6 +66,11 @@
             .section-subtitle {
               margin-left: auto;
             }
+
+            .buttons-container {
+              align-self: flex-start;
+              justify-content: flex-start;
+            }
           }
         }
       }
