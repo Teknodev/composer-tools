@@ -19,7 +19,10 @@
             width: 100%;
         }
 
-        .subtitle,
+        .subtitle {
+            margin-left: 0;
+        }
+
         .title,
         .description {
             text-align: left;
@@ -74,12 +77,14 @@
 
         &.full-width {
             position: relative;
-          
+
             width: 100%;
             min-height: 500px;
         }
 
         &.no-media {
+            padding: 120px 0;
+
             .stats-list {
                 padding: 0;
             }
@@ -135,20 +140,11 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        .left-column {
-            width: 100%;
+        .subtitle {
+            margin-left: 0;
         }
 
         .right-column {
-            position: relative;
-            width: calc(100% + 100px);
-            margin: 0 calc(-1 * var(--composer-gap-xl));
-            top: auto;
-            right: auto;
-            bottom: auto;
-            min-height: 400px;
-           
-
             .stats-list {
                 .stat-item {
                     .stat-value {
@@ -166,7 +162,11 @@
             width: 100%;
 
             &.center-alignment {
-                .subtitle,
+
+                .subtitle {
+                    margin: unset;
+                }
+
                 .title,
                 .description {
                     text-align: center;
@@ -183,6 +183,28 @@
             width: calc(100% + 60px);
             margin: var(--composer-gap-lg) -30px 0;
             min-height: 300px;
+
+            &.no-media {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                min-height: unset;
+
+                .stats-list {
+                    padding: 0;
+                    margin-top: var(--composer-gap-xl);
+                }
+
+                .stat-value {
+                    color: var(--composer-font-color-primary) !important;
+                }
+
+                .stat-subtitle,
+                .stat-title,
+                .stat-description {
+                    color: var(--composer-font-color-primary) !important;
+                }
+            }
 
             &.center-alignment {
                 .stats-list {
