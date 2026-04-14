@@ -6,43 +6,35 @@
 
     .max-content {
         position: relative;
-        z-index: 2;
     }
 
-    .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    .left-column {
         width: 50%;
-        gap: var(--composer-gap-xl);
+        padding: 0;
+        justify-content: center;
 
-        .left-column {
+        .text-block {
+            display: flex;
+            flex-direction: column;
             width: 100%;
-            justify-content: center;
+        }
 
-            .text-block {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-            }
+        .subtitle,
+        .title,
+        .description {
+            text-align: left;
+        }
 
-            .subtitle,
-            .title,
-            .description {
-                text-align: left;
-            }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--composer-gap-sm);
+            width: 100%;
+            align-items: center;
 
-            .button-container {
-                display: flex;
-                flex-wrap: wrap;
-                gap: var(--composer-gap-sm);
-                width: 100%;
-                align-items: center;
-
-                .button {
-                    .button-text {
-                        content: "";
-                    }
+            .button {
+                .button-text {
+                    content: "";
                 }
             }
         }
@@ -53,12 +45,12 @@
         top: 0;
         right: 0;
         bottom: 0;
-        width: 50%;
+        width: calc(50% - var(--composer-gap-xl));
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        z-index: 1;
+        padding: 120px 60px;
 
         .right-background {
             position: absolute;
@@ -82,9 +74,9 @@
 
         &.full-width {
             position: relative;
+          
             width: 100%;
-            border-radius: var(--composer-border-radius-md);
-            overflow: hidden;
+            min-height: 500px;
         }
 
         &.no-media {
@@ -107,7 +99,6 @@
             position: relative;
             z-index: 2;
             gap: var(--composer-gap-xl);
-            padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
             width: 100%;
             align-items: flex-start;
 
@@ -144,7 +135,20 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
+        .left-column {
+            width: 100%;
+        }
+
         .right-column {
+            position: relative;
+            width: calc(100% + 100px);
+            margin: 0 calc(-1 * var(--composer-gap-xl));
+            top: auto;
+            right: auto;
+            bottom: auto;
+            min-height: 400px;
+           
+
             .stats-list {
                 .stat-item {
                     .stat-value {
@@ -158,11 +162,10 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        .content-wrapper {
+        .left-column {
             width: 100%;
-            padding-right: 0;
 
-            .left-column.center-alignment {
+            &.center-alignment {
                 .subtitle,
                 .title,
                 .description {
@@ -177,11 +180,8 @@
 
         .right-column {
             position: relative;
-            width: 100%;
-            top: auto;
-            right: auto;
-            bottom: auto;
-            margin-top: var(--composer-gap-lg);
+            width: calc(100% + 60px);
+            margin: var(--composer-gap-lg) -30px 0;
             min-height: 300px;
 
             &.center-alignment {

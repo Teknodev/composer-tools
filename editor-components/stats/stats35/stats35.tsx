@@ -287,9 +287,9 @@ class Stats35 extends BaseStats {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <div className={this.decorateCSS("content-wrapper")}>
-                        {hasLeftSection && (
+                         <Base.MaxContent className={this.decorateCSS("max-content")}>
+                            {hasLeftSection && (
                             <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>
                                 {subtitleExist && (
                                     <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
@@ -323,11 +323,9 @@ class Stats35 extends BaseStats {
                                     </div>
                                 )}
                             </Base.VerticalContent>
-                        )}
-                       
-                    </div>
-                </Base.MaxContent>
-                 {(stats.length > 0 || hasMedia) && (
+                         )}
+                        </Base.MaxContent>
+                        {(stats.length > 0 || hasMedia) && (
                             <div className={`${this.decorateCSS("right-column")} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""} ${!hasMedia ? this.decorateCSS("no-media") : ""} ${!hasLeftSection ? this.decorateCSS("full-width") : ""}`}>
                                 {hasMedia && (
                                     <div className={this.decorateCSS("right-background")}>
@@ -350,6 +348,7 @@ class Stats35 extends BaseStats {
                                 </Base.ListGrid>
                             </div>
                         )}
+                    </div>
             </Base.Container>
         );
     }
