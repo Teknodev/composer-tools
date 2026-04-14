@@ -149,7 +149,7 @@
                     position: absolute;
                     z-index: 10;
                     top: var(--composer-gap-xl);
-                    left: 38%;
+                    left: 30%;
                     transform: translateX(-60%);
                     max-width: 200px;
                     display: flex;
@@ -267,7 +267,7 @@
 
                     .image-text {
                         top: var(--composer-gap-xl);
-                        left: 38%;
+                        left: 30%;
 
                         .lower-text {
                             font-size: 3.5rem !important;
