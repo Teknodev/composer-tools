@@ -23,9 +23,7 @@
                 gap: var(--composer-gap-sm);
 
                 .button {
-                    width: fit-content;
-                    display: flex;
-                    align-items: center;
+                    content: "";
 
                     .icon {
                         font-size: 6rem;
@@ -144,9 +142,7 @@
                         justify-content: flex-start;
 
                         .item-button {
-                            display: flex;
-                            align-items: center;
-                            gap: var(--composer-gap-sm);
+                            content: "";
 
                             .item-button-text {
                                 margin: 0;
