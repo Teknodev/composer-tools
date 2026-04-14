@@ -13,14 +13,14 @@ class About5 extends BaseAbout {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Some words about",
+            value: "",
         })
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: ""
+            value: "Some words about"
         })
         this.addProp({
             type: "string",
