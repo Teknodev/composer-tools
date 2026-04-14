@@ -479,10 +479,10 @@ class Feature53 extends BaseFeature {
                       {contentExist && (
                         <Base.VerticalContent className={this.decorateCSS("content")}>
                           {tabSubtitleExist && (
-                            <Base.H4 className={this.decorateCSS("content-subtitle")}>{tab.subtitle}</Base.H4>
+                            <Base.H5 className={this.decorateCSS("content-subtitle")}>{tab.subtitle}</Base.H5>
                           )}
                           {tabTitleExist && (
-                            <Base.H2 className={this.decorateCSS("content-title")}>{tab.title}</Base.H2>
+                            <Base.H3 className={this.decorateCSS("content-title")}>{tab.title}</Base.H3>
                           )}
                           {tabDescriptionExist && (
                             <Base.P className={this.decorateCSS("content-description")}>{tab.description}</Base.P>
