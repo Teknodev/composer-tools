@@ -662,7 +662,7 @@ class Location2 extends Location {
                       {isContIconExist && <Base.Media value={item.contentIcon} className={this.decorateCSS("icon")} />}
                       {isContTitleExist && (
                         <div className={this.decorateCSS("content-title-container")}>
-                          <Base.H4 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H4>
+                          <Base.H5 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H5>
                         </div>
                       )}
                       {isDesExist && (
