@@ -2,7 +2,6 @@
 
 .container {
   .max-content {
-    max-width: var(--composer-content-width);
     margin: 0 auto;
 
     .header {
@@ -75,6 +74,7 @@
       max-width: 100% !important;
       box-sizing: border-box;
       min-height: 0;
+      gap: var(--composer-gap-md);
 
       .tab-container {
         width: 100% !important;
@@ -206,12 +206,11 @@
     gap: 0;
 
     .wrapper {
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
 
       .left-container {
         min-width: 0;
         box-sizing: border-box;
-        padding-right: var(--composer-gap-md);
 
         .max-content {
           width: 100%;
