@@ -231,12 +231,12 @@ export namespace Base {
   export function SectionSubTitle({ className, ...props }: any) {
     const type = getSectionSubTitleType();
     return (
-      <H3
+      <P
         className={`${styles.sectionSubTitle} ${className} ${styles[type]}`}
         data-section="subtitle"
         data-element-category={ELEMENT_CATEGORY.SUB_TITLE}
         {...props}
-      ></H3>
+      ></P>
     );
   }
 
