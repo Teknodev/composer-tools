@@ -38,6 +38,19 @@
       .description {
         text-align: center;
       }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
     }
 
     .title {

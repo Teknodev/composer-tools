@@ -1,7 +1,14 @@
 import React from "react";
-import { Location } from "../../EditorComponent";
+import { Location, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./location7.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import ComposerLink from "composer-tools/composer-base-components/Link/ComposerLinkProvider";
+
+type Media = {
+  overlay: boolean;
+  backgroundMedia: TypeMediaInputValue;
+}
 
 type Address = {
   type: string;
@@ -28,6 +35,30 @@ class Location7 extends Location {
   constructor(props?: any) {
     super(props, styles);
     this.removeProp("theme");
+    this.addProp({
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        }, {
+          type: "media",
+          key: "backgroundMedia",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
+          },
+        },
+      ],
+    });
 
     this.addProp({
       type: "media",
@@ -56,13 +87,20 @@ class Location7 extends Location {
       value: "We Are <span style='color: var(--composer-primary-color)'>Worldwide</span>",
     });
 
-
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "",
     });
+
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+    });
+
 
     this.addProp({
       type: "array",
@@ -376,30 +414,10 @@ class Location7 extends Location {
     this.addProp({
       type: "boolean",
       key: "showTooltipLine",
-      displayer: "Tooltip Line",
+      displayer: "Line",
       value: true,
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
-    });
-
-
-    this.addProp({
-      type: "media",
-      key: "background-media",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/6880cd78a85f1c002bbc65c9?alt=media",
-      },
-    });
     this.setComponentState("activeMarkerIndex", 0);
   }
 
@@ -421,6 +439,9 @@ class Location7 extends Location {
   };
 
   render() {
+    const backgroundMedia = this.castToObject<Media>("media");
+    const overlay = backgroundMedia?.overlay;
+    const image = backgroundMedia?.backgroundMedia;
     const addresses: Address[] = this.getPropValue("addresses");
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
@@ -428,10 +449,10 @@ class Location7 extends Location {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
     const subtitleExist = this.castToString(subtitle);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
+    const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
     const activeMarkerIndex = this.getComponentState("activeMarkerIndex");
-    const bgMedia = this.getPropValue("background-media");
     const showTooltipLine = this.getPropValue("showTooltipLine");
-    const imageOverlay = this.getPropValue("overlay");
     const logo = this.getPropValue("logo");
     const logoExist = (logo?.type === "icon" && !!logo?.name) || (logo?.type === "image" && !!logo?.url);
 
@@ -482,13 +503,26 @@ class Location7 extends Location {
             {descriptionExist && (
               <Base.SectionDescription className={this.decorateCSS("description")}>{description}</Base.SectionDescription>
             )}
+            {visibleButtons.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
+                  return this.castToString(item.text) && (
+                    <ComposerLink key={`button-${index}`} path={item.url}>
+                      <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                        <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
             <section className={this.decorateCSS("map-container")}>
               <div
                 className={this.decorateCSS("custom-map")}>
-                {bgMedia && (
-                  <Base.Media value={bgMedia} className={this.decorateCSS("background-image")} />
+                {image && (
+                  <Base.Media value={image} className={this.decorateCSS("background-image")} />
                 )}
-                {imageOverlay && <div className={this.decorateCSS("overlay")} />}
+                {overlay && <div className={this.decorateCSS("overlay")} />}
                 {markers.map((marker, idx) => {
                   const popupTitle = marker.popupTitle;
                   const description = marker.description;
