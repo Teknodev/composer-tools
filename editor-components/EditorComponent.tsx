@@ -399,13 +399,14 @@ export abstract class Component
   public globalComponentId: string | undefined;
   public _SanitizeHTML: React.ComponentType<any> | null = null;
   static category: CATEGORIES;
-
+  private static _dbgStyle = 'padding:2px 4px;border-radius:2px;font-weight:bold;color:white;background:#4CAF50;';
 
   componentDidUpdate(
     prevProps: Readonly<{}>,
     prevState: Readonly<{ states: any; componentProps: any; }>,
     snapshot?: any
   ): void {
+
     EventEmitter.emit(EVENTS.COMPONENT_DID_UPDATE, { data: this });
     this.onComponentDidUpdate?.(prevProps, prevState, snapshot);
   }
@@ -696,21 +697,21 @@ export abstract class Component
   }
 
   private attachPropId(_prop: TypeUsableComponentProps) {
+    _prop.id = generateId(_prop.key);
     if (_prop.type == "array" || _prop.type == "object") {
       (_prop.value as TypeUsableComponentProps[]).forEach(
         (v: TypeUsableComponentProps) => this.attachPropId(v)
       );
-    } else {
-      _prop.id = generateId(_prop.key)
     }
 
     return _prop;
   }
 
   addProp(prop: TypeUsableComponentProps) {
+    this.attachPropId(prop);
     this.shadowProps.push(JSON.parse(JSON.stringify(prop)));
     if (this.getProp(prop.key)) return;
-    this.initializeProp(prop);
+    this.attachValueGetter(prop);
     this.state.componentProps.props.push(prop);
     EventEmitter.emit(EVENTS.RENDER_CONTENT_TAB)
   }
@@ -765,9 +766,11 @@ export abstract class Component
       prop.value === value;
 
     if (isInvalidIndex || isMatchingSimpleValue || isMatchingComplexValue) {
+      console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp skipped (no change)', { id: this.id, key });
       return;
     }
 
+    console.debug(`%cDEBUG%c [EditorComponent]`, Component._dbgStyle, 'color:#888;font-style:italic;', 'setProp → setState', { id: this.id, key, type: prop.type });
     this.state.componentProps.props[i].value = value;
     this.state.componentProps.props[i] = this.attachValueGetter(
       this.state.componentProps.props[i]
