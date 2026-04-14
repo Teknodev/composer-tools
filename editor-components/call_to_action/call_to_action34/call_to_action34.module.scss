@@ -133,6 +133,24 @@
                     }
                 }
             }
+
+            &.no-media[data-alignment="center"] {
+                .left-column {
+                    align-items: center;
+                    
+                    .title,
+                    .subtitle,
+                    .description {
+                        text-align: center;
+                        align-self: center;
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                        align-self: center;
+                    }
+                }
+            }
         }
     }
 }
@@ -170,11 +188,10 @@
 
         &.colored {
             padding: 0;
-            padding-bottom: var(--composer-gap-xl);
 
             .left-column {
                 padding: var(--composer-gap-md);
-                padding-top: 0;
+                padding-bottom: (var(--composer-gap-xl));
             }
 
             .right-column {

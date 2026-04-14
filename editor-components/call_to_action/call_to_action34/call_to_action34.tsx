@@ -100,12 +100,15 @@ class CallToAction34 extends BaseCallToAction {
         const mediaGroup = this.castToObject<any>("mediaGroup");
         const media = mediaGroup.media;
         const showOverlay = mediaGroup.overlay;
-
+        const alignment = Base.getContentAlignment();
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}${!hasLeftContent ? this.decorateCSS("no-text") : ""}`}>
+                    <div
+                        className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}${!hasLeftContent ? this.decorateCSS("no-text") : ""}`}
+                        data-alignment={alignment}
+                    >
                         {hasLeftContent && (
                             <div className={`${this.decorateCSS("left-column")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}`}>
                                 <Base.VerticalContent>
