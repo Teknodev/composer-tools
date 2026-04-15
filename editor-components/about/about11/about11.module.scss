@@ -67,7 +67,8 @@
               margin-left: auto;
             }
 
-            .buttons-container {
+            .buttons-container,
+            .icons {
               align-self: flex-start;
               justify-content: flex-start;
             }
@@ -90,12 +91,12 @@
 
         .buttons-container {
           display: flex;
-          justify-content: flex-start;
-          align-items: center;
           gap: var(--composer-gap-sm);
           flex-wrap: wrap;
+          align-self: flex-start;
 
           .button {
+
             .button-text {
               content: "";
             }
@@ -188,32 +189,45 @@
   .container {
     .max-content {
       .content {
-        align-items: flex-start;
+        align-items: center;
         flex-direction: column !important;
 
         .left,
         .right {
           padding: 0;
           max-width: 100%;
+          width: 100%;
+          justify-content: center;
+        }
+
+        .vertical-content {
+          align-items: center;
+          width: 100%;
+
+          .section-title,
+          .section-subtitle,
+          .section-description {
+            text-align: center;
+          }
+
+          .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .buttons-container,
+          .icons {
+            justify-content: center;
+            align-self: center;
+          }
         }
 
         .right.center {
           .vertical-content {
-            align-items: center;
-
-            .section-title,
-            .section-subtitle,
-            .section-description {
-              text-align: center;
-            }
-
-            .section-subtitle {
-              margin-left: auto;
-            }
-
             .buttons-container,
             .icons {
               justify-content: center;
+              align-self: center;
             }
           }
         }
