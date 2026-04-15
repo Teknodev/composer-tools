@@ -40,7 +40,11 @@
                 var(--composer-html-background),
                 var(--composer-font-color-primary) 5%);
 
-        padding: var(--composer-gap-xl) var(--composer-gap-xl) 0;
+        padding: 80px 50px 0;
+
+        &.no-media:not(.no-card) {
+            padding: 80px 50px;
+        }
 
         &.no-header {
             padding: 0;
@@ -133,7 +137,7 @@
         }
 
         .max-content {
-            padding: var(--composer-gap-xl) var(--composer-gap-lg) 0;
+            padding: 80px 40px 0;
             height: auto;
 
             &.no-header {
@@ -162,8 +166,12 @@
         }
 
         .max-content {
-            padding: var(--composer-gap-xl) var(--composer-gap-md) 0;
+            padding: 50px 20px 0;
             gap: var(--composer-gap-lg);
+
+            &.no-media:not(.no-card) {
+                padding: 50px 20px;
+            }
 
             .header-row {
                 flex-direction: column;
