@@ -14,6 +14,10 @@
             justify-content: center;
             align-items: flex-start;
 
+            >*:not(:last-child) {
+                margin-bottom: 0 !important;
+            }
+
             .text-block {
                 display: flex;
                 flex-direction: column;
@@ -21,12 +25,21 @@
             }
 
             .subtitle {
+                width: 100%;
                 margin-left: 0;
+                margin-right: 0;
+                text-align: left !important;
             }
 
             .title,
             .description {
                 text-align: left;
+            }
+
+            .description {
+                >*:not(:last-child) {
+                    margin-bottom: 0 !important;
+                }
             }
 
             .button-container {
@@ -56,34 +69,29 @@
     .card {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        gap: var(--composer-gap-md);
         padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
         border-radius: var(--composer-border-radius-md);
 
         &.card-left {
-            background-color: var(--composer-tertiary-color);
+            background-color: var(--composer-secondary-color);
         }
 
         &.card-right {
             background-color: var(--composer-primary-color);
         }
 
-        .card-header {
-            gap: var(--composer-gap-sm);
+        .card-content {
             align-items: flex-start;
         }
 
         .card-subtitle {
             color: var(--composer-font-color-secondary);
             text-align: left;
-            margin: 0;
         }
 
         .card-title {
             color: var(--composer-font-color-secondary);
             text-align: left;
-            margin: 0;
         }
 
         .card-price-row {
@@ -100,13 +108,10 @@
         .card-description {
             color: var(--composer-font-color-secondary);
             text-align: left;
-            margin: 0;
         }
 
         .card-button {
-            .card-button-text {
-                margin: 0;
-            }
+            .card-button-text {}
         }
     }
 }
@@ -148,6 +153,7 @@
             .subtitle {
                 align-self: center;
                 margin: 0;
+                text-align: center !important;
             }
 
             .title,
@@ -162,7 +168,7 @@
 
         .right-column {
             .card {
-                .card-header {
+                .card-content {
                     align-items: center;
                 }
 

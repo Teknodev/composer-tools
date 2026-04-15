@@ -11,7 +11,7 @@ type CardContent = {
   cardPrice: JSX.Element;
   cardPriceSuffix: JSX.Element;
   cardDescription: JSX.Element;
-  cardButton: INPUTS.CastedButton;
+  cardButton: INPUTS.CastedButton[];
 };
 
 type CardData = {
@@ -49,7 +49,7 @@ class PricingTable12 extends BasePricingTable {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "sadads", "", null, null, "Primary"),
       ],
     });
 
@@ -76,7 +76,12 @@ class PricingTable12 extends BasePricingTable {
             { type: "string", key: "cardPrice", displayer: "Card Price", value: "$2.99" },
             { type: "string", key: "cardPriceSuffix", displayer: "Card Price Suffix", value: "/month" },
             { type: "string", key: "cardDescription", displayer: "Card Description", value: "Change your body and your health in just 12 weeks" },
-            INPUTS.BUTTON("cardButton", "Card Button", "GET STARTED", "", null, null, "Black"),
+            {
+              type: "array",
+              key: "cardButton",
+              displayer: "Card Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "Black")],
+            },
           ],
         },
         {
@@ -89,7 +94,12 @@ class PricingTable12 extends BasePricingTable {
             { type: "string", key: "cardPrice", displayer: "Card Price", value: "$7.99" },
             { type: "string", key: "cardPriceSuffix", displayer: "Card Price Suffix", value: "/month" },
             { type: "string", key: "cardDescription", displayer: "Card Description", value: "Change your body and your health in just 6 weeks" },
-            INPUTS.BUTTON("cardButton", "Card Button", "GET STARTED", "", null, null, "Black"),
+            {
+              type: "array",
+              key: "cardButton",
+              displayer: "Card Buttons",
+              value: [INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "Black")],
+            },
           ],
         },
       ],
@@ -106,23 +116,24 @@ class PricingTable12 extends BasePricingTable {
     const cardPriceExist = this.castToString(card?.cardPrice);
     const cardPriceSuffixExist = this.castToString(card?.cardPriceSuffix);
     const cardDescriptionExist = this.castToString(card?.cardDescription);
-    const cardButtonTextExist = card?.cardButton && this.castToString(card.cardButton.text);
+    const cardButtons = Array.isArray(card?.cardButton) ? card.cardButton : [];
+    const hasValidCardButtons = cardButtons.some((btn) => this.castToString(btn.text));
 
-    const hasContent = cardSubtitleExist || cardTitleExist || cardPriceExist || cardPriceSuffixExist || cardDescriptionExist || cardButtonTextExist;
+    const hasContent = cardSubtitleExist || cardTitleExist || cardPriceExist || cardPriceSuffixExist || cardDescriptionExist || hasValidCardButtons;
     if (!hasContent) return null;
 
     return (
       <div className={`${this.decorateCSS("card")} ${this.decorateCSS(positionClass)}`}>
-        <Base.VerticalContent className={this.decorateCSS("card-header")}>
+        <Base.VerticalContent className={this.decorateCSS("card-content")}>
           {cardSubtitleExist && (
             <Base.P className={this.decorateCSS("card-subtitle")}>
               {card.cardSubtitle}
             </Base.P>
           )}
           {cardTitleExist && (
-            <Base.H3 className={this.decorateCSS("card-title")}>
+            <Base.H4 className={this.decorateCSS("card-title")}>
               {card.cardTitle}
-            </Base.H3>
+            </Base.H4>
           )}
           {(cardPriceExist || cardPriceSuffixExist) && (
             <div className={this.decorateCSS("card-price-row")}>
@@ -143,22 +154,23 @@ class PricingTable12 extends BasePricingTable {
               {card.cardDescription}
             </Base.P>
           )}
+          {hasValidCardButtons && (
+            <div className={this.decorateCSS("card-button-wrapper")}>
+              {cardButtons.filter((btn) => this.castToString(btn.text)).map((btn, index) => (
+                <ComposerLink key={index} path={this.castToString(btn.url)}>
+                  <Base.Button
+                    buttonType={this.castToString(btn.type)}
+                    className={this.decorateCSS("card-button")}
+                  >
+                    <Base.P className={this.decorateCSS("card-button-text")}>
+                      {btn.text}
+                    </Base.P>
+                  </Base.Button>
+                </ComposerLink>
+              ))}
+            </div>
+          )}
         </Base.VerticalContent>
-
-        {cardButtonTextExist && (
-          <div className={this.decorateCSS("card-button-wrapper")}>
-            <ComposerLink path={this.castToString(card.cardButton.url)}>
-              <Base.Button
-                buttonType={this.castToString(card.cardButton.type)}
-                className={this.decorateCSS("card-button")}
-              >
-                <Base.P className={this.decorateCSS("card-button-text")}>
-                  {card.cardButton.text}
-                </Base.P>
-              </Base.Button>
-            </ComposerLink>
-          </div>
-        )}
       </div>
     );
   }
