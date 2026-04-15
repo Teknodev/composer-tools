@@ -1,12 +1,12 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BasePricingTable } from "../../EditorComponent";
+import { BasePricingTable, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./pricing-table10.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FeatureItem = {
-  icon: string;
+  icon: TypeMediaInputValue;
   text: JSX.Element;
 };
 
@@ -18,6 +18,7 @@ type CardData = {
   line: boolean;
   tagline: string;
   price: string;
+  cardButtons: INPUTS.CastedButton[];
 };
 
 class PricingTable10 extends BasePricingTable {
@@ -128,9 +129,7 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", 
-              additionalParams: { availableTypes: ["icon", "image"] }
-            },
+            { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "FaCheckCircle" }, additionalParams: { availableTypes: ["icon", "image"] } },
             { type: "string", key: "text", displayer: "Text", value: "Private forum access" },
           ],
         },
@@ -150,7 +149,7 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", additionalParams: { availableTypes: ["icon", "image"] } },
+            { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "FaCheckCircle" }, additionalParams: { availableTypes: ["icon", "image"] } },
             { type: "string", key: "text", displayer: "Text", value: "Entry to annual conference" },
           ],
         },
@@ -159,7 +158,7 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", additionalParams: { availableTypes: ["icon", "image"] } },
+            { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "FaCheckCircle" }, additionalParams: { availableTypes: ["icon", "image"] } },
             { type: "string", key: "text", displayer: "Text", value: "Official member t-shirt" },
           ],
         },
@@ -176,7 +175,11 @@ class PricingTable10 extends BasePricingTable {
 
   }
 
-  private getCardButtons(card: CardData) {
+  static getName(): string {
+    return "Pricing 10";
+  }
+
+  private getCardButtons(card: CardData): INPUTS.CastedButton[] {
     const buttonsArray = (card as any)?.cardButtons;
     if (!Array.isArray(buttonsArray)) return [];
     return buttonsArray.map((btn: any) => {
@@ -185,12 +188,8 @@ class PricingTable10 extends BasePricingTable {
         text: this.getPropValue("text", { parent_object: parent }),
         type: this.getPropValue("type", { parent_object: parent }),
         url: this.getPropValue("url", { parent_object: parent }),
-      };
-    });
-  }
-
-  static getName(): string {
-    return "Pricing 10";
+      } as INPUTS.CastedButton;
+    }).filter((btn: INPUTS.CastedButton) => this.castToString(btn.text));
   }
 
   render() {
@@ -242,7 +241,9 @@ class PricingTable10 extends BasePricingTable {
                         buttonText && (
                           <ComposerLink key={index} path={this.castToString(button.url)}>
                             <Base.Button buttonType={this.castToString(button.type)} className={this.decorateCSS("button")}>
-                              {button.text}
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {button.text}
+                              </Base.P>
                             </Base.Button>
                           </ComposerLink>
                         )
@@ -294,9 +295,9 @@ class PricingTable10 extends BasePricingTable {
                         return (
                           <div key={index} className={this.decorateCSS("feature-item")}>
                             {feature.icon && (
-                              <Base.Icon
-                                name={feature.icon}
-                                propsIcon={{ className: this.decorateCSS("feature-icon") }}
+                              <Base.Media
+                                value={feature.icon}
+                                className={this.decorateCSS("feature-icon")}
                               />
                             )}
                             {textExist && (
@@ -320,14 +321,13 @@ class PricingTable10 extends BasePricingTable {
               )}
               {cardButtons?.length > 0 && (
                 <div className={this.decorateCSS("card-buttons")}>
-                  {cardButtons.map((item: INPUTS.CastedButton, index: number) => {
-                    return (this.castToString(item.text)) && (
-                      <ComposerLink key={index} path={item.url}>
+                  {cardButtons.filter((item: INPUTS.CastedButton) => this.castToString(item.text)).map((item: INPUTS.CastedButton, index: number) => {
+                    const btnType = this.castToString(item.type);
+                    return (
+                      <ComposerLink key={index} path={this.castToString(item.url)}>
                         <Base.Button
-                          buttonType={item.type}
-                          className={this.decorateCSS(
-                            item.type === "Bare" ? "card-button-secondary" : "card-button"
-                          )}
+                          buttonType={btnType}
+                          className={`${this.decorateCSS("card-button")}${btnType === "Bare" ? " " + this.decorateCSS("card-button-bare") : ""}`}
                         >
                           <Base.P className={this.decorateCSS("button-text")}>
                             {item.text}

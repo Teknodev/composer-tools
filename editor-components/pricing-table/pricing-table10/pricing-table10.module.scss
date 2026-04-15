@@ -79,6 +79,9 @@
                         .features-label {
                             color: var(--composer-font-color-primary);
                             width: fit-content;
+                            text-align: left;
+                            margin-left: 0 !important;
+                            margin-right: 0 !important;
                         }
 
                         .separator-line {
@@ -139,10 +142,15 @@
                     flex-direction: column;
                     gap: var(--composer-gap-sm);
 
-                    .card-button-secondary {
+                    .card-button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+
+                    .card-button-bare {
                         .button-text {
                             color: var(--composer-primary-color);
-                            text-align: center;
                         }
                     }
                 }
