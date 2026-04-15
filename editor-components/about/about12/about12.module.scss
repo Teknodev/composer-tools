@@ -98,9 +98,10 @@ as *;
 
       .image-container {
         position: absolute;
-        left: 0;
+        left: 50%;
+        transform: translateX(-100%);
+        width: 50vw;
         top: 0;
-        width: 50%;
         height: 100%;
 
         &.image-container-alone {
@@ -167,6 +168,8 @@ as *;
           order: 2;
           flex: 0 0 100%;
           width: 100%;
+          transform: none;
+          left: auto;
         }
 
         .text-content {
