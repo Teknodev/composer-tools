@@ -54,6 +54,17 @@ type ShareCopyLink = {
   icon: TypeMediaInputValue;
 };
 
+type Icons = {
+  closeIcon: TypeMediaInputValue;
+  sliderDotIcon: TypeMediaInputValue;
+  imageDownArrow: TypeMediaInputValue;
+  imageUpArrow: TypeMediaInputValue;
+  leftArrow: TypeMediaInputValue;
+  rightArrow: TypeMediaInputValue;
+  downArrowIcon: TypeMediaInputValue;
+  upArrowIcon: TypeMediaInputValue;
+};
+
 class ECommerce7 extends BaseECommerce {
   constructor(props?: any) {
     super(props, styles);
@@ -811,7 +822,7 @@ class ECommerce7 extends BaseECommerce {
     const isItemDetailTitle = this.castToString(
       this.getPropValue("itemDetailTitle")
     );
-    const icons = this.castToObject<any>("icons");
+    const icons = this.castToObject<Icons>("icons");
     const isRightContainer =
       isTitle ||
       isShareIcon ||
@@ -942,24 +953,18 @@ class ECommerce7 extends BaseECommerce {
                   icons?.imageUpArrow) && (
                   <div className={this.decorateCSS("arrow-buttons")}>
                     {icons?.imageDownArrow && (
-                      <div className={this.decorateCSS("image-down-arrow")}>
+                      <div className={this.decorateCSS("image-down-arrow")} onClick={() => { this.handleClickLeft(); }}>
                         <Base.Media
                           value={icons.imageDownArrow}
                           className={this.decorateCSS("icon")}
-                          onClick={() => {
-                            this.handleClickLeft();
-                          }}
                         />
                       </div>
                     )}
                     {icons?.imageUpArrow && (
-                      <div className={this.decorateCSS("image-up-arrow")}>
+                      <div className={this.decorateCSS("image-up-arrow")} onClick={() => { this.handleClickRight(); }}>
                         <Base.Media
                           value={icons.imageUpArrow}
                           className={this.decorateCSS("icon")}
-                          onClick={() => {
-                            this.handleClickRight();
-                          }}
                         />
                       </div>
                     )}
@@ -967,13 +972,10 @@ class ECommerce7 extends BaseECommerce {
                 )}
               </div>
               <div className={this.decorateCSS("slider-parent")}>
-                <div className={this.decorateCSS("image-icon-left")}>
+                <div className={this.decorateCSS("image-icon-left")} onClick={() => { sliderRef.current.slickPrev(); }}>
                   <Base.Media
                     value={icons?.leftArrow}
                     className={this.decorateCSS("icon")}
-                    onClick={() => {
-                      sliderRef.current.slickPrev();
-                    }}
                   />
                 </div>
                 <ComposerSlider
@@ -987,23 +989,21 @@ class ECommerce7 extends BaseECommerce {
                         <div
                           className={this.decorateCSS("big-image-container")}
                         >
-                          <Base.Media
-                            value={item.item}
-                            onClick={() => this.toggleZoomImage()}
-                            className={this.decorateCSS("big-image")}
-                          />
+                          <div onClick={() => this.toggleZoomImage()} style={{ width: "100%", height: "100%" }}>
+                            <Base.Media
+                              value={item.item}
+                              className={this.decorateCSS("big-image")}
+                            />
+                          </div>
                         </div>
                       </div>
                     );
                   })}
                 </ComposerSlider>
-                <div className={this.decorateCSS("image-icon-right")}>
+                <div className={this.decorateCSS("image-icon-right")} onClick={() => { sliderRef.current.slickNext(); }}>
                   <Base.Media
                     value={icons?.rightArrow}
                     className={this.decorateCSS("icon")}
-                    onClick={() => {
-                      sliderRef.current.slickNext();
-                    }}
                   />
                 </div>
               </div>
