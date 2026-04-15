@@ -38,7 +38,7 @@
             .vertical-content {
                 width: 40%;
                 justify-content: center;
-                align-items: flex-start;
+                align-items: flex-start !important;
 
                 &.full-width {
                     width: 100%;
@@ -46,8 +46,8 @@
                     text-align: var(--composer-content-alignment);
 
                     .subtitle {
-                        display: inline-block;
-                        width: auto;
+                        display: block;
+                        width: fit-content;
                         margin-left: 0 !important;
                         text-align: left !important;
                     }
@@ -64,7 +64,9 @@
                 }
 
                 .subtitle {
-                    margin-left: 0;
+                    margin-left: 0 !important;
+                    margin-right: 0 !important;
+                    text-align: left !important;
                 }
 
                 .title,
@@ -155,14 +157,15 @@
                 .vertical-content {
                     width: 100%;
                     text-align: var(--composer-content-alignment);
-                    display: block;
+                    display: block !important;
+                    align-items: unset !important;
 
                     .subtitle {
-                        margin-left: 0 !important;
+                        margin-left: unset !important;
+                        text-align: unset !important;
                         width: auto;
                         display: inline-block;
                         max-width: 100%;
-                        text-align: left !important;
                     }
 
                     .title,
