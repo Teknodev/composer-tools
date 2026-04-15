@@ -254,7 +254,7 @@
                                     svg {
                                         position: relative;
                                         z-index: 1;
-                                        font-size: 5rem !important;
+                                        font-size: 2.2rem !important;
                                         transition: transform 0.5s ease;
                                     }
 
@@ -277,7 +277,7 @@
                                 align-items: center;
                                 justify-content: center;
                                 overflow: hidden;
-                                padding: var(--composer-gap-md);
+                                padding: var(--composer-gap-sm);
                                 cursor: pointer;
                                 background-color: color-mix(in srgb,
                                         var(--composer-html-background),
