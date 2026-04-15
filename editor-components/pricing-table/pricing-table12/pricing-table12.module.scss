@@ -1,0 +1,185 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    position: relative;
+
+    .max-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: calc(var(--composer-gap-lg) * 2);
+
+        .left-column {
+            flex: 1;
+            justify-content: center;
+            align-items: flex-start;
+
+            .text-block {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .subtitle {
+                margin-left: 0;
+            }
+
+            .title,
+            .description {
+                text-align: left;
+            }
+
+            .button-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+                align-items: center;
+
+                .button {
+                    .button-text {
+                        content: "";
+                    }
+                }
+            }
+        }
+
+        .right-column {
+            flex: 2;
+
+            .cards-grid {
+                gap: var(--composer-gap-md);
+                align-items: stretch;
+            }
+        }
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: var(--composer-gap-md);
+        padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+        border-radius: var(--composer-border-radius-md);
+
+        &.card-left {
+            background-color: var(--composer-tertiary-color);
+        }
+
+        &.card-right {
+            background-color: var(--composer-primary-color);
+        }
+
+        .card-header {
+            gap: var(--composer-gap-sm);
+            align-items: flex-start;
+        }
+
+        .card-subtitle {
+            color: var(--composer-font-color-secondary);
+            text-align: left;
+            margin: 0;
+        }
+
+        .card-title {
+            color: var(--composer-font-color-secondary);
+            text-align: left;
+            margin: 0;
+        }
+
+        .card-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: var(--composer-gap-xs);
+
+            .card-price,
+            .card-price-suffix {
+                color: var(--composer-font-color-secondary);
+            }
+        }
+
+        .card-description {
+            color: var(--composer-font-color-secondary);
+            text-align: left;
+            margin: 0;
+        }
+
+        .card-button {
+            .card-button-text {
+                margin: 0;
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            gap: var(--composer-gap-lg);
+            align-items: center;
+
+
+        }
+
+        .card {
+            padding: var(--composer-gap-xl) var(--composer-gap-md);
+            min-height: unset;
+
+            .card-price-row {
+                .card-price {
+                    font-size: 2.5rem;
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            flex-direction: column;
+            gap: var(--composer-gap-xl);
+        }
+    }
+
+    .container.center-alignment {
+        .left-column.center-alignment {
+            align-items: center;
+
+            .subtitle {
+                align-self: center;
+                margin: 0;
+            }
+
+            .title,
+            .description {
+                text-align: center;
+            }
+
+            .button-container {
+                justify-content: center;
+            }
+        }
+
+        .right-column {
+            .card {
+                .card-header {
+                    align-items: center;
+                }
+
+                .card-subtitle,
+                .card-title,
+                .card-description {
+                    text-align: center;
+                }
+
+                .card-price-row {
+                    justify-content: center;
+                }
+
+                .card-button-wrapper {
+                    align-self: center;
+                }
+            }
+        }
+    }
+}
