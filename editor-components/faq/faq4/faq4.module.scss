@@ -16,6 +16,18 @@
         display: flex;
         gap: var(--composer-gap-xl);
         flex-wrap: wrap;
+        justify-content: center;
+        &.no-line {
+          border-bottom: none;
+          .sections {
+            .section-title {
+              border-bottom: none;
+              &.active {
+                border-bottom: none;
+              }
+            }
+          }
+        }
         .sections{
           display: flex;
           .section-title{
@@ -32,6 +44,17 @@
           }
         }
       }
+      .buttons-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+          .button {
+            .button-text {
+              content: "";
+            }
+          }
+      }
       .down-page {
         width: 100%;
         display: flex;
@@ -46,6 +69,9 @@
             flex-direction: column;
             padding-bottom: var(--composer-gap-lg);
             border-bottom: 1px solid  var(--composer-tertiary-color);
+            &.no-line {
+              border-bottom: none;
+            }
             .child-container {
               display: flex;
               gap: var(--composer-gap-md);
@@ -53,6 +79,7 @@
                 flex: 1;
                 .card-title {
                   color: var(--composer-font-color-primary);
+                  text-align: left;
                 }
               }
     
@@ -68,11 +95,13 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
+                  padding: var(--composer-gap-xs);
                   .icon{
                     color: var(--composer-tertiary-color);
-                    width: 14px;
-                    height: 14px;
-                    font-size: 1rem;
+                    width: 18px;
+                    height: 18px;
+                    font-size: 1.4rem;
+                    object-fit: contain;
                     transform: rotate(0deg);
                     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     &.active{
@@ -94,6 +123,7 @@
                 opacity: 0;
                 transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 color: var( --composer-tertiary-color);
+                text-align: left;
               }
               &.active {
                 overflow: hidden;
@@ -117,6 +147,31 @@
       .page{
         .middle-page{
           border-bottom: none;
+        }
+        .down-page{
+          .card-wrapper{
+            gap: var(--composer-gap-sm);
+            .card{
+              padding-bottom: var(--composer-gap-md);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@container (max-width: #{$composer-phone-width}){
+  .container{
+    .max-content{
+      .page{
+        .down-page{
+          .card-wrapper{
+            gap: var(--composer-gap-xs);
+            .card{
+              padding-bottom: var(--composer-gap-sm);
+            }
+          }
         }
       }
     }

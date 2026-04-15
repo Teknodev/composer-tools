@@ -13,6 +13,17 @@
           content: "";
         }
       }
+      .buttons-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+        .button {
+          .button-text {
+            content: "";
+          }
+        }
+      }
       .down-page {
         display: flex;
         gap: var(--composer-gap-lg);
@@ -53,6 +64,7 @@
 
               .card-title {
                 color: var(--composer-font-color-primary);
+                text-align: left;
 
                 &.active {
                   color: var(--composer-font-color-secondary);
@@ -70,6 +82,7 @@
                 width: 16px;
                 height: 16px;
                 font-size: 1rem;
+                object-fit: contain;
                 transform: rotate(0deg);
                 transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
               }
@@ -84,6 +97,17 @@
 
             &.active {
               background-color: var(--composer-primary-color);
+            }
+          }
+
+          &.no-line {
+            .child-container {
+              border: none;
+            }
+            .inner-card {
+              .inner-text {
+                border: none;
+              }
             }
           }
 
@@ -106,6 +130,7 @@
               color: var(--composer-tertiary-color);
               padding: var(--composer-gap-lg) var(--composer-gap-md);
               transition: padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+              text-align: left;
             }
 
             &.active {
