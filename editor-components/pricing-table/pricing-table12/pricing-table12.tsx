@@ -46,10 +46,10 @@ class PricingTable12 extends BasePricingTable {
 
     this.addProp({
       type: "array",
-      key: "buttons",
-      displayer: "Buttons",
+      key: "cardButtons",
+      displayer: "Card Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "sadads", "", null, null, "Primary"),
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
     });
 
@@ -80,7 +80,9 @@ class PricingTable12 extends BasePricingTable {
               type: "array",
               key: "cardButton",
               displayer: "Card Buttons",
-              value: [INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "Black")],
+              value: [INPUTS.BUTTON("button", "Button", "GET STARTED", "", null, null, "Black"),
+
+              ]
             },
           ],
         },
@@ -180,7 +182,7 @@ class PricingTable12 extends BasePricingTable {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("cardButtons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
     const card = this.castToObject<CardData>("card");

@@ -110,9 +110,20 @@
             text-align: left;
         }
 
+            .card-button-wrapper {
+            display: flex;
+            flex-direction: row;
+            flex-wrap:wrap ;
+            gap: var(--composer-gap-sm);
+            align-items: flex-start;
+            
         .card-button {
-            .card-button-text {}
+            .card-button-text {
+                content: "  ";
+            }
         }
+        }
+
     }
 }
 
