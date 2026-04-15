@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce4.module.scss";
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { CurrencyCode, getCurrencyInfo } from "../../../utils/currency";
@@ -14,15 +14,15 @@ interface SizeOption {
 
 interface ColorOption {
     sectionColor: string;
-    cardImage: { type: "image"; url: string };
-    hoverImage: { type: "image"; url: string };
+    cardImage: TypeMediaInputValue;
+    hoverImage: TypeMediaInputValue;
     sizeOptions: SizeOption[];
     isSoldOut: boolean;
 }
 
 interface RightTextItems {
     cardRightText: React.JSX.Element;
-    cardRightTextIcon: { type: "icon"; name: string };
+    cardRightTextIcon: TypeMediaInputValue;
     cardRightTextNavigate: string;
 }
 
@@ -111,7 +111,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -142,7 +142,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -173,7 +173,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -204,7 +204,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -655,7 +655,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -686,7 +686,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -717,7 +717,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -748,7 +748,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -924,7 +924,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -955,7 +955,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -986,7 +986,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1017,7 +1017,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1318,7 +1318,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1349,7 +1349,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1380,7 +1380,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1411,7 +1411,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1712,7 +1712,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1743,7 +1743,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1774,7 +1774,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1805,7 +1805,7 @@ class ECommerce4 extends BaseECommerce {
                                             key: "cardRightTextIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2114,7 +2114,7 @@ class ECommerce4 extends BaseECommerce {
                                         <div className={this.decorateCSS("image-container")}>
                                             <div
                                                 className={`${this.decorateCSS("image-1-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("image-sold-out") : ""}`}>
-                                                {selectedColorOption?.cardImage?.url && (
+                                                {(selectedColorOption?.cardImage as { url?: string })?.url && (
                                                     <Base.Media
                                                         value={selectedColorOption.cardImage}
                                                         className={this.decorateCSS("image")}
@@ -2123,7 +2123,7 @@ class ECommerce4 extends BaseECommerce {
                                             </div>
                                             <div
                                                 className={`${this.decorateCSS("image-2-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("image-sold-out") : ""}`}>
-                                                {selectedColorOption?.hoverImage?.url && (
+                                                {(selectedColorOption?.hoverImage as { url?: string })?.url && (
                                                     <Base.Media
                                                         value={selectedColorOption?.isSoldOut ? selectedColorOption?.cardImage : selectedColorOption?.hoverImage}
                                                         className={this.decorateCSS("image")}

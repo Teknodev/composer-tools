@@ -1,4 +1,4 @@
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./e-commerce1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -8,22 +8,22 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import { getCurrencyInfo } from "../../../utils/currency";
 
 type Image = {
-  image: { type: string; url: string },
+  media: TypeMediaInputValue,
 }
 
-type  WishlistItem={
-  wishlistIcon: { type: string; name: string },
+type WishlistItem = {
+  wishlistIcon: TypeMediaInputValue,
   wishlistText: React.JSX.Element,
   wishlistUrl: string,
 }
-type  ReviewItem={
+
+type ReviewItem = {
   reviewText: React.JSX.Element,
   reviewCount: number,
-  starIcon: { type: string; name: string },
-  starIconBorder: { type: string; name: string },
+  starIcon: TypeMediaInputValue,
+  starIconBorder: TypeMediaInputValue,
   point: number
 }
-
 
 type CategoryOrTag = {
   title: React.JSX.Element;
@@ -31,18 +31,18 @@ type CategoryOrTag = {
 }
 
 type Icons = {
-  leftArrowImage: { type: "icon"; name: string };
-  rightArrowImage: { type: "icon"; name: string };
-  closeIcon: { type: "icon"; name: string };
-  closeIconPopup: { type: "icon"; name: string };
-  leftArrowPopup: { type: "icon"; name: string };
-  rightArrowPopup: { type: "icon"; name: string };
+  leftArrowImage: TypeMediaInputValue;
+  rightArrowImage: TypeMediaInputValue;
+  closeIcon: TypeMediaInputValue;
+  closeIconPopup: TypeMediaInputValue;
+  leftArrowPopup: TypeMediaInputValue;
+  rightArrowPopup: TypeMediaInputValue;
 }
 
 type QuantitySection = {
   quantityText: React.JSX.Element;
-  leftArrow: { type: "icon"; name: string };
-  rightArrow: { type: "icon"; name: string };
+  leftArrow: TypeMediaInputValue;
+  rightArrow: TypeMediaInputValue;
   button: INPUTS.CastedButton;
   wishlist: WishlistItem;
 }
@@ -64,7 +64,7 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Product Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -83,7 +83,7 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Product Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -102,7 +102,7 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Product Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -121,7 +121,7 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
                 displayer: "Product Media",
               additionalParams: {
                 availableTypes: ["image","video"],
@@ -153,7 +153,7 @@ class ECommerce1 extends BaseECommerce {
           key: "leftArrowImage",
           displayer: "Left Arrow Image",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -165,7 +165,7 @@ class ECommerce1 extends BaseECommerce {
           key: "rightArrowImage",
           displayer: "Right Arrow Image",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -177,7 +177,7 @@ class ECommerce1 extends BaseECommerce {
           key: "closeIcon",
           displayer: "Close Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -189,7 +189,7 @@ class ECommerce1 extends BaseECommerce {
           key: "closeIconPopup",
           displayer: "Close Icon Popup",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -201,7 +201,7 @@ class ECommerce1 extends BaseECommerce {
           key: "leftArrowPopup",
           displayer: "Left Arrow Popup",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -213,7 +213,7 @@ class ECommerce1 extends BaseECommerce {
           key: "rightArrowPopup",
           displayer: "Right Arrow Popup",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -266,7 +266,7 @@ class ECommerce1 extends BaseECommerce {
         key: "starIcon",
         displayer: "Rated Icon",
         additionalParams: {
-          availableTypes: ["icon"],
+          availableTypes: ["icon", "image"],
         },
         value: {
           type: "icon",
@@ -278,7 +278,7 @@ class ECommerce1 extends BaseECommerce {
         key: "starIconBorder",
         displayer: "Unrated Icon",
         additionalParams: {
-          availableTypes: ["icon"],
+          availableTypes: ["icon", "image"],
         },
         value: {
           type: "icon",
@@ -309,7 +309,7 @@ class ECommerce1 extends BaseECommerce {
           key: "leftArrow",
           displayer: "Left Arrow",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -321,7 +321,7 @@ class ECommerce1 extends BaseECommerce {
           key: "rightArrow",
           displayer: "Right Arrow",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -339,7 +339,7 @@ class ECommerce1 extends BaseECommerce {
               key: "wishlistIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -626,9 +626,9 @@ class ECommerce1 extends BaseECommerce {
                 {images.map((item: Image, index: number) => {
                     return (
                       <div className={this.decorateCSS("img-container")}>
-                        {item.image?.url && (
+                        {item.media?.url && (
                           <Base.Media 
-                          key={index} value={item.image} 
+                          key={index} value={item.media} 
                           className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
                           onClick={() => handleImageClick(index)}
                         />
@@ -646,7 +646,7 @@ class ECommerce1 extends BaseECommerce {
                     {images.map((item: Image, index: number) => {
                       return (
                         <div className={this.decorateCSS("card")}>
-                          <Base.Media value={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                          <Base.Media value={item.media} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
                         </div>
                       )
                     })}
@@ -774,12 +774,12 @@ class ECommerce1 extends BaseECommerce {
                       <>
                         <Base.Media
                         key={index}
-                        value={img.image}
+                        value={img.media}
                         className={`${this.decorateCSS("image")} ${((index === activeImage) &&this.decorateCSS("active"))}`}
                         />
                         <Base.Media
                         key={index}
-                        value={img.image}
+                        value={img.media}
                         className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex") ) &&  this.decorateCSS("exits")}`}
                       />
                       </>

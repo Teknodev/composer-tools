@@ -64,7 +64,7 @@ class ECommerce7 extends BaseECommerce {
       value: [
         {
           type: "object",
-          key: "image",
+          key: "media",
           displayer: "Media",
           value: [
             {
@@ -83,7 +83,7 @@ class ECommerce7 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "image",
+          key: "media",
           displayer: "Media",
           value: [
             {
@@ -102,7 +102,7 @@ class ECommerce7 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "image",
+          key: "media",
           displayer: "Media",
           value: [
             {
@@ -121,7 +121,7 @@ class ECommerce7 extends BaseECommerce {
         },
         {
           type: "object",
-          key: "image",
+          key: "media",
           displayer: "Media",
           value: [
             {
@@ -149,56 +149,56 @@ class ECommerce7 extends BaseECommerce {
           type: "media",
           key: "closeIcon",
           displayer: "Close Icon",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "IoMdClose" },
         },
         {
           type: "media",
           key: "sliderDotIcon",
           displayer: "Slider Dot Icon",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "GoDotFill" },
         },
         {
           type: "media",
           key: "imageDownArrow",
           displayer: "Image Down Arrow",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "MdKeyboardArrowDown" },
         },
         {
           type: "media",
           key: "imageUpArrow",
           displayer: "Image Up Arrow",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "MdKeyboardArrowUp" },
         },
         {
           type: "media",
           key: "leftArrow",
           displayer: "Left Arrow",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "MdKeyboardArrowLeft" },
         },
         {
           type: "media",
           key: "rightArrow",
           displayer: "Right Arrow",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "MdKeyboardArrowRight" },
         },
         {
           type: "media",
           key: "downArrowIcon",
           displayer: "Accordion Down Icon",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "MdKeyboardArrowDown" },
         },
         {
           type: "media",
           key: "upArrowIcon",
           displayer: "Accordion Up Icon",
-          additionalParams: { availableTypes: ["icon"] },
+          additionalParams: { availableTypes: ["icon", "image"] },
           value: { type: "icon", name: "MdKeyboardArrowUp" },
         },
       ],
@@ -232,7 +232,7 @@ class ECommerce7 extends BaseECommerce {
           key: "shareIcon",
           displayer: "Menu Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -267,7 +267,7 @@ class ECommerce7 extends BaseECommerce {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -291,7 +291,7 @@ class ECommerce7 extends BaseECommerce {
                   key: "icon",
                   displayer: "Option Icon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["icon", "image"],
                   },
                   value: {
                     type: "icon",
@@ -322,7 +322,7 @@ class ECommerce7 extends BaseECommerce {
                   key: "icon",
                   displayer: "Option Icon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["icon", "image"],
                   },
               value: {
                 type: "icon",
@@ -353,7 +353,7 @@ class ECommerce7 extends BaseECommerce {
                   key: "icon",
                   displayer: "Option Icon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["icon", "image"],
                   },
               value: {
                 type: "icon",
@@ -482,7 +482,7 @@ class ECommerce7 extends BaseECommerce {
           key: "minusIcon",
           displayer: "Decrease Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -494,7 +494,7 @@ class ECommerce7 extends BaseECommerce {
           key: "addIcon",
           displayer: "Increase Icon",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",

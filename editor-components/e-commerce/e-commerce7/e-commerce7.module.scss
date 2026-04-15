@@ -78,6 +78,9 @@
                         cursor: pointer;
                         .icon{
                             font-size: 2rem;
+                            width: 1em;
+                            height: 1em;
+                            object-fit: contain;
                             color: var(--composer-font-color-primary);
                             transform: translateY(2px);
                         }
@@ -128,6 +131,9 @@
                     cursor: pointer;
                     .icon{
                         font-size: 3rem;
+                        width: 1em;
+                        height: 1em;
+                        object-fit: contain;
                         color: var(--composer-html-background);
                         opacity: 0.5;
                         transition: all 0.5s ease;
@@ -211,6 +217,9 @@
                             opacity: 0.5;
                             .share-icon{
                                 font-size: 2rem;
+                                width: 1em;
+                                height: 1em;
+                                object-fit: contain;
                             }
                             .title{
                                 position: relative;
@@ -248,7 +257,9 @@
         
                                 .social-icon{
                                     font-size: 1rem;
-                                    min-width: 1rem;
+                                    width: 1em;
+                                    height: 1em;
+                                    object-fit: contain;
                                     color: var(--composer-font-color-primary);
                                 }
                                 .social-text{
@@ -341,14 +352,17 @@
                     justify-content: center;
                     flex: 1;
                     .minus-icon, .add-icon{
-                        height: 100%; 
-                        position: relative; 
+                        height: 100%;
+                        position: relative;
                         width: 50%;
                         .icon {
                             position: absolute;
                             top: 50%;
                             transform: translateY(-50%);
                             font-size: 1rem;
+                            width: 1em;
+                            height: 1em;
+                            object-fit: contain;
                         }
                     }
                     .minus-icon{
@@ -443,6 +457,9 @@
                                 }
                                 .icon{
                                     font-size: 1.5rem;
+                                    width: 1em;
+                                    height: 1em;
+                                    object-fit: contain;
                                 }
                             }
     
@@ -490,16 +507,22 @@
               }
             .icon{
                 font-size: 3rem;
-                transition: transform 0.5s ease; 
+                width: 1em;
+                height: 1em;
+                object-fit: contain;
+                transition: transform 0.5s ease;
                 color: white;
             }
         }
         .left-icon, .right-icon{
             position: absolute;
             top: 50%;
-            transform: translateY(-50%);   
+            transform: translateY(-50%);
             .icon{
                 font-size: 3rem;
+                width: 1em;
+                height: 1em;
+                object-fit: contain;
                 color: white;
             }
         }
@@ -527,6 +550,9 @@
                 justify-content: center;
                 .icon{
                     font-size: 1.5rem;
+                    width: 1em;
+                    height: 1em;
+                    object-fit: contain;
                     margin: var(--composer-gap-sm);
                     transition: all 0.5s ease;
                     color: white;

@@ -90,6 +90,9 @@
                 padding: var(--composer-gap-xs) var(--composer-gap-sm);
                 .icon {
                   font-size: 1.25rem;
+                  width: 1em;
+                  height: 1em;
+                  object-fit: contain;
                 }
               }
             }
@@ -233,6 +236,9 @@
           .arrow {
             color: var(--composer-tertiary-color);
             font-size: 1.5rem;
+            width: 1em;
+            height: 1em;
+            object-fit: contain;
           }
         }
 

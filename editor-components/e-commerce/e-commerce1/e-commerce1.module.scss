@@ -78,8 +78,11 @@
                 }
 
                 .left-arrow, .right-arrow {
-                    position: absolute; 
-                    font-size: 2rem; 
+                    position: absolute;
+                    font-size: 2rem;
+                    width: 1em;
+                    height: 1em;
+                    object-fit: contain;
                     color: black;
                     z-index: 2;
                     top: 50%;
@@ -157,6 +160,9 @@
                             .star{
                                 color: #ebbc00;
                                 font-size: 1rem !important;
+                                width: 1em;
+                                height: 1em;
+                                object-fit: contain;
                             }
                         }
                         .review {
@@ -201,8 +207,9 @@
                         .left-icon, .right-icon {
                             flex: 1;
                             font-size: 1.5rem !important;
-                            min-width: 1.5rem;
-                            height: 22px;
+                            width: 1em;
+                            height: 1em;
+                            object-fit: contain;
                             color: var(--composer-tertiary-color);
                             cursor: pointer;
                             transition: opacity 0.3s ease;
@@ -242,8 +249,10 @@
                         }
                         .heart-icon {
                             color: var(--composer-font-color-primary);
-                            min-width: 14px;
-                            min-height: 14px;
+                            font-size: 1rem;
+                            width: 1em;
+                            height: 1em;
+                            object-fit: contain;
                         }
                         .cart-title {
                             color: var(--composer-font-color-primary);
@@ -334,6 +343,9 @@
                         .left-arrow, .right-arrow {
                             color: var(--composer-font-color-primary);
                             font-size: 2rem !important;
+                            width: 1em;
+                            height: 1em;
+                            object-fit: contain;
                             cursor: pointer;
                         }
                     }
@@ -344,6 +356,9 @@
                     .close {
                         color: var(--composer-font-color-primary);
                         font-size: 2rem !important;
+                        width: 1em;
+                        height: 1em;
+                        object-fit: contain;
                         cursor: pointer;
                     }
                 }

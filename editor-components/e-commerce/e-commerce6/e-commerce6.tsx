@@ -12,7 +12,7 @@ type ITabs = {
   tabText: React.JSX.Element;
   icon: TypeMediaInputValue;
   image_container: {
-    image: TypeMediaInputValue;
+    media: TypeMediaInputValue;
     box1_text: React.JSX.Element;
     box1_lowerText: React.JSX.Element;
     box2_text: React.JSX.Element;
@@ -73,11 +73,11 @@ class ECommerce6 extends BaseECommerce {
             key: "icon",
             displayer: "Icon",
             additionalParams: {
-                availableTypes: ["icon"],
+              availableTypes: ["icon", "image"],
             },
             value: {
-                type: "icon",
-                name: "GoArrowRight",
+              type: "icon",
+              name: "GoArrowRight",
             },
           },
           {
@@ -87,7 +87,7 @@ class ECommerce6 extends BaseECommerce {
             value: [
               {
                 type: "media",
-                key: "image",
+                key: "media",
                 displayer: "Media",
                 additionalParams: {
                   availableTypes: ["image", "video"],
@@ -120,18 +120,11 @@ class ECommerce6 extends BaseECommerce {
                 key: "box2_icon",
                 displayer: "Button Icon",
                 additionalParams: {
-                    availableTypes: ["icon"],
+                  availableTypes: ["icon", "image"],
                 },
                 value: {
-                    type: "media",
-                    additionalParams: {
-                        availableTypes: ["icon"],
-                    },
-                    value: {
-                        type: "icon",
-                        name: "GoArrowRight",
-                    },
-                    name: "GoArrowRight",
+                  type: "icon",
+                  name: "GoArrowRight",
                 },
               },
               {
@@ -155,11 +148,11 @@ class ECommerce6 extends BaseECommerce {
                   {
                     type: "media",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                      availableTypes: ["icon", "image"],
                     },
                     value: {
-                        type: "icon",
-                        name: "CiFries",
+                      type: "icon",
+                      name: "CiFries",
                     },
                     key: "icon",
                     displayer: "Icon",
@@ -180,11 +173,11 @@ class ECommerce6 extends BaseECommerce {
                   {
                     type: "media",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                      availableTypes: ["icon", "image"],
                     },
                     value: {
-                        type: "icon",
-                        name: "MdLocalLaundryService",
+                      type: "icon",
+                      name: "MdLocalLaundryService",
                     },
                     key: "icon",
                     displayer: "Icon",
@@ -205,11 +198,11 @@ class ECommerce6 extends BaseECommerce {
                   {
                     type: "media",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                      availableTypes: ["icon", "image"],
                     },
                     value: {
-                        type: "icon",
-                        name: "FaCar",
+                      type: "icon",
+                      name: "FaCar",
                     },
                     key: "icon",
                     displayer: "Icon",
@@ -334,7 +327,7 @@ class ECommerce6 extends BaseECommerce {
 
   render() {
     const overlay = this.getPropValue("overlay");
-    
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -382,7 +375,7 @@ class ECommerce6 extends BaseECommerce {
                 this.castToString(tab.image_container.box2_text) ||
                 tab.image_container.box2_icon;
               const isBoxContainerVisible = isBox1Visible || isBox2Visible;
-              const isImageContainerVisible = tab.image_container.image;
+              const isImageContainerVisible = tab.image_container.media;
 
               const isIconContainerVisible = tab.icons_container.length > 0;
 
@@ -409,7 +402,7 @@ class ECommerce6 extends BaseECommerce {
                       <div className={this.decorateCSS("image-container")}>
                         <Base.Media
                           className={this.decorateCSS("image")}
-                          value={tab.image_container.image}
+                          value={tab.image_container.media}
                           data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
                         {overlay && (
@@ -429,7 +422,7 @@ class ECommerce6 extends BaseECommerce {
                             )}
                             {isBox2Visible && (
                               <ComposerLink path={tab.image_container.link}>
-                                <div 
+                                <div
                                   className={this.decorateCSS("box2")}
                                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                 >

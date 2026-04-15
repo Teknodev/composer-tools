@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Base } from "../../../composer-base-components/base/base";
 import styles from "./e-commerce2.module.scss";
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { getCurrencyInfo } from "../../../utils/currency";
@@ -12,22 +12,22 @@ interface ImageGallery {
 }
 
 interface PopupImage {
-    popupImg: { type: "image"; url: string };
+    popupImg: TypeMediaInputValue;
 }
 
 interface ArrowItem {
-    nextArrow: { type: "icon"; name: string };
-    prevArrow: { type: "icon"; name: string };
+    nextArrow: TypeMediaInputValue;
+    prevArrow: TypeMediaInputValue;
 }
 
 interface Image {
     title: React.JSX.Element;
-    cardImage: { type: "image"; url: string };
+    cardImage: TypeMediaInputValue;
     price: {value: string, currency: string};
     leftText: React.JSX.Element;
     rightText: React.JSX.Element;
     bottomText: React.JSX.Element;
-    bottomIcon: { type: "icon"; name: string };
+    bottomIcon: TypeMediaInputValue;
     subTitle: React.JSX.Element;
     navigateTo: string;
     popupImages: PopupImage[];
@@ -71,7 +71,7 @@ class ECommerce2 extends BaseECommerce {
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -121,7 +121,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -246,7 +246,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -296,7 +296,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -421,7 +421,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -471,7 +471,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -596,7 +596,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -646,7 +646,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -771,7 +771,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -821,7 +821,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -946,7 +946,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -996,7 +996,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1121,7 +1121,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -1171,7 +1171,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1296,7 +1296,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -1346,7 +1346,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1491,7 +1491,7 @@ class ECommerce2 extends BaseECommerce {
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -1541,7 +1541,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1686,7 +1686,7 @@ class ECommerce2 extends BaseECommerce {
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -1736,7 +1736,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -1861,7 +1861,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -1911,7 +1911,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2056,7 +2056,7 @@ class ECommerce2 extends BaseECommerce {
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -2106,7 +2106,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2231,7 +2231,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -2281,7 +2281,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2426,7 +2426,7 @@ class ECommerce2 extends BaseECommerce {
                             value: [
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -2476,7 +2476,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2601,7 +2601,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -2651,7 +2651,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2776,7 +2776,7 @@ class ECommerce2 extends BaseECommerce {
                                 },
                                 {
                                     type: "object",
-                                    key: "image",
+                                    key: "media",
                                     displayer: "Image",
                                     value: [
                                         {
@@ -2826,7 +2826,7 @@ class ECommerce2 extends BaseECommerce {
                                             key: "bottomIcon",
                                             displayer: "Icon",
                                             additionalParams: {
-                                                availableTypes: ["icon"],
+                                                availableTypes: ["icon", "image"],
                                             },
                                             value: {
                                                 type: "icon",
@@ -2983,7 +2983,7 @@ class ECommerce2 extends BaseECommerce {
                     key: "prevArrow",
                     displayer: "Prev Icon",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                     value: {
                         type: "icon",
@@ -2995,7 +2995,7 @@ class ECommerce2 extends BaseECommerce {
                     key: "nextArrow",
                     displayer: "Next Icon",
                     additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["icon", "image"],
                     },
                     value: {
                         type: "icon",
@@ -3009,7 +3009,7 @@ class ECommerce2 extends BaseECommerce {
             key: "closeIcon",
             displayer: "Close Icon",
             additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
             },
             value: {
                 type: "icon",
@@ -3155,7 +3155,7 @@ class ECommerce2 extends BaseECommerce {
 
         const allImages = imageGallery.reduce((acc: Image[], gallery) => {
             gallery.images.forEach((image) => {
-                if (!acc.some((img) => img.cardImage?.url === image.cardImage?.url)) {
+                if (!acc.some((img) => (img.cardImage as { url?: string })?.url === (image.cardImage as { url?: string })?.url)) {
                     acc.push(image);
                 }
             });
@@ -3205,7 +3205,7 @@ class ECommerce2 extends BaseECommerce {
                                 this.castToString(image.title) ||
                                 image.price?.value ||
                                 this.castToString(image.subTitle) ||
-                                image.cardImage?.url ||
+                                (image.cardImage as { url?: string })?.url ||
                                 this.castToString(image.bottomText) ||
                                 image.bottomIcon ||
                                 this.castToString(image.leftText) ||
@@ -3245,7 +3245,7 @@ class ECommerce2 extends BaseECommerce {
                                                         </Base.P>
                                                     )}
                                                 </div>
-                                                {image.cardImage?.url && (
+                                                {(image.cardImage as { url?: string })?.url && (
                                                     <Base.Media
                                                         value={image.cardImage}
                                                         className={this.decorateCSS("image")}
