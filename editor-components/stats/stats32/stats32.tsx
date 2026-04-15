@@ -95,7 +95,7 @@ class Stats32 extends BaseStats {
                         { type: "string", key: "number", displayer: "Value", value: "10" },
                         { type: "string", key: "suffix", displayer: "Suffix", value: "x" },
                         { type: "string", key: "subtitle", displayer: "Subtitle", value: "Increase in revenue" },
-                        { type: "string", key: "title", displayer: "Title", value: "deneme" },
+                        { type: "string", key: "title", displayer: "Title", value: "" },
                         { type: "string", key: "description", displayer: "Description", value: "" },
                     ],
                 },
