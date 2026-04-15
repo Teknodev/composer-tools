@@ -305,6 +305,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
+      gap: var(--composer-gap-lg);
       .tab-container {
         flex-direction: column;
       }
