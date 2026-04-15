@@ -26,14 +26,14 @@ export class Stats30 extends BaseStats {
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "There is an empty element under the title, it should be removed. Please check the image for reference.  bu review gelmiş nereyi düzeltmem gerkiyor ne yapmalıyım anlat birşey yapma ",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "There is an empty element under the title, it should be removed. Please check the image for reference.  bu review gelmiş nereyi düzeltmem gerkiyor ne yapmalıyım anlat birşey yapma ",
+            value: "",
         });
 
         this.addProp({
@@ -162,29 +162,34 @@ export class Stats30 extends BaseStats {
         const valueExist = !!this.castToString(originalValueString);
         const suffixExist = !!this.castToString(stat.suffix);
 
+        const hasTextGroup = subtitleExist || titleExist || descriptionExist;
+        const hasValueGroup = valueExist || suffixExist || !!stat.prefix;
+
         return (
             <Base.VerticalContent className={`${this.decorateCSS("stat-item")} ${coloredBackgroundClass}`}>
-                <Base.VerticalContent className={this.decorateCSS("stat-text-group")}>
-                    {subtitleExist && (
-                        <Base.H6 className={this.decorateCSS("stat-subtitle")}>
-                            {stat.subtitleElement}
-                        </Base.H6>
-                    )}
-                    {titleExist && (
-                        <Base.H2 className={this.decorateCSS("stat-title")}>
-                            {stat.titleElement}
-                        </Base.H2>
-                    )}
-                    {descriptionExist && (
-                        <Base.P className={this.decorateCSS("stat-description")}>
-                            {stat.descriptionElement}
-                        </Base.P>
-                    )}
-                </Base.VerticalContent>
-                <Base.VerticalContent
-                    className={this.decorateCSS("stat-value-wrapper")}
-                >
-                    {(valueExist || suffixExist || stat.prefix) && (
+                {hasTextGroup && (
+                    <Base.VerticalContent className={this.decorateCSS("stat-text-group")}>
+                        {subtitleExist && (
+                            <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                                {stat.subtitleElement}
+                            </Base.H6>
+                        )}
+                        {titleExist && (
+                            <Base.H2 className={this.decorateCSS("stat-title")}>
+                                {stat.titleElement}
+                            </Base.H2>
+                        )}
+                        {descriptionExist && (
+                            <Base.P className={this.decorateCSS("stat-description")}>
+                                {stat.descriptionElement}
+                            </Base.P>
+                        )}
+                    </Base.VerticalContent>
+                )}
+                {hasValueGroup && (
+                    <Base.VerticalContent
+                        className={this.decorateCSS("stat-value-wrapper")}
+                    >
                         <span className={this.decorateCSS("stat-value-container")}>
                             {stat.prefix && (
                                 <span className={this.decorateCSS("stat-prefix")}>
@@ -202,8 +207,8 @@ export class Stats30 extends BaseStats {
                                 </span>
                             )}
                         </span>
-                    )}
-                </Base.VerticalContent>
+                    </Base.VerticalContent>
+                )}
             </Base.VerticalContent >
         );
 
