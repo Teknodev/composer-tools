@@ -265,13 +265,9 @@ export class Stats30 extends BaseStats {
                                         </Base.SectionTitle>
                                     )}
                                     {descriptionExist && (
-                                        <div
-                                            className={this.decorateCSS("description")}
-                                            data-section="description"
-                                            data-element-category="base.SectionDescription"
-                                        >
+                                        <Base.SectionDescription className={this.decorateCSS("description")}>
                                             {this.getPropValue("description")}
-                                        </div>
+                                        </Base.SectionDescription>
                                     )}
                                 </Base.VerticalContent>
                             </Base.VerticalContent>
