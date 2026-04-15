@@ -292,6 +292,7 @@
   .wrapper {
     flex-direction: column;
     gap: var(--composer-gap-md);
+    padding-top: 0;
 
     .featured {
       width: 100%;
