@@ -8,6 +8,12 @@
         position: relative;
     }
 
+    .content-wrapper {
+        display: flex;
+        align-items: stretch;
+        min-height: 500px;
+    }
+
     .left-column {
         width: 50%;
         padding: 0;
@@ -83,7 +89,7 @@
         }
 
         &.no-media {
-            padding: 120px 0;
+            padding: 120px 60px;
 
             .stats-list {
                 padding: 0;
@@ -110,6 +116,7 @@
             .stat-item {
                 display: flex;
                 flex-direction: column;
+                width: 100%;
 
                 .stat-value {
                     display: flex;
