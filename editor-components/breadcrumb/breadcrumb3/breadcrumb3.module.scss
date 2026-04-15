@@ -8,14 +8,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 0 !important;
-
-  &.background {
-    content: "";
-  }
-
-  &.no-background {
-    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-  }
+  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
 
   .background-image {
     position: absolute;
@@ -54,6 +47,10 @@
       color: var(--composer-font-color-primary);
       width: fit-content;
       min-width: 35%;
+
+      &.no-image {
+        background: var(--composer-html-background);
+      }
 
       .content-container {
         width: 100%;

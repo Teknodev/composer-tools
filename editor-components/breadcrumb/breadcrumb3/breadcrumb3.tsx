@@ -165,7 +165,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
         )}
         {overlay && bgImageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("breadcrumb-wrapper")}>
-          <div className={this.decorateCSS("crumber-content")}>
+          <div className={`${this.decorateCSS("crumber-content")} ${bgImageExist ? this.decorateCSS("with-image") : this.decorateCSS("no-image")}`}>
             <Base.VerticalContent className={this.decorateCSS("content-container")}>
               {isSubtitleExist && (
                 <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
