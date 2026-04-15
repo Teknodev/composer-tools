@@ -55,11 +55,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
                       },
                     },
                     {
@@ -80,11 +80,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
                       },
                     },
                     {
@@ -105,11 +105,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
                       },
                     },
                     {
@@ -130,11 +130,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
                       },
                     },
                     {
@@ -155,11 +155,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
                       },
                     },
                     {
@@ -180,11 +180,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
                       },
                     },
                     {
@@ -225,11 +225,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
                       },
                     },
                     {
@@ -250,11 +250,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
                       },
                     },
                     {
@@ -275,11 +275,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
                       },
                     },
                     {
@@ -300,11 +300,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
                       },
                     },
                     {
@@ -325,11 +325,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-bottoms.jpg",
                       },
                     },
                     {
@@ -350,11 +350,11 @@ class ECommerce5 extends BaseECommerce {
                       key: "sectionImage",
                       displayer: "Section Media",
                       additionalParams: {
-                          availableTypes: ["image","video"],
+                        availableTypes: ["image", "video"],
                       },
                       value: {
-                          type: "image",
-                          url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
+                        type: "image",
+                        url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
                       },
                     },
                     {
@@ -493,11 +493,10 @@ class ECommerce5 extends BaseECommerce {
             </div>
           </div>
           <div
-            className={`${this.decorateCSS("wrapper")} ${
-              this.getComponentState("animate")
+            className={`${this.decorateCSS("wrapper")} ${this.getComponentState("animate")
                 ? this.decorateCSS("fade-slide-out")
                 : this.decorateCSS("fade-slide-in")
-            }`}
+              }`}
           >
             <ComposerSlider
               {...settings}

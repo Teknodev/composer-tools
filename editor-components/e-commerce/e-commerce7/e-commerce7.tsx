@@ -214,7 +214,7 @@ class ECommerce7 extends BaseECommerce {
         },
       ],
     });
-    
+
     this.addProp({
       type: "boolean",
       key: "dividerActive",
@@ -335,10 +335,10 @@ class ECommerce7 extends BaseECommerce {
                   additionalParams: {
                     availableTypes: ["icon", "image"],
                   },
-              value: {
-                type: "icon",
-                name: "FaXTwitter",
-              },
+                  value: {
+                    type: "icon",
+                    name: "FaXTwitter",
+                  },
                 },
                 {
                   type: "string",
@@ -366,10 +366,10 @@ class ECommerce7 extends BaseECommerce {
                   additionalParams: {
                     availableTypes: ["icon", "image"],
                   },
-              value: {
-                type: "icon",
-                name: "FaPinterest",
-              },
+                  value: {
+                    type: "icon",
+                    name: "FaPinterest",
+                  },
                 },
                 {
                   type: "string",
@@ -670,7 +670,7 @@ class ECommerce7 extends BaseECommerce {
         },
       ],
     });
-    
+
 
     this.addProp(
       INPUTS.BUTTON(
@@ -923,7 +923,7 @@ class ECommerce7 extends BaseECommerce {
                             className={this.decorateCSS("image")}
                           />
                         </div>
-                        
+
                       </div>
                     );
                   })}
@@ -944,32 +944,32 @@ class ECommerce7 extends BaseECommerce {
                           className={this.decorateCSS("image")}
                           onClick={() => this.handleDotClick(index)}
                         />
-                        
+
                       </div>
                     );
                   })}
                 </ComposerSlider>
                 {(icons?.imageDownArrow ||
                   icons?.imageUpArrow) && (
-                  <div className={this.decorateCSS("arrow-buttons")}>
-                    {icons?.imageDownArrow && (
-                      <div className={this.decorateCSS("image-down-arrow")} onClick={() => { this.handleClickLeft(); }}>
-                        <Base.Media
-                          value={icons.imageDownArrow}
-                          className={this.decorateCSS("icon")}
-                        />
-                      </div>
-                    )}
-                    {icons?.imageUpArrow && (
-                      <div className={this.decorateCSS("image-up-arrow")} onClick={() => { this.handleClickRight(); }}>
-                        <Base.Media
-                          value={icons.imageUpArrow}
-                          className={this.decorateCSS("icon")}
-                        />
-                      </div>
-                    )}
-                  </div>
-                )}
+                    <div className={this.decorateCSS("arrow-buttons")}>
+                      {icons?.imageDownArrow && (
+                        <div className={this.decorateCSS("image-down-arrow")} onClick={() => { this.handleClickLeft(); }}>
+                          <Base.Media
+                            value={icons.imageDownArrow}
+                            className={this.decorateCSS("icon")}
+                          />
+                        </div>
+                      )}
+                      {icons?.imageUpArrow && (
+                        <div className={this.decorateCSS("image-up-arrow")} onClick={() => { this.handleClickRight(); }}>
+                          <Base.Media
+                            value={icons.imageUpArrow}
+                            className={this.decorateCSS("icon")}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
               </div>
               <div className={this.decorateCSS("slider-parent")}>
                 <div className={this.decorateCSS("image-icon-left")} onClick={() => { sliderRef.current.slickPrev(); }}>
@@ -1016,126 +1016,125 @@ class ECommerce7 extends BaseECommerce {
                 isSahreTitle ||
                 socials.length > 0 ||
                 currencyValue) && (
-                <>
-                  <Base.VerticalContent
-                    className={this.decorateCSS("upper-container")}
-                  >
-                    {(isTitle ||
-                      isShareIcon ||
-                      isSahreTitle ||
-                      socials.length > 0) && (
-                      <div className={this.decorateCSS("header")}>
-                        {isTitle && (
-                          <Base.SectionTitle
-                            className={this.decorateCSS("title")}
-                          >
-                            {this.getPropValue("title")}
-                          </Base.SectionTitle>
-                        )}
-                        {(isShareIcon ||
-                          isSahreTitle ||
-                          socials.length > 0) && (
-                          <div
-                            className={`${this.decorateCSS(
-                              "share-container"
-                            )} ${
-                              !isTitle && this.decorateCSS("without-title")
-                            }`}
-                          >
-                            <div className={this.decorateCSS("share-wrapper")}>
-                              {isShareIcon && (
-                                <Base.Media
-                                  value={shareSection.shareIcon}
-                                  className={this.decorateCSS("share-icon")}
-                                />
-                              )}
-                              {isSahreTitle && (
-                                <Base.H4 className={this.decorateCSS("title")}>
-                                  {shareSection.title}
-                                </Base.H4>
-                              )}
-                              {socials.length > 0 && (
-                                <div className={this.decorateCSS("socials")}>
-                                  {socials.map(
-                                    (item: Socials, index: number) => {
-                                      const icon = this.getPropValue("icon", { parent_object: item.value });
-                                      const text = this.getPropValue("text", { parent_object: item.value });
-                                      const link = this.getPropValue("link", { parent_object: item.value });
-                                      return (
-                                        <>
-                                          {(icon || this.castToString(text)) && (
-                                            <div
-                                              className={this.decorateCSS(
-                                                "social"
-                                              )}
-                                              key={index}
-                                            >
-                                              {icon && (
-                                                <Base.Media
-                                                  value={icon}
-                                                  className={this.decorateCSS("social-icon")}
-                                                />
-                                              )}
-                                              {this.castToString(text) && (
-                                                <ComposerLink path={link}>
-                                                  <Base.P
-                                                    className={this.decorateCSS(
-                                                      "social-text"
-                                                    )}
-                                                  >
-                                                    {text}
-                                                  </Base.P>
-                                                </ComposerLink>
-                                              )}
-                                            </div>
-                                          )}
-                                        </>
-                                      );
-                                    }
-                                  )}
-                                  {shareCopyLink.isActive && (
-                                    <div
-                                      className={this.decorateCSS("social")}
-                                      onClick={() => this.handleCopy()}
-                                    >
+                  <>
+                    <Base.VerticalContent
+                      className={this.decorateCSS("upper-container")}
+                    >
+                      {(isTitle ||
+                        isShareIcon ||
+                        isSahreTitle ||
+                        socials.length > 0) && (
+                          <div className={this.decorateCSS("header")}>
+                            {isTitle && (
+                              <Base.SectionTitle
+                                className={this.decorateCSS("title")}
+                              >
+                                {this.getPropValue("title")}
+                              </Base.SectionTitle>
+                            )}
+                            {(isShareIcon ||
+                              isSahreTitle ||
+                              socials.length > 0) && (
+                                <div
+                                  className={`${this.decorateCSS(
+                                    "share-container"
+                                  )} ${!isTitle && this.decorateCSS("without-title")
+                                    }`}
+                                >
+                                  <div className={this.decorateCSS("share-wrapper")}>
+                                    {isShareIcon && (
                                       <Base.Media
-                                        value={shareCopyLink.icon}
-                                        className={this.decorateCSS("social-icon")}
+                                        value={shareSection.shareIcon}
+                                        className={this.decorateCSS("share-icon")}
                                       />
-                                      <Base.P
-                                        className={this.decorateCSS(
-                                          "social-text"
+                                    )}
+                                    {isSahreTitle && (
+                                      <Base.H4 className={this.decorateCSS("title")}>
+                                        {shareSection.title}
+                                      </Base.H4>
+                                    )}
+                                    {socials.length > 0 && (
+                                      <div className={this.decorateCSS("socials")}>
+                                        {socials.map(
+                                          (item: Socials, index: number) => {
+                                            const icon = this.getPropValue("icon", { parent_object: item.value });
+                                            const text = this.getPropValue("text", { parent_object: item.value });
+                                            const link = this.getPropValue("link", { parent_object: item.value });
+                                            return (
+                                              <>
+                                                {(icon || this.castToString(text)) && (
+                                                  <div
+                                                    className={this.decorateCSS(
+                                                      "social"
+                                                    )}
+                                                    key={index}
+                                                  >
+                                                    {icon && (
+                                                      <Base.Media
+                                                        value={icon}
+                                                        className={this.decorateCSS("social-icon")}
+                                                      />
+                                                    )}
+                                                    {this.castToString(text) && (
+                                                      <ComposerLink path={link}>
+                                                        <Base.P
+                                                          className={this.decorateCSS(
+                                                            "social-text"
+                                                          )}
+                                                        >
+                                                          {text}
+                                                        </Base.P>
+                                                      </ComposerLink>
+                                                    )}
+                                                  </div>
+                                                )}
+                                              </>
+                                            );
+                                          }
                                         )}
-                                      >
-                                        {this.getComponentState("copied")
-                                          ? shareCopyLink.copiedText
-                                          : shareCopyLink.text}
-                                      </Base.P>
-                                    </div>
-                                  )}
+                                        {shareCopyLink.isActive && (
+                                          <div
+                                            className={this.decorateCSS("social")}
+                                            onClick={() => this.handleCopy()}
+                                          >
+                                            <Base.Media
+                                              value={shareCopyLink.icon}
+                                              className={this.decorateCSS("social-icon")}
+                                            />
+                                            <Base.P
+                                              className={this.decorateCSS(
+                                                "social-text"
+                                              )}
+                                            >
+                                              {this.getComponentState("copied")
+                                                ? shareCopyLink.copiedText
+                                                : shareCopyLink.text}
+                                            </Base.P>
+                                          </div>
+                                        )}
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
                               )}
-                            </div>
                           </div>
                         )}
-                      </div>
+                      {currencyValue && (
+                        <div className={this.decorateCSS("cost")}>
+                          <Base.H3 className={this.decorateCSS("value")}>
+                            {currencyValue}
+                          </Base.H3>
+                          <Base.H3 className={this.decorateCSS("currency-code")}>
+                            {currencySymbol}
+                          </Base.H3>
+                        </div>
+                      )}
+                    </Base.VerticalContent>
+                    {this.getPropValue("dividerActive") && (
+                      <div className={this.decorateCSS("divider")}></div>
                     )}
-                    {currencyValue && (
-                      <div className={this.decorateCSS("cost")}>
-                        <Base.H3 className={this.decorateCSS("value")}>
-                          {currencyValue}
-                        </Base.H3>
-                        <Base.H3 className={this.decorateCSS("currency-code")}>
-                          {currencySymbol}
-                        </Base.H3>
-                      </div>
-                    )}
-                  </Base.VerticalContent>
-                  {this.getPropValue("dividerActive") && (
-                    <div className={this.decorateCSS("divider")}></div>
-                  )}
-                </>
-              )}
+                  </>
+                )}
               {(isSizeLabel || sizeSections.length > 0) && (
                 <>
                   <div className={this.decorateCSS("size-container")}>
@@ -1152,11 +1151,10 @@ class ECommerce7 extends BaseECommerce {
                               <div
                                 className={`${this.decorateCSS(
                                   "size-select"
-                                )} ${
-                                  this.getComponentState(
-                                    "selectedSizeSection"
-                                  ) === index && this.decorateCSS("active")
-                                }`}
+                                )} ${this.getComponentState(
+                                  "selectedSizeSection"
+                                ) === index && this.decorateCSS("active")
+                                  }`}
                                 onClick={() => this.toggleSize(index)}
                                 key={index}
                               >
@@ -1186,72 +1184,72 @@ class ECommerce7 extends BaseECommerce {
                 countSection.count ||
                 countSection.addIcon ||
                 this.castToString(button.text)) && (
-                <div className={this.decorateCSS("count-container")}>
-                  {(countSection.minusIcon ||
-                    countSection.count ||
-                    countSection.addIcon) && (
-                    <div className={this.decorateCSS("count")}>
-                      {countSection.minusIcon && (
-                        <div
-                          className={this.decorateCSS("minus-icon")}
-                          onClick={() => this.handleMinus()}
-                        >
-                          <Base.Media
-                            value={countSection.minusIcon}
-                            className={this.decorateCSS("icon")}
-                          />
+                  <div className={this.decorateCSS("count-container")}>
+                    {(countSection.minusIcon ||
+                      countSection.count ||
+                      countSection.addIcon) && (
+                        <div className={this.decorateCSS("count")}>
+                          {countSection.minusIcon && (
+                            <div
+                              className={this.decorateCSS("minus-icon")}
+                              onClick={() => this.handleMinus()}
+                            >
+                              <Base.Media
+                                value={countSection.minusIcon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            </div>
+                          )}
+                          {countSection.count && (
+                            <input
+                              type="number"
+                              min={1}
+                              className={this.decorateCSS("number")}
+                              value={this.getComponentState("itemCount")}
+                              onChange={(e) => {
+                                const value = e.target.value;
+
+                                if (value === "") {
+                                  this.setComponentState("itemCount", "");
+                                  return;
+                                }
+
+                                const parsed = parseInt(value, 10);
+                                if (!isNaN(parsed) && parsed >= 1) {
+                                  this.setComponentState("itemCount", parsed);
+                                }
+                              }}
+
+                            />
+
+                          )}
+                          {countSection.addIcon && (
+                            <div
+                              className={this.decorateCSS("add-icon")}
+                              onClick={() => this.handleAdd()}
+                            >
+                              <Base.Media
+                                value={countSection.addIcon}
+                                className={this.decorateCSS("icon")}
+                              />
+                            </div>
+                          )}
                         </div>
                       )}
-                      {countSection.count && (
-                        <input
-                          type="number"
-                          min={1}
-                          className={this.decorateCSS("number")}
-                          value={this.getComponentState("itemCount")}
-                          onChange={(e) => {
-                            const value = e.target.value;
-
-                            if (value === "") {
-                              this.setComponentState("itemCount", "");
-                              return;
-                            }
-                          
-                            const parsed = parseInt(value, 10);
-                            if (!isNaN(parsed) && parsed >= 1) {
-                              this.setComponentState("itemCount", parsed);
-                            }
-                          }}
-                          
-                        />
-
-                      )}
-                      {countSection.addIcon && (
-                        <div
-                          className={this.decorateCSS("add-icon")}
-                          onClick={() => this.handleAdd()}
-                        >
-                          <Base.Media
-                            value={countSection.addIcon}
-                            className={this.decorateCSS("icon")}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  {this.castToString(button.text) && (
-                    <div className={this.decorateCSS("add-button")}>
-                      <ComposerLink path={button.url}>
-                        <Base.Button
-                          buttonType={button.type}
-                          className={this.decorateCSS("button")}
-                        >
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    </div>
-                  )}
-                </div>
-              )}
+                    {this.castToString(button.text) && (
+                      <div className={this.decorateCSS("add-button")}>
+                        <ComposerLink path={button.url}>
+                          <Base.Button
+                            buttonType={button.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      </div>
+                    )}
+                  </div>
+                )}
               {deliveryType.length > 0 && (
                 <div className={this.decorateCSS("delivery-types")}>
                   {deliveryType.map((item: DeliveryType, index: number) => {
@@ -1294,7 +1292,7 @@ class ECommerce7 extends BaseECommerce {
                               {(icons?.upArrowIcon ||
                                 icons?.downArrowIcon ||
                                 this.castToString(item.title) ||
-                                (this.castToString(item.description) ))&& (
+                                (this.castToString(item.description))) && (
                                   <div
                                     className={this.decorateCSS("section")}
                                     key={index}
@@ -1302,48 +1300,47 @@ class ECommerce7 extends BaseECommerce {
                                     {(this.castToString(item.title) ||
                                       icons?.upArrowIcon ||
                                       icons?.downArrowIcon) && (
-                                      <div
-                                        className={this.decorateCSS(
-                                          "section-container"
-                                        )}
-                                        onClick={() =>
-                                          this.toggleDescription(index)
-                                        }
-                                      >
-                                        {this.castToString(item.title) && (
-                                          <Base.P
-                                            className={this.decorateCSS(
-                                              "section-title"
+                                        <div
+                                          className={this.decorateCSS(
+                                            "section-container"
+                                          )}
+                                          onClick={() =>
+                                            this.toggleDescription(index)
+                                          }
+                                        >
+                                          {this.castToString(item.title) && (
+                                            <Base.P
+                                              className={this.decorateCSS(
+                                                "section-title"
+                                              )}
+                                            >
+                                              {item.title}
+                                            </Base.P>
+                                          )}
+                                          {(icons?.upArrowIcon ||
+                                            icons?.downArrowIcon) && (
+                                              <Base.Media
+                                                value={
+                                                  this.getComponentState(
+                                                    "openIndex"
+                                                  ) === index
+                                                    ? icons.upArrowIcon
+                                                    : icons.downArrowIcon
+                                                }
+                                                className={this.decorateCSS("icon")}
+                                              />
                                             )}
-                                          >
-                                            {item.title}
-                                          </Base.P>
-                                        )}
-                                        {(icons?.upArrowIcon ||
-                                          icons?.downArrowIcon) && (
-                                          <Base.Media
-                                            value={
-                                              this.getComponentState(
-                                                "openIndex"
-                                              ) === index
-                                                ? icons.upArrowIcon
-                                                : icons.downArrowIcon
-                                            }
-                                            className={this.decorateCSS("icon")}
-                                          />
-                                        )}
-                                      </div>
-                                    )}
+                                        </div>
+                                      )}
                                     {this.castToString(item.description) && (
                                       <div
                                         className={`${this.decorateCSS(
                                           "description"
-                                        )} ${
-                                          this.getComponentState(
-                                            "openIndex"
-                                          ) === index &&
+                                        )} ${this.getComponentState(
+                                          "openIndex"
+                                        ) === index &&
                                           this.decorateCSS("active")
-                                        }`}
+                                          }`}
                                       >
                                         <Base.P
                                           className={this.decorateCSS("text")}
@@ -1406,10 +1403,9 @@ class ECommerce7 extends BaseECommerce {
             <Base.Media
               value={images[this.getComponentState("selectedImage")].item}
               onClick={() => this.toggleZoomOverlayImage()}
-              className={`${this.decorateCSS("image")} ${
-                this.getComponentState("overlayZoomImage") &&
+              className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") &&
                 this.decorateCSS("zoom")
-              }`}
+                }`}
             />
           )}
           {images.length > 0 && icons?.sliderDotIcon && (
@@ -1423,10 +1419,9 @@ class ECommerce7 extends BaseECommerce {
                   >
                     <Base.Media
                       value={icons.sliderDotIcon}
-                      className={`${this.decorateCSS("icon")} ${
-                        this.getComponentState("selectedImage") === index &&
+                      className={`${this.decorateCSS("icon")} ${this.getComponentState("selectedImage") === index &&
                         this.decorateCSS("active")
-                      }`}
+                        }`}
                     />
                   </div>
                 );
