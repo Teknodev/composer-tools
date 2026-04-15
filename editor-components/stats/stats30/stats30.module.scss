@@ -4,7 +4,6 @@
     background-color: var(--composer-html-background);
     container-type: inline-size;
 
-    // Sadece spacing sıfırlama buraya
     &.no-colored-background {
         .max-content {
             padding-top: 0;
@@ -87,6 +86,13 @@
                         width: 100%;
                         align-items: flex-start;
                         text-align: left;
+                        gap: 0;
+
+                        .subtitle,
+                        .title,
+                        .description {
+                            margin-bottom: 0 !important;
+                        }
 
                         .stat-subtitle,
                         .stat-title,
@@ -160,7 +166,7 @@
                     grid-template-columns: repeat(1, 1fr);
 
                     .stat-item {
-                        gap: 1.5rem;
+                        // gap: 1.5rem;
 
                         .stat-value-container {
 
