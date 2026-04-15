@@ -478,10 +478,14 @@ class Location1 extends Location {
               {icons.length > 0 && (
                 <div className={this.decorateCSS("icon-container")}>
                   {icons.map((icon: any, index: number) => {
-                    const iconValue = icon.getPropValue && icon.getPropValue("icon");
-                    return iconValue && (
-                      <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        <ComposerLink path={icon.getPropValue("path")}>
+                    const iconValue = icon.getPropValue ? icon.getPropValue("icon") : icon.icon;
+                    const iconPath = icon.getPropValue ? icon.getPropValue("path") : icon.path;
+                    const iconExist = iconValue && (iconValue.name || iconValue.url);
+                    const hoverAnimation = this.getPropValue("hoverAnimation");
+
+                    return iconExist && (
+                      <div className={this.decorateCSS("icon-wrapper")} key={index} data-animation={Array.isArray(hoverAnimation) ? hoverAnimation.join(" ") : ""}>
+                        <ComposerLink path={iconPath}>
                           <Base.Media value={iconValue} className={this.decorateCSS("icon")} />
                         </ComposerLink>
                       </div>
@@ -494,10 +498,10 @@ class Location1 extends Location {
           <section className={this.decorateCSS("map-container")}>
             <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
           </section>
-          {(description || phone) && (
+          {(description?.trim() || phone?.trim()) && (
             <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
-              {description && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
-              {phone && (
+              {description?.trim() && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
+              {phone?.trim() && (
                 <Base.VerticalContent>
                   <ComposerLink path={buttom.path}>
                     <Base.H5 className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.H5>

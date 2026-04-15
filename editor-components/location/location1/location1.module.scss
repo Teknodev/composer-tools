@@ -21,6 +21,7 @@
         .description {
           text-align: left;
           margin-left: 0;
+          line-height: 1.5;
         }
       }
 
@@ -29,6 +30,7 @@
         height: 1px;
         background-color: var(--composer-tertiary-color);
         margin: var(--composer-gap-md) 0;
+        flex-shrink: 0;
       }
 
       .icon-container {
@@ -36,6 +38,7 @@
         align-items: center;
         gap: var(--composer-gap-lg);
         margin-bottom: var(--composer-gap-sm);
+        flex-shrink: 0;
 
         .icon-wrapper {
           display: flex;
@@ -49,6 +52,8 @@
             justify-content: center;
             align-items: center;
             font-size: 2rem;
+            width: 2rem;
+            height: 2rem;
             color: var(--composer-font-color-primary);
             z-index: 5;
             position: relative;
@@ -120,20 +125,18 @@
     .bottom-container {
       width: 100%;
       display: flex;
-      gap: var(--composer-gap-xs);
+      gap: var(--composer-gap-md);
       align-items: center;
       justify-content: center;
 
       .bottom-title {
         padding: 0;
         color: var(--composer-font-color-primary);
-        max-width: 50%;
+        max-width: 80%;
         margin: 0;
         display: inline-block;
         width: auto;
       }
-
-
 
       .phone {
         color: var(--composer-font-color-primary);
@@ -146,33 +149,8 @@
 
       &.center {
         justify-content: center;
-        gap: var(--composer-gap-md);
 
         .bottom-title {
-          margin-right: var(--composer-gap-xs);
-          max-width: 80%;
-          padding: 0;
-          text-align: center;
-        }
-
-        width: auto;
-        display: flex;
-        justify-content: center;
-        gap: var(--composer-gap-xs);
-
-        .phone {
-          text-align: center;
-        }
-      }
-
-      &.left {
-        justify-content: center;
-        gap: var(--composer-gap-md);
-
-        .bottom-title {
-          margin-right: var(--composer-gap-xs);
-          max-width: 80%;
-          padding: 0;
           text-align: center;
         }
 
