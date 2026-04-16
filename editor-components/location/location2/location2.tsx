@@ -576,11 +576,11 @@ class Location2 extends Location {
     }, []);
 
     const socials = this.castToObject<SocialMediaItemType[]>("socials");
-    const headerExist = isTitleExist || isDescriptionExist || socials.length > 0;
     const subtitle = this.getPropValue("subtitle");
     const hasSubtitle = this.castToString(subtitle);
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons") || [];
     const visibleButtons = buttons.filter(btn => this.castToString(btn.text));
+    const headerExist = isTitleExist || isDescriptionExist || socials.length > 0 || hasSubtitle || visibleButtons.length > 0;
     const socialNodes = socials.length > 0 ? (
       <div className={this.decorateCSS("socials")}>
         {socials.map((item: any, idx: number) => {
@@ -627,7 +627,7 @@ class Location2 extends Location {
                 )}
 
                 {visibleButtons.length > 0 && (
-                  <div className={this.decorateCSS("button-wrapper")}>
+                  <Base.Row className={this.decorateCSS("button-wrapper")}>
                     {visibleButtons.map((item: INPUTS.CastedButton, index: number) => {
                       return this.castToString(item.text) && (
                         <ComposerLink key={`button-${index}`} path={item.url}>
@@ -637,7 +637,7 @@ class Location2 extends Location {
                         </ComposerLink>
                       );
                     })}
-                  </div>
+                  </Base.Row>
                 )}
                 {!socialPlacement && socialNodes}
               </Base.VerticalContent>

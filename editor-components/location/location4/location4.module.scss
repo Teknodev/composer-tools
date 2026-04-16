@@ -109,6 +109,14 @@
             }
           }
 
+          .header-texts {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            gap: var(--composer-gap-sm);
+          }
+
           .title-icon-img {
             width: 100%;
             height: 100%;
@@ -177,6 +185,14 @@
           margin-right: auto;
           width: fit-content;
 
+        }
+
+        .header-texts {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          gap: var(--composer-gap-sm);
         }
 
         .subtitle-no-image {
