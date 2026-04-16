@@ -138,9 +138,7 @@ class PricingTable10 extends BasePricingTable {
           key: "feature",
           displayer: "Feature",
           value: [
-            { type: "icon", key: "icon", displayer: "Icon", value: "FaCheckCircle", 
-              additionalParams: { availableTypes: ["icon", "image"] } 
-            },
+            { type: "media", key: "icon", displayer: "Icon", value: { type: "icon", name: "FaCheckCircle" }, additionalParams: { availableTypes: ["icon", "image"] } },
             { type: "string", key: "text", displayer: "Text", value: "Members resources" },
           ],
         },
