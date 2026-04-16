@@ -289,7 +289,7 @@ class Stats35 extends BaseStats {
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
-                    <div className={this.decorateCSS("content-wrapper")}>
+                    <div className={`${this.decorateCSS("content-wrapper")} ${hasRightSection ? this.decorateCSS("has-right") : ""}`}>
                         {hasLeftSection && (
                          <Base.MaxContent className={this.decorateCSS("max-content")}>
                             <Base.VerticalContent className={`${this.decorateCSS("left-column")} ${!hasRightSection ? this.decorateCSS("left-full-width") : ""} ${alignment === "center" ? this.decorateCSS("center-alignment") : ""}`}>

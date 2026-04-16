@@ -11,7 +11,10 @@
     .content-wrapper {
         display: flex;
         align-items: stretch;
-        min-height: 500px;
+
+        &.has-right {
+            min-height: 500px;
+        }
     }
 
     .left-column {
