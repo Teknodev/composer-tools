@@ -23,7 +23,7 @@
             position: relative;
             z-index: 2;
             margin-top: -190px;
-            margin-bottom: calc(var(--composer-gap-lg) * 2);
+            margin-bottom: calc(var(--composer-gap-lg) * 3);
         }
     }
 
@@ -180,13 +180,14 @@
             .text-block {
                 align-items: flex-start;
                 width: 100%;
+
                 .subtitle {
                     transform: none;
 
                     &::before {
                         display: none !important;
                     }
-                } 
+                }
             }
 
             .button-group {
