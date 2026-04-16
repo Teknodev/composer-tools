@@ -26,7 +26,10 @@
         }
 
         .subtitle {
+            width: 100%;
             margin-left: 0;
+            margin-right: 0;
+            text-align: left !important;
         }
 
         .title,
@@ -149,6 +152,7 @@
     .container {
         .subtitle {
             margin-left: 0;
+            margin-right: 0;
         }
 
         .right-column {
@@ -165,6 +169,10 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        .content-wrapper {
+            flex-direction: column;
+        }
+
         .left-column {
             width: 100%;
 
@@ -172,6 +180,7 @@
 
                 .subtitle {
                     margin: unset;
+                    text-align: center !important;
                 }
 
                 .title,
