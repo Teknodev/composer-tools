@@ -182,7 +182,7 @@ class PricingTable12 extends BasePricingTable {
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
 
-    const buttons = this.castToObject<INPUTS.CastedButton[]>("cardButtons");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
     const card = this.castToObject<CardData>("card");

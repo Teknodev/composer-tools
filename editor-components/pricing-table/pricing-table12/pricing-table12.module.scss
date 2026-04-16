@@ -99,6 +99,14 @@
             align-items: baseline;
             gap: var(--composer-gap-xs);
 
+            .card-price {
+                font-size: 3.5rem;
+            }
+            
+            .card-price-suffix{
+                content: "";
+            }
+
             .card-price,
             .card-price-suffix {
                 color: var(--composer-font-color-secondary);
@@ -154,6 +162,14 @@
         .max-content {
             flex-direction: column;
             gap: var(--composer-gap-xl);
+        }
+
+        .card {
+            .card-price-row {
+                .card-price {
+                    font-size: 2rem;
+                }
+            }
         }
     }
 
