@@ -262,7 +262,7 @@ class Stats36 extends BaseStats {
                         {hasContent && (
                             <Base.GridCell className={`${this.decorateCSS("content-cell")} ${!mediaExist ? this.decorateCSS("full-width") : ""}`}>
                                 <Base.VerticalContent className={this.decorateCSS("content-inner")}>
-                                    <div className={this.decorateCSS("content-header")}>
+                                    <Base.VerticalContent className={this.decorateCSS("content-header")}>
                                         {subtitleExist && (
                                             <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
                                                 {subtitle}
@@ -299,7 +299,7 @@ class Stats36 extends BaseStats {
                                                 })}
                                             </div>
                                         )}
-                                    </div>
+                                    </Base.VerticalContent>
                                     {statsItems.length > 0 && (
                                         <div className={this.decorateCSS("stats-grid")}>
                                             {statsItems.map((item, index) => (
