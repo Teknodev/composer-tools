@@ -6,7 +6,7 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            gap: var(--composer-gap-xl);
+            // gap: var(--composer-gap-xl);
             width: 100%;
 
             .media-cell {
@@ -53,12 +53,11 @@
                     flex-direction: column;
                     align-items: flex-start;
                     text-align: left;
-                    gap: var(--composer-gap-sm);
+                    gap: var(--composer-gap-md);
                     padding: 0;
 
                     .content-header {
                         width: 100% !important;
-                        gap: var(--composer-gap-md);
                     }
 
                     .stats-grid {
@@ -152,11 +151,14 @@
     }
 
     .section-title,
-    .section-subtitle,
     .section-description {
         width: 100% !important;
         text-align: left !important;
-        margin: 0 !important;
+    }
+
+    .section-subtitle {
+        width: fit-content !important;
+        text-align: left !important;
     }
 }
 
