@@ -47,7 +47,24 @@
             width: 100%;
             align-items: center;
 
+            .header-content {
+                align-items: center;
+                width: 100%;
+            }
+
+            .subtitle {
+                text-align: center;
+                transform: translateX(0);
+                &::before {
+                    display: none;
+                }
+            }
+
             .title {
+                text-align: center;
+            }
+
+            .description {
                 text-align: center;
             }
 

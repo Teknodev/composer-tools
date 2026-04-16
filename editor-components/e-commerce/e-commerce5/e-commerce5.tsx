@@ -19,9 +19,23 @@ class ECommerce5 extends BaseECommerce {
     super(props, styles);
     this.addProp({
       type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
+    });
+
+    this.addProp({
+      type: "string",
       key: "title",
       displayer: "Title",
       value: "Categories",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -382,7 +396,7 @@ class ECommerce5 extends BaseECommerce {
     this.addProp({
       type: "number",
       key: "slidesToShow",
-      displayer: "Slides To Show",
+      displayer: "Item Count In A Row",
       value: 6,
       max: 6,
     });
@@ -448,18 +462,36 @@ class ECommerce5 extends BaseECommerce {
         },
       ],
     };
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleStr = this.castToString(subtitle);
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
+    const description = this.getPropValue("description");
+    const descriptionStr = this.castToString(description);
     const overlay = this.getPropValue("overlay");
 
     return (
       <Base.Container isFull className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            {titleExist && (
-              <Base.SectionTitle className={this.decorateCSS("title")}>
-                {title}
-              </Base.SectionTitle>
+            {(subtitleStr || titleExist || descriptionStr) && (
+              <Base.VerticalContent className={this.decorateCSS("header-content")}>
+                {subtitleStr && (
+                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                    {subtitle}
+                  </Base.SectionSubTitle>
+                )}
+                {titleExist && (
+                  <Base.SectionTitle className={this.decorateCSS("title")}>
+                    {title}
+                  </Base.SectionTitle>
+                )}
+                {descriptionStr && (
+                  <Base.SectionDescription className={this.decorateCSS("description")}>
+                    {description}
+                  </Base.SectionDescription>
+                )}
+              </Base.VerticalContent>
             )}
 
             <div className={this.decorateCSS("tab-container")}>
@@ -494,8 +526,8 @@ class ECommerce5 extends BaseECommerce {
           </div>
           <div
             className={`${this.decorateCSS("wrapper")} ${this.getComponentState("animate")
-                ? this.decorateCSS("fade-slide-out")
-                : this.decorateCSS("fade-slide-in")
+              ? this.decorateCSS("fade-slide-out")
+              : this.decorateCSS("fade-slide-in")
               }`}
           >
             <ComposerSlider
