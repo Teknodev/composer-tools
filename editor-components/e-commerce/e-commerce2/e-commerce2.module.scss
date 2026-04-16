@@ -10,6 +10,9 @@
     flex-direction: column;
     align-items: center;
     gap: var(--composer-gap-xl);
+    .header {
+      width: 100%;
+    }
     .tab-container {
       width: fit-content;
       display: flex;
@@ -126,6 +129,7 @@
               flex: 1;
               max-width: 50%;
               width: fit-content;
+              font-size: 12px !important;
             }
             .rightText {
               right: 0;
@@ -154,6 +158,7 @@
           .title {
             color: var(--composer-font-color-primary);
             text-align: center;
+            font-size: 14px !important;
           }
           .price {
             color: var(--composer-tertiary-color);
