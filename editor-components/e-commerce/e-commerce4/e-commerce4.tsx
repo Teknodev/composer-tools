@@ -39,22 +39,48 @@ class ECommerce4 extends BaseECommerce {
     constructor(props?: any) {
         super(props, styles);
         this.addProp({
-            type: "number",
-            key: "imageCountInitial",
-            displayer: "Image Count Initial",
-            value: 4,
+            type: "string",
+            key: "subtitle",
+            displayer: "Subtitle",
+            value: "",
         });
         this.addProp({
-            type: "number",
-            key: "imageCount",
-            displayer: "More Image Count",
-            value: 2,
+            type: "string",
+            key: "title",
+            displayer: "Title",
+            value: "",
         });
         this.addProp({
-            type: "number",
-            key: "itemCount",
-            displayer: "Item Count in a Row",
-            value: 4,
+            type: "string",
+            key: "description",
+            displayer: "Description",
+            value: "",
+        });
+        this.addProp(INPUTS.BUTTON("headerButton", "Button", "", null, null, null, "Primary"));
+        this.addProp({
+            type: "object",
+            key: "countSettings",
+            displayer: "Count Settings",
+            value: [
+                {
+                    type: "number",
+                    key: "imageCountInitial",
+                    displayer: "Image Count Initial",
+                    value: 4,
+                },
+                {
+                    type: "number",
+                    key: "imageCount",
+                    displayer: "More Image Count",
+                    value: 2,
+                },
+                {
+                    type: "number",
+                    key: "itemCount",
+                    displayer: "Item Count in a Row",
+                    value: 4,
+                },
+            ],
         });
         this.addProp({
             type: "array",
@@ -2045,7 +2071,7 @@ class ECommerce4 extends BaseECommerce {
                 },
             ]
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", null, null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
         this.setComponentState("moreImages", 0);
 
         this.setComponentState("selectedStates",
@@ -2086,20 +2112,55 @@ class ECommerce4 extends BaseECommerce {
     }
 
     handleButtonClick = () => {
-        this.setComponentState("moreImages", this.getComponentState("moreImages") + this.getPropValue("imageCount"))
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        this.setComponentState("moreImages", this.getComponentState("moreImages") + countSettings.imageCount);
     };
 
     render() {
         const productCards = this.castToObject<ProductCard[]>("productCards") || [];
         const selectedStates = this.getComponentState("selectedStates") || [];
-        const itemCount = this.getPropValue("itemCount");
-        if (this.getComponentState("imageCount") !== this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"))
-            this.setComponentState("imageCount", this.getPropValue("imageCountInitial") + this.getComponentState("moreImages"));
+        const countSettings = this.castToObject<{ imageCountInitial: number; imageCount: number; itemCount: number }>("countSettings");
+        const itemCount = countSettings.itemCount;
+        if (this.getComponentState("imageCount") !== countSettings.imageCountInitial + this.getComponentState("moreImages"))
+            this.setComponentState("imageCount", countSettings.imageCountInitial + this.getComponentState("moreImages"));
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+        const headerButton: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("headerButton");
+        const subtitle = this.getPropValue("subtitle");
+        const subtitleStr = this.castToString(subtitle);
+        const title = this.getPropValue("title");
+        const titleStr = this.castToString(title);
+        const description = this.getPropValue("description");
+        const descriptionStr = this.castToString(description);
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
+                    {(subtitleStr || titleStr || descriptionStr || this.castToString(headerButton.text)) && (
+                        <Base.VerticalContent className={this.decorateCSS("header")}>
+                            {subtitleStr && (
+                                <Base.SectionSubTitle className={this.decorateCSS("header-subtitle")}>
+                                    {subtitle}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleStr && (
+                                <Base.SectionTitle className={this.decorateCSS("header-title")}>
+                                    {title}
+                                </Base.SectionTitle>
+                            )}
+                            {descriptionStr && (
+                                <Base.SectionDescription className={this.decorateCSS("header-description")}>
+                                    {description}
+                                </Base.SectionDescription>
+                            )}
+                            {this.castToString(headerButton.text) && (
+                                <Base.Button
+                                    buttonType={headerButton.type}
+                                    className={this.decorateCSS("header-button")}>
+                                    <Base.P className={this.decorateCSS("header-button-text")}>{headerButton.text}</Base.P>
+                                </Base.Button>
+                            )}
+                        </Base.VerticalContent>
+                    )}
                     <Base.ListGrid gridCount={{ pc: Math.min(itemCount, 4), tablet: 3, phone: 1 }} className={this.decorateCSS("grid")}>
                         {productCards.slice(0, this.getComponentState("imageCount")).map((productCard: ProductCard, cardIndex: number) => {
                             const selectedState = selectedStates[cardIndex] || { selectedColor: "", selectedColorIndex: 0, selectedSize: "", selectedSizeIndex: 0 };
@@ -2183,16 +2244,16 @@ class ECommerce4 extends BaseECommerce {
                                     </ComposerLink>
                                     <div className={`${this.decorateCSS("text-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("text-sold-out") : ""}`}>
                                         {this.castToString(productCard.cardTitle) && (
-                                            <Base.H5 className={this.decorateCSS("title")}>{productCard.cardTitle}</Base.H5>
+                                            <Base.H6 className={this.decorateCSS("title")}>{productCard.cardTitle}</Base.H6>
                                         )}
                                         {productCard.cost.value && (
                                             <div className={this.decorateCSS("price")}>
-                                                <Base.H4 className={this.decorateCSS("value")}>
+                                                <Base.P className={this.decorateCSS("value")}>
                                                     {productCard.cost?.value}
-                                                </Base.H4>
-                                                <Base.H4 className={this.decorateCSS("currency-code")}>
+                                                </Base.P>
+                                                <Base.P className={this.decorateCSS("currency-code")}>
                                                     {getCurrencyInfo(productCard.cost.currency)?.symbol}
-                                                </Base.H4>
+                                                </Base.P>
                                             </div>
                                         )}
                                     </div>
@@ -2219,9 +2280,11 @@ class ECommerce4 extends BaseECommerce {
                     {
                         (productCards.length > this.getComponentState("imageCount")) && (this.castToString(button.text)) && (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick} >
-                                    <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                                </Base.Button>
+                                <ComposerLink path={button.url}>
+                                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
+                                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                                    </Base.Button>
+                                </ComposerLink>
                             </div>
                         )
                     }
