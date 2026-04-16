@@ -7,8 +7,18 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { CurrencyCode, getCurrencyInfo } from "../../../utils/currency";
 
-type Images = {
+type Media = {
   item: TypeMediaInputValue;
+};
+
+type SizeSettings = {
+  sizeLabel: React.JSX.Element;
+  sizeSections: SizeSections[];
+};
+
+type ItemDetailsSection = {
+  itemDetailTitle: React.JSX.Element;
+  itemDetails: ItemDetails[];
 };
 
 type ShareSection = {
@@ -19,9 +29,7 @@ type ShareSection = {
 };
 
 type SizeSections = {
-  size: number;
-  type: React.JSX.Element;
-  cost: { value: React.JSX.Element; currency: CurrencyCode };
+  value: any;
 };
 
 type CountSections = {
@@ -31,8 +39,7 @@ type CountSections = {
 };
 
 type ItemDetails = {
-  title: React.JSX.Element;
-  description: React.JSX.Element;
+  value: any;
 };
 
 type DeliveryType = {
@@ -70,8 +77,8 @@ class ECommerce7 extends BaseECommerce {
     super(props, styles);
     this.addProp({
       type: "array",
-      key: "images",
-      displayer: "Images",
+      key: "media",
+      displayer: "Media",
       value: [
         {
           type: "object",
@@ -220,6 +227,12 @@ class ECommerce7 extends BaseECommerce {
       key: "dividerActive",
       displayer: "Divider Active",
       value: true,
+    });
+    this.addProp({
+      type: "string",
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "Lorem",
     });
     this.addProp({
       type: "string",
@@ -390,88 +403,95 @@ class ECommerce7 extends BaseECommerce {
       ],
     });
     this.addProp({
-      type: "string",
-      key: "sizeLabel",
-      displayer: "Size Label",
-      value: "Size",
-    });
-    this.addProp({
-      type: "array",
-      key: "sizeSections",
-      displayer: "Size Sections",
+      type: "object",
+      key: "sizeSettings",
+      displayer: "Size Settings",
       value: [
         {
-          type: "object",
-          key: "sizeSection",
-          displayer: "Size Section",
-          value: [
-            {
-              type: "number",
-              key: "size",
-              displayer: "Size",
-              value: 30,
-            },
-            {
-              type: "string",
-              key: "type",
-              displayer: "Type",
-              value: "BAGS",
-            },
-            {
-              type: "currency",
-              key: "cost",
-              displayer: "Cost",
-              value: { value: "25", currency: "USD" },
-            },
-          ],
+          type: "string",
+          key: "sizeLabel",
+          displayer: "Size Label",
+          value: "Size",
         },
         {
-          type: "object",
-          key: "sizeSection",
-          displayer: "Size Section",
+          type: "array",
+          key: "sizeSections",
+          displayer: "Size Sections",
           value: [
             {
-              type: "number",
-              key: "size",
-              displayer: "Size",
-              value: 100,
+              type: "object",
+              key: "sizeSection",
+              displayer: "Size Section",
+              value: [
+                {
+                  type: "number",
+                  key: "size",
+                  displayer: "Size",
+                  value: 30,
+                },
+                {
+                  type: "string",
+                  key: "type",
+                  displayer: "Type",
+                  value: "BAGS",
+                },
+                {
+                  type: "currency",
+                  key: "cost",
+                  displayer: "Cost",
+                  value: { value: "25", currency: "USD" },
+                },
+              ],
             },
             {
-              type: "string",
-              key: "type",
-              displayer: "Type",
-              value: "BAGS",
+              type: "object",
+              key: "sizeSection",
+              displayer: "Size Section",
+              value: [
+                {
+                  type: "number",
+                  key: "size",
+                  displayer: "Size",
+                  value: 100,
+                },
+                {
+                  type: "string",
+                  key: "type",
+                  displayer: "Type",
+                  value: "BAGS",
+                },
+                {
+                  type: "currency",
+                  key: "cost",
+                  displayer: "Cost",
+                  value: { value: "75", currency: "USD" },
+                },
+              ],
             },
             {
-              type: "currency",
-              key: "cost",
-              displayer: "Cost",
-              value: { value: "75", currency: "USD" },
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "sizeSection",
-          displayer: "Size Section",
-          value: [
-            {
-              type: "number",
-              key: "size",
-              displayer: "Size",
-              value: 150,
-            },
-            {
-              type: "string",
-              key: "type",
-              displayer: "Type",
-              value: "BAGS",
-            },
-            {
-              type: "currency",
-              key: "cost",
-              displayer: "Cost",
-              value: { value: "110", currency: "USD" },
+              type: "object",
+              key: "sizeSection",
+              displayer: "Size Section",
+              value: [
+                {
+                  type: "number",
+                  key: "size",
+                  displayer: "Size",
+                  value: 150,
+                },
+                {
+                  type: "string",
+                  key: "type",
+                  displayer: "Type",
+                  value: "BAGS",
+                },
+                {
+                  type: "currency",
+                  key: "cost",
+                  displayer: "Cost",
+                  value: { value: "110", currency: "USD" },
+                },
+              ],
             },
           ],
         },
@@ -598,73 +618,80 @@ class ECommerce7 extends BaseECommerce {
       ],
     });
     this.addProp({
-      type: "string",
-      key: "itemDetailTitle",
-      displayer: "Item Detail Title",
-      value: "Auto-renews, skip or cancel anytime.",
-    });
-    this.addProp({
-      type: "array",
-      key: "itemDetails",
-      displayer: "Accordion",
+      type: "object",
+      key: "itemDetailsSection",
+      displayer: "Item Details Section",
       value: [
         {
-          type: "object",
-          key: "itemDetail",
-          displayer: "Section",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Description",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "A blend that pays homage to the Aussie pioneers of the Outback. Capturing the authentic essence of the original billy brew, this bush-style tea was traditionally made in billy tins over a campfire. Now, you can bring the timeless tradition of Bendigo Billy Tea into your home and enjoy the simple pleasures of a well-brewed cup.",
-            },
-          ],
+          type: "string",
+          key: "itemDetailTitle",
+          displayer: "Item Detail Title",
+          value: "Auto-renews, skip or cancel anytime.",
         },
         {
-          type: "object",
-          key: "itemDetail",
-          displayer: "Section",
+          type: "array",
+          key: "itemDetails",
+          displayer: "Accordion",
           value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Ingredients",
+              type: "object",
+              key: "itemDetail",
+              displayer: "Section",
+              value: [
+                {
+                  type: "string",
+                  key: "title",
+                  displayer: "Title",
+                  value: "Description",
+                },
+                {
+                  type: "string",
+                  key: "description",
+                  displayer: "Description",
+                  value:
+                    "A blend that pays homage to the Aussie pioneers of the Outback. Capturing the authentic essence of the original billy brew, this bush-style tea was traditionally made in billy tins over a campfire. Now, you can bring the timeless tradition of Bendigo Billy Tea into your home and enjoy the simple pleasures of a well-brewed cup.",
+                },
+              ],
             },
             {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Black tea, Fennel, Lavender, and Eucalyptus leaves. Store in a cool, dry place.",
+              type: "object",
+              key: "itemDetail",
+              displayer: "Section",
+              value: [
+                {
+                  type: "string",
+                  key: "title",
+                  displayer: "Title",
+                  value: "Ingredients",
+                },
+                {
+                  type: "string",
+                  key: "description",
+                  displayer: "Description",
+                  value:
+                    "Black tea, Fennel, Lavender, and Eucalyptus leaves. Store in a cool, dry place.",
+                },
+              ],
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "itemDetail",
-          displayer: "Section",
-          value: [
             {
-              type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Brewing",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Description",
-              value:
-                "Add 1 teaspoon of loose leaf tea per cup. Brew for 3-5 minutes. We are committed to using only the highest quality whole tea leaves and ingredients. Letting your tea leaves steep for the recommended duration allows the ingredients to fully infuse, achieving optimal taste and health benefits. Serve tea black or add milk. A slice of lemon also works beautifully in this blend.",
+              type: "object",
+              key: "itemDetail",
+              displayer: "Section",
+              value: [
+                {
+                  type: "string",
+                  key: "title",
+                  displayer: "Title",
+                  value: "Brewing",
+                },
+                {
+                  type: "string",
+                  key: "description",
+                  displayer: "Description",
+                  value:
+                    "Add 1 teaspoon of loose leaf tea per cup. Brew for 3-5 minutes. We are committed to using only the highest quality whole tea leaves and ingredients. Letting your tea leaves steep for the recommended duration allows the ingredients to fully infuse, achieving optimal taste and health benefits. Serve tea black or add milk. A slice of lemon also works beautifully in this blend.",
+                },
+              ],
             },
           ],
         },
@@ -741,14 +768,14 @@ class ECommerce7 extends BaseECommerce {
     let index = this.getComponentState("selectedImage");
     let newIndex = index - 1;
     if (index === 0) {
-      newIndex = this.getPropValue("images").length - 1;
+      newIndex = this.getPropValue("media").length - 1;
     }
     this.setComponentState("selectedImage", newIndex);
   };
   handleClickNextOverlay = () => {
     let index = this.getComponentState("selectedImage");
     let newIndex = index + 1;
-    if (index === this.getPropValue("images").length - 1) {
+    if (index === this.getPropValue("media").length - 1) {
       newIndex = 0;
     }
     this.setComponentState("selectedImage", newIndex);
@@ -796,10 +823,12 @@ class ECommerce7 extends BaseECommerce {
     const button: INPUTS.CastedButton =
       this.castToObject<INPUTS.CastedButton>("button");
     const shareSection = this.castToObject<ShareSection>("share");
-    const sizeSections = this.castToObject<SizeSections[]>("sizeSections");
+    const sizeSettings = this.castToObject<SizeSettings>("sizeSettings");
+    const sizeSections: SizeSections[] = sizeSettings.sizeSections || [];
     const countSection = this.castToObject<CountSections>("countSection");
-    const itemDetails = this.castToObject<ItemDetails[]>("itemDetails");
-    const images = this.castToObject<Images[]>("images");
+    const itemDetailsSectionData = this.castToObject<ItemDetailsSection>("itemDetailsSection");
+    const itemDetails: ItemDetails[] = itemDetailsSectionData.itemDetails || [];
+    const media = this.castToObject<Media[]>("media");
     const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
     if (this.getComponentState("selectedRadioButton") === null) {
       const firstEnabledIndex = deliveryType.findIndex((d) => d.isRadioButtonActive);
@@ -808,20 +837,19 @@ class ECommerce7 extends BaseECommerce {
     const socials = shareSection?.socials;
     const shareCopyLink = shareSection?.shareCopyLink;
     const sliderRef = this.getComponentState("slider-ref");
-    const currencySymbol = getCurrencyInfo(
-      sizeSections[this.getComponentState("selectedSizeSection")]?.cost
-        ?.currency
-    )?.symbol;
-    const currencyValue =
-      sizeSections[this.getComponentState("selectedSizeSection")]?.cost
-        ?.value || "";
+    const selectedSizeItem = sizeSections[this.getComponentState("selectedSizeSection")];
+    const selectedCost = selectedSizeItem
+      ? (this.getPropValue("cost", { parent_object: selectedSizeItem.value }) as { value: string; currency: CurrencyCode })
+      : null;
+    const currencySymbol = getCurrencyInfo(selectedCost?.currency)?.symbol;
+    const currencyValue = selectedCost?.value || "";
+    const subtitle = this.getPropValue("subtitle");
+    const isSubtitle = this.castToString(subtitle);
     const isTitle = this.castToString(this.getPropValue("title"));
     const isShareIcon = shareSection?.shareIcon;
     const isSahreTitle = this.castToString(shareSection?.title);
-    const isSizeLabel = this.castToString(this.getPropValue("sizeLabel"));
-    const isItemDetailTitle = this.castToString(
-      this.getPropValue("itemDetailTitle")
-    );
+    const isSizeLabel = this.castToString(sizeSettings.sizeLabel);
+    const isItemDetailTitle = this.castToString(itemDetailsSectionData.itemDetailTitle);
     const icons = this.castToObject<Icons>("icons");
     const isRightContainer =
       isTitle ||
@@ -839,8 +867,8 @@ class ECommerce7 extends BaseECommerce {
       (itemDetails && itemDetails.length > 0) ||
       icons?.upArrowIcon ||
       icons?.downArrowIcon;
-    const slidesToShow = images.length > 3 ? 4 : images.length;
-    const sliderKey = `infinite-${images.length > 3}-slides-${slidesToShow}`;
+    const slidesToShow = media.length > 3 ? 4 : media.length;
+    const sliderKey = `infinite-${media.length > 3}-slides-${slidesToShow}`;
 
     const settings = {
       dots: false,
@@ -863,7 +891,7 @@ class ECommerce7 extends BaseECommerce {
           "slider-ref-small-image"
         )?.current;
 
-        if (images.length > 0) {
+        if (media.length > 0) {
           if (
             mobileSliderRef &&
             typeof mobileSliderRef.slickGoTo === "function"
@@ -879,13 +907,13 @@ class ECommerce7 extends BaseECommerce {
         }
       },
     };
-    const smallDesktopSlidesToShow = Math.max(1, Math.min(4, (images.length || 0) - 1));
-    const smallMobileSlidesToShow = Math.max(1, Math.min(3, (images.length || 0) - 1));
+    const smallDesktopSlidesToShow = Math.max(1, Math.min(4, (media.length || 0) - 1));
+    const smallMobileSlidesToShow = Math.max(1, Math.min(3, (media.length || 0) - 1));
 
     const settingsSmallImage = {
       arrows: false,
       dots: false,
-      infinite: images.length > smallDesktopSlidesToShow,
+      infinite: media.length > smallDesktopSlidesToShow,
       autoplay: false,
       slidesToShow: smallDesktopSlidesToShow,
       slidesToScroll: 1,
@@ -895,14 +923,14 @@ class ECommerce7 extends BaseECommerce {
     const settingsSmallImageMobile = {
       arrows: false,
       dots: false,
-      infinite: images.length > smallMobileSlidesToShow,
+      infinite: media.length > smallMobileSlidesToShow,
       slidesToShow: smallMobileSlidesToShow,
       slidesToScroll: 1,
     };
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {images.length > 0 && (
+          {media.length > 0 && (
             <div className={this.decorateCSS("left-container")}>
               <div className={this.decorateCSS("small-image-slider")}>
                 <ComposerSlider
@@ -911,7 +939,7 @@ class ECommerce7 extends BaseECommerce {
                   className={this.decorateCSS("small-images-container")}
                   ref={this.getComponentState("slider-ref-small-image")}
                 >
-                  {images.map((item: Images, index: number) => {
+                  {media.map((item: Media, index: number) => {
                     return (
                       <div
                         className={`${this.decorateCSS("small-image")} ${this.getComponentState("selectedImage") === index ? this.decorateCSS("active") : ""}`}
@@ -933,7 +961,7 @@ class ECommerce7 extends BaseECommerce {
                   className={this.decorateCSS("small-images-container-mobile")}
                   ref={this.getComponentState("slider-ref-small-image-mobile")}
                 >
-                  {images.map((item: Images, index: number) => {
+                  {media.map((item: Media, index: number) => {
                     return (
                       <div
                         className={`${this.decorateCSS("small-image")} ${this.getComponentState("selectedImage") === index ? this.decorateCSS("active") : ""}`}
@@ -983,7 +1011,7 @@ class ECommerce7 extends BaseECommerce {
                   className={this.decorateCSS("slider-container")}
                   ref={this.getComponentState("slider-ref")}
                 >
-                  {images.map((item: Images, index: number) => {
+                  {media.map((item: Media, index: number) => {
                     return (
                       <div className={this.decorateCSS("slider")} key={index}>
                         <div
@@ -1020,17 +1048,23 @@ class ECommerce7 extends BaseECommerce {
                     <Base.VerticalContent
                       className={this.decorateCSS("upper-container")}
                     >
-                      {(isTitle ||
+                      {(isSubtitle ||
+                        isTitle ||
                         isShareIcon ||
                         isSahreTitle ||
                         socials.length > 0) && (
                           <div className={this.decorateCSS("header")}>
+                            {isSubtitle && (
+                              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                {subtitle}
+                              </Base.SectionSubTitle>
+                            )}
                             {isTitle && (
-                              <Base.SectionTitle
+                              <Base.H3
                                 className={this.decorateCSS("title")}
                               >
                                 {this.getPropValue("title")}
-                              </Base.SectionTitle>
+                              </Base.H3>
                             )}
                             {(isShareIcon ||
                               isSahreTitle ||
@@ -1049,9 +1083,9 @@ class ECommerce7 extends BaseECommerce {
                                       />
                                     )}
                                     {isSahreTitle && (
-                                      <Base.H4 className={this.decorateCSS("title")}>
+                                      <Base.P className={this.decorateCSS("title")}>
                                         {shareSection.title}
-                                      </Base.H4>
+                                      </Base.P>
                                     )}
                                     {socials.length > 0 && (
                                       <div className={this.decorateCSS("socials")}>
@@ -1140,13 +1174,15 @@ class ECommerce7 extends BaseECommerce {
                   <div className={this.decorateCSS("size-container")}>
                     {isSizeLabel && (
                       <Base.P className={this.decorateCSS("label")}>
-                        {this.getPropValue("sizeLabel")}
+                        {sizeSettings.sizeLabel}
                       </Base.P>
                     )}
                     {sizeSections.length > 0 && (
                       <div className={this.decorateCSS("size-selects")}>
                         {sizeSections.map(
                           (item: SizeSections, index: number) => {
+                            const size = this.getPropValue("size", { parent_object: item.value });
+                            const type = this.getPropValue("type", { parent_object: item.value });
                             return (
                               <div
                                 className={`${this.decorateCSS(
@@ -1158,14 +1194,14 @@ class ECommerce7 extends BaseECommerce {
                                 onClick={() => this.toggleSize(index)}
                                 key={index}
                               >
-                                {item.size && (
+                                {size && (
                                   <Base.P className={this.decorateCSS("size")}>
-                                    {item.size}
+                                    {size}
                                   </Base.P>
                                 )}
-                                {this.castToString(item.type) && (
+                                {this.castToString(type) && (
                                   <Base.P className={this.decorateCSS("type")}>
-                                    {item.type}
+                                    {type}
                                   </Base.P>
                                 )}
                               </div>
@@ -1280,72 +1316,56 @@ class ECommerce7 extends BaseECommerce {
                 <div className={this.decorateCSS("item-detail-wrapper")}>
                   {isItemDetailTitle && (
                     <Base.P className={this.decorateCSS("item-detail-title")}>
-                      {this.getPropValue("itemDetailTitle")}
+                      {itemDetailsSectionData.itemDetailTitle}
                     </Base.P>
                   )}
                   {itemDetails.length > 0 && (
                     <div className={this.decorateCSS("item-detail-container")}>
                       <div className={this.decorateCSS("sections")}>
                         {itemDetails.map((item: ItemDetails, index: number) => {
+                          const itemTitle = this.getPropValue("title", { parent_object: item.value });
+                          const itemDescription = this.getPropValue("description", { parent_object: item.value });
                           return (
                             <>
                               {(icons?.upArrowIcon ||
                                 icons?.downArrowIcon ||
-                                this.castToString(item.title) ||
-                                (this.castToString(item.description))) && (
+                                this.castToString(itemTitle) ||
+                                this.castToString(itemDescription)) && (
                                   <div
                                     className={this.decorateCSS("section")}
                                     key={index}
                                   >
-                                    {(this.castToString(item.title) ||
+                                    {(this.castToString(itemTitle) ||
                                       icons?.upArrowIcon ||
                                       icons?.downArrowIcon) && (
                                         <div
-                                          className={this.decorateCSS(
-                                            "section-container"
-                                          )}
-                                          onClick={() =>
-                                            this.toggleDescription(index)
-                                          }
+                                          className={this.decorateCSS("section-container")}
+                                          onClick={() => this.toggleDescription(index)}
                                         >
-                                          {this.castToString(item.title) && (
-                                            <Base.P
-                                              className={this.decorateCSS(
-                                                "section-title"
-                                              )}
-                                            >
-                                              {item.title}
+                                          {this.castToString(itemTitle) && (
+                                            <Base.P className={this.decorateCSS("section-title")}>
+                                              {itemTitle}
                                             </Base.P>
                                           )}
-                                          {(icons?.upArrowIcon ||
-                                            icons?.downArrowIcon) && (
-                                              <Base.Media
-                                                value={
-                                                  this.getComponentState(
-                                                    "openIndex"
-                                                  ) === index
-                                                    ? icons.upArrowIcon
-                                                    : icons.downArrowIcon
-                                                }
-                                                className={this.decorateCSS("icon")}
-                                              />
-                                            )}
+                                          {(icons?.upArrowIcon || icons?.downArrowIcon) && (
+                                            <Base.Media
+                                              value={
+                                                this.getComponentState("openIndex") === index
+                                                  ? icons.upArrowIcon
+                                                  : icons.downArrowIcon
+                                              }
+                                              className={this.decorateCSS("icon")}
+                                            />
+                                          )}
                                         </div>
                                       )}
-                                    {this.castToString(item.description) && (
+                                    {this.castToString(itemDescription) && (
                                       <div
-                                        className={`${this.decorateCSS(
-                                          "description"
-                                        )} ${this.getComponentState(
-                                          "openIndex"
-                                        ) === index &&
-                                          this.decorateCSS("active")
+                                        className={`${this.decorateCSS("description")} ${this.getComponentState("openIndex") === index && this.decorateCSS("active")
                                           }`}
                                       >
-                                        <Base.P
-                                          className={this.decorateCSS("text")}
-                                        >
-                                          {item.description}
+                                        <Base.P className={this.decorateCSS("text")}>
+                                          {itemDescription}
                                         </Base.P>
                                       </div>
                                     )}
@@ -1399,18 +1419,18 @@ class ECommerce7 extends BaseECommerce {
               />
             </div>
           )}
-          {images[this.getComponentState("selectedImage")]?.item && (
+          {media[this.getComponentState("selectedImage")]?.item && (
             <Base.Media
-              value={images[this.getComponentState("selectedImage")].item}
+              value={media[this.getComponentState("selectedImage")].item}
               onClick={() => this.toggleZoomOverlayImage()}
               className={`${this.decorateCSS("image")} ${this.getComponentState("overlayZoomImage") &&
                 this.decorateCSS("zoom")
                 }`}
             />
           )}
-          {images.length > 0 && icons?.sliderDotIcon && (
+          {media.length > 0 && icons?.sliderDotIcon && (
             <div className={this.decorateCSS("dots")}>
-              {images.map((item, index: number) => {
+              {media.map((item, index: number) => {
                 return (
                   <div
                     className={this.decorateCSS("dot")}

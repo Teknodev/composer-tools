@@ -177,6 +177,13 @@
             }
             .upper-container{
                 align-items: start;
+                .subtitle {
+                    text-align: left;
+                    transform: translateX(0);
+                    &::before {
+                        display: none;
+                    }
+                }
                 .header{
                     display: flex;
                     width: 100%;
@@ -473,8 +480,8 @@
                                     text-align: left;
                                 }
                                 &.active{
-                                    max-height: 120px;
-                                    overflow: auto;
+                                    max-height: 1000px;
+                                    overflow: hidden;
                                 }
                             }
                             &::after{
