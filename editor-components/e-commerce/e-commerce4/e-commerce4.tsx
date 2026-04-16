@@ -2071,7 +2071,7 @@ class ECommerce4 extends BaseECommerce {
                 },
             ]
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "https://www.google.com", null, null, "Primary"));
         this.setComponentState("moreImages", 0);
 
         this.setComponentState("selectedStates",
@@ -2277,17 +2277,18 @@ class ECommerce4 extends BaseECommerce {
                             );
                         })}
                     </Base.ListGrid>
-                    {
-                        (productCards.length > this.getComponentState("imageCount")) && (this.castToString(button.text)) && (
+                    {this.castToString(button.text) && (() => {
+                        const hasMoreItems = productCards.length > this.getComponentState("imageCount");
+                        return (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <ComposerLink path={button.url}>
-                                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={this.handleButtonClick}>
+                                <ComposerLink path={hasMoreItems ? "" : button.url}>
+                                    <Base.Button className={this.decorateCSS("button")} buttonType={button.type} onClick={hasMoreItems ? this.handleButtonClick : undefined}>
                                         <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                     </Base.Button>
                                 </ComposerLink>
                             </div>
-                        )
-                    }
+                        );
+                    })()}
                 </Base.MaxContent >
             </Base.Container >
         );

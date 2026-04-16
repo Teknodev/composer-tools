@@ -3056,7 +3056,7 @@ class ECommerce2 extends BaseECommerce {
             value: true,
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "https://www.google.com", null, null, "Primary"));
 
         this.setComponentState("selectedIndex", 0);
         this.setComponentState("moreImages", 0);
@@ -3204,8 +3204,7 @@ class ECommerce2 extends BaseECommerce {
             return acc;
         }, []);
 
-        const selectedImages =
-            selectedIndex === -1 ? allImages : imageGallery[selectedIndex].images;
+        const totalImages = selectedIndex === -1 ? allImages.length : (imageGallery[selectedIndex]?.images?.length || 0);
 
         const filteredImages = selectedIndex === -1
             ? allImages.slice(0, currentImageCount)
@@ -3344,19 +3343,21 @@ class ECommerce2 extends BaseECommerce {
                             );
                         })}
                     </Base.ListGrid>
-                    {currentImageCount < selectedImages.length &&
-                        this.castToString(button.text) && (
+                    {this.castToString(button.text) && (() => {
+                        const hasMoreItems = currentImageCount < totalImages;
+                        return (
                             <div className={this.decorateCSS("button-wrapper")}>
-                                <ComposerLink path={button.url}>
+                                <ComposerLink path={hasMoreItems ? "" : button.url}>
                                     <Base.Button
                                         buttonType={button.type}
                                         className={this.decorateCSS("button")}
-                                        onClick={this.handleButtonClick}>
+                                        onClick={hasMoreItems ? this.handleButtonClick : undefined}>
                                         <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                     </Base.Button>
                                 </ComposerLink>
                             </div>
-                        )}
+                        );
+                    })()}
                     {activePopup &&
                         activePopup.popupImages &&
                         activePopup.popupImages.length > 0 && (
