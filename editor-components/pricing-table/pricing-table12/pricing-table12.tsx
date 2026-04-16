@@ -46,8 +46,8 @@ class PricingTable12 extends BasePricingTable {
 
     this.addProp({
       type: "array",
-      key: "cardButtons",
-      displayer: "Card Buttons",
+      key: "buttons",
+      displayer: "Buttons",
       value: [
         INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
       ],
