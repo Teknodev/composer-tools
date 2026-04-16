@@ -140,7 +140,7 @@ class ECommerce1 extends BaseECommerce {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lorem",
+      value: "",
     });
 
     this.addProp({
