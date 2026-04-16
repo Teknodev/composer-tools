@@ -140,6 +140,7 @@
                         flex-wrap: wrap;
                         width: 100%;
                         justify-content: flex-start;
+                        gap: var(--composer-gap-sm);
 
                         .button {
                             content: "";
