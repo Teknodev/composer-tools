@@ -88,29 +88,18 @@ class About6 extends BaseAbout {
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     {showContentContainer && (
                         <Base.VerticalContent className={this.decorateCSS("content")}>
-                            {showTopContainer && (
-                                <Base.VerticalContent
-                                    className={this.decorateCSS(
-                                        "top-container"
-                                    )}>
-                                    {subTitleStr && (
-                                        <Base.SectionSubTitle
-                                            className={this.decorateCSS("subtitle")}>
-                                            {this.getPropValue("subtitle")}
-                                        </Base.SectionSubTitle>
-                                    )}
-                                    {titleStr && (
-                                        <Base.SectionTitle
-                                            className={`${this.decorateCSS("title")} 
-                                            `}>
-                                            {this.getPropValue("title")}
-                                        </Base.SectionTitle>
-                                    )}
-                                </Base.VerticalContent>
+                            {subTitleStr && (
+                                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                                    {this.getPropValue("subtitle")}
+                                </Base.SectionSubTitle>
+                            )}
+                            {titleStr && (
+                                <Base.SectionTitle className={this.decorateCSS("title")}>
+                                    {this.getPropValue("title")}
+                                </Base.SectionTitle>
                             )}
                             {showTextContainer && (
-                                <div
-                                    className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
+                                <div className={`${this.decorateCSS("text-container")} ${singleText && this.decorateCSS("single-text")}`}>
                                     {leftTextStr && (
                                         <Base.SectionDescription className={this.decorateCSS("left-text")}>
                                             {this.getPropValue("leftText")}
@@ -138,24 +127,18 @@ class About6 extends BaseAbout {
                                     })}
                                 </div>
                             )}
-                            {showBottomContainer && (
-                                <Base.VerticalContent className={this.decorateCSS(
-                                    "bottom-container"
-                                )}>
-                                    {signature && (
-                                        <div className={this.decorateCSS("signature")}>
-                                            <Base.Media
-                                                value={this.getPropValue("signature")}
-                                                className={this.decorateCSS("signature-image")}
-                                            />
-                                        </div>
-                                    )}
-                                    {nameStr && (
-                                        <Base.P className={this.decorateCSS("name")}>
-                                            {this.getPropValue("name")}
-                                        </Base.P>
-                                    )}
-                                </Base.VerticalContent>
+                            {signature && (
+                                <div className={this.decorateCSS("signature")}>
+                                    <Base.Media
+                                        value={this.getPropValue("signature")}
+                                        className={this.decorateCSS("signature-image")}
+                                    />
+                                </div>
+                            )}
+                            {nameStr && (
+                                <Base.P className={this.decorateCSS("name")}>
+                                    {this.getPropValue("name")}
+                                </Base.P>
                             )}
                         </Base.VerticalContent>
                     )}

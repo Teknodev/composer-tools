@@ -10,24 +10,16 @@
       justify-content: center;
       width: 100%;
 
-      .top-container {
-        align-items: center;
-        justify-content: center;
-        margin-bottom: var(--composer-gap-md);
+      .subtitle,
+      .title {
+        text-align: center;
+      }
 
+      .subtitle {
+        transform: translateX(0);
 
-        .subtitle,
-        .title {
-          text-align: center;
-        }
-
-        .subtitle {
-          text-align: center;
-          transform: translateX(0);
-
-          &::before {
-            display: none;
-          }
+        &::before {
+          display: none;
         }
       }
 
@@ -35,6 +27,7 @@
         color: var(--composer-font-color-primary);
         display: flex;
         gap: var(--composer-gap-md);
+        margin-bottom: 0;
 
         .left-text,
         .right-text {
@@ -44,33 +37,8 @@
       }
 
       .text-container.single-text {
-
         .left-text,
         .right-text {
-          text-align: center;
-        }
-      }
-
-      .bottom-container {
-        color: var(--composer-font-color-primary);
-        text-align: center;
-        align-items: center;
-
-        .signature {
-          .signature-image {
-            width: calc(var(--composer-gap-xl) * 3);
-            height: calc(var(--composer-gap-xl) * 2);
-            object-fit: contain;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 8rem;
-            color: var(--composer-font-color-primary);
-          }
-        }
-
-        .name {
           text-align: center;
         }
       }
@@ -86,6 +54,25 @@
             content: "";
           }
         }
+      }
+
+      .signature {
+        .signature-image {
+          width: calc(var(--composer-gap-xl) * 3);
+          height: calc(var(--composer-gap-xl) * 2);
+          object-fit: contain;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 8rem;
+          color: var(--composer-font-color-primary);
+        }
+      }
+
+      .name {
+        text-align: center;
+        color: var(--composer-font-color-primary);
       }
     }
   }

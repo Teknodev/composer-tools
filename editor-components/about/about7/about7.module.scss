@@ -31,12 +31,12 @@
         z-index: 1;
         display: flex;
         flex-direction: column;
+        gap: var(--composer-gap-lg);
 
         .top-content {
             display: flex;
             flex-direction: column;
             width: 100%;
-            margin-bottom: var(--composer-gap-xl);
             align-items: center;
             text-align: center;
 
@@ -271,11 +271,7 @@
 @container (max-width: #{$composer-phone-width}) {
     .container {
         .max-content {
-            gap: var(--composer-gap-xl);
-
-            .top-content {
-                margin-bottom: 0;
-            }
+            gap: var(--composer-gap-md);
 
             .items-wrapper {
                 flex-direction: column-reverse;
