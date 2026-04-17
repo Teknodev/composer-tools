@@ -69,8 +69,8 @@
 
             .buttons-container,
             .icons {
-              align-self: flex-start;
-              justify-content: flex-start;
+              align-self: center;
+              justify-content: center;
             }
           }
         }
@@ -224,6 +224,7 @@
 
         .right.center {
           .vertical-content {
+
             .buttons-container,
             .icons {
               justify-content: center;
