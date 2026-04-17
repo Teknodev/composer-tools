@@ -83,61 +83,44 @@ class About12 extends BaseAbout {
     const image = mediaGroup?.media;
     const overlay = mediaGroup?.overlay;
 
-    const hasImage = !!image;
+    const hasImage = !!image && !!(image.url || (image as any).name);
     const hasSubtitle = this.castToString(subtitle);
     const hasTitle = this.castToString(title);
     const hasDescription = this.castToString(description);
 
     const hasAnyButton = buttons.some(
-      (b: INPUTS.CastedButton) => this.castToString(b?.text) || (b?.icon as { name?: string })?.name || (b?.icon as { url?: string })?.url
+      (b: INPUTS.CastedButton) =>
+        this.castToString(b?.text) ||
+        (b?.icon as { name?: string })?.name ||
+        (b?.icon as { url?: string })?.url
     );
-    const hasRightContainer = !!(
-      hasTitle ||
-      hasSubtitle ||
-      hasDescription ||
-      hasAnyButton
-    );
+
+    const hasTextContent = !!(hasTitle || hasSubtitle || hasDescription || hasAnyButton);
     const alignmentValue = Base.getContentAlignment();
 
     return (
-      <Base.Container
-        className={`${this.decorateCSS("container")} ${hasImage && !hasRightContainer ? this.decorateCSS("image-only") : ""
-          }`}
-        isFull={true}
-      >
-        <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div
-            className={`${this.decorateCSS("intro-wrapper")} ${!hasImage && this.decorateCSS("no-image")
-              }`}
-          >
-            {hasImage && (
-              <div
-                className={`${this.decorateCSS("image-container")} ${!hasRightContainer && this.decorateCSS("image-container-alone")
-                  }`}
-              >
-                <Base.Media
-                  value={image}
-                  className={this.decorateCSS("media-image")}
-                />
-                {overlay && (
-                  <div className={this.decorateCSS("thumbnail-overlay")} />
-                )}
-              </div>
-            )}
+      <Base.Container className={this.decorateCSS("container")}>
+        <div className={`${this.decorateCSS("content-wrapper")} ${hasTextContent ? this.decorateCSS("has-text") : ""}`}>
+          {hasImage && (
+            <div className={`${this.decorateCSS("image-container")} ${!hasTextContent ? this.decorateCSS("image-alone") : ""}`}>
+              <Base.Media
+                value={image}
+                className={this.decorateCSS("media-image")}
+              />
+              {overlay && (
+                <div className={this.decorateCSS("thumbnail-overlay")} />
+              )}
+            </div>
+          )}
 
-            {hasRightContainer && (
+          {hasTextContent && (
+            <Base.MaxContent className={this.decorateCSS("max-content")}>
               <div
-                className={`${this.decorateCSS("text-content")} ${!hasImage ? this.decorateCSS("text-content-alone") : ""
-                  } ${alignmentValue === "center" && this.decorateCSS("center")} ${!hasImage && alignmentValue === "center" && this.decorateCSS("no-image-center")
-                  }`}
+                className={`${this.decorateCSS("text-content")} ${!hasImage ? this.decorateCSS("text-alone") : ""} ${alignmentValue === "center" ? this.decorateCSS("center") : ""}`}
               >
-                <Base.VerticalContent
-                  className={this.decorateCSS("vertical-content")}
-                >
+                <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                   {hasSubtitle && (
-                    <Base.SectionSubTitle
-                      className={this.decorateCSS("subtitle")}
-                    >
+                    <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                       {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
@@ -146,63 +129,50 @@ class About12 extends BaseAbout {
                       {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
-
                   {hasDescription && (
-                    <Base.SectionDescription
-                      className={this.decorateCSS("description")}
-                    >
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
                       {this.getPropValue("description")}
                     </Base.SectionDescription>
                   )}
-
                   {hasAnyButton && (
                     <div className={this.decorateCSS("action-buttons")}>
-                      {buttons.map(
-                        (item: INPUTS.CastedButton, index: number) => {
-                          const btnTextExist = this.castToString(item.text);
-                          const buttonIcon = item.icon as unknown as TypeMediaInputValue;
-                          const buttonIconExist =
-                            (buttonIcon as { name?: string })?.name || (buttonIcon as { url?: string })?.url;
-                          const buttonText = item.text;
+                      {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                        const btnTextExist = this.castToString(item.text);
+                        const buttonIcon = item.icon as unknown as TypeMediaInputValue;
+                        const buttonIconExist =
+                          (buttonIcon as { name?: string })?.name ||
+                          (buttonIcon as { url?: string })?.url;
 
-                          if (!btnTextExist && !buttonIconExist) {
-                            return null;
-                          }
-                          const buttonUrl = item.url || "#";
-                          return (
-                            <ComposerLink
-                              path={buttonUrl}
-                              key={`about12-btn-${index}`}
+                        if (!btnTextExist && !buttonIconExist) return null;
+
+                        return (
+                          <ComposerLink path={item.url || "#"} key={`about12-btn-${index}`}>
+                            <Base.Button
+                              buttonType={item.type}
+                              className={this.decorateCSS("button")}
                             >
-                              <Base.Button
-                                buttonType={item.type}
-                                className={this.decorateCSS("button")}
-                              >
-                                {buttonIconExist && (
-                                  <Base.Media
-                                    value={buttonIcon}
-                                    className={this.decorateCSS("button-icon")}
-                                  />
-                                )}
-                                {btnTextExist && (
-                                  <Base.P
-                                    className={this.decorateCSS("button-text")}
-                                  >
-                                    {buttonText}
-                                  </Base.P>
-                                )}
-                              </Base.Button>
-                            </ComposerLink>
-                          );
-                        }
-                      )}
+                              {buttonIconExist && (
+                                <Base.Media
+                                  value={buttonIcon}
+                                  className={this.decorateCSS("button-icon")}
+                                />
+                              )}
+                              {btnTextExist && (
+                                <Base.P className={this.decorateCSS("button-text")}>
+                                  {item.text}
+                                </Base.P>
+                              )}
+                            </Base.Button>
+                          </ComposerLink>
+                        );
+                      })}
                     </div>
                   )}
                 </Base.VerticalContent>
               </div>
-            )}
-          </div>
-        </Base.MaxContent>
+            </Base.MaxContent>
+          )}
+        </div>
       </Base.Container>
     );
   }
