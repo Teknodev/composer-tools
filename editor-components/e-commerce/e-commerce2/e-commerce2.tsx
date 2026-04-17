@@ -3056,7 +3056,7 @@ class ECommerce2 extends BaseECommerce {
             value: true,
         });
 
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "https://www.google.com", null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
 
         this.setComponentState("selectedIndex", 0);
         this.setComponentState("moreImages", 0);
@@ -3280,7 +3280,7 @@ class ECommerce2 extends BaseECommerce {
 
                             return (
                                 shouldRenderCard && (
-                                    <div key={imgIndex} className={this.decorateCSS("card-container")}>
+                                    <Base.VerticalContent key={imgIndex} className={this.decorateCSS("card-container")}>
                                         <ComposerLink path={image.navigateTo}>
                                             <div className={this.decorateCSS("image-container")}>
                                                 <div className={`${this.decorateCSS("image-bottom")} animate__animated animate__fadeInUp`}>
@@ -3320,11 +3320,11 @@ class ECommerce2 extends BaseECommerce {
                                                 )}
                                             </div>
                                         </ComposerLink>
-                                        <div className={this.decorateCSS("text-container")}>
+                                        <Base.VerticalContent className={this.decorateCSS("text-container")}>
                                             {this.castToString(image.title) && (
-                                                <Base.H6 className={this.decorateCSS("title")}>
+                                                <Base.P className={this.decorateCSS("title")}>
                                                     {image.title}
-                                                </Base.H6>
+                                                </Base.P>
                                             )}
                                             {image.price?.value && (
                                                 <Base.P className={this.decorateCSS("price")}>
@@ -3337,8 +3337,8 @@ class ECommerce2 extends BaseECommerce {
                                                     {image.subTitle}
                                                 </Base.P>
                                             )}
-                                        </div>
-                                    </div>
+                                        </Base.VerticalContent>
+                                    </Base.VerticalContent>
                                 )
                             );
                         })}
