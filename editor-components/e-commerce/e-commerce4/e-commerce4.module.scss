@@ -271,7 +271,9 @@ as *;
         .section-color-container {
           display: flex;
           flex: 1;
+          flex-wrap: wrap;
           gap: var(--composer-gap-sm);
+          padding: var(--composer-gap-xs);
 
           .section-color {
             width: 1.5rem;
@@ -285,8 +287,8 @@ as *;
             cursor: pointer;
 
             &.active-section-color {
-              box-shadow: 0 0 0 2px var(--color-white),
-                0 0 0 3px var(--composer-font-color-primary);
+              outline: 2px solid var(--composer-font-color-primary);
+              outline-offset: 3px;
             }
           }
         }
