@@ -17,7 +17,7 @@
                 grid-template-columns: 1fr;
 
                 .media-container {
-                    min-height: 600px;
+                    min-height: 80vh;
                 }
             }
 
@@ -105,9 +105,9 @@
             }
 
             .stat-item {
-                gap: var(--composer-gap-xs);
+                // gap: var(--composer-gap-xs);
                 display: flex;
-                flex-direction: column;
+                // flex-direction: column;
                 color: var(--composer-font-color-primary);
                 align-self: start;
                 align-self: start;
