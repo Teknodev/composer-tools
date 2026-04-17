@@ -51,6 +51,7 @@ class Stats33 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+               
             ]
         })
 
@@ -86,6 +87,7 @@ class Stats33 extends BaseStats {
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "About Us", "", "FaArrowRight", null, "Primary"),
+                                
 
                             ],
                         },
@@ -337,9 +339,9 @@ class Stats33 extends BaseStats {
                                             </Base.H3>
                                         )}
                                         {statTitleExist && (
-                                            <Base.H1 className={this.decorateCSS("stats-title")}>
+                                            <Base.H3 className={this.decorateCSS("stats-title")}>
                                                 {stat.titleElement}
-                                            </Base.H1>
+                                            </Base.H3>
                                         )}
                                         {statDescriptionExist && (
                                             <Base.P className={this.decorateCSS("stats-description")}>
