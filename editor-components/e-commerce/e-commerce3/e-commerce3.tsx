@@ -5,6 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 
 type Tab = {
   tabTitle: React.JSX.Element,
+  subtitle: React.JSX.Element,
   title: React.JSX.Element,
   description: React.JSX.Element,
   details: Details[],
@@ -18,11 +19,11 @@ type Details = {
 
 type Properties = {
   title: React.JSX.Element,
-  items: { title: React.JSX.Element }[], 
+  items: { title: React.JSX.Element }[],
 }
 
 class ECommerce3 extends BaseECommerce {
-  constructor(props?: any) { 
+  constructor(props?: any) {
     super(props, styles);
     this.addProp({
       type: "array",
@@ -39,6 +40,12 @@ class ECommerce3 extends BaseECommerce {
               key: "tabTitle",
               displayer: "Tab Title",
               value: "DESCRIPTION",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -90,6 +97,12 @@ class ECommerce3 extends BaseECommerce {
               key: "tabTitle",
               displayer: "Tab Title",
               value: "ADDITIONAL INFORMATION",
+            },
+            {
+              type: "string",
+              key: "subtitle",
+              displayer: "Subtitle",
+              value: "",
             },
             {
               type: "string",
@@ -257,7 +270,7 @@ class ECommerce3 extends BaseECommerce {
   static getName(): string {
     return "ECommerce 3";
   }
-  
+
   render() {
     const handleChangeTab = (index: number) => {
       this.setComponentState("activeTab", index);
@@ -278,7 +291,7 @@ class ECommerce3 extends BaseECommerce {
                         <Base.H5 className={this.decorateCSS("tab-title")}>{item.tabTitle}</Base.H5>
                       </div>
                     )}
-                  </>                  
+                  </>
                 )
               })}
             </div>
@@ -292,6 +305,7 @@ class ECommerce3 extends BaseECommerce {
                   index === activeTab && (
                     <div className={this.decorateCSS("tab-content")}>
                       <Base.VerticalContent className={this.decorateCSS("vertical")}>
+                        {this.castToString(item.subtitle) && <Base.H3 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H3>}
                         {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
                         {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
                         <div className={this.decorateCSS("content")}>
