@@ -41,6 +41,8 @@
                     font-size: 4rem;
                     width: 1em;
                     height: 1em;
+                    aspect-ratio: 1 / 1;
+                    flex-shrink: 0;
                     object-fit: contain;
                     opacity: 0;
                     transition: opacity 0.3s ease-in-out;
@@ -53,6 +55,13 @@
                     color: var(--composer-font-color-secondary);
                     align-items: center;
                     justify-content: center;
+
+                    svg, img {
+                        font-size: 1.5rem;
+                        width: 1em;
+                        height: 1em;
+                        flex-shrink: 0;
+                    }
 
                 }
 
@@ -267,12 +276,15 @@
                             .box2-text {
                                 text-wrap: wrap;
                                 text-align: left;
+                                font-size: 1.5rem;
                             }
 
                             .box2-icon {
                                 font-size: 4rem;
                                 width: 1em;
                                 height: 1em;
+                                aspect-ratio: 1 / 1;
+                                flex-shrink: 0;
                                 object-fit: contain;
                                 display: flex;
                                 align-items: center;

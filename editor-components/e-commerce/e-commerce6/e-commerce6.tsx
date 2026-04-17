@@ -348,9 +348,9 @@ class ECommerce6 extends BaseECommerce {
                       data-animation={this.getPropValue("hoverAnimation").join(" ")}
                     >
                       {isTabTextVisible && (
-                        <Base.H4 className={this.decorateCSS("tabText")}>
+                        <Base.H5 className={this.decorateCSS("tabText")}>
                           {tab.tabText}
-                        </Base.H4>
+                        </Base.H5>
                       )}
                       {isTabIconVisible && (
                         <Base.Media
