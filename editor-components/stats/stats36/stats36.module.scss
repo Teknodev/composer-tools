@@ -24,6 +24,7 @@
                 }
 
                 .media {
+                    border-radius: var(--composer-gap-sm);
                     position: absolute;
                     inset: 0;
                     width: 100%;
@@ -144,6 +145,10 @@
 
                         .button {
                             content: "";
+
+                            .button-text {
+                                content: ""
+                            }
                         }
                     }
                 }
@@ -152,13 +157,9 @@
     }
 
     .section-title,
-    .section-description {
-        width: 100% !important;
-        text-align: left !important;
-    }
-
+    .section-description,
     .section-subtitle {
-        width: fit-content !important;
+        width: 100% !important;
         text-align: left !important;
     }
 }
