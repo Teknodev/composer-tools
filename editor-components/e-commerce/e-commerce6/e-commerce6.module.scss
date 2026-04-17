@@ -38,7 +38,7 @@
                     display: none;
                     position: absolute;
                     right: 0;
-                    font-size: 60px;
+                    font-size: 4rem;
                     width: 1em;
                     height: 1em;
                     object-fit: contain;
@@ -385,7 +385,7 @@
                     .icon {
                         position: absolute;
                         padding: var(--composer-gap-md);
-                        font-size: 57px;
+                        font-size: 3.5rem;
                         right: 0;
                         transform: translateX(50%);
                     }

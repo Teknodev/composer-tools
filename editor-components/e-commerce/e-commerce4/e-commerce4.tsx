@@ -16,8 +16,9 @@ interface ColorOption {
     sectionColor: string;
     cardImage: TypeMediaInputValue;
     hoverImage: TypeMediaInputValue;
-    sizeOptions: SizeOption[];
     isSoldOut: boolean;
+    overlay: boolean;
+    sizeOptions: SizeOption[];
 }
 
 interface RightTextItems {
@@ -294,6 +295,12 @@ class ECommerce4 extends BaseECommerce {
                                             value: false,
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "sizeOptions",
                                             displayer: "Size Options",
@@ -416,6 +423,12 @@ class ECommerce4 extends BaseECommerce {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1107,6 +1120,12 @@ class ECommerce4 extends BaseECommerce {
                                             value: false,
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "sizeOptions",
                                             displayer: "Size Options",
@@ -1204,6 +1223,12 @@ class ECommerce4 extends BaseECommerce {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1501,6 +1526,12 @@ class ECommerce4 extends BaseECommerce {
                                             value: false,
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "sizeOptions",
                                             displayer: "Size Options",
@@ -1598,6 +1629,12 @@ class ECommerce4 extends BaseECommerce {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -1895,6 +1932,12 @@ class ECommerce4 extends BaseECommerce {
                                             value: false,
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "sizeOptions",
                                             displayer: "Size Options",
@@ -1998,6 +2041,12 @@ class ECommerce4 extends BaseECommerce {
                                             type: "boolean",
                                             key: "isSoldOut",
                                             displayer: "Show Sold Out",
+                                            value: false,
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
                                             value: false,
                                         },
                                         {
@@ -2191,6 +2240,7 @@ class ECommerce4 extends BaseECommerce {
                                                     />
                                                 )}
                                             </div>
+                                            {selectedColorOption?.overlay && <div className={this.decorateCSS("overlay")} />}
                                             {selectedColorOption?.isSoldOut && (
                                                 <Base.P className={this.decorateCSS("sold-out")}>
                                                     {selectedSizeOption.soldOutText}

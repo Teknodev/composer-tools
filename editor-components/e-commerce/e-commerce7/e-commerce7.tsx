@@ -9,6 +9,7 @@ import { CurrencyCode, getCurrencyInfo } from "../../../utils/currency";
 
 type Media = {
   item: TypeMediaInputValue;
+  overlay: boolean;
 };
 
 type SizeSettings = {
@@ -97,6 +98,12 @@ class ECommerce7 extends BaseECommerce {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed385afb049c002cc52e87?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ],
         },
         {
@@ -115,6 +122,12 @@ class ECommerce7 extends BaseECommerce {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed3888fb049c002cc52e92?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -135,6 +148,12 @@ class ECommerce7 extends BaseECommerce {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67ed38c0fb049c002cc52e9e?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ],
         },
         {
@@ -153,6 +172,12 @@ class ECommerce7 extends BaseECommerce {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67f628bffb049c002cc648d6?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ],
         },
@@ -1023,6 +1048,7 @@ class ECommerce7 extends BaseECommerce {
                               className={this.decorateCSS("big-image")}
                             />
                           </div>
+                          {item.overlay && <div className={this.decorateCSS("overlay")} />}
                         </div>
                       </div>
                     );

@@ -18,6 +18,7 @@ type ITabs = {
     box2_text: React.JSX.Element;
     box2_icon: TypeMediaInputValue;
     link: string;
+    overlay: boolean;
   };
   icons_container: Array<{ icon: TypeMediaInputValue; text: React.JSX.Element }>;
 };
@@ -132,6 +133,12 @@ class ECommerce6 extends BaseECommerce {
                 key: "link",
                 displayer: "Button Link",
                 value: "",
+              },
+              {
+                type: "boolean",
+                key: "overlay",
+                displayer: "Overlay",
+                value: false,
               },
             ],
           },
@@ -304,13 +311,6 @@ class ECommerce6 extends BaseECommerce {
       }
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
     this.setActiveTab(0);
   }
 
@@ -326,8 +326,6 @@ class ECommerce6 extends BaseECommerce {
   }
 
   render() {
-    const overlay = this.getPropValue("overlay");
-
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -405,7 +403,7 @@ class ECommerce6 extends BaseECommerce {
                           value={tab.image_container.media}
                           data-animation={this.getPropValue("hoverAnimation").join(" ")}
                         />
-                        {overlay && (
+                        {tab.image_container.overlay && (
                           <div className={this.decorateCSS("overlay")}></div>
                         )}
                         {isBoxContainerVisible && (

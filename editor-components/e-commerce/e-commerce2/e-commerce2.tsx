@@ -15,9 +15,11 @@ interface PopupImage {
     popupImg: TypeMediaInputValue;
 }
 
-interface ArrowItem {
+interface PopupSettings {
     nextArrow: TypeMediaInputValue;
     prevArrow: TypeMediaInputValue;
+    closeIcon: TypeMediaInputValue;
+    mediaPageNumber: boolean;
 }
 
 interface Image {
@@ -30,6 +32,7 @@ interface Image {
     bottomIcon: TypeMediaInputValue;
     subTitle: React.JSX.Element;
     navigateTo: string;
+    overlay: boolean;
     popupImages: PopupImage[];
 }
 
@@ -165,6 +168,12 @@ class ECommerce2 extends BaseECommerce {
                                             key: "navigateTo",
                                             displayer: "Navigate To",
                                             value: "",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "array",
@@ -342,6 +351,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -515,6 +530,12 @@ class ECommerce2 extends BaseECommerce {
                                             key: "navigateTo",
                                             displayer: "Navigate To",
                                             value: "",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "array",
@@ -692,6 +713,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -865,6 +892,12 @@ class ECommerce2 extends BaseECommerce {
                                             key: "navigateTo",
                                             displayer: "Navigate To",
                                             value: "",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "array",
@@ -1042,6 +1075,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1217,6 +1256,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1390,6 +1435,12 @@ class ECommerce2 extends BaseECommerce {
                                             key: "navigateTo",
                                             displayer: "Navigate To",
                                             value: "",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "array",
@@ -1587,6 +1638,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1782,6 +1839,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -1955,6 +2018,12 @@ class ECommerce2 extends BaseECommerce {
                                             key: "navigateTo",
                                             displayer: "Navigate To",
                                             value: "",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "array",
@@ -2152,6 +2221,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -2325,6 +2400,12 @@ class ECommerce2 extends BaseECommerce {
                                             key: "navigateTo",
                                             displayer: "Navigate To",
                                             value: "",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "array",
@@ -2522,6 +2603,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -2695,6 +2782,12 @@ class ECommerce2 extends BaseECommerce {
                                             key: "navigateTo",
                                             displayer: "Navigate To",
                                             value: "",
+                                        },
+                                        {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
                                         },
                                         {
                                             type: "array",
@@ -2872,6 +2965,12 @@ class ECommerce2 extends BaseECommerce {
                                             value: "",
                                         },
                                         {
+                                            type: "boolean",
+                                            key: "overlay",
+                                            displayer: "Overlay",
+                                            value: false,
+                                        },
+                                        {
                                             type: "array",
                                             key: "popupImages",
                                             displayer: "Popup Medias",
@@ -3008,8 +3107,8 @@ class ECommerce2 extends BaseECommerce {
         });
         this.addProp({
             type: "object",
-            key: "arrows",
-            displayer: "Arrows",
+            key: "popupSettings",
+            displayer: "Popup Settings",
             value: [
                 {
                     type: "media",
@@ -3035,25 +3134,25 @@ class ECommerce2 extends BaseECommerce {
                         name: "GrLinkNext",
                     },
                 },
+                {
+                    type: "media",
+                    key: "closeIcon",
+                    displayer: "Close Icon",
+                    additionalParams: {
+                        availableTypes: ["icon", "image"],
+                    },
+                    value: {
+                        type: "icon",
+                        name: "IoIosClose",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "mediaPageNumber",
+                    displayer: "Media Page Number",
+                    value: true,
+                },
             ],
-        });
-        this.addProp({
-            type: "media",
-            key: "closeIcon",
-            displayer: "Close Icon",
-            additionalParams: {
-                availableTypes: ["icon", "image"],
-            },
-            value: {
-                type: "icon",
-                name: "IoIosClose",
-            },
-        });
-        this.addProp({
-            type: "boolean",
-            key: "mediaPageNumber",
-            displayer: "Media Page Number",
-            value: true,
         });
 
         this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
@@ -3178,10 +3277,10 @@ class ECommerce2 extends BaseECommerce {
         const showAll = showAllSettings.showAll;
         const moreImages = this.getComponentState("moreImages");
         const selectedIndex = this.getComponentState("selectedIndex");
-        const arrows = this.castToObject<ArrowItem>("arrows");
+        const popupSettings = this.castToObject<PopupSettings>("popupSettings");
         const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
         const headerButton: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("headerButton");
-        const imgCounter = this.getPropValue("mediaPageNumber");
+        const imgCounter = popupSettings.mediaPageNumber;
         const subtitle = this.getPropValue("subtitle");
         const subtitleStr = this.castToString(subtitle);
         const title = this.getPropValue("title");
@@ -3318,6 +3417,7 @@ class ECommerce2 extends BaseECommerce {
                                                         className={this.decorateCSS("image")}
                                                     />
                                                 )}
+                                                {image.overlay && <div className={this.decorateCSS("overlay")}></div>}
                                             </div>
                                         </ComposerLink>
                                         <Base.VerticalContent className={this.decorateCSS("text-container")}>
@@ -3377,34 +3477,34 @@ class ECommerce2 extends BaseECommerce {
                                         />
                                         {activePopup.popupImages.length > 1 && (
                                             <>
-                                                {arrows.prevArrow && (
+                                                {popupSettings.prevArrow && (
                                                     <button
                                                         className={this.decorateCSS("prevArrow")}
                                                         onClick={this.handlePrevImage}>
                                                         <Base.Media
-                                                            value={arrows.prevArrow}
+                                                            value={popupSettings.prevArrow}
                                                             className={this.decorateCSS("arrow")}
                                                         />
                                                     </button>
                                                 )}
-                                                {arrows.nextArrow && (
+                                                {popupSettings.nextArrow && (
                                                     <button
                                                         className={this.decorateCSS("nextArrow")}
                                                         onClick={this.handleNextImage}>
                                                         <Base.Media
-                                                            value={arrows.nextArrow}
+                                                            value={popupSettings.nextArrow}
                                                             className={this.decorateCSS("arrow")}
                                                         />
                                                     </button>
                                                 )}
                                             </>
                                         )}
-                                        {this.getPropValue("closeIcon") && (
+                                        {popupSettings.closeIcon && (
                                             <button
                                                 className={this.decorateCSS("popup-close")}
                                                 onClick={this.closePopup}>
                                                 <Base.Media
-                                                    value={this.getPropValue("closeIcon")}
+                                                    value={popupSettings.closeIcon}
                                                     className={this.decorateCSS("arrow")}
                                                 />
                                             </button>

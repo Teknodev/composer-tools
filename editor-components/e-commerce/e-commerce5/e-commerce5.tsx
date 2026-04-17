@@ -12,6 +12,7 @@ interface ImageGallery {
 interface Contents {
   collection: React.JSX.Element;
   sectionImage: { type: "image"; url: string };
+  overlay: boolean;
 }
 
 class ECommerce5 extends BaseECommerce {
@@ -77,6 +78,12 @@ class ECommerce5 extends BaseECommerce {
                       },
                     },
                     {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
+                    {
                       type: "string",
                       key: "collection",
                       displayer: "Collection Name",
@@ -100,6 +107,12 @@ class ECommerce5 extends BaseECommerce {
                         type: "image",
                         url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-partywear.jpg",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "string",
@@ -127,6 +140,12 @@ class ECommerce5 extends BaseECommerce {
                       },
                     },
                     {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
+                    {
                       type: "string",
                       key: "collection",
                       displayer: "Collection Name",
@@ -150,6 +169,12 @@ class ECommerce5 extends BaseECommerce {
                         type: "image",
                         url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-tops.jpg",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "string",
@@ -177,6 +202,12 @@ class ECommerce5 extends BaseECommerce {
                       },
                     },
                     {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
+                    {
                       type: "string",
                       key: "collection",
                       displayer: "Collection Name",
@@ -200,6 +231,12 @@ class ECommerce5 extends BaseECommerce {
                         type: "image",
                         url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-sportwear.jpg",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "string",
@@ -247,6 +284,12 @@ class ECommerce5 extends BaseECommerce {
                       },
                     },
                     {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
+                    {
                       type: "string",
                       key: "collection",
                       displayer: "Collection Name",
@@ -270,6 +313,12 @@ class ECommerce5 extends BaseECommerce {
                         type: "image",
                         url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-dress.jpg",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "string",
@@ -297,6 +346,12 @@ class ECommerce5 extends BaseECommerce {
                       },
                     },
                     {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
+                    {
                       type: "string",
                       key: "collection",
                       displayer: "Collection Name",
@@ -320,6 +375,12 @@ class ECommerce5 extends BaseECommerce {
                         type: "image",
                         url: "https://vineta-html.vercel.app/images/cls-categories/fashion/circle-jewelry.jpg",
                       },
+                    },
+                    {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
                     },
                     {
                       type: "string",
@@ -347,6 +408,12 @@ class ECommerce5 extends BaseECommerce {
                       },
                     },
                     {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
+                    {
                       type: "string",
                       key: "collection",
                       displayer: "Collection Name",
@@ -372,6 +439,12 @@ class ECommerce5 extends BaseECommerce {
                       },
                     },
                     {
+                      type: "boolean",
+                      key: "overlay",
+                      displayer: "Overlay",
+                      value: false,
+                    },
+                    {
                       type: "string",
                       key: "collection",
                       displayer: "Collection Name",
@@ -384,13 +457,6 @@ class ECommerce5 extends BaseECommerce {
           ],
         },
       ],
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
     });
 
     this.addProp({
@@ -468,8 +534,6 @@ class ECommerce5 extends BaseECommerce {
     const titleExist = this.castToString(title);
     const description = this.getPropValue("description");
     const descriptionStr = this.castToString(description);
-    const overlay = this.getPropValue("overlay");
-
     return (
       <Base.Container isFull className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -548,7 +612,7 @@ class ECommerce5 extends BaseECommerce {
                             value={item.sectionImage}
                             className={this.decorateCSS("image")}
                           />
-                          {overlay && (
+                          {item.overlay && (
                             <div className={this.decorateCSS("overlay")}></div>
                           )}
                         </div>
