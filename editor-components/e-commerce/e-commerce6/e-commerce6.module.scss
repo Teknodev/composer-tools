@@ -189,7 +189,6 @@
                         .box1,
                         .box2 {
                             display: flex;
-                            justify-content: center;
                             align-items: center;
                             padding: var(--composer-gap-md);
                         }
@@ -214,6 +213,7 @@
                             color: var(--composer-html-background);
                             height: 100%;
                             gap: var(--composer-gap-sm);
+                            justify-content: flex-start;
 
                             &[data-animation~="animate1"] {
                                 transition: all 0.3s ease;
@@ -266,6 +266,7 @@
 
                             .box2-text {
                                 text-wrap: wrap;
+                                text-align: left;
                             }
 
                             .box2-icon {
