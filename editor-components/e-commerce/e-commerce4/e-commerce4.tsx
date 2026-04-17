@@ -2071,7 +2071,7 @@ class ECommerce4 extends BaseECommerce {
                 },
             ]
         });
-        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "https://www.google.com", null, null, "Primary"));
+        this.addProp(INPUTS.BUTTON("button", "Button", "Load More", "", null, null, "Primary"));
         this.setComponentState("moreImages", 0);
 
         this.setComponentState("selectedStates",
@@ -2170,7 +2170,7 @@ class ECommerce4 extends BaseECommerce {
                             ) || selectedColorOption?.sizeOptions?.[0];
 
                             return (
-                                <div key={cardIndex} className={this.decorateCSS("card-container")}>
+                                <Base.VerticalContent key={cardIndex} className={this.decorateCSS("card-container")}>
                                     <ComposerLink path={productCard.navigateTo} isFullWidth={true}>
                                         <div className={this.decorateCSS("image-container")}>
                                             <div
@@ -2242,7 +2242,7 @@ class ECommerce4 extends BaseECommerce {
                                             </div>
                                         </div>
                                     </ComposerLink>
-                                    <div className={`${this.decorateCSS("text-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("text-sold-out") : ""}`}>
+                                    <Base.VerticalContent className={`${this.decorateCSS("text-container")} ${selectedColorOption?.isSoldOut ? this.decorateCSS("text-sold-out") : ""}`}>
                                         {this.castToString(productCard.cardTitle) && (
                                             <Base.H6 className={this.decorateCSS("title")}>{productCard.cardTitle}</Base.H6>
                                         )}
@@ -2256,7 +2256,7 @@ class ECommerce4 extends BaseECommerce {
                                                 </Base.P>
                                             </div>
                                         )}
-                                    </div>
+                                    </Base.VerticalContent>
                                     <div className={this.decorateCSS("section-color-container")}>
                                         {productCard.colorOptions?.map((colorOption: ColorOption, colorIndex: number) => (
                                             <button
@@ -2273,7 +2273,7 @@ class ECommerce4 extends BaseECommerce {
                                             </button>
                                         ))}
                                     </div>
-                                </div>
+                                </Base.VerticalContent>
                             );
                         })}
                     </Base.ListGrid>
