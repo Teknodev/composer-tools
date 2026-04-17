@@ -155,7 +155,8 @@
                         align-items: center;
 
                         .subtitle {
-                            margin-left: 0 !important;
+                            margin-left: auto !important;
+                            margin-right: auto !important;
                         }
                     }
 
@@ -199,7 +200,7 @@
             border-radius: 0;
         }
 
-        &[data-alignment="center"] {
+        &[data-alignment="center"].no-image {
             .content-side {
                 align-items: center;
                 text-align: center;
@@ -209,6 +210,7 @@
 
                     .subtitle {
                         margin-left: auto !important;
+                        margin-right: auto !important;
                     }
 
                     .title,

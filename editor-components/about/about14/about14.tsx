@@ -132,7 +132,7 @@ class About14 extends BaseAbout {
         const hasOverlay = mediaGroup?.overlay;
 
         const hasTextContent = hasTitle || hasSubtitle || hasDescription || hasValidButtons;
-        const hasImageContent = !!imageMedia;
+        const hasImageContent = !!(imageMedia && ((imageMedia.type === "image" && imageMedia.url) || (imageMedia.type === "icon" && imageMedia.name)));
 
         const alignment = Base.getContentAlignment();
 
