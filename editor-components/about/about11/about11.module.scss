@@ -53,6 +53,15 @@
         display: flex;
         align-items: center;
 
+        &.no-image {
+          flex: 1;
+          max-width: 100%;
+
+          .vertical-content {
+            width: 100%;
+          }
+        }
+
         &.no-image-center {
           .vertical-content {
             align-items: center;
@@ -180,6 +189,10 @@
           flex: 1;
           max-width: 50%;
         }
+
+        .right.no-image {
+          max-width: 100%;
+        }
       }
     }
   }
@@ -222,7 +235,7 @@
           }
         }
 
-        .right.center {
+        .right.no-image-center {
           .vertical-content {
 
             .buttons-container,

@@ -193,7 +193,7 @@ class About11 extends BaseAbout {
     const hasRightContent =
       hasTitle || hasSubtitle || hasDescription || hasRightIcon || hasValidButtons;
 
-    const hasImage = !!image;
+    const hasImage = !!(image && ((image.type === "image" && image.url) || (image.type === "icon" && image.name)));
     const alignmentValue = Base.getContentAlignment();
 
     return (
@@ -219,11 +219,7 @@ class About11 extends BaseAbout {
             )}
             {hasRightContent && (
               <Base.GridCell
-                className={`${this.decorateCSS("right")} ${!hasImage && alignmentValue === "center"
-                  ? this.decorateCSS("no-image-center")
-                  : ""
-                  } ${alignmentValue === "center" ? this.decorateCSS("center") : ""
-                  }`}
+                className={`${this.decorateCSS("right")} ${!hasImage ? this.decorateCSS("no-image") : ""} ${!hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""}`}
               >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
