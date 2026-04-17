@@ -9,6 +9,7 @@ import { getCurrencyInfo } from "../../../utils/currency";
 
 type Image = {
   media: TypeMediaInputValue,
+  overlay: boolean,
 }
 
 type WishlistItem = {
@@ -74,6 +75,12 @@ class ECommerce1 extends BaseECommerce {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ]
         },
         {
@@ -92,6 +99,12 @@ class ECommerce1 extends BaseECommerce {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ]
         },
@@ -112,6 +125,12 @@ class ECommerce1 extends BaseECommerce {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ]
         },
         {
@@ -130,6 +149,12 @@ class ECommerce1 extends BaseECommerce {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ]
         },
@@ -641,6 +666,7 @@ class ECommerce1 extends BaseECommerce {
                           onClick={() => handleImageClick(index)}
                         />
                       )}
+                      {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
                     </div>
                   )
                 })}
@@ -655,6 +681,7 @@ class ECommerce1 extends BaseECommerce {
                       return (
                         <div className={this.decorateCSS("card")}>
                           <Base.Media value={item.media} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                          {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
                         </div>
                       )
                     })}
