@@ -232,7 +232,7 @@ class ECommerce7 extends BaseECommerce {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Lorem",
+      value: "",
     });
     this.addProp({
       type: "string",
@@ -1038,7 +1038,7 @@ class ECommerce7 extends BaseECommerce {
             </div>
           )}
           {isRightContainer && (
-            <div className={this.decorateCSS("right-container")}>
+            <Base.VerticalContent className={this.decorateCSS("right-container")}>
               {(isTitle ||
                 isShareIcon ||
                 isSahreTitle ||
@@ -1055,102 +1055,104 @@ class ECommerce7 extends BaseECommerce {
                         socials.length > 0) && (
                           <div className={this.decorateCSS("header")}>
                             {isSubtitle && (
-                              <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                              <Base.H4 className={this.decorateCSS("subtitle")}>
                                 {subtitle}
-                              </Base.SectionSubTitle>
+                              </Base.H4>
                             )}
-                            {isTitle && (
-                              <Base.H3
-                                className={this.decorateCSS("title")}
-                              >
-                                {this.getPropValue("title")}
-                              </Base.H3>
-                            )}
-                            {(isShareIcon ||
-                              isSahreTitle ||
-                              socials.length > 0) && (
-                                <div
-                                  className={`${this.decorateCSS(
-                                    "share-container"
-                                  )} ${!isTitle && this.decorateCSS("without-title")
-                                    }`}
+                            <div className={this.decorateCSS("title-share-row")}>
+                              {isTitle && (
+                                <Base.H3
+                                  className={this.decorateCSS("title")}
                                 >
-                                  <div className={this.decorateCSS("share-wrapper")}>
-                                    {isShareIcon && (
-                                      <Base.Media
-                                        value={shareSection.shareIcon}
-                                        className={this.decorateCSS("share-icon")}
-                                      />
-                                    )}
-                                    {isSahreTitle && (
-                                      <Base.P className={this.decorateCSS("title")}>
-                                        {shareSection.title}
-                                      </Base.P>
-                                    )}
-                                    {socials.length > 0 && (
-                                      <div className={this.decorateCSS("socials")}>
-                                        {socials.map(
-                                          (item: Socials, index: number) => {
-                                            const icon = this.getPropValue("icon", { parent_object: item.value });
-                                            const text = this.getPropValue("text", { parent_object: item.value });
-                                            const link = this.getPropValue("link", { parent_object: item.value });
-                                            return (
-                                              <>
-                                                {(icon || this.castToString(text)) && (
-                                                  <div
-                                                    className={this.decorateCSS(
-                                                      "social"
-                                                    )}
-                                                    key={index}
-                                                  >
-                                                    {icon && (
-                                                      <Base.Media
-                                                        value={icon}
-                                                        className={this.decorateCSS("social-icon")}
-                                                      />
-                                                    )}
-                                                    {this.castToString(text) && (
-                                                      <ComposerLink path={link}>
-                                                        <Base.P
-                                                          className={this.decorateCSS(
-                                                            "social-text"
-                                                          )}
-                                                        >
-                                                          {text}
-                                                        </Base.P>
-                                                      </ComposerLink>
-                                                    )}
-                                                  </div>
-                                                )}
-                                              </>
-                                            );
-                                          }
-                                        )}
-                                        {shareCopyLink.isActive && (
-                                          <div
-                                            className={this.decorateCSS("social")}
-                                            onClick={() => this.handleCopy()}
-                                          >
-                                            <Base.Media
-                                              value={shareCopyLink.icon}
-                                              className={this.decorateCSS("social-icon")}
-                                            />
-                                            <Base.P
-                                              className={this.decorateCSS(
-                                                "social-text"
-                                              )}
-                                            >
-                                              {this.getComponentState("copied")
-                                                ? shareCopyLink.copiedText
-                                                : shareCopyLink.text}
-                                            </Base.P>
-                                          </div>
-                                        )}
-                                      </div>
-                                    )}
-                                  </div>
-                                </div>
+                                  {this.getPropValue("title")}
+                                </Base.H3>
                               )}
+                              {(isShareIcon ||
+                                isSahreTitle ||
+                                socials.length > 0) && (
+                                  <div
+                                    className={`${this.decorateCSS(
+                                      "share-container"
+                                    )} ${!isTitle && this.decorateCSS("without-title")
+                                      }`}
+                                  >
+                                    <div className={this.decorateCSS("share-wrapper")}>
+                                      {isShareIcon && (
+                                        <Base.Media
+                                          value={shareSection.shareIcon}
+                                          className={this.decorateCSS("share-icon")}
+                                        />
+                                      )}
+                                      {isSahreTitle && (
+                                        <Base.P className={this.decorateCSS("title")}>
+                                          {shareSection.title}
+                                        </Base.P>
+                                      )}
+                                      {socials.length > 0 && (
+                                        <div className={this.decorateCSS("socials")}>
+                                          {socials.map(
+                                            (item: Socials, index: number) => {
+                                              const icon = this.getPropValue("icon", { parent_object: item.value });
+                                              const text = this.getPropValue("text", { parent_object: item.value });
+                                              const link = this.getPropValue("link", { parent_object: item.value });
+                                              return (
+                                                <>
+                                                  {(icon || this.castToString(text)) && (
+                                                    <div
+                                                      className={this.decorateCSS(
+                                                        "social"
+                                                      )}
+                                                      key={index}
+                                                    >
+                                                      {icon && (
+                                                        <Base.Media
+                                                          value={icon}
+                                                          className={this.decorateCSS("social-icon")}
+                                                        />
+                                                      )}
+                                                      {this.castToString(text) && (
+                                                        <ComposerLink path={link}>
+                                                          <Base.P
+                                                            className={this.decorateCSS(
+                                                              "social-text"
+                                                            )}
+                                                          >
+                                                            {text}
+                                                          </Base.P>
+                                                        </ComposerLink>
+                                                      )}
+                                                    </div>
+                                                  )}
+                                                </>
+                                              );
+                                            }
+                                          )}
+                                          {shareCopyLink.isActive && (
+                                            <div
+                                              className={this.decorateCSS("social")}
+                                              onClick={() => this.handleCopy()}
+                                            >
+                                              <Base.Media
+                                                value={shareCopyLink.icon}
+                                                className={this.decorateCSS("social-icon")}
+                                              />
+                                              <Base.P
+                                                className={this.decorateCSS(
+                                                  "social-text"
+                                                )}
+                                              >
+                                                {this.getComponentState("copied")
+                                                  ? shareCopyLink.copiedText
+                                                  : shareCopyLink.text}
+                                              </Base.P>
+                                            </div>
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                )}
+                            </div>
                           </div>
                         )}
                       {currencyValue && (
@@ -1379,7 +1381,7 @@ class ECommerce7 extends BaseECommerce {
                   )}
                 </div>
               )}
-            </div>
+            </Base.VerticalContent>
           )}
         </Base.MaxContent>
         <Base.Overlay
