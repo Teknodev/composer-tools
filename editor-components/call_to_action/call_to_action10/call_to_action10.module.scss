@@ -126,6 +126,12 @@
                         color: var(--composer-font-color-primary);
                         text-align: left;
                     }
+
+                    .card-button {
+                        .card-button-text {
+                            content: "";
+                        }
+                    }
                 }
             }
 

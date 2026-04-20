@@ -17,6 +17,7 @@ interface CardItem {
   cardSubtitle: React.JSX.Element;
   cardTitle: React.JSX.Element;
   cardDescription: React.JSX.Element;
+  button: INPUTS.CastedButton;
 }
 
 class CallToAction10Page extends BaseCallToAction {
@@ -132,6 +133,7 @@ class CallToAction10Page extends BaseCallToAction {
               displayer: "Card Description",
               value: "Fairly assigning daily tasks to your employess"
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
         {
@@ -175,6 +177,7 @@ class CallToAction10Page extends BaseCallToAction {
               displayer: "Card Description",
               value: "Team members will be up to date on the project"
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         },
         {
@@ -218,6 +221,7 @@ class CallToAction10Page extends BaseCallToAction {
               displayer: "Card Description",
               value: "More interesting writings for your customers"
             },
+            INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
           ]
         }
       ]
@@ -287,20 +291,29 @@ class CallToAction10Page extends BaseCallToAction {
                       </div>
                     )}
                     {this.castToString(item.cardSubtitle) && (
-                      <Base.H5 className={this.decorateCSS("card-subtitle")}>
+                      <Base.H6 className={this.decorateCSS("card-subtitle")}>
                         {item.cardSubtitle}
-                      </Base.H5>
+                      </Base.H6>
                     )}
                     {this.castToString(item.cardTitle) && (
-                      <Base.H3 className={this.decorateCSS("card-title")}>
+                      <Base.H5 className={this.decorateCSS("card-title")}>
                         {item.cardTitle}
-                      </Base.H3>
+                      </Base.H5>
                     )}
                     {this.castToString(item.cardDescription) && (
                       <Base.P className={this.decorateCSS("card-description")}>
                         {item.cardDescription}
                       </Base.P>
                     )}
+                    {item.button && (
+                      this.castToString(item.button.text) && (
+                        <ComposerLink path={item.button.url}>
+                          <Base.Button className={this.decorateCSS("card-button")} buttonType={item.button.type}>
+                            <Base.P className={this.decorateCSS("card-button-text")}>{item.button.text}</Base.P>
+                          </Base.Button>
+                        </ComposerLink>
+                      ))
+                    }
                   </Base.VerticalContent>
                 ))}
               </Base.ListGrid>

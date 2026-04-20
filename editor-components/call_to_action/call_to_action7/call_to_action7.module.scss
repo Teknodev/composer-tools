@@ -45,7 +45,7 @@
 
           .image {
             width: 100%;
-            height: 100%;
+            height: 800px;
             border-radius: var(--composer-border-radius-sm);
             object-fit: cover;
             animation: fadeInFromRight 1s ease-out forwards;
@@ -200,6 +200,14 @@
       .wrapper {
         flex-direction: row !important;
 
+        .left-page {
+          .image-container {
+            .image {
+              height: 600px;
+            }
+          }
+        }
+
         .right-page {
           .right-content {
             .input-button-wrapper {
@@ -294,6 +302,10 @@
 
           .image-container {
             width: 100%;
+
+            .image {
+              height: 500px;
+            }
           }
         }
       }

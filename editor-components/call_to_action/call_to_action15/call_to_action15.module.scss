@@ -8,9 +8,11 @@
             align-items: center;
 
             .subtitle {
+                transform: none !important;
                 background: transparent;
                 padding: 0;
-                transform: none !important;
+                text-align: center;
+
 
                 &::before {
                     display: none !important
