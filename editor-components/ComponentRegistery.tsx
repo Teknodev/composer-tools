@@ -56,6 +56,32 @@ class ComponentsRegistery {
         .filter((c) => (c as any).customComponentId !== customComponentId);
     }
   }
+
+  /**
+   * Clears all components from a given category.
+   * For CUSTOM category, also cleans up window.__CUSTOM_COMPONENTS__ and injected styles.
+   */
+  clearCategory(category: CATEGORIES) {
+    if (!this.availableComponents[category]) return;
+
+    if (category === CATEGORIES.CUSTOM) {
+      // Clean up injected stylesheets for each custom component
+      const customComps = this.availableComponents[category];
+      for (const comp of customComps) {
+        const compId = (comp as any).customComponentId;
+        if (compId) {
+          const styleEl = document.querySelector(`style[data-key="${compId}"]`);
+          if (styleEl) styleEl.remove();
+        }
+      }
+      // Clear the global registry
+      if (typeof window !== "undefined" && window.__CUSTOM_COMPONENTS__) {
+        window.__CUSTOM_COMPONENTS__ = {};
+      }
+    }
+
+    this.availableComponents[category] = [];
+  }
 }
 
 export default ComponentsRegistery;
