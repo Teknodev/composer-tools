@@ -146,9 +146,11 @@ class CallToAction7Page extends BaseCallToAction {
     const submitText = this.castToString(inputData.submitText);
     const buttonText = this.castToString(inputData.buttonText);
     const buttonType = inputData.buttonType;
+    const hasRightContent = subtitle || title || description || placeholder;
+    const onlyImage = image && !hasRightContent;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${!image && this.decorateCSS("no-image")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${!image && this.decorateCSS("no-image")} ${onlyImage && this.decorateCSS("only-image")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ContainerGrid gridCount={{ pc: 2, tablet: 2 }} className={this.decorateCSS("wrapper")}>
             {image &&

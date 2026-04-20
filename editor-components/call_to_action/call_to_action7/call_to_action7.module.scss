@@ -45,7 +45,6 @@
 
           .image {
             width: 100%;
-            min-height: 800px;
             height: 100%;
             border-radius: var(--composer-border-radius-sm);
             object-fit: cover;
@@ -176,10 +175,37 @@
       }
     }
   }
+
+  &.only-image {
+    .max-content {
+      .wrapper {
+        display: flex;
+        justify-content: center;
+
+        .left-page {
+          .image-container {
+            max-height: 600px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
+    &.only-image {
+      .max-content {
+        .wrapper {
+          .left-page {
+            .image-container {
+              max-height: 500px;
+            }
+          }
+        }
+      }
+    }
+
     &.no-image {
       .max-content {
         .wrapper {
@@ -201,14 +227,6 @@
       .wrapper {
         flex-direction: row !important;
 
-        .left-page {
-          .image-container {
-            .image {
-              min-height: 600px;
-            }
-          }
-        }
-
         .right-page {
           .right-content {
             .input-button-wrapper {
@@ -227,6 +245,18 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
+    &.only-image {
+      .max-content {
+        .wrapper {
+          .left-page {
+            .image-container {
+              max-height: 400px;
+            }
+          }
+        }
+      }
+    }
+
     &.no-image {
       .max-content {
         .wrapper {
@@ -300,14 +330,6 @@
 
         .left-page {
           order: 2;
-
-          .image-container {
-            width: 100%;
-
-            .image {
-              min-height: 500px;
-            }
-          }
         }
       }
     }

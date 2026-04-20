@@ -90,9 +90,10 @@ class CallToAction8Page extends BaseCallToAction {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const description = this.castToString(this.getPropValue("description"));
     const coloredBackground = this.getPropValue("coloredBackground");
+    const onlyImage = image && !subtitle && !title && !description && buttons.length === 0;
 
     return (
-      <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("has-image")} ${coloredBackground && this.decorateCSS("colored-background")}`}>
+      <Base.Container className={`${this.decorateCSS("container")} ${image && this.decorateCSS("has-image")} ${onlyImage && this.decorateCSS("only-image")} ${coloredBackground && this.decorateCSS("colored-background")}`}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("content")}>
             {(subtitle || title || description || buttons.length > 0) && (

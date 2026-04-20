@@ -70,8 +70,6 @@
 
         .image {
           width: 100%;
-          min-height: 600px;
-          height: 100%;
           object-fit: cover;
           border-top-right-radius: var(--composer-border-radius-sm);
           border-bottom-right-radius: var(--composer-border-radius-sm);
@@ -115,6 +113,16 @@
       }
     }
   }
+
+  &.only-image {
+    .max-content {
+      .content {
+        .image-box {
+          max-height: 600px;
+        }
+      }
+    }
+  }
 }
 
 @container (max-width : #{$composer-tablet-width}) {
@@ -125,11 +133,15 @@
           .title-box {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg) !important;
           }
+        }
+      }
+    }
 
+    &.only-image {
+      .max-content {
+        .content {
           .image-box {
-            .image {
-              min-height: 500px;
-            }
+            max-height: 500px;
           }
         }
       }
@@ -147,11 +159,15 @@
           .title-box {
             padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
           }
+        }
+      }
+    }
 
+    &.only-image {
+      .max-content {
+        .content {
           .image-box {
-            .image {
-              min-height: 400px;
-            }
+            max-height: 400px;
           }
         }
       }
