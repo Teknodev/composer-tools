@@ -32,8 +32,12 @@
 
             .submit-button {
               height: min-content;
+              display: flex;
+              justify-content: center;
+              align-items: center;
               .button-text{
                 text-align: center;
+                margin: 0 !important;
               }
             }
         }

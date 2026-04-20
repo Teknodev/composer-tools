@@ -109,6 +109,10 @@
 
       .submit-button {
         align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
         .button-text {
           text-align: center !important;
           margin: 0 !important;

@@ -177,7 +177,6 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     min-height: 300px;
-    padding: 0;
 
     .max-content {
       .wrapper {
@@ -186,11 +185,11 @@
         .image-container {
           width: 100%;
           position: relative;
+          margin-left: 0;
         }
 
         .form-container {
           width: 100%;
-          padding: var(--composer-gap-md);
 
           .form {
             .error-message {
