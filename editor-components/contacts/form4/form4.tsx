@@ -11,26 +11,6 @@ class Form4 extends BaseContacts {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797"
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
-    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -59,17 +39,47 @@ class Form4 extends BaseContacts {
     });
 
     this.addProp({
-      type: "string",
-      key: "location",
-      displayer: "Right Title",
-      value: "CURRENTLY",
-    });
-
-    this.addProp({
-      type: "string",
-      key: "locationDetails",
-      displayer: "Right Description",
-      value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects",
+      type: "object",
+      key: "rightSection",
+      displayer: "Right Section",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c55dbd2970002c6290b4?alt=media&timestamp=1719564433797",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+        {
+          type: "string",
+          key: "rightSubtitle",
+          displayer: "Right Subtitle",
+          value: "",
+        },
+        {
+          type: "string",
+          key: "location",
+          displayer: "Right Title",
+          value: "CURRENTLY",
+        },
+        {
+          type: "string",
+          key: "locationDetails",
+          displayer: "Right Description",
+          value: "Dubai, UNITED ARAB EMIRATES. Able to travel for commissions and projects",
+        },
+      ],
     });
 
     this.addProp({
@@ -375,14 +385,16 @@ class Form4 extends BaseContacts {
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
-    const locationExist = this.castToString(this.getPropValue("location"));
-    const locationDetailsExist = this.castToString(this.getPropValue("locationDetails"));
-    const isAddressVisible = locationExist || locationDetailsExist;
+    const rightSection = this.castToObject<any>("rightSection");
+    const image = rightSection.image;
+    const imageUrl = image?.url;
+    const overlay = rightSection.overlay;
+    const locationExist = this.castToString(rightSection.location);
+    const locationDetailsExist = this.castToString(rightSection.locationDetails);
+    const rightSubtitleExist = this.castToString(rightSection.rightSubtitle);
+    const isAddressVisible = locationExist || locationDetailsExist || rightSubtitleExist;
 
     const inputItems = this.getPropValue("input_items")!;
-    const image = this.getPropValue("image");
-    const imageUrl = image?.url;
-    const overlay = this.getPropValue("overlay");
 
     function toObjectKey(str: string) {
       if (/^\d/.test(str)) {
@@ -406,9 +418,9 @@ class Form4 extends BaseContacts {
           return "text";
       }
     }
+
     const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
       const labelText = inputLabel && this.castToString(inputLabel);
-
       return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
     };
 
@@ -487,9 +499,7 @@ class Form4 extends BaseContacts {
       return inputItem.getPropValue("inputs").some((input: any) => input.getPropValue("is_required"));
     }
 
-    const buttonText = button.text;
-    const buttonTextExist = this.castToString(buttonText);
-
+    const buttonTextExist = this.castToString(button.text);
     const formContainerExist = inputItems.length > 0 || buttonTextExist;
 
     return (
@@ -497,9 +507,9 @@ class Form4 extends BaseContacts {
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("top-container")}>
             {isContactVisible && (
-              <Base.VerticalContent className={this.decorateCSS("left-container")}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>}
+              <Base.VerticalContent className={`${this.decorateCSS("left-container")} ${!isAddressVisible && this.decorateCSS("left-container-full")}`}>
+                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {descriptionExist && (
                   <Base.SectionDescription className={this.decorateCSS("description")}>
                     {this.getPropValue("description")}
@@ -510,8 +520,9 @@ class Form4 extends BaseContacts {
             )}
             {isAddressVisible && (
               <Base.VerticalContent className={this.decorateCSS("right-container")}>
-                {locationExist && <Base.H2 className={this.decorateCSS("right-title")}>{this.getPropValue("location")}</Base.H2>}
-                {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{this.getPropValue("locationDetails")}</Base.P>}
+                {rightSubtitleExist && <Base.P className={this.decorateCSS("right-subtitle")}>{rightSection.rightSubtitle}</Base.P>}
+                {locationExist && <Base.H4 className={this.decorateCSS("right-title")}>{rightSection.location}</Base.H4>}
+                {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{rightSection.locationDetails}</Base.P>}
               </Base.VerticalContent>
             )}
           </div>
@@ -530,7 +541,7 @@ class Form4 extends BaseContacts {
                   {({ handleChange, values }) => (
                     <Form className={this.decorateCSS("form")}>
                       {inputItems.map((inputItem: any, inputItemIndex: number) => (
-                        <div className={this.decorateCSS("input-container")}>
+                        <div key={inputItemIndex} className={this.decorateCSS("input-container")}>
                           <Base.P className={this.decorateCSS("label")}>
                             {inputItem.getPropValue("label", {
                               suffix: {
@@ -541,7 +552,7 @@ class Form4 extends BaseContacts {
                           </Base.P>
                           <div className={this.decorateCSS("inputs")}>
                             {inputItem.getPropValue("inputs").map((inputObj: any, inputIndex: number) => (
-                              <div className={this.decorateCSS("input-box")}>
+                              <div key={inputIndex} className={this.decorateCSS("input-box")}>
                                 {inputObj.getPropValue("type") === "Text Area" ? (
                                   <textarea
                                     value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
@@ -567,11 +578,11 @@ class Form4 extends BaseContacts {
                           </div>
                         </div>
                       ))}
-                      {this.castToString(button.text) && 
+                      {buttonTextExist && (
                         <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>  
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                         </Base.Button>
-                      }
+                      )}
                     </Form>
                   )}
                 </Formik>
