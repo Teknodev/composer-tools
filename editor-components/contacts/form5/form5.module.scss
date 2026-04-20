@@ -4,7 +4,7 @@
   .max-content {
     .wrapper {
       .header {
-        .subtitle, .title {
+        .subtitle, .title, .description {
           content: "";
         }
       }
@@ -108,9 +108,10 @@
       }
 
       .submit-button {
-        align-self: flex-end;
+        align-self: center;
         .button-text {
-          text-align: center;
+          text-align: center !important;
+          margin: 0 !important;
         }
       }
     }

@@ -24,6 +24,13 @@ class Form5 extends BaseContacts {
       value: "SAY HELLO",
     });
 
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp(INPUTS.BUTTON("button", "Button", "Submit", null, null, null, "Primary"));
 
     this.addProp({
@@ -83,7 +90,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "Lorem ipsum", 
+                      value: "Lorem ipsum",
                     },
                   ],
                 }
@@ -143,7 +150,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "Lorem ipsum", 
+                      value: "Lorem ipsum",
                     },
                   ],
                 },
@@ -203,7 +210,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "Under $1000", 
+                      value: "Under $1000",
                     },
                   ],
                 },
@@ -216,7 +223,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "$1000 - $5000", 
+                      value: "$1000 - $5000",
                     },
                   ],
                 },
@@ -229,7 +236,7 @@ class Form5 extends BaseContacts {
                       type: "string",
                       key: "value",
                       displayer: "Value",
-                      value: "Above $5000", 
+                      value: "Above $5000",
                     },
                   ],
                 },
@@ -414,6 +421,7 @@ class Form5 extends BaseContacts {
   render() {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
@@ -500,10 +508,11 @@ class Form5 extends BaseContacts {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.VerticalContent className={this.decorateCSS("wrapper")}>
-            {(subtitle || title) && (
+            {(subtitle || title || description) && (
               <Base.VerticalContent className={this.decorateCSS("header")}>
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
             <div className={this.decorateCSS("input-items")}>
