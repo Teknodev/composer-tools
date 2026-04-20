@@ -288,7 +288,7 @@ class ECommerce3 extends BaseECommerce {
                   <>
                     {this.castToString(item.tabTitle) && (
                       <div className={`${this.decorateCSS("tab")} ${index === activeTab && this.decorateCSS("active")}`} onClick={() => handleChangeTab(index)}>
-                        <Base.H5 className={this.decorateCSS("tab-title")}>{item.tabTitle}</Base.H5>
+                        <Base.H6 className={this.decorateCSS("tab-title")}>{item.tabTitle}</Base.H6>
                       </div>
                     )}
                   </>
@@ -305,8 +305,8 @@ class ECommerce3 extends BaseECommerce {
                   index === activeTab && (
                     <div className={this.decorateCSS("tab-content")}>
                       <Base.VerticalContent className={this.decorateCSS("vertical")}>
-                        {this.castToString(item.subtitle) && <Base.H3 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H3>}
-                        {this.castToString(item.title) && <Base.H2 className={this.decorateCSS("title")}>{item.title}</Base.H2>}
+                        {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("subtitle")}>{item.subtitle}</Base.H5>}
+                        {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>}
                         {this.castToString(item.description) && <Base.SectionDescription className={this.decorateCSS("description")}>{item.description}</Base.SectionDescription>}
                         <div className={this.decorateCSS("content")}>
                           <div className={this.decorateCSS("left")}>

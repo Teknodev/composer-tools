@@ -261,6 +261,7 @@
                     .label {
                         text-align: left;
                         color: var(--composer-tertiary-color);
+                        font-size: 1rem !important;
                     }
 
                     .left-icon,
@@ -286,6 +287,7 @@
                         text-align: center;
                         color: var(--composer-tertiary-color);
                         outline: none;
+                        font-size: 1rem !important;
 
                         &::-webkit-outer-spin-button,
                         &::-webkit-inner-spin-button {
