@@ -28,6 +28,14 @@ class Form8 extends BaseContacts {
       displayer: "Title",
       value: "Let's work together! Feel free to contact us any time.",
     });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
     this.addProp({
       type: "string",
       key: "first-text",
@@ -304,6 +312,7 @@ class Form8 extends BaseContacts {
   render() {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
+    const descriptionExist = this.castToString(this.getPropValue("description"));
     const firstTextExist = this.castToString(this.getPropValue("first-text"));
     const secondTextExist = this.castToString(this.getPropValue("second-text"));
     const contactTexts = this.castToObject<ContactItem[]>("contact-items");
@@ -414,12 +423,15 @@ class Form8 extends BaseContacts {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(subtitleExist || titleExist) && <Base.VerticalContent className={this.decorateCSS("header")}>
-            {subtitleExist && 
+          {(subtitleExist || titleExist || descriptionExist) && <Base.VerticalContent className={this.decorateCSS("header")}>
+            {subtitleExist &&
               <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>
             }
-            {titleExist && 
+            {titleExist &&
               <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>
+            }
+            {descriptionExist &&
+              <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>
             }
           </Base.VerticalContent>}
          {pageContentExist && <div className={this.decorateCSS("page-content")}>
