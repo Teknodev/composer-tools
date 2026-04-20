@@ -503,8 +503,8 @@ class Form6 extends BaseContacts {
               <div
                 className={`
                 ${this.decorateCSS("form-container")}
-                ${!imageExist && this.decorateCSS("without-image")}
-                ${!textExist && this.decorateCSS("form-container-no-text")}
+                ${!imageExist ? this.decorateCSS("without-image") : ""}
+                ${!textExist ? this.decorateCSS("form-container-no-text") : ""}
               `}
               >
                 {(titleExist || subtitleExist || descriptionExist) && (

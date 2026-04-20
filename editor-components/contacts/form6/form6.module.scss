@@ -4,23 +4,39 @@
   position: relative;
   overflow: hidden;
   min-height: 500px;
+  display: flex !important;
+  flex-direction: column;
 
   .max-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
     .wrapper {
       display: flex;
       width: 100%;
-      justify-content: end;
+      flex: 1;
+      gap: var(--composer-gap-lg);
 
       .image-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 50%;
+        position: relative;
         flex: 1;
-        height: 100%;
+        margin-left: calc(50% - 50vw);
 
         &.image-full-width {
+          flex: none;
           width: 100%;
+          max-width: 100%;
+          height: 450px;
+          margin: 0 !important;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .image {
+            object-fit: cover;
+            border-radius: var(--composer-border-radius-md);
+          }
         }
 
         .image {
@@ -60,7 +76,9 @@
         .header {
           align-items: baseline;
 
-          .subtitle, .title, .description {
+          .subtitle,
+          .title,
+          .description {
             content: "";
             text-align: left;
           }
@@ -76,7 +94,7 @@
           gap: var(--composer-gap-md);
           justify-content: space-between;
 
-          .button-container{
+          .button-container {
             .button-text {
               content: "";
             }
