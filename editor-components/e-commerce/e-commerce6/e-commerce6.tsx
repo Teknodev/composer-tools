@@ -353,10 +353,12 @@ class ECommerce6 extends BaseECommerce {
                         </Base.H5>
                       )}
                       {isTabIconVisible && (
-                        <Base.Media
-                          value={tab.icon}
-                          className={this.decorateCSS("icon")}
-                        />
+                        <div className={this.decorateCSS("icon-wrapper")}>
+                          <Base.Media
+                            value={tab.icon}
+                            className={this.decorateCSS("icon")}
+                          />
+                        </div>
                       )}
                     </div>
                   )

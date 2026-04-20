@@ -26,7 +26,7 @@
                 position: relative;
                 display: flex;
                 height: 100%;
-                padding: var(--composer-gap-lg) var(--composer-gap-md);
+                padding: var(--composer-gap-lg) 35px;
                 transition: all 0.5s ease-in-out;
 
                 .tabText {
@@ -34,7 +34,7 @@
                     z-index: 5;
                 }
 
-                .icon {
+                .icon-wrapper {
                     display: none;
                     position: absolute;
                     right: 0;
@@ -43,7 +43,6 @@
                     height: 1em;
                     aspect-ratio: 1 / 1;
                     flex-shrink: 0;
-                    object-fit: contain;
                     opacity: 0;
                     transition: opacity 0.3s ease-in-out;
                     transform: translateX(50%);
@@ -52,15 +51,16 @@
                     overflow: hidden;
                     padding: var(--composer-gap-md);
                     background-color: var(--composer-primary-color);
-                    color: var(--composer-font-color-secondary);
                     align-items: center;
                     justify-content: center;
 
-                    svg, img {
+                    .icon {
+                        color: var(--composer-font-color-secondary);
                         font-size: 1.5rem;
                         width: 1em;
                         height: 1em;
                         flex-shrink: 0;
+                        object-fit: contain;
                     }
 
                 }
@@ -84,7 +84,7 @@
                         z-index: 3;
                     }
 
-                    .icon {
+                    .icon-wrapper {
                         display: flex;
                         opacity: 1;
                     }
@@ -104,14 +104,14 @@
                             z-index: 3;
                         }
 
-                        .icon {
+                        .icon-wrapper {
                             display: flex;
                             animation: show-icon 0.3s 0.5s forwards;
                         }
                     }
 
                     &.active:hover {
-                        .icon {
+                        .icon-wrapper {
                             animation: none;
                             opacity: 1;
                         }
@@ -369,7 +369,8 @@
                             .text {
                                 text-align: center;
                                 padding-top: var(--composer-gap-xs);
-                                color: var(--composer-font-color-primary)
+                                color: var(--composer-font-color-primary);
+                                font-size: 1.15rem !important;
                             }
                         }
                     }
@@ -394,7 +395,7 @@
                         flex: 1;
                     }
 
-                    .icon {
+                    .icon-wrapper {
                         position: absolute;
                         padding: var(--composer-gap-md);
                         font-size: 3.5rem;
@@ -404,7 +405,7 @@
 
                     &.active {
                         &:hover {
-                            .icon {
+                            .icon-wrapper {
                                 display: flex;
                                 opacity: 1;
                             }
@@ -426,6 +427,10 @@
 
                         .box-container {
                             .box2 {
+                                .box2-text {
+                                    font-size: 1.25rem !important;
+                                }
+
                                 .box2-icon {
                                     font-size: 2.5rem;
                                     padding: var(--composer-gap-sm);
@@ -455,6 +460,18 @@
                                 display: none;
                             }
                         }
+
+                        .icons-container {
+                            .icon-container {
+                                .icon {
+                                    font-size: 2.5rem !important;
+                                }
+
+                                .text {
+                                    font-size: 1rem !important;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -471,7 +488,7 @@
                 width: 100%;
 
                 .tab-button {
-                    .icon {
+                    .icon-wrapper {
                         position: relative;
                         padding: 0px;
                         font-size: 1.5rem;
@@ -490,6 +507,14 @@
                             padding: var(--composer-gap-sm) 0px;
 
                             .icon-container {
+                                .icon {
+                                    font-size: 2.25rem !important;
+                                }
+
+                                .text {
+                                    font-size: 1rem !important;
+                                }
+
                                 &:after {
                                     display: none;
                                 }
