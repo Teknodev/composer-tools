@@ -67,7 +67,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-        padding: 120px 60px;
+        padding: calc(var(--composer-gap-md) * 6) calc(var(--composer-gap-md) * 3);
 
         .right-background {
             position: absolute;
@@ -95,7 +95,7 @@
         }
 
         &.no-media {
-            padding: 120px 60px;
+            padding: calc(var(--composer-gap-md) * 6) calc(var(--composer-gap-md) * 3);
 
             .stats-list {
                 padding: 0;
