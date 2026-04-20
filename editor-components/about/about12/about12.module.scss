@@ -8,7 +8,7 @@
     display: flex;
     align-items: stretch;
 
-    &.has-text {
+    &.has-text.has-image {
       min-height: 500px;
     }
   }
@@ -53,7 +53,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: var(--composer-gap-xl) 60px;
 
     &.text-alone {
       width: 100%;
@@ -96,7 +95,7 @@
       }
     }
 
-    &.center {
+    &.center.text-alone {
       .vertical-content {
 
         .title,
@@ -117,13 +116,7 @@
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .text-content {
-      padding: var(--composer-gap-xl) var(--composer-gap-lg);
-    }
-  }
-}
+
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
@@ -148,13 +141,8 @@
       order: 1;
       width: 100%;
       margin-left: 0;
-      padding: var(--composer-gap-lg) 30px;
 
-      &.text-alone {
-        padding: var(--composer-gap-lg) 30px;
-      }
-
-      &.center {
+      &.center.text-alone {
         .vertical-content {
           align-items: center;
 

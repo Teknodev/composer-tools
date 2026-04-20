@@ -100,7 +100,7 @@ class About12 extends BaseAbout {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <div className={`${this.decorateCSS("content-wrapper")} ${hasTextContent ? this.decorateCSS("has-text") : ""}`}>
+        <div className={`${this.decorateCSS("content-wrapper")} ${hasTextContent ? this.decorateCSS("has-text") : ""} ${hasImage ? this.decorateCSS("has-image") : ""}`}>
           {hasImage && (
             <div className={`${this.decorateCSS("image-container")} ${!hasTextContent ? this.decorateCSS("image-alone") : ""}`}>
               <Base.Media
