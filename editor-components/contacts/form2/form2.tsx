@@ -11,22 +11,29 @@ class Form2 extends BaseContacts {
     super(props, styles);
 
     this.addProp({
-      type: "media",
-      key: "background-img",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image","video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67614bdb0655f8002ca7aef6?alt=media"
-      },
-    });
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "background-img",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67614bdb0655f8002ca7aef6?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: true,
+        },
+      ],
     });
 
     this.addProp({
@@ -41,6 +48,13 @@ class Form2 extends BaseContacts {
       key: "title",
       displayer: "Title",
       value: "Contact Us",
+    });
+
+    this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
     this.addProp({
@@ -248,15 +262,18 @@ class Form2 extends BaseContacts {
     const subtitle = this.getPropValue("subtitle");
     const subtitleExist = this.castToString(subtitle);
     const titleExist = this.castToString(this.getPropValue("title"));
+    const description = this.getPropValue("description");
+    const descriptionExist = this.castToString(description);
 
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const buttonText = button.text;
     const buttonTextExist = this.castToString(button.text);
 
-    const backgroundImage = this.getPropValue("background-img");
+    const background = this.castToObject<any>("background");
+    const backgroundImage = background["background-img"];
     const imageExist = backgroundImage?.url;
-    const overlay = this.getPropValue("overlay");
+    const overlay = background.overlay;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -356,12 +373,13 @@ class Form2 extends BaseContacts {
         <Base.Media value={backgroundImage} className={this.decorateCSS("background-media")} />
         {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist)) && (
+          {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist || descriptionExist)) && (
             <div className={this.decorateCSS("input-items")}>
               <div className={`${this.decorateCSS("input-item")} ${!imageExist && this.decorateCSS("input-item-no-image")}`}>
-                {(subtitleExist || titleExist) &&<Base.VerticalContent className={this.decorateCSS("header")}>
+                {(subtitleExist || titleExist || descriptionExist) && <Base.VerticalContent className={this.decorateCSS("header")}>
                   {subtitleExist && <Base.SectionSubTitle className={`${this.decorateCSS("subtitle")} ${imageExist && this.decorateCSS("subtitle-with-image")} ${subtitleType === "badge" && this.decorateCSS("subtitle-badge")}`}>{subtitle}</Base.SectionSubTitle>}
                   {titleExist && <Base.SectionTitle className={`${this.decorateCSS("title")} ${imageExist && this.decorateCSS("title-with-image")}`}>{title}</Base.SectionTitle>}
+                  {descriptionExist && <Base.SectionDescription className={`${this.decorateCSS("description")} ${imageExist && this.decorateCSS("description-with-image")}`}>{description}</Base.SectionDescription>}
                 </Base.VerticalContent>}
                 {(inputs.length > 0 || buttonTextExist) && (
                   <Formik

@@ -31,6 +31,7 @@
   .max-content {
     height: 100%;
     z-index: 5;
+
     .input-items {
       .input-item {
         width: 100%;
@@ -54,27 +55,39 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         }
 
-       .header {
-        margin: 0;
-        padding: 0 var(--composer-gap-xl);
-        .subtitle, .title {
-          &.subtitle-with-image, &.title-with-image {
-            color: white;
-            background: transparent;
-            &::before {
-              background: white;
+        .header {
+          margin: 0;
+          padding: 0 var(--composer-gap-xl);
+
+          .subtitle,
+          .title {
+
+            &.subtitle-with-image,
+            &.title-with-image {
+              color: white;
+              background: transparent;
+
+              &::before {
+                background: white;
+              }
+            }
+
+            &.subtitle-badge {
+              transform: translateX(0);
+
+              &.subtitle-with-image {
+                padding: 0;
+              }
             }
           }
 
-          &.subtitle-badge {
-            transform: translateX(0);
-            
-            &.subtitle-with-image {
-              padding: 0;
+          .description {
+            &.description-with-image {
+              color: white;
             }
           }
         }
-       }
+
         .form {
           display: flex;
           flex-direction: column;
@@ -133,11 +146,18 @@
           }
         }
 
-          .button {
-            .button-text {
-              text-align: center;
-            }
+        .button {
+          width: 100% !important;
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+          text-align: center !important;
+
+          .button-text {
+            text-align: center !important;
+            margin: 0 !important;
           }
+        }
       }
     }
   }
@@ -151,6 +171,7 @@
           max-width: 700px;
           max-height: 700px;
           gap: 0;
+
           .form {
             padding: var(--composer-gap-md) var(--composer-gap-lg);
           }
