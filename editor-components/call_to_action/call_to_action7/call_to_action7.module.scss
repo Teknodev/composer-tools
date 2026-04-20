@@ -45,7 +45,8 @@
 
           .image {
             width: 100%;
-            height: 800px;
+            min-height: 800px;
+            height: 100%;
             border-radius: var(--composer-border-radius-sm);
             object-fit: cover;
             animation: fadeInFromRight 1s ease-out forwards;
@@ -203,7 +204,7 @@
         .left-page {
           .image-container {
             .image {
-              height: 600px;
+              min-height: 600px;
             }
           }
         }
@@ -304,7 +305,7 @@
             width: 100%;
 
             .image {
-              height: 500px;
+              min-height: 500px;
             }
           }
         }

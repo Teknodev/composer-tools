@@ -70,6 +70,7 @@
 
         .image {
           width: 100%;
+          min-height: 600px;
           height: 100%;
           object-fit: cover;
           border-top-right-radius: var(--composer-border-radius-sm);
@@ -124,6 +125,12 @@
           .title-box {
             padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg) !important;
           }
+
+          .image-box {
+            .image {
+              min-height: 500px;
+            }
+          }
         }
       }
     }
@@ -139,6 +146,12 @@
 
           .title-box {
             padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
+          }
+
+          .image-box {
+            .image {
+              min-height: 400px;
+            }
           }
         }
       }
