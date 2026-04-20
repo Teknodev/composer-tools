@@ -17,13 +17,13 @@
 
   .wrapper {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     align-items: stretch;
     width: 100%;
-    max-width: var(--composer-content-width);
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     height: 100%;
-    gap: var(--composer-gap-xl);
+    gap: 0;
 
     &.no-buttons {
       display: flex;
@@ -35,7 +35,13 @@
       .left-container {
         width: 100%;
         max-width: var(--composer-content-width);
-        margin: 0;
+        margin: 0 auto;
+        padding-right: 0;
+        justify-content: center;
+
+        .max-content {
+          max-width: 100% !important;
+        }
 
         .map-container {
           width: 100%;
@@ -55,14 +61,30 @@
     .left-container {
       min-width: 0;
       box-sizing: border-box;
-
       width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: var(--composer-gap-xl);
+
+      .max-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: calc(var(--composer-content-width) / 2 - var(--composer-gap-xl)) !important;
+        box-sizing: border-box;
+        min-height: 0;
+        gap: var(--composer-gap-md);
+        margin: 0;
+
+        &.full-width {
+          max-width: 100% !important;
+        }
+      }
     }
 
     .right-container {
       min-width: 0;
       box-sizing: border-box;
-      padding-left: 0;
       min-height: 500px;
       height: 100%;
     }
@@ -203,14 +225,11 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    gap: 0;
-
     .wrapper {
-      gap: var(--composer-gap-lg);
-
       .left-container {
         min-width: 0;
         box-sizing: border-box;
+        padding-right: var(--composer-gap-lg);
 
         .max-content {
           width: 100%;
@@ -244,7 +263,6 @@
               }
             }
           }
-
         }
       }
 
@@ -284,18 +302,19 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
-
     .wrapper {
       grid-template-columns: 100% !important;
       gap: var(--composer-gap-md);
+
+      .left-container {
+        padding-right: 0;
+      }
 
       .right-container {
         min-height: auto;
         height: auto;
         width: 100%;
         border-radius: var(--composer-border-radius-sm) !important;
-
       }
 
       .max-content {

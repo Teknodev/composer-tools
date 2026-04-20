@@ -612,12 +612,13 @@ class Location6 extends Location {
 
     const hasButtons = buttons && buttons.length > 0;
     const alignment = Base.getContentAlignment();
+    const isFullWidth = Base.getContentWidth() === '100%';
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <div className={`${this.decorateCSS("wrapper")} ${!hasButtons ? this.decorateCSS("no-buttons") : ""}`}>
           <div className={this.decorateCSS("left-container")}>
-            <Base.MaxContent className={this.decorateCSS("max-content")}>
+            <Base.MaxContent className={`${this.decorateCSS("max-content")} ${isFullWidth && this.decorateCSS("full-width")}`}>
               <Base.VerticalContent className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
                 {hasSubtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>}
                 {hasTitle && <Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>}
