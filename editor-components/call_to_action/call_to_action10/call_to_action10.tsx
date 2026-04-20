@@ -59,7 +59,7 @@ class CallToAction10Page extends BaseCallToAction {
           type: "boolean",
           key: "headerIconBackground",
           displayer: "Header Icon Background",
-          value: true,
+          value: false,
         },
       ],
     });
