@@ -70,8 +70,12 @@
           .icon {
             color: var(--composer-primary-color);
             font-size: 1.5rem;
-            width: fit-content;
-            height: var(--composer-gap-md);
+            width: 1em;
+            height: 1em;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
 

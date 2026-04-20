@@ -11,24 +11,30 @@ class Form6 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Media",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797"
-      },
+      type: "object",
+      key: "background",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "image",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661c6a2bd2970002c62912f?alt=media&timestamp=1719564433797"
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    })
 
     this.addProp({
       type: "string",
@@ -36,7 +42,7 @@ class Form6 extends BaseContacts {
       displayer: "Subtitle",
       value: "Contact Us",
     });
-    
+
     this.addProp({
       type: "string",
       key: "title",
@@ -71,7 +77,7 @@ class Form6 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -102,7 +108,7 @@ class Form6 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -135,7 +141,7 @@ class Form6 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -166,7 +172,7 @@ class Form6 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -199,7 +205,7 @@ class Form6 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -230,7 +236,7 @@ class Form6 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -263,7 +269,7 @@ class Form6 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -294,7 +300,7 @@ class Form6 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -327,7 +333,7 @@ class Form6 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -358,7 +364,7 @@ class Form6 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -401,9 +407,10 @@ class Form6 extends BaseContacts {
 
   render() {
     const inputItems = this.getPropValue("inputs");
-    const image = this.getPropValue("image");
+    const background = this.castToObject<any>("background");
+    const image = background.image;
     const imageExist = !!image?.url;
-    const overlay = this.getPropValue("overlay");
+    const overlay = background.overlay;
 
     const subtitle = this.getPropValue("subtitle")
     const title = this.getPropValue("title");
@@ -418,7 +425,9 @@ class Form6 extends BaseContacts {
     const buttonText = button.text;
     const buttonTextExist = this.castToString(buttonText);
 
-    const rightItemsExist = titleExist || descriptionExist || subtitleExist || buttonTextExist || inputItems.length > 0;
+    const textExist = titleExist || descriptionExist || subtitleExist;
+    const formExist = inputItems.length > 0 || !!buttonTextExist;
+    const rightItemsExist = textExist || formExist;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -483,7 +492,7 @@ class Form6 extends BaseContacts {
           <div className={this.decorateCSS("wrapper")}>
             {imageExist && (
               <div
-                className={`${this.decorateCSS("image-container")} 
+                className={`${this.decorateCSS("image-container")}
               ${!rightItemsExist && this.decorateCSS("image-full-width")}`}
               >
                 <Base.Media value={image} className={this.decorateCSS("image")} />
@@ -495,6 +504,7 @@ class Form6 extends BaseContacts {
                 className={`
                 ${this.decorateCSS("form-container")}
                 ${!imageExist && this.decorateCSS("without-image")}
+                ${!textExist && this.decorateCSS("form-container-no-text")}
               `}
               >
                 {(titleExist || subtitleExist || descriptionExist) && (
@@ -578,3 +588,4 @@ class Form6 extends BaseContacts {
 }
 
 export default Form6;
+

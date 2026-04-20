@@ -7,6 +7,7 @@
     gap: var(--composer-gap-lg);
 
     .header {
+
       .subtitle,
       .title,
       .description {
@@ -19,6 +20,7 @@
         gap: var(--composer-gap-sm);
 
         .button {
+
           .button-text,
           .button-icon {
             content: "";
@@ -26,6 +28,7 @@
         }
       }
     }
+
     .box {
       display: flex;
       flex-direction: row;
@@ -152,6 +155,12 @@
                     color: var(--composer-font-color-primary);
                     font-size: 2rem;
                     flex-shrink: 0;
+                    width: 2rem;
+                    height: 2rem;
+                    object-fit: contain;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                   }
 
                   .contactName {
@@ -190,7 +199,10 @@
                   height: var(--composer-gap-md);
                   width: var(--composer-gap-md);
                   margin: var(--composer-gap-sm);
+                  object-fit: contain;
                   display: flex;
+                  justify-content: center;
+                  align-items: center;
                 }
               }
             }
@@ -203,6 +215,7 @@
             .content {
               .left-top {
                 .left-top-content {
+
                   .leftTitle,
                   .leftSubtitle,
                   .leftDescription {
@@ -245,6 +258,7 @@
         &.right-container-no-image {
           border-radius: var(--composer-border-radius-md);
         }
+
         .rightSubtitle,
         .rightDescription {
           color: var(--composer-font-color-primary);
@@ -363,7 +377,7 @@
           align-items: center;
           justify-content: center;
 
-          .submit-button{
+          .submit-button {
             .button-text {
               content: "";
             }
@@ -397,6 +411,8 @@
                     .icon {
                       font-size: 1.5rem;
                       flex-shrink: 0;
+                      width: 1.5rem;
+                      height: 1.5rem;
                     }
                   }
                 }
@@ -411,7 +427,7 @@
 
         .right-container {
           padding: var(--composer-gap-lg) var(--composer-gap-md);
-            
+
           .rightTitle {
             margin: 0;
           }
@@ -467,6 +483,7 @@
 
               .left-top {
                 gap: var(--composer-gap-md);
+
                 .contacts {
                   .contact {
                     gap: var(--composer-gap-sm);

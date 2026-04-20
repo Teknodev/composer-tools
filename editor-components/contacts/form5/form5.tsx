@@ -52,7 +52,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -112,7 +112,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -172,7 +172,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -265,7 +265,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -318,7 +318,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -371,7 +371,7 @@ class Form5 extends BaseContacts {
             {
               type: "boolean",
               key: "is_required",
-              displayer: "Is Required",
+              displayer: "Required Message",
               value: true,
             },
             {
@@ -622,3 +622,4 @@ class Form5 extends BaseContacts {
 }
 
 export default Form5;
+

@@ -55,7 +55,7 @@ class Form1 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -139,7 +139,7 @@ class Form1 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -223,7 +223,7 @@ class Form1 extends BaseContacts {
               key: "icon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["image", "icon"],
               },
               value: {
                 type: "icon",
@@ -433,3 +433,4 @@ class Form1 extends BaseContacts {
 }
 
 export default Form1;
+

@@ -67,7 +67,7 @@ class Form7 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -96,7 +96,7 @@ class Form7 extends BaseContacts {
                       key: "icon",
                       displayer: "Icon",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "icon",
@@ -119,7 +119,7 @@ class Form7 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -148,7 +148,7 @@ class Form7 extends BaseContacts {
                       key: "icon",
                       displayer: "Icon",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "icon",
@@ -191,7 +191,7 @@ class Form7 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -220,7 +220,7 @@ class Form7 extends BaseContacts {
                       key: "icon",
                       displayer: "Icon",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "icon",
@@ -425,3 +425,4 @@ class Form7 extends BaseContacts {
 }
 
 export default Form7;
+

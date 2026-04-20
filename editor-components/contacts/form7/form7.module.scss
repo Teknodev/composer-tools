@@ -86,6 +86,10 @@
                 height: var(--composer-gap-md);
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
+                object-fit: contain;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
 
               &:has(textarea) {

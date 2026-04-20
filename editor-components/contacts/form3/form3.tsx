@@ -123,7 +123,7 @@ class Form3 extends BaseContacts {
                   type: "media",
                   key: "contactIcon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["image", "icon"],
                   },
                   value: {
                     type: "icon",
@@ -148,7 +148,7 @@ class Form3 extends BaseContacts {
                   type: "media",
                   key: "contactIcon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["image", "icon"],
                   },
                   value: {
                     type: "icon",
@@ -173,7 +173,7 @@ class Form3 extends BaseContacts {
                   type: "media",
                   key: "contactIcon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["image", "icon"],
                   },
                   value: {
                     type: "icon",
@@ -199,7 +199,7 @@ class Form3 extends BaseContacts {
                   type: "media",
                   key: "icon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["image", "icon"],
                   },
                   value: {
                     type: "icon",
@@ -224,7 +224,7 @@ class Form3 extends BaseContacts {
                   type: "media",
                   key: "icon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["image", "icon"],
                   },
                   value: {
                     type: "icon",
@@ -249,7 +249,7 @@ class Form3 extends BaseContacts {
                   type: "media",
                   key: "icon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["image", "icon"],
                   },
                   value: {
                     type: "icon",
@@ -274,7 +274,7 @@ class Form3 extends BaseContacts {
                   type: "media",
                   key: "icon",
                   additionalParams: {
-                    availableTypes: ["icon"],
+                    availableTypes: ["image", "icon"],
                   },
                   value: {
                     type: "icon",
@@ -359,7 +359,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -405,7 +405,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -465,7 +465,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -511,7 +511,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: false,
                     },
                     {
@@ -571,7 +571,7 @@ class Form3 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "is_required",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: false,
                     },
                     {
@@ -866,3 +866,4 @@ class Form3 extends BaseContacts {
 }
 
 export default Form3;
+

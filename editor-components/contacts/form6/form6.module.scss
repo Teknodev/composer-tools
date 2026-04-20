@@ -15,7 +15,7 @@
         position: absolute;
         left: 0;
         top: 0;
-        width: calc(50% - var(--composer-gap-md));
+        width: 50%;
         flex: 1;
         height: 100%;
 
@@ -50,6 +50,11 @@
 
         &.without-image {
           width: 100%;
+        }
+
+        &.form-container-no-text {
+          align-items: center;
+          justify-content: center;
         }
 
         .header {
@@ -100,6 +105,10 @@
                 left: var(--composer-gap-sm);
                 top: var(--composer-gap-md);
                 transform: translateY(-50%);
+                object-fit: contain;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
 
               .input-textarea {

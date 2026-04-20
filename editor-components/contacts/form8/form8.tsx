@@ -149,7 +149,7 @@ class Form8 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -209,7 +209,7 @@ class Form8 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -269,7 +269,7 @@ class Form8 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -516,3 +516,4 @@ class Form8 extends BaseContacts {
 }
 
 export default Form8;
+
