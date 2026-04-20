@@ -25,6 +25,32 @@ class Form3 extends BaseContacts {
     super(props, styles);
 
     this.addProp({
+      type: "object",
+      key: "backgroundSettings",
+      displayer: "Background",
+      value: [
+        {
+          type: "media",
+          key: "background",
+          displayer: "Background Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb57653292c6002b23ff58?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
+    });
+
+    this.addProp({
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
@@ -39,114 +65,230 @@ class Form3 extends BaseContacts {
     });
 
     this.addProp({
-      type: "media",
-      key: "background",
-      displayer: "Background Media",
-      additionalParams: {
-        availableTypes: ["image","video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66bb57653292c6002b23ff58?alt=media"
-      },
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
     });
 
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: true,
-    });
-
-    this.addProp({
-      type: "string",
-      key: "leftSubtitle",
-      displayer: "Left Subtitle",
-      value: "Hey There,",
-    });
-    this.addProp({
-      type: "string",
-      key: "leftTitle",
-      displayer: "Left Title",
-      value: "Let's Get In Touch",
-    });
     this.addProp({
       type: "array",
-      key: "contactInfo",
-      displayer: "Contact Info",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "leftSection",
+      displayer: "Left Section",
       value: [
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
+          type: "string",
+          key: "leftSubtitle",
+          displayer: "Left Subtitle",
+          value: "Hey There,",
+        },
+        {
+          type: "string",
+          key: "leftTitle",
+          displayer: "Left Title",
+          value: "Let's Get In Touch",
+        },
+        {
+          type: "string",
+          key: "leftDescription",
+          displayer: "Left Description",
+          value: "",
+        },
+        {
+          type: "array",
+          key: "contactInfo",
+          displayer: "Contact Info",
           value: [
             {
-              type: "string",
-              key: "contactName",
-              value: "Moldova, str. Gagarin 10",
-              displayer: "Text",
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "contactName",
+                  value: "Moldova, str. Gagarin 10",
+                  displayer: "Text",
+                },
+                {
+                  type: "media",
+                  key: "contactIcon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaLocationDot",
+                  },
+                  displayer: "Icon",
+                },
+              ],
             },
             {
-              type: "media",
-              key: "contactIcon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaLocationDot"
-              },
-              displayer: "Icon",
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "contactName",
+                  value: "+373 68 324 028",
+                  displayer: "Text",
+                },
+                {
+                  type: "media",
+                  key: "contactIcon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaPhoneAlt",
+                  },
+                  displayer: "Icon",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "contactName",
+                  value: "test@test.com",
+                  displayer: "Text",
+                },
+                {
+                  type: "media",
+                  key: "contactIcon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "IoIosMail",
+                  },
+                  displayer: "Icon",
+                },
+              ],
             },
           ],
         },
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
+          type: "array",
+          key: "socials",
+          displayer: "Social Media",
           value: [
             {
-              type: "string",
-              key: "contactName",
-              value: "+373 68 324 028",
-              displayer: "Text",
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "BiLogoFacebook",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "",
+                },
+              ],
             },
             {
-              type: "media",
-              key: "contactIcon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaPhoneAlt"
-              },
-              displayer: "Icon",
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "SiGmail",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "",
+                },
+              ],
             },
-          ],
-        },
-        {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
-          value: [
             {
-              type: "string",
-              key: "contactName",
-              value: "test@test.com",
-              displayer: "Text",
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaLinkedinIn",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "",
+                },
+              ],
             },
             {
-              type: "media",
-              key: "contactIcon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "IoIosMail"
-              },
-              displayer: "Icon",
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaInstagram",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "",
+                },
+              ],
             },
           ],
         },
@@ -154,118 +296,29 @@ class Form3 extends BaseContacts {
     });
 
     this.addProp({
-      type: "array",
-      key: "socials",
-      displayer: "Social Media",
+      type: "object",
+      key: "rightSection",
+      displayer: "Right Section",
       value: [
         {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiLogoFacebook"
-              },
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
+          type: "string",
+          key: "rightSubtitle",
+          displayer: "Right Subtitle",
+          value: "Lorem",
         },
         {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "SiGmail"
-              },
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
+          type: "string",
+          key: "rightTitle",
+          displayer: "Right Title",
+          value: "Contact Us",
         },
         {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaLinkedinIn"
-              },
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaInstagram"
-              },
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
+          type: "string",
+          key: "rightDescription",
+          displayer: "Right Description",
+          value: "",
         },
       ],
-    });
-
-    this.addProp({
-      type: "string",
-      key: "rightTitle",
-      displayer: "Right Title",
-      value: "Contact Us",
     });
 
     this.addProp({
@@ -550,8 +603,8 @@ class Form3 extends BaseContacts {
         },
       ],
     });
+
     this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"));
-    
   }
 
   static getName(): string {
@@ -559,15 +612,35 @@ class Form3 extends BaseContacts {
   }
 
   render() {
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-    const title = this.castToString(this.getPropValue("title"));
     const subtitle = this.castToString(this.getPropValue("subtitle"));
-    const leftTitle = this.castToString(this.getPropValue("leftTitle"));
-    const leftSubtitle = this.castToString(this.getPropValue("leftSubtitle"));
-    const rightTitle = this.castToString(this.getPropValue("rightTitle"));
-    const contactInfo = this.getPropValue("contactInfo");
-    const contactIcon = this.getPropValue("contactIcon");
+    const title = this.castToString(this.getPropValue("title"));
+    const description = this.castToString(this.getPropValue("description"));
+
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => {
+      const btnText = this.castToString(btn.text);
+      return btnText || !!btn.icon;
+    });
+
+    const backgroundSettings = this.castToObject<any>("backgroundSettings");
+    const background = backgroundSettings.background;
+    const backgroundImage = background?.url;
+    const overlay = backgroundSettings.overlay;
+
+    const leftSection = this.castToObject<any>("leftSection");
+    const leftSubtitle = this.castToString(leftSection.leftSubtitle);
+    const leftTitle = this.castToString(leftSection.leftTitle);
+    const leftDescription = this.castToString(leftSection.leftDescription);
+    const contactInfo = (leftSection.contactInfo || []) as Left[];
+    const icons = (leftSection.socials || []) as Social[];
+
+    const rightSection = this.castToObject<any>("rightSection");
+    const rightSubtitle = this.castToString(rightSection.rightSubtitle);
+    const rightTitle = this.castToString(rightSection.rightTitle);
+    const rightDescription = this.castToString(rightSection.rightDescription);
     const inputItems = this.getPropValue("input_items");
+    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const buttonText = this.castToString(button.text);
 
     function getInputType(type: string): string {
       switch (type) {
@@ -631,21 +704,34 @@ class Form3 extends BaseContacts {
       return schema;
     }
 
-    const icons = this.castToObject<Social[]>("socials");
-    const background = this.getPropValue("background");
-    const backgroundImage = background?.url;
-    const overlay = this.getPropValue("overlay");
-
-    const leftItemsExist = icons.length > 0 || backgroundImage || leftSubtitle || leftTitle || contactInfo.length > 0 || contactIcon;
-    const rightItemsExist = rightTitle || this.castToString(button.text) || inputItems.length > 0;
+    const leftItemsExist = icons.length > 0 || !!backgroundImage || !!leftSubtitle || !!leftTitle || !!leftDescription || contactInfo.length > 0;
+    const rightItemsExist = !!rightTitle || !!rightSubtitle || !!rightDescription || !!buttonText || (inputItems && inputItems.length > 0);
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(title || subtitle )&& (
+          {(title || subtitle || description || hasValidButtons) && (
             <Base.VerticalContent className={this.decorateCSS("header")}>
-              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}> {this.getPropValue("subtitle")} </Base.SectionSubTitle>}
-              <Base.SectionTitle className={this.decorateCSS("title")}> {this.getPropValue("title")} </Base.SectionTitle>
+              {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+              {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+              {description && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
+              {hasValidButtons && (
+                <div className={this.decorateCSS("button-container")}>
+                  {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                    const btnText = this.castToString(item.text);
+                    const iconExist = !!item.icon;
+                    if (!btnText && !iconExist) return null;
+                    return (
+                      <ComposerLink key={index} path={item.url}>
+                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                          {btnText && <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>}
+                          {iconExist && <Base.Icon name={item.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                        </Base.Button>
+                      </ComposerLink>
+                    );
+                  })}
+                </div>
+              )}
             </Base.VerticalContent>
           )}
           <div className={this.decorateCSS("box")}>
@@ -653,9 +739,9 @@ class Form3 extends BaseContacts {
               <div className={`${this.decorateCSS("left-container")} ${backgroundImage && this.decorateCSS("with-background")}`}>
                 {backgroundImage && (
                   <div className={`${this.decorateCSS("background-wrapper")} ${!rightItemsExist && this.decorateCSS("background-full")}`}>
-                    <Base.Media 
-                      value={background} 
-                      className={`${this.decorateCSS("background")} ${!rightItemsExist && this.decorateCSS("background-full")}`} 
+                    <Base.Media
+                      value={background}
+                      className={`${this.decorateCSS("background")} ${!rightItemsExist && this.decorateCSS("background-full")}`}
                     />
                     {overlay && <div className={this.decorateCSS("overlay")} />}
                   </div>
@@ -663,18 +749,19 @@ class Form3 extends BaseContacts {
                 <div className={this.decorateCSS("left")}>
                   <div className={`${this.decorateCSS("content")} ${!rightItemsExist && this.decorateCSS("content-full")}`}>
                     <div className={this.decorateCSS("left-top")}>
-                      {(leftTitle || leftSubtitle) && (
+                      {(leftTitle || leftSubtitle || leftDescription) && (
                         <Base.VerticalContent className={this.decorateCSS("left-top-content")}>
-                          {leftSubtitle && <Base.P className={this.decorateCSS("leftSubtitle")}>{this.getPropValue("leftSubtitle")} </Base.P>}
-                          {leftTitle && <Base.H3 className={this.decorateCSS("leftTitle")}> {this.getPropValue("leftTitle")} </Base.H3>}
+                          {leftSubtitle && <Base.P className={this.decorateCSS("leftSubtitle")}>{leftSection.leftSubtitle}</Base.P>}
+                          {leftTitle && <Base.H3 className={this.decorateCSS("leftTitle")}>{leftSection.leftTitle}</Base.H3>}
+                          {leftDescription && <Base.P className={this.decorateCSS("leftDescription")}>{leftSection.leftDescription}</Base.P>}
                         </Base.VerticalContent>
                       )}
-                      {(contactInfo || contactIcon) && (
+                      {contactInfo.length > 0 && (
                         <div className={this.decorateCSS("contacts")}>
-                          {this.castToObject<Left[]>("contactInfo").map((contact: any, index: number) => (
-                            <div className={this.decorateCSS("contact")}>
+                          {contactInfo.map((contact: any, index: number) => (
+                            <div key={index} className={this.decorateCSS("contact")}>
                               <Base.Media value={contact.contactIcon} className={this.decorateCSS("icon")} />
-                              {this.castToString(contact.contactName) && <Base.P className={this.decorateCSS("contactName")}> {contact.contactName} </Base.P>}
+                              {this.castToString(contact.contactName) && <Base.P className={this.decorateCSS("contactName")}>{contact.contactName}</Base.P>}
                             </div>
                           ))}
                         </div>
@@ -686,10 +773,10 @@ class Form3 extends BaseContacts {
                           if (!social.icon) return null;
 
                           return (
-                            <div className={`${this.decorateCSS("icon-container")} ${!backgroundImage && this.decorateCSS("icon-container-no-image")}`}>
-                              <ComposerLink key={index} path={social.url}>
+                            <div key={index} className={`${this.decorateCSS("icon-container")} ${!backgroundImage && this.decorateCSS("icon-container-no-image")}`}>
+                              <ComposerLink path={social.url}>
                                 <Base.Media
-                                  value={social.icon}
+                                  value={social.icon as any}
                                   className={this.decorateCSS("icon")}
                                 />
                               </ComposerLink>
@@ -704,8 +791,10 @@ class Form3 extends BaseContacts {
             )}
             {rightItemsExist && (
               <div className={`${this.decorateCSS("right-container")} ${!leftItemsExist && this.decorateCSS("right-container-no-image")}`}>
-                {rightTitle && <Base.H2 className={this.decorateCSS("rightTitle")}> {this.getPropValue("rightTitle")} </Base.H2>}
-                {(this.castToString(button.text) || inputItems.length > 0) && (
+                {rightSubtitle && <Base.P className={this.decorateCSS("rightSubtitle")}>{rightSection.rightSubtitle}</Base.P>}
+                {rightTitle && <Base.H2 className={this.decorateCSS("rightTitle")}>{rightSection.rightTitle}</Base.H2>}
+                {rightDescription && <Base.P className={this.decorateCSS("rightDescription")}>{rightSection.rightDescription}</Base.P>}
+                {(buttonText || (inputItems && inputItems.length > 0)) && (
                   <div className={this.decorateCSS("form-container")}>
                     <Formik
                       initialValues={getInitialValue()}
@@ -731,10 +820,7 @@ class Form3 extends BaseContacts {
                                         {inputObj.getPropValue("type") == "Text Area" ? (
                                           <textarea
                                             value={values[getInputName(inputItemIndex, inputObj.getPropValue("label"), inputIndex)]}
-                                            className={`
-                                              ${this.decorateCSS("input")}
-                                              ${this.decorateCSS("textarea")}  
-                                            `}
+                                            className={`${this.decorateCSS("input")} ${this.decorateCSS("textarea")}`}
                                             placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                             onChange={handleChange}
                                             rows={1}
@@ -757,7 +843,7 @@ class Form3 extends BaseContacts {
                                 </div>
                               ))}
                               <div className={this.decorateCSS("form-button")}>
-                                {this.castToString(button.text) && (
+                                {buttonText && (
                                   <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
                                     <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
                                   </Base.Button>

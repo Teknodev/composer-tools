@@ -2,10 +2,28 @@
 
 .container {
   .max-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
 
-    .header{
-      .subtitle, .title {
+    .header {
+      .subtitle,
+      .title,
+      .description {
         content: "";
+      }
+
+      .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text,
+          .button-icon {
+            content: "";
+          }
+        }
       }
     }
     .box {
@@ -109,9 +127,11 @@
                 color: var(--composer-font-color-secondary);
                 word-wrap: break-word;
 
-                .leftTitle, .leftSubtitle {
+                .leftTitle,
+                .leftSubtitle,
+                .leftDescription {
                   color: var(--composer-font-color-primary);
-                  text-align: left; 
+                  text-align: left;
                 }
               }
 
@@ -183,7 +203,9 @@
             .content {
               .left-top {
                 .left-top-content {
-                  .leftTitle, .leftSubtitle {
+                  .leftTitle,
+                  .leftSubtitle,
+                  .leftDescription {
                     color: white;
                   }
                 }
@@ -223,11 +245,17 @@
         &.right-container-no-image {
           border-radius: var(--composer-border-radius-md);
         }
+        .rightSubtitle,
+        .rightDescription {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+
         .rightTitle {
           color: var(--composer-font-color-primary);
           margin-top: var(--composer-gap-md);
           z-index: 1;
-          text-align: left; 
+          text-align: left;
         }
 
         .form-container {
