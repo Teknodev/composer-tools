@@ -26,6 +26,13 @@ class Form7 extends BaseContacts {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "inputItems",
       displayer: "Input Items",
@@ -229,11 +236,11 @@ class Form7 extends BaseContacts {
       ],
     });
 
-    
+
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
+      key: "text",
+      displayer: "Text",
       value: "We are committed to protecting your privacy. We will never collect information about you without your explicit consent.",
     });
 
@@ -247,17 +254,19 @@ class Form7 extends BaseContacts {
   render() {
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
-
     const description = this.getPropValue("description");
+    const text = this.getPropValue("text");
+
     const titleExist = this.castToString(title);
     const subtitleExist = this.castToString(subtitle);
-
     const descriptionExist = this.castToString(description);
+    const textExist = this.castToString(text);
+
     const inputItems = this.getPropValue("inputItems")!;
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const buttonTextExist = this.castToString(button.text);
-    const rightItemsExist = inputItems.length > 0 || descriptionExist || buttonTextExist;
+    const rightItemsExist = inputItems.length > 0 || textExist || buttonTextExist;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -323,10 +332,11 @@ class Form7 extends BaseContacts {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={alignmentValue === "left" ? this.decorateCSS("wrapper") : alignmentValue === "center" ? this.decorateCSS("wrapper-center") : ""}>
-            {(titleExist || subtitleExist ) && (
+            {(titleExist || subtitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
             {rightItemsExist && (
@@ -389,10 +399,10 @@ class Form7 extends BaseContacts {
                           </div>
                         ))}
 
-                        {(descriptionExist || buttonTextExist) && (
+                        {(textExist || buttonTextExist) && (
                           <div className={this.decorateCSS("bottom-section")}>
-                            {descriptionExist && (
-                              <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
+                            {textExist && (
+                              <Base.P className={this.decorateCSS("text")}>{text}</Base.P>
                             )}
                             {buttonTextExist && (
                               <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">

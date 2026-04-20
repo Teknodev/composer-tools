@@ -9,7 +9,7 @@
       .left-container {
         flex: 1;
 
-        .subtitle, .title {
+        .subtitle, .title, .description {
           content: "";
         }
       }
@@ -25,7 +25,7 @@
           justify-content: space-between;
           gap: var(--composer-gap-md);
 
-          .description {
+          .text {
             color: var(--composer-font-color-primary);
             flex: 1;
           }
