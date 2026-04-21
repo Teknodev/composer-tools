@@ -5,18 +5,20 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    gap: var(--composer-gap-lg);
   }
 }
 
 .top-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: var(--composer-gap-xl);
   width: 100%;
+  align-items: stretch;
 
   .left-container {
-    width: 66%;
-    align-items: baseline !important;
+    flex: 1;
+    align-items: flex-start;
 
     &.left-container-full {
       width: 100%;
@@ -29,20 +31,23 @@
     }
 
     .subtitle {
-      margin: var(--composer-gap-sm) 0;
+      margin-left: 0;
     }
   }
 
   .right-container {
-    align-items: flex-start;
-    width: 33%;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 45%;
+    text-align: right;
 
     .right-subtitle,
     .right-title,
     .right-description {
       color: var(--composer-font-color-primary);
-      text-align: left;
+      text-align: right;
     }
   }
 }
@@ -50,18 +55,20 @@
 .lower-container {
   transition: 1s;
   display: flex;
-  margin-top: var(--composer-gap-md);
   width: 100%;
   gap: var(--composer-gap-xl);
+  align-items: flex-start;
 
   .form-container {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
   }
 
   .image-container {
     background-size: cover;
     position: relative;
-    width: 50%;
+    width: 45%;
+    margin-top: 35px !important;
 
     &.image-container-no-form {
       width: 100%;
@@ -173,6 +180,22 @@
   margin-top: var(--composer-gap-xs);
 }
 
+@container (max-width: #{$composer-tablet-width}) {
+  .top-container {
+    gap: var(--composer-gap-md);
+
+    .right-container {
+      width: 40%;
+    }
+  }
+
+  .lower-container {
+    .image-container {
+      width: 40%;
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .top-container {
     flex-direction: column;
@@ -181,6 +204,14 @@
     .left-container,
     .right-container {
       width: 100%;
+      text-align: left;
+      margin-top: 0;
+
+      .right-subtitle,
+      .right-title,
+      .right-description {
+        text-align: left;
+      }
     }
   }
 
@@ -191,6 +222,7 @@
     .image-container {
       width: 100%;
       height: 400px;
+      margin-top: 0 !important;
     }
   }
 

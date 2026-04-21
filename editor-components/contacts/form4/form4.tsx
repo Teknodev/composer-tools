@@ -14,7 +14,7 @@ class Form4 extends BaseContacts {
       type: "string",
       key: "subtitle",
       displayer: "Subtitle",
-      value: "Get in Touch",
+      value: "",
     });
 
     this.addProp({
