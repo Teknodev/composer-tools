@@ -19,6 +19,7 @@ type SizeSettings = {
 
 type ItemDetailsSection = {
   itemDetailTitle: React.JSX.Element;
+  hasLines: boolean;
   itemDetails: ItemDetails[];
 };
 
@@ -652,6 +653,12 @@ class ECommerce7 extends BaseECommerce {
           key: "itemDetailTitle",
           displayer: "Item Detail Title",
           value: "Auto-renews, skip or cancel anytime.",
+        },
+        {
+          type: "boolean",
+          key: "hasLines",
+          displayer: "Enable Lines",
+          value: true,
         },
         {
           type: "array",
@@ -1343,7 +1350,7 @@ class ECommerce7 extends BaseECommerce {
               {(isItemDetailTitle || itemDetails.length > 0) && (
                 <div className={this.decorateCSS("item-detail-wrapper")}>
                   {isItemDetailTitle && (
-                    <Base.P className={this.decorateCSS("item-detail-title")}>
+                    <Base.P className={`${this.decorateCSS("item-detail-title")} ${itemDetailsSectionData.hasLines ? this.decorateCSS("has-lines") : ""}`}>
                       {itemDetailsSectionData.itemDetailTitle}
                     </Base.P>
                   )}
@@ -1360,7 +1367,7 @@ class ECommerce7 extends BaseECommerce {
                                 this.castToString(itemTitle) ||
                                 this.castToString(itemDescription)) && (
                                   <div
-                                    className={this.decorateCSS("section")}
+                                    className={`${this.decorateCSS("section")} ${itemDetailsSectionData.hasLines ? this.decorateCSS("has-lines") : ""}`}
                                     key={index}
                                   >
                                     {(this.castToString(itemTitle) ||
