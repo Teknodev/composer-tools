@@ -1,27 +1,29 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .max-content {
     .content {
       display: flex;
       gap: var(--composer-gap-md);
+
       .left-page {
         display: flex;
         flex-direction: column;
         flex: 1;
         gap: var(--composer-gap-lg);
-        .header {
-          .title,
-          .subtitle, .description {
-            text-align: left;
-          }
+
+        &.no-list {
+          gap: 20px;
         }
-        
+
         .list-container {
           margin: 0px;
+
           .list {
             display: flex;
             gap: var(--composer-gap-md);
             align-items: center;
+
             .description {
               display: flex;
               align-items: center;
@@ -30,19 +32,30 @@
               text-align: left;
               margin: 0;
             }
+
             .icon-container {
               background-color: var(--composer-primary-color);
               padding: var(--composer-gap-xs);
-              border-radius: 50%;
+              border-radius: var(--composer-border-radius-full);
               align-items: center;
               display: flex;
               height: fit-content;
               width: fit-content;
 
+              &.no-bg {
+                background-color: transparent;
+
+                .icon {
+                  color: var(--composer-primary-color);
+                }
+              }
+
               .icon {
                 color: var(--composer-font-color-secondary);
-                width: 10px;
-                height: 10px;
+                width: var(--composer-gap-sm);
+                height: var(--composer-gap-sm);
+                font-size: var(--composer-gap-sm);
+                object-fit: contain;
               }
             }
           }
@@ -50,18 +63,54 @@
 
         .buttons {
           display: flex;
-          gap: var(--composer-gap-md);
+          gap: var(--composer-gap-sm);
+          justify-content: var(--composer-content-alignment, flex-start);
+
           .button {
             content: "";
+
             .button-text {
               content: "";
             }
           }
         }
       }
+
+      &.has-image {
+        .left-page {
+          .header {
+
+            .subtitle,
+            .title,
+            .description {
+              text-align: left;
+              margin-left: 0;
+            }
+          }
+
+          .buttons {
+            justify-content: flex-start;
+          }
+        }
+      }
+
+      &.no-left-content {
+        .right-page {
+          width: 100%;
+          min-height: 500px;
+          max-height: 600px;
+
+          .image-container {
+            position: relative;
+            height: 100%;
+          }
+        }
+      }
+
       .right-page {
         flex: 1;
         position: relative;
+
         .image-container {
           position: absolute;
           top: 0px;
@@ -71,10 +120,23 @@
           align-items: center;
           height: 100%;
           width: 100%;
+
           .image {
             object-fit: cover;
             height: 100%;
             width: 100%;
+            border-radius: var(--composer-border-radius-sm);
+          }
+
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--composer-overlay-color);
+            z-index: 0;
+            pointer-events: none;
             border-radius: var(--composer-border-radius-xs);
           }
         }
@@ -82,11 +144,33 @@
     }
   }
 }
+
+@container (max-width: 1024px) {
+  .container {
+    .max-content {
+      .content {
+        .left-page {
+          .list-container {
+            .list {
+              gap: var(--composer-gap-sm);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .max-content {
       .content {
         flex-direction: column;
+
+        .left-page {
+          gap: var(--composer-gap-md);
+        }
+
         .right-page {
           min-height: 400px;
         }

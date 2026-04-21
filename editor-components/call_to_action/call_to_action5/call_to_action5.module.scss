@@ -2,10 +2,24 @@
 
 .container {
   position: relative;
-  padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-xl);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+
+  &.has-background {
+    .max-content {
+      .header {
+
+        .subtitle {
+          background: transparent !important;
+          padding: 0 !important;
+        }
+
+        .subtitle,
+        .title,
+        .description {
+          color: white;
+        }
+      }
+    }
+  }
 
   &.overlay-active {
     &::before {
@@ -38,7 +52,6 @@
     gap: var(--composer-gap-lg);
     z-index: 2;
 
-
     .header {
       align-items: center;
 
@@ -50,19 +63,9 @@
 
       .subtitle {
         transform: translateX(0);
+
         &::before {
           display: none;
-        }
-      }
-
-      &.with-image {
-        .title,
-        .description,
-        .subtitle {
-          color: white;
-          &::before {
-            color: white;
-          }
         }
       }
     }
@@ -114,9 +117,10 @@
         }
 
         .submit-button {
-          content: "";
           border-top-left-radius: 0;
           border-bottom-left-radius: 0;
+          margin-top: 0;
+
           .button-text {
             content: "";
           }
@@ -127,6 +131,7 @@
     .button-container {
       width: 100%;
       display: flex;
+      gap: var(--composer-gap-sm);
       justify-content: center;
 
       .button {
@@ -144,8 +149,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-lg);
-
     .max-content {
       .form {
         .newsletter {
@@ -158,8 +161,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    padding: calc(var(--composer-gap-xl) * 2) var(--composer-gap-md);
-
     .max-content {
       .form {
         .newsletter {
@@ -169,13 +170,6 @@
           .inputs {
             .input {
               padding: var(--composer-gap-sm) var(--composer-gap-sm);
-            }
-          }
-
-          .submit-button {
-            content: "";
-            .button-text {
-              content: "";
             }
           }
         }

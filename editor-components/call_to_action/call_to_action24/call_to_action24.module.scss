@@ -46,6 +46,8 @@
                     .subtitle {
                         width: fit-content;
                         transform: none;
+                        background: transparent;
+                        padding: 0;
 
                         &::before {
                             display: none;

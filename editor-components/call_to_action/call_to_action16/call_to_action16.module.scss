@@ -26,18 +26,18 @@
                 .description {
                     text-align: center;
                 }
-            }
 
-            .button-container {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: var(--composer-gap-sm);
+                .button-container {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
 
-                .button {
-                    .button-text {
-                        content: "";
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
                     }
                 }
             }
