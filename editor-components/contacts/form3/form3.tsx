@@ -791,9 +791,13 @@ class Form3 extends BaseContacts {
             )}
             {rightItemsExist && (
               <div className={`${this.decorateCSS("right-container")} ${!leftItemsExist && this.decorateCSS("right-container-no-image")}`}>
-                {rightSubtitle && <Base.P className={this.decorateCSS("rightSubtitle")}>{rightSection.rightSubtitle}</Base.P>}
-                {rightTitle && <Base.H2 className={this.decorateCSS("rightTitle")}>{rightSection.rightTitle}</Base.H2>}
-                {rightDescription && <Base.P className={this.decorateCSS("rightDescription")}>{rightSection.rightDescription}</Base.P>}
+                {(rightSubtitle || rightTitle || rightDescription) && (
+                  <Base.VerticalContent className={this.decorateCSS("right-header")}>
+                    {rightSubtitle && <Base.P className={this.decorateCSS("rightSubtitle")}>{rightSection.rightSubtitle}</Base.P>}
+                    {rightTitle && <Base.H2 className={this.decorateCSS("rightTitle")}>{rightSection.rightTitle}</Base.H2>}
+                    {rightDescription && <Base.P className={this.decorateCSS("rightDescription")}>{rightSection.rightDescription}</Base.P>}
+                  </Base.VerticalContent>
+                )}
                 {(buttonText || (inputItems && inputItems.length > 0)) && (
                   <div className={this.decorateCSS("form-container")}>
                     <Formik
