@@ -475,6 +475,7 @@
     .container {
         .max-content {
             flex-direction: column;
+            gap: var(--composer-gap-lg);
 
             .left {
                 flex: auto;
