@@ -157,9 +157,13 @@
     }
 
     .section-title,
-    .section-description,
-    .section-subtitle {
+    .section-description {
         width: 100% !important;
+        text-align: left !important;
+    }
+
+    .section-subtitle {
+        width: fit-content;
         text-align: left !important;
     }
 }
