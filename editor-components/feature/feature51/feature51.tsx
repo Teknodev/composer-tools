@@ -11,6 +11,8 @@ type ServiceItemType = {
 };
 
 class Feature51 extends BaseFeature {
+  private containerRef = React.createRef<HTMLDivElement>();
+
   constructor(props?: TypeUsableComponentProps) {
     super(props, styles);
 
@@ -171,30 +173,49 @@ class Feature51 extends BaseFeature {
     });
 
     const rawItemCount = this.getPropValue("itemCount");
-    const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+    const count = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
 
-    const initialActiveItems = Array.from({ length: itemCount }, (_, i) => i);
-    this.setComponentState("activeItems", initialActiveItems);
+    this.setComponentState("activeIndices", Array.from({ length: count }, (_, i) => i));
   }
 
   static getName(): string {
     return "Feature 51";
   }
 
+  componentDidMount() {
+    if (this.isSmallScreen()) {
+      this.setComponentState("activeIndices", [0]);
+    }
+  }
+
+  private isSmallScreen(): boolean {
+    const el = this.containerRef.current;
+    const width = el ? el.clientWidth : (typeof window !== "undefined" ? window.innerWidth : 1440);
+    return width <= 1024;
+  }
+
   private onItemClick(index: number): void {
+    if (this.isSmallScreen()) {
+      const activeIndices = this.getComponentState("activeIndices") || [];
+      if (activeIndices.includes(index)) {
+        this.setComponentState("activeIndices", []);
+      } else {
+        this.setComponentState("activeIndices", [index]);
+      }
+      return;
+    }
+
     const rawItemCount = this.getPropValue("itemCount");
-    const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
-    const colIndex = index % itemCount;
+    const pcItemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+    const activeIndices = this.getComponentState("activeIndices") || [];
 
-    const activeItems: number[] = this.getComponentState("activeItems") || [];
-    const isCurrentlyActive = activeItems.includes(index);
+    const colIndex = index % pcItemCount;
+    const otherColActiveItems = activeIndices.filter((i: number) => i % pcItemCount !== colIndex);
 
-    const otherColActiveItems = activeItems.filter((i) => i % itemCount !== colIndex);
-
-    if (isCurrentlyActive) {
-      this.setComponentState("activeItems", otherColActiveItems);
+    if (activeIndices.includes(index)) {
+      this.setComponentState("activeIndices", otherColActiveItems);
     } else {
-      this.setComponentState("activeItems", [...otherColActiveItems, index]);
+      this.setComponentState("activeIndices", [...otherColActiveItems, index]);
     }
   }
 
@@ -218,13 +239,14 @@ class Feature51 extends BaseFeature {
     const line = this.getPropValue("line") as boolean;
 
     const items = this.castToObject<ServiceItemType[]>("items") || [];
+    const activeIndices = this.getComponentState("activeIndices") || [];
 
     const collapseIcon = this.getPropValue("collapseIcon") as TypeMediaInputValue;
     const expandIcon = this.getPropValue("expandIcon") as TypeMediaInputValue;
     const hasListContent = items.length > 0;
 
     return (
-      <Base.Container className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")} ref={this.containerRef}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {hasContent && (
             <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
@@ -255,8 +277,7 @@ class Feature51 extends BaseFeature {
                 {items.map((item: ServiceItemType, index: number) => {
                   const itemTitleExist = this.castToString(item.itemTitle);
                   const itemDescriptionExist = this.castToString(item.itemDescription);
-                  const activeItems: number[] = this.getComponentState("activeItems") || [];
-                  const isActive = activeItems.includes(index);
+                  const isActive = activeIndices.includes(index);
                   const currentToggleIcon = isActive ? collapseIcon : expandIcon;
                   const itemHeaderExist = !!itemTitleExist || !!currentToggleIcon;
 
@@ -276,9 +297,9 @@ class Feature51 extends BaseFeature {
                         >
                           <div className={this.decorateCSS("item-left")}>
                             {itemTitleExist && (
-                              <Base.H4 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
+                              <Base.H5 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
                                 {item.itemTitle}
-                              </Base.H4>
+                              </Base.H5>
                             )}
                           </div>
                           {currentToggleIcon && (
