@@ -535,7 +535,7 @@ class ECommerce5 extends BaseECommerce {
     const description = this.getPropValue("description");
     const descriptionStr = this.castToString(description);
     return (
-      <Base.Container isFull className={this.decorateCSS("container")}>
+      <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
             {(subtitleStr || titleExist || descriptionStr) && (

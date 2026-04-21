@@ -33,11 +33,8 @@
 }
 
 .container {
-    padding: var(--composer-gap-md) 0;
-
     .max-content {
         width: 100%;
-        padding: 0 var(--composer-gap-lg);
         display: flex;
         flex-direction: column;
         gap: var(--composer-gap-lg);
