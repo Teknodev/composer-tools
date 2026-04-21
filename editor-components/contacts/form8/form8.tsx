@@ -125,12 +125,6 @@ class Form8 extends BaseContacts {
           displayer: "Input Item",
           value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Name",
-            },
-            {
               type: "array",
               key: "inputs",
               displayer: "Inputs",
@@ -185,12 +179,6 @@ class Form8 extends BaseContacts {
           displayer: "Input Item",
           value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Email",
-            },
-            {
               type: "array",
               key: "inputs",
               displayer: "Inputs",
@@ -244,12 +232,6 @@ class Form8 extends BaseContacts {
           key: "input-item",
           displayer: "Input Item",
           value: [
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Text Area",
-            },
             {
               type: "array",
               key: "inputs",
@@ -347,10 +329,8 @@ class Form8 extends BaseContacts {
       }
     }
 
-    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
-      const labelText = inputLabel && this.castToString(inputLabel);
-
-      return toObjectKey(`${indexOfLabel} ${labelText} ${indexOfInput}`);
+    const getInputName = (indexOfLabel: number, indexOfInput: number): string => {
+      return toObjectKey(`input_${indexOfLabel}_${indexOfInput}`);
     };
 
     function getInitialValue() {
@@ -358,11 +338,10 @@ class Form8 extends BaseContacts {
 
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         const inputs = inputItem.getPropValue("inputs");
-        const label = inputItem.getPropValue("label");
 
         if (Array.isArray(inputs)) {
           inputs.forEach((_: TypeUsableComponentProps, indexOfInput: number) => {
-            const key = getInputName(indexOfItem, label, indexOfInput);
+            const key = getInputName(indexOfItem, indexOfInput);
             value[key] = "";
           });
         }
@@ -376,7 +355,7 @@ class Form8 extends BaseContacts {
 
       inputItems.map((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").map((input: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          const key = getInputName(indexOfItem, indexOfInput);
 
           const isRequired = input.getPropValue("isRequired");
           const isEmail = getInputType(input.getPropValue("type")) == "email";
@@ -476,12 +455,12 @@ class Form8 extends BaseContacts {
                         <div className={this.decorateCSS("input-box")}>
                           {inputObj.getPropValue("type") == "Text Area" ? (
                             <textarea
-                              value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                              value={values[getInputName(inputItemIndex, inputIndex)]}
                               className={this.decorateCSS("form-input")}
                               placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                               rows={12}
                               onChange={handleChange}
-                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                              name={getInputName(inputItemIndex, inputIndex)}
                               cols={30}
                             ></textarea>
                           ) : (
@@ -489,13 +468,13 @@ class Form8 extends BaseContacts {
                               placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                               type={getInputType(inputObj.getPropValue("type"))}
                               onChange={handleChange}
-                              value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                              name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                              value={values[getInputName(inputItemIndex, inputIndex)]}
+                              name={getInputName(inputItemIndex, inputIndex)}
                               className={this.decorateCSS("form-input")}
                             />
                           )}
                           <div className={this.decorateCSS("error-container")}>
-                            <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                            <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputIndex)} component={"span"} />
                           </div>
                         </div>
                       ))

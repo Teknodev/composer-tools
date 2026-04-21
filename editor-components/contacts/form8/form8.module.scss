@@ -6,7 +6,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-lg);
 
     .header {
 
@@ -75,7 +75,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
             font-size: 1.5rem;
 
             &::placeholder {
-              font-size: 1.5rem;
+              font-size: 1rem;
               color: var(--composer-tertiary-color);
             }
 
