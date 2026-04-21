@@ -31,7 +31,7 @@ class Form2 extends BaseContacts {
           type: "boolean",
           key: "overlay",
           displayer: "Overlay",
-          value: true,
+          value: false,
         },
       ],
     });
@@ -343,7 +343,7 @@ class Form2 extends BaseContacts {
 
     return (
       <Base.Container className={this.decorateCSS("container")}>
-        <Base.Media value={backgroundImage} className={this.decorateCSS("background-media")} />
+        {imageExist && <Base.Media value={backgroundImage} className={this.decorateCSS("background-media")} />}
         {overlay && imageExist && <div className={this.decorateCSS("overlay")}></div>}
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {((inputs.length > 0 || buttonTextExist) || (titleExist || subtitleExist || descriptionExist)) && (

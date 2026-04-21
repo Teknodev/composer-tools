@@ -2,7 +2,6 @@
 
 .container {
   position: relative;
-  height: 120vh;
 
   .background-media {
     position: absolute;
@@ -29,7 +28,6 @@
   }
 
   .max-content {
-    height: 100%;
     z-index: 5;
 
     .input-items {
@@ -39,10 +37,8 @@
         max-width: 960px;
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        position: relative;
+        margin: 0 auto;
         box-shadow: var(--box-shadow-active);
         padding: var(--composer-gap-xl);
         gap: var(--composer-gap-md);
@@ -57,7 +53,7 @@
 
         .header {
           margin: 0;
-          padding: 0 var(--composer-gap-xl);
+          padding: 0;
 
           .subtitle,
           .title {
@@ -92,7 +88,7 @@
           display: flex;
           flex-direction: column;
           gap: var(--composer-gap-sm);
-          padding: 0 var(--composer-gap-xl);
+          padding: 0;
 
           .input-container {
             position: relative;
@@ -111,7 +107,7 @@
               pointer-events: none;
               color: white;
               width: fit-content;
-              font-size: 0.75rem;
+              font-size: 0.75rem !important;
 
               &.placeholder-no-image {
                 color: var(--composer-font-color-primary);
@@ -168,13 +164,7 @@
     .max-content {
       .input-items {
         .input-item {
-          max-width: 700px;
-          max-height: 700px;
           gap: 0;
-
-          .form {
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
-          }
         }
       }
     }
@@ -186,17 +176,8 @@
     .max-content {
       .input-items {
         .input-item {
-          max-width: 320px;
           padding: var(--composer-gap-md);
           gap: 0;
-
-          .header {
-            padding: 0 var(--composer-gap-md);
-          }
-
-          .form {
-            padding: var(--composer-gap-md);
-          }
         }
       }
     }
