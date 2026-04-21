@@ -43,12 +43,6 @@ class Form7 extends BaseContacts {
           displayer: "Input Item",
           value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Name",
-            },
-            {
               type: "array",
               key: "inputs",
               displayer: "Inputs",
@@ -167,12 +161,6 @@ class Form7 extends BaseContacts {
           displayer: "Input Item",
           value: [
             {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Text Area",
-            },
-            {
               type: "array",
               key: "inputs",
               displayer: "Inputs",
@@ -283,16 +271,15 @@ class Form7 extends BaseContacts {
       }
     }
 
-    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
-      const labelText = inputLabel && this.castToString(inputLabel);
-      return `input_${indexOfLabel}_${labelText}_${indexOfInput}`;
+    const getInputName = (indexOfLabel: number, indexOfInput: number): string => {
+      return `input_${indexOfLabel}_${indexOfInput}`;
     };
 
     const getInitialValue = () => {
       const value: any = {};
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs")?.forEach((_: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          const key = getInputName(indexOfItem, indexOfInput);
           value[key] = "";
         });
       });
@@ -303,7 +290,7 @@ class Form7 extends BaseContacts {
       let schema = Yup.object().shape({});
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").forEach((input: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          const key = getInputName(indexOfItem, indexOfInput);
           let fieldSchema = Yup.string();
 
           if (input.getPropValue("isRequired")) {
@@ -372,26 +359,26 @@ class Form7 extends BaseContacts {
                                     <div className={this.decorateCSS("input-container")}>
                                       {inputObj.getPropValue("type") === "Text Area" ? (
                                         <textarea
-                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                          value={values[getInputName(inputItemIndex, inputIndex)]}
                                           className={this.decorateCSS("input")}
                                           placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                           rows={9}
                                           onChange={handleChange}
-                                          name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                          name={getInputName(inputItemIndex, inputIndex)}
                                         ></textarea>
                                       ) : (
                                         <input
                                           placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                           type={getInputType(inputObj.getPropValue("type"))}
                                           onChange={handleChange}
-                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                          name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                          value={values[getInputName(inputItemIndex, inputIndex)]}
+                                          name={getInputName(inputItemIndex, inputIndex)}
                                           className={this.decorateCSS("input")}
                                         />
                                       )}
                                       <Base.Media value={inputObj.getPropValue("icon")} className={this.decorateCSS("icon")} />
                                     </div>
-                                    <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                                    <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputIndex)} component={"span"} />
                                   </div>
                                 );
                               })}

@@ -69,12 +69,6 @@ class Form2 extends BaseContacts {
           value: [
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Full Name",
-            },
-            {
-              type: "string",
               key: "placeholder",
               displayer: "Placeholder",
               value: "Full Name",
@@ -115,12 +109,6 @@ class Form2 extends BaseContacts {
           value: [
             {
               type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "E-mail",
-            },
-            {
-              type: "string",
               key: "placeholder",
               displayer: "Placeholder",
               value: "E-mail",
@@ -159,12 +147,6 @@ class Form2 extends BaseContacts {
           key: "input",
           displayer: "Input",
           value: [
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Phone",
-            },
             {
               type: "string",
               key: "placeholder",
@@ -205,12 +187,6 @@ class Form2 extends BaseContacts {
           key: "input",
           displayer: "Input",
           value: [
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Message",
-            },
             {
               type: "string",
               key: "placeholder",
@@ -298,17 +274,14 @@ class Form2 extends BaseContacts {
       return str;
     }
 
-    const getInputName = (indexOfLabel: number, inputLabel: any): string => {
-      const labelText = inputLabel && this.castToString(inputLabel);
-
-      return toObjectKey(`${indexOfLabel} ${labelText}`);
+    const getInputName = (indexOfInput: number): string => {
+      return toObjectKey(`${indexOfInput}`);
     };
 
     function getInitialValue() {
       let value: any = {};
       inputs.map((input: TypeUsableComponentProps, indexOfInput: number) => {
-        const label = input.getPropValue("label");
-        value[getInputName(indexOfInput, label)] = "";
+        value[getInputName(indexOfInput)] = "";
       });
 
       return value;
@@ -339,7 +312,7 @@ class Form2 extends BaseContacts {
         }
 
         schema = schema.shape({
-          [getInputName(indexOfInput, input.getPropValue("label"))]: fieldSchema,
+          [getInputName(indexOfInput)]: fieldSchema,
         });
       });
 
@@ -395,30 +368,30 @@ class Form2 extends BaseContacts {
                       <Form className={this.decorateCSS("form")}>
                         {this.getPropValue("inputs").map((input: any, index: number) => (
                           <>
-                            <div className={this.decorateCSS("input-container")}>
+                            <div key={index} className={this.decorateCSS("input-container")}>
                               {input.getPropValue("type") == "Text Area" ? (
                                 <textarea
-                                  id={getInputName(index, input.getPropValue("label"))}
-                                  value={values[getInputName(index, input.getPropValue("label"))]}
+                                  id={getInputName(index)}
+                                  value={values[getInputName(index)]}
                                   placeholder=" "
                                   className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} ${this.decorateCSS("textarea")}`}
                                   rows={12}
                                   onChange={handleChange}
-                                  name={getInputName(index, input.getPropValue("label"))}
+                                  name={getInputName(index)}
                                 />
                               ) : (
                                 <input
-                                  id={getInputName(index, input.getPropValue("label"))}
+                                  id={getInputName(index)}
                                   placeholder=" "
                                   type={getInputType(input.getPropValue("type"))}
                                   onChange={handleChange}
-                                  value={values[getInputName(index, input.getPropValue("label"))]}
-                                  name={getInputName(index, input.getPropValue("label"))}
+                                  value={values[getInputName(index)]}
+                                  name={getInputName(index)}
                                   className={`${this.decorateCSS("input")} ${!imageExist && this.decorateCSS("input-no-image")} `}
                                 />
                               )}
                               {this.castToString(input.getPropValue("placeholder")) && <Base.P className={`${this.decorateCSS("placeholder")} ${!imageExist && this.decorateCSS("placeholder-no-image")}`}>{input.getPropValue("placeholder")}</Base.P>}
-                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index, input.getPropValue("label"))} component={"span"} />
+                              <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(index)} component={"span"} />
                             </div>
                           </>
                         ))}

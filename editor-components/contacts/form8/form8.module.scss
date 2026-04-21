@@ -19,7 +19,7 @@ $content-background-color: color-mix(in srgb, var(--composer-html-background), v
 
     .page-content {
       display: flex;
-      gap: var(--composer-gap-md);
+      gap: var(--composer-gap-lg);
       background-color: $content-background-color;
       padding: var(--composer-gap-xl);
       border-radius: var(--composer-border-radius-md);
