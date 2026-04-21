@@ -209,11 +209,11 @@
           padding-bottom: var(--composer-gap-lg);
 
           .service-item {
-            padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+            padding: var(--composer-gap-md) 0 0 0;
 
             .item-index {
               top: var(--composer-gap-md);
-              left: calc(var(--composer-gap-md) + var(--composer-gap-sm));
+              left: var(--composer-gap-sm);
             }
 
             .card-content {
@@ -294,16 +294,12 @@
 
       .services-grid {
         gap: 0;
-        padding-bottom: 0;
+        padding-bottom: 0 !important;
 
         &.no-lines {
-          .service-item {
-            padding: var(--composer-gap-md) var(--composer-gap-md) 0 var(--composer-gap-md);
+          padding-bottom: 0 !important;
 
-            .item-index {
-              top: var(--composer-gap-md);
-              left: calc(var(--composer-gap-md) + var(--composer-gap-sm));
-            }
+          .service-item {
 
             .card-content {
               margin-top: calc(1.25rem + var(--composer-gap-sm));
