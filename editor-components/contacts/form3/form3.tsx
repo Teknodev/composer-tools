@@ -9,15 +9,14 @@ import { TypeUsableComponentProps } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
-type Left = {
-  contactName: string;
-  contactIcon: string;
-  image: React.JSX.Element;
+type ContactItem = {
+  contactName: JSX.Element;
+  contactIcon: { type: string; name?: string; url?: string };
 };
 
 type Social = {
+  icon: { type: string; name?: string; url?: string };
   url: string;
-  icon: string;
 };
 
 class Form3 extends BaseContacts {
@@ -103,192 +102,194 @@ class Form3 extends BaseContacts {
           displayer: "Left Description",
           value: "",
         },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "contactInfo",
+      displayer: "Contact Info",
+      value: [
         {
-          type: "array",
-          key: "contactInfo",
-          displayer: "Contact Info",
+          type: "object",
+          key: "contact",
+          displayer: "Contact",
           value: [
             {
-              type: "object",
-              key: "contact",
-              displayer: "Contact",
-              value: [
-                {
-                  type: "string",
-                  key: "contactName",
-                  value: "Moldova, str. Gagarin 10",
-                  displayer: "Text",
-                },
-                {
-                  type: "media",
-                  key: "contactIcon",
-                  additionalParams: {
-                    availableTypes: ["image", "icon"],
-                  },
-                  value: {
-                    type: "icon",
-                    name: "FaLocationDot",
-                  },
-                  displayer: "Icon",
-                },
-              ],
+              type: "string",
+              key: "contactName",
+              value: "Moldova, str. Gagarin 10",
+              displayer: "Text",
             },
             {
-              type: "object",
-              key: "contact",
-              displayer: "Contact",
-              value: [
-                {
-                  type: "string",
-                  key: "contactName",
-                  value: "+373 68 324 028",
-                  displayer: "Text",
-                },
-                {
-                  type: "media",
-                  key: "contactIcon",
-                  additionalParams: {
-                    availableTypes: ["image", "icon"],
-                  },
-                  value: {
-                    type: "icon",
-                    name: "FaPhoneAlt",
-                  },
-                  displayer: "Icon",
-                },
-              ],
-            },
-            {
-              type: "object",
-              key: "contact",
-              displayer: "Contact",
-              value: [
-                {
-                  type: "string",
-                  key: "contactName",
-                  value: "test@test.com",
-                  displayer: "Text",
-                },
-                {
-                  type: "media",
-                  key: "contactIcon",
-                  additionalParams: {
-                    availableTypes: ["image", "icon"],
-                  },
-                  value: {
-                    type: "icon",
-                    name: "IoIosMail",
-                  },
-                  displayer: "Icon",
-                },
-              ],
+              type: "media",
+              key: "contactIcon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLocationDot",
+              },
+              displayer: "Icon",
             },
           ],
         },
         {
-          type: "array",
-          key: "socials",
-          displayer: "Social Media",
+          type: "object",
+          key: "contact",
+          displayer: "Contact",
           value: [
             {
-              type: "object",
-              key: "social",
-              displayer: "Social",
-              value: [
-                {
-                  type: "media",
-                  key: "icon",
-                  additionalParams: {
-                    availableTypes: ["image", "icon"],
-                  },
-                  value: {
-                    type: "icon",
-                    name: "BiLogoFacebook",
-                  },
-                  displayer: "Icon",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Navigate To",
-                  value: "",
-                },
-              ],
+              type: "string",
+              key: "contactName",
+              value: "+373 68 324 028",
+              displayer: "Text",
             },
             {
-              type: "object",
-              key: "social",
-              displayer: "Social",
-              value: [
-                {
-                  type: "media",
-                  key: "icon",
-                  additionalParams: {
-                    availableTypes: ["image", "icon"],
-                  },
-                  value: {
-                    type: "icon",
-                    name: "SiGmail",
-                  },
-                  displayer: "Icon",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Navigate To",
-                  value: "",
-                },
-              ],
+              type: "media",
+              key: "contactIcon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaPhoneAlt",
+              },
+              displayer: "Icon",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "contact",
+          displayer: "Contact",
+          value: [
+            {
+              type: "string",
+              key: "contactName",
+              value: "test@test.com",
+              displayer: "Text",
             },
             {
-              type: "object",
-              key: "social",
-              displayer: "Social",
-              value: [
-                {
-                  type: "media",
-                  key: "icon",
-                  additionalParams: {
-                    availableTypes: ["image", "icon"],
-                  },
-                  value: {
-                    type: "icon",
-                    name: "FaLinkedinIn",
-                  },
-                  displayer: "Icon",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Navigate To",
-                  value: "",
-                },
-              ],
+              type: "media",
+              key: "contactIcon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "IoIosMail",
+              },
+              displayer: "Icon",
+            },
+          ],
+        },
+      ],
+    });
+
+    this.addProp({
+      type: "array",
+      key: "socials",
+      displayer: "Social Media",
+      value: [
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "BiLogoFacebook",
+              },
+              displayer: "Icon",
             },
             {
-              type: "object",
-              key: "social",
-              displayer: "Social",
-              value: [
-                {
-                  type: "media",
-                  key: "icon",
-                  additionalParams: {
-                    availableTypes: ["image", "icon"],
-                  },
-                  value: {
-                    type: "icon",
-                    name: "FaInstagram",
-                  },
-                  displayer: "Icon",
-                },
-                {
-                  type: "page",
-                  key: "url",
-                  displayer: "Navigate To",
-                  value: "",
-                },
-              ],
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "https://www.google.com",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "SiGmail",
+              },
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaLinkedinIn",
+              },
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
+            },
+          ],
+        },
+        {
+          type: "object",
+          key: "social",
+          displayer: "Social",
+          value: [
+            {
+              type: "media",
+              key: "icon",
+              additionalParams: {
+                availableTypes: ["image", "icon"],
+              },
+              value: {
+                type: "icon",
+                name: "FaInstagram",
+              },
+              displayer: "Icon",
+            },
+            {
+              type: "page",
+              key: "url",
+              displayer: "Navigate To",
+              value: "",
             },
           ],
         },
@@ -304,7 +305,7 @@ class Form3 extends BaseContacts {
           type: "string",
           key: "rightSubtitle",
           displayer: "Right Subtitle",
-          value: "Lorem",
+          value: "Work With Us",
         },
         {
           type: "string",
@@ -631,8 +632,8 @@ class Form3 extends BaseContacts {
     const leftSubtitle = this.castToString(leftSection.leftSubtitle);
     const leftTitle = this.castToString(leftSection.leftTitle);
     const leftDescription = this.castToString(leftSection.leftDescription);
-    const contactInfo = (leftSection.contactInfo || []) as Left[];
-    const icons = (leftSection.socials || []) as Social[];
+    const contactInfo = this.castToObject<ContactItem[]>("contactInfo");
+    const socials = this.castToObject<Social[]>("socials");
 
     const rightSection = this.castToObject<any>("rightSection");
     const rightSubtitle = this.castToString(rightSection.rightSubtitle);
@@ -704,7 +705,7 @@ class Form3 extends BaseContacts {
       return schema;
     }
 
-    const leftItemsExist = icons.length > 0 || !!backgroundImage || !!leftSubtitle || !!leftTitle || !!leftDescription || contactInfo.length > 0;
+    const leftItemsExist = socials.length > 0 || !!backgroundImage || !!leftSubtitle || !!leftTitle || !!leftDescription || contactInfo.length > 0;
     const rightItemsExist = !!rightTitle || !!rightSubtitle || !!rightDescription || !!buttonText || (inputItems && inputItems.length > 0);
 
     return (
@@ -758,18 +759,21 @@ class Form3 extends BaseContacts {
                       )}
                       {contactInfo.length > 0 && (
                         <div className={this.decorateCSS("contacts")}>
-                          {contactInfo.map((contact: any, index: number) => (
-                            <div key={index} className={this.decorateCSS("contact")}>
-                              <Base.Media value={contact.contactIcon} className={this.decorateCSS("icon")} />
-                              {this.castToString(contact.contactName) && <Base.P className={this.decorateCSS("contactName")}>{contact.contactName}</Base.P>}
-                            </div>
-                          ))}
+                          {contactInfo.map((contact: ContactItem, index: number) => {
+                            const contactNameExist = this.castToString(contact.contactName);
+                            return (
+                              <div key={index} className={this.decorateCSS("contact")}>
+                                {contact.contactIcon && <Base.Media value={contact.contactIcon as any} className={this.decorateCSS("icon")} />}
+                                {contactNameExist && <Base.P className={this.decorateCSS("contactName")}>{contact.contactName}</Base.P>}
+                              </div>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
-                    {icons.length > 0 && (
+                    {socials.length > 0 && (
                       <div className={`${this.decorateCSS("socials")} ${!rightItemsExist && this.decorateCSS("socials-full")}`}>
-                        {icons.map((social: Social, index: number) => {
+                        {socials.map((social: Social, index: number) => {
                           if (!social.icon) return null;
 
                           return (

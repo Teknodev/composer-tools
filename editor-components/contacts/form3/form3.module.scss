@@ -33,7 +33,7 @@
       display: flex;
       flex-direction: row;
       width: 100%;
-      box-shadow: var(--box-shadow-active);
+      box-shadow: var(--composer-box-shadow);
       position: relative;
       height: fit-content;
       align-items: stretch;
@@ -189,6 +189,16 @@
                 color: var(--composer-font-color-primary);
                 border-radius: 100%;
                 z-index: 1;
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                  background-color: var(--composer-primary-color);
+
+                  .icon {
+                    color: var(--composer-font-color-secondary);
+                  }
+                }
 
                 &.icon-container-no-image {
                   background-color: var(--composer-html-background);
@@ -203,13 +213,13 @@
                   display: flex;
                   justify-content: center;
                   align-items: center;
+                  transition: color 0.2s ease;
                 }
               }
             }
           }
         }
 
-        // Image varsa white, yoksa primary color
         &.with-background {
           .left {
             .content {
@@ -219,19 +229,37 @@
                   .leftTitle,
                   .leftSubtitle,
                   .leftDescription {
-                    color: white;
+                    color: var(--composer-font-color-secondary);
                   }
                 }
 
                 .contacts {
                   .contact {
                     .icon {
-                      color: white;
+                      color: var(--composer-font-color-secondary);
                     }
 
                     .contactName {
-                      color: white;
+                      color: var(--composer-font-color-secondary);
                     }
+                  }
+                }
+              }
+
+              .socials {
+                .icon-container {
+                  background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-secondary) 5%);
+
+                  &:hover {
+                    background-color: var(--composer-primary-color);
+
+                    .icon {
+                      color: var(--composer-font-color-secondary);
+                    }
+                  }
+
+                  .icon {
+                    color: var(--composer-font-color-primary);
                   }
                 }
               }
