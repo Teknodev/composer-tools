@@ -56,10 +56,16 @@
         }
 
         .subtitle-row,
-        .title-with-socials,
-        .description-container {
+        .title-with-socials {
           display: flex;
           align-items: center;
+          gap: var(--composer-gap-md);
+          width: 100%;
+        }
+
+        .description-container {
+          display: flex;
+          align-items: flex-start;
           gap: var(--composer-gap-md);
           width: 100%;
         }

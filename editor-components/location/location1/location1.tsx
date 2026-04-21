@@ -498,10 +498,10 @@ class Location1 extends Location {
           <section className={this.decorateCSS("map-container")}>
             <ComposerMap allContentShow={true} defaultMarkerIcon={defaultMarkerIcon} defaultZoom={centerZoom} handleMarkerZoom={markerZoom} markers={markers} className={this.decorateCSS("map")} styles={mapStyle?.colors} />
           </section>
-          {(description?.trim() || phone?.trim()) && (
+          {((typeof description === "string" && description.trim()) || (typeof phone === "string" && phone.trim())) && (
             <div className={`${this.decorateCSS("bottom-container")} ${alignment === "center" && this.decorateCSS("center")} ${alignment === "left" && this.decorateCSS("left")}`}>
-              {description?.trim() && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
-              {phone?.trim() && (
+              {typeof description === "string" && description.trim() && <Base.H5 className={this.decorateCSS("bottom-title")}>{buttom.description}</Base.H5>}
+              {typeof phone === "string" && phone.trim() && (
                 <Base.VerticalContent>
                   <ComposerLink path={buttom.path}>
                     <Base.H5 className={this.decorateCSS("phone")}>{buttom.phoneNumber}</Base.H5>
