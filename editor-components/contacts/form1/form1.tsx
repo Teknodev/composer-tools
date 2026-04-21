@@ -70,15 +70,15 @@ class Form1 extends BaseContacts {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Send Email",
-            },
-            {
-              type: "string",
               key: "subtitle",
               displayer: "Subtitle",
               value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Send Email",
             },
             {
               type: "string",
@@ -154,15 +154,15 @@ class Form1 extends BaseContacts {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Call Us",
-            },
-            {
-              type: "string",
               key: "subtitle",
               displayer: "Subtitle",
               value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Call Us",
             },
             {
               type: "string",
@@ -238,15 +238,15 @@ class Form1 extends BaseContacts {
             },
             {
               type: "string",
-              key: "title",
-              displayer: "Title",
-              value: "Address",
-            },
-            {
-              type: "string",
               key: "subtitle",
               displayer: "Subtitle",
               value: "",
+            },
+            {
+              type: "string",
+              key: "title",
+              displayer: "Title",
+              value: "Address",
             },
             {
               type: "string",
@@ -386,8 +386,8 @@ class Form1 extends BaseContacts {
                         />
                       </div>
                     )}
+                    {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>}
                     {cardTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>}
-                    {cardSubtitleExist && <Base.P className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.P>}
                     {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
                     <Base.VerticalContent className={this.decorateCSS("rows")}>
                       {item.rows.map((row: any, rowIndex: number) => {

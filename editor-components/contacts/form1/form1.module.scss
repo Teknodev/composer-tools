@@ -36,6 +36,7 @@
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border: none;
         gap: var(--composer-gap-xs);
+        align-items: center;
 
         .title {
           color: var(--composer-font-color-primary);
@@ -45,7 +46,8 @@
 
         .card-subtitle,
         .card-description {
-          content: "";
+          color: var(--composer-font-color-primary);
+          text-align: center;
         }
 
         .icon-container {
