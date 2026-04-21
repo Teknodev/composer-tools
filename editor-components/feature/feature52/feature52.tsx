@@ -13,6 +13,8 @@ type ServiceItemType = {
 
 class Feature52 extends BaseFeature {
     private containerRef = React.createRef<HTMLDivElement>();
+    private lastItemCount: number | undefined;
+    private lastIsSmallScreen: boolean | undefined;
 
     constructor(props?: TypeUsableComponentProps) {
         super(props, styles);
@@ -226,15 +228,56 @@ class Feature52 extends BaseFeature {
         const rawItemCount = this.getPropValue("itemCount");
         const count = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
         this.setComponentState("activeIndices", Array.from({ length: count }, (_, i) => i));
+        this.lastItemCount = count;
     }
 
     static getName(): string {
         return "Feature 52";
     }
 
-    componentDidMount() {
-        if (this.isSmallScreen()) {
+    onComponentDidMount() {
+        this.lastIsSmallScreen = this.isSmallScreen();
+        window.addEventListener("resize", this.handleResize);
+        if (this.lastIsSmallScreen) {
             this.setComponentState("activeIndices", [0]);
+        }
+    }
+
+    onComponentWillUnmount() {
+        window.removeEventListener("resize", this.handleResize);
+    }
+
+    private handleResize = () => {
+        const currentIsSmallScreen = this.isSmallScreen();
+        if (this.lastIsSmallScreen !== currentIsSmallScreen) {
+            this.lastIsSmallScreen = currentIsSmallScreen;
+            if (currentIsSmallScreen) {
+                this.setComponentState("activeIndices", [0]);
+            } else {
+                const rawItemCount = this.getPropValue("itemCount");
+                const currentItemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+                this.setComponentState("activeIndices", Array.from({ length: currentItemCount }, (_, i) => i));
+            }
+        }
+    };
+
+    onComponentDidUpdate() {
+        const rawItemCount = this.getPropValue("itemCount");
+        const currentItemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+        const currentIsSmallScreen = this.isSmallScreen();
+
+        const countChanged = this.lastItemCount !== currentItemCount;
+        const screenChanged = this.lastIsSmallScreen !== currentIsSmallScreen;
+
+        if (countChanged || screenChanged) {
+            this.lastItemCount = currentItemCount;
+            this.lastIsSmallScreen = currentIsSmallScreen;
+
+            if (currentIsSmallScreen) {
+                this.setComponentState("activeIndices", [0]);
+            } else {
+                this.setComponentState("activeIndices", Array.from({ length: currentItemCount }, (_, i) => i));
+            }
         }
     }
 
