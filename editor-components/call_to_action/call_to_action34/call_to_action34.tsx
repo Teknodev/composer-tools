@@ -141,7 +141,7 @@ class CallToAction34 extends BaseCallToAction {
                                                 <ComposerLink key={index} path={button.url}>
                                                     <Base.Button
                                                         className={this.decorateCSS("button")}
-                                                        buttonType="White"
+                                                        buttonType={button.type}
                                                     >
                                                         {buttonIcon && (
                                                             <Base.Media
