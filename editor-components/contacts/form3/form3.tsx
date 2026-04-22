@@ -31,7 +31,7 @@ class Form3 extends BaseContacts {
         {
           type: "media",
           key: "background",
-          displayer: "Background Media",
+          displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
           },
@@ -798,7 +798,7 @@ class Form3 extends BaseContacts {
                 {(rightSubtitle || rightTitle || rightDescription) && (
                   <Base.VerticalContent className={this.decorateCSS("right-header")}>
                     {rightSubtitle && <Base.P className={this.decorateCSS("rightSubtitle")}>{rightSection.rightSubtitle}</Base.P>}
-                    {rightTitle && <Base.H2 className={this.decorateCSS("rightTitle")}>{rightSection.rightTitle}</Base.H2>}
+                    {rightTitle && <Base.H3 className={this.decorateCSS("rightTitle")}>{rightSection.rightTitle}</Base.H3>}
                     {rightDescription && <Base.P className={this.decorateCSS("rightDescription")}>{rightSection.rightDescription}</Base.P>}
                   </Base.VerticalContent>
                 )}

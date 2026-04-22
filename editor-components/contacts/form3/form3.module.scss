@@ -493,6 +493,17 @@
         .left-container {
           padding: var(--composer-gap-md);
           width: auto;
+          border-top-left-radius: var(--composer-border-radius-md);
+          border-top-right-radius: var(--composer-border-radius-md);
+          border-bottom-left-radius: unset;
+          border-bottom-right-radius: unset;
+
+          .background-wrapper {
+            border-top-left-radius: var(--composer-border-radius-md);
+            border-top-right-radius: var(--composer-border-radius-md);
+            border-bottom-left-radius: unset;
+            border-bottom-right-radius: unset;
+          }
 
           .background {
             border-top-left-radius: var(--composer-border-radius-md);
@@ -543,7 +554,10 @@
         .right-container {
           width: 100%;
           padding: var(--composer-gap-md);
-          border-radius: var(--composer-border-radius-md);
+          border-top-left-radius: unset;
+          border-top-right-radius: unset;
+          border-bottom-left-radius: var(--composer-border-radius-md);
+          border-bottom-right-radius: var(--composer-border-radius-md);
 
           .form-container {
             margin: 0;
