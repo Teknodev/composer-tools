@@ -325,14 +325,17 @@ class Location4 extends Location {
     const titleRightIcon = titleIcon.titleRightIcon;
     const titleLeftIconExist = (titleLeftIcon?.type === "icon" && !!titleLeftIcon?.name) || (titleLeftIcon?.type === "image" && !!titleLeftIcon?.url);
     const titleRightIconExist = (titleRightIcon?.type === "icon" && !!titleRightIcon?.name) || (titleRightIcon?.type === "image" && !!titleRightIcon?.url);
+
+    const hasMedia = (media?.type === "image" && !!media?.url) || (media?.type === "video" && !!media?.url);
+    const hasContent = !!(subtitleExist || titleExist || descriptionExist || logoExist);
     return (
       <div className={this.decorateCSS("container")}>
         <div className={this.decorateCSS("page")}>
-          {media ? (
+          {hasMedia ? (
             <div className={this.decorateCSS("content")}>
-              {overlay && media && <div className={this.decorateCSS("overlay")}></div>}
-              {media && <Base.Media value={media} className={this.decorateCSS("image")} />}
-              {(subtitleExist || titleExist || descriptionExist || logoExist) && (
+              {overlay && <div className={this.decorateCSS("overlay")}></div>}
+              <Base.Media value={media} className={this.decorateCSS("image")} />
+              {hasContent && (
                 <Base.Container className={this.decorateCSS("content-container")}>
                   <Base.VerticalContent>
                     <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -367,10 +370,9 @@ class Location4 extends Location {
                   </Base.VerticalContent>
                 </Base.Container>
               )}
-
             </div>
           ) : (
-            (subtitleExist || titleExist || descriptionExist || logoExist) && (
+            hasContent && (
               <Base.Container className={this.decorateCSS("content-container")}>
                 <Base.VerticalContent>
                   <Base.MaxContent className={this.decorateCSS("max-content-no-image")}>
