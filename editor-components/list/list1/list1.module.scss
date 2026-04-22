@@ -34,9 +34,9 @@
       }
 
       .carousel {
-        width: calc(100% + var(--composer-gap-md));
+        width: calc(100% + var(--composer-gap-lg));
+        margin-left: calc(var(--composer-gap-lg) / -2);
         overflow-x: clip;
-        margin-left: calc(var(--composer-gap-md) / -2);
         position: relative;
 
         &.has-bg-no-dots {
@@ -58,7 +58,7 @@
         }
 
         :global(.slick-slide) {
-          padding: 0 calc(var(--composer-gap-xl) / 2 + 1px);
+          padding: 0 calc(var(--composer-gap-lg) / 2);
           box-sizing: border-box;
           height: auto;
           display: flex;
@@ -303,7 +303,7 @@
       }
 
       :global(.slick-slide) {
-        padding: 0 var(--composer-gap-md) !important;
+        padding: 0 calc(var(--composer-gap-lg) / 2) !important;
       }
 
       .dots {
@@ -361,7 +361,7 @@
     gap: var(--composer-gap-md) !important;
 
     .carousel {
-      padding: 0 var(--composer-gap-md) !important;
+      padding: 0 !important;
 
       &.has-bg-no-dots {
         padding-bottom: 0 !important;
@@ -372,8 +372,9 @@
       }
 
       :global(.slick-slide) {
-        padding: 0 var(--composer-gap-md) !important;
+        padding: 0 calc(var(--composer-gap-lg) / 2) !important;
       }
+
 
       .card .active-after {
         display: none;
