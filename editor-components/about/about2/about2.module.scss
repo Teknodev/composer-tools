@@ -112,56 +112,58 @@
             }
         }
 
-        .video-overlay {
-            .video-container {
+    }
+
+    .video-overlay {
+        left: 0;
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .video-wrapper {
                 position: relative;
-                width: 90%;
-                max-width: 1200px;
+                width: 100%;
                 display: flex;
-                align-items: center;
                 justify-content: center;
 
-                .video-wrapper {
-                    position: relative;
+                .player {
                     width: 100%;
-                    display: flex;
-                    justify-content: center;
+                    height: auto;
+                    max-height: 80vh;
+                    border-radius: var(--composer-border-radius-xs);
+                }
 
-                    .player {
-                        width: 100%;
-                        height: auto;
-                        max-height: 80vh;
-                        border-radius: var(--composer-border-radius-xs);
+                .close-icon-box {
+                    position: absolute;
+                    top: var(--composer-gap-md);
+                    right: var(--composer-gap-md);
+                    color: white !important;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 9999;
+                    cursor: pointer;
+                    opacity: 0.8;
+                    transition: opacity 0.2s;
+                    font-size: 2.25rem;
+
+                    &:hover {
+                        opacity: 1;
                     }
 
-                    .close-icon-box {
-                        position: absolute;
-                        top: var(--composer-gap-md);
-                        right: var(--composer-gap-md);
-                        color: white !important;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        z-index: 9999;
-                        cursor: pointer;
-                        opacity: 0.8;
-                        transition: opacity 0.2s;
-                        font-size: 2.25rem;
-
-                        &:hover {
-                            opacity: 1;
-                        }
-
-                        .close-icon {
-                            width: 1em;
-                            height: 1em;
-                            flex-shrink: 0;
-                        }
+                    .close-icon {
+                        width: 1em;
+                        height: 1em;
+                        flex-shrink: 0;
                     }
                 }
             }
         }
-
     }
 }
 
