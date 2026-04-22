@@ -860,7 +860,7 @@ class ECommerce7 extends BaseECommerce {
     const countSection = this.castToObject<CountSections>("countSection");
     const itemDetailsSectionData = this.castToObject<ItemDetailsSection>("itemDetailsSection");
     const itemDetails: ItemDetails[] = itemDetailsSectionData.itemDetails || [];
-    const media = this.castToObject<Media[]>("media");
+    const media = this.castToObject<Media[]>("media") || [];
     const deliveryType = this.castToObject<DeliveryType[]>("deliveryTypes");
     if (this.getComponentState("selectedRadioButton") === null) {
       const firstEnabledIndex = deliveryType.findIndex((d) => d.isRadioButtonActive);
@@ -904,13 +904,13 @@ class ECommerce7 extends BaseECommerce {
 
     const settings = {
       dots: false,
-      button: false,
+      arrows: false,
       infinite: true,
       autoplay: false,
       slidesToShow: 1,
       slidesToScroll: 1,
       centerMode: false,
-      adaptiveHeight: false,
+      adaptiveHeight: true,
       speed: 500,
       autoplaySpeed: 5000,
       beforeChange: (oldIndex: number, newIndex: number) => {
@@ -1040,6 +1040,8 @@ class ECommerce7 extends BaseECommerce {
                 </div>
                 <ComposerSlider
                   {...settings}
+                  infinite={false}
+                  key={sliderKey + "-mobile"}
                   className={this.decorateCSS("slider-container")}
                   ref={this.getComponentState("slider-ref")}
                 >
