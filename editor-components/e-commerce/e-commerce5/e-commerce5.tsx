@@ -538,55 +538,53 @@ class ECommerce5 extends BaseECommerce {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("header")}>
-            {(subtitleStr || titleExist || descriptionStr) && (
-              <Base.VerticalContent className={this.decorateCSS("header-content")}>
-                {subtitleStr && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {titleExist && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {descriptionStr && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
+            <Base.VerticalContent className={this.decorateCSS("header-content")}>
+              {subtitleStr && (
+                <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                  {subtitle}
+                </Base.SectionSubTitle>
+              )}
+              {titleExist && (
+                <Base.SectionTitle className={this.decorateCSS("title")}>
+                  {title}
+                </Base.SectionTitle>
+              )}
+              {descriptionStr && (
+                <Base.SectionDescription className={this.decorateCSS("description")}>
+                  {description}
+                </Base.SectionDescription>
+              )}
 
-            <div className={this.decorateCSS("tab-container")}>
-              {slides.map((item: ImageGallery, index: number) => {
-                const sectionTitle = this.castToString(item.sectionTitle);
-                return (
-                  sectionTitle && (
-                    <Base.H4
-                      key={index}
-                      className={
-                        activeCategoryIndex === index
-                          ? this.decorateCSS("active-tab")
-                          : this.decorateCSS("tab")
-                      }
-                      onClick={() => {
-                        const currentIndex = this.getComponentState("activeCategory");
-                        if (currentIndex !== index) {
-                          this.setComponentState("animate", true);
-                          setTimeout(() => {
-                            this.setComponentState("activeCategory", index);
-                            this.setComponentState("animate", false);
-                          }, 300);
+              <div className={this.decorateCSS("tab-container")}>
+                {slides.map((item: ImageGallery, index: number) => {
+                  const sectionTitle = this.castToString(item.sectionTitle);
+                  return (
+                    sectionTitle && (
+                      <Base.H4
+                        key={index}
+                        className={
+                          activeCategoryIndex === index
+                            ? this.decorateCSS("active-tab")
+                            : this.decorateCSS("tab")
                         }
-                      }}
-                    >
-                      {item.sectionTitle}
-                    </Base.H4>
-                  )
-                );
-              })}
-            </div>
+                        onClick={() => {
+                          const currentIndex = this.getComponentState("activeCategory");
+                          if (currentIndex !== index) {
+                            this.setComponentState("animate", true);
+                            setTimeout(() => {
+                              this.setComponentState("activeCategory", index);
+                              this.setComponentState("animate", false);
+                            }, 300);
+                          }
+                        }}
+                      >
+                        {item.sectionTitle}
+                      </Base.H4>
+                    )
+                  );
+                })}
+              </div>
+            </Base.VerticalContent>
           </div>
           <div
             className={`${this.decorateCSS("wrapper")} ${this.getComponentState("animate")
