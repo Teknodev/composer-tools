@@ -606,9 +606,11 @@ class Form5 extends BaseContacts {
                       )}
                     </div>
                     {buttonText && (
-                      <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>
-                        <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
-                      </Base.Button>
+                      <div className={this.decorateCSS("button-container")}>
+                        <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")}>
+                          <Base.P className={this.decorateCSS("button-text")}>{button.text}</Base.P>
+                        </Base.Button>
+                      </div>
                     )}
                   </Form>
                 )}
