@@ -1013,7 +1013,7 @@ class ECommerce7 extends BaseECommerce {
                   icons?.imageUpArrow) && (
                     <div className={this.decorateCSS("arrow-buttons")}>
                       {icons?.imageDownArrow && (
-                        <div className={this.decorateCSS("image-down-arrow")} onClick={() => { this.handleClickLeft(); }}>
+                        <div className={this.decorateCSS("image-down-arrow")} onClick={() => { this.handleClickRight(); }}>
                           <Base.Media
                             value={icons.imageDownArrow}
                             className={this.decorateCSS("icon")}
@@ -1021,7 +1021,7 @@ class ECommerce7 extends BaseECommerce {
                         </div>
                       )}
                       {icons?.imageUpArrow && (
-                        <div className={this.decorateCSS("image-up-arrow")} onClick={() => { this.handleClickRight(); }}>
+                        <div className={this.decorateCSS("image-up-arrow")} onClick={() => { this.handleClickLeft(); }}>
                           <Base.Media
                             value={icons.imageUpArrow}
                             className={this.decorateCSS("icon")}
