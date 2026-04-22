@@ -157,7 +157,7 @@
 
 .input {
   resize: vertical;
-  padding: var(--composer-gap-md) var(--composer-gap-sm);
+  padding: var(--composer-gap-sm) var(--composer-gap-sm);
   border: 1px solid var(--composer-tertiary-color);
   background-color: var(--composer-html-background);
   width: 100%;
@@ -190,8 +190,11 @@
   }
 
   .lower-container {
+    align-items: stretch;
+
     .image-container {
       width: 40%;
+      margin-top: 0 !important;
     }
   }
 }

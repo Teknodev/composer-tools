@@ -521,7 +521,7 @@ class Form4 extends BaseContacts {
             {isAddressVisible && (
               <Base.VerticalContent className={this.decorateCSS("right-container")}>
                 {rightSubtitleExist && <Base.P className={this.decorateCSS("right-subtitle")}>{rightSection.rightSubtitle}</Base.P>}
-                {locationExist && <Base.H4 className={this.decorateCSS("right-title")}>{rightSection.location}</Base.H4>}
+                {locationExist && <Base.H3 className={this.decorateCSS("right-title")}>{rightSection.location}</Base.H3>}
                 {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{rightSection.locationDetails}</Base.P>}
               </Base.VerticalContent>
             )}
