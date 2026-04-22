@@ -1,4 +1,4 @@
-import { BaseECommerce } from "../../EditorComponent";
+import { BaseECommerce, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./e-commerce1.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
@@ -8,22 +8,23 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 import { getCurrencyInfo } from "../../../utils/currency";
 
 type Image = {
-  image: { type: string; url: string },
+  media: TypeMediaInputValue,
+  overlay: boolean,
 }
 
-type  WishlistItem={
-  wishlistIcon: { type: string; name: string },
+type WishlistItem = {
+  wishlistIcon: TypeMediaInputValue,
   wishlistText: React.JSX.Element,
   wishlistUrl: string,
 }
-type  ReviewItem={
+
+type ReviewItem = {
   reviewText: React.JSX.Element,
   reviewCount: number,
-  starIcon: { type: string; name: string },
-  starIconBorder: { type: string; name: string },
+  starIcon: TypeMediaInputValue,
+  starIconBorder: TypeMediaInputValue,
   point: number
 }
-
 
 type CategoryOrTag = {
   title: React.JSX.Element;
@@ -31,18 +32,18 @@ type CategoryOrTag = {
 }
 
 type Icons = {
-  leftArrowImage: { type: "icon"; name: string };
-  rightArrowImage: { type: "icon"; name: string };
-  closeIcon: { type: "icon"; name: string };
-  closeIconPopup: { type: "icon"; name: string };
-  leftArrowPopup: { type: "icon"; name: string };
-  rightArrowPopup: { type: "icon"; name: string };
+  leftArrowImage: TypeMediaInputValue;
+  rightArrowImage: TypeMediaInputValue;
+  closeIcon: TypeMediaInputValue;
+  closeIconPopup: TypeMediaInputValue;
+  leftArrowPopup: TypeMediaInputValue;
+  rightArrowPopup: TypeMediaInputValue;
 }
 
 type QuantitySection = {
   quantityText: React.JSX.Element;
-  leftArrow: { type: "icon"; name: string };
-  rightArrow: { type: "icon"; name: string };
+  leftArrow: TypeMediaInputValue;
+  rightArrow: TypeMediaInputValue;
   button: INPUTS.CastedButton;
   wishlist: WishlistItem;
 }
@@ -64,16 +65,22 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image","video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3d91c1ef0f002c95c2af?alt=media",
               },
             },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
           ]
         },
         {
@@ -83,34 +90,21 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "media",
               displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image","video"],
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dbcc1ef0f002c95c2cc?alt=media",
               },
             },
-          ]
-        },
-        {
-          type: "object",
-          key: "item",
-          displayer: "Item",
-          value: [
             {
-              type: "media",
-              key: "image",
-              displayer: "Product Media",
-              additionalParams: {
-                availableTypes: ["image","video"],
-              },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
-              },
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ]
         },
@@ -121,15 +115,46 @@ class ECommerce1 extends BaseECommerce {
           value: [
             {
               type: "media",
-              key: "image",
-                displayer: "Product Media",
+              key: "media",
+              displayer: "Product Media",
               additionalParams: {
-                availableTypes: ["image","video"],
+                availableTypes: ["image", "video"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3dd6c1ef0f002c95c2e4?alt=media",
+              },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
+            },
+          ]
+        },
+        {
+          type: "object",
+          key: "item",
+          displayer: "Item",
+          value: [
+            {
+              type: "media",
+              key: "media",
+              displayer: "Product Media",
+              additionalParams: {
+                availableTypes: ["image", "video"],
               },
               value: {
                 type: "image",
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/680a3df1c1ef0f002c95c2f9?alt=media",
               },
+            },
+            {
+              type: "boolean",
+              key: "overlay",
+              displayer: "Overlay",
+              value: false,
             },
           ]
         },
@@ -138,90 +163,11 @@ class ECommerce1 extends BaseECommerce {
 
     this.addProp({
       type: "string",
-      key: "newText",
-      displayer: "Badge Text",
-      value:"NEW"
-    })
-    
-    this.addProp({
-      type: "object",
-      key: "icons",
-      displayer: "Icons",
-      value: [
-        {
-          type: "media",
-          key: "leftArrowImage",
-          displayer: "Left Arrow Image",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "SlArrowLeft",
-          },
-        },
-        {
-          type: "media",
-          key: "rightArrowImage",
-          displayer: "Right Arrow Image",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "SlArrowRight",
-          },
-        },
-        {
-          type: "media",
-          key: "closeIcon",
-          displayer: "Close Icon",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "MdClose",
-          },
-        },
-        {
-          type: "media",
-          key: "closeIconPopup",
-          displayer: "Close Icon Popup",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "MdClose",
-          },
-        },
-        {
-          type: "media",
-          key: "leftArrowPopup",
-          displayer: "Left Arrow Popup",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "IoMdArrowDropleft",
-          },
-        },
-        {
-          type: "media",
-          key: "rightArrowPopup",
-          displayer: "Right Arrow Popup",
-          additionalParams: {
-            availableTypes: ["icon"],
-          },
-          value: {
-            type: "icon",
-            name: "IoMdArrowDropright",
-          },
-        },
-      ],
+      key: "subtitle",
+      displayer: "Subtitle",
+      value: "",
     });
+
     this.addProp({
       type: "string",
       key: "title",
@@ -233,66 +179,66 @@ class ECommerce1 extends BaseECommerce {
       key: "price",
       displayer: "Price",
       value: {
-        value:"160",
+        value: "160",
         currency: "USD"
       }
     });
-    this.addProp({
-      type: "object",
-      key: "reviewItem",
-      displayer: "Review Section",
-      value:[
-      {
-        type: "string",
-        key: "reviewText",
-        displayer: "Text",
-        value: "CUSTOM REVIEW",
-      },
-      {
-        type: "number",
-        key: "reviewCount",
-        displayer: "Count",
-        value: 1,
-      },
-      {
-        type: "number",
-        key: "point",
-        displayer: "Point",
-        value: 5,
-        max: 5,
-      },
-      {
-        type: "media",
-        key: "starIcon",
-        displayer: "Rated Icon",
-        additionalParams: {
-          availableTypes: ["icon"],
-        },
-        value: {
-          type: "icon",
-          name: "MdOutlineStar",
-        },
-      },
-      {
-        type: "media",
-        key: "starIconBorder",
-        displayer: "Unrated Icon",
-        additionalParams: {
-          availableTypes: ["icon"],
-        },
-        value: {
-          type: "icon",
-          name: "MdOutlineStarBorder",
-        },
-      }
-    ]
-    })
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ullamcorper leo, eget euismod orci. Cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus. Vestibulum ultricies aliquam convallis.",
     });
+    this.addProp({
+      type: "object",
+      key: "reviewItem",
+      displayer: "Review Section",
+      value: [
+        {
+          type: "string",
+          key: "reviewText",
+          displayer: "Text",
+          value: "CUSTOM REVIEW",
+        },
+        {
+          type: "number",
+          key: "reviewCount",
+          displayer: "Count",
+          value: 1,
+        },
+        {
+          type: "number",
+          key: "point",
+          displayer: "Point",
+          value: 5,
+          max: 5,
+        },
+        {
+          type: "media",
+          key: "starIcon",
+          displayer: "Rated Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdOutlineStar",
+          },
+        },
+        {
+          type: "media",
+          key: "starIconBorder",
+          displayer: "Unrated Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdOutlineStarBorder",
+          },
+        }
+      ]
+    })
     this.addProp({
       type: "object",
       key: "quantitySection",
@@ -309,7 +255,7 @@ class ECommerce1 extends BaseECommerce {
           key: "leftArrow",
           displayer: "Left Arrow",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -321,7 +267,7 @@ class ECommerce1 extends BaseECommerce {
           key: "rightArrow",
           displayer: "Right Arrow",
           additionalParams: {
-            availableTypes: ["icon"],
+            availableTypes: ["icon", "image"],
           },
           value: {
             type: "icon",
@@ -339,7 +285,7 @@ class ECommerce1 extends BaseECommerce {
               key: "wishlistIcon",
               displayer: "Icon",
               additionalParams: {
-                availableTypes: ["icon"],
+                availableTypes: ["icon", "image"],
               },
               value: {
                 type: "icon",
@@ -494,6 +440,91 @@ class ECommerce1 extends BaseECommerce {
         },
       ],
     });
+    this.addProp({
+      type: "string",
+      key: "newText",
+      displayer: "Badge Text",
+      value: "NEW"
+    });
+    this.addProp({
+      type: "object",
+      key: "icons",
+      displayer: "Icons",
+      value: [
+        {
+          type: "media",
+          key: "leftArrowImage",
+          displayer: "Left Arrow Image",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "SlArrowLeft",
+          },
+        },
+        {
+          type: "media",
+          key: "rightArrowImage",
+          displayer: "Right Arrow Image",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "SlArrowRight",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIcon",
+          displayer: "Close Icon",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdClose",
+          },
+        },
+        {
+          type: "media",
+          key: "closeIconPopup",
+          displayer: "Close Icon Popup",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "MdClose",
+          },
+        },
+        {
+          type: "media",
+          key: "leftArrowPopup",
+          displayer: "Left Arrow Popup",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropleft",
+          },
+        },
+        {
+          type: "media",
+          key: "rightArrowPopup",
+          displayer: "Right Arrow Popup",
+          additionalParams: {
+            availableTypes: ["icon", "image"],
+          },
+          value: {
+            type: "icon",
+            name: "IoMdArrowDropright",
+          },
+        },
+      ],
+    });
     this.setComponentState("count", 0);
     this.setComponentState("activeImage", 0);
     this.setComponentState("prevIndex", 0);
@@ -532,23 +563,23 @@ class ECommerce1 extends BaseECommerce {
     const moveLeft = () => {
       let index = this.getComponentState("activeImage");
       if (index === 0) {
-        this.setComponentState("activeImage", images.length-1);
+        this.setComponentState("activeImage", images.length - 1);
         this.setComponentState("prevIndex", index)
       }
       else {
-        this.setComponentState("activeImage", index-1);
+        this.setComponentState("activeImage", index - 1);
         this.setComponentState("prevIndex", index)
       }
     }
 
     const moveRight = () => {
       let index = this.getComponentState("activeImage");
-      if (index+1 === images.length) {
+      if (index + 1 === images.length) {
         this.setComponentState("activeImage", 0);
         this.setComponentState("prevIndex", index)
       }
       else {
-        this.setComponentState("activeImage", index+1);
+        this.setComponentState("activeImage", index + 1);
         this.setComponentState("prevIndex", index)
       }
     }
@@ -559,13 +590,13 @@ class ECommerce1 extends BaseECommerce {
         slider.slickNext();
       }
 
-      let len = images.length-1;
+      let len = images.length - 1;
       let index = this.getComponentState("activeSliderIndex");
       if (len <= index) {
         this.setComponentState("activeSliderIndex", 0);
       }
       else {
-        this.setComponentState("activeSliderIndex", index+1);
+        this.setComponentState("activeSliderIndex", index + 1);
       }
     }
 
@@ -575,13 +606,13 @@ class ECommerce1 extends BaseECommerce {
         slider.slickPrev();
       }
 
-      let len = images.length-1;
+      let len = images.length - 1;
       let index = this.getComponentState("activeSliderIndex");
       if (index == 0) {
         this.setComponentState("activeSliderIndex", len);
       }
       else {
-        this.setComponentState("activeSliderIndex", index-1);
+        this.setComponentState("activeSliderIndex", index - 1);
       }
     }
 
@@ -599,6 +630,8 @@ class ECommerce1 extends BaseECommerce {
     const sliderRef = this.getComponentState("sliderRef");
     const images = this.castToObject<Image[]>("images");
     const categoriesAndTags = this.castToObject<CategoryOrTag[]>("categoriesAndTags");
+    const subtitle = this.getPropValue("subtitle");
+    const subtitleStr = this.castToString(subtitle);
     const title = this.getPropValue("title");
     const titleExist = this.castToString(title);
     const price = this.getPropValue("price");
@@ -609,33 +642,34 @@ class ECommerce1 extends BaseECommerce {
     const icons = this.castToObject<Icons>("icons");
     const quantitySection = this.castToObject<QuantitySection>("quantitySection");
     const reviewItem = this.castToObject<ReviewItem>("reviewItem");
-    
+
     const buttonText = this.getPropValue("text", { parent_object: quantitySection.button });
     const buttonType = this.getPropValue("type", { parent_object: quantitySection.button });
     const buttonUrl = this.getPropValue("url", { parent_object: quantitySection.button });
-    
-    const isRightExist = titleExist || price.value || reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder ||
-    descriptionExist || this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText) || this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon || 
-    (categoriesAndTags.length > 0)
+
+    const isRightExist = subtitleStr || titleExist || price.value || reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder ||
+      descriptionExist || this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText) || this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon ||
+      (categoriesAndTags.length > 0)
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(images.length > 0) && (
-            <div className={this.decorateCSS("left")}>
+            <div className={`${this.decorateCSS("left")} ${!isRightExist && this.decorateCSS("without-right")}`}>
               <div className={`${this.decorateCSS("left-images")} ${!isRightExist && this.decorateCSS("without-right")}`}>
                 {images.map((item: Image, index: number) => {
-                    return (
-                      <div className={this.decorateCSS("img-container")}>
-                        {item.image?.url && (
-                          <Base.Media 
-                          key={index} value={item.image} 
-                          className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active") }`}
+                  return (
+                    <div className={this.decorateCSS("img-container")}>
+                      {item.media?.url && (
+                        <Base.Media
+                          key={index} value={item.media}
+                          className={`${this.decorateCSS("img")} ${index === this.getComponentState("activeSliderIndex") && this.decorateCSS("active")}`}
                           onClick={() => handleImageClick(index)}
                         />
-                        )}
-                      </div>
-                    )
-                  })}
+                      )}
+                      {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
+                    </div>
+                  )
+                })}
               </div>
               <div className={`${this.decorateCSS("right-image")} ${!isRightExist && this.decorateCSS("without-right")}`}>
                 {this.castToString(this.getPropValue("newText")) && (<Base.P className={this.decorateCSS("new")}>{this.getPropValue("newText")}</Base.P>)}
@@ -646,7 +680,8 @@ class ECommerce1 extends BaseECommerce {
                     {images.map((item: Image, index: number) => {
                       return (
                         <div className={this.decorateCSS("card")}>
-                          <Base.Media value={item.image} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                          <Base.Media value={item.media} className={this.decorateCSS("product-img")} onClick={() => handleImageClick(index)} />
+                          {item.overlay && <div className={this.decorateCSS("overlay")}></div>}
                         </div>
                       )
                     })}
@@ -656,132 +691,131 @@ class ECommerce1 extends BaseECommerce {
             </div>
           )}
           {isRightExist && (
-            <div className={this.decorateCSS("right")}>
-              <Base.VerticalContent className={this.decorateCSS("content")}>
-              {(titleExist || price.value) && (
+            <Base.VerticalContent className={this.decorateCSS("right")}>
+              {(subtitleStr || titleExist || price.value) && (
                 <div className={this.decorateCSS("header")}>
+                  {subtitleStr && (<Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{subtitle}</Base.SectionSubTitle>)}
                   {titleExist && (<Base.SectionTitle className={this.decorateCSS("title")}>{title}</Base.SectionTitle>)}
                   {price.value && (<Base.H3 className={this.decorateCSS("price")}>{getCurrencyInfo(price.currency)?.symbol}{price.value}</Base.H3>)}
                 </div>
               )}
-              {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder || descriptionExist) &&(
+              {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder || descriptionExist) && (
                 <div className={this.decorateCSS("review-and-description")}>
-                {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder) && (
-                  <div className={this.decorateCSS("review-area")}>  
-                    {(reviewItem.starIcon || reviewItem.starIconBorder || reviewItem.point) && (
-                      <div className={this.decorateCSS("stars")}>
-                        {[...Array(5)].map((_, index) => {
-                          return (
-                            <Base.Media
-                              value={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
-                              className={this.decorateCSS("star")}
-                            />
-                          );
-                        })}
-                      </div> 
-                    )}               
-                    {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
-                      <div className={this.decorateCSS("review")}>
-                        <span className={this.decorateCSS("brackets")}>(</span>
-                        {reviewItem.reviewCount && (<Base.P className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</Base.P>)}
-                        {this.castToString(reviewItem.reviewText) && (<Base.P className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</Base.P>)}
-                        <span className={this.decorateCSS("brackets")}>)</span> 
-                      </div>
-                    )}
-                  </div>
-                )}
-                {descriptionExist && (<Base.P className={this.decorateCSS("description")}>{description}</Base.P>)}
+                  {(reviewItem.point || reviewItem.reviewCount || this.castToString(reviewItem.reviewText) || reviewItem.starIcon || reviewItem.starIconBorder) && (
+                    <div className={this.decorateCSS("review-area")}>
+                      {(reviewItem.starIcon || reviewItem.starIconBorder || reviewItem.point) && (
+                        <div className={this.decorateCSS("stars")}>
+                          {[...Array(5)].map((_, index) => {
+                            return (
+                              <Base.Media
+                                value={index < reviewItem.point ? reviewItem.starIcon : reviewItem.starIconBorder}
+                                className={this.decorateCSS("star")}
+                              />
+                            );
+                          })}
+                        </div>
+                      )}
+                      {(reviewItem.reviewCount || this.castToString(reviewItem.reviewText)) && (
+                        <div className={this.decorateCSS("review")}>
+                          <span className={this.decorateCSS("brackets")}>(</span>
+                          {reviewItem.reviewCount && (<Base.P className={this.decorateCSS("review-count")}>{reviewItem.reviewCount}</Base.P>)}
+                          {this.castToString(reviewItem.reviewText) && (<Base.P className={this.decorateCSS("review-text")}>{reviewItem.reviewText}</Base.P>)}
+                          <span className={this.decorateCSS("brackets")}>)</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  {descriptionExist && (<Base.P className={this.decorateCSS("description")}>{description}</Base.P>)}
                 </div>
               )}
-                {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText)) && (
-                  <div className={this.decorateCSS("inputs")}>
-                    {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow) && (
-                      <div className={`${this.decorateCSS("count-input")} ${this.castToString(buttonText) && this.decorateCSS("with-button")}`}>
-                        {this.castToString(quantitySection.quantityText) && (<Base.P className={this.decorateCSS("label")}>{quantitySection.quantityText}</Base.P>)}
-                        {quantitySection.leftArrow && (<Base.Media value={quantitySection.leftArrow} className={this.decorateCSS("left-icon")} onClick={handleLeftClick}/>)}
-                        <input
-                            type="number"
-                            min={1}
-                            className={this.decorateCSS("input")}
-                            value={
-                              this.getComponentState("count") !== undefined
-                                ? String(this.getComponentState("count"))
-                                : ""
-                            }
-                            onChange={(e) => {
-                              const value = e.target.value;
-                              if (value === "") {
-                                this.setComponentState("count", "");
-                                return;
-                              }
+              {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow || this.castToString(buttonText)) && (
+                <div className={this.decorateCSS("inputs")}>
+                  {(this.castToString(quantitySection.quantityText) || quantitySection.leftArrow || quantitySection.rightArrow) && (
+                    <div className={`${this.decorateCSS("count-input")} ${this.castToString(buttonText) && this.decorateCSS("with-button")}`}>
+                      {this.castToString(quantitySection.quantityText) && (<Base.P className={this.decorateCSS("label")}>{quantitySection.quantityText}</Base.P>)}
+                      {quantitySection.leftArrow && (<Base.Media value={quantitySection.leftArrow} className={this.decorateCSS("left-icon")} onClick={handleLeftClick} />)}
+                      <input
+                        type="number"
+                        min={1}
+                        className={this.decorateCSS("input")}
+                        value={
+                          this.getComponentState("count") !== undefined
+                            ? String(this.getComponentState("count"))
+                            : ""
+                        }
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          if (value === "") {
+                            this.setComponentState("count", "");
+                            return;
+                          }
 
-                              const parsed = parseInt(value, 10);
-                              if (!isNaN(parsed) && parsed >= 1) {
-                                this.setComponentState("count", parsed);
-                              }
-                            }}
-                          />
+                          const parsed = parseInt(value, 10);
+                          if (!isNaN(parsed) && parsed >= 1) {
+                            this.setComponentState("count", parsed);
+                          }
+                        }}
+                      />
 
-                        {quantitySection.rightArrow && (<Base.Media value={quantitySection.rightArrow} className={this.decorateCSS("right-icon")} onClick={handleRightClick}/>)}
-                      </div>
-                    )}
-                    {this.castToString(buttonText) && (
-                      <ComposerLink path={buttonUrl}>
-                        <Base.Button className={this.decorateCSS("button")} buttonType={buttonType}>
-                          <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
-                        </Base.Button>
-                      </ComposerLink>
-                    )}
-                  </div>                  
-                )}
-                {(this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon) &&(
-                  <div className={this.decorateCSS("wishlist-container")}>
-                    <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
-                      <div className={this.decorateCSS("wishlist")}>
-                        <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")}/>
-                        {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
-                      </div>
+                      {quantitySection.rightArrow && (<Base.Media value={quantitySection.rightArrow} className={this.decorateCSS("right-icon")} onClick={handleRightClick} />)}
+                    </div>
+                  )}
+                  {this.castToString(buttonText) && (
+                    <ComposerLink path={buttonUrl}>
+                      <Base.Button className={this.decorateCSS("button")} buttonType={buttonType}>
+                        <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
+                      </Base.Button>
                     </ComposerLink>
-                  </div>
-                )}
-                {(categoriesAndTags.length > 0) && (
-                  <div className={this.decorateCSS("categories")}>
-                    {categoriesAndTags.map((item, index) => (
-                      <div key={index} className={this.decorateCSS("category")}>
-                        {this.castToString(item.title) && (<Base.P className={this.decorateCSS("categoryLabel")}>{item.title}</Base.P>)}
-                        {(item.items.length > 0) && (
-                          <div className={this.decorateCSS("categoryText")}>
-                            {item.items.map((subItem, subIndex) => (
-                              <Base.P key={subIndex} className={this.decorateCSS("text")}>
-                                {subItem.category || subItem.tag}
-                              </Base.P>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </Base.VerticalContent>
-            </div>
+                  )}
+                </div>
+              )}
+              {(this.castToString(quantitySection.wishlist.wishlistText) || quantitySection.wishlist.wishlistIcon) && (
+                <div className={this.decorateCSS("wishlist-container")}>
+                  <ComposerLink path={quantitySection.wishlist.wishlistUrl}>
+                    <div className={this.decorateCSS("wishlist")}>
+                      <Base.Media value={quantitySection.wishlist.wishlistIcon} className={this.decorateCSS("heart-icon")} />
+                      {this.castToString(quantitySection.wishlist.wishlistText) && (<span className={this.decorateCSS("cart-title")}>{quantitySection.wishlist.wishlistText}</span>)}
+                    </div>
+                  </ComposerLink>
+                </div>
+              )}
+              {(categoriesAndTags.length > 0) && (
+                <div className={this.decorateCSS("categories")}>
+                  {categoriesAndTags.map((item, index) => (
+                    <div key={index} className={this.decorateCSS("category")}>
+                      {this.castToString(item.title) && (<Base.P className={this.decorateCSS("categoryLabel")}>{item.title}</Base.P>)}
+                      {(item.items.length > 0) && (
+                        <div className={this.decorateCSS("categoryText")}>
+                          {item.items.map((subItem, subIndex) => (
+                            <Base.P key={subIndex} className={this.decorateCSS("text")}>
+                              {subItem.category || subItem.tag}
+                            </Base.P>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Base.VerticalContent>
           )}
           {isActive && (
             <Base.Overlay isVisible={true} className={this.decorateCSS("image-popup")}>
               <div className={this.decorateCSS("popup-content")}>
                 <div className={this.decorateCSS("image-container")}>
-                  {images.map((img: Image, index) => { 
-                    return(
+                  {images.map((img: Image, index) => {
+                    return (
                       <>
                         <Base.Media
-                        key={index}
-                        value={img.image}
-                        className={`${this.decorateCSS("image")} ${((index === activeImage) &&this.decorateCSS("active"))}`}
+                          key={index}
+                          value={img.media}
+                          className={`${this.decorateCSS("image")} ${((index === activeImage) && this.decorateCSS("active"))}`}
                         />
                         <Base.Media
-                        key={index}
-                        value={img.image}
-                        className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex") ) &&  this.decorateCSS("exits")}`}
-                      />
+                          key={index}
+                          value={img.media}
+                          className={`${this.decorateCSS("image")} ${(index === this.getComponentState("prevIndex")) && this.decorateCSS("exits")}`}
+                        />
                       </>
                     )
                   }
@@ -793,7 +827,7 @@ class ECommerce1 extends BaseECommerce {
                     <Base.Media value={icons.rightArrowPopup} className={this.decorateCSS("right-arrow")} onClick={moveRight} />
                   </div>
                   <Base.P className={this.decorateCSS("pages")}>
-                    {activeImage+1}/{images.length}
+                    {activeImage + 1}/{images.length}
                   </Base.P>
                   <Base.Media value={icons.closeIconPopup} className={this.decorateCSS("close")} onClick={handleClose} />
                 </div>
