@@ -41,7 +41,7 @@
         margin: 0 auto;
         box-shadow: var(--box-shadow-active);
         padding: var(--composer-gap-xl);
-        gap: var(--composer-gap-md);
+        gap: var(--composer-gap-xl);
         border-radius: var(--composer-border-radius-md);
         background: rgba(0, 0, 0, 0.52);
         backdrop-filter: blur(4.1px);
@@ -176,7 +176,7 @@
     .max-content {
       .input-items {
         .input-item {
-          padding: var(--composer-gap-md);
+          padding: var(--composer-gap-lg);
           gap: 0;
         }
       }
