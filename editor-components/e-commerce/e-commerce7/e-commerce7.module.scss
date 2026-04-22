@@ -636,11 +636,22 @@
     }
 
     .zoom-image {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        z-index: 9999 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background-color: var(--composer-overlay-color) !important;
+
         .close-icon {
             position: absolute;
             top: var(--composer-gap-md);
             right: var(--composer-gap-xl);
             cursor: pointer;
+            z-index: 3;
 
             &:hover {
                 .icon {
@@ -663,6 +674,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
+            z-index: 3;
 
             .icon {
                 font-size: 3rem;
@@ -693,8 +705,9 @@
 
         .dots {
             display: flex;
-            bottom: var(--composer-gap-md);
+            bottom: calc(10% + 20px);
             position: absolute;
+            z-index: 3;
 
             .dot {
                 display: flex;
@@ -724,10 +737,12 @@
         }
 
         .image {
-            height: 80%;
+            width: 80%;
+            height: 70%;
             cursor: zoom-in;
             overflow: hidden;
-            object-fit: cover;
+            object-fit: contain;
+            z-index: 1;
 
             &.zoom {
                 transform: scale(1.5);
@@ -921,7 +936,8 @@
             }
 
             .image {
-                height: 40%;
+                width: 90%;
+                height: 70%;
             }
 
             .left-icon {
