@@ -19,11 +19,6 @@ type CardContent = {
     showFeatures?: boolean;
 };
 
-type CardData = {
-    cardLeft: CardContent;
-    cardRight: CardContent;
-};
-
 class PricingTable13 extends BasePricingTable {
     constructor(props?: any) {
         super(props, styles);
@@ -59,17 +54,17 @@ class PricingTable13 extends BasePricingTable {
         });
 
         this.addProp({
-            type: "object",
-            key: "card",
-            displayer: "Card",
+            type: "array",
+            key: "cards",
+            displayer: "Cards",
             value: [
                 {
                     type: "object",
-                    key: "cardLeft",
-                    displayer: "Card Left",
+                    key: "card",
+                    displayer: "Card",
                     value: [
-                        { type: "string", key: "cardSubtitle", displayer: "Card Subtitle", value: "" },
                         { type: "string", key: "cardPrice", displayer: "Card Price", value: "$7.99" },
+                        { type: "string", key: "cardSubtitle", displayer: "Card Subtitle", value: "" },
                         { type: "string", key: "cardTitle", displayer: "Card Title", value: "Extended License" },
                         { type: "string", key: "cardDescription", displayer: "Card Description", value: "" },
                         { type: "boolean", key: "showFeatures", displayer: "Show Features", value: true },
@@ -105,11 +100,11 @@ class PricingTable13 extends BasePricingTable {
                 },
                 {
                     type: "object",
-                    key: "cardRight",
-                    displayer: "Card Right",
+                    key: "card",
+                    displayer: "Card",
                     value: [
-                        { type: "string", key: "cardSubtitle", displayer: "Card Subtitle", value: "" },
                         { type: "string", key: "cardPrice", displayer: "Card Price", value: "$3.99" },
+                        { type: "string", key: "cardSubtitle", displayer: "Card Subtitle", value: "" },
                         { type: "string", key: "cardTitle", displayer: "Card Title", value: "Basic License" },
                         { type: "string", key: "cardDescription", displayer: "Card Description", value: "" },
                         { type: "boolean", key: "showFeatures", displayer: "Show Features", value: true },
@@ -166,7 +161,7 @@ class PricingTable13 extends BasePricingTable {
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
-        const card = this.castToObject<CardData>("card");
+        const cards = this.castToObject<CardContent[]>("cards");
         const itemCountInARow = this.getPropValue("itemCountInARow") || 2;
 
         const hasLeftSection = subtitleExist || titleExist || descriptionExist || hasValidButtons;
@@ -212,10 +207,7 @@ class PricingTable13 extends BasePricingTable {
                             gridCount={{ pc: itemCountInARow, tablet: 2, phone: 1 }}
                             className={this.decorateCSS("cards-grid")}
                         >
-                            {[
-                                { data: card?.cardLeft, pos: "card-left" },
-                                { data: card?.cardRight, pos: "card-right" }
-                            ].map(({ data: cardItem, pos: positionClass }, idx) => {
+                            {cards.map((cardItem, idx) => {
                                 if (!cardItem) return null;
 
                                 const cardSubtitleExist = this.castToString(cardItem?.cardSubtitle);
@@ -231,7 +223,7 @@ class PricingTable13 extends BasePricingTable {
                                 if (!hasContent) return null;
 
                                 return (
-                                    <div key={idx} className={`${this.decorateCSS("card")} ${this.decorateCSS(positionClass)}`}>
+                                    <div key={idx} className={this.decorateCSS("card")}>
                                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                             {cardPriceExist && (
                                                 <div className={this.decorateCSS("card-price-row")}>
@@ -240,15 +232,15 @@ class PricingTable13 extends BasePricingTable {
                                                     </Base.H2>
                                                 </div>
                                             )}
-                                            {cardTitleExist && (
-                                                <Base.H4 className={this.decorateCSS("card-title")}>
-                                                    {cardItem.cardTitle}
-                                                </Base.H4>
-                                            )}
                                             {cardSubtitleExist && (
-                                                <Base.P className={this.decorateCSS("card-subtitle")}>
+                                                <Base.H6 className={this.decorateCSS("card-subtitle")}>
                                                     {cardItem.cardSubtitle}
-                                                </Base.P>
+                                                </Base.H6>
+                                            )}
+                                            {cardTitleExist && (
+                                                <Base.H5 className={this.decorateCSS("card-title")}>
+                                                    {cardItem.cardTitle}
+                                                </Base.H5>
                                             )}
                                             {cardDescriptionExist && (
                                                 <Base.P className={this.decorateCSS("card-description")}>
