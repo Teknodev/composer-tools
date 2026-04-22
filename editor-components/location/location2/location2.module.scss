@@ -2,7 +2,7 @@
 
 .container {
   .content-container {
-    padding: 80px 50px 40px !important;
+    padding: 120px 60px var(--composer-gap-lg) !important;
 
     .max-content {
       .header {
@@ -151,12 +151,11 @@
       max-width: var(--composer-content-width);
       margin: auto;
       width: 100%;
-      padding: var(--composer-gap-md);
+      padding: 30px 60px;
       box-sizing: border-box;
     }
 
     .middle-grid .element-container {
-      padding: var(--composer-gap-md);
       box-sizing: border-box;
       text-align: center;
 
@@ -206,12 +205,12 @@
 @container (max-width: #{$composer-tablet-width}) {
   .container {
     .content-container {
-      padding: 80px 40px 20px !important;
+      padding: 100px var(--composer-gap-xl) var(--composer-gap-md) !important;
     }
 
     .middle-content {
       .middle-grid {
-        padding: var(--composer-gap-md) var(--composer-gap-lg);
+        padding: var(--composer-gap-md) var(--composer-gap-xl);
         gap: var(--composer-gap-xl);
       }
 
@@ -234,7 +233,7 @@
 @container (max-width: #{$composer-phone-width}) {
   .container {
     .content-container {
-      padding: var(--composer-gap-xl) var(--composer-gap-md) !important;
+      padding: var(--composer-gap-xl) 30px !important;
 
       .max-content {
         .header {
@@ -327,6 +326,11 @@
 
           .socials-container {
             display: flex;
+
+            .social-button {
+              width: 45px !important;
+              height: 45px !important;
+            }
           }
         }
       }
@@ -334,7 +338,8 @@
 
     .middle-content {
       .middle-grid {
-        gap: var(--composer-gap-xl);
+        gap: var(--composer-gap-md);
+        padding: 30px;
 
         .element-container {
           .icon {
