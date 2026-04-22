@@ -300,50 +300,52 @@ class About7 extends BaseAbout {
                             )}
                         </Base.VerticalContent>
                     )}
-                    {items.map((item, index: number) => {
-                        return (
-                            <div className={`${this.decorateCSS("items-wrapper")} ${item.rowReverse && this.decorateCSS("row-reverse")} ${alignment === "center" && this.decorateCSS("center-alignment")}`} key={index}>
-                                <div className={this.decorateCSS("left-container")}>
-                                    {item.media && (
-                                        <div className={this.decorateCSS("image-wrapper")}>
-                                            <Base.Media
-                                                value={item.media}
-                                                className={this.decorateCSS("image")}
-                                            />
-                                            {item.overlay && (
-                                                <div className={this.decorateCSS("overlay")} />
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                                {(item.lineActive || item.dotActive || item.middleLineActive || this.castToString(item.year)) && (
-                                    <div className={this.decorateCSS("middle-container")}>
-                                        {item.lineActive && (<div className={this.decorateCSS("line-wrapper")}><div className={`${this.decorateCSS("line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div></div>)}
-                                        {item.dotActive && (
-                                            <div className={this.decorateCSS("dot-wrapper")}>
-                                                <div className={`${this.decorateCSS("dot")} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}></div>
-                                            </div>
-                                        )}
-                                        {(item.middleLineActive || this.castToString(item.year)) && (
-                                            <div className={`${this.decorateCSS("middle-line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
-                                                <div className={`${this.decorateCSS("line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
-                                                    {item.middleLineActive && (<div className={`${this.decorateCSS("middle-line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div>)}
-                                                    {this.castToString(item.year) && (<Base.H1 className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}>{item.year}</Base.H1>)}
-                                                </div>
+                    <div className={this.decorateCSS("items-container")}>
+                        {items.map((item, index: number) => {
+                            return (
+                                <div className={`${this.decorateCSS("items-wrapper")} ${item.rowReverse && this.decorateCSS("row-reverse")} ${alignment === "center" && this.decorateCSS("center-alignment")}`} key={index}>
+                                    <div className={this.decorateCSS("left-container")}>
+                                        {item.media && (
+                                            <div className={this.decorateCSS("image-wrapper")}>
+                                                <Base.Media
+                                                    value={item.media}
+                                                    className={this.decorateCSS("image")}
+                                                />
+                                                {item.overlay && (
+                                                    <div className={this.decorateCSS("overlay")} />
+                                                )}
                                             </div>
                                         )}
                                     </div>
-                                )}
-                                {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
-                                    <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse ? this.decorateCSS("row-reverse") : ""}`}>
-                                        {this.castToString(item.subtitle) && (<Base.P className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.P>)}
-                                        {this.castToString(item.title) && (<Base.H3 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H3>)}
-                                        {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("item-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
-                                    </Base.VerticalContent>
-                                )}
-                            </div>
-                        )
-                    })}
+                                    {(item.lineActive || item.dotActive || item.middleLineActive || this.castToString(item.year)) && (
+                                        <div className={this.decorateCSS("middle-container")}>
+                                            {item.lineActive && (<div className={this.decorateCSS("line-wrapper")}><div className={`${this.decorateCSS("line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div></div>)}
+                                            {item.dotActive && (
+                                                <div className={this.decorateCSS("dot-wrapper")}>
+                                                    <div className={`${this.decorateCSS("dot")} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}></div>
+                                                </div>
+                                            )}
+                                            {(item.middleLineActive || this.castToString(item.year)) && (
+                                                <div className={`${this.decorateCSS("middle-line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
+                                                    <div className={`${this.decorateCSS("line-and-year")} ${item.rowReverse && this.decorateCSS("row-reverse")}}`}>
+                                                        {item.middleLineActive && (<div className={`${this.decorateCSS("middle-line")} ${!isBackgroundImageExist && (this.decorateCSS("without-image"))}`}></div>)}
+                                                        {this.castToString(item.year) && (<Base.H1 className={`${this.decorateCSS("year")} ${!item.middleLineActive && (this.decorateCSS("without-middle-line"))} ${!isBackgroundImageExist && this.decorateCSS("without-image")}`}>{item.year}</Base.H1>)}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                    {(this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description)) && (
+                                        <Base.VerticalContent className={`${this.decorateCSS("right-container")} ${item.rowReverse ? this.decorateCSS("row-reverse") : ""}`}>
+                                            {this.castToString(item.subtitle) && (<Base.P className={`${this.decorateCSS("item-subtitle")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.subtitle}</Base.P>)}
+                                            {this.castToString(item.title) && (<Base.H3 className={`${this.decorateCSS("item-title")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.title}</Base.H3>)}
+                                            {this.castToString(item.description) && (<Base.SectionDescription className={`${this.decorateCSS("item-description")} ${isBackgroundImageExist && this.decorateCSS("with-image")}`}>{item.description}</Base.SectionDescription>)}
+                                        </Base.VerticalContent>
+                                    )}
+                                </div>
+                            )
+                        })}
+                    </div>
                 </Base.MaxContent>
             </Base.Container>
         );
