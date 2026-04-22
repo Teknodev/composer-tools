@@ -419,9 +419,9 @@ class Feature52 extends BaseFeature {
                                                                 />
                                                             )}
                                                             {itemTitleExist && (
-                                                                <Base.H5 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
+                                                                <Base.H6 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
                                                                     {item.title}
-                                                                </Base.H5>
+                                                                </Base.H6>
                                                             )}
                                                         </div>
                                                         {currentToggleIcon && (

@@ -64,14 +64,14 @@
                         padding: 0;
 
                         .item-header {
-                            padding: 30px var(--composer-gap-sm);
+                            padding: 30px var(--composer-gap-md);
                         }
 
                         .item-description-container {
                             padding: 0 var(--composer-gap-sm);
 
                             &.item-description-active {
-                                padding: 0 var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-sm);
+                                padding: 0 var(--composer-gap-sm) var(--composer-gap-md) var(--composer-gap-md);
                             }
                         }
                     }
@@ -104,7 +104,7 @@
                         .item-left {
                             display: flex;
                             align-items: center;
-                            gap: var(--composer-gap-md);
+                            gap: var(--composer-gap-sm);
                             min-width: 0;
                             width: 100%;
 
@@ -113,9 +113,9 @@
                                 display: inline-flex;
                                 align-items: center;
                                 justify-content: center;
-                                width: 2rem;
-                                height: 2rem;
-                                font-size: 2rem;
+                                width: 1.75rem;
+                                height: 1.75rem;
+                                font-size: 1.75rem;
                                 color: var(--composer-font-color-primary);
 
                                 &.item-icon-active {
@@ -211,6 +211,13 @@
                             .item-header {
                                 padding: var(--composer-gap-md) 0 !important;
                             }
+
+                            .item-description-container {
+
+                                &.item-description-active {
+                                    padding: 0 0 var(--composer-gap-md) 0 !important;
+                                }
+                            }
                         }
                     }
 
@@ -218,9 +225,9 @@
                         .item-header {
                             .item-left {
                                 .item-icon {
-                                    width: 1.5rem;
-                                    height: 1.5rem;
-                                    font-size: 1.5rem;
+                                    width: 1.25rem;
+                                    height: 1.25rem;
+                                    font-size: 1.25rem;
                                 }
                             }
 
