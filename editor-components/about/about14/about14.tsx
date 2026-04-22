@@ -136,6 +136,8 @@ class About14 extends BaseAbout {
 
         const alignment = Base.getContentAlignment();
 
+        const hasToggle = this.castToString(showMoreText) && this.castToString(showLessText);
+
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -162,7 +164,7 @@ class About14 extends BaseAbout {
                                     )}
                                     {(hasDescription || hasValidButtons) && (
                                         <div
-                                            className={`${this.decorateCSS("description-wrapper")} ${isExpanded && this.decorateCSS("expanded-wrapper")}`}
+                                            className={`${this.decorateCSS("description-wrapper")} ${isExpanded && this.decorateCSS("expanded-wrapper")} ${hasToggle && this.decorateCSS("has-toggle")}`}
                                         >
                                             {hasDescription && (
                                                 <Base.SectionDescription
@@ -185,23 +187,25 @@ class About14 extends BaseAbout {
                                                     })}
                                                 </div>
                                             )}
-                                            <div
-                                                className={this.decorateCSS("show-more-overlay")}
-                                                onClick={this.toggleExpand}
-                                            >
-                                                <div className={this.decorateCSS("show-more-btn")}>
-                                                    {!isExpanded && (
-                                                        <Base.P className={this.decorateCSS("btn-text")}>
-                                                            {showMoreText}
-                                                        </Base.P>
-                                                    )}
-                                                    {isExpanded && (
-                                                        <Base.P className={this.decorateCSS("btn-text")}>
-                                                            {showLessText}
-                                                        </Base.P>
-                                                    )}
+                                            {hasToggle && (
+                                                <div
+                                                    className={this.decorateCSS("show-more-overlay")}
+                                                    onClick={this.toggleExpand}
+                                                >
+                                                    <div className={this.decorateCSS("show-more-btn")}>
+                                                        {!isExpanded && (
+                                                            <Base.P className={this.decorateCSS("btn-text")}>
+                                                                {showMoreText}
+                                                            </Base.P>
+                                                        )}
+                                                        {isExpanded && (
+                                                            <Base.P className={this.decorateCSS("btn-text")}>
+                                                                {showLessText}
+                                                            </Base.P>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            )}
                                         </div>
                                     )}
                                 </Base.VerticalContent>
