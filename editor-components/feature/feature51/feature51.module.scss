@@ -38,14 +38,14 @@
             padding: 0;
 
             .item-header {
-              padding: 30px var(--composer-gap-md) 30px 0;
+              padding: 30px var(--composer-gap-lg) 30px 0;
             }
 
             .item-description-container {
               padding: 0 var(--composer-gap-sm);
 
               &.item-description-active {
-                padding: 0 var(--composer-gap-md) var(--composer-gap-md) 0;
+                padding: 0 var(--composer-gap-lg) var(--composer-gap-md) 0;
               }
             }
           }
