@@ -157,14 +157,14 @@
                     gap: var(--composer-gap-xs);
 
                     .upper-text {
-                        text-align: center;
+                        text-align: left;
                         text-transform: uppercase;
                         color: var(--composer-font-color-primary);
-                        font-size: 1.75rem;
+                        font-size: 1rem !important;
                     }
 
                     .lower-text {
-                        text-align: center;
+                        text-align: left;
                         color: var(--composer-font-color-primary);
                         font-size: 5rem;
                     }
@@ -309,8 +309,8 @@
                     }
 
                     .image-text {
-                        left: 35%;
-                        top: var(--composer-gap-xl);
+                        left: 15%;
+                        top: var(--composer-gap-sm);
 
                         .lower-text {
                             font-size: 3rem !important;
