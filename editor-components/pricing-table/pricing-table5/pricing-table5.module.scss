@@ -1,13 +1,14 @@
-@use "../../../../composer-tools/composer-base-components//base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 @keyframes bounceText {
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-5px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -31,11 +32,11 @@
   .max-content {
     .content {
       display: flex;
-      gap: calc(3 * var(--composer-gap-xl));
+      gap: calc(var(--composer-gap-lg) * 2);
       width: 100%;
 
       .left-content {
-        width: 50%;
+        width: 60%;
         display: flex;
         flex-direction: column;
 
@@ -44,28 +45,45 @@
           gap: var(--composer-gap-md);
         }
 
-        .subtitle,
-        .title {
-          content: "";
+        .title,
+        .description {
+          text-align: left;
+        }
+
+        .subtitle {
+          margin-left: 0;
+          margin-right: auto;
+          text-align: left;
         }
 
         .description {
           color: var(--composer-font-color-primary);
         }
+
         .buttons {
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
+          place-self: flex-start;
           gap: var(--composer-gap-sm);
 
-          .button-box {
+          .button-text,
+          .button-icon {
+            content: "";
+          }
+
+          .button-icon {
+            font-size: 1.5rem !important;
+            height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+            width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
             display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
 
       .right-content {
-        width: 50%;
+        width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -77,21 +95,21 @@
 
         .plan {
           width: 100%;
-          background: color-mix(
-            in srgb,
-            var(--composer-html-background),
-            var(--composer-font-color-primary) 5%
-          );
-          padding: var(--composer-gap-sm) var(--composer-gap-md);
-          border-radius: var(--composer-gap-xs) !important;
+          background: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+          padding: var(--composer-gap-md);
+          border-radius: var(--composer-border-radius-md);
           display: flex;
           flex-direction: column;
+          justify-content: center;
           transition: all 0.5s ease;
           box-shadow: var(--box-shadow-active);
           color: var(--composer-font-color-primary);
           cursor: pointer;
           position: relative;
           overflow: hidden;
+
           &::before {
             content: "";
             position: absolute;
@@ -102,27 +120,31 @@
             background: var(--composer-primary-color);
             transition: width 0.8s ease-in-out;
           }
+
           &.animation1:hover {
             &::before {
               width: 100%;
             }
           }
+
           &.animation2:hover {
             .plan-price-box {
               .labels {
                 animation: bounceText 0.8s ease-in-out infinite;
               }
+
               .plan-button {
                 content: "";
               }
             }
           }
+
           &.animation3:hover {
             .plan-price-box {
               .labels {
                 animation-name: breathe;
                 animation-duration: 1s;
-                animation-timing-function: ease-in-and-out;
+                animation-timing-function: ease-in-out;
                 animation-iteration-count: infinite;
                 animation-direction: alternate;
               }
@@ -131,13 +153,13 @@
 
           &.active {
             background: var(--composer-primary-color);
-            gap: var(--composer-gap-sm);
+            justify-content: flex-start;
+            gap: var(--composer-gap-md);
 
             .plan-price-box,
             .plan-description {
               max-height: 250px;
               overflow: auto;
-              padding: var(--composer-gap-md) var(--composer-gap-sm);
               opacity: 1;
             }
 
@@ -156,10 +178,9 @@
             .plan-upper {
               margin: 0;
 
-              .icon-box {
-                .icon {
-                  content: "";
-                }
+              .icon-box,
+              .icon-box-active {
+                content: "";
               }
             }
           }
@@ -167,10 +188,13 @@
           .plan-upper {
             display: flex;
             justify-content: space-between;
+            width: 100%;
             align-items: center;
+            margin: 0 !important;
 
             .plan-title {
               margin: 0;
+              text-align: left;
               transition: color 0.5s ease;
             }
 
@@ -178,24 +202,25 @@
             .icon-box-active {
               color: var(--composer-primary-color);
               background-color: var(--composer-html-background);
-              width: 20px;
-              height: 20px;
+              border-radius: var(--composer-border-radius-xl);
+              width: calc(var(--composer-gap-md) + var(--composer-gap-md));
+              height: calc(var(--composer-gap-md) + var(--composer-gap-md));
               display: flex;
               justify-content: center;
               align-items: center;
-              border-radius: var(--composer-border-radius-xl);
+              flex-shrink: 0;
 
               .icon {
-                font-size: 1rem;
+                font-size: 1.5rem !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
             }
 
             .icon-box-active {
               background-color: var(--composer-font-color-secondary);
               color: var(--composer-primary-color);
-              .icon {
-                content: "";
-              }
             }
           }
 
@@ -218,13 +243,15 @@
           }
 
           .plan-upper {
-            padding: var(--composer-gap-sm);
+            gap: var(--composer-gap-sm);
           }
 
           .plan-price-box {
             display: flex;
+            width: 100%;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: wrap;
 
             .labels {
               display: flex;
@@ -232,8 +259,32 @@
               gap: var(--composer-gap-sm);
               transition: all 0.5s ease;
               transform: scale(1);
+
               .price {
                 font-size: 2rem;
+              }
+            }
+
+            .plan-buttons {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              gap: var(--composer-gap-sm);
+
+              .plan-button {
+
+                .button-text,
+                .button-icon {
+                  content: "";
+                }
+
+                .button-icon {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                  height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                }
               }
             }
           }
@@ -245,34 +296,33 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container {
-    position: relative;
-
     .max-content {
       .content {
-        flex-direction: column;
-        gap: var(--composer-gap-lg) !important;
-
-        .left-content,
         .right-content {
-          max-width: unset;
-        }
+          width: 40%;
 
-        .left-content {
-          width: 100%;
-          text-align: left;
+          .plan {
+            .plan-upper {
 
-          .buttons,
-          .button-box {
-            margin: auto;
-          }
-          .buttons {
-            .button-box {
-              width: fit-content;
+              .icon-box,
+              .icon-box-active {
+                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+
+                .icon {
+                  font-size: 1.25rem !important;
+                }
+              }
+            }
+
+            .plan-price-box {
+              .labels {
+                .price-description {
+                  min-width: 100%;
+                }
+              }
             }
           }
-        }
-        .right-content {
-          width: 100%;
         }
       }
     }
@@ -291,20 +341,60 @@
         align-items: center;
 
         .left-content {
+          width: 100%;
+
+          .subtitle {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            transform: none !important;
+
+            &::before {
+              display: none !important;
+            }
+          }
+
+          .title {
+            text-align: center;
+          }
+
+          .description {
+            text-align: center;
+          }
+
           .buttons {
+            width: 100%;
             justify-content: center;
           }
         }
+
         .right-content {
           width: 100%;
 
           .plan {
+            .plan-upper {
+
+              .icon-box,
+              .icon-box-active {
+                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+
+                .icon {
+                  font-size: 1.25rem !important;
+                }
+              }
+            }
+
             .plan-price-box {
               display: flex;
 
               .labels {
                 .price {
-                  font-size: 1rem;
+                  font-size: 1.25rem;
+                }
+
+                .price-description {
+                  min-width: 100%;
                 }
               }
             }

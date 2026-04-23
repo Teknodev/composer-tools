@@ -1,9 +1,19 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
+
 @keyframes bounceText {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .container {
@@ -13,25 +23,66 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
     gap: var(--composer-gap-xl);
 
     .up-text {
-      gap: var(--composer-gap-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+
+      .subtitle,
+      .title,
+      .description {
+        text-align: center !important;
+
+        &::before {
+          display: none !important;
+        }
+
+        transform: none !important;
+      }
+
+      .subtitle,
+      .title,
+      .description,
+      .round {
+        content: "";
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+        margin-bottom: var(--composer-gap-md);
+        justify-content: center;
+
+        .button {
+          .button-icon {
+            font-size: 1.5rem;
+            height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+            width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .button-text {
+            content: "";
+          }
+        }
+      }
 
       .duration-items {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: var(--composer-gap-sm);
+        font-size: 1.5rem;
 
-        .text {
-          color: var(--composer-tertiary-color);
-
-          &.active {
-            color: var(--composer-font-color-primary);
-            opacity: 1;
-            font-weight: bold;
-          }
-        }
-
+        .text,
         .yearlyText {
           color: var(--composer-tertiary-color);
+          width: fit-content;
 
           &.active {
             color: var(--composer-font-color-primary);
@@ -42,75 +93,61 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
         .icon {
           color: var(--composer-primary-color);
-          font-size: 1rem;
-          right: 0;
-          bottom: var(--composer-gap-xs);
+          font-size: 2rem;
           position: relative;
+          width: var(--composer-gap-md);
+          height: var(--composer-gap-md);
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .planDiscount {
-          right: 0;
-          top: calc(-1 * var(--composer-gap-md));
-          position: relative;
           color: var(--composer-tertiary-color);
-          bottom: var(--composer-gap-xs);
         }
 
         .switch {
           position: relative;
           display: inline-block;
-          width: var(--composer-gap-xl);
+          min-width: calc(var(--composer-gap-xl) + var(--composer-gap-sm));
           height: var(--composer-gap-md);
-        }
 
-        .switch .input {
-          opacity: 0;
-          width: 0;
-          height: 0;
-        }
+          .input {
+            opacity: 0;
+            width: 0;
+            height: 0;
 
-        .slider {
-          position: absolute;
-          cursor: pointer;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          -webkit-transition: 0.4s;
-          transition: 0.4s;
-        }
+            &:checked+.slider:before {
+              transform: translateX(calc(var(--composer-gap-xl) + var(--composer-gap-sm) - var(--composer-gap-md)));
+            }
+          }
 
-        .slider:before {
-          position: absolute;
-          content: "";
-          height: var(--composer-gap-md);
-          width: var(--composer-gap-md);
-          background-color: var(--composer-primary-color);
-          -webkit-transition: 0.4s;
-          transition: 0.4s;
-        }
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-font-color-primary) 10%);
+            transition: $transition;
+            border-radius: var(--composer-border-radius-xl);
 
-        .input:checked + .slider:before {
-          -webkit-transform: translateX(30px);
-          -ms-transform: translateX(30px);
-          transform: translateX(30px);
+            &:before {
+              position: absolute;
+              content: "";
+              height: var(--composer-gap-md);
+              width: var(--composer-gap-md);
+              background-color: var(--composer-primary-color);
+              transition: $transition;
+              border-radius: 50%;
+              left: 0;
+              top: 0;
+            }
+          }
         }
-
-        .slider.round {
-          border-radius: var(--composer-gap-lg);
-        }
-
-        .slider.round:before {
-          border-radius: 50%;
-        }
-
-        .plan-items {
-          display: flex;
-        }
-      }
-      .subtitle, .title,  .description {
-        content: "";
       }
     }
 
@@ -119,52 +156,66 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         height: 100%;
         display: flex;
         justify-content: center;
-        transition: 0.5s;
+        transition: $transition;
+
         &.animation1:hover {
-          .price{
+          .price {
             box-shadow: var(--box-shadow-active);
             transform: translateY(calc(-1 * var(--composer-gap-sm)));
-          }          
+          }
         }
+
         &.animation2:hover {
-          .price{
-            .dividers{
+          .price {
+            .dividers {
               .divider2 {
                 width: 100%;
-                display:flex
               }
             }
           }
         }
+
         &.animation3:hover {
-          .price{
+          .price {
             .price-text {
               transform: scale(1.1);
             }
           }
         }
-        &.animation4:hover{
-          .price{
-            .price-text{
+
+        &.animation4:hover {
+          .price {
+            .price-text {
               animation: bounceText 0.8s ease-in-out infinite;
             }
           }
         }
+
         .price {
           box-shadow: var(--box-shadow-active);
-          border-radius: var(--composer-border-radius-xl);
-          height: max-content;
-          padding: var(--composer-gap-md);
-          flex: 1 1;
+          border-radius: var(--composer-border-radius-md);
+          height: 100%;
+          padding: var(--composer-gap-lg);
+          flex: 1;
           position: relative;
           gap: var(--composer-gap-md);
-          background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          transition: 0.5s;
+          background-color: color-mix(in srgb,
+              var(--composer-html-background),
+              var(--composer-font-color-primary) 5%);
+          transition: $transition;
+          align-items: flex-start;
+          text-align: left;
+
+          &.active {
+            background-color: color-mix(in srgb,
+                var(--composer-html-background),
+                var(--composer-primary-color) 5%);
+          }
+
           .popular-box {
             box-shadow: var(--box-shadow-active);
             width: fit-content;
-            border: 1px solid var(--composer-secondary-color);
-            border-radius: var(--composer-border-radius-xl);
+            border-radius: var(--composer-border-radius-sm);
             padding: var(--composer-gap-xs) var(--composer-gap-sm);
             background-color: var(--composer-secondary-color);
             position: absolute;
@@ -178,82 +229,116 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
 
           .badge {
             width: fit-content;
-            height: auto;
             padding: var(--composer-gap-xs) var(--composer-gap-md);
-            border-radius: var(--composer-border-radius-xl);
-            display: flex;
+            border-radius: var(--composer-border-radius-sm);
             color: var(--composer-font-color-secondary);
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
           }
 
           .price-text {
             color: var(--composer-font-color-primary);
             display: flex;
-            align-items: flex-end;
+            align-items: baseline;
+            gap: var(--composer-gap-xs);
+            transition: $transition;
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: var(--composer-gap-md);
             justify-content: flex-start;
-            transition: 0.8s;
 
             .price-title {
               margin: 0;
-              font-size: 3.5rem;
             }
 
             .duration-text {
               margin: 0;
-              margin-bottom: var(--composer-gap-xs);
               color: var(--composer-tertiary-color);
             }
           }
 
           .promoText {
-            font-weight: bold;
             color: var(--composer-font-color-primary);
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
           }
-          .dividers{
+
+          .dividers {
             width: 100%;
-            position: relative;
-          }
-          .divider, .divider2{
-            background-color: rgba(var(--composer-font-color-primary-rgb), 0.2);
-            border-radius: var(--composer-border-radius-md);
-            width: 100%;
-            margin: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: 0.8s;
-            z-index: 1;
             height: 2px;
+            position: relative;
+            background-color: rgba(var(--composer-font-color-primary-rgb), 0.1);
+            border-radius: var(--composer-border-radius-xs);
+            overflow: hidden;
+
+            .divider,
+            .divider2 {
+              position: absolute;
+              top: 0;
+              left: 0;
+              height: 100%;
+              transition: $transition;
+            }
+
+            .divider {
+              width: 100%;
+            }
+
+            .divider2 {
+              width: 0;
+              background-color: var(--composer-primary-color);
+            }
           }
-          .divider2{
-            z-index: 2;
-            width: 0px;
-            background-color:var(--composer-primary-color);
-          }
+
           .description {
             color: var(--composer-tertiary-color);
+            text-align: left;
+            margin-left: 0;
+            margin-right: 0;
           }
 
           .features {
+            width: 100%;
             gap: var(--composer-gap-sm);
+            align-items: flex-start;
 
             .features-element {
               display: flex;
+              flex-direction: row;
               align-items: center;
-              gap: var(--composer-gap-xs);
+              gap: var(--composer-gap-sm);
               color: var(--composer-font-color-primary);
-              .features-element-text{
-                content: "";
-              }
+              text-align: left !important;
+              justify-content: flex-start;
+              width: 100%;
+
               .icon {
-                color: var(--composer-font-color-primary);
-                width: var(--composer-gap-md);
-                height: var(--composer-gap-md);
+                color: var(--composer-primary-color);
+                width: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                height: calc(var(--composer-gap-md) + var(--composer-gap-xs));
+                font-size: 1.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-shrink: 0;
+              }
+
+              .features-element-text {
+                text-align: left !important;
+                margin: 0;
+                flex: 1;
               }
             }
           }
-        }
-        .button, .button-active {
-          content: "";
+
+          .button,
+          .button-active {
+            width: 100%;
+            margin-top: auto;
+          }
         }
       }
     }
@@ -264,6 +349,14 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   .container {
     .max-content {
       gap: var(--composer-gap-lg);
+
+      .card {
+        .card-item-count {
+          .price {
+            padding: var(--composer-gap-md);
+          }
+        }
+      }
     }
   }
 }
