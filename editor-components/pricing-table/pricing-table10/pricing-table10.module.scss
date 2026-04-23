@@ -1,0 +1,206 @@
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
+.container {
+    position: relative;
+    background-color: var(--composer-html-background);
+
+    .background-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60%;
+        background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+        z-index: 0;
+    }
+
+    .max-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--composer-gap-lg);
+
+
+        .top-section {
+
+            .subtitle,
+            .title,
+            .description {
+                content: "";
+            }
+
+            .buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .button .button-text {
+                    content: "";
+                }
+            }
+        }
+
+        .card {
+            display: flex;
+            flex-direction: row;
+            border-radius: var(--composer-border-radius-md);
+            overflow: hidden;
+            background-color: var(--composer-html-background);
+            box-shadow: var(--box-shadow-active);
+
+            .card-left {
+                flex: 2;
+                display: flex;
+                padding: 80px 50px;
+                flex-direction: column;
+                gap: var(--composer-gap-md);
+
+                .card-title,
+                .card-subtitle,
+                .card-description {
+                    text-align: left;
+                    color: var(--composer-font-color-primary);
+
+                }
+
+                .features-section {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-md);
+                    width: 100%;
+
+                    .features-header {
+                        display: flex;
+                        align-items: center;
+                        gap: var(--composer-gap-md);
+
+
+                        .features-label {
+                            color: var(--composer-font-color-primary);
+                            width: fit-content;
+                            text-align: left;
+                            margin-left: 0 !important;
+                            margin-right: 0 !important;
+                        }
+
+                        .separator-line {
+                            flex: 1;
+                            height: 1px;
+                            background-color: color-mix(in srgb, var(--composer-font-color-primary) 10%, transparent);
+                        }
+                    }
+
+                    .features-grid {
+                        width: 100%;
+                        gap: var(--composer-gap-sm) var(--composer-gap-lg);
+
+                        .feature-item {
+                            display: flex;
+                            align-items: center;
+                            gap: var(--composer-gap-sm);
+
+                            .feature-icon {
+                                color: var(--composer-primary-color);
+                                width: 1em;
+                                height: 1em;
+                            }
+
+                            .feature-text {
+                                margin: 0;
+                                color: var(--composer-font-color-primary);
+                                text-align: left;
+                                white-space: nowrap;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .card-right {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-xl);
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-md);
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 3%);
+
+                .price {
+                    font-size: 3.5rem;
+                }
+
+                .tagline,
+                .price {
+                    text-align: center;
+                    color: var(--composer-font-color-primary);
+                }
+
+                .card-buttons {
+                    align-items: center;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--composer-gap-sm);
+
+                    .card-button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
+
+                    .card-button-bare {
+                        .button-text {
+                            color: var(--composer-primary-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@container (max-width: #{$composer-tablet-width}) {
+    .container {
+        .max-content {
+            .card {
+                .card-left {
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                }
+
+                .card-right {
+                    padding: calc(var(--composer-gap-lg) * 2) var(--composer-gap-lg);
+                    gap: var(--composer-gap-sm);
+
+                    .price {
+                        font-size: 2.5rem !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@container (max-width: #{$composer-phone-width}) {
+    .container {
+        .max-content {
+            .card {
+                flex-direction: column;
+
+                .card-left {
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
+                }
+
+                .card-right {
+                    padding: var(--composer-gap-xl) var(--composer-gap-md);
+
+                    .price {
+                        font-size: 2.5rem !important;
+                    }
+                }
+            }
+        }
+    }
+}
