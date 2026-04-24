@@ -129,7 +129,7 @@ class Team10 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -208,7 +208,7 @@ class Team10 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -287,7 +287,7 @@ class Team10 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -366,7 +366,7 @@ class Team10 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -479,7 +479,7 @@ class Team10 extends Team {
           </div>
           <div className={this.decorateCSS("right")}>
             {this.castToObject<TTeam[]>("team").map((teamMember: any) => {
-              const imageExist = teamMember.getPropValue("image");
+              const imageExist = teamMember.getPropValue("profileImage");
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-member")}>
                   <div className={this.decorateCSS("info")}>
@@ -523,7 +523,7 @@ class Team10 extends Team {
                   </div>
                   {imageExist &&
                     <div className={this.decorateCSS("image-container")}>{
-                      <Base.Media value={teamMember.getPropValue("image")} className={this.decorateCSS("image")} />}
+                      <Base.Media value={teamMember.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                       <div className={this.decorateCSS("image-overlay")} data-animation={this.getPropValue("hoverAnimation").join(" ")}></div>
                     </div>
                   }

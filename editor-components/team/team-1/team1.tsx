@@ -131,7 +131,7 @@ class Team1 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -174,7 +174,7 @@ class Team1 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -217,7 +217,7 @@ class Team1 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -260,7 +260,7 @@ class Team1 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -348,7 +348,7 @@ class Team1 extends Team {
                 <div key={indexItems} className={`${this.decorateCSS("all-card")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("top")}>
-                      {card.image && <Base.Media value={card.image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                      {card.profileImage && <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                       <Base.H2 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H2>
                       <Base.P className={this.decorateCSS("position")}>{card.value.filter((item: { key: string }) => item.key === "position").map((item: { value: string }) => item.value)}</Base.P>
                     </div>

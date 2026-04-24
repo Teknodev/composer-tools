@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials11.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 interface CardItem {
-  image: string;
+  profileImage: TypeMediaInputValue;
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
@@ -36,10 +36,16 @@ class Testimonials11Page extends Testimonials {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623daf?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -67,10 +73,16 @@ class Testimonials11Page extends Testimonials {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db0?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -98,10 +110,16 @@ class Testimonials11Page extends Testimonials {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -129,10 +147,16 @@ class Testimonials11Page extends Testimonials {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -160,10 +184,16 @@ class Testimonials11Page extends Testimonials {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -191,10 +221,16 @@ class Testimonials11Page extends Testimonials {
           displayer: "Item",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617822bd2970002c623db1?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -247,7 +283,7 @@ class Testimonials11Page extends Testimonials {
               {cardList.map((item: any, index: number) => (
                 <div className={`${this.decorateCSS("cards")} ${!coverImage && this.decorateCSS("cards-no-background")} `}>
                   <div className={this.decorateCSS("card-top")}>
-                    {item.image && <img src={item.image} alt={item.image} className={this.decorateCSS("card-image")} />}
+                    {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("card-image")} />}
                     <div className={this.decorateCSS("card-top-right")}>
                       {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("card-title")}>{item.title}</Base.H4>}
                       {this.castToString(item.subtitle) && <Base.H5 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H5>}

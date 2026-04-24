@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 type Card = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  image: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
   imagesubtitle: React.JSX.Element;
   imagetitle: React.JSX.Element;
 };
@@ -73,7 +73,7 @@ class Team8 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
           availableTypes: ["image"],
@@ -104,7 +104,7 @@ class Team8 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -135,7 +135,7 @@ class Team8 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -166,7 +166,7 @@ class Team8 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -197,7 +197,7 @@ class Team8 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -228,7 +228,7 @@ class Team8 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -259,7 +259,7 @@ class Team8 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -359,16 +359,16 @@ class Team8 extends Team {
                   {slides.map((item: Card, index: number) => {
                     const titleExist = this.castToString(item.imagetitle);
                     const subtitleExist = this.castToString(item.imagesubtitle);
-                    const hasSlider = titleExist || subtitleExist || item.image;
+                    const hasSlider = titleExist || subtitleExist || item.profileImage;
 
                     return (
                       hasSlider && (
                         <div className={`${this.decorateCSS("slider-inner-div")} ${!imageExist && this.decorateCSS("no-image") }`} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                           <Base.VerticalContent className={this.decorateCSS("content-div")}>
-                          {item.image && (
+                          {item.profileImage && (
                             <div className={this.decorateCSS("img-div")}>
                             <div className={this.decorateCSS("image-box")}>
-                              <Base.Media value={item.image} className={this.decorateCSS("img")} />
+                              <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />
                             </div>
                             </div>
                           )}

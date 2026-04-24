@@ -122,7 +122,7 @@ class Team2 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -165,7 +165,7 @@ class Team2 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -208,7 +208,7 @@ class Team2 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -251,7 +251,7 @@ class Team2 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -294,7 +294,7 @@ class Team2 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -337,7 +337,7 @@ class Team2 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               additionalParams: {
                 availableTypes: ["image"],
               },
@@ -402,7 +402,7 @@ class Team2 extends Team {
 
               return (
                 <Base.VerticalContent className={`${this.decorateCSS("team")}`} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                  {team.image && <Base.Media value={team.image} className={this.decorateCSS("image")} />}
+                  {team.profileImage && <Base.Media value={team.profileImage} className={this.decorateCSS("image")} />}
                   {name && <Base.H3 className={this.decorateCSS("title")}>{team.name}</Base.H3>}
                   {position && <Base.H4 className={this.decorateCSS("position")}>{team.position}</Base.H4>}
                   {description && <Base.P className={this.decorateCSS("long-text")}>{team.description}</Base.P>}

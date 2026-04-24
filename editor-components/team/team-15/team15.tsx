@@ -116,7 +116,7 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -177,7 +177,7 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -239,7 +239,7 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -300,7 +300,7 @@ class Team15 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -379,7 +379,7 @@ class Team15 extends Team {
             {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
             <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 2, phone: 1 }} className={this.decorateCSS("cards-box")}>
               {this.castToObject<Card[]>("cards").map((card: any, index: number) => {
-                const imageExists = card.getPropValue("image");
+                const imageExists = card.getPropValue("profileImage");
                 const titleExists = this.castToString(card.title);
                 const descriptionExists = this.castToString(card.description);
 
@@ -389,7 +389,7 @@ class Team15 extends Team {
                 return (
                   cardExists && (
                     <div key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      {imageExists && <Base.Media value={card.getPropValue("image")} className={this.decorateCSS("image")} />}
+                      {imageExists && <Base.Media value={card.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                       {overlay && <div className={this.decorateCSS("overlay")}></div>}
                       {overlay && <div className={this.decorateCSS("overlay2")}></div>}
                       <div className={this.decorateCSS("card-content")}>

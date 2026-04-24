@@ -12,7 +12,7 @@ type Icon = {
 };
 
 interface Card {
-  image: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   icons: Icon[];
 }
@@ -87,7 +87,7 @@ class Team9 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -123,7 +123,7 @@ class Team9 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -159,7 +159,7 @@ class Team9 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -195,7 +195,7 @@ class Team9 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -299,11 +299,11 @@ class Team9 extends Team {
                 {members.map((item: Card, index: number) => {
                   const nameExist = this.castToString(item.name);
 
-                  const hasCard = nameExist || item.image || item.icons.length > 0;
+                  const hasCard = nameExist || item.profileImage || item.icons.length > 0;
                   return (
                     hasCard && (
                       <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        {item.image && <Base.Media value={item.image} className={this.decorateCSS("person-image")} />}
+                        {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
                         <div className={this.decorateCSS("person-info")}>
                           {item.icons.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")}>
@@ -340,14 +340,14 @@ class Team9 extends Team {
                 {members.map((item: Card, indexCard: number) => {
                   const nameExist = this.castToString(item.name);
 
-                  if (item.image || nameExist || item.icons.length > 0)
+                  if (item.profileImage || nameExist || item.icons.length > 0)
                     return (
                       <div key={indexCard} className={this.decorateCSS("card")}>
-                        {item.image && <Base.Media value={item.image} className={this.decorateCSS("person-image")} />}
+                        {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />}
                         {(nameExist || item.icons.length > 0) && (
                           <Base.VerticalContent className={this.decorateCSS("person-info")}>
                             {item.icons.length > 0 && (
-                              <Base.Row style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
+                              <Base.Row style={!item.profileImage ? { width: "auto" } : {}} className={this.decorateCSS("icons-bar")}>
                                 {item.icons.map((card: Icon, indexIcons: number) => {
                                   if (card.icon)
                                     return (
@@ -366,7 +366,7 @@ class Team9 extends Team {
                               </Base.Row>
                             )}
                             {nameExist && (
-                              <div style={!item.image ? { width: "auto" } : {}} className={this.decorateCSS("text-group")}>
+                              <div style={!item.profileImage ? { width: "auto" } : {}} className={this.decorateCSS("text-group")}>
                                 <Base.H1 className={this.decorateCSS("item-name")}>{item.name}</Base.H1>
                               </div>
                             )}

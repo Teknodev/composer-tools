@@ -9,7 +9,7 @@ type Feature = {
 };
 
 type Card = {
-  image: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
   description: React.JSX.Element;
@@ -57,7 +57,7 @@ class Team6 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -171,7 +171,7 @@ class Team6 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -285,7 +285,7 @@ class Team6 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -399,7 +399,7 @@ class Team6 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -561,14 +561,14 @@ class Team6 extends Team {
               {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
                 const cardNameExist = this.castToString(card.name);
                 const cardPositionExist = this.castToString(card.position);
-                const hasCard = cardNameExist || cardPositionExist || card.image || card.features.length > 0;
+                const hasCard = cardNameExist || cardPositionExist || card.profileImage || card.features.length > 0;
 
                 return (
                   hasCard && (
                     <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
-                          {card.image ? (
+                          {card.profileImage ? (
                             <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                               {card.features.length > 0 &&
                                 (this.getComponentState("activeIndex") === indexItems ? (
@@ -578,7 +578,7 @@ class Team6 extends Team {
                                 ))}
                               <div className={this.decorateCSS("image-container")}>
                                 <Base.Media
-                                  value={card.image}
+                                  value={card.profileImage}
                                   className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`}
                                   data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                 />
