@@ -197,12 +197,12 @@ class Stats19 extends BaseStats {
                               </Base.H6>
                             )}
                             {hasTitle && (
-                              <Base.H5
+                              <Base.P
                                 className={this.decorateCSS("stat-title")}
-                                style={{ ...(!hasNumber ? { gridColumn: 1 } : {}), ...(!hasSubtitle ? { gridRow: "1 / span 2", alignSelf: "center" } : {}) }}
+                                style={{ ...(!hasNumber ? { gridColumn: 1 } : {}), ...(!hasSubtitle ? { gridRow: "1 / span 2" } : {}) }}
                               >
                                 {stat.title}
-                              </Base.H5>
+                              </Base.P>
                             )}
                           </Base.Row>
                         )}

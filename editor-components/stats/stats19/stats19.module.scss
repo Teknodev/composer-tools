@@ -66,6 +66,12 @@
           content: "";
         }
 
+        .stat-title {
+          font-size: 1.4rem;
+          max-width: 110px;
+          white-space: normal;
+        }
+
         .stat-desc {
           text-align: left;
           color: var(--composer-font-color-primary);
@@ -91,6 +97,10 @@
             font-size: 3rem;
           }
         }
+
+        .stat-item .stat-title {
+          font-size: 1.3rem;
+        }
       }
     }
   }
@@ -115,6 +125,10 @@
           .stat-suffix {
             font-size: 3rem;
           }
+        }
+
+        .stat-item .stat-title {
+          font-size: 1.2rem;
         }
       }
     }
