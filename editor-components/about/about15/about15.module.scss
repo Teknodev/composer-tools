@@ -46,10 +46,11 @@
                     text-align: var(--composer-content-alignment);
 
                     .subtitle {
-                        display: block;
+                        display: inline-block;
                         width: fit-content;
-                        margin-left: 0 !important;
-                        text-align: left !important;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                        text-align: inherit !important;
                     }
 
                     .title,

@@ -149,7 +149,11 @@ class About15 extends BaseAbout {
         const descriptionExist = this.castToString(this.getPropValue("description"));
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const media = this.castToObject<ImageItemType[]>("media") || [];
-        const hasMedia = media.length > 0;
+        const validMedia = media.filter((item) => {
+            const m = item.media;
+            return m && (m.url || m.name);
+        });
+        const hasMedia = validMedia.length > 0;
         const hasContent = subtitleExist || titleExist || descriptionExist || buttons.length > 0;
 
         return (
@@ -183,12 +187,10 @@ class About15 extends BaseAbout {
                         {hasMedia && (
                             <div className={this.decorateCSS("media-content")}>
                                 <div className={this.decorateCSS("media-wrapper")}>
-                                    {media.map((item: ImageItemType, index: number) => {
-                                        const imageSource = item.media;
-                                        if (!imageSource) return null;
+                                    {validMedia.map((item: ImageItemType, index: number) => {
                                         return (
                                             <div key={`img-${index}`} className={this.decorateCSS("media-box")}>
-                                                <Base.Media value={imageSource} className={this.decorateCSS("media-item")} />
+                                                <Base.Media value={item.media} className={this.decorateCSS("media-item")} />
                                                 {item.overlay && (<div className={this.decorateCSS("overlay")}></div>)}
                                             </div>
                                         );
