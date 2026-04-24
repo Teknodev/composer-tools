@@ -11,6 +11,18 @@ type ContactItem = {
   title: React.JSX.Element;
 };
 
+type CardData = {
+  left: {
+    firstText: JSX.Element;
+    secondText: JSX.Element;
+    contactItems: ContactItem[];
+  };
+  right: {
+    inputItems: TypeUsableComponentProps[];
+    button: INPUTS.CastedButton;
+  };
+};
+
 class Form8 extends BaseContacts {
   constructor(props?: any) {
     super(props, styles);
@@ -37,254 +49,272 @@ class Form8 extends BaseContacts {
     });
 
     this.addProp({
-      type: "string",
-      key: "first-text",
-      displayer: "First Text",
-      value: "Phasellus sit amet scelerisque sapien. Aliquam erat volutpat. Nam ut lectus at velit dapibus sollicitudin eu.",
-    });
-    this.addProp({
-      type: "string",
-      key: "second-text",
-      displayer: "Second Text",
-      value: "Because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone and one.",
-    });
-
-    this.addProp({
-      type: "array",
-      key: "contact-items",
-      displayer: "Contact Items",
+      type: "object",
+      key: "card",
+      displayer: "Card",
       value: [
         {
           type: "object",
-          key: "contact",
-          displayer: "Contact",
+          key: "left",
+          displayer: "Left",
           value: [
             {
               type: "string",
-              key: "title",
-              value: "Email:",
-              displayer: "Title",
+              key: "firstText",
+              displayer: "First Text",
+              value: "Phasellus sit amet scelerisque sapien. Aliquam erat volutpat. Nam ut lectus at velit dapibus sollicitudin eu.",
             },
             {
               type: "string",
-              key: "text",
-              value: "hello@yoursite.com",
-              displayer: "Text",
+              key: "secondText",
+              displayer: "Second Text",
+              value: "Because they are hard, because that goal will serve to organize and measure the best of our energies and skills, because that challenge is one that we are willing to accept, one we are unwilling to postpone and one.",
+            },
+            {
+              type: "array",
+              key: "contactItems",
+              displayer: "Contact Items",
+              value: [
+                {
+                  type: "object",
+                  key: "contact",
+                  displayer: "Contact",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      value: "Email:",
+                      displayer: "Title",
+                    },
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "hello@yoursite.com",
+                      displayer: "Text",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "contact",
+                  displayer: "Contact",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      value: "Phone:",
+                      displayer: "Title",
+                    },
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "+123.456.789",
+                      displayer: "Text",
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "contact",
+                  displayer: "Contact",
+                  value: [
+                    {
+                      type: "string",
+                      key: "title",
+                      value: "Skype:",
+                      displayer: "Title",
+                    },
+                    {
+                      type: "string",
+                      key: "text",
+                      value: "donec.sit.amet",
+                      displayer: "Text",
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
         {
           type: "object",
-          key: "contact",
-          displayer: "Contact",
+          key: "right",
+          displayer: "Right",
           value: [
             {
-              type: "string",
-              key: "title",
-              value: "Phone:",
-              displayer: "Title",
+              type: "array",
+              key: "inputItems",
+              displayer: "Input Items",
+              value: [
+                {
+                  type: "object",
+                  key: "input-item",
+                  displayer: "Input Item",
+                  value: [
+                    {
+                      type: "array",
+                      key: "inputs",
+                      displayer: "Inputs",
+                      value: [
+                        {
+                          type: "object",
+                          key: "input",
+                          displayer: "Input",
+                          value: [
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "Name",
+                            },
+                            {
+                              type: "boolean",
+                              key: "isRequired",
+                              displayer: "Required Message",
+                              value: true,
+                            },
+                            {
+                              type: "string",
+                              key: "required_error_message",
+                              displayer: "Required Error Message",
+                              value: "Required",
+                            },
+                            {
+                              type: "select",
+                              key: "type",
+                              displayer: "Type",
+                              value: "Text",
+                              additionalParams: {
+                                selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                              },
+                            },
+                            {
+                              type: "string",
+                              key: "error_type_message",
+                              displayer: "Error Type Message",
+                              value: "Invalid Type",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "input-item",
+                  displayer: "Input Item",
+                  value: [
+                    {
+                      type: "array",
+                      key: "inputs",
+                      displayer: "Inputs",
+                      value: [
+                        {
+                          type: "object",
+                          key: "input",
+                          displayer: "Input",
+                          value: [
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "Email",
+                            },
+                            {
+                              type: "boolean",
+                              key: "isRequired",
+                              displayer: "Required Message",
+                              value: true,
+                            },
+                            {
+                              type: "string",
+                              key: "required_error_message",
+                              displayer: "Required Error Message",
+                              value: "Required",
+                            },
+                            {
+                              type: "select",
+                              key: "type",
+                              displayer: "Type",
+                              value: "E-mail",
+                              additionalParams: {
+                                selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                              },
+                            },
+                            {
+                              type: "string",
+                              key: "type_error_message",
+                              displayer: "Type Error Message",
+                              value: "Invalid type",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  type: "object",
+                  key: "input-item",
+                  displayer: "Input Item",
+                  value: [
+                    {
+                      type: "array",
+                      key: "inputs",
+                      displayer: "Inputs",
+                      value: [
+                        {
+                          type: "object",
+                          key: "input",
+                          displayer: "Input",
+                          value: [
+                            {
+                              type: "string",
+                              key: "placeholder",
+                              displayer: "Placeholder",
+                              value: "Message...",
+                            },
+                            {
+                              type: "boolean",
+                              key: "isRequired",
+                              displayer: "Required Message",
+                              value: true,
+                            },
+                            {
+                              type: "string",
+                              key: "required_error_message",
+                              displayer: "Required Error Message",
+                              value: "Required",
+                            },
+                            {
+                              type: "select",
+                              key: "type",
+                              displayer: "Type",
+                              value: "Text Area",
+                              additionalParams: {
+                                selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                              },
+                            },
+                            {
+                              type: "string",
+                              key: "type_error_message",
+                              displayer: "Type Error Message",
+                              value: "Invalid type",
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
-            {
-              type: "string",
-              key: "text",
-              value: "+123.456.789",
-              displayer: "Text",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
-          value: [
-            {
-              type: "string",
-              key: "title",
-              value: "Skype:",
-              displayer: "Title",
-            },
-            {
-              type: "string",
-              key: "text",
-              value: "donec.sit.amet",
-              displayer: "Text",
-            },
+            INPUTS.BUTTON("button", "Button", "Send", null, null, null, "Primary"),
           ],
         },
       ],
     });
-
-    this.addProp({
-      type: "array",
-      key: "input-items",
-      displayer: "Input Items",
-      value: [
-        {
-          type: "object",
-          key: "input-item",
-          displayer: "Input Item",
-          value: [
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  key: "input",
-                  displayer: "Input",
-                  value: [
-                    {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "Name",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isRequired",
-                      displayer: "Required Message",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "error_type_message",
-                      displayer: "Error Type Message",
-                      value: "Invalid Type",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "input-item",
-          displayer: "Input Item",
-          value: [
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  key: "input",
-                  displayer: "Input",
-                  value: [
-                    {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "Email",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isRequired",
-                      displayer: "Required Message",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "E-mail",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "input-item",
-          displayer: "Input Item",
-          value: [
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  key: "input",
-                  displayer: "Input",
-                  value: [
-                    {
-                      type: "string",
-                      key: "placeholder",
-                      displayer: "Placeholder",
-                      value: "Message...",
-                    },
-                    {
-                      type: "boolean",
-                      key: "isRequired",
-                      displayer: "Required Message",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text Area",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "Send", null, null, null, "Primary"));
   }
 
   static getName(): string {
@@ -295,13 +325,17 @@ class Form8 extends BaseContacts {
     const subtitleExist = this.castToString(this.getPropValue("subtitle"));
     const titleExist = this.castToString(this.getPropValue("title"));
     const descriptionExist = this.castToString(this.getPropValue("description"));
-    const firstTextExist = this.castToString(this.getPropValue("first-text"));
-    const secondTextExist = this.castToString(this.getPropValue("second-text"));
-    const contactTexts = this.castToObject<ContactItem[]>("contact-items");
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+    const card = this.castToObject<CardData>("card");
+    const firstText = card.left.firstText;
+    const secondText = card.left.secondText;
+    const firstTextExist = this.castToString(firstText);
+    const secondTextExist = this.castToString(secondText);
+    const contactTexts = card.left.contactItems;
 
-    const inputItems = this.getPropValue("input-items")!;
+    const button = card.right.button;
+
+    const inputItems = card.right.inputItems;
 
     const pageContentExist = firstTextExist || secondTextExist || contactTexts?.length > 0 || inputItems.length > 0 || this.castToString(button.text);
 
@@ -416,8 +450,8 @@ class Form8 extends BaseContacts {
          {pageContentExist && <div className={this.decorateCSS("page-content")}>
             {(firstTextExist || secondTextExist || contactTexts?.length > 0) && (
               <Base.VerticalContent className={this.decorateCSS("text-content")}>
-                {firstTextExist && <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("first-text")} </Base.P>}
-                {secondTextExist && <Base.P className={this.decorateCSS("paragraph")}> {this.getPropValue("second-text")} </Base.P>}
+                {firstTextExist && <Base.P className={this.decorateCSS("paragraph")}> {firstText} </Base.P>}
+                {secondTextExist && <Base.P className={this.decorateCSS("paragraph")}> {secondText} </Base.P>}
                 <Base.VerticalContent className={this.decorateCSS("contact-texts")}>
                   {contactTexts.map((item, i) => {
                     const titleExist = !!this.castToString(item.title);
