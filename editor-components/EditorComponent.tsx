@@ -255,6 +255,8 @@ type GetPropValueProperties = {
   as_string?: boolean;
   suffix?: PreSufFix;
   prefix?: PreSufFix;
+  /** CMS-linked string on canvas: render HTML like unlinked, but block opening inline Lexical on click. */
+  cmsInlineReadOnly?: boolean;
 };
 
 type RangeInputAdditionalParams = {
@@ -306,6 +308,7 @@ type AvailablePropTypes =
   | { type: "lottie"; value: string }
   | { type: "video"; value: string }
   | { type: "select"; value: string }
+  | { type: "badge"; value: string }
   | { type: "color"; value: string }
   | { type: "icon"; value: string }
   | { type: "email"; value: string }
@@ -335,7 +338,12 @@ export type TypeUsableComponentProps = {
   id?: string;
   key: string;
   displayer: string;
-  additionalParams?: { selectItems?: string[]; maxElementCount?: number; availableTypes?: MediaType[] };
+  additionalParams?: {
+    selectItems?: string[];
+    badgeItems?: string[];
+    maxElementCount?: number;
+    availableTypes?: MediaType[];
+  };
   max?: number;
 } & AvailablePropTypes & {
   getPropValue?: (
@@ -575,6 +583,21 @@ export abstract class Component
     return this.getFilteredProp(key, this.shadowProps);
   }
 
+  /**
+   * Recursively searches through a props tree for a prop with the given key.
+   * Used to find default values for nested props inside array/object containers.
+   */
+  private findShadowPropByKey(key: string, props: TypeUsableComponentProps[]): TypeUsableComponentProps | null {
+    for (const prop of props) {
+      if (prop.key === key) return prop;
+      if ((prop.type === "array" || prop.type === "object") && Array.isArray(prop.value)) {
+        const found = this.findShadowPropByKey(key, prop.value as TypeUsableComponentProps[]);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
   getProp(key: string): TypeUsableComponentProps | null {
     return this.getFilteredProp(key, this.state.componentProps.props);
   }
@@ -584,6 +607,35 @@ export abstract class Component
       properties?.parent_object?.filter(
         (prop: TypeUsableComponentProps) => prop.key === propName
       )[0] || this.getProp(propName);
+
+    // For CMS keys, fall back to the shadow prop's default value so the
+    // playground renders realistic content instead of key strings.
+    let isCmsProp = false;
+    if (prop && typeof prop.value === "string" && /^CMS_.+_[a-z]+_\d{3,}$/.test(prop.value)) {
+      isCmsProp = true;
+      let shadowProp: TypeUsableComponentProps | null | undefined;
+      if (properties?.parent_object) {
+        // Nested prop: search recursively through shadow props tree
+        shadowProp = this.findShadowPropByKey(propName, this.getShadowProps());
+      } else {
+        shadowProp = this.getShadowProp(propName);
+      }
+      if (shadowProp) {
+        prop = { ...prop, value: shadowProp.value } as any;
+      }
+    }
+
+    // CMS-linked strings: render via the same rich-HTML path as unlinked (InlineEditor BlinkPage).
+    // Returning a raw string here made React escape HTML, so tags like <span> showed as literal text.
+    if (isCmsProp) {
+      if (prop?.type === "string") {
+        return this.getPropValueAsElement(prop, {
+          ...properties,
+          cmsInlineReadOnly: true,
+        });
+      }
+      return prop?.value;
+    }
 
     const isStringMustBeElement =
       prop?.type == "string" && !properties?.as_string;
@@ -670,6 +722,7 @@ export abstract class Component
             props={componentInstance.getProps()}
             sanitizedHtml={sanitizedHtml}
             componentId={componentInstance.id}
+            cmsInlineReadOnly={!!currentProperties?.cmsInlineReadOnly}
           />
         );
       };
