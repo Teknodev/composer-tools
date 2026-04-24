@@ -175,7 +175,7 @@
         .content-wrapper {
             flex-direction: column;
             align-items: flex-start;
-            gap: var(--composer-gap-md);
+            gap: 0;
 
             .text-block {
                 align-items: flex-start;
