@@ -26,6 +26,13 @@ class Form7 extends BaseContacts {
     });
 
     this.addProp({
+      type: "string",
+      key: "description",
+      displayer: "Description",
+      value: "",
+    });
+
+    this.addProp({
       type: "array",
       key: "inputItems",
       displayer: "Input Items",
@@ -35,12 +42,6 @@ class Form7 extends BaseContacts {
           key: "inputItem",
           displayer: "Input Item",
           value: [
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Name",
-            },
             {
               type: "array",
               key: "inputs",
@@ -60,7 +61,7 @@ class Form7 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -89,7 +90,7 @@ class Form7 extends BaseContacts {
                       key: "icon",
                       displayer: "Icon",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "icon",
@@ -112,7 +113,7 @@ class Form7 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -141,7 +142,7 @@ class Form7 extends BaseContacts {
                       key: "icon",
                       displayer: "Icon",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "icon",
@@ -159,12 +160,6 @@ class Form7 extends BaseContacts {
           key: "inputItem",
           displayer: "Input Item",
           value: [
-            {
-              type: "string",
-              key: "label",
-              displayer: "Label",
-              value: "Text Area",
-            },
             {
               type: "array",
               key: "inputs",
@@ -184,7 +179,7 @@ class Form7 extends BaseContacts {
                     {
                       type: "boolean",
                       key: "isRequired",
-                      displayer: "Is Required",
+                      displayer: "Required Message",
                       value: true,
                     },
                     {
@@ -213,7 +208,7 @@ class Form7 extends BaseContacts {
                       key: "icon",
                       displayer: "Icon",
                       additionalParams: {
-                        availableTypes: ["icon"],
+                        availableTypes: ["image", "icon"],
                       },
                       value: {
                         type: "icon",
@@ -229,11 +224,11 @@ class Form7 extends BaseContacts {
       ],
     });
 
-    
+
     this.addProp({
       type: "string",
-      key: "description",
-      displayer: "Description",
+      key: "text",
+      displayer: "Text",
       value: "We are committed to protecting your privacy. We will never collect information about you without your explicit consent.",
     });
 
@@ -247,17 +242,19 @@ class Form7 extends BaseContacts {
   render() {
     const title = this.getPropValue("title");
     const subtitle = this.getPropValue("subtitle");
-
     const description = this.getPropValue("description");
+    const text = this.getPropValue("text");
+
     const titleExist = this.castToString(title);
     const subtitleExist = this.castToString(subtitle);
-
     const descriptionExist = this.castToString(description);
+    const textExist = this.castToString(text);
+
     const inputItems = this.getPropValue("inputItems")!;
     const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
 
     const buttonTextExist = this.castToString(button.text);
-    const rightItemsExist = inputItems.length > 0 || descriptionExist || buttonTextExist;
+    const rightItemsExist = inputItems.length > 0 || textExist || buttonTextExist;
 
     function getInputType(type: string): string {
       switch (type) {
@@ -274,16 +271,15 @@ class Form7 extends BaseContacts {
       }
     }
 
-    const getInputName = (indexOfLabel: number, inputLabel: any, indexOfInput: number): string => {
-      const labelText = inputLabel && this.castToString(inputLabel);
-      return `input_${indexOfLabel}_${labelText}_${indexOfInput}`;
+    const getInputName = (indexOfLabel: number, indexOfInput: number): string => {
+      return `input_${indexOfLabel}_${indexOfInput}`;
     };
 
     const getInitialValue = () => {
       const value: any = {};
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs")?.forEach((_: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          const key = getInputName(indexOfItem, indexOfInput);
           value[key] = "";
         });
       });
@@ -294,7 +290,7 @@ class Form7 extends BaseContacts {
       let schema = Yup.object().shape({});
       inputItems.forEach((inputItem: any, indexOfItem: number) => {
         inputItem.getPropValue("inputs").forEach((input: any, indexOfInput: number) => {
-          const key = getInputName(indexOfItem, inputItem.getPropValue("label"), indexOfInput);
+          const key = getInputName(indexOfItem, indexOfInput);
           let fieldSchema = Yup.string();
 
           if (input.getPropValue("isRequired")) {
@@ -323,10 +319,11 @@ class Form7 extends BaseContacts {
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={alignmentValue === "left" ? this.decorateCSS("wrapper") : alignmentValue === "center" ? this.decorateCSS("wrapper-center") : ""}>
-            {(titleExist || subtitleExist ) && (
+            {(titleExist || subtitleExist || descriptionExist) && (
               <Base.VerticalContent className={this.decorateCSS("left-container")}>
                 {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
               </Base.VerticalContent>
             )}
             {rightItemsExist && (
@@ -362,26 +359,26 @@ class Form7 extends BaseContacts {
                                     <div className={this.decorateCSS("input-container")}>
                                       {inputObj.getPropValue("type") === "Text Area" ? (
                                         <textarea
-                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
+                                          value={values[getInputName(inputItemIndex, inputIndex)]}
                                           className={this.decorateCSS("input")}
                                           placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                           rows={9}
                                           onChange={handleChange}
-                                          name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                          name={getInputName(inputItemIndex, inputIndex)}
                                         ></textarea>
                                       ) : (
                                         <input
                                           placeholder={this.castToString(inputObj.getPropValue("placeholder"))}
                                           type={getInputType(inputObj.getPropValue("type"))}
                                           onChange={handleChange}
-                                          value={values[getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)]}
-                                          name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)}
+                                          value={values[getInputName(inputItemIndex, inputIndex)]}
+                                          name={getInputName(inputItemIndex, inputIndex)}
                                           className={this.decorateCSS("input")}
                                         />
                                       )}
                                       <Base.Media value={inputObj.getPropValue("icon")} className={this.decorateCSS("icon")} />
                                     </div>
-                                    <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputItem.getPropValue("label"), inputIndex)} component={"span"} />
+                                    <ErrorMessage className={this.decorateCSS("error-message")} name={getInputName(inputItemIndex, inputIndex)} component={"span"} />
                                   </div>
                                 );
                               })}
@@ -389,10 +386,10 @@ class Form7 extends BaseContacts {
                           </div>
                         ))}
 
-                        {(descriptionExist || buttonTextExist) && (
+                        {(textExist || buttonTextExist) && (
                           <div className={this.decorateCSS("bottom-section")}>
-                            {descriptionExist && (
-                              <Base.P className={this.decorateCSS("description")}>{description}</Base.P>
+                            {textExist && (
+                              <Base.P className={this.decorateCSS("text")}>{text}</Base.P>
                             )}
                             {buttonTextExist && (
                               <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
@@ -415,3 +412,4 @@ class Form7 extends BaseContacts {
 }
 
 export default Form7;
+

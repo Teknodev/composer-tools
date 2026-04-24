@@ -9,7 +9,7 @@
       .left-container {
         flex: 1;
 
-        .subtitle, .title {
+        .subtitle, .title, .description {
           content: "";
         }
       }
@@ -25,15 +25,19 @@
           justify-content: space-between;
           gap: var(--composer-gap-md);
 
-          .description {
+          .text {
             color: var(--composer-font-color-primary);
             flex: 1;
           }
 
             .submit-button {
               height: min-content;
+              display: flex;
+              justify-content: center;
+              align-items: center;
               .button-text{
                 text-align: center;
+                margin: 0 !important;
               }
             }
         }
@@ -86,6 +90,10 @@
                 height: var(--composer-gap-md);
                 color: var(--composer-font-color-primary);
                 font-size: 1rem;
+                object-fit: contain;
+                display: flex;
+                justify-content: center;
+                align-items: center;
               }
 
               &:has(textarea) {
@@ -114,7 +122,7 @@
       flex-direction: column;
       .right-container{
         .bottom-section{
-          .description{
+          .text{
             text-align: left;
           }
         }
