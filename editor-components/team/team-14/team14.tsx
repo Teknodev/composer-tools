@@ -4,7 +4,7 @@ import styles from "./team14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  image: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
   description: React.JSX.Element;
@@ -55,7 +55,7 @@ class Team14 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -92,7 +92,7 @@ class Team14 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -129,7 +129,7 @@ class Team14 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -188,9 +188,9 @@ class Team14 extends Team {
           {team.length > 0 && (
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
               {team
-                .filter((teamItem) => teamItem.image)
+                .filter((teamItem) => teamItem.profileImage)
                 .map((teamItem: Card, index: number) => {
-                  const image = teamItem.image;
+                  const image = teamItem.profileImage;
                   const name = this.castToString(teamItem.name);
                   const position = this.castToString(teamItem.position);
                   const description = this.castToString(teamItem.description);

@@ -6,7 +6,7 @@ import ComposerLink from "../../../composer-base-components/Link/ComposerLinkPro
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  image: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   job: React.JSX.Element;
   description: React.JSX.Element;
@@ -68,7 +68,7 @@ class Team16 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -105,7 +105,7 @@ class Team16 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -142,7 +142,7 @@ class Team16 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -197,13 +197,13 @@ class Team16 extends Team {
                 const jobExist = this.castToString(card.job);
                 const descriptionExist = this.castToString(card.description);
 
-                const cardExist = nameExist || jobExist || descriptionExist || card.image;
+                const cardExist = nameExist || jobExist || descriptionExist || card.profileImage;
                 return (
                   cardExist && (
                     <div key={indexCards} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                      {card.image && (
+                      {card.profileImage && (
                         <div className={this.decorateCSS("image-wrapper")}>
-                          <Base.Media value={card.image} className={this.decorateCSS("image")} />
+                          <Base.Media value={card.profileImage} className={this.decorateCSS("image")} />
                         </div>
                       )}
                       <div className={this.decorateCSS("text-box")}>

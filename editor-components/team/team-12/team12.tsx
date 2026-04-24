@@ -107,7 +107,7 @@ class Team12 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -150,7 +150,7 @@ class Team12 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -193,7 +193,7 @@ class Team12 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -236,7 +236,7 @@ class Team12 extends Team {
             },
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -288,11 +288,11 @@ class Team12 extends Team {
               const professionExist = this.castToString(teamMember.profession);
               const descriptionExist = this.castToString(teamMember.description);
 
-              const hasItem = nameExist || professionExist || descriptionExist || teamMember.image || teamMember.platforms.length > 0;
+              const hasItem = nameExist || professionExist || descriptionExist || teamMember.profileImage || teamMember.platforms.length > 0;
               return (
                 hasItem && (
                   <div className={this.decorateCSS("member")} data-animation={this.getPropValue("hoverAnimation").join(" ")}> 
-                    {teamMember.image && <Base.Media value={teamMember.getPropValue("image")} className={this.decorateCSS("image")} />}
+                    {teamMember.profileImage && <Base.Media value={teamMember.getPropValue("profileImage")} className={this.decorateCSS("image")} />}
                     <Base.VerticalContent className={this.decorateCSS("info")}>
                       {nameExist && <Base.H2 className={this.decorateCSS("name")}>{teamMember.getPropValue("name")}</Base.H2>}
                       {professionExist && <Base.H5 className={this.decorateCSS("profession")}>{teamMember.getPropValue("profession")}</Base.H5>}

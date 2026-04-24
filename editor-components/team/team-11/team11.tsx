@@ -124,7 +124,7 @@ class Team11 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -161,7 +161,7 @@ class Team11 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -198,7 +198,7 @@ class Team11 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -235,7 +235,7 @@ class Team11 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -272,7 +272,7 @@ class Team11 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -309,7 +309,7 @@ class Team11 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -403,13 +403,13 @@ class Team11 extends Team {
                 const itemNameExist = this.castToString(item.name);
                 const itemPositionExist = this.castToString(item.position);
 
-                const itemExits = itemNameExist || itemPositionExist || item.image || item.icons.length > 0;
+                const itemExits = itemNameExist || itemPositionExist || item.profileImage || item.icons.length > 0;
                 return (
                   itemExits && (
                     <div key={indexSlider} className={this.decorateCSS("item")}>
                       <Base.VerticalContent className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                         <div className={this.decorateCSS("hover")}>
-                          <Base.Media value={item.image} className={this.decorateCSS("person-image")} />
+                          <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
                           {item.icons && item.icons.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                               {item.icons.map((el: any, indexIcon: number) => (

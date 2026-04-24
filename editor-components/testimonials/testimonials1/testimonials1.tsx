@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials1.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
@@ -46,10 +46,16 @@ class Testimonials1Page extends Testimonials {
               value: "RiDoubleQuotesL",
             },
             {
-              type: "image",
-              key: "imageButton",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361d?alt=media&timestamp=1719483639149",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361d?alt=media&timestamp=1719483639149",
+              },
             },
           ],
         },
@@ -77,10 +83,16 @@ class Testimonials1Page extends Testimonials {
               value: "RiDoubleQuotesL",
             },
             {
-              type: "image",
-              key: "imageButton",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361e?alt=media&timestamp=1719483639149",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361e?alt=media&timestamp=1719483639149",
+              },
             },
           ],
         },
@@ -108,10 +120,16 @@ class Testimonials1Page extends Testimonials {
               value: "RiDoubleQuotesL",
             },
             {
-              type: "image",
-              key: "imageButton",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361f?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66616deebd2970002c62361f?alt=media&timestamp=1719483639150",
+              },
             },
           ],
         },
@@ -172,8 +190,8 @@ class Testimonials1Page extends Testimonials {
                   {this.castToObject<any>("items").map((item: any, itemIndex: number) => {
                     const isActive = this.getComponentState("active_index") === itemIndex;
                     return (
-                      <div className={this.decorateCSS("image-container")}>
-                        {item.imageButton && <img src={item.imageButton} className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`} alt={item.imageButton} onClick={() => this.onImageClick(itemIndex)} />}
+                      <div className={this.decorateCSS("image-container")} onClick={() => this.onImageClick(itemIndex)}>
+                        {item.profileImage && <Base.Media value={item.profileImage as TypeMediaInputValue} className={`${this.decorateCSS("image")} ${isActive && this.decorateCSS("active")}`} />}
                       </div>
                     );
                   })}

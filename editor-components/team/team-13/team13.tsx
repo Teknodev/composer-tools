@@ -7,6 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Card {
+  profileImage: import("react/jsx-runtime").JSX.Element;
   image: TypeMediaInputValue;
   name: React.JSX.Element;
   job: React.JSX.Element;
@@ -55,7 +56,7 @@ class Team13 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -86,7 +87,7 @@ class Team13 extends Team {
           value: [
             {
               type: "media",
-              key: "image",
+              key: "profileImage",
               displayer: "Image",
               additionalParams: {
                 availableTypes: ["image"],
@@ -247,9 +248,9 @@ class Team13 extends Team {
               const jobExist = this.castToString(card.job);
               return (
                 <Base.VerticalContent className={this.decorateCSS("team-card")}>
-                  {card.image && (
+                  {card.profileImage && (
                     <div className={this.decorateCSS("img-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
-                      <Base.Media value={card.image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                      <Base.Media value={card.profileImage} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                     </div>
                   )}
                   {nameExist && <Base.H4 className={this.decorateCSS("name")}>{card.name}</Base.H4>}

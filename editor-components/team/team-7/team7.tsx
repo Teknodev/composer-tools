@@ -11,7 +11,7 @@ type Icons = {
 };
 
 interface Card {
-  image: TypeMediaInputValue;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
   icons: { icon: string; url: string }[];
@@ -87,7 +87,7 @@ class Team7 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
           availableTypes: ["image"],
@@ -125,7 +125,7 @@ class Team7 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
           availableTypes: ["image"],
@@ -163,7 +163,7 @@ class Team7 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -201,7 +201,7 @@ class Team7 extends Team {
       value: [
         {
           type: "media",
-          key: "image",
+          key: "profileImage",
           displayer: "Image",
           additionalParams: {
             availableTypes: ["image"],
@@ -316,14 +316,14 @@ class Team7 extends Team {
                 const itemName = this.castToString(item.name);
                 const itemPosition = this.castToString(item.position);
 
-                const hasItem = itemName || itemPosition || item.image || item.icons.length > 0;
+                const hasItem = itemName || itemPosition || item.profileImage || item.icons.length > 0;
                 return (
                   hasItem && (
                     <div key={indexCard} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("image-container")}>
-                        {item.image && (
+                        {item.profileImage && (
                           <div className={this.decorateCSS("image-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                            <Base.Media value={item.image} className={this.decorateCSS("person-image")} />
+                            <Base.Media value={item.profileImage} className={this.decorateCSS("person-image")} />
                           </div>
                         )}
 
