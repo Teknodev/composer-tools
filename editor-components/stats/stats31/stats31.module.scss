@@ -6,14 +6,19 @@
             gap: var(--composer-gap-lg);
 
             .header-container {
+                .subtitle,
+                .title,
+                .description {
+                    color: var(--composer-font-color-primary);
+                }
+
                 .subtitle {
                     width: fit-content;
                 }
             }
 
             .stats-grid {
-                align-items: start;
-                gap: var(--composer-gap-lg);
+                
 
                 .stat-card {
                     border-radius: var(--composer-border-radius-full);
@@ -24,59 +29,68 @@
                     justify-content: center;
                     padding: 8%;
                     overflow: hidden;
+                    margin-left: auto;
+                    margin-right: auto;
 
                     .stat-item {
                         align-items: center;
                         text-align: center;
-                        min-height: 0;
                         overflow: hidden;
                         width: 100%;
+                        flex-shrink: 1;
+                        min-height: 0;
 
                         .stat-value {
                             display: flex;
                             align-items: baseline;
-                            font-weight: var(--composer-font-weight-bold);
+                            justify-content: center;
                             color: inherit;
                             white-space: nowrap;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             max-width: 100%;
+                            flex-shrink: 0;
 
                             .stat-prefix,
                             .stat-number,
                             .stat-suffix {
                                 color: inherit;
-                                font-size: 5rem;
+                                font-size: 4rem;
                             }
                         }
 
                         .stat-subtitle {
                             color: inherit;
                             font-size: 1rem;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            text-align: center;
                         }
 
                         .stat-title {
                             text-align: center;
                             color: inherit;
                             font-size: 1.25rem;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
                         }
 
                         .stat-description {
                             text-align: center;
                             color: inherit;
                             font-size: 0.75rem;
+                            overflow: hidden;
+
                         }
                     }
 
                     &.stat-card-1 {
                         width: 67%;
-                        background-color: color-mix(
-                            in srgb,
-                            var(--composer-font-color-primary),
-                            var(--composer-html-background) 15%
-                        );
+                        background-color: color-mix(in srgb,
+                                var(--composer-font-color-primary),
+                                var(--composer-html-background) 15%);
                         color: var(--composer-html-background);
-                        margin-top: 40%;
+                        margin-top: 25%;
                     }
 
                     &.stat-card-2 {
@@ -88,20 +102,18 @@
 
                     &.stat-card-3 {
                         width: 100%;
-                        background-color: color-mix(
-                            in srgb,
-                            var(--composer-html-background),
-                            var(--composer-font-color-primary) 10%
-                        );
+                        background-color: color-mix(in srgb,
+                                var(--composer-html-background),
+                                var(--composer-font-color-primary) 10%);
                         color: var(--composer-font-color-primary);
-                        margin-top: 3%;
+                        margin-top: 0%;
                     }
 
                     &.stat-card-4 {
                         width: 67%;
                         background-color: var(--composer-primary-color);
                         color: var(--composer-font-color-secondary);
-                        margin-top: 25%;
+                        margin-top: 0%;
                     }
                 }
             }
@@ -130,6 +142,7 @@
         }
 
         .stat-card .stat-item .stat-value {
+
             .stat-prefix,
             .stat-number,
             .stat-suffix {
@@ -172,6 +185,7 @@
         }
 
         .stat-card .stat-item .stat-value {
+
             .stat-prefix,
             .stat-number,
             .stat-suffix {
