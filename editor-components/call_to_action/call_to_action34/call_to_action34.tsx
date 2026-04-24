@@ -105,8 +105,9 @@ class CallToAction34 extends BaseCallToAction {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div
+                    <Base.ListGrid
                         className={`${this.decorateCSS("card-wrapper")} ${isColored ? this.decorateCSS("colored") : ""} ${!media?.url ? this.decorateCSS("no-media") : ""}${!hasLeftContent ? this.decorateCSS("no-text") : ""}`}
+                        gridCount={{ pc: !media?.url || !hasLeftContent ? 1 : 2, tablet: !media?.url || !hasLeftContent ? 1 : 2, phone: 1 }}
                         data-alignment={alignment}
                     >
                         {hasLeftContent && (
@@ -175,7 +176,7 @@ class CallToAction34 extends BaseCallToAction {
                                 </div>
                             </div>
                         )}
-                    </div>
+                    </Base.ListGrid>
                 </Base.MaxContent>
             </Base.Container>
         );

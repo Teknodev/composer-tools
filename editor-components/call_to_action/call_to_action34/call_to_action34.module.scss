@@ -3,20 +3,13 @@
 .container {
     .max-content {
         .card-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
             overflow: hidden;
             border-radius: var(--composer-border-radius-md);
             padding: 0;
             gap: var(--composer-gap-xl);
 
-            &.no-media {
-                grid-template-columns: 1fr;
-            }
 
             &.no-text {
-                grid-template-columns: 1fr;
-
                 .right-column {
                     width: 100%;
                     min-height: 55vh;
@@ -109,10 +102,6 @@
 
                 .subtitle {
                     margin-left: 0;
-
-                    &::before {
-                        color: var(--composer-font-color-primary);
-                    }
                 }
 
                 .button-container {
@@ -201,7 +190,6 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container .max-content .card-wrapper {
-        grid-template-columns: 1fr;
         gap: var(--composer-gap-md);
 
         .right-column {
