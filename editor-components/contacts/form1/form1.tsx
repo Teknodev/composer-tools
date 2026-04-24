@@ -41,6 +41,13 @@ class Form1 extends BaseContacts {
     });
 
     this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+
+    this.addProp({
       type: "array",
       key: "cards",
       displayer: "Cards",
@@ -360,7 +367,7 @@ class Form1 extends BaseContacts {
           )}
 
           {cards?.length > 0 && (
-            <Base.ListGrid gridCount={{ pc: 3, tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
+            <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount"), tablet: 3, phone: 1 }} className={this.decorateCSS("cards-container")}>
               {cards.map((item: any, index: number) => {
                 const iconExist = !!item.icon;
                 const cardTitleExist = !!this.castToString(item.title);
