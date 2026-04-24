@@ -6,11 +6,11 @@
         .wrapper {
             display: flex;
             align-items: stretch;
-            gap: calc(var(--composer-gap-lg) * 2);
+            gap: var(--composer-gap-lg);
             min-width: 0;
 
             .content {
-                flex: 1.5 1 0%;
+                flex: 1 1 0%;
                 min-width: 0;
                 align-items: flex-start;
                 display: flex;
