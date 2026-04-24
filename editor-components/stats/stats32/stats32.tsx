@@ -293,8 +293,9 @@ class Stats32 extends BaseStats {
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
-                    <div
-                        className={`${this.decorateCSS("content-wrapper")} ${!mediaExist ? this.decorateCSS("no-media") : ""} ${noText ? this.decorateCSS("no-text") : ""}`}
+                    <Base.ListGrid
+                        className={`${this.decorateCSS("content-wrapper")} ${mediaExist ? this.decorateCSS("has-media") : this.decorateCSS("no-media")} ${noText ? this.decorateCSS("no-text") : ""}`}
+                        gridCount={{ pc: !mediaExist || noText ? 1 : 2, tablet: !mediaExist || noText ? 1 : 2, phone: 1 }}
                     >
                         {(hasTextSection || hasStats) && (
                             <Base.VerticalContent
@@ -337,13 +338,11 @@ class Stats32 extends BaseStats {
                                             {buttons.map((item, index) => {
                                                 if (!this.castToString(item.text)) return null;
                                                 return (
-                                                    <div key={index} className={this.decorateCSS("button-wrapper")}>
-                                                        <ComposerLink path={item.url}>
-                                                            <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
-                                                                <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    </div>
+                                                    <ComposerLink key={index} path={item.url}>
+                                                        <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
+                                                            <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
                                                 );
                                             })}
                                         </div>
@@ -375,7 +374,7 @@ class Stats32 extends BaseStats {
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </div>
                         )}
-                    </div>
+                    </Base.ListGrid>
                 </Base.MaxContent>
             </Base.Container >
         );
