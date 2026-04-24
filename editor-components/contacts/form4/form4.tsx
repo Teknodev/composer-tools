@@ -502,30 +502,34 @@ class Form4 extends BaseContacts {
     const buttonTextExist = this.castToString(button.text);
     const formContainerExist = inputItems.length > 0 || buttonTextExist;
 
+    const isTopVisible = isContactVisible || isAddressVisible;
+
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          <div className={this.decorateCSS("top-container")}>
-            {isContactVisible && (
-              <Base.VerticalContent className={`${this.decorateCSS("left-container")} ${!isAddressVisible && this.decorateCSS("left-container-full")}`}>
-                {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
-                {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
-                {descriptionExist && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {this.getPropValue("description")}
-                    {this.getPropValue("mail")}
-                  </Base.SectionDescription>
-                )}
-              </Base.VerticalContent>
-            )}
-            {isAddressVisible && (
-              <Base.VerticalContent className={this.decorateCSS("right-container")}>
-                {rightSubtitleExist && <Base.P className={this.decorateCSS("right-subtitle")}>{rightSection.rightSubtitle}</Base.P>}
-                {locationExist && <Base.H3 className={this.decorateCSS("right-title")}>{rightSection.location}</Base.H3>}
-                {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{rightSection.locationDetails}</Base.P>}
-              </Base.VerticalContent>
-            )}
-          </div>
+          {isTopVisible && (
+            <div className={this.decorateCSS("top-container")}>
+              {isContactVisible && (
+                <Base.VerticalContent className={`${this.decorateCSS("left-container")} ${!isAddressVisible && this.decorateCSS("left-container-full")}`}>
+                  {subtitleExist && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
+                  {titleExist && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
+                  {descriptionExist && (
+                    <Base.SectionDescription className={this.decorateCSS("description")}>
+                      {this.getPropValue("description")}
+                      {this.getPropValue("mail")}
+                    </Base.SectionDescription>
+                  )}
+                </Base.VerticalContent>
+              )}
+              {isAddressVisible && (
+                <Base.VerticalContent className={this.decorateCSS("right-container")}>
+                  {rightSubtitleExist && <Base.P className={this.decorateCSS("right-subtitle")}>{rightSection.rightSubtitle}</Base.P>}
+                  {locationExist && <Base.H3 className={this.decorateCSS("right-title")}>{rightSection.location}</Base.H3>}
+                  {locationDetailsExist && <Base.P className={this.decorateCSS("right-description")}>{rightSection.locationDetails}</Base.P>}
+                </Base.VerticalContent>
+              )}
+            </div>
+          )}
           <div className={this.decorateCSS("lower-container")}>
             {formContainerExist && (
               <div className={this.decorateCSS("form-container")}>
