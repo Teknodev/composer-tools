@@ -13,7 +13,7 @@ class Form6 extends BaseContacts {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Media",
       value: [
         {
           type: "media",
@@ -384,7 +384,14 @@ class Form6 extends BaseContacts {
       ],
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Submit Form", null, null, null, "Primary"));
+    this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "Submit Form", "", null, null, "Primary"),
+      ],
+    });
   }
 
   static getName(): string {
@@ -420,13 +427,14 @@ class Form6 extends BaseContacts {
     const titleExist = this.castToString(title);
     const descriptionExist = this.castToString(description);
 
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
-
-    const buttonText = button.text;
-    const buttonTextExist = this.castToString(buttonText);
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((btn) => {
+      const btnText = this.castToString(btn.text);
+      return btnText || !!btn.icon;
+    });
 
     const textExist = titleExist || descriptionExist || subtitleExist;
-    const formExist = inputItems.length > 0 || !!buttonTextExist;
+    const formExist = inputItems.length > 0 || hasValidButtons;
     const rightItemsExist = textExist || formExist;
 
     function getInputType(type: string): string {
@@ -514,7 +522,7 @@ class Form6 extends BaseContacts {
                     {descriptionExist && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("description")}</Base.SectionDescription>}
                   </Base.VerticalContent>
                 )}
-                {(inputItems.length > 0 || buttonTextExist) && (
+                {(inputItems.length > 0 || hasValidButtons) && (
                   <Formik
                     initialValues={getInitialValue()}
                     validationSchema={getSchema}
@@ -567,11 +575,19 @@ class Form6 extends BaseContacts {
                             </div>
                           );
                         })}
-                        {buttonTextExist && (
+                        {hasValidButtons && (
                           <div className={this.decorateCSS("button-container")}>
-                            <Base.Button buttonType={button.type} className={this.decorateCSS("submit-button")} type="submit">
-                              <Base.P className={this.decorateCSS("button-text")}>{buttonText}</Base.P>
-                            </Base.Button>
+                            {buttons.map((btn: INPUTS.CastedButton, btnIndex: number) => {
+                              const btnText = this.castToString(btn.text);
+                              const btnIconExist = !!btn.icon;
+                              if (!btnText && !btnIconExist) return null;
+                              return (
+                                <Base.Button key={btnIndex} buttonType={btn.type} className={this.decorateCSS("submit-button")} type="submit">
+                                  {btnText && <Base.P className={this.decorateCSS("button-text")}>{btn.text}</Base.P>}
+                                  {btnIconExist && <Base.Icon name={btn.icon} propsIcon={{ className: this.decorateCSS("button-icon") }} />}
+                                </Base.Button>
+                              );
+                            })}
                           </div>
                         )}
                       </Form>
