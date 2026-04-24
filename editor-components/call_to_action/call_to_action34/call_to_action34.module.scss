@@ -68,20 +68,27 @@
 
                 &.no-media[data-alignment="center"] {
                     .left-column {
-                        align-items: center;
+                        align-items: center !important;
+                        text-align: center !important;
 
                         .title,
-                        .subtitle,
                         .description {
-                            text-align: center;
-                            align-self: center;
-                            margin-left: auto;
-                            margin-right: auto;
+                            text-align: center !important;
+                            align-self: center !important;
+                            width: 100% !important;
+
+                        }
+
+                        .subtitle {
+                            text-align: center !important;
+                            align-self: center !important;
+                            margin-left: auto !important;
+                            margin-right: auto !important;
                         }
 
                         .button-container {
-                            justify-content: center;
-                            align-self: center;
+                            justify-content: center !important;
+                            align-self: center !important;
                         }
                     }
                 }
@@ -156,20 +163,23 @@
 
             &.no-media[data-alignment="center"] {
                 .left-column {
-                    align-items: center;
+                    align-items: center !important;
+                    text-align: center !important;
 
                     .title,
                     .subtitle,
                     .description {
-                        text-align: center;
-                        align-self: center;
-                        margin-left: auto;
-                        margin-right: auto;
+                        text-align: center !important;
+                        align-self: center !important;
+                    }
+
+                    .subtitle {
+                        margin-left: auto !important;
                     }
 
                     .button-container {
-                        justify-content: center;
-                        align-self: center;
+                        justify-content: center !important;
+                        align-self: center !important;
                     }
                 }
             }
