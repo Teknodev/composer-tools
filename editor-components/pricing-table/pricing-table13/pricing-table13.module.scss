@@ -102,18 +102,13 @@
                     justify-content: flex-start;
                     gap: var(--composer-gap-sm);
 
-                    &::before {
-                        content: "";
-                        width: 5px;
-                        height: 5px;
-                        min-width: 5px;
-                        background-color: var(--composer-font-color-primary);
-                        border-radius: 50%;
-                        display: inline-block;
-                    }
-
-                    &.hide-dot::before {
-                        display: none;
+                    .feature-icon {
+                        width: 15px;
+                        height: 15px;
+                        min-width: 15px;
+                        object-fit: contain;
+                        color: var(--composer-primary-color);
+                        line-height: 0 !important;
                     }
                 }
             }

@@ -1,6 +1,6 @@
 import * as React from "react";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
-import { BasePricingTable } from "../../EditorComponent";
+import { BasePricingTable, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./pricing-table13.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
@@ -17,6 +17,7 @@ type CardContent = {
     cardButton: INPUTS.CastedButton;
     cardFeatures: FeatureItem[];
     showFeatures?: boolean;
+    featureIcon: TypeMediaInputValue;
 };
 
 class PricingTable13 extends BasePricingTable {
@@ -69,6 +70,15 @@ class PricingTable13 extends BasePricingTable {
                         { type: "string", key: "cardDescription", displayer: "Card Description", value: "" },
                         { type: "boolean", key: "showFeatures", displayer: "Show Features", value: true },
                         {
+                            type: "media",
+                            key: "featureIcon",
+                            displayer: "Feature Icon",
+                            value: {
+                                type: "icon",
+                                name: "GoDotFill",
+                            },
+                        },
+                        {
                             type: "array",
                             key: "cardFeatures",
                             displayer: "Card Features",
@@ -108,6 +118,15 @@ class PricingTable13 extends BasePricingTable {
                         { type: "string", key: "cardTitle", displayer: "Card Title", value: "Basic License" },
                         { type: "string", key: "cardDescription", displayer: "Card Description", value: "" },
                         { type: "boolean", key: "showFeatures", displayer: "Show Features", value: true },
+                        {
+                            type: "media",
+                            key: "featureIcon",
+                            displayer: "Feature Icon",
+                            value: {
+                                type: "icon",
+                                name: "GoDotFill",
+                            },
+                        },
                         {
                             type: "array",
                             key: "cardFeatures",
@@ -220,9 +239,8 @@ class PricingTable13 extends BasePricingTable {
                                 const showFeatures = cardItem?.showFeatures ?? true;
 
                                 const hasContent = cardSubtitleExist || cardTitleExist || cardPriceExist || cardDescriptionExist || (showFeatures && cardFeatures.length > 0) || hasValidCardButton;
-                                if (!hasContent) return null;
 
-                                return (
+                                return hasContent && (
                                     <div key={idx} className={this.decorateCSS("card")}>
                                         <Base.VerticalContent className={this.decorateCSS("card-content")}>
                                             {cardPriceExist && (
@@ -255,8 +273,11 @@ class PricingTable13 extends BasePricingTable {
                                                         return (
                                                             <Base.P
                                                                 key={fIdx}
-                                                                className={`${this.decorateCSS("feature-item")} ${!showFeatures && this.decorateCSS("hide-dot")}`}
+                                                                className={this.decorateCSS("feature-item")}
                                                             >
+                                                                {showFeatures && cardItem.featureIcon && (
+                                                                    <Base.Media value={cardItem.featureIcon} className={this.decorateCSS("feature-icon")} />
+                                                                )}
                                                                 {featureText}
                                                             </Base.P>
                                                         );
