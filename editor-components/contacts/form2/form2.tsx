@@ -13,7 +13,7 @@ class Form2 extends BaseContacts {
     this.addProp({
       type: "object",
       key: "background",
-      displayer: "Background",
+      displayer: "Background Media",
       value: [
         {
           type: "media",
