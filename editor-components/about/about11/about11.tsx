@@ -219,7 +219,7 @@ class About11 extends BaseAbout {
             )}
             {hasRightContent && (
               <Base.GridCell
-                className={`${this.decorateCSS("right")} ${!hasImage ? this.decorateCSS("no-image") : ""} ${!hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""}`}
+                className={`${this.decorateCSS("right")} ${!hasImage ? this.decorateCSS("no-image") : ""} ${!hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""} ${alignmentValue === "center" ? this.decorateCSS("is-centered") : ""}`}
               >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}

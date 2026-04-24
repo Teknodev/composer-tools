@@ -214,29 +214,42 @@
         }
 
         .vertical-content {
-          align-items: center;
+          align-items: flex-start;
           width: 100%;
 
           .section-title,
           .section-subtitle,
           .section-description {
-            text-align: center;
+            text-align: left;
           }
 
           .section-subtitle {
-            margin-left: auto;
+            margin-left: 0;
             margin-right: auto;
           }
 
           .buttons-container,
           .icons {
-            justify-content: center;
-            align-self: center;
+            justify-content: flex-start;
+            align-self: flex-start;
           }
         }
 
+        .right.is-centered,
         .right.no-image-center {
           .vertical-content {
+            align-items: center;
+
+            .section-title,
+            .section-subtitle,
+            .section-description {
+              text-align: center;
+            }
+
+            .section-subtitle {
+              margin-left: auto;
+              margin-right: auto;
+            }
 
             .buttons-container,
             .icons {
