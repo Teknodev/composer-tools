@@ -75,7 +75,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
     });
     this.addProp({
       type: "media",
-      key: "backgroundImage",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/67da9c05fb049c002cc245da?alt=media" },
@@ -189,7 +189,7 @@ class Breadcrumb4 extends BaseBreadcrumb {
     const vector1 = this.castToObject<any>("vector1");
     const vector2 = this.castToObject<any>("vector2");
     const vector3 = this.castToObject<any>("vector3");
-    const backgroundImage = this.getPropValue("backgroundImage");
+    const backgroundImage = this.getPropValue("componentBackground");
     const overlay = this.getPropValue("overlay");
     const title = this.getPropValue("title");
     const breadcrumbItems = this.castToObject<BreadcrumbItem[]>("breadcrumbItems") || [];

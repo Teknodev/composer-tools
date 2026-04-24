@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import styles from "./team3.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
@@ -11,7 +11,7 @@ type Icons = {
 };
 
 interface Card {
-  profile: string;
+  profile: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
   icons: { icon: string; url: string }[];
@@ -100,10 +100,16 @@ class Team3 extends Team {
       displayer: "Items",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "profile",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
+          additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
+          },
         },
         {
           type: "string",
@@ -132,10 +138,16 @@ class Team3 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "profile",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c1?alt=media&timestamp=1719483639146",
+          additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c1?alt=media&timestamp=1719483639146",
+          },
         },
         {
           type: "string",
@@ -164,10 +176,16 @@ class Team3 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "profile",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
+          additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/643707b368c3c2002cd307c2?alt=media&timestamp=1719483639147",
+          },
         },
         {
           type: "string",
@@ -196,10 +214,16 @@ class Team3 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "profile",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
+          additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
+          },
         },
         {
           type: "string",
@@ -228,10 +252,16 @@ class Team3 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "profile",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627623?alt=media&timestamp=1719502692150",
+          additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627623?alt=media&timestamp=1719502692150",
+          },
         },
         {
           type: "string",
@@ -260,10 +290,16 @@ class Team3 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "profile",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
+          additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661ac19bd2970002c627624?alt=media&timestamp=1719502692150",
+          },
         },
         {
           type: "string",
@@ -344,7 +380,7 @@ class Team3 extends Team {
                     <div className={`${this.decorateCSS("card")} ${item.profile ? this.decorateCSS("card-image") : ""}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("card-items")}>
                         <div className={this.decorateCSS("item-content")}>
-                          {item.profile && <div className={this.decorateCSS("box-image")}>{item.profile && <img className={this.decorateCSS("profile-image")} src={item.profile} alt="" />}</div>}
+                          {item.profile && <div className={this.decorateCSS("box-image")}>{item.profile && <Base.Media value={item.profile} className={this.decorateCSS("profile-image")} />}</div>}
                           <Base.VerticalContent className={item.profile ? this.decorateCSS("box-text") : this.decorateCSS("no-image-box-text")}>
                             <Base.H2 className={this.decorateCSS("item-name")}>{item.name}</Base.H2>
                             <Base.P className={this.decorateCSS("item-position")}>{item.position}</Base.P>

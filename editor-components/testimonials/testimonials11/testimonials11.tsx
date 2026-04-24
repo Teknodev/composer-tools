@@ -21,7 +21,7 @@ class Testimonials11Page extends Testimonials {
     });
     this.addProp({
       type: "image",
-      key: "cover-image",
+      key: "componentBackground",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67239fe77acba6002c5d6377?alt=media",
     });
@@ -230,18 +230,18 @@ class Testimonials11Page extends Testimonials {
   }
 
   render() {
-    const coverImage = this.getPropValue("cover-image");
+    const coverImage = this.getPropValue("componentBackground");
     const cardList = this.castToObject<CardItem[]>("items");
     return (
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${this.getPropValue("cover-image")})`,
+          backgroundImage: `url(${this.getPropValue("componentBackground")})`,
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <div className={this.decorateCSS("wrapper")}>
-            {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("cover-image") && this.decorateCSS("title-with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
+            {this.castToString(this.getPropValue("title")) && <Base.SectionTitle className={`${this.decorateCSS("title")} ${this.getPropValue("componentBackground") && this.decorateCSS("title-with-image")}`}>{this.getPropValue("title")}</Base.SectionTitle>}
 
             <Base.ListGrid gridCount={{ phone: 1, tablet: 2, pc: this.getPropValue("itemCount") }} className={this.decorateCSS("content")}>
               {cardList.map((item: any, index: number) => (

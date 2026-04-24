@@ -1,13 +1,13 @@
 import * as React from "react";
 import styles from "./team13.module.scss";
-import { Team } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 interface Card {
-  image: string;
+  image: TypeMediaInputValue;
   name: React.JSX.Element;
   job: React.JSX.Element;
   icons: { icon: string; url: string }[];
@@ -54,10 +54,16 @@ class Team13 extends Team {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1732177851198",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1732177851198",
+              },
             },
             {
               type: "string",
@@ -79,10 +85,16 @@ class Team13 extends Team {
           displayer: "Card",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1732177851198",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f3?alt=media&timestamp=1732177851198",
+              },
             },
             {
               type: "string",
@@ -237,7 +249,7 @@ class Team13 extends Team {
                 <Base.VerticalContent className={this.decorateCSS("team-card")}>
                   {card.image && (
                     <div className={this.decorateCSS("img-wrapper")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
-                      <img className={this.decorateCSS("image")} src={card.image} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
+                      <Base.Media value={card.image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />
                     </div>
                   )}
                   {nameExist && <Base.H4 className={this.decorateCSS("name")}>{card.name}</Base.H4>}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Team } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./team8.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 import { Base } from "../../../composer-base-components/base/base";
@@ -7,7 +7,7 @@ import { Base } from "../../../composer-base-components/base/base";
 type Card = {
   title: React.JSX.Element;
   description: React.JSX.Element;
-  image: string;
+  image: TypeMediaInputValue;
   imagesubtitle: React.JSX.Element;
   imagetitle: React.JSX.Element;
 };
@@ -31,10 +31,16 @@ class Team8 extends Team {
     });
 
     this.addProp({
-      type: "image",
+      type: "media",
       key: "backroundImage",
       displayer: "Background Image",
-      value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
+      additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ace46d03b007002cc763cb?alt=media",
+      },
     });
     this.addProp({
       type: "boolean",
@@ -66,10 +72,16 @@ class Team8 extends Team {
               value: "Pinch Hitter",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
+              additionalParams: {
+          availableTypes: ["image"],
+        },
+        value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0822803b007002cc7714f?alt=media",
+              },
             },
           ],
         },
@@ -91,10 +103,16 @@ class Team8 extends Team {
               value: "Relief Pitcher",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0828d03b007002cc77195?alt=media",
+              },
             },
           ],
         },
@@ -116,10 +134,16 @@ class Team8 extends Team {
               value: "Closer",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b082e503b007002cc771bb?alt=media",
+              },
             },
           ],
         },
@@ -141,10 +165,16 @@ class Team8 extends Team {
               value: "Middle Reliever",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0833903b007002cc771e4?alt=media",
+              },
             },
           ],
         },
@@ -166,10 +196,16 @@ class Team8 extends Team {
               value: "Pinch Runner",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0838203b007002cc771fe?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0838203b007002cc771fe?alt=media",
+              },
             },
           ],
         },
@@ -191,10 +227,16 @@ class Team8 extends Team {
               value: "Long Reliever",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0884803b007002cc77454?alt=media",
+              },
             },
           ],
         },
@@ -216,10 +258,16 @@ class Team8 extends Team {
               value: "Closer",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0e2e803b007002cc79759?alt=media",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66b0e2e803b007002cc79759?alt=media",
+              },
             },
           ],
         },
@@ -289,14 +337,14 @@ class Team8 extends Team {
       as_string: true,
     });
 
-    const imageExist = this.getPropValue("backroundImage");
+    const imageExist = this.castToObject<TypeMediaInputValue>("backroundImage");
 
     return (
       <div className={this.decorateCSS("container")}>
         <Base.Container
           className={this.decorateCSS("background-image")}
           style={{
-            backgroundImage: `url(${this.getPropValue("backroundImage")})`,
+            backgroundImage: imageExist?.type === "image" ? `url(${imageExist.url})` : undefined,
           }}
         >
           <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -320,7 +368,7 @@ class Team8 extends Team {
                           {item.image && (
                             <div className={this.decorateCSS("img-div")}>
                             <div className={this.decorateCSS("image-box")}>
-                              <img alt="" src={item.image} className={this.decorateCSS("img")} />
+                              <Base.Media value={item.image} className={this.decorateCSS("img")} />
                             </div>
                             </div>
                           )}

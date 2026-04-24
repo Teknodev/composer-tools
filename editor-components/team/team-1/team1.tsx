@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./team1.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import { Base } from "../../../composer-base-components/base/base";
@@ -11,7 +11,7 @@ type Platform = {
 };
 
 type Card = {
-  image: string;
+  image: TypeMediaInputValue;
   name: string;
   position: string;
   description: string;
@@ -130,10 +130,16 @@ class Team1 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30784?alt=media&timestamp=1719483639146",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30784?alt=media&timestamp=1719483639146",
+              },
             },
             {
               type: "string",
@@ -167,10 +173,16 @@ class Team1 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30783?alt=media&timestamp=1719483639146",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30783?alt=media&timestamp=1719483639146",
+              },
             },
             {
               type: "string",
@@ -204,10 +216,16 @@ class Team1 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30782?alt=media&timestamp=1719483639146",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30782?alt=media&timestamp=1719483639146",
+              },
             },
             {
               type: "string",
@@ -241,10 +259,16 @@ class Team1 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30781?alt=media&timestamp=1719483639146",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6437064b68c3c2002cd30781?alt=media&timestamp=1719483639146",
+              },
             },
             {
               type: "string",
@@ -324,7 +348,7 @@ class Team1 extends Team {
                 <div key={indexItems} className={`${this.decorateCSS("all-card")} ${Base.getContentAlignment() === "left" && this.decorateCSS("left")}`} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                   <Base.VerticalContent className={this.decorateCSS("card")}>
                     <div className={this.decorateCSS("top")}>
-                      {card.image && <img className={this.decorateCSS("image")} src={card.image} alt="" data-animation={this.getPropValue("hoverAnimation").join(" ")}  />}
+                      {card.image && <Base.Media value={card.image} className={this.decorateCSS("image")} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                       <Base.H2 className={this.decorateCSS("card-name")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>{card.name}</Base.H2>
                       <Base.P className={this.decorateCSS("position")}>{card.value.filter((item: { key: string }) => item.key === "position").map((item: { value: string }) => item.value)}</Base.P>
                     </div>
