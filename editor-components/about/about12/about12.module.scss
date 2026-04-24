@@ -1,192 +1,163 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   position: relative;
   overflow: hidden;
 
-  &.image-only {
-    height: 100%;
+  .content-wrapper {
+    display: flex;
+    align-items: stretch;
+
+    &.has-text.has-image {
+      min-height: 500px;
+    }
   }
-  .max-content {
-    .intro-wrapper {
-      display: flex;
+
+  .image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: calc(50% - var(--composer-gap-xl));
+
+    &.image-alone {
+      position: relative;
+      width: 100%;
+      min-height: 500px;
+    }
+
+    .thumbnail-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: var(--composer-overlay-color);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .media-image {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      justify-content: end;
-      min-height: 500px;
-      align-items: center;
+      object-fit: cover;
+    }
+  }
 
-      &.no-image {
-        min-height: unset;
-        .text-content {
-          padding-left: var(--composer-gap-xl);
-          padding-right: var(--composer-gap-xl);
-        }
+  .max-content {
+    position: relative;
+  }
+
+  .text-content {
+    width: 50%;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &.text-alone {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .vertical-content {
+
+      .title,
+      .subtitle,
+      .description {
+        text-align: left;
       }
 
-      .text-content {
-        width: calc(50% - var(--composer-gap-xl));
+      .subtitle {
+        margin-left: 0;
+      }
+
+      .action-buttons {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--composer-gap-sm);
+        justify-content: flex-start;
 
-        padding-right: var(--composer-gap-xl);
-
-        &.text-content-alone {
-          width: 100%;
-        }
-        .vertical-content {
-          .title,
-          .subtitle,
-          .description {
-            text-align: left;
-          }
-          .subtitle {
-            margin-left: 0;
-          }
-
-          .action-buttons {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: var(--composer-gap-sm);
-            justify-content: flex-start;
-
-            .button-text {
-              content: "";
-            }
-            .button-icon {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 1.5rem;
-              height: 25px;
-              width: 25px;
-            }
-          }
+        .button-text {
+          content: "";
         }
 
-        &.no-image-center {
-          .vertical-content {
-            .title,
-            .subtitle,
-            .description {
-              text-align: center;
-            }
-            .subtitle {
-              margin-left: auto;
-            }
-
-            .action-buttons {
-              justify-content: center;
-            }
-          }
+        .button-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          height: 25px;
+          width: 25px;
         }
       }
+    }
 
-      .image-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 50%;
-        height: 100%;
+    &.center.text-alone {
+      .vertical-content {
 
-        &.image-container-alone {
-          width: 100%;
-          height: 100%;
+        .title,
+        .subtitle,
+        .description {
+          text-align: center;
         }
 
-        .thumbnail-overlay {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          background-color: var(--composer-overlay-color);
-          transition: opacity var(--composer-transition-duration-normal) ease;
-          pointer-events: none;
-          z-index: 1;
+        .subtitle {
+          margin-left: auto;
         }
 
-        .media-image {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+        .action-buttons {
+          justify-content: center;
         }
       }
     }
   }
 }
 
-@container (max-width: #{$composer-tablet-width}) {
-  .container {
-    .max-content {
-      .intro-wrapper {
-        .text-content {
-          padding-right: var(--composer-gap-lg) !important;
-        }
-        &.no-image {
-          .text-content {
-            padding-left: var(--composer-gap-lg) !important;
-          }
-        }
-      }
-    }
-  }
-}
+
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
-    &.image-only {
-      height: auto;
+    .content-wrapper {
+      flex-direction: column;
     }
-    .max-content {
-      .intro-wrapper {
-        flex-direction: column;
-        gap: var(--composer-gap-lg);
-        min-height: unset;
 
-        .image-container {
-          position: static;
-          order: 2;
-          flex: 0 0 100%;
-          width: 100%;
-        }
+    .image-container {
+      position: relative;
+      width: calc(100% + 60px);
+      margin: 0 -30px;
+      min-height: 300px;
+      order: 2;
 
-        .text-content {
-          order: 1;
-          width: 100%;
-          flex: 0 0 100%;
-          padding: 0 var(--composer-gap-md) !important;
+      &.image-alone {
+        width: 100%;
+        margin: 0;
+      }
+    }
 
-          &.center {
-            .vertical-content {
-              align-items: center;
+    .text-content {
+      order: 1;
+      width: 100%;
+      margin-left: 0;
 
-              .title,
-              .subtitle,
-              .description {
-                text-align: center !important;
-              }
+      &.center.text-alone {
+        .vertical-content {
+          align-items: center;
 
-              .subtitle {
-                margin-left: auto;
-              }
-
-              .action-buttons {
-                justify-content: center;
-              }
-            }
+          .title,
+          .subtitle,
+          .description {
+            text-align: center;
           }
-        }
-        &.no-image {
-          .text-content {
-            padding-left: var(--composer-gap-md) !important;
-            padding-right: var(--composer-gap-md) !important;
+
+          .subtitle {
+            margin-left: auto;
+          }
+
+          .action-buttons {
+            justify-content: center;
           }
         }
       }

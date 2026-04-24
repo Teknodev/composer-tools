@@ -3,11 +3,17 @@ import { BaseAbout, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./about11.module.scss";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
+import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 interface Icon {
   icon: TypeMediaInputValue;
   link: string;
 }
+
+type MediaGroup = {
+  media: TypeMediaInputValue;
+  overlay: boolean;
+};
 class About11 extends BaseAbout {
   constructor(props?: any) {
     super(props, styles);
@@ -118,30 +124,45 @@ class About11 extends BaseAbout {
     });
 
     this.addProp({
+      type: "array",
+      key: "buttons",
+      displayer: "Buttons",
+      value: [
+        INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+      ],
+    });
+
+    this.addProp({
       type: "boolean",
-      key: "iconBackground",
+      key: "icon-background",
       displayer: "Icon Background",
       value: true,
     });
 
     this.addProp({
-      type: "media",
-      key: "image",
-      displayer: "Image",
-      additionalParams: {
-        availableTypes: ["image", "video"],
-      },
-      value: {
-        type: "image",
-        url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692947183596a1002b31c684?alt=media",
-      },
-    });
-
-    this.addProp({
-      type: "boolean",
-      key: "overlay",
-      displayer: "Overlay",
-      value: false,
+      type: "object",
+      key: "media",
+      displayer: "Media",
+      value: [
+        {
+          type: "media",
+          key: "media",
+          displayer: "Media",
+          additionalParams: {
+            availableTypes: ["image", "video"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/692947183596a1002b31c684?alt=media",
+          },
+        },
+        {
+          type: "boolean",
+          key: "overlay",
+          displayer: "Overlay",
+          value: false,
+        },
+      ],
     });
   }
   static getName(): string {
@@ -153,9 +174,14 @@ class About11 extends BaseAbout {
     const description = this.getPropValue("description");
 
     const rightItems = this.castToObject<Icon[]>("right-items") || [];
-    const iconBackground = this.getPropValue("iconBackground");
+    const iconBackground = this.getPropValue("icon-background");
+    const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
+    const hasValidButtons = buttons.some((button) =>
+      this.castToString(button.text)
+    );
 
-    const image = this.getPropValue("image");
+    const mediaGroup = this.castToObject<MediaGroup>("media");
+    const image = mediaGroup?.media;
 
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
@@ -165,9 +191,9 @@ class About11 extends BaseAbout {
       return icon?.name || icon?.url;
     });
     const hasRightContent =
-      hasTitle || hasSubtitle || hasDescription || hasRightIcon;
+      hasTitle || hasSubtitle || hasDescription || hasRightIcon || hasValidButtons;
 
-    const hasImage = !!(image && image.url);
+    const hasImage = !!(image && ((image.type === "image" && image.url) || (image.type === "icon" && image.name)));
     const alignmentValue = Base.getContentAlignment();
 
     return (
@@ -185,7 +211,7 @@ class About11 extends BaseAbout {
                     value={image}
                     className={this.decorateCSS("image")}
                   />
-                  {this.getPropValue("overlay") && (
+                  {mediaGroup?.overlay && (
                     <div className={this.decorateCSS("overlay")} />
                   )}
                 </div>
@@ -193,13 +219,7 @@ class About11 extends BaseAbout {
             )}
             {hasRightContent && (
               <Base.GridCell
-                className={`${this.decorateCSS("right")} ${
-                  !hasImage && alignmentValue === "center"
-                    ? this.decorateCSS("no-image-center")
-                    : ""
-                } ${
-                  alignmentValue === "center" ? this.decorateCSS("center") : ""
-                }`}
+                className={`${this.decorateCSS("right")} ${!hasImage ? this.decorateCSS("no-image") : ""} ${!hasImage && alignmentValue === "center" ? this.decorateCSS("no-image-center") : ""}`}
               >
                 <Base.VerticalContent
                   className={this.decorateCSS("vertical-content")}
@@ -208,14 +228,14 @@ class About11 extends BaseAbout {
                     <Base.SectionSubTitle
                       className={this.decorateCSS("section-subtitle")}
                     >
-                      {subtitle}
+                      {this.getPropValue("subtitle")}
                     </Base.SectionSubTitle>
                   )}
                   {hasTitle && (
                     <Base.SectionTitle
                       className={this.decorateCSS("section-title")}
                     >
-                      {title}
+                      {this.getPropValue("title")}
                     </Base.SectionTitle>
                   )}
 
@@ -223,8 +243,33 @@ class About11 extends BaseAbout {
                     <Base.SectionDescription
                       className={this.decorateCSS("section-description")}
                     >
-                      {description}
+                      {this.getPropValue("description")}
                     </Base.SectionDescription>
+                  )}
+
+                  {hasValidButtons && (
+                    <div className={this.decorateCSS("buttons-container")}>
+                      {buttons.map(
+                        (button: INPUTS.CastedButton, index: number) => {
+                          if (!this.castToString(button.text)) return null;
+
+                          return (
+                            <ComposerLink key={index} path={button.url}>
+                              <Base.Button
+                                buttonType={button.type}
+                                className={this.decorateCSS("button")}
+                              >
+                                <Base.P
+                                  className={this.decorateCSS("button-text")}
+                                >
+                                  {button.text}
+                                </Base.P>
+                              </Base.Button>
+                            </ComposerLink>
+                          );
+                        }
+                      )}
+                    </div>
                   )}
 
                   {rightItems.length > 0 && (
