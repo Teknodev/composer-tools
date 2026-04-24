@@ -6,7 +6,6 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            // gap: var(--composer-gap-xl);
             width: 100%;
 
             .media-cell {
@@ -36,24 +35,55 @@
 
             .content-cell {
                 flex: 1;
-                width: calc(50% - (var(--composer-gap-xl) / 2));
-                max-width: calc(50% - (var(--composer-gap-xl) / 2));
+                width: 100%;
+                max-width: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: flex-start !important;
+
+                &:not(.full-width) {
+                    width: calc(50% - (var(--composer-gap-xl) / 2));
+                    max-width: calc(50% - (var(--composer-gap-xl) / 2));
+                    align-items: flex-start;
+
+                    .content-inner {
+                        align-items: flex-start;
+                        text-align: left;
+
+                        .section-subtitle {
+                            text-align: left;
+                            margin-left: 0;
+                        }
+
+                        .section-title,
+                        .section-description {
+                            text-align: left;
+                        }
+
+                        .button-container {
+                            justify-content: flex-start;
+                            width: 100%;
+                        }
+                    }
+                }
 
                 &.full-width {
-                    width: 100% !important;
-                    max-width: 100% !important;
+                    align-items: center;
+
+                    .content-inner {
+                        align-items: center;
+                        text-align: center;
+
+                        .button-container {
+                            justify-content: center;
+                        }
+                    }
                 }
 
                 .content-inner {
                     width: 100%;
                     display: flex;
                     flex-direction: column;
-                    align-items: flex-start;
-                    text-align: left;
                     gap: var(--composer-gap-md);
                     padding: 0;
 
@@ -62,13 +92,9 @@
                     }
 
                     .stats-grid {
-                        display: flex;
-                        flex-direction: column;
                         gap: var(--composer-gap-lg);
-                        width: 100%;
                         margin-left: 0;
                         margin-right: auto;
-                        align-items: flex-start;
 
                         .stat-item {
                             display: flex;
@@ -139,8 +165,6 @@
                     .button-container {
                         display: flex;
                         flex-wrap: wrap;
-                        width: 100%;
-                        justify-content: flex-start;
                         gap: var(--composer-gap-sm);
 
                         .button {
@@ -156,16 +180,6 @@
         }
     }
 
-    .section-title,
-    .section-description {
-        width: 100% !important;
-        text-align: left !important;
-    }
-
-    .section-subtitle {
-        width: fit-content;
-        text-align: left !important;
-    }
 }
 
 @container (max-width: #{$composer-tablet-width}) {
@@ -189,8 +203,19 @@
                 }
 
                 .content-cell {
-                    width: 100%;
-                    max-width: 100%;
+                    width: 100% !important;
+                    max-width: 100% !important;
+
+                    &:not(.full-width) {
+                        width: 100% !important;
+                        max-width: 100% !important;
+                        align-items: flex-start;
+
+                        .content-inner {
+                            align-items: flex-start;
+                            text-align: left;
+                        }
+                    }
                 }
             }
         }

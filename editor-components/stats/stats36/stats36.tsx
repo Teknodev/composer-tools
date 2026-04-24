@@ -9,12 +9,12 @@ type StatItem = {
     prefix: string;
     number: string;
     suffix: string;
-    subtitle: string;
-    subtitleElement: React.ReactNode;
     title: string;
-    titleElement: React.ReactNode;
+    titleElement: JSX.Element;
+    subtitle: string;
+    subtitleElement: JSX.Element;
     description: string;
-    descriptionElement: React.ReactNode;
+    descriptionElement: JSX.Element;
 };
 
 class Stats36 extends BaseStats {
@@ -38,7 +38,7 @@ class Stats36 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: ""
+            value: "Lorem"
         });
 
         this.addProp({
@@ -133,7 +133,7 @@ class Stats36 extends BaseStats {
         const [animatedNumber, setAnimatedNumber] = React.useState<string>(
             statsAnimation ? "0" : formatNumber(targetNumber)
         );
-        const intervalRef = React.useRef<any>(null);
+        const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
 
         React.useEffect(() => {
             if (!statsAnimation) {
@@ -209,15 +209,15 @@ class Stats36 extends BaseStats {
     };
 
     render() {
-        const title = this.getPropValue("title");
-        const subtitle = this.getPropValue("subtitle");
-        const description = this.getPropValue("description");
+        const title = this.castToString(this.getPropValue("title"));
+        const subtitle = this.castToString(this.getPropValue("subtitle"));
+        const description = this.castToString(this.getPropValue("description"));
         const media = this.getPropValue("media");
-        const statsRaw = this.castToObject<any[]>("stats");
+        const statsRaw = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
 
-        const statsItems = statsRaw.map((item) => {
+        const statsItems: StatItem[] = statsRaw.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
             const number = this.castToString(item.number) || "";
             const suffix = this.castToString(item.suffix) || "";
@@ -240,7 +240,7 @@ class Stats36 extends BaseStats {
             return (item.number !== "" && item.number !== "0") || item.title !== "" || item.subtitle !== "" || item.description !== "";
         });
 
-        const animationProps = this.castToObject<any>("animation");
+        const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
@@ -248,19 +248,20 @@ class Stats36 extends BaseStats {
         const subtitleExist = this.castToString(subtitle);
         const descriptionExist = this.castToString(description);
         const mediaExist = !!media?.url;
+        const fullWidth = !mediaExist;
         const hasContent = subtitleExist || titleExist || descriptionExist || hasValidButtons || statsItems.length > 0;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ContainerGrid className={this.decorateCSS("grid-wrapper")}>
-                        {mediaExist && (
-                            <Base.GridCell className={`${this.decorateCSS("media-cell")} ${!hasContent ? this.decorateCSS("full-width") : ""}`}>
+                        {!fullWidth && (
+                            <Base.GridCell className={this.decorateCSS("media-cell")}>
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </Base.GridCell>
                         )}
-                        {hasContent && (
-                            <Base.GridCell className={`${this.decorateCSS("content-cell")} ${!mediaExist ? this.decorateCSS("full-width") : ""}`}>
+                        {(!fullWidth || (fullWidth && hasContent)) && (
+                            <Base.GridCell className={`${this.decorateCSS("content-cell")} ${fullWidth ? this.decorateCSS("full-width") : ""}`}>
                                 <Base.VerticalContent className={this.decorateCSS("content-inner")}>
                                     <Base.VerticalContent className={this.decorateCSS("content-header")}>
                                         {subtitleExist && (
@@ -301,16 +302,16 @@ class Stats36 extends BaseStats {
                                         )}
                                     </Base.VerticalContent>
                                     {statsItems.length > 0 && (
-                                        <div className={this.decorateCSS("stats-grid")}>
+                                        <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                             {statsItems.map((item, index) => (
                                                 <this.AnimatedStat
                                                     key={index}
-                                                    stat={item as any}
+                                                    stat={item}
                                                     statsAnimation={statsAnimation}
                                                     animationDuration={animationDuration}
                                                 />
                                             ))}
-                                        </div>
+                                        </Base.ListGrid>
                                     )}
                                 </Base.VerticalContent>
                             </Base.GridCell>
