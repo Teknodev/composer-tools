@@ -112,6 +112,35 @@
 
             &.content-full {
               width: 100%;
+
+              .left-top {
+                .left-top-content {
+
+                  .leftTitle,
+                  .leftSubtitle,
+                  .leftDescription {
+                    text-align: var(--composer-content-alignment);
+                  }
+                }
+
+                .contacts {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: var(--composer-content-alignment);
+
+                  .contact {
+                    justify-content: var(--composer-content-alignment);
+
+                    .contactName {
+                      text-align: var(--composer-content-alignment);
+                    }
+                  }
+                }
+              }
+
+              .socials {
+                justify-content: var(--composer-content-alignment);
+              }
             }
 
             .left-top {

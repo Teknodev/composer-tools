@@ -102,194 +102,474 @@ class Form3 extends BaseContacts {
           displayer: "Left Description",
           value: "",
         },
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "contactInfo",
-      displayer: "Contact Info",
-      value: [
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
+          type: "array",
+          key: "contactInfo",
+          displayer: "Contact Info",
           value: [
             {
-              type: "string",
-              key: "contactName",
-              value: "Moldova, str. Gagarin 10",
-              displayer: "Text",
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "contactName",
+                  value: "Moldova, str. Gagarin 10",
+                  displayer: "Text",
+                },
+                {
+                  type: "media",
+                  key: "contactIcon",
+                  additionalParams: {
+                    availableTypes: ["image", "icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaLocationDot",
+                  },
+                  displayer: "Icon",
+                },
+              ],
             },
             {
-              type: "media",
-              key: "contactIcon",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaLocationDot",
-              },
-              displayer: "Icon",
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "contactName",
+                  value: "+373 68 324 028",
+                  displayer: "Text",
+                },
+                {
+                  type: "media",
+                  key: "contactIcon",
+                  additionalParams: {
+                    availableTypes: ["image", "icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaPhoneAlt",
+                  },
+                  displayer: "Icon",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "contact",
+              displayer: "Contact",
+              value: [
+                {
+                  type: "string",
+                  key: "contactName",
+                  value: "test@test.com",
+                  displayer: "Text",
+                },
+                {
+                  type: "media",
+                  key: "contactIcon",
+                  additionalParams: {
+                    availableTypes: ["image", "icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "IoIosMail",
+                  },
+                  displayer: "Icon",
+                },
+              ],
             },
           ],
         },
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
+          type: "array",
+          key: "socials",
+          displayer: "Social Media",
           value: [
             {
-              type: "string",
-              key: "contactName",
-              value: "+373 68 324 028",
-              displayer: "Text",
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["image", "icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "BiLogoFacebook",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "https://www.google.com",
+                },
+              ],
             },
             {
-              type: "media",
-              key: "contactIcon",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaPhoneAlt",
-              },
-              displayer: "Icon",
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["image", "icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "SiGmail",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["image", "icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaLinkedinIn",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "",
+                },
+              ],
+            },
+            {
+              type: "object",
+              key: "social",
+              displayer: "Social",
+              value: [
+                {
+                  type: "media",
+                  key: "icon",
+                  additionalParams: {
+                    availableTypes: ["image", "icon"],
+                  },
+                  value: {
+                    type: "icon",
+                    name: "FaInstagram",
+                  },
+                  displayer: "Icon",
+                },
+                {
+                  type: "page",
+                  key: "url",
+                  displayer: "Navigate To",
+                  value: "",
+                },
+              ],
             },
           ],
         },
         {
-          type: "object",
-          key: "contact",
-          displayer: "Contact",
+          type: "array",
+          key: "input_items",
+          displayer: "Input Items",
           value: [
             {
-              type: "string",
-              key: "contactName",
-              value: "test@test.com",
-              displayer: "Text",
+              type: "object",
+              key: "input_item",
+              displayer: "Input Item",
+              value: [
+                {
+                  type: "array",
+                  key: "inputs",
+                  displayer: "Inputs",
+                  additionalParams: {
+                    maxElementCount: 2,
+                  },
+                  value: [
+                    {
+                      type: "object",
+                      displayer: "Input",
+                      key: "input",
+                      value: [
+                        {
+                          type: "string",
+                          displayer: "Label",
+                          key: "label",
+                          value: "First Name",
+                        },
+                        {
+                          type: "string",
+                          displayer: "Placeholder",
+                          key: "placeholder",
+                          value: "First name",
+                        },
+                        {
+                          type: "boolean",
+                          key: "is_required",
+                          displayer: "Required Message",
+                          value: true,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "Required",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "Text",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "type_error_message",
+                          displayer: "Type Error Message",
+                          value: "Invalid type",
+                        },
+                      ],
+                    },
+                    {
+                      type: "object",
+                      displayer: "Input",
+                      key: "input",
+                      value: [
+                        {
+                          type: "string",
+                          displayer: "Label",
+                          key: "label",
+                          value: "Last Name",
+                        },
+                        {
+                          type: "string",
+                          displayer: "Placeholder",
+                          key: "placeholder",
+                          value: "Last name",
+                        },
+                        {
+                          type: "boolean",
+                          key: "is_required",
+                          displayer: "Required Message",
+                          value: true,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "Required",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "Text",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "type_error_message",
+                          displayer: "Type Error Message",
+                          value: "Invalid type",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             {
-              type: "media",
-              key: "contactIcon",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "IoIosMail",
-              },
-              displayer: "Icon",
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp({
-      type: "array",
-      key: "socials",
-      displayer: "Social Media",
-      value: [
-        {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "BiLogoFacebook",
-              },
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "https://www.google.com",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "SiGmail",
-              },
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaLinkedinIn",
-              },
-              displayer: "Icon",
-            },
-            {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "social",
-          displayer: "Social",
-          value: [
-            {
-              type: "media",
-              key: "icon",
-              additionalParams: {
-                availableTypes: ["image", "icon"],
-              },
-              value: {
-                type: "icon",
-                name: "FaInstagram",
-              },
-              displayer: "Icon",
+              type: "object",
+              key: "input_item",
+              displayer: "Input Item",
+              value: [
+                {
+                  type: "array",
+                  key: "inputs",
+                  displayer: "Inputs",
+                  value: [
+                    {
+                      type: "object",
+                      displayer: "Input",
+                      key: "input",
+                      value: [
+                        {
+                          type: "string",
+                          displayer: "Label",
+                          key: "label",
+                          value: "E-mail",
+                        },
+                        {
+                          type: "string",
+                          displayer: "Placeholder",
+                          key: "placeholder",
+                          value: "example@gmail.com",
+                        },
+                        {
+                          type: "boolean",
+                          key: "is_required",
+                          displayer: "Required Message",
+                          value: true,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "Required",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "E-mail",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "type_error_message",
+                          displayer: "Type Error Message",
+                          value: "Invalid type",
+                        },
+                      ],
+                    },
+                    {
+                      type: "object",
+                      displayer: "Input",
+                      key: "input",
+                      value: [
+                        {
+                          type: "string",
+                          displayer: "Label",
+                          key: "label",
+                          value: "Phone",
+                        },
+                        {
+                          type: "string",
+                          displayer: "Placeholder",
+                          key: "placeholder",
+                          value: "+111 11 111 111",
+                        },
+                        {
+                          type: "boolean",
+                          key: "is_required",
+                          displayer: "Required Message",
+                          value: false,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "Number",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "type_error_message",
+                          displayer: "Type Error Message",
+                          value: "",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
             {
-              type: "page",
-              key: "url",
-              displayer: "Navigate To",
-              value: "",
+              type: "object",
+              key: "input_item",
+              displayer: "Input Item",
+              value: [
+                {
+                  type: "array",
+                  key: "inputs",
+                  displayer: "Inputs",
+                  value: [
+                    {
+                      type: "object",
+                      displayer: "Input",
+                      key: "input",
+                      value: [
+                        {
+                          type: "string",
+                          displayer: "Label",
+                          key: "label",
+                          value: "Message",
+                        },
+                        {
+                          type: "string",
+                          displayer: "Placeholder",
+                          key: "placeholder",
+                          value: "Write your message...",
+                        },
+                        {
+                          type: "boolean",
+                          key: "is_required",
+                          displayer: "Required Message",
+                          value: false,
+                        },
+                        {
+                          type: "string",
+                          key: "required_error_message",
+                          displayer: "Required Error Message",
+                          value: "Required",
+                        },
+                        {
+                          type: "select",
+                          key: "type",
+                          displayer: "Type",
+                          value: "Text Area",
+                          additionalParams: {
+                            selectItems: ["Text", "E-mail", "Number", "Text Area"],
+                          },
+                        },
+                        {
+                          type: "string",
+                          key: "type_error_message",
+                          displayer: "Type Error Message",
+                          value: "",
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
             },
           ],
         },
@@ -319,293 +599,9 @@ class Form3 extends BaseContacts {
           displayer: "Right Description",
           value: "",
         },
+        INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"),
       ],
     });
-
-    this.addProp({
-      type: "array",
-      key: "input_items",
-      displayer: "Input Items",
-      value: [
-        {
-          type: "object",
-          key: "input_item",
-          displayer: "Input Item",
-          value: [
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              additionalParams: {
-                maxElementCount: 2,
-              },
-              value: [
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Label",
-                      key: "label",
-                      value: "First Name",
-                    },
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "First name",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Required Message",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Label",
-                      key: "label",
-                      value: "Last Name",
-                    },
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "Last name",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Required Message",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "input_item",
-          displayer: "Input Item",
-          value: [
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Label",
-                      key: "label",
-                      value: "E-mail",
-                    },
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "example@gmail.com",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Required Message",
-                      value: true,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "E-mail",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "Invalid type",
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Label",
-                      key: "label",
-                      value: "Phone",
-                    },
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "+111 11 111 111",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Required Message",
-                      value: false,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Number",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "object",
-          key: "input_item",
-          displayer: "Input Item",
-          value: [
-            {
-              type: "array",
-              key: "inputs",
-              displayer: "Inputs",
-              value: [
-                {
-                  type: "object",
-                  displayer: "Input",
-                  key: "input",
-                  value: [
-                    {
-                      type: "string",
-                      displayer: "Label",
-                      key: "label",
-                      value: "Message",
-                    },
-                    {
-                      type: "string",
-                      displayer: "Placeholder",
-                      key: "placeholder",
-                      value: "Write your message...",
-                    },
-                    {
-                      type: "boolean",
-                      key: "is_required",
-                      displayer: "Required Message",
-                      value: false,
-                    },
-                    {
-                      type: "string",
-                      key: "required_error_message",
-                      displayer: "Required Error Message",
-                      value: "Required",
-                    },
-                    {
-                      type: "select",
-                      key: "type",
-                      displayer: "Type",
-                      value: "Text Area",
-                      additionalParams: {
-                        selectItems: ["Text", "E-mail", "Number", "Text Area"],
-                      },
-                    },
-                    {
-                      type: "string",
-                      key: "type_error_message",
-                      displayer: "Type Error Message",
-                      value: "",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    });
-
-    this.addProp(INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"));
   }
 
   static getName(): string {
@@ -632,15 +628,28 @@ class Form3 extends BaseContacts {
     const leftSubtitle = this.castToString(leftSection.leftSubtitle);
     const leftTitle = this.castToString(leftSection.leftTitle);
     const leftDescription = this.castToString(leftSection.leftDescription);
-    const contactInfo = this.castToObject<ContactItem[]>("contactInfo");
-    const socials = this.castToObject<Social[]>("socials");
+    const contactInfo: ContactItem[] = (leftSection.contactInfo || []).map((prop: any) => ({
+      contactName: prop.getPropValue("contactName"),
+      contactIcon: prop.getPropValue("contactIcon"),
+    }));
+    const socials: Social[] = (leftSection.socials || []).map((prop: any) => ({
+      icon: prop.getPropValue("icon"),
+      url: prop.getPropValue("url"),
+    }));
+    const inputItems = leftSection.input_items;
 
+    const rightSectionArray = this.getPropValue("rightSection");
     const rightSection = this.castToObject<any>("rightSection");
     const rightSubtitle = this.castToString(rightSection.rightSubtitle);
     const rightTitle = this.castToString(rightSection.rightTitle);
     const rightDescription = this.castToString(rightSection.rightDescription);
-    const inputItems = this.getPropValue("input_items");
-    const button: INPUTS.CastedButton = this.castToObject<INPUTS.CastedButton>("button");
+
+    const buttonProp = rightSectionArray.find((item: any) => item.key === "button");
+    const button: any = { type: "Primary", text: "" };
+    if (buttonProp && buttonProp.getPropValue) {
+      button.text = buttonProp.getPropValue("text");
+      button.type = buttonProp.getPropValue("type");
+    }
     const buttonText = this.castToString(button.text);
 
     function getInputType(type: string): string {
