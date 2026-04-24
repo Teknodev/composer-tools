@@ -11,7 +11,7 @@ class Testimonials1Page extends Testimonials {
 
     this.addProp({
       type: "image",
-      key: "background-image",
+      key: "componentBackground",
       displayer: "Background Image",
       value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6729d54e7acba6002c5e6e52?alt=media&timestamp=1730794845964",
     });
@@ -145,14 +145,14 @@ class Testimonials1Page extends Testimonials {
       },
     };
 
-    const imageExist = this.getPropValue("background-image");
+    const imageExist = this.getPropValue("componentBackground");
 
     return (
       <Base.Container
         className={this.decorateCSS("container")}
-        isFull={this.getPropValue("background-image") ? true : false}
+        isFull={this.getPropValue("componentBackground") ? true : false}
         style={{
-          backgroundImage: `url(${this.getPropValue("background-image")})`,
+          backgroundImage: `url(${this.getPropValue("componentBackground")})`,
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>

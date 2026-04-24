@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./team9.module.scss";
-import { Team, TypeUsableComponentProps } from "../../EditorComponent";
+import { Team, TypeMediaInputValue, TypeUsableComponentProps } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 import ComposerSlider from "../../../composer-base-components/slider/slider";
@@ -12,7 +12,7 @@ type Icon = {
 };
 
 interface Card {
-  image: string;
+  image: TypeMediaInputValue;
   name: React.JSX.Element;
   icons: Icon[];
 }
@@ -86,10 +86,16 @@ class Team9 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816a?alt=media&timestamp=1719558632841",
+          },
         },
         {
           type: "string",
@@ -116,10 +122,16 @@ class Team9 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816b?alt=media&timestamp=1719558632841",
+          },
         },
         {
           type: "string",
@@ -146,10 +158,16 @@ class Team9 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816c?alt=media&timestamp=1719558632841",
+          },
         },
         {
           type: "string",
@@ -176,10 +194,16 @@ class Team9 extends Team {
       displayer: "Card",
       value: [
         {
-          type: "image",
+          type: "media",
           key: "image",
           displayer: "Image",
-          value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
+          additionalParams: {
+            availableTypes: ["image"],
+          },
+          value: {
+            type: "image",
+            url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b493bd2970002c62816d?alt=media&timestamp=1719558632841",
+          },
         },
         {
           type: "string",
@@ -279,7 +303,7 @@ class Team9 extends Team {
                   return (
                     hasCard && (
                       <Base.VerticalContent key={index} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
+                        {item.image && <Base.Media value={item.image} className={this.decorateCSS("person-image")} />}
                         <div className={this.decorateCSS("person-info")}>
                           {item.icons.length > 0 && (
                             <div className={this.decorateCSS("icons-bar")}>
@@ -319,7 +343,7 @@ class Team9 extends Team {
                   if (item.image || nameExist || item.icons.length > 0)
                     return (
                       <div key={indexCard} className={this.decorateCSS("card")}>
-                        {item.image && <img className={this.decorateCSS("person-image")} src={item.image} alt={nameExist} />}
+                        {item.image && <Base.Media value={item.image} className={this.decorateCSS("person-image")} />}
                         {(nameExist || item.icons.length > 0) && (
                           <Base.VerticalContent className={this.decorateCSS("person-info")}>
                             {item.icons.length > 0 && (

@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Team } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./team16.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
-  image: string;
+  image: TypeMediaInputValue;
   name: React.JSX.Element;
   job: React.JSX.Element;
   description: React.JSX.Element;
@@ -67,10 +67,16 @@ class Team16 extends Team {
               value: "The inception of this venture has not only been fulfilling but has also marked a significant milestone in my journey.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f5?alt=media&timestamp=1731587983245",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f5?alt=media&timestamp=1731587983245",
+              },
             },
           ],
         },
@@ -98,10 +104,16 @@ class Team16 extends Team {
               value: "PageDone remains steadfast in its commitment to innovation and growth. With each step forward, we embrace.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735df16506a40002c2a4f73?alt=media&timestamp=1731587983245",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735df16506a40002c2a4f73?alt=media&timestamp=1731587983245",
+              },
             },
           ],
         },
@@ -129,10 +141,16 @@ class Team16 extends Team {
               value: "The inception of this venture has been an immensely rewarding experience, representing a pivotal milestone in my personal.",
             },
             {
-              type: "image",
+              type: "media",
               key: "image",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6735ef51506a40002c2a58f4?alt=media&timestamp=1731587983245",
+              },
             },
           ],
         },
@@ -185,7 +203,7 @@ class Team16 extends Team {
                     <div key={indexCards} className={this.decorateCSS("card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {card.image && (
                         <div className={this.decorateCSS("image-wrapper")}>
-                          <img className={this.decorateCSS("image")} src={card.image} alt="" />
+                          <Base.Media value={card.image} className={this.decorateCSS("image")} />
                         </div>
                       )}
                       <div className={this.decorateCSS("text-box")}>
