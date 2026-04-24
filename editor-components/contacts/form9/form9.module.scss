@@ -260,11 +260,28 @@
     }
   }
 
-  @container (max-width: #{$composer-tablet-width}) {
+  @container (max-width: #{$composer-phone-width}) {
     &:not(.only-form) {
       .max-content {
         .form-container {
           margin-top: 40px;
+          padding: 1rem;
+
+          .form {
+            .input-container {
+              .inputs {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: var(--composer-gap-sm);
+                .input-box {
+                  min-width: 0;
+                }
+                &.inputs-two {
+                  grid-template-columns: 1fr 1fr;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -285,33 +302,6 @@
       .right-container {
         .form-container {
           padding: 2rem;
-        }
-      }
-    }
-  }
-
-  @container (max-width: #{$composer-phone-width}) {
-    &:not(.only-form) {
-      .max-content {
-        .form-container {
-          padding: 1rem;
-          margin-top: 40px;
-
-          .form {
-            .input-container {
-              .inputs {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: var(--composer-gap-sm);
-                .input-box {
-                  min-width: 0;
-                }
-                &.inputs-two {
-                  grid-template-columns: 1fr 1fr;
-                }
-              }
-            }
-          }
         }
       }
     }
