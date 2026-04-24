@@ -37,12 +37,12 @@
           display: grid;
           grid-template-columns: auto 1fr;
           column-gap: var(--composer-gap-sm);
-          align-items: center;
+          align-items: flex-end;
         }
 
         .stat-value {
           display: flex;
-          align-items: baseline;
+          
           flex-shrink: 0;
           grid-column: 1;
           grid-row: 1 / span 2;
@@ -68,15 +68,17 @@
 
         .stat-title {
           font-size: 1.4rem;
-          max-width: 110px;
           white-space: normal;
+          p {
+            margin: 0;
+          }
         }
 
         .stat-subtitle {
           font-size: 1.2rem;
         }
 
-        .stat-desc {
+        .stat-description {
           text-align: left;
           color: var(--composer-font-color-primary);
         }
