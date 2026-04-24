@@ -334,9 +334,9 @@ class Stats33 extends BaseStats {
                                             statsAnimation={statsAnimation}
                                         />
                                         {statSubtitleExist && (
-                                            <Base.H3 className={this.decorateCSS("stats-subtitle")}>
+                                            <Base.H4 className={this.decorateCSS("stats-subtitle")}>
                                                 {stat.subtitleElement}
-                                            </Base.H3>
+                                            </Base.H4>
                                         )}
                                         {statTitleExist && (
                                             <Base.H3 className={this.decorateCSS("stats-title")}>
