@@ -456,7 +456,7 @@ class Team10 extends Team {
   }
 
   render() {
-    const backgroundImage = this.castToObject<TypeMediaInputValue>("componentBackground");
+    const backgroundImage = this.getPropValue("componentBackground") as TypeMediaInputValue | undefined;
     const backgroundImageExist = !!backgroundImage;
     const subtitle = this.getPropValue("subtitle");
     const title = this.getPropValue("title");

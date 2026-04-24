@@ -337,7 +337,7 @@ class Team8 extends Team {
       as_string: true,
     });
 
-    const imageExist = this.castToObject<TypeMediaInputValue>("backroundImage");
+    const imageExist = this.getPropValue("backroundImage") as TypeMediaInputValue | undefined;
 
     return (
       <div className={this.decorateCSS("container")}>
