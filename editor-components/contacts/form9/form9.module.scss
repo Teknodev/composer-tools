@@ -21,6 +21,11 @@
         align-items: flex-start;
         justify-content: flex-start;
         text-align: left;
+        gap: var(--composer-gap-lg);
+
+        .left-header {
+          content: "";
+        }
       }
 
       .title {
@@ -94,7 +99,7 @@
           var(--composer-html-background),
           var(--composer-font-color-primary) 5%
         );
-        border-radius: var(--composer-border-radius-sm);
+        border-radius: var(--composer-border-radius-md);
         padding: 4rem;
 
         .form {
@@ -297,6 +302,14 @@
 
       .left-container {
         text-align: center;
+
+        .left-vertical-content {
+          gap: var(--composer-gap-md);
+        }
+
+        .features {
+          gap: var(--composer-gap-md);
+        }
       }
 
       .right-container {

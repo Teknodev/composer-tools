@@ -22,7 +22,7 @@ class Form9 extends BaseContacts {
       type: "string",
       key: "title",
       displayer: "Title",
-      value: "Get Started with Apcopay",
+      value: "Get Started with Blinkpage",
     });
 
     this.addProp({
@@ -627,20 +627,24 @@ class Form9 extends BaseContacts {
               <Base.VerticalContent
                 className={this.decorateCSS("left-vertical-content")}
               >
-                {subtitleText && (
-                  <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
-                    {subtitle}
-                  </Base.SectionSubTitle>
-                )}
-                {titleStr && (
-                  <Base.SectionTitle className={this.decorateCSS("title")}>
-                    {title}
-                  </Base.SectionTitle>
-                )}
-                {descriptionText && (
-                  <Base.SectionDescription className={this.decorateCSS("description")}>
-                    {description}
-                  </Base.SectionDescription>
+                {(subtitleText || titleStr || descriptionText) && (
+                  <Base.VerticalContent className={this.decorateCSS("left-header")}>
+                    {subtitleText && (
+                      <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
+                        {subtitle}
+                      </Base.SectionSubTitle>
+                    )}
+                    {titleStr && (
+                      <Base.SectionTitle className={this.decorateCSS("title")}>
+                        {title}
+                      </Base.SectionTitle>
+                    )}
+                    {descriptionText && (
+                      <Base.SectionDescription className={this.decorateCSS("description")}>
+                        {description}
+                      </Base.SectionDescription>
+                    )}
+                  </Base.VerticalContent>
                 )}
 
                 {hasAnyFeature && (
