@@ -231,7 +231,7 @@ import StatsComponent15 from "./stats/stats15/stats15";
 import StatsComponent16 from "./stats/stats16/stats16";
 import StatsComponent17 from "./stats/stats17/stats17";
 import StatsComponent18 from "./stats/stats18/stats18";
-import StatsComponent19 from "./stats/stats19/stats19";
+import StatsComponent37 from "./stats/stats37/stats37";
 import StatsComponent20 from "./stats/stats20/stats20";
 import StatsComponent21 from "./stats/stats21/stats21";
 import StatsComponent22 from "./stats/stats22/stats22";
@@ -627,7 +627,7 @@ function Registerables(composer: ComponentsRegistery) {
     StatsComponent16,
     StatsComponent17,
     StatsComponent18,
-    StatsComponent19,
+    StatsComponent37,
     StatsComponent20,
     StatsComponent21,
     StatsComponent22,

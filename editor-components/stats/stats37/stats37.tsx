@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BaseStats } from "../../EditorComponent";
-import styles from "./stats19.module.scss";
+import styles from "./stats37.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
@@ -14,7 +14,7 @@ type StatItem = {
   suffix: string;
 };
 
-class Stats19 extends BaseStats {
+class Stats37 extends BaseStats {
   constructor(props?: any) {
     super(props, styles);
 
@@ -104,7 +104,7 @@ class Stats19 extends BaseStats {
   }
 
   static getName(): string {
-    return "Stats 19";
+    return "Stats 37";
   }
 
   render() {
@@ -222,7 +222,7 @@ class Stats19 extends BaseStats {
               <div className={this.decorateCSS("button-container")}>
                 {buttons.map((item: INPUTS.CastedButton, index: number) =>
                   this.castToString(item.text) && (
-                    <ComposerLink key={`stats19-btn-${index}`} path={item.url}>
+                    <ComposerLink key={`stats37-btn-${index}`} path={item.url}>
                       <Base.Button buttonType={item.type} className={this.decorateCSS("button")}>
                         <Base.P className={this.decorateCSS("button-text")}>{item.text}</Base.P>
                       </Base.Button>
@@ -239,4 +239,4 @@ class Stats19 extends BaseStats {
 
 }
 
-export default Stats19;
+export default Stats37;
