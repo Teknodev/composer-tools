@@ -38,7 +38,7 @@ class Stats36 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Lorem"
+            value: ""
         });
 
         this.addProp({
@@ -169,7 +169,7 @@ class Stats36 extends BaseStats {
         if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
-            <div className={this.decorateCSS("stat-item")}>
+            <Base.VerticalContent className={this.decorateCSS("stat-item")}>
                 <div className={this.decorateCSS("stat-header")}>
                     <div className={this.decorateCSS("stat-info")}>
                         {subtitleExist && (
@@ -204,7 +204,7 @@ class Stats36 extends BaseStats {
                         {stat.descriptionElement}
                     </Base.P>
                 )}
-            </div>
+            </Base.VerticalContent>
         );
     };
 
@@ -216,6 +216,7 @@ class Stats36 extends BaseStats {
         const statsRaw = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
+        const alignment = Base.getContentAlignment();
 
         const statsItems: StatItem[] = statsRaw.map((item) => {
             const prefix = this.castToString(item.prefix) || "";
@@ -261,47 +262,53 @@ class Stats36 extends BaseStats {
                             </Base.GridCell>
                         )}
                         {(!fullWidth || (fullWidth && hasContent)) && (
-                            <Base.GridCell className={`${this.decorateCSS("content-cell")} ${fullWidth ? this.decorateCSS("full-width") : ""}`}>
-                                <Base.VerticalContent className={this.decorateCSS("content-inner")}>
-                                    <Base.VerticalContent className={this.decorateCSS("content-header")}>
-                                        {subtitleExist && (
-                                            <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
-                                                {subtitle}
-                                            </Base.SectionSubTitle>
-                                        )}
-                                        {titleExist && (
-                                            <Base.SectionTitle className={this.decorateCSS("section-title")}>
-                                                {title}
-                                            </Base.SectionTitle>
-                                        )}
-                                        {descriptionExist && (
-                                            <Base.SectionDescription className={this.decorateCSS("section-description")}>
-                                                {description}
-                                            </Base.SectionDescription>
-                                        )}
-                                        {hasValidButtons && (
-                                            <div className={this.decorateCSS("button-container")}>
-                                                {buttons.map((item: INPUTS.CastedButton, index: number) => {
-                                                    const buttonText = this.castToString(item.text);
-                                                    if (!buttonText) return null;
+                            <Base.GridCell 
+                                className={`${this.decorateCSS("content-cell")} ${fullWidth ? this.decorateCSS("full-width") : ""}`}
+                                data-alignment={alignment}
+                            >
+                                <Base.VerticalContent 
+                                    className={this.decorateCSS("content-header")}
+                                    data-alignment={alignment}
+                                >
+                                    {subtitleExist && (
+                                        <Base.SectionSubTitle className={this.decorateCSS("section-subtitle")}>
+                                            {subtitle}
+                                        </Base.SectionSubTitle>
+                                    )}
+                                    {titleExist && (
+                                        <Base.SectionTitle className={this.decorateCSS("section-title")}>
+                                            {title}
+                                        </Base.SectionTitle>
+                                    )}
+                                    {descriptionExist && (
+                                        <Base.SectionDescription className={this.decorateCSS("section-description")}>
+                                            {description}
+                                        </Base.SectionDescription>
+                                    )}
+                                    {hasValidButtons && (
+                                        <div className={this.decorateCSS("button-container")}>
+                                            {buttons.map((item: INPUTS.CastedButton, index: number) => {
+                                                const buttonText = this.castToString(item.text);
+                                                if (!buttonText) return null;
 
-                                                    return (
-                                                        <ComposerLink key={index} path={item.url}>
-                                                            <Base.Button
-                                                                buttonType={item.type}
-                                                                className={this.decorateCSS("button")}
-                                                            >
-                                                                <Base.P className={this.decorateCSS("button-text")}>
-                                                                    {item.text}
-                                                                </Base.P>
-                                                            </Base.Button>
-                                                        </ComposerLink>
-                                                    );
-                                                })}
-                                            </div>
-                                        )}
-                                    </Base.VerticalContent>
-                                    {statsItems.length > 0 && (
+                                                return (
+                                                    <ComposerLink key={index} path={item.url}>
+                                                        <Base.Button
+                                                            buttonType={item.type}
+                                                            className={this.decorateCSS("button")}
+                                                        >
+                                                            <Base.P className={this.decorateCSS("button-text")}>
+                                                                {item.text}
+                                                            </Base.P>
+                                                        </Base.Button>
+                                                    </ComposerLink>
+                                                );
+                                            })}
+                                        </div>
+                                    )}
+                                </Base.VerticalContent>
+                                {statsItems.length > 0 && (
+                                    <div className={this.decorateCSS("content-stats")}>
                                         <Base.ListGrid gridCount={{ pc: 1, tablet: 1, phone: 1 }} className={this.decorateCSS("stats-grid")}>
                                             {statsItems.map((item, index) => (
                                                 <this.AnimatedStat
@@ -312,8 +319,8 @@ class Stats36 extends BaseStats {
                                                 />
                                             ))}
                                         </Base.ListGrid>
-                                    )}
-                                </Base.VerticalContent>
+                                    </div>
+                                )}
                             </Base.GridCell>
                         )}
                     </Base.ContainerGrid>
