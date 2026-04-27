@@ -7,14 +7,14 @@
 
     &.has-media {
         padding: 0 !important;
-        padding-inline: calc(var(--composer-gap-md) * 3) !important;
+        padding-inline: 60px !important;
 
         .background-section {
-            margin-inline: calc(var(--composer-gap-md) * -3);
+            margin-inline: -60px;
         }
 
         .content-wrapper {
-            padding: calc(var(--composer-gap-md) * 3) 0 calc(var(--composer-gap-md) * 6);
+            padding: 120px 0;
         }
     }
 
@@ -23,7 +23,7 @@
             position: relative;
             z-index: 2;
             margin-top: -190px;
-            margin-bottom: calc(var(--composer-gap-lg) * 3);
+            margin-bottom: 120px;
         }
     }
 
@@ -131,15 +131,22 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
+        &.has-background {
+            .max-content {
+                margin-top: -100px;
+                margin-bottom: 100px;
+            }
+        }
+
         &.has-media {
-            padding-inline: var(--composer-gap-xl) !important;
+            padding-inline: 50px !important;
 
             .background-section {
-                margin-inline: calc(var(--composer-gap-xl) * -1);
+                margin-inline: -50px;
             }
 
             .content-wrapper {
-                padding: calc(var(--composer-gap-md) * 3) 0 calc(var(--composer-gap-xl) * 2);
+                padding: 100px 0;
             }
         }
 
@@ -151,15 +158,21 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
+        &.has-background {
+            .max-content {
+                margin-bottom: 50px;
+            }
+        }
+
         &.has-media {
-            padding-inline: calc(var(--composer-gap-sm) * 3) !important;
+            padding-inline: 30px !important;
 
             .background-section {
-                margin-inline: calc(var(--composer-gap-sm) * -3);
+                margin-inline: -30px;
             }
 
             .content-wrapper {
-                padding: calc(var(--composer-gap-md) * 3) 0 var(--composer-gap-xl);
+                padding: 50px 0;
             }
 
             .card {
