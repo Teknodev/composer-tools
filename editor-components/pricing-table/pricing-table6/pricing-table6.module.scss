@@ -41,7 +41,7 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
       .page-down {
         display: flex;
         flex-direction: column;
-        gap: var(--composer-gap-sm);
+        gap: var(--composer-gap-md);
         width: 100%;
       }
 
@@ -140,25 +140,24 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
               background-color: var(--composer-primary-color);
               color: var(--composer-font-color-secondary);
 
-              .tag,
-              .item-price,
-              .per {
-                color: var(--composer-font-color-secondary);
-              }
-
               .tag {
                 background-color: var(--composer-font-color-primary);
                 color: var(--composer-html-background) !important;
                 border-color: var(--composer-font-color-primary);
               }
 
-              .plan-icons .plan,
-              .item-price .price {
-                color: var(--composer-font-color-secondary);
+              .plan-icons {
+                .plan,
+                .icon {
+                  color: var(--composer-font-color-secondary);
+                }
               }
 
-              .plan-icons {
-                .icon {
+              .item-price {
+                color: var(--composer-font-color-secondary);
+
+                .price,
+                .per {
                   color: var(--composer-font-color-secondary);
                 }
               }
@@ -167,23 +166,26 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
             &:not(.active).animation1:hover {
               background-color: var(--composer-primary-color);
 
-              .plan-icons,
-              .tag,
-              .item-price,
-              .per {
-                color: var(--composer-font-color-secondary);
-              }
-
               .tag {
                 background-color: var(--composer-font-color-primary);
                 color: var(--composer-html-background);
                 border: 1px solid var(--composer-font-color-primary);
               }
 
-              .plan-icons .plan,
-              .plan-icons .icon,
-              .item-price .price {
+              .plan-icons {
+                .plan,
+                .icon {
+                  color: var(--composer-font-color-secondary);
+                }
+              }
+
+              .item-price {
                 color: var(--composer-font-color-secondary);
+
+                .price,
+                .per {
+                  color: var(--composer-font-color-secondary);
+                }
               }
             }
 
