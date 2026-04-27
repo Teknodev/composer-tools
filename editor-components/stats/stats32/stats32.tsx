@@ -298,13 +298,13 @@ class Stats32 extends BaseStats {
                         gridCount={{ pc: !mediaExist || noText ? 1 : 2, tablet: !mediaExist || noText ? 1 : 2, phone: 1 }}
                     >
                         {(hasTextSection || hasStats) && (
-                            <Base.VerticalContent
+                            <div
                                 className={this.decorateCSS("text-card")}
-                                data-alignment={!mediaExist ? alignment : "left"}
+                                data-alignment={alignment}
                             >
                                 <Base.VerticalContent
                                     className={this.decorateCSS("text-container")}
-                                    data-alignment={!mediaExist ? alignment : "left"}
+                                    data-alignment={alignment}
                                 >
                                     {subtitleExist && (
                                         <Base.SectionSubTitle
@@ -350,22 +350,27 @@ class Stats32 extends BaseStats {
                                 </Base.VerticalContent>
 
                                 {hasStats && (
-                                    <Base.ListGrid
-                                        gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }}
-                                        className={this.decorateCSS("stats-grid")}
+                                    <Base.VerticalContent
+                                        className={this.decorateCSS("stats-container")}
+                                        data-alignment={alignment}
                                     >
-                                        {stats.map((stat: StatItem, index: number) => (
-                                            <this.AnimatedStat
-                                                key={`stat32-${index}`}
-                                                stat={stat}
-                                                animationDuration={animationDuration}
-                                                statsAnimation={statsAnimation}
-                                                isCentered={isCentered}
-                                            />
-                                        ))}
-                                    </Base.ListGrid>
+                                        <Base.ListGrid
+                                            gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }}
+                                            className={this.decorateCSS("stats-grid")}
+                                        >
+                                            {stats.map((stat: StatItem, index: number) => (
+                                                <this.AnimatedStat
+                                                    key={`stat32-${index}`}
+                                                    stat={stat}
+                                                    animationDuration={animationDuration}
+                                                    statsAnimation={statsAnimation}
+                                                    isCentered={isCentered}
+                                                />
+                                            ))}
+                                        </Base.ListGrid>
+                                    </Base.VerticalContent>
                                 )}
-                            </Base.VerticalContent>
+                            </div>
                         )}
 
                         {mediaExist && (

@@ -16,7 +16,7 @@
                     align-items: flex-start !important;
                     text-align: left !important;
 
-                    .title, .subtitle, .description, .button-container, .stats-grid {
+                    .title, .subtitle, .description, .button-container, .stats-grid, .stats-container {
                         text-align: left !important;
                         align-self: flex-start !important;
                         margin-left: 0 !important;
@@ -51,6 +51,12 @@
                     display: flex;
                     flex-wrap: wrap;
                     gap: var(--composer-gap-sm);
+
+                    .button {
+                        .button-text {
+                            content: "";
+                        }
+                    }
                 }
 
                 .stat-item {
@@ -120,6 +126,34 @@
                 .stats-grid { gap: var(--composer-gap-md); }
                 .stat-item .stat-value-container {
                     .stat-value, .stat-prefix, .stat-suffix { font-size: 4rem; }
+                }
+
+                &[data-alignment="center"] {
+                    align-items: center !important;
+                    text-align: center !important;
+
+                    .header-container, .stats-container, .button-container, .stats-grid {
+                        align-items: center !important;
+                        justify-content: center !important;
+                        text-align: center !important;
+                        align-self: center !important;
+                        margin-inline: auto !important;
+                    }
+
+                    .title, .subtitle, .description {
+                        text-align: center !important;
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                    }
+
+                    .stat-item {
+                        align-items: center !important;
+                        text-align: center !important;
+
+                        .stat-title, .stat-subtitle, .stat-description {
+                            text-align: center !important;
+                        }
+                    }
                 }
             }
         }
