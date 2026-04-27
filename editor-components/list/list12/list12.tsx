@@ -1,7 +1,7 @@
 import { BaseList, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./list12.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
-import { INPUTS } from "composer-tools/custom-hooks/input-templates";
+import { INPUTS } from "../../../custom-hooks/input-templates";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 interface BoxItem {
@@ -236,7 +236,7 @@ class List12 extends BaseList {
     const backgroundOverlay = backgroundMedia?.overlay;
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
     const hasValidButtons = buttons.some((btn) => this.castToString(btn.text) || (btn.icon && btn.icon.name));
-    const hoverAnimation = this.getPropValue("hoverAnimation").join(" ");
+    const hoverAnimation = (this.getPropValue("hoverAnimation") as string[] || []).join(" ");
 
     const box1Exist = !!box1;
     const box2Exist = !!box2;
