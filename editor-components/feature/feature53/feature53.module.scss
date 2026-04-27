@@ -46,6 +46,9 @@
           color: var(--composer-tertiary-color);
           font-size: calc(1.5 * var(--composer-font-size-md));
           
+          &:hover {
+            color: var(--composer-html-background);
+          }
 
           &.active {
             background-color: var(--composer-font-color-secondary);
@@ -229,7 +232,7 @@
             min-width: 0;
             padding: var(--composer-gap-md) 0;
             cursor: pointer;
-            color: var(--composer-tertiary-color);
+            color: var(--composer-html-background);
             font-size: calc(1.25 * var(--composer-font-size-md)) !important;
             transition: color var(--composer-transition-duration-normal) ease,
               background-color var(--composer-transition-duration-normal) ease;

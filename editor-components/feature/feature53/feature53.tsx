@@ -62,7 +62,7 @@ class Feature53 extends BaseFeature {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Mobile Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -137,7 +137,7 @@ class Feature53 extends BaseFeature {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Mobile Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -212,7 +212,7 @@ class Feature53 extends BaseFeature {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Mobile Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
@@ -287,7 +287,7 @@ class Feature53 extends BaseFeature {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon",
+              displayer: "Mobile Icon",
               additionalParams: {
                 availableTypes: ["icon", "image"],
               },
