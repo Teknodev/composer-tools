@@ -231,13 +231,16 @@
 
                 &.icon-container-no-image {
                   background-color: var(--composer-html-background);
+
+                  &:hover {
+                    background-color: var(--composer-primary-color);
+                  }
                 }
 
                 .icon {
-                  font-size: 1.5rem;
-                  height: var(--composer-gap-md);
-                  width: var(--composer-gap-md);
-                  margin: var(--composer-gap-sm);
+                  font-size: 1.25rem !important;
+                  height: 25px !important;
+                  width: 25px !important;
                   object-fit: contain;
                   display: flex;
                   justify-content: center;
@@ -568,13 +571,6 @@
                 padding-top: var(--composer-gap-md);
                 overflow: auto;
                 padding: 0;
-
-                .icon-container {
-                  .icon {
-                    width: var(--composer-gap-md);
-                    height: var(--composer-gap-md);
-                  }
-                }
               }
             }
           }

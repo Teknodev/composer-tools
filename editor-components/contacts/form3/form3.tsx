@@ -26,7 +26,7 @@ class Form3 extends BaseContacts {
     this.addProp({
       type: "object",
       key: "backgroundSettings",
-      displayer: "Background",
+      displayer: "Media",
       value: [
         {
           type: "media",
@@ -291,6 +291,33 @@ class Form3 extends BaseContacts {
             },
           ],
         },
+      ],
+    });
+
+    this.addProp({
+      type: "object",
+      key: "rightSection",
+      displayer: "Right Section",
+      value: [
+        {
+          type: "string",
+          key: "rightSubtitle",
+          displayer: "Right Subtitle",
+          value: "Work With Us",
+        },
+        {
+          type: "string",
+          key: "rightTitle",
+          displayer: "Right Title",
+          value: "Contact Us",
+        },
+        {
+          type: "string",
+          key: "rightDescription",
+          displayer: "Right Description",
+          value: "",
+        },
+        INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"),
         {
           type: "array",
           key: "input_items",
@@ -575,33 +602,6 @@ class Form3 extends BaseContacts {
         },
       ],
     });
-
-    this.addProp({
-      type: "object",
-      key: "rightSection",
-      displayer: "Right Section",
-      value: [
-        {
-          type: "string",
-          key: "rightSubtitle",
-          displayer: "Right Subtitle",
-          value: "Work With Us",
-        },
-        {
-          type: "string",
-          key: "rightTitle",
-          displayer: "Right Title",
-          value: "Contact Us",
-        },
-        {
-          type: "string",
-          key: "rightDescription",
-          displayer: "Right Description",
-          value: "",
-        },
-        INPUTS.BUTTON("button", "Button", "Contact Us", null, null, null, "Primary"),
-      ],
-    });
   }
 
   static getName(): string {
@@ -636,10 +636,9 @@ class Form3 extends BaseContacts {
       icon: prop.getPropValue("icon"),
       url: prop.getPropValue("url"),
     }));
-    const inputItems = leftSection.input_items;
-
     const rightSectionArray = this.getPropValue("rightSection");
     const rightSection = this.castToObject<any>("rightSection");
+    const inputItems = rightSection.input_items;
     const rightSubtitle = this.castToString(rightSection.rightSubtitle);
     const rightTitle = this.castToString(rightSection.rightTitle);
     const rightDescription = this.castToString(rightSection.rightDescription);
