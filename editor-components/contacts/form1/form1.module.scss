@@ -31,17 +31,25 @@
 
     .cards-container {
       .card {
-        padding: var(--composer-gap-md);
+        padding: var(--composer-gap-lg);
         border-radius: var(--composer-border-radius-sm);
         background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
         border: none;
-        gap: var(--composer-gap-xs);
         align-items: center;
+
+        .card-content {
+          width: 100%;
+          align-items: center;
+
+          .row-item {
+            color: var(--composer-font-color-primary);
+            text-align: center;
+          }
+        }
 
         .title {
           color: var(--composer-font-color-primary);
           text-align: center;
-          margin: 0;
         }
 
         .card-subtitle,
@@ -58,7 +66,6 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          margin: 0 auto;
 
           &.filled {
             border: none;
@@ -78,15 +85,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-          }
-        }
-
-        .rows {
-          width: 100%;
-
-          .row-item {
-            color: var(--composer-font-color-primary);
-            text-align: center;
           }
         }
 

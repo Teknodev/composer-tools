@@ -383,51 +383,51 @@ class Form1 extends BaseContacts {
 
                 return (
                   <Base.VerticalContent key={index} className={this.decorateCSS("card")}>
-                    {iconExist && (
-                      <div
-                        className={`${this.decorateCSS("icon-container")} ${item.isIconFilled ? this.decorateCSS("filled") : ""}`}
-                      >
-                        <Base.Media
-                          value={item.icon}
-                          className={this.decorateCSS("icon")}
-                        />
-                      </div>
-                    )}
-                    {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>}
-                    {cardTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>}
-                    {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
-                    <Base.VerticalContent className={this.decorateCSS("rows")}>
+                    <Base.VerticalContent className={this.decorateCSS("card-content")}>
+                      {iconExist && (
+                        <div
+                          className={`${this.decorateCSS("icon-container")} ${item.isIconFilled ? this.decorateCSS("filled") : ""}`}
+                        >
+                          <Base.Media
+                            value={item.icon}
+                            className={this.decorateCSS("icon")}
+                          />
+                        </div>
+                      )}
+                      {cardSubtitleExist && <Base.H6 className={this.decorateCSS("card-subtitle")}>{item.subtitle}</Base.H6>}
+                      {cardTitleExist && <Base.H5 className={this.decorateCSS("title")}>{item.title}</Base.H5>}
+                      {cardDescriptionExist && <Base.P className={this.decorateCSS("card-description")}>{item.description}</Base.P>}
                       {item.rows.map((row: any, rowIndex: number) => {
                         const itemExist = this.castToString(row.item);
                         return itemExist && <Base.P key={rowIndex} className={this.decorateCSS("row-item")}>{row.item}</Base.P>;
                       })}
+                      {hasValidCardButtons && (
+                        <div className={this.decorateCSS("card-button-container")}>
+                          {cardButtons.map((btn: any, btnIndex: number) => {
+                            const btnText = this.castToString(btn.text);
+                            const btnIcon = !!btn.icon;
+                            if (!btnText && !btnIcon) return null;
+                            return (
+                              <ComposerLink key={btnIndex} path={btn.url}>
+                                <Base.Button
+                                  buttonType={btn.type}
+                                  className={this.decorateCSS("card-button")}
+                                >
+                                  {btnText && (
+                                    <Base.P className={this.decorateCSS("card-button-text")}>
+                                      {btn.text}
+                                    </Base.P>
+                                  )}
+                                  {btnIcon && (
+                                    <Base.Icon name={btn.icon} propsIcon={{ className: this.decorateCSS("card-button-icon") }} />
+                                  )}
+                                </Base.Button>
+                              </ComposerLink>
+                            );
+                          })}
+                        </div>
+                      )}
                     </Base.VerticalContent>
-                    {hasValidCardButtons && (
-                      <div className={this.decorateCSS("card-button-container")}>
-                        {cardButtons.map((btn: any, btnIndex: number) => {
-                          const btnText = this.castToString(btn.text);
-                          const btnIcon = !!btn.icon;
-                          if (!btnText && !btnIcon) return null;
-                          return (
-                            <ComposerLink key={btnIndex} path={btn.url}>
-                              <Base.Button
-                                buttonType={btn.type}
-                                className={this.decorateCSS("card-button")}
-                              >
-                                {btnText && (
-                                  <Base.P className={this.decorateCSS("card-button-text")}>
-                                    {btn.text}
-                                  </Base.P>
-                                )}
-                                {btnIcon && (
-                                  <Base.Icon name={btn.icon} propsIcon={{ className: this.decorateCSS("card-button-icon") }} />
-                                )}
-                              </Base.Button>
-                            </ComposerLink>
-                          );
-                        })}
-                      </div>
-                    )}
                   </Base.VerticalContent>
                 );
               })}
