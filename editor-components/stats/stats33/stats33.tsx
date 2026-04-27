@@ -50,10 +50,10 @@ class Stats33 extends BaseStats {
             type: "array",
             key: "buttons",
             displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
-               
-            ]
-        })
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+            ],
+        });
 
         this.addProp({
             type: "array",
@@ -87,7 +87,6 @@ class Stats33 extends BaseStats {
                             displayer: "Buttons",
                             value: [
                                 INPUTS.BUTTON("button", "Button", "About Us", "", "FaArrowRight", null, "Primary"),
-                                
 
                             ],
                         },
