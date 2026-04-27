@@ -30,12 +30,10 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
         color: var(--composer-font-color-primary);
 
         .title,
-        .subtitle {
-          content: "";
-        }
-
+        .subtitle,
         .description {
-          color: var(--composer-font-color-primary);
+
+          content: "";
         }
 
         .top-level-buttons {
@@ -212,6 +210,18 @@ $transition: all 0.4s cubic-bezier(0.5, 1, 0.89, 1);
   }
 }
 
+
+@container (max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      .page {
+        .page-down {
+          gap: var(--composer-gap-md);
+        }
+      }
+    }
+  }
+}
 
 @container (max-width: #{$composer-phone-width}) {
   .container {
