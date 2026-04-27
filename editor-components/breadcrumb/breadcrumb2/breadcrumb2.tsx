@@ -103,7 +103,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
     });
     this.addProp({
       type: "media",
-      key: "image",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "" },
@@ -143,7 +143,7 @@ class Breadcrumb2 extends BaseBreadcrumb {
     const currentPageIcon = currentPage?.icon || "";
     const showGradient = this.getPropValue("showGradient");
     const overlay = this.getPropValue("overlay");
-    const bgImage = this.getPropValue("image");
+    const bgImage = this.getPropValue("componentBackground");
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
