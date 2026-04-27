@@ -18,7 +18,6 @@ type IIconBoxes = {
   priceBig: React.JSX.Element;
   plan: React.JSX.Element;
   icon?: TypeMediaInputValue;
-  background?: TypeMediaInputValue;
   buttons?: INPUTS.CastedButton[];
 };
 
@@ -114,16 +113,6 @@ class PricingTable8 extends BasePricingTable {
               displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "AiOutlinePlus" },
-            },
-            {
-              type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695f6c57f959f6002d804798?alt=media",
-              },
             },
             {
               type: "array",
@@ -223,16 +212,6 @@ class PricingTable8 extends BasePricingTable {
               value: { type: "icon", name: "MdDoneAll" },
             },
             {
-              type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695f6e70f959f6002d8050e9?alt=media",
-              },
-            },
-            {
               type: "array",
               key: "bars",
               displayer: "Bars",
@@ -330,16 +309,6 @@ class PricingTable8 extends BasePricingTable {
               value: { type: "icon", name: "AiOutlinePlus" },
             },
             {
-              type: "media",
-              key: "background",
-              displayer: "Background",
-              additionalParams: { availableTypes: ["image", "video"] },
-              value: {
-                type: "image",
-                url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/695f6c8af959f6002d8047f4?alt=media",
-              },
-            },
-            {
               type: "array",
               key: "bars",
               displayer: "Bars",
@@ -394,6 +363,7 @@ class PricingTable8 extends BasePricingTable {
     });
 
     this.setComponentState("currentIndex", 0);
+    this.setComponentState("hoveredIndex", null);
     this.setComponentState("slider-ref", React.createRef());
 
     this.addProp({
@@ -516,6 +486,8 @@ class PricingTable8 extends BasePricingTable {
 
     const cards = this.castToObject<IIconBoxes[]>("cards");
     const currentIndex = this.getComponentState("currentIndex");
+    const hoveredIndex = this.getComponentState("hoveredIndex");
+    const displayIndex = hoveredIndex !== null ? hoveredIndex : currentIndex;
     const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons");
     const footerButtons = this.castToObject<INPUTS.CastedButton[]>("footerButtons");
     const settingsGroup = this.castToObject<PricingTableSettings>("settings");
@@ -526,7 +498,7 @@ class PricingTable8 extends BasePricingTable {
     const hasHeaderButtons = this.hasAnyButtonContent(headerButtons);
     const hasFooterButtons = this.hasAnyButtonContent(footerButtons);
 
-    const currentCard = cards[currentIndex];
+    const currentCard = cards[displayIndex];
     const hasLowerContent =
       currentCard && this.hasLowerContainerContent(currentCard);
 
@@ -535,6 +507,14 @@ class PricingTable8 extends BasePricingTable {
 
     const handleCardClick = (index: number) => {
       this.setComponentState("currentIndex", index);
+    };
+
+    const handleCardHover = (index: number) => {
+      this.setComponentState("hoveredIndex", index);
+    };
+
+    const handleCardLeave = () => {
+      this.setComponentState("hoveredIndex", null);
     };
 
     return (
@@ -601,7 +581,6 @@ class PricingTable8 extends BasePricingTable {
                   const hasPricingContainer =
                     this.hasPricingContainerContent(card);
                   const iconExist = this.hasMediaContent(card.icon);
-                  const bgExist = this.hasMediaContent(card.background);
                   const isIconImage = !!(
                     iconExist && card.icon?.type === "image"
                   );
@@ -614,12 +593,6 @@ class PricingTable8 extends BasePricingTable {
                       <Base.VerticalContent
                         className={this.decorateCSS("pricing")}
                       >
-                        {bgExist && (
-                          <Base.Media
-                            value={card.background}
-                            className={this.decorateCSS("card-bg")}
-                          />
-                        )}
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
@@ -677,26 +650,21 @@ class PricingTable8 extends BasePricingTable {
                   const hasPricingContainer =
                     this.hasPricingContainerContent(card);
                   const iconExist = this.hasMediaContent(card.icon);
-                  const bgExist = this.hasMediaContent(card.background);
                   const isIconImage = !!(
                     iconExist && card.icon?.type === "image"
                   );
 
                   return (
                     <div
-                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${settingsGroup.animations ? settingsGroup.animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
+                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${index === currentIndex ? this.decorateCSS("active-card") : ""} ${settingsGroup.animations ? settingsGroup.animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
                       key={index}
                       onClick={() => handleCardClick(index)}
+                      onMouseEnter={() => handleCardHover(index)}
+                      onMouseLeave={handleCardLeave}
                     >
                       <Base.VerticalContent
                         className={this.decorateCSS("pricing")}
                       >
-                        {bgExist && (
-                          <Base.Media
-                            value={card.background}
-                            className={this.decorateCSS("card-bg")}
-                          />
-                        )}
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
