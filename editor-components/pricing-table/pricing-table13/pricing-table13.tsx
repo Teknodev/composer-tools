@@ -7,6 +7,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type FeatureItem = {
     text: string;
+    icon: TypeMediaInputValue;
 };
 
 type CardContent = {
@@ -16,8 +17,6 @@ type CardContent = {
     cardDescription: string;
     cardButton: INPUTS.CastedButton;
     cardFeatures: FeatureItem[];
-    showFeatures?: boolean;
-    featureIcon: TypeMediaInputValue;
 };
 
 class PricingTable13 extends BasePricingTable {
@@ -68,16 +67,6 @@ class PricingTable13 extends BasePricingTable {
                         { type: "string", key: "cardSubtitle", displayer: "Card Subtitle", value: "" },
                         { type: "string", key: "cardTitle", displayer: "Card Title", value: "Extended License" },
                         { type: "string", key: "cardDescription", displayer: "Card Description", value: "" },
-                        { type: "boolean", key: "showFeatures", displayer: "Show Features", value: true },
-                        {
-                            type: "media",
-                            key: "featureIcon",
-                            displayer: "Feature Icon",
-                            value: {
-                                type: "icon",
-                                name: "GoDotFill",
-                            },
-                        },
                         {
                             type: "array",
                             key: "cardFeatures",
@@ -86,21 +75,69 @@ class PricingTable13 extends BasePricingTable {
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Functionality" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Design" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Limits" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Support" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                             ]
@@ -117,16 +154,6 @@ class PricingTable13 extends BasePricingTable {
                         { type: "string", key: "cardSubtitle", displayer: "Card Subtitle", value: "" },
                         { type: "string", key: "cardTitle", displayer: "Card Title", value: "Basic License" },
                         { type: "string", key: "cardDescription", displayer: "Card Description", value: "" },
-                        { type: "boolean", key: "showFeatures", displayer: "Show Features", value: true },
-                        {
-                            type: "media",
-                            key: "featureIcon",
-                            displayer: "Feature Icon",
-                            value: {
-                                type: "icon",
-                                name: "GoDotFill",
-                            },
-                        },
                         {
                             type: "array",
                             key: "cardFeatures",
@@ -135,21 +162,69 @@ class PricingTable13 extends BasePricingTable {
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Functionality" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Design" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Limits" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                                 {
                                     type: "object", key: "feature-item", displayer: "Feature Item", value: [
                                         { type: "string", key: "text", displayer: "Text", value: "Support" },
+                                        {
+                                            type: "media",
+                                            key: "icon",
+                                            displayer: "Icon",
+                                            additionalParams: {
+                                                availableTypes: ["icon", "image"],
+                                            },
+                                            value: {
+                                                type: "icon",
+                                                name: "GoDotFill",
+                                            },
+                                        },
                                     ]
                                 },
                             ]
@@ -236,9 +311,8 @@ class PricingTable13 extends BasePricingTable {
                                 const cardFeatures = Array.isArray(cardItem?.cardFeatures) ? cardItem.cardFeatures : [];
                                 const cardButton = cardItem?.cardButton;
                                 const hasValidCardButton = cardButton && this.castToString(cardButton.text);
-                                const showFeatures = cardItem?.showFeatures ?? true;
 
-                                const hasContent = cardSubtitleExist || cardTitleExist || cardPriceExist || cardDescriptionExist || (showFeatures && cardFeatures.length > 0) || hasValidCardButton;
+                                const hasContent = cardSubtitleExist || cardTitleExist || cardPriceExist || cardDescriptionExist || (cardFeatures.length > 0) || hasValidCardButton;
 
                                 return hasContent && (
                                     <div key={idx} className={this.decorateCSS("card")}>
@@ -275,8 +349,8 @@ class PricingTable13 extends BasePricingTable {
                                                                 key={fIdx}
                                                                 className={this.decorateCSS("feature-item")}
                                                             >
-                                                                {showFeatures && cardItem.featureIcon && (
-                                                                    <Base.Media value={cardItem.featureIcon} className={this.decorateCSS("feature-icon")} />
+                                                                {feature.icon && (
+                                                                    <Base.Media value={feature.icon} className={this.decorateCSS("feature-icon")} />
                                                                 )}
                                                                 {featureText}
                                                             </Base.P>
