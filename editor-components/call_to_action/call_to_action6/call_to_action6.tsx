@@ -12,7 +12,7 @@ class CallToAction6Page extends BaseCallToAction {
 
     this.addProp({
       type: "media",
-      key: "backgroundImage",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image", "video"],
@@ -124,11 +124,11 @@ class CallToAction6Page extends BaseCallToAction {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")}
-        ${this.getPropValue("overlay") && this.getPropValue("backgroundImage") ? this.decorateCSS("overlay-active") : ""}`}
+        ${this.getPropValue("overlay") && this.getPropValue("componentBackground") ? this.decorateCSS("overlay-active") : ""}`}
       >
-        {this.getPropValue("backgroundImage") && (
+        {this.getPropValue("componentBackground") && (
           <Base.Media
-            value={this.getPropValue("backgroundImage")}
+            value={this.getPropValue("componentBackground")}
             className={this.decorateCSS("background-image")}
           />
         )}

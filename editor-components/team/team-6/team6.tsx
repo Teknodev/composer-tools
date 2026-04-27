@@ -1,6 +1,6 @@
 import * as React from "react";
 import styles from "./team6.module.scss";
-import { Team } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Feature = {
@@ -9,7 +9,7 @@ type Feature = {
 };
 
 type Card = {
-  image: string;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
   description: React.JSX.Element;
@@ -56,10 +56,16 @@ class Team6 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627ce0?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b18bbd2970002c627ce0?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "string",
@@ -164,10 +170,16 @@ class Team6 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              },
             },
             {
               type: "string",
@@ -272,10 +284,16 @@ class Team6 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://images.pexels.com/photos/8434878/pexels-photo-8434878.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://images.pexels.com/photos/8434878/pexels-photo-8434878.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+              },
             },
             {
               type: "string",
@@ -380,10 +398,16 @@ class Team6 extends Team {
           displayer: "Items",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=1600",
+              },
             },
             {
               type: "string",
@@ -537,14 +561,14 @@ class Team6 extends Team {
               {this.castToObject<Card[]>("items").map((card: Card, indexItems: number) => {
                 const cardNameExist = this.castToString(card.name);
                 const cardPositionExist = this.castToString(card.position);
-                const hasCard = cardNameExist || cardPositionExist || card.image || card.features.length > 0;
+                const hasCard = cardNameExist || cardPositionExist || card.profileImage || card.features.length > 0;
 
                 return (
                   hasCard && (
                     <div key={indexItems} className={this.decorateCSS("all-card")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       <div className={this.decorateCSS("top")}>
                         <div className={this.decorateCSS("image-wrapper")}>
-                          {card.image ? (
+                          {card.profileImage ? (
                             <div onClick={() => handleButton(indexItems)} className={this.decorateCSS("image-button")}>
                               {card.features.length > 0 &&
                                 (this.getComponentState("activeIndex") === indexItems ? (
@@ -553,11 +577,10 @@ class Team6 extends Team {
                                   <Base.Icon name={this.getPropValue("openingIcon")} propsIcon={{ className: this.decorateCSS("image-icon") }} />
                                 ))}
                               <div className={this.decorateCSS("image-container")}>
-                                <img 
-                                  className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`} 
-                                  src={card.image} 
-                                  alt={this.castToString(card.name)} 
-                                  data-animation={this.getPropValue("hoverAnimation").join(" ")} 
+                                <Base.Media
+                                  value={card.profileImage}
+                                  className={`${this.decorateCSS("image")} ${this.getComponentState("activeIndex") === indexItems && card.features.length > 0 ? this.decorateCSS("shrink") : ""}`}
+                                  data-animation={this.getPropValue("hoverAnimation").join(" ")}
                                 />
                               </div>
                               <div className={this.decorateCSS("card-info")}>
