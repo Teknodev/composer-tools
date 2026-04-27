@@ -34,7 +34,7 @@ class List5 extends BaseList {
     });
     this.addProp({
       type: "image",
-      key: "image",
+      key: "componentBackground",
       displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/67484143506a40002c2f0020?alt=media",
@@ -220,7 +220,7 @@ class List5 extends BaseList {
     const ListItems = this.castToObject<ListItem[]>("list-items");
     const subtitle = this.getPropValue("subtitle");
     const header = this.getPropValue("header");
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("componentBackground");
 
     return (
         <Base.Container className={this.decorateCSS("container")}

@@ -12,7 +12,7 @@ class Form2 extends BaseContacts {
 
     this.addProp({
       type: "media",
-      key: "background-img",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: {
         availableTypes: ["image","video"],
@@ -254,7 +254,7 @@ class Form2 extends BaseContacts {
     const buttonText = button.text;
     const buttonTextExist = this.castToString(button.text);
 
-    const backgroundImage = this.getPropValue("background-img");
+    const backgroundImage = this.getPropValue("componentBackground");
     const imageExist = backgroundImage?.url;
     const overlay = this.getPropValue("overlay");
 
