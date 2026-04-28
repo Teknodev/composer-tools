@@ -24,12 +24,12 @@
                     }
 
                     .button-container { justify-content: flex-start !important; }
-                    .stats-grid { 
+                    .stats-grid {
                         width: 100% !important;
                         justify-content: flex-start !important;
-                        .stat-item { 
-                            align-items: flex-start !important; 
-                            text-align: left !important; 
+                        .stat-item {
+                            align-items: flex-start !important;
+                            text-align: left !important;
 
                             .stat-title, .stat-subtitle, .stat-description {
                                 text-align: left !important;
@@ -37,6 +37,7 @@
                             }
                         }
                     }
+
                 }
             }
 
@@ -121,6 +122,17 @@
         .max-content .content-wrapper {
             gap: var(--composer-gap-lg);
             .media-container { min-height: 400px; }
+            &.has-media .text-card[data-alignment="center"] .stats-grid .stat-item {
+                align-items: center !important;
+                text-align: center !important;
+
+                .stat-value-container { justify-content: center !important; }
+
+                .stat-title, .stat-subtitle, .stat-description {
+                    text-align: center !important;
+                    align-self: center !important;
+                }
+            }
             .text-card {
                 gap: var(--composer-gap-md);
                 .stats-grid { gap: var(--composer-gap-md); }
@@ -149,6 +161,10 @@
                     .stat-item {
                         align-items: center !important;
                         text-align: center !important;
+
+                        .stat-value-container {
+                            justify-content: center !important;
+                        }
 
                         .stat-title, .stat-subtitle, .stat-description {
                             text-align: center !important;
