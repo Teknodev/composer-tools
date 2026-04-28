@@ -818,23 +818,29 @@
                         .image-up-arrow {
                             .icon {
                                 font-size: 1.5rem;
-                                transform: rotate(0deg);
-                                transform: translate(1px);
+                            }
+                        }
+
+                        .image-down-arrow {
+                            position: absolute;
+                            right: 0px;
+                            top: 0;
+                            height: 100%;
+
+                            .icon {
+                                transform: rotate(-90deg);
                             }
                         }
 
                         .image-up-arrow {
                             position: absolute;
-                            right: 0px;
-                            top: 0;
-                            height: 100%;
-                        }
-
-                        .image-down-arrow {
-                            position: absolute;
                             left: 0px;
                             top: 0;
                             height: 100%;
+
+                            .icon {
+                                transform: rotate(-90deg);
+                            }
                         }
                     }
                 }
@@ -905,7 +911,6 @@
                             }
                         }
                     }
-
                 }
             }
 
