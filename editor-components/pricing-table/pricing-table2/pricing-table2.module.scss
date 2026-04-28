@@ -151,6 +151,7 @@
                 flex-wrap: wrap;
                 flex-direction: row;
                 place-self: flex-start;
+                padding-left: 10px;
 
                 .card-button {
 
@@ -201,9 +202,10 @@
 
                 .card-img {
                   margin-top: calc(-1 * var(--composer-gap-lg));
-                    .icon{
-                      font-size: 1.2rem;
-                    }
+
+                  .icon {
+                    font-size: 1.2rem;
+                  }
                 }
               }
             }
