@@ -195,10 +195,8 @@
                 width: 100%;
 
                 .subtitle {
-                    transform: none;
-
                     &::before {
-                        display: none !important;
+                        background-color: var(--composer-font-color-secondary) !important;
                     }
                 }
             }
