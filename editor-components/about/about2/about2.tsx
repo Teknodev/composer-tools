@@ -140,7 +140,7 @@ class About2 extends BaseAbout {
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
 
-    const hasMedia = !!cover;
+    const hasMedia = !!(cover && (cover.type === "icon" ? cover.name : cover.url));
     const hasContent = subtitle || title || description || hasValidButtons;
 
     return (
