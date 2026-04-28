@@ -1,12 +1,12 @@
 import * as React from "react";
 import styles from "./team5.module.scss";
-import { Team } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { Base } from "../../../composer-base-components/base/base";
 
 type eggs = {
-  background: string;
-  picture: string;
+  background: TypeMediaInputValue;
+  picture: TypeMediaInputValue;
   socials: Array<{ icon: string; url: string }>;
   name: React.JSX.Element;
   occupation: React.JSX.Element;
@@ -39,16 +39,28 @@ class Team5 extends Team {
           displayer: "Team List",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "background",
               displayer: "Background",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "picture",
               displayer: "Picture",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c26?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c26?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "array",
@@ -134,16 +146,28 @@ class Team5 extends Team {
           displayer: "Team List",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "background",
               displayer: "Background",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "picture",
               displayer: "Picture",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c28?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c28?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "array",
@@ -229,16 +253,28 @@ class Team5 extends Team {
           displayer: "Team List",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "background",
               displayer: "Background",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "picture",
               displayer: "Picture",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c27?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c27?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "array",
@@ -324,16 +360,28 @@ class Team5 extends Team {
           displayer: "Team List",
           value: [
             {
-              type: "image",
+              type: "media",
               key: "background",
               displayer: "Background",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c24?alt=media&timestamp=1719502692150",
+              },
             },
             {
-              type: "image",
+              type: "media",
               key: "picture",
               displayer: "Picture",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c25?alt=media&timestamp=1719502692150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b0eebd2970002c627c25?alt=media&timestamp=1719502692150",
+              },
             },
             {
               type: "array",
@@ -458,8 +506,8 @@ class Team5 extends Team {
                 hasItem && (
                   <Base.VerticalContent key={index} className={this.decorateCSS("egg-item")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                     <div className={this.decorateCSS("image-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")} >
-                      {item.background && <img className={this.decorateCSS("background-image")} src={item.background} alt="" />}
-                      {item.picture && <img className={this.decorateCSS("member-image")} src={item.picture} alt="" />}
+                      {item.background && <Base.Media value={item.background} className={this.decorateCSS("background-image")} />}
+                      {item.picture && <Base.Media value={item.picture} className={this.decorateCSS("member-image")} />}
                     </div>
                     <Base.Row className={this.decorateCSS("icon-container")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                       {item.socials.map((value, i) => (

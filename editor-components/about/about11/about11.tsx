@@ -126,7 +126,7 @@ class About11 extends BaseAbout {
 
     this.addProp({
       type: "media",
-      key: "image",
+      key: "profileImage",
       displayer: "Image",
       additionalParams: {
         availableTypes: ["image", "video"],
@@ -155,14 +155,15 @@ class About11 extends BaseAbout {
     const rightItems = this.castToObject<Icon[]>("right-items") || [];
     const iconBackground = this.getPropValue("iconBackground");
 
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("profileImage");
 
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
     const hasDescription = this.castToString(description);
     const hasRightIcon = rightItems.some((ri) => {
       const icon = ri?.icon;
-      return icon?.name || icon?.url;
+      if (!icon) return false;
+      return icon.type === "icon" ? !!icon.name : !!icon.url;
     });
     const hasRightContent =
       hasTitle || hasSubtitle || hasDescription || hasRightIcon;
@@ -178,10 +179,6 @@ class About11 extends BaseAbout {
               <Base.GridCell className={this.decorateCSS("left")}>
                 <div className={this.decorateCSS("image-wrapper")}>
                   <Base.Media
-                    autoPlay
-                    loop
-                    muted
-                    controls={false}
                     value={image}
                     className={this.decorateCSS("image")}
                   />

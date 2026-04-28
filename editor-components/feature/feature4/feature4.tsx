@@ -27,7 +27,7 @@ class Feature4 extends BaseFeature {
     });
     this.addProp({
       type: "media",
-      key: "backgroundImage",
+      key: "componentBackground",
       displayer: "Background Image",
       additionalParams: {
         availableTypes: ["image"],
@@ -403,7 +403,7 @@ class Feature4 extends BaseFeature {
     return (
       <Base.Container
         className={this.decorateCSS("container")}
-        style={{ backgroundImage: `url(${this.getPropValue("backgroundImage")?.url})` }}>
+        style={{ backgroundImage: `url(${this.getPropValue("componentBackground")?.url})` }}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           <Base.ListGrid gridCount={{ pc: itemCount, tablet: 1 }} className={this.decorateCSS("content")}>
             {(subtitleExist || titleExist || linkTextExist) && (
@@ -411,8 +411,8 @@ class Feature4 extends BaseFeature {
                 {subtitleExist && (
                   <Base.SectionSubTitle className={`
                     ${this.decorateCSS("section-subtitle")}
-                    ${this.getPropValue("backgroundImage")?.url && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
-                    ${this.getPropValue("backgroundImage")?.url && (subtitleType === "badge") ? this.decorateCSS("badge-with-bg") : ""}
+                    ${this.getPropValue("componentBackground")?.url && (subtitleType !== "badge") ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("componentBackground")?.url && (subtitleType === "badge") ? this.decorateCSS("badge-with-bg") : ""}
                   `}>
                     {this.getPropValue("subtitle")}
                   </Base.SectionSubTitle>
@@ -420,20 +420,20 @@ class Feature4 extends BaseFeature {
                 {titleExist && (
                   <Base.SectionTitle className={`
                     ${this.decorateCSS("section-title")}
-                    ${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("black") : ""}
+                    ${this.getPropValue("componentBackground")?.url ? this.decorateCSS("black") : ""}
                   `}>
                     {this.getPropValue("title")}
                   </Base.SectionTitle>
                 )}
                 {descriptionExist && (
-                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("backgroundImage")?.url && this.decorateCSS("black")}`}>                    
+                  <Base.SectionDescription className={`${this.decorateCSS("description")} ${this.getPropValue("componentBackground")?.url && this.decorateCSS("black")}`}>                    
                   {description}
                   </Base.SectionDescription>
                 )}
                 {linkTextExist && (
                   <Base.Row className={this.decorateCSS("card-link-container")} >
                     <ComposerLink path={linkButton.url}>
-                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
+                      <Base.Button buttonType={linkButton.type} className={`${this.getPropValue("componentBackground")?.url ? this.decorateCSS("featured-card-link-with-image") : this.decorateCSS("featured-card-link")}`}>
                         {linkButton.text}
                       </Base.Button>
                     </ComposerLink>
@@ -455,11 +455,11 @@ class Feature4 extends BaseFeature {
                 return (
                   <div
                     key={index}
-                    className={`${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
+                    className={`${this.getPropValue("componentBackground")?.url ? this.decorateCSS("card-item-count") : this.decorateCSS("card-item-count-no-bg")}`}>
                     <Base.VerticalContent className={this.decorateCSS("vertical")}>
                       {!!card.icon && (
 
-                        <div className={`${this.getPropValue("backgroundImage")?.url ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
+                        <div className={`${this.getPropValue("componentBackground")?.url ? this.decorateCSS("icon-container") : this.decorateCSS("icon-container-no-bg")}`}>
                           <Base.Media
                             value={card.icon}
                             className={this.decorateCSS("icon")}
@@ -470,7 +470,7 @@ class Feature4 extends BaseFeature {
                       {
                         titleExist && (
                           <Base.H3 className={`${this.decorateCSS("title")}
-                    ${this.getPropValue("backgroundImage")?.url && this.decorateCSS("title-with-bg")} } `}>
+                    ${this.getPropValue("componentBackground")?.url && this.decorateCSS("title-with-bg")} } `}>
                             {card.title}
                           </Base.H3>
                         )
@@ -478,7 +478,7 @@ class Feature4 extends BaseFeature {
                       {
                         subtitleExist && (
                           <Base.P className={`${this.decorateCSS("subtitle")} 
-                        ${this.getPropValue("backgroundImage")?.url && this.decorateCSS("subtitle-with-bg")} }`}>
+                        ${this.getPropValue("componentBackground")?.url && this.decorateCSS("subtitle-with-bg")} }`}>
                             {card.subtitle}
                           </Base.P>
                         )
