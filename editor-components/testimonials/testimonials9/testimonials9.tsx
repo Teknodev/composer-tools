@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Testimonials } from "../../EditorComponent";
+import { Testimonials, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./testimonials9.module.scss";
 import ComposerSlider from "../../../composer-base-components/slider/slider";
 
 import { Base } from "../../../composer-base-components/base/base";
 type Card = {
-  image: string;
+  profileImage: TypeMediaInputValue;
   title: React.JSX.Element;
   subtitle: React.JSX.Element;
   description: React.JSX.Element;
@@ -43,10 +43,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b38?alt=media&timestamp=1719483639150",
+              },
             },
             {
               type: "string",
@@ -74,10 +80,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b33?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -105,10 +117,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b34?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -136,10 +154,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -167,10 +191,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b36?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -198,10 +228,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b35?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -229,10 +265,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66617728bd2970002c623bd5?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -260,10 +302,16 @@ class Testimonials9Page extends Testimonials {
           displayer: "Slider Object",
           value: [
             {
-              type: "image",
-              key: "image",
-              displayer: "Author Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+              type: "media",
+      key: "profileImage",
+      displayer: "Author Image",
+      additionalParams: {
+        availableTypes: ["image"],
+      },
+      value: {
+        type: "image",
+        url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/666176cabd2970002c623b37?alt=media&timestamp=1719483639150",
+      },
             },
             {
               type: "string",
@@ -328,7 +376,7 @@ class Testimonials9Page extends Testimonials {
                   {this.castToObject<Card[]>("slider").map((item: Card, index: number) => {
                     return (
                       <div className={`${this.decorateCSS("card-inner")} ${activeIndex === index ? this.decorateCSS("active") : ""}`}>
-                        {item.image && <img alt="" src={item.image} className={this.decorateCSS("img")} />}
+                        {item.profileImage && <Base.Media value={item.profileImage} className={this.decorateCSS("img")} />}
                         {(this.castToString(item.title) || this.castToString(item.subtitle)) && (
                           <Base.VerticalContent className={this.decorateCSS("text")}>
                             {this.castToString(item.title) && <Base.H4 className={this.decorateCSS("title")}>{item.title}</Base.H4>}

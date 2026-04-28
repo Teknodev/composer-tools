@@ -31,12 +31,12 @@ export namespace INPUTS {
           value: text,
         },
         {
-          type: "select",
+          type: "badge",
           key: "type",
           displayer: "Type",
           value: type,
           additionalParams: {
-            selectItems: [
+            badgeItems: [
               "Primary",
               "Secondary",
               "Tertiary",
