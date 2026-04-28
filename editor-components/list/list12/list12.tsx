@@ -13,7 +13,7 @@ class List12 extends BaseList {
 
     this.addProp({
       type: "image",
-      key: "image",
+      key: "componentBackground",
       displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/683dbb7557d0a6002b5dbba8?alt=media&timestamp=1748876160309",
@@ -128,13 +128,13 @@ class List12 extends BaseList {
     const box1 = this.castToObject<any>("box1");
     const box2 = this.castToObject<any>("box2");
     const box3 = this.castToObject<any>("box3");
-    const hasBackgroundImage = this.getPropValue("image");
+    const hasBackgroundImage = this.getPropValue("componentBackground");
 
     return (
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${this.getPropValue("image")})`,
+          backgroundImage: `url(${this.getPropValue("componentBackground")})`,
           backgroundSize: "cover",
         }}
       >
