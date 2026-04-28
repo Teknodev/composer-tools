@@ -333,7 +333,7 @@
             color: var(--composer-font-color-primary);
             &.badge{
                 color: var(--composer-font-color-primary);
-                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+                background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
             }
         }
         .sectionDescription{
@@ -598,7 +598,7 @@
 
 .overlay{
   position: fixed;
-  left: auto;
+  left: 0;
   top: 0;
   z-index: 100;
   width: 100vw;

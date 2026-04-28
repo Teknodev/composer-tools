@@ -30,7 +30,7 @@ class Footer2Page extends BaseFooter {
 
     this.addProp({
       type: "media",
-      key: "image",
+      key: "componentBackground",
       displayer: "Media",
       additionalParams: {
         availableTypes: ["image", "video"],
@@ -310,7 +310,7 @@ class Footer2Page extends BaseFooter {
   }
 
   render() {
-    const image = this.getPropValue("image");
+    const image = this.getPropValue("componentBackground");
     const overlay = this.getPropValue("overlay");
 
     const footer = this.castToObject<any[]>("footer");
