@@ -1,143 +1,169 @@
-@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss"
-  as *;
+@use "../../../../composer-tools//composer-base-components//base//utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
     display: flex;
     flex-direction: column;
-    gap: var(--composer-gap-md);
+    gap: var(--composer-gap-lg);
+
+    .vertical-content {
+
+      .subtitle,
+      .title,
+      .description {
+        content: "";
+      }
+    }
 
     .team-members {
       justify-content: center;
       align-items: center;
       transition: transform 0.5s;
-    }
 
-    .description {
-      content: "";
-    }
-    .team {
-      flex: 1 1;
-      gap: var(--composer-gap-xs);
-      box-shadow: var(--box-shadow-active);
-      background-color: color-mix(
-        in srgb,
-        var(--composer-html-background),
-        var(--composer-font-color-primary) 5%
-      );
-      border-radius: var(--composer-border-radius-md);
-      padding: var(--composer-gap-md);
-      min-width: 250px;
-      height: 100%;
-      align-items: center;
+      .team {
+        height: 100%;
+        gap: var(--composer-gap-xs);
+        box-shadow: var(--box-shadow-active);
+        background-color: color-mix(in srgb,
+            var(--composer-html-background),
+            var(--composer-font-color-primary) 5%);
+        border-radius: var(--composer-border-radius-md);
+        padding: var(--composer-gap-md);
+        align-items: flex-start;
 
-      &[data-animation~="animate5"] {
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          30% { transform: translateY(-6px); }
-          60% { transform: translateY(2px); }
+        &[data-animation~="animate1"] {
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: var(--composer-html-background);
+          }
         }
 
-        &:hover {
+        &[data-animation~="animate2"] {
           .icon-group {
             .icon {
-              animation: bounce 0.6s ease;
-              animation-fill-mode: both;
-              animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              transition: color 0.3s ease, transform 0.3s ease;
+            }
+          }
+
+          &:hover {
+            .icon-group {
+              .icon {
+                animation: colorSlideUp 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
             }
           }
         }
-      }
 
-      &[data-animation~="animate4"] {
-        @keyframes scale {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.25); }
+        &[data-animation~="animate3"] {
+          transition: all 0.5s ease;
+
+          &:hover {
+            box-shadow: 0 0 20px rgba(var(--composer-primary-color-rgb), 0.4);
+          }
         }
 
-        &:hover {
-          .icon-group {
-            .icon {
-              animation: scale 0.6s ease;
-              animation-fill-mode: both;
-              animation-delay: calc(var(--icon-index, 0) * 0.2s);
+        &[data-animation~="animate4"] {
+          @keyframes scale {
+
+            0%,
+            100% {
+              transform: scale(1);
+            }
+
+            50% {
+              transform: scale(1.25);
+            }
+          }
+
+          &:hover {
+            .icon-group {
+              .icon {
+                animation: scale 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
             }
           }
         }
-      }
 
-      &[data-animation~="animate1"] {
-        transition: background-color 0.3s ease;
+        &[data-animation~="animate5"] {
+          @keyframes bounce {
 
-        &:hover {
-          background-color: var(--composer-html-background);
+            0%,
+            100% {
+              transform: translateY(0);
+            }
+
+            30% {
+              transform: translateY(-6px);
+            }
+
+            60% {
+              transform: translateY(2px);
+            }
+          }
+
+          &:hover {
+            .icon-group {
+              .icon {
+                animation: bounce 0.6s ease;
+                animation-fill-mode: both;
+                animation-delay: calc(var(--icon-index, 0) * 0.2s);
+              }
+            }
+          }
         }
-      }
 
-      &[data-animation~="animate6"] {
-        transition: transform 0.3s ease;
+        &[data-animation~="animate6"] {
+          transition: transform 0.3s ease;
 
-        &:hover {
-          transform: scale(1.04);
+          &:hover {
+            transform: scale(1.04);
+          }
         }
-      }
 
-      &[data-animation~="animate3"] {
-        transition: all 0.5s ease;
-
-        &:hover {
-          box-shadow: 0 0 20px rgba(var(--composer-primary-color-rgb), 0.4);
+        .image {
+          display: block;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          object-fit: cover;
         }
-      }
 
-      &[data-animation~="animate2"] {
+        .title {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+
+        .position {
+          color: var(--composer-primary-color);
+          text-align: left;
+        }
+
+        .long-text {
+          color: var(--composer-font-color-primary);
+          text-align: left;
+        }
+
         .icon-group {
-          .icon {
-            transition: color 0.3s ease, transform 0.3s ease;
-          }
-        }
+          display: flex;
+          flex-direction: row;
+          gap: var(--composer-gap-sm);
 
-        &:hover {
-          .icon-group {
-            .icon {
-              animation: colorSlideUp 0.6s ease;
-              animation-fill-mode: both;
-              animation-delay: calc(var(--icon-index, 0) * 0.2s);
+          .icon {
+            font-size: 1.5rem;
+            color: var(--composer-tertiary-color);
+            cursor: pointer;
+
+            &.has-image {
+              height: 20px;
+              width: 20px;
+              object-fit: cover;
             }
           }
-        }
-      }
-
-      .image {
-        display: block;
-        width: 100px;
-        height: 100px;
-        padding: 0;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-      .title {
-        display: block;
-        color: var(--composer-font-color-primary);
-      }
-      .position {
-        display: block;
-        color: var(--composer-primary-color);
-      }
-      .long-text {
-        display: block;
-        color: var(--composer-font-color-primary);
-        padding-bottom: var(--composer-gap-md);
-      }
-      .icon-group {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: var(--composer-gap-sm);
-
-        .icon {
-          font-size: 1.5rem;
-          color: var(--composer-tertiary-color);
         }
       }
     }
@@ -155,20 +181,27 @@
 }
 
 @keyframes colorChange {
-  0% { color: var(--composer-font-color-primary); }
-  100% { color: var(--composer-primary-color); }
+  0% {
+    color: var(--composer-font-color-primary);
+  }
+
+  100% {
+    color: var(--composer-primary-color);
+  }
 }
 
 @keyframes colorSlideUp {
-  0% { 
+  0% {
     color: var(--composer-font-color-primary);
     transform: translateY(0);
   }
-  50% { 
+
+  50% {
     color: var(--composer-primary-color);
     transform: translateY(-4px);
   }
-  100% { 
+
+  100% {
     color: var(--composer-primary-color);
     transform: translateY(-2px);
   }
