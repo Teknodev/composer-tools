@@ -1,53 +1,72 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .max-content {
-    .header {
-      .title, .description, .subtitle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--composer-gap-lg);
+
+    .vertical-content {
+
+      .title,
+      .description,
+      .subtitle {
         content: "";
       }
     }
+
     .cards-container {
       .cards {
         .card {
-          display: flex;
-          flex-direction: column;
-          gap: var(--composer-gap-md);
+          align-items: flex-start;
           padding: var(--composer-gap-md);
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-xl);
+          border-radius: var(--composer-border-radius-md);
           transition: 0.5s;
 
           .icon-container {
+            margin-bottom: var(--composer-gap-md);
             padding: var(--composer-gap-sm);
             background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 15%);
             border-radius: 50%;
-            margin-bottom: var(--composer-gap-md);
             transition: 0.5s;
             width: fit-content;
 
             .icon {
               font-size: 2rem;
+              width: 2rem;
+              height: 2rem;
+              display: inline-flex;
+              align-items: center;
+              justify-content: center;
               color: var(--composer-font-color-primary);
             }
           }
 
-          .device, .platform, .card-description {
+          .card-subtitle,
+          .card-title,
+          .card-description {
+            text-align: left !important;
             color: var(--composer-font-color-primary);
-            margin: 0;
           }
 
-          .button-container {
-              .button {
-                .button-icon, .button-text {
-                  content: "";
-                }
-                .image {
-                  width: 170px;
-                  height: 50px;
-                  object-fit: cover;
-                  border-radius: var(--composer-border-radius-sm);
-                }
+          .card-button-container {
+            .card-button {
+              .card-button-image {
+                height: var(--composer-gap-lg);
+                width: 141px;
+                object-fit: cover;
+                border-radius: var(--composer-border-radius-sm);
               }
+
+              .card-button-text {
+                content: "";
+              }
+
+              .card-button-icon {
+                line-height: 0;
+              }
+            }
           }
 
           &:hover {
@@ -61,10 +80,46 @@
               }
             }
 
-            .device,
-            .platform,
+            .card-subtitle,
+            .card-title,
             .card-description {
               color: var(--composer-html-background);
+            }
+          }
+        }
+      }
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: var(--composer-gap-sm);
+      flex-wrap: wrap;
+
+      .button {
+        .button-text {
+          content: "";
+        }
+      }
+    }
+  }
+}
+
+@container(max-width: #{$composer-tablet-width}) {
+  .container {
+    .max-content {
+      gap: var(--composer-gap-md);
+
+      .cards-container {
+        .cards {
+          .card {
+            .card-button-container {
+              .card-button {
+                .card-button-image {
+                  height: 39px !important;
+                  width: 138px !important;
+                }
+              }
             }
           }
         }
@@ -73,18 +128,18 @@
   }
 }
 
-@container(max-width: #{$composer-phone-width}){
-  .container{
-    .max-content{
-      .cards-container{
-        .cards{
-          .card{
-            .button-container {
-                .button {
-                  .image {
-                    width: 120px;
-                    height: 100%;
-                  }
+@container(max-width: #{$composer-phone-width}) {
+  .container {
+    .max-content {
+      .cards-container {
+        .cards {
+          .card {
+            .card-button-container {
+              .card-button {
+                .card-button-image {
+                  height: 27px !important;
+                  width: 117px !important;
+                }
               }
             }
           }

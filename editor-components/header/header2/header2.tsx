@@ -5,7 +5,7 @@ import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
 
 type SliderItem = {
-  media: TypeMediaInputValue;
+  componentBackground: TypeMediaInputValue;
 };
 
 class Header2 extends BaseHeader {
@@ -24,7 +24,7 @@ class Header2 extends BaseHeader {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -43,7 +43,7 @@ class Header2 extends BaseHeader {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -62,7 +62,7 @@ class Header2 extends BaseHeader {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -81,7 +81,7 @@ class Header2 extends BaseHeader {
           value: [
             {
               type: "media",
-              key: "media",
+              key: "componentBackground",
               displayer: "Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -111,9 +111,9 @@ class Header2 extends BaseHeader {
   }
 
   render() {
-    const sliderItems = this.castToObject<SliderItem[]>("slider").filter((item: SliderItem) => item.media);
+    const sliderItems = this.castToObject<SliderItem[]>("slider").filter((item: SliderItem) => item.componentBackground);
     const isOverlayActive = this.getPropValue("overlay");
-    const hasMedia = sliderItems.some((item: SliderItem) => item.media);
+    const hasMedia = sliderItems.some((item: SliderItem) => item.componentBackground);
     const settings = {
       ...this.transformSliderValues(this.getPropValue("settings")),
       infinite: sliderItems.length > 1,
@@ -132,10 +132,10 @@ class Header2 extends BaseHeader {
             <ComposerSlider {...settings} className={this.decorateCSS("carousel")}>
               {sliderItems.map((item: SliderItem, index: number) => (
                 <div key={index} className={this.decorateCSS("slider-item")}>
-                  {item.media && (
-                    <Base.Media value={item.media} className={this.decorateCSS("media")} />
+                  {item.componentBackground && (
+                    <Base.Media value={item.componentBackground} className={this.decorateCSS("media")} />
                   )}
-                  {isOverlayActive && item.media && <div className={this.decorateCSS("overlay")}></div>}
+                  {isOverlayActive && item.componentBackground && <div className={this.decorateCSS("overlay")}></div>}
                 </div>
               ))}
             </ComposerSlider>

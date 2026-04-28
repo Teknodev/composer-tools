@@ -11,7 +11,7 @@ class Header7 extends BaseHeader {
 
         this.addProp({
             type: "media",
-            key: "cover-image",
+            key: "componentBackground",
             displayer: "Image",
             value: {
                 url: "https://storage.googleapis.com/download/storage/v1/b/hq-blinkpage-staging-bbc49/o/69367c26496aa1002ca9a73c?alt=media",
@@ -73,7 +73,7 @@ class Header7 extends BaseHeader {
     }
 
     render() {
-        const coverImage = this.getPropValue("cover-image");
+        const coverImage = this.getPropValue("componentBackground");
         const buttonItem = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const subtitle = this.castToString(this.getPropValue("subtitle")) || "";
         const title = this.castToString(this.getPropValue("title")) || "";
