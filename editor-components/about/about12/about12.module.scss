@@ -122,6 +122,7 @@
   .container {
     .content-wrapper {
       flex-direction: column;
+      gap: var(--composer-gap-md);
     }
 
     .image-container {
