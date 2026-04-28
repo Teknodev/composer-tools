@@ -13,7 +13,6 @@ type IIconBoxes = {
   description: React.JSX.Element;
   list: any;
   title: React.JSX.Element;
-  image: string;
   price: React.JSX.Element;
   priceBig: React.JSX.Element;
   plan: React.JSX.Element;
@@ -593,6 +592,7 @@ class PricingTable8 extends BasePricingTable {
                       <Base.VerticalContent
                         className={this.decorateCSS("pricing")}
                       >
+                        <div className={this.decorateCSS("card-background-wrapper")} />
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
@@ -665,6 +665,7 @@ class PricingTable8 extends BasePricingTable {
                       <Base.VerticalContent
                         className={this.decorateCSS("pricing")}
                       >
+                        <div className={this.decorateCSS("card-background-wrapper")} />
                         {cardTitleExist && (
                           <Base.H3 className={this.decorateCSS("title")}>
                             {card.title}
