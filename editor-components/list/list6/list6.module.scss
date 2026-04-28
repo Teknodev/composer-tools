@@ -117,7 +117,7 @@
             justify-content: flex-start;
             text-align: left;
             padding-left: var(--composer-gap-lg);
-            font-size: 2rem !important;
+            font-size: 1.3rem !important;
           }
 
           .item-content {
@@ -254,9 +254,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
   .container .max-content .content .items-wrapper .list-item {
-    .index {
-      font-size: 1.5rem !important;
-    }
 
     .item-content .item-header .icon {
       width: 1.5rem;
@@ -277,7 +274,6 @@
 
       .index {
         padding-left: 0;
-        font-size: 1.5rem !important;
       }
 
       .item-content {
