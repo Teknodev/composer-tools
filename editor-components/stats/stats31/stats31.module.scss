@@ -6,12 +6,6 @@
             gap: var(--composer-gap-lg);
 
             .header-container {
-                .subtitle,
-                .title,
-                .description {
-                    color: var(--composer-font-color-primary);
-                }
-
                 .subtitle {
                     width: fit-content;
                 }
@@ -55,7 +49,6 @@
                             .stat-number,
                             .stat-suffix {
                                 color: inherit;
-                                font-size: 4rem;
                             }
                         }
 
@@ -80,7 +73,9 @@
                             color: inherit;
                             font-size: 0.75rem;
                             overflow: hidden;
-
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            -webkit-box-orient: vertical;
                         }
                     }
 
@@ -91,6 +86,14 @@
                                 var(--composer-html-background) 15%);
                         color: var(--composer-html-background);
                         margin-top: 25%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 3.5rem;
+                            }
+                        }
                     }
 
                     &.stat-card-2 {
@@ -98,6 +101,14 @@
                         background-color: var(--composer-font-color-primary);
                         color: var(--composer-html-background);
                         margin-top: 25%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 3rem;
+                            }
+                        }
                     }
 
                     &.stat-card-3 {
@@ -107,6 +118,14 @@
                                 var(--composer-font-color-primary) 10%);
                         color: var(--composer-font-color-primary);
                         margin-top: 0%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 6rem;
+                            }
+                        }
                     }
 
                     &.stat-card-4 {
@@ -114,6 +133,14 @@
                         background-color: var(--composer-primary-color);
                         color: var(--composer-font-color-secondary);
                         margin-top: 0%;
+
+                        .stat-item .stat-value {
+                            .stat-prefix,
+                            .stat-number,
+                            .stat-suffix {
+                                font-size: 3rem;
+                            }
+                        }
                     }
                 }
             }
@@ -122,6 +149,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+                align-self: center;
                 gap: var(--composer-gap-sm);
 
                 .button {

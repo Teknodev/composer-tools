@@ -177,22 +177,26 @@ class Stats31 extends BaseStats {
         const subtitleExist = stat.subtitle && stat.subtitle !== "";
         const descriptionExist = stat.description && stat.description !== "";
         const valueExist = originalString && originalString !== "";
+        const prefixExist = this.castToString(stat.prefix);
+        const suffixExist = this.castToString(stat.suffix);
 
-        if (!valueExist && !titleExist && !subtitleExist && !descriptionExist) return null;
+        if (!valueExist && !prefixExist && !suffixExist && !titleExist && !subtitleExist && !descriptionExist) return null;
 
         return (
             <Base.VerticalContent className={this.decorateCSS("stat-item")}>
-                {valueExist && (
+                {(prefixExist || valueExist || suffixExist) && (
                     <span className={this.decorateCSS("stat-value")}>
-                        {stat.prefix && (
+                        {prefixExist && (
                             <span className={this.decorateCSS("stat-prefix")}>
                                 {stat.prefix}
                             </span>
                         )}
-                        <span className={this.decorateCSS("stat-number")}>
-                            {formattedNumber}
-                        </span>
-                        {stat.suffix && (
+                        {valueExist && (
+                            <span className={this.decorateCSS("stat-number")}>
+                                {formattedNumber}
+                            </span>
+                        )}
+                        {suffixExist && (
                             <span className={this.decorateCSS("stat-suffix")}>
                                 {stat.suffix}
                             </span>
