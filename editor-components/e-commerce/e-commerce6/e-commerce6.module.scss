@@ -14,10 +14,9 @@
 
         .tab-buttons {
             width: 35%;
-            height: 100%;
             display: flex;
             flex-direction: column;
-            align-self: center;
+            align-self: stretch;
 
             .tab-button {
                 align-items: center;
@@ -25,7 +24,7 @@
                 color: var(--composer-font-color-primary);
                 position: relative;
                 display: flex;
-                height: 100%;
+                flex: 1;
                 padding: var(--composer-gap-lg) 35px;
                 transition: all 0.5s ease-in-out;
 
@@ -388,7 +387,7 @@
         .max-content {
             .tab-buttons {
                 width: 60%;
-                align-self: baseline;
+                align-self: stretch;
 
                 .tab-button {
                     .tabText {
