@@ -8,7 +8,7 @@ import { INPUTS } from "../../../custom-hooks/input-templates";
 
 type Card = {
   media: TypeMediaInputValue;
-  backgroundMedia: TypeMediaInputValue;
+  componentBackground: TypeMediaInputValue;
   subtitle: React.JSX.Element;
   title: React.JSX.Element;
   description: React.JSX.Element;
@@ -61,7 +61,7 @@ class Header3 extends BaseHeader {
             },
             {
               type: "media",
-              key: "backgroundMedia",
+              key: "componentBackground",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -111,7 +111,7 @@ class Header3 extends BaseHeader {
             },
             {
               type: "media",
-              key: "backgroundMedia",
+              key: "componentBackground",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -161,7 +161,7 @@ class Header3 extends BaseHeader {
             },
             {
               type: "media",
-              key: "backgroundMedia",
+              key: "componentBackground",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -211,7 +211,7 @@ class Header3 extends BaseHeader {
             },
             {
               type: "media",
-              key: "backgroundMedia",
+              key: "componentBackground",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -261,7 +261,7 @@ class Header3 extends BaseHeader {
             },
             {
               type: "media",
-              key: "backgroundMedia",
+              key: "componentBackground",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -311,7 +311,7 @@ class Header3 extends BaseHeader {
             },
             {
               type: "media",
-              key: "backgroundMedia",
+              key: "componentBackground",
               displayer: "Background Media",
               additionalParams: {
                 availableTypes: ["image", "video"],
@@ -410,7 +410,7 @@ class Header3 extends BaseHeader {
     const rightNavButton = this.getPropValue("rightNavButton");
     const cards = this.castToObject<Card[]>("cards");
     const activeSlide = this.getComponentState("activeSlide");
-    const anyImagesExist = cards[activeSlide]?.media || cards[activeSlide]?.backgroundMedia;
+    const anyImagesExist = cards[activeSlide]?.media || cards[activeSlide]?.componentBackground;
     const sliderSettings = this.transformSliderValues(this.getPropValue("settings"));
 
     const settings = {
@@ -430,7 +430,7 @@ class Header3 extends BaseHeader {
     };
 
     const shouldDisplayOverlay = (index: number): boolean => {
-      return !!cards[index].backgroundMedia && overlay;
+      return !!cards[index].componentBackground && overlay;
     };
 
     const shouldDisplayForegroundOverlay = (index: number): boolean => {
@@ -447,7 +447,7 @@ class Header3 extends BaseHeader {
                   return (this.castToString(item.subtitle) || this.castToString(item.title) || this.castToString(item.description) || this.castToString(item.button?.text) || item.media) && (
                     <div className={`${this.decorateCSS("slider-inner-div")} ${anyImagesExist && this.decorateCSS("has-background")}`} key={`sld-8-${index}`}>
                       <div className={`${this.decorateCSS("content")} ${!anyImagesExist && this.decorateCSS("no-image")}`}>
-                        {item.backgroundMedia && (<Base.Media value={item.backgroundMedia} className={this.decorateCSS("bg-image")} />)}
+                        {item.componentBackground && (<Base.Media value={item.componentBackground} className={this.decorateCSS("bg-image")} />)}
                         {shouldDisplayOverlay(index) === true && <div className={this.decorateCSS("overlay")}></div>}
                         <div className={`${this.decorateCSS("content-div")} ${this.getComponentState("activeSlide") === index ? this.decorateCSS("fix-location") : ""}`}>
                           {linesContainer && (
