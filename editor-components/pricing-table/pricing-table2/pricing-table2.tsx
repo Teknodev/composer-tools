@@ -43,7 +43,7 @@ class PricingTable2 extends BasePricingTable {
       type: "string",
       key: "description",
       displayer: "Description",
-      value: "",
+      value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     });
     this.addProp({
       type: "array",
@@ -704,7 +704,7 @@ class PricingTable2 extends BasePricingTable {
             <Base.ListGrid
               gridCount={{
                 pc: itemCount,
-                tablet: 2,
+                tablet: 3,
                 phone: 1,
               }}
               className={this.decorateCSS("item-div")}
