@@ -1,7 +1,8 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  padding: calc(var(--composer-gap-lg) * 2) 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 
   .max-content {
     padding: 0;
