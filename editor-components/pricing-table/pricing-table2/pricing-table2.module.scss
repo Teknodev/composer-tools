@@ -104,7 +104,6 @@
                 background: color-mix(in srgb,
                     var(--composer-html-background),
                     var(--composer-font-color-primary) 5%);
-                border-radius: var(--composer-border-radius-sm);
                 box-shadow: var(--box-shadow-active);
                 width: max-content;
                 margin-top: calc(-1 * var(--composer-gap-xl));

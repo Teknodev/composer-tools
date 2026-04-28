@@ -23,10 +23,6 @@ type ListItem = {
   text: React.JSX.Element;
 };
 
-interface PricingTableSettings {
-  itemCount: number;
-  animations: string[];
-}
 
 class PricingTable2 extends BasePricingTable {
   constructor(props?: any) {
@@ -575,208 +571,22 @@ class PricingTable2 extends BasePricingTable {
             },
           ],
         },
-        {
-          type: "object",
-          key: "tableItem",
-          displayer: "Table Item",
-          value: [
-            {
-              type: "string",
-              key: "subtitle",
-              displayer: "Pricing Subtitle",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "title",
-              displayer: "Pricing Title",
-              value: "Basic Package",
-            },
-            {
-              type: "string",
-              key: "description",
-              displayer: "Pricing Description",
-              value: "",
-            },
-            {
-              type: "string",
-              key: "price",
-              displayer: "Price",
-              value: "$450",
-            },
-            {
-              type: "string",
-              key: "duration",
-              displayer: "Duration",
-              value: "/month",
-            },
-            {
-              type: "media",
-              key: "icon",
-              displayer: "Icon",
-              additionalParams: {
-                availableTypes: ["icon", "image"],
-              },
-              value: { type: "icon", name: "IoIosAirplane" },
-            },
-            {
-              type: "array",
-              key: "cardList",
-              displayer: "Feature List",
-              value: [
-                {
-                  type: "object",
-                  displayer: "List Item",
-                  key: "listItem",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "List Item",
-                      value: "Website Design",
-                    },
-                    {
-                      type: "media",
-                      key: "listIcon",
-                      displayer: "List Icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: { type: "icon", name: "FaCheck" },
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "List Item",
-                  key: "listItem",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "List Item",
-                      value: "Website Design",
-                    },
-                    {
-                      type: "media",
-                      key: "listIcon",
-                      displayer: "List Icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: { type: "icon", name: "FaCheck" },
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "List Item",
-                  key: "listItem",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "List Item",
-                      value: "Website Design",
-                    },
-                    {
-                      type: "media",
-                      key: "listIcon",
-                      displayer: "List Icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: { type: "icon", name: "FaCheck" },
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "List Item",
-                  key: "listItem",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "List Item",
-                      value: "Website Design",
-                    },
-                    {
-                      type: "media",
-                      key: "listIcon",
-                      displayer: "List Icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: { type: "icon", name: "FaCheck" },
-                    },
-                  ],
-                },
-                {
-                  type: "object",
-                  displayer: "List Item",
-                  key: "listItem",
-                  value: [
-                    {
-                      type: "string",
-                      key: "text",
-                      displayer: "List Item",
-                      value: "Website Design",
-                    },
-                    {
-                      type: "media",
-                      key: "listIcon",
-                      displayer: "List Icon",
-                      additionalParams: {
-                        availableTypes: ["icon", "image"],
-                      },
-                      value: { type: "icon", name: "FaCheck" },
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: "array",
-              key: "buttons",
-              displayer: "Buttons",
-              value: [
-                INPUTS.BUTTON(
-                  "button",
-                  "Button",
-                  "Select Now",
-                  "",
-                  "",
-                  null,
-                  "Primary"
-                ),
-              ],
-            },
-          ],
-        },
       ],
     });
     this.addProp({
-      type: "object",
-      key: "settings",
-      displayer: "Settings",
-      value: [
-        {
-          type: "number",
-          key: "itemCount",
-          displayer: "Item Count in a Row",
-          value: 4,
-        },
-        {
-          type: "multiSelect",
-          key: "animations",
-          displayer: "Animations",
-          value: ["animation1"],
-          additionalParams: {
-            selectItems: ["animation1", "animation2"],
-          },
-        },
-      ],
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 3,
+    });
+    this.addProp({
+      type: "multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1"],
+      additionalParams: {
+        selectItems: ["animation1", "animation2"],
+      },
     });
   }
 
@@ -817,7 +627,8 @@ class PricingTable2 extends BasePricingTable {
     const title = this.getPropValue("title");
     const description = this.getPropValue("description");
     const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
-    const settings = this.castToObject<PricingTableSettings>("settings");
+    const itemCount = this.getPropValue("itemCount") as number;
+    const animations = this.getPropValue("animations") as string[];
 
     const hasTitle = this.castToString(title);
     const hasSubtitle = this.castToString(subtitle);
@@ -892,7 +703,7 @@ class PricingTable2 extends BasePricingTable {
             )}
             <Base.ListGrid
               gridCount={{
-                pc: settings.itemCount,
+                pc: itemCount,
                 tablet: 2,
                 phone: 1,
               }}
@@ -943,8 +754,8 @@ class PricingTable2 extends BasePricingTable {
                   return (
                     <Base.VerticalContent
                       key={index}
-                      className={`${this.decorateCSS("card-item-count")} ${settings.animations &&
-                        settings.animations
+                      className={`${this.decorateCSS("card-item-count")} ${animations &&
+                        animations
                           .map((animation: string) =>
                             this.decorateCSS(animation)
                           )
