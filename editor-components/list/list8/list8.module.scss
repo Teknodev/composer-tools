@@ -179,12 +179,12 @@
 
     .items-wrapper .list-item .item-container {
       .number-badge {
-        min-width: 60px;
-        min-height: 60px;
+        min-width: 55px;
+        min-height: 55px;
         padding: var(--composer-gap-xs);
 
         .index {
-          font-size: 2rem;
+          font-size: 2rem !important;
         }
       }
 
