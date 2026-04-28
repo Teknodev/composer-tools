@@ -477,8 +477,8 @@
                 transform: scaleX(-1);
                 background-image:
                   radial-gradient(100% 120px at 40% -98px, transparent calc(100% - 2px), color-mix(in srgb, var(--composer-primary-color), transparent 55%) calc(100% - 0.5px), transparent 100%),
-                  radial-gradient(ellipse 55% 100% at 20% 0%, color-mix(in srgb, var(--composer-primary-color), transparent 40%) 0%, color-mix(in srgb, var(--composer-primary-color), transparent 40%) 50%, transparent 100%),
-                  radial-gradient(ellipse 55% 100% at 80% 0%, color-mix(in srgb, var(--composer-primary-color), transparent 50%) 0%, color-mix(in srgb, var(--composer-primary-color), transparent 50%) 50%, transparent 100%);
+                  radial-gradient(ellipse 55% 35% at 20% 0%, color-mix(in srgb, var(--composer-primary-color), transparent 40%) 0%, color-mix(in srgb, var(--composer-primary-color), transparent 40%) 50%, transparent 100%),
+                  radial-gradient(ellipse 55% 35% at 80% 0%, color-mix(in srgb, var(--composer-primary-color), transparent 50%) 0%, color-mix(in srgb, var(--composer-primary-color), transparent 50%) 50%, transparent 100%);
 
                 &::before,
                 &::after {
