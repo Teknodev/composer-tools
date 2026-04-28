@@ -33,7 +33,7 @@ class Download9 extends BaseDownload {
       value: [
         {
           type: "media",
-          key: "media",
+          key: "componentBackground",
           displayer: "Media",
           additionalParams: {
             availableTypes: ["image", "video"],
@@ -123,7 +123,7 @@ class Download9 extends BaseDownload {
 
   render() {
     const background = this.castToObject<Background>("media");
-    const imageExist = background?.media;
+    const imageExist = background?.componentBackground;
     const overlay = background?.overlay;
     const textContent = this.castToObject<TextContent>("textContent");
     const subtitle = textContent?.subtitle;
