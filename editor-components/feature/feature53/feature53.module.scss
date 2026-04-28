@@ -126,7 +126,7 @@
             position: relative;
             display: flex;
             overflow: hidden;
-            border-radius: var(--composer-border-radius-sm);
+            border-radius: var(--composer-border-radius-sm) 0 0 var(--composer-border-radius-sm);
 
             &.full-width {
               width: 100%;
@@ -241,6 +241,7 @@
               flex: 1;
               min-width: 0;
               width: auto;
+              text-align: left;
             }
 
             .tab-header-icon {
