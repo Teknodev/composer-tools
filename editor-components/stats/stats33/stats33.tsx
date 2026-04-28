@@ -3,7 +3,24 @@ import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats33.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLink from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLinkProvider from "../../../../custom-hooks/composer-base-components/Link/link";
+
+type RawStatItem = {
+    prefix: JSX.Element;
+    number: JSX.Element;
+    suffix: JSX.Element;
+    subtitle: JSX.Element;
+    title: JSX.Element;
+    description: JSX.Element;
+    media: TypeMediaInputValue;
+    buttons: INPUTS.CastedButton[];
+    rowReverse: boolean;
+};
+
+type AnimationProps = {
+    statsAnimation: boolean;
+    animationDuration: number;
+};
 
 type StatItem = {
     prefix: string;
@@ -51,7 +68,7 @@ class Stats33 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "", "", "", null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
         });
 
@@ -215,44 +232,26 @@ class Stats33 extends BaseStats {
     };
 
     render() {
-        const statsItems = this.castToObject<{
-            prefix: JSX.Element;
-            number: JSX.Element;
-            suffix: JSX.Element;
-            subtitle: JSX.Element;
-            title: JSX.Element;
-            description: JSX.Element;
-            media: TypeMediaInputValue;
-            buttons: INPUTS.CastedButton[];
-            rowReverse: boolean;
-        }[]>("stats");
+        const statsItems = this.castToObject<RawStatItem[]>("stats");
 
-        const stats: StatItem[] = statsItems.map((item) => {
-            const prefix = this.castToString(item.prefix) || "";
-            const number = this.castToString(item.number);
-            const suffix = this.castToString(item.suffix) || "";
-            const subtitle = this.castToString(item.subtitle) || "";
-            const title = this.castToString(item.title) || "";
-            const description = this.castToString(item.description) || "";
-            return {
-                prefix,
-                prefixElement: item.prefix,
-                number,
-                suffix,
-                suffixElement: item.suffix,
-                subtitle,
-                subtitleElement: item.subtitle,
-                title,
-                titleElement: item.title,
-                description,
-                descriptionElement: item.description,
-                media: item.media,
-                buttons: item.buttons || [],
-                rowReverse: !!item.rowReverse,
-            };
-        });
+        const stats: StatItem[] = statsItems.map((item) => ({
+            prefix: this.castToString(item.prefix) || "",
+            prefixElement: item.prefix,
+            number: this.castToString(item.number),
+            suffix: this.castToString(item.suffix) || "",
+            suffixElement: item.suffix,
+            subtitle: this.castToString(item.subtitle) || "",
+            subtitleElement: item.subtitle,
+            title: this.castToString(item.title) || "",
+            titleElement: item.title,
+            description: this.castToString(item.description) || "",
+            descriptionElement: item.description,
+            media: item.media,
+            buttons: item.buttons || [],
+            rowReverse: !!item.rowReverse,
+        }));
 
-        const animationProps = this.castToObject<{ statsAnimation: boolean; animationDuration: number }>("animation");
+        const animationProps = this.castToObject<AnimationProps>("animation");
         const statsAnimation = !!animationProps?.statsAnimation;
         const animationDuration = animationProps?.animationDuration || 2000;
 
@@ -294,7 +293,7 @@ class Stats33 extends BaseStats {
                                             if (!buttonText) return null;
 
                                             return (
-                                                <ComposerLink key={index} path={item.url}>
+                                                <ComposerLinkProvider key={index} path={item.url}>
                                                     <Base.Button
                                                         buttonType={item.type}
                                                         className={this.decorateCSS("button")}
@@ -303,7 +302,7 @@ class Stats33 extends BaseStats {
                                                             {item.text}
                                                         </Base.P>
                                                     </Base.Button>
-                                                </ComposerLink>
+                                                </ComposerLinkProvider>
                                             );
                                         }
                                     )}
@@ -319,7 +318,9 @@ class Stats33 extends BaseStats {
                             const statTitleExist = !!stat.title;
                             const statDescriptionExist = !!stat.description;
                             const numberExist = !!stat.number;
-                            const hasValidButtons = stat.buttons.some((btn) => this.castToString(btn.text));
+                            const hasRenderableButtonContent = (btn: INPUTS.CastedButton) =>
+                                !!this.castToString(btn.text) || !!btn.icon;
+                            const hasValidButtons = stat.buttons.some(hasRenderableButtonContent);
                             const hasTextContent = statSubtitleExist || statTitleExist || statDescriptionExist || numberExist || hasValidButtons;
 
                             if (!hasTextContent && !hasMedia) return null;
@@ -355,7 +356,7 @@ class Stats33 extends BaseStats {
                                                     if (!buttonText && !item.icon) return null;
 
                                                     return (
-                                                        <ComposerLink key={btnIndex} path={item.url}>
+                                                        <ComposerLinkProvider key={btnIndex} path={item.url}>
                                                             <Base.Button
                                                                 buttonType={item.type}
                                                                 className={this.decorateCSS("button")}
@@ -372,7 +373,7 @@ class Stats33 extends BaseStats {
                                                                     />
                                                                 )}
                                                             </Base.Button>
-                                                        </ComposerLink>
+                                                        </ComposerLinkProvider>
                                                     );
                                                 })}
                                             </div>
