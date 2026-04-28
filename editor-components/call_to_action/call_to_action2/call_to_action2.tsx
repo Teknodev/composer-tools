@@ -15,24 +15,28 @@ type MediaObject = {
 class CallToAction2Page extends BaseCallToAction {
   constructor(props?: any) {
     super(props, styles);
+
     this.addProp({
       type: "string",
       key: "subtitle",
       value: "GET STARTED",
       displayer: "Subtitle",
     });
+
     this.addProp({
       type: "string",
       key: "title",
       value: "Journey to Inner Peace: Yoga Sanctuary",
       displayer: "Title",
     });
+
     this.addProp({
       type: "string",
       key: "description",
       displayer: "Description",
       value: "",
     });
+
     this.addProp({
       type: "array",
       key: "buttons",
@@ -132,7 +136,7 @@ class CallToAction2Page extends BaseCallToAction {
                 className={`${this.decorateCSS("header")} ${alignment === "center" && this.decorateCSS("center")}`}
               >
                 {(titleExist || subtitleExist || descriptionExist) && (
-                  <Base.VerticalContent className={this.decorateCSS("titles")}>
+                  <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                     {subtitleExist && (
                       <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>
                         {this.getPropValue("subtitle")}

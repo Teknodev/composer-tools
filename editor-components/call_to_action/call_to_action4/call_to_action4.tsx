@@ -214,6 +214,13 @@ class CallToAction4Page extends BaseCallToAction {
       displayer: "Buttons",
       value: [INPUTS.BUTTON("button", "Button", "Learn More", "", null, null, "Primary"), INPUTS.BUTTON("button", "Button", "Enroll Now", "", null, null, "Primary")],
     });
+
+    this.addProp({
+      type: "number",
+      key: "itemCount",
+      displayer: "Item Count in a Row",
+      value: 2,
+    });
   }
 
   static getName(): string {
@@ -232,6 +239,7 @@ class CallToAction4Page extends BaseCallToAction {
     const subtitle = this.castToString(this.getPropValue("subtitle"));
     const title = this.castToString(this.getPropValue("title"));
     const description = this.castToString(this.getPropValue("description"));
+    const itemCount = this.getPropValue("itemCount");
     const hasLeftContent = subtitle || title || description || listItems.length > 0 || buttons.length > 0;
 
     return (
@@ -246,7 +254,7 @@ class CallToAction4Page extends BaseCallToAction {
                   {description && (<Base.SectionDescription className={this.decorateCSS("description")}> {this.getPropValue("description")}</Base.SectionDescription>)}
                 </Base.VerticalContent>
                 {listItems.length > 0 && (
-                  <Base.ListGrid gridCount={{ pc: this.getPropValue("itemCount") }} className={this.decorateCSS("list-container")}>
+                  <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("list-container")}>
                     {listItems.map((item: ListItem, index: number) => (
                       <div className={this.decorateCSS("list")}>
                         {icon && (

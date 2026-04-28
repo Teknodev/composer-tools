@@ -53,14 +53,10 @@
         width: 100%;
         gap: var(--composer-gap-md);
 
-        .titles {
+        .vertical-content {
           flex: 1;
 
-          .subtitle {
-            background: transparent;
-            padding: 0;
-          }
-
+          .subtitle,
           .title,
           .description {
             content: "";

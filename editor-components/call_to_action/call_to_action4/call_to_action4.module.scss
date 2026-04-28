@@ -22,7 +22,7 @@
           .list {
             display: flex;
             gap: var(--composer-gap-md);
-            align-items: center;
+            align-items: flex-start;
 
             .description {
               display: flex;

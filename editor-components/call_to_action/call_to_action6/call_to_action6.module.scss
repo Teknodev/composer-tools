@@ -117,25 +117,25 @@
 
       .placeholder {
         min-width: 500px;
-        color: var(--composer-font-color-primary);
+        color: var(--color-black);
         width: 30%;
         padding: var(--composer-gap-md) var(--composer-gap-md);
         border-radius: var(--composer-border-radius-sm);
-        border: none;
         background-color: var(--composer-html-background);
+        border: none;
         outline: none;
 
         &.no-image {
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          color: var(--composer-font-color-primary);
+          color: var(--color-black);
 
           &::placeholder {
-            color: var(--composer-font-color-primary);
+            color: var(--color-black);
           }
         }
 
         &::placeholder {
-          color: var(--composer-tertiary-color);
+          color: var(--color-black);
         }
       }
 
