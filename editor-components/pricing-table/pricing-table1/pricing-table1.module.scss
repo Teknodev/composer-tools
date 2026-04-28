@@ -8,273 +8,273 @@
       gap: var(--composer-gap-lg);
     }
 
-    .top-titles {
+      .top-titles {
 
-      .title,
-      .subtitle,
-      .description {
-        content: "";
-      }
+        .title,
+        .subtitle,
+        .description {
+          content: "";
+        }
 
-      .button-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--composer-gap-sm);
+        .button-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: var(--composer-gap-sm);
 
-        .button {
+          .button {
 
-          .button-text,
-          .button-icon {
-            content: "";
+            .button-text,
+            .button-icon {
+              content: "";
+            }
           }
         }
       }
-    }
 
-    .items {
-      width: 100%;
-      gap: 0;
-      align-items: flex-end;
-
-      .item-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+      .items {
         width: 100%;
-        height: auto;
-        border-radius: var(--composer-border-radius-sm);
-        overflow: hidden;
+        gap: 0;
+        align-items: flex-end;
 
-        .card-content {
-          width: 100%;
-          height: 100%;
+        .item-card {
           display: flex;
           flex-direction: column;
           align-items: center;
-        }
-
-        &.animation1:hover {
-          .card-list {
-            .card-list-item {
-              .card-list-line {
-                &::before {
-                  width: 100%;
-                }
-              }
-            }
-          }
-        }
-
-        &.animation2:hover {
-          .cardsubtitle {
-            transform: scale(1.1);
-          }
-
-          .card-bottom {
-            .card-bottom-content {
-              transform: scale(1.1);
-            }
-          }
-        }
-
-        &.active {
-          box-shadow: var(--composer-box-shadow-active);
-          background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-          border-radius: var(--composer-border-radius-md);
-        }
-
-        .popular-box {
+          justify-content: flex-start;
           width: 100%;
-          text-align: center;
-          background-image: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
-          padding: var(--composer-gap-sm) 0;
+          height: auto;
+          border-radius: var(--composer-border-radius-sm);
+          overflow: hidden;
 
-          .popular-text {
-            margin: 0;
-            text-align: center;
-            color: var(--composer-font-color-secondary);
-          }
-        }
-
-        .card-top-content {
-          display: flex;
-          flex-direction: column;
-          padding: 45px var(--composer-gap-lg) 35px;
-
-          .cardsubtitle-wrapper {
-            display: flex;
+          .card-content {
             width: 100%;
-            justify-content: flex-start;
-
-            &.center {
-              justify-content: center;
-
-              .cardsubtitle {
-                margin-left: auto;
-                margin-right: auto;
-              }
-            }
-          }
-
-          .cardsubtitle {
-            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
-            color: var(--composer-font-color-primary);
-            padding: var(--composer-gap-xs) var(--composer-gap-md);
-            border-radius: var(--composer-border-radius-xl);
-            transition-duration: 0.8s;
-            width: max-content;
-            font-size: 1rem !important;
-          }
-
-          .card-text-area {
-            width: 100%;
-          }
-
-          .card-title {
-            padding: 0 var(--composer-gap-md);
-            color: var(--composer-font-color-primary);
-            width: 100%;
-            text-align: left;
-
-            &.center {
-              text-align: center;
-            }
-          }
-
-          .card-description {
-            padding: 0 var(--composer-gap-md);
-            color: var(--composer-font-color-primary);
-            width: 100%;
-            text-align: center;
-          }
-        }
-
-        .card-list {
-          width: 100%;
-
-          .card-list-item {
-            display: flex;
-            align-items: center;
-            gap: var(--composer-gap-sm);
-            padding: var(--composer-gap-md) var(--composer-gap-lg);
-            color: var(--composer-font-color-primary);
-            width: 100%;
-            position: relative;
-
-            .card-list-line {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 1px;
-              background: rgba(var(--composer-font-color-primary-rgb), 0.2);
-
-              &::before {
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 0;
-                height: 1px;
-                background: var(--composer-primary-color);
-                transition: width 0.8s ease-in-out;
-              }
-            }
-
-            .icon {
-              color: var(--composer-primary-color);
-              font-size: 1.75rem !important;
-              display: flex;
-              align-items: center;
-            }
-
-            .list-item {
-              text-align: left;
-            }
-          }
-        }
-
-        .card-bottom {
-          padding: var(--composer-gap-md) var(--composer-gap-xl);
-          width: 100%;
-          color: var(--composer-font-color-primary);
-
-          &.active {
-            background: var(--composer-primary-color);
-            color: var(--composer-font-color-secondary);
-
-            .card-button {
-              background: var(--composer-font-color-secondary);
-              color: var(--composer-primary-color);
-            }
-
-            .card-bottom-content .card-price .price {
-              color: var(--composer-font-color-secondary);
-            }
-
-            .card-bottom-content .pricingTitle {
-              color: var(--composer-font-color-secondary);
-            }
-          }
-
-          .card-bottom-content {
-            transition-duration: 0.8s;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+          }
 
-            .card-price {
+          &.animation1:hover {
+            .card-list {
+              .card-list-item {
+                .card-list-line {
+                  &::before {
+                    width: 100%;
+                  }
+                }
+              }
+            }
+          }
+
+          &.animation2:hover {
+            .cardsubtitle {
+              transform: scale(1.1);
+            }
+
+            .card-bottom {
+              .card-bottom-content {
+                transform: scale(1.1);
+              }
+            }
+          }
+
+          &.active {
+            box-shadow: var(--composer-box-shadow-active);
+            background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
+            border-radius: var(--composer-border-radius-md);
+          }
+
+          .popular-box {
+            width: 100%;
+            text-align: center;
+            background-image: linear-gradient(to right, var(--composer-primary-color), var(--composer-secondary-color));
+            padding: var(--composer-gap-sm) 0;
+
+            .popular-text {
+              margin: 0;
+              text-align: center;
+              color: var(--composer-font-color-secondary);
+            }
+          }
+
+          .card-top-content {
+            display: flex;
+            flex-direction: column;
+            padding: 45px var(--composer-gap-lg) 35px;
+
+            .cardsubtitle-wrapper {
+              display: flex;
               width: 100%;
+              justify-content: flex-start;
+
+              &.center {
+                justify-content: center;
+
+                .cardsubtitle {
+                  margin-left: auto;
+                  margin-right: auto;
+                }
+              }
+            }
+
+            .cardsubtitle {
+              background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 10%);
+              color: var(--composer-font-color-primary);
+              padding: var(--composer-gap-xs) var(--composer-gap-md);
+              border-radius: var(--composer-border-radius-xl);
+              transition-duration: 0.8s;
+              width: max-content;
+              font-size: 1rem !important;
+            }
+
+            .card-text-area {
+              width: 100%;
+            }
+
+            .card-title {
+              padding: 0 var(--composer-gap-md);
+              color: var(--composer-font-color-primary);
+              width: 100%;
+              text-align: left;
+
+              &.center {
+                text-align: center;
+              }
+            }
+
+            .card-description {
+              padding: 0 var(--composer-gap-md);
+              color: var(--composer-font-color-primary);
+              width: 100%;
+              text-align: center;
+            }
+          }
+
+          .card-list {
+            width: 100%;
+
+            .card-list-item {
               display: flex;
               align-items: center;
-              justify-content: center;
               gap: var(--composer-gap-sm);
+              padding: var(--composer-gap-md) var(--composer-gap-lg);
+              color: var(--composer-font-color-primary);
+              width: 100%;
+              position: relative;
 
-              .price {
-                font-size: 3.5rem !important;
-                width: fit-content;
-                margin-left: 0;
-                margin-right: 0;
+              .card-list-line {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 1px;
+                background: rgba(var(--composer-font-color-primary-rgb), 0.2);
+
+                &::before {
+                  content: "";
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 0;
+                  height: 1px;
+                  background: var(--composer-primary-color);
+                  transition: width 0.8s ease-in-out;
+                }
+              }
+
+              .icon {
+                color: var(--composer-primary-color);
+                font-size: 1.75rem !important;
+                display: flex;
+                align-items: center;
+              }
+
+              .list-item {
+                text-align: left;
+              }
+            }
+          }
+
+          .card-bottom {
+            padding: var(--composer-gap-md) var(--composer-gap-xl);
+            width: 100%;
+            color: var(--composer-font-color-primary);
+
+            &.active {
+              background: var(--composer-primary-color);
+              color: var(--composer-font-color-secondary);
+
+              .card-button {
+                background: var(--composer-font-color-secondary);
                 color: var(--composer-primary-color);
               }
 
-              .card-duration {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                justify-content: center;
+              .card-bottom-content .card-price .price {
+                color: var(--composer-font-color-secondary);
+              }
 
-                .duration,
-                .duration1 {
-                  text-align: left;
-                  margin: 0;
-                }
+              .card-bottom-content .pricingTitle {
+                color: var(--composer-font-color-secondary);
               }
             }
 
-            .button-wrapper {
+            .card-bottom-content {
+              transition-duration: 0.8s;
               display: flex;
-              justify-content: center;
-              width: 100%;
-              flex-direction: row;
+              flex-direction: column;
               align-items: center;
-              flex-wrap: wrap;
-              gap: var(--composer-gap-sm);
+              justify-content: center;
 
-              .card-button {
+              .card-price {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: var(--composer-gap-sm);
 
-                .button-text,
-                .button-icon {
-                  content: "";
+                .price {
+                  font-size: 3.5rem !important;
+                  width: fit-content;
+                  margin-left: 0;
+                  margin-right: 0;
+                  color: var(--composer-primary-color);
+                }
+
+                .card-duration {
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  justify-content: center;
+
+                  .duration,
+                  .duration1 {
+                    text-align: left;
+                    margin: 0;
+                  }
                 }
               }
-            }
 
-            .pricingTitle {
-              text-align: center;
-              color: var(--composer-tertiary-color);
+              .button-wrapper {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: var(--composer-gap-sm);
+
+                .card-button {
+
+                  .button-text,
+                  .button-icon {
+                    content: "";
+                  }
+                }
+              }
+
+              .pricingTitle {
+                text-align: center;
+                color: var(--composer-tertiary-color);
             }
           }
         }
@@ -352,5 +352,11 @@
 
   .container .max-content .upper-section .items .item-card .card-top-content .cardsubtitle {
     font-size: 0.75rem !important;
+  }
+
+  .container .max-content .titles {
+    gap: var(--composer-gap-md);
+    margin-top: var(--composer-gap-md);
+    flex-direction: column;
   }
 }
