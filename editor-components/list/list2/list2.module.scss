@@ -175,11 +175,11 @@
       }
     }
 
-    .button-wrapper {
+    .button-container {
       display: flex;
       justify-content: center;
-      gap: var(--composer-gap-sm);
       flex-wrap: wrap;
+      gap: var(--composer-gap-sm);
 
       .button {
 

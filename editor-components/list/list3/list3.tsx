@@ -47,7 +47,7 @@ class List3 extends BaseList {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "Download Schedule", "", "FaDownload", null, "Primary")
+        INPUTS.BUTTON("button", "Button", "Download Schedule", "", "FaDownload", null, "Primary"),
       ],
     });
 
@@ -248,35 +248,38 @@ class List3 extends BaseList {
                     )}
                   </Base.VerticalContent>
                 )}
-                {buttons.length > 0 &&
-                  buttons.map((btn: CardButton, index: number) => {
-                    const buttonText = this.castToString(btn.text);
-                    const iconMedia = btn.icon as TypeMediaInputValue;
-                    const iconExist =
-                      iconMedia && iconMedia.type === "icon" && iconMedia.name;
-                    if (!buttonText && !iconExist) return null;
+                {buttons.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {buttons.map((btn: CardButton, index: number) => {
+                      const buttonText = this.castToString(btn.text);
+                      const iconMedia = btn.icon as TypeMediaInputValue;
+                      const iconExist =
+                        iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                      if (!buttonText && !iconExist) return null;
 
-                    return (
-                      <ComposerLink key={index} path={btn.url}>
-                        <Base.Button
-                          buttonType={btn.type}
-                          className={this.decorateCSS("button")}
-                        >
-                          {buttonText && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {btn.text}
-                            </Base.P>
-                          )}
-                          {iconExist && (
-                            <Base.Media
-                              value={iconMedia}
-                              className={this.decorateCSS("button-icon")}
-                            />
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                    );
-                  })}
+                      return (
+                        <ComposerLink key={index} path={btn.url}>
+                          <Base.Button
+                            buttonType={btn.type}
+                            className={this.decorateCSS("button")}
+                          >
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {btn.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media
+                                value={iconMedia}
+                                className={this.decorateCSS("button-icon")}
+                              />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
             {listItems.map((listItem: Item, index: number) => {

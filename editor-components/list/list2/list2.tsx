@@ -410,7 +410,7 @@ class List2 extends BaseList {
       key: "buttons",
       displayer: "Buttons",
       value: [
-        INPUTS.BUTTON("button", "Button", "View More Categories", "", null, null, "Primary")
+        INPUTS.BUTTON("button", "Button", "View More Categories", "", null, null, "Primary"),
       ],
     });
     this.addProp({
@@ -473,28 +473,30 @@ class List2 extends BaseList {
                     {this.getPropValue("description")}
                   </Base.SectionDescription>
                 )}
-                {headerButtons?.length > 0 && headerButtons.map((btn: CardButton, btnIndex: number) => {
-                  const buttonText = this.castToString(btn.text);
-                  const iconMedia = btn.icon as TypeMediaInputValue;
-                  const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
-                  if (!buttonText && !iconExist) return null;
-                  return (
-                    <div key={btnIndex} className={this.decorateCSS("button-wrapper")}>
-                      <ComposerLink path={btn.url}>
-                        <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
-                          {buttonText && (
-                            <Base.P className={this.decorateCSS("button-text")}>
-                              {btn.text}
-                            </Base.P>
-                          )}
-                          {iconExist && (
-                            <Base.Media className={this.decorateCSS("button-icon")} value={iconMedia} />
-                          )}
-                        </Base.Button>
-                      </ComposerLink>
-                    </div>
-                  );
-                })}
+                {headerButtons?.length > 0 && (
+                  <div className={this.decorateCSS("button-container")}>
+                    {headerButtons.map((btn: CardButton, btnIndex: number) => {
+                      const buttonText = this.castToString(btn.text);
+                      const iconMedia = btn.icon as TypeMediaInputValue;
+                      const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                      if (!buttonText && !iconExist) return null;
+                      return (
+                        <ComposerLink key={btnIndex} path={btn.url}>
+                          <Base.Button buttonType={btn.type} className={this.decorateCSS("button")}>
+                            {buttonText && (
+                              <Base.P className={this.decorateCSS("button-text")}>
+                                {btn.text}
+                              </Base.P>
+                            )}
+                            {iconExist && (
+                              <Base.Media className={this.decorateCSS("button-icon")} value={iconMedia} />
+                            )}
+                          </Base.Button>
+                        </ComposerLink>
+                      );
+                    })}
+                  </div>
+                )}
               </Base.VerticalContent>
             )}
             {(cards.length > 0) && (
@@ -580,32 +582,34 @@ class List2 extends BaseList {
                 })}
               </Base.ListGrid>
             )}
-            {footerButtons?.length > 0 && footerButtons.map((btn: CardButton, btnIndex: number) => {
-              const buttonText = this.castToString(btn.text);
-              const iconMedia = btn.icon as TypeMediaInputValue;
-              const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
-              if (!buttonText && !iconExist) return null;
+            {footerButtons?.length > 0 && (
+              <div className={this.decorateCSS("button-container")}>
+                {footerButtons.map((btn: CardButton, btnIndex: number) => {
+                  const buttonText = this.castToString(btn.text);
+                  const iconMedia = btn.icon as TypeMediaInputValue;
+                  const iconExist = iconMedia && iconMedia.type === "icon" && iconMedia.name;
+                  if (!buttonText && !iconExist) return null;
 
-              const isAllDisplayed = currentCount >= cards.length;
-              const linkUrl = isAllDisplayed ? btn.url : "";
+                  const isAllDisplayed = currentCount >= cards.length;
+                  const linkUrl = isAllDisplayed ? btn.url : "";
 
-              return (
-                <div key={btnIndex} className={this.decorateCSS("button-wrapper")}>
-                  <ComposerLink path={linkUrl}>
-                    <Base.Button buttonType={btn.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick} >
-                      {buttonText && (
-                        <Base.P className={this.decorateCSS("button-text")}>
-                          {btn.text}
-                        </Base.P>
-                      )}
-                      {iconExist && (
-                        <Base.Media className={this.decorateCSS("button-icon")} value={iconMedia} />
-                      )}
-                    </Base.Button>
-                  </ComposerLink>
-                </div>
-              );
-            })}
+                  return (
+                    <ComposerLink key={btnIndex} path={linkUrl}>
+                      <Base.Button buttonType={btn.type} className={this.decorateCSS("button")} onClick={this.handleButtonClick}>
+                        {buttonText && (
+                          <Base.P className={this.decorateCSS("button-text")}>
+                            {btn.text}
+                          </Base.P>
+                        )}
+                        {iconExist && (
+                          <Base.Media className={this.decorateCSS("button-icon")} value={iconMedia} />
+                        )}
+                      </Base.Button>
+                    </ComposerLink>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </Base.MaxContent>
       </Base.Container>
