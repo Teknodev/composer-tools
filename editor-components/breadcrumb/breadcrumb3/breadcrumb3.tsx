@@ -15,7 +15,7 @@ class Breadcrumb3 extends BaseBreadcrumb {
     super(props, styles);
     this.addProp({
       type: "media",
-      key: "backgroundImage",
+      key: "componentBackground",
       displayer: "Background Media",
       additionalParams: { availableTypes: ["image", "video"] },
       value: { type: "image", url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/66ac465503b007002cc7448b?alt=media" },
@@ -142,18 +142,18 @@ class Breadcrumb3 extends BaseBreadcrumb {
     return (
       <Base.Container
         className={`${this.decorateCSS("container")} ${
-          this.getPropValue("backgroundImage")?.url
+          this.getPropValue("componentBackground")?.url
             ? this.decorateCSS("background")
             : this.decorateCSS("no-background")
         }`}
       >
-        {this.getPropValue("backgroundImage")?.url && (
+        {this.getPropValue("componentBackground")?.url && (
           <Base.Media
-            value={this.getPropValue("backgroundImage")}
+            value={this.getPropValue("componentBackground")}
             className={this.decorateCSS("background-image")}
           />
         )}
-        {overlay && this.getPropValue("backgroundImage")?.url && <div className={this.decorateCSS("overlay")}></div>}
+        {overlay && this.getPropValue("componentBackground")?.url && <div className={this.decorateCSS("overlay")}></div>}
         {isCrumberVisible && (
           <Base.MaxContent className={this.decorateCSS("breadcrumb-wrapper")}>
             <div className={this.decorateCSS("crumber-content")}>

@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Team } from "../../EditorComponent";
+import { Team, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./team14.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 
 type Card = {
-  image: string;
+  profileImage: TypeMediaInputValue;
   name: React.JSX.Element;
   position: React.JSX.Element;
   description: React.JSX.Element;
@@ -54,10 +54,16 @@ class Team14 extends Team {
               value: "Crafting innovative design for the future, with a blend of experience and creativity.",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628416?alt=media&timestamp=1719558632841",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628416?alt=media&timestamp=1719558632841",
+              },
             },
           ],
         },
@@ -85,10 +91,16 @@ class Team14 extends Team {
               value: "Cragfting captivating content to inform, inspire and engage. Let's tell your story together.",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628418?alt=media&timestamp=1719558632841",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628418?alt=media&timestamp=1719558632841",
+              },
             },
           ],
         },
@@ -116,10 +128,16 @@ class Team14 extends Team {
               value: "Bringing visions to life through innovative ideas and strategic executions. Transforming concenpts into captivating visual stories.",
             },
             {
-              type: "image",
-              key: "image",
+              type: "media",
+              key: "profileImage",
               displayer: "Image",
-              value: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628417?alt=media&timestamp=1719558632841",
+              additionalParams: {
+                availableTypes: ["image"],
+              },
+              value: {
+                type: "image",
+                url: "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/6661b68ebd2970002c628417?alt=media&timestamp=1719558632841",
+              },
             },
           ],
         },
@@ -170,9 +188,9 @@ class Team14 extends Team {
           {team.length > 0 && (
             <Base.ListGrid gridCount={{ pc: itemCount, tablet: 2, phone: 1 }} className={this.decorateCSS("down-page")}>
               {team
-                .filter((teamItem) => teamItem.image)
+                .filter((teamItem) => teamItem.profileImage)
                 .map((teamItem: Card, index: number) => {
-                  const image = teamItem.image;
+                  const image = teamItem.profileImage;
                   const name = this.castToString(teamItem.name);
                   const position = this.castToString(teamItem.position);
                   const description = this.castToString(teamItem.description);
@@ -180,7 +198,7 @@ class Team14 extends Team {
                   return (
                     <div className={this.decorateCSS("card")}>
                       <div className={this.decorateCSS("portfolio")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
-                        {image && <img className={this.decorateCSS("image")} src={image} alt={name} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
+                        {image && <Base.Media value={image} className={this.decorateCSS("image")} key={index} data-animation={this.getPropValue("hoverAnimation").join(" ")} />}
                         {(name || position || description) && (
                           <Base.VerticalContent className={this.decorateCSS("info")} data-animation={this.getPropValue("hoverAnimation").join(" ")}>
                             {name && <Base.H3 className={this.decorateCSS("name")}>{teamItem.name}</Base.H3>}
