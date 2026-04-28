@@ -38,7 +38,7 @@ class Stats36 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: ""
+            value: "Lorem"
         });
 
         this.addProp({
@@ -249,24 +249,25 @@ class Stats36 extends BaseStats {
         const subtitleExist = this.castToString(subtitle);
         const descriptionExist = this.castToString(description);
         const mediaExist = !!media?.url;
-        const fullWidth = !mediaExist;
         const hasContent = subtitleExist || titleExist || descriptionExist || hasValidButtons || statsItems.length > 0;
+        const fullWidth = !mediaExist;
+        const mediaFullWidth = mediaExist && !hasContent;
 
         return (
             <Base.Container className={this.decorateCSS("container")}>
                 <Base.MaxContent className={this.decorateCSS("max-content")}>
                     <Base.ContainerGrid className={this.decorateCSS("grid-wrapper")}>
                         {!fullWidth && (
-                            <Base.GridCell className={this.decorateCSS("media-cell")}>
+                            <Base.GridCell className={`${this.decorateCSS("media-cell")} ${mediaFullWidth ? this.decorateCSS("full-width") : ""}`}>
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </Base.GridCell>
                         )}
                         {(!fullWidth || (fullWidth && hasContent)) && (
-                            <Base.GridCell 
+                            <Base.GridCell
                                 className={`${this.decorateCSS("content-cell")} ${fullWidth ? this.decorateCSS("full-width") : ""}`}
                                 data-alignment={alignment}
                             >
-                                <Base.VerticalContent 
+                                <Base.VerticalContent
                                     className={this.decorateCSS("content-header")}
                                     data-alignment={alignment}
                                 >
