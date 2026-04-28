@@ -30,7 +30,7 @@ class COMING_SOON2 extends BaseComingSoon {
     });
     this.addProp({
       type: "image",
-      key: "backgroundImage",
+      key: "componentBackground",
       displayer: "Background Image",
       value:
         "https://storage.googleapis.com/download/storage/v1/b/hq-composer-0b0f0/o/675828500655f8002ca53fbd?alt=media",
@@ -130,7 +130,7 @@ class COMING_SOON2 extends BaseComingSoon {
       <Base.Container
         className={this.decorateCSS("container")}
         style={{
-          backgroundImage: `url(${this.getPropValue("backgroundImage")})`,
+          backgroundImage: `url(${this.getPropValue("componentBackground")})`,
         }}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
@@ -141,7 +141,7 @@ class COMING_SOON2 extends BaseComingSoon {
                 {this.castToString(title1) && (
                     <Base.SectionTitle
                       className={`${this.decorateCSS("title")} ${
-                        !this.getPropValue("backgroundImage") &&
+                        !this.getPropValue("componentBackground") &&
                         this.decorateCSS("without-image")
                       }`}
                     >
@@ -213,7 +213,7 @@ class COMING_SOON2 extends BaseComingSoon {
                   {this.castToString(title2) && (
                     <Base.SectionTitle
                       className={`${this.decorateCSS("title2")} ${
-                        !this.getPropValue("backgroundImage") &&
+                        !this.getPropValue("componentBackground") &&
                         this.decorateCSS("without-image")
                       }`}
                     >
@@ -225,7 +225,7 @@ class COMING_SOON2 extends BaseComingSoon {
                   {this.castToString(title3) && (
                     <Base.SectionTitle
                       className={`${this.decorateCSS("title")} ${
-                        !this.getPropValue("backgroundImage") &&
+                        !this.getPropValue("componentBackground") &&
                         this.decorateCSS("without-image")
                       }`}
                     >
@@ -304,7 +304,7 @@ class COMING_SOON2 extends BaseComingSoon {
                   {this.castToString(title1) && (
                     <Base.SectionTitle
                       className={`${this.decorateCSS("title")} ${
-                        !this.getPropValue("backgroundImage") &&
+                        !this.getPropValue("componentBackground") &&
                         this.decorateCSS("without-image")
                       }`}
                     >
@@ -314,7 +314,7 @@ class COMING_SOON2 extends BaseComingSoon {
                   {this.castToString(title2) && (
                     <Base.SectionTitle
                       className={`${this.decorateCSS("title2")} ${
-                        !this.getPropValue("backgroundImage") &&
+                        !this.getPropValue("componentBackground") &&
                         this.decorateCSS("without-image")
                       }`}
                     >
@@ -324,7 +324,7 @@ class COMING_SOON2 extends BaseComingSoon {
                   {this.castToString(title3) && (
                     <Base.SectionTitle
                       className={`${this.decorateCSS("title")} ${
-                        !this.getPropValue("backgroundImage") &&
+                        !this.getPropValue("componentBackground") &&
                         this.decorateCSS("without-image")
                       }`}
                     >
