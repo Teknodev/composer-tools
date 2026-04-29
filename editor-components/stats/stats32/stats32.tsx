@@ -355,7 +355,7 @@ class Stats32 extends BaseStats {
                                         data-alignment={alignment}
                                     >
                                         <Base.ListGrid
-                                            gridCount={{ pc: itemCountInRow, tablet: 2, phone: 1 }}
+                                            gridCount={{ pc: itemCountInRow, tablet: 2, phone: 2 }}
                                             className={this.decorateCSS("stats-grid")}
                                         >
                                             {stats.map((stat: StatItem, index: number) => (
