@@ -235,7 +235,7 @@ class Feature52 extends BaseFeature {
         const services = this.castToObject<ServiceItemType[]>("services") || [];
         const total = services.length;
         if (total === 0) return [];
-        if (this.isPhone()) return [0];
+        if (this.isSmallScreen()) return [0];
 
         const counts = this.getColumnCounts(itemCount);
         const indices: number[] = [];
@@ -255,10 +255,8 @@ class Feature52 extends BaseFeature {
         const pcItemCount = itemCount ?? (typeof this.getPropValue("itemCount") === "number" && this.getPropValue("itemCount") > 0 ? this.getPropValue("itemCount") : 1);
 
         let currentCount = pcItemCount;
-        if (this.isPhone()) {
+        if (this.isSmallScreen()) {
             currentCount = 1;
-        } else if (this.isTablet()) {
-            currentCount = 2;
         }
 
         const perColBase = Math.floor(total / currentCount);
@@ -337,7 +335,7 @@ class Feature52 extends BaseFeature {
 
     private onItemClick(index: number): void {
         const activeIndices = this.getComponentState("activeIndices") || [];
-        if (this.isPhone()) {
+        if (this.isSmallScreen()) {
             if (activeIndices.includes(index)) {
                 this.setComponentState("activeIndices", []);
             } else {
@@ -430,7 +428,7 @@ class Feature52 extends BaseFeature {
                             <div className={this.decorateCSS("list-container")}>
                                 <Base.ListGrid
                                     className={this.decorateCSS("list-grid-wrapper")}
-                                    gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
+                                    gridCount={{ pc: itemCount, tablet: 1, phone: 1 }}
                                 >
                                     {(() => {
                                         const counts = this.getColumnCounts();

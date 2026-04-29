@@ -56,6 +56,7 @@
 
             .list-grid-wrapper {
                 width: 100%;
+
                 .list-column {
                     display: flex;
                     flex-direction: column;
@@ -80,7 +81,7 @@
                             align-items: center;
                             justify-content: space-between;
                             gap: var(--composer-gap-md);
-                            padding: 20px;
+                            padding: 15px;
                             cursor: pointer;
 
                             .item-left {
@@ -153,7 +154,7 @@
 
                             &.item-description-active {
                                 max-height: 500px;
-                                padding: 0 var(--composer-gap-md) var(--composer-gap-md);
+                                padding: 0 15px 15px;
                             }
 
                             .item-description {
@@ -192,13 +193,21 @@
                     .list-column {
                         .item-container {
                             .item-header {
-                                padding: var(--composer-gap-md) 0 !important;
+                                padding: 15px 0 !important;
+
+                                .item-left {
+                                    .item-icon {
+                                        width: 1.5rem;
+                                        height: 1.5rem;
+                                        font-size: 1.5rem;
+                                    }
+                                }
                             }
 
                             .item-description-container {
 
                                 &.item-description-active {
-                                    padding: 0 0 var(--composer-gap-md) 0 !important;
+                                    padding: 0 0 15px 0 !important;
                                 }
                             }
                         }
