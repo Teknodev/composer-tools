@@ -14,7 +14,6 @@ type LeftData = {
 
 type InputData = {
   inputItems: TypeUsableComponentProps[];
-  button: INPUTS.CastedButton;
 };
 
 class Form8 extends BaseContacts {
@@ -300,9 +299,10 @@ class Form8 extends BaseContacts {
             },
           ],
         },
-        INPUTS.BUTTON("button", "Button", "Send", null, null, null, "Primary"),
       ],
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Send", null, null, null, "Primary"));
   }
 
   static getName(): string {
@@ -322,7 +322,7 @@ class Form8 extends BaseContacts {
     const contactTexts = left.contactItems;
 
     const input = this.castToObject<InputData>("input");
-    const button = input.button;
+    const button = this.castToObject<INPUTS.CastedButton>("button");
     const inputItems = input.inputItems;
 
     const pageContentExist = firstTextExist || secondTextExist || contactTexts?.length > 0 || inputItems.length > 0 || this.castToString(button.text);
