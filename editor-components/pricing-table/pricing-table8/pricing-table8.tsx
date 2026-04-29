@@ -20,10 +20,6 @@ type IIconBoxes = {
   buttons?: INPUTS.CastedButton[];
 };
 
-interface PricingTableSettings {
-  line: boolean;
-  animations: string[];
-}
 
 class PricingTable8 extends BasePricingTable {
   constructor(props?: any) {
@@ -375,26 +371,13 @@ class PricingTable8 extends BasePricingTable {
     });
 
     this.addProp({
-      type: "object",
-      key: "settings",
-      displayer: "Settings",
-      value: [
-        {
-          type: "boolean",
-          key: "line",
-          displayer: "Line",
-          value: true,
-        },
-        {
-          type: "multiSelect",
-          key: "animations",
-          displayer: "Animations",
-          value: ["animation1", "animation2", "animation3"],
-          additionalParams: {
-            selectItems: ["animation1", "animation2", "animation3"],
-          },
-        },
-      ],
+      type: "multiSelect",
+      key: "animations",
+      displayer: "Animations",
+      value: ["animation1", "animation2", "animation3"],
+      additionalParams: {
+        selectItems: ["animation1", "animation2", "animation3"],
+      },
     });
   }
 
@@ -489,8 +472,7 @@ class PricingTable8 extends BasePricingTable {
     const displayIndex = hoveredIndex !== null ? hoveredIndex : currentIndex;
     const headerButtons = this.castToObject<INPUTS.CastedButton[]>("headerButtons");
     const footerButtons = this.castToObject<INPUTS.CastedButton[]>("footerButtons");
-    const settingsGroup = this.castToObject<PricingTableSettings>("settings");
-    const line = settingsGroup.line;
+    const animations = this.castToObject<string[]>("animations");
 
     const hasCardsWithContent = cards.some((card) => this.hasCardContent(card));
 
@@ -518,8 +500,7 @@ class PricingTable8 extends BasePricingTable {
 
     return (
       <Base.Container
-        className={`${this.decorateCSS("container")} ${!hasHeader ? this.decorateCSS("no-header") : ""
-          }`}
+        className={this.decorateCSS("container")}
       >
         <Base.MaxContent className={this.decorateCSS("max-content")}>
           {(subtitleExist || titleExist || descriptionExist || hasHeaderButtons) && (
@@ -586,7 +567,7 @@ class PricingTable8 extends BasePricingTable {
 
                   return (
                     <div
-                      className={`${this.decorateCSS("card-item-count")} ${settingsGroup.animations ? settingsGroup.animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
+                      className={`${this.decorateCSS("card-item-count")} ${animations ? animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
                       key={index}
                     >
                       <Base.VerticalContent
@@ -656,7 +637,7 @@ class PricingTable8 extends BasePricingTable {
 
                   return (
                     <div
-                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${index === currentIndex ? this.decorateCSS("active-card") : ""} ${settingsGroup.animations ? settingsGroup.animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
+                      className={`${this.decorateCSS("card-item-count")} ${index === Math.floor(cards.length / 2) ? this.decorateCSS("middle-card") : ""} ${index === currentIndex ? this.decorateCSS("active-card") : ""} ${animations ? animations.map((animation: string) => this.decorateCSS(animation)).join(" ") : ""}`}
                       key={index}
                       onClick={() => handleCardClick(index)}
                       onMouseEnter={() => handleCardHover(index)}
@@ -713,8 +694,7 @@ class PricingTable8 extends BasePricingTable {
               <Base.VerticalContent className={this.decorateCSS("footer-content")}>
                 {hasLowerContent && (
                   <div
-                    className={`${this.decorateCSS("lower-container")} ${!line ? this.decorateCSS("center") : ""
-                      }`}
+                    className={this.decorateCSS("lower-container")}
                   >
                     {this.hasPlanDescContent(currentCard) && (
                       <Base.VerticalContent
@@ -733,7 +713,7 @@ class PricingTable8 extends BasePricingTable {
                       </Base.VerticalContent>
                     )}
 
-                    {line && this.hasBarsContent(currentCard.bars) && (
+                    {this.hasBarsContent(currentCard.bars) && (
                       <div className={this.decorateCSS("bar-rows")}>
                         <div className={this.decorateCSS("bar-row")}>
                           {currentCard.bars.map((bar: any, index: any) => {

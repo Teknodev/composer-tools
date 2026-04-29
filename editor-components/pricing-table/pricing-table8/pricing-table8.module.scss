@@ -1,9 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-  &.no-header {
-    padding-top: calc(var(--composer-gap-lg) * 4);
-  }
 
   .max-content {
     display: flex;
@@ -16,6 +13,12 @@
       display: flex;
       flex-direction: column;
       width: 100%;
+
+      .title,
+      .subtitle,
+      .description {
+        content: "";
+      }
 
       .header-buttons {
         display: flex;
@@ -367,9 +370,7 @@
         gap: var(--composer-gap-sm);
       }
 
-      .card-button,
-      .card-button-text,
-      .card-button-icon {
+      .active-card {
         content: "";
       }
     }
