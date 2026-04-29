@@ -45,7 +45,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -72,7 +72,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
@@ -99,7 +99,7 @@ class Form9 extends BaseContacts {
             {
               type: "media",
               key: "icon",
-              displayer: "Icon or Image",
+              displayer: "Icon",
               additionalParams: { availableTypes: ["icon", "image"] },
               value: { type: "icon", name: "FaCheckCircle" },
             },
