@@ -31,8 +31,6 @@ class Form5 extends BaseContacts {
       value: "",
     });
 
-    this.addProp(INPUTS.BUTTON("button", "Button", "Submit", null, null, null, "Primary"));
-
     this.addProp({
       type: "array",
       key: "first_inputs",
@@ -76,26 +74,6 @@ class Form5 extends BaseContacts {
               displayer: "Type Error Message",
               value: "Invalid type",
             },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "object",
-                  key: "option",
-                  displayer: "Option",
-                  value: [
-                    {
-                      type: "string",
-                      key: "value",
-                      displayer: "Value",
-                      value: "Lorem ipsum",
-                    },
-                  ],
-                }
-              ],
-            },
           ],
         },
         {
@@ -135,26 +113,6 @@ class Form5 extends BaseContacts {
               key: "type_error_message",
               displayer: "Type Error Message",
               value: "Invalid type",
-            },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "object",
-                  key: "option",
-                  displayer: "Option",
-                  value: [
-                    {
-                      type: "string",
-                      key: "value",
-                      displayer: "Value",
-                      value: "Lorem ipsum",
-                    },
-                  ],
-                },
-              ],
             },
           ],
         },
@@ -289,19 +247,6 @@ class Form5 extends BaseContacts {
               displayer: "Type Error Message",
               value: "Invalid type",
             },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "string",
-                  key: "option",
-                  displayer: "Option",
-                  value: "Lorem ipsum",
-                },
-              ],
-            },
           ],
         },
         {
@@ -341,19 +286,6 @@ class Form5 extends BaseContacts {
               key: "type_error_message",
               displayer: "Type Error Message",
               value: "Invalid type",
-            },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "string",
-                  key: "option",
-                  displayer: "Option",
-                  value: "Lorem ipsum",
-                },
-              ],
             },
           ],
         },
@@ -395,23 +327,12 @@ class Form5 extends BaseContacts {
               displayer: "Type Error Message",
               value: "Invalid type",
             },
-            {
-              type: "array",
-              key: "options",
-              displayer: "Options",
-              value: [
-                {
-                  type: "string",
-                  key: "option",
-                  displayer: "Option",
-                  value: "Lorem ipsum",
-                },
-              ],
-            },
           ],
         },
       ],
     });
+
+    this.addProp(INPUTS.BUTTON("button", "Button", "Submit", null, null, null, "Primary"));
   }
 
   static getName(): string {
