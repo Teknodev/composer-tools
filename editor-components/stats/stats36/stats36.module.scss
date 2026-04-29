@@ -22,6 +22,14 @@
                     flex: auto;
                 }
 
+                .overlay {
+                    position: absolute;
+                    inset: 0;
+                    background-color: var(--composer-overlay-color);
+                    z-index: 1;
+                    pointer-events: none;
+                }
+
                 .media {
                     border-radius: var(--composer-border-radius-sm);
                     position: absolute;

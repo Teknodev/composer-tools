@@ -22,16 +22,29 @@ class Stats36 extends BaseStats {
         super(props, styles);
 
         this.addProp({
-            type: "media",
-            key: "media",
+            type: "object",
+            key: "mediaGroup",
             displayer: "Media",
-            additionalParams: {
-                availableTypes: ["image", "video"],
-            },
-            value: {
-                type: "image",
-                url: "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            },
+            value: [
+                {
+                    type: "media",
+                    key: "media",
+                    displayer: "Media",
+                    additionalParams: {
+                        availableTypes: ["image", "video"],
+                    },
+                    value: {
+                        type: "image",
+                        url: "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    },
+                },
+                {
+                    type: "boolean",
+                    key: "overlay",
+                    displayer: "Overlay",
+                    value: true,
+                },
+            ],
         });
 
         this.addProp({
@@ -212,7 +225,9 @@ class Stats36 extends BaseStats {
         const title = this.castToString(this.getPropValue("title"));
         const subtitle = this.castToString(this.getPropValue("subtitle"));
         const description = this.castToString(this.getPropValue("description"));
-        const media = this.getPropValue("media");
+        const mediaGroup = this.castToObject<any>("mediaGroup");
+        const media = mediaGroup.media;
+        const showOverlay = mediaGroup.overlay;
         const statsRaw = this.castToObject<{ prefix: JSX.Element; number: JSX.Element; suffix: JSX.Element; title: JSX.Element; subtitle: JSX.Element; description: JSX.Element }[]>("stats");
         const buttons = this.castToObject<INPUTS.CastedButton[]>("buttons");
         const hasValidButtons = buttons.some((btn) => this.castToString(btn.text));
@@ -259,6 +274,7 @@ class Stats36 extends BaseStats {
                     <Base.ContainerGrid className={this.decorateCSS("grid-wrapper")}>
                         {!fullWidth && (
                             <Base.GridCell className={`${this.decorateCSS("media-cell")} ${mediaFullWidth ? this.decorateCSS("full-width") : ""}`}>
+                                {showOverlay && <div className={this.decorateCSS("overlay")}></div>}
                                 <Base.Media value={media} className={this.decorateCSS("media")} />
                             </Base.GridCell>
                         )}
