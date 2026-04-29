@@ -1,8 +1,6 @@
 @use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
-    background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
-    padding: calc(var(--composer-gap-xl) * 3) 60px !important;
     position: relative;
     overflow: hidden;
 
@@ -77,15 +75,8 @@
                 }
             }
 
-            .title {
-                max-width: 70%;
-                width: 100%;
-            }
-
             .description {
-                opacity: 0.7;
-                max-width: 70%;
-                width: 100%;
+                content: "";
             }
 
             .breadcrumb {
@@ -153,8 +144,6 @@
 
 @container (max-width: #{$composer-tablet-width}) {
     .container {
-        padding: calc(var(--composer-gap-xl) * 3) var(--composer-gap-xl) !important;
-
         .vector1 {
             left: 300px !important;
         }
@@ -167,19 +156,10 @@
 
 @container (max-width: #{$composer-phone-width}) {
     .container {
-        padding: calc(var(--composer-gap-xl) * 3) 30px !important;
-
         .vector1,
         .vector2 {
             display: none;
         }
 
-        .section {
-
-            .title,
-            .description {
-                max-width: 100%;
-            }
-        }
     }
 }
