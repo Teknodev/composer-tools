@@ -26,6 +26,8 @@
                     position: absolute;
                     inset: 0;
                     background-color: var(--composer-overlay-color);
+                                        border-radius: var(--composer-border-radius-sm);
+
                     z-index: 1;
                     pointer-events: none;
                 }
