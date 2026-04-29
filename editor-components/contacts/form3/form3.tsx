@@ -210,7 +210,7 @@ class Form3 extends BaseContacts {
                   type: "page",
                   key: "url",
                   displayer: "Navigate To",
-                  value: "https://www.google.com",
+                  value: "",
                 },
               ],
             },

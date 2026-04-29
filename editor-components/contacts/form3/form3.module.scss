@@ -220,6 +220,7 @@
                 z-index: 1;
                 cursor: pointer;
                 transition: background-color 0.2s ease;
+                padding: var(--composer-gap-sm);
 
                 &:hover {
                   background-color: var(--composer-primary-color);
@@ -238,9 +239,9 @@
                 }
 
                 .icon {
-                  font-size: 1.25rem !important;
-                  height: 25px !important;
-                  width: 25px !important;
+                  font-size: 1rem !important;
+                  height: 1rem !important;
+                  width: 1rem !important;
                   object-fit: contain;
                   display: flex;
                   justify-content: center;
