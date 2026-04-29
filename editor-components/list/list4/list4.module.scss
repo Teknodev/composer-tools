@@ -368,6 +368,13 @@
             font-size: 1.5rem;
           }
         }
+
+        .service-item:last-child .border-frame {
+          .border-left,
+          .border-right {
+            height: calc(100% + var(--composer-gap-md) + var(--composer-gap-sm));
+          }
+        }
       }
     }
   }
