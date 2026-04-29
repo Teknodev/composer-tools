@@ -3,7 +3,7 @@ import { BaseStats, TypeMediaInputValue } from "../../EditorComponent";
 import styles from "./stats33.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
 import { INPUTS } from "composer-tools/custom-hooks/input-templates";
-import ComposerLinkProvider from "../../../../custom-hooks/composer-base-components/Link/link";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 
 type RawStatItem = {
     prefix: JSX.Element;
@@ -293,7 +293,7 @@ class Stats33 extends BaseStats {
                                             if (!buttonText) return null;
 
                                             return (
-                                                <ComposerLinkProvider key={index} path={item.url}>
+                                                <ComposerLink key={index} path={item.url}>
                                                     <Base.Button
                                                         buttonType={item.type}
                                                         className={this.decorateCSS("button")}
@@ -302,7 +302,7 @@ class Stats33 extends BaseStats {
                                                             {item.text}
                                                         </Base.P>
                                                     </Base.Button>
-                                                </ComposerLinkProvider>
+                                                </ComposerLink>
                                             );
                                         }
                                     )}
@@ -356,7 +356,7 @@ class Stats33 extends BaseStats {
                                                     if (!buttonText && !item.icon) return null;
 
                                                     return (
-                                                        <ComposerLinkProvider key={btnIndex} path={item.url}>
+                                                        <ComposerLink key={btnIndex} path={item.url}>
                                                             <Base.Button
                                                                 buttonType={item.type}
                                                                 className={this.decorateCSS("button")}
@@ -373,7 +373,7 @@ class Stats33 extends BaseStats {
                                                                     />
                                                                 )}
                                                             </Base.Button>
-                                                        </ComposerLinkProvider>
+                                                        </ComposerLink>
                                                     );
                                                 })}
                                             </div>
