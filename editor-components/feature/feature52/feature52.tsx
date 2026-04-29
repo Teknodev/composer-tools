@@ -226,9 +226,56 @@ class Feature52 extends BaseFeature {
         });
 
         const rawItemCount = this.getPropValue("itemCount");
-        const count = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
-        this.setComponentState("activeIndices", Array.from({ length: count }, (_, i) => i));
-        this.lastItemCount = count;
+        const itemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+        this.setComponentState("activeIndices", this.getInitialActiveIndices(itemCount));
+        this.lastItemCount = itemCount;
+    }
+
+    private getInitialActiveIndices(itemCount: number): number[] {
+        const services = this.castToObject<ServiceItemType[]>("services") || [];
+        const total = services.length;
+        if (total === 0) return [];
+        if (this.isPhone()) return [0];
+
+        const counts = this.getColumnCounts(itemCount);
+        const indices: number[] = [];
+        let offset = 0;
+        for (let i = 0; i < counts.length; i++) {
+            if (counts[i] > 0) {
+                indices.push(offset);
+            }
+            offset += counts[i];
+        }
+        return indices;
+    }
+
+    private getColumnCounts(itemCount?: number) {
+        const services = this.castToObject<ServiceItemType[]>("services") || [];
+        const total = services.length;
+        const pcItemCount = itemCount ?? (typeof this.getPropValue("itemCount") === "number" && this.getPropValue("itemCount") > 0 ? this.getPropValue("itemCount") : 1);
+
+        let currentCount = pcItemCount;
+        if (this.isPhone()) {
+            currentCount = 1;
+        } else if (this.isTablet()) {
+            currentCount = 2;
+        }
+
+        const perColBase = Math.floor(total / currentCount);
+        const rem = total % currentCount;
+        const counts = Array(currentCount).fill(perColBase);
+        for (let i = 0; i < rem; i++) counts[i]++;
+        return counts;
+    }
+
+    private getItemColumn(index: number): number {
+        const counts = this.getColumnCounts();
+        let offset = 0;
+        for (let i = 0; i < counts.length; i++) {
+            if (index < offset + counts[i]) return i;
+            offset += counts[i];
+        }
+        return 0;
     }
 
     static getName(): string {
@@ -251,13 +298,9 @@ class Feature52 extends BaseFeature {
         const currentIsSmallScreen = this.isSmallScreen();
         if (this.lastIsSmallScreen !== currentIsSmallScreen) {
             this.lastIsSmallScreen = currentIsSmallScreen;
-            if (currentIsSmallScreen) {
-                this.setComponentState("activeIndices", [0]);
-            } else {
-                const rawItemCount = this.getPropValue("itemCount");
-                const currentItemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
-                this.setComponentState("activeIndices", Array.from({ length: currentItemCount }, (_, i) => i));
-            }
+            const rawItemCount = this.getPropValue("itemCount");
+            const currentItemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
+            this.setComponentState("activeIndices", this.getInitialActiveIndices(currentItemCount));
         }
     };
 
@@ -272,24 +315,29 @@ class Feature52 extends BaseFeature {
         if (countChanged || screenChanged) {
             this.lastItemCount = currentItemCount;
             this.lastIsSmallScreen = currentIsSmallScreen;
-
-            if (currentIsSmallScreen) {
-                this.setComponentState("activeIndices", [0]);
-            } else {
-                this.setComponentState("activeIndices", Array.from({ length: currentItemCount }, (_, i) => i));
-            }
+            this.setComponentState("activeIndices", this.getInitialActiveIndices(currentItemCount));
         }
     }
 
     private isSmallScreen(): boolean {
+        return this.isPhone() || this.isTablet();
+    }
+
+    private isPhone(): boolean {
         const el = this.containerRef.current;
         const width = el ? el.clientWidth : (typeof window !== "undefined" ? window.innerWidth : 1440);
-        return width <= 1024;
+        return width <= 640;
+    }
+
+    private isTablet(): boolean {
+        const el = this.containerRef.current;
+        const width = el ? el.clientWidth : (typeof window !== "undefined" ? window.innerWidth : 1440);
+        return width > 640 && width <= 1024;
     }
 
     private onItemClick(index: number): void {
-        if (this.isSmallScreen()) {
-            const activeIndices = this.getComponentState("activeIndices") || [];
+        const activeIndices = this.getComponentState("activeIndices") || [];
+        if (this.isPhone()) {
             if (activeIndices.includes(index)) {
                 this.setComponentState("activeIndices", []);
             } else {
@@ -298,12 +346,8 @@ class Feature52 extends BaseFeature {
             return;
         }
 
-        const rawItemCount = this.getPropValue("itemCount");
-        const pcItemCount = typeof rawItemCount === "number" && rawItemCount > 0 ? rawItemCount : 1;
-        const activeIndices = this.getComponentState("activeIndices") || [];
-
-        const targetColumn = index % pcItemCount;
-        const otherColumnsActive = activeIndices.filter((i: number) => (i % pcItemCount) !== targetColumn);
+        const targetColumn = this.getItemColumn(index);
+        const otherColumnsActive = activeIndices.filter((i: number) => this.getItemColumn(i) !== targetColumn);
 
         let newIndices: number[];
 
@@ -384,69 +428,84 @@ class Feature52 extends BaseFeature {
 
                         {hasListContent && (
                             <div className={this.decorateCSS("list-container")}>
-                                {line && <div className={this.decorateCSS("line")}></div>}
                                 <Base.ListGrid
-                                    className={`${this.decorateCSS("list-grid")} ${line && this.decorateCSS("has-line")}`}
-                                    gridCount={{ pc: itemCount, tablet: 1, phone: 1 }}
+                                    className={this.decorateCSS("list-grid-wrapper")}
+                                    gridCount={{ pc: itemCount, tablet: 2, phone: 1 }}
                                 >
-                                    {services.map((item: ServiceItemType, index: number) => {
-                                        const itemTitleExist = this.castToString(item.title);
-                                        const itemDescriptionExist = this.castToString(item.description);
-                                        const itemIconExist = !!item.icon?.name || !!item.icon?.url;
-                                        const isActive = activeIndices.includes(index);
-                                        const currentToggleIcon = isActive ? collapseIcon : expandIcon;
-                                        const itemHeaderExist = !!itemTitleExist || itemIconExist || !!currentToggleIcon;
+                                    {(() => {
+                                        const counts = this.getColumnCounts();
+                                        const columns: ServiceItemType[][] = [];
+                                        let offset = 0;
+                                        for (const count of counts) {
+                                            columns.push(services.slice(offset, offset + count));
+                                            offset += count;
+                                        }
 
-                                        return (
-                                            <div
-                                                key={`feature52-service-${index}`}
-                                                className={`${this.decorateCSS("item-container")} ${isActive && this.decorateCSS("active-item")}`}
-                                            >
-                                                {itemHeaderExist && (
-                                                    <div
-                                                        className={this.decorateCSS("item-header")}
-                                                        onClick={() => this.onItemClick(index)}
-                                                        onKeyDown={(event) => this.onItemKeyDown(event, index)}
-                                                        role="button"
-                                                        tabIndex={0}
-                                                        aria-expanded={isActive}
-                                                    >
-                                                        <div className={this.decorateCSS("item-left")}>
-                                                            {itemIconExist && (
-                                                                <Base.Media
-                                                                    className={`${this.decorateCSS("item-icon")} ${isActive && this.decorateCSS("item-icon-active")}`}
-                                                                    value={item.icon}
-                                                                />
-                                                            )}
-                                                            {itemTitleExist && (
-                                                                <Base.H6 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
-                                                                    {item.title}
-                                                                </Base.H6>
-                                                            )}
-                                                        </div>
-                                                        {currentToggleIcon && (
-                                                            <div className={this.decorateCSS("toggle-button-container")}>
-                                                                <Base.Media
-                                                                    className={`${this.decorateCSS("toggle-icon")} ${this.decorateCSS("button-icon")} ${isActive && this.decorateCSS("toggle-icon-active")}`}
-                                                                    value={currentToggleIcon}
-                                                                />
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                                {itemDescriptionExist && (
-                                                    <div
-                                                        className={`${this.decorateCSS("item-description-container")} ${isActive && this.decorateCSS("item-description-active")}`}
-                                                    >
-                                                        <Base.P className={this.decorateCSS("item-description")}>
-                                                            {item.description}
-                                                        </Base.P>
-                                                    </div>
-                                                )}
+                                        return columns.map((colItems, colIdx) => (
+                                            <div key={colIdx} className={this.decorateCSS("list-column")}>
                                                 {line && <div className={this.decorateCSS("line")}></div>}
+                                                {colItems.map((item, idxInCol) => {
+                                                    const globalIdx = columns.slice(0, colIdx).reduce((acc, curr) => acc + curr.length, 0) + idxInCol;
+                                                    const itemTitleExist = this.castToString(item.title);
+                                                    const itemDescriptionExist = this.castToString(item.description);
+                                                    const itemIconExist = !!item.icon?.name || !!item.icon?.url;
+                                                    const isActive = activeIndices.includes(globalIdx);
+                                                    const currentToggleIcon = isActive ? collapseIcon : expandIcon;
+                                                    const itemHeaderExist = !!itemTitleExist || itemIconExist || !!currentToggleIcon;
+
+                                                    return (
+                                                        <div
+                                                            key={`feature52-service-${globalIdx}`}
+                                                            className={`${this.decorateCSS("item-container")} ${isActive && this.decorateCSS("active-item")}`}
+                                                        >
+                                                            {itemHeaderExist && (
+                                                                <div
+                                                                    className={this.decorateCSS("item-header")}
+                                                                    onClick={() => this.onItemClick(globalIdx)}
+                                                                    onKeyDown={(event) => this.onItemKeyDown(event, globalIdx)}
+                                                                    role="button"
+                                                                    tabIndex={0}
+                                                                    aria-expanded={isActive}
+                                                                >
+                                                                    <div className={this.decorateCSS("item-left")}>
+                                                                        {itemIconExist && (
+                                                                            <Base.Media
+                                                                                className={`${this.decorateCSS("item-icon")} ${isActive && this.decorateCSS("item-icon-active")}`}
+                                                                                value={item.icon}
+                                                                            />
+                                                                        )}
+                                                                        {itemTitleExist && (
+                                                                            <Base.H6 className={`${this.decorateCSS("item-title")} ${isActive && this.decorateCSS("item-title-active")}`}>
+                                                                                {item.title}
+                                                                            </Base.H6>
+                                                                        )}
+                                                                    </div>
+                                                                    {currentToggleIcon && (
+                                                                        <div className={this.decorateCSS("toggle-button-container")}>
+                                                                            <Base.Media
+                                                                                className={`${this.decorateCSS("toggle-icon")} ${this.decorateCSS("button-icon")} ${isActive && this.decorateCSS("toggle-icon-active")}`}
+                                                                                value={currentToggleIcon}
+                                                                            />
+                                                                        </div>
+                                                                    )}
+                                                                </div>
+                                                            )}
+                                                            {itemDescriptionExist && (
+                                                                <div
+                                                                    className={`${this.decorateCSS("item-description-container")} ${isActive && this.decorateCSS("item-description-active")}`}
+                                                                >
+                                                                    <Base.P className={this.decorateCSS("item-description")}>
+                                                                        {item.description}
+                                                                    </Base.P>
+                                                                </div>
+                                                            )}
+                                                            {line && <div className={this.decorateCSS("line")}></div>}
+                                                        </div>
+                                                    );
+                                                })}
                                             </div>
-                                        );
-                                    })}
+                                        ));
+                                    })()}
                                 </Base.ListGrid>
                             </div>
                         )}
