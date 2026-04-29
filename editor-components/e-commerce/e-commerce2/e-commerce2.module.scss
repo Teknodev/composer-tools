@@ -34,9 +34,16 @@
         content: "";
       }
 
-      .button {
-        .button-text {
-          content: "";
+      .action-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--composer-gap-sm);
+
+        .button {
+          .button-text {
+            content: "";
+          }
         }
       }
     }

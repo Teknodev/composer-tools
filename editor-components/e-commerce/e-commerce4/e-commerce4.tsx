@@ -61,7 +61,9 @@ class ECommerce4 extends BaseECommerce {
             type: "array",
             key: "headerButtons",
             displayer: "Buttons",
-            value: [INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary")],
+            value: [
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
+            ],
         });
         this.addProp({
             type: "object",
