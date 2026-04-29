@@ -5,12 +5,14 @@
     .content {
       display: flex;
       gap: var(--composer-gap-md);
+      align-items: stretch;
 
       .left-page {
         display: flex;
         flex-direction: column;
-        flex: 1;
         gap: var(--composer-gap-lg);
+        min-width: 0;
+        flex: 1;
 
         &.no-list {
           gap: 20px;
@@ -97,8 +99,8 @@
       &.no-left-content {
         .right-page {
           width: 100%;
-          min-height: 500px;
           max-height: 600px;
+          flex: 1;
 
           .image-container {
             position: relative;
@@ -108,13 +110,16 @@
       }
 
       .right-page {
-        flex: 1;
+        flex: 0 0 50%;
         position: relative;
+        min-height: 400px;
 
         .image-container {
           position: absolute;
           top: 0px;
           right: 0px;
+          bottom: 0;
+          left: 0;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -145,7 +150,7 @@
   }
 }
 
-@container (max-width: 1024px) {
+@container (max-width: #{$composer-tablet-width}) {
   .container {
     .max-content {
       .content {
@@ -172,7 +177,9 @@
         }
 
         .right-page {
-          min-height: 400px;
+          flex: 0 0 auto;
+          width: 100%;
+          min-height: 300px;
         }
       }
     }

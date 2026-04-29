@@ -62,11 +62,13 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow: hidden;
+          aspect-ratio: 3 / 1;
           width: 100%;
 
           .image {
-            height: 41px;
-            font-size: 41px;
+            height: var(--composer-gap-lg);
+            font-size: var(--composer-gap-lg);
             object-fit: cover;
           }
 
