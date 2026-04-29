@@ -231,5 +231,30 @@
         &.no-media {
             gap: 0;
         }
+
+        &[data-alignment="center"] {
+            .left-column {
+                align-items: center;
+                text-align: center;
+
+                .title,
+                .description {
+                    text-align: center;
+                    align-self: center;
+                }
+
+                .subtitle {
+                    text-align: center;
+                    align-self: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                .button-container {
+                    justify-content: center;
+                    align-self: center;
+                }
+            }
+        }
     }
 }
