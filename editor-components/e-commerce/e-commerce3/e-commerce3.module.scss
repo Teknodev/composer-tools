@@ -101,7 +101,26 @@
 }
 
 @container (max-width: #{$composer-phone-width}) {
-    .tab-buttons {
-        flex-direction: column;
+    .container-top {
+        padding: 0 !important;
+        border: 0 !important;
+
+        .max-content {
+            padding: 0 !important;
+            width: 100% !important;
+            max-width: none !important;
+
+            .tab-buttons {
+                flex-direction: column;
+                width: 100%;
+
+                .tab {
+                    width: 100%;
+                    padding: var(--composer-gap-md) 0;
+                    border-left: 0 !important;
+                    border-right: 0 !important;
+                }
+            }
+        }
     }
 }
