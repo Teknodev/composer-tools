@@ -467,14 +467,14 @@ class Location1 extends Location {
     return (
       <Base.Container className={this.decorateCSS("container")}>
         <Base.MaxContent className={this.decorateCSS("max-content")}>
-          {(title || icons.length > 0) && (
+          {(subtitle || title || headerdescription) && (
             <div className={this.decorateCSS("header")}>
               <Base.VerticalContent className={this.decorateCSS("vertical-content")}>
                 {subtitle && <Base.SectionSubTitle className={this.decorateCSS("subtitle")}>{this.getPropValue("subtitle")}</Base.SectionSubTitle>}
                 {title && <Base.SectionTitle className={this.decorateCSS("title")}>{this.getPropValue("title")}</Base.SectionTitle>}
                 {headerdescription && <Base.SectionDescription className={this.decorateCSS("description")}>{this.getPropValue("headerDescription")}</Base.SectionDescription>}
               </Base.VerticalContent>
-              {title && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
+              {(subtitle || title || headerdescription) && icons.length > 0 && line && <div className={this.decorateCSS("divider")} />}
               {icons.length > 0 && (
                 <div className={this.decorateCSS("icon-container")}>
                   {icons.map((icon: any, index: number) => {

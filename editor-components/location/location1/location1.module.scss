@@ -59,7 +59,7 @@
             position: relative;
           }
 
-          .icon-wrapper:hover .icon {
+          &:hover .icon {
             color: var(--composer-font-color-secondary) !important;
           }
 
