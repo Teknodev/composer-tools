@@ -9,6 +9,10 @@
                 .subtitle {
                     width: fit-content;
                 }
+
+                .title {}
+
+                .description {}
             }
 
             .stats-grid {
@@ -39,7 +43,7 @@
                             align-items: baseline;
                             justify-content: center;
                             color: inherit;
-                            white-space: nowrap;
+                            
                             overflow: hidden;
                             text-overflow: ellipsis;
                             max-width: 100%;
@@ -58,6 +62,8 @@
                             overflow: hidden;
                             text-overflow: ellipsis;
                             text-align: center;
+                            
+                            flex-shrink: 0;
                         }
 
                         .stat-title {
@@ -66,6 +72,8 @@
                             font-size: 1.25rem;
                             overflow: hidden;
                             text-overflow: ellipsis;
+                            
+                            flex-shrink: 0;
                         }
 
                         .stat-description {
@@ -76,6 +84,7 @@
                             display: -webkit-box;
                             -webkit-line-clamp: 3;
                             -webkit-box-orient: vertical;
+                            flex-shrink: 0;
                         }
                     }
 
@@ -169,12 +178,35 @@
             margin-top: 0;
         }
 
-        .stat-card .stat-item .stat-value {
-
+        .stat-card.stat-card-1 .stat-item .stat-value {
             .stat-prefix,
             .stat-number,
             .stat-suffix {
-                font-size: 3rem;
+                font-size: 2.5rem !important;
+            }
+        }
+
+        .stat-card.stat-card-2 .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 2.25rem !important;
+            }
+        }
+
+        .stat-card.stat-card-3 .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 4rem !important;
+            }
+        }
+
+        .stat-card.stat-card-4 .stat-item .stat-value {
+            .stat-prefix,
+            .stat-number,
+            .stat-suffix {
+                font-size: 2.25rem !important;
             }
         }
 
@@ -212,12 +244,16 @@
             margin-top: 0;
         }
 
-        .stat-card .stat-item .stat-value {
-
-            .stat-prefix,
-            .stat-number,
-            .stat-suffix {
-                font-size: 3rem;
+        .stat-card.stat-card-1,
+        .stat-card.stat-card-2,
+        .stat-card.stat-card-3,
+        .stat-card.stat-card-4 {
+            .stat-item .stat-value {
+                .stat-prefix,
+                .stat-number,
+                .stat-suffix {
+                    font-size: 3rem !important;
+                }
             }
         }
 
