@@ -42,7 +42,9 @@
                     align-items: flex-start;
 
                     .subtitle {
-                        margin-left: 0;
+                        margin-left: 0 !important;
+                        margin-right: 0 !important;
+                        text-align: left !important;
                     }
 
                     .title {
@@ -52,47 +54,62 @@
                     .description-wrapper {
                         position: relative;
                         width: 100%;
-                        max-height: 140px;
-                        overflow: hidden;
                         transition: max-height 0.5s ease-in-out;
-                        pointer-events: none;
 
                         .description {
                             text-align: left;
-                            margin-bottom: var(--composer-gap-md);
                         }
 
-                        .show-more-overlay {
-                            position: absolute;
-                            inset: auto 0 0 0;
-                            height: 80px;
-                            z-index: 10;
-                            display: flex;
-                            align-items: flex-end;
-                            background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 60%);
-                            pointer-events: auto;
-                            cursor: pointer;
+                        &.has-toggle {
+                            max-height: 140px;
+                            overflow: hidden;
+                            pointer-events: none;
 
-                            .show-more-btn {
-                                padding-bottom: 2px;
-                                border-bottom: 2px solid var(--composer-primary-color);
+                            .show-more-overlay {
+                                margin-top: var(--composer-gap-md);
+                                position: absolute;
+                                inset: auto 0 0 0;
+                                height: 80px;
+                                z-index: 10;
+                                display: flex;
+                                align-items: flex-end;
+                                background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%) 60%);
+                                pointer-events: auto;
+                                cursor: pointer;
 
-                                .btn-text {
-                                    color: var(--composer-primary-color);
+                                .show-more-btn {
+                                    padding-bottom: 2px;
+                                    border-bottom: 2px solid var(--composer-primary-color);
+
+                                    .btn-text {
+                                        color: var(--composer-primary-color);
+                                    }
+                                }
+                            }
+
+                            &.expanded-wrapper {
+                                max-height: 2000px;
+                                pointer-events: auto;
+                                user-select: auto;
+
+                                .show-more-overlay {
+                                    position: relative;
+                                    background: none;
+                                    height: auto;
                                 }
                             }
                         }
+                    }
+                }
 
-                        &.expanded-wrapper {
-                            max-height: 2000px;
-                            pointer-events: auto;
-                            user-select: auto;
+                .button-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--composer-gap-sm);
 
-                            .show-more-overlay {
-                                position: relative;
-                                background: none;
-                                height: auto;
-                            }
+                    .button {
+                        .button-text {
+                            content: "";
                         }
                     }
                 }
@@ -125,26 +142,36 @@
                 }
             }
 
-            &.no-image[data-alignment="center"] .content-side {
-                align-items: center;
-                text-align: center;
-
-                .heading .subtitle,
-                .heading .title,
-                .description-wrapper .description {
-                    text-align: center;
-                }
-
-                .heading {
+            &[data-alignment="center"] {
+                &.no-image .content-side {
                     align-items: center;
+                    text-align: center;
 
-                    .subtitle {
-                        margin-left: auto;
+                    .heading .subtitle {
+                        text-align: left !important;
                     }
-                }
 
-                .show-more-overlay {
-                    justify-content: center;
+                    .heading .title,
+                    .description-wrapper .description {
+                        text-align: center;
+                    }
+
+                    .heading {
+                        align-items: center;
+
+                        .subtitle {
+                            margin-left: auto !important;
+                            margin-right: auto !important;
+                        }
+                    }
+
+                    .button-container {
+                        justify-content: center;
+                    }
+
+                    .show-more-overlay {
+                        justify-content: center;
+                    }
                 }
             }
         }
@@ -176,6 +203,32 @@
             padding: var(--composer-gap-md) var(--composer-gap-md) var(--composer-gap-lg);
             background-color: transparent;
             border-radius: 0;
+        }
+
+        &[data-alignment="center"].no-image {
+            .content-side {
+                align-items: center;
+                text-align: center;
+
+                .heading {
+                    align-items: center;
+
+                    .subtitle {
+                        margin-left: auto !important;
+                        margin-right: auto !important;
+                    }
+
+                    .title,
+                    .description {
+                        text-align: center;
+                    }
+                }
+
+                .button-container,
+                .show-more-overlay {
+                    justify-content: center;
+                }
+            }
         }
 
         &.no-image {

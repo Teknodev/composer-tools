@@ -1,31 +1,25 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
 
 .container {
   .max-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--composer-gap-md);
     align-items: center;
     justify-content: center;
 
-      .top-container {
-        display: flex;
-        flex-direction: column;
-        gap: var(--composer-gap-sm);
-        align-items: center;
-        justify-content: center;
-        .subtitle,
-        .title,
-        .subtitle-badge {
-          text-align: center;
-        }
-        .subtitle {
-          text-align: center;
-          transform: translateX(0);
-          &::before {
-            display: none;
-          }
+    .content {
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .subtitle,
+      .title {
+        text-align: center;
+      }
+
+      .subtitle {
+        transform: translateX(0);
+
+        &::before {
+          display: none;
         }
       }
 
@@ -33,52 +27,76 @@
         color: var(--composer-font-color-primary);
         display: flex;
         gap: var(--composer-gap-md);
+        margin-bottom: 0;
+
         .left-text,
         .right-text {
           flex: 1;
           text-align: justify;
         }
       }
-      
+
       .text-container.single-text {
-          .left-text,
-          .right-text {
+        .left-text,
+        .right-text {
           text-align: center;
         }
       }
-      
-      .bottom-container {
-        color: var(--composer-font-color-primary);
-        text-align: center;
-        .signature {
-          .signature-image {
-            width: 150px;
-            height: 100px;
-            object-fit: contain;
+
+      .buttons-container {
+        display: flex;
+        justify-content: center;
+        gap: var(--composer-gap-sm);
+        flex-wrap: wrap;
+
+        .button {
+          .button-text {
+            content: "";
           }
         }
-        .name {
-          text-align: center;
+      }
+
+      .signature {
+        .signature-image {
+          width: calc(var(--composer-gap-xl) * 3);
+          height: calc(var(--composer-gap-xl) * 2);
+          object-fit: contain;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 8rem;
+          color: var(--composer-font-color-primary);
         }
       }
+
+      .name {
+        text-align: center;
+        color: var(--composer-font-color-primary);
+      }
+    }
   }
 }
 
 @container (max-width: #{$composer-phone-width}) {
-  .max-content {
-    align-items: center !important;
-    .subtitle,
-    .subtitle-badge {
-      text-align: center !important;
-      transform: translateX(0) !important;
-      &::before {
-        content: none !important;
+  .container {
+    .max-content {
+      align-items: center;
+
+      .subtitle {
+        text-align: center;
+        transform: translateX(0);
+
+        &::before {
+          content: none;
+        }
       }
-    }
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      gap: var(--composer-gap-md);
+
+      .content {
+        .text-container {
+          flex-direction: column;
+        }
+      }
     }
   }
 }
