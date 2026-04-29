@@ -87,9 +87,10 @@
 
         .button-wrapper {
           display: flex;
-          align-self: flex-start !important;
+          justify-content: left;
           gap: var(--composer-gap-sm);
           flex-wrap: wrap;
+          width: 100%;
 
           .button {
             .button-text {
@@ -259,10 +260,13 @@
               .description-text {
                 text-align: center !important;
               }
-
             }
 
             .socials {
+              justify-content: center !important;
+            }
+
+            .button-wrapper {
               justify-content: center !important;
             }
           }
@@ -290,6 +294,9 @@
                 width: 100% !important;
               }
 
+              .button-wrapper {
+                justify-content: left !important;
+              }
 
               .socials {
                 justify-content: flex-start !important;
