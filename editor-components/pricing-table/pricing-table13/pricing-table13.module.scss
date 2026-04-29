@@ -9,7 +9,7 @@
         gap: calc(var(--composer-gap-lg) * 2);
 
         .left-column {
-            flex: 1;
+            width: 70%;
 
             .subtitle {
                 margin-left: 0;
@@ -136,6 +136,10 @@
         .max-content {
             gap: var(--composer-gap-lg);
             align-items: center;
+
+            .left-column {
+                width: 100%;
+            }
         }
 
         .card {
