@@ -3,8 +3,6 @@
 .container {
     .max-content {
         .card-wrapper {
-            overflow: hidden;
-            border-radius: var(--composer-border-radius-md);
             padding: 0;
             gap: var(--composer-gap-xl);
 
@@ -27,6 +25,8 @@
             }
 
             &.colored {
+                overflow: hidden;
+                border-radius: var(--composer-border-radius-md);
                 padding: 80px var(--composer-gap-xl);
                 background-color: var(--composer-primary-color);
 
@@ -207,6 +207,8 @@
         }
 
         &.colored {
+            overflow: hidden;
+            border-radius: var(--composer-border-radius-md);
             padding: 0;
 
             .left-column {
