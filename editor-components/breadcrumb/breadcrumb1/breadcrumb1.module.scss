@@ -75,7 +75,7 @@
   .strip {
     display: flex;
     align-items: center;
-    padding: var(--composer-gap-md);
+    padding: var(--composer-gap-md) 60px;
     background-color: color-mix(in srgb,
         var(--composer-html-background),
         var(--composer-font-color-primary) 5%);
@@ -162,7 +162,7 @@
   }
 
   .container .strip {
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
+    padding: var(--composer-gap-md) var(--composer-gap-xl);
   }
 }
 
@@ -173,6 +173,6 @@
   }
 
   .container .strip {
-    padding: var(--composer-gap-sm) var(--composer-gap-md);
+    padding: var(--composer-gap-md) 30px;
   }
 }
