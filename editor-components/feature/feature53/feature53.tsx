@@ -396,7 +396,7 @@ class Feature53 extends BaseFeature {
       const buttons = tab.buttons || [];
       const hasAnyButton = buttons.some((btn) => this.castToString(btn.text));
 
-      return this.castToString(tab.tabText) || hasIcon || tab.title || tab.subtitle || tab.description || hasMedia || hasAnyButton;
+      return this.castToString(tab.tabText) || hasIcon || this.castToString(tab.title) || this.castToString(tab.subtitle) || this.castToString(tab.description) || hasMedia || hasAnyButton;
     });
 
     return (
@@ -439,9 +439,9 @@ class Feature53 extends BaseFeature {
               const tabTextExist = this.castToString(tab.tabText);
               const tabIconExist = hasMediaValue(tab.icon);
               const isImage = tab.icon?.type === "image";
-              const tabSubtitleExist = tab.subtitle;
-              const tabTitleExist = tab.title;
-              const tabDescriptionExist = tab.description;
+              const tabSubtitleExist = this.castToString(tab.subtitle);
+              const tabTitleExist = this.castToString(tab.title);
+              const tabDescriptionExist = this.castToString(tab.description);
 
               const cardMedia = tab.cardMedia;
               const mediaValue = cardMedia?.media as TypeMediaInputValue | undefined;
