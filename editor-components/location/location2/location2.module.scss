@@ -87,7 +87,7 @@
 
         .button-wrapper {
           display: flex;
-          justify-content: left;
+          align-self: flex-start !important;
           gap: var(--composer-gap-sm);
           flex-wrap: wrap;
 
@@ -124,7 +124,7 @@
                 background-color: var(--composer-secondary-color) !important;
               }
 
-              .icon {
+              .social-icon {
                 color: var(--composer-font-color-secondary) !important;
                 width: 20px;
                 height: 20px;
@@ -159,7 +159,7 @@
       box-sizing: border-box;
       text-align: center;
 
-      .icon {
+      .feature-icon {
         text-align: center;
         width: 40px;
         height: 40px;
@@ -215,7 +215,7 @@
       }
 
       .middle-grid .element-container {
-        .icon {
+        .feature-icon {
           font-size: 2.5rem;
         }
       }
@@ -299,7 +299,7 @@
                   width: auto !important;
 
                   .social-button {
-                    .icon {
+                    .social-icon {
                       width: 15px;
                       height: 15px;
                       font-size: 1.5rem;
@@ -342,7 +342,7 @@
         padding: 30px;
 
         .element-container {
-          .icon {
+          .feature-icon {
             font-size: 2rem;
             width: 25px;
             height: 25px;

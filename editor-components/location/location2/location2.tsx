@@ -589,7 +589,7 @@ class Location2 extends Location {
               <Base.VerticalContent key={idx} className={this.decorateCSS("socials-container")}>
                 <ComposerLink path={item.getPropValue("path")}>
                   <Base.Row className={this.decorateCSS("social-button")}>
-                    <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("icon")} />
+                    <Base.Media value={item.getPropValue("icon")} className={this.decorateCSS("social-icon")} />
                   </Base.Row>
                 </ComposerLink>
               </Base.VerticalContent>
@@ -659,7 +659,7 @@ class Location2 extends Location {
                 if (isContTitleExist || isContIconExist || isDesExist) {
                   return (
                     <div key={idx} className={this.decorateCSS("element-container")}>
-                      {isContIconExist && <Base.Media value={item.contentIcon} className={this.decorateCSS("icon")} />}
+                      {isContIconExist && <Base.Media value={item.contentIcon} className={this.decorateCSS("feature-icon")} />}
                       {isContTitleExist && (
                         <div className={this.decorateCSS("content-title-container")}>
                           <Base.H5 className={this.decorateCSS("content-title")}>{item.contentTitle}</Base.H5>
