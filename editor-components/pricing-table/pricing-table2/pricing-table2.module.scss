@@ -111,6 +111,7 @@
                 align-self: center;
                 margin-left: 0;
                 margin-right: auto;
+                border-radius: var(--composer-border-radius-sm);
 
                 .icon {
                   font-size: 2rem;
@@ -138,7 +139,7 @@
                   }
 
                   .list-item {
-                    color: var(--composer-font-color-primary);
+                      color: var(--composer-font-color-primary);
                     text-align: left;
                     width: 100%;
                   }
