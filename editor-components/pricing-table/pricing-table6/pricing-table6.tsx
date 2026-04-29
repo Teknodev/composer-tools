@@ -149,12 +149,12 @@ class PricingMultipleTwo extends BasePricingTable {
                           displayer: "Subtitle",
                           value: "PRIMARY",
                         },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
+                          {
+                            type: "string",
+                            key: "title",
+                            displayer: "Package Title",
+                            value: "60 hour package per month",
+                          },
                         {
                           type: "string",
                           key: "text",
@@ -332,12 +332,12 @@ class PricingMultipleTwo extends BasePricingTable {
                           displayer: "Subtitle",
                           value: "POPULAR",
                         },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
+                          {
+                            type: "string",
+                            key: "title",
+                            displayer: "Package Title",
+                            value: "60 hour package per month",
+                          },
                         {
                           type: "string",
                           key: "text",
@@ -515,12 +515,12 @@ class PricingMultipleTwo extends BasePricingTable {
                           displayer: "Subtitle",
                           value: "PREMIUM",
                         },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
+                          {
+                            type: "string",
+                            key: "title",
+                            displayer: "Package Title",
+                            value: "60 hour package per month",
+                          },
                         {
                           type: "string",
                           key: "text",
@@ -717,12 +717,12 @@ class PricingMultipleTwo extends BasePricingTable {
                           displayer: "Subtitle",
                           value: "PRIMARY",
                         },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
+                          {
+                            type: "string",
+                            key: "title",
+                            displayer: "Package Title",
+                            value: "60 hour package per month",
+                          },
                         {
                           type: "string",
                           key: "text",
@@ -900,12 +900,12 @@ class PricingMultipleTwo extends BasePricingTable {
                           displayer: "Subtitle",
                           value: "POPULAR",
                         },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
+                          {
+                            type: "string",
+                            key: "title",
+                            displayer: "Package Title",
+                            value: "60 hour package per month",
+                          },
                         {
                           type: "string",
                           key: "text",
@@ -1082,12 +1082,12 @@ class PricingMultipleTwo extends BasePricingTable {
                           displayer: "Subtitle",
                           value: "PREMIUM",
                         },
-                        {
-                          type: "string",
-                          key: "title",
-                          displayer: "Title",
-                          value: "60 hour package per month",
-                        },
+                          {
+                            type: "string",
+                            key: "title",
+                            displayer: "Package Title",
+                            value: "60 hour package per month",
+                          },
                         {
                           type: "string",
                           key: "text",
@@ -1480,7 +1480,7 @@ class PricingMultipleTwo extends BasePricingTable {
                                 <div className={this.decorateCSS("header-wrapper")}>
                                   {titleExist && (
                                     <Base.H5
-                                      className={this.decorateCSS("title")}
+                                      className={this.decorateCSS("package-title")}
                                     >
                                       {title}
                                     </Base.H5>
