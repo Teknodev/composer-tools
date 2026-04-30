@@ -1,11 +1,14 @@
-@use "../../../composer-base-components/base/utitilities/viewports.module.scss"
-  as *;
+@use "../../../composer-base-components/base/utitilities/viewports.module.scss" as *;
+
 .container {
   .max-content {
     .content {
       gap: var(--composer-gap-lg);
       align-items: center;
+
       .header {
+        align-items: center;
+
         .title,
         .subtitle,
         .description {
@@ -13,31 +16,42 @@
         }
 
         .subtitle {
-          width: 100%;
+          width: fit-content;
           transform: translateX(0);
+
           &::before {
             display: none;
           }
         }
-      }
 
-      .button {
-        content: "";
+        .button-container {
+          display: flex;
+          gap: var(--composer-gap-sm);
+          flex-wrap: wrap;
+          justify-content: center;
 
-        .button-text {
-          content: "";
-          margin: 0;
-          color: var(--composer-font-color-secondary);
+          .button {
+            content: "";
+
+            .button-text {
+              content: "";
+              margin: 0;
+              color: var(--composer-font-color-secondary);
+            }
+          }
         }
       }
+
       .description {
         content: "";
         text-align: center;
       }
+
       .item-description {
         content: "";
         text-align: center;
       }
+
       .image-container {
         width: fit-content;
         container-type: normal;
@@ -48,10 +62,18 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          overflow: hidden;
+          aspect-ratio: 3 / 1;
           width: 100%;
 
           .image {
-            height: 100%;
+            height: var(--composer-gap-lg);
+            font-size: var(--composer-gap-lg);
+            object-fit: cover;
+          }
+
+          .video {
+            height: var(--composer-gap-lg);
             object-fit: cover;
           }
         }
