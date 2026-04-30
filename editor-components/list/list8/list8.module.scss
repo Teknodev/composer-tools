@@ -41,7 +41,7 @@
       }
 
       .items-wrapper {
-        gap: var(--composer-gap-xl);
+        gap: var(--composer-gap-lg);
 
         &.no-header {
           margin-top: calc(var(--composer-gap-xl) + 20px);
@@ -51,7 +51,7 @@
           background-color: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
           border-radius: var(--composer-border-radius-sm);
           position: relative;
-          padding: var(--composer-gap-xl);
+          padding: var(--composer-gap-lg);
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -174,7 +174,7 @@
     gap: calc(var(--composer-gap-md) * 2);
 
     .items-wrapper {
-      row-gap: calc(var(--composer-gap-xl) + 30px);
+      row-gap: var(--composer-gap-xl) ;
     }
 
     .items-wrapper .list-item .item-container {
@@ -200,6 +200,10 @@
 @container (max-width: #{$composer-phone-width}) {
   .container .max-content .content {
     gap: calc(var(--composer-gap-md) * 2);
+
+    .items-wrapper .list-item {
+      padding: var(--composer-gap-xl);
+    }
 
     .items-wrapper .list-item .item-container {
       .number-badge {
