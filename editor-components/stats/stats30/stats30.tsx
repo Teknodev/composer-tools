@@ -1,4 +1,5 @@
 import * as React from "react";
+import ComposerLink from "../../../composer-base-components/Link/ComposerLinkProvider";
 import { BaseStats } from "../../EditorComponent";
 import styles from "./stats30.module.scss";
 import { Base } from "../../../composer-base-components/base/base";
@@ -19,21 +20,21 @@ export class Stats30 extends BaseStats {
             type: "string",
             key: "subtitle",
             displayer: "Subtitle",
-            value: "Lorem",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "title",
             displayer: "Title",
-            value: "Lorem Ipsum",
+            value: "",
         });
 
         this.addProp({
             type: "string",
             key: "description",
             displayer: "Description",
-            value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            value: "",
         });
 
         this.addProp({
@@ -83,10 +84,7 @@ export class Stats30 extends BaseStats {
             key: "buttons",
             displayer: "Buttons",
             value: [
-                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
-                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
-                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
-                INPUTS.BUTTON("button", "Button", "Button Text", "", null, null, "Primary"),
+                INPUTS.BUTTON("button", "Button", "", "", null, null, "Primary"),
             ],
         });
 
@@ -171,14 +169,14 @@ export class Stats30 extends BaseStats {
         return (
             <Base.VerticalContent className={`${this.decorateCSS("stat-item")} ${coloredBackgroundClass}`}>
                 {subtitleExist && (
-                    <Base.H6 className={this.decorateCSS("stat-subtitle")}>
+                    <Base.H5 className={this.decorateCSS("stat-subtitle")}>
                         {stat.subtitleElement}
-                    </Base.H6>
+                    </Base.H5>
                 )}
                 {titleExist && (
-                    <Base.H2 className={this.decorateCSS("stat-title")}>
+                    <Base.H4 className={this.decorateCSS("stat-title")}>
                         {stat.titleElement}
-                    </Base.H2>
+                    </Base.H4>
                 )}
                 {descriptionExist && (
                     <Base.P className={this.decorateCSS("stat-description")}>
@@ -288,12 +286,12 @@ export class Stats30 extends BaseStats {
                         )}
 
                         {hasValidButtons && (
-                            <div className={this.decorateCSS("bottom-action-container")}>
+                            <div className={this.decorateCSS("button-container")}>
                                 {buttons.map((item: INPUTS.CastedButton, index: number) => {
                                     const buttonText = this.castToString(item.text);
                                     if (!buttonText) return null;
                                     return (
-                                        <div key={index} className={this.decorateCSS("button-wrapper")}>
+                                        <ComposerLink key={index} path={item.url}>
                                             <Base.Button
                                                 buttonType={item.type}
                                                 className={this.decorateCSS("button")}
@@ -302,7 +300,7 @@ export class Stats30 extends BaseStats {
                                                     {item.text}
                                                 </Base.P>
                                             </Base.Button>
-                                        </div>
+                                        </ComposerLink>
                                     );
                                 })}
                             </div>

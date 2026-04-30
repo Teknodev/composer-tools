@@ -35,18 +35,9 @@
 
 
                 .stat-item {
-                    background: transparent;
-                    border-radius: 0;
-                    box-sizing: border-box;
                     align-items: flex-start;
                     text-align: left;
                     
-                    .stat-value-container,
-                    .stat-subtitle,
-                    .stat-title,
-                    .stat-description {
-                        color: var(--composer-font-color-primary);
-                    }
 
                     &.colored-background {
                         background: color-mix(in srgb, var(--composer-html-background), var(--composer-font-color-primary) 5%);
@@ -60,22 +51,13 @@
                         text-align: left;
                     }
 
-                    .stat-subtitle {
-                        font-size: 1.5rem;
-                        color: var(--composer-font-color-primary);
-                    }
-
+                    .stat-subtitle,
                     .stat-title {
-                        font-size: 3.5rem;
                         color: var(--composer-font-color-primary);
-                        line-height: 1.1;
                     }
 
                     .stat-description {
-                        font-size: 1.6rem;
-                        opacity: 0.8;
-                        color: var(--composer-font-color-primary);
-                        line-height: 1.5;
+                        color: var(--composer-tertiary-color);
                     }
 
                     .stat-value-wrapper {
@@ -84,36 +66,27 @@
                             display: flex;
                             align-items: baseline;
                             color: var(--composer-primary-color);
-                            margin: 0;
 
                             .stat-prefix,
                             .stat-value,
                             .stat-suffix {
                                 font-size: 10rem;
-                                line-height: 1;
-                                margin: 0;
                             }
                         }
                     }
                 }
             }
 
-            .bottom-action-container {
+            .button-container {
                 display: flex;
                 flex-wrap: wrap;
                 gap: var(--composer-gap-sm);
                 justify-content: center;
                 width: 100%;
 
-                .button-wrapper {
-                    content: "";
-
-                    .button {
+                .button {
+                    .button-text {
                         content: "";
-
-                        .button-text {
-                            content: "";
-                        }
                     }
                 }
             }
